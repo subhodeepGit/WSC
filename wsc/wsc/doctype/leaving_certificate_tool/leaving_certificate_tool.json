@@ -1,0 +1,141 @@
+{
+ "actions": [],
+ "autoname": "format:Certificate For {programs} Of {date_of_admission}-and {date_of_leaving_the_school}",
+ "creation": "2022-08-04 16:01:55.480207",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "programs",
+  "academic_term",
+  "academic_year",
+  "academic_year_start",
+  "character",
+  "date_of_admission",
+  "date_of_leaving_the_school",
+  "whether_he_she_has_passed_the_annual_examination",
+  "academic_year_end",
+  "certificate_creation_status",
+  "get_students",
+  "total_enrolled_student",
+  "conduct_certificate_student",
+  "date",
+  "registrar_signature"
+ ],
+ "fields": [
+  {
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Programs",
+   "options": "Programs",
+   "reqd": 1
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Current Academic Term",
+   "options": "Academic Term",
+   "reqd": 1
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
+  },
+  {
+   "fieldname": "academic_year_start",
+   "fieldtype": "Date",
+   "hidden": 1,
+   "label": "Academic Year Start"
+  },
+  {
+   "fieldname": "academic_year_end",
+   "fieldtype": "Date",
+   "hidden": 1,
+   "label": "Academic Year End"
+  },
+  {
+   "fieldname": "certificate_creation_status",
+   "fieldtype": "Select",
+   "label": "Certificate Creation Status",
+   "options": "\nIn Process\nFailed\nSuccessful",
+   "read_only": 1
+  },
+  {
+   "fieldname": "get_students",
+   "fieldtype": "Button",
+   "label": "Get Students"
+  },
+  {
+   "fieldname": "total_enrolled_student",
+   "fieldtype": "Int",
+   "label": "Total Students for Certificate",
+   "read_only": 1
+  },
+  {
+   "fieldname": "conduct_certificate_student",
+   "fieldtype": "Table",
+   "label": "Leaving Certificate Student",
+   "options": "Marksheet"
+  },
+  {
+   "default": "GOOD",
+   "fieldname": "character",
+   "fieldtype": "Data",
+   "label": "Character"
+  },
+  {
+   "fieldname": "date_of_admission",
+   "fieldtype": "Data",
+   "label": "Date of Admission"
+  },
+  {
+   "fieldname": "date_of_leaving_the_school",
+   "fieldtype": "Data",
+   "label": "Date of Leaving the School"
+  },
+  {
+   "default": "Yes",
+   "fieldname": "whether_he_she_has_passed_the_annual_examination",
+   "fieldtype": "Select",
+   "label": "Whether he she has passed the Annual Examination",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fieldname": "registrar_signature",
+   "fieldtype": "Attach Image",
+   "label": "Registrar Signature"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-08-17 11:30:11.765585",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Leaving Certificate Tool",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

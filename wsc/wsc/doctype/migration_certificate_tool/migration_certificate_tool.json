@@ -1,0 +1,101 @@
+{
+ "actions": [],
+ "autoname": "format:Certificate For {programs} of {academic_session} Batch Students",
+ "creation": "2022-05-19 12:35:35.339324",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "programs",
+  "academic_term",
+  "academic_year",
+  "academic_session",
+  "resistrar_signature",
+  "certificate_creation_status",
+  "get_students",
+  "total_enrolled_student",
+  "migration_certificate_student"
+ ],
+ "fields": [
+  {
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Programs",
+   "options": "Programs",
+   "reqd": 1
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Current Academic Term",
+   "options": "Academic Term",
+   "reqd": 1
+  },
+  {
+   "fieldname": "certificate_creation_status",
+   "fieldtype": "Select",
+   "label": "Certificate Creation Status",
+   "options": "\nIn Process\nFailed\nSuccessful",
+   "read_only": 1
+  },
+  {
+   "fieldname": "get_students",
+   "fieldtype": "Button",
+   "label": "Get Students"
+  },
+  {
+   "fieldname": "total_enrolled_student",
+   "fieldtype": "Int",
+   "label": "Total Students for Certificate",
+   "read_only": 1
+  },
+  {
+   "fieldname": "migration_certificate_student",
+   "fieldtype": "Table",
+   "label": "Migration Certificate Student",
+   "options": "Marksheet"
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
+  },
+  {
+   "fieldname": "academic_session",
+   "fieldtype": "Data",
+   "label": "Academic Session",
+   "reqd": 1
+  },
+  {
+   "fieldname": "resistrar_signature",
+   "fieldtype": "Attach Image",
+   "label": "Resistrar Signature"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-08-17 11:38:56.763023",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Migration Certificate Tool",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

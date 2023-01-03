@@ -266,7 +266,7 @@ frappe.ui.form.on('Employee Appraisal', {
 	        });
 	        if(frm.doc.academic_year){
 				frappe.call({
-					method: "ed_tec.ed_tec.doctype.employee_appraisal.employee_appraisal.get_academic_courses",
+					method: "wsc.wsc.doctype.employee_appraisal.employee_appraisal.get_academic_courses",
 					args: {
 						employee: frm.doc.employee,
 						academic_year: frm.doc.academic_year

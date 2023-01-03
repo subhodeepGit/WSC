@@ -1,0 +1,54 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-08-30 19:53:04.029765",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "semester",
+  "semester_order",
+  "sgpa",
+  "semester_number"
+ ],
+ "fields": [
+  {
+   "fieldname": "semester",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Semester",
+   "options": "Program"
+  },
+  {
+   "fieldname": "semester_order",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Semester Order",
+   "options": "\n1ST SEM\n2ND SEM\n3RD SEM\n4TH SEM\n5TH SEM\n6TH SEM\n7TH SEM\n8TH SEM\n9TH SEM\n10TH SEM"
+  },
+  {
+   "fieldname": "sgpa",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "SGPA"
+  },
+  {
+   "default": "1",
+   "fieldname": "semester_number",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Semester Number"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2022-08-31 12:48:42.499458",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Previous Semester SGPA",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

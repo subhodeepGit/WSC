@@ -29,6 +29,35 @@ app_license = "MIT"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
+doctype_js = {
+                "Course":"public/js/course.js",
+                "Course Enrollment":"public/js/course_enrollment.js",
+                "Course Schedule": "public/js/course_schedule.js",
+                "Course Scheduling Tool": "public/js/course_scheduling_tool.js",
+                "Fees" : "public/js/fees.js",
+                "Fee Schedule":"public/js/fee_schedule.js",
+                "Fee Structure" : "public/js/fee_structure.js",
+                "Instructor":"public/js/instructor.js",
+                "Program Enrollment":"public/js/program_enrollment.js",
+                "Program":"public/js/program.js",
+                "Student":"public/js/student.js",
+                "Student Admission":"public/js/student_admission.js",
+                "Student Applicant":"public/js/student_applicant.js",
+                "Student Attendance":"public/js/student_attendance.js",
+                "Student Attendance Tool":"public/js/student_attendance_tool.js",
+                "Student Group": "public/js/student_group.js",
+                "Student Leave Application":"public/js/student_leave_application.js",
+                "Student Log":"public/js/student_log.js",
+                "Topic":"public/js/topic.js",
+                "User":"public/js/user.js",
+            }
+
+doctype_list_js = {
+    "Branch Sliding Application": "wsc/wsc/doctype/branch_sliding_application/branch_sliding_application_list.js",
+    "Fees":"public/js/fees_list.js",
+    "Student Attendance":"public/js/student_attendance_list.js",
+    "Student Applicant" :"public/js/student_applicant_list.js",
+}
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -36,6 +65,12 @@ app_license = "MIT"
 
 # Home Pages
 # ----------
+after_migrate = [
+        'wsc.patches.migrate_patch.set_translation',
+        'wsc.patches.migrate_patch.add_roles',
+        'wsc.patches.migrate_patch.set_custom_role_permission',
+        'wsc.wsc.delete_doc_if_linked.execute'
+]
 
 # application home page (will override Website Settings)
 # home_page = "login"
@@ -64,7 +99,7 @@ app_license = "MIT"
 # ------------
 
 # before_install = "wsc.install.before_install"
-# after_install = "wsc.install.after_install"
+after_install = "wsc.patches.get_phone_codes.execute"
 
 # Uninstallation
 # ------------
@@ -102,34 +137,176 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-#	"*": {
-#		"on_update": "method",
-#		"on_cancel": "method",
-#		"on_trash": "method"
-#	}
-# }
+doc_events = {
+    "Academic Calender": {
+        "validate": "wsc.wsc.validations.academic_calender.validate"
+    },
+    "Academic Calendar Template": {
+        "validate": "wsc.wsc.validations.academic_calender_template.validate"
+    },
+    "Branch sliding Declaration": {
+        "validate": "wsc.wsc.validations.branch_sliding_declaration.validate"
+    },
+    "Branch Sliding Application": {
+        "validate": "wsc.wsc.validations.branch_sliding_application.validate"
+    },
+    "Course": {
+        "validate": ["wsc.wsc.validations.course.validate",
+                     "wsc.wsc.doctype.course.validate"]
+    },
+    "Course Assessment": {
+        "validate": "wsc.wsc.validations.course_assessment.validate"
+    },
+    "Course Assessment Result": {
+        "validate": "wsc.wsc.validations.course_assessment_result.validate"
+    },
+    "Course Enrollment":{
+       "after_insert":"wsc.wsc.doctype.course_enrollment.after_insert",
+       "validate":"wsc.wsc.doctype.course_enrollment.validate",
+       "on_trash":"wsc.wsc.doctype.course_enrollment.on_trash"
+    },
+	"Course Schedule": {
+		"on_update": "wsc.wsc.doctype.course_schedule.on_change",
+        "validate": "wsc.wsc.validations.course_schedule.validate"
+	},
+    "Counselling Structure":{
+        "validate":"wsc.wsc.validations.counselling_structure.validate"
+    },
+    "Exam Assessment Plan": {
+        "validate": "wsc.wsc.validations.exam_assesment_plan.validate"
+    },
+    "Exam Application":{
+        "validate":"wsc.wsc.validations.exam_application.validate"
+    },
+    "Exam Declaration":{
+        "validate":"wsc.wsc.validations.exam_declaration.validate"
+    },
+    "Exchange Program Declaration":{
+        "validate":"wsc.wsc.validations.exchange_program_declaration.validate"
+    },
+    "Exam Paper Setting":{
+        "validate":"wsc.wsc.validations.exam_paper_setting.validate"
+    },
+    "Fees":{
+        "on_submit":"wsc.wsc.doctype.fees.on_submit",
+        "validate":"wsc.wsc.doctype.fees.validate",
+        "on_cancel":"wsc.wsc.doctype.fees.on_cancel"
+    },
+    "Fee Structure":{
+        "validate":"wsc.wsc.validations.fee_structure.validate"
+    },
+    "Feedback":{
+        "validate":"wsc.wsc.validations.feedback.validate"
+    },
+    "Fee Schedule":{
+        "validate":"wsc.wsc.validations.fee_schedule.validate"
+    },
+    "Final Result Declaration":{
+        "validate":"wsc.wsc.validations.final_result_declaration.validate"
+    },
+    "Instructor":{
+        "validate":["wsc.wsc.doctype.instructor.validate",
+        "wsc.wsc.validations.instructor.validate"],
+        "on_trash":"wsc.wsc.doctype.instructor.on_trash"
+    },
+    "Mentor Allocation": {
+        "validate": "wsc.wsc.validations.mentor_allocation.validate"
+    },
+    "Placement Drive":{
+        "validate":"wsc.wsc.validations.placement_drive.validate"
+    },
+    "Placement Drive Application":{
+        "validate":"wsc.wsc.validations.placement_drive_application.validate"
+    },
+    "Photocopy Application":{
+        "validate":"wsc.wsc.validations.photocopy_application.validate"
+    },
+    "Post Exam Declaration":{
+        "validate":"wsc.wsc.validations.post_exam_declaration.validate"
+    },
+    "Program":{
+        "after_insert":"wsc.wsc.doctype.program.after_insert",
+        "validate":"wsc.wsc.doctype.program.validate",
+        "on_trash":"wsc.wsc.doctype.program.on_trash"
+    },
+    "Programs":{
+        "validate":"wsc.wsc.validations.programs.validate"
+    },
+    "Program Enrollment":{
+        "on_submit":["wsc.wsc.doctype.program_enrollment.on_submit"],
+        "on_cancel":["wsc.wsc.doctype.program_enrollment.on_cancel"],
+        "on_change":"wsc.wsc.doctype.program_enrollment.on_change",
+        "validate":["wsc.wsc.validations.program_enrollment.validate",
+                    "wsc.wsc.doctype.program_enrollment.validate"]
+    },
+   
+    "Reevaluation Application":{
+        "validate":"wsc.wsc.validations.reevalution_application.validate"
+    },
+    "Student":{
+        "after_insert":"wsc.wsc.doctype.student.after_insert",
+        "on_trash":"wsc.wsc.doctype.student.on_trash",
+        "on_change":["wsc.wsc.doctype.student.on_update","wsc.wsc.doctype.student.on_change"],
+        "validate":"wsc.wsc.doctype.student.validate"
+    },
+    "Student Admit Card":{
+        "validate":"wsc.wsc.validations.student_admit_card.validate"
+    },
+    "Student Group":{
+        "validate":["wsc.wsc.validations.student_group.validate","wsc.wsc.doctype.student_group.validate"],
+        "after_insert":"wsc.wsc.doctype.student_group.after_insert",
+        "on_trash":"wsc.wsc.doctype.student_group.on_trash"
+    },
+    "Student Log":{
+        "validate":"wsc.wsc.validations.student_log.validate"
+    },
+    "Student Exchange Applicant":{
+        "validate":"wsc.wsc.validations.student_exchange_applicant.validate"
+    },
+    "Student Exam Block List":{
+        "validate":"wsc.wsc.validations.student_exam_block_list.validate"
+    },
+    "Student Leave Application":{
+        "validate":"wsc.wsc.validations.student_leave_application.validate"
+    },
+    "Student Applicant":{
+        "validate":["wsc.wsc.doctype.student_applicant.validate",
+                    "wsc.wsc.validations.student_applicant.validate"],
+        "on_change":"wsc.wsc.doctype.student_applicant.on_update",
+        "on_submit":"wsc.wsc.validations.student_applicant.on_submit"
+    },
+    "Student Admission":{
+        "validate":["wsc.wsc.doctype.student_admission.validate",
+        "wsc.wsc.validations.student_admission.validate"]
+    },
+    "Student Attendance":{
+        "validate":["wsc.wsc.doctype.student_attendance.validate"]
+    },
+    ("Student Admit Card"):{
+        "after_insert":"wsc.wsc.doctype.user_permission.after_insert",
+        "on_trash":"wsc.wsc.doctype.user_permission.on_trash"
+    },
+    "Payment Entry": {
+		"validate": "wsc.wsc.validations.payment_entry.validate",
+	},
+    # "Department":{
+    #     "validate": "wsc.wsc.doctype.department.validate"
+    # },
+    "File": {
+		"validate": "wsc.wsc.validations.file.validate",
+	},
+}
 
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-#	"all": [
-#		"wsc.tasks.all"
-#	],
-#	"daily": [
-#		"wsc.tasks.daily"
-#	],
-#	"hourly": [
-#		"wsc.tasks.hourly"
-#	],
-#	"weekly": [
-#		"wsc.tasks.weekly"
-#	],
-#	"monthly": [
-#		"wsc.tasks.monthly"
-#	],
-# }
+scheduler_events = {
+    "daily": [
+		"wsc.wsc.doctype.student_blocklist_check.student_blocklist_check",
+        "wsc.wsc.doctype.exam_assessment_plan.exam_assessment_plan.make_exam_paper_setting_by_paper_setting_date"
+	]
+
+}
 
 # Testing
 # -------
@@ -139,16 +316,22 @@ app_license = "MIT"
 # Overriding Methods
 # ------------------------------
 #
-# override_whitelisted_methods = {
-#	"frappe.desk.doctype.event.event.get_events": "wsc.event.get_events"
-# }
+override_whitelisted_methods = {
+	"education.education.api.get_course_schedule_events": "wsc.wsc.doctype.course_schedule.get_course_schedule_events",
+    "education.education.api.mark_attendance": "wsc.wsc.doctype.student_attendance.mark_attendance"
+}
+override_doctype_class = {
+	"Course Scheduling Tool": "wsc.wsc.doctype.course_scheduling_tool.CourseSchedulingTool",
+    "Student Attendance": "wsc.wsc.doctype.student_attendance.StudentAttendance",
+    "Employee":"wsc.wsc.doctype.employee.Employee",
+    "Course Schedule": "wsc.wsc.doctype.course_schedule.CourseSchedule",
+    "Student Applicant": "wsc.wsc.doctype.student_applicant.StudentApplicant",
+    "User Permission": "wsc.wsc.doctype.user_permission.UserPermission"
+}
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
 # along with any modifications made in other Frappe apps
-# override_doctype_dashboards = {
-#	"Task": "wsc.task.get_dashboard_data"
-# }
 
 # exempt linked doctypes from being automatically cancelled
 #

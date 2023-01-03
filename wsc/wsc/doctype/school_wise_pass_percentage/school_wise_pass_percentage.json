@@ -1,0 +1,90 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:Result of {academic_term} of KISS DU {program_grade} - {result_published_year}",
+ "creation": "2022-12-05 12:23:59.504090",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "academic_term",
+  "program_grade",
+  "column_break_3",
+  "result_published_year",
+  "section_break_5",
+  "department_pass_percentage",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Academic Term",
+   "options": "Academic Term",
+   "reqd": 1
+  },
+  {
+   "fieldname": "program_grade",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Program Grade",
+   "options": "Program Grades",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "result_published_year",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Result Published Year",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_5",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "School Wise Pass Percentage",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "department_pass_percentage",
+   "fieldtype": "Table",
+   "options": "Department Pass Percentage",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2022-12-05 15:34:27.115331",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "School Wise Pass Percentage",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

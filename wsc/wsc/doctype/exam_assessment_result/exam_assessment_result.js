@@ -1,4 +1,4 @@
-// Copyright (c) 2022, suraj varade and contributors
+// Copyright (c) 2023, SOUL Limited and contributors
 // For license information, please see license.txt
 frappe.ui.form.on('Exam Assessment Result', {
 	on_submit: function(frm) {
@@ -31,7 +31,7 @@ frappe.ui.form.on('Exam Assessment Result', {
         });
 		frm.set_query('course', function() {
 			return {
-				query: 'erpnext.education.doctype.program_enrollment.program_enrollment.get_program_courses',
+				query: 'education.education.doctype.program_enrollment.program_enrollment.get_program_courses',
 				filters: {
 					'program': frm.doc.program
 				}

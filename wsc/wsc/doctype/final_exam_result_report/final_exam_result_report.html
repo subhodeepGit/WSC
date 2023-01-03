@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script> -->
+    <style>
+        #tbl_exporttable_to_xls th p{
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        }
+        .table{
+            text-align: center;
+        }
+        .bold{
+            font-weight: bold;
+        }
+        img{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <div style="overflow-x:auto;">
+    <table class="table table-hover table-bordered" id="tbl_exporttable_to_xls">
+        <!-- <thead class="thead-dark"> -->
+            <!-- /opt/bench/frappe-bench/apps/wsc/wsc/wsc/doctype/final_exam_result_report/final_exam_result_report.html -->
+            <!-- /opt/bench/frappe-bench/apps/wsc/wsc/public/images/images.png -->
+            <tr>
+                <td colspan="17"></td>
+                <td colspan="3"><br>
+            <div>
+                <img src="https://kiss.soulunileaders.com/files/KISS_Logo.jpg" alt="KISS" width="150" height="150">
+            </div>
+            </td>
+            <td colspan="10">
+            <div class="bold">
+                <p style="text-align: center; font-size: 1.5em; color:rgb(32, 190, 32);"><b>KALINGA INSTITUTE OF SOCIAL SCIENCES (KISS)</b><br>
+            </div>
+            <div class="bold">
+                <p style="text-align: center; font-size: 1em; color:rgb(32, 190, 32);"><b>Deemed to be University</b></p>
+                <p style="text-align: center; font-size: 0.8em; color:rgb(32, 190, 32);">
+                <b>(Established U/S 3 of UGC Act, 1956)</b><br>
+                <b>Bhubaneswar, Odisha, Pin-751024</b><br></p>
+            </div>
+            </td></tr>
+            <!-- <tr>
+                <th rowspan="2">SL No </th>
+                <th rowspan="2">Roll No</th>
+                <th rowspan="2">Reg No</th>
+                <th rowspan="2">Student</th>
+                {% for t in course%}
+                    {% for j in assessment_criteria_head %}
+                        {% if j['course_code']==t['name']%}
+                        <th colspan="{{j['len_assessment_criteria']}}" >{{t.course_name}}  ({{t.course_code}}) {{t.name}} </th>
+                        {% endif%}
+                    {% endfor %}
+                {% endfor %}
+                <th rowspan="2"><p>Credit Point</p></th>
+                <th rowspan="2"><p>Total Credit</p></th>
+                <th rowspan="2"><p>SGPA</p></th>                
+                <th rowspan="2"><p>CGPA</p></th>
+
+                <tr>
+                    {% for t in course%}
+                        {% for j in assessment_criteria_head %}
+                            {% if j['course_code']==t['name'] %}
+                            {% var frames = j['assessment_criteria'] %}
+                            {% for (var i in frames) { %}
+                                <th><p>{{j['assessment_criteria'][i]}} </p></th>
+                            {% } %}    
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </tr>
+
+            </tr> -->
+        <!-- </thead> -->
+
+        <!-- <tbody> -->
+            <tr>
+                <th rowspan="2">SL No </th>
+                <th rowspan="2">Roll No</th>
+                <th rowspan="2">Reg No</th>
+                <th rowspan="2">Student</th>
+                {% for t in course%}
+                    {% for j in assessment_criteria_head %}
+                        {% if j['course_code']==t['name']%}
+                        <th colspan="{{j['len_assessment_criteria']}}" >{{t.course_name}}  ({{t.course_code}})  </th>
+                        <!-- {{t.name}} -->
+                        {% endif%}
+                    {% endfor %}
+                {% endfor %}
+                <th rowspan="2"><p>Credit Point</p></th>
+                <th rowspan="2"><p>Total Credit</p></th>
+                <th rowspan="2"><p>SGPA</p></th>                
+                <th rowspan="2"><p>CGPA</p></th>
+
+                <tr>
+                    {% for t in course%}
+                        {% for j in assessment_criteria_head %}
+                            {% if j['course_code']==t['name'] %}
+                            {% var frames = j['assessment_criteria'] %}
+                            {% for (var i in frames) { %}
+                                <th><p>{{j['assessment_criteria'][i]}} </p></th>
+                            {% } %}    
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </tr>
+
+            </tr>          
+            <tr>
+                <td colspan="4">Full Marks</td>
+                <!-- {% for t in course%}
+                    {% for j in assessment_criteria %}
+                        <td>{{t[j.assessment_criteria[1]] }}</td>
+                    {%endfor%}  
+                {% endfor %} -->
+                {% for t in course%}
+                    {% for j in assessment_criteria_head %}
+                        {% if t['name']==j['course_code']%}
+                            {% var frames = j['assessment_criteria_info'] %}
+                            {% for (var i in frames) { %}
+                            <td>{{t[j['assessment_criteria_info'][i]] }} </td>
+                            {% } %} 
+                            
+                        {%endif%}    
+                    {%endfor%}
+                {% endfor %}
+                <td></td>
+                <td colspan="3">{{total_credit}}</td>
+            </tr>
+            {% for s in students %}
+            <tr>
+                <td>{{s.name}}</td>
+                <td>{{s.roll_no}}</td>
+                <td>{{s.registration_number}}</td>
+                <td>{{s.student_name}}</td>
+                {% for t in course%}
+
+                    {% for j in assessment_criteria_head %}
+                        {% if j['course_code']==t['name'] %}
+                            {% for (var i in frames) { %}
+                            {% var frames = j['assessment_criteria'] %}
+                                {%for z in assessment_result%}
+                                    {% if t['name']==z['course'] %}
+                                        {% if s["name"]==z["parent"] %}
+                                            {% if j['assessment_criteria'][i]== z['assessment_criteria'] %}
+                                            <td>{{z['earned_marks']}}</td>
+                                        
+                                            {% endif %}
+                                        {% endif %} 
+                                    {% endif %} 
+                                {%endfor%}
+                            {% } %}
+                        {% endif %} 
+                    {%endfor%}
+
+                    {%for z in evaluation_result%}
+                        {% if t['name']==z['course']  %}
+                            {% if s["name"]==z["parent"] %}
+                                <td>{{z['earned_marks']}}</td>
+                                <td>{{z['Cr_P']}}</td>
+                                <td>{{z['grade']}}</td>
+                                <td>{{z['total_cr']}}</td>
+                            {% endif %}
+                        {% endif %}
+                    {%endfor%}
+
+                {%endfor%}  
+
+
+
+                <td>{{s.credit_point}}</td>
+                <td>{{s.total_credit}}</td>
+                <td>{{s.sgpa}}</td>
+                <td>{{s.overall_cgpa}}</td>
+            </tr>
+            {% endfor %}
+        <!-- </tbody>
+        <tfoot> -->
+            <tr><td colspan="1"></td>
+                <td colspan="1"></td>
+                <td colspan="1"></td>
+                <td colspan="1"></td></tr>
+            <tr><td colspan="1"></td>
+                <td colspan="1"></td>
+                <td colspan="1"></td>
+                <td colspan="1"></td></tr>
+            <tr><td colspan="1"></td>
+                <td colspan="1"></td>
+                <td colspan="1"></td>
+                <td colspan="1"></td></tr>
+            <tr>
+            <br><br><br>
+            <td colspan="13"><br><br><br><b>Prepared by</b></td>
+            <td colspan="13"><br><br><br><b>Exam Co-ordinator</b></td>
+            <td colspan="15"><br><br><br><b>Asst. CoE</b></td>
+            <td colspan="15"><br><br><br><b>Controller of Examinations</b></td>
+        </tr>
+        <!-- </tfoot> -->
+    </table>
+</div>
+</body>
+</html>
+

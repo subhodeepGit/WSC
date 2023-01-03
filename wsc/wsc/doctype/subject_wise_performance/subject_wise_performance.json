@@ -1,0 +1,90 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:The Subject Wise Performance of {programs} in {academic_term}",
+ "creation": "2022-11-15 20:59:11.747919",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "program_grade",
+  "programs",
+  "academic_year",
+  "academic_term",
+  "course_pass_",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "program_grade",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Program Grade",
+   "options": "Program Grades",
+   "reqd": 1
+  },
+  {
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Programs",
+   "options": "Programs",
+   "reqd": 1
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Academic Year",
+   "options": "Academic Year",
+   "reqd": 1
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Academic Term",
+   "options": "Academic Term",
+   "reqd": 1
+  },
+  {
+   "fieldname": "course_pass_",
+   "fieldtype": "Table",
+   "label": "Course Pass %",
+   "options": "Course Pass Percentage",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Subject Wise Performance",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-11-18 17:58:32.198344",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Subject Wise Performance",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

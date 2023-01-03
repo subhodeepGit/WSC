@@ -1,0 +1,22 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2022-08-05 17:53:35.609384",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "modified": "2022-08-05 17:56:44.463419",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Final Exam Result Report",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Exam Assessment Result",
+ "report_name": "Final Exam Result Report",
+ "report_type": "Script Report",
+ "roles": []
+}

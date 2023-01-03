@@ -4,7 +4,7 @@
 import frappe
 from frappe.model.document import Document
 from frappe.utils import flt
-from ed_tec.ed_tec.utils import academic_term
+from wsc.wsc.utils import academic_term
 
 class AssessmentCreditsAllocation(Document):
     def validate(self):

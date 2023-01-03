@@ -1,0 +1,32 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2022-09-01 16:44:20.171783",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "modified": "2022-09-08 12:29:34.879382",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Final Grade Report",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Exam Assessment Result",
+ "report_name": "Final Grade Report",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "Academics User"
+  },
+  {
+   "role": "Education Administrator"
+  },
+  {
+   "role": "Education Admission Dept"
+  }
+ ]
+}

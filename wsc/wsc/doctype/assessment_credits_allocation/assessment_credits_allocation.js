@@ -12,7 +12,7 @@ frappe.ui.form.on('Assessment Credits Allocation', {
 		});
 		frm.set_query("course", function() {
 			return {
-				query: 'ed_tec.ed_tec.doctype.assessment_credits_allocation.assessment_credits_allocation.get_courses',
+				query: 'wsc.wsc.doctype.assessment_credits_allocation.assessment_credits_allocation.get_courses',
 				filters: {
 					"student":frm.doc.student
 				}
@@ -20,7 +20,7 @@ frappe.ui.form.on('Assessment Credits Allocation', {
 		});
 		frm.set_query("assessment_criteria", function() {
 			return {
-				query: 'ed_tec.ed_tec.doctype.assessment_credits_allocation.assessment_credits_allocation.get_assessment_criteria',
+				query: 'wsc.wsc.doctype.assessment_credits_allocation.assessment_credits_allocation.get_assessment_criteria',
 				filters: {
 					"course":frm.doc.course,
 					"student":frm.doc.student
@@ -41,7 +41,7 @@ frappe.ui.form.on('Assessment Credits Allocation', {
 	get_assessments:function(frm){
 		if(frm.doc.assessment_criteria){
 			frappe.call({
-				method:"ed_tec.ed_tec.doctype.assessment_credits_allocation.assessment_credits_allocation.get_course_assessment",
+				method:"wsc.wsc.doctype.assessment_credits_allocation.assessment_credits_allocation.get_course_assessment",
 				args: {
 					student:frm.doc.student,
 					course:frm.doc.course,
@@ -100,7 +100,7 @@ frappe.ui.form.on('Assessment Credits Allocation', {
 		}
 		if (frm.doc.course && frm.doc.assessment_criteria){
 			frappe.call({
-				method: 'ed_tec.ed_tec.doctype.exam_assessment_plan.exam_assessment_plan.get_assessment_criteria_detail',
+				method: 'wsc.wsc.doctype.exam_assessment_plan.exam_assessment_plan.get_assessment_criteria_detail',
 				args: {
 					course:frm.doc.course,
 					criteria:frm.doc.assessment_criteria

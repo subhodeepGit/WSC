@@ -1,0 +1,8 @@
+wsc.patches.instructor_patch   # 12-01-2023 01
+wsc.patches.course_enrollment_patch # 12-01-2023 01
+wsc.patches.employee_patch
+wsc.patches.course_schedule_patch # 12-01-2023 01
+wsc.patches.student_group_patch # 12-01-2023 01
+wsc.patches.exam_declaration_patch # 21-01-2023 01
+wsc.patches.exam_paper_setting_patch # 21-01-2023 01
+wsc.patches.student_patch
