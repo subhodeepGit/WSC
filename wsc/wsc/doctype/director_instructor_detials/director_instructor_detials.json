@@ -1,0 +1,47 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-10-19 12:27:23.036435",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "instructor_name",
+  "department",
+  "gender"
+ ],
+ "fields": [
+  {
+   "columns": 3,
+   "fieldname": "instructor_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Instructor Name",
+   "options": "Instructor"
+  },
+  {
+   "columns": 4,
+   "fieldname": "department",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Department"
+  },
+  {
+   "columns": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Gender"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2022-10-19 16:42:36.180468",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Director Instructor Detials",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

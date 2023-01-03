@@ -1,0 +1,76 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-12-05 12:25:42.984609",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "academic_term",
+  "program_grade",
+  "department_alias",
+  "appeared_students",
+  "passed_students",
+  "pass_parcentage"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Academic Term",
+   "options": "Academic Term",
+   "width": "10"
+  },
+  {
+   "columns": 2,
+   "fieldname": "program_grade",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Program Grade",
+   "options": "Program Grades",
+   "width": "10"
+  },
+  {
+   "fieldname": "department_alias",
+   "fieldtype": "Data",
+   "label": "School"
+  },
+  {
+   "columns": 1,
+   "fieldname": "appeared_students",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Appeared",
+   "width": "10"
+  },
+  {
+   "columns": 1,
+   "fieldname": "passed_students",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Passed",
+   "width": "10"
+  },
+  {
+   "columns": 2,
+   "fieldname": "pass_parcentage",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Pass %",
+   "width": "10"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2022-12-05 12:58:55.254321",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Department Pass Percentage",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

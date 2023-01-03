@@ -1,0 +1,90 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:user_id",
+ "creation": "2022-10-17 18:03:18.856396",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee_id",
+  "director_name",
+  "employee_number",
+  "department",
+  "user_id",
+  "instructors"
+ ],
+ "fields": [
+  {
+   "depends_on": "eval:!(doc.__islocal) ",
+   "fieldname": "employee_id",
+   "fieldtype": "Link",
+   "label": "Employee Id",
+   "options": "Employee",
+   "unique": 1
+  },
+  {
+   "columns": 3,
+   "depends_on": "eval:!(doc.__islocal) ",
+   "fetch_from": "employee_id.employee_name",
+   "fieldname": "director_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Dean Name"
+  },
+  {
+   "columns": 4,
+   "depends_on": "eval:!(doc.__islocal) ",
+   "fetch_from": "employee_id.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Department",
+   "options": "Department"
+  },
+  {
+   "fetch_from": "employee_id.user_id",
+   "fieldname": "user_id",
+   "fieldtype": "Link",
+   "label": "User Id",
+   "options": "User",
+   "unique": 1
+  },
+  {
+   "depends_on": "eval:!(doc.__islocal) ",
+   "fieldname": "instructors",
+   "fieldtype": "Table",
+   "label": "Instructors",
+   "options": "Director Instructor Detials"
+  },
+  {
+   "fetch_from": "employee_id.employee_number",
+   "fieldname": "employee_number",
+   "fieldtype": "Data",
+   "label": "Employee Number"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-11-12 09:42:33.252722",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Dean",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

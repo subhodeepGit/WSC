@@ -4,7 +4,7 @@ import calendar
 from frappe import _
 from frappe.model.document import Document
 from frappe.utils import add_days, getdate
-from erpnext.education.utils import OverlapError
+from education.education.utils import OverlapError
 class CourseSchedulingTool(Document):
 
     @frappe.whitelist()

@@ -1,0 +1,248 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "SAPP.-.####",
+ "creation": "2022-09-06 17:46:45.465128",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "document_based_on",
+  "section_break_2",
+  "academic_year",
+  "stream",
+  "column_break_5",
+  "program_grades",
+  "application_status",
+  "have_you_approved_the_selected_program",
+  "priority_section_section",
+  "programs",
+  "pp_column",
+  "program_priorty_2",
+  "column_break_10",
+  "program_priorty_3",
+  "section_break_6",
+  "generate_passport_photo",
+  "student_application_number",
+  "column_break_4",
+  "student_application_status",
+  "column_break_2",
+  "first_name",
+  "department",
+  "column_break_8",
+  "student_academic_year",
+  "program_grade",
+  "section_break_10",
+  "document_details"
+ ],
+ "fields": [
+  {
+   "fieldname": "document_based_on",
+   "fieldtype": "Select",
+   "in_global_search": 1,
+   "in_standard_filter": 1,
+   "label": "Document based on",
+   "options": "\nPassport Photo\nStudents"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.document_based_on==\"Passport Photo\"",
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Academic Year",
+   "mandatory_depends_on": "eval:doc.document_based_on==\"Passport Photo\"",
+   "options": "Academic Year",
+   "search_index": 1
+  },
+  {
+   "depends_on": "eval:doc.document_based_on==\"Passport Photo\"",
+   "fieldname": "stream",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "label": "Department",
+   "mandatory_depends_on": "eval:doc.document_based_on==\"Document Type\"",
+   "options": "Department",
+   "search_index": 1
+  },
+  {
+   "depends_on": "eval:doc.document_based_on==\"Passport Photo\"",
+   "fieldname": "program_grades",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Program Grade",
+   "mandatory_depends_on": "eval:doc.document_based_on==\"Passport Photo\"",
+   "options": "Program Grades",
+   "search_index": 1
+  },
+  {
+   "depends_on": "eval:doc.document_based_on==\"Passport Photo\"",
+   "fieldname": "generate_passport_photo",
+   "fieldtype": "Button",
+   "label": "Generate Passport Photo"
+  },
+  {
+   "depends_on": "eval:doc.document_based_on==\"Students\"",
+   "fieldname": "student_application_number",
+   "fieldtype": "Link",
+   "label": "Student Application Number",
+   "mandatory_depends_on": "eval:doc.document_based_on==\"Students\"",
+   "options": "Student Applicant"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.document_based_on==\"Students\"",
+   "fetch_from": "student_application_number.application_status",
+   "fieldname": "student_application_status",
+   "fieldtype": "Data",
+   "label": "Student Application Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.document_based_on==\"Students\"",
+   "fetch_from": "student_application_number.title_name",
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "label": "Student Name",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.document_based_on==\"Students\"",
+   "fetch_from": "student_application_number.department",
+   "fieldname": "department",
+   "fieldtype": "Data",
+   "label": "Department",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.document_based_on==\"Students\"",
+   "fetch_from": "student_application_number.academic_year",
+   "fieldname": "student_academic_year",
+   "fieldtype": "Link",
+   "label": "Student Academic Year",
+   "options": "Academic Year",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.document_based_on==\"Students\"",
+   "fetch_from": "student_application_number.program_grade",
+   "fieldname": "program_grade",
+   "fieldtype": "Data",
+   "label": "Program Grade",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_10",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.document_based_on",
+   "fieldname": "document_details",
+   "fieldtype": "Table",
+   "label": "Document Details",
+   "options": "Document Type Details"
+  },
+  {
+   "fieldname": "section_break_6",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.document_based_on==\"Passport Photo\"",
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "label": "Program Priority 1",
+   "options": "Programs"
+  },
+  {
+   "depends_on": "eval:doc.document_based_on==\"Passport Photo\"",
+   "fieldname": "program_priorty_2",
+   "fieldtype": "Link",
+   "label": "Program Priorty 2",
+   "options": "Programs"
+  },
+  {
+   "depends_on": "eval:doc.document_based_on==\"Passport Photo\"",
+   "fieldname": "program_priorty_3",
+   "fieldtype": "Link",
+   "label": "Program Priorty 3",
+   "options": "Programs"
+  },
+  {
+   "fieldname": "priority_section_section",
+   "fieldtype": "Section Break",
+   "label": "Enter Program Priority"
+  },
+  {
+   "fieldname": "pp_column",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_10",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.document_based_on==\"Passport Photo\"",
+   "fieldname": "application_status",
+   "fieldtype": "Select",
+   "label": "Application Status",
+   "mandatory_depends_on": "eval:doc.document_based_on==\"Passport Photo\"",
+   "options": "\nApplied\nApproved"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.application_status==\"Approved\"",
+   "fieldname": "have_you_approved_the_selected_program",
+   "fieldtype": "Check",
+   "label": "Have you Approved the selected Program"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-10-27 11:21:34.111736",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Download Student Passport Photo",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "show_preview_popup": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}
