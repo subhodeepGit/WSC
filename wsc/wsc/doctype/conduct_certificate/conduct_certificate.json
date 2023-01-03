@@ -1,0 +1,125 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "CC.-.No.-.######",
+ "creation": "2021-12-15 19:55:35.746884",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "student",
+  "student_name",
+  "roll_no",
+  "programs",
+  "academic_year",
+  "admission_year",
+  "leaving_year",
+  "academic_year_start",
+  "academic_year_end",
+  "registrar_signature",
+  "date"
+ ],
+ "fields": [
+  {
+   "fieldname": "student",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Student",
+   "options": "Student",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "student.title",
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Student Name"
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Academic Year",
+   "options": "Academic Year",
+   "reqd": 1
+  },
+  {
+   "fieldname": "academic_year_start",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Academic Year Start"
+  },
+  {
+   "fieldname": "academic_year_end",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Academic Year End "
+  },
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "student.roll_no",
+   "fieldname": "roll_no",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Roll No",
+   "read_only": 1
+  },
+  {
+   "fieldname": "admission_year",
+   "fieldtype": "Data",
+   "label": "Admission Year"
+  },
+  {
+   "fieldname": "leaving_year",
+   "fieldtype": "Data",
+   "label": "Leaving Year"
+  },
+  {
+   "fieldname": "registrar_signature",
+   "fieldtype": "Attach Image",
+   "label": "Registrar Signature"
+  },
+  {
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Programs",
+   "options": "Programs"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-08-30 11:34:25.332945",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Conduct Certificate",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

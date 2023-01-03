@@ -1,0 +1,127 @@
+{
+ "actions": [],
+ "autoname": "format:Certificate For {programs} Of {admission_year}-{leaving_year}",
+ "creation": "2022-05-19 15:32:17.614864",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "programs",
+  "academic_term",
+  "academic_year",
+  "academic_year_start",
+  "academic_year_end",
+  "admission_year",
+  "leaving_year",
+  "date",
+  "registrar_signature",
+  "certificate_creation_status",
+  "get_students",
+  "total_enrolled_student",
+  "conduct_certificate_student"
+ ],
+ "fields": [
+  {
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Programs",
+   "options": "Programs",
+   "reqd": 1
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Current Academic Term",
+   "options": "Academic Term",
+   "reqd": 1
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
+  },
+  {
+   "fieldname": "academic_year_start",
+   "fieldtype": "Date",
+   "label": "Academic Year Start"
+  },
+  {
+   "fieldname": "academic_year_end",
+   "fieldtype": "Date",
+   "label": "Academic Year End"
+  },
+  {
+   "fieldname": "certificate_creation_status",
+   "fieldtype": "Select",
+   "label": "Certificate Creation Status",
+   "options": "\nIn Process\nFailed\nSuccessful",
+   "read_only": 1
+  },
+  {
+   "fieldname": "get_students",
+   "fieldtype": "Button",
+   "label": "Get Students"
+  },
+  {
+   "fieldname": "total_enrolled_student",
+   "fieldtype": "Int",
+   "label": "Total Students for Certificate",
+   "read_only": 1
+  },
+  {
+   "fieldname": "conduct_certificate_student",
+   "fieldtype": "Table",
+   "label": "Conduct Certificate Student",
+   "options": "Marksheet"
+  },
+  {
+   "fieldname": "admission_year",
+   "fieldtype": "Data",
+   "label": "Admission Year",
+   "reqd": 1
+  },
+  {
+   "fieldname": "leaving_year",
+   "fieldtype": "Data",
+   "label": "Leaving Year",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "registrar_signature",
+   "fieldtype": "Attach Image",
+   "label": "Registrar Signature"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-08-30 11:21:57.638054",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Conduct Certificate Tool",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
