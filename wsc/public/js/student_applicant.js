@@ -346,13 +346,13 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
                         frappe.msgprint("Admission Not Declared for this program")
                         frappe.model.set_value(cdt, cdn, "programs",'');
                     }
-                    var a=0
-                    a=frm.doc.program_priority.length;
-                    frm.set_value("count_programs", a);
-                    if(a<=1){
+                    // var a=0
+                    // a=frm.doc.program_priority.length;
+                    // frm.set_value("count_programs", a);
+                    // if(a<=1){
                         frm.set_value("program",r.message['semester'])
                         frm.set_value("programs_",r.message['admission_program'])
-                    }
+                    // }
                     // frm.set_value("program",r.message['semester'])
                     // frm.set_value("programs_",r.message['admission_program'])
                     frappe.model.set_value(cdt, cdn, "student_admission", r.message['name']);

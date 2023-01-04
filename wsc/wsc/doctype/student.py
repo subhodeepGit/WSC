@@ -57,13 +57,14 @@ def on_change(self,method):
 		user.email=self.student_email_id
 		user.save()
 def validate(doc,method):
-	attachImage(doc)
+	# attachImage(doc)s
 	check_unique(doc)
 	duplicate_row_validation(doc, "education_details", ['qualification','percentage'])
 	duplicate_row_validation(doc, "siblings", ['full_name', 'gender'])
 	duplicate_row_validation(doc, "disable_type", ['disability_type', 'percentage_of_disability'])
-def attachImage(self):
-	self.image=self.passport_photo
+# def attachImage(self):
+# 	if self.passport_photo!=None:
+# 		self.image=self.passport_photo
 def check_unique(doc):
 	# make_workspace_for_user("Education",doc.user)
 	"""Validates if the Student Exchange Applicant is Unique"""
