@@ -6,7 +6,7 @@ import re
 import frappe
 from frappe.exceptions import Redirect
 from frappe.model.document import Document
-# import pandas as pd
+import pandas as pd
 import datetime
 
 

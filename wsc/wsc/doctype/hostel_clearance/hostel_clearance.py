@@ -4,7 +4,7 @@
 import re
 import frappe
 from frappe.model.document import Document
-# import pandas as pd
+import pandas as pd
 from datetime import datetime
 
 class HostelClearance(Document):

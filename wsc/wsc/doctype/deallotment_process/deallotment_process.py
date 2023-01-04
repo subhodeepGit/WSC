@@ -3,7 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
-# import pandas as pd
+import pandas as pd
 
 class DeallotmentProcess(Document):
 	#frappe.db.sql(""" UPDATE `tabEmployee Hostel Allotment`  SET  start_date= '2000-09-01' where name='RAN-2021-00001';""")	

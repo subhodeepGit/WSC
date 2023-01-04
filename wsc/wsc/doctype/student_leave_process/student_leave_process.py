@@ -3,7 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
-# import pandas as pd
+import pandas as pd
 import datetime
 
 class StudentLeaveProcess(Document):

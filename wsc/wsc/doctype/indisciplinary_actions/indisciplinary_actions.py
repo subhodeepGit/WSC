@@ -5,7 +5,7 @@ import re
 from time import process_time
 import frappe
 from frappe.model.document import Document
-# import pandas as pd
+import pandas as pd
 
 class IndisciplinaryActions(Document):
 	# @frappe.whitelist()

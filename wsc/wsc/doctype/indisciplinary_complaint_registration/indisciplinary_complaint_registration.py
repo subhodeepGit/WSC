@@ -4,7 +4,7 @@
 from re import I
 import frappe
 from frappe.model.document import Document
-# import pandas as pd
+import pandas as pd
 
 class IndisciplinaryComplaintRegistration(Document):
     # @frappe.whitelist()

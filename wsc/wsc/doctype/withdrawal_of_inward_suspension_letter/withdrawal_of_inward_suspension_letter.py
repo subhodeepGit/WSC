@@ -4,7 +4,7 @@
 import frappe
 from frappe.model.document import Document
 from frappe.translate import import_translations
-# import pandas as pd
+import pandas as pd
 
 class WithdrawalofInwardSuspensionLetter(Document):
 	# @frappe.whitelist()

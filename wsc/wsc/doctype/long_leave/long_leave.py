@@ -3,7 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
-# import pandas as pd
+import pandas as pd
 
 class LongLeave(Document):
 	# @frappe.whitelist()
