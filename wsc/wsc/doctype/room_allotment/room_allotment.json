@@ -1,0 +1,437 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2021-09-17 13:56:37.317306",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "student_info_section",
+  "naming_series",
+  "student",
+  "date_of_birth",
+  "room_type_reference",
+  "column_break_3",
+  "student_name",
+  "roll_no",
+  "registration_number",
+  "blood_group",
+  "hostel_registration_no",
+  "section_break_4",
+  "hostel_id",
+  "start_date",
+  "end_date",
+  "allotment_type",
+  "column_break_6",
+  "room_id",
+  "room_number",
+  "room_type",
+  "addon_facilites",
+  "guardians_infroamtion_section",
+  "fathers_name",
+  "fathers_contact_number",
+  "fathers_occupation",
+  "annual_income",
+  "column_break_26",
+  "mothers_name",
+  "mothers_contact_number",
+  "mothers_occupation",
+  "mothers_annual_income",
+  "column_break_31",
+  "local_guardians_name",
+  "local_guardian_contact_no",
+  "local_guardian_occupation",
+  "local_guardian_address",
+  "relation_with_student",
+  "section_break_13",
+  "employee",
+  "designation",
+  "column_break_18",
+  "employee_name",
+  "contact_number",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Allotment Number",
+   "options": "RA-.YYYY.-"
+  },
+  {
+   "fieldname": "student",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Student",
+   "options": "Student",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "student.title",
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Student Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "hostel_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Hostel",
+   "options": "Hostel Masters",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date",
+   "read_only": 1
+  },
+  {
+   "default": "Allotted",
+   "fieldname": "allotment_type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Allotment Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "9999-12-01",
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "in_standard_filter": 1,
+   "label": "End Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "room_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Room ID",
+   "options": "Room Masters",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "room_id.actual_room_type",
+   "fieldname": "room_type",
+   "fieldtype": "Data",
+   "label": "Room Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Employee",
+   "options": "Employee",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "room_id.room_number",
+   "fieldname": "room_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Room Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break",
+   "label": "Allotment Details"
+  },
+  {
+   "fieldname": "section_break_13",
+   "fieldtype": "Section Break",
+   "label": "Allotting Employee"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "student.date_of_birth",
+   "fieldname": "date_of_birth",
+   "fieldtype": "Data",
+   "label": "Date of Birth",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.blood_group",
+   "fieldname": "blood_group",
+   "fieldtype": "Data",
+   "label": "Blood Group",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_18",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "employee.designation",
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "label": "Designation",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.cell_number",
+   "fieldname": "contact_number",
+   "fieldtype": "Data",
+   "label": "Contact Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "room_id.room_type_feature",
+   "fieldname": "addon_facilites",
+   "fieldtype": "Data",
+   "label": "Addon Facilites",
+   "read_only": 1
+  },
+  {
+   "fieldname": "student_info_section",
+   "fieldtype": "Section Break",
+   "label": "Student Info"
+  },
+  {
+   "fieldname": "guardians_infroamtion_section",
+   "fieldtype": "Section Break",
+   "label": "Guardian Information"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Room Allotment",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.roll_no",
+   "fieldname": "roll_no",
+   "fieldtype": "Data",
+   "label": "Roll No",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.permanant_registration_number",
+   "fieldname": "registration_number",
+   "fieldtype": "Data",
+   "label": "Registration Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.fathers_name",
+   "fieldname": "fathers_name",
+   "fieldtype": "Data",
+   "label": "Father's Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.fathers_contact_number",
+   "fieldname": "fathers_contact_number",
+   "fieldtype": "Data",
+   "label": "Father's Contact Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.fathers_occupation",
+   "fieldname": "fathers_occupation",
+   "fieldtype": "Data",
+   "label": "Father's Occupation",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.annual_income",
+   "fieldname": "annual_income",
+   "fieldtype": "Data",
+   "label": "Father's Annual Income",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_26",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "student.mothers_name",
+   "fieldname": "mothers_name",
+   "fieldtype": "Data",
+   "label": "Mother's Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.mothers_contact_number",
+   "fieldname": "mothers_contact_number",
+   "fieldtype": "Data",
+   "label": "Mother's Contact Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.mothers_occupation",
+   "fieldname": "mothers_occupation",
+   "fieldtype": "Data",
+   "label": "Mother's Occupation",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.mothers_annual_income",
+   "fieldname": "mothers_annual_income",
+   "fieldtype": "Data",
+   "label": "Mother's Annual Income",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_31",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "student.local_guardians_name",
+   "fieldname": "local_guardians_name",
+   "fieldtype": "Data",
+   "label": "Local Guardian's Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.local_guardian_contact_no",
+   "fieldname": "local_guardian_contact_no",
+   "fieldtype": "Data",
+   "label": "Local Guardian's Contact No.",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.local_guardian_occupation",
+   "fieldname": "local_guardian_occupation",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Local Guardian's Occupation",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.local_guardian_address",
+   "fieldname": "local_guardian_address",
+   "fieldtype": "Data",
+   "label": "Local Guardian's Address",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.relation_with_student",
+   "fieldname": "relation_with_student",
+   "fieldtype": "Data",
+   "label": "Relation with Student",
+   "read_only": 1
+  },
+  {
+   "fieldname": "hostel_registration_no",
+   "fieldtype": "Link",
+   "label": "Hostel Registration No.",
+   "options": "Student Hostel Admission",
+   "read_only": 1
+  },
+  {
+   "description": "Room Type during Student Hostel Admission",
+   "fetch_from": "hostel_registration_no.room_type",
+   "fieldname": "room_type_reference",
+   "fieldtype": "Data",
+   "label": "Room Type Reference",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [
+  {
+   "group": "Deallotment",
+   "link_doctype": "Deallotment Process",
+   "link_fieldname": "allotment_number"
+  },
+  {
+   "group": "Deallotment",
+   "link_doctype": "Death Deallotment",
+   "link_fieldname": "student"
+  },
+  {
+   "group": "Deallotment",
+   "link_doctype": "Long Leave",
+   "link_fieldname": "allotment_number"
+  },
+  {
+   "group": "Room Change",
+   "link_doctype": "Room Change",
+   "link_fieldname": "allotment_number"
+  },
+  {
+   "group": "Room Change",
+   "link_doctype": "Inter or Intra Hostel Change",
+   "link_fieldname": "allotment_no"
+  },
+  {
+   "group": "Miscellaneous",
+   "link_doctype": "Student Medical History",
+   "link_fieldname": "allotment_number"
+  },
+  {
+   "group": "Miscellaneous",
+   "link_doctype": "Student Leave Process",
+   "link_fieldname": "allotment_number"
+  },
+  {
+   "group": "Miscellaneous",
+   "link_doctype": "Material Distribution",
+   "link_fieldname": "allotment_number"
+  },
+  {
+   "group": "Clearance",
+   "link_doctype": "Hostel Clearance",
+   "link_fieldname": "allotment_number"
+  },
+  {
+   "group": "Attendance",
+   "link_doctype": "Hostel Attendance",
+   "link_fieldname": "room_allotment_no"
+  }
+ ],
+ "modified": "2022-09-20 14:53:32.846560",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Room Allotment",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "student_name",
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

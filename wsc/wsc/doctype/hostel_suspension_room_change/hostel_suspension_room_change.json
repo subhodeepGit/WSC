@@ -1,0 +1,228 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2021-11-03 11:40:45.313665",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "allotment_number",
+  "student",
+  "student_name",
+  "roll_no",
+  "registration_number",
+  "hostel",
+  "room_no",
+  "room_number",
+  "allotment_type",
+  "column_break_8",
+  "room_type",
+  "preferred_hostel",
+  "preferred_room",
+  "preferred_room_type",
+  "preferred_room_number",
+  "indisciplinary_actions_section",
+  "indisciplinary_actions_id",
+  "indisciplinary_complaint_registration_id",
+  "issue_of_suspension_letter",
+  "column_break_18",
+  "attachment_of_suspension_letter",
+  "type_of_suspension",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Hostel Suspension Room Change ID",
+   "options": "HSRC-.YYYY.-"
+  },
+  {
+   "fieldname": "allotment_number",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Allotment Number",
+   "options": "Room Allotment",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "allotment_number.student",
+   "fieldname": "student",
+   "fieldtype": "Data",
+   "label": "Student",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.student_name",
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "label": "Student Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.hostel_id",
+   "fieldname": "hostel",
+   "fieldtype": "Data",
+   "label": "Hostel",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.room_id",
+   "fieldname": "room_no",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Room No.",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.room_number",
+   "fieldname": "room_number",
+   "fieldtype": "Data",
+   "label": "Room Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "allotment_number.room_type",
+   "fieldname": "room_type",
+   "fieldtype": "Data",
+   "label": "Room Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "preferred_hostel",
+   "fieldtype": "Link",
+   "label": "Preferred Hostel",
+   "options": "Hostel Masters",
+   "reqd": 1
+  },
+  {
+   "fieldname": "preferred_room",
+   "fieldtype": "Link",
+   "label": "Preferred Room",
+   "options": "Room Masters",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "preferred_room.actual_room_type",
+   "fieldname": "preferred_room_type",
+   "fieldtype": "Data",
+   "label": "Preferred Room Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "preferred_room.room_number",
+   "fieldname": "preferred_room_number",
+   "fieldtype": "Data",
+   "label": "Preferred Room Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "indisciplinary_actions_section",
+   "fieldtype": "Section Break",
+   "label": "Suspension Letter"
+  },
+  {
+   "fieldname": "indisciplinary_actions_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Indisciplinary Actions ID",
+   "options": "Indisciplinary Actions",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "indisciplinary_actions_id.indisciplinary_complaint_registration_id",
+   "fieldname": "indisciplinary_complaint_registration_id",
+   "fieldtype": "Data",
+   "label": "Indisciplinary Complaint Registration ID",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "indisciplinary_actions_id.issue_of_suspension_letter",
+   "fieldname": "issue_of_suspension_letter",
+   "fieldtype": "Data",
+   "label": "Issue of Suspension Letter",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "indisciplinary_actions_id.attachment_of_suspention_letter",
+   "fieldname": "attachment_of_suspension_letter",
+   "fieldtype": "Data",
+   "label": "Attachment of Suspension Letter",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "indisciplinary_actions_id.type_of_suspension",
+   "fieldname": "type_of_suspension",
+   "fieldtype": "Data",
+   "label": "Type of Suspension",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_18",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Hostel Suspension Room Change",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.allotment_type",
+   "fieldname": "allotment_type",
+   "fieldtype": "Data",
+   "label": "Allotment Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.roll_no",
+   "fieldname": "roll_no",
+   "fieldtype": "Data",
+   "label": "Roll No",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.registration_number",
+   "fieldname": "registration_number",
+   "fieldtype": "Data",
+   "label": "Registration Number"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2022-05-16 16:51:04.762765",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Hostel Suspension Room Change",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

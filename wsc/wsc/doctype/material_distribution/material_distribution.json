@@ -1,0 +1,227 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2021-10-28 17:44:17.054611",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "allotment_number",
+  "student",
+  "student_name",
+  "roll_no",
+  "registration_number",
+  "column_break_6",
+  "hostel",
+  "room_number",
+  "room_type",
+  "choose_materials_section",
+  "cot",
+  "matress",
+  "table",
+  "column_break_13",
+  "chair",
+  "bucket",
+  "mug",
+  "column_break_17",
+  "pillow",
+  "blanket",
+  "bedsheet_cum_pillow_cover",
+  "section_break_11",
+  "comment",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Material Distribution ID",
+   "options": "MD-.YYYY.-"
+  },
+  {
+   "fetch_from": "student.naming_series",
+   "fieldname": "allotment_number",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Allotment Number",
+   "options": "Room Allotment"
+  },
+  {
+   "fetch_from": "allotment_number.student",
+   "fieldname": "student",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "Student",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.student_name",
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Student Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.hostel_id",
+   "fieldname": "hostel",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Hostel",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.room_number",
+   "fieldname": "room_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Room Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "allotment_number.room_type",
+   "fieldname": "room_type",
+   "fieldtype": "Data",
+   "label": "Room Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_11",
+   "fieldtype": "Section Break"
+  },
+  {
+   "description": "<p><i>--Application Writing Area</i></p>",
+   "fieldname": "comment",
+   "fieldtype": "Long Text",
+   "label": "<h4>Notes</h4>",
+   "mandatory_depends_on": "if (frm.doc.application_form === 0);"
+  },
+  {
+   "fieldname": "choose_materials_section",
+   "fieldtype": "Section Break",
+   "label": "Choose materials"
+  },
+  {
+   "default": "0",
+   "fieldname": "cot",
+   "fieldtype": "Check",
+   "label": "Bed / Cot"
+  },
+  {
+   "default": "0",
+   "fieldname": "matress",
+   "fieldtype": "Check",
+   "label": "Matress"
+  },
+  {
+   "default": "0",
+   "fieldname": "table",
+   "fieldtype": "Check",
+   "label": "Table"
+  },
+  {
+   "default": "0",
+   "fieldname": "chair",
+   "fieldtype": "Check",
+   "label": "Chair"
+  },
+  {
+   "default": "0",
+   "fieldname": "bucket",
+   "fieldtype": "Check",
+   "label": "Bucket"
+  },
+  {
+   "default": "0",
+   "fieldname": "mug",
+   "fieldtype": "Check",
+   "label": "Mug"
+  },
+  {
+   "default": "0",
+   "fieldname": "pillow",
+   "fieldtype": "Check",
+   "label": "Pillow"
+  },
+  {
+   "default": "0",
+   "fieldname": "blanket",
+   "fieldtype": "Check",
+   "label": "Blanket"
+  },
+  {
+   "default": "0",
+   "fieldname": "bedsheet_cum_pillow_cover",
+   "fieldtype": "Check",
+   "label": "Bedsheet cum Pillow cover"
+  },
+  {
+   "fieldname": "column_break_13",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_17",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Material Distribution",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.roll_no",
+   "fieldname": "roll_no",
+   "fieldtype": "Data",
+   "label": "Roll No",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.registration_number",
+   "fieldname": "registration_number",
+   "fieldtype": "Data",
+   "label": "Registration Number",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2022-05-16 15:29:58.191126",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Material Distribution",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

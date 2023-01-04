@@ -1,0 +1,99 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "ICRS-.YYYY.-####",
+ "creation": "2021-09-22 12:08:46.761121",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "allotment_number",
+  "student",
+  "student_name",
+  "roll_no",
+  "registration_number",
+  "allotment_type",
+  "room_number",
+  "room_type",
+  "room_id"
+ ],
+ "fields": [
+  {
+   "fieldname": "allotment_number",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Allotment Number",
+   "options": "Room Allotment"
+  },
+  {
+   "fetch_from": "allotment_number.student",
+   "fieldname": "student",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Student",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.student_name",
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Student Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.allotment_type",
+   "fieldname": "allotment_type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Allotment Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.room_id",
+   "fieldname": "room_number",
+   "fieldtype": "Data",
+   "label": "Room Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.room_type",
+   "fieldname": "room_type",
+   "fieldtype": "Data",
+   "label": "Room Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.room_id",
+   "fieldname": "room_id",
+   "fieldtype": "Data",
+   "label": "Room ID"
+  },
+  {
+   "fetch_from": "allotment_number.roll_no",
+   "fieldname": "roll_no",
+   "fieldtype": "Data",
+   "label": "Roll No",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.registration_number",
+   "fieldname": "registration_number",
+   "fieldtype": "Data",
+   "label": "Registration Number"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2022-05-16 15:25:58.967817",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Indisciplinary Complaint Registration Student",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

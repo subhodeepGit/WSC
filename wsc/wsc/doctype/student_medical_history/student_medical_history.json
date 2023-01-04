@@ -1,0 +1,413 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2021-10-20 12:52:33.938337",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "allotment_number",
+  "student",
+  "student_name",
+  "roll_no",
+  "registration_number",
+  "column_break_6",
+  "hostel",
+  "room_number",
+  "room_type",
+  "allergies_section",
+  "aspirin",
+  "penicilin",
+  "codeine",
+  "local_anesthetics",
+  "other",
+  "if_yes_please_explain",
+  "column_break_15",
+  "metal",
+  "latex",
+  "sulfa_drugs",
+  "acrylic",
+  "past_medical_history_section",
+  "myocardiac_infarction",
+  "heart_troublediseasepackmaker",
+  "jaundice",
+  "tuberculosis",
+  "hypertension",
+  "rheumatic_fever",
+  "epilepsy",
+  "asthma",
+  "diabetes",
+  "stroke",
+  "other_illness",
+  "column_break_32",
+  "cancer",
+  "treatment_if_so",
+  "kidney_problems",
+  "drug_addiction",
+  "ulcers",
+  "thyroid_disease",
+  "stomachintestinal_disease",
+  "dental_problems",
+  "covid_19",
+  "section_break_9",
+  "medical_history_document",
+  "medical_history_description",
+  "covid_19_vaccination_section",
+  "vaccinated",
+  "first_dose",
+  "attach_1st_dose_certificate",
+  "second_dose",
+  "attach_2nd_dose_certificate"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Medical History ID",
+   "options": "Med-.YYYY.-"
+  },
+  {
+   "fetch_from": "student.naming_series",
+   "fieldname": "allotment_number",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Allotment Number",
+   "options": "Room Allotment"
+  },
+  {
+   "fetch_from": "allotment_number.student",
+   "fieldname": "student",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "Student",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.student_name",
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Student Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.hostel_id",
+   "fieldname": "hostel",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Hostel",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.room_id",
+   "fieldname": "room_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Room Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "allotment_number.room_type",
+   "fieldname": "room_type",
+   "fieldtype": "Data",
+   "label": "Room Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_9",
+   "fieldtype": "Section Break",
+   "label": "Medical History Document"
+  },
+  {
+   "fieldname": "medical_history_document",
+   "fieldtype": "Attach"
+  },
+  {
+   "fieldname": "medical_history_description",
+   "fieldtype": "Small Text",
+   "label": "<h5>Description</h5>"
+  },
+  {
+   "fieldname": "allergies_section",
+   "fieldtype": "Section Break",
+   "label": "Allergies"
+  },
+  {
+   "default": "0",
+   "fieldname": "aspirin",
+   "fieldtype": "Check",
+   "label": "Aspirin"
+  },
+  {
+   "default": "0",
+   "fieldname": "penicilin",
+   "fieldtype": "Check",
+   "label": "Penicilin"
+  },
+  {
+   "default": "0",
+   "fieldname": "codeine",
+   "fieldtype": "Check",
+   "label": "Codeine"
+  },
+  {
+   "default": "0",
+   "fieldname": "local_anesthetics",
+   "fieldtype": "Check",
+   "label": "Local Anesthetics"
+  },
+  {
+   "default": "0",
+   "fieldname": "acrylic",
+   "fieldtype": "Check",
+   "label": "Acrylic"
+  },
+  {
+   "default": "0",
+   "fieldname": "metal",
+   "fieldtype": "Check",
+   "label": "Metal"
+  },
+  {
+   "default": "0",
+   "fieldname": "latex",
+   "fieldtype": "Check",
+   "label": "Latex"
+  },
+  {
+   "default": "0",
+   "fieldname": "sulfa_drugs",
+   "fieldtype": "Check",
+   "label": "Sulfa drugs"
+  },
+  {
+   "default": "0",
+   "fieldname": "other",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "depends_on": "eval:doc.other==1;",
+   "fieldname": "if_yes_please_explain",
+   "fieldtype": "Small Text",
+   "label": "If yes, please explain"
+  },
+  {
+   "default": "0",
+   "fieldname": "myocardiac_infarction",
+   "fieldtype": "Check",
+   "label": "Myocardiac Infarction (Heart Attack)"
+  },
+  {
+   "default": "0",
+   "fieldname": "jaundice",
+   "fieldtype": "Check",
+   "label": "Jaundice"
+  },
+  {
+   "default": "0",
+   "fieldname": "tuberculosis",
+   "fieldtype": "Check",
+   "label": "Tuberculosis"
+  },
+  {
+   "default": "0",
+   "fieldname": "hypertension",
+   "fieldtype": "Check",
+   "label": "Hypertension"
+  },
+  {
+   "default": "0",
+   "fieldname": "rheumatic_fever",
+   "fieldtype": "Check",
+   "label": "Rheumatic fever"
+  },
+  {
+   "default": "0",
+   "fieldname": "epilepsy",
+   "fieldtype": "Check",
+   "label": "Epilepsy"
+  },
+  {
+   "default": "0",
+   "fieldname": "asthma",
+   "fieldtype": "Check",
+   "label": "Asthma"
+  },
+  {
+   "default": "0",
+   "fieldname": "diabetes",
+   "fieldtype": "Check",
+   "label": "Diabetes"
+  },
+  {
+   "default": "0",
+   "fieldname": "stroke",
+   "fieldtype": "Check",
+   "label": "Stroke"
+  },
+  {
+   "default": "0",
+   "fieldname": "cancer",
+   "fieldtype": "Check",
+   "label": "Cancer"
+  },
+  {
+   "depends_on": "eval:doc.cancer==1",
+   "fieldname": "treatment_if_so",
+   "fieldtype": "Small Text",
+   "label": "treatment if so"
+  },
+  {
+   "default": "0",
+   "fieldname": "kidney_problems",
+   "fieldtype": "Check",
+   "label": "Kidney Problems"
+  },
+  {
+   "default": "0",
+   "fieldname": "heart_troublediseasepackmaker",
+   "fieldtype": "Check",
+   "label": "Heart Trouble/Disease/Packmaker"
+  },
+  {
+   "default": "0",
+   "fieldname": "drug_addiction",
+   "fieldtype": "Check",
+   "label": "Drug Addiction"
+  },
+  {
+   "default": "0",
+   "fieldname": "ulcers",
+   "fieldtype": "Check",
+   "label": "Ulcers"
+  },
+  {
+   "default": "0",
+   "fieldname": "thyroid_disease",
+   "fieldtype": "Check",
+   "label": "Thyroid Disease"
+  },
+  {
+   "default": "0",
+   "fieldname": "stomachintestinal_disease",
+   "fieldtype": "Check",
+   "label": "Stomach/Intestinal Disease"
+  },
+  {
+   "fieldname": "past_medical_history_section",
+   "fieldtype": "Section Break",
+   "label": "Past Medical History"
+  },
+  {
+   "default": "0",
+   "fieldname": "dental_problems",
+   "fieldtype": "Check",
+   "label": "Dental Problems"
+  },
+  {
+   "default": "0",
+   "fieldname": "covid_19",
+   "fieldtype": "Check",
+   "label": "Covid 19"
+  },
+  {
+   "fieldname": "other_illness",
+   "fieldtype": "Small Text",
+   "label": "<b>Have you ever had any serious illness not listed above? If yes please mention below</b>"
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_32",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "covid_19_vaccination_section",
+   "fieldtype": "Section Break",
+   "label": "Covid 19 Vaccination"
+  },
+  {
+   "fieldname": "vaccinated",
+   "fieldtype": "Select",
+   "label": "Vaccinated?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.vaccinated == \"Yes\" ",
+   "fieldname": "first_dose",
+   "fieldtype": "Check",
+   "label": "First Dose"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.vaccinated == \"Yes\" ",
+   "fieldname": "second_dose",
+   "fieldtype": "Check",
+   "label": "Second Dose"
+  },
+  {
+   "depends_on": "eval: doc.first_dose == 1",
+   "fieldname": "attach_1st_dose_certificate",
+   "fieldtype": "Attach",
+   "label": "Attach 1st Dose Certificate"
+  },
+  {
+   "depends_on": "eval: doc.second_dose == 1",
+   "fieldname": "attach_2nd_dose_certificate",
+   "fieldtype": "Attach",
+   "label": "Attach 2nd Dose Certificate"
+  },
+  {
+   "fetch_from": "allotment_number.roll_no",
+   "fieldname": "roll_no",
+   "fieldtype": "Data",
+   "label": " Roll No",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.registration_number",
+   "fieldname": "registration_number",
+   "fieldtype": "Data",
+   "label": "Registration Number"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-05-16 15:43:07.797750",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Student Medical History",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

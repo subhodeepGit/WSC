@@ -1,0 +1,227 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2021-09-15 13:12:29.437272",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "hostel_and_room_info_section",
+  "hostel_id",
+  "floor_number",
+  "validity",
+  "column_break_4",
+  "room_number",
+  "room_description",
+  "block",
+  "status",
+  "default_room_type_info_section",
+  "room_type_id",
+  "room_capacity",
+  "column_break_6",
+  "default_room_type_feature",
+  "default_room_description",
+  "current_room_type_section",
+  "actual_room_type",
+  "actual_capacity",
+  "vacancy",
+  "column_break_19",
+  "room_type_feature",
+  "description",
+  "previous_room_capacity"
+ ],
+ "fields": [
+  {
+   "fieldname": "hostel_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Hostel",
+   "no_copy": 1,
+   "options": "Hostel Masters",
+   "reqd": 1
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Room ID",
+   "options": "RID.-"
+  },
+  {
+   "fieldname": "room_type_id",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Default Room Type",
+   "options": "Room Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "room_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Room Number",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "room_type_id.capacity",
+   "fieldname": "room_capacity",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Default Room Capacity",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "floor_number",
+   "fieldtype": "Select",
+   "label": "Floor Number",
+   "options": "\nBasement\nGround Floor\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "room_description",
+   "fieldtype": "Link",
+   "label": "Room Description",
+   "options": "Room Description",
+   "reqd": 1
+  },
+  {
+   "fieldname": "validity",
+   "fieldtype": "Select",
+   "label": "Validity",
+   "options": "Approved\nDis-Approved",
+   "reqd": 1
+  },
+  {
+   "fieldname": "actual_room_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Current Room Type",
+   "options": "Room Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "actual_capacity",
+   "fieldtype": "Select",
+   "label": "Current Room Capacity",
+   "options": "\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10",
+   "reqd": 1
+  },
+  {
+   "fieldname": "block",
+   "fieldtype": "Data",
+   "label": "Block",
+   "reqd": 1
+  },
+  {
+   "fieldname": "hostel_and_room_info_section",
+   "fieldtype": "Section Break",
+   "label": "Hostel and Room Info"
+  },
+  {
+   "fieldname": "default_room_type_info_section",
+   "fieldtype": "Section Break",
+   "label": "Default Room Type Info"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "current_room_type_section",
+   "fieldtype": "Section Break",
+   "label": "Current Room Type "
+  },
+  {
+   "fetch_from": "room_type_id.feature",
+   "fieldname": "default_room_type_feature",
+   "fieldtype": "Data",
+   "label": "Default Room Type Feature",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "room_type_id.description",
+   "fieldname": "default_room_description",
+   "fieldtype": "Data",
+   "label": "Default Room Description",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "actual_room_type.feature",
+   "fieldname": "room_type_feature",
+   "fieldtype": "Data",
+   "label": "Room Type Feature",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_19",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "actual_room_type.description",
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "label": "Description",
+   "read_only": 1
+  },
+  {
+   "fieldname": "vacancy",
+   "fieldtype": "Data",
+   "label": "Vacancy",
+   "read_only": 1
+  },
+  {
+   "fieldname": "previous_room_capacity",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Previous Room Capacity",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "room_description.status",
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "in_list_view": 1,
+   "label": "Status",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2021-11-02 11:02:22.515310",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Room Masters",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "room_number,vacancy",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "room_number",
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

@@ -1,4 +1,4 @@
-  # Copyright (c) 2023, SOUL Limited and contributors
+  # Copyright (c) 2023, SOUL Limited and Contributors
 # For license information, please see license.txt
 
 from __future__ import unicode_literals

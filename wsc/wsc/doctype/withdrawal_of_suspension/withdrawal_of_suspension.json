@@ -1,0 +1,176 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2021-10-30 14:31:04.276474",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "indisciplinary_action_id",
+  "type_of_decision",
+  "description",
+  "attachment",
+  "complaint_id",
+  "column_break_5",
+  "issue_of_suspension_letter",
+  "local_dispatch_suspension_letter",
+  "attachment_of_suspension_letter",
+  "type_of_suspension",
+  "student_details_section",
+  "student_fetch",
+  "section_break_12",
+  "issue_of_withdrawal_letter",
+  "local_dispatch_of_withdrawal_letter",
+  "attach_withdrawal_letter",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "indisciplinary_action_id",
+   "fieldtype": "Link",
+   "label": "Indisciplinary Action ID",
+   "options": "Indisciplinary Actions"
+  },
+  {
+   "fetch_from": "indisciplinary_action_id.type_of_decision",
+   "fieldname": "type_of_decision",
+   "fieldtype": "Data",
+   "label": "Type of Decision",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "indisciplinary_action_id.description",
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "label": "Description",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "indisciplinary_action_id.attachment",
+   "fieldname": "attachment",
+   "fieldtype": "Data",
+   "label": "Complaint Attachment",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "indisciplinary_action_id.issue_of_suspension_letter",
+   "fieldname": "issue_of_suspension_letter",
+   "fieldtype": "Data",
+   "label": "Issue of Suspension Letter",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "indisciplinary_action_id.local_dispach_suspention_letter",
+   "fieldname": "local_dispatch_suspension_letter",
+   "fieldtype": "Data",
+   "label": "Local Dispatch Suspension Letter",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "indisciplinary_action_id.attachment_of_suspention_letter",
+   "fieldname": "attachment_of_suspension_letter",
+   "fieldtype": "Data",
+   "label": "Attachment of Suspension Letter",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "indisciplinary_action_id.type_of_suspension",
+   "fieldname": "type_of_suspension",
+   "fieldtype": "Data",
+   "label": "Type of Suspension",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "student_details_section",
+   "fieldtype": "Section Break",
+   "label": "Student Details"
+  },
+  {
+   "fieldname": "student_fetch",
+   "fieldtype": "Table",
+   "label": "Student",
+   "options": "Indisciplinary Complaint Registration Student",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_12",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "issue_of_withdrawal_letter",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Issue of Withdrawal Letter",
+   "reqd": 1
+  },
+  {
+   "fieldname": "local_dispatch_of_withdrawal_letter",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Local Dispatch of Withdrawal Letter"
+  },
+  {
+   "fieldname": "attach_withdrawal_letter",
+   "fieldtype": "Attach",
+   "label": "Attach Withdrawal Letter",
+   "reqd": 1
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Withdrawal of Suspension ID",
+   "options": "WS-.YYYY.-"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Withdrawal of Suspension",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fetch_from": "indisciplinary_action_id.indisciplinary_complaint_registration_id",
+   "fieldname": "complaint_id",
+   "fieldtype": "Data",
+   "label": "Indisciplinary Complaint Registration ID",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2021-11-01 11:57:42.120645",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Withdrawal of Suspension",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

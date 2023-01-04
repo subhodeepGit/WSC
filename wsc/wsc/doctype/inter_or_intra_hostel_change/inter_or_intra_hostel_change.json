@@ -1,0 +1,196 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2021-10-27 15:50:55.310707",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "from_student_info_section",
+  "allotment_no",
+  "1st_student_name",
+  "hostel_name",
+  "column_break_4",
+  "room_no",
+  "room_type",
+  "allotment_type",
+  "1st_student_application",
+  "to_student_info_section",
+  "second_allotment_no",
+  "second_studnet_name",
+  "second_hostel_name",
+  "rating_12",
+  "second_room_no",
+  "second_room_type",
+  "second_allotment_type",
+  "second_student_application",
+  "first_rid",
+  "second_rid"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "IC Doc No",
+   "options": "IC-.YYYY.-"
+  },
+  {
+   "fieldname": "allotment_no",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "1st Allotment No",
+   "options": "Room Allotment",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "allotment_no.hostel_id",
+   "fieldname": "hostel_name",
+   "fieldtype": "Data",
+   "label": "1st Hostel Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_no.room_number",
+   "fieldname": "room_no",
+   "fieldtype": "Data",
+   "label": "1st Room No",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_no.room_type",
+   "fieldname": "room_type",
+   "fieldtype": "Data",
+   "label": "1st Room Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_no.allotment_type",
+   "fieldname": "allotment_type",
+   "fieldtype": "Data",
+   "label": "1st Allotment Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "from_student_info_section",
+   "fieldtype": "Section Break",
+   "label": "From Student Info"
+  },
+  {
+   "fieldname": "to_student_info_section",
+   "fieldtype": "Section Break",
+   "label": "To Student Info"
+  },
+  {
+   "fieldname": "rating_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "allotment_no.student_name",
+   "fieldname": "1st_student_name",
+   "fieldtype": "Data",
+   "label": "1st Student Name",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval: doc.allotment_no",
+   "fieldname": "1st_student_application",
+   "fieldtype": "Attach",
+   "label": "1st Student Application"
+  },
+  {
+   "fieldname": "second_allotment_no",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "2nd Allotment No ",
+   "options": "Room Allotment",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "second_allotment_no.student_name",
+   "fieldname": "second_studnet_name",
+   "fieldtype": "Data",
+   "label": "2nd Student Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "second_allotment_no.hostel_id",
+   "fieldname": "second_hostel_name",
+   "fieldtype": "Data",
+   "label": "2nd Hostel Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "second_allotment_no.room_number",
+   "fieldname": "second_room_no",
+   "fieldtype": "Data",
+   "label": "2nd Room No",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "second_allotment_no.room_type",
+   "fieldname": "second_room_type",
+   "fieldtype": "Data",
+   "label": "2nd Room Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "second_allotment_no.allotment_type",
+   "fieldname": "second_allotment_type",
+   "fieldtype": "Data",
+   "label": "2nd Allotment Type",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval: doc.second_allotment_no",
+   "fieldname": "second_student_application",
+   "fieldtype": "Attach",
+   "label": "2nd Student Application"
+  },
+  {
+   "fetch_from": "allotment_no.room_id",
+   "fieldname": "first_rid",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "1st stud room id"
+  },
+  {
+   "fetch_from": "second_allotment_no.room_id",
+   "fieldname": "second_rid",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "2nd stud room id"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2021-10-27 17:22:55.468891",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Inter or Intra Hostel Change",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

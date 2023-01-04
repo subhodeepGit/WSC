@@ -1,0 +1,257 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2021-10-25 15:10:32.190126",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "allotment_number",
+  "student",
+  "student_name",
+  "roll_no",
+  "registration_number",
+  "column_break_6",
+  "hostel",
+  "room_number",
+  "room_type",
+  "long_leave_info_section",
+  "start_date",
+  "column_break_11",
+  "data_11",
+  "adminstration_communication_section",
+  "medium_of_communicatinon",
+  "letter_attacmnent",
+  "email_attachment",
+  "phone_no",
+  "email_id",
+  "column_break_18",
+  "address_line_1",
+  "address_line_2",
+  "pincode",
+  "city",
+  "state",
+  "student_reply_section",
+  "medium_of_communicatinon_from_student",
+  "communication_phone_no",
+  "reply_of_letter"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Room Change ID",
+   "options": "RC-.YYYY.-"
+  },
+  {
+   "fetch_from": "student.naming_series",
+   "fieldname": "allotment_number",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Allotment Number",
+   "options": "Room Allotment"
+  },
+  {
+   "fetch_from": "allotment_number.student",
+   "fieldname": "student",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "Student",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.student_name",
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Student Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "allotment_number.hostel_id",
+   "fieldname": "hostel",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Hostel",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.room_id",
+   "fieldname": "room_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Room Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.room_type",
+   "fieldname": "room_type",
+   "fieldtype": "Data",
+   "label": "Room Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "long_leave_info_section",
+   "fieldtype": "Section Break",
+   "label": "Long Leave Info"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date",
+   "reqd": 1,
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "data_11",
+   "fieldtype": "Data",
+   "label": "Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "adminstration_communication_section",
+   "fieldtype": "Section Break",
+   "label": "Adminstration Communication"
+  },
+  {
+   "fieldname": "medium_of_communicatinon",
+   "fieldtype": "Select",
+   "label": "Medium of Communicatinon",
+   "options": "\nTelephone\nEmail\nPostal"
+  },
+  {
+   "depends_on": "eval:doc.medium_of_communicatinon == \"Postal\";",
+   "fieldname": "letter_attacmnent",
+   "fieldtype": "Attach",
+   "label": "Letter Attacmnent"
+  },
+  {
+   "depends_on": "eval:doc.medium_of_communicatinon == \"Telephone\";",
+   "fieldname": "phone_no",
+   "fieldtype": "Data",
+   "label": "Phone No"
+  },
+  {
+   "fieldname": "student_reply_section",
+   "fieldtype": "Section Break",
+   "label": "Student Reply"
+  },
+  {
+   "fieldname": "medium_of_communicatinon_from_student",
+   "fieldtype": "Select",
+   "label": "Medium of Communicatinon From Student",
+   "options": "\nTelephone\nEmail\nPostal"
+  },
+  {
+   "fieldname": "communication_phone_no",
+   "fieldtype": "Data",
+   "label": "Communication Phone no"
+  },
+  {
+   "depends_on": "eval:doc.medium_of_communicatinon == \"Email\";",
+   "fieldname": "email_id",
+   "fieldtype": "Data",
+   "label": "Email Id",
+   "options": "Email"
+  },
+  {
+   "fieldname": "column_break_18",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.medium_of_communicatinon == \"Postal\";",
+   "fieldname": "address_line_1",
+   "fieldtype": "Data",
+   "label": "Address Line 1"
+  },
+  {
+   "depends_on": "eval:doc.medium_of_communicatinon == \"Postal\";",
+   "fieldname": "address_line_2",
+   "fieldtype": "Data",
+   "label": "Address Line 2"
+  },
+  {
+   "depends_on": "eval:doc.medium_of_communicatinon == \"Postal\";",
+   "fieldname": "pincode",
+   "fieldtype": "Data",
+   "label": "Pincode"
+  },
+  {
+   "depends_on": "eval:doc.medium_of_communicatinon == \"Postal\";",
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "depends_on": "eval:doc.medium_of_communicatinon == \"Postal\";",
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State"
+  },
+  {
+   "fieldname": "reply_of_letter",
+   "fieldtype": "Attach",
+   "label": "Reply of Letter"
+  },
+  {
+   "depends_on": "eval:doc.medium_of_communicatinon == \"Email\";",
+   "fieldname": "email_attachment",
+   "fieldtype": "Attach",
+   "label": "Email Attachment"
+  },
+  {
+   "fetch_from": "allotment_number.roll_no",
+   "fieldname": "roll_no",
+   "fieldtype": "Data",
+   "label": "Roll No",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.registration_number",
+   "fieldname": "registration_number",
+   "fieldtype": "Data",
+   "label": "Registration Number",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-09-15 18:38:07.887862",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Long Leave",
+ "owner": "Administrator",
+ "permissions": [
+    {
+     "create": 1,
+     "delete": 1,
+     "email": 1,
+     "export": 1,
+     "print": 1,
+     "read": 1,
+     "report": 1,
+     "role": "System Manager",
+     "share": 1,
+     "write": 1
+    }
+   ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

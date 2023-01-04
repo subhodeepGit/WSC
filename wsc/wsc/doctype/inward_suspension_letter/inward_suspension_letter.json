@@ -1,0 +1,128 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2021-10-30 14:27:49.967115",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "order_details_section",
+  "local_dispatch_number",
+  "suspension_type",
+  "employee",
+  "column_break_5",
+  "attach_copy_of_the_order",
+  "date_of_the_order",
+  "employee_name",
+  "section_break_7",
+  "student",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "suspension_type",
+   "fieldtype": "Select",
+   "label": "Suspension Type",
+   "options": "\nUniversity Suspension\nSchool Suspension\nUniversity Debar",
+   "reqd": 1
+  },
+  {
+   "fieldname": "student",
+   "fieldtype": "Table",
+   "label": "Students",
+   "options": "Inward Suspension Letter Student",
+   "reqd": 1
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "attach_copy_of_the_order",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "Attach Copy of the Order",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date_of_the_order",
+   "fieldtype": "Date",
+   "label": "Date of the Order",
+   "reqd": 1
+  },
+  {
+   "fieldname": "order_details_section",
+   "fieldtype": "Section Break",
+   "label": "Order Details"
+  },
+  {
+   "fieldname": "local_dispatch_number",
+   "fieldtype": "Data",
+   "label": "Local Dispatch Number"
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break",
+   "label": "Students to Suspend"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Inward Suspension Letter ID",
+   "options": "ISL-.YYYY.-"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Inward Suspension Letter",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2021-11-01 14:59:32.403901",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Inward Suspension Letter",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

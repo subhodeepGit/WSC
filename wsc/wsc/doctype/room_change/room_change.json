@@ -1,0 +1,191 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2021-09-20 11:43:36.142564",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "allotment_number",
+  "student",
+  "student_name",
+  "roll_no",
+  "registration_number",
+  "hostel",
+  "room_number",
+  "room_no",
+  "column_break_6",
+  "room_type",
+  "preferred_hostel",
+  "preferred_room",
+  "preferred_room_type",
+  "preferred_room_number",
+  "application_form",
+  "application_status",
+  "section_break_11",
+  "comment"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Room Change ID",
+   "options": "RC-.YYYY.-"
+  },
+  {
+   "fetch_from": "student.naming_series",
+   "fieldname": "allotment_number",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Allotment Number",
+   "options": "Room Allotment",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "allotment_number.student",
+   "fieldname": "student",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "Student",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.student_name",
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Student Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.hostel_id",
+   "fieldname": "hostel",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Hostel",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.room_id",
+   "fieldname": "room_number",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Room Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "allotment_number.room_type",
+   "fieldname": "room_type",
+   "fieldtype": "Data",
+   "label": "Room Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "preferred_hostel",
+   "fieldtype": "Link",
+   "label": "Preferred Hostel",
+   "options": "Hostel Masters"
+  },
+  {
+   "fieldname": "preferred_room",
+   "fieldtype": "Link",
+   "label": "Preferred Room",
+   "options": "Room Masters"
+  },
+  {
+   "fetch_from": "preferred_room.actual_room_type",
+   "fieldname": "preferred_room_type",
+   "fieldtype": "Data",
+   "label": "Preferred Room Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "application_form",
+   "fieldtype": "Attach",
+   "label": "Application"
+  },
+  {
+   "fieldname": "section_break_11",
+   "fieldtype": "Section Break"
+  },
+  {
+   "description": "<p><i>--Application Writing Area</i></p>",
+   "fieldname": "comment",
+   "fieldtype": "Long Text",
+   "label": "<h4>Application</h4>",
+   "mandatory_depends_on": "if (frm.doc.application_form === 0);"
+  },
+  {
+   "fieldname": "application_status",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Application Status",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.room_number",
+   "fieldname": "room_no",
+   "fieldtype": "Data",
+   "label": "Room No.",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "preferred_room.room_number",
+   "fieldname": "preferred_room_number",
+   "fieldtype": "Data",
+   "label": "Preferred Room Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.roll_no",
+   "fieldname": "roll_no",
+   "fieldtype": "Data",
+   "label": "Roll No",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.registration_number",
+   "fieldname": "registration_number",
+   "fieldtype": "Data",
+   "label": "Registration Number",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-05-16 16:56:45.425708",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Room Change",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

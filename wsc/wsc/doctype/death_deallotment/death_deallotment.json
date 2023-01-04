@@ -1,0 +1,251 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2021-11-02 16:27:10.527000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "student_info_section",
+  "naming_series",
+  "student",
+  "date_of_birth",
+  "column_break_3",
+  "student_name",
+  "roll_no",
+  "registration_number",
+  "blood_group",
+  "section_break_7",
+  "section_break_4",
+  "hostel_name",
+  "column_break_11",
+  "room_type",
+  "room_no",
+  "guardians_infroamtion_section",
+  "guardians",
+  "section_break_13",
+  "employee",
+  "designation",
+  "column_break_18",
+  "employee_name",
+  "contact_number",
+  "amended_from",
+  "information_on_demise_section",
+  "date_of_demise",
+  "text",
+  "attachment",
+  "room_id"
+ ],
+ "fields": [
+  {
+   "fieldname": "student_info_section",
+   "fieldtype": "Section Break",
+   "label": "Student Info"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Allotment Number",
+   "options": "DDA-.YYYY.-"
+  },
+  {
+   "fieldname": "student",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Allotment No",
+   "options": "Room Allotment",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "student.date_of_birth",
+   "fieldname": "date_of_birth",
+   "fieldtype": "Data",
+   "label": "Date of Birth",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "student.student_name",
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Student Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.blood_group",
+   "fieldname": "blood_group",
+   "fieldtype": "Data",
+   "label": "Blood Group",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break",
+   "label": "Allotment Details"
+  },
+  {
+   "fieldname": "guardians_infroamtion_section",
+   "fieldtype": "Section Break",
+   "label": "Guardians Infroamtion"
+  },
+  {
+   "fieldname": "guardians",
+   "fieldtype": "Table",
+   "label": "Guardians",
+   "options": "Student Guardian"
+  },
+  {
+   "fieldname": "section_break_13",
+   "fieldtype": "Section Break",
+   "label": "Allotting Employee"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "employee.designation",
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "label": "Designation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_18",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.cell_number",
+   "fieldname": "contact_number",
+   "fieldtype": "Data",
+   "label": "Contact Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Death Deallotment",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "information_on_demise_section",
+   "fieldtype": "Section Break",
+   "label": "Information on Demise"
+  },
+  {
+   "fieldname": "date_of_demise",
+   "fieldtype": "Date",
+   "label": "Date of Demise",
+   "reqd": 1
+  },
+  {
+   "fieldname": "text",
+   "fieldtype": "Text",
+   "label": "Reason of Demice",
+   "reqd": 1
+  },
+  {
+   "fieldname": "attachment",
+   "fieldtype": "Attach",
+   "label": "Attachment"
+  },
+  {
+   "fetch_from": "student.room_id",
+   "fieldname": "room_id",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Room_id",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.hostel_id",
+   "fieldname": "hostel_name",
+   "fieldtype": "Data",
+   "label": "Hostel Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.room_number",
+   "fieldname": "room_no",
+   "fieldtype": "Data",
+   "label": "Room No",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.room_type",
+   "fieldname": "room_type",
+   "fieldtype": "Data",
+   "label": "Room Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "student.roll_no",
+   "fieldname": "roll_no",
+   "fieldtype": "Data",
+   "label": "Roll No",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.registration_number",
+   "fieldname": "registration_number",
+   "fieldtype": "Data",
+   "label": "Registration Number",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2022-05-16 16:54:18.038768",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Death Deallotment",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "student",
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

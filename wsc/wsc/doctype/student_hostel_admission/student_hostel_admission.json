@@ -1,0 +1,279 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2021-11-17 11:35:33.152039",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "student_info_section",
+  "student",
+  "first_name",
+  "last_name",
+  "email_address",
+  "column_break_5",
+  "roll_no",
+  "registration_number",
+  "current_education_details_section",
+  "current_education_fetch",
+  "hostel_info_section",
+  "hostel",
+  "allotment_status",
+  "hostel_phone_number_1",
+  "column_break_11",
+  "hostel_phone_number_2",
+  "hostel_type",
+  "room_type_info_section",
+  "room_type",
+  "capacity",
+  "column_break_17",
+  "type_of_room",
+  "feature",
+  "hostel_fee_structure_section",
+  "hostel_fee_applicable",
+  "hostel_fee_structure",
+  "due_date",
+  "hostel_fee_components",
+  "hostel_fees",
+  "hostel_fees_id",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "naming_series_",
+   "options": "SHA-.YYYY.-"
+  },
+  {
+   "fieldname": "student",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Student",
+   "options": "Student",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "student.first_name",
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "label": "First Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.last_name",
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "label": "Last Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.student_email_id",
+   "fieldname": "email_address",
+   "fieldtype": "Data",
+   "label": "Email Address",
+   "read_only": 1
+  },
+  {
+   "fieldname": "student_info_section",
+   "fieldtype": "Section Break",
+   "label": "Student Info"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hostel",
+   "fieldtype": "Link",
+   "label": "Hostel",
+   "options": "Hostel Masters"
+  },
+  {
+   "fieldname": "hostel_info_section",
+   "fieldtype": "Section Break",
+   "label": "Hostel Info"
+  },
+  {
+   "fetch_from": "hostel.hostel_phone_number",
+   "fieldname": "hostel_phone_number_1",
+   "fieldtype": "Data",
+   "label": "Hostel Phone Number 1",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "hostel.hostel_phone_number_2",
+   "fieldname": "hostel_phone_number_2",
+   "fieldtype": "Data",
+   "label": "Hostel Phone Number 2",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "hostel.hostel_type",
+   "fieldname": "hostel_type",
+   "fieldtype": "Data",
+   "label": "Hostel Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "room_type_info_section",
+   "fieldtype": "Section Break",
+   "label": "Room Type Info"
+  },
+  {
+   "fieldname": "room_type",
+   "fieldtype": "Link",
+   "label": "Room Type",
+   "options": "Room Type",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "room_type.capacity",
+   "fieldname": "capacity",
+   "fieldtype": "Data",
+   "label": "Capacity",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "room_type.type_of_room",
+   "fieldname": "type_of_room",
+   "fieldtype": "Data",
+   "label": "Type of Room",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "room_type.feature",
+   "fieldname": "feature",
+   "fieldtype": "Data",
+   "label": "Feature",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_17",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hostel_fee_structure_section",
+   "fieldtype": "Section Break",
+   "label": "Hostel Fee Structure"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Student Hostel Admission",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.roll_no",
+   "fieldname": "roll_no",
+   "fieldtype": "Data",
+   "label": "Roll No",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.permanant_registration_number",
+   "fieldname": "registration_number",
+   "fieldtype": "Data",
+   "label": "Registration Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "current_education_details_section",
+   "fieldtype": "Section Break",
+   "label": "Current Education Details"
+  },
+  {
+   "fieldname": "current_education_fetch",
+   "fieldtype": "Table",
+   "label": "Current Education",
+   "options": "Current Educational Details",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.hostel_fee_applicable==\"YES\"",
+   "fieldname": "hostel_fee_structure",
+   "fieldtype": "Link",
+   "label": "Hostel Fee Structure",
+   "mandatory_depends_on": "eval:doc.hostel_fee_applicable==\"YES\"",
+   "options": "Fee Structure Hostel"
+  },
+  {
+   "fieldname": "allotment_status",
+   "fieldtype": "Data",
+   "label": "Allotment Status",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.hostel_fee_applicable==\"YES\"",
+   "fieldname": "hostel_fee_components",
+   "fieldtype": "Table",
+   "label": "Hostel Fee Components",
+   "mandatory_depends_on": "eval:doc.hostel_fee_applicable==\"YES\"",
+   "options": "Fee Component"
+  },
+  {
+   "fieldname": "hostel_fees",
+   "fieldtype": "Data",
+   "label": "Hostel Fees",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.hostel_fee_applicable==\"YES\"",
+   "fieldname": "due_date",
+   "fieldtype": "Date",
+   "label": "Due Date",
+   "mandatory_depends_on": "eval:doc.hostel_fee_applicable==\"YES\""
+  },
+  {
+   "fieldname": "hostel_fees_id",
+   "fieldtype": "Data",
+   "label": "Hostel Fees Id",
+   "read_only": 1
+  },
+  {
+   "fieldname": "hostel_fee_applicable",
+   "fieldtype": "Select",
+   "label": "Is Hostel Fee Applicable",
+   "options": "\nYES\nNO"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2022-07-06 13:16:10.620723",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Student Hostel Admission",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

@@ -1,0 +1,217 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2021-10-29 16:28:54.218678",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "indisciplinary_action",
+  "dc_members",
+  "column_break_3",
+  "indisciplinary_complaint_registration_id",
+  "student_fetch",
+  "section_break_1",
+  "employee",
+  "reporting_date",
+  "status",
+  "column_break_11",
+  "previous_complaint_id",
+  "description",
+  "attach_docs",
+  "section_break_13",
+  "when_did_it_occur",
+  "who_all_were_involved",
+  "where_did_it_occur",
+  "what_happened",
+  "why_is_this_a_grievance",
+  "what_adjustment_is_required",
+  "additional_comments",
+  "attach_8",
+  "naming_series",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "description": "Provide Names and Titles;\nInclude Witness",
+   "fieldname": "who_all_were_involved",
+   "fieldtype": "Small Text",
+   "label": "<h5>WHO ALL WERE INVOLVED?</h5>",
+   "reqd": 1
+  },
+  {
+   "description": "Date and Time",
+   "fieldname": "when_did_it_occur",
+   "fieldtype": "Small Text",
+   "label": "<h5>WHEN DID IT OCCUR?</h5>"
+  },
+  {
+   "description": "Specific Locations",
+   "fieldname": "where_did_it_occur",
+   "fieldtype": "Small Text",
+   "label": "<h5>WHERE DID IT OCCUR?</h5>",
+   "reqd": 1
+  },
+  {
+   "description": "Describe the event  in detail.\nAlso describe any incidents giving rise to the grievance.",
+   "fieldname": "what_happened",
+   "fieldtype": "Small Text",
+   "label": "<h5>WHAT HAPPENED?</h5>",
+   "reqd": 1
+  },
+  {
+   "description": "List all policies, procedures, and\nguidelines violated in the event described.",
+   "fieldname": "why_is_this_a_grievance",
+   "fieldtype": "Small Text",
+   "label": "<h5>WHY IS THIS A GRIEVANCE?</h5>"
+  },
+  {
+   "description": "Describe what must be done to correct the situation / problem.",
+   "fieldname": "what_adjustment_is_required",
+   "fieldtype": "Small Text",
+   "label": "<h5>WHAT ADJUSTMENT IS REQUIRED?</h5>"
+  },
+  {
+   "description": "Attach sheets, if needed",
+   "fieldname": "additional_comments",
+   "fieldtype": "Small Text",
+   "label": "<h5>ADDITIONAL COMMENTS</h5>"
+  },
+  {
+   "fieldname": "attach_8",
+   "fieldtype": "Attach"
+  },
+  {
+   "fieldname": "section_break_1",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "indisciplinary_action.indisciplinary_complaint_registration_id",
+   "fieldname": "indisciplinary_complaint_registration_id",
+   "fieldtype": "Data",
+   "label": "Indisciplinary Complaint Registration ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "student_fetch",
+   "fieldtype": "Table",
+   "label": "Student",
+   "options": "Indisciplinary Complaint Registration Student",
+   "read_only": 1
+  },
+  {
+   "fieldname": "indisciplinary_action",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Indisciplinary Actions ID",
+   "options": "Indisciplinary Actions",
+   "search_index": 1
+  },
+  {
+   "fieldname": "dc_members",
+   "fieldtype": "Table",
+   "label": "DC Members",
+   "options": "DC Members",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "indisciplinary_complaint_registration_id.employee_name",
+   "fieldname": "employee",
+   "fieldtype": "Data",
+   "label": "Employee",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "indisciplinary_complaint_registration_id.reporting_date",
+   "fieldname": "reporting_date",
+   "fieldtype": "Data",
+   "label": "Reporting Date",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "indisciplinary_complaint_registration_id.status",
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "indisciplinary_complaint_registration_id.previous_complaint_id",
+   "fieldname": "previous_complaint_id",
+   "fieldtype": "Data",
+   "label": "Previous Complaint ID",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "indisciplinary_complaint_registration_id.description",
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "label": "Description",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "indisciplinary_complaint_registration_id.attach_8",
+   "fieldname": "attach_docs",
+   "fieldtype": "Data",
+   "label": "Attach Docs",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_13",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Naming",
+   "options": "DCM-.YYYY.-"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Disciplinary Committee Meeting",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2021-11-01 10:54:10.054589",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Disciplinary Committee Meeting",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

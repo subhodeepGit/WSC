@@ -1,0 +1,318 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2021-10-28 10:02:21.243068",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "indisciplinary_complaint_registration_id",
+  "type_of_decision",
+  "column_break_3",
+  "description",
+  "attachment",
+  "student_details_section",
+  "student_fetch",
+  "warnning_letter_section",
+  "date_of_letter",
+  "attachment_of_warnning_letter",
+  "column_break_12",
+  "local_dispatch",
+  "fine_letter_section",
+  "issue_of_letter",
+  "attachment_of_fine_letter",
+  "column_break_17",
+  "local_dispach_fine_letter",
+  "fine_amount",
+  "suspention_letter_section",
+  "issue_of_suspension_letter",
+  "local_dispach_suspention_letter",
+  "attachment_of_suspention_letter",
+  "column_break_23",
+  "type_of_suspension",
+  "disciplinary_committee_section",
+  "issue_of_dc_letter",
+  "local_dispatch_dc_letter",
+  "dc_member",
+  "attachment_of_dc_letter",
+  "debar_letter_section",
+  "issue_of_debar_letter",
+  "attachment_of_debar_letter",
+  "column_break_34",
+  "local_dispatch_debar_letter",
+  "parents_call_letter_section",
+  "issue_of_parents_call_letter",
+  "attachment_of_parents_call_letter",
+  "parents_meeting_date",
+  "parents_undertaking",
+  "column_break_41",
+  "local_dispatch_parents_call_letter",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Indisciplinary Actions Number",
+   "options": "IA-.YYYY.-"
+  },
+  {
+   "fieldname": "indisciplinary_complaint_registration_id",
+   "fieldtype": "Link",
+   "label": "Indisciplinary Complaint Registration ID",
+   "options": "Indisciplinary Complaint Registration"
+  },
+  {
+   "fieldname": "student_details_section",
+   "fieldtype": "Section Break",
+   "label": "Student Details"
+  },
+  {
+   "fieldname": "student_fetch",
+   "fieldtype": "Table",
+   "in_standard_filter": 1,
+   "label": "Student",
+   "options": "Indisciplinary Complaint Registration Student",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "indisciplinary_complaint_registration_id.description",
+   "fieldname": "description",
+   "fieldtype": "Long Text",
+   "label": "Description",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "indisciplinary_complaint_registration_id.attach_8",
+   "fieldname": "attachment",
+   "fieldtype": "Attach",
+   "label": "Attachment",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "type_of_decision",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Type of Decision",
+   "options": "\nWarning Letter\nFine Letter\nSuspension Letter\nDisciplinary Committee\nDebar Letter\nParents Call Letter",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval: doc.type_of_decision == \"Warning Letter\"",
+   "fieldname": "warnning_letter_section",
+   "fieldtype": "Section Break",
+   "label": "Warning Letter"
+  },
+  {
+   "fieldname": "attachment_of_warnning_letter",
+   "fieldtype": "Attach",
+   "label": "Attachment of Warning Letter"
+  },
+  {
+   "fieldname": "date_of_letter",
+   "fieldtype": "Date",
+   "label": "Date of Warning Letter"
+  },
+  {
+   "fieldname": "local_dispatch",
+   "fieldtype": "Data",
+   "label": "Local Dispatch Warning Letter"
+  },
+  {
+   "depends_on": "eval: doc.type_of_decision == \"Fine Letter\"",
+   "fieldname": "fine_letter_section",
+   "fieldtype": "Section Break",
+   "label": "Fine Letter"
+  },
+  {
+   "fieldname": "attachment_of_fine_letter",
+   "fieldtype": "Attach",
+   "label": "Attachment of Fine Letter"
+  },
+  {
+   "fieldname": "issue_of_letter",
+   "fieldtype": "Date",
+   "label": "Issue of Fine Letter"
+  },
+  {
+   "fieldname": "local_dispach_fine_letter",
+   "fieldtype": "Data",
+   "label": "Local Dispatch Fine Letter"
+  },
+  {
+   "depends_on": "eval: doc.type_of_decision == \"Suspension Letter\"",
+   "fieldname": "suspention_letter_section",
+   "fieldtype": "Section Break",
+   "label": "Suspension Letter"
+  },
+  {
+   "fieldname": "attachment_of_suspention_letter",
+   "fieldtype": "Attach",
+   "label": "Attachment of Suspension Letter"
+  },
+  {
+   "fieldname": "local_dispach_suspention_letter",
+   "fieldtype": "Data",
+   "label": "Local Dispatch Suspension Letter"
+  },
+  {
+   "fieldname": "issue_of_suspension_letter",
+   "fieldtype": "Date",
+   "label": "Issue of Suspension Letter"
+  },
+  {
+   "fieldname": "type_of_suspension",
+   "fieldtype": "Select",
+   "label": "Type of Suspension",
+   "options": "\nHostel suspension\nSuspension"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_17",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_23",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval: doc.type_of_decision == \"Disciplinary Committee\"",
+   "fieldname": "disciplinary_committee_section",
+   "fieldtype": "Section Break",
+   "label": "Disciplinary Committee"
+  },
+  {
+   "fieldname": "issue_of_dc_letter",
+   "fieldtype": "Date",
+   "label": "Issue of DC Letter"
+  },
+  {
+   "fieldname": "local_dispatch_dc_letter",
+   "fieldtype": "Data",
+   "label": "Local Dispatch DC Letter"
+  },
+  {
+   "fieldname": "dc_member",
+   "fieldtype": "Table",
+   "label": "DC members",
+   "options": "DC Members"
+  },
+  {
+   "fieldname": "attachment_of_dc_letter",
+   "fieldtype": "Attach",
+   "label": "Attachment of DC Letter"
+  },
+  {
+   "depends_on": "eval: doc.type_of_decision == \"Debar Letter\"",
+   "fieldname": "debar_letter_section",
+   "fieldtype": "Section Break",
+   "label": "Debar Letter"
+  },
+  {
+   "fieldname": "issue_of_debar_letter",
+   "fieldtype": "Date",
+   "label": "Issue of Debar Letter"
+  },
+  {
+   "fieldname": "attachment_of_debar_letter",
+   "fieldtype": "Attach",
+   "label": "Attachment of Debar Letter"
+  },
+  {
+   "fieldname": "column_break_34",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "local_dispatch_debar_letter",
+   "fieldtype": "Data",
+   "label": "Local Dispatch Debar Letter"
+  },
+  {
+   "depends_on": "eval: doc.type_of_decision == \"Parents Call Letter\"",
+   "fieldname": "parents_call_letter_section",
+   "fieldtype": "Section Break",
+   "label": "Parents Call Letter"
+  },
+  {
+   "fieldname": "parents_meeting_date",
+   "fieldtype": "Date",
+   "label": "Parents Meeting Date"
+  },
+  {
+   "fieldname": "parents_undertaking",
+   "fieldtype": "Attach",
+   "label": "Parents Undertaking"
+  },
+  {
+   "fieldname": "issue_of_parents_call_letter",
+   "fieldtype": "Date",
+   "label": "Issue of Parents Call Letter"
+  },
+  {
+   "fieldname": "attachment_of_parents_call_letter",
+   "fieldtype": "Attach",
+   "label": "Attachment of Parents Call Letter"
+  },
+  {
+   "fieldname": "local_dispatch_parents_call_letter",
+   "fieldtype": "Data",
+   "label": "Local Dispatch Parents Call Letter"
+  },
+  {
+   "fieldname": "column_break_41",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "fine_amount",
+   "fieldtype": "Currency",
+   "label": "Fine Amount"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Indisciplinary Actions",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2021-11-12 17:28:31.846985",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Indisciplinary Actions",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

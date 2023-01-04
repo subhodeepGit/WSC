@@ -1,0 +1,82 @@
+{
+ "actions": [],
+ "allow_copy": 1,
+ "creation": "2021-11-08 16:51:21.045166",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "date",
+  "department",
+  "column_break_3",
+  "branch",
+  "unmarked_attendance_section",
+  "employees_html",
+  "marked_attendance_section",
+  "marked_attendance_html"
+ ],
+ "fields": [
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Hostel",
+   "options": "Hostel Masters"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "Room",
+   "options": "Room Masters"
+  },
+  {
+   "depends_on": "date",
+   "fieldname": "unmarked_attendance_section",
+   "fieldtype": "Section Break",
+   "label": "Unmarked Attendance"
+  },
+  {
+   "fieldname": "employees_html",
+   "fieldtype": "HTML",
+   "label": "Employees HTML",
+   "read_only": 1
+  },
+  {
+   "depends_on": "date",
+   "fieldname": "marked_attendance_section",
+   "fieldtype": "Section Break",
+   "label": "Marked Attendance"
+  },
+  {
+   "fieldname": "marked_attendance_html",
+   "fieldtype": "HTML",
+   "label": "Marked Attendance HTML"
+  }
+ ],
+ "hide_toolbar": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2021-11-11 15:49:01.655754",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Hostel Attendance Tool",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "read": 1,
+   "role": "System Manager",
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

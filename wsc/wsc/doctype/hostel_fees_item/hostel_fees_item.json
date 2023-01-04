@@ -1,0 +1,54 @@
+{
+ "actions": [],
+ "creation": "2021-11-03 10:39:23.203001",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "fee_structure",
+  "room_type",
+  "prog",
+  "amount"
+ ],
+ "fields": [
+  {
+   "fieldname": "fee_structure",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Fee Structure",
+   "options": "Fee Structure Hostel"
+  },
+  {
+   "fetch_from": "fee_structure.total_amount",
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Amount",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "fee_structure.room_type",
+   "fieldname": "room_type",
+   "fieldtype": "Data",
+   "label": "Room Type"
+  },
+  {
+   "fetch_from": "fee_structure.program",
+   "fieldname": "prog",
+   "fieldtype": "Data",
+   "label": "Program"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2021-11-12 12:12:30.110418",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Hostel Fees Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

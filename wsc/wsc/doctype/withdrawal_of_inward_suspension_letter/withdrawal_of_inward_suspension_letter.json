@@ -1,0 +1,143 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2021-10-30 19:18:30.126584",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "inward_suspension_letter_id",
+  "order_details_section",
+  "local_dispatch_number",
+  "suspension_type",
+  "employee",
+  "column_break_5",
+  "attach_copy_of_the_order",
+  "date_of_the_order",
+  "employee_name",
+  "section_break_7",
+  "student_fetch",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "order_details_section",
+   "fieldtype": "Section Break",
+   "label": "Order Details"
+  },
+  {
+   "fetch_from": "inward_suspension_letter_id.local_dispatch_number",
+   "fieldname": "local_dispatch_number",
+   "fieldtype": "Data",
+   "label": "Local Dispatch Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "inward_suspension_letter_id.suspension_type",
+   "fieldname": "suspension_type",
+   "fieldtype": "Select",
+   "label": "Suspension Type",
+   "options": "\nUniversity Suspension\nSchool Suspension\nDebar",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fetch_from": "inward_suspension_letter_id.employee",
+   "fieldname": "employee",
+   "fieldtype": "Data",
+   "label": "Employee",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "inward_suspension_letter_id.attach_copy_of_the_order",
+   "fieldname": "attach_copy_of_the_order",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "Attach Copy of the Order",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fetch_from": "inward_suspension_letter_id.date_of_the_order",
+   "fieldname": "date_of_the_order",
+   "fieldtype": "Date",
+   "label": "Date of the Order",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fetch_from": "inward_suspension_letter_id.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Withdrawal of Inward Suspension Letter ID",
+   "options": "WISL-.YYYY.-"
+  },
+  {
+   "fieldname": "inward_suspension_letter_id",
+   "fieldtype": "Link",
+   "label": "Inward Suspension Letter ID",
+   "options": "Inward Suspension Letter"
+  },
+  {
+   "fieldname": "student_fetch",
+   "fieldtype": "Table",
+   "label": "Students to Suspend",
+   "options": "Inward Suspension Letter Student",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Withdrawal of Inward Suspension Letter",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2021-11-01 16:37:54.191029",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Withdrawal of Inward Suspension Letter",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

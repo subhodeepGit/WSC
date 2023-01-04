@@ -1,4 +1,4 @@
-# Copyright (c) 2023, SOUL Limited and contributors
+# Copyright (c) 2023, SOUL Limited and Contributors
 # For license information, please see license.txt
 from dataclasses import fields
 from unicodedata import name

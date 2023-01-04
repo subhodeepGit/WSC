@@ -1,0 +1,219 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2021-09-21 10:53:45.687892",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "allotment_number",
+  "room_masters",
+  "student",
+  "student_name",
+  "roll_no",
+  "registration_number",
+  "hostel",
+  "room_number",
+  "room_no",
+  "column_break_7",
+  "room_type",
+  "guardians_application",
+  "students_application",
+  "address_proof",
+  "end_date",
+  "application_status",
+  "section_break_18",
+  "hostel_fees",
+  "fees",
+  "column_break_21",
+  "hostel_fee_structure",
+  "section_break_23",
+  "components"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "in_standard_filter": 1,
+   "label": "Deallotment Number",
+   "options": "DP-.YYYY.-"
+  },
+  {
+   "fieldname": "allotment_number",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Allotment Number",
+   "options": "Room Allotment",
+   "reqd": 1
+  },
+  {
+   "fieldname": "room_masters",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Room Masters",
+   "options": "Room Masters"
+  },
+  {
+   "fetch_from": "allotment_number.student",
+   "fieldname": "student",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Student",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.student_name",
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Student Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.hostel_id",
+   "fieldname": "hostel",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Hostel",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.room_id",
+   "fieldname": "room_number",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Room Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.room_number",
+   "fieldname": "room_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Room No.",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "guardians_application",
+   "fieldtype": "Attach",
+   "label": "Guardian's Application"
+  },
+  {
+   "fieldname": "students_application",
+   "fieldtype": "Attach",
+   "label": "Student's Application"
+  },
+  {
+   "fieldname": "address_proof",
+   "fieldtype": "Attach",
+   "label": "Address Proof"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "in_standard_filter": 1,
+   "label": "End Date"
+  },
+  {
+   "fieldname": "application_status",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Application status"
+  },
+  {
+   "fetch_from": "allotment_number.room_type",
+   "fieldname": "room_type",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "Room Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.roll_no",
+   "fieldname": "roll_no",
+   "fieldtype": "Data",
+   "label": "Roll No",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "allotment_number.registration_number",
+   "fieldname": "registration_number",
+   "fieldtype": "Data",
+   "label": "Registration Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_18",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "hostel_fees",
+   "fieldtype": "Link",
+   "label": "Hostel Fees",
+   "options": "Hostel Fees",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fees",
+   "fieldtype": "Data",
+   "label": "Fees",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_21",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hostel_fee_structure",
+   "fieldtype": "Link",
+   "label": "Hostel Fee Structure",
+   "options": "Fee Structure Hostel",
+   "read_only": 1
+  },
+  {
+   "fieldname": "components",
+   "fieldtype": "Table",
+   "label": "Components",
+   "options": "Deallotment Fee Waiver Components"
+  },
+  {
+   "depends_on": "eval:doc.hostel_fees != null",
+   "fieldname": "section_break_23",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-06-06 11:58:09.731125",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Deallotment Process",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

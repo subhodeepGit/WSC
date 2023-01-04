@@ -1,73 +1,83 @@
 {
  "actions": [],
- "autoname": "field:type",
- "creation": "2021-10-03 16:40:46.307266",
+ "allow_rename": 1,
+ "autoname": "field:room_type",
+ "creation": "2021-09-15 13:09:50.337341",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "type",
+  "room_type",
   "description",
-  "section_break_3",
   "capacity",
-  "amenity_template",
-  "amenity_list",
-  "fees_structure",
-  "total_amount"
+  "type_of_room",
+  "column_break_4",
+  "start_date",
+  "end_date",
+  "feature"
  ],
  "fields": [
   {
-   "allow_in_quick_entry": 1,
-   "fieldname": "type",
+   "fieldname": "room_type",
    "fieldtype": "Data",
-   "label": "Type",
+   "in_list_view": 1,
+   "label": "Room Type",
+   "reqd": 1,
    "unique": 1
   },
   {
    "fieldname": "description",
-   "fieldtype": "Small Text",
-   "label": "Description"
-  },
-  {
-   "fieldname": "section_break_3",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "amenity_template",
-   "fieldtype": "Link",
-   "label": "Amenity Template",
-   "options": "Hostel Amenity Template"
-  },
-  {
-   "fieldname": "amenity_list",
-   "fieldtype": "Table",
-   "label": "Amenity List",
-   "options": "Amenity List"
+   "fieldtype": "Data",
+   "label": "Description",
+   "reqd": 1
   },
   {
    "fieldname": "capacity",
-   "fieldtype": "Int",
-   "label": "Capacity"
+   "fieldtype": "Select",
+   "label": "Capacity",
+   "options": "\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10",
+   "reqd": 1
   },
   {
-   "fieldname": "fees_structure",
-   "fieldtype": "Link",
-   "label": "Fees Structure",
-   "options": "Fee Structure"
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
   },
   {
-   "fetch_from": "fees_structure.total_amount",
-   "fieldname": "total_amount",
-   "fieldtype": "Currency",
-   "label": "Total Amount"
+   "default": "Today",
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "default": "9999-12-01",
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "feature",
+   "fieldtype": "Select",
+   "label": "Feature",
+   "options": "\nPremium\nNon-Premium\nSuper-Premium",
+   "reqd": 1
+  },
+  {
+   "fieldname": "type_of_room",
+   "fieldtype": "Select",
+   "label": "Type of Room",
+   "options": "\nAC\nNon-AC"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-10-03 18:02:16.070258",
+ "modified": "2021-11-03 10:05:04.907722",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Room Type",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -83,8 +93,10 @@
    "write": 1
   }
  ],
- "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "track_changes": 1
+ "title_field": "room_type",
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
 }
