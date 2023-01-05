@@ -3,7 +3,7 @@ frappe.ui.form.on('Fee Structure Hostel', {
         frm.clear_table("course_wise_fees");
         if (frm.doc.program){
                 frappe.call({
-                    method: "kp_edtec.kp_edtec.doctype.fee_structure.get_courses",
+                    method: "wsc.wsc.doctype.fee_structure.get_courses",
                     args: {
                         program: frm.doc.program,
                     },
