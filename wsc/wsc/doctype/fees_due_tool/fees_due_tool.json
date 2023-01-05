@@ -1,0 +1,114 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2022-06-22 12:18:58.084367",
+ "doctype": "DocType",
+ "document_type": "Document",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "email_to",
+  "programs",
+  "program",
+  "column_break_3",
+  "academic_year",
+  "academic_term",
+  "section_break_5",
+  "get_students",
+  "studentss",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "label": "Programs",
+   "options": "Programs",
+   "reqd": 1
+  },
+  {
+   "fieldname": "program",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Program",
+   "options": "Program",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Academic Year",
+   "options": "Academic Year",
+   "reqd": 1
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_5",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.docstatus==0",
+   "fieldname": "get_students",
+   "fieldtype": "Button",
+   "label": "Get Students"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "no_copy": 1,
+   "options": "FEE-DUE-.YYYY.-"
+  },
+  {
+   "fieldname": "studentss",
+   "fieldtype": "Table",
+   "label": "Students",
+   "options": "Fees Due Student",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Fees Due Tool",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "email_to",
+   "fieldtype": "Select",
+   "label": "Email To",
+   "options": "Student\nGuardian\nBoth"
+  }
+ ],
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2022-06-27 16:38:33.445876",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Fees Due Tool",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Education Manager",
+   "write": 1
+  }
+ ],
+ "restrict_to_domain": "Education",
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}
