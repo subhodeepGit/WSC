@@ -42,8 +42,7 @@ frappe.ui.form.on('Fee Structure', {
 		// 	}
 		// });
   //   }
-})
-
+});
 
 frappe.ui.form.on("Fee Component", "fees_category", function(frm, cdt, cdn) {
     var d = locals[cdt][cdn];
@@ -56,3 +55,40 @@ frappe.ui.form.on("Fee Component", "fees_category", function(frm, cdt, cdn) {
         refresh_field("amount", d.name, d.parentfield);
     }
 });
+
+frappe.ui.form.on('Fee Structure', {
+	onload: function(frm) {
+		frm.set_query("receivable_account","components", function(_doc, cdt, cdn) {
+			var d = locals[cdt][cdn];
+			return {
+				filters: {
+					'company': d.company,
+					'account_type': d.account_type = 'Receivable',
+					'is_group': d.is_group = 0
+				}
+			};
+		});
+		frm.set_query("income_account","components", function(_doc, cdt, cdn) {
+			var d = locals[cdt][cdn];
+			return {
+				filters: {
+					'company': d.company,
+					'account_type': d.account_type = 'Income Account',
+					'is_group': d.is_group = 0
+				}
+			};
+		});
+		erpnext.accounts.dimensions.setup_dimension_filters(frm, frm.doctype);
+	}
+	
+
+});
+
+frappe.ui.form.on('Fee Structure', {
+    onload:function(frm) {
+		if(frappe.user.has_role(["Accounts User","Student","Education Administrator"]) && !frappe.user.has_role(["Administrator"])){
+  			frm.remove_custom_button('Create Fee Schedule');
+        }
+	}
+}
+);
