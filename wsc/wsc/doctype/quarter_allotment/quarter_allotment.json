@@ -1,0 +1,195 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-01-03 16:22:41.474014",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee_info_section",
+  "naming_series",
+  "employee",
+  "column_break_3",
+  "employee_name",
+  "employee_id",
+  "section_break_4",
+  "building",
+  "start_date",
+  "end_date",
+  "column_break_6",
+  "quarter_number",
+  "quarter_type",
+  "addon_facilites"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Allotment Number",
+   "options": "RA-.YYYY-."
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "employee_id",
+   "fieldtype": "Data",
+   "label": "Employee ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break",
+   "label": "Allotment Details"
+  },
+  {
+   "fieldname": "building",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Building",
+   "options": "Buildings",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "in_standard_filter": 1,
+   "label": "End Date"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "room_id.room_type_feature",
+   "fieldname": "addon_facilites",
+   "fieldtype": "Data",
+   "label": "Addon Facilites"
+  },
+  {
+   "fieldname": "employee_info_section",
+   "fieldtype": "Section Break",
+   "label": "Employee Info"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "quarter_number",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Quarter Number",
+   "options": "Quarter",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "quarter_number.quarter_type",
+   "fieldname": "quarter_type",
+   "fieldtype": "Data",
+   "label": "Quarter Type",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "group": "Deallotment",
+   "link_doctype": "Deallotment Process",
+   "link_fieldname": "allotment_number"
+  },
+  {
+   "group": "Deallotment",
+   "link_doctype": "Death Deallotment",
+   "link_fieldname": "student"
+  },
+  {
+   "group": "Deallotment",
+   "link_doctype": "Long Leave",
+   "link_fieldname": "allotment_number"
+  },
+  {
+   "group": "Room Change",
+   "link_doctype": "Room Change",
+   "link_fieldname": "allotment_number"
+  },
+  {
+   "group": "Room Change",
+   "link_doctype": "Inter or Intra Hostel Change",
+   "link_fieldname": "allotment_no"
+  },
+  {
+   "group": "Miscellaneous",
+   "link_doctype": "Student Medical History",
+   "link_fieldname": "allotment_number"
+  },
+  {
+   "group": "Miscellaneous",
+   "link_doctype": "Student Leave Process",
+   "link_fieldname": "allotment_number"
+  },
+  {
+   "group": "Miscellaneous",
+   "link_doctype": "Material Distribution",
+   "link_fieldname": "allotment_number"
+  },
+  {
+   "group": "Clearance",
+   "link_doctype": "Hostel Clearance",
+   "link_fieldname": "allotment_number"
+  },
+  {
+   "group": "Attendance",
+   "link_doctype": "Hostel Attendance",
+   "link_fieldname": "room_allotment_no"
+  }
+ ],
+ "modified": "2023-01-03 16:46:32.734719",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Quarter Allotment",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

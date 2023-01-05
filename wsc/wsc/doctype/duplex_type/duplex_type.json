@@ -1,0 +1,131 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:duplex_type",
+ "creation": "2023-01-05 15:41:48.966778",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "duplex_type",
+  "duplex_description",
+  "unit_area_sq_m",
+  "duplex_orientation",
+  "duplex_roof_type",
+  "lawngarden",
+  "lawngarden_area_sq_m",
+  "column_break_8",
+  "parking_available",
+  "parking_type",
+  "parking_vehicle",
+  "parking_area_sq_m"
+ ],
+ "fields": [
+  {
+   "fieldname": "duplex_type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Duplex Type",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "duplex_description",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Duplex Description",
+   "reqd": 1
+  },
+  {
+   "fieldname": "unit_area_sq_m",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Duplex Unit Area (sq. m.)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "duplex_orientation",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Duplex Orientation",
+   "options": "\nOne Unit Up, One Down\nSide-By-Side",
+   "reqd": 1
+  },
+  {
+   "fieldname": "duplex_roof_type",
+   "fieldtype": "Select",
+   "label": "Duplex Roof type",
+   "options": "\nFlat\nGable\nHip\nGambrel\nMansard"
+  },
+  {
+   "fieldname": "lawngarden",
+   "fieldtype": "Select",
+   "label": "Duplex Lawn/Garden",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.lawngarden==\"Yes\"",
+   "fieldname": "lawngarden_area_sq_m",
+   "fieldtype": "Data",
+   "label": "Duplex Lawn/Garden Area (sq. m.)"
+  },
+  {
+   "fieldname": "parking_available",
+   "fieldtype": "Select",
+   "label": "Duplex Parking Available",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.parking_available==\"Yes\"",
+   "fieldname": "parking_type",
+   "fieldtype": "Select",
+   "label": "Duplex Parking Type",
+   "options": "\nOn Road\nRamp Parking\nLot Parking\nGarage\nShed"
+  },
+  {
+   "depends_on": "eval:doc.parking_available==\"Yes\"",
+   "fieldname": "parking_vehicle",
+   "fieldtype": "Select",
+   "label": "Duplex Parking Vehicle",
+   "options": "\nTwo Wheeler\nFour Wheeler"
+  },
+  {
+   "depends_on": "eval:doc.parking_available==\"Yes\"",
+   "fieldname": "parking_area_sq_m",
+   "fieldtype": "Data",
+   "label": "Duplex Parking Area (sq. m.)"
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-01-05 17:39:40.603055",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Duplex Type",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
