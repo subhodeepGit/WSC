@@ -11,7 +11,7 @@ frappe.ui.form.on('Student',{
 frappe.ui.form.on('Student', {
     onload: function(frm) {
            frappe.call({
-               "method": "hostel.room_allotment.get",
+               "method": "wsc.room_allotment.get",
                args: {
                    name: frm.doc.name
                },
