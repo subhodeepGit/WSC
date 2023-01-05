@@ -49,7 +49,7 @@ def on_update(doc,method):
 		frappe.db.set_value("Student Applicant", doc.student_applicant, "application_status", "Approved")
 def on_change(self,method):
 	user_info=frappe.get_all("Student",{"name":self.name},["student_email_id","user"])
-	if user_info[0]["user"]!=self.student_email_id:
+	if user_info[0]["user"]!=self.student_email_id and user_info[0]["user"]!= None:
 		old_user=user_info[0]["user"]
 		frappe.rename_doc("User", old_user, self.student_email_id)
 		frappe.db.commit()
