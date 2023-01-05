@@ -5,8 +5,8 @@ from frappe import _
 from frappe.model.document import Document
 from frappe.utils import add_days, getdate
 from education.education.utils import OverlapError
-class CourseSchedulingTool(Document):
 
+class CourseSchedulingTool(Document):
     @frappe.whitelist()
     def schedule_course(self):
         """Creates course schedules as per specified parameters"""

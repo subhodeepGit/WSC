@@ -1,4 +1,4 @@
-# Copyright (c) 2022, SOUL and Contributors
+# Copyright (c) 2023, SOUL Limited and Contributors
 # See license.txt
 
 # import frappe

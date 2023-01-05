@@ -30,6 +30,7 @@ app_license = "MIT"
 
 # include js in doctype views
 doctype_js = {
+                "Account":"public/js/account.js",
                 "Course":"public/js/course.js",
                 "Course Enrollment":"public/js/course_enrollment.js",
                 "Course Schedule": "public/js/course_schedule.js",
@@ -38,6 +39,7 @@ doctype_js = {
                 "Fee Schedule":"public/js/fee_schedule.js",
                 "Fee Structure" : "public/js/fee_structure.js",
                 "Instructor":"public/js/instructor.js",
+                "Payment Entry" : "public/js/payment_entry.js",
                 "Program Enrollment":"public/js/program_enrollment.js",
                 "Program":"public/js/program.js",
                 "Student":"public/js/student.js",
@@ -129,9 +131,15 @@ after_install = "wsc.patches.get_phone_codes.execute"
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-#	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+override_doctype_class = {
+    "Course Scheduling Tool": "wsc.wsc.doctype.course_scheduling_tool.CourseSchedulingTool",
+    "Student Attendance": "wsc.wsc.doctype.student_attendance.StudentAttendance",
+    "Employee":"wsc.wsc.doctype.employee.Employee",
+    "Course Schedule": "wsc.wsc.doctype.course_schedule.CourseSchedule",
+    "Student Applicant": "wsc.wsc.doctype.student_applicant.StudentApplicant",
+    "User Permission": "wsc.wsc.doctype.user_permission.UserPermission",
+	"Fee Structure":"wsc.wsc.doctype.fee_structure.FeeStructure",
+}
 
 # Document Events
 # ---------------
@@ -151,8 +159,7 @@ doc_events = {
         "validate": "wsc.wsc.validations.branch_sliding_application.validate"
     },
     "Course": {
-        "validate": ["wsc.wsc.validations.course.validate",
-                     "wsc.wsc.doctype.course.validate"]
+        "validate": "wsc.wsc.validations.course.validate"
     },
     "Course Assessment": {
         "validate": "wsc.wsc.validations.course_assessment.validate"
@@ -166,8 +173,7 @@ doc_events = {
        "on_trash":"wsc.wsc.doctype.course_enrollment.on_trash"
     },
 	"Course Schedule": {
-		"on_update": "wsc.wsc.doctype.course_schedule.on_change",
-        "validate": "wsc.wsc.validations.course_schedule.validate"
+		"on_update": "wsc.wsc.doctype.course_schedule.on_change"
 	},
     "Counselling Structure":{
         "validate":"wsc.wsc.validations.counselling_structure.validate"
@@ -187,11 +193,11 @@ doc_events = {
     "Exam Paper Setting":{
         "validate":"wsc.wsc.validations.exam_paper_setting.validate"
     },
-    "Fees":{
-        "on_submit":"wsc.wsc.doctype.fees.on_submit",
-        "validate":"wsc.wsc.doctype.fees.validate",
-        "on_cancel":"wsc.wsc.doctype.fees.on_cancel"
-    },
+    # "Fees":{
+    #     "on_submit":"wsc.wsc.doctype.fees.on_submit",
+    #     "validate":"wsc.wsc.doctype.fees.validate",
+    #     "on_cancel":"wsc.wsc.doctype.fees.on_cancel"
+    # },
     "Fee Structure":{
         "validate":"wsc.wsc.validations.fee_structure.validate"
     },
@@ -270,10 +276,8 @@ doc_events = {
         "validate":"wsc.wsc.validations.student_leave_application.validate"
     },
     "Student Applicant":{
-        "validate":["wsc.wsc.doctype.student_applicant.validate",
-                    "wsc.wsc.validations.student_applicant.validate"],
+        "validate":"wsc.wsc.doctype.student_applicant.validate",
         "on_change":"wsc.wsc.doctype.student_applicant.on_update",
-        "on_submit":"wsc.wsc.validations.student_applicant.on_submit"
     },
     "Student Admission":{
         "validate":["wsc.wsc.doctype.student_admission.validate",
@@ -322,6 +326,7 @@ override_whitelisted_methods = {
 }
 override_doctype_class = {
 	"Course Scheduling Tool": "wsc.wsc.doctype.course_scheduling_tool.CourseSchedulingTool",
+    "Fees":"wsc.wsc.doctype.fees.Fees",
     "Student Attendance": "wsc.wsc.doctype.student_attendance.StudentAttendance",
     "Employee":"wsc.wsc.doctype.employee.Employee",
     "Course Schedule": "wsc.wsc.doctype.course_schedule.CourseSchedule",
