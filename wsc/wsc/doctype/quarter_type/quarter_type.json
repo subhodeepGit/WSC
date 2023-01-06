@@ -1,0 +1,132 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:quarter_type",
+ "creation": "2023-01-05 09:57:16.960829",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "quarter_type",
+  "quarter_description",
+  "air_conditioning",
+  "area",
+  "unit_area_sq_m",
+  "stairscirculation_sq_m",
+  "balcony_sq_m",
+  "utility_area",
+  "column_break_8",
+  "parking_available",
+  "parking_type",
+  "parking_vehicle",
+  "parking_area_sq_m",
+  "eligibilty"
+ ],
+ "fields": [
+  {
+   "fieldname": "quarter_type",
+   "fieldtype": "Data",
+   "label": "Quarter Type",
+   "unique": 1
+  },
+  {
+   "fieldname": "quarter_description",
+   "fieldtype": "Data",
+   "label": "Quarter Description"
+  },
+  {
+   "fieldname": "area",
+   "fieldtype": "Select",
+   "label": "Area",
+   "options": "\nExisting\nNew"
+  },
+  {
+   "fieldname": "unit_area_sq_m",
+   "fieldtype": "Data",
+   "label": "Quarter Unit Area (sq. m.)"
+  },
+  {
+   "fieldname": "stairscirculation_sq_m",
+   "fieldtype": "Data",
+   "label": "Stairs/Circulation (sq. m.)"
+  },
+  {
+   "fieldname": "balcony_sq_m",
+   "fieldtype": "Data",
+   "label": "Balcony (sq. m.)"
+  },
+  {
+   "fieldname": "utility_area",
+   "fieldtype": "Data",
+   "label": "Utility Area"
+  },
+  {
+   "fieldname": "eligibilty",
+   "fieldtype": "Table",
+   "label": "Eligibilty",
+   "options": "Quarter Eligibility"
+  },
+  {
+   "fieldname": "parking_available",
+   "fieldtype": "Select",
+   "label": "Quarter Parking Available",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval:doc.parking_available==\"Yes\"",
+   "fieldname": "parking_type",
+   "fieldtype": "Select",
+   "label": "Quarter Parking Type",
+   "options": "\nOn Road\nRamp Parking\nLot Parking\nGarage\nShed"
+  },
+  {
+   "depends_on": "eval:doc.parking_available==\"Yes\"",
+   "fieldname": "parking_vehicle",
+   "fieldtype": "Select",
+   "label": "Quarter Parking Vehicle",
+   "options": "\nTwo Wheeler\nFour Wheeler"
+  },
+  {
+   "depends_on": "eval:doc.parking_available==\"Yes\"",
+   "fieldname": "parking_area_sq_m",
+   "fieldtype": "Data",
+   "label": "Quarter Parking Area (sq. m.)"
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "air_conditioning",
+   "fieldtype": "Select",
+   "label": "Air Conditioning",
+   "options": "\nYes\nNo"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-01-05 17:20:36.017532",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Quarter Type",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
