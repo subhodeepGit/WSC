@@ -13,7 +13,7 @@ class StudentApplicant(Document):
         # print(student)
         if len(student)>1:
             frappe.throw(_("Cannot change status as student {0} is linked with student application {1}").format(student[0].name, self.name))
-    def validate(doc,method):
+    def validate(doc):
         # validate_percentage(doc)
         education_details_validation(doc)
         document_list_checkbox(doc)

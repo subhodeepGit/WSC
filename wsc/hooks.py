@@ -131,15 +131,7 @@ after_install = "wsc.patches.get_phone_codes.execute"
 # ---------------
 # Override standard doctype classes
 
-override_doctype_class = {
-    "Course Scheduling Tool": "wsc.wsc.doctype.course_scheduling_tool.CourseSchedulingTool",
-    "Student Attendance": "wsc.wsc.doctype.student_attendance.StudentAttendance",
-    "Employee":"wsc.wsc.doctype.employee.Employee",
-    "Course Schedule": "wsc.wsc.doctype.course_schedule.CourseSchedule",
-    "Student Applicant": "wsc.wsc.doctype.student_applicant.StudentApplicant",
-    "User Permission": "wsc.wsc.doctype.user_permission.UserPermission",
-	"Fee Structure":"wsc.wsc.doctype.fee_structure.FeeStructure",
-}
+
 
 # Document Events
 # ---------------
@@ -239,21 +231,20 @@ doc_events = {
         "validate":"wsc.wsc.validations.programs.validate"
     },
     "Program Enrollment":{
-        "on_submit":["wsc.wsc.doctype.program_enrollment.on_submit"],
-        "on_cancel":["wsc.wsc.doctype.program_enrollment.on_cancel"],
-        "on_change":"wsc.wsc.doctype.program_enrollment.on_change",
+        "on_submit":["wsc.wsc.validations.program_enrollment.on_submit"],
+        "on_cancel":["wsc.wsc.validations.program_enrollment.on_cancel"],
+        "on_change":"wsc.wsc.validations.program_enrollment.on_change",
         "validate":["wsc.wsc.validations.program_enrollment.validate",
-                    "wsc.wsc.doctype.program_enrollment.validate"]
+                    "wsc.wsc.validations.program_enrollment.validate"]
     },
-   
     "Reevaluation Application":{
         "validate":"wsc.wsc.validations.reevalution_application.validate"
     },
     "Student":{
-        "after_insert":"wsc.wsc.doctype.student.after_insert",
-        "on_trash":"wsc.wsc.doctype.student.on_trash",
-        "on_change":["wsc.wsc.doctype.student.on_update","wsc.wsc.doctype.student.on_change"],
-        "validate":"wsc.wsc.doctype.student.validate"
+        "after_insert":"wsc.wsc.validations.student.after_insert",
+        "on_trash":"wsc.wsc.validations.student.on_trash",
+        "on_change":["wsc.wsc.validations.student.on_update","wsc.wsc.validations.student.on_change"],
+        "validate":"wsc.wsc.validations.student.validate"
     },
     "Student Admit Card":{
         "validate":"wsc.wsc.validations.student_admit_card.validate"
@@ -276,8 +267,8 @@ doc_events = {
         "validate":"wsc.wsc.validations.student_leave_application.validate"
     },
     "Student Applicant":{
-        "validate":"wsc.wsc.doctype.student_applicant.validate",
-        "on_change":"wsc.wsc.doctype.student_applicant.on_update",
+    #     "validate":"wsc.wsc.doctype.student_applicant.validate",
+        "on_change":"wsc.wsc.doctype.student_applicant.on_update"
     },
     "Student Admission":{
         "validate":["wsc.wsc.doctype.student_admission.validate",
@@ -331,7 +322,8 @@ override_doctype_class = {
     "Employee":"wsc.wsc.doctype.employee.Employee",
     "Course Schedule": "wsc.wsc.doctype.course_schedule.CourseSchedule",
     "Student Applicant": "wsc.wsc.doctype.student_applicant.StudentApplicant",
-    "User Permission": "wsc.wsc.doctype.user_permission.UserPermission"
+    "User Permission": "wsc.wsc.doctype.user_permission.UserPermission",
+    "Fee Structure":"wsc.wsc.doctype.fee_structure.FeeStructure"
 }
 #
 # each overriding function accepts a `data` argument;
