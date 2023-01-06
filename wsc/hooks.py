@@ -160,9 +160,9 @@ doc_events = {
         "validate": "wsc.wsc.validations.course_assessment.validate"
     },
     "Course Enrollment":{
-       "after_insert":"wsc.wsc.doctype.course_enrollment.after_insert",
-       "validate":"wsc.wsc.doctype.course_enrollment.validate",
-       "on_trash":"wsc.wsc.doctype.course_enrollment.on_trash"
+       "after_insert":"wsc.wsc.validations.course_enrollment.after_insert",
+       "validate":"wsc.wsc.validations.course_enrollment.validate",
+       "on_trash":"wsc.wsc.validations.course_enrollment.on_trash"
     },
     "Course": {
         "validate": "wsc.wsc.validations.course.validate"
