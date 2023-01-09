@@ -14,3 +14,12 @@
 // });
 
 
+frappe.ui.form.on("Buildings", {
+	setup: function(frm) {
+		frm.set_query("plot_number", function() {
+			return {
+                query: "wsc.wsc.doctype.buildings.buildings.room_type_query",
+			}
+		});
+	}
+});
