@@ -17,29 +17,26 @@
   "state",
   "pin_code",
   "room_details_section",
-  "floor",
   "room_no",
+  "floor",
   "type_of_room",
-  "type_of_residence",
-  "column_break_14",
   "allotment_status",
-  "quarter_type",
-  "quarter_bsic_information_section",
-  "quarter_description",
-  "air_conditioning",
-  "area",
-  "column_break_22",
+  "column_break_14",
+  "type_of_residence",
+  "residence_type_name",
+  "residence_details_section",
+  "description",
   "unit_area_sq_m",
+  "air_conditioning",
+  "orientation",
+  "lawngarden_available",
+  "lawngarden_area_sq_m",
+  "column_break_22",
+  "roof_type",
   "parking_available",
-  "eligibility",
-  "duplex_details_section",
-  "duplex_description",
-  "duplex_unit_area_sq_m",
-  "duplex_orientation",
-  "column_break_29",
-  "duplex_roof_type",
-  "lawngarden",
-  "duplex_parking_available"
+  "parking_type",
+  "parking_vehicle",
+  "parking_area_sq_m"
  ],
  "fields": [
   {
@@ -143,135 +140,121 @@
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "eval:doc.type_of_residence!=\"\"",
-   "fieldname": "quarter_type",
-   "fieldtype": "Link",
-   "label": "Residence Type Name",
-   "mandatory_depends_on": "eval:doc.type_of_room==\"Quarter\"",
-   "options": "Quarter Type"
-  },
-  {
-   "depends_on": "eval:doc.type_of_room==\"Quarter\"",
-   "fetch_from": "quarter_type.quarter_description",
-   "fieldname": "quarter_description",
-   "fieldtype": "Data",
-   "label": "Quarter Description"
-  },
-  {
-   "fieldname": "quarter_bsic_information_section",
-   "fieldtype": "Section Break",
-   "label": "Quarter Details"
-  },
-  {
-   "depends_on": "eval:doc.type_of_room==\"Quarter\"",
-   "fetch_from": "quarter_type.area",
-   "fieldname": "area",
-   "fieldtype": "Data",
-   "label": "Area",
-   "read_only": 1
-  },
-  {
-   "depends_on": "eval:doc.type_of_room==\"Quarter\"",
-   "fetch_from": "quarter_type.unit_area_sq_m",
+   "depends_on": "eval:doc.type_of_room==\"Residential\"",
+   "fetch_from": "residence_type_name.unit_area_sq_m",
    "fieldname": "unit_area_sq_m",
    "fieldtype": "Data",
    "label": "Unit Area (sq. m.)",
    "read_only": 1
   },
   {
-   "fieldname": "eligibility",
-   "fieldtype": "Data",
-   "label": "Eligibility",
-   "read_only": 1
-  },
-  {
-   "depends_on": "eval:doc.type_of_room==\"Quarter\"",
-   "fetch_from": "quarter_type.parking_available",
+   "depends_on": "eval:doc.type_of_room==\"Residential\"",
+   "fetch_from": "residence_type_name.parking_available",
    "fieldname": "parking_available",
    "fieldtype": "Data",
-   "label": "Quarter Parking Available",
+   "label": "Parking Available",
    "read_only": 1
-  },
-  {
-   "depends_on": "eval:doc.type_of_room==\"Duplex\"",
-   "fetch_from": "duplex_type.duplex_description",
-   "fieldname": "duplex_description",
-   "fieldtype": "Data",
-   "label": "Duplex Description",
-   "read_only": 1
-  },
-  {
-   "depends_on": "eval:doc.type_of_room==\"Duplex\"",
-   "fetch_from": "duplex_type.unit_area_sq_m",
-   "fieldname": "duplex_unit_area_sq_m",
-   "fieldtype": "Data",
-   "label": "Duplex Unit Area (sq. m.)",
-   "read_only": 1
-  },
-  {
-   "depends_on": "eval:doc.type_of_room==\"Duplex\"",
-   "fetch_from": "duplex_type.duplex_orientation",
-   "fieldname": "duplex_orientation",
-   "fieldtype": "Data",
-   "label": "Duplex Orientation",
-   "read_only": 1
-  },
-  {
-   "depends_on": "eval:doc.type_of_room==\"Duplex\"",
-   "fetch_from": "duplex_type.duplex_roof_type",
-   "fieldname": "duplex_roof_type",
-   "fieldtype": "Data",
-   "label": "Duplex Roof type",
-   "read_only": 1
-  },
-  {
-   "depends_on": "eval:doc.type_of_room==\"Duplex\"",
-   "fetch_from": "duplex_type.lawngarden",
-   "fieldname": "lawngarden",
-   "fieldtype": "Data",
-   "label": "Duplex Lawn/Garden",
-   "read_only": 1
-  },
-  {
-   "depends_on": "eval:doc.type_of_room==\"Duplex\"",
-   "fetch_from": "duplex_type.parking_available",
-   "fieldname": "duplex_parking_available",
-   "fieldtype": "Data",
-   "label": "Duplex Parking Available",
-   "read_only": 1
-  },
-  {
-   "fieldname": "duplex_details_section",
-   "fieldtype": "Section Break",
-   "label": "Duplex Details"
   },
   {
    "fieldname": "column_break_22",
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "column_break_29",
-   "fieldtype": "Column Break"
-  },
-  {
-   "depends_on": "eval:doc.type_of_room==\"Quarter\"",
-   "fetch_from": "quarter_type.air_conditioning",
+   "depends_on": "eval:doc.type_of_room==\"Residential\"",
+   "fetch_from": "residence_type_name.air_conditioning",
    "fieldname": "air_conditioning",
    "fieldtype": "Data",
    "label": "Air Conditioning",
    "read_only": 1
   },
   {
-   "depends_on": "eval:doc.type_of_room==\"Residential\"",
+   "depends_on": "eval:(doc.type_of_room==\"Residential\" && doc.allotment_status==\"Allottable\")",
    "fieldname": "type_of_residence",
    "fieldtype": "Link",
    "label": "Type of Residence",
+   "mandatory_depends_on": "eval:(doc.type_of_room==\"Residential\")",
    "options": "Type of Residence"
+  },
+  {
+   "fetch_from": "residence_type_name.description",
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "label": "Description",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:(doc.type_of_room==\"Residential\" && doc.allotment_status==\"Allottable\")",
+   "fieldname": "residence_type_name",
+   "fieldtype": "Link",
+   "label": "Residence Type Name",
+   "mandatory_depends_on": "eval:(doc.type_of_room==\"Residential\")",
+   "options": "Quarter Type"
+  },
+  {
+   "fieldname": "residence_details_section",
+   "fieldtype": "Section Break",
+   "label": "Residence Details"
+  },
+  {
+   "depends_on": "eval:doc.type_of_room==\"Residential\"",
+   "fetch_from": "residence_type_name.residence_orientation",
+   "fieldname": "orientation",
+   "fieldtype": "Data",
+   "label": "Residence Orientation",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.type_of_room==\"Residential\"",
+   "fetch_from": "residence_type_name.roof_type",
+   "fieldname": "roof_type",
+   "fieldtype": "Data",
+   "label": "Roof type",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.type_of_room==\"Residential\"",
+   "fetch_from": "residence_type_name.lawngarden_available",
+   "fieldname": "lawngarden_available",
+   "fieldtype": "Data",
+   "label": "Lawn/Garden Available",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.parking_available==\"Yes\"",
+   "fetch_from": "residence_type_name.parking_type",
+   "fieldname": "parking_type",
+   "fieldtype": "Data",
+   "label": "Parking Type",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.parking_available==\"Yes\"",
+   "fetch_from": "residence_type_name.parking_vehicle",
+   "fieldname": "parking_vehicle",
+   "fieldtype": "Data",
+   "label": "Parking Vehicle",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.parking_available==\"Yes\"",
+   "fetch_from": "residence_type_name.data_9",
+   "fieldname": "parking_area_sq_m",
+   "fieldtype": "Data",
+   "label": "Parking Area (sq. m.)",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.lawngarden_available==\"Yes\"",
+   "fetch_from": "residence_type_name.lawngarden_area_sq_m",
+   "fieldname": "lawngarden_area_sq_m",
+   "fieldtype": "Data",
+   "label": "Lawn/Garden Area (sq. m.)",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-06 19:20:13.236329",
+ "modified": "2023-01-09 16:18:10.108438",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Building Room",

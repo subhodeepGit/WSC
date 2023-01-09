@@ -22,6 +22,9 @@
   "building_type",
   "total_apartments",
   "total_floors",
+  "column_break_15",
+  "facing",
+  "campus",
   "amended_from"
  ],
  "fields": [
@@ -131,17 +134,33 @@
    "fieldname": "building_type",
    "fieldtype": "Select",
    "label": "Building Type",
-   "options": "Academic\nNon-Academic\nResidential Quarters\nResidential Duplex Quarters\nOthers",
+   "options": "\nAcademic\nNon-Academic\nResidential Quarters\nResidential Duplex Quarters\nOthers",
    "reqd": 1
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "facing",
+   "fieldtype": "Select",
+   "label": "Facing",
+   "options": "\nNorth\nSouth\nEast\nWest"
+  },
+  {
+   "fieldname": "campus",
+   "fieldtype": "Data",
+   "label": "Campus"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-03 15:11:06.353170",
+ "modified": "2023-01-09 12:41:21.577888",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Buildings",
  "name_case": "Title Case",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -159,5 +178,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "title_field": "address_line_1"
 }
