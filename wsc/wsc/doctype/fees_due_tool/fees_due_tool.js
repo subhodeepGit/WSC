@@ -1,4 +1,4 @@
-// Copyright (c) 2022, SOUL and contributors
+// Copyright (c) 2023, SOUL Limited and Contributors
 // For license information, please see license.txt
 
 // Fetch all student data whose fees is due

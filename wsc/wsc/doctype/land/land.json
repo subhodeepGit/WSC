@@ -1,0 +1,144 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:name1",
+ "creation": "2022-12-28 11:30:38.249847",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "land_owner_details_section",
+  "name1",
+  "address",
+  "column_break_4",
+  "phone",
+  "email",
+  "land_details_section",
+  "plot_number",
+  "land_complete_address",
+  "land_size",
+  "land_valuation",
+  "column_break_12",
+  "land_use",
+  "time_of_planned_development",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "land_owner_details_section",
+   "fieldtype": "Section Break",
+   "label": "Land Owner Details"
+  },
+  {
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Address",
+   "reqd": 1
+  },
+  {
+   "fieldname": "phone",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Phone",
+   "reqd": 1
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Email",
+   "options": "Email",
+   "reqd": 1
+  },
+  {
+   "fieldname": "land_details_section",
+   "fieldtype": "Section Break",
+   "label": "Land Details"
+  },
+  {
+   "fieldname": "plot_number",
+   "fieldtype": "Data",
+   "label": "Plot number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "land_complete_address",
+   "fieldtype": "Small Text",
+   "label": "Land Complete Address"
+  },
+  {
+   "fieldname": "land_size",
+   "fieldtype": "Data",
+   "label": "Land Size",
+   "reqd": 1
+  },
+  {
+   "fieldname": "land_valuation",
+   "fieldtype": "Currency",
+   "label": "Land Valuation"
+  },
+  {
+   "fieldname": "land_use",
+   "fieldtype": "Select",
+   "label": "Land Use",
+   "options": "Academic\nResidential\nBoth",
+   "reqd": 1
+  },
+  {
+   "fieldname": "time_of_planned_development",
+   "fieldtype": "Date",
+   "label": "Date of Planned Development"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Land",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-01-03 15:23:27.023836",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Land",
+ "name_case": "Title Case",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "address"
+}

@@ -1,6 +1,6 @@
 import frappe
 from frappe import _
-from wsc.wsc.doctype.workspace import make_workspace_for_user
+from wsc.wsc.validations.workspace import make_workspace_for_user
 from wsc.wsc.utils import duplicate_row_validation
 from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
 

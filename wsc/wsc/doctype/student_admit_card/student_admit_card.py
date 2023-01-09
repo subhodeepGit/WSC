@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
 from frappe.utils import today, getdate
-from wsc.wsc.doctype.workspace import create_workspace
+from wsc.wsc.validations.workspace import create_workspace
 from wsc.wsc.utils import get_courses_by_semester,duplicate_row_validation
 
 class StudentAdmitCard(Document):

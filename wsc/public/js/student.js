@@ -10,8 +10,8 @@ frappe.ui.form.on('Student',{
 
 frappe.ui.form.on('Student', {
     onload: function(frm) {
-           frappe.call({
-               "method": "wsc.room_allotment.get",
+           frappe.call({            
+               "method": "wsc.wsc.doctype.room_allotment.room_allotment.get",
                args: {
                    name: frm.doc.name
                },
