@@ -40,6 +40,27 @@
  ],
  "fields": [
   {
+   "fieldname": "residence_type_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Residence Type name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "type_of_residence",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Type of Residence",
+   "options": "\nQuarter\nDuplex",
+   "reqd": 1
+  },
+  {
+   "fieldname": "quarter_details_section",
+   "fieldtype": "Section Break",
+   "label": "Quarter Details"
+  },
+  {
    "depends_on": "eval:doc.type_of_residence==\"Quarter\"",
    "fieldname": "quarter_type",
    "fieldtype": "Data",
@@ -51,6 +72,13 @@
    "fieldname": "quarter_description",
    "fieldtype": "Data",
    "label": "Quarter Description"
+  },
+  {
+   "depends_on": "eval:doc.type_of_residence==\"Quarter\"",
+   "fieldname": "air_conditioning",
+   "fieldtype": "Select",
+   "label": "Air Conditioning",
+   "options": "\nYes\nNo"
   },
   {
    "depends_on": "eval:doc.type_of_residence==\"Quarter\"",
@@ -77,12 +105,8 @@
    "label": "Utility Area"
   },
   {
-   "depends_on": "eval:doc.type_of_residence==\"Quarter\"",
-   "fieldname": "eligibilty",
-   "fieldtype": "Table",
-   "hidden": 1,
-   "label": "Eligibilty",
-   "options": "Quarter Eligibility"
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
   },
   {
    "depends_on": "eval:doc.type_of_residence==\"Quarter\"",
@@ -112,36 +136,12 @@
    "label": "Quarter Parking Area (sq. m.)"
   },
   {
-   "fieldname": "column_break_8",
-   "fieldtype": "Column Break"
-  },
-  {
    "depends_on": "eval:doc.type_of_residence==\"Quarter\"",
-   "fieldname": "air_conditioning",
-   "fieldtype": "Select",
-   "label": "Air Conditioning",
-   "options": "\nYes\nNo"
-  },
-  {
-   "fieldname": "type_of_residence",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Type of Residence",
-   "options": "Type of Residence",
-   "reqd": 1
-  },
-  {
-   "fieldname": "residence_type_name",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Residence Type name",
-   "reqd": 1,
-   "unique": 1
-  },
-  {
-   "fieldname": "quarter_details_section",
-   "fieldtype": "Section Break",
-   "label": "Quarter Details"
+   "fieldname": "eligibilty",
+   "fieldtype": "Table",
+   "hidden": 1,
+   "label": "Eligibilty",
+   "options": "Quarter Eligibility"
   },
   {
    "fieldname": "duplex_details_section",
@@ -227,10 +227,10 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-06 19:00:47.472464",
+ "modified": "2023-01-06 17:58:43.677339",
  "modified_by": "Administrator",
  "module": "WSC",
- "name": "Quarter Type",
+ "name": "Residence Type",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [

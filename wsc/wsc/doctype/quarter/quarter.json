@@ -11,7 +11,15 @@
   "quarter_type_details_section",
   "quarter_type",
   "quarter_description",
-  "carpet_sizesqft",
+  "quarter_unit_area_sq_m",
+  "stairscirculation_sq_m",
+  "balcony_sq_m",
+  "utility_area",
+  "column_break_8",
+  "quarter_parking_available",
+  "quarter_parking_type",
+  "quarter_parking_vehicle",
+  "quarter_parking_area_sq_m",
   "furnished_status",
   "facing"
  ],
@@ -19,7 +27,7 @@
   {
    "fieldname": "quarter_no",
    "fieldtype": "Data",
-   "label": "Quarter No.",
+   "label": "Quarter Type Name",
    "reqd": 1,
    "unique": 1
   },
@@ -33,42 +41,78 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Quarter Type",
-   "options": "Quarter Type",
+   "options": "Type of Residence",
    "reqd": 1
   },
   {
-   "fetch_from": "quarter_type.quarter_description",
    "fieldname": "quarter_description",
    "fieldtype": "Data",
-   "label": "Quarter Description",
-   "read_only": 1,
-   "reqd": 1
-  },
-  {
-   "fieldname": "carpet_sizesqft",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Carpet Size(sqft)",
-   "reqd": 1
+   "label": "Quarter Description"
   },
   {
    "fieldname": "furnished_status",
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Furnished Status",
-   "options": "Fully Furnished\nSemi Furnished\nUnfurnished",
+   "options": "\nFully Furnished\nSemi Furnished\nUnfurnished",
    "reqd": 1
   },
   {
    "fieldname": "facing",
    "fieldtype": "Select",
    "label": "Facing",
-   "options": "North\nSouth\nWest\nEast"
+   "options": "\nNorth\nSouth\nWest\nEast"
+  },
+  {
+   "fieldname": "quarter_unit_area_sq_m",
+   "fieldtype": "Data",
+   "label": "Quarter Unit Area (sq. m.)"
+  },
+  {
+   "fieldname": "stairscirculation_sq_m",
+   "fieldtype": "Data",
+   "label": "Stairs/Circulation (sq. m.)"
+  },
+  {
+   "fieldname": "balcony_sq_m",
+   "fieldtype": "Data",
+   "label": "Balcony (sq. m.)"
+  },
+  {
+   "fetch_if_empty": 1,
+   "fieldname": "utility_area",
+   "fieldtype": "Data",
+   "label": "Utility Area"
+  },
+  {
+   "fieldname": "quarter_parking_available",
+   "fieldtype": "Select",
+   "label": "Quarter Parking Available",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "quarter_parking_type",
+   "fieldtype": "Data",
+   "label": "Quarter Parking Type"
+  },
+  {
+   "fieldname": "quarter_parking_vehicle",
+   "fieldtype": "Data",
+   "label": "Quarter Parking Vehicle"
+  },
+  {
+   "fieldname": "quarter_parking_area_sq_m",
+   "fieldtype": "Data",
+   "label": "Quarter Parking Area (sq. m.)"
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-05 10:50:14.771189",
+ "modified": "2023-01-06 19:00:37.166256",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Quarter",

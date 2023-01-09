@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestDuplexType(FrappeTestCase):
+class TestResidenceType(FrappeTestCase):
 	pass
