@@ -1,7 +1,7 @@
 import frappe
 from frappe import msgprint, _
 from frappe.utils import comma_and, get_link_to_form, getdate,date_diff,add_days
-from wsc.wsc.doctype.custom_naming_series  import get_default_naming_series,make_autoname,_field_autoname,set_name_by_naming_series,_prompt_autoname,_format_autoname
+from wsc.wsc.validations.custom_naming_series  import get_default_naming_series,make_autoname,_field_autoname,set_name_by_naming_series,_prompt_autoname,_format_autoname
 from wsc.wsc.utils import get_courses_by_semester,duplicate_row_validation,get_courses_by_semester_academic_year
 from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
 from wsc.wsc.notification.custom_notification import program_enrollment_admitted,program_enrollment_provisional_admission
@@ -20,6 +20,7 @@ def validate(doc,method):
 def set_duration(doc):
     for event in doc.academic_events_table:
         event.duration = date_diff(event.end_date , event.start_date)
+        
 def on_cancel(doc,method):
     delete_permissions(doc)
     # update_reserved_seats(doc)

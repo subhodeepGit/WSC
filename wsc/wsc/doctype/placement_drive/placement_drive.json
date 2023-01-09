@@ -7,22 +7,34 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "enable",
   "title",
   "posting_date",
   "placement_company",
   "academic_year",
   "academic_term",
+  "current_cgpapercentage",
+  "active_backlog",
+  "gap_in_studies",
   "column_break_3",
   "type_of_drive",
   "location_of_drive",
   "for_department",
   "drive_details_section",
+  "sector_of_work",
+  "placement_drive_for",
   "application_start_date",
   "application_end_date",
   "designations_position",
   "for_programs",
+  "eligibility_section",
   "eligibility_criteria",
   "process_of_placement",
+  "company_date_section",
+  "ctc",
+  "rounds_of_placement_table",
+  "joining_type",
+  "type_of_job",
   "amended_from"
  ],
  "fields": [
@@ -37,8 +49,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Placement Company",
-   "options": "Placement Company",
-   "reqd": 1
+   "options": "Placement Company"
   },
   {
    "fieldname": "column_break_3",
@@ -48,7 +59,7 @@
    "fieldname": "type_of_drive",
    "fieldtype": "Select",
    "label": "Type of Drive",
-   "options": "\nIN Campus\nOFF Campus",
+   "options": "IN Campus\nOFF Campus",
    "reqd": 1
   },
   {
@@ -78,8 +89,7 @@
    "fieldname": "designations_position",
    "fieldtype": "Table",
    "label": "Designations Position",
-   "options": "Placement Designations",
-   "reqd": 1
+   "options": "Placement Designations"
   },
   {
    "fieldname": "amended_from",
@@ -92,9 +102,9 @@
   },
   {
    "fieldname": "eligibility_criteria",
-   "fieldtype": "Small Text",
+   "fieldtype": "Table",
    "label": "Eligibility Criteria",
-   "reqd": 1
+   "options": "Eligibility Criteria"
   },
   {
    "fieldname": "process_of_placement",
@@ -112,8 +122,7 @@
    "fieldname": "for_programs",
    "fieldtype": "Table",
    "label": "For Programs",
-   "options": "Place Eligible Programs",
-   "reqd": 1
+   "options": "Place Eligible Programs"
   },
   {
    "fieldname": "for_department",
@@ -126,24 +135,93 @@
    "fieldname": "academic_year",
    "fieldtype": "Link",
    "label": "Academic Year",
-   "options": "Academic Year",
-   "reqd": 1
+   "options": "Academic Year"
   },
   {
    "fieldname": "academic_term",
    "fieldtype": "Link",
    "label": "Academic Term",
-   "options": "Academic Term",
+   "options": "Academic Term"
+  },
+  {
+   "fieldname": "current_cgpapercentage",
+   "fieldtype": "Float",
+   "label": "Current CGPA/Percentage"
+  },
+  {
+   "fieldname": "active_backlog",
+   "fieldtype": "Select",
+   "label": "Active Backlog",
+   "options": "0\n1\n2\n3"
+  },
+  {
+   "fieldname": "gap_in_studies",
+   "fieldtype": "Select",
+   "label": "Gap in Studies",
+   "options": "0\n1\n2\n3\n4\n5\n6\n7",
    "reqd": 1
+  },
+  {
+   "fieldname": "sector_of_work",
+   "fieldtype": "Data",
+   "label": "Sector of Work"
+  },
+  {
+   "fieldname": "placement_drive_for",
+   "fieldtype": "Select",
+   "label": "Placement Drive For",
+   "options": "Freshers\nExperience\nBoth"
+  },
+  {
+   "fieldname": "eligibility_section",
+   "fieldtype": "Section Break",
+   "label": "Eligibility"
+  },
+  {
+   "fieldname": "company_date_section",
+   "fieldtype": "Section Break",
+   "label": "Company Date"
+  },
+  {
+   "fieldname": "ctc",
+   "fieldtype": "Float",
+   "label": "CTC"
+  },
+  {
+   "fieldname": "rounds_of_placement_table",
+   "fieldtype": "Table",
+   "label": "Rounds of Placement Table",
+   "options": "Rounds of Placement"
+  },
+  {
+   "fieldname": "joining_type",
+   "fieldtype": "Select",
+   "label": "Joining Type",
+   "options": "Immediate\nNon - immediate",
+   "reqd": 1
+  },
+  {
+   "fieldname": "type_of_job",
+   "fieldtype": "Select",
+   "label": "Type of Job",
+   "options": "Internship\nContractual\nNon-contractual\nPermanent",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "enable",
+   "fieldtype": "Check",
+   "label": "enable"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-02-03 12:24:50.856194",
+ "modified": "2023-01-05 11:45:04.773033",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -161,5 +239,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

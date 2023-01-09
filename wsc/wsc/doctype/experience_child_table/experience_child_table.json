@@ -1,0 +1,61 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-01-05 11:01:44.333748",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "company_name",
+  "job_profile",
+  "job_type",
+  "job_start_date",
+  "job_end_date",
+  "job_duration"
+ ],
+ "fields": [
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "label": "Company name"
+  },
+  {
+   "fieldname": "job_profile",
+   "fieldtype": "Data",
+   "label": "Job profile"
+  },
+  {
+   "fieldname": "job_type",
+   "fieldtype": "Select",
+   "label": "Job type",
+   "options": "Permanent\nInternship\nContractual\nNon-contractual"
+  },
+  {
+   "fieldname": "job_start_date",
+   "fieldtype": "Date",
+   "label": "Job start date"
+  },
+  {
+   "fieldname": "job_end_date",
+   "fieldtype": "Date",
+   "label": "Job end date"
+  },
+  {
+   "fieldname": "job_duration",
+   "fieldtype": "Data",
+   "label": "Job duration"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-01-05 12:56:53.853067",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Experience child table",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

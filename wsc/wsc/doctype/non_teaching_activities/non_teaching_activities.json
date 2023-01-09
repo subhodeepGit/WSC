@@ -1,0 +1,56 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-01-04 15:27:07.024689",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "academic_year",
+  "department",
+  "activities",
+  "duration"
+ ],
+ "fields": [
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Academic Year",
+   "options": "Academic Year"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Department",
+   "options": "Department",
+   "reqd": 1
+  },
+  {
+   "fieldname": "activities",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Activities",
+   "options": "Thesis Work\nSeminar\nProject Work\nResearch Work\nOthers"
+  },
+  {
+   "fieldname": "duration",
+   "fieldtype": "Duration",
+   "in_list_view": 1,
+   "label": "Duration"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-01-04 15:27:07.024689",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Non Teaching Activities",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

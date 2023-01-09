@@ -15,9 +15,10 @@
  "fields": [
   {
    "fieldname": "qualification",
-   "fieldtype": "Data",
+   "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "Qualification"
+   "label": "Qualification",
+   "options": "10th\n12th\nUG\nPG"
   },
   {
    "fieldname": "institute",
@@ -54,7 +55,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2021-12-07 22:48:57.889445",
+ "modified": "2023-01-05 17:01:30.013349",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Educational Details",
@@ -62,5 +63,6 @@
  "permissions": [],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

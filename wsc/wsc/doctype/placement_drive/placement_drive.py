@@ -30,6 +30,61 @@ class PlacementDrive(Document):
 	def delete_student_permission(self):
 		for d in frappe.get_all("DocShare",{"share_doctype":self.doctype,"share_name":self.name},['name']):
 			frappe.delete_doc("DocShare",d.name)
+	
+@frappe.whitelist()
+def get_eligibility(name):
+	print("\n\n\n")
+	# print(name)
+	eligibility_criteria=frappe.get_all("Eligibility Criteria",{"parent":name},['qualification',"percentage","year_of_passing"])
+	student_list= frappe.get_all("Educational Details" , ['qualification' , "score" , 'year_of_completion' , 'parent'] )
+	
+	flag = True
+	student_dict = {}
+	for i in student_list:
+		student_dict[i['parent']] = []
+
+	for k in eligibility_criteria:	
+		for t in student_dict:
+			for j in student_list:
+				if j['parent'] == t:
+					if k['qualification']==j["qualification"] and k['percentage'] <= j['score']:
+						list_data = student_dict[j['parent']]
+						list_data.append(j)
+						student_dict[j['parent']]=list_data
+
+
+	count_list=len(eligibility_criteria)
+	for t in student_dict:
+		list_data = student_dict[t]
+		if len(list_data)==count_list:
+			pass
+		else:
+			student_dict[t]=[]
+	# print(student_dict)
+
+	
+	# doc = frappe.new_doc('Elgible Students')
+	# doc.student_doctype_name = 
+	list_keys = list(student_dict.keys())
+
+	for i in list_keys:    #new doctype insertion
+		# print(student_dict[i])
+		for j in student_dict[i]:
+			print(j)
+			doc = frappe.new_doc('Eligible Student')
+			print(doc)
+			doc.student_doctype_name = j['parent']
+			doc.qualification = j['qualification']
+			doc.score = j['score']
+			doc.year_of_completion = j['year_of_completion']
+			doc.insert()
+
+# def eligibility_check(required_marks , student_marks ,flag):
+# 	if(required_marks < student_marks):
+# 		return True
+# 	else:
+# 		return False
+
 
 def validate_application_date(doc):
 	if doc.application_start_date and doc.application_end_date:
