@@ -1,0 +1,58 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-01-05 18:09:11.913945",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "company_name",
+  "drive_start_date",
+  "drive_end_date",
+  "total_rounds",
+  "application_status"
+ ],
+ "fields": [
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Company name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "drive_start_date",
+   "fieldtype": "Data",
+   "label": "Drive start date"
+  },
+  {
+   "fieldname": "drive_end_date",
+   "fieldtype": "Data",
+   "label": "Drive end date"
+  },
+  {
+   "fieldname": "total_rounds",
+   "fieldtype": "Data",
+   "label": "Total rounds"
+  },
+  {
+   "fieldname": "application_status",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Application status",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-01-05 18:09:11.913945",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Applied companies cd",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

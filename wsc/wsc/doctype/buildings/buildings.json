@@ -1,0 +1,163 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:building_name",
+ "creation": "2022-12-28 14:09:16.897748",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "building_address_section",
+  "land_name",
+  "land_address",
+  "building_name",
+  "address_line_1",
+  "address_line_2",
+  "column_break_7",
+  "post_office",
+  "district",
+  "state",
+  "pin_code",
+  "building_details_section",
+  "building_type",
+  "total_apartments",
+  "total_floors",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "building_address_section",
+   "fieldtype": "Section Break",
+   "label": "Building Address"
+  },
+  {
+   "fieldname": "building_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Building Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "address_line_1",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Address Line 1",
+   "reqd": 1
+  },
+  {
+   "fieldname": "address_line_2",
+   "fieldtype": "Data",
+   "label": "Address Line 2",
+   "reqd": 1
+  },
+  {
+   "fieldname": "post_office",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Post Office",
+   "reqd": 1
+  },
+  {
+   "fieldname": "district",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "District",
+   "options": "Districts",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "district.state",
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "State",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "pin_code",
+   "fieldtype": "Data",
+   "label": "Pin Code",
+   "reqd": 1
+  },
+  {
+   "fieldname": "building_details_section",
+   "fieldtype": "Section Break",
+   "label": "Building Details"
+  },
+  {
+   "fieldname": "total_floors",
+   "fieldtype": "Int",
+   "label": "Total Floors",
+   "reqd": 1
+  },
+  {
+   "fieldname": "total_apartments",
+   "fieldtype": "Int",
+   "label": "Total Quarters",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Buildings",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "land_name",
+   "fieldtype": "Link",
+   "label": "Land Name",
+   "options": "Land",
+   "reqd": 1
+  },
+  {
+   "depends_on": "land_name",
+   "fetch_from": "land_name.land_complete_address",
+   "fieldname": "land_address",
+   "fieldtype": "Data",
+   "label": "Land Address",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "building_type",
+   "fieldtype": "Select",
+   "label": "Building Type",
+   "options": "Academic\nNon-Academic\nResidential Quarters\nResidential Duplex Quarters\nOthers",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-01-03 15:11:06.353170",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Buildings",
+ "name_case": "Title Case",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "address_line_1"
+}

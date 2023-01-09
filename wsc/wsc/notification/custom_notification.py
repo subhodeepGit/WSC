@@ -7,7 +7,7 @@ from frappe.utils import cint, cstr, parse_addr
 
 def student_applicant_submit(doc):
     sub="""<p><b>Application Form is Sucessfully Submitted</b></p><br>"""
-    msg+="""<b>---------------------Applicant Details---------------------</b><br>"""
+    msg="""<b>---------------------Applicant Details---------------------</b><br>"""
     msg+="""<b>Student Name:</b>  {0}{1}<br>""".format(doc.get('first_name'), doc.get('last_name'))
     msg+="""<b>Application Number:</b>  {0}<br>""".format(doc.get('name'))
     msg+="""<b>Department:</b>  {0}<br>""".format(doc.get('department'))

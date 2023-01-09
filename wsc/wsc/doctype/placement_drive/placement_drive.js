@@ -2,9 +2,22 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Placement Drive', {
-	// refresh: function(frm) {
+	refresh: function(frm) {
 
-	// }
+		// console.log(frm.doc.doc_status)
+		if(frm.doc.docstatus == 1 ){
+			frm.add_custom_button('Eligible Students' , () => {
+				console.log("click")
+				frappe.call({
+					method: 'wsc.wsc.doctype.placement_drive.placement_drive.get_eligibility',
+					args: {
+						'name': frm.doc.name,
+					},
+				})
+				
+			})
+		}
+	} , 
 	setup:function(frm){
 		frm.set_query("programs","for_programs", function() {
 			var dept_list= []
@@ -52,6 +65,20 @@ frappe.ui.form.on('Placement Drive', {
 				frappe.throw("Application End Date should be Greater than Application Start date");
 			}
 		}
-	}
+	},
+	// before_save:function(frm){
+	// 	var result = {}
+	// 	var classes = [];
+	// 	var marks = [];
+	// 	for (var i = 0; i < frm.doc.eligibility_criteria.length; i++) {
+	// 		classes.push(frm.doc.eligibility_criteria[i].class)  
+	// 		marks.push(frm.doc.eligibility_criteria[i].percentage)
+	// 	}
 
+	// 	// console.log(classes , marks)
+	// 	result.class = classes
+	// 	result.marks = marks
+	// 	// console.log(1)
+	// 	// frm.add_custom_button("Get Student")
+	// }
 });

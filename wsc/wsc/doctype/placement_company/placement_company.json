@@ -7,8 +7,12 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "black_list",
   "company_name",
+  "email",
   "about_company",
+  "sector",
+  "visitor",
   "section_break_7",
   "belong_to_department",
   "address_and_contact_section",
@@ -60,14 +64,39 @@
    "fieldname": "contact_html",
    "fieldtype": "HTML",
    "label": "Contact HTML"
+  },
+  {
+   "default": "0",
+   "fieldname": "black_list",
+   "fieldtype": "Check",
+   "label": "Blacklist"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "sector",
+   "fieldtype": "Link",
+   "label": "Sector",
+   "options": "Sector"
+  },
+  {
+   "fieldname": "visitor",
+   "fieldtype": "Select",
+   "label": "Visitor",
+   "options": "Internship\nDay 0 visitor\nDay 1 visitor\nDay 2 visitor\nOne time visitor\nNormal visitor"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-12-08 00:20:41.811028",
+ "modified": "2023-01-04 16:03:32.399806",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Company",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -85,5 +114,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

@@ -13,7 +13,7 @@ class StudentApplicant(Document):
         # print(student)
         if len(student)>1:
             frappe.throw(_("Cannot change status as student {0} is linked with student application {1}").format(student[0].name, self.name))
-    def validate(doc,method):
+    def validate(doc):
         # validate_percentage(doc)
         education_details_validation(doc)
         document_list_checkbox(doc)
@@ -298,11 +298,11 @@ def enroll_student(source_name):
     from wsc.wsc.doctype.student_exchange_applicant.student_exchange_applicant import get_academic_calender_table
     from wsc.wsc.doctype.semesters.semesters import get_courses
     st_applicant=frappe.get_doc("Student Applicant", source_name)
-    for student in frappe.get_all("Student",{"student_applicant":source_name},['name','student_category','title']):
+    for student in frappe.get_all("Student",{"student_applicant":source_name},['name','student_category','student_name']):
         program_enrollment = frappe.new_doc("Program Enrollment")
         program_enrollment.student = student.name
         program_enrollment.student_category = student.student_category
-        program_enrollment.student_name = student.title
+        program_enrollment.student_name = student.student_name
         program_enrollment.roll_no = student.roll_no
         program_enrollment.programs = st_applicant.programs_
         program_enrollment.program = st_applicant.program
