@@ -8,7 +8,7 @@
  "engine": "InnoDB",
  "field_order": [
   "building_address_section",
-  "land_name",
+  "plot_number",
   "land_address",
   "building_name",
   "address_line_1",
@@ -22,10 +22,13 @@
   "building_type",
   "total_apartments",
   "total_floors",
-  "column_break_15",
   "facing",
   "campus",
-  "amended_from"
+  "column_break_15",
+  "amended_from",
+  "start_date",
+  "end_date",
+  "vacancy"
  ],
  "fields": [
   {
@@ -111,20 +114,11 @@
    "read_only": 1
   },
   {
-   "fieldname": "land_name",
-   "fieldtype": "Link",
-   "label": "Land Name",
-   "options": "Land",
-   "reqd": 1
-  },
-  {
-   "depends_on": "land_name",
-   "fetch_from": "land_name.land_complete_address",
+   "fetch_from": "plot_number.land_complete_address",
    "fieldname": "land_address",
    "fieldtype": "Data",
    "label": "Land Address",
-   "read_only": 1,
-   "reqd": 1
+   "read_only": 1
   },
   {
    "fieldname": "column_break_7",
@@ -151,11 +145,37 @@
    "fieldname": "campus",
    "fieldtype": "Data",
    "label": "Campus"
+  },
+  {
+   "fieldname": "plot_number",
+   "fieldtype": "Link",
+   "label": "Land Plot number",
+   "options": "Land",
+   "reqd": 1
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start date",
+   "reqd": 1
+  },
+  {
+   "default": "9999-12-30",
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "vacancy",
+   "fieldtype": "Data",
+   "label": "Vacancy",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-09 12:41:21.577888",
+ "modified": "2023-01-09 18:17:13.190997",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Buildings",

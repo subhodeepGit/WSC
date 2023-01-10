@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:name1",
+ "autoname": "field:plot_number",
  "creation": "2022-12-28 11:30:38.249847",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -10,18 +10,25 @@
   "land_owner_details_section",
   "name1",
   "address",
-  "column_break_4",
   "phone",
+  "column_break_4",
   "email",
+  "property_on_lease",
+  "lease",
   "land_details_section",
   "plot_number",
   "land_complete_address",
+  "pin_code",
   "land_size",
   "land_valuation",
   "column_break_12",
+  "start_date",
+  "end_date",
   "land_use",
   "time_of_planned_development",
-  "amended_from"
+  "amended_from",
+  "bda_approval",
+  "land_blueprint"
  ],
  "fields": [
   {
@@ -34,8 +41,7 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Name",
-   "reqd": 1,
-   "unique": 1
+   "reqd": 1
   },
   {
    "fieldname": "address",
@@ -68,7 +74,8 @@
    "fieldname": "plot_number",
    "fieldtype": "Data",
    "label": "Plot number",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "fieldname": "land_complete_address",
@@ -114,15 +121,58 @@
   {
    "fieldname": "column_break_12",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "bda_approval",
+   "fieldtype": "Attach",
+   "label": "BDA Approval"
+  },
+  {
+   "fieldname": "land_blueprint",
+   "fieldtype": "Attach",
+   "label": "Land Blueprint"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date",
+   "reqd": 1
+  },
+  {
+   "default": "9999-12-30",
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "property_on_lease",
+   "fieldtype": "Select",
+   "label": "Property on lease",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:(doc.property_on_lease==\"Yes\")",
+   "fieldname": "lease",
+   "fieldtype": "Attach",
+   "label": "Lease",
+   "mandatory_depends_on": "eval:(doc.property_on_lease==\"Yes\")"
+  },
+  {
+   "fieldname": "pin_code",
+   "fieldtype": "Data",
+   "label": "Pin code"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-03 15:23:27.023836",
+ "modified": "2023-01-09 18:24:17.940493",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Land",
  "name_case": "Title Case",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -140,5 +190,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "title_field": "address"
 }
