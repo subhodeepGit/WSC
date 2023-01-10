@@ -32,17 +32,23 @@ class PlacementDrive(Document):
 			frappe.delete_doc("DocShare",d.name)
 	
 @frappe.whitelist()
-def get_eligibility(name):
+def get_eligibility(name , academic_year , academic_term , placement_drive_for):
 	print("\n\n\n")
-	# print(name)
+	# print(academic_year , academic_term)
 	eligibility_criteria=frappe.get_all("Eligibility Criteria",{"parent":name},['qualification',"percentage","year_of_passing"])
 	student_list= frappe.get_all("Educational Details" , ['qualification' , "score" , 'year_of_completion' , 'parent'] )
+	current_education= frappe.get_all("Current Educational Details" , ['programs' , 'semesters' , 'academic_year' , 'academic_term'])
 	
-	flag = True
+	# print(current_education)
+	# print(current_education[0].academic_term)	
 	student_dict = {}
 	for i in student_list:
 		student_dict[i['parent']] = []
 
+	if academic_year == current_education[0].academic_year:
+		print("Hello There")
+	
+	#Qualification Check
 	for k in eligibility_criteria:	
 		for t in student_dict:
 			for j in student_list:
@@ -67,18 +73,17 @@ def get_eligibility(name):
 	# doc.student_doctype_name = 
 	list_keys = list(student_dict.keys())
 
-	for i in list_keys:    #new doctype insertion
-		# print(student_dict[i])
-		for j in student_dict[i]:
-			print(j)
-			doc = frappe.new_doc('Eligible Student')
-			print(doc)
-			doc.student_doctype_name = j['parent']
-			doc.qualification = j['qualification']
-			doc.score = j['score']
-			doc.year_of_completion = j['year_of_completion']
-			doc.insert()
+	# for i in list_keys:    #new doctype insertion
+	# 	for j in student_dict[i]:
+	# 		doc = frappe.new_doc('Eligible Student')
+	# 		print(doc)
+	# 		doc.student_doctype_name = j['parent']
+	# 		doc.qualification = j['qualification']
+	# 		doc.score = j['score']
+	# 		doc.year_of_completion = j['year_of_completion']
+	# 		doc.insert()
 
+	
 # def eligibility_check(required_marks , student_marks ,flag):
 # 	if(required_marks < student_marks):
 # 		return True
