@@ -8,10 +8,7 @@
  "field_order": [
   "subject",
   "raised_by",
-  "student_name",
-  "program",
   "column_break_3",
-  "semester",
   "date",
   "status",
   "reports_to",
@@ -47,29 +44,8 @@
    "reqd": 1
   },
   {
-   "fetch_from": "raised_by.name",
-   "fieldname": "student_name",
-   "fieldtype": "Data",
-   "label": "Student Name",
-   "read_only": 1
-  },
-  {
-   "fetch_from": "raised_by.designation",
-   "fieldname": "program",
-   "fieldtype": "Link",
-   "label": "Program",
-   "options": "Program",
-   "read_only": 1
-  },
-  {
    "fieldname": "column_break_3",
    "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "semester",
-   "fieldtype": "Link",
-   "label": "Semester",
-   "options": "Programs"
   },
   {
    "fieldname": "date",
@@ -88,7 +64,6 @@
    "reqd": 1
   },
   {
-   "fetch_from": "raised_by.reports_to",
    "fieldname": "reports_to",
    "fieldtype": "Link",
    "label": "Reports To",
@@ -195,10 +170,11 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-12-29 15:50:20.372147",
+ "modified": "2023-01-10 17:36:25.355948",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Students Grievance",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -249,6 +225,7 @@
  "search_fields": "subject,raised_by,grievance_against_party",
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "title_field": "subject",
  "track_changes": 1
 }
