@@ -225,9 +225,9 @@ doc_events = {
         "validate":"wsc.wsc.validations.post_exam_declaration.validate"
     },
     "Program":{
-        "after_insert":"wsc.wsc.doctype.program.after_insert",
-        "validate":"wsc.wsc.doctype.program.validate",
-        "on_trash":"wsc.wsc.doctype.program.on_trash"
+        "after_insert":"wsc.wsc.validations.program.after_insert",
+        "validate":"wsc.wsc.validations.program.validate",
+        "on_trash":"wsc.wsc.validations.program.on_trash"
     },
     "Programs":{
         "validate":"wsc.wsc.validations.programs.validate"
@@ -268,17 +268,16 @@ doc_events = {
     "Student Leave Application":{
         "validate":"wsc.wsc.validations.student_leave_application.validate"
     },
-    "Student Applicant":{
+    # "Student Applicant":{
     #     "validate":"wsc.wsc.doctype.student_applicant.validate",
-        "on_change":"wsc.wsc.doctype.student_applicant.on_update"
-    },
+    #     "on_change":"wsc.wsc.doctype.student_applicant.on_update"
+    # },
     "Student Admission":{
-        "validate":["wsc.wsc.doctype.student_admission.validate",
-        "wsc.wsc.validations.student_admission.validate"]
+        "validate":"wsc.wsc.validations.student_admission.validate"
     },
-    "Student Attendance":{
-        "validate":["wsc.wsc.doctype.student_attendance.validate"]
-    },
+    # "Student Attendance":{
+    #     "validate":["wsc.wsc.doctype.student_attendance.validate"]
+    # },
     ("Student Admit Card"):{
         "after_insert":"wsc.wsc.doctype.user_permission.after_insert",
         "on_trash":"wsc.wsc.doctype.user_permission.on_trash"
