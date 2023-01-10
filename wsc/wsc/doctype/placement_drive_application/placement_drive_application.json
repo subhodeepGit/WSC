@@ -24,7 +24,9 @@
   "drive_details_section",
   "eligibility_details",
   "educational_details",
-  "amended_from"
+  "amended_from",
+  "placement_drive_no",
+  "company_name"
  ],
  "fields": [
   {
@@ -153,15 +155,27 @@
    "fieldtype": "Data",
    "label": " Registration Number",
    "read_only": 1
+  },
+  {
+   "fieldname": "placement_drive_no",
+   "fieldtype": "Link",
+   "label": "Placement Drive No.",
+   "options": "Placement Drive"
+  },
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "label": "Company name"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-04-27 17:01:08.672897",
+ "modified": "2023-01-10 12:19:44.383518",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive Application",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -179,5 +193,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

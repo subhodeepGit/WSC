@@ -1,0 +1,62 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-01-09 16:09:40.054254",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "placement_drive_name",
+  "round_of_placement",
+  "date_of_round",
+  "student_child_table"
+ ],
+ "fields": [
+  {
+   "fieldname": "placement_drive_name",
+   "fieldtype": "Link",
+   "label": "Placement drive name",
+   "options": "Placement Drive"
+  },
+  {
+   "fieldname": "round_of_placement",
+   "fieldtype": "Data",
+   "label": "Round of placement"
+  },
+  {
+   "fieldname": "date_of_round",
+   "fieldtype": "Data",
+   "label": "Scheduled date of round"
+  },
+  {
+   "fieldname": "student_child_table",
+   "fieldtype": "Table",
+   "label": "Student",
+   "options": "Student child table"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2023-01-09 17:29:56.146794",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "placement_tool",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
