@@ -57,7 +57,7 @@ frappe.ui.form.on('Exam Assessment Result', {
 	setup:function(frm){
 		// frm.set_query("student", function() {
 		// 	return {
-		// 		query: 'wsc.wsc.doctype.student_group.filter_student',
+		// 		query: 'wsc.wsc.validations.student_group.filter_student',
 		// 		filters: {
 		// 			"student_group":frm.doc.student_group
 		// 		}

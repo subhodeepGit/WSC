@@ -206,8 +206,8 @@ doc_events = {
         "validate":"wsc.wsc.validations.final_result_declaration.validate"
     },
     "Instructor":{
-        "validate":"wsc.wsc.doctype.instructor.validate",
-        "on_trash":"wsc.wsc.doctype.instructor.on_trash"
+        "validate":"wsc.wsc.validations.instructor.validate",
+        "on_trash":"wsc.wsc.validations.instructor.on_trash"
     },
     "Mentor Allocation": {
         "validate": "wsc.wsc.validations.mentor_allocation.validate"
@@ -252,9 +252,9 @@ doc_events = {
         "validate":"wsc.wsc.validations.student_admit_card.validate"
     },
     "Student Group":{
-        "validate":["wsc.wsc.validations.student_group.validate","wsc.wsc.doctype.student_group.validate"],
-        "after_insert":"wsc.wsc.doctype.student_group.after_insert",
-        "on_trash":"wsc.wsc.doctype.student_group.on_trash"
+        "validate":["wsc.wsc.validations.student_group.validate","wsc.wsc.validations.student_group.validate"],
+        "after_insert":"wsc.wsc.validations.student_group.after_insert",
+        "on_trash":"wsc.wsc.validations.student_group.on_trash"
     },
     "Student Log":{
         "validate":"wsc.wsc.validations.student_log.validate"

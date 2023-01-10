@@ -221,3 +221,6 @@ def get_hostel_students(doctype, txt, searchfield, start, page_len, filters):
                             WHERE docstatus=1 and (student like %(txt)s or student_name like %(txt)s) 
                                 And student NOT IN(SELECT student FROM `tabHostel Deallotment` where docstatus=1)
             """,{'txt': '%%%s%%' % txt})
+@frappe.whitelist()
+def get_topic(doctype, txt, searchfield, start, page_len, filters):
+    return frappe.get_all("Course Topic",{"parent":filters.get("course")},['topic'],as_list = 1)
