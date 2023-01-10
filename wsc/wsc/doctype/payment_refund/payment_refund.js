@@ -20,7 +20,7 @@ frappe.ui.form.on('Payment Refund', {
 			var d = locals[cdt][cdn];
 			return {
 				filters: {
-					'name': "Fees Refundable / Adjustable - KP",
+					'name': "Fees Refundable / Adjustable - SOUL",
 				}
 			};
 		});
@@ -28,7 +28,7 @@ frappe.ui.form.on('Payment Refund', {
 			var d = locals[cdt][cdn];
 			return {
 				filters: {
-					'name': "Fees Refundable / Adjustable - KP",
+					'name': "Fees Refundable / Adjustable - SOUL",
 				}
 			};
 		});

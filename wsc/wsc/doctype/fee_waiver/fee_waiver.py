@@ -192,8 +192,8 @@ class FeeWaiver(Document):
 																	'company','grand_fee_amount','outstanding_fees','waiver_account','fee_voucher_no'
 																])
 		# [{'fees_category': 'Tuition Fees', 'amount': 29000.0, 'waiver_type': 'Amount', 'percentage': 0.0, 'waiver_amount': 1000.0, 
-		# 'total_waiver_amount': 1000.0, 'receivable_account': 'Tuition Fees - KP', 'income_account': 'Tuition Fees Income - KP', 
-		# 'company': 'KiiT Polytechnic', 'grand_fee_amount': 30000.0, 'outstanding_fees': 29000.0, 'waiver_account': 'Tuition Fees Income - KP', 
+		# 'total_waiver_amount': 1000.0, 'receivable_account': 'Tuition Fees - SOUL', 'income_account': 'Tuition Fees Income - SOUL', 
+		# 'company': 'KiiT Polytechnic', 'grand_fee_amount': 30000.0, 'outstanding_fees': 29000.0, 'waiver_account': 'Tuition Fees Income - SOUL', 
 		# 'fee_voucher_no': 'EDU-FEE-2022-00940'}]
 
 		fiscal_year=frappe.get_all("Fiscal Year",filters=[["year_start_date","<=",self.posting_date],["year_end_date",">=",self.posting_date]],fields=['name'])																											

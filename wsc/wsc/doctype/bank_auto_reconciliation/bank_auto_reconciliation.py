@@ -90,8 +90,8 @@ def generate_payment(payment_schedule,self):
 					payment_entry.paid_to_account_currency=account_cur[0]['account_currency']
 					payment_entry.paid_to_account_type=account_cur[0]['account_type']
 					payment_entry.source_exchange_rate=1
-					# Cash - KP  paid_from_account_type
-					paid_from="Cash - KP"
+					# Cash - SOUL  paid_from_account_type
+					paid_from="Cash - SOUL"
 					account_cur=frappe.get_all("Account",{"name":paid_from},['account_currency',"account_type"])
 					payment_entry.paid_from=paid_from
 					payment_entry.paid_from_account_type=account_cur[0]['account_type']
@@ -165,7 +165,7 @@ def generate_payment(payment_schedule,self):
 							final_list.append(l)
 
 					# {'name': 'b642d5af9d', 'idx': 1, 'parent': 'EDU-FEE-2022-00939', 'fees_category': 'Tuition Fees', 'description': None, 'amount': 30000.0, 'waiver_type': '', 
-					# 'percentage': 0.0, 'waiver_amount': 0.0, 'total_waiver_amount': 0.0, 'receivable_account': 'Tuition Fees - KP', 'income_account': 'Tuition Fees Income - KP', 
+					# 'percentage': 0.0, 'waiver_amount': 0.0, 'total_waiver_amount': 0.0, 'receivable_account': 'Tuition Fees - SOUL', 'income_account': 'Tuition Fees Income - SOUL', 
 					# 'company': 'KiiT Polytechnic', 'grand_fee_amount': 30000.0, 'outstanding_fees': 30000.0, 'due_date': datetime.date(2022, 9, 30), 
 					# 'program': 'Metallurgical Engineering Semester V'}
 					for fee_line_item in final_list:

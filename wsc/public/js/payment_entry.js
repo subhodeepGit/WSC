@@ -251,7 +251,7 @@ frappe.ui.form.on('Payment Entry', {
 			var d = locals[cdt][cdn];
 			return {
 				filters: {
-					'name': "Fees Refundable / Adjustable - KP",
+					'name': "Fees Refundable / Adjustable - SOUL",
 					'company': frm.doc.company,
 					// 'account_type': d.account_type = 'Income Account',
 					'is_group': d.is_group = 0,
@@ -262,7 +262,7 @@ frappe.ui.form.on('Payment Entry', {
 			var d = locals[cdt][cdn];
 			return {
 				filters: {
-					// 'name': "Fees Refundable / Adjustable - KP",
+					// 'name': "Fees Refundable / Adjustable - SOUL",
 					'company': frm.doc.company,
 					// 'account_type': d.account_type = 'Income Account',
 					'is_group': d.is_group = 0,
@@ -325,7 +325,7 @@ frappe.ui.form.on('Payment Entry', {
 
 frappe.ui.form.on('Payment Entry Reference',"reference_name",function(frm, cdt, cdn){
 	var d=locals[cdt][cdn];
-	if(d.fees_category=="Fees Refundable / Adjustable" && d.account_paid_from=="Fees Refundable / Adjustable - KP"){
+	if(d.fees_category=="Fees Refundable / Adjustable" && d.account_paid_from=="Fees Refundable / Adjustable - SOUL"){
 		d.total_amount=0
 		d.outstanding_amount=0
 		d.allocated_amount=0
@@ -342,7 +342,7 @@ frappe.ui.form.on('Payment Entry Reference',"reference_name",function(frm, cdt, 
 
 frappe.ui.form.on('Payment Entry Reference',"allocated_amount",function(frm, cdt, cdn){
 	var d=locals[cdt][cdn];
-	if(d.fees_category=="Fees Refundable / Adjustable" && d.account_paid_from=="Fees Refundable / Adjustable - KP"){
+	if(d.fees_category=="Fees Refundable / Adjustable" && d.account_paid_from=="Fees Refundable / Adjustable - SOUL"){
 		d.total_amount=d.allocated_amount
 		d.outstanding_amount=d.allocated_amount
 	}
