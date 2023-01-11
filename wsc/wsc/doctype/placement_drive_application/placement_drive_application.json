@@ -22,11 +22,11 @@
   "placement_drive",
   "placement_company",
   "drive_details_section",
+  "placement_drive_no",
+  "placement_drive_name",
   "eligibility_details",
   "educational_details",
-  "amended_from",
-  "placement_drive_no",
-  "company_name"
+  "amended_from"
  ],
  "fields": [
   {
@@ -163,15 +163,16 @@
    "options": "Placement Drive"
   },
   {
-   "fieldname": "company_name",
+   "fetch_from": "placement_drive_no.title",
+   "fieldname": "placement_drive_name",
    "fieldtype": "Data",
-   "label": "Company name"
+   "label": "Drive name"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-10 12:19:44.383518",
+ "modified": "2023-01-10 13:05:58.065568",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive Application",

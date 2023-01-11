@@ -21,8 +21,9 @@
   },
   {
    "fieldname": "round_of_placement",
-   "fieldtype": "Data",
-   "label": "Round of placement"
+   "fieldtype": "Link",
+   "label": "Round of placement",
+   "options": "Rounds of Placement"
   },
   {
    "fieldname": "date_of_round",
@@ -39,7 +40,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-01-09 17:29:56.146794",
+ "modified": "2023-01-10 13:20:37.868534",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "placement_tool",
