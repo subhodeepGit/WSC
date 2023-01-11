@@ -35,7 +35,10 @@
   "rounds_of_placement_table",
   "joining_type",
   "type_of_job",
-  "amended_from"
+  "eligible_students_section",
+  "get_students",
+  "amended_from",
+  "eligible_student"
  ],
  "fields": [
   {
@@ -49,7 +52,8 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Placement Company",
-   "options": "Placement Company"
+   "options": "Placement Company",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_3",
@@ -89,7 +93,8 @@
    "fieldname": "designations_position",
    "fieldtype": "Table",
    "label": "Designations Position",
-   "options": "Placement Designations"
+   "options": "Placement Designations",
+   "reqd": 1
   },
   {
    "fieldname": "amended_from",
@@ -116,7 +121,8 @@
    "default": "Today",
    "fieldname": "posting_date",
    "fieldtype": "Date",
-   "label": "Posting Date"
+   "label": "Posting Date",
+   "read_only": 1
   },
   {
    "fieldname": "for_programs",
@@ -135,13 +141,15 @@
    "fieldname": "academic_year",
    "fieldtype": "Link",
    "label": "Academic Year",
-   "options": "Academic Year"
+   "options": "Academic Year",
+   "reqd": 1
   },
   {
    "fieldname": "academic_term",
    "fieldtype": "Link",
    "label": "Academic Term",
-   "options": "Academic Term"
+   "options": "Academic Term",
+   "reqd": 1
   },
   {
    "fieldname": "current_cgpapercentage",
@@ -212,6 +220,23 @@
    "fieldname": "enable",
    "fieldtype": "Check",
    "label": "enable"
+  },
+  {
+   "fieldname": "eligible_students_section",
+   "fieldtype": "Section Break",
+   "label": "Eligible Students"
+  },
+  {
+   "fieldname": "eligible_student",
+   "fieldtype": "Table",
+   "label": "Eligible Student",
+   "options": "Eligible Student",
+   "read_only": 1
+  },
+  {
+   "fieldname": "get_students",
+   "fieldtype": "Button",
+   "label": "Get Students"
   }
  ],
  "index_web_pages_for_search": 1,

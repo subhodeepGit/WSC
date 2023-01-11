@@ -4,12 +4,40 @@ from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_docty
 from wsc.wsc.utils import semester_belongs_to_programs,academic_term,duplicate_row_validation,get_courses_by_semester
 
 def validate(doc,method):
+    print("\n\n\n\n\n")
+    print("ok")
     update_user(doc)
     # permission(doc)
     # director_permission(doc)
     validate_instructor_log(doc)
     academic_term(doc)
+
+    for t in doc.get("other_activities"):
+        print(t.duration)
+
+    class_scheduled = frappe.db.sql("""Select count(*) from `tabCourse Schedule` where instructor = %s""",doc.name)
+    doc.total_scheduled_classes= class_scheduled[0][0]
+    class_taken = frappe.db.sql("""Select count(*) from `tabStudent Attendance` where instructor = %s""",doc.name)
+    doc.total_classes_taken = class_taken[0][0]
+
+    work_load_percent = (class_taken[0][0]/class_scheduled[0][0])*100
+    doc.work_load_percent = "%.2f" % work_load_percent
+
+    count = 0
+    sum = 0
+    for t in doc.get('other_activities'):
+        count +=1
+        sum = sum+(t.duration)
+
+    print("Number of other activities :  ",count)
+    print("Sum of Duration of Other Activities : ",sum)
+    # number_of_other_activities = frappe.db.sql("""select count(*) from `tabNon Teaching Activities` where parent=%s""",doc.name)
+    doc.number_of_other_activities = count
+
+    # other_activity_duration = frappe.db.sql("""select sum(Duration) from `tabNon Teaching Activities` where parent = %s""",doc.name)
+    doc.total_work_load = "%.2f" % sum
     
+
 def validate_instructor_log(doc):
     for d in doc.get("instructor_log"):
         # validate_academic_year(d)

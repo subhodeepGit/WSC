@@ -1,6 +1,7 @@
 import frappe
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
+from wsc.wsc.utils import duplicate_row_validation
 
 
 class FeeStructure(Document):
@@ -8,9 +9,9 @@ class FeeStructure(Document):
         self.calculate_total()
         self.calculate_amount()
         self.validate_duplicate_programs()
-        validate_academic_year(doc)
-        validate_semester(doc)
-        duplicate_row_validation(doc, "components", ['fees_category', 'amount'])
+        validate_academic_year(self)
+        validate_semester(self)
+        duplicate_row_validation(self, "components", ['fees_category', 'amount'])
 
     def calculate_total(self):
         """Calculates total amount."""

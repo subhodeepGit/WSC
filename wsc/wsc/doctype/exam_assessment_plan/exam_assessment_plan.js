@@ -105,7 +105,7 @@ frappe.ui.form.on('Exam Assessment Plan', {
 			
 		// 	// frm.add_custom_button(__("Student Group"), function() {
 		// 	// 	frappe.model.open_mapped_doc({
-		// 	// 		method: "wsc.wsc.doctype.student_group.create_student_group",
+		// 	// 		method: "wsc.wsc.validations.student_group.create_student_group",
 		// 	// 		frm: frm,
 		// 	// 	});
 		// 	// }, __('Create'))

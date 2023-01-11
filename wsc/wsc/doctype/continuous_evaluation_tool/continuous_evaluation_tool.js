@@ -93,7 +93,7 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 		frm.set_query('course', function() {
 			return {
 				query: 'wsc.wsc.doctype.continuous_evaluation_tool.continuous_evaluation_tool.get_courses',
-				// 'wsc.wsc.doctype.program_enrollment.get_program_courses',
+				// 'wsc.wsc.validations.program_enrollment.get_program_courses',
 				// 'education.education.doctype.program_enrollment.program_enrollment.get_program_courses',
 				filters: {
 					'semester': frm.doc.semester

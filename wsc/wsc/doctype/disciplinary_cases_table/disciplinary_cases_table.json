@@ -1,0 +1,84 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-01-10 17:28:53.569517",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "disciplinary_cases",
+  "raised_by",
+  "disciplinary_action",
+  "complaint_status",
+  "complaint",
+  "column_break_4",
+  "date",
+  "action",
+  "action_description"
+ ],
+ "fields": [
+  {
+   "fieldname": "disciplinary_action",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Disciplinary Action"
+  },
+  {
+   "fieldname": "complaint_status",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Complaint Status"
+  },
+  {
+   "fieldname": "complaint",
+   "fieldtype": "Text",
+   "label": "Complaint"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "action",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Action"
+  },
+  {
+   "fieldname": "action_description",
+   "fieldtype": "Text",
+   "label": "Action Description"
+  },
+  {
+   "fieldname": "raised_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Raised By"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Complaint Date"
+  },
+  {
+   "fieldname": "disciplinary_cases",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Disciplinary Name",
+   "options": "Disciplinary cases"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-01-10 17:56:35.001144",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Disciplinary cases table",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -8,7 +8,9 @@
  "engine": "InnoDB",
  "field_order": [
   "type_of_room",
-  "allotment_status"
+  "allotment_status",
+  "type_of_classroom",
+  "student_capacity"
  ],
  "fields": [
   {
@@ -22,11 +24,21 @@
    "fieldtype": "Select",
    "label": "Allotment Status",
    "options": "Allottable\nNon Allottable"
+  },
+  {
+   "fieldname": "type_of_classroom",
+   "fieldtype": "Data",
+   "label": "Type of classroom"
+  },
+  {
+   "fieldname": "student_capacity",
+   "fieldtype": "Data",
+   "label": "Student capacity"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-05 15:13:00.729657",
+ "modified": "2023-01-10 16:37:23.256812",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Building type Room",

@@ -1,8 +1,7 @@
 {
  "actions": [],
  "allow_import": 1,
- "allow_rename": 1,
- "autoname": "naming_series:",
+ "autoname": "autoincrement",
  "creation": "2023-01-03 16:22:41.474014",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -16,11 +15,12 @@
   "employee_id",
   "section_break_4",
   "building",
+  "quarter_number",
   "start_date",
   "end_date",
   "column_break_6",
-  "quarter_number",
   "quarter_type",
+  "residence_type_name",
   "addon_facilites"
  ],
  "fields": [
@@ -104,15 +104,20 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Quarter Number",
-   "options": "Quarter",
+   "options": "Building Room",
    "reqd": 1
   },
   {
-   "fetch_from": "quarter_number.quarter_type",
+   "fetch_from": "quarter_number.type_of_residence",
    "fieldname": "quarter_type",
    "fieldtype": "Data",
-   "label": "Quarter Type",
-   "read_only": 1
+   "label": "Residence Type"
+  },
+  {
+   "fetch_from": "quarter_number.residence_type_name",
+   "fieldname": "residence_type_name",
+   "fieldtype": "Data",
+   "label": "Residence Type Name"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -168,10 +173,11 @@
    "link_fieldname": "room_allotment_no"
   }
  ],
- "modified": "2023-01-03 16:46:32.734719",
+ "modified": "2023-01-10 18:12:35.857287",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Quarter Allotment",
+ "naming_rule": "Autoincrement",
  "owner": "Administrator",
  "permissions": [
   {
@@ -189,6 +195,7 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1,
  "track_seen": 1,
  "track_views": 1

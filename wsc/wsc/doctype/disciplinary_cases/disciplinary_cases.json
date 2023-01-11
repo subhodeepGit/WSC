@@ -1,0 +1,223 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "DSPCS.-.####",
+ "creation": "2023-01-02 16:04:29.206208",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "employee_name",
+  "employee_number",
+  "employee_email",
+  "employment_type",
+  "current_address",
+  "column_break_6",
+  "date",
+  "raised_by",
+  "employee_name1",
+  "email",
+  "disciplinary_action",
+  "complaint_status",
+  "section_break_11",
+  "complaint",
+  "committee_and_action_section",
+  "discipline_committee",
+  "column_break_15",
+  "action",
+  "action_description",
+  "section_break_19",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.employee_number",
+   "fieldname": "employee_number",
+   "fieldtype": "Data",
+   "label": "Employee Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.employment_type",
+   "fieldname": "employment_type",
+   "fieldtype": "Data",
+   "label": "Employment Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.current_address",
+   "fieldname": "current_address",
+   "fieldtype": "Text",
+   "label": "Current Address",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "raised_by",
+   "fieldtype": "Link",
+   "label": "Raised By",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "raised_by.employee_name",
+   "fieldname": "employee_name1",
+   "fieldtype": "Data",
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "complaint_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Complaint Status",
+   "options": "\nComplaint Files\nAction Taken\nResolved"
+  },
+  {
+   "fieldname": "section_break_11",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "complaint",
+   "fieldtype": "Text",
+   "label": "Complaint ",
+   "mandatory_depends_on": "eval:(doc.complaint_status==''||doc.complaint_status=='Complaint Files'||doc.complaint_status=='Action Taken')"
+  },
+  {
+   "collapsible": 1,
+   "depends_on": "eval:doc.complaint_status=='Action Taken'",
+   "fieldname": "committee_and_action_section",
+   "fieldtype": "Section Break",
+   "label": "Committee And Action"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "discipline_committee",
+   "fieldtype": "Table",
+   "label": "Discipline Committee ",
+   "mandatory_depends_on": "eval:doc.complaint_status==\"Action Taken\"",
+   "options": "Discipline Committee"
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "action",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Action",
+   "mandatory_depends_on": "eval:doc.complaint_status==\"Action Taken\"",
+   "options": "\nFirst Warning\nSecond Warning\nTermination"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "action_description",
+   "fieldtype": "Text",
+   "label": "Action Description"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Disciplinary cases",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Disciplinary cases",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_19",
+   "fieldtype": "Section Break",
+   "hidden": 1
+  },
+  {
+   "fieldname": "disciplinary_action",
+   "fieldtype": "Select",
+   "label": "Disciplinary Action",
+   "options": "\nEmployee Misconduct\nHarassment\nDiscrimination\nAbsenteeism\nPoor Work Performance\nWorkspace Bullying\nTardiness",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.user_id",
+   "fieldname": "employee_email",
+   "fieldtype": "Data",
+   "label": "Employee Email",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "raised_by.user_id",
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-01-10 12:12:25.198211",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Disciplinary cases",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

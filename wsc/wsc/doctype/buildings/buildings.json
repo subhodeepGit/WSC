@@ -13,14 +13,16 @@
   "building_name",
   "address_line_1",
   "address_line_2",
-  "column_break_7",
   "post_office",
+  "column_break_7",
   "district",
   "state",
   "pin_code",
+  "building_on_lease",
+  "lease",
   "building_details_section",
   "building_type",
-  "total_apartments",
+  "total_rooms",
   "total_floors",
   "facing",
   "campus",
@@ -99,12 +101,6 @@
    "reqd": 1
   },
   {
-   "fieldname": "total_apartments",
-   "fieldtype": "Int",
-   "label": "Total Quarters",
-   "reqd": 1
-  },
-  {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
@@ -128,7 +124,7 @@
    "fieldname": "building_type",
    "fieldtype": "Select",
    "label": "Building Type",
-   "options": "\nAcademic\nNon-Academic\nResidential Quarters\nResidential Duplex Quarters\nOthers",
+   "options": "\nAcademic\nNon-Academic\nResidential\nOthers",
    "reqd": 1
   },
   {
@@ -150,8 +146,7 @@
    "fieldname": "plot_number",
    "fieldtype": "Link",
    "label": "Land Plot number",
-   "options": "Land",
-   "reqd": 1
+   "options": "Land"
   },
   {
    "fieldname": "start_date",
@@ -171,11 +166,30 @@
    "fieldtype": "Data",
    "label": "Vacancy",
    "read_only": 1
+  },
+  {
+   "fieldname": "total_rooms",
+   "fieldtype": "Int",
+   "label": "Total Rooms",
+   "reqd": 1
+  },
+  {
+   "fieldname": "building_on_lease",
+   "fieldtype": "Select",
+   "label": "Building on Lease",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval:(doc.building_on_lease==\"Yes\")",
+   "fieldname": "lease",
+   "fieldtype": "Attach",
+   "label": "Lease ",
+   "mandatory_depends_on": "eval:(doc.building_on_lease==\"Yes\")"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-09 18:17:13.190997",
+ "modified": "2023-01-10 17:29:45.485060",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Buildings",
@@ -198,6 +212,5 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": [],
- "title_field": "address_line_1"
+ "states": []
 }

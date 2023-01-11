@@ -362,7 +362,7 @@ def show_fees_button(student_applicant,student_admission):
 
 # @frappe.whitelist()
 # def create_fees(source_name, target_doc=None):
-#     from wsc.wsc.doctype.program_enrollment import get_program_enrollment
+#     from wsc.wsc.validations.program_enrollment import get_program_enrollment
 #     from education.education.api import get_fee_components
 
 #     def set_missing_values(source, target):

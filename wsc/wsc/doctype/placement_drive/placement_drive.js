@@ -2,22 +2,36 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Placement Drive', {
-	refresh: function(frm) {
+	// refresh: function(frm) {
 
-		// console.log(frm.doc.doc_status)
-		if(frm.doc.docstatus == 1 ){
-			frm.add_custom_button('Eligible Students' , () => {
-				console.log("click")
-				frappe.call({
-					method: 'wsc.wsc.doctype.placement_drive.placement_drive.get_eligibility',
-					args: {
-						'name': frm.doc.name,
-					},
-				})
+	// 	// console.log(frm.doc.doc_status)
+	// 	if(frm.doc.docstatus == 1 ){
+	// 		frm.add_custom_button('Eligible Students' , () => {
+	// 			console.log("click")
+	// 			frappe.call({
+	// 				method: 'wsc.wsc.doctype.placement_drive.placement_drive.get_eligibility',
+	// 				args: {
+	// 					'name': frm.doc.name,
+	// 				},
+	// 			})
 				
-			})
-		}
-	} , 
+	// 		})
+	// 	}
+	// } , 
+
+	get_students: function(frm){
+		// console.log(frm.doc.placement_company , frm.doc.academic_year , frm.doc.academic_term)
+		frappe.call({
+			method: 'wsc.wsc.doctype.placement_drive.placement_drive.get_eligibility',
+			args: {
+				'name': frm.doc.name,
+				'academic_year':frm.doc.academic_year,
+				'academic_term':frm.doc.academic_term,
+				'placement_drive_for':frm.doc.placement_drive_for
+			},
+		})
+		
+	},
 	setup:function(frm){
 		frm.set_query("programs","for_programs", function() {
 			var dept_list= []

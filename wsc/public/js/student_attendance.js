@@ -12,6 +12,30 @@ frappe.ui.form.on('Student Attendance',{
             }
         });
     },
+    setup(frm){
+        frm.set_query("topic", function() {
+            return {
+                query:"wsc.wsc.doctype.student_attendance.get_topic",
+                filters: {
+                    "course":frm.doc.course
+                }
+            };
+        });
+        frm.set_query("instructor", function() {
+            return {
+                 filters: {
+                   "course":frm.doc.course
+                 }
+             };
+         });
+         frm.set_query("course_schedule", function() {
+            return {
+                 filters: {
+                   "course":frm.doc.course
+                 }
+             };
+         });
+    },
     refresh(frm){
         cur_frm.dashboard.hide()
     },
@@ -55,5 +79,5 @@ frappe.ui.form.on('Student Attendance',{
         
     // }
 
-
 })
+

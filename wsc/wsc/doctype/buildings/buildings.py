@@ -9,7 +9,8 @@ class Buildings(Document):
 		pincode(doc)
 		if doc.start_date > doc.end_date:
 			frappe.throw("Start date cannot be greater than End date")
-			
+
+# Validation for pincode length			
 def pincode(doc):
 	if doc.pin_code:
 		if not (doc.pin_code).isdigit():
