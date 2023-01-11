@@ -36,6 +36,8 @@ class InvalidPaymentEntry(ValidationError):
 
 
 class PaymentEntry(AccountsController):
+	print("\n\n\n\n")
+	print("ok")
 	def __init__(self, *args, **kwargs):
 		super(PaymentEntry, self).__init__(*args, **kwargs)
 		if not self.is_new():
@@ -57,6 +59,7 @@ class PaymentEntry(AccountsController):
 			self.party_account_currency = self.paid_to_account_currency
 
 	def validate(self):
+
 		self.setup_party_account_field()
 		self.set_missing_values()
 		self.validate_payment_type()

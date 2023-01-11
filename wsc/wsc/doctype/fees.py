@@ -267,25 +267,50 @@ def get_fees_category(doctype, txt, searchfield, start, page_len, filters):
 			lst.append(i.fees_category)
 	return [(d,) for d in lst]
 
+# @frappe.whitelist()
+# def make_refund_fees(source_name, target_doc=None):
+# 	def set_missing_values(source, target):
+# 		target.set("components",[])
+# 		for d in source.get("components"):
+# 			target.append("components",{
+# 					"fees_category":d.fees_category,
+# 					"amount":-d.amount,
+# 					"description":d.description
+# 				})
+# 		target.grand_total=(-source.grand_total)
+# 		target.is_return=1
+# 		target.return_against=source.name
+# 		target.outstanding_amount=(-source.outstanding_amount)
+
+# 	doclist = get_mapped_doc("Fees", source_name, 	{
+# 		"Fees": {
+# 			"doctype": "Fees",
+# 		},
+# 	}, target_doc, set_missing_values)
+
+# 	return doclist
+
 @frappe.whitelist()
 def make_refund_fees(source_name, target_doc=None):
-	def set_missing_values(source, target):
-		target.set("components",[])
-		for d in source.get("components"):
-			target.append("components",{
+    def set_missing_values(source, target):
+        target.set("components",[])
+        for d in source.get("components"):
+            target.append("components",{
 					"fees_category":d.fees_category,
 					"amount":-d.amount,
-					"description":d.description
+					"description":d.description,
+                    "income_account":d.income_account,
+                    "receivable_account":d.receivable_account
 				})
-		target.grand_total=(-source.grand_total)
-		target.is_return=1
-		target.return_against=source.name
-		target.outstanding_amount=(-source.outstanding_amount)
+        target.grand_total=(-source.grand_total)
+        target.is_return=1
+        target.return_against=source.name
+        target.outstanding_amount=(-source.outstanding_amount)
 
-	doclist = get_mapped_doc("Fees", source_name, 	{
-		"Fees": {
-			"doctype": "Fees",
-		},
-	}, target_doc, set_missing_values)
+    doclist = get_mapped_doc("Fees", source_name, 	{
+        "Fees": {
+            "doctype": "Fees",
+        },
+    }, target_doc, set_missing_values)
 
-	return doclist
+    return doclist
