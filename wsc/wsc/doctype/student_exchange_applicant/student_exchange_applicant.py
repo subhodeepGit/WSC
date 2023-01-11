@@ -105,7 +105,7 @@ def show_fees_button( student_exchange_applicant,exchange_program_declaration):
 
 @frappe.whitelist()
 def create_fees(source_name, target_doc=None):
-	from wsc.wsc.doctype.program_enrollment import get_program_enrollment
+	from wsc.wsc.validations.program_enrollment import get_program_enrollment
 	def set_missing_values(source, target):
 		for d in frappe.get_all("Student",{"student_exchange_applicant":source.name}):
 			target.student=d.name

@@ -177,7 +177,7 @@ frappe.ui.form.on('Fees', {
     },
 	set_program_enrollment(frm) {
         frappe.call({
-            method: "wsc.wsc.doctype.program_enrollment.get_program_enrollment",
+            method: "wsc.wsc.validations.program_enrollment.get_program_enrollment",
             args: {
                 student: frm.doc.student,
             },

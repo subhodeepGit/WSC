@@ -32,7 +32,7 @@ frappe.query_reports["Course Wise Result"] = {
 				get_query: () => {
 					if (frappe.query_report.get_filter_value('semester')){
 						return {
-							query: 'wsc.wsc.doctype.program_enrollment.get_courses',
+							query: 'wsc.wsc.validations.program_enrollment.get_courses',
 							filters: {
 								"semester":frappe.query_report.get_filter_value('semester')
 							}

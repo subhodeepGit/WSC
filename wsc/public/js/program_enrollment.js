@@ -2,7 +2,7 @@ frappe.ui.form.on('Program Enrollment', {
 	seat_reservation_type:function(frm){
         if(frm.doc.seat_reservation_type){
             frappe.call({
-                method: "wsc.wsc.doctype.program_enrollment.get_available_seats",
+                method: "wsc.wsc.validations.program_enrollment.get_available_seats",
                 args:{
                     "student_applicant":frm.doc.reference_name,
                     "seat_reservation_type":frm.doc.seat_reservation_type,
@@ -26,7 +26,7 @@ frappe.ui.form.on('Program Enrollment', {
             }
             frm.set_query('programs', function() {
                 return{
-                    query: 'wsc.wsc.doctype.program_enrollment.get_programs_stud_app',
+                    query: 'wsc.wsc.validations.program_enrollment.get_programs_stud_app',
                     filters: {
                         "student_applicant":frm.doc.reference_name
                     }
@@ -34,7 +34,7 @@ frappe.ui.form.on('Program Enrollment', {
             });
             frm.set_query('program', function() {
                 return{
-                    query: 'wsc.wsc.doctype.program_enrollment.get_program_stud_app',
+                    query: 'wsc.wsc.validations.program_enrollment.get_program_stud_app',
                     filters: {
                         "student_applicant":frm.doc.reference_name,
                         "programs":frm.doc.programs
@@ -43,7 +43,7 @@ frappe.ui.form.on('Program Enrollment', {
             });
             frm.set_query("seat_reservation_type", function() {
                 return {
-                    query: 'wsc.wsc.doctype.program_enrollment.get_seat_reservation_type',
+                    query: 'wsc.wsc.validations.program_enrollment.get_seat_reservation_type',
                     filters: {
                         "student_applicant": frm.doc.reference_name,
                     }
@@ -79,7 +79,7 @@ frappe.ui.form.on('Program Enrollment', {
         // }
         frm.set_query('student', function() {
 			return{
-				query: 'wsc.wsc.doctype.program_enrollment.get_students',
+				query: 'wsc.wsc.validations.program_enrollment.get_students',
 				filters: {
 					"programs":frm.doc.programs
 				}
@@ -92,7 +92,7 @@ frappe.ui.form.on('Program Enrollment', {
     setup(frm){
         frm.set_query("course","courses", function() {
             return {
-                query: 'wsc.wsc.doctype.program_enrollment.get_courses',
+                query: 'wsc.wsc.validations.program_enrollment.get_courses',
                 filters: {
                     "semester":frm.doc.program
                 }
@@ -191,7 +191,7 @@ frappe.ui.form.on('Program Enrollment Course', {
 	courses_add: function(frm){
 		frm.fields_dict['courses'].grid.get_field('course').get_query = function(doc) {
 			return {
-                query: 'wsc.wsc.doctype.program_enrollment.get_courses',
+                query: 'wsc.wsc.validations.program_enrollment.get_courses',
                 filters: {
                     "semester":frm.doc.program
                 }
