@@ -464,7 +464,7 @@
    "name": "Fees-hostel_admission",
    "no_copy": 0,
    "non_negative": 0,
-   "options": "Hostel Admission",
+   "options": "Student",
    "owner": "Administrator",
    "permlevel": 0,
    "precision": "",

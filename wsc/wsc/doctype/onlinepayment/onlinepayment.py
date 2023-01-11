@@ -2,8 +2,8 @@
 # For license information, please see license.txt
 
 from jpype import startJVM, shutdownJVM, java, addClassPath, JClass, JInt
-addClassPath("/opt/bench/frappe-bench/apps/wsc/wsc/wsc/doctype/onlinepayment/TokenClass.jar")
-addClassPath("/opt/bench/frappe-bench/apps/wsc/wsc/wsc/doctype/onlinepayment/CommerceConnect.jar")
+addClassPath("/home/erpnext/frappe-bench/apps/wsc/wsc/wsc/doctype/onlinepayment/TokenClass.jar")
+addClassPath("/home/erpnext/frappe-bench/apps/wsc/wsc/wsc/doctype/onlinepayment/CommerceConnect.jar")
 startJVM(convertStrings=True)  #is used for the proper conversion of java.lang.String to Python string literals
 import webbrowser
 from urllib.request import urlopen

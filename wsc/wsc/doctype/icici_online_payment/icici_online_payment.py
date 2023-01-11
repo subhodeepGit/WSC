@@ -4,8 +4,8 @@
 import frappe
 from frappe.model.document import Document
 from jpype import startJVM, shutdownJVM, java, addClassPath, JClass, JInt
-addClassPath("/opt/bench/frappe-bench/apps/icici_integration/icici_integration/icici_integration/doctype/onlinepayment/TokenClass.jar")
-addClassPath("/opt/bench/frappe-bench/apps/icici_integration/icici_integration/icici_integration/doctype/onlinepayment/CommerceConnect.jar")
+addClassPath("/home/erpnext/frappe-bench/apps/wsc/wsc/wsc/doctype/onlinepayment/TokenClass.jar")
+addClassPath("/home/erpnext/frappe-bench/apps/wsc/wsc/wsc/doctype/onlinepayment/CommerceConnect.jar")
 from urllib.request import urlopen
 from wsc.wsc.notification.custom_notification import online_payment_submit
 import json

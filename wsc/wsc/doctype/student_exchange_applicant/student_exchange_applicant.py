@@ -3,7 +3,7 @@
 # For license information, please see license.txt
 
 from __future__ import unicode_literals
-from wsc.wsc.doctype.fees import on_submit
+# from wsc.wsc.doctype.fees import on_submit
 import frappe
 from frappe.desk.desk_page import get
 from frappe.model.document import Document
