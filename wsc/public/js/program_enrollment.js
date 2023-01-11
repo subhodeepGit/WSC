@@ -116,7 +116,7 @@ frappe.ui.form.on('Program Enrollment', {
             });
             frm.set_query("student_category", function() {
                 return {
-                    query: 'wsc.wsc.doctype.program_enrollment.get_cat',
+                    query: 'wsc.wsc.validations.program_enrollment.get_cat',
                     filters: {
                         "student":frm.doc.student
                     }
@@ -135,7 +135,7 @@ frappe.ui.form.on('Program Enrollment', {
     program(frm){
         if (frm.doc.program){
             frappe.call({
-                method: "wsc.wsc.doctype.program_enrollment.get_program_courses",
+                method: "wsc.wsc.validations.program_enrollment.get_program_courses",
                 args: {
                     semester: frm.doc.program,
                     year_end_date: frm.doc.year_end_date
@@ -155,7 +155,7 @@ frappe.ui.form.on('Program Enrollment', {
                 
             }); 
             frappe.call({
-                method: "wsc.wsc.doctype.program_enrollment.get_academic_calender_table",
+                method: "wsc.wsc.validations.program_enrollment.get_academic_calender_table",
                 args: {
                     programs:frm.doc.programs,
                     semester: frm.doc.program,
