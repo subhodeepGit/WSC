@@ -11,8 +11,10 @@ class PlacementDrive(Document):
 		validate_application_date(self)
 
 	def on_submit(self):
+
 		placement_drive_submit(self)
 		self.set_permission_to_enroll_student()
+
 
 	def on_cancel(self):
 		self.delete_student_permission()

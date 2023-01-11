@@ -14,7 +14,7 @@ frappe.ui.form.on('placement_tool', {
 		frm.set_query("round_of_placement", function() {
             return {
                 filters: [
-                    ["Rounds of Placement","parent", "=", [frm.doc.placement_drive_name]],
+                    ["Rounds of Placement","parent", "=", frm.doc.placement_drive_name],
                 ]
             }
         });
