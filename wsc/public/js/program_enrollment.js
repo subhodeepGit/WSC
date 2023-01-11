@@ -204,7 +204,7 @@ frappe.ui.form.on('Program Enrollment', {
 	student: function(frm) {
 		if (frm.doc.student) {
 			frappe.call({
-				method:"wsc.wsc.doctype.program_enrollment.get_roll",
+				method:"wsc.wsc.validations.program_enrollment.get_roll",
 				args: {
 					"student": frm.doc.student,
 				},
