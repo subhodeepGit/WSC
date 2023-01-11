@@ -11,8 +11,7 @@
   "plot_number",
   "land_address",
   "building_name",
-  "address_line_1",
-  "address_line_2",
+  "building_address",
   "post_office",
   "column_break_7",
   "district",
@@ -45,19 +44,6 @@
    "label": "Building Name",
    "reqd": 1,
    "unique": 1
-  },
-  {
-   "fieldname": "address_line_1",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Address Line 1",
-   "reqd": 1
-  },
-  {
-   "fieldname": "address_line_2",
-   "fieldtype": "Data",
-   "label": "Address Line 2",
-   "reqd": 1
   },
   {
    "fieldname": "post_office",
@@ -185,11 +171,18 @@
    "fieldtype": "Attach",
    "label": "Lease ",
    "mandatory_depends_on": "eval:(doc.building_on_lease==\"Yes\")"
+  },
+  {
+   "fieldname": "building_address",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Building Address",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-10 17:29:45.485060",
+ "modified": "2023-01-11 11:50:21.646705",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Buildings",

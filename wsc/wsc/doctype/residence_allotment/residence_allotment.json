@@ -1,36 +1,29 @@
 {
  "actions": [],
  "allow_import": 1,
- "autoname": "autoincrement",
+ "autoname": "RES-.####",
  "creation": "2023-01-03 16:22:41.474014",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "employee_info_section",
-  "naming_series",
   "employee",
   "column_break_3",
   "employee_name",
   "employee_id",
   "section_break_4",
   "building",
-  "quarter_number",
+  "residence_serial_number",
+  "residence_number",
   "start_date",
   "end_date",
   "column_break_6",
-  "quarter_type",
+  "residence_type",
   "residence_type_name",
   "addon_facilites"
  ],
  "fields": [
-  {
-   "fieldname": "naming_series",
-   "fieldtype": "Select",
-   "hidden": 1,
-   "label": "Allotment Number",
-   "options": "RA-.YYYY-."
-  },
   {
    "fieldname": "column_break_3",
    "fieldtype": "Column Break"
@@ -59,13 +52,15 @@
    "default": "Today",
    "fieldname": "start_date",
    "fieldtype": "Date",
-   "label": "Start Date"
+   "label": "Start Date",
+   "reqd": 1
   },
   {
    "fieldname": "end_date",
    "fieldtype": "Date",
    "in_standard_filter": 1,
-   "label": "End Date"
+   "label": "End Date",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_6",
@@ -100,84 +95,42 @@
    "read_only": 1
   },
   {
-   "fieldname": "quarter_number",
+   "fetch_from": "residence_serial_number.residence_type_name",
+   "fieldname": "residence_type_name",
+   "fieldtype": "Data",
+   "label": "Residence Type Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "residence_serial_number",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Quarter Number",
+   "label": "Residence Serial Number",
    "options": "Building Room",
    "reqd": 1
   },
   {
-   "fetch_from": "quarter_number.type_of_residence",
-   "fieldname": "quarter_type",
+   "fetch_from": "residence_serial_number.room_no",
+   "fieldname": "residence_number",
    "fieldtype": "Data",
-   "label": "Residence Type"
+   "label": "Residence Number",
+   "read_only": 1
   },
   {
-   "fetch_from": "quarter_number.residence_type_name",
-   "fieldname": "residence_type_name",
+   "fetch_from": "residence_serial_number.type_of_residence",
+   "fieldname": "residence_type",
    "fieldtype": "Data",
-   "label": "Residence Type Name"
+   "label": "Residence Type",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
- "links": [
-  {
-   "group": "Deallotment",
-   "link_doctype": "Deallotment Process",
-   "link_fieldname": "allotment_number"
-  },
-  {
-   "group": "Deallotment",
-   "link_doctype": "Death Deallotment",
-   "link_fieldname": "student"
-  },
-  {
-   "group": "Deallotment",
-   "link_doctype": "Long Leave",
-   "link_fieldname": "allotment_number"
-  },
-  {
-   "group": "Room Change",
-   "link_doctype": "Room Change",
-   "link_fieldname": "allotment_number"
-  },
-  {
-   "group": "Room Change",
-   "link_doctype": "Inter or Intra Hostel Change",
-   "link_fieldname": "allotment_no"
-  },
-  {
-   "group": "Miscellaneous",
-   "link_doctype": "Student Medical History",
-   "link_fieldname": "allotment_number"
-  },
-  {
-   "group": "Miscellaneous",
-   "link_doctype": "Student Leave Process",
-   "link_fieldname": "allotment_number"
-  },
-  {
-   "group": "Miscellaneous",
-   "link_doctype": "Material Distribution",
-   "link_fieldname": "allotment_number"
-  },
-  {
-   "group": "Clearance",
-   "link_doctype": "Hostel Clearance",
-   "link_fieldname": "allotment_number"
-  },
-  {
-   "group": "Attendance",
-   "link_doctype": "Hostel Attendance",
-   "link_fieldname": "room_allotment_no"
-  }
- ],
- "modified": "2023-01-10 18:12:35.857287",
+ "links": [],
+ "modified": "2023-01-11 18:31:51.295589",
  "modified_by": "Administrator",
  "module": "WSC",
- "name": "Quarter Allotment",
- "naming_rule": "Autoincrement",
+ "name": "Residence Allotment",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -196,6 +149,7 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
+ "title_field": "residence_number",
  "track_changes": 1,
  "track_seen": 1,
  "track_views": 1

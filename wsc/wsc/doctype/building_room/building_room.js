@@ -1,13 +1,16 @@
 // Copyright (c) 2023, SOUL Limited and contributors
 // For license information, please see license.txt
 
+
+
+
 // To filter residence type name in the link field based on selected type of residence
 frappe.ui.form.on("Building Room", {
 	setup: function(frm) {
 		frm.set_query("residence_type_name", function() {
 			return {
 				filters: [
-					["Quarter Type","type_of_residence", "in", [frm.doc.type_of_residence]],
+					["Residence Type","type_of_residence", "in", [frm.doc.type_of_residence]],
                     
 				]
 			}
