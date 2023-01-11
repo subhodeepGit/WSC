@@ -92,8 +92,8 @@ def employee_update(self):
     if self.complaint_status=="Complaint Files":
         pass
     elif self.complaint_status=="Action Taken":
-        ref_party_doc=frappe.get_doc('Employee', self.employee)
-        ref_party_doc.append("disciplinary_action",{
+        ref_cases=frappe.get_doc('Employee', self.employee)
+        ref_cases.append("disciplinary_action",{
             "date":self.date,
             "disciplinary_cases":self.name,
             "raised_by":self.raised_by,
@@ -103,10 +103,10 @@ def employee_update(self):
             "action":self.action,
             "action_description":self.action_description,
         })
-        ref_party_doc.save()
+        ref_cases.save()
     elif self.complaint_status=="Resolved":
-        ref_party_doc=frappe.get_doc('Employee', self.employee)
-        ref_party_doc.append("disciplinary_action",{
+        ref_cases=frappe.get_doc('Employee', self.employee)
+        ref_cases.append("disciplinary_action",{
             "date":self.date,
             "disciplinary_cases":self.name,
             "raised_by":self.raised_by,
@@ -116,4 +116,4 @@ def employee_update(self):
             "action":"",
             "action_description":"",
         })
-        ref_party_doc.save()
+        ref_cases.save()
