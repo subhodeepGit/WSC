@@ -95,7 +95,7 @@ def employee_update(self):
         ref_party_doc=frappe.get_doc('Employee', self.employee)
         ref_party_doc.append("disciplinary_action",{
             "date":self.date,
-            "disciplinary_cases":self.disciplinary_cases,
+            "disciplinary_cases":self.name,
             "raised_by":self.raised_by,
             "disciplinary_action":self.disciplinary_action,
             "complaint_status":self.complaint_status,
@@ -108,7 +108,7 @@ def employee_update(self):
         ref_party_doc=frappe.get_doc('Employee', self.employee)
         ref_party_doc.append("disciplinary_action",{
             "date":self.date,
-            "disciplinary_cases":self.disciplinary_cases,
+            "disciplinary_cases":self.name,
             "raised_by":self.raised_by,
             "disciplinary_action":"",
             "complaint_status":self.complaint_status,
