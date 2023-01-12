@@ -156,10 +156,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-07-18 12:59:15.764107",
+ "modified": "2023-01-12 16:47:58.483637",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Admit Card",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -177,5 +178,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }
