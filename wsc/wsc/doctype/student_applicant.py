@@ -14,6 +14,7 @@ class StudentApplicant(Document):
         if len(student)>1:
             frappe.throw(_("Cannot change status as student {0} is linked with student application {1}").format(student[0].name, self.name))
     def validate(doc):
+        
         # validate_percentage(doc)
         education_details_validation(doc)
         document_list_checkbox(doc)
@@ -146,8 +147,7 @@ def on_update(doc,method):
     if doc.docstatus==1:
         validate_attachment(doc)
         student = frappe.get_list("Student",  filters= {"student_applicant": doc.name})
-        print("\n\n\nstudent:")
-        print(student)
+        
         # if len(last_result)==0:
 		# if student:
         if len(student)==0 and doc.application_status=="Approved" and doc.docstatus==1:
