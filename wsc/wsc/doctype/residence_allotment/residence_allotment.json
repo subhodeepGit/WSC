@@ -21,7 +21,9 @@
   "column_break_6",
   "residence_type",
   "residence_type_name",
-  "addon_facilites"
+  "addon_facilites",
+  "employee_allotment_status",
+  "amended_from"
  ],
  "fields": [
   {
@@ -49,7 +51,6 @@
    "reqd": 1
   },
   {
-   "default": "Today",
    "fieldname": "start_date",
    "fieldtype": "Date",
    "label": "Start Date",
@@ -122,11 +123,28 @@
    "fieldtype": "Data",
    "label": "Residence Type",
    "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Residence Allotment",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.employee_allotment_status",
+   "fieldname": "employee_allotment_status",
+   "fieldtype": "Data",
+   "label": "Employee Allotment status",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-01-11 18:31:51.295589",
+ "modified": "2023-01-12 17:49:31.473072",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Allotment",
