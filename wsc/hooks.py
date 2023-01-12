@@ -225,9 +225,9 @@ doc_events = {
         "validate":"wsc.wsc.validations.post_exam_declaration.validate"
     },
     "Program":{
-        "after_insert":"wsc.wsc.doctype.program.after_insert",
-        "validate":"wsc.wsc.doctype.program.validate",
-        "on_trash":"wsc.wsc.doctype.program.on_trash"
+        "after_insert":"wsc.wsc.validations.program.after_insert",
+        "validate":"wsc.wsc.validations.program.validate",
+        "on_trash":"wsc.wsc.validations.program.on_trash"
     },
     "Programs":{
         "validate":"wsc.wsc.validations.programs.validate"

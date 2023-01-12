@@ -151,7 +151,7 @@ frappe.ui.form.on("Semesters", "add_courses", function(frm, cdt, cdn) {
 		primary_action: function() {
 			dialog.hide();
 			    frappe.call({
-						method:"wsc.wsc.doctype.programs.programs.create_courses",
+						method:"wsc.wsc.validations.programs.programs.create_courses",
 						args: {
 							program:frm.doc.name,
 							semester:d.semesters,
