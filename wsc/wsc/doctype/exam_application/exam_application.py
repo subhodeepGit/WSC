@@ -41,7 +41,7 @@ class ExamApplication(Document):
 
 @frappe.whitelist()
 def make_fees(source_name, target_doc=None):
-    from wsc.wsc.doctype.program_enrollment import get_program_enrollment
+    from wsc.wsc.validations.program_enrollment import get_program_enrollment
     def set_missing_values(source, target):
         target.student_email=frappe.db.get_value("Student",target.student,"student_email_id")
         if get_program_enrollment(source.student):

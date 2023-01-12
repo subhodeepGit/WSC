@@ -2,8 +2,7 @@
 # See license.txt
 
 # import frappe
-from frappe.tests.utils import FrappeTestCase
+import unittest
 
-
-class TestQuarterTypeType(FrappeTestCase):
+class TestResidenceAllotment(unittest.TestCase):
 	pass

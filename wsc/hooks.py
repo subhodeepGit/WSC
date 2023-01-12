@@ -268,17 +268,16 @@ doc_events = {
     "Student Leave Application":{
         "validate":"wsc.wsc.validations.student_leave_application.validate"
     },
-    "Student Applicant":{
+    # "Student Applicant":{
     #     "validate":"wsc.wsc.doctype.student_applicant.validate",
-        "on_change":"wsc.wsc.doctype.student_applicant.on_update"
-    },
+    #     "on_change":"wsc.wsc.doctype.student_applicant.on_update"
+    # },
     "Student Admission":{
-        "validate":["wsc.wsc.doctype.student_admission.validate",
-        "wsc.wsc.validations.student_admission.validate"]
+        "validate":"wsc.wsc.validations.student_admission.validate"
     },
-    "Student Attendance":{
-        "validate":["wsc.wsc.doctype.student_attendance.validate"]
-    },
+    # "Student Attendance":{
+    #     "validate":["wsc.wsc.doctype.student_attendance.validate"]
+    # },
     ("Student Admit Card"):{
         "after_insert":"wsc.wsc.doctype.user_permission.after_insert",
         "on_trash":"wsc.wsc.doctype.user_permission.on_trash"
@@ -315,7 +314,18 @@ scheduler_events = {
 #
 override_whitelisted_methods = {
 	"education.education.api.get_course_schedule_events": "wsc.wsc.doctype.course_schedule.get_course_schedule_events",
-    "education.education.api.mark_attendance": "wsc.wsc.doctype.student_attendance.mark_attendance"
+    "education.education.api.mark_attendance": "wsc.wsc.doctype.student_attendance.mark_attendance",
+
+    "erpnext.accounts.doctype.payment_entry.payment_entry.get_payment_entry":"wsc.wsc.doctype.payment_entry.get_payment_entry",	
+	"erpnext.accounts.doctype.payment_entry.payment_entry.get_party_details":"wsc.wsc.doctype.payment_entry.get_party_details",
+	"erpnext.accounts.doctype.payment_entry.payment_entry.get_account_details":"wsc.wsc.doctype.payment_entry.get_account_details",
+	"erpnext.accounts.doctype.payment_entry.payment_entry.get_outstanding_reference_documents":"wsc.wsc.doctype.payment_entry.get_outstanding_reference_documents",
+	"erpnext.accounts.doctype.payment_entry.payment_entry.get_company_defaults":"wsc.wsc.doctype.payment_entry.get_company_defaults",
+	"erpnext.accounts.doctype.payment_entry.payment_entry.get_reference_details":"wsc.wsc.doctype.payment_entry.get_reference_details",
+	"erpnext.accounts.doctype.payment_entry.payment_entry.get_party_and_account_balance":"wsc.wsc.doctype.payment_entry.get_party_and_account_balance",
+	"education.education.api.get_fee_components":"wsc.wsc.validations.api.get_fee_components",
+	"education.education.doctype.fee_structure.fee_structure.make_fee_schedule":"wsc.wsc.doctype.fee_structure.make_fee_schedule",
+	# "kp_edtec.kp_edtec.doctype.fees.make_refund_fees":"wsc.wsc.validations.fees.make_refund_fees",
 }
 override_doctype_class = {
     "Course Schedule":"wsc.wsc.doctype.course_schedule.CourseSchedule",

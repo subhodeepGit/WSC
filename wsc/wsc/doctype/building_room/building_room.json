@@ -1,7 +1,6 @@
 {
  "actions": [],
- "allow_rename": 1,
- "autoname": "field:room_no",
+ "autoname": "autoincrement",
  "creation": "2023-01-04 09:49:26.900736",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -9,6 +8,7 @@
  "field_order": [
   "buiding_details_section",
   "building_name",
+  "building_type",
   "building_address",
   "buildings_land_name",
   "buidings_land_address",
@@ -16,7 +16,9 @@
   "district",
   "state",
   "pin_code",
+  "building_capacity",
   "room_details_section",
+  "vacancy_status",
   "room_no",
   "floor",
   "type_of_room",
@@ -25,13 +27,15 @@
   "type_of_residence",
   "residence_type_name",
   "residence_details_section",
+  "start_date",
+  "end_date",
   "description",
   "unit_area_sq_m",
   "air_conditioning",
   "orientation",
+  "column_break_22",
   "lawngarden_available",
   "lawngarden_area_sq_m",
-  "column_break_22",
   "roof_type",
   "parking_available",
   "parking_type",
@@ -60,8 +64,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Building Name",
-   "options": "Buildings",
-   "reqd": 1
+   "options": "Buildings"
   },
   {
    "fieldname": "floor",
@@ -72,30 +75,22 @@
    "reqd": 1
   },
   {
-   "fieldname": "room_no",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Room No.",
-   "reqd": 1,
-   "unique": 1
-  },
-  {
    "fieldname": "buiding_details_section",
    "fieldtype": "Section Break",
    "label": "Buiding Details"
   },
   {
-   "fetch_from": "building_name.address_line_1",
+   "fetch_from": "building_name.building_address",
    "fieldname": "building_address",
    "fieldtype": "Data",
    "label": "Building Address",
    "read_only": 1
   },
   {
-   "fetch_from": "building_name.land_name",
+   "fetch_from": "building_name.plot_number",
    "fieldname": "buildings_land_name",
    "fieldtype": "Data",
-   "label": "Building's Land Name",
+   "label": "Building's Land Plot number",
    "read_only": 1
   },
   {
@@ -188,7 +183,7 @@
    "fieldtype": "Link",
    "label": "Residence Type Name",
    "mandatory_depends_on": "eval:(doc.type_of_room==\"Residential\")",
-   "options": "Quarter Type"
+   "options": "Residence Type"
   },
   {
    "fieldname": "residence_details_section",
@@ -250,15 +245,59 @@
    "fieldtype": "Data",
    "label": "Lawn/Garden Area (sq. m.)",
    "read_only": 1
+  },
+  {
+   "fieldname": "room_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Room No.",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:(doc.type_of_room==\"Residential\" && doc.allotment_status==\"Allottable\")",
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start date",
+   "mandatory_depends_on": "eval:(doc.type_of_room==\"Residential\")"
+  },
+  {
+   "depends_on": "eval:(doc.type_of_room==\"Residential\" && doc.allotment_status==\"Allottable\")",
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End date",
+   "mandatory_depends_on": "eval:(doc.type_of_room==\"Residential\")"
+  },
+  {
+   "fetch_from": "building_name.total_rooms",
+   "fieldname": "building_capacity",
+   "fieldtype": "Data",
+   "label": "Building capacity",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "building_name.building_type",
+   "fieldname": "building_type",
+   "fieldtype": "Data",
+   "label": "Building Type",
+   "read_only": 1
+  },
+  {
+   "default": "Vacant",
+   "depends_on": "eval:doc.building_type==\"Residential\"",
+   "fieldname": "vacancy_status",
+   "fieldtype": "Select",
+   "label": "Vacancy status",
+   "options": "Vacant\nNot Vacant",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-09 16:18:10.108438",
+ "modified": "2023-01-11 18:44:23.267908",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Building Room",
- "naming_rule": "By fieldname",
+ "naming_rule": "Autoincrement",
  "owner": "Administrator",
  "permissions": [
   {
@@ -276,5 +315,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "room_no"
 }

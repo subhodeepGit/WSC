@@ -8,37 +8,31 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "residence_type_name",
   "type_of_residence",
-  "quarter_details_section",
-  "quarter_type",
-  "quarter_description",
-  "air_conditioning",
+  "residence_type_name",
+  "description",
   "unit_area_sq_m",
-  "stairscirculation_sq_m",
-  "balcony_sq_m",
-  "utility_area",
-  "column_break_8",
+  "air_conditioning",
   "parking_available",
   "parking_type",
   "parking_vehicle",
-  "parking_area_sq_m",
-  "eligibilty",
-  "duplex_details_section",
-  "duplex_type",
-  "duplex_description",
-  "duplex_unit_area_sq_m",
-  "duplex_orientation",
-  "duplex_roof_type",
-  "duplex_lawngarden",
-  "duplex_lawngarden_area_sq_m",
-  "column_break_25",
-  "duplex_parking_available",
-  "duplex_parking_type",
-  "duplex_parking_vehicle",
-  "duplex_parking_area_sq_m"
+  "data_9",
+  "column_break_10",
+  "residence_orientation",
+  "roof_type",
+  "lawngarden_available",
+  "lawngarden_area_sq_m",
+  "eligibility"
  ],
  "fields": [
+  {
+   "fieldname": "type_of_residence",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Type of Residence",
+   "options": "Type of Residence",
+   "reqd": 1
+  },
   {
    "fieldname": "residence_type_name",
    "fieldtype": "Data",
@@ -48,186 +42,85 @@
    "unique": 1
   },
   {
-   "fieldname": "type_of_residence",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Type of Residence",
-   "options": "\nQuarter\nDuplex",
-   "reqd": 1
-  },
-  {
-   "fieldname": "quarter_details_section",
-   "fieldtype": "Section Break",
-   "label": "Quarter Details"
-  },
-  {
-   "depends_on": "eval:doc.type_of_residence==\"Quarter\"",
-   "fieldname": "quarter_type",
+   "fieldname": "description",
    "fieldtype": "Data",
-   "label": "Quarter Type",
-   "unique": 1
+   "label": "Description"
   },
   {
-   "depends_on": "eval:doc.type_of_residence==\"Quarter\"",
-   "fieldname": "quarter_description",
+   "fieldname": "unit_area_sq_m",
    "fieldtype": "Data",
-   "label": "Quarter Description"
+   "label": "Unit Area (sq. m.)"
   },
   {
-   "depends_on": "eval:doc.type_of_residence==\"Quarter\"",
    "fieldname": "air_conditioning",
    "fieldtype": "Select",
    "label": "Air Conditioning",
    "options": "\nYes\nNo"
   },
   {
-   "depends_on": "eval:doc.type_of_residence==\"Quarter\"",
-   "fieldname": "unit_area_sq_m",
-   "fieldtype": "Data",
-   "label": "Quarter Unit Area (sq. m.)"
-  },
-  {
-   "depends_on": "eval:doc.type_of_residence==\"Quarter\"",
-   "fieldname": "stairscirculation_sq_m",
-   "fieldtype": "Data",
-   "label": "Stairs/Circulation (sq. m.)"
-  },
-  {
-   "depends_on": "eval:doc.type_of_residence==\"Quarter\"",
-   "fieldname": "balcony_sq_m",
-   "fieldtype": "Data",
-   "label": "Balcony (sq. m.)"
-  },
-  {
-   "depends_on": "eval:doc.type_of_residence==\"Quarter\"",
-   "fieldname": "utility_area",
-   "fieldtype": "Data",
-   "label": "Utility Area"
-  },
-  {
-   "fieldname": "column_break_8",
-   "fieldtype": "Column Break"
-  },
-  {
-   "depends_on": "eval:doc.type_of_residence==\"Quarter\"",
    "fieldname": "parking_available",
    "fieldtype": "Select",
-   "label": "Quarter Parking Available",
+   "label": "Parking Available",
    "options": "\nYes\nNo"
   },
   {
    "depends_on": "eval:doc.parking_available==\"Yes\"",
    "fieldname": "parking_type",
    "fieldtype": "Select",
-   "label": "Quarter Parking Type",
+   "label": "Parking Type",
    "options": "\nOn Road\nRamp Parking\nLot Parking\nGarage\nShed"
   },
   {
    "depends_on": "eval:doc.parking_available==\"Yes\"",
    "fieldname": "parking_vehicle",
    "fieldtype": "Select",
-   "label": "Quarter Parking Vehicle",
+   "label": "Parking Vehicle",
    "options": "\nTwo Wheeler\nFour Wheeler"
   },
   {
    "depends_on": "eval:doc.parking_available==\"Yes\"",
-   "fieldname": "parking_area_sq_m",
+   "fieldname": "data_9",
    "fieldtype": "Data",
-   "label": "Quarter Parking Area (sq. m.)"
+   "label": "Parking Area (sq. m.)"
   },
   {
-   "depends_on": "eval:doc.type_of_residence==\"Quarter\"",
-   "fieldname": "eligibilty",
-   "fieldtype": "Table",
-   "hidden": 1,
-   "label": "Eligibilty",
-   "options": "Quarter Eligibility"
-  },
-  {
-   "fieldname": "duplex_details_section",
-   "fieldtype": "Section Break",
-   "label": "Duplex Details"
-  },
-  {
-   "depends_on": "eval:doc.type_of_residence==\"Duplex\"",
-   "fieldname": "duplex_type",
-   "fieldtype": "Data",
-   "label": "Duplex Type"
-  },
-  {
-   "depends_on": "eval:doc.type_of_residence==\"Duplex\"",
-   "fieldname": "duplex_description",
-   "fieldtype": "Data",
-   "label": "Duplex Description"
-  },
-  {
-   "depends_on": "eval:doc.type_of_residence==\"Duplex\"",
-   "fieldname": "duplex_unit_area_sq_m",
-   "fieldtype": "Data",
-   "label": "Duplex Unit Area (sq. m.)"
-  },
-  {
-   "depends_on": "eval:doc.type_of_residence==\"Duplex\"",
-   "fieldname": "duplex_orientation",
-   "fieldtype": "Select",
-   "label": "Duplex Orientation",
-   "options": "\nOne Unit Up, One Down\nSide-By-Side"
-  },
-  {
-   "depends_on": "eval:doc.type_of_residence==\"Duplex\"",
-   "fieldname": "duplex_roof_type",
-   "fieldtype": "Select",
-   "label": "Duplex Roof type",
-   "options": "\nFlat\nGable\nHip\nGambrel\nMansard"
-  },
-  {
-   "depends_on": "eval:doc.type_of_residence==\"Duplex\"",
-   "fieldname": "duplex_lawngarden",
-   "fieldtype": "Select",
-   "label": "Duplex Lawn/Garden",
-   "options": "\nYes\nNo"
-  },
-  {
-   "depends_on": "eval:doc.duplex_lawngarden==\"Yes\"",
-   "fieldname": "duplex_lawngarden_area_sq_m",
-   "fieldtype": "Data",
-   "label": "Duplex Lawn/Garden Area (sq. m.)"
-  },
-  {
-   "fieldname": "column_break_25",
+   "fieldname": "column_break_10",
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "eval:doc.type_of_residence==\"Duplex\"",
-   "fieldname": "duplex_parking_available",
+   "fieldname": "residence_orientation",
    "fieldtype": "Select",
-   "label": "Duplex Parking Available",
+   "label": "Residence Orientation",
+   "options": "\nMulti storey\nOne Unit Up, One Down\nSide-By-Side"
+  },
+  {
+   "fieldname": "roof_type",
+   "fieldtype": "Select",
+   "label": "Roof type",
+   "options": "\nFlat\nGable\nHip\nGambrel\nMansard"
+  },
+  {
+   "fieldname": "lawngarden_available",
+   "fieldtype": "Select",
+   "label": "Lawn/Garden Available",
    "options": "\nYes\nNo"
   },
   {
-   "depends_on": "eval:doc.duplex_parking_available==\"Yes\"",
-   "fieldname": "duplex_parking_type",
-   "fieldtype": "Select",
-   "label": "Duplex Parking Type",
-   "options": "\nOn Road\nRamp Parking\nLot Parking\nGarage\nShed"
-  },
-  {
-   "depends_on": "eval:doc.duplex_parking_available==\"Yes\"",
-   "fieldname": "duplex_parking_vehicle",
-   "fieldtype": "Select",
-   "label": "Duplex Parking Vehicle",
-   "options": "\nTwo Wheeler\nFour Wheeler"
-  },
-  {
-   "depends_on": "eval:doc.duplex_parking_available==\"Yes\"",
-   "fieldname": "duplex_parking_area_sq_m",
+   "depends_on": "eval:doc.lawngarden_available==\"Yes\"",
+   "fieldname": "lawngarden_area_sq_m",
    "fieldtype": "Data",
-   "label": "Duplex Parking Area (sq. m.)"
+   "label": "Lawn/Garden Area (sq. m.)"
+  },
+  {
+   "fieldname": "eligibility",
+   "fieldtype": "Table",
+   "label": "Eligibility",
+   "options": "Residence Eligibility"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-06 17:58:43.677339",
+ "modified": "2023-01-11 16:05:23.936065",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Type",

@@ -3,7 +3,7 @@
 # For license information, please see license.txt
 
 from __future__ import unicode_literals
-from wsc.wsc.doctype.fees import on_submit
+# from wsc.wsc.doctype.fees import on_submit
 import frappe
 from frappe.desk.desk_page import get
 from frappe.model.document import Document
@@ -105,7 +105,7 @@ def show_fees_button( student_exchange_applicant,exchange_program_declaration):
 
 @frappe.whitelist()
 def create_fees(source_name, target_doc=None):
-	from wsc.wsc.doctype.program_enrollment import get_program_enrollment
+	from wsc.wsc.validations.program_enrollment import get_program_enrollment
 	def set_missing_values(source, target):
 		for d in frappe.get_all("Student",{"student_exchange_applicant":source.name}):
 			target.student=d.name

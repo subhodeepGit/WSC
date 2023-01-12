@@ -1,37 +1,30 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:quarter_type",
- "creation": "2023-01-04 16:37:56.196802",
- "default_view": "List",
+ "autoname": "field:case_type",
+ "creation": "2022-12-30 11:46:16.648614",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "quarter_type",
-  "quarter_description"
+  "case_type"
  ],
  "fields": [
   {
-   "fieldname": "quarter_type",
+   "fieldname": "case_type",
    "fieldtype": "Data",
-   "label": "Quarter type",
+   "in_list_view": 1,
+   "label": "Case Type",
+   "reqd": 1,
    "unique": 1
-  },
-  {
-   "fieldname": "quarter_description",
-   "fieldtype": "Data",
-   "label": "Quarter Description"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-05 09:39:49.031755",
+ "modified": "2022-12-30 11:57:42.119548",
  "modified_by": "Administrator",
  "module": "WSC",
- "name": "Quarter Type Type",
- "name_case": "Title Case",
- "naming_rule": "By fieldname",
+ "name": "Case Type",
  "owner": "Administrator",
  "permissions": [
   {
@@ -47,7 +40,7 @@
    "write": 1
   }
  ],
+ "quick_entry": 1,
  "sort_field": "modified",
- "sort_order": "DESC",
- "states": []
+ "sort_order": "DESC"
 }

@@ -10,36 +10,50 @@
   "placement_drive_name",
   "round_of_placement",
   "date_of_round",
+  "get_student",
   "student_child_table"
  ],
  "fields": [
   {
    "fieldname": "placement_drive_name",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Placement drive name",
-   "options": "Placement Drive"
+   "options": "Placement Drive",
+   "reqd": 1
   },
   {
    "fieldname": "round_of_placement",
-   "fieldtype": "Data",
-   "label": "Round of placement"
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Round of placement",
+   "options": "Rounds of Placement",
+   "reqd": 1
   },
   {
    "fieldname": "date_of_round",
-   "fieldtype": "Data",
-   "label": "Scheduled date of round"
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Scheduled date of round",
+   "options": "Rounds of Placement",
+   "reqd": 1
   },
   {
    "fieldname": "student_child_table",
    "fieldtype": "Table",
    "label": "Student",
    "options": "Student child table"
+  },
+  {
+   "fieldname": "get_student",
+   "fieldtype": "Button",
+   "label": "Get student"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-01-09 17:29:56.146794",
+ "modified": "2023-01-11 16:26:56.398570",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "placement_tool",
