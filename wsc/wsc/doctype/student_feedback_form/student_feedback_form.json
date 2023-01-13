@@ -1,12 +1,15 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:EDU-FED-.YYYY.-#####",
  "creation": "2023-01-11 14:57:08.231908",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "student",
+  "student_name",
   "academic_year",
   "academic_term",
   "programs",
@@ -23,15 +26,13 @@
  "fields": [
   {
    "fieldname": "academic_year",
-   "fieldtype": "Link",
-   "label": "Academic Year",
-   "options": "Academic Year"
+   "fieldtype": "Data",
+   "label": "Academic Year"
   },
   {
    "fieldname": "academic_term",
-   "fieldtype": "Link",
-   "label": "Academic Term",
-   "options": "Academic Term"
+   "fieldtype": "Data",
+   "label": "Academic Term"
   },
   {
    "fieldname": "program",
@@ -89,15 +90,29 @@
    "fieldtype": "Link",
    "label": "Programs",
    "options": "Programs"
+  },
+  {
+   "fetch_from": "student.student_name",
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "label": "Student Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "student",
+   "fieldtype": "Link",
+   "label": "Student",
+   "options": "Student"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-11 15:58:45.574347",
+ "modified": "2023-01-12 17:00:40.344751",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Feedback Form",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

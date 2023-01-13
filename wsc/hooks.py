@@ -191,6 +191,9 @@ doc_events = {
     "Feedback":{
         "validate":"wsc.wsc.validations.feedback.validate"
     },
+    # "Course Schedule": {
+    #     "on_update": "wsc.wsc.doctype.course_schedule.validate"
+    # },
     # "Fees":{
     #     "on_submit":"wsc.wsc.doctype.fees.on_submit",
     #     "validate":"wsc.wsc.doctype.fees.validate",
