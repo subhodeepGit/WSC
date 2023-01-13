@@ -277,10 +277,10 @@ doc_events = {
     "Student Leave Application":{
         "validate":"wsc.wsc.validations.student_leave_application.validate"
     },
-    # "Student Applicant":{
+    "Student Applicant":{
     #     "validate":"wsc.wsc.doctype.student_applicant.validate",
-    #     "on_change":"wsc.wsc.doctype.student_applicant.on_update"
-    # },
+        "on_change":"wsc.wsc.doctype.student_applicant.on_update"
+    },
     "Student Admission":{
         "validate":"wsc.wsc.validations.student_admission.validate"
     },

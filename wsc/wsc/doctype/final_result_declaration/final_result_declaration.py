@@ -137,7 +137,7 @@ def get_enroll_students(programs=None,semester=None,academic_year=None,academic_
 				completed=True
 				if len(frappe.get_all("Assessment Credits Allocation",{'student':student.parent,'assessment_criteria':enroll_item.assessment_criteria,"academic_year":academic_year,"docstatus":1}))==0:
 					completed=False				
-		for d in frappe.get_all("Student",{"name":student.parent},["name","title"]):
+		for d in frappe.get_all("Student",{"name":student.parent},["name","student_name"]):
 			d.update({"completion_status":"Pending"})
 			if completed:
 				d.update({"completion_status":"Completed"})

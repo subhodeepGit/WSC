@@ -1,0 +1,68 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-01-12 13:28:44.769213",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "emp_no",
+  "emp_name",
+  "department",
+  "designation",
+  "email_id"
+ ],
+ "fields": [
+  {
+   "fieldname": "emp_no",
+   "fieldtype": "Link",
+   "label": "Emp No",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "emp_no.employee_name",
+   "fieldname": "emp_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Emp Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "emp_no.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Department",
+   "options": "Department",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "emp_no.designation",
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Designation",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "emp_no.user_id",
+   "fieldname": "email_id",
+   "fieldtype": "Data",
+   "label": "Email Id",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-01-12 14:59:59.352229",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Standard WorkFlow For Grievance",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

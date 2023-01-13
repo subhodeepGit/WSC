@@ -49,6 +49,7 @@ def create_student_group(self):
     sg_doc = frappe.new_doc('Student Group')
     sg_doc.group_based_on = "Mentor-Mentee"
     sg_doc.mentor_allocation = self.name
+    sg_doc.academic_year=self.academic_year
     if len(mentor_cnt) > 0 :
         count = mentor_cnt[0] + 1
     sg_doc.student_group_name = self.mentor_name + " Mentor-Mentee Group " + str(count)

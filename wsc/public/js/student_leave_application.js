@@ -2,7 +2,7 @@ frappe.ui.form.on('Student Leave Application',{
     setup(frm){
         frm.set_query("student_group", function() {
             return {
-                query: 'wsc.wsc.doctype.student_leave_application.get_group',
+                query: 'wsc.wsc.validations.student_leave_application.get_group',
                 filters: {
                     "student":frm.doc.student
                 }
@@ -10,7 +10,7 @@ frappe.ui.form.on('Student Leave Application',{
         });
         frm.set_query("course_schedule", function() {
             return {
-                query: 'wsc.wsc.doctype.student_leave_application.get_course_schedule',
+                query: 'wsc.wsc.validations.student_leave_application.get_course_schedule',
                 filters: {
                     "student":frm.doc.student
                 }
