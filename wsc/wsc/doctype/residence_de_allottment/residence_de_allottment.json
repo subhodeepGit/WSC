@@ -7,20 +7,21 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "employee_name",
   "allotted_residence_serial_number",
   "residence_number",
   "building_name",
-  "employee_name",
   "residence_type",
   "residence_type_name",
-  "reason_for_de_allottment"
+  "reason_for_de_allottment",
+  "allotment_serial_number"
  ],
  "fields": [
   {
    "fieldname": "employee_name",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Employee Name",
-   "read_only": 1
+   "options": "Residence Allotment"
   },
   {
    "fetch_from": "allotted_residence_serial_number.type_of_residence",
@@ -59,11 +60,16 @@
    "fieldtype": "Link",
    "label": "Allotted Residence Serial Number",
    "options": "Building Room"
+  },
+  {
+   "fieldname": "allotment_serial_number",
+   "fieldtype": "Data",
+   "label": "Allotment serial number"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-12 18:14:22.856102",
+ "modified": "2023-01-13 17:10:45.342499",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence De-Allottment",

@@ -35,14 +35,14 @@ frappe.ui.form.on("Residence Allotment", {
 	}
 });
 
-// To validate if start date and end date is not past dated
-frappe.ui.form.on("Residence Allotment", {
-    validate: function(frm) {
-        if (frm.doc.start_date < get_today()) {
-            frappe.throw(__("Please select a start date from the present or future."));
-        }
-    },
-});
+// // To validate if start date is not past dated
+// frappe.ui.form.on("Residence Allotment", {
+//     validate: function(frm) {
+//         if (frm.doc.start_date < get_today()) {
+//             frappe.throw(__("Please select a start date from the present or future."));
+//         }
+//     },
+// });
 
 // To validate end date is not before start date
 frappe.ui.form.on("Residence Allotment", {

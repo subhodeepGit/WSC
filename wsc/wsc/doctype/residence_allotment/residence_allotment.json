@@ -13,16 +13,31 @@
   "employee_name",
   "employee_id",
   "section_break_4",
-  "building",
-  "residence_serial_number",
-  "residence_number",
   "start_date",
   "end_date",
-  "column_break_6",
+  "building",
+  "residence_serial_number",
+  "column_break_9",
+  "residence_number",
   "residence_type",
   "residence_type_name",
-  "addon_facilites",
   "employee_allotment_status",
+  "residence_details_section",
+  "floor",
+  "building_address",
+  "buidings_land_address",
+  "description",
+  "unit_area_sq_m",
+  "column_break_23",
+  "residence_orientation",
+  "lawngarden_available",
+  "lawngarden_area_sq_m",
+  "roof_type",
+  "column_break_27",
+  "parking_available",
+  "parking_type",
+  "parking_vehicle",
+  "parking_area_sq_m",
   "amended_from"
  ],
  "fields": [
@@ -51,27 +66,19 @@
    "reqd": 1
   },
   {
+   "default": "Today",
    "fieldname": "start_date",
    "fieldtype": "Date",
    "label": "Start Date",
    "reqd": 1
   },
   {
+   "default": "9999-12-30",
    "fieldname": "end_date",
    "fieldtype": "Date",
    "in_standard_filter": 1,
    "label": "End Date",
    "reqd": 1
-  },
-  {
-   "fieldname": "column_break_6",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fetch_from": "room_id.room_type_feature",
-   "fieldname": "addon_facilites",
-   "fieldtype": "Data",
-   "label": "Addon Facilites"
   },
   {
    "fieldname": "employee_info_section",
@@ -139,12 +146,120 @@
    "fieldtype": "Data",
    "label": "Employee Allotment status",
    "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.building_address",
+   "fieldname": "building_address",
+   "fieldtype": "Data",
+   "label": "Building Address",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.buidings_land_address",
+   "fieldname": "buidings_land_address",
+   "fieldtype": "Data",
+   "label": "Buiding's Land Address",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.floor",
+   "fieldname": "floor",
+   "fieldtype": "Data",
+   "label": "Floor",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.description",
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "label": "Description",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.unit_area_sq_m",
+   "fieldname": "unit_area_sq_m",
+   "fieldtype": "Data",
+   "label": "Unit Area (sq. m.)",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.orientation",
+   "fieldname": "residence_orientation",
+   "fieldtype": "Data",
+   "label": "Residence Orientation",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.lawngarden_available",
+   "fieldname": "lawngarden_available",
+   "fieldtype": "Data",
+   "label": "Lawn/Garden Available",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.lawngarden_area_sq_m",
+   "fieldname": "lawngarden_area_sq_m",
+   "fieldtype": "Data",
+   "label": "Lawn/Garden Area (sq. m.)",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.roof_type",
+   "fieldname": "roof_type",
+   "fieldtype": "Data",
+   "label": "Roof type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.parking_available",
+   "fieldname": "parking_available",
+   "fieldtype": "Data",
+   "label": "Parking Available",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.parking_type",
+   "fieldname": "parking_type",
+   "fieldtype": "Data",
+   "label": "Parking Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.parking_vehicle",
+   "fieldname": "parking_vehicle",
+   "fieldtype": "Data",
+   "label": "Parking Vehicle",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.parking_area_sq_m",
+   "fieldname": "parking_area_sq_m",
+   "fieldtype": "Data",
+   "label": "Parking Area (sq. m.)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "residence_details_section",
+   "fieldtype": "Section Break",
+   "label": "Residence Details"
+  },
+  {
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_23",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_27",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-12 17:49:31.473072",
+ "modified": "2023-01-13 17:36:12.734195",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Allotment",
@@ -167,7 +282,7 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "title_field": "residence_number",
+ "title_field": "employee",
  "track_changes": 1,
  "track_seen": 1,
  "track_views": 1

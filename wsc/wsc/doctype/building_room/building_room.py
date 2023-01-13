@@ -21,6 +21,7 @@ def duplicate(self):
 	if data:
 		frappe.throw("Same room no. can't exist within the building")
 
+########################### alternate code written in js but still required for date validation ######################################
 # To validate if the start date is not after the end date in allotable room type
 def dateValidate(self):
 	if self.allotment_status == "Allottable":
