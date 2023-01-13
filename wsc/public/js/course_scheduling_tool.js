@@ -25,7 +25,7 @@ frappe.ui.form.on('Course Scheduling Tool', {
 				frm.trigger("additional_instructor")
 			},
 			function(){
-				window.close();
+				// window.close();
 			}
 		)
 	},

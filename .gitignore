@@ -3,5 +3,6 @@
 *.egg-info
 *.swp
 tags
+wsc/public/dist
 wsc/docs/current
 node_modules/

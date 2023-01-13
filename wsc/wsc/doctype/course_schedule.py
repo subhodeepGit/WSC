@@ -52,9 +52,9 @@ class CourseSchedule(Document):
 		validate_overlap_for(self, "Assessment Plan", "room")
 		validate_overlap_for(self, "Assessment Plan", "supervisor", self.instructor)
 
-def on_change(doc,method):
-	for pec in frappe.get_all("Program Enrollment Course",{'course':doc.course}):
-		frappe.db.set_value("Program Enrollment Course",pec.name,'instructor',doc.instructor)
+	def on_update(self):
+		for pec in frappe.get_all("Program Enrollment Course",{'course':self.course}):
+			frappe.db.set_value("Program Enrollment Course",pec.name,'instructor',self.instructor)
 
 
 def validate_course(doc):
