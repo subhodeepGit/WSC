@@ -26,7 +26,7 @@
    "reqd": 1
   },
   {
-   "fetch_from": "student.title",
+   "fetch_from": "student.student_name",
    "fieldname": "student_name",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -55,8 +55,7 @@
    "fetch_from": "student.permanant_registration_number",
    "fieldname": "permanent_registration_number",
    "fieldtype": "Data",
-   "label": "Permanent Registration Number",
-   "reqd": 1
+   "label": "Permanent Registration Number"
   },
   {
    "fieldname": "programs",
@@ -74,10 +73,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-19 11:36:11.980706",
+ "modified": "2023-01-13 11:09:01.768860",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Provisional Certificate",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -95,5 +95,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

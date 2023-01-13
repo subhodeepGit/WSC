@@ -9,19 +9,16 @@
  "filters": [],
  "idx": 0,
  "is_standard": "Yes",
- "modified": "2022-06-15 10:47:41.721970",
+ "modified": "2023-01-13 11:46:26.247296",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Marksheet",
  "owner": "Administrator",
  "prepared_report": 0,
- "ref_doctype": "Cummulative Marksheet",
+ "ref_doctype": "Cumulative Marksheet",
  "report_name": "Student Marksheet",
  "report_type": "Script Report",
  "roles": [
-  {
-   "role": "Education Administrator"
-  },
   {
    "role": "System Manager"
   }
