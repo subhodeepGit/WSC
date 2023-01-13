@@ -35,92 +35,46 @@ class PlacementDrive(Document):
 	
 @frappe.whitelist()
 def get_eligibility(name , academic_year , academic_term , placement_drive_for):
+	print("\n\n\n")
 	# print(academic_year , academic_term)
-
-	current_education= frappe.get_all("Current Educational Details" ,{"academic_year":academic_year , "academic_term":academic_term,"parenttype":"Student"} , 
-	['programs' , 'semesters' , 'academic_year' , 'academic_term',"parent","name"]) #from students.
+	eligibility_criteria=frappe.get_all("Eligibility Criteria",{"parent":name},['qualification',"percentage","year_of_passing"])
+	student_list= frappe.get_all("Educational Details" , ['qualification' , "score" , 'year_of_completion' , 'parent'] )
+	current_education= frappe.get_all("Current Educational Details" , ['programs' , 'semesters' , 'academic_year' , 'academic_term'])
 	
-	programs = frappe.get_all("Place Eligible Programs" , {"parent":name} , ['programs' , 'semester'])  #from placement drive
-
-	eligibility_criteria=frappe.get_all("Eligibility Criteria",{"parent":name},['qualification',"percentage","year_of_passing"]) #from placement drive
-	
-	final_studnet_list=[]
-	for j in programs:
-		for t in current_education:
-			# if j['programs']==t['programs'] and j['semester']==t['semesters'] :
-			if j['programs'] == t['programs']:
-				final_studnet_list.append(t)
-	print(programs)
+	# print(current_education)
+	# print(current_education[0].academic_term)	
 	student_dict = {}
-	for i in final_studnet_list:
+	for i in student_list:
 		student_dict[i['parent']] = []
+
+	if academic_year == current_education[0].academic_year:
+		print("Hello There")
 	
-	for t in student_dict:
-		student_list= frappe.get_all("Educational Details",{"parent":t}, ['qualification',"score",'year_of_completion','parent'])  #from student
-		experience_detail = frappe.get_all("Experience child table" , {"parent":i} , ['job_duration' , 'parent'])  #from student
-
-		list_data=student_dict[t]
-
-		for j in experience_detail:
-			
-			if placement_drive_for == "fresher" and j['job_duration'] == 0:
-				for k in student_list:
-					for j in eligibility_criteria:	
-						if k['qualification'] == j['qualification'] and k['score'] >= j['percentage']:
-							list_data.append(k)
-			
-			elif placement_drive_for == "Experience" and j['job_duration'] > 0:
-				for k in student_list:
-					for j in eligibility_criteria:	
-						if k['qualification'] == j['qualification'] and k['score'] >= j['percentage']:
-							list_data.append(k)
-			
-			else:
-				for k in student_list:
-					for j in eligibility_criteria:	
-						if k['qualification'] == j['qualification'] and k['score'] >= j['percentage']:
-							list_data.append(k)
-
-		student_dict[t]=list_data
-			
-			
-	# print("\n\n")
-	# print(final_studnet_list)
-
-	# if placement_drive_for == 'fresher':
-	# 	if len(experience_detail) == 0:
-
-	# print(final_studnet_list)
-	for i in student_dict:
-		# print(student_dict[i])
-		for j in final_studnet_list:
-			# print(j)
-			for k in student_dict[i]:
-				k['programs'] = j['programs']
-				k['academic_year'] = j['academic_year']
-				k['name'] = j['name']
-				# print(k)
-	print("\n\nstudent_dict")
-	print(student_dict)
-	return student_dict
-	# return student_dict		
-	
-	# req_data = []
-	# for i in student_dict:
-	# 	print(i)
-	# print(list_data)
-	# print(type(list_data))
 	#Qualification Check
-	# for k in eligibility_criteria:	
-	# 	for t in student_dict:
-	# 		for j in student_list:
-	# 			if j['parent'] == t:
-	# 				if k['qualification']==j["qualification"] and k['percentage'] <= j['score']:
-	# 					list_data = student_dict[j['parent']]
-	# 					list_data.append(j)
-	# 					student_dict[j['parent']]=list_data
+	for k in eligibility_criteria:	
+		for t in student_dict:
+			for j in student_list:
+				if j['parent'] == t:
+					if k['qualification']==j["qualification"] and k['percentage'] <= j['score']:
+						list_data = student_dict[j['parent']]
+						list_data.append(j)
+						student_dict[j['parent']]=list_data
+
+
+	count_list=len(eligibility_criteria)
+	for t in student_dict:
+		list_data = student_dict[t]
+		if len(list_data)==count_list:
+			pass
+		else:
+			student_dict[t]=[]
+	# print(student_dict)
 
 	
+	# doc = frappe.new_doc('Elgible Students')
+	# doc.student_doctype_name = 
+	list_keys = list(student_dict.keys())
+
 	# for i in list_keys:    #new doctype insertion
 	# 	for j in student_dict[i]:
 	# 		doc = frappe.new_doc('Eligible Student')

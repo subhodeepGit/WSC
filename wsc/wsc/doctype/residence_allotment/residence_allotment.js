@@ -1,7 +1,6 @@
 // Copyright (c) 2023, SOUL Limited and contributors
 // For license information, please see license.txt
 
-
 // To filter building in the link field based on building type
 frappe.ui.form.on("Residence Allotment", {
 	setup: function(frm) {

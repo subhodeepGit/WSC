@@ -1,6 +1,6 @@
 {
  "actions": [],
- "autoname": "autoincrement",
+ "allow_rename": 1,
  "creation": "2023-01-11 14:00:17.001705",
  "default_view": "List",
  "doctype": "DocType",
@@ -18,27 +18,28 @@
  ],
  "fields": [
   {
+   "fetch_from": "quarter_no.employee_name",
    "fieldname": "employee_name",
    "fieldtype": "Link",
    "label": "Employee Name",
    "options": "Residence Allotment"
   },
   {
-   "fetch_from": "allotted_residence_serial_number.type_of_residence",
+   "fetch_from": "quarter_no.quarter_type",
    "fieldname": "residence_type",
    "fieldtype": "Data",
    "label": "Residence Type",
    "read_only": 1
   },
   {
-   "fetch_from": "allotted_residence_serial_number.residence_type_name",
+   "fetch_from": "quarter_no.residence_type_name",
    "fieldname": "residence_type_name",
    "fieldtype": "Data",
    "label": "Residence Type Name",
    "read_only": 1
   },
   {
-   "fetch_from": "allotted_residence_serial_number.building_name",
+   "fetch_from": "quarter_no.building",
    "fieldname": "building_name",
    "fieldtype": "Data",
    "label": "Building Name",
@@ -50,7 +51,7 @@
    "label": "Reason for De Allottment"
   },
   {
-   "fetch_from": "allotted_residence_serial_number.room_no",
+   "fetch_from": "allotted_residence_serial_number.residence_number",
    "fieldname": "residence_number",
    "fieldtype": "Data",
    "label": "Residence Number"
@@ -73,7 +74,6 @@
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence De-Allottment",
- "naming_rule": "Autoincrement",
  "owner": "Administrator",
  "permissions": [
   {

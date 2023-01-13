@@ -37,8 +37,8 @@
   "type_of_job",
   "eligible_students_section",
   "get_students",
-  "eligible_student",
-  "amended_from"
+  "amended_from",
+  "eligible_student"
  ],
  "fields": [
   {
@@ -230,7 +230,8 @@
    "fieldname": "eligible_student",
    "fieldtype": "Table",
    "label": "Eligible Student",
-   "options": "Eligible Student"
+   "options": "Eligible Student",
+   "read_only": 1
   },
   {
    "fieldname": "get_students",
@@ -241,7 +242,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-12 16:38:33.434378",
+ "modified": "2023-01-10 12:59:31.664561",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive",

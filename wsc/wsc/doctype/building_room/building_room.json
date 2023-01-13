@@ -19,6 +19,7 @@
   "pin_code",
   "building_capacity",
   "room_details_section",
+  "vacancy_status",
   "room_no",
   "floor",
   "type_of_room",

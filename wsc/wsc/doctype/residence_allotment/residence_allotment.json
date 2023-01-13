@@ -130,6 +130,7 @@
    "fieldtype": "Data",
    "label": "Residence Type",
    "read_only": 1
+<<<<<<< HEAD
   },
   {
    "fieldname": "amended_from",
@@ -254,12 +255,17 @@
   {
    "fieldname": "column_break_27",
    "fieldtype": "Column Break"
+=======
+>>>>>>> bb2ba87102658427d8a4cef6a78d9e5498b93a4f
   }
  ],
  "index_web_pages_for_search": 1,
- "is_submittable": 1,
  "links": [],
+<<<<<<< HEAD
  "modified": "2023-01-13 17:36:12.734195",
+=======
+ "modified": "2023-01-11 18:31:51.295589",
+>>>>>>> bb2ba87102658427d8a4cef6a78d9e5498b93a4f
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Allotment",

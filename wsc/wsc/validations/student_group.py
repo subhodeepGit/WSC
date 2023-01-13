@@ -1,5 +1,6 @@
 import frappe
 from frappe import utils
+import json
 from wsc.wsc.validations.student_admission import validate_academic_year
 from wsc.wsc.validations.course import validate_semester
 from education.education.doctype.student_group.student_group import get_program_enrollment

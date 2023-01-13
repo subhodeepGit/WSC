@@ -13,6 +13,7 @@ app_license = "MIT"
 # include js, css files in header of desk.html
 # app_include_css = "/assets/wsc/css/wsc.css"
 # app_include_js = "/assets/wsc/js/wsc.js"
+app_include_js = "wsc.bundle.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/wsc/css/wsc.css"
@@ -130,17 +131,8 @@ after_install = "wsc.patches.get_phone_codes.execute"
 # DocType Class
 # ---------------
 # Override standard doctype classes
-override_doctype_class  = {
-    "Course Schedule":"wsc.wsc.doctype.course_schedule.CourseSchedule",
-	"Course Scheduling Tool": "wsc.wsc.doctype.course_scheduling_tool.CourseSchedulingTool",
-    "Employee":"wsc.wsc.doctype.employee.Employee",
-    "Fee Structure":"wsc.wsc.doctype.fee_structure.FeeStructure",
-    "Fees":"wsc.wsc.doctype.fees.Fees",
-    "Payment Entry":"wsc.wsc.doctype.payment_entry.PaymentEntry",
-    "Student Applicant": "wsc.wsc.doctype.student_applicant.StudentApplicant",
-    "Student Attendance": "wsc.wsc.doctype.student_attendance.StudentAttendance",
-    "User Permission": "wsc.wsc.doctype.user_permission.UserPermission"
-}
+
+
 
 # Document Events
 # ---------------
@@ -200,6 +192,9 @@ doc_events = {
     "Feedback":{
         "validate":"wsc.wsc.validations.feedback.validate"
     },
+    # "Course Schedule": {
+    #     "on_update": "wsc.wsc.doctype.course_schedule.validate"
+    # },
     # "Fees":{
     #     "on_submit":"wsc.wsc.doctype.fees.on_submit",
     #     "validate":"wsc.wsc.doctype.fees.validate",
@@ -334,7 +329,19 @@ override_whitelisted_methods = {
 	"erpnext.accounts.doctype.payment_entry.payment_entry.get_party_and_account_balance":"wsc.wsc.doctype.payment_entry.get_party_and_account_balance",
 	"education.education.api.get_fee_components":"wsc.wsc.validations.api.get_fee_components",
 	"education.education.doctype.fee_structure.fee_structure.make_fee_schedule":"wsc.wsc.doctype.fee_structure.make_fee_schedule",
+    "education.education.doctype.student_attendance_tool.student_attendance_tool.get_student_attendance_records":"wsc.wsc.doctype.student_attendance.get_student_attendance_records"
 	# "kp_edtec.kp_edtec.doctype.fees.make_refund_fees":"wsc.wsc.validations.fees.make_refund_fees",
+}
+override_doctype_class = {
+    "Course Schedule":"wsc.wsc.doctype.course_schedule.CourseSchedule",
+	"Course Scheduling Tool": "wsc.wsc.doctype.course_scheduling_tool.CourseSchedulingTool",
+    "Employee":"wsc.wsc.doctype.employee.Employee",
+    "Fee Structure":"wsc.wsc.doctype.fee_structure.FeeStructure",
+    "Fees":"wsc.wsc.doctype.fees.Fees",
+    "Payment Entry":"wsc.wsc.doctype.payment_entry.PaymentEntry",
+    "Student Applicant": "wsc.wsc.doctype.student_applicant.StudentApplicant",
+    "Student Attendance": "wsc.wsc.doctype.student_attendance.StudentAttendance",
+    "User Permission": "wsc.wsc.doctype.user_permission.UserPermission"
 }
 #
 # each overriding function accepts a `data` argument;
