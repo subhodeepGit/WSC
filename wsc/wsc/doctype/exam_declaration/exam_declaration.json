@@ -224,12 +224,14 @@
    "fieldtype": "Table",
    "ignore_user_permissions": 1,
    "label": "Students",
-   "options": "Students"
+   "options": "Students",
+   "permlevel": 1
   },
   {
    "fieldname": "get_students",
    "fieldtype": "Button",
-   "label": "Get Students"
+   "label": "Get Students",
+   "permlevel": 1
   },
   {
    "fieldname": "certificate_creation_status",
@@ -264,12 +266,11 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-12 16:09:19.786691",
+ "modified": "2022-10-25 17:57:55.065311",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Declaration",
  "name_case": "UPPER CASE",
- "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -288,6 +289,5 @@
  "search_fields": "exam_name",
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": [],
  "track_changes": 1
 }

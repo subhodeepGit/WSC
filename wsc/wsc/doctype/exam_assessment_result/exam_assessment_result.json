@@ -90,7 +90,7 @@
    "reqd": 1
   },
   {
-   "fetch_from": "student.student_name",
+   "fetch_from": "student.title",
    "fieldname": "student_name",
    "fieldtype": "Data",
    "in_global_search": 1,
@@ -260,11 +260,10 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-12 17:50:15.816006",
+ "modified": "2022-12-08 11:51:27.029063",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Assessment Result",
- "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -287,6 +286,5 @@
  "show_name_in_global_search": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": [],
  "title_field": "student_name"
 }

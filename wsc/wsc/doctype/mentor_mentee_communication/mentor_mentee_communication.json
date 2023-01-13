@@ -28,7 +28,7 @@
    "reqd": 1
   },
   {
-   "fetch_from": "student.student_name",
+   "fetch_from": "student.title",
    "fieldname": "student_name",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -93,11 +93,10 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-12 15:52:33.192425",
+ "modified": "2022-01-25 21:49:14.437073",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Mentor Mentee Communication",
- "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -115,6 +114,5 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": [],
  "track_changes": 1
 }

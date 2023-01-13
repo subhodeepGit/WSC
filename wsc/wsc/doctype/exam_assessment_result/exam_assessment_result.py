@@ -17,6 +17,8 @@ class ExamAssessmentResult(Document):
         duplicate_row_validation(self, "assessment_result_item", ['course','assessment_criteria'])
         self.set_evaluation_result_item()
         self.set_grade()
+        if len(self.assessment_result_item) > 0:
+            self.calculate_sgpa()
         self.map_fields()
         self.calculate_cgpa()
         self.validate_duplicate_for_submit()
@@ -60,24 +62,23 @@ class ExamAssessmentResult(Document):
         self.credit_point=allocations
     def get_sgpa_into_total_credit(self):
         allocations=0
-        # sgpa_in_to_credit_points=0
+        sgpa_in_to_credit_points=0
         for allocation in frappe.get_all("Assessment Credits Allocation",{"docstatus":1,"student":self.student,"academic_year":self.academic_year,"academic_term":self.academic_term},["course","earned_credits","total_credits","final_marks","out_of_marks","assessment_criteria"]):
             print("\n\nAllocation")
             print(allocation.total_credits)
             allocations+=allocation.total_credits
         print("\n\nafter allocation")
         print(allocations)
-        print("\n\ncCreate sgpa")
+        print("\n\ncreate sgpa")
         print(self.sgpa)
         # print(self.sgpa_in_to_credit_point)
         self.credit_point=allocations
-        print("\n\nNEw Credit_point")
-        print(self.credit_point)
-        # sgpa_in_to_credit_points= float(self.credit_point) * float(self.sgpa)
-        # resu = "{:.2f}".format(sgpa_in_to_credit_points)
-        # self.sgpa_in_to_credit_point=resu
-        # frappe.db.set_value("Exam Assessment Result",self.name,"credit_point",allocations)
-        # frappe.db.set_value("Exam Assessment Result",self.name,"sgpa_in_to_credit_point",resu)
+        
+        sgpa_in_to_credit_points= float(self.credit_point) * float(self.sgpa)
+        resu = "{:.2f}".format(sgpa_in_to_credit_points)
+        self.sgpa_in_to_credit_point=resu
+        frappe.db.set_value("Exam Assessment Result",self.name,"credit_point",allocations)
+        frappe.db.set_value("Exam Assessment Result",self.name,"sgpa_in_to_credit_point",resu)
         # frappe.db.set("credit_point",allocations)
     @frappe.whitelist()
     def set_assessment_result_item(self):
@@ -189,7 +190,6 @@ class ExamAssessmentResult(Document):
     #     if duplicateForm:
     #         frappe.throw(("Employee is already Filled the form for this Year."))
     def calculate_sgpa(self):
-        
         earn_and_garde=earn=0
         # evaluation_result_item
         for d in self.get("evaluation_result_item"):
@@ -205,11 +205,7 @@ class ExamAssessmentResult(Document):
             print("\n\ncredit_point")
             print(self.credit_point)
             print(self.sgpa)
-            sgpa_in_credit_points=0
-            sgpa_in_credit_points = float(self.credit_point) * float(self.sgpa)
-            self.sgpa_in_to_credit_point=sgpa_in_credit_points
-            print("\n\nYO:YOsgpa_in_to_credit_point")
-            print(self.sgpa_in_to_credit_point)
+            self.sgpa_in_to_credit_point= float(self.credit_point) * float(self.sgpa)
     def map_fields(self):
         order_dict={1:"1ST SEM",2:"2ND SEM",3:"3RD SEM",4:"4TH SEM",5:"5TH SEM",6:"6TH SEM",7:"7TH SEM",8:"8TH SEM",9:"9TH SEM",10:"10TH SEM"}
         for d in self.get("previous_semesters_sgpa"):

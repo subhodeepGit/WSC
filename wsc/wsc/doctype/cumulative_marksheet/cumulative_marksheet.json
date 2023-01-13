@@ -39,7 +39,7 @@
    "options": "Student"
   },
   {
-   "fetch_from": "student.student_name",
+   "fetch_from": "student.title",
    "fieldname": "student_name",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -156,11 +156,10 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-13 10:39:54.273133",
+ "modified": "2022-08-03 12:31:18.012164",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Cumulative Marksheet",
- "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -177,6 +176,5 @@
   }
  ],
  "sort_field": "modified",
- "sort_order": "DESC",
- "states": []
+ "sort_order": "DESC"
 }

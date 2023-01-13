@@ -9,25 +9,23 @@ def validate(doc,method):
     # director_permission(doc)
     validate_instructor_log(doc)
     academic_term(doc)
+    classes_scheduled = doc.get("total_scheduled_classes")
+    classes_taken = doc.get("total_classes_taken")
 
-    class_scheduled = frappe.db.sql("""Select count(*) from `tabCourse Schedule` where instructor = %s""",doc.name)
-    doc.total_scheduled_classes= class_scheduled[0][0]
-    class_taken = frappe.db.sql("""Select count(*) from `tabStudent Attendance` where instructor = %s""",doc.name)
-    doc.total_classes_taken = class_taken[0][0]
+    if classes_scheduled==None:
+        pass
+    else :
+        work_load_percent = (classes_taken/classes_scheduled)*100
+        doc.work_load_percent = "%.2f" % work_load_percent
 
-    work_load_percent = (class_taken[0][0]/class_scheduled[0][0])*100 #### studnet atten.
-    doc.work_load_percent = "%.2f" % work_load_percent
+    # a.s
 
     count = 0
     sum = 0
     for t in doc.get('other_activities'):
         count +=1
         sum = sum+(t.duration)
-
-    # number_of_other_activities = frappe.db.sql("""select count(*) from `tabNon Teaching Activities` where parent=%s""",doc.name)
     doc.number_of_other_activities = count
-
-    # other_activity_duration = frappe.db.sql("""select sum(Duration) from `tabNon Teaching Activities` where parent = %s""",doc.name)
     doc.total_work_load = "%.2f" % sum
     
 

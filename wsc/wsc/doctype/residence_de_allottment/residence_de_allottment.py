@@ -4,10 +4,9 @@
 import frappe
 from frappe.model.document import Document
 
-class ResidenceDeAllottment(Document):
+class QuarterDeAllottment(Document):
 	def validate(self):
 		vacancyChange(self)
 
-# To change vacancy status and employee allotment status to "Vacant" and "Not Alloted" after allotment of residence
 def vacancyChange(self):
-	frappe.db.set_value("Building Room",self.allotted_residence_serial_number,"vacancy_status","Vacant", "employee_allotment_status", "Not Alloted")
+	frappe.db.set_value("Building Room",self.residence_serial_number,"vacancy_status","Vacant")

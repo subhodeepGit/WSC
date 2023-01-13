@@ -60,7 +60,7 @@ def create_migration_certificate(migration_certificate_tool):
 		result.resistrar_signature=doc.resistrar_signature
 		result.acadmic_session=doc.academic_session 
 		# result.place=d.place 
-		# result.place=doc.place
+		result.place=doc.place
 		# result.academic_year=doc.academic_year
 		result.save()
 		created_records += 1

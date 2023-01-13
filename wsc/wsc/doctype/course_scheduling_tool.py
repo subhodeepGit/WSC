@@ -61,13 +61,11 @@ class CourseSchedulingTool(Document):
             )
 
     def validate_mandatory(self):
-        
         """Validates all mandatory fields"""
 
         fields = ['course', 'room', 'instructor', 'from_time',
-                  'to_time', 'course_start_date', 'course_end_date', 'days_html']
+                  'to_time', 'course_start_date', 'course_end_date', 'day']
         for d in fields:
-            print(self.meta.get_label(d))
             if not self.get(d):
                 frappe.throw(_("{0} is mandatory").format(
                     self.meta.get_label(d)))

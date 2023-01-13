@@ -10,16 +10,19 @@
  "idx": 0,
  "is_standard": "Yes",
  "json": "{\"filters\":[],\"fields\":[[\"name\",\"Cummulative Marksheet\"],[\"programs\",\"Cummulative Marksheet\"],[\"student_name\",\"Cummulative Marksheet\"],[\"roll_no\",\"Cummulative Marksheet\"],[\"year_of_admission\",\"Cummulative Marksheet\"],[\"year_of_completion\",\"Cummulative Marksheet\"],[\"registration_number\",\"Cummulative Marksheet\"],[\"cgpa\",\"Cummulative Marksheet\"],[\"result_p_f\",\"Cummulative Marksheet\"],[\"total_number_of_students\",\"Cummulative Marksheet\"]],\"order_by\":\"`tabCummulative Marksheet`.`modified` desc\",\"add_totals_row\":true,\"page_length\":20,\"column_widths\":{\"name\":120,\"programs\":120,\"student_name\":120,\"roll_no\":120,\"year_of_admission\":120,\"year_of_completion\":120,\"registration_number\":120,\"cgpa\":120,\"result_p_f\":120,\"total_number_of_students\":120},\"group_by\":null}",
- "modified": "2023-01-13 11:39:42.313993",
+ "modified": "2022-06-16 15:03:36.138191",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Final Marksheet",
  "owner": "Administrator",
  "prepared_report": 0,
- "ref_doctype": "Cumulative Marksheet",
+ "ref_doctype": "Cummulative Marksheet",
  "report_name": "Student Final Marksheet",
  "report_type": "Report Builder",
  "roles": [
+  {
+   "role": "Education Administrator"
+  },
   {
    "role": "System Manager"
   }
