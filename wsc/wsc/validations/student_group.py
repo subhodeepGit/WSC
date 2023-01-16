@@ -183,7 +183,7 @@ def get_instructor(filters):
 def filter_student(doctype, txt, searchfield, start, page_len, filters):
     student=[]
     for d in frappe.get_all("Student Group Student",{"parent":filters.get("student_group")},["student"]):
-        for stu in frappe.get_all("Student",{"name":d.student},["name","title"],as_list=1):
+        for stu in frappe.get_all("Student",{"name":d.student},["name","student_name"],as_list=1):
             student.append(stu)
     return student
 

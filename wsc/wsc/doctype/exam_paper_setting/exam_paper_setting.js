@@ -89,7 +89,7 @@ frappe.ui.form.on('Exam Paper Setting', {
 				query: 'wsc.wsc.doctype.exam_paper_setting.exam_paper_setting.filter_examiner',
 				filters: {
 					"assessment_plan":frm.doc.assessment_plan,
-					"course":frm.doc.course
+					// "course":frm.doc.course
 				}
 			};
 		});

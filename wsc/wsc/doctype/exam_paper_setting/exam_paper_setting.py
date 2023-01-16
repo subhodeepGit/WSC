@@ -121,7 +121,8 @@ def date_validation(doc):
         
 @frappe.whitelist()
 def filter_examiner(doctype, txt, searchfield, start, page_len, filters):
-    return frappe.get_all("Paper Setter Item",{'parent':filters.get('assessment_plan'),'course':filters.get('course'),'paper_setter': ['like', '%{}%'.format(txt)]},['paper_setter','full_name'],as_list=1)
+    return frappe.get_all("Paper Setter Item",{'parent':filters.get('assessment_plan'),'paper_setter': ['like', '%{}%'.format(txt)]},['paper_setter','full_name'],as_list=1)
+    # 'course':filters.get('course'),
 
 @frappe.whitelist()
 def filter_moderator(doctype, txt, searchfield, start, page_len, filters):

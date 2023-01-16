@@ -493,10 +493,10 @@ def get_academic_calender_table(programs,semester):
 def get_students(doctype, txt, searchfield, start, page_len, filters):
     return frappe.db.sql("""
                                 Select 
-                                        distinct(st.name) as student, st.title as student_name ,st.roll_no as roll_no,st.permanant_registration_number as permanant_registration_number
+                                        distinct(st.name) as student, st.student_name as student_name ,st.roll_no as roll_no,st.permanant_registration_number as permanant_registration_number
                                 from `tabCurrent Educational Details` ced 
                                 left join `tabStudent` st on st.name=ced.parent 
-                                where enabled=1 and (st.name LIKE %(txt)s or st.title LIKE %(txt)s) and ced.programs='{0}'""".format(filters.get("programs")),dict(txt="%{}%".format(txt)))    
+                                where enabled=1 and (st.name LIKE %(txt)s or st.student_name LIKE %(txt)s) and ced.programs='{0}'""".format(filters.get("programs")),dict(txt="%{}%".format(txt)))    
 def set_PRN_number(doc):
     if not frappe.db.get_value("Student",doc.student,"permanant_registration_number"):
         autoname=frappe.db.get_single_value("Educations Configurations","student_registration_naming")
