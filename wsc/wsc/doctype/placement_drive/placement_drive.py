@@ -83,14 +83,6 @@ def get_eligibility(name , academic_year , academic_term , placement_drive_for):
 
 		student_dict[t]=list_data
 			
-			
-	# print("\n\n")
-	# print(final_studnet_list)
-
-	# if placement_drive_for == 'fresher':
-	# 	if len(experience_detail) == 0:
-
-	# print(final_studnet_list)
 	for i in student_dict:
 		# print(student_dict[i])
 		for j in final_studnet_list:
@@ -103,42 +95,7 @@ def get_eligibility(name , academic_year , academic_term , placement_drive_for):
 	print("\n\nstudent_dict")
 	print(student_dict)
 	return student_dict
-	# return student_dict		
 	
-	# req_data = []
-	# for i in student_dict:
-	# 	print(i)
-	# print(list_data)
-	# print(type(list_data))
-	#Qualification Check
-	# for k in eligibility_criteria:	
-	# 	for t in student_dict:
-	# 		for j in student_list:
-	# 			if j['parent'] == t:
-	# 				if k['qualification']==j["qualification"] and k['percentage'] <= j['score']:
-	# 					list_data = student_dict[j['parent']]
-	# 					list_data.append(j)
-	# 					student_dict[j['parent']]=list_data
-
-	
-	# for i in list_keys:    #new doctype insertion
-	# 	for j in student_dict[i]:
-	# 		doc = frappe.new_doc('Eligible Student')
-	# 		print(doc)
-	# 		doc.student_doctype_name = j['parent']
-	# 		doc.qualification = j['qualification']
-	# 		doc.score = j['score']
-	# 		doc.year_of_completion = j['year_of_completion']
-	# 		doc.insert()
-
-	
-# def eligibility_check(required_marks , student_marks ,flag):
-# 	if(required_marks < student_marks):
-# 		return True
-# 	else:
-# 		return False
-
-
 def validate_application_date(doc):
 	if doc.application_start_date and doc.application_end_date:
 		if doc.application_end_date < doc.application_start_date:
