@@ -112,8 +112,6 @@ class CourseSchedulingTool(Document):
         if self.get("additional_instructors"):
             for ai in (self.get("additional_instructors"))["instructor_list"]:
                 course_schedule.append("additional_instructor",ai)
-        print('\n\n\n\n')
-        print(course_schedule)
         return course_schedule
 @frappe.whitelist()
 def get_instructor(doctype, txt, searchfield, start, page_len, filters):

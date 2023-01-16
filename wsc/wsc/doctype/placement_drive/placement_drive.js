@@ -29,7 +29,26 @@ frappe.ui.form.on('Placement Drive', {
 				'academic_term':frm.doc.academic_term,
 				'placement_drive_for':frm.doc.placement_drive_for
 			},
-		})
+			callback: function(result){
+				const res = Object.values(result)
+				const values = Object.values(res[0])
+				// console.log(res)
+				console.log(values.length)
+				let r = values[0]
+				// console.log(r[0])
+
+				frappe.model.clear_table(frm.doc, 'eligible_student');
+				values.forEach(r => {
+					let c =frm.add_child('eligible_student')
+					c.student_doctype_name= r[0].parent
+					c.student_name = r[0].name
+					c.program_enrollment = r[0].programs
+					c.academic_year = r[0].academic_year
+				})
+		}
+	})
+		frm.refresh();
+		frm.refresh_field("eligible_student")
 		
 	},
 	setup:function(frm){

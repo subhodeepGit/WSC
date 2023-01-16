@@ -123,7 +123,8 @@ class ExamDeclaration(Document):
         self.set_user_permission()
         exam_declaration_submit(self)
         exam_declaration_for_instructor_submit(self)
-        make_exam_assessment_result(self)
+        if self.exam_fees_applicable=="YES":
+            make_exam_assessment_result(self)
         # fee_structure_id = fee_structure_validation(self)
         # create_fees(self,fee_structure_id,on_submit=1) 
         # on_update(self,on_submit=1)
