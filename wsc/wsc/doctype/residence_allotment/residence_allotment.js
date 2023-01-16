@@ -1,13 +1,45 @@
 // Copyright (c) 2023, SOUL Limited and contributors
 // For license information, please see license.txt
 
+// // To filter employees in the employee link field based if residence alloted
+// frappe.ui.form.on("Residence Allotment", {
+// 	setup: function(frm) {
+// 		frm.set_query("employee", function() {
+// 			return {
+// 				filters: [
+// 					["Building Room","employee_allotment_status", "=", "Not Alloted"]
+                    
+// 				]
+// 			}
+		
+// 		});
+// 	}
+// });
+
+// To filter residence type name in the link field based on selected residence type
+frappe.ui.form.on("Residence Allotment", {
+	setup: function(frm) {
+		frm.set_query("residence_type_name", function() {
+			return {
+				filters: [
+					["Residence Type","type_of_residence", "in", [frm.doc.residence_type]],
+                    
+				]
+			}
+		
+		});
+	}
+});
+
+
+
 // To filter building in the link field based on building type
 frappe.ui.form.on("Residence Allotment", {
 	setup: function(frm) {
 		frm.set_query("building", function() {
 			return {
 				filters: [
-					["Buildings","building_type", "=", "Residential"],
+					["Buildings","building_type", "=", "Residential"]
                     
 				]
 			}
@@ -16,32 +48,25 @@ frappe.ui.form.on("Residence Allotment", {
 	}
 });
 
-// To filter residence serial number in the link field based on selected building and which are allottable
+// To filter residence serial number in the link field based on selected building and residence type name and also which are allottable & vacant
 frappe.ui.form.on("Residence Allotment", {
 	setup: function(frm) {
 		frm.set_query("residence_serial_number", function() {
 			return {
-				filters: [
-					["Building Room","building_name", "in", [frm.doc.building]],
-					["Building Room","allotment_status" , '=' ,"Allottable"],
-					["Building Room","vacancy_status" , '=' ,"Vacant"]
+				filters: {
+					"building_name": frm.doc.building,
+					"allotment_status" :"Allottable",
+					"vacancy_status":"Vacant",
+					"residence_type_name" :frm.doc.residence_type_name
 
                     
-				]
+				}
 			}
 		
 		});
 	}
 });
 
-// // To validate if start date is not past dated
-// frappe.ui.form.on("Residence Allotment", {
-//     validate: function(frm) {
-//         if (frm.doc.start_date < get_today()) {
-//             frappe.throw(__("Please select a start date from the present or future."));
-//         }
-//     },
-// });
 
 // To validate end date is not before start date
 frappe.ui.form.on("Residence Allotment", {
@@ -57,6 +82,10 @@ frappe.ui.form.on("Residence Allotment", {
         });
     },
 });
+
+
+
+
 
 
 

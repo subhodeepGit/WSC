@@ -12,8 +12,9 @@
   "employee",
   "employee_name",
   "alloted_residence_serial_number",
-  "column_break_4",
   "alloted_residence_number",
+  "column_break_4",
+  "alloted_residence_building",
   "alloted_residence_type",
   "alloted_residence_type_name",
   "employee_request_section",
@@ -23,6 +24,7 @@
   "employee_request_details",
   "residence_type_name",
   "residence_serial_number",
+  "residence_building",
   "column_break_13",
   "residence_number",
   "request_status",
@@ -139,12 +141,26 @@
    "fieldname": "request_status",
    "fieldtype": "Data",
    "label": "Request Status"
+  },
+  {
+   "fetch_from": "alloted_residence_serial_number.building",
+   "fieldname": "alloted_residence_building",
+   "fieldtype": "Data",
+   "label": "Alloted Residence Building",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.building_name",
+   "fieldname": "residence_building",
+   "fieldtype": "Data",
+   "label": "Residence Building",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-13 13:56:07.904395",
+ "modified": "2023-01-16 11:22:20.346748",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Change Request",

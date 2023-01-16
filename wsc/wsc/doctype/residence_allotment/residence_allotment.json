@@ -7,21 +7,28 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "application_number",
   "employee_info_section",
   "employee",
-  "column_break_3",
   "employee_name",
   "employee_id",
+  "column_break_3",
+  "employee_designation",
+  "employee_department",
+  "residence_request_section",
+  "type_of_residence_requested",
+  "type_of_residence_name_requested",
   "section_break_4",
   "start_date",
   "end_date",
   "building",
-  "residence_serial_number",
-  "column_break_9",
-  "residence_number",
   "residence_type",
   "residence_type_name",
+  "column_break_9",
+  "residence_serial_number",
+  "residence_number",
   "employee_allotment_status",
+  "vacancy_status",
   "residence_details_section",
   "floor",
   "building_address",
@@ -44,12 +51,6 @@
   {
    "fieldname": "column_break_3",
    "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "employee_id",
-   "fieldtype": "Data",
-   "label": "Employee ID",
-   "read_only": 1
   },
   {
    "fieldname": "section_break_4",
@@ -86,11 +87,11 @@
    "label": "Employee Info"
   },
   {
+   "fetch_from": "application_number.employee_name",
    "fieldname": "employee",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "in_standard_filter": 1,
    "label": "Employee",
-   "options": "Employee",
    "reqd": 1
   },
   {
@@ -103,11 +104,10 @@
    "read_only": 1
   },
   {
-   "fetch_from": "residence_serial_number.residence_type_name",
    "fieldname": "residence_type_name",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Residence Type Name",
-   "read_only": 1
+   "options": "Residence Type"
   },
   {
    "fieldname": "residence_serial_number",
@@ -125,11 +125,10 @@
    "read_only": 1
   },
   {
-   "fetch_from": "residence_serial_number.type_of_residence",
    "fieldname": "residence_type",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Residence Type",
-   "read_only": 1
+   "options": "Type of Residence"
   },
   {
    "fieldname": "amended_from",
@@ -254,11 +253,60 @@
   {
    "fieldname": "column_break_27",
    "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "residence_serial_number.vacancy_status",
+   "fieldname": "vacancy_status",
+   "fieldtype": "Data",
+   "label": "Vacancy Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "application_number",
+   "fieldtype": "Link",
+   "label": "Application Number",
+   "options": "Application for Residence"
+  },
+  {
+   "fetch_from": "application_number.employee_id",
+   "fieldname": "employee_id",
+   "fieldtype": "Data",
+   "label": "Employee ID"
+  },
+  {
+   "fetch_from": "application_number.designation",
+   "fieldname": "employee_designation",
+   "fieldtype": "Data",
+   "label": "Employee Designation"
+  },
+  {
+   "fetch_from": "application_number.department",
+   "fieldname": "employee_department",
+   "fieldtype": "Data",
+   "label": "Employee Department"
+  },
+  {
+   "fieldname": "residence_request_section",
+   "fieldtype": "Section Break",
+   "label": "Residence Request"
+  },
+  {
+   "fetch_from": "application_number.type_of_residence_requested",
+   "fieldname": "type_of_residence_requested",
+   "fieldtype": "Data",
+   "label": "Type of residence requested"
+  },
+  {
+   "fetch_from": "application_number.type_of_residence_name_requested",
+   "fieldname": "type_of_residence_name_requested",
+   "fieldtype": "Data",
+   "label": "Type of residence name requested"
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-01-13 17:36:12.734195",
+ "modified": "2023-01-16 17:34:54.380819",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Allotment",
@@ -281,7 +329,7 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "title_field": "employee",
+ "title_field": "employee_name",
  "track_changes": 1,
  "track_seen": 1,
  "track_views": 1

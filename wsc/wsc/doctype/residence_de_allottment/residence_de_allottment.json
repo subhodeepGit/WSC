@@ -1,28 +1,27 @@
 {
  "actions": [],
- "allow_rename": 1,
+ "autoname": "autoincrement",
  "creation": "2023-01-11 14:00:17.001705",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "employee_name",
   "allotted_residence_serial_number",
+  "employee_name",
+  "employee_id",
   "residence_number",
   "building_name",
   "residence_type",
   "residence_type_name",
-  "reason_for_de_allottment",
-  "allotment_serial_number"
+  "reason_for_de_allottment"
  ],
  "fields": [
   {
-   "fetch_from": "quarter_no.employee_name",
+   "fetch_from": "allotted_residence_serial_number.employee_name",
    "fieldname": "employee_name",
-   "fieldtype": "Link",
-   "label": "Employee Name",
-   "options": "Residence Allotment"
+   "fieldtype": "Data",
+   "label": "Employee Name"
   },
   {
    "fetch_from": "quarter_no.quarter_type",
@@ -60,20 +59,23 @@
    "fieldname": "allotted_residence_serial_number",
    "fieldtype": "Link",
    "label": "Allotted Residence Serial Number",
-   "options": "Building Room"
+   "options": "Residence Allotment"
   },
   {
-   "fieldname": "allotment_serial_number",
+   "fetch_from": "allotted_residence_serial_number.employee",
+   "fieldname": "employee_id",
    "fieldtype": "Data",
-   "label": "Allotment serial number"
+   "label": "Employee ID",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-13 17:10:45.342499",
+ "modified": "2023-01-16 14:01:02.174906",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence De-Allottment",
+ "naming_rule": "Autoincrement",
  "owner": "Administrator",
  "permissions": [
   {

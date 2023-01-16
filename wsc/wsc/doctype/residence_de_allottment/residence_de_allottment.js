@@ -2,12 +2,13 @@
 // For license information, please see license.txt
 
 
-frappe.ui.form.on("allotted_residence_serial_number", {
+frappe.ui.form.on("Residence De-Allottment", {
 	setup: function(frm) {
-		frm.set_query("residence_serial_number", function() {
+		frm.set_query("allotted_residence_serial_number", function() {
 			return {
 				filters: [
-					["Building Room","vacancy_status" , '=' ,"Not Vacant"]
+					["Residence Allotment","vacancy_status" , '=' ,"Not Vacant"],
+					["Residence Allotment","employee_allotment_status" , '=' ,"Alloted"]
 
                     
 				]

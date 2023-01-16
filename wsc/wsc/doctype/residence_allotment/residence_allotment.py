@@ -14,6 +14,7 @@ class ResidenceAllotment(Document):
 	def on_submit(self):
 		allotmentStatusAllot(self)
 		allotmentStatusRoom(self)
+		applicationStatus(self)
 		
 # To validate if the start date is not after the end date
 def dateValidate(self):
@@ -33,19 +34,22 @@ def duplicateResidenceAllot(self):
 ############ alternate code written in js but still required for date validation ###########
 # To validate if the start date is not after the end date in allotable room type
 def dateValidate(self):
-	if self.allotment_status == "Allottable":
-		if self.start_date > self.end_date:
-			frappe.throw("Start date cannot be greater than End date")
-	else:
-		pass
+	if self.start_date > self.end_date:
+		frappe.throw("Start date cannot be greater than End date")
 
 # To change employee allotment status to "Alloted" after allotment of residence
 def allotmentStatusAllot(self):
 	frappe.db.set_value("Residence Allotment", self.name, "employee_allotment_status", "Alloted")
+	frappe.db.set_value("Residence Allotment", self.name, "vacancy_status", "Not Vacant")
 
 # To change employee allotment status to "Alloted" after allotment of building room
 def allotmentStatusRoom(self):
 	frappe.db.set_value("Building Room", self.residence_serial_number, "employee_allotment_status", "Alloted")
+
+def applicationStatus(self):
+	frappe.db.set_value("Application for Residence", self.application_number, "application_status", "Alloted")
+
+
 
 
 
