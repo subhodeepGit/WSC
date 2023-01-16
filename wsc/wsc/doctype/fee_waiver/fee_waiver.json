@@ -62,7 +62,7 @@
    "reqd": 1
   },
   {
-   "fetch_from": "student.title",
+   "fetch_from": "student.student_name",
    "fieldname": "student_name",
    "fieldtype": "Data",
    "label": "Student Name",
@@ -292,10 +292,11 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-10-18 11:26:42.131566",
+ "modified": "2023-01-16 11:27:50.872236",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Fee Waiver",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -312,5 +313,6 @@
   }
  ],
  "sort_field": "modified",
- "sort_order": "DESC"
+ "sort_order": "DESC",
+ "states": []
 }

@@ -18,7 +18,13 @@ class CourseSchedule(Document):
 		validate_exam_declaration(self)
 		validate_student_for_student_group(self)
 		validate_instructor_for_course(self)
+		class_scheduled = frappe.db.sql("""Select count(*) from `tabCourse Schedule` where instructor = %s""",self.instructor_name)
+		# print("\n\n\n\n\n")
+		# print(self.instructor_name)
+		# print(class_scheduled[0][0])
+		frappe.db.set_value("Instructor",self.instructor_name,"total_scheduled_classes",class_scheduled[0][0]+1)
 
+		# a.s
 	def set_title(self):
 		"""Set document Title"""
 		self.title = self.course + " by " + (self.instructor_name if self.instructor_name else self.instructor)
@@ -52,9 +58,9 @@ class CourseSchedule(Document):
 		validate_overlap_for(self, "Assessment Plan", "room")
 		validate_overlap_for(self, "Assessment Plan", "supervisor", self.instructor)
 
-def on_change(doc,method):
-	for pec in frappe.get_all("Program Enrollment Course",{'course':doc.course}):
-		frappe.db.set_value("Program Enrollment Course",pec.name,'instructor',doc.instructor)
+	def on_update(self):
+		for pec in frappe.get_all("Program Enrollment Course",{'course':self.course}):
+			frappe.db.set_value("Program Enrollment Course",pec.name,'instructor',self.instructor)
 
 
 def validate_course(doc):
@@ -162,7 +168,11 @@ def get_course_schedule_events(start, end, filters=None):
 	return data
 @frappe.whitelist()
 def get_instructor(doctype, txt, searchfield, start, page_len, filters):
-	student_group=frappe.get_doc("Student Group",filters.get("student_group"))
+	print("\n\n\n\n\n")
+	print(filters)
+	student_group=frappe.get_doc("Student Group",'MCA Sem-I')
+	print('\n\n\n\n\ngggg')
+	print(student_group)
 	if student_group.group_based_on=="Exam Declaration":
 		return [(d.instructor,) for d in student_group.get("invigilator_list")]
 	else:

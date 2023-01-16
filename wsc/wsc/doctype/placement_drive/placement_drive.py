@@ -35,25 +35,20 @@ class PlacementDrive(Document):
 	
 @frappe.whitelist()
 def get_eligibility(name , academic_year , academic_term , placement_drive_for):
+	print("\n\n\n")
 	# print(academic_year , academic_term)
-
-	current_education= frappe.get_all("Current Educational Details" ,{"academic_year":academic_year , "academic_term":academic_term,"parenttype":"Student"} , 
-	['programs' , 'semesters' , 'academic_year' , 'academic_term',"parent","name"]) #from students.
+	eligibility_criteria=frappe.get_all("Eligibility Criteria",{"parent":name},['qualification',"percentage","year_of_passing"])
+	student_list= frappe.get_all("Educational Details" , ['qualification' , "score" , 'year_of_completion' , 'parent'] )
+	current_education= frappe.get_all("Current Educational Details" , ['programs' , 'semesters' , 'academic_year' , 'academic_term'])
 	
-	programs = frappe.get_all("Place Eligible Programs" , {"parent":name} , ['programs' , 'semester'])  #from placement drive
-
-	eligibility_criteria=frappe.get_all("Eligibility Criteria",{"parent":name},['qualification',"percentage","year_of_passing"]) #from placement drive
-	
-	final_studnet_list=[]
-	for j in programs:
-		for t in current_education:
-			# if j['programs']==t['programs'] and j['semester']==t['semesters'] :
-			if j['programs'] == t['programs']:
-				final_studnet_list.append(t)
-	print(programs)
+	# print(current_education)
+	# print(current_education[0].academic_term)	
 	student_dict = {}
-	for i in final_studnet_list:
+	for i in student_list:
 		student_dict[i['parent']] = []
+
+	if academic_year == current_education[0].academic_year:
+		print("Hello There")
 	
 	for t in student_dict:
 		student_list= frappe.get_all("Educational Details",{"parent":t}, ['qualification',"score",'year_of_completion','parent'])  #from student

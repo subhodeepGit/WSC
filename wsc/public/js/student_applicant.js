@@ -57,7 +57,6 @@ frappe.ui.form.on('Student Applicant', {
         })
     },
     after_save: function(frm) {
-        alert(1)
         frm.trigger("hide_n_show_child_table_fields");
     },
     setup: function(frm) {
@@ -322,26 +321,7 @@ frappe.ui.form.on("Education Qualifications Details", "earned_marks", function(f
     
     cur_frm.refresh_field ("education_qualifications_details");
  
- }); 
-
- frappe.ui.form.on('Experience child table', {
-    'job_end_date':function(frm,cdt,cdn){
-        console.log(2)
-        var d=locals[cdt][cdn];
-        if(d.job_start_date && d.job_end_date){
-            let joining_date = new Date(d.job_start_date)
-            let resigning_date = new Date(d.job_end_date)
-            const diffTime = Math.abs(joining_date - resigning_date);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-            const diffyears = (diffDays/365).toFixed(1)
-            d.job_duration=diffyears
-
-            refresh_field('d.job_duration',d.name,d.parentfield)
-            console.log(d.job_duration)
-        }        
-    }
-}) 
-
+ });       
 frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
     var d = locals[cdt][cdn];
    

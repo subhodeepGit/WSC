@@ -4,15 +4,15 @@
 import frappe
 from frappe.model.document import Document
 
-
-
-
+# To validate if the start date is not after the end date
 class Land(Document):
 	def validate(self):
 		if self.start_date > self.end_date:
 			frappe.throw("Start date cannot be greater than End date")
 		pincode(self)
 
+
+# Validation for pincode length	
 def pincode(doc):
 	if doc.pin_code:
 		if not (doc.pin_code).isdigit():

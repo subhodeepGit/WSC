@@ -20,7 +20,7 @@ frappe.ui.form.on('Placement Drive', {
 	// } , 
 
 	get_students: function(frm){
-		console.log(1)
+		// console.log(frm.doc.placement_company , frm.doc.academic_year , frm.doc.academic_term)
 		frappe.call({
 			method: 'wsc.wsc.doctype.placement_drive.placement_drive.get_eligibility',
 			args: {
