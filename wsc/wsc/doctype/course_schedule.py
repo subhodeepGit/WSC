@@ -168,7 +168,11 @@ def get_course_schedule_events(start, end, filters=None):
 	return data
 @frappe.whitelist()
 def get_instructor(doctype, txt, searchfield, start, page_len, filters):
-	student_group=frappe.get_doc("Student Group",filters.get("student_group"))
+	print("\n\n\n\n\n")
+	print(filters)
+	student_group=frappe.get_doc("Student Group",'MCA Sem-I')
+	print('\n\n\n\n\ngggg')
+	print(student_group)
 	if student_group.group_based_on=="Exam Declaration":
 		return [(d.instructor,) for d in student_group.get("invigilator_list")]
 	else:
