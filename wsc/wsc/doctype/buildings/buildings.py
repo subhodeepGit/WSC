@@ -22,8 +22,7 @@ def pincode(doc):
 	if len(doc.pin_code)<6:	
 			frappe.throw("Field <b>Pin Code</b> must be 6 Digits")
 
-
-
+# To fetch only those buildings which are between start and end date of the Land
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
 def room_type_query(doctype, txt, searchfield, start, page_len, filters):

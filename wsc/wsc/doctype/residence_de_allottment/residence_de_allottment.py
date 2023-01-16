@@ -9,4 +9,5 @@ class QuarterDeAllottment(Document):
 		vacancyChange(self)
 
 def vacancyChange(self):
-	frappe.db.set_value("Building Room",self.residence_serial_number,"vacancy_status","Vacant")
+	frappe.db.set_value("Building Room",self.allotted_residence_serial_number,"vacancy_status","Vacant")
+	frappe.db.set_value("Building Room",self.allotted_residence_serial_number,"employee_allotment_status", "Not Alloted")
