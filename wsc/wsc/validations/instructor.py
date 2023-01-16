@@ -12,7 +12,7 @@ def validate(doc,method):
     classes_scheduled = doc.get("total_scheduled_classes")
     classes_taken = doc.get("total_classes_taken")
 
-    if classes_scheduled==None:
+    if classes_scheduled==None or classes_scheduled==0:
         pass
     else :
         work_load_percent = (classes_taken/classes_scheduled)*100
