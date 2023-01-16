@@ -24,7 +24,6 @@ class CourseSchedule(Document):
 		# print(class_scheduled[0][0])
 		frappe.db.set_value("Instructor",self.instructor_name,"total_scheduled_classes",class_scheduled[0][0]+1)
 
-		# a.s
 	def set_title(self):
 		"""Set document Title"""
 		self.title = self.course + " by " + (self.instructor_name if self.instructor_name else self.instructor)
@@ -168,11 +167,7 @@ def get_course_schedule_events(start, end, filters=None):
 	return data
 @frappe.whitelist()
 def get_instructor(doctype, txt, searchfield, start, page_len, filters):
-	print("\n\n\n\n\n")
-	print(filters)
-	student_group=frappe.get_doc("Student Group",'MCA Sem-I')
-	print('\n\n\n\n\ngggg')
-	print(student_group)
+	student_group=frappe.get_doc("Student Group",filters.get("student_group"))
 	if student_group.group_based_on=="Exam Declaration":
 		return [(d.instructor,) for d in student_group.get("invigilator_list")]
 	else:

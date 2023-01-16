@@ -43,7 +43,7 @@ frappe.ui.form.on('Course Scheduling Tool', {
 					get_query: function () {
 						return {
 							query: 'wsc.wsc.doctype.course_schedule.get_instructor',
-                			filters:{"course":frm.doc.course}
+                			filters:{"course":frm.doc.course,"student_group":frm.doc.student_group}
 						}
 					},
 					onchange: function() {
