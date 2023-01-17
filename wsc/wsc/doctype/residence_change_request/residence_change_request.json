@@ -1,186 +1,186 @@
 {
- "actions": [],
- "allow_rename": 1,
- "autoname": "REQ-.####",
- "creation": "2023-01-13 11:45:19.191721",
- "default_view": "List",
- "doctype": "DocType",
- "editable_grid": 1,
- "engine": "InnoDB",
- "field_order": [
-  "employee_details_section",
-  "employee",
-  "employee_name",
-  "alloted_residence_serial_number",
-  "alloted_residence_number",
-  "column_break_4",
-  "alloted_residence_building",
-  "alloted_residence_type",
-  "alloted_residence_type_name",
-  "employee_request_section",
-  "residence_type_requested",
-  "column_break_11",
-  "residence_change_request_reason_section",
-  "employee_request_details",
-  "residence_type_name",
-  "residence_serial_number",
-  "residence_building",
-  "column_break_13",
-  "residence_number",
-  "request_status",
-  "amended_from"
- ],
- "fields": [
-  {
-   "fieldname": "employee",
-   "fieldtype": "Link",
-   "label": "Employee",
-   "options": "Employee"
-  },
-  {
-   "fetch_from": "employee.employee_name",
-   "fieldname": "employee_name",
-   "fieldtype": "Data",
-   "label": "Employee Name",
-   "read_only": 1
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Residence Change Request",
-   "print_hide": 1,
-   "read_only": 1
-  },
-  {
-   "fieldname": "alloted_residence_serial_number",
-   "fieldtype": "Link",
-   "label": "Alloted Residence Serial Number",
-   "options": "Residence Allotment"
-  },
-  {
-   "fieldname": "residence_type_requested",
-   "fieldtype": "Link",
-   "label": "Residence Type requested",
-   "options": "Type of Residence"
-  },
-  {
-   "fieldname": "residence_serial_number",
-   "fieldtype": "Link",
-   "label": "Residence Serial Number",
-   "options": "Building Room"
-  },
-  {
-   "fetch_from": "residence_serial_number.room_no",
-   "fieldname": "residence_number",
-   "fieldtype": "Data",
-   "label": "Residence Number",
-   "read_only": 1
-  },
-  {
-   "fetch_from": "alloted_residence_serial_number.residence_number",
-   "fieldname": "alloted_residence_number",
-   "fieldtype": "Data",
-   "label": "Alloted Residence Number",
-   "read_only": 1
-  },
-  {
-   "fieldname": "residence_type_name",
-   "fieldtype": "Link",
-   "label": "Residence Type name",
-   "options": "Residence Type"
-  },
-  {
-   "fieldname": "employee_details_section",
-   "fieldtype": "Section Break",
-   "label": "Employee Details"
-  },
-  {
-   "fieldname": "employee_request_section",
-   "fieldtype": "Section Break",
-   "label": "Employee Request"
-  },
-  {
-   "fieldname": "residence_change_request_reason_section",
-   "fieldtype": "Small Text",
-   "label": "Residence Change Request Reason"
-  },
-  {
-   "fieldname": "employee_request_details",
-   "fieldtype": "Section Break",
-   "label": "Employee Request Details"
-  },
-  {
-   "fieldname": "column_break_4",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "column_break_13",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fetch_from": "alloted_residence_serial_number.residence_type",
-   "fieldname": "alloted_residence_type",
-   "fieldtype": "Data",
-   "label": "Alloted Residence Type",
-   "read_only": 1
-  },
-  {
-   "fetch_from": "alloted_residence_serial_number.residence_type_name",
-   "fieldname": "alloted_residence_type_name",
-   "fieldtype": "Data",
-   "label": "Alloted Residence Type name",
-   "read_only": 1
-  },
-  {
-   "fieldname": "column_break_11",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "request_status",
-   "fieldtype": "Data",
-   "label": "Request Status"
-  },
-  {
-   "fetch_from": "alloted_residence_serial_number.building",
-   "fieldname": "alloted_residence_building",
-   "fieldtype": "Data",
-   "label": "Alloted Residence Building",
-   "read_only": 1
-  },
-  {
-   "fetch_from": "residence_serial_number.building_name",
-   "fieldname": "residence_building",
-   "fieldtype": "Data",
-   "label": "Residence Building",
-   "read_only": 1
-  }
- ],
- "index_web_pages_for_search": 1,
- "is_submittable": 1,
- "links": [],
- "modified": "2023-01-16 11:22:20.346748",
- "modified_by": "Administrator",
- "module": "WSC",
- "name": "Residence Change Request",
- "naming_rule": "Expression (old style)",
- "owner": "Administrator",
- "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  }
- ],
- "sort_field": "modified",
- "sort_order": "DESC",
- "states": []
-}
+    "actions": [],
+    "allow_rename": 1,
+    "autoname": "REQ-.####",
+    "creation": "2023-01-13 11:45:19.191721",
+    "default_view": "List",
+    "doctype": "DocType",
+    "editable_grid": 1,
+    "engine": "InnoDB",
+    "field_order": [
+     "employee_details_section",
+     "employee",
+     "employee_name",
+     "alloted_residence_serial_number",
+     "alloted_residence_number",
+     "column_break_4",
+     "alloted_residence_building",
+     "alloted_residence_type",
+     "alloted_residence_type_name",
+     "employee_request_section",
+     "residence_type_requested",
+     "column_break_11",
+     "residence_change_request_reason_section",
+     "employee_request_details",
+     "residence_type_name",
+     "residence_serial_number",
+     "residence_building",
+     "column_break_13",
+     "residence_number",
+     "request_status",
+     "amended_from"
+    ],
+    "fields": [
+     {
+      "fieldname": "employee",
+      "fieldtype": "Link",
+      "label": "Employee",
+      "options": "Employee"
+     },
+     {
+      "fetch_from": "employee.employee_name",
+      "fieldname": "employee_name",
+      "fieldtype": "Data",
+      "label": "Employee Name",
+      "read_only": 1
+     },
+     {
+      "fieldname": "amended_from",
+      "fieldtype": "Link",
+      "label": "Amended From",
+      "no_copy": 1,
+      "options": "Residence Change Request",
+      "print_hide": 1,
+      "read_only": 1
+     },
+     {
+      "fieldname": "alloted_residence_serial_number",
+      "fieldtype": "Link",
+      "label": "Alloted Residence Serial Number",
+      "options": "Residence Allotment"
+     },
+     {
+      "fieldname": "residence_type_requested",
+      "fieldtype": "Link",
+      "label": "Residence Type requested",
+      "options": "Type of Residence"
+     },
+     {
+      "fieldname": "residence_serial_number",
+      "fieldtype": "Link",
+      "label": "Residence Serial Number",
+      "options": "Building Room"
+     },
+     {
+      "fetch_from": "residence_serial_number.room_no",
+      "fieldname": "residence_number",
+      "fieldtype": "Data",
+      "label": "Residence Number",
+      "read_only": 1
+     },
+     {
+      "fetch_from": "alloted_residence_serial_number.residence_number",
+      "fieldname": "alloted_residence_number",
+      "fieldtype": "Data",
+      "label": "Alloted Residence Number",
+      "read_only": 1
+     },
+     {
+      "fieldname": "residence_type_name",
+      "fieldtype": "Link",
+      "label": "Residence Type name",
+      "options": "Residence Type"
+     },
+     {
+      "fieldname": "employee_details_section",
+      "fieldtype": "Section Break",
+      "label": "Employee Details"
+     },
+     {
+      "fieldname": "employee_request_section",
+      "fieldtype": "Section Break",
+      "label": "Employee Request"
+     },
+     {
+      "fieldname": "residence_change_request_reason_section",
+      "fieldtype": "Small Text",
+      "label": "Residence Change Request Reason"
+     },
+     {
+      "fieldname": "employee_request_details",
+      "fieldtype": "Section Break",
+      "label": "Employee Request Details"
+     },
+     {
+      "fieldname": "column_break_4",
+      "fieldtype": "Column Break"
+     },
+     {
+      "fieldname": "column_break_13",
+      "fieldtype": "Column Break"
+     },
+     {
+      "fetch_from": "alloted_residence_serial_number.residence_type",
+      "fieldname": "alloted_residence_type",
+      "fieldtype": "Data",
+      "label": "Alloted Residence Type",
+      "read_only": 1
+     },
+     {
+      "fetch_from": "alloted_residence_serial_number.residence_type_name",
+      "fieldname": "alloted_residence_type_name",
+      "fieldtype": "Data",
+      "label": "Alloted Residence Type name",
+      "read_only": 1
+     },
+     {
+      "fieldname": "column_break_11",
+      "fieldtype": "Column Break"
+     },
+     {
+      "fieldname": "request_status",
+      "fieldtype": "Data",
+      "label": "Request Status"
+     },
+     {
+      "fetch_from": "alloted_residence_serial_number.building",
+      "fieldname": "alloted_residence_building",
+      "fieldtype": "Data",
+      "label": "Alloted Residence Building",
+      "read_only": 1
+     },
+     {
+      "fetch_from": "residence_serial_number.building_name",
+      "fieldname": "residence_building",
+      "fieldtype": "Data",
+      "label": "Residence Building",
+      "read_only": 1
+     }
+    ],
+    "index_web_pages_for_search": 1,
+    "is_submittable": 1,
+    "links": [],
+    "modified": "2023-01-16 11:22:20.346748",
+    "modified_by": "Administrator",
+    "module": "WSC",
+    "name": "Residence Change Request",
+    "naming_rule": "Expression (old style)",
+    "owner": "Administrator",
+    "permissions": [
+     {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+     }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": []
+   }

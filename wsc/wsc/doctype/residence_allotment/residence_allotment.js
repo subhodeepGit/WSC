@@ -16,6 +16,21 @@
 // 	}
 // });
 
+// To filter applications in the link field based on ithe application status
+frappe.ui.form.on("Residence Allotment", {
+	setup: function(frm) {
+		frm.set_query("application_number", function() {
+			return {
+				filters: [
+					["Application for Residence","application_status", "=", "Applied"]
+                    
+				]
+			}
+		
+		});
+	}
+});
+
 // To filter residence type name in the link field based on selected residence type
 frappe.ui.form.on("Residence Allotment", {
 	setup: function(frm) {
@@ -82,7 +97,6 @@ frappe.ui.form.on("Residence Allotment", {
         });
     },
 });
-
 
 
 
