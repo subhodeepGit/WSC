@@ -4,29 +4,31 @@ import frappe
 import datetime
 
 def validate(self,method):
-    bank_draft_amount(self)
-    recon_rtgs_neft(self)
-    allocation_amount(self)
-    online_payment(self)
-    if self.mode_of_payment=="Fees Refundable / Adjustable":   
-        refundable_amount(self)
-    calucate_total(self) 
+    if self.party_type=="Student":
+        bank_draft_amount(self)
+        recon_rtgs_neft(self)
+        allocation_amount(self)
+        online_payment(self)
+        if self.mode_of_payment=="Fees Refundable / Adjustable":   
+            refundable_amount(self)
+        calucate_total(self)
 
 def on_update(self,method):
     pass
 
 def on_submit(self,method):
-    recon_rtgs_neft_on_submit(self)
-    online_payment_on_submit(self)    
-    child_table_fees_outsatnding(self)
-    refundable_fees_outsatnding(self,cancel=0)   
+    if self.party_type=="Student":
+        recon_rtgs_neft_on_submit(self)
+        online_payment_on_submit(self)    
+        child_table_fees_outsatnding(self)
+        refundable_fees_outsatnding(self,cancel=0)   
 
 def on_cancel(self,method):
-    child_table_fees_outsatnding(self)
-    refundable_fees_outsatnding(self,cancel=1)
-    recon_rtgs_neft_on_cancel(self)
-    online_payment_on_cancel(self)
-
+    if self.party_type=="Student":
+        child_table_fees_outsatnding(self)
+        refundable_fees_outsatnding(self,cancel=1)
+        recon_rtgs_neft_on_cancel(self)
+        online_payment_on_cancel(self)
 
 def online_payment(self):
     if self.mode_of_payment=="Online Payment":

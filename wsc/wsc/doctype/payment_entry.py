@@ -65,7 +65,7 @@ class PaymentEntry(AccountsController):
 		self.validate_bank_accounts()
 		self.set_exchange_rate()
 		self.validate_mandatory()
-		self.validate_reference_documents()###################
+		self.validate_reference_documents()###############
 		self.set_tax_withholding()
 		self.set_amounts()
 		self.validate_amounts()
@@ -101,15 +101,15 @@ class PaymentEntry(AccountsController):
 		self.update_payment_schedule()###########
 		self.set_status()
 		payment_entry_submit(self)
-		
-		for d in self.get("references"):
-			hostel_fee_info=frappe.get_all("Hostel Fees",filters=[["fees_id","=",d.reference_name]],fields=['name','outstanding_amount'])
-			if len(hostel_fee_info)>0:
-				hostel_fee_comp=frappe.get_all("Fee Component",{"parent":hostel_fee_info[0]['name'],'fees_category':d.fees_category},
-				["name","outstanding_fees"])
-				if len(hostel_fee_comp)>0:
-					frappe.db.set_value("Fee Component",hostel_fee_comp[0]['name'], "outstanding_fees",d.outstanding_amount)
-					frappe.db.set_value("Hostel Fees",hostel_fee_info[0]['name'], "outstanding_amount",hostel_fee_info[0]['outstanding_amount']-d.allocated_amount)
+		if self.party_type=="Student":
+			for d in self.get("references"):
+				hostel_fee_info=frappe.get_all("Hostel Fees",filters=[["fees_id","=",d.reference_name]],fields=['name','outstanding_amount'])
+				if len(hostel_fee_info)>0:
+					hostel_fee_comp=frappe.get_all("Fee Component",{"parent":hostel_fee_info[0]['name'],'fees_category':d.fees_category},
+					["name","outstanding_fees"])
+					if len(hostel_fee_comp)>0:
+						frappe.db.set_value("Fee Component",hostel_fee_comp[0]['name'], "outstanding_fees",d.outstanding_amount)
+						frappe.db.set_value("Hostel Fees",hostel_fee_info[0]['name'], "outstanding_amount",hostel_fee_info[0]['outstanding_amount']-d.allocated_amount)
 			
 
 	def on_cancel(self):
@@ -124,15 +124,15 @@ class PaymentEntry(AccountsController):
 		self.update_payment_schedule(cancel=1)
 		self.set_payment_req_status()
 		self.set_status()
-
-		for d in self.get("references"):
-			hostel_fee_info=frappe.get_all("Hostel Fees",filters=[["fees_id","=",d.reference_name]],fields=['name','outstanding_amount'])
-			if len(hostel_fee_info)>0:
-				hostel_fee_comp=frappe.get_all("Fee Component",{"parent":hostel_fee_info[0]['name'],'fees_category':d.fees_category},
-				["name","outstanding_fees"])
-				if len(hostel_fee_comp)>0:
-					frappe.db.set_value("Fee Component",hostel_fee_comp[0]['name'], "outstanding_fees",d.outstanding_amount)
-					frappe.db.set_value("Hostel Fees",hostel_fee_info[0]['name'], "outstanding_amount",hostel_fee_info[0]['outstanding_amount']+d.allocated_amount)
+		if self.party_type=="Student":
+			for d in self.get("references"):
+				hostel_fee_info=frappe.get_all("Hostel Fees",filters=[["fees_id","=",d.reference_name]],fields=['name','outstanding_amount'])
+				if len(hostel_fee_info)>0:
+					hostel_fee_comp=frappe.get_all("Fee Component",{"parent":hostel_fee_info[0]['name'],'fees_category':d.fees_category},
+					["name","outstanding_fees"])
+					if len(hostel_fee_comp)>0:
+						frappe.db.set_value("Fee Component",hostel_fee_comp[0]['name'], "outstanding_fees",d.outstanding_amount)
+						frappe.db.set_value("Hostel Fees",hostel_fee_info[0]['name'], "outstanding_amount",hostel_fee_info[0]['outstanding_amount']+d.allocated_amount)
 
 	def set_payment_req_status(self):
 		from erpnext.accounts.doctype.payment_request.payment_request import update_payment_req_status
@@ -141,10 +141,13 @@ class PaymentEntry(AccountsController):
 
 	def update_outstanding_amounts(self,cancel=0):
 		# self.set_missing_ref_details(force=True)
-		if cancel==0:
-			self.set_missing_ref_details_table(force=True)
-		else:
-			self.set_missing_ref_details_table_on_cancel(force=True)	
+		if self.party_type!="Student":
+            self.set_missing_ref_details(force=True)
+        else:			
+			if cancel==0:
+				self.set_missing_ref_details_table(force=True)
+			else:
+				self.set_missing_ref_details_table_on_cancel(force=True)	
 		
 	def set_missing_ref_details_table(self, force=False):
 		###########################
@@ -323,7 +326,11 @@ class PaymentEntry(AccountsController):
 			if self.payment_type=="Receive" else self.paid_to_account_currency
 
 		# self.set_missing_ref_details()
-		self.set_missing_ref_details_table()
+		################ change for other screen
+        if self.party_type!="Student":
+            self.set_missing_ref_details()
+        else:
+			self.set_missing_ref_details_table()
 ##############################################################################
 	def set_missing_ref_details(self, force=False):	
 		for d in self.get("references"):
@@ -461,16 +468,29 @@ class PaymentEntry(AccountsController):
 						elif self.party_type=="Employee":
 							ref_party_account = ref_doc.payable_account
 						# if ref_party_account != self.party_account:
-						if self.payment_type=="Receive":
-							if ref_party_account != d.account_paid_from:
-								if ('Fees Refundable / Adjustable' in d.account_paid_from)==False:
-									frappe.throw(_("{0} {1} is associated with {2}, but Party Account is {3}")
-											.format(d.reference_doctype, d.reference_name, ref_party_account, d.account_paid_from))
-						elif self.payment_type=="Pay":				
-							if ref_party_account != d.account_paid_to:
-								if ('Fees Refundable / Adjustable' in d.account_paid_from)==False:
-									frappe.throw(_("{0} {1} is associated with {2}, but Party Account is {3}")
-											.format(d.reference_doctype, d.reference_name, ref_party_account, d.account_paid_from))
+						if self.party_type == "Student":
+							if self.payment_type=="Receive":
+								if ref_party_account != d.account_paid_from:
+									if ('Fees Refundable / Adjustable' in d.account_paid_from)==False:
+										frappe.throw(_("{0} {1} is associated with {2}, but Party Account is {3}")
+												.format(d.reference_doctype, d.reference_name, ref_party_account, d.account_paid_from))
+							elif self.payment_type=="Pay":				
+								if ref_party_account != d.account_paid_to:
+									if ('Fees Refundable / Adjustable' in d.account_paid_from)==False:
+										frappe.throw(_("{0} {1} is associated with {2}, but Party Account is {3}")
+												.format(d.reference_doctype, d.reference_name, ref_party_account, d.account_paid_from))
+						else:
+                            if ref_party_account != self.party_account:
+                                frappe.throw(
+                                    _("{0} {1} is associated with {2}, but Party Account is {3}").format(
+                                        d.reference_doctype, d.reference_name, ref_party_account, self.party_account
+                                    )
+                                )
+                            if ref_doc.doctype == "Purchase Invoice" and ref_doc.get("on_hold"):
+                                frappe.throw(
+                                    _("{0} {1} is on hold").format(d.reference_doctype, d.reference_name),
+                                    title=_("Invalid Invoice"),
+                                )
 					if ref_doc.docstatus != 1:
 						frappe.throw(_("{0} {1} must be submitted")
 							.format(d.reference_doctype, d.reference_name))
@@ -833,74 +853,51 @@ class PaymentEntry(AccountsController):
 ########################################################################################################################
 	def add_party_gl_entries(self, gl_entries):
 		if self.party_account:
-			if self.payment_type=="Receive":
-				against_account = self.paid_to
-			else:
-				against_account = self.paid_from
-			# self.party_account=account_paid_from
-			party_gl_list=[]
-			if self.payment_type=="Receive":
-				for t in frappe.db.get_all('Payment Entry Reference',{"parent":self.name},["account_paid_from","fees_category",'reference_name']):
-					party_gl_dict = self.get_gl_dict({
-						# "account": self.party_account,
-						"account": t["account_paid_from"],
-						"party_type": self.party_type,
-						"party": self.party,
-						"against": against_account,
-						"account_currency": self.party_account_currency,
-						"cost_center": self.cost_center,
-						"fees_category":t["fees_category"],
-						"voucher_no_vali":t['reference_name']
-					}, item=self)
-					party_gl_list.append(party_gl_dict)
-			elif self.payment_type=="Pay":
-				for t in frappe.db.get_all('Payment Entry Reference',{"parent":self.name},["account_paid_to","fees_category",'reference_name']):
-					party_gl_dict = self.get_gl_dict({
-						# "account": self.party_account,
-						"account": t["account_paid_to"],
-						"party_type": self.party_type,
-						"party": self.party,
-						"against": against_account,
-						"account_currency": self.party_account_currency,
-						"cost_center": self.cost_center,
-						"fees_category":t["fees_category"],
-						"voucher_no_vali":t['reference_name']
-						
-					}, item=self)
-					party_gl_list.append(party_gl_dict)		
-			del party_gl_dict	
-			party_gl_dict=party_gl_list	
-
-			dr_or_cr = "credit" if erpnext.get_party_account_type(self.party_type) == 'Receivable' else "debit"
-
-			for t in party_gl_dict:
-				for d in self.get("references"):
-					cost_center = self.cost_center
-					if self.payment_type=="Receive":
-						if d.fees_category==t["fees_category"] and t['voucher_no_vali']==d.reference_name:
-							if d.reference_doctype == "Sales Invoice" and not cost_center:
-								cost_center = frappe.db.get_value(d.reference_doctype, d.reference_name, "cost_center")
-							# gle = party_gl_dict.copy()
+			if self.party_type=="Student":
+				if self.payment_type=="Receive":
+					against_account = self.paid_to
+				else:
+					against_account = self.paid_from
+				# self.party_account=account_paid_from
+				party_gl_list=[]
+				if self.payment_type=="Receive":
+					for t in frappe.db.get_all('Payment Entry Reference',{"parent":self.name},["account_paid_from","fees_category",'reference_name']):
+						party_gl_dict = self.get_gl_dict({
+							# "account": self.party_account,
+							"account": t["account_paid_from"],
+							"party_type": self.party_type,
+							"party": self.party,
+							"against": against_account,
+							"account_currency": self.party_account_currency,
+							"cost_center": self.cost_center,
+							"fees_category":t["fees_category"],
+							"voucher_no_vali":t['reference_name']
+						}, item=self)
+						party_gl_list.append(party_gl_dict)
+				elif self.payment_type=="Pay":
+					for t in frappe.db.get_all('Payment Entry Reference',{"parent":self.name},["account_paid_to","fees_category",'reference_name']):
+						party_gl_dict = self.get_gl_dict({
+							# "account": self.party_account,
+							"account": t["account_paid_to"],
+							"party_type": self.party_type,
+							"party": self.party,
+							"against": against_account,
+							"account_currency": self.party_account_currency,
+							"cost_center": self.cost_center,
+							"fees_category":t["fees_category"],
+							"voucher_no_vali":t['reference_name']
 							
-							gle = t.copy()
-							del gle['voucher_no_vali']
-							gle.update({
-								"against_voucher_type": d.reference_doctype,
-								"against_voucher": d.reference_name,
-								"cost_center": cost_center
-							})
+						}, item=self)
+						party_gl_list.append(party_gl_dict)		
+				del party_gl_dict	
+				party_gl_dict=party_gl_list	
 
-							allocated_amount_in_company_currency = flt(flt(d.allocated_amount) * flt(d.exchange_rate),
-								self.precision("paid_amount"))
+				dr_or_cr = "credit" if erpnext.get_party_account_type(self.party_type) == 'Receivable' else "debit"
 
-							gle.update({
-								dr_or_cr + "_in_account_currency": d.allocated_amount,
-								dr_or_cr: allocated_amount_in_company_currency
-							})
-
-							gl_entries.append(gle)
-					elif self.payment_type=="Pay":
-						if t["fees_category"]!="Fees Refundable / Adjustable":
+				for t in party_gl_dict:
+					for d in self.get("references"):
+						cost_center = self.cost_center
+						if self.payment_type=="Receive":
 							if d.fees_category==t["fees_category"] and t['voucher_no_vali']==d.reference_name:
 								if d.reference_doctype == "Sales Invoice" and not cost_center:
 									cost_center = frappe.db.get_value(d.reference_doctype, d.reference_name, "cost_center")
@@ -923,40 +920,116 @@ class PaymentEntry(AccountsController):
 								})
 
 								gl_entries.append(gle)
-						elif t["fees_category"]=="Fees Refundable / Adjustable":
-							if d.fees_category==t["fees_category"]:
-								if d.reference_doctype == "Sales Invoice" and not cost_center:
-									cost_center = frappe.db.get_value(d.reference_doctype, d.reference_name, "cost_center")
-								# gle = party_gl_dict.copy()
-								
-								gle = t.copy()
-								gle.update({
-									"against_voucher_type": d.reference_doctype,
-									"against_voucher": d.reference_name,
-									"cost_center": cost_center
-								})
+						elif self.payment_type=="Pay":
+							if t["fees_category"]!="Fees Refundable / Adjustable":
+								if d.fees_category==t["fees_category"] and t['voucher_no_vali']==d.reference_name:
+									if d.reference_doctype == "Sales Invoice" and not cost_center:
+										cost_center = frappe.db.get_value(d.reference_doctype, d.reference_name, "cost_center")
+									# gle = party_gl_dict.copy()
+									
+									gle = t.copy()
+									del gle['voucher_no_vali']
+									gle.update({
+										"against_voucher_type": d.reference_doctype,
+										"against_voucher": d.reference_name,
+										"cost_center": cost_center
+									})
 
-								allocated_amount_in_company_currency = flt(flt(d.allocated_amount) * flt(d.exchange_rate),
-									self.precision("paid_amount"))
+									allocated_amount_in_company_currency = flt(flt(d.allocated_amount) * flt(d.exchange_rate),
+										self.precision("paid_amount"))
 
-								gle.update({
-									dr_or_cr + "_in_account_currency": d.allocated_amount,
-									dr_or_cr: allocated_amount_in_company_currency
-								})
+									gle.update({
+										dr_or_cr + "_in_account_currency": d.allocated_amount,
+										dr_or_cr: allocated_amount_in_company_currency
+									})
 
-								gl_entries.append(gle)					
-			if self.unallocated_amount:
-				exchange_rate = self.get_exchange_rate()
-				base_unallocated_amount = (self.unallocated_amount * exchange_rate)
+									gl_entries.append(gle)
+							elif t["fees_category"]=="Fees Refundable / Adjustable":
+								if d.fees_category==t["fees_category"]:
+									if d.reference_doctype == "Sales Invoice" and not cost_center:
+										cost_center = frappe.db.get_value(d.reference_doctype, d.reference_name, "cost_center")
+									# gle = party_gl_dict.copy()
+									
+									gle = t.copy()
+									gle.update({
+										"against_voucher_type": d.reference_doctype,
+										"against_voucher": d.reference_name,
+										"cost_center": cost_center
+									})
 
-				gle = party_gl_dict.copy()
+									allocated_amount_in_company_currency = flt(flt(d.allocated_amount) * flt(d.exchange_rate),
+										self.precision("paid_amount"))
 
-				gle.update({
-					dr_or_cr + "_in_account_currency": self.unallocated_amount,
-					dr_or_cr: base_unallocated_amount
-				})
+									gle.update({
+										dr_or_cr + "_in_account_currency": d.allocated_amount,
+										dr_or_cr: allocated_amount_in_company_currency
+									})
 
-				gl_entries.append(gle)
+									gl_entries.append(gle)					
+				if self.unallocated_amount:
+					exchange_rate = self.get_exchange_rate()
+					base_unallocated_amount = (self.unallocated_amount * exchange_rate)
+
+					gle = party_gl_dict.copy()
+
+					gle.update({
+						dr_or_cr + "_in_account_currency": self.unallocated_amount,
+						dr_or_cr: base_unallocated_amount
+					})
+
+					gl_entries.append(gle)
+			else:
+                if self.payment_type == "Receive":
+                    against_account = self.paid_to
+                else:
+                    against_account = self.paid_from
+                party_gl_dict = self.get_gl_dict(
+                    {
+                        "account": self.party_account,
+                        "party_type": self.party_type,
+                        "party": self.party,
+                        "against": against_account,
+                        "account_currency": self.party_account_currency,
+                        "cost_center": self.cost_center,
+                    },
+                    item=self,
+                )
+                dr_or_cr = (
+                    "credit" if erpnext.get_party_account_type(self.party_type) == "Receivable" else "debit"
+                )
+                for d in self.get("references"):
+                    cost_center = self.cost_center
+                    if d.reference_doctype == "Sales Invoice" and not cost_center:
+                        cost_center = frappe.db.get_value(d.reference_doctype, d.reference_name, "cost_center")
+                    gle = party_gl_dict.copy()
+                    gle.update(
+                        {
+                            "against_voucher_type": d.reference_doctype,
+                            "against_voucher": d.reference_name,
+                            "cost_center": cost_center,
+                        }
+                    )
+                    allocated_amount_in_company_currency = flt(
+                        flt(d.allocated_amount) * flt(d.exchange_rate), self.precision("paid_amount")
+                    )
+                    gle.update(
+                        {
+                            dr_or_cr + "_in_account_currency": d.allocated_amount,
+                            dr_or_cr: allocated_amount_in_company_currency,
+                        }
+                    )
+                    gl_entries.append(gle)
+                if self.unallocated_amount:
+                    exchange_rate = self.get_exchange_rate()
+                    base_unallocated_amount = self.unallocated_amount * exchange_rate
+                    gle = party_gl_dict.copy()
+                    gle.update(
+                        {
+                            dr_or_cr + "_in_account_currency": self.unallocated_amount,
+                            dr_or_cr: base_unallocated_amount,
+                        }
+                    )
+                    gl_entries.append(gle)
 ########################################################################################################################
 	def add_bank_gl_entries(self, gl_entries):
 		if self.payment_type in ("Pay", "Internal Transfer"):
@@ -1831,11 +1904,14 @@ def get_payment_entry(dt, dn, party_amount=None, bank_account=None, bank_amount=
 	################################
 	#refund problem
 	# pe.paid_to = party_account if payment_type=="Pay" else bank.account
-	pe.paid_to = party_account 
-	if payment_type=="Pay":
-		pe.paid_to = bank.account 
+	if dt=="Fees":
+		pe.paid_to = party_account 
+		if payment_type=="Pay":
+			pe.paid_to = bank.account 
+		else:
+			pe.paid_to = bank.account
 	else:
-		pe.paid_to = bank.account
+		pe.paid_to = party_account if payment_type=="Pay" else bank.account
 	##################################################	
 	pe.paid_from_account_currency = party_account_currency \
 		if payment_type=="Receive" else bank.account_currency
@@ -1843,7 +1919,8 @@ def get_payment_entry(dt, dn, party_amount=None, bank_account=None, bank_amount=
 	pe.paid_amount = paid_amount
 	pe.received_amount = received_amount
 	pe.letter_head = doc.get("letter_head")
-	pe.fee_structure = doc.fee_structure	
+	if dt=="Fees":
+		pe.fee_structure = doc.fee_structure
 
 
 	if pe.party_type in ["Customer", "Supplier"]:
@@ -1881,7 +1958,7 @@ def get_payment_entry(dt, dn, party_amount=None, bank_account=None, bank_amount=
 					'outstanding_amount': doc.get('dunning_amount'),
 					'allocated_amount': doc.get('dunning_amount')
 				})
-			else:
+			elif dt=="Fees":
 				for t in party_account:
 					if payment_type=="Pay":
 						ref_details=frappe.get_all("Fee Component",{"parent":dn,"fees_category":t['fees_category']},["amount"])
@@ -1921,7 +1998,20 @@ def get_payment_entry(dt, dn, party_amount=None, bank_account=None, bank_amount=
 							'fees_category':t['fees_category'],
 							'account_paid_from':t['receivable_account'],
 						})
-
+			else:
+                pe.append(
+                    "references",
+                    {
+                        "reference_doctype": dt,
+                        "reference_name": dn,
+                        "bill_no": doc.get("bill_no"),
+                        "due_date": doc.get("due_date"),
+                        "total_amount": grand_total,
+                        "outstanding_amount": outstanding_amount,
+                        "allocated_amount": outstanding_amount,
+                    },
+                )
+            ################ end change for other screen
 
 	pe.setup_party_account_field()
 	pe.set_missing_values()
@@ -1938,11 +2028,11 @@ def get_payment_entry(dt, dn, party_amount=None, bank_account=None, bank_amount=
 				'amount': discount_amount * (-1 if payment_type == "Pay" else 1)
 			})
 			pe.set_difference_amount()
-	
-	if payment_type=="Receive": 
-		pe.paid_from=doc.receivable_account	
-	if payment_type=="Pay":
-		pe.paid_to=doc.receivable_account
+	if dt=="Fees":	
+		if payment_type=="Receive": 
+			pe.paid_from=doc.receivable_account	
+		if payment_type=="Pay":
+			pe.paid_to=doc.receivable_account
 	return pe
 
 def get_bank_cash_account(doc, bank_account):
