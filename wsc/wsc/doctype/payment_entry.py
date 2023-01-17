@@ -36,8 +36,6 @@ class InvalidPaymentEntry(ValidationError):
 
 
 class PaymentEntry(AccountsController):
-	print("\n\n\n\n")
-	print("ok")
 	def __init__(self, *args, **kwargs):
 		super(PaymentEntry, self).__init__(*args, **kwargs)
 		if not self.is_new():
@@ -100,7 +98,7 @@ class PaymentEntry(AccountsController):
 		self.update_outstanding_amounts()##
 		self.update_advance_paid()
 		self.update_donation()
-		self.update_payment_schedule()######################
+		self.update_payment_schedule()###########
 		self.set_status()
 		payment_entry_submit(self)
 		
