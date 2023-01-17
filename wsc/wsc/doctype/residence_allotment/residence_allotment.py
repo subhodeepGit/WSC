@@ -11,16 +11,14 @@ class ResidenceAllotment(Document):
 		dateValidate(self)
 	
 	def on_submit(self):
-		allotmentStatusAllot(self)
-		allotmentStatusRoom(self)
-		vacancyChange(self)
-		applicationStatus(self)
+		residenceAllotmentStatus(self)
+		buildingRoomStatus(self)
+		residenceApplicationStatus(self)
 		
 # To validate if the start date is not after the end date
 def dateValidate(self):
 	if self.start_date > self.end_date:
 			frappe.throw("Start date cannot be greater than End date")
-
 
 # To validate every employee is alloted only one quarter
 def duplicateResidenceAllot(self):
@@ -34,21 +32,30 @@ def dateValidate(self):
 	if self.start_date > self.end_date:
 		frappe.throw("Start date cannot be greater than End date")
 
-# To change employee allotment status to "Alloted" after allotment of residence
-def allotmentStatusAllot(self):
-	frappe.db.set_value("Residence Allotment", self.name, "employee_allotment_status", "Alloted")
-	frappe.db.set_value("Residence Allotment", self.name, "vacancy_status", "Not Vacant")
+# To change employee allotment status in "Residence Allotment"
+def residenceAllotmentStatus(self):
+	if self.approval_status=="Approved":
+		frappe.db.set_value("Residence Allotment", self.name, "employee_allotment_status", "Alloted")
+		frappe.db.set_value("Residence Allotment", self.name, "vacancy_status", "Not Vacant")
 
-# To change employee allotment status to "Alloted" after allotment of building room
-def allotmentStatusRoom(self):
-	frappe.db.set_value("Building Room", self.residence_serial_number, "employee_allotment_status", "Alloted")
+# To change employee allotment status and vacancy status in "Building Room"
+def buildingRoomStatus(self):
+	if self.approval_status=="Approved":
+		frappe.db.set_value("Building Room", self.residence_serial_number, "employee_allotment_status", "Alloted")
+		frappe.db.set_value("Building Room",self.residence_serial_number,"vacancy_status","Not Vacant")
 
-# To change vacancy status to "Not Vacant" after allotment of residence
-def vacancyChange(self):
-	frappe.db.set_value("Building Room",self.residence_serial_number,"vacancy_status","Not Vacant")
+# To set application status in "Application for Residence"
+def residenceApplicationStatus(self):
+	if self.approval_status=="Approved":
+		frappe.db.set_value("Application for Residence", self.application_number, "application_status", "Alloted")
+	elif self.approval_status=="Pending for Approval":
+		frappe.db.set_value("Application for Residence", self.application_number, "application_status", "Pending for Approval")
+	elif self.approval_status=="Rejected":
+		frappe.db.set_value("Application for Residence", self.application_number, "application_status", "Rejected")
+		
+	
 
-def applicationStatus(self):
-	frappe.db.set_value("Application for Residence", self.application_number, "application_status", "Alloted")
+
 
 
 
