@@ -1,0 +1,67 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-01-13 16:00:08.405217",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "company_name",
+  "placement_batch_year",
+  "placement_drive_name",
+  "round_of_placement",
+  "scheduled_date_of_round"
+ ],
+ "fields": [
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "label": "Company name"
+  },
+  {
+   "fieldname": "placement_batch_year",
+   "fieldtype": "Data",
+   "label": "Placement batch year"
+  },
+  {
+   "fieldname": "placement_drive_name",
+   "fieldtype": "Data",
+   "label": "Placement drive name"
+  },
+  {
+   "fieldname": "round_of_placement",
+   "fieldtype": "Data",
+   "label": "Round of placement"
+  },
+  {
+   "fieldname": "scheduled_date_of_round",
+   "fieldtype": "Data",
+   "label": "Scheduled date of round"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-01-13 16:00:08.405217",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Selection Round",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
