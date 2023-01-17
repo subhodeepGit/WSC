@@ -35,4 +35,3 @@ def changeNewRoomStatus(self):
 		frappe.db.set_value("Building Room",self.residence_serial_number,"employee_allotment_status", "Alloted")
 
 
-

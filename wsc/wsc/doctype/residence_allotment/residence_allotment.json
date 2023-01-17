@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_import": 1,
- "autoname": "RES-.####",
+ "autoname": "field:application_number",
  "creation": "2023-01-03 16:22:41.474014",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -9,7 +9,6 @@
  "field_order": [
   "application_number",
   "employee_info_section",
-  "employee",
   "employee_name",
   "employee_id",
   "column_break_3",
@@ -24,11 +23,13 @@
   "building",
   "residence_type",
   "residence_type_name",
-  "column_break_9",
   "residence_serial_number",
+  "column_break_9",
   "residence_number",
   "employee_allotment_status",
   "vacancy_status",
+  "current_employee_allotment_status",
+  "current_vacancy_status",
   "residence_details_section",
   "floor",
   "building_address",
@@ -88,20 +89,11 @@
   },
   {
    "fetch_from": "application_number.employee_name",
-   "fieldname": "employee",
-   "fieldtype": "Data",
-   "in_standard_filter": 1,
-   "label": "Employee",
-   "reqd": 1
-  },
-  {
-   "fetch_from": "employee.employee_name",
    "fieldname": "employee_name",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Employee Name",
-   "read_only": 1
+   "reqd": 1
   },
   {
    "fieldname": "residence_type_name",
@@ -265,7 +257,8 @@
    "fieldname": "application_number",
    "fieldtype": "Link",
    "label": "Application Number",
-   "options": "Application for Residence"
+   "options": "Application for Residence",
+   "unique": 1
   },
   {
    "fetch_from": "application_number.employee_id",
@@ -301,16 +294,26 @@
    "fieldname": "type_of_residence_name_requested",
    "fieldtype": "Data",
    "label": "Type of residence name requested"
+  },
+  {
+   "fieldname": "current_employee_allotment_status",
+   "fieldtype": "Data",
+   "label": "Current Employee Allotment status"
+  },
+  {
+   "fieldname": "current_vacancy_status",
+   "fieldtype": "Data",
+   "label": "Current Vacancy Status"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-16 17:34:54.380819",
+ "modified": "2023-01-17 16:28:11.137049",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Allotment",
- "naming_rule": "Expression (old style)",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
