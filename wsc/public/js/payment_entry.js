@@ -88,7 +88,7 @@ frappe.ui.form.on('Payment Entry', {
 			frappe.flags.allocate_payment_amount = true;
 			frm.events.validate_filters_data(frm, filters);
 			frm.doc.cost_center = filters.cost_center;
-			frm.events.get_outstanding_documents(frm, filters);
+			frm.events.get_outstanding_documents_fee(frm, filters);
 		}, __("Filters"), __("Get Outstanding Documents"));
 	},
 
@@ -115,7 +115,7 @@ frappe.ui.form.on('Payment Entry', {
 		}
 	},
 
-	get_outstanding_documents: function(frm, filters) {
+	get_outstanding_documents_fee: function(frm, filters) {
 		frm.clear_table("references");
 
 		if(!frm.doc.party) {
