@@ -7,13 +7,13 @@ from frappe.model.document import Document
 class ResidenceAllotment(Document):
 	def validate(self):
 		dateValidate(self)
-		vacancyChange(self)
 		duplicateResidenceAllot(self)
 		dateValidate(self)
 	
 	def on_submit(self):
 		allotmentStatusAllot(self)
 		allotmentStatusRoom(self)
+		vacancyChange(self)
 		applicationStatus(self)
 		
 # To validate if the start date is not after the end date
@@ -21,9 +21,6 @@ def dateValidate(self):
 	if self.start_date > self.end_date:
 			frappe.throw("Start date cannot be greater than End date")
 
-# To change vacancy status to "Not Vacant" after allotment of residence
-def vacancyChange(self):
-	frappe.db.set_value("Building Room",self.residence_serial_number,"vacancy_status","Not Vacant")
 
 # To validate every employee is alloted only one quarter
 def duplicateResidenceAllot(self):
@@ -46,9 +43,12 @@ def allotmentStatusAllot(self):
 def allotmentStatusRoom(self):
 	frappe.db.set_value("Building Room", self.residence_serial_number, "employee_allotment_status", "Alloted")
 
+# To change vacancy status to "Not Vacant" after allotment of residence
+def vacancyChange(self):
+	frappe.db.set_value("Building Room",self.residence_serial_number,"vacancy_status","Not Vacant")
+
 def applicationStatus(self):
 	frappe.db.set_value("Application for Residence", self.application_number, "application_status", "Alloted")
-
 
 
 
