@@ -27,7 +27,8 @@ frappe.ui.form.on('Placement Drive', {
 				'name': frm.doc.name,
 				'academic_year':frm.doc.academic_year,
 				'academic_term':frm.doc.academic_term,
-				'placement_drive_for':frm.doc.placement_drive_for
+				'placement_drive_for':frm.doc.placement_drive_for,
+				'required_cgpa':frm.doc.current_cgpapercentage
 			},
 			callback: function(result){
 				const res = Object.values(result)

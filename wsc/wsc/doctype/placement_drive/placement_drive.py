@@ -34,50 +34,66 @@ class PlacementDrive(Document):
 			frappe.delete_doc("DocShare",d.name)
 	
 @frappe.whitelist()
-def get_eligibility(name , academic_year , academic_term , placement_drive_for):
-	print("\n\n\n")
-	# print(academic_year , academic_term)
-	eligibility_criteria=frappe.get_all("Eligibility Criteria",{"parent":name},['qualification',"percentage","year_of_passing"])
-	student_list= frappe.get_all("Educational Details" , ['qualification' , "score" , 'year_of_completion' , 'parent'] )
-	current_education= frappe.get_all("Current Educational Details" , ['programs' , 'semesters' , 'academic_year' , 'academic_term'])
+def get_eligibility(name , academic_year , academic_term , placement_drive_for , required_cgpa):
+	current_education= frappe.get_all("Current Educational Details" ,{"academic_year":academic_year , "academic_term":academic_term,"parenttype":"Student"} , 
+	['programs' , 'semesters' , 'academic_year' , 'academic_term',"parent","name"]) #from students.
+
+	programs = frappe.get_all("Place Eligible Programs" , {"parent":name} , ['programs' , 'semester'])  #from placement drive
+
+	eligibility_criteria=frappe.get_all("Eligibility Criteria",{"parent":name},['qualification',"percentage","year_of_passing"]) #from placement drive
 	
-	# print(current_education)
-	# print(current_education[0].academic_term)	
+	final_studnet_list=[]
+	for j in programs:
+		for t in current_education:
+			# if j['programs']==t['programs'] and j['semester']==t['semesters'] :
+			if j['programs'] == t['programs']:
+				final_studnet_list.append(t)
+	# print(programs)
+
 	student_dict = {}
-	for i in student_list:
+	for i in final_studnet_list:
 		student_dict[i['parent']] = []
 
-	if academic_year == current_education[0].academic_year:
-		print("Hello There")
 	
+	#Qualification Check
+	# for k in eligibility_criteria:	
+	# 	for t in student_dict:
+	# 		for j in student_list:
+	# 			if j['parent'] == t:
+	# 				if k['qualification']==j["qualification"] and k['percentage'] <= j['score']:
+	# 					list_data = student_dict[j['parent']]
+	# 					list_data.append(j)
+	# 					student_dict[j['parent']]=list_data
+
 	for t in student_dict:
 		student_list= frappe.get_all("Educational Details",{"parent":t}, ['qualification',"score",'year_of_completion','parent'])  #from student
-		experience_detail = frappe.get_all("Experience child table" , {"parent":i} , ['job_duration' , 'parent'])  #from student
+		experience_detail = frappe.get_all("Experience child table" , {"parent":t} , ['job_duration' , 'parent'])  #from student
+		student_cgpa = frappe.get_all("Exam Assessment Result" , {"student":t} , ['name' ,'overall_cgpa'])
+		print(student_cgpa)
+		# print(t)
+		list_data = student_dict[t]
+		for i in experience_detail:
 
-		list_data=student_dict[t]
-
-		for j in experience_detail:
-			
-			if placement_drive_for == "fresher" and j['job_duration'] == 0:
+			if placement_drive_for == "fresher" and i['job_duration'] == 0:
 				for k in student_list:
 					for j in eligibility_criteria:	
-						if k['qualification'] == j['qualification'] and k['score'] >= j['percentage']:
+						if k['qualification'] == j['qualification'] and k['score'] >= j['percentage'] and required_cgpa < student_cgpa['overall_cgpa']:
 							list_data.append(k)
-			
-			elif placement_drive_for == "Experience" and j['job_duration'] > 0:
+
+			elif placement_drive_for == "Experience" and i['job_duration'] > 0:
 				for k in student_list:
 					for j in eligibility_criteria:	
-						if k['qualification'] == j['qualification'] and k['score'] >= j['percentage']:
+						if k['qualification'] == j['qualification'] and k['score'] >= j['percentage'] and required_cgpa < student_cgpa['overall_cgpa']:
 							list_data.append(k)
-			
+
 			else:
 				for k in student_list:
 					for j in eligibility_criteria:	
-						if k['qualification'] == j['qualification'] and k['score'] >= j['percentage']:
+						if k['qualification'] == j['qualification'] and k['score'] >= j['percentage'] and required_cgpa < student_cgpa['overall_cgpa']:
 							list_data.append(k)
 
 		student_dict[t]=list_data
-			
+
 	for i in student_dict:
 		# print(student_dict[i])
 		for j in final_studnet_list:
@@ -87,9 +103,10 @@ def get_eligibility(name , academic_year , academic_term , placement_drive_for):
 				k['academic_year'] = j['academic_year']
 				k['name'] = j['name']
 				# print(k)
-	print("\n\nstudent_dict")
-	print(student_dict)
+	# print("\n\nstudent_dict")
+	# print(student_dict)
 	return student_dict
+
 	
 def validate_application_date(doc):
 	if doc.application_start_date and doc.application_end_date:
