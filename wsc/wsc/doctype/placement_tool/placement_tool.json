@@ -7,10 +7,14 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "company_name",
+  "placement_batch_year",
   "placement_drive_name",
   "round_of_placement",
   "date_of_round",
   "get_student",
+  "section_break_7",
+  "test_btn",
   "student_child_table"
  ],
  "fields": [
@@ -32,10 +36,9 @@
   },
   {
    "fieldname": "date_of_round",
-   "fieldtype": "Link",
+   "fieldtype": "Date",
    "in_list_view": 1,
    "label": "Scheduled date of round",
-   "options": "Rounds of Placement",
    "reqd": 1
   },
   {
@@ -48,15 +51,36 @@
    "fieldname": "get_student",
    "fieldtype": "Button",
    "label": "Get student"
+  },
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Link",
+   "label": "Company name",
+   "options": "Placement Company"
+  },
+  {
+   "fieldname": "placement_batch_year",
+   "fieldtype": "Link",
+   "label": "Placement Batch Year",
+   "options": "Academic Year"
+  },
+  {
+   "fieldname": "test_btn",
+   "fieldtype": "Button",
+   "label": "Test button"
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-01-11 16:26:56.398570",
+ "modified": "2023-01-17 14:46:27.854690",
  "modified_by": "Administrator",
  "module": "WSC",
- "name": "placement_tool",
+ "name": "Placement tool",
  "owner": "Administrator",
  "permissions": [
   {

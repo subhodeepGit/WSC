@@ -1,0 +1,103 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-01-17 12:05:52.941058",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "student_details_section",
+  "student_name",
+  "academic_year",
+  "program_name",
+  "semester",
+  "company_details_section",
+  "placement_drive_name",
+  "company_name",
+  "placement_batch_year",
+  "round_of_placement",
+  "scheduled_round_of_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "student_details_section",
+   "fieldtype": "Section Break",
+   "label": "Student Details"
+  },
+  {
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "label": "Student name"
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Data",
+   "label": "Academic year"
+  },
+  {
+   "fieldname": "program_name",
+   "fieldtype": "Data",
+   "label": "Program name"
+  },
+  {
+   "fieldname": "semester",
+   "fieldtype": "Data",
+   "label": "Semester"
+  },
+  {
+   "fieldname": "company_details_section",
+   "fieldtype": "Section Break",
+   "label": "Company details"
+  },
+  {
+   "fieldname": "placement_drive_name",
+   "fieldtype": "Data",
+   "label": "Placement drive name"
+  },
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "label": "Company name"
+  },
+  {
+   "fieldname": "placement_batch_year",
+   "fieldtype": "Data",
+   "label": "Placement batch year"
+  },
+  {
+   "fieldname": "round_of_placement",
+   "fieldtype": "Data",
+   "label": "Round of placement"
+  },
+  {
+   "fieldname": "scheduled_round_of_date",
+   "fieldtype": "Data",
+   "label": "Scheduled round of date"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-01-17 12:05:52.941058",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Placement selection round",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

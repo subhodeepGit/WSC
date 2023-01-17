@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestPlacementtool(FrappeTestCase):
+class TestPlacementselectionround(FrappeTestCase):
 	pass
