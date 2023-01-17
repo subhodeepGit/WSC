@@ -27,5 +27,3 @@ def dateValidate(self):
 	if self.allotment_status == "Allottable":
 		if self.start_date > self.end_date:
 			frappe.throw("Start date cannot be greater than End date")
-	else:
-		pass
