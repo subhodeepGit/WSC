@@ -1,28 +1,16 @@
 // Copyright (c) 2023, SOUL Limited and contributors
 // For license information, please see license.txt
 
-// // To filter employees in the employee link field based if residence alloted
-// frappe.ui.form.on("Residence Allotment", {
-// 	setup: function(frm) {
-// 		frm.set_query("employee", function() {
-// 			return {
-// 				filters: [
-// 					["Building Room","employee_allotment_status", "=", "Not Alloted"]
-                    
-// 				]
-// 			}
-		
-// 		});
-// 	}
-// });
-
 // To filter applications in the link field based on ithe application status
 frappe.ui.form.on("Residence Allotment", {
 	setup: function(frm) {
 		frm.set_query("application_number", function() {
 			return {
 				filters: [
-					["Application for Residence","application_status", "=", "Applied"]
+					["Application for Residence","current_application_status", "!=", "Rejected"],
+					["Application for Residence","current_application_status", "!=", "Alloted"],
+					["Application for Residence","current_application_status", "!=", "Cancelled by Applicant"]
+					
                     
 				]
 			}

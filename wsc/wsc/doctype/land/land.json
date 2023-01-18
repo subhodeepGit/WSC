@@ -26,9 +26,9 @@
   "end_date",
   "land_use",
   "time_of_planned_development",
-  "amended_from",
   "bda_approval",
-  "land_blueprint"
+  "land_blueprint",
+  "amended_from"
  ],
  "fields": [
   {
@@ -167,7 +167,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-09 18:24:17.940493",
+ "modified": "2023-01-18 17:53:54.366258",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Land",
