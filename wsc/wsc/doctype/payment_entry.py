@@ -142,8 +142,8 @@ class PaymentEntry(AccountsController):
 	def update_outstanding_amounts(self,cancel=0):
 		# self.set_missing_ref_details(force=True)
 		if self.party_type!="Student":
-            self.set_missing_ref_details(force=True)
-        else:			
+			self.set_missing_ref_details(force=True)
+		else:			
 			if cancel==0:
 				self.set_missing_ref_details_table(force=True)
 			else:
@@ -327,9 +327,9 @@ class PaymentEntry(AccountsController):
 
 		# self.set_missing_ref_details()
 		################ change for other screen
-        if self.party_type!="Student":
-            self.set_missing_ref_details()
-        else:
+		if self.party_type!="Student":
+			self.set_missing_ref_details()
+		else:
 			self.set_missing_ref_details_table()
 ##############################################################################
 	def set_missing_ref_details(self, force=False):	
@@ -480,17 +480,17 @@ class PaymentEntry(AccountsController):
 										frappe.throw(_("{0} {1} is associated with {2}, but Party Account is {3}")
 												.format(d.reference_doctype, d.reference_name, ref_party_account, d.account_paid_from))
 						else:
-                            if ref_party_account != self.party_account:
-                                frappe.throw(
-                                    _("{0} {1} is associated with {2}, but Party Account is {3}").format(
-                                        d.reference_doctype, d.reference_name, ref_party_account, self.party_account
-                                    )
-                                )
-                            if ref_doc.doctype == "Purchase Invoice" and ref_doc.get("on_hold"):
-                                frappe.throw(
-                                    _("{0} {1} is on hold").format(d.reference_doctype, d.reference_name),
-                                    title=_("Invalid Invoice"),
-                                )
+							if ref_party_account != self.party_account:
+								frappe.throw(
+								_("{0} {1} is associated with {2}, but Party Account is {3}").format(
+									d.reference_doctype, d.reference_name, ref_party_account, self.party_account
+								)
+								)
+							if ref_doc.doctype == "Purchase Invoice" and ref_doc.get("on_hold"):
+								frappe.throw(
+								_("{0} {1} is on hold").format(d.reference_doctype, d.reference_name),
+								title=_("Invalid Invoice"),
+								)
 					if ref_doc.docstatus != 1:
 						frappe.throw(_("{0} {1} must be submitted")
 							.format(d.reference_doctype, d.reference_name))
@@ -979,57 +979,57 @@ class PaymentEntry(AccountsController):
 
 					gl_entries.append(gle)
 			else:
-                if self.payment_type == "Receive":
-                    against_account = self.paid_to
-                else:
-                    against_account = self.paid_from
-                party_gl_dict = self.get_gl_dict(
-                    {
-                        "account": self.party_account,
-                        "party_type": self.party_type,
-                        "party": self.party,
-                        "against": against_account,
-                        "account_currency": self.party_account_currency,
-                        "cost_center": self.cost_center,
-                    },
-                    item=self,
-                )
-                dr_or_cr = (
-                    "credit" if erpnext.get_party_account_type(self.party_type) == "Receivable" else "debit"
-                )
-                for d in self.get("references"):
-                    cost_center = self.cost_center
-                    if d.reference_doctype == "Sales Invoice" and not cost_center:
-                        cost_center = frappe.db.get_value(d.reference_doctype, d.reference_name, "cost_center")
-                    gle = party_gl_dict.copy()
-                    gle.update(
-                        {
-                            "against_voucher_type": d.reference_doctype,
-                            "against_voucher": d.reference_name,
-                            "cost_center": cost_center,
-                        }
-                    )
-                    allocated_amount_in_company_currency = flt(
-                        flt(d.allocated_amount) * flt(d.exchange_rate), self.precision("paid_amount")
-                    )
-                    gle.update(
-                        {
-                            dr_or_cr + "_in_account_currency": d.allocated_amount,
-                            dr_or_cr: allocated_amount_in_company_currency,
-                        }
-                    )
-                    gl_entries.append(gle)
-                if self.unallocated_amount:
-                    exchange_rate = self.get_exchange_rate()
-                    base_unallocated_amount = self.unallocated_amount * exchange_rate
-                    gle = party_gl_dict.copy()
-                    gle.update(
-                        {
-                            dr_or_cr + "_in_account_currency": self.unallocated_amount,
-                            dr_or_cr: base_unallocated_amount,
-                        }
-                    )
-                    gl_entries.append(gle)
+				if self.payment_type == "Receive":
+					against_account = self.paid_to
+				else:
+					against_account = self.paid_from
+				party_gl_dict = self.get_gl_dict(
+					{
+						"account": self.party_account,
+						"party_type": self.party_type,
+						"party": self.party,
+						"against": against_account,
+						"account_currency": self.party_account_currency,
+						"cost_center": self.cost_center,
+					},
+					item=self,
+				)
+				dr_or_cr = (
+					"credit" if erpnext.get_party_account_type(self.party_type) == "Receivable" else "debit"
+				)
+				for d in self.get("references"):
+					cost_center = self.cost_center
+					if d.reference_doctype == "Sales Invoice" and not cost_center:
+						cost_center = frappe.db.get_value(d.reference_doctype, d.reference_name, "cost_center")
+					gle = party_gl_dict.copy()
+					gle.update(
+						{
+							"against_voucher_type": d.reference_doctype,
+							"against_voucher": d.reference_name,
+							"cost_center": cost_center,
+						}
+					)
+					allocated_amount_in_company_currency = flt(
+						flt(d.allocated_amount) * flt(d.exchange_rate), self.precision("paid_amount")
+					)
+					gle.update(
+						{
+							dr_or_cr + "_in_account_currency": d.allocated_amount,
+							dr_or_cr: allocated_amount_in_company_currency,
+						}
+					)
+					gl_entries.append(gle)
+				if self.unallocated_amount:
+					exchange_rate = self.get_exchange_rate()
+					base_unallocated_amount = self.unallocated_amount * exchange_rate
+					gle = party_gl_dict.copy()
+					gle.update(
+						{
+							dr_or_cr + "_in_account_currency": self.unallocated_amount,
+							dr_or_cr: base_unallocated_amount,
+						}
+					)
+					gl_entries.append(gle)
 ########################################################################################################################
 	def add_bank_gl_entries(self, gl_entries):
 		if self.payment_type in ("Pay", "Internal Transfer"):
@@ -1999,18 +1999,18 @@ def get_payment_entry(dt, dn, party_amount=None, bank_account=None, bank_amount=
 							'account_paid_from':t['receivable_account'],
 						})
 			else:
-                pe.append(
-                    "references",
-                    {
-                        "reference_doctype": dt,
-                        "reference_name": dn,
-                        "bill_no": doc.get("bill_no"),
-                        "due_date": doc.get("due_date"),
-                        "total_amount": grand_total,
-                        "outstanding_amount": outstanding_amount,
-                        "allocated_amount": outstanding_amount,
-                    },
-                )
+				pe.append(
+					"references",
+					{
+						"reference_doctype": dt,
+						"reference_name": dn,
+						"bill_no": doc.get("bill_no"),
+						"due_date": doc.get("due_date"),
+						"total_amount": grand_total,
+						"outstanding_amount": outstanding_amount,
+						"allocated_amount": outstanding_amount,
+					},
+				)
             ################ end change for other screen
 
 	pe.setup_party_account_field()
