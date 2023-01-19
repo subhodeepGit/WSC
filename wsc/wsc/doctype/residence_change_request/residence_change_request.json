@@ -23,12 +23,29 @@
   "residence_type_name_requested",
   "residence_change_request_reason_section",
   "residence_change_request_details_section",
-  "request_status",
-  "residence_type_name",
-  "residence_serial_number",
   "residence_building",
+  "residence_type",
+  "residence_type_name",
   "column_break_13",
+  "residence_serial_number",
   "residence_number",
+  "request_status",
+  "residence_details_section",
+  "floor",
+  "building_address",
+  "buidings_land_address",
+  "description",
+  "unit_area_sq_m",
+  "column_break_29",
+  "residence_orientation",
+  "lawngarden_available",
+  "lawngarden_area_sq_m",
+  "roof_type",
+  "column_break_34",
+  "parking_available",
+  "parking_type",
+  "parking_vehicle",
+  "parking_area_sq_m",
   "amended_from"
  ],
  "fields": [
@@ -40,6 +57,7 @@
    "read_only": 1
   },
   {
+   "fetch_from": "application_number.employee_name",
    "fieldname": "employee_name",
    "fieldtype": "Data",
    "label": "Employee Name",
@@ -65,7 +83,8 @@
    "fieldname": "residence_type_requested",
    "fieldtype": "Link",
    "label": "Residence Type requested",
-   "options": "Type of Residence"
+   "options": "Type of Residence",
+   "reqd": 1
   },
   {
    "fieldname": "residence_serial_number",
@@ -106,7 +125,8 @@
   {
    "fieldname": "residence_change_request_reason_section",
    "fieldtype": "Data",
-   "label": "Residence Change Request Reason"
+   "label": "Residence Change Request Reason",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_4",
@@ -133,7 +153,8 @@
   {
    "fieldname": "request_status",
    "fieldtype": "Data",
-   "label": "Request Status"
+   "label": "Request Status",
+   "read_only": 1
   },
   {
    "fetch_from": "application_number.building",
@@ -152,26 +173,139 @@
   {
    "fieldname": "application_number",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Application Number",
    "options": "Residence Allotment",
+   "reqd": 1,
    "unique": 1
   },
   {
    "fieldname": "residence_type_name_requested",
    "fieldtype": "Link",
    "label": "Residence Type name Requested",
-   "options": "Residence Type"
+   "options": "Residence Type",
+   "reqd": 1
   },
   {
    "fieldname": "residence_change_request_details_section",
    "fieldtype": "Section Break",
    "label": "Residence Change Request Details"
+  },
+  {
+   "fieldname": "residence_type",
+   "fieldtype": "Link",
+   "label": "Residence Type",
+   "options": "Type of Residence"
+  },
+  {
+   "fieldname": "residence_details_section",
+   "fieldtype": "Section Break",
+   "label": "Residence Details"
+  },
+  {
+   "fetch_from": "residence_serial_number.floor",
+   "fieldname": "floor",
+   "fieldtype": "Data",
+   "label": "Floor",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.building_address",
+   "fieldname": "building_address",
+   "fieldtype": "Data",
+   "label": "Building Address",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.buidings_land_address",
+   "fieldname": "buidings_land_address",
+   "fieldtype": "Data",
+   "label": "Buiding's Land Address",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.description",
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "label": "Description",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.unit_area_sq_m",
+   "fieldname": "unit_area_sq_m",
+   "fieldtype": "Data",
+   "label": "Unit Area (sq. m.)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_29",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "residence_serial_number.orientation",
+   "fieldname": "residence_orientation",
+   "fieldtype": "Data",
+   "label": "Residence Orientation",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.lawngarden_available",
+   "fieldname": "lawngarden_available",
+   "fieldtype": "Data",
+   "label": "Lawn/Garden Available",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.lawngarden_area_sq_m",
+   "fieldname": "lawngarden_area_sq_m",
+   "fieldtype": "Data",
+   "label": "Lawn/Garden Area (sq. m.)",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.roof_type",
+   "fieldname": "roof_type",
+   "fieldtype": "Data",
+   "label": "Roof type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_34",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "residence_serial_number.parking_available",
+   "fieldname": "parking_available",
+   "fieldtype": "Data",
+   "label": "Parking Available",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.parking_type",
+   "fieldname": "parking_type",
+   "fieldtype": "Data",
+   "label": "Parking Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.parking_vehicle",
+   "fieldname": "parking_vehicle",
+   "fieldtype": "Data",
+   "label": "Parking Vehicle",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_serial_number.parking_area_sq_m",
+   "fieldname": "parking_area_sq_m",
+   "fieldtype": "Data",
+   "label": "Parking Area (sq. m.)",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-17 19:01:34.296356",
+ "modified": "2023-01-18 17:05:14.830133",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Change Request",

@@ -278,10 +278,11 @@
  "image_field": "image",
  "is_submittable": 1,
  "links": [],
- "modified": "2022-01-25 22:26:30.231247",
+ "modified": "2023-01-19 11:09:11.282430",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Exchange Applicant",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -301,10 +302,10 @@
    "write": 1
   }
  ],
- "restrict_to_domain": "Education",
  "search_fields": "student_exchange_program",
  "show_name_in_global_search": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "title_field": "title"
 }

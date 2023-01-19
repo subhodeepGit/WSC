@@ -7,7 +7,7 @@ from frappe.model.document import Document
 class ResidenceDeAllottment(Document):
 	def on_submit(self):
 		residenceAllotmentStatus(self)
-		applicationStatus(self)
+		currentApplicationStatus(self)
 		buildingRoomStatus(self)
 		residenceApplicationStatus(self)
 
@@ -16,9 +16,9 @@ def residenceAllotmentStatus(self):
 	frappe.db.set_value("Residence Allotment",self.application_number,"current_vacancy_status","Vacant")
 	frappe.db.set_value("Residence Allotment",self.application_number,"current_employee_allotment_status", "Not Alloted")
 
-# To set value of application status in "Application for Residence De-Allottment"
-def applicationStatus(self):
-	frappe.db.set_value("Application for Residence De-Allottment", self.application_number, "application_status", "De-Alloted")
+# To set value of current application status in "Application for Residence De-Allottment"
+def currentApplicationStatus(self):
+	frappe.db.set_value("Application for Residence De-Allottment", self.application_number, "current_application_status", "De-Alloted")
 
 # To change employee allotment status and vacancy status in "Building Room"
 def buildingRoomStatus(self):
