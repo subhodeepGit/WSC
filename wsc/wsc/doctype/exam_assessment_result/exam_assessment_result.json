@@ -262,7 +262,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-16 11:06:38.483423",
+ "modified": "2023-01-19 11:06:43.574538",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Assessment Result",
@@ -285,7 +285,6 @@
    "write": 1
   }
  ],
- "restrict_to_domain": "Education",
  "show_name_in_global_search": 1,
  "sort_field": "modified",
  "sort_order": "DESC",

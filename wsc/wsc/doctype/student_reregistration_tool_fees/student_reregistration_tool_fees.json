@@ -148,7 +148,7 @@
  "hide_toolbar": 1,
  "issingle": 1,
  "links": [],
- "modified": "2022-06-07 11:29:42.928296",
+ "modified": "2023-01-19 11:09:54.646203",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Reregistration Tool Fees",
@@ -161,7 +161,7 @@
    "write": 1
   }
  ],
- "restrict_to_domain": "Education",
  "sort_field": "modified",
- "sort_order": "DESC"
+ "sort_order": "DESC",
+ "states": []
 }

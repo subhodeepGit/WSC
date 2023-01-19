@@ -95,10 +95,11 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2022-06-27 16:38:33.445876",
+ "modified": "2023-01-19 11:09:35.742828",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Fees Due Tool",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -108,7 +109,7 @@
    "write": 1
   }
  ],
- "restrict_to_domain": "Education",
  "sort_field": "modified",
- "sort_order": "DESC"
+ "sort_order": "DESC",
+ "states": []
 }
