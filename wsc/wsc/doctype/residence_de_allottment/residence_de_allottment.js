@@ -7,7 +7,7 @@ frappe.ui.form.on("Residence De-Allottment", {
 		frm.set_query("application_number", function() {
 			return {
 				filters: [
-					["Application for Residence De-Allottment","application_status", "=", "Applied"]
+					["Application for Residence De-Allottment","current_application_status", "=", "Applied"]
                     
 				]
 			}
