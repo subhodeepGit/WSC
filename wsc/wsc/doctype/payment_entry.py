@@ -1136,9 +1136,11 @@ class PaymentEntry(AccountsController):
 				if d.reference_doctype=="Expense Claim" and d.reference_name:
 					doc = frappe.get_doc("Expense Claim", d.reference_name)
 					if self.docstatus == 2:
-						update_reimbursed_amount(doc, -1 * d.allocated_amount)
+						# update_reimbursed_amount(doc, -1 * d.allocated_amount)
+						update_reimbursed_amount(doc)
 					else:
-						update_reimbursed_amount(doc, d.allocated_amount)
+						# update_reimbursed_amount(doc, d.allocated_amount)
+						update_reimbursed_amount(doc)
 	def update_donation(self, cancel=0):
 		if self.payment_type == "Receive" and self.party_type == "Donor" and self.party:
 			for d in self.get("references"):
@@ -2082,16 +2084,19 @@ def set_party_account(dt, dn, doc, party_type):
 
 def set_party_account_currency(dt, party_account, doc):
 	if dt not in ("Sales Invoice", "Purchase Invoice"):
-		########################################################################## 2nd Place
-		party_account_currency=[]
-		for t in party_account:
-			receivable_account=t['receivable_account']
-			fees_category=t['fees_category']
-			party_account_currency = get_account_currency(receivable_account)
-			# currency = get_account_currency(receivable_account)
-			# dict_list={'receivable_account':receivable_account,'fees_category':fees_category,'currency':currency}
-			# party_account_currency.append(dict_list)	
-		###################################################################################
+		if dt=="Fees":
+			########################################################################## 2nd Place
+			party_account_currency=[]
+			for t in party_account:
+				receivable_account=t['receivable_account']
+				fees_category=t['fees_category']
+				party_account_currency = get_account_currency(receivable_account)
+				# currency = get_account_currency(receivable_account)
+				# dict_list={'receivable_account':receivable_account,'fees_category':fees_category,'currency':currency}
+				# party_account_currency.append(dict_list)	
+			###################################################################################
+		else:
+			party_account_currency = get_account_currency(party_account)	
 	else:
 		party_account_currency = doc.get("party_account_currency") or get_account_currency(party_account)
 	return party_account_currency

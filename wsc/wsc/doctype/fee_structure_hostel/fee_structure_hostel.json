@@ -178,10 +178,11 @@
  "icon": "fa fa-flag",
  "is_submittable": 1,
  "links": [],
- "modified": "2022-06-20 14:46:23.560900",
+ "modified": "2023-01-19 11:08:52.060018",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Fee Structure Hostel",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -226,9 +227,9 @@
    "write": 1
   }
  ],
- "restrict_to_domain": "Education",
  "search_fields": "program, room_type, academic_year",
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "title_field": "program"
 }
