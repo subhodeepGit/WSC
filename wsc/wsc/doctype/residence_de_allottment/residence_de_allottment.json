@@ -1,81 +1,86 @@
 {
  "actions": [],
- "autoname": "field:application_number",
+ "autoname": "field:residence_de_allotment_number",
  "creation": "2023-01-11 14:00:17.001705",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "residence_de_allotment_number",
+  "residence_allotment_number",
+  "column_break_3",
   "application_number",
+  "de_allotment_date",
+  "de_allotment_details_section",
   "residence_serial_number",
   "residence_number",
   "employee_name",
   "employee_id",
+  "column_break_11",
   "building_name",
   "residence_type",
   "residence_type_name",
   "reason_for_de_allottment",
-  "amended_from",
-  "de_allotment_date"
+  "amended_from"
  ],
  "fields": [
   {
-   "fetch_from": "application_number.employee_name",
+   "fetch_from": "residence_de_allotment_number.employee_name",
    "fieldname": "employee_name",
    "fieldtype": "Data",
    "label": "Employee Name",
    "read_only": 1
   },
   {
-   "fetch_from": "application_number.residence_type",
+   "fetch_from": "residence_de_allotment_number.residence_type",
    "fieldname": "residence_type",
    "fieldtype": "Data",
    "label": "Residence Type",
    "read_only": 1
   },
   {
-   "fetch_from": "application_number.residence_type_name",
+   "fetch_from": "residence_de_allotment_number.residence_type_name",
    "fieldname": "residence_type_name",
    "fieldtype": "Data",
    "label": "Residence Type Name",
    "read_only": 1
   },
   {
+   "fetch_from": "residence_de_allotment_number.building_name",
    "fieldname": "building_name",
    "fieldtype": "Data",
    "label": "Building Name",
    "read_only": 1
   },
   {
-   "fetch_from": "application_number.reason_for_de_allottment",
+   "fetch_from": "residence_de_allotment_number.reason_for_de_allottment",
    "fieldname": "reason_for_de_allottment",
    "fieldtype": "Data",
    "label": "Reason for De Allottment",
    "read_only": 1
   },
   {
-   "fetch_from": "application_number.residence_number",
+   "fetch_from": "residence_de_allotment_number.residence_number",
    "fieldname": "residence_number",
    "fieldtype": "Data",
    "label": "Residence Number",
    "read_only": 1
   },
   {
-   "fetch_from": "application_number.employee_id",
+   "fetch_from": "residence_de_allotment_number.employee_id",
    "fieldname": "employee_id",
    "fieldtype": "Data",
    "label": "Employee ID",
    "read_only": 1
   },
   {
+   "fetch_from": "residence_de_allotment_number.application_number",
    "fieldname": "application_number",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Application Number",
-   "options": "Application for Residence De-Allottment",
-   "reqd": 1,
-   "unique": 1
+   "read_only": 1
   },
   {
    "fieldname": "amended_from",
@@ -87,7 +92,7 @@
    "read_only": 1
   },
   {
-   "fetch_from": "application_number.residence_serial_number",
+   "fetch_from": "residence_de_allotment_number.residence_serial_number",
    "fieldname": "residence_serial_number",
    "fieldtype": "Data",
    "label": "Residence Serial Number",
@@ -99,12 +104,40 @@
    "fieldtype": "Date",
    "label": "De Allotment Date",
    "read_only": 1
+  },
+  {
+   "fieldname": "residence_de_allotment_number",
+   "fieldtype": "Link",
+   "label": "Residence De Allotment Number",
+   "options": "Application for Residence De-Allottment",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fetch_from": "residence_de_allotment_number.residence_allotment_number",
+   "fieldname": "residence_allotment_number",
+   "fieldtype": "Data",
+   "label": "Residence Allotment Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "de_allotment_details_section",
+   "fieldtype": "Section Break",
+   "label": "De Allotment Details"
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-18 11:00:16.989986",
+ "modified": "2023-01-19 15:35:23.271993",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence De-Allottment",
