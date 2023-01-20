@@ -7,11 +7,7 @@ frappe.ui.form.on("Residence Allotment", {
 		frm.set_query("application_number", function() {
 			return {
 				filters: [
-					["Application for Residence","current_application_status", "!=", "Rejected"],
-					["Application for Residence","current_application_status", "!=", "Alloted"],
-					["Application for Residence","current_application_status", "!=", "Cancelled by Applicant"]
-					
-                    
+					["Application for Residence","current_application_status", "=", "Applied"]   
 				]
 			}
 		

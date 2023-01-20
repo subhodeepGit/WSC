@@ -9,14 +9,26 @@ class ResidenceAllotment(Document):
 		dateValidate(self)
 		duplicateResidenceAllot(self)
 		dateValidate(self)
-	
+	# def before_submit(self):
+	# 	print("\n\n\nbeforesub")
+	# 	currentResidenceAllotmentStatus(self)
+
 	def on_submit(self):
-		name(self)
+		allotmentNumberField(self)
 		residenceAllotmentStatus(self)
 		buildingRoomStatus(self)
 		currentResidenceApplicationStatus(self)
 		currentResidenceAllotmentStatus(self)
-		
+		residenceUpdate(self)
+
+	# def before_update_after_submit(self):
+	# 	residenceUpdate(self)
+	
+	def on_cancel(self):
+		allottmentstatusCancel(self)
+		allottmentCancelled(self)
+		allottmentCancelledRoom(self)
+	
 # To validate if the start date is not after the end date
 def dateValidate(self):
 	if self.start_date > self.end_date:
@@ -35,7 +47,7 @@ def dateValidate(self):
 		frappe.throw("Start date cannot be greater than End date")
 
 # To get the doc series name in a field
-def name(self):
+def allotmentNumberField(self):
 	frappe.db.set_value("Residence Allotment",self.name,"residence_allotment_number", self.name)
 
 # To change employee allotment status in "Residence Allotment"
@@ -62,31 +74,41 @@ def currentResidenceApplicationStatus(self):
 # To set value of current employee allotment status and current vacancy status in "Residence allotment"
 def currentResidenceAllotmentStatus(self):
 	if self.approval_status=="Approved":
-		frappe.db.set_value("Residence Allotment",self.name,"current_employee_allotment_status", "Alloted")
-		frappe.db.set_value("Residence Allotment",self.name,"current_vacancy_status", "Not Vacant")
+		self.db_set("current_employee_allotment_status", "Alloted")
+		print("\n\n\n\n")
+		print(self.current_employee_allotment_status)
+		self.db_set("current_vacancy_status", "Not Vacant")
 
-		
-	
+# To set value of allotment details in "Residence Allotted" child table in "Employee" doctype
+def residenceUpdate(self):
+	if self.current_employee_allotment_status=="Alloted":
+		print("\n\n\n\n\nxxxxxxxxxxxxxxxxxxxxxxuuuuuuuuuuuuuu on change xzzzzzzzzzzzzzzzzzzzzzzzzzzz")
+		print(self.current_employee_allotment_status)
+		allotmentData=frappe.get_doc('Employee', self.employee_id)
+		allotmentData.append("table_109",{
+			"residence_allotment_number":self.residence_allotment_number,
+			"application_number":self.application_number,
+			"residence_type":self.residence_type,
+			"residence_type_name":self.residence_type_name,
+			"residence_number":self.residence_number,
+			"floor":self.floor,
+			"building_address":self.building_address,
+			"unit_area_sq_m":self.unit_area_sq_m,
+			"parking_available":self.parking_available,
+			"parking_type":self.parking_type,
+			"parking_area_sq_m":self.parking_area_sq_m,
+			"parking_vehicle":self.parking_vehicle,
+			"current_employee_allotment_status":self.current_employee_allotment_status
+		})
+		allotmentData.save()
 
+def allottmentstatusCancel(self):
+	frappe.db.set_value("Residence Allotment",self.name,"current_employee_allotment_status", "Not Alloted")
+	frappe.db.set_value("Residence Allotment",self.name,"current_vacancy_status", "Vacant")
 
+def allottmentCancelled(self):
+	frappe.db.set_value("Application for Residence",self.application_number,"current_application_status", "Allottment Cancelled")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def allottmentCancelledRoom(self):
+	frappe.db.set_value("Building Room", self.residence_serial_number, "employee_allotment_status", "Not Alloted")
+	frappe.db.set_value("Building Room",self.residence_serial_number,"vacancy_status","Vacant")

@@ -8,7 +8,7 @@ class ApplicationforResidence(Document):
 	def validate(self):
 		duplicate(self)
 	def on_submit(self):
-		name(self)
+		applicationNumberField(self)
 		applicationStatus(self)
 		currentApplicationStatus(self)
 	def on_cancel(self):
@@ -21,7 +21,7 @@ def duplicate(self):
 		frappe.throw("Application for residence can not be applied twice by an employee")
 
 # To get the doc series name in a field
-def name(self):
+def applicationNumberField(self):
 	frappe.db.set_value("Application for Residence", self.name , "application_number", self.name)
 
 # To set value for Application status in Application for Residence

@@ -6,14 +6,10 @@ from frappe.model.document import Document
 
 class ResidenceDeAllottment(Document):
 	def on_submit(self):
-		# name(self)
 		residenceAllotmentStatus(self)
 		currentApplicationStatus(self)
 		buildingRoomStatus(self)
 		residenceApplicationStatus(self)
-		
-# def name(self):
-# 	frappe.db.set_value("Residence De-Allottment",self.name,"residence_de_allotment_number", self.name)
 
 # To set value of current employee allotment status and current vacancy status in "Residence allotment"
 def residenceAllotmentStatus(self):
