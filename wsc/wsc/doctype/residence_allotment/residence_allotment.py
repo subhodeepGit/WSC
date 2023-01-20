@@ -9,9 +9,9 @@ class ResidenceAllotment(Document):
 		dateValidate(self)
 		duplicateResidenceAllot(self)
 		dateValidate(self)
-		deletedoc(self)
 	
 	def on_submit(self):
+		name(self)
 		residenceAllotmentStatus(self)
 		buildingRoomStatus(self)
 		currentResidenceApplicationStatus(self)
@@ -24,7 +24,7 @@ def dateValidate(self):
 
 # To validate every employee is alloted only one quarter
 def duplicateResidenceAllot(self):
-	data=frappe.get_all("Residence Allotment",[["employee_name","=",self.employee_name],['employee_allotment_status',"=","Alloted"],['docstatus',"=",1]])
+	data=frappe.get_all("Residence Allotment",[["employee_name","=",self.employee_name],['current_employee_allotment_status',"=","Alloted"],['docstatus',"=",1]])
 	if data:
 		frappe.throw("Employee can't be allotted multiple residences")
 
@@ -34,11 +34,9 @@ def dateValidate(self):
 	if self.start_date > self.end_date:
 		frappe.throw("Start date cannot be greater than End date")
 
-def deletedoc(self):
-	if self.approval_status=="Pending for Approval":
-		frappe.delete_doc('Residence Allotment', self.name)
-	elif self.approval_status=="Rejected":
-		frappe.delete_doc('Residence Allotment', self.name)
+# To get the doc series name in a field
+def name(self):
+	frappe.db.set_value("Residence Allotment",self.name,"residence_allotment_number", self.name)
 
 # To change employee allotment status in "Residence Allotment"
 def residenceAllotmentStatus(self):
@@ -52,6 +50,7 @@ def buildingRoomStatus(self):
 		frappe.db.set_value("Building Room", self.residence_serial_number, "employee_allotment_status", "Alloted")
 		frappe.db.set_value("Building Room",self.residence_serial_number,"vacancy_status","Not Vacant")
 
+# To set value of current Application status
 def currentResidenceApplicationStatus(self):
 	if self.approval_status=="Approved":
 		frappe.db.set_value("Application for Residence", self.application_number, "current_application_status", "Alloted")
@@ -63,8 +62,8 @@ def currentResidenceApplicationStatus(self):
 # To set value of current employee allotment status and current vacancy status in "Residence allotment"
 def currentResidenceAllotmentStatus(self):
 	if self.approval_status=="Approved":
-		frappe.db.set_value("Residence Allotment",self.application_number,"current_vacancy_status", "Not Vacant")
-		frappe.db.set_value("Residence Allotment",self.application_number,"current_employee_allotment_status", "Alloted")
+		frappe.db.set_value("Residence Allotment",self.name,"current_employee_allotment_status", "Alloted")
+		frappe.db.set_value("Residence Allotment",self.name,"current_vacancy_status", "Not Vacant")
 
 		
 	

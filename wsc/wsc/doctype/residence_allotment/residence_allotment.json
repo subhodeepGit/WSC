@@ -1,12 +1,13 @@
 {
  "actions": [],
  "allow_import": 1,
- "autoname": "field:application_number",
+ "autoname": "RES.####",
  "creation": "2023-01-03 16:22:41.474014",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "residence_allotment_number",
   "application_number",
   "last_update_date",
   "employee_info_section",
@@ -23,11 +24,12 @@
   "start_date",
   "end_date",
   "building",
+  "column_break_18",
   "residence_type",
   "residence_type_name",
   "residence_serial_number",
-  "column_break_9",
   "residence_number",
+  "column_break_9",
   "employee_allotment_status",
   "vacancy_status",
   "current_employee_allotment_status",
@@ -270,8 +272,7 @@
    "fieldtype": "Link",
    "label": "Application Number",
    "options": "Application for Residence",
-   "reqd": 1,
-   "unique": 1
+   "reqd": 1
   },
   {
    "fetch_from": "application_number.employee_id",
@@ -341,16 +342,26 @@
    "fieldtype": "Date",
    "label": "Last Update Date",
    "read_only": 1
+  },
+  {
+   "fieldname": "residence_allotment_number",
+   "fieldtype": "Data",
+   "label": "Residence Allotment Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_18",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-18 15:48:45.612099",
+ "modified": "2023-01-19 16:21:42.660043",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Allotment",
- "naming_rule": "By fieldname",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
