@@ -3,6 +3,7 @@
 
 frappe.ui.form.on('Placement Company', {
 	refresh: function(frm) {
+		// frm.add_custom_button(__("Placement Drive"), function() {}, __('Create'))
 		frappe.dynamic_link = { doc: frm.doc, fieldname: 'name', doctype: 'Placement Company' }
 
 		frm.toggle_display(['address_html','contact_html'], !frm.doc.__islocal);
@@ -13,13 +14,26 @@ frappe.ui.form.on('Placement Company', {
 		else {
 			frappe.contacts.render_address_and_contact(frm);
 		}
+		// frm.add_custom_button(__("Placement Drive"), function() {
+		// 	frappe.model.open_mapped_doc({
+		// 		method: "wsc.wsc.doctype.placement_company.placement_company.create_placement_drive",
+		// 		frm: frm,
+		// 	});
+		// }, __('Create'))
+	},
+	refresh: function(frm){
+		// if(!frm.is_new()){
+		if (!frm.doc.__islocal)	{
+		console.log(5)
+		// frm.add_custom_button("Student Admit Card", () => {
 		frm.add_custom_button(__("Placement Drive"), function() {
 			frappe.model.open_mapped_doc({
 				method: "wsc.wsc.doctype.placement_company.placement_company.create_placement_drive",
 				frm: frm,
 			});
 		}, __('Create'))
-	},
+	}
+	} ,
 	setup(frm) {
         frm.set_query("department","belong_to_department", function() {
 			return {

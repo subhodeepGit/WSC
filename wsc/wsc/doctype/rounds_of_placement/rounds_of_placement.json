@@ -50,14 +50,14 @@
   },
   {
    "fieldname": "contact_person_number",
-   "fieldtype": "Data",
+   "fieldtype": "Phone",
    "label": "Contact Person Number"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-01-04 15:44:32.098273",
+ "modified": "2023-01-19 18:08:57.810359",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Rounds of Placement",
