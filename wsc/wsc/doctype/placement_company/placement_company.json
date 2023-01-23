@@ -87,12 +87,12 @@
    "fieldname": "visitor",
    "fieldtype": "Select",
    "label": "Visitor",
-   "options": "Internship\nDay 0 visitor\nDay 1 visitor\nDay 2 visitor\nOne time visitor\nNormal visitor"
+   "options": "\nInternship\nDay 0 visitor\nDay 1 visitor\nDay 2 visitor\nOne time visitor\nNormal visitor"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-04 16:03:32.399806",
+ "modified": "2023-01-19 16:48:20.153269",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Company",

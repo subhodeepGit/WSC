@@ -34,7 +34,8 @@ class PlacementDrive(Document):
 			frappe.delete_doc("DocShare",d.name)
 	
 @frappe.whitelist()
-def get_eligibility(name , academic_year , academic_term , placement_drive_for , required_cgpa):
+def get_eligibility(name , academic_year , academic_term , placement_drive_for , required_cgpa , backlog):
+	req_cgpa = float(required_cgpa)
 	current_education= frappe.get_all("Current Educational Details" ,{"academic_year":academic_year , "academic_term":academic_term,"parenttype":"Student"} , 
 	['programs' , 'semesters' , 'academic_year' , 'academic_term',"parent","name"]) #from students.
 
@@ -42,6 +43,12 @@ def get_eligibility(name , academic_year , academic_term , placement_drive_for ,
 
 	eligibility_criteria=frappe.get_all("Eligibility Criteria",{"parent":name},['qualification',"percentage","year_of_passing"]) #from placement drive
 	
+	# print(backlog)
+	# query = frappe.db.sql("""SELECT `academic_term` FROM `tabPlacement Drive` WHERE `academic_year` = "%s" """%(academic_year) , as_dict=1)
+	
+	# query = frappe.db.sql("""SELECT `academic_term`,`academic_year`,`name` FROM  `tabExam Assessment Result` WHERE `student`="%s" """%(t))
+	# query = frappe.db.sql("""SELECT `grade` FROM `tabAssessment Result Item` assessmet INNER JOIN WHERE """)
+	# print(query)
 	final_studnet_list=[]
 	for j in programs:
 		for t in current_education:
@@ -66,10 +73,18 @@ def get_eligibility(name , academic_year , academic_term , placement_drive_for ,
 	# 					student_dict[j['parent']]=list_data
 
 	for t in student_dict:
+		count = 0
 		student_list= frappe.get_all("Educational Details",{"parent":t}, ['qualification',"score",'year_of_completion','parent'])  #from student
 		experience_detail = frappe.get_all("Experience child table" , {"parent":t} , ['job_duration' , 'parent'])  #from student
-		student_cgpa = frappe.get_all("Exam Assessment Result" , {"student":t} , ['name' ,'overall_cgpa'])
-		print(student_cgpa)
+		student_cgpa = frappe.get_all("Exam Assessment Result" , {"student":t, "docstatus":1} , ['name' ,'overall_cgpa' , 'result'])
+		backlog_record = frappe.get_all("Evaluation Result Item" , {"parent":student_cgpa[0]['name']} , ['result' , 'parent'])  
+		# print(backlog_record)
+
+		for m in backlog_record:
+			print(m)
+			if m['result'] == 'F':
+				count+=1
+
 		# print(t)
 		list_data = student_dict[t]
 		for i in experience_detail:
@@ -77,19 +92,19 @@ def get_eligibility(name , academic_year , academic_term , placement_drive_for ,
 			if placement_drive_for == "fresher" and i['job_duration'] == 0:
 				for k in student_list:
 					for j in eligibility_criteria:	
-						if k['qualification'] == j['qualification'] and k['score'] >= j['percentage'] and required_cgpa < student_cgpa['overall_cgpa']:
+						if k['qualification'] == j['qualification'] and k['score'] >= j['percentage'] and req_cgpa <= student_cgpa[0]['overall_cgpa'] and count >= backlog:
 							list_data.append(k)
 
 			elif placement_drive_for == "Experience" and i['job_duration'] > 0:
 				for k in student_list:
 					for j in eligibility_criteria:	
-						if k['qualification'] == j['qualification'] and k['score'] >= j['percentage'] and required_cgpa < student_cgpa['overall_cgpa']:
+						if k['qualification'] == j['qualification'] and k['score'] >= j['percentage'] and req_cgpa <= student_cgpa[0]['overall_cgpa'] and count >= backlog:
 							list_data.append(k)
 
 			else:
 				for k in student_list:
 					for j in eligibility_criteria:	
-						if k['qualification'] == j['qualification'] and k['score'] >= j['percentage'] and required_cgpa < student_cgpa['overall_cgpa']:
+						if k['qualification'] == j['qualification'] and k['score'] >= j['percentage'] and req_cgpa <= student_cgpa[0]['overall_cgpa'] and count >= backlog:
 							list_data.append(k)
 
 		student_dict[t]=list_data
