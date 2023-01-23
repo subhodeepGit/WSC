@@ -55,13 +55,15 @@
    "fieldname": "air_conditioning",
    "fieldtype": "Select",
    "label": "Air Conditioning",
-   "options": "\nYes\nNo"
+   "options": "\nYes\nNo",
+   "reqd": 1
   },
   {
    "fieldname": "parking_available",
    "fieldtype": "Select",
    "label": "Parking Available",
-   "options": "\nYes\nNo"
+   "options": "\nYes\nNo",
+   "reqd": 1
   },
   {
    "depends_on": "eval:doc.parking_available==\"Yes\"",
@@ -91,7 +93,8 @@
    "fieldname": "residence_orientation",
    "fieldtype": "Select",
    "label": "Residence Orientation",
-   "options": "\nMulti storey\nOne Unit Up, One Down\nSide-By-Side"
+   "options": "\nMulti storey\nOne Unit Up, One Down\nSide-By-Side",
+   "reqd": 1
   },
   {
    "fieldname": "roof_type",
@@ -103,7 +106,8 @@
    "fieldname": "lawngarden_available",
    "fieldtype": "Select",
    "label": "Lawn/Garden Available",
-   "options": "\nYes\nNo"
+   "options": "\nYes\nNo",
+   "reqd": 1
   },
   {
    "depends_on": "eval:doc.lawngarden_available==\"Yes\"",
@@ -120,7 +124,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-11 16:05:23.936065",
+ "modified": "2023-01-23 14:32:55.105391",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Type",
