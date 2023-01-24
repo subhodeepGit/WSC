@@ -4,7 +4,7 @@
 // To filter applications in the link field based on ithe application status
 frappe.ui.form.on("Residence De-Allottment", {
 	setup: function(frm) {
-		frm.set_query("application_number", function() {
+		frm.set_query("residence_de_allotment_application_number", function() {
 			return {
 				filters: [
 					["Application for Residence De-Allottment","current_application_status", "=", "Applied"]

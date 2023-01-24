@@ -8,6 +8,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "residence_change_request_number",
   "residence_allotment_number",
   "application_number",
   "change_request_date",
@@ -99,6 +100,7 @@
    "options": "Building Room"
   },
   {
+   "fetch_from": "residence_serial_number.room_no",
    "fieldname": "residence_number",
    "fieldtype": "Data",
    "label": "Residence Number",
@@ -302,8 +304,7 @@
    "in_list_view": 1,
    "label": "Residence Allotment Number",
    "options": "Residence Allotment",
-   "reqd": 1,
-   "unique": 1
+   "reqd": 1
   },
   {
    "fetch_from": "residence_allotment_number.application_number",
@@ -341,12 +342,18 @@
    "fieldname": "alloted_residence_details_section",
    "fieldtype": "Section Break",
    "label": "Alloted Residence Details"
+  },
+  {
+   "fieldname": "residence_change_request_number",
+   "fieldtype": "Data",
+   "label": "Residence Change Request Number",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-20 12:49:32.733659",
+ "modified": "2023-01-24 17:46:57.921566",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Change Request",
