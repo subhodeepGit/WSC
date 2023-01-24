@@ -1415,7 +1415,7 @@
    "insert_after": "residence_de_allotment_details",
    "is_system_generated": 0,
    "is_virtual": 0,
-   "label": "Residence Deallot",
+   "label": "",
    "length": 0,
    "mandatory_depends_on": null,
    "modified": "2023-01-24 15:56:04.653860",
