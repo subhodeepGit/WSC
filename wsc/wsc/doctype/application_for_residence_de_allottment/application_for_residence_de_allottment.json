@@ -1,14 +1,14 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "DERES.####",
+ "autoname": "ADALT.####",
  "creation": "2023-01-17 11:15:44.938445",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "residence_de_allotment_number",
+  "residence_de_allotment_application_number",
   "residence_allotment_number",
   "column_break_3",
   "application_number",
@@ -130,12 +130,6 @@
    "unique": 1
   },
   {
-   "fieldname": "residence_de_allotment_number",
-   "fieldtype": "Data",
-   "label": "Residence De Allotment Number",
-   "read_only": 1
-  },
-  {
    "fieldname": "allotment_details_section",
    "fieldtype": "Section Break",
    "label": "Allotment Details"
@@ -152,12 +146,18 @@
   {
    "fieldname": "column_break_3",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "residence_de_allotment_application_number",
+   "fieldtype": "Data",
+   "label": "Residence De Allotment Application Number",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-20 12:48:50.583153",
+ "modified": "2023-01-24 16:34:49.305231",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Application for Residence De-Allottment",

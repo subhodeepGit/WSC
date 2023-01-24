@@ -9,9 +9,7 @@ class ResidenceAllotment(Document):
 		dateValidate(self)
 		duplicateResidenceAllot(self)
 		dateValidate(self)
-	# def before_submit(self):
-	# 	print("\n\n\nbeforesub")
-	# 	currentResidenceAllotmentStatus(self)
+		
 
 	def on_submit(self):
 		allotmentNumberField(self)
@@ -20,9 +18,6 @@ class ResidenceAllotment(Document):
 		currentResidenceApplicationStatus(self)
 		currentResidenceAllotmentStatus(self)
 		residenceUpdate(self)
-
-	# def before_update_after_submit(self):
-	# 	residenceUpdate(self)
 	
 	def on_cancel(self):
 		allottmentstatusCancel(self)
@@ -48,7 +43,7 @@ def dateValidate(self):
 
 # To get the doc series name in a field
 def allotmentNumberField(self):
-	frappe.db.set_value("Residence Allotment",self.name,"residence_allotment_number", self.name)
+	self.db_set("residence_allotment_number", self.name)
 
 # To change employee allotment status in "Residence Allotment"
 def residenceAllotmentStatus(self):
@@ -75,15 +70,11 @@ def currentResidenceApplicationStatus(self):
 def currentResidenceAllotmentStatus(self):
 	if self.approval_status=="Approved":
 		self.db_set("current_employee_allotment_status", "Alloted")
-		print("\n\n\n\n")
-		print(self.current_employee_allotment_status)
 		self.db_set("current_vacancy_status", "Not Vacant")
 
 # To set value of allotment details in "Residence Allotted" child table in "Employee" doctype
 def residenceUpdate(self):
 	if self.current_employee_allotment_status=="Alloted":
-		print("\n\n\n\n\nxxxxxxxxxxxxxxxxxxxxxxuuuuuuuuuuuuuu on change xzzzzzzzzzzzzzzzzzzzzzzzzzzz")
-		print(self.current_employee_allotment_status)
 		allotmentData=frappe.get_doc('Employee', self.employee_id)
 		allotmentData.append("table_109",{
 			"residence_allotment_number":self.residence_allotment_number,
@@ -98,7 +89,8 @@ def residenceUpdate(self):
 			"parking_type":self.parking_type,
 			"parking_area_sq_m":self.parking_area_sq_m,
 			"parking_vehicle":self.parking_vehicle,
-			"current_employee_allotment_status":self.current_employee_allotment_status
+			"current_employee_allotment_status":self.current_employee_allotment_status,
+			"date":self.last_update_date
 		})
 		allotmentData.save()
 

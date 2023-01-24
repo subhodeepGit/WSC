@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "Application-.####",
+ "autoname": "ALT-.####",
  "creation": "2023-01-16 16:45:33.003882",
  "default_view": "List",
  "doctype": "DocType",
@@ -139,7 +139,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-19 15:16:29.453876",
+ "modified": "2023-01-24 10:50:29.652919",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Application for Residence",

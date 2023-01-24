@@ -1,12 +1,13 @@
 {
  "actions": [],
- "autoname": "field:residence_de_allotment_number",
+ "autoname": "DERES.####",
  "creation": "2023-01-11 14:00:17.001705",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "residence_de_allotment_application_number",
   "residence_de_allotment_number",
   "residence_allotment_number",
   "column_break_3",
@@ -26,56 +27,56 @@
  ],
  "fields": [
   {
-   "fetch_from": "residence_de_allotment_number.employee_name",
+   "fetch_from": "residence_de_allotment_application_number.employee_name",
    "fieldname": "employee_name",
    "fieldtype": "Data",
    "label": "Employee Name",
    "read_only": 1
   },
   {
-   "fetch_from": "residence_de_allotment_number.residence_type",
+   "fetch_from": "residence_de_allotment_application_number.residence_type",
    "fieldname": "residence_type",
    "fieldtype": "Data",
    "label": "Residence Type",
    "read_only": 1
   },
   {
-   "fetch_from": "residence_de_allotment_number.residence_type_name",
+   "fetch_from": "residence_de_allotment_application_number.residence_type_name",
    "fieldname": "residence_type_name",
    "fieldtype": "Data",
    "label": "Residence Type Name",
    "read_only": 1
   },
   {
-   "fetch_from": "residence_de_allotment_number.building_name",
+   "fetch_from": "residence_de_allotment_application_number.building_name",
    "fieldname": "building_name",
    "fieldtype": "Data",
    "label": "Building Name",
    "read_only": 1
   },
   {
-   "fetch_from": "residence_de_allotment_number.reason_for_de_allottment",
+   "fetch_from": "residence_de_allotment_application_number.reason_for_de_allottment",
    "fieldname": "reason_for_de_allottment",
    "fieldtype": "Data",
    "label": "Reason for De Allottment",
    "read_only": 1
   },
   {
-   "fetch_from": "residence_de_allotment_number.residence_number",
+   "fetch_from": "residence_de_allotment_application_number.residence_number",
    "fieldname": "residence_number",
    "fieldtype": "Data",
    "label": "Residence Number",
    "read_only": 1
   },
   {
-   "fetch_from": "residence_de_allotment_number.employee_id",
+   "fetch_from": "residence_de_allotment_application_number.employee_id",
    "fieldname": "employee_id",
    "fieldtype": "Data",
    "label": "Employee ID",
    "read_only": 1
   },
   {
-   "fetch_from": "residence_de_allotment_number.application_number",
+   "fetch_from": "residence_de_allotment_application_number.application_number",
    "fieldname": "application_number",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -92,7 +93,7 @@
    "read_only": 1
   },
   {
-   "fetch_from": "residence_de_allotment_number.residence_serial_number",
+   "fetch_from": "residence_de_allotment_application_number.residence_serial_number",
    "fieldname": "residence_serial_number",
    "fieldtype": "Data",
    "label": "Residence Serial Number",
@@ -107,14 +108,12 @@
   },
   {
    "fieldname": "residence_de_allotment_number",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "label": "Residence De Allotment Number",
-   "options": "Application for Residence De-Allottment",
-   "reqd": 1,
-   "unique": 1
+   "read_only": 1
   },
   {
-   "fetch_from": "residence_de_allotment_number.residence_allotment_number",
+   "fetch_from": "residence_de_allotment_application_number.residence_allotment_number",
    "fieldname": "residence_allotment_number",
    "fieldtype": "Data",
    "label": "Residence Allotment Number",
@@ -132,16 +131,24 @@
   {
    "fieldname": "column_break_11",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "residence_de_allotment_application_number",
+   "fieldtype": "Link",
+   "label": "Residence De Allotment Application Number",
+   "options": "Application for Residence De-Allottment",
+   "reqd": 1,
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-19 15:35:23.271993",
+ "modified": "2023-01-24 16:48:47.465014",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence De-Allottment",
- "naming_rule": "By fieldname",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

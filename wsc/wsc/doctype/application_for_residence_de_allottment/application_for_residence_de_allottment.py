@@ -20,7 +20,7 @@ def duplicate(self):
 
 # To get the doc series name in a field
 def name(self):
-	frappe.db.set_value("Application for Residence De-Allottment", self.name , "residence_de_allotment_number", self.name)
+	frappe.db.set_value("Application for Residence De-Allottment", self.name , "residence_de_allotment_application_number", self.name)
 
 # To set value for Application status to applied after application
 def applicationStatus(self):
