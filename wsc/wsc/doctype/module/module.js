@@ -2,7 +2,9 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Module', {
-	// refresh: function(frm) {
-
-	// }
+	refresh: function(frm) {
+		if(!frm.is_new()){
+			frm.set_df_property('module_name', 'read_only', 1)
+		}
+	}
 });
