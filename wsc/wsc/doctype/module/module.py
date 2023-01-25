@@ -6,8 +6,6 @@ from frappe.model.document import Document
 
 class Module(Document):
 	def validate(self):
-		print("\n\n\n\n\n")
-		print(frappe.get_roles("admin@example.com"))
 		if frappe.session.user !="Administrator":
 			frappe.throw("Only Developer can able to do the changes")
 		duplicate_row_validation(self, "doc_type",['doctype_list'])
