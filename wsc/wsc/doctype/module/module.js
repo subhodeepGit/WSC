@@ -6,5 +6,8 @@ frappe.ui.form.on('Module', {
 		if(!frm.is_new()){
 			frm.set_df_property('module_name', 'read_only', 1)
 		}
+		else{
+			frm.set_df_property('module_name', 'read_only', 0)
+		}
 	}
 });
