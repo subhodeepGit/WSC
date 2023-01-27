@@ -1,7 +1,7 @@
 // Copyright (c) 2023, SOUL Limited and contributors
 // For license information, please see license.txt
 
-// To filter applications in the link field based on ithe application status
+// To filter applications in the link field based on the application status
 frappe.ui.form.on("Residence De-Allottment", {
 	setup: function(frm) {
 		frm.set_query("residence_de_allotment_application_number", function() {
@@ -16,6 +16,7 @@ frappe.ui.form.on("Residence De-Allottment", {
 	}
 });
 
+// To filter Alloted residence serial number field based on the vacancy and Allotmnet status
 frappe.ui.form.on("Residence De-Allottment", {
 	setup: function(frm) {
 		frm.set_query("allotted_residence_serial_number", function() {

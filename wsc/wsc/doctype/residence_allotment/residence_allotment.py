@@ -24,22 +24,18 @@ class ResidenceAllotment(Document):
 		allottmentCancelled(self)
 		allottmentCancelledRoom(self)
 	
+
+############ alternate code written in js but still required for date validation ###########
 # To validate if the start date is not after the end date
 def dateValidate(self):
 	if self.start_date > self.end_date:
-			frappe.throw("Start date cannot be greater than End date")
+		frappe.throw("Start date cannot be greater than End date")
 
 # To validate every employee is alloted only one quarter
 def duplicateResidenceAllot(self):
 	data=frappe.get_all("Residence Allotment",[["employee_name","=",self.employee_name],['current_employee_allotment_status',"=","Alloted"],['docstatus',"=",1]])
 	if data:
 		frappe.throw("Employee can't be allotted multiple residences")
-
-############ alternate code written in js but still required for date validation ###########
-# To validate if the start date is not after the end date in allotable room type
-def dateValidate(self):
-	if self.start_date > self.end_date:
-		frappe.throw("Start date cannot be greater than End date")
 
 # To get the doc series name in a field
 def allotmentNumberField(self):
@@ -94,13 +90,16 @@ def residenceUpdate(self):
 		})
 		allotmentData.save()
 
+# To update the value of Allotment status and vacancy status field in Residence Allotment screen
 def allottmentstatusCancel(self):
 	frappe.db.set_value("Residence Allotment",self.name,"current_employee_allotment_status", "Not Alloted")
 	frappe.db.set_value("Residence Allotment",self.name,"current_vacancy_status", "Vacant")
 
+# To update value of current application status in Application for Residence screen on cancellation of allotment
 def allottmentCancelled(self):
 	frappe.db.set_value("Application for Residence",self.application_number,"current_application_status", "Allottment Cancelled")
 
+# To update the value of Allotment status and vacancy status field in "Building Room" on Cancel
 def allottmentCancelledRoom(self):
 	frappe.db.set_value("Building Room", self.residence_serial_number, "employee_allotment_status", "Not Alloted")
 	frappe.db.set_value("Building Room",self.residence_serial_number,"vacancy_status","Vacant")

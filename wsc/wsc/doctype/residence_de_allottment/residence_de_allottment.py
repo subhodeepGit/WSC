@@ -35,6 +35,7 @@ def buildingRoomStatus(self):
 def residenceApplicationStatus(self):
 	frappe.db.set_value("Application for Residence", self.application_number, "current_application_status", "De-Alloted")
 
+# To set value of de-allotment details in "Residence Allotted" child table in "Employee" doctype
 def residenceUpdate(self):
 	allotmentData=frappe.get_doc('Employee', self.employee_id)
 	allotmentData.append("residence_deallot",{

@@ -11,9 +11,10 @@ class ResidenceChangeRequest(Document):
 		buildingStatusChange(self)
 		changeNewRoomStatus(self)
 		residenceUpdate(self)
+		changedResidenceDetails(self)
 
 
-# To change vacancy status and employee allotment status of alloted residence and 
+# To change vacancy status and employee allotment status of alloted residence
 def changeRoomStatus(self):
 	data= self.request_status
 	if data == "Approved":
@@ -54,5 +55,16 @@ def residenceUpdate(self):
 			})
 		allotmentData.save()
 
+# To set value of doc series in residence_change_request_number field
 def changeRequestNumberField(self):
 	self.db_set("residence_change_request_number", self.name)
+
+# To set value of changed residence details in "Residence Allotment" doctype
+def changedResidenceDetails(self):
+	if self.request_status== "Approved":
+		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"changed_residence_serial_number",self.residence_serial_number)
+		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"changed_residence_number",self.residence_number)
+		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"changed_building_name",self.residence_building)
+		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"changed_residence_type",self.residence_type)
+		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"changed_residence_type_name",self.residence_type_name)
+		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"residence_change_status",self.request_status)

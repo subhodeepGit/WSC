@@ -8,7 +8,7 @@ class ApplicationforResidenceDeAllottment(Document):
 	def validate(self):
 		duplicate(self)
 	def on_submit(self):
-		name(self)
+		fieldName(self)
 		applicationStatus(self)
 		currentApplicationStatus(self)
 
@@ -19,7 +19,7 @@ def duplicate(self):
 		frappe.throw("Same application number cant apply again")
 
 # To get the doc series name in a field
-def name(self):
+def fieldName(self):
 	frappe.db.set_value("Application for Residence De-Allottment", self.name , "residence_de_allotment_application_number", self.name)
 
 # To set value for Application status to applied after application
@@ -29,6 +29,3 @@ def applicationStatus(self):
 # To set value for Current Application status to applied after application
 def currentApplicationStatus(self):
 	frappe.db.set_value("Application for Residence De-Allottment", self.name, "current_application_status", "Applied")
-
-
-

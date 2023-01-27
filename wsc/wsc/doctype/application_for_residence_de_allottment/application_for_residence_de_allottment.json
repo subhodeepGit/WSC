@@ -26,6 +26,14 @@
   "reason_for_de_allottment",
   "application_status",
   "current_application_status",
+  "changed_residence_details_section",
+  "residence_change_status",
+  "changed_residence_serial_number",
+  "changed_residence_number",
+  "column_break_24",
+  "changed_building_name",
+  "changed_residence_type",
+  "changed_residence_type_name",
   "amended_from"
  ],
  "fields": [
@@ -152,12 +160,63 @@
    "fieldtype": "Data",
    "label": "Residence De Allotment Application Number",
    "read_only": 1
+  },
+  {
+   "fieldname": "changed_residence_details_section",
+   "fieldtype": "Section Break",
+   "label": "Changed Residence Details"
+  },
+  {
+   "fetch_from": "residence_allotment_number.residence_change_status",
+   "fieldname": "residence_change_status",
+   "fieldtype": "Data",
+   "label": "Residence Change Status",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_allotment_number.changed_residence_serial_number",
+   "fieldname": "changed_residence_serial_number",
+   "fieldtype": "Data",
+   "label": "Changed Residence Serial Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_allotment_number.changed_residence_number",
+   "fieldname": "changed_residence_number",
+   "fieldtype": "Data",
+   "label": "Changed Residence Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_24",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "residence_allotment_number.changed_building_name",
+   "fieldname": "changed_building_name",
+   "fieldtype": "Data",
+   "label": "Changed Building Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_allotment_number.changed_residence_type",
+   "fieldname": "changed_residence_type",
+   "fieldtype": "Data",
+   "label": "Changed Residence Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_allotment_number.changed_residence_type_name",
+   "fieldname": "changed_residence_type_name",
+   "fieldtype": "Data",
+   "label": "Changed Residence Type Name",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-24 16:34:49.305231",
+ "modified": "2023-01-27 17:45:42.261932",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Application for Residence De-Allottment",

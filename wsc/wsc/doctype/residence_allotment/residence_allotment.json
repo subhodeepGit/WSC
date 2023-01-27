@@ -50,7 +50,15 @@
   "parking_type",
   "parking_vehicle",
   "parking_area_sq_m",
-  "amended_from"
+  "amended_from",
+  "changed_residence_details_section",
+  "residence_change_status",
+  "changed_residence_serial_number",
+  "changed_residence_number",
+  "column_break_49",
+  "changed_building_name",
+  "changed_residence_type",
+  "changed_residence_type_name"
  ],
  "fields": [
   {
@@ -352,12 +360,57 @@
   {
    "fieldname": "column_break_18",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "changed_residence_details_section",
+   "fieldtype": "Section Break",
+   "label": "Changed Residence Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "changed_residence_serial_number",
+   "fieldtype": "Data",
+   "label": "Changed Residence Serial Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "changed_residence_number",
+   "fieldtype": "Data",
+   "label": "Changed Residence Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "changed_building_name",
+   "fieldtype": "Data",
+   "label": "Changed Building Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_49",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "changed_residence_type",
+   "fieldtype": "Data",
+   "label": "Changed Residence Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "changed_residence_type_name",
+   "fieldtype": "Data",
+   "label": "Changed Residence Type Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "residence_change_status",
+   "fieldtype": "Data",
+   "label": "Residence Change Status"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-23 15:10:31.824850",
+ "modified": "2023-01-27 17:33:22.987463",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Allotment",
