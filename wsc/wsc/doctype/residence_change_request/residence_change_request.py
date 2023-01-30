@@ -6,6 +6,7 @@ from frappe.model.document import Document
 
 class ResidenceChangeRequest(Document):
 	def validate(self):
+		duplicate(self)
 		changeRequestNumberField(self)
 		changeRoomStatus(self)
 		buildingStatusChange(self)
@@ -13,6 +14,10 @@ class ResidenceChangeRequest(Document):
 		residenceUpdate(self)
 		changedResidenceDetails(self)
 
+def duplicate(self):
+	data=frappe.get_all("Residence Change Request",[["employee_name","=",self.employee_name],['request_status',"=","Pending Approval"]])
+	if data:
+		frappe.throw("Can't Apply again as Residence change request for this employee is Pending for Approval")
 
 # To change vacancy status and employee allotment status of alloted residence
 def changeRoomStatus(self):

@@ -15,6 +15,7 @@
   "employee_details_section",
   "employee_name",
   "employee",
+  "employee_email",
   "column_break_7",
   "employee_designation",
   "employee_department",
@@ -97,7 +98,8 @@
    "fieldname": "residence_serial_number",
    "fieldtype": "Link",
    "label": "Residence Serial Number",
-   "options": "Building Room"
+   "options": "Building Room",
+   "permlevel": 1
   },
   {
    "fetch_from": "residence_serial_number.room_no",
@@ -117,7 +119,8 @@
    "fieldname": "residence_type_name",
    "fieldtype": "Link",
    "label": "Residence Type name",
-   "options": "Residence Type"
+   "options": "Residence Type",
+   "permlevel": 1
   },
   {
    "fieldname": "employee_details_section",
@@ -174,7 +177,8 @@
    "fieldname": "residence_building",
    "fieldtype": "Link",
    "label": "Residence Building",
-   "options": "Buildings"
+   "options": "Buildings",
+   "permlevel": 1
   },
   {
    "fieldname": "residence_type_name_requested",
@@ -192,7 +196,8 @@
    "fieldname": "residence_type",
    "fieldtype": "Link",
    "label": "Residence Type",
-   "options": "Type of Residence"
+   "options": "Type of Residence",
+   "permlevel": 1
   },
   {
    "fieldname": "residence_details_section",
@@ -348,12 +353,19 @@
    "fieldtype": "Data",
    "label": "Residence Change Request Number",
    "read_only": 1
+  },
+  {
+   "fetch_from": "residence_allotment_number.employee_email",
+   "fieldname": "employee_email",
+   "fieldtype": "Data",
+   "label": "Employee Email",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-24 17:46:57.921566",
+ "modified": "2023-01-30 14:17:16.033140",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Change Request",

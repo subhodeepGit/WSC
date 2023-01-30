@@ -13,6 +13,7 @@
   "employee_info_section",
   "employee_name",
   "employee_id",
+  "employee_email",
   "column_break_3",
   "employee_designation",
   "employee_department",
@@ -404,13 +405,21 @@
   {
    "fieldname": "residence_change_status",
    "fieldtype": "Data",
-   "label": "Residence Change Status"
+   "label": "Residence Change Status",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "application_number.employee_email",
+   "fieldname": "employee_email",
+   "fieldtype": "Data",
+   "label": "Employee Email",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-27 17:33:22.987463",
+ "modified": "2023-01-30 13:23:33.277090",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Allotment",

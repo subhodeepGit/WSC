@@ -5,7 +5,7 @@
 // To filter employees who have Current Employee Allotment status as "Alloted"
 frappe.ui.form.on('Residence Change Request', {
 	setup: function(frm) {
-		frm.set_query("application_number", function() {
+		frm.set_query("residence_allotment_number", function() {
 			return {
 				filters: [
 					["Residence Allotment","current_employee_allotment_status", '=', "Alloted"]
