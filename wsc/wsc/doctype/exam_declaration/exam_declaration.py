@@ -102,9 +102,9 @@ class ExamDeclaration(Document):
         #         # else :
 
         #         print("\n\n\n\n\Course from Evaluation Result item")
-        #         print(data)
+        #         return (data)
 
-            # course_list = frappe.db.get_all("Evaluation Result Item",{'result':"F"},["course","result","parent"])
+        #     # course_list = frappe.db.get_all("Evaluation Result Item",{'result':"F"},["course","result","parent"])
             # data_list = []
             # for value in data:
 

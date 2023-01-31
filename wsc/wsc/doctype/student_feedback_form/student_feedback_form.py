@@ -24,9 +24,9 @@ def getvalue():
 # def validate():
 # 	data = frappe.get_all("Student Feedback Questions",['question'])
 # 	print(data)
-# @frappe.whitelist()
-# def get_course(doctype, txt, searchfield, start, page_len, filters):
-#     return frappe.get_all("Program Course",{"parent":filters.get("program")},['course'],as_list = 1)
+@frappe.whitelist()
+def get_course(doctype, txt, searchfield, start, page_len, filters):
+    return frappe.get_all("Program Course",{"parent":filters.get("program")},['course'],as_list = 1)
 
 @frappe.whitelist()
 def getdetails(student_id):
