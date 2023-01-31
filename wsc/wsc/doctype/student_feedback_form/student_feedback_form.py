@@ -24,12 +24,15 @@ def getvalue():
 # def validate():
 # 	data = frappe.get_all("Student Feedback Questions",['question'])
 # 	print(data)
-# @frappe.whitelist()
-# def get_course(doctype, txt, searchfield, start, page_len, filters):
-#     return frappe.get_all("Program Course",{"parent":filters.get("program")},['course'],as_list = 1)
+@frappe.whitelist()
+def get_course(doctype, txt, searchfield, start, page_len, filters):
+    return frappe.get_all("Program Course",{"parent":filters.get("program")},['course'],as_list = 1)
 
 @frappe.whitelist()
 def getdetails(student_id):
 	data =frappe.get_all("Current Educational Details",{'parent':student_id},["academic_year","academic_term","programs","semesters"])
-	print(data[0])
-	return data[0]
+	if len(data) == 0:
+		frappe.throw("Student is not enrolled in Any program")
+	else :
+		print(data[0])
+		return data[0]
