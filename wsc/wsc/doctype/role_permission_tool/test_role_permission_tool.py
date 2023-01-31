@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestQuarterType(FrappeTestCase):
+class TestRolePermissionTool(FrappeTestCase):
 	pass

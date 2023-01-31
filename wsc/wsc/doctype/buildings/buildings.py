@@ -5,24 +5,28 @@ import frappe
 from frappe.model.document import Document
 
 class Buildings(Document):
-	def validate(doc):
-		pincode(doc)
-		if doc.start_date > doc.end_date:
-			frappe.throw("Start date cannot be greater than End date")
+	def validate(self):
+		date(self)
+		pincode(self)
+
+# To validate if the start date is not after the end date
+def date(self):
+	if self.start_date > self.end_date:
+		frappe.throw("Start date cannot be greater than End date")
 
 # Validation for pincode length			
-def pincode(doc):
-	if doc.pin_code:
-		if not (doc.pin_code).isdigit():
+def pincode(self):
+	if self.pin_code:
+		if not (self.pin_code).isdigit():
 			frappe.throw("Field <b>Pin Code</b> Accept Digits Only")
 
-	if len(doc.pin_code)>6:
+	if len(self.pin_code)>6:
 			frappe.throw("Field <b>Pin Code</b> must be 6 Digits")
 
-	if len(doc.pin_code)<6:	
+	if len(self.pin_code)<6:	
 			frappe.throw("Field <b>Pin Code</b> must be 6 Digits")
 
-# To fetch only those buildings which are between start and end date of the Land
+# To fetch only those buildings which are between start and end date of the Land with respect to today’s date
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
 def room_type_query(doctype, txt, searchfield, start, page_len, filters):

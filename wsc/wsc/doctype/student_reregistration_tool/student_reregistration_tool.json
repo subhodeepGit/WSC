@@ -151,7 +151,7 @@
  "hide_toolbar": 1,
  "issingle": 1,
  "links": [],
- "modified": "2022-06-27 17:58:20.694827",
+ "modified": "2023-01-19 11:10:06.348625",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Reregistration Tool",
@@ -164,7 +164,7 @@
    "write": 1
   }
  ],
- "restrict_to_domain": "Education",
  "sort_field": "modified",
- "sort_order": "DESC"
+ "sort_order": "DESC",
+ "states": []
 }

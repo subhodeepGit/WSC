@@ -3,6 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
+from datetime import date
 
 class PlacementDriveApplication(Document):
     def validate(self):
@@ -33,10 +34,15 @@ class PlacementDriveApplication(Document):
         
 @frappe.whitelist()
 def get_placement_drive(doctype, txt, searchfield, start, page_len, filters):
-    return frappe.db.sql("""select dr.name from `tabPlacement Drive` dr 
+    today = date.today
+    # return frappe.db.sql("""select dr.name from `tabPlacement Drive` dr 
+    #                     left join `tabPlace Eligible Programs` dr_item on dr_item.parent=dr.name
+    #                     left join `tabCurrent Educational Details` cr_ed on cr_ed.programs=dr_item.programs
+    #                     where  cr_ed.parent='{0}' and dr.docstatus=1 and (dr.name like %(txt)s)""".format(filters.get("student")),{'txt': '%%%s%%' % txt})
+    return frappe.db.sql("""select dr.name , dr.application_end_date from `tabPlacement Drive` dr 
                         left join `tabPlace Eligible Programs` dr_item on dr_item.parent=dr.name
                         left join `tabCurrent Educational Details` cr_ed on cr_ed.programs=dr_item.programs
-                        where  cr_ed.parent='{0}' and dr.docstatus=1 and (dr.name like %(txt)s)""".format(filters.get("student")),{'txt': '%%%s%%' % txt})
+                        where  cr_ed.parent='{0}' and dr.docstatus=1 and (dr.name like %(txt)s) AND dr.application_end_date < CURDATE()""".format(filters.get("student")),{'txt': '%%%s%%' % txt})
 
 def is_placement_blocked_student(doc):
     for bl_st in frappe.get_all("Placement Blocked Student List",{"student":doc.student},['parent']):
