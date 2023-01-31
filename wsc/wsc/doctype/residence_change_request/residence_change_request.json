@@ -98,6 +98,7 @@
    "fieldname": "residence_serial_number",
    "fieldtype": "Link",
    "label": "Residence Serial Number",
+   "mandatory_depends_on": "eval:(doc.request_status==\"Approved\")",
    "options": "Building Room",
    "permlevel": 1
   },
@@ -106,6 +107,7 @@
    "fieldname": "residence_number",
    "fieldtype": "Data",
    "label": "Residence Number",
+   "mandatory_depends_on": "eval:(doc.request_status==\"Approved\")",
    "read_only": 1
   },
   {
@@ -119,6 +121,7 @@
    "fieldname": "residence_type_name",
    "fieldtype": "Link",
    "label": "Residence Type name",
+   "mandatory_depends_on": "eval:(doc.request_status==\"Approved\")",
    "options": "Residence Type",
    "permlevel": 1
   },
@@ -177,6 +180,7 @@
    "fieldname": "residence_building",
    "fieldtype": "Link",
    "label": "Residence Building",
+   "mandatory_depends_on": "eval:(doc.request_status==\"Approved\")",
    "options": "Buildings",
    "permlevel": 1
   },
@@ -196,6 +200,7 @@
    "fieldname": "residence_type",
    "fieldtype": "Link",
    "label": "Residence Type",
+   "mandatory_depends_on": "eval:(doc.request_status==\"Approved\")",
    "options": "Type of Residence",
    "permlevel": 1
   },
@@ -365,7 +370,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-30 14:17:16.033140",
+ "modified": "2023-01-31 09:52:26.193575",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Change Request",

@@ -8,7 +8,9 @@
  "engine": "InnoDB",
  "field_order": [
   "academic_year",
-  "stream",
+  "academic_term",
+  "program_grade",
+  "programs",
   "semester",
   "topper_scholarship_section",
   "fetch_topper",
@@ -41,18 +43,15 @@
   },
   {
    "fieldname": "academic_year",
-   "fieldtype": "Data",
-   "label": "Academic year"
-  },
-  {
-   "fieldname": "stream",
-   "fieldtype": "Data",
-   "label": "Stream"
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
   },
   {
    "fieldname": "semester",
-   "fieldtype": "Data",
-   "label": "Semester"
+   "fieldtype": "Link",
+   "label": "Semester",
+   "options": "Program"
   },
   {
    "fieldname": "cutoff_percentage",
@@ -70,11 +69,29 @@
    "fieldtype": "Table",
    "label": "Cutoff Scholarship table",
    "options": "Cutoff Scholarship"
+  },
+  {
+   "fieldname": "program_grade",
+   "fieldtype": "Link",
+   "label": "Program Grade",
+   "options": "Program Grades"
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
+  },
+  {
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "label": "Programs",
+   "options": "Programs"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-30 17:06:49.028783",
+ "modified": "2023-01-31 11:09:09.848704",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Scholarships",
