@@ -31,5 +31,8 @@ def getvalue():
 @frappe.whitelist()
 def getdetails(student_id):
 	data =frappe.get_all("Current Educational Details",{'parent':student_id},["academic_year","academic_term","programs","semesters"])
-	print(data[0])
-	return data[0]
+	if len(data) == 0:
+		frappe.throw("Student is not enrolled in Any program")
+	else :
+		print(data[0])
+		return data[0]

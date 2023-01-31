@@ -32,7 +32,7 @@
 			<td>{{ s.registration_number }}</td>
 
 			{% if course_assessment[s.student] %}  
-				<td><input type="number" 	 class="result-earned_marks" data-row="{{s.id}}"	style="width:100%;" disabled value="{{ course_assessment[s.student]['earned_marks'] }}"></td>
+				<td><input type="number" 	 class="result-earned_marks" data-row="{{s.id}}"	style="width:100%;"  value="{{ course_assessment[s.student]['earned_marks'] }}"></td>
 				<td><input type="number" 	 class="result-total_marks"  data-row="{{s.id}}"	style="width:100%;" disabled value="{{ course_assessment[s.student]['total_marks'] }}"></td>
 			{% else %}  
 				<td><input type="number" 	 class="result-earned_marks" data-row="{{s.id}}"	style="width:100%;" ></td>
