@@ -7,32 +7,27 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "academic_details_section",
   "academic_year",
-  "stream",
+  "academic_term",
+  "program_grade",
+  "column_break_6",
+  "programs",
   "semester",
-  "topper_scholarship_section",
+  "section_break_7",
+  "topper_scholarship",
   "fetch_topper",
   "topper_scholarship_table",
-  "cutoff_wise_scholarship_section",
+  "cutoff_scholarship",
   "cutoff_percentage",
   "fetch_topper_list",
   "cutoff_scholarship_table"
  ],
  "fields": [
   {
-   "fieldname": "topper_scholarship_section",
-   "fieldtype": "Section Break",
-   "label": "Topper Scholarship"
-  },
-  {
    "fieldname": "fetch_topper",
    "fieldtype": "Button",
    "label": "Fetch topper"
-  },
-  {
-   "fieldname": "cutoff_wise_scholarship_section",
-   "fieldtype": "Section Break",
-   "label": "Cutoff wise Scholarship"
   },
   {
    "fieldname": "fetch_topper_list",
@@ -41,18 +36,15 @@
   },
   {
    "fieldname": "academic_year",
-   "fieldtype": "Data",
-   "label": "Academic year"
-  },
-  {
-   "fieldname": "stream",
-   "fieldtype": "Data",
-   "label": "Stream"
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
   },
   {
    "fieldname": "semester",
-   "fieldtype": "Data",
-   "label": "Semester"
+   "fieldtype": "Link",
+   "label": "Semester",
+   "options": "Program"
   },
   {
    "fieldname": "cutoff_percentage",
@@ -70,11 +62,53 @@
    "fieldtype": "Table",
    "label": "Cutoff Scholarship table",
    "options": "Cutoff Scholarship"
+  },
+  {
+   "fieldname": "program_grade",
+   "fieldtype": "Link",
+   "label": "Program Grade",
+   "options": "Program Grades"
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
+  },
+  {
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "label": "Programs",
+   "options": "Programs"
+  },
+  {
+   "fieldname": "academic_details_section",
+   "fieldtype": "Section Break",
+   "label": "Academic Details"
+  },
+  {
+   "fieldname": "cutoff_scholarship",
+   "fieldtype": "Heading",
+   "label": "Cutoff Scholarship"
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break",
+   "label": "Scholarships"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "topper_scholarship",
+   "fieldtype": "Heading",
+   "label": "Topper Scholarship"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-30 17:06:49.028783",
+ "modified": "2023-02-02 12:49:10.698579",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Scholarships",

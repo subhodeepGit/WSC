@@ -15,7 +15,7 @@ class ResidenceChangeRequest(Document):
 		changedResidenceDetails(self)
 
 def duplicate(self):
-	data=frappe.get_all("Residence Change Request",[["employee_name","=",self.employee_name],['request_status',"=","Pending Approval"]])
+	data=frappe.get_all("Residence Change Request",[["employee_name","=",self.employee_name],['request_status',"=","Approved"]])
 	if data:
 		frappe.throw("Can't Apply again as Residence change request for this employee is Pending for Approval")
 

@@ -1,3 +1,4 @@
+import json
 import frappe
 
 def validate(doc, method):
@@ -71,8 +72,8 @@ def add_course_to_programs(course, programs):
 		program.flags.ignore_mandatory = True
 		program.save()
 	frappe.db.commit()
-	frappe.msgprint(_('Course {0} has been added to all the selected programs successfully.').format(frappe.bold(course)),
-		title=_('Programs updated'), indicator='green')
+	frappe.msgprint(frappe._('Course {0} has been added to all the selected programs successfully.').format(frappe.bold(course)),
+		title=frappe._('Programs updated'), indicator='green')
 
 @frappe.whitelist()
 def check_for_semester(course):
