@@ -11,6 +11,7 @@
   "title",
   "posting_date",
   "placement_company",
+  "column_break_5",
   "academic_year",
   "academic_term",
   "current_cgpapercentage",
@@ -234,12 +235,16 @@
    "fieldname": "company_data_section",
    "fieldtype": "Section Break",
    "label": "Company Data"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-19 17:14:55.860487",
+ "modified": "2023-01-24 15:28:37.927176",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive",

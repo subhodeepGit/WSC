@@ -83,6 +83,7 @@ frappe.ui.form.on('Student Feedback Form', {
 					}
 					// code snippet
 				}
+				frm.refresh();
 			}
 		})
 	}
