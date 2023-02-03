@@ -85,40 +85,38 @@ class ExamDeclaration(Document):
                 result.append(row)
             return result      
             return get_courses_by_semester_academic_year([d.semester for d in self.semesters])
-        # else :
-        #     course_list = get_courses_by_semester_academic_year([d.semester for d in self.semesters],year_end_date)
-        #     print("n\n\n\n\nCourse_list")
-        #     print(course_list)
-        #     result = []
-        #     for cour in course_list:
-        #         print("\n\n\n\nCour")
-        #         print(cour)
-        #         data = frappe.db.get_all("Evaluation Result Item",{'result':"F",'course':cour},["course"])
-        #         print("\n\n\n\n\nFrom Evaluation Result Item")
-        #         print(data)
-
-        #         if len(data)==0 or None :
-        #             frappe.throw("There is No pending Couse to Schedule Back paper Exam")
-        #         # else :
-
-        #         print("\n\n\n\n\Course from Evaluation Result item")
-        #         return (data)
-
-        #     # course_list = frappe.db.get_all("Evaluation Result Item",{'result':"F"},["course","result","parent"])
-            # data_list = []
-            # for value in data:
-
-            #     print(value["parent"])
-
-            #     print(value["course"])
-            #     for record in frappe.db.get_all("Exam Assessment Result",{"academic_year":academic_year,"academic_term":academic_term,"program":program},["student","student_name"]):
-            #         a = {"result":"F"}
-            #         record.update(a)
-
-
-            #         data_list.append(record)
-            # print(data_list)
-            # return data_list
+        else :
+            course_list = get_courses_by_semester_academic_year([d.semester for d in self.semesters],year_end_date)
+            print("n\n\n\n\nCourse_list")
+            print(course_list)
+            result = []
+            count = 0
+            courses = []
+            final_courses = []
+            for cour in course_list:
+                data = frappe.db.get_all("Evaluation Result Item",{'result':"F",'course':cour},["course"])
+                print("\n\n\n\n\nFrom Evaluation Result Item")
+                print(data)
+                for item in data :
+                    courses.append(item["course"])
+                print("\n\n\n\n\n\nResult list is")
+                result = result + list(set(courses))
+            if (len(result)==0):
+                frappe.throw("There is No pending Couse to Schedule Back paper Exam")  
+            else :
+                for course in result :
+                    row = {}
+                    course_details= frappe.db.get_all('Course',{'name':course,},['name','course_code','course_name'])
+                    
+                    semester = frappe.db.get_value('Program Course', {'course': course,"parent":["IN",[d.semester for d in self.semesters]]}, 'parent')
+                    course_details[0].update({'semester': semester})
+                    row.update(course_details[0])
+                    final_courses.append(row)
+                print("\n\n\n\n\n\nFinal Courses")
+                print(final_courses)
+                return  final_courses     
+                return get_courses_by_semester_academic_year([d.semester for d in self.semesters])
+       
     def validate(self):
         self.date_validation()
         self.calculate_total_hours()
