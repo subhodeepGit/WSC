@@ -6,11 +6,11 @@ from frappe.model.document import Document
 
 class Buildings(Document):
 	def validate(self):
-		date(self)
+		dateValidate(self)
 		pincode(self)
 
 # To validate if the start date is not after the end date
-def date(self):
+def dateValidate(self):
 	if self.start_date > self.end_date:
 		frappe.throw("Start date cannot be greater than End date")
 

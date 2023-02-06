@@ -150,7 +150,7 @@
   {
    "fieldname": "changed_residence_details_section",
    "fieldtype": "Section Break",
-   "label": "Changed Residence Details"
+   "label": "Current Residence Details"
   },
   {
    "fetch_from": "residence_de_allotment_application_number.residence_change_status",
@@ -162,25 +162,25 @@
    "fetch_from": "residence_de_allotment_application_number.changed_residence_serial_number",
    "fieldname": "changed_residence_serial_number",
    "fieldtype": "Data",
-   "label": "Changed Residence Serial Number"
+   "label": "Current Residence Serial Number"
   },
   {
    "fetch_from": "residence_de_allotment_application_number.changed_residence_number",
    "fieldname": "changed_residence_number",
    "fieldtype": "Data",
-   "label": "Changed Residence Number"
+   "label": "Current Residence Number"
   },
   {
    "fetch_from": "residence_de_allotment_application_number.changed_building_name",
    "fieldname": "changed_building_name",
    "fieldtype": "Data",
-   "label": "Changed Building Name"
+   "label": "Current Building Name"
   },
   {
    "fetch_from": "residence_de_allotment_application_number.changed_residence_type_name",
    "fieldname": "changed_residence_type_name",
    "fieldtype": "Data",
-   "label": "Changed Residence Type Name"
+   "label": "Current Residence Type Name"
   },
   {
    "fieldname": "column_break_22",
@@ -190,7 +190,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-30 13:09:13.171635",
+ "modified": "2023-02-06 12:25:20.063598",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence De-Allottment",

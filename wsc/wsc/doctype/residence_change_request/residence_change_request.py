@@ -6,18 +6,19 @@ from frappe.model.document import Document
 
 class ResidenceChangeRequest(Document):
 	def validate(self):
-		duplicate(self)
+		# duplicate(self)
 		changeRequestNumberField(self)
 		changeRoomStatus(self)
 		buildingStatusChange(self)
 		changeNewRoomStatus(self)
 		residenceUpdate(self)
 		changedResidenceDetails(self)
+		residenceChangeCancel(self)
 
-def duplicate(self):
-	data=frappe.get_all("Residence Change Request",[["employee_name","=",self.employee_name],['request_status',"=","Approved"]])
-	if data:
-		frappe.throw("Can't Apply again as Residence change request for this employee is Pending for Approval")
+# def duplicate(self):
+# 	data=frappe.get_all("Residence Change Request",[["employee_name","=",self.employee_name],['request_status',"=","Approved"]])
+# 	if data:
+# 		frappe.throw("Can't Apply again as Residence change request for this employee is Pending for Approval")
 
 # To change vacancy status and employee allotment status of alloted residence
 def changeRoomStatus(self):
@@ -73,3 +74,38 @@ def changedResidenceDetails(self):
 		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"changed_residence_type",self.residence_type)
 		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"changed_residence_type_name",self.residence_type_name)
 		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"residence_change_status",self.request_status)
+
+# To restore the previous allotment of the employee if residence change request after approval is cancelled
+def residenceChangeCancel(self):
+	if self.request_status== "Cancelled":
+		data=frappe.db.sql(''' SELECT employee_allotment_status
+		FROM `tabBuilding Room`
+		WHERE room_no=%s  ''',
+		(self.alloted_residence_number),
+		)
+		if data=="Alloted":
+			frappe.throw("The residence change request cant be cancelled, please De-Allot and then Allot the new residence")
+		else:
+			self.db_set("residence_serial_number","")
+			self.db_set("residence_number","")
+			self.db_set("residence_building","")
+			self.db_set("residence_type","")
+			self.db_set("residence_type_name","")
+			self.db_set("request_status","Cancelled")
+
+			allotmentData=frappe.get_doc('Employee', self.employee)
+			allotmentData.append("table_109",{
+				"residence_allotment_number":self.residence_allotment_number,
+				"application_number":self.application_number,
+				"residence_type_name":self.alloted_residence_type_name,
+				"residence_number":self.alloted_residence_number,
+				"current_employee_allotment_status" : "Re-Alloted",
+				"date":self.change_request_date
+				})
+			allotmentData.save()
+
+			frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"changed_residence_serial_number",self.alloted_residence_serial_number)
+			frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"changed_residence_number",self.alloted_residence_number)
+			frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"changed_building_name",self.alloted_building)
+			frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"changed_residence_type",self.alloted_residence_type)
+			frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"changed_residence_type_name",self.alloted_residence_type_name)

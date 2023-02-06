@@ -18,6 +18,7 @@ class ResidenceAllotment(Document):
 		currentResidenceApplicationStatus(self)
 		currentResidenceAllotmentStatus(self)
 		residenceUpdate(self)
+		currentResidenceDetails(self)
 	
 	def on_cancel(self):
 		allottmentstatusCancel(self)
@@ -46,6 +47,7 @@ def residenceAllotmentStatus(self):
 	if self.approval_status=="Approved":
 		frappe.db.set_value("Residence Allotment", self.name, "employee_allotment_status", "Alloted")
 		frappe.db.set_value("Residence Allotment", self.name, "vacancy_status", "Not Vacant")
+		frappe.db.set_value("Residence Allotment", self.name, "current_application_status", "Alloted")
 
 # To change employee allotment status and vacancy status in "Building Room"
 def buildingRoomStatus(self):
@@ -90,6 +92,8 @@ def residenceUpdate(self):
 		})
 		allotmentData.save()
 
+
+
 # To update the value of Allotment status and vacancy status field in Residence Allotment screen
 def allottmentstatusCancel(self):
 	frappe.db.set_value("Residence Allotment",self.name,"current_employee_allotment_status", "Not Alloted")
@@ -103,3 +107,11 @@ def allottmentCancelled(self):
 def allottmentCancelledRoom(self):
 	frappe.db.set_value("Building Room", self.residence_serial_number, "employee_allotment_status", "Not Alloted")
 	frappe.db.set_value("Building Room",self.residence_serial_number,"vacancy_status","Vacant")
+
+# To initialize current residence details as per the initial allotment details
+def currentResidenceDetails(self):
+	self.db_set("changed_residence_serial_number", self.residence_serial_number)
+	self.db_set("changed_residence_number", self.residence_number)
+	self.db_set("changed_building_name", self.building)
+	self.db_set("changed_residence_type", self.residence_type)
+	self.db_set("changed_residence_type_name", self.residence_type_name)

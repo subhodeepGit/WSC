@@ -7,38 +7,49 @@ class Scholarships(Document):
 	def validate(self):
 		pass
 
-	# @frappe.whitelist()
-	# def get_students(self):
-	# 	topper=[]
-	# 	topper = frappe.db.sql(
-	# 		'''SELECT student, student_name, sgpa 
-	# 		from `tabExam Assessment Result` 
-	# 		where program= %s
-	# 		order by sgpa DESC
-	# 		limit 1;''',
-	# 		(self.semester),
-	# 		as_dict=1,
-	# 	)
-	# 	print("\n\n\n\n\n")
-	# 	print(topper)
-	# 	return(topper)
+	@frappe.whitelist()
+	def get_students(self):
+		topper=[]
+		topper = frappe.db.sql(
+			'''SELECT student, student_name, sgpa 
+			FROM `tabExam Assessment Result` 
+			WHERE program= %s
+			ORDER BY sgpa DESC;''',
+			(self.semester),
+			as_dict=1,
+		)
+		topperlist= []
+		top = topper[0]['sgpa']
+		for x in topper:
+			if x['sgpa']==top:
+				topperlist.append(x)
+				n=(len(topperlist))
+				print(n)
+		return(topperlist)
 		
+
+
 	@frappe.whitelist()
 	def get_cutoffStudents(self):
 		cutofftopper =[]
 		cutofftopper = frappe.db.sql(
 			'''SELECT student, student_name, sgpa 
-			from `tabExam Assessment Result` 
-			where program= %s AND sgpa >= %s
-			order by sgpa DESC
-			Limit 11;''',
+			FROM `tabExam Assessment Result` 
+			WHERE program= %s AND sgpa >= %s
+			ORDER BY sgpa DESC;''',
 			(self.semester, self.cutoff_sgpa),
 			as_dict=1,
 		)
-		del cutofftopper[0]
-		print("\n\n\n\n\n")
-		
-		print(cutofftopper)
+		top=cutofftopper[0]['sgpa']
+		print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")			
+		print (n)
+		print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+		for x in cutofftopper:
+			if x['sgpa']==top:
+				cutofftopper.remove(x)
+		for x in cutofftopper:
+			if x['sgpa']==top:
+				cutofftopper.remove(x)	
 		return cutofftopper
 
         
