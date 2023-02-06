@@ -1,0 +1,127 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-01-30 15:30:53.654935",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "academic_details_section",
+  "academic_year",
+  "academic_term",
+  "program_grade",
+  "column_break_6",
+  "programs",
+  "semester",
+  "get_students",
+  "section_break_7",
+  "topper_scholarship",
+  "topper_scholarship_table",
+  "cutoff_scholarship",
+  "cutoff_sgpa",
+  "cutoff_scholarship_table"
+ ],
+ "fields": [
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
+  },
+  {
+   "fieldname": "semester",
+   "fieldtype": "Link",
+   "label": "Semester",
+   "options": "Program"
+  },
+  {
+   "fieldname": "topper_scholarship_table",
+   "fieldtype": "Table",
+   "label": "Topper Scholarship table",
+   "options": "Topper Scholarship"
+  },
+  {
+   "fieldname": "cutoff_scholarship_table",
+   "fieldtype": "Table",
+   "label": "Cutoff Scholarship table",
+   "options": "Cutoff Scholarship"
+  },
+  {
+   "fieldname": "program_grade",
+   "fieldtype": "Link",
+   "label": "Program Grade",
+   "options": "Program Grades"
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
+  },
+  {
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "label": "Programs",
+   "options": "Programs"
+  },
+  {
+   "fieldname": "academic_details_section",
+   "fieldtype": "Section Break",
+   "label": "Academic Details"
+  },
+  {
+   "fieldname": "cutoff_scholarship",
+   "fieldtype": "Heading",
+   "label": "Cutoff Scholarship"
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break",
+   "label": "Scholarships"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "topper_scholarship",
+   "fieldtype": "Heading",
+   "label": "Topper Scholarship"
+  },
+  {
+   "fieldname": "cutoff_sgpa",
+   "fieldtype": "Data",
+   "label": "Cutoff SGPA"
+  },
+  {
+   "fieldname": "get_students",
+   "fieldtype": "Button",
+   "label": "Get Students"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-02-03 17:11:07.609587",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Scholarships",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,342 +1,333 @@
 {
-    "actions": [],
-    "autoname": "autoincrement",
-    "creation": "2023-01-04 09:49:26.900736",
-    "doctype": "DocType",
-    "editable_grid": 1,
-    "engine": "InnoDB",
-    "field_order": [
-     "buiding_details_section",
-     "building_name",
-     "building_type",
-     "building_address",
-     "column_break_5",
-     "buildings_land_name",
-     "buidings_land_address",
-     "district",
-     "column_break_6",
-     "state",
-     "pin_code",
-     "building_capacity",
-     "room_details_section",
-     "vacancy_status",
-     "room_no",
-     "floor",
-     "type_of_room",
-     "type_of_residence",
-     "column_break_14",
-     "residence_type_name",
-     "vacancy_status",
-     "allotment_status",
-     "employee_allotment_status",
-     "residence_details_section",
-     "start_date",
-     "end_date",
-     "description",
-     "unit_area_sq_m",
-     "air_conditioning",
-     "column_break_22",
-     "orientation",
-     "lawngarden_available",
-     "lawngarden_area_sq_m",
-     "roof_type",
-     "column_break_33",
-     "parking_available",
-     "parking_type",
-     "parking_vehicle",
-     "parking_area_sq_m"
-    ],
-    "fields": [
-     {
-      "fieldname": "type_of_room",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Type of Room",
-      "options": "Building type Room",
-      "reqd": 1
-     },
-     {
-      "fetch_from": "type_of_room.allotment_status",
-      "fieldname": "allotment_status",
-      "fieldtype": "Data",
-      "label": "Allotment Status",
-      "read_only": 1,
-      "reqd": 1
-     },
-     {
-      "fieldname": "building_name",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Building Name",
-      "options": "Buildings"
-     },
-     {
-      "fieldname": "floor",
-      "fieldtype": "Select",
-      "in_list_view": 1,
-      "label": "Floor",
-      "options": "\nGround\n1\n2\n3\n4\n5\n6\n7",
-      "reqd": 1
-     },
-     {
-      "fieldname": "buiding_details_section",
-      "fieldtype": "Section Break",
-      "label": "Buiding Details"
-     },
-     {
-      "fetch_from": "building_name.building_address",
-      "fieldname": "building_address",
-      "fieldtype": "Data",
-      "label": "Building Address",
-      "read_only": 1
-     },
-     {
-      "fetch_from": "building_name.plot_number",
-      "fieldname": "buildings_land_name",
-      "fieldtype": "Data",
-      "label": "Building's Land Plot number",
-      "read_only": 1
-     },
-     {
-      "fetch_from": "building_name.land_address",
-      "fieldname": "buidings_land_address",
-      "fieldtype": "Data",
-      "label": "Buiding's Land Address",
-      "read_only": 1
-     },
-     {
-      "fieldname": "column_break_6",
-      "fieldtype": "Column Break"
-     },
-     {
-      "fetch_from": "building_name.district",
-      "fieldname": "district",
-      "fieldtype": "Data",
-      "label": "District",
-      "read_only": 1
-     },
-     {
-      "fetch_from": "building_name.state",
-      "fieldname": "state",
-      "fieldtype": "Data",
-      "label": "State",
-      "read_only": 1
-     },
-     {
-      "fieldname": "room_details_section",
-      "fieldtype": "Section Break",
-      "label": "Basic Information"
-     },
-     {
-      "fetch_from": "building_name.pin_code",
-      "fieldname": "pin_code",
-      "fieldtype": "Data",
-      "label": "Pin Code",
-      "read_only": 1
-     },
-     {
-      "fieldname": "column_break_14",
-      "fieldtype": "Column Break"
-     },
-     {
-      "depends_on": "eval:doc.type_of_room==\"Residential\"",
-      "fetch_from": "residence_type_name.unit_area_sq_m",
-      "fieldname": "unit_area_sq_m",
-      "fieldtype": "Data",
-      "label": "Unit Area (sq. m.)",
-      "read_only": 1
-     },
-     {
-      "depends_on": "eval:doc.type_of_room==\"Residential\"",
-      "fetch_from": "residence_type_name.parking_available",
-      "fieldname": "parking_available",
-      "fieldtype": "Data",
-      "label": "Parking Available",
-      "read_only": 1
-     },
-     {
-      "fieldname": "column_break_22",
-      "fieldtype": "Column Break"
-     },
-     {
-      "depends_on": "eval:doc.type_of_room==\"Residential\"",
-      "fetch_from": "residence_type_name.air_conditioning",
-      "fieldname": "air_conditioning",
-      "fieldtype": "Data",
-      "label": "Air Conditioning",
-      "read_only": 1
-     },
-     {
-      "depends_on": "eval:(doc.type_of_room==\"Residential\" && doc.allotment_status==\"Allottable\")",
-      "fieldname": "type_of_residence",
-      "fieldtype": "Link",
-      "label": "Type of Residence",
-      "mandatory_depends_on": "eval:(doc.type_of_room==\"Residential\")",
-      "options": "Type of Residence"
-     },
-     {
-      "fetch_from": "residence_type_name.description",
-      "fieldname": "description",
-      "fieldtype": "Data",
-      "label": "Description",
-      "read_only": 1
-     },
-     {
-      "depends_on": "eval:(doc.type_of_room==\"Residential\" && doc.allotment_status==\"Allottable\")",
-      "fieldname": "residence_type_name",
-      "fieldtype": "Link",
-      "label": "Residence Type Name",
-      "mandatory_depends_on": "eval:(doc.type_of_room==\"Residential\")",
-      "options": "Residence Type"
-     },
-     {
-      "fieldname": "residence_details_section",
-      "fieldtype": "Section Break",
-      "label": "Residence Details"
-     },
-     {
-      "depends_on": "eval:doc.type_of_room==\"Residential\"",
-      "fetch_from": "residence_type_name.residence_orientation",
-      "fieldname": "orientation",
-      "fieldtype": "Data",
-      "label": "Residence Orientation",
-      "read_only": 1
-     },
-     {
-      "depends_on": "eval:doc.type_of_room==\"Residential\"",
-      "fetch_from": "residence_type_name.roof_type",
-      "fieldname": "roof_type",
-      "fieldtype": "Data",
-      "label": "Roof type",
-      "read_only": 1
-     },
-     {
-      "depends_on": "eval:doc.type_of_room==\"Residential\"",
-      "fetch_from": "residence_type_name.lawngarden_available",
-      "fieldname": "lawngarden_available",
-      "fieldtype": "Data",
-      "label": "Lawn/Garden Available",
-      "read_only": 1
-     },
-     {
-      "depends_on": "eval:doc.parking_available==\"Yes\"",
-      "fetch_from": "residence_type_name.parking_type",
-      "fieldname": "parking_type",
-      "fieldtype": "Data",
-      "label": "Parking Type",
-      "read_only": 1
-     },
-     {
-      "depends_on": "eval:doc.parking_available==\"Yes\"",
-      "fetch_from": "residence_type_name.parking_vehicle",
-      "fieldname": "parking_vehicle",
-      "fieldtype": "Data",
-      "label": "Parking Vehicle",
-      "read_only": 1
-     },
-     {
-      "depends_on": "eval:doc.parking_available==\"Yes\"",
-      "fetch_from": "residence_type_name.data_9",
-      "fieldname": "parking_area_sq_m",
-      "fieldtype": "Data",
-      "label": "Parking Area (sq. m.)",
-      "read_only": 1
-     },
-     {
-      "depends_on": "eval:doc.lawngarden_available==\"Yes\"",
-      "fetch_from": "residence_type_name.lawngarden_area_sq_m",
-      "fieldname": "lawngarden_area_sq_m",
-      "fieldtype": "Data",
-      "label": "Lawn/Garden Area (sq. m.)",
-      "read_only": 1
-     },
-     {
-      "fieldname": "room_no",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Room No.",
-      "reqd": 1
-     },
-     {
-      "default": "Today",
-      "depends_on": "eval:(doc.type_of_room==\"Residential\" && doc.allotment_status==\"Allottable\")",
-      "fieldname": "start_date",
-      "fieldtype": "Date",
-      "label": "Start date",
-      "mandatory_depends_on": "eval:(doc.type_of_room==\"Residential\")"
-     },
-     {
-      "depends_on": "eval:(doc.type_of_room==\"Residential\" && doc.allotment_status==\"Allottable\")",
-      "fieldname": "end_date",
-      "fieldtype": "Date",
-      "label": "End date",
-      "mandatory_depends_on": "eval:(doc.type_of_room==\"Residential\")"
-     },
-     {
-      "fetch_from": "building_name.total_rooms",
-      "fieldname": "building_capacity",
-      "fieldtype": "Data",
-      "label": "Building capacity",
-      "read_only": 1
-     },
-     {
-      "fetch_from": "building_name.building_type",
-      "fieldname": "building_type",
-      "fieldtype": "Data",
-      "label": "Building Type",
-      "read_only": 1
-     },
-     {
-      "default": "Vacant",
-      "depends_on": "eval:doc.building_type==\"Residential\"",
-      "fieldname": "vacancy_status",
-      "fieldtype": "Select",
-      "label": "Vacancy status",
-      "options": "Vacant\nNot Vacant",
-      "read_only": 1
-     },
-     {
-      "default": "Not Alloted",
-      "depends_on": "eval:doc.building_type==\"Residential\"",
-      "fetch_from": "employee_alloted_name.allotment_status",
-      "fieldname": "employee_allotment_status",
-      "fieldtype": "Data",
-      "label": "Employee Allotment Status",
-      "read_only": 1
-     },
-     {
-      "fieldname": "column_break_33",
-      "fieldtype": "Column Break"
-     },
-     {
-      "fieldname": "column_break_5",
-      "fieldtype": "Column Break"
-     }
-    ],
-    "index_web_pages_for_search": 1,
-    "links": [],
-    "modified": "2023-01-13 17:59:28.007024",
-    "modified_by": "Administrator",
-    "module": "WSC",
-    "name": "Building Room",
-    "naming_rule": "Autoincrement",
-    "owner": "Administrator",
-    "permissions": [
-     {
-      "create": 1,
-      "delete": 1,
-      "email": 1,
-      "export": 1,
-      "print": 1,
-      "read": 1,
-      "report": 1,
-      "role": "System Manager",
-      "share": 1,
-      "write": 1
-     }
-    ],
-    "sort_field": "modified",
-    "sort_order": "DESC",
-    "states": [],
-    "title_field": "room_no"
-   }
+ "actions": [],
+ "autoname": "autoincrement",
+ "creation": "2023-01-04 09:49:26.900736",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "buiding_details_section",
+  "building_name",
+  "building_type",
+  "building_address",
+  "column_break_5",
+  "buildings_land_name",
+  "buidings_land_address",
+  "district",
+  "column_break_6",
+  "state",
+  "pin_code",
+  "room_details_section",
+  "room_no",
+  "floor",
+  "type_of_room",
+  "type_of_residence",
+  "column_break_14",
+  "residence_type_name",
+  "vacancy_status",
+  "allotment_status",
+  "employee_allotment_status",
+  "residence_details_section",
+  "start_date",
+  "end_date",
+  "description",
+  "unit_area_sq_m",
+  "air_conditioning",
+  "column_break_22",
+  "orientation",
+  "lawngarden_available",
+  "lawngarden_area_sq_m",
+  "roof_type",
+  "column_break_33",
+  "parking_available",
+  "parking_type",
+  "parking_vehicle",
+  "parking_area_sq_m"
+ ],
+ "fields": [
+  {
+   "fieldname": "type_of_room",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Type of Room",
+   "options": "Building type Room",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "type_of_room.allotment_status",
+   "fieldname": "allotment_status",
+   "fieldtype": "Data",
+   "label": "Allotment Status",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "building_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Building Name",
+   "options": "Buildings"
+  },
+  {
+   "fieldname": "floor",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Floor",
+   "options": "\nGround\n1\n2\n3\n4\n5\n6\n7",
+   "reqd": 1
+  },
+  {
+   "fieldname": "buiding_details_section",
+   "fieldtype": "Section Break",
+   "label": "Building Details"
+  },
+  {
+   "fetch_from": "building_name.building_address",
+   "fieldname": "building_address",
+   "fieldtype": "Data",
+   "label": "Building Address",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "building_name.plot_number",
+   "fieldname": "buildings_land_name",
+   "fieldtype": "Data",
+   "label": "Building's Land Plot number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "building_name.land_address",
+   "fieldname": "buidings_land_address",
+   "fieldtype": "Data",
+   "label": "Building's Land Address",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "building_name.district",
+   "fieldname": "district",
+   "fieldtype": "Data",
+   "label": "District",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "building_name.state",
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State",
+   "read_only": 1
+  },
+  {
+   "fieldname": "room_details_section",
+   "fieldtype": "Section Break",
+   "label": "Basic Information"
+  },
+  {
+   "fetch_from": "building_name.pin_code",
+   "fieldname": "pin_code",
+   "fieldtype": "Data",
+   "label": "Pin Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_14",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.type_of_room==\"Residential\"",
+   "fetch_from": "residence_type_name.unit_area_sq_m",
+   "fieldname": "unit_area_sq_m",
+   "fieldtype": "Data",
+   "label": "Unit Area (sq. m.)",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.type_of_room==\"Residential\"",
+   "fetch_from": "residence_type_name.parking_available",
+   "fieldname": "parking_available",
+   "fieldtype": "Data",
+   "label": "Parking Available",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_22",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.type_of_room==\"Residential\"",
+   "fetch_from": "residence_type_name.air_conditioning",
+   "fieldname": "air_conditioning",
+   "fieldtype": "Data",
+   "label": "Air Conditioning",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:(doc.type_of_room==\"Residential\" && doc.allotment_status==\"Allottable\")",
+   "fieldname": "type_of_residence",
+   "fieldtype": "Link",
+   "label": "Type of Residence",
+   "mandatory_depends_on": "eval:(doc.type_of_room==\"Residential\")",
+   "options": "Type of Residence"
+  },
+  {
+   "fetch_from": "residence_type_name.description",
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "label": "Description",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:(doc.type_of_room==\"Residential\" && doc.allotment_status==\"Allottable\")",
+   "fieldname": "residence_type_name",
+   "fieldtype": "Link",
+   "label": "Residence Type Name",
+   "mandatory_depends_on": "eval:(doc.type_of_room==\"Residential\")",
+   "options": "Residence Type"
+  },
+  {
+   "fieldname": "residence_details_section",
+   "fieldtype": "Section Break",
+   "label": "Residence Details"
+  },
+  {
+   "depends_on": "eval:doc.type_of_room==\"Residential\"",
+   "fetch_from": "residence_type_name.residence_orientation",
+   "fieldname": "orientation",
+   "fieldtype": "Data",
+   "label": "Residence Orientation",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.type_of_room==\"Residential\"",
+   "fetch_from": "residence_type_name.roof_type",
+   "fieldname": "roof_type",
+   "fieldtype": "Data",
+   "label": "Roof type",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.type_of_room==\"Residential\"",
+   "fetch_from": "residence_type_name.lawngarden_available",
+   "fieldname": "lawngarden_available",
+   "fieldtype": "Data",
+   "label": "Lawn/Garden Available",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.parking_available==\"Yes\"",
+   "fetch_from": "residence_type_name.parking_type",
+   "fieldname": "parking_type",
+   "fieldtype": "Data",
+   "label": "Parking Type",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.parking_available==\"Yes\"",
+   "fetch_from": "residence_type_name.parking_vehicle",
+   "fieldname": "parking_vehicle",
+   "fieldtype": "Data",
+   "label": "Parking Vehicle",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.parking_available==\"Yes\"",
+   "fetch_from": "residence_type_name.data_9",
+   "fieldname": "parking_area_sq_m",
+   "fieldtype": "Data",
+   "label": "Parking Area (sq. m.)",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.lawngarden_available==\"Yes\"",
+   "fetch_from": "residence_type_name.lawngarden_area_sq_m",
+   "fieldname": "lawngarden_area_sq_m",
+   "fieldtype": "Data",
+   "label": "Lawn/Garden Area (sq. m.)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "room_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Room No.",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "depends_on": "eval:(doc.type_of_room==\"Residential\" && doc.allotment_status==\"Allottable\")",
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start date",
+   "mandatory_depends_on": "eval:(doc.type_of_room==\"Residential\")"
+  },
+  {
+   "depends_on": "eval:(doc.type_of_room==\"Residential\" && doc.allotment_status==\"Allottable\")",
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End date",
+   "mandatory_depends_on": "eval:(doc.type_of_room==\"Residential\")"
+  },
+  {
+   "fetch_from": "building_name.building_type",
+   "fieldname": "building_type",
+   "fieldtype": "Data",
+   "label": "Building Type",
+   "read_only": 1
+  },
+  {
+   "default": "Vacant",
+   "depends_on": "eval:doc.building_type==\"Residential\"",
+   "fieldname": "vacancy_status",
+   "fieldtype": "Select",
+   "label": "Vacancy status",
+   "options": "Vacant\nNot Vacant",
+   "read_only": 1
+  },
+  {
+   "default": "Not Alloted",
+   "depends_on": "eval:doc.building_type==\"Residential\"",
+   "fetch_from": "employee_alloted_name.allotment_status",
+   "fieldname": "employee_allotment_status",
+   "fieldtype": "Data",
+   "label": "Employee Allotment Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_33",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-01-23 12:40:03.889855",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Building Room",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "room_no"
+}

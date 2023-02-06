@@ -18,13 +18,13 @@
   "parking_type",
   "parking_area_sq_m",
   "parking_vehicle",
-  "current_employee_allotment_status"
+  "current_employee_allotment_status",
+  "date"
  ],
  "fields": [
   {
    "fieldname": "residence_allotment_number",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "Residence Allotment Number"
   },
   {
@@ -101,12 +101,17 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Current Employee Allotment status"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-01-20 11:54:45.543529",
+ "modified": "2023-01-24 16:45:55.229467",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Allotted",

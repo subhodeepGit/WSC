@@ -19,7 +19,7 @@ frappe.ui.form.on("Building Room", {
 	}
 });
 
-// To filter out buildings which are currently between start and end date
+// To filter buildings which are currently between start and end date
 frappe.ui.form.on("Building Room", {
 	setup: function(frm) {
 		frm.set_query("building_name", function() {

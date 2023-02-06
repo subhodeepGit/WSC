@@ -14,7 +14,7 @@
 // 	}
 // });
 
-//To fetch only those buildings which are between start and end date of the Land
+//To fetch only those buildings which are between start and end date of the Land with respect to today’s date
 frappe.ui.form.on("Buildings", {
 	setup: function(frm) {
 		frm.set_query("plot_number", function() {

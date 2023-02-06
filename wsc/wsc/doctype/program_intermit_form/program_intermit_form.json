@@ -1,0 +1,143 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "PIF.-.####",
+ "creation": "2023-02-02 12:12:52.554204",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "student",
+  "student_name",
+  "roll_no",
+  "column_break_4",
+  "academic_year",
+  "academic_term",
+  "section_break_7",
+  "enabled",
+  "form_status",
+  "section_break_10",
+  "programs",
+  "semester",
+  "want_to_intermit_the_program",
+  "state_a_valid_reason",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "student",
+   "fieldtype": "Link",
+   "label": "Student",
+   "options": "Student"
+  },
+  {
+   "fetch_from": "student.student_name",
+   "fieldname": "student_name",
+   "fieldtype": "Read Only",
+   "label": "Student Name"
+  },
+  {
+   "fetch_from": "student.roll_no",
+   "fieldname": "roll_no",
+   "fieldtype": "Read Only",
+   "label": "Roll No"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Data",
+   "label": "Academic Year"
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Data",
+   "label": "Academic Term"
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "semester",
+   "fieldtype": "Data",
+   "label": "Semester"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Program Intermit Form",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "programs",
+   "fieldtype": "Data",
+   "label": "Programs"
+  },
+  {
+   "default": "0",
+   "fieldname": "want_to_intermit_the_program",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Want to Intermit the Program",
+   "reqd": 1
+  },
+  {
+   "depends_on": "want_to_intermit_the_program",
+   "fieldname": "state_a_valid_reason",
+   "fieldtype": "Text",
+   "label": "State a Valid Reason"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "form_status",
+   "fieldtype": "Select",
+   "label": "Form Status",
+   "no_copy": 1,
+   "options": "\nApprove\nReject",
+   "permlevel": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  },
+  {
+   "fieldname": "section_break_10",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-02-03 10:27:47.692524",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Program Intermit Form",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
