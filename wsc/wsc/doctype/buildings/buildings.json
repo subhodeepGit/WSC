@@ -26,10 +26,9 @@
   "facing",
   "campus",
   "column_break_15",
-  "amended_from",
   "start_date",
   "end_date",
-  "vacancy"
+  "amended_from"
  ],
  "fields": [
   {
@@ -148,12 +147,6 @@
    "reqd": 1
   },
   {
-   "fieldname": "vacancy",
-   "fieldtype": "Data",
-   "label": "Vacancy",
-   "read_only": 1
-  },
-  {
    "fieldname": "total_rooms",
    "fieldtype": "Int",
    "label": "Total Rooms",
@@ -182,7 +175,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-11 11:50:21.646705",
+ "modified": "2023-01-23 12:30:41.078415",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Buildings",

@@ -70,20 +70,53 @@ class ExamDeclaration(Document):
             row.update({'courses':d.courses, 'examination_date':d.examination_date, 'from_time':d.from_time, 'to_time':d.to_time, 'semester':frappe.db.get_value('Program Course', {'course': d.courses,"parent":["IN",[d.semester for d in self.semesters]]}, 'parent'), 'course_name':d.course_name,'course_code':d.course_code, 'total_duration_in_hours':d.total_duration_in_hours})                           #                      
     @frappe.whitelist()
     def get_courses(self,year_end_date):
-        course_list = get_courses_by_semester_academic_year([d.semester for d in self.semesters],year_end_date)
-        result = []
-        for course in course_list:
-            row = {}
-            course_details = frappe.db.get_all('Course',{'name':course,},['name','course_code','course_name'])
-            # if c.course not in [d.name for d in frappe.get_all("Course", {"disable":0},['name'])]:
-            # ,["academic_year","=","%s"%(academic_year)]]
-            #  {'name':course}, 
-            semester = frappe.db.get_value('Program Course', {'course': course,"parent":["IN",[d.semester for d in self.semesters]]}, 'parent')
-            course_details[0].update({'semester': semester})
-            row.update(course_details[0])
-            result.append(row)
-        return result      
-        return get_courses_by_semester_academic_year([d.semester for d in self.semesters])
+        if self.exam_category=="Regular":
+            course_list = get_courses_by_semester_academic_year([d.semester for d in self.semesters],year_end_date)
+            result = []
+            for course in course_list:
+                row = {}
+                course_details = frappe.db.get_all('Course',{'name':course,},['name','course_code','course_name'])
+                # if c.course not in [d.name for d in frappe.get_all("Course", {"disable":0},['name'])]:
+                # ,["academic_year","=","%s"%(academic_year)]]
+                #  {'name':course}, 
+                semester = frappe.db.get_value('Program Course', {'course': course,"parent":["IN",[d.semester for d in self.semesters]]}, 'parent')
+                course_details[0].update({'semester': semester})
+                row.update(course_details[0])
+                result.append(row)
+            return result      
+            return get_courses_by_semester_academic_year([d.semester for d in self.semesters])
+        else :
+            course_list = get_courses_by_semester_academic_year([d.semester for d in self.semesters],year_end_date)
+            print("n\n\n\n\nCourse_list")
+            print(course_list)
+            result = []
+            count = 0
+            courses = []
+            final_courses = []
+            for cour in course_list:
+                data = frappe.db.get_all("Evaluation Result Item",{'result':"F",'course':cour},["course"])
+                print("\n\n\n\n\nFrom Evaluation Result Item")
+                print(data)
+                for item in data :
+                    courses.append(item["course"])
+                print("\n\n\n\n\n\nResult list is")
+                result = result + list(set(courses))
+            if (len(result)==0):
+                frappe.throw("There is No pending Couse to Schedule Back paper Exam")  
+            else :
+                for course in result :
+                    row = {}
+                    course_details= frappe.db.get_all('Course',{'name':course,},['name','course_code','course_name'])
+                    
+                    semester = frappe.db.get_value('Program Course', {'course': course,"parent":["IN",[d.semester for d in self.semesters]]}, 'parent')
+                    course_details[0].update({'semester': semester})
+                    row.update(course_details[0])
+                    final_courses.append(row)
+                print("\n\n\n\n\n\nFinal Courses")
+                print(final_courses)
+                return  final_courses     
+                return get_courses_by_semester_academic_year([d.semester for d in self.semesters])
+       
     def validate(self):
         self.date_validation()
         self.calculate_total_hours()

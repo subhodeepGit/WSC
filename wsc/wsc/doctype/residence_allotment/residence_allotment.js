@@ -1,17 +1,13 @@
 // Copyright (c) 2023, SOUL Limited and contributors
 // For license information, please see license.txt
 
-// To filter applications in the link field based on ithe application status
+// To filter applications in the link field based on the application status
 frappe.ui.form.on("Residence Allotment", {
 	setup: function(frm) {
 		frm.set_query("application_number", function() {
 			return {
 				filters: [
-					["Application for Residence","current_application_status", "!=", "Rejected"],
-					["Application for Residence","current_application_status", "!=", "Alloted"],
-					["Application for Residence","current_application_status", "!=", "Cancelled by Applicant"]
-					
-                    
+					["Application for Residence","current_application_status", "=", "Applied"]   
 				]
 			}
 		

@@ -17,21 +17,20 @@
   "parking_available",
   "parking_type",
   "parking_area_sq_m",
-  "parking_vehicle"
+  "parking_vehicle",
+  "current_employee_allotment_status",
+  "date"
  ],
  "fields": [
   {
    "fieldname": "residence_allotment_number",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Residence Allotment Number",
-   "options": "Residence Allotment"
+   "fieldtype": "Data",
+   "label": "Residence Allotment Number"
   },
   {
    "fetch_from": "residence_allotment_number.application_number",
    "fieldname": "application_number",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "Application Number"
   },
   {
@@ -96,12 +95,23 @@
    "fieldname": "parking_vehicle",
    "fieldtype": "Data",
    "label": "Parking Vehicle"
+  },
+  {
+   "fieldname": "current_employee_allotment_status",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Current Employee Allotment status"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-01-19 18:27:49.108487",
+ "modified": "2023-01-24 16:45:55.229467",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Allotted",

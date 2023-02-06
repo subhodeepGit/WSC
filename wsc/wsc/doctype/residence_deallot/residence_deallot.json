@@ -1,0 +1,77 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-01-24 15:36:29.783042",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "residence_de_allotment_number",
+  "application_number",
+  "de_allotment_date",
+  "residence_number",
+  "residence_type_name",
+  "residence_allotment_number",
+  "building_name",
+  "current_employee_allotment_status"
+ ],
+ "fields": [
+  {
+   "fieldname": "residence_de_allotment_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Residence De Allotment Number"
+  },
+  {
+   "fieldname": "application_number",
+   "fieldtype": "Data",
+   "label": "Application Number"
+  },
+  {
+   "fieldname": "de_allotment_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "De Allotment Date"
+  },
+  {
+   "fieldname": "residence_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Residence Number"
+  },
+  {
+   "fieldname": "residence_type_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Residence Type Name"
+  },
+  {
+   "fieldname": "residence_allotment_number",
+   "fieldtype": "Data",
+   "label": "Residence Allotment Number"
+  },
+  {
+   "fieldname": "building_name",
+   "fieldtype": "Data",
+   "label": "Building Name"
+  },
+  {
+   "fieldname": "current_employee_allotment_status",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "Current Employee Allotment status"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-01-24 16:46:10.991675",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Residence DeAllot",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
