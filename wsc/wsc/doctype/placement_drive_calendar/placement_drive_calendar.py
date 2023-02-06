@@ -18,9 +18,6 @@ class PlacementDriveCalendar(Document):
 
 @frappe.whitelist()
 def get_rounds(placement_drive):
-	pass
-	# # print(placement_drive)
-	# rounds = frappe.get_all("Rounds of Placement" , {'parent':placement_drive} , ['round_name' , 'date' ,  'reporting_time' , 'location' , 'parent'])
-	# print(rounds)
-
-	# return rounds
+	# pass
+	data = frappe.get_all("Non Teaching Activities" , ['academic_year' , 'department' , 'activities' , 'duration' , 'description'])
+	print(data)
