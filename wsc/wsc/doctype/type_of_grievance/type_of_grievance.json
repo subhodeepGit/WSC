@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "GIV-.######",
  "creation": "2023-01-12 12:54:46.963530",
  "default_view": "List",
  "doctype": "DocType",
@@ -8,6 +9,7 @@
  "engine": "InnoDB",
  "field_order": [
   "type_of_grievance",
+  "enable",
   "description_of_grivence",
   "standard_compliance_period_in_days",
   "workflow_of_grievance",
@@ -50,7 +52,8 @@
    "fieldname": "areas_of_grivence",
    "fieldtype": "Select",
    "label": "Areas of Grivence",
-   "options": "\nEducation\nEmployment\nAcademics\nRagging\nAccommodation\nNon -Teaching Activities\nTransportation\nHealth\nFooding\nsocial awareness\nseminars\nworkshops\nViolence Against Women\nThe Sexual Harassment of Women at Workplace\nExam\nClass Room\nCyber security"
+   "options": "\nEducation\nEmployment\nAcademics\nRagging\nAccommodation\nNon -Teaching Activities\nTransportation\nHealth\nFooding\nsocial awareness\nseminars\nworkshops\nViolence Against Women\nThe Sexual Harassment of Women at Workplace\nExam\nClass Room\nCyber security",
+   "reqd": 1
   },
   {
    "fieldname": "student_handbook_rule_no_for_ref",
@@ -61,14 +64,22 @@
    "fieldname": "student_handbook_rule_discription",
    "fieldtype": "Text",
    "label": "Student HandBook Rule Discription "
+  },
+  {
+   "default": "1",
+   "fieldname": "enable",
+   "fieldtype": "Check",
+   "label": "Enable",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-12 14:58:31.685882",
+ "modified": "2023-02-06 17:55:12.079884",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Type of Grievance",
+ "naming_rule": "By script",
  "owner": "Administrator",
  "permissions": [
   {
@@ -86,5 +97,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "type_of_grievance"
 }

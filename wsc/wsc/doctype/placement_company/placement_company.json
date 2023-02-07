@@ -53,8 +53,8 @@
   },
   {
    "fieldname": "address_html",
-   "fieldtype": "HTML",
-   "label": "Address HTML"
+   "fieldtype": "Data",
+   "label": "Address "
   },
   {
    "fieldname": "column_break_9",
@@ -62,8 +62,8 @@
   },
   {
    "fieldname": "contact_html",
-   "fieldtype": "HTML",
-   "label": "Contact HTML"
+   "fieldtype": "Data",
+   "label": "Contact "
   },
   {
    "default": "0",
@@ -92,7 +92,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-19 16:48:20.153269",
+ "modified": "2023-01-24 15:06:23.391529",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Company",

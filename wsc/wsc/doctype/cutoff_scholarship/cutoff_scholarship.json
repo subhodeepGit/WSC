@@ -6,10 +6,10 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "student_id",
   "student_name",
-  "marks_obtained",
-  "percentage",
-  "scholarship_amount"
+  "scholarship_amount",
+  "sgpa"
  ],
  "fields": [
   {
@@ -18,25 +18,25 @@
    "label": "Student Name"
   },
   {
-   "fieldname": "marks_obtained",
-   "fieldtype": "Data",
-   "label": "Marks Obtained"
-  },
-  {
-   "fieldname": "percentage",
-   "fieldtype": "Data",
-   "label": "Percentage"
-  },
-  {
    "fieldname": "scholarship_amount",
    "fieldtype": "Data",
    "label": "Scholarship Amount"
+  },
+  {
+   "fieldname": "student_id",
+   "fieldtype": "Data",
+   "label": "Student ID"
+  },
+  {
+   "fieldname": "sgpa",
+   "fieldtype": "Data",
+   "label": "SGPA"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-01-30 17:05:27.535282",
+ "modified": "2023-02-03 18:29:23.698366",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Cutoff Scholarship",

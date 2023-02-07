@@ -5,10 +5,10 @@ import frappe
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 
-class PlacementTool(Document):
+class PlacementTestTool(Document):
 	@frappe.whitelist()
-	def schedule_round(self):
-		for d in self.get('student_list'):
+	def create_selection_rounds(self):
+		for d in self.get('student_records'):
 			result = frappe.new_doc('Selection Round')
 			result.student_name = d.student_name
 			result.student_no = d.student_no
@@ -34,11 +34,22 @@ def get_student(drive_name):
     return student_data
 
 @frappe.whitelist()
-def get_rounds_of_placement(drive_name):
+def rounds_of_placement(drive_name):
     data = frappe.db.sql(""" SELECT round_name from `tabRounds of Placement` where parent="%s" """%(drive_name))
     return data
 
+# @frappe.whitelist()
+# def date_of_placement(doc, drive_name, round_name):
+#     data = frappe.db.sql(""" SELECT date from `tabRounds of Placement` where parent="%s" AND round_name="%s" """%(drive_name,round_name))
+# 	return data
+# 	# doc.scheduled_date_of_round = data
+
+
 @frappe.whitelist()
-def get_date_of_round(doc, drive_name, round_name):
+def date_of_placement(doc, drive_name, round_name):
 	data = frappe.db.sql(""" SELECT date from `tabRounds of Placement` where parent = '%s' AND round_name = '%s'"""%(drive_name, round_name))
-	return data
+	doc
+	# print('\n\n\n')
+	# print(data)
+	# print('\n\n\n')
+	# return data

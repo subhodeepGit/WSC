@@ -25,16 +25,17 @@
   "start_date",
   "end_date",
   "building",
-  "column_break_18",
   "residence_type",
+  "column_break_18",
   "residence_type_name",
   "residence_serial_number",
   "residence_number",
-  "column_break_9",
   "employee_allotment_status",
   "vacancy_status",
+  "column_break_9",
   "current_employee_allotment_status",
   "current_vacancy_status",
+  "current_application_status",
   "residence_details_section",
   "floor",
   "building_address",
@@ -365,25 +366,25 @@
   {
    "fieldname": "changed_residence_details_section",
    "fieldtype": "Section Break",
-   "label": "Changed Residence Details",
+   "label": "Current Residence Details",
    "read_only": 1
   },
   {
    "fieldname": "changed_residence_serial_number",
    "fieldtype": "Data",
-   "label": "Changed Residence Serial Number",
+   "label": "Current Residence Serial Number",
    "read_only": 1
   },
   {
    "fieldname": "changed_residence_number",
    "fieldtype": "Data",
-   "label": "Changed Residence Number",
+   "label": "Current Residence Number",
    "read_only": 1
   },
   {
    "fieldname": "changed_building_name",
    "fieldtype": "Data",
-   "label": "Changed Building Name",
+   "label": "Current Building Name",
    "read_only": 1
   },
   {
@@ -393,13 +394,13 @@
   {
    "fieldname": "changed_residence_type",
    "fieldtype": "Data",
-   "label": "Changed Residence Type",
+   "label": "Current Residence Type",
    "read_only": 1
   },
   {
    "fieldname": "changed_residence_type_name",
    "fieldtype": "Data",
-   "label": "Changed Residence Type Name",
+   "label": "Current Residence Type Name",
    "read_only": 1
   },
   {
@@ -414,12 +415,19 @@
    "fieldtype": "Data",
    "label": "Employee Email",
    "read_only": 1
+  },
+  {
+   "fetch_from": "application_number.current_application_status",
+   "fieldname": "current_application_status",
+   "fieldtype": "Data",
+   "label": "Current Application Status",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-30 13:23:33.277090",
+ "modified": "2023-02-06 12:21:36.842027",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Allotment",

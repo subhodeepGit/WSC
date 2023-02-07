@@ -16,24 +16,14 @@
   "semester",
   "section_break_7",
   "topper_scholarship",
-  "fetch_topper",
+  "get_students",
   "topper_scholarship_table",
   "cutoff_scholarship",
-  "cutoff_percentage",
-  "fetch_topper_list",
+  "get_cutoff_students",
+  "cutoff_sgpa",
   "cutoff_scholarship_table"
  ],
  "fields": [
-  {
-   "fieldname": "fetch_topper",
-   "fieldtype": "Button",
-   "label": "Fetch topper"
-  },
-  {
-   "fieldname": "fetch_topper_list",
-   "fieldtype": "Button",
-   "label": "Fetch Topper list"
-  },
   {
    "fieldname": "academic_year",
    "fieldtype": "Link",
@@ -45,11 +35,6 @@
    "fieldtype": "Link",
    "label": "Semester",
    "options": "Program"
-  },
-  {
-   "fieldname": "cutoff_percentage",
-   "fieldtype": "Data",
-   "label": "Cutoff percentage"
   },
   {
    "fieldname": "topper_scholarship_table",
@@ -104,11 +89,26 @@
    "fieldname": "topper_scholarship",
    "fieldtype": "Heading",
    "label": "Topper Scholarship"
+  },
+  {
+   "fieldname": "cutoff_sgpa",
+   "fieldtype": "Data",
+   "label": "Cutoff SGPA"
+  },
+  {
+   "fieldname": "get_students",
+   "fieldtype": "Button",
+   "label": "Get Students"
+  },
+  {
+   "fieldname": "get_cutoff_students",
+   "fieldtype": "Button",
+   "label": "Get cutoff students"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-02-02 12:49:10.698579",
+ "modified": "2023-02-06 10:49:30.932043",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Scholarships",
