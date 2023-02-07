@@ -11,19 +11,10 @@ class StudentFeedbackForm(Document):
 			frappe.throw("Your Feedback For This Course and This Instructor Already Exists")
 		
 
-# @frappe.whitelist()
-# def get_missing_fields(self):
-# 	data={}
-# 	data["programs"]=frappe.db.get_value("Current Educational Details",{"parent":self.student},"programs")
-# 	return data
 @frappe.whitelist()
 def getvalue():
 	data = frappe.get_all("Student Feedback Questions",{"enable":1},["question"])
-	# print(data)
 	return data
-# def validate():
-# 	data = frappe.get_all("Student Feedback Questions",['question'])
-# 	print(data)
 @frappe.whitelist()
 def get_course(doctype, txt, searchfield, start, page_len, filters):
     return frappe.get_all("Program Course",{"parent":filters.get("program")},['course'],as_list = 1)
@@ -34,5 +25,4 @@ def getdetails(student_id):
 	if len(data) == 0:
 		frappe.throw("Student is not enrolled in Any program")
 	else :
-		print(data[0])
 		return data[0]

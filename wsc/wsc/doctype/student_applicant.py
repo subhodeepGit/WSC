@@ -7,12 +7,43 @@ from wsc.wsc.validations.student_admission import validate_academic_year
 from wsc.wsc.notification.custom_notification import student_applicant_submit,student_applicant_rejected,student_applicant_approved,student_applicant_onhold
 
 class StudentApplicant(Document):
-    def on_update_after_submit(self):
-        student = frappe.get_list("Student", filters= {"student_applicant": self.name})
-        # print("\n\n\nstudent:")
-        # print(student)
+    def on_update_after_submit(doc):
+        if doc.docstatus==1:
+            validate_attachment(doc)
+        student = frappe.get_list("Student",  filters= {"student_applicant": doc.name})
+        # if len(last_result)==0:
+		# if student:
+        if len(student)==0 and doc.application_status=="Approved" and doc.docstatus==1:
+            student = get_mapped_doc("Student Applicant", doc.name,
+                {
+                "Student Applicant": {
+                    "doctype": "Student",
+                    "field_map": {
+                        "name": "student_applicant"
+                    }
+                },
+                "Education Qualifications Details": {
+                    "doctype": "Educational Details"
+                },
+                "Document List": {
+                    "doctype": "Document List"
+                }
+            }, ignore_permissions=True)
+            student.save()
+        if doc.account_name and doc.bank and doc.account_type and doc.branch_code and doc.bank_account_no:
+            acc_doc = frappe.new_doc('Bank Account')
+            acc_doc.account_name = doc.account_name
+            acc_doc.bank =  doc.bank
+            acc_doc.account_type =  doc.account_type
+            acc_doc.branch_code =  doc.branch_code
+            acc_doc.bank_account_no =  doc.bank_account_no
+            acc_doc.party_type = "Student"
+            acc_doc.party = frappe.db.get_value("Student", {'student_applicant': doc.name},'name')
+            acc_doc.save()
+            frappe.msgprint(_("Bank account created"))
+        student = frappe.get_list("Student", filters= {"student_applicant": doc.name})
         if len(student)>1:
-            frappe.throw(_("Cannot change status as student {0} is linked with student application {1}").format(student[0].name, self.name))
+            frappe.throw(_("Cannot change status as student {0} is linked with student application {1}").format(student[0].name, doc.name))
     def validate(doc):
         # validate_percentage(doc)
         education_details_validation(doc)
@@ -146,8 +177,6 @@ def on_update(doc,method):
     if doc.docstatus==1:
         validate_attachment(doc)
         student = frappe.get_list("Student",  filters= {"student_applicant": doc.name})
-        print("\n\n\nstudent:")
-        print(student)
         # if len(last_result)==0:
 		# if student:
         if len(student)==0 and doc.application_status=="Approved" and doc.docstatus==1:
@@ -560,3 +589,4 @@ def validate_counselling_structure(doc):
         #                     if pt.parameter == e.qualification:
         #                         if e.score > pt.total_score:
         #                             frappe.throw("Score <b>'{0}'</b> of education qualifications details should not be greater than the total score <b>'{1}'</b>".format(e.score, pt.total_score))
+

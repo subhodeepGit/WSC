@@ -63,22 +63,7 @@ def validate(doc,method):
 	duplicate_row_validation(doc, "siblings", ['full_name', 'gender'])
 	duplicate_row_validation(doc, "disable_type", ['disability_type', 'percentage_of_disability'])
 	records = frappe.get_all("Program Intermit Form",{"form_status":"Approve"},["student","student_name"])
-	if len(records)==0 :
-		# frappe.throw("There is No Applicants to Intermit a Program")
-		pass
-	else :
-		print("\n\n\n\n\nData is ")
-		print(records)
-		for data in records :
-			student_name = data["student_name"]
-			student = data["student"]
-			a = frappe.get_all("Student",{"name":student,"student_name":student_name},["name","student_name","enabled"])
-			frappe.db.set_value("Student",student,"enabled",0)
-			b = frappe.get_all("Student",{"enabled":1},["name"])
-			print("\n\n\n\n\nB")
-			print(b)
-			print("\n\n\n\n\nEnabled value")
-			print(a)
+
 
 		# frappe.throw(data)
 		# return data
