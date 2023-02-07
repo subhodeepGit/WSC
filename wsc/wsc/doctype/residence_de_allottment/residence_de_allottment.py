@@ -21,6 +21,7 @@ def deallotmentNumberField(self):
 def residenceAllotmentStatus(self):
 	frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"current_vacancy_status","Vacant")
 	frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"current_employee_allotment_status", "Not Alloted")
+	frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"current_application_status", "De-Alloted")
 
 # To set value of current application status in "Application for Residence De-Allottment"
 def currentApplicationStatus(self):

@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestPlacementTool(FrappeTestCase):
+class TestAcademicContinuationForm(FrappeTestCase):
 	pass

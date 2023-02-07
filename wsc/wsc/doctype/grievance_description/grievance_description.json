@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:type_of_grievance",
  "creation": "2023-01-12 12:52:16.814688",
@@ -30,7 +31,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-12 12:54:26.600638",
+ "modified": "2023-01-20 16:53:03.747859",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Grievance Description",

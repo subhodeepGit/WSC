@@ -22,10 +22,10 @@
   "alloted_residence_details_section",
   "alloted_residence_serial_number",
   "alloted_residence_number",
-  "alloted_residence_building",
+  "alloted_residence_type_name",
+  "alloted_building",
   "column_break_4",
   "alloted_residence_type",
-  "alloted_residence_type_name",
   "employee_request_section",
   "residence_type_requested",
   "residence_type_name_requested",
@@ -150,30 +150,22 @@
    "fieldtype": "Column Break"
   },
   {
-   "fetch_from": "application_number.residence_type",
+   "fetch_from": "residence_allotment_number.residence_type",
    "fieldname": "alloted_residence_type",
    "fieldtype": "Data",
    "label": "Alloted Residence Type",
    "read_only": 1
   },
   {
-   "fetch_from": "application_number.residence_type_name",
+   "fetch_from": "residence_allotment_number.residence_type_name",
    "fieldname": "alloted_residence_type_name",
    "fieldtype": "Data",
-   "label": "Alloted Residence Type name",
-   "read_only": 1
+   "label": "Alloted Residence Type Name"
   },
   {
    "fieldname": "request_status",
    "fieldtype": "Data",
    "label": "Request Status",
-   "read_only": 1
-  },
-  {
-   "fetch_from": "application_number.building",
-   "fieldname": "alloted_residence_building",
-   "fieldtype": "Data",
-   "label": "Alloted Residence Building",
    "read_only": 1
   },
   {
@@ -365,12 +357,18 @@
    "fieldtype": "Data",
    "label": "Employee Email",
    "read_only": 1
+  },
+  {
+   "fetch_from": "residence_allotment_number.building",
+   "fieldname": "alloted_building",
+   "fieldtype": "Data",
+   "label": "Alloted Building"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-31 09:52:26.193575",
+ "modified": "2023-02-06 17:10:14.081206",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Change Request",

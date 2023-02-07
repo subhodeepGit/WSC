@@ -23,17 +23,16 @@ frappe.ui.form.on('Placement Drive Calendar', {
 		// 	args: {
 		// 			'placement_drive':frm.doc.placement_drive
 		// 		},
-		// 	callback: function(result){
-		// 		let arr = Object.values(result)
-		// 		let value = Object.values(arr[0])
-		// 		// console.log(arr[0]);
-		// 		// console.log(value[0].round_name)
-		// 		frm.doc.round_of_placement = value[0].round_name
+			// callback: function(result){
+			// 	let arr = Object.values(result)
+			// 	let value = Object.values(arr[0])
+			// 	// console.log(arr[0]);
+			// 	// console.log(value[0].round_name)
+			// 	frm.doc.round_of_placement = value[0].round_name
 				
-		// 		refresh_field("frm.doc.round_of_placement")
-		// 		console.log(frm.doc.round_of_placement);
-		// 	}
-
+			// 	refresh_field("frm.doc.round_of_placement")
+			// 	console.log(frm.doc.round_of_placement);
+			// }
 		// })
 		// const meta = frappe.get_meta(placement_drive)
 		// console.log(frm.doc.placement_drive);

@@ -87,19 +87,14 @@ class ExamDeclaration(Document):
             return get_courses_by_semester_academic_year([d.semester for d in self.semesters])
         else :
             course_list = get_courses_by_semester_academic_year([d.semester for d in self.semesters],year_end_date)
-            print("n\n\n\n\nCourse_list")
-            print(course_list)
             result = []
             count = 0
             courses = []
             final_courses = []
             for cour in course_list:
                 data = frappe.db.get_all("Evaluation Result Item",{'result':"F",'course':cour},["course"])
-                print("\n\n\n\n\nFrom Evaluation Result Item")
-                print(data)
                 for item in data :
                     courses.append(item["course"])
-                print("\n\n\n\n\n\nResult list is")
                 result = result + list(set(courses))
             if (len(result)==0):
                 frappe.throw("There is No pending Couse to Schedule Back paper Exam")  
@@ -112,8 +107,6 @@ class ExamDeclaration(Document):
                     course_details[0].update({'semester': semester})
                     row.update(course_details[0])
                     final_courses.append(row)
-                print("\n\n\n\n\n\nFinal Courses")
-                print(final_courses)
                 return  final_courses     
                 return get_courses_by_semester_academic_year([d.semester for d in self.semesters])
        
