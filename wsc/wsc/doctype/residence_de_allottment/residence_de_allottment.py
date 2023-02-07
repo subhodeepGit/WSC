@@ -5,6 +5,9 @@ import frappe
 from frappe.model.document import Document
 
 class ResidenceDeAllottment(Document):
+	def validate(self):
+		endDateUpdate(self)
+
 	def on_submit(self):
 		residenceAllotmentStatus(self)
 		currentApplicationStatus(self)
@@ -12,6 +15,10 @@ class ResidenceDeAllottment(Document):
 		residenceApplicationStatus(self)
 		deallotmentNumberField(self)
 		residenceUpdate(self)
+
+def endDateUpdate(self):
+	frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"current_end_date", self.de_allotment_date)
+	self.db_set("end_date", self.de_allotment_date)
 
 # To get the doc series name in a field
 def deallotmentNumberField(self):
@@ -29,10 +36,6 @@ def currentApplicationStatus(self):
 
 # To change employee allotment status and vacancy status in "Building Room"
 def buildingRoomStatus(self):
-	if self.residence_change_status== "Approved":
-		frappe.db.set_value("Building Room", self.changed_residence_serial_number, "employee_allotment_status", "Not Alloted")
-		frappe.db.set_value("Building Room",self.changed_residence_serial_number,"vacancy_status","Vacant")
-	else:
 		frappe.db.set_value("Building Room", self.residence_serial_number, "employee_allotment_status", "Not Alloted")
 		frappe.db.set_value("Building Room",self.residence_serial_number,"vacancy_status","Vacant")
 	
@@ -43,20 +46,7 @@ def residenceApplicationStatus(self):
 # To set value of de-allotment details in "Residence Allotted" child table in "Employee" doctype
 def residenceUpdate(self):
 	allotmentData=frappe.get_doc('Employee', self.employee_id)
-	if self.residence_change_status== "Approved":
-		allotmentData.append("residence_deallot",{
-			"residence_de_allotment_number":self.residence_de_allotment_number,
-			"application_number":self.application_number,
-			"de_allotment_date":self.de_allotment_date,
-			"residence_number":self.changed_residence_number,
-			"residence_type_name":self.changed_residence_type_name,
-			"residence_allotment_number":self.residence_allotment_number,
-			"building_name":self.changed_building_name,
-			"current_employee_allotment_status" : "De-Alloted"
-			})
-		allotmentData.save()
-	else:
-		allotmentData.append("residence_deallot",{
+	allotmentData.append("residence_deallot",{
 			"residence_de_allotment_number":self.residence_de_allotment_number,
 			"application_number":self.application_number,
 			"de_allotment_date":self.de_allotment_date,
@@ -64,6 +54,8 @@ def residenceUpdate(self):
 			"residence_type_name":self.residence_type_name,
 			"residence_allotment_number":self.residence_allotment_number,
 			"building_name":self.building_name,
-			"current_employee_allotment_status" : "De-Alloted"
+			"current_employee_allotment_status" : "De-Alloted",
+			"start_date":self.start_date,
+			"end_date":self.end_date
 			})
-		allotmentData.save()
+	allotmentData.save()

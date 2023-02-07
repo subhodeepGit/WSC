@@ -41,9 +41,6 @@ class Scholarships(Document):
 			as_dict=1,
 		)
 		top=cutofftopper[0]['sgpa']
-		print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")			
-		print (n)
-		print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 		for x in cutofftopper:
 			if x['sgpa']==top:
 				cutofftopper.remove(x)

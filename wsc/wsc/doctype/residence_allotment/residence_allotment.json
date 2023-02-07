@@ -22,45 +22,46 @@
   "type_of_residence_name_requested",
   "section_break_4",
   "approval_status",
-  "start_date",
-  "end_date",
   "building",
   "residence_type",
-  "column_break_18",
   "residence_type_name",
+  "column_break_18",
   "residence_serial_number",
   "residence_number",
   "employee_allotment_status",
   "vacancy_status",
-  "column_break_9",
+  "column_break_24",
+  "current_start_date",
+  "current_end_date",
+  "changed_residence_details_section",
+  "current_application_status",
+  "changed_residence_serial_number",
+  "changed_residence_number",
+  "column_break_49",
+  "changed_building_name",
+  "changed_residence_type",
+  "changed_residence_type_name",
+  "column_break_35",
+  "residence_change_status",
   "current_employee_allotment_status",
   "current_vacancy_status",
-  "current_application_status",
   "residence_details_section",
   "floor",
   "building_address",
   "buidings_land_address",
   "description",
   "unit_area_sq_m",
-  "column_break_23",
+  "column_break_45",
   "residence_orientation",
   "lawngarden_available",
   "lawngarden_area_sq_m",
   "roof_type",
-  "column_break_27",
   "parking_available",
+  "column_break_23",
   "parking_type",
   "parking_vehicle",
   "parking_area_sq_m",
-  "amended_from",
-  "changed_residence_details_section",
-  "residence_change_status",
-  "changed_residence_serial_number",
-  "changed_residence_number",
-  "column_break_49",
-  "changed_building_name",
-  "changed_residence_type",
-  "changed_residence_type_name"
+  "amended_from"
  ],
  "fields": [
   {
@@ -81,23 +82,6 @@
    "label": "Building",
    "mandatory_depends_on": "eval:doc.approval_status==\"Approved\"",
    "options": "Buildings"
-  },
-  {
-   "default": "Today",
-   "depends_on": "eval:doc.approval_status==\"Approved\"",
-   "fieldname": "start_date",
-   "fieldtype": "Date",
-   "label": "Start Date",
-   "mandatory_depends_on": "eval:doc.approval_status==\"Approved\""
-  },
-  {
-   "default": "9999-12-30",
-   "depends_on": "eval:doc.approval_status==\"Approved\"",
-   "fieldname": "end_date",
-   "fieldtype": "Date",
-   "in_standard_filter": 1,
-   "label": "End Date",
-   "mandatory_depends_on": "eval:doc.approval_status==\"Approved\""
   },
   {
    "fieldname": "employee_info_section",
@@ -259,15 +243,7 @@
    "label": "Residence Details"
   },
   {
-   "fieldname": "column_break_9",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "column_break_23",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "column_break_27",
    "fieldtype": "Column Break"
   },
   {
@@ -350,7 +326,7 @@
    "default": "Today",
    "fieldname": "last_update_date",
    "fieldtype": "Date",
-   "label": "Last Update Date",
+   "label": "Allotment Date",
    "read_only": 1
   },
   {
@@ -366,7 +342,7 @@
   {
    "fieldname": "changed_residence_details_section",
    "fieldtype": "Section Break",
-   "label": "Current Residence Details",
+   "label": "Current Residence",
    "read_only": 1
   },
   {
@@ -422,12 +398,40 @@
    "fieldtype": "Data",
    "label": "Current Application Status",
    "read_only": 1
+  },
+  {
+   "default": "Today",
+   "depends_on": "eval:doc.approval_status==\"Approved\"",
+   "fieldname": "current_start_date",
+   "fieldtype": "Date",
+   "label": "Current Start Date",
+   "mandatory_depends_on": "eval:doc.approval_status==\"Approved\""
+  },
+  {
+   "default": "9999-12-30",
+   "depends_on": "eval:doc.approval_status==\"Approved\"",
+   "fieldname": "current_end_date",
+   "fieldtype": "Date",
+   "label": "Current End Date",
+   "mandatory_depends_on": "eval:doc.approval_status==\"Approved\""
+  },
+  {
+   "fieldname": "column_break_24",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_35",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_45",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-06 12:21:36.842027",
+ "modified": "2023-02-07 17:11:36.491453",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Allotment",

@@ -69,15 +69,15 @@ frappe.ui.form.on("Residence Allotment", {
 
 // To validate end date is not before start date
 frappe.ui.form.on("Residence Allotment", {
-    start_date: function(frm) {
-        frm.fields_dict.end_date.datepicker.update({
-            minDate: frm.doc.start_date ? new Date(frm.doc.start_date) : null
+    current_start_date: function(frm) {
+        frm.fields_dict.current_end_date.datepicker.update({
+            minDate: frm.doc.current_start_date ? new Date(frm.doc.current_start_date) : null
         });
     },
 
-    end_date: function(frm) {
-        frm.fields_dict.start_date.datepicker.update({
-            maxDate: frm.doc.end_date ? new Date(frm.doc.end_date) : null
+    current_end_date: function(frm) {
+        frm.fields_dict.current_start_date.datepicker.update({
+            maxDate: frm.doc.current_end_date ? new Date(frm.doc.current_end_date) : null
         });
     },
 });

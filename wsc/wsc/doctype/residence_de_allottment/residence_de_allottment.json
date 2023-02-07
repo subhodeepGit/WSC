@@ -15,6 +15,8 @@
   "application_number",
   "de_allotment_date",
   "de_allotment_details_section",
+  "start_date",
+  "end_date",
   "residence_serial_number",
   "residence_number",
   "employee_name",
@@ -23,14 +25,7 @@
   "building_name",
   "residence_type",
   "residence_type_name",
-  "amended_from",
-  "changed_residence_details_section",
-  "residence_change_status",
-  "changed_residence_serial_number",
-  "changed_residence_number",
-  "column_break_22",
-  "changed_building_name",
-  "changed_residence_type_name"
+  "amended_from"
  ],
  "fields": [
   {
@@ -148,49 +143,23 @@
    "unique": 1
   },
   {
-   "fieldname": "changed_residence_details_section",
-   "fieldtype": "Section Break",
-   "label": "Current Residence Details"
-  },
-  {
-   "fetch_from": "residence_de_allotment_application_number.residence_change_status",
-   "fieldname": "residence_change_status",
+   "fetch_from": "residence_de_allotment_application_number.start_date",
+   "fieldname": "start_date",
    "fieldtype": "Data",
-   "label": "Residence Change Status"
+   "label": "Start Date",
+   "read_only": 1
   },
   {
-   "fetch_from": "residence_de_allotment_application_number.changed_residence_serial_number",
-   "fieldname": "changed_residence_serial_number",
+   "fieldname": "end_date",
    "fieldtype": "Data",
-   "label": "Current Residence Serial Number"
-  },
-  {
-   "fetch_from": "residence_de_allotment_application_number.changed_residence_number",
-   "fieldname": "changed_residence_number",
-   "fieldtype": "Data",
-   "label": "Current Residence Number"
-  },
-  {
-   "fetch_from": "residence_de_allotment_application_number.changed_building_name",
-   "fieldname": "changed_building_name",
-   "fieldtype": "Data",
-   "label": "Current Building Name"
-  },
-  {
-   "fetch_from": "residence_de_allotment_application_number.changed_residence_type_name",
-   "fieldname": "changed_residence_type_name",
-   "fieldtype": "Data",
-   "label": "Current Residence Type Name"
-  },
-  {
-   "fieldname": "column_break_22",
-   "fieldtype": "Column Break"
+   "label": "End Date",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-06 12:25:20.063598",
+ "modified": "2023-02-07 17:54:21.640627",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence De-Allottment",

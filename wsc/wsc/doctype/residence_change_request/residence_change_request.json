@@ -31,6 +31,8 @@
   "residence_type_name_requested",
   "residence_change_request_reason_section",
   "residence_change_request_details_section",
+  "start_date",
+  "end_date",
   "residence_building",
   "residence_type",
   "residence_type_name",
@@ -363,12 +365,24 @@
    "fieldname": "alloted_building",
    "fieldtype": "Data",
    "label": "Alloted Building"
+  },
+  {
+   "default": "Today",
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date"
+  },
+  {
+   "default": "9999-12-30",
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-06 17:10:14.081206",
+ "modified": "2023-02-07 14:46:11.289870",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Change Request",

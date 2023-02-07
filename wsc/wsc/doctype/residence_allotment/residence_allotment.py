@@ -24,12 +24,13 @@ class ResidenceAllotment(Document):
 		allottmentstatusCancel(self)
 		allottmentCancelled(self)
 		allottmentCancelledRoom(self)
+		residenceCancelUpdate(self)
 	
 
 ############ alternate code written in js but still required for date validation ###########
 # To validate if the start date is not after the end date
 def dateValidate(self):
-	if self.start_date > self.end_date:
+	if self.current_start_date > self.current_end_date:
 		frappe.throw("Start date cannot be greater than End date")
 
 # To validate every employee is alloted only one quarter
@@ -88,7 +89,9 @@ def residenceUpdate(self):
 			"parking_area_sq_m":self.parking_area_sq_m,
 			"parking_vehicle":self.parking_vehicle,
 			"current_employee_allotment_status":self.current_employee_allotment_status,
-			"date":self.last_update_date
+			"date":self.last_update_date,
+			"start_date":self.current_start_date,
+			"end_date":self.current_end_date
 		})
 		allotmentData.save()
 
@@ -98,15 +101,38 @@ def residenceUpdate(self):
 def allottmentstatusCancel(self):
 	frappe.db.set_value("Residence Allotment",self.name,"current_employee_allotment_status", "Not Alloted")
 	frappe.db.set_value("Residence Allotment",self.name,"current_vacancy_status", "Vacant")
+	frappe.db.set_value("Residence Allotment",self.name,"current_application_status", "Allottment Cancelled")
 
 # To update value of current application status in Application for Residence screen on cancellation of allotment
 def allottmentCancelled(self):
 	frappe.db.set_value("Application for Residence",self.application_number,"current_application_status", "Allottment Cancelled")
 
+
 # To update the value of Allotment status and vacancy status field in "Building Room" on Cancel
 def allottmentCancelledRoom(self):
 	frappe.db.set_value("Building Room", self.residence_serial_number, "employee_allotment_status", "Not Alloted")
 	frappe.db.set_value("Building Room",self.residence_serial_number,"vacancy_status","Vacant")
+
+def residenceCancelUpdate(self):
+		allotmentData=frappe.get_doc('Employee', self.employee_id)
+		allotmentData.append("table_109",{
+			"residence_allotment_number":self.residence_allotment_number,
+			"application_number":self.application_number,
+			"residence_type":self.changed_residence_type,
+			"residence_type_name":self.changed_residence_type_name,
+			"residence_number":self.changed_residence_number,
+			"floor":self.floor,
+			"building_address":self.building_address,
+			"unit_area_sq_m":self.unit_area_sq_m,
+			"parking_available":self.parking_available,
+			"parking_type":self.parking_type,
+			"parking_area_sq_m":self.parking_area_sq_m,
+			"parking_vehicle":self.parking_vehicle,
+			"current_employee_allotment_status":"Allottment Cancelled",
+			"date":self.last_update_date
+		})
+		allotmentData.save()
+
 
 # To initialize current residence details as per the initial allotment details
 def currentResidenceDetails(self):
