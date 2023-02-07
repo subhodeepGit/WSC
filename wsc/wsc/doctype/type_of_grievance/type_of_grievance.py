@@ -8,5 +8,6 @@ class TypeofGrievance(Document):
 	def validate(self):
 		data=frappe.get_all("Type of Grievance",{"type_of_grievance":self.type_of_grievance,"areas_of_grivence":self.areas_of_grivence,"enable":1})
 		if data:
-			frappe.throw("Already Workflow for the Grivance is defined")
+			if len(data)!=1:
+				frappe.throw("Already Workflow for the Grivance is defined")
 
