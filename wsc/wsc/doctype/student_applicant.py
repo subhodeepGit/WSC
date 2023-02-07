@@ -8,12 +8,9 @@ from wsc.wsc.notification.custom_notification import student_applicant_submit,st
 
 class StudentApplicant(Document):
     def on_update_after_submit(doc):
-        print("\n\n\nIm on Update after submit")
         if doc.docstatus==1:
             validate_attachment(doc)
         student = frappe.get_list("Student",  filters= {"student_applicant": doc.name})
-        print("\n\n\nStudent:")
-        print(student)
         # if len(last_result)==0:
 		# if student:
         if len(student)==0 and doc.application_status=="Approved" and doc.docstatus==1:
@@ -45,8 +42,6 @@ class StudentApplicant(Document):
             acc_doc.save()
             frappe.msgprint(_("Bank account created"))
         student = frappe.get_list("Student", filters= {"student_applicant": doc.name})
-        print("\n\n\nstudent:")
-        print(student)
         if len(student)>1:
             frappe.throw(_("Cannot change status as student {0} is linked with student application {1}").format(student[0].name, doc.name))
     def validate(doc):
@@ -179,12 +174,9 @@ def validate_pin_code(doc):
 #                     frappe.throw("Please correct option for Percentage/CGPA for row no .<b>{0}</b> in Education Qualifications Details.".format(eqd.idx))
 
 def on_update(doc,method):
-    print("\n\n\nHello Im on Update")
     if doc.docstatus==1:
         validate_attachment(doc)
         student = frappe.get_list("Student",  filters= {"student_applicant": doc.name})
-        print("\n\n\nStudent:")
-        print(student)
         # if len(last_result)==0:
 		# if student:
         if len(student)==0 and doc.application_status=="Approved" and doc.docstatus==1:
@@ -332,7 +324,6 @@ def on_submit(self):
         student_applicant_submit(self)
 @frappe.whitelist()
 def enroll_student(source_name):
-    print("\n\n\nIm on Enroll Student")
     from wsc.wsc.doctype.student_exchange_applicant.student_exchange_applicant import get_academic_calender_table
     from wsc.wsc.doctype.semesters.semesters import get_courses
     st_applicant=frappe.get_doc("Student Applicant", source_name)

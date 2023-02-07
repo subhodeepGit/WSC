@@ -30,6 +30,7 @@ frappe.ui.form.on('Program Intermit Form', {
 					if (r.message['semesters']){
 						// frm.refresh_field("semester")
 						frm.set_value("semester",r.message['semesters'])
+						
 
 					}
 					// code snippet
