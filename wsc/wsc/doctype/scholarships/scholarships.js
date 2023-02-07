@@ -46,31 +46,31 @@ frappe.ui.form.on('Scholarships', {
 	}
 });
 
-// frappe.ui.form.on('Scholarships', {
-// 	"get_students": function(frm) {
-// 		// frm.set_value("topper_scholarship_table",[]);
-// 		frappe.call({
-// 			method: "get_students",
-// 			doc:frm.doc,
-// 			callback: function(r) {
-// 				if(r.message) {
-// 					r.message.forEach(element => {
-// 						var c = frm.add_child("topper_scholarship_table")
-// 						c.student_id = element.student,
-// 						c.student_name = element.student_name,
-// 						c.sgpa= element.sgpa
+frappe.ui.form.on('Scholarships', {
+	"get_students": function(frm) {
+		// frm.set_value("topper_scholarship_table",[]);
+		frappe.call({
+			method: "get_students",
+			doc:frm.doc,
+			callback: function(r) {
+				if(r.message) {
+					r.message.forEach(element => {
+						var c = frm.add_child("topper_scholarship_table")
+						c.student_id = element.student,
+						c.student_name = element.student_name,
+						c.sgpa= element.sgpa
 
-// 					});
-// 				}
-// 				frm.refresh();
-// 				frm.refresh_field("topper_scholarship_table")
-// 			}
-// 		});
-// 	}
-// });
+					});
+				}
+				frm.refresh();
+				frm.refresh_field("topper_scholarship_table")
+			}
+		});
+	}
+});
 
 frappe.ui.form.on('Scholarships', {
-	"get_cutoffStudents": function(frm) {
+	"get_cutoff_students": function(frm) {
 		// frm.set_value("topper_scholarship_table",[]);
 		frappe.call({
 			method: "get_cutoffStudents",

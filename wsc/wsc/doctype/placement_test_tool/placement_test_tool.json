@@ -1,0 +1,89 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-01-20 09:46:44.975558",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "company_name",
+  "placement_batch_year",
+  "placement_drive_name",
+  "round_of_placement",
+  "scheduled_date_of_round",
+  "get_student",
+  "shortlisted_students_section",
+  "student_records"
+ ],
+ "fields": [
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Link",
+   "label": "Company name",
+   "options": "Placement Company"
+  },
+  {
+   "fieldname": "placement_batch_year",
+   "fieldtype": "Link",
+   "label": "Placement batch year",
+   "options": "Academic Year"
+  },
+  {
+   "fieldname": "placement_drive_name",
+   "fieldtype": "Link",
+   "label": "Placement drive name",
+   "options": "Placement Drive"
+  },
+  {
+   "fieldname": "round_of_placement",
+   "fieldtype": "Select",
+   "label": "Round of placement"
+  },
+  {
+   "fieldname": "get_student",
+   "fieldtype": "Button",
+   "label": "Get student"
+  },
+  {
+   "fieldname": "shortlisted_students_section",
+   "fieldtype": "Section Break",
+   "label": "Shortlisted students"
+  },
+  {
+   "fieldname": "student_records",
+   "fieldtype": "Table",
+   "label": "Student records",
+   "options": "Student child table"
+  },
+  {
+   "fieldname": "scheduled_date_of_round",
+   "fieldtype": "Date",
+   "label": "Scheduled date of round"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-01-23 16:25:48.321234",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Placement Test Tool",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
