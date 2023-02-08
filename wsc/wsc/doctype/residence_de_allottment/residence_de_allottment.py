@@ -3,6 +3,8 @@
 
 import frappe
 from frappe.model.document import Document
+import datetime
+
 
 class ResidenceDeAllottment(Document):
 	def validate(self):
@@ -15,6 +17,7 @@ class ResidenceDeAllottment(Document):
 		residenceApplicationStatus(self)
 		deallotmentNumberField(self)
 		residenceUpdate(self)
+		residenceHistoryUpdate(self)
 
 def endDateUpdate(self):
 	frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"current_end_date", self.de_allotment_date)
@@ -43,10 +46,15 @@ def buildingRoomStatus(self):
 def residenceApplicationStatus(self):
 	frappe.db.set_value("Application for Residence", self.application_number, "current_application_status", "De-Alloted")
 
-# To set value of de-allotment details in "Residence Allotted" child table in "Employee" doctype
+# To clear all residence details after De-Allotment "Residence Allotment Details" child table in Employee doctype
 def residenceUpdate(self):
 	allotmentData=frappe.get_doc('Employee', self.employee_id)
-	allotmentData.append("residence_deallot",{
+	allotmentData.set("table_109",[])
+
+#To insert the De-Alloted residence details in "Residence Allotment History" child table in Employee doctype
+def residenceHistoryUpdate(self):
+	allotmentData=frappe.get_doc('Employee', self.employee_id)
+	allotmentData.append("residence_allotment_history_table",{
 			"residence_de_allotment_number":self.residence_de_allotment_number,
 			"application_number":self.application_number,
 			"de_allotment_date":self.de_allotment_date,
@@ -54,8 +62,9 @@ def residenceUpdate(self):
 			"residence_type_name":self.residence_type_name,
 			"residence_allotment_number":self.residence_allotment_number,
 			"building_name":self.building_name,
-			"current_employee_allotment_status" : "De-Alloted",
+			"date":datetime.date.today(),
 			"start_date":self.start_date,
-			"end_date":self.end_date
+			"end_date":self.end_date,
+			"status":"De-Alloted"
 			})
 	allotmentData.save()

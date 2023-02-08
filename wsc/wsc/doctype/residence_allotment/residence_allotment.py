@@ -3,13 +3,13 @@
 
 import frappe
 from frappe.model.document import Document
+import datetime
 
 class ResidenceAllotment(Document):
 	def validate(self):
 		dateValidate(self)
 		duplicateResidenceAllot(self)
 		dateValidate(self)
-		
 
 	def on_submit(self):
 		allotmentNumberField(self)
@@ -75,6 +75,7 @@ def currentResidenceAllotmentStatus(self):
 def residenceUpdate(self):
 	if self.current_employee_allotment_status=="Alloted":
 		allotmentData=frappe.get_doc('Employee', self.employee_id)
+		allotmentData.set("table_109",[])
 		allotmentData.append("table_109",{
 			"residence_allotment_number":self.residence_allotment_number,
 			"application_number":self.application_number,
@@ -89,7 +90,7 @@ def residenceUpdate(self):
 			"parking_area_sq_m":self.parking_area_sq_m,
 			"parking_vehicle":self.parking_vehicle,
 			"current_employee_allotment_status":self.current_employee_allotment_status,
-			"date":self.last_update_date,
+			"date":datetime.date.today(),
 			"start_date":self.current_start_date,
 			"end_date":self.current_end_date
 		})
@@ -99,9 +100,9 @@ def residenceUpdate(self):
 
 # To update the value of Allotment status and vacancy status field in Residence Allotment screen
 def allottmentstatusCancel(self):
-	frappe.db.set_value("Residence Allotment",self.name,"current_employee_allotment_status", "Not Alloted")
-	frappe.db.set_value("Residence Allotment",self.name,"current_vacancy_status", "Vacant")
-	frappe.db.set_value("Residence Allotment",self.name,"current_application_status", "Allottment Cancelled")
+	self.db_set("Residence Allotment",self.name,"current_employee_allotment_status", "Not Alloted")
+	self.db_set("Residence Allotment",self.name,"current_vacancy_status", "Vacant")
+	self.db_set("Residence Allotment",self.name,"current_application_status", "Allottment Cancelled")
 
 # To update value of current application status in Application for Residence screen on cancellation of allotment
 def allottmentCancelled(self):
@@ -129,7 +130,7 @@ def residenceCancelUpdate(self):
 			"parking_area_sq_m":self.parking_area_sq_m,
 			"parking_vehicle":self.parking_vehicle,
 			"current_employee_allotment_status":"Allottment Cancelled",
-			"date":self.last_update_date
+			"date":datetime.date.today()
 		})
 		allotmentData.save()
 

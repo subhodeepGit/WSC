@@ -29,14 +29,14 @@ def applicationNumberField(self):
 
 # To set value for Application status in Application for Residence
 def applicationStatus(self):
-	frappe.db.set_value("Application for Residence", self.name, "application_status", "Applied")
+	self.db_set("Application for Residence", self.name, "application_status", "Applied")
 
 # To set value for Application status in Application for Residence
 def currentApplicationStatus(self):
-	frappe.db.set_value("Application for Residence", self.name, "current_application_status", "Applied")
+	self.db_set("Application for Residence", self.name, "current_application_status", "Applied")
 
 # To set value for Application status in Application for Residence on cancel
 def cancelRejected(self):
-	frappe.db.set_value("Application for Residence", self.name, "current_application_status", "Cancelled by Applicant")
-	frappe.db.set_value("Application for Residence", self.name, "application_status", "Cancelled by Applicant")
+	self.db_set("Application for Residence", self.name, "current_application_status", "Cancelled by Applicant")
+	self.db_set("Application for Residence", self.name, "application_status", "Cancelled by Applicant")
 

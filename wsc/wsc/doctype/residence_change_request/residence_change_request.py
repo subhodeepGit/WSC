@@ -3,6 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
+import datetime
 
 class ResidenceChangeRequest(Document):
 	def validate(self):
@@ -12,6 +13,7 @@ class ResidenceChangeRequest(Document):
 		buildingStatusChange(self)
 		changeNewRoomStatus(self)
 		residenceUpdate(self)
+		residenceChangeHistory(self)
 		changedResidenceDetails(self)
 		residenceChangeCancel(self)
 
@@ -40,15 +42,17 @@ def changeNewRoomStatus(self):
 		frappe.db.set_value("Building Room",self.residence_serial_number,"vacancy_status","Not Vacant")
 		frappe.db.set_value("Building Room",self.residence_serial_number,"employee_allotment_status", "Alloted")
 
-# To update residence details in Employee doctype
+# To update current residence details in Employee doctype
 def residenceUpdate(self):
 	if self.request_status== "Approved":
+		
 		allotmentData=frappe.get_doc('Employee', self.employee)
+		allotmentData.set("table_109",[])
 		allotmentData.append("table_109",{
 			"residence_allotment_number":self.residence_allotment_number,
 			"application_number":self.application_number,
-			"residence_type":self.residence_type,
-			"residence_type_name":self.residence_type_name,
+			"residence_type":self.residence_type_requested,
+			"residence_type_name":self.residence_type_name_requested,
 			"residence_number":self.residence_number,
 			"floor":self.floor,
 			"building_address":self.building_address,
@@ -57,10 +61,30 @@ def residenceUpdate(self):
 			"parking_type":self.parking_type,
 			"parking_area_sq_m":self.parking_area_sq_m,
 			"parking_vehicle":self.parking_vehicle,
-			"current_employee_allotment_status" : "Re-Alloted",
-			"date":self.change_request_date
+			"current_employee_allotment_status" : "Alloted",
+			"date":datetime.date.today(),
+			"start_date":self.start_date,
+			"end_date":self.end_date
 			})
 		allotmentData.save()
+
+#To insert the changed residence details in "Residence Allotment History" child table in Employee doctype
+def residenceChangeHistory(self):
+	if self.request_status== "Approved":
+		allotmentData=frappe.get_doc('Employee', self.employee)
+		allotmentData.append("residence_allotment_history_table",{
+			"residence_allotment_number":self.residence_allotment_number,
+			"residence_type":self.alloted_residence_type,
+			"residence_type_name":self.alloted_residence_type_name,
+			"residence_number":self.alloted_residence_number,
+			"current_employee_allotment_status" : "Residence Changed",
+			"date":datetime.date.today(),
+			"start_date":self.alloted_residence_start_date,
+			"end_date":self.start_date,
+			"status":"Residence Changed"
+			})
+		allotmentData.save()	
+
 
 # To set value of doc series in residence_change_request_number field
 def changeRequestNumberField(self):
@@ -72,8 +96,8 @@ def changedResidenceDetails(self):
 		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"changed_residence_serial_number",self.residence_serial_number)
 		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"changed_residence_number",self.residence_number)
 		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"changed_building_name",self.residence_building)
-		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"changed_residence_type",self.residence_type)
-		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"changed_residence_type_name",self.residence_type_name)
+		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"changed_residence_type",self.residence_type_requested)
+		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"changed_residence_type_name",self.residence_type_name_requested)
 		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"residence_change_status",self.request_status)
 		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"floor",self.floor)
 		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"building_address",self.building_address)
@@ -88,6 +112,8 @@ def changedResidenceDetails(self):
 		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"parking_type",self.parking_type)
 		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"parking_vehicle",self.parking_vehicle)
 		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"parking_area_sq_m",self.parking_area_sq_m)
+		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"current_start_date",self.start_date)
+		frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"current_end_date",self.end_date)
 		
 
 # To restore the previous allotment of the employee if residence change request after approval is cancelled
@@ -122,13 +148,29 @@ def residenceChangeCancel(self):
 			self.db_set("parking_area_sq_m","")
 
 			allotmentData=frappe.get_doc('Employee', self.employee)
+			allotmentData.remove("table_109")
 			allotmentData.append("table_109",{
 				"residence_allotment_number":self.residence_allotment_number,
 				"application_number":self.application_number,
 				"residence_type_name":self.alloted_residence_type_name,
 				"residence_number":self.alloted_residence_number,
-				"current_employee_allotment_status" : "Re-Alloted",
-				"date":self.change_request_date
+				"current_employee_allotment_status" : "Alloted",
+				"start_date":datetime.date.today,
+				"end_date":self.end_date,
+				"date":datetime.date.today()
+				})
+			allotmentData.save()
+
+			allotmentData=frappe.get_doc('Employee', self.employee)
+			allotmentData.append("residence_allotment_history_table",{
+				"residence_allotment_number":self.residence_allotment_number,
+				"application_number":self.application_number,
+				"residence_type_name":self.residence_type_name_requested,
+				"residence_number":self.residence_number,
+				"status" : "Changed Residence Cancelled",
+				"date":datetime.date.today(),
+				"start_date":self.start_date,
+				"end_date":datetime.date.today()
 				})
 			allotmentData.save()
 

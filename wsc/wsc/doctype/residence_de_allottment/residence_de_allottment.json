@@ -36,21 +36,21 @@
    "read_only": 1
   },
   {
-   "fetch_from": "residence_de_allotment_application_number.residence_type",
+   "fetch_from": "residence_de_allotment_application_number.changed_residence_type",
    "fieldname": "residence_type",
    "fieldtype": "Data",
    "label": "Residence Type",
    "read_only": 1
   },
   {
-   "fetch_from": "residence_de_allotment_application_number.residence_type_name",
+   "fetch_from": "residence_de_allotment_application_number.changed_residence_type_name",
    "fieldname": "residence_type_name",
    "fieldtype": "Data",
    "label": "Residence Type Name",
    "read_only": 1
   },
   {
-   "fetch_from": "residence_de_allotment_application_number.building_name",
+   "fetch_from": "residence_de_allotment_application_number.changed_building_name",
    "fieldname": "building_name",
    "fieldtype": "Data",
    "label": "Building Name",
@@ -64,7 +64,7 @@
    "read_only": 1
   },
   {
-   "fetch_from": "residence_de_allotment_application_number.residence_number",
+   "fetch_from": "residence_de_allotment_application_number.changed_residence_number",
    "fieldname": "residence_number",
    "fieldtype": "Data",
    "label": "Residence Number",
@@ -95,7 +95,7 @@
    "read_only": 1
   },
   {
-   "fetch_from": "residence_de_allotment_application_number.residence_serial_number",
+   "fetch_from": "residence_de_allotment_application_number.changed_residence_serial_number",
    "fieldname": "residence_serial_number",
    "fieldtype": "Data",
    "label": "Residence Serial Number",
@@ -145,13 +145,13 @@
   {
    "fetch_from": "residence_de_allotment_application_number.start_date",
    "fieldname": "start_date",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "Start Date",
    "read_only": 1
   },
   {
    "fieldname": "end_date",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "End Date",
    "read_only": 1
   }
@@ -159,7 +159,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-07 17:54:21.640627",
+ "modified": "2023-02-08 18:14:58.628039",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence De-Allottment",
