@@ -25,7 +25,9 @@
   "column_break_16",
   "standard_compliance_period_in_days",
   "student_handbook_rule_no_for_ref",
-  "student_handbook_rule_discription"
+  "student_handbook_rule_discription",
+  "section_break_20",
+  "workflow_of_grievance"
  ],
  "fields": [
   {
@@ -144,11 +146,22 @@
    "fieldtype": "Text",
    "label": "Student HandBook Rule Discription ",
    "read_only": 1
+  },
+  {
+   "fieldname": "section_break_20",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "workflow_of_grievance",
+   "fieldtype": "Table",
+   "label": "WorkFlow of Grievance",
+   "options": "Standard WorkFlow For Grievance",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-02-07 16:23:52.505705",
+ "modified": "2023-02-07 18:38:26.882368",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Grievance Cell",

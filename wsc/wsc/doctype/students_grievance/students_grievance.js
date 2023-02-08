@@ -22,5 +22,6 @@ frappe.ui.form.on('Students Grievance', {
 				frappe.set_route("Form", doc[0].doctype, doc[0].name);
 			}
 		});
-	}
+	},
+
 });
