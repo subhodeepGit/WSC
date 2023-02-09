@@ -76,7 +76,9 @@ def residenceChangeHistory(self):
 			"residence_allotment_number":self.residence_allotment_number,
 			"residence_type":self.alloted_residence_type,
 			"residence_type_name":self.alloted_residence_type_name,
+			"residence_serial_number":self.alloted_residence_number,
 			"residence_number":self.alloted_residence_number,
+			"building_name":self.alloted_building,
 			"current_employee_allotment_status" : "Residence Changed",
 			"date":datetime.date.today(),
 			"start_date":self.alloted_residence_start_date,
@@ -148,11 +150,12 @@ def residenceChangeCancel(self):
 			self.db_set("parking_area_sq_m","")
 
 			allotmentData=frappe.get_doc('Employee', self.employee)
-			allotmentData.remove("table_109")
+			allotmentData.set("table_109",[])
 			allotmentData.append("table_109",{
 				"residence_allotment_number":self.residence_allotment_number,
 				"application_number":self.application_number,
 				"residence_type_name":self.alloted_residence_type_name,
+				"residence_serial_number":self.alloted_residence_serial_number,
 				"residence_number":self.alloted_residence_number,
 				"current_employee_allotment_status" : "Alloted",
 				"start_date":datetime.date.today,
@@ -166,7 +169,9 @@ def residenceChangeCancel(self):
 				"residence_allotment_number":self.residence_allotment_number,
 				"application_number":self.application_number,
 				"residence_type_name":self.residence_type_name_requested,
+				"residence_serial_number":self.residence_serial_number,
 				"residence_number":self.residence_number,
+				"building_name":self.residence_building,
 				"status" : "Changed Residence Cancelled",
 				"date":datetime.date.today(),
 				"start_date":self.start_date,

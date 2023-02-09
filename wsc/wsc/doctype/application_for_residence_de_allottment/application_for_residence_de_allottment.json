@@ -30,6 +30,8 @@
   "reason_for_de_allottment",
   "application_status",
   "current_application_status",
+  "section_break_23",
+  "go_to_residence_de_allottment",
   "amended_from"
  ],
  "fields": [
@@ -179,12 +181,22 @@
    "fieldtype": "Date",
    "label": "Start Date",
    "read_only": 1
+  },
+  {
+   "fieldname": "section_break_23",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.current_application_status==\"Applied\"",
+   "fieldname": "go_to_residence_de_allottment",
+   "fieldtype": "Button",
+   "label": "Go to Residence De Allottment"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-08 17:47:30.876016",
+ "modified": "2023-02-09 13:07:02.282422",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Application for Residence De-Allottment",

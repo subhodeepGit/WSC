@@ -6,9 +6,12 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "application_number",
   "residence_allotment_number",
+  "residence_serial_number",
   "residence_number",
   "residence_type_name",
+  "building_name",
   "status",
   "start_date",
   "end_date",
@@ -55,12 +58,30 @@
    "fieldname": "residence_allotment_number",
    "fieldtype": "Data",
    "label": "Residence Allotment Number"
+  },
+  {
+   "fieldname": "application_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Application Number"
+  },
+  {
+   "fieldname": "residence_serial_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Residence Serial Number"
+  },
+  {
+   "fieldname": "building_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Building Name"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-02-08 17:33:21.407936",
+ "modified": "2023-02-09 10:54:33.021083",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Allotment History",

@@ -3,14 +3,18 @@
 
 import frappe
 from frappe.model.document import Document
+import datetime
 
 class ApplicationforResidence(Document):
 	def validate(self):
 		duplicate(self)
+
 	def on_submit(self):
 		applicationNumberField(self)
 		applicationStatus(self)
 		currentApplicationStatus(self)
+		applicationUpdateTable(self)
+
 	def on_cancel(self):
 		cancelRejected(self)
 
@@ -29,14 +33,28 @@ def applicationNumberField(self):
 
 # To set value for Application status in Application for Residence
 def applicationStatus(self):
-	self.db_set("Application for Residence", self.name, "application_status", "Applied")
+	self.db_set("application_status", "Applied")
 
 # To set value for Application status in Application for Residence
 def currentApplicationStatus(self):
-	self.db_set("Application for Residence", self.name, "current_application_status", "Applied")
+	self.db_set("current_application_status", "Applied")
+
+# To update residence application details in "Residence Allotment History" Child Table in Employee doctype
+def applicationUpdateTable(self):
+		allotmentData=frappe.get_doc('Employee', self.employee_id)
+		allotmentData.append("residence_allotment_history_table",{
+			"application_number":self.application_number,
+			"residence_type":self.type_of_residence_requested,
+			"residence_type_name":self.type_of_residence_name_requested,
+			"date":datetime.date.today(),
+			"start_date":"",
+			"end_date":"",
+			"status":"Applied for Allotment"
+			})
+		allotmentData.save()	
 
 # To set value for Application status in Application for Residence on cancel
 def cancelRejected(self):
-	self.db_set("Application for Residence", self.name, "current_application_status", "Cancelled by Applicant")
-	self.db_set("Application for Residence", self.name, "application_status", "Cancelled by Applicant")
+	self.db_set("current_application_status", "Cancelled by Applicant")
+	self.db_set("application_status", "Cancelled by Applicant")
 

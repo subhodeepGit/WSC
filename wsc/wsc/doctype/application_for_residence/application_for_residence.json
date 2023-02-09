@@ -25,6 +25,8 @@
   "column_break_12",
   "application_status",
   "current_application_status",
+  "section_break_18",
+  "go_to_residence_allotment",
   "amended_from"
  ],
  "fields": [
@@ -87,15 +89,6 @@
    "read_only": 1
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Application for Residence",
-   "print_hide": 1,
-   "read_only": 1
-  },
-  {
    "fieldname": "current_application_status",
    "fieldtype": "Data",
    "label": "Current Application Status",
@@ -142,12 +135,31 @@
    "fieldtype": "Data",
    "label": "Employee Email",
    "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.current_application_status==\"Applied\" || doc.current_application_status==\"Pending for Approval\"",
+   "fieldname": "go_to_residence_allotment",
+   "fieldtype": "Button",
+   "label": "Go to Residence Allotment"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Application for Residence",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_18",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-30 11:27:12.831806",
+ "modified": "2023-02-09 13:11:57.454130",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Application for Residence",

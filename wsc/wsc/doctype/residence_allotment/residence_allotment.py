@@ -81,6 +81,7 @@ def residenceUpdate(self):
 			"application_number":self.application_number,
 			"residence_type":self.residence_type,
 			"residence_type_name":self.residence_type_name,
+			"residence_serial_number":self.residence_serial_number,
 			"residence_number":self.residence_number,
 			"floor":self.floor,
 			"building_address":self.building_address,
@@ -121,6 +122,7 @@ def residenceCancelUpdate(self):
 			"application_number":self.application_number,
 			"residence_type":self.changed_residence_type,
 			"residence_type_name":self.changed_residence_type_name,
+			"residence_serial_number":self.changed_residence_serial_number,
 			"residence_number":self.changed_residence_number,
 			"floor":self.floor,
 			"building_address":self.building_address,
@@ -142,3 +144,4 @@ def currentResidenceDetails(self):
 	self.db_set("changed_building_name", self.building)
 	self.db_set("changed_residence_type", self.residence_type)
 	self.db_set("changed_residence_type_name", self.residence_type_name)
+

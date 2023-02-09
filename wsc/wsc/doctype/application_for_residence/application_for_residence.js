@@ -15,3 +15,20 @@ frappe.ui.form.on('Application for Residence', {
 		});
 	}
 });
+
+frappe.ui.form.on('Application for Residence', {
+	go_to_residence_allotment: function(frm) {
+		frappe.set_route('List',"Residence Allotment")
+	}
+});
+
+frappe.ui.form.on('Application for Residence', {
+	refresh: function(frm) {
+		frm.add_custom_button(__("Residence Allotment"), function() {
+			frm.events.make_residence_allotment(frm);
+		}, __('Action'));
+		frm.page.set_inner_btn_group_as_primary(__('Action'))
+		frm.set_value("Residence Allotment","application_number","application_number", frm.doc.application_number);
+	}
+});
+

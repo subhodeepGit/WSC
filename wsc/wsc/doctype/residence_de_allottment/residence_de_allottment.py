@@ -48,8 +48,7 @@ def residenceApplicationStatus(self):
 
 # To clear all residence details after De-Allotment "Residence Allotment Details" child table in Employee doctype
 def residenceUpdate(self):
-	allotmentData=frappe.get_doc('Employee', self.employee_id)
-	allotmentData.set("table_109",[])
+	frappe.db.delete("Residence Allotted", {"parent":self.employee_id})
 
 #To insert the De-Alloted residence details in "Residence Allotment History" child table in Employee doctype
 def residenceHistoryUpdate(self):
@@ -58,6 +57,7 @@ def residenceHistoryUpdate(self):
 			"residence_de_allotment_number":self.residence_de_allotment_number,
 			"application_number":self.application_number,
 			"de_allotment_date":self.de_allotment_date,
+			"residence_serial_number":self.residence_serial_number,
 			"residence_number":self.residence_number,
 			"residence_type_name":self.residence_type_name,
 			"residence_allotment_number":self.residence_allotment_number,

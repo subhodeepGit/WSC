@@ -14,3 +14,9 @@ frappe.ui.form.on("Application for Residence De-Allottment", {
 		});
 	}
 });
+
+frappe.ui.form.on('Application for Residence De-Allottment', {
+	go_to_residence_de_allottment: function(frm) {
+		frappe.set_route('List',"Residence De-Allottment")
+	}
+});
