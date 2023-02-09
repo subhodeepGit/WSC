@@ -35,7 +35,7 @@ frappe.ui.form.on('Placement Drive', {
 				const res = Object.values(result)
 				const values = Object.values(res[0])
 				// console.log(res)
-				console.log(values.length)
+				// console.log(values.length)
 				let r = values[0]
 				// console.log(r[0])
 

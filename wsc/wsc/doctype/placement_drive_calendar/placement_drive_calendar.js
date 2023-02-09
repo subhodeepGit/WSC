@@ -9,8 +9,8 @@ frappe.ui.form.on('Placement Drive Calendar', {
 	refresh: function(frm) {
 		if(!frm.is_new()){
 			frm.add_custom_button(__("Show Calendar") , ()=> {
-				// console.log("Hello")
-				frappe.set_route("List", frm.doc.placement_drive, "Calendar", frm.doc.round_of_placement)
+				console.log(frm.doc.placement_drive)
+				// frappe.set_route("List", frm.doc.placement_drive, "Calendar", frm.doc.round_of_placement)
 			})
 		}
 	},
