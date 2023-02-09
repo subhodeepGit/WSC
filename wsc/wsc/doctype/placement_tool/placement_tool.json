@@ -7,77 +7,86 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "drive_details_section",
   "company_name",
   "placement_batch_year",
   "placement_drive_name",
+  "get_eligible_students_list",
+  "column_break_6",
   "round_of_placement",
-  "date_of_round",
-  "get_student",
-  "section_break_7",
-  "test_btn",
-  "student_child_table"
+  "scheduled_date_of_round",
+  "eligible_students_list_section",
+  "student_list"
  ],
  "fields": [
   {
    "fieldname": "placement_drive_name",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Placement drive name",
+   "label": "Placement Drive Name",
    "options": "Placement Drive",
    "reqd": 1
   },
   {
    "fieldname": "round_of_placement",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "Round of placement",
-   "options": "Rounds of Placement",
+   "label": "Round of Placement",
    "reqd": 1
-  },
-  {
-   "fieldname": "date_of_round",
-   "fieldtype": "Date",
-   "in_list_view": 1,
-   "label": "Scheduled date of round",
-   "reqd": 1
-  },
-  {
-   "fieldname": "student_child_table",
-   "fieldtype": "Table",
-   "label": "Student",
-   "options": "Student child table"
-  },
-  {
-   "fieldname": "get_student",
-   "fieldtype": "Button",
-   "label": "Get student"
   },
   {
    "fieldname": "company_name",
    "fieldtype": "Link",
-   "label": "Company name",
-   "options": "Placement Company"
+   "in_list_view": 1,
+   "label": "Company Name",
+   "options": "Placement Company",
+   "reqd": 1
   },
   {
    "fieldname": "placement_batch_year",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Placement Batch Year",
-   "options": "Academic Year"
+   "options": "Academic Year",
+   "reqd": 1
   },
   {
-   "fieldname": "test_btn",
+   "fieldname": "drive_details_section",
+   "fieldtype": "Section Break",
+   "label": "Drive Details"
+  },
+  {
+   "fieldname": "get_eligible_students_list",
    "fieldtype": "Button",
-   "label": "Test button"
+   "label": "Get Eligible Students List"
   },
   {
-   "fieldname": "section_break_7",
-   "fieldtype": "Section Break"
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "scheduled_date_of_round",
+   "fieldtype": "Date",
+   "label": "Scheduled Date of Round",
+   "reqd": 1
+  },
+  {
+   "fieldname": "eligible_students_list_section",
+   "fieldtype": "Section Break",
+   "label": "Eligible Students List"
+  },
+  {
+   "fieldname": "student_list",
+   "fieldtype": "Table",
+   "label": "Student List",
+   "options": "Student child table",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-01-17 14:46:27.854690",
+ "modified": "2023-02-08 18:27:39.445406",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement tool",
