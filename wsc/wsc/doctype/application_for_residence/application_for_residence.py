@@ -58,3 +58,16 @@ def cancelRejected(self):
 	self.db_set("current_application_status", "Cancelled by Applicant")
 	self.db_set("application_status", "Cancelled by Applicant")
 
+	allotmentData=frappe.get_doc('Employee', self.employee_id)
+	allotmentData.append("residence_allotment_history_table",{
+				"application_number":self.application_number,
+				"residence_type":self.type_of_residence_requested,
+				"residence_type_name":self.type_of_residence_name_requested,
+				"date":datetime.date.today(),
+				"start_date":"",
+				"end_date":"",
+				"status":"Cancelled by Applicant"
+				})
+	allotmentData.save()	
+
+

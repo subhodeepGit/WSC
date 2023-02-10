@@ -258,6 +258,7 @@
    "fieldtype": "Link",
    "label": "Application Number",
    "options": "Application for Residence",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -428,10 +429,11 @@
    "fieldtype": "Column Break"
   }
  ],
+ "in_create": 1,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-08 11:42:43.040556",
+ "modified": "2023-02-10 16:21:38.786432",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Allotment",

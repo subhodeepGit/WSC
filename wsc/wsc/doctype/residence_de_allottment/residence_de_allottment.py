@@ -68,3 +68,20 @@ def residenceHistoryUpdate(self):
 			"status":"De-Alloted"
 			})
 	allotmentData.save()
+
+@frappe.whitelist()
+def residence_deallotments(residence_de_allotment_application_number,reason_for_de_allottment,residence_allotment_number,application_number,start_date,changed_residence_serial_number,changed_residence_number,employee_name,employee_id,changed_building_name,changed_residence_type,changed_residence_type_name):
+	ra = frappe.new_doc("Residence De-Allottment")
+	ra.residence_de_allotment_application_number = residence_de_allotment_application_number
+	ra.reason_for_de_allottment = reason_for_de_allottment
+	ra.residence_allotment_number= residence_allotment_number
+	ra.application_number=application_number
+	ra.start_date=start_date
+	ra.residence_serial_number=changed_residence_serial_number
+	ra.residence_number=changed_residence_number
+	ra.employee_name=employee_name
+	ra.employee_id = employee_id
+	ra.building_name= changed_building_name
+	ra.residence_type=changed_residence_type
+	ra.residence_type_name=changed_residence_type_name
+	return ra
