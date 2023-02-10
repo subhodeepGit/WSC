@@ -2,11 +2,15 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Placement Drive Calendar', {
-	onload: function(frm){
-		frm.trigger('placement_drive')
-		// console.log(frm.doc.placement_drive)
-	},
 	refresh: function(frm) {
+		frm.set_query('placement_drive_name', function(){
+			return{
+				filters:{
+					'placement_drive': frm.doc.placement_drive,
+					'academic_year': frm.doc.academic_year
+				}
+			}
+		})
 		if(!frm.is_new()){
 			frm.add_custom_button(__("Show Calendar") , ()=> {
 				console.log(frm.doc.placement_drive)
@@ -15,8 +19,8 @@ frappe.ui.form.on('Placement Drive Calendar', {
 		}
 	},
 	placement_drive: function(frm) {
-		const { placement_drive } = frm.doc
-		if(!placement_drive) return
+		// const { placement_drive } = frm.doc
+		// if(!placement_drive) return
 
 		// frappe.call({
 		// 	method:'wsc.wsc.doctype.placement_drive_calendar.placement_drive_calendar.get_rounds',
@@ -43,13 +47,17 @@ frappe.ui.form.on('Placement Drive Calendar', {
 		// })
 	},
 	round_of_placement: function(frm){
-		// frappe.call({
-		// 	// method:'wsc.wsc.doctype.placement_drive_calendar.placement_drive_calendar.get_rounds',
-		// 	method:'wsc.wsc.doctype.placement_drive_calendar.placement_drive_calendar.get_rounds',
-		// 	args: {
-		// 		'placement_drive':frm.doc.placement_drive
-		// 	}
-		// })
+		frappe.call({
+			// method:'wsc.wsc.doctype.placement_drive_calendar.placement_drive_calendar.get_rounds',
+			method:'wsc.wsc.doctype.placement_drive_calendar.placement_drive_calendar.get_rounds',
+			args: {
+				'placement_drive':frm.doc.placement_drive,
+				'academic_year':frm.doc.academic_year
+			}, 
+			callback: function(result){
+
+			}
+		})
 	}
 
 });

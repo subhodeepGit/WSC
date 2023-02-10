@@ -52,7 +52,7 @@ frappe.ui.form.on('Placement Tool', {
 					round_name: frm.doc.round_of_placement
 				},
 				callback: function(result){
-						// alert(result.message[0])
+						// alert(result.message)
 						frm.set_value("scheduled_date_of_round", result.message[0]);
 				}
 			})

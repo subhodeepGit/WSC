@@ -15,6 +15,7 @@
   "column_break_5",
   "round_of_placement",
   "scheduled_date_of_round",
+  "scheduled_time_of_round",
   "eligible_students_list_section",
   "student_list"
  ],
@@ -81,11 +82,16 @@
   {
    "fieldname": "column_break_5",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "scheduled_time_of_round",
+   "fieldtype": "Data",
+   "label": "Scheduled Time of Round"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-02-06 12:46:22.807634",
+ "modified": "2023-02-09 17:58:40.918535",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Tool",
