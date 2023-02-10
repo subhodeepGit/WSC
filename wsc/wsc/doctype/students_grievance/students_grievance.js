@@ -4,24 +4,34 @@
 frappe.ui.form.on('Students Grievance', {
 	refresh: function(frm) {
 		if(frm.doc.docstatus===1 && frm.doc.status=="Issue Posted By the Student") {
+			// alert("if condition is triggered")
 			frm.add_custom_button(__("Register Complaint"), function() {
-				frm.events.register_complaint(frm);
-			}, __('Create'));
-			frm.page.set_inner_btn_group_as_primary(__('Create'));
+				frm.trigger("register_complaint")
+				// alert("Function is triggerd")
+			}).addClass("btn-primary");
 		}
+
 	},
+	// register_complaint: function(frm) {
+	// 	return frappe.call({
+	// 		method: "wsc.wsc.doctype.students_grievance.students_grievance.get_register_complaint",
+	// 		args: {
+	// 			"dt": frm.doc.doctype,
+	// 			"dn": frm.doc.name,
+	// 		},
+	// 		callback: function(r) {
+	// 			var doc = frappe.model.sync(r.message);
+	// 			frappe.set_route("Form", doc[0].doctype, doc[0].name);
+	// 		}
+	// 	});
+	// },
 	register_complaint: function(frm) {
-		return frappe.call({
+		frappe.model.open_mapped_doc({
 			method: "wsc.wsc.doctype.students_grievance.students_grievance.get_register_complaint",
-			args: {
-				"dt": frm.doc.doctype,
-				"dn": frm.doc.name,
-			},
-			callback: function(r) {
-				var doc = frappe.model.sync(r.message);
-				frappe.set_route("Form", doc[0].doctype, doc[0].name);
-			}
-		});
-	},
+			frm:frm,
+		
+
+		})
+	}
 
 });

@@ -8,6 +8,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "academic_year",
   "placement_drive",
   "round_of_placement",
   "reporting_date",
@@ -57,11 +58,17 @@
    "fieldname": "round_of_placement",
    "fieldtype": "Data",
    "label": "Round of Placement"
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-02-01 16:46:37.668849",
+ "modified": "2023-02-09 17:19:20.669234",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive Calendar",
