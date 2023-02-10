@@ -8,147 +8,21 @@ class StudentsGrievance(Document):
 	pass
 
 @frappe.whitelist()
-def get_register_complaint(dt, dn):
-	print("\n\n\n")
-	print(dt)
-	print(dn)
-	# pe = frappe.new_doc("Payment Entry")
+def get_register_complaint(source_name):
+	all_details = frappe.get_all("Students Grievance",{"name":source_name},["name","raised_by","email_id","student_name","gender","emergency_phone_no","contact_phone_no","posting_date","date_of_incident","type_of_grievance","status","description_of_grievance","areas_of_grivence"])
+	grievance_cell=frappe.new_doc("Grievance Cell")
+	grievance_cell.student=all_details[0].raised_by
+	grievance_cell.student_name= all_details[0].student_name
+	grievance_cell.emergency_phone_no=all_details[0].emergency_phone_no
+	grievance_cell.gender=all_details[0].gender
+	grievance_cell.email_id=all_details[0].all_details
+	grievance_cell.contact_phone_no=all_details[0].contact_phone_no
+	grievance_cell.posting_date=all_details[0].posting_date
+	grievance_cell.date_of_incident=all_details[0].date_of_incident
+	grievance_cell.type_of_grievance=all_details[0].type_of_grievance
+	grievance_cell.description_of_grievance=all_details[0].description_of_grievance
+	grievance_cell.areas_of_grivence=all_details[0].areas_of_grivence
+	grievance_cell.status=all_details[0].status
+	grievance_cell.students_grievance = all_details[0].name
 
-
-	# reference_doc = None
-	# doc = frappe.get_doc(dt, dn)
-	# if dt in ("Sales Order", "Purchase Order") and flt(doc.per_billed, 2) >= 99.99:
-	# 	frappe.throw(_("Can only make payment against unbilled {0}").format(dt))
-
-	# if not party_type:
-	# 	party_type = set_party_type(dt)
-
-	# party_account = set_party_account(dt, dn, doc, party_type)
-	# party_account_currency = set_party_account_currency(dt, party_account, doc)
-
-	# if not payment_type:
-	# 	payment_type = set_payment_type(dt, doc)
-
-	# grand_total, outstanding_amount = set_grand_total_and_outstanding_amount(
-	# 	party_amount, dt, party_account_currency, doc
-	# )
-
-	# # bank or cash
-	# bank = get_bank_cash_account(doc, bank_account)
-
-	# paid_amount, received_amount = set_paid_amount_and_received_amount(
-	# 	dt, party_account_currency, bank, outstanding_amount, payment_type, bank_amount, doc
-	# )
-
-	# paid_amount, received_amount, discount_amount = apply_early_payment_discount(
-	# 	paid_amount, received_amount, doc
-	# )
-
-	# pe = frappe.new_doc("Payment Entry")
-	# pe.payment_type = payment_type
-	# pe.company = doc.company
-	# pe.cost_center = doc.get("cost_center")
-	# pe.posting_date = nowdate()
-	# pe.mode_of_payment = doc.get("mode_of_payment")
-	# pe.party_type = party_type
-	# pe.party = doc.get(scrub(party_type))
-	# pe.contact_person = doc.get("contact_person")
-	# pe.contact_email = doc.get("contact_email")
-	# pe.ensure_supplier_is_not_blocked()
-
-	# pe.paid_from = party_account if payment_type == "Receive" else bank.account
-	# pe.paid_to = party_account if payment_type == "Pay" else bank.account
-	# pe.paid_from_account_currency = (
-	# 	party_account_currency if payment_type == "Receive" else bank.account_currency
-	# )
-	# pe.paid_to_account_currency = (
-	# 	party_account_currency if payment_type == "Pay" else bank.account_currency
-	# )
-	# pe.paid_amount = paid_amount
-	# pe.received_amount = received_amount
-	# pe.letter_head = doc.get("letter_head")
-
-	# if dt in ["Purchase Order", "Sales Order", "Sales Invoice", "Purchase Invoice"]:
-	# 	pe.project = doc.get("project") or reduce(
-	# 		lambda prev, cur: prev or cur, [x.get("project") for x in doc.get("items")], None
-	# 	)  # get first non-empty project from items
-
-	# if pe.party_type in ["Customer", "Supplier"]:
-	# 	bank_account = get_party_bank_account(pe.party_type, pe.party)
-	# 	pe.set("bank_account", bank_account)
-	# 	pe.set_bank_account_data()
-
-	# # only Purchase Invoice can be blocked individually
-	# if doc.doctype == "Purchase Invoice" and doc.invoice_is_blocked():
-	# 	frappe.msgprint(_("{0} is on hold till {1}").format(doc.name, doc.release_date))
-	# else:
-	# 	if doc.doctype in ("Sales Invoice", "Purchase Invoice") and frappe.get_value(
-	# 		"Payment Terms Template",
-	# 		{"name": doc.payment_terms_template},
-	# 		"allocate_payment_based_on_payment_terms",
-	# 	):
-
-	# 		for reference in get_reference_as_per_payment_terms(
-	# 			doc.payment_schedule, dt, dn, doc, grand_total, outstanding_amount
-	# 		):
-	# 			pe.append("references", reference)
-	# 	else:
-	# 		if dt == "Dunning":
-	# 			pe.append(
-	# 				"references",
-	# 				{
-	# 					"reference_doctype": "Sales Invoice",
-	# 					"reference_name": doc.get("sales_invoice"),
-	# 					"bill_no": doc.get("bill_no"),
-	# 					"due_date": doc.get("due_date"),
-	# 					"total_amount": doc.get("outstanding_amount"),
-	# 					"outstanding_amount": doc.get("outstanding_amount"),
-	# 					"allocated_amount": doc.get("outstanding_amount"),
-	# 				},
-	# 			)
-	# 			pe.append(
-	# 				"references",
-	# 				{
-	# 					"reference_doctype": dt,
-	# 					"reference_name": dn,
-	# 					"bill_no": doc.get("bill_no"),
-	# 					"due_date": doc.get("due_date"),
-	# 					"total_amount": doc.get("dunning_amount"),
-	# 					"outstanding_amount": doc.get("dunning_amount"),
-	# 					"allocated_amount": doc.get("dunning_amount"),
-	# 				},
-	# 			)
-	# 		else:
-	# 			pe.append(
-	# 				"references",
-	# 				{
-	# 					"reference_doctype": dt,
-	# 					"reference_name": dn,
-	# 					"bill_no": doc.get("bill_no"),
-	# 					"due_date": doc.get("due_date"),
-	# 					"total_amount": grand_total,
-	# 					"outstanding_amount": outstanding_amount,
-	# 					"allocated_amount": outstanding_amount,
-	# 				},
-	# 			)
-
-	# pe.setup_party_account_field()
-	# pe.set_missing_values()
-
-	# update_accounting_dimensions(pe, doc)
-
-	# if party_account and bank:
-	# 	pe.set_exchange_rate(ref_doc=reference_doc)
-	# 	pe.set_amounts()
-	# 	if discount_amount:
-	# 		pe.set_gain_or_loss(
-	# 			account_details={
-	# 				"account": frappe.get_cached_value("Company", pe.company, "default_discount_account"),
-	# 				"cost_center": pe.cost_center
-	# 				or frappe.get_cached_value("Company", pe.company, "cost_center"),
-	# 				"amount": discount_amount * (-1 if payment_type == "Pay" else 1),
-	# 			}
-	# 		)
-	# 		pe.set_difference_amount()
-
-	# return pe
+	return grievance_cell

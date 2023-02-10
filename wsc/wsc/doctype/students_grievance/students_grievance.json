@@ -15,12 +15,12 @@
   "gender",
   "contact_phone_no",
   "section_break_2",
-  "posting_data",
+  "posting_date",
   "type_of_grievance",
   "description_of_grievance",
   "areas_of_grivence",
   "column_break_3",
-  "date",
+  "date_of_incident",
   "status",
   "column_break_11",
   "reports_to",
@@ -31,7 +31,6 @@
   "attachment",
   "resolution_details_section",
   "resolution_date",
-  "column_break_16",
   "resolution_detail",
   "amended_from"
  ],
@@ -54,20 +53,13 @@
    "fieldtype": "Column Break"
   },
   {
-   "default": "Today",
-   "fieldname": "date",
-   "fieldtype": "Date",
-   "in_list_view": 1,
-   "label": "Date Of Incident",
-   "reqd": 1
-  },
-  {
+   "allow_on_submit": 1,
    "default": "Issue Posted By the Student",
    "fieldname": "status",
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-   "options": "Issue Posted By the Student\nIssue Received By Grievance Cell\nIssue Forwarded for to Competent Authority\nIssue pending from Competent Authority\nIssue Closed",
+   "options": "Issue Posted By the Student\nIssue Received By Grievance Cell\nIssue Forwarded to Competent Authority\nIssue pending from Competent Authority\nIssue Closed",
    "read_only": 1,
    "reqd": 1
   },
@@ -93,12 +85,14 @@
    "reqd": 1
   },
   {
+   "allow_on_submit": 1,
    "collapsible": 1,
    "fieldname": "resolution_details_section",
    "fieldtype": "Section Break",
    "label": "Resolution Details"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "resolution_date",
    "fieldtype": "Date",
    "label": "Resolution Date",
@@ -106,21 +100,10 @@
    "read_only": 1
   },
   {
-   "fieldname": "column_break_16",
-   "fieldtype": "Column Break"
-  },
-  {
+   "allow_on_submit": 1,
    "fieldname": "resolution_detail",
    "fieldtype": "Small Text",
    "label": "Resolution Details",
-   "mandatory_depends_on": "eval: doc.status == \"Resolved\"",
-   "read_only": 1
-  },
-  {
-   "default": "Today",
-   "fieldname": "posting_data",
-   "fieldtype": "Date",
-   "label": "Posting Data",
    "read_only": 1
   },
   {
@@ -211,12 +194,27 @@
    "options": "Students Grievance",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "date_of_incident",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date Of Incident",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-07 15:40:55.023958",
+ "modified": "2023-02-10 16:11:25.154996",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Students Grievance",

@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "GC-.YYYY.-.#####",
  "creation": "2023-02-07 14:35:45.222198",
  "default_view": "List",
  "doctype": "DocType",
@@ -23,11 +24,17 @@
   "description_of_grievance",
   "areas_of_grivence",
   "column_break_16",
+  "status",
+  "students_grievance",
   "standard_compliance_period_in_days",
   "student_handbook_rule_no_for_ref",
   "student_handbook_rule_discription",
   "section_break_20",
-  "workflow_of_grievance"
+  "show_grievance_workflow",
+  "workflow_of_grievance",
+  "section_break_24",
+  "update_grievance_status_below_section",
+  "grievance_status"
  ],
  "fields": [
   {
@@ -157,14 +164,50 @@
    "label": "WorkFlow of Grievance",
    "options": "Standard WorkFlow For Grievance",
    "read_only": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status",
+   "read_only": 1
+  },
+  {
+   "depends_on": "type_of_grievance",
+   "fieldname": "grievance_status",
+   "fieldtype": "Table",
+   "label": "Grievance Status",
+   "options": "Grievance status"
+  },
+  {
+   "default": "0",
+   "fieldname": "show_grievance_workflow",
+   "fieldtype": "Check",
+   "label": "Show Grievance Workflow",
+   "reqd": 1
+  },
+  {
+   "depends_on": "show_grievance_workflow",
+   "fieldname": "update_grievance_status_below_section",
+   "fieldtype": "Section Break",
+   "label": "Update Grievance Status Below"
+  },
+  {
+   "fieldname": "section_break_24",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "students_grievance",
+   "fieldtype": "Read Only",
+   "label": "Students Grievance"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-02-07 18:38:26.882368",
+ "modified": "2023-02-10 12:30:45.082453",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Grievance Cell",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
