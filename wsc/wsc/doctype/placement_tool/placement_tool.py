@@ -35,11 +35,12 @@ def get_student(drive_name):
 
 @frappe.whitelist()
 def get_rounds_of_placement(drive_name):
+    print(drive_name)
     data = frappe.db.sql(""" SELECT round_name from `tabRounds of Placement` where parent="%s" """%(drive_name))
     return data
 
 @frappe.whitelist()
 def get_date_of_round(doc, drive_name, round_name):
 	data = frappe.db.sql(""" SELECT date , reporting_time from `tabRounds of Placement` where parent = '%s' AND round_name = '%s'"""%(drive_name, round_name))
-	print(data)
+	# print(data)
 	return data
