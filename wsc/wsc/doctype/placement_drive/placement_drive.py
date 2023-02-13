@@ -43,17 +43,11 @@ def get_eligibility(name , academic_year , academic_term , placement_drive_for ,
 
 	eligibility_criteria=frappe.get_all("Eligibility Criteria",{"parent":name},['qualification',"percentage","year_of_passing"]) #from placement drive
 	
-	# print(backlog)
-	# query = frappe.db.sql("""SELECT `academic_term` FROM `tabPlacement Drive` WHERE `academic_year` = "%s" """%(academic_year) , as_dict=1)
-	
-	# query = frappe.db.sql("""SELECT `academic_term`,`academic_year`,`name` FROM  `tabExam Assessment Result` WHERE `student`="%s" """%(t))
-	# query = frappe.db.sql("""SELECT `grade` FROM `tabAssessment Result Item` assessmet INNER JOIN WHERE """)
-	# print(query)
 	final_studnet_list=[]
 	for j in programs:
 		for t in current_education:
-			# if j['programs']==t['programs'] and j['semester']==t['semesters'] :
-			if j['programs'] == t['programs']:
+			if j['programs']==t['programs'] and j['semester']==t['semesters'] :
+			# if j['programs'] == t['programs']:
 				final_studnet_list.append(t)
 	# print(programs)
 
@@ -61,24 +55,14 @@ def get_eligibility(name , academic_year , academic_term , placement_drive_for ,
 	for i in final_studnet_list:
 		student_dict[i['parent']] = []
 
-	
-	#Qualification Check
-	# for k in eligibility_criteria:	
-	# 	for t in student_dict:
-	# 		for j in student_list:
-	# 			if j['parent'] == t:
-	# 				if k['qualification']==j["qualification"] and k['percentage'] <= j['score']:
-	# 					list_data = student_dict[j['parent']]
-	# 					list_data.append(j)
-	# 					student_dict[j['parent']]=list_data
-
 	for t in student_dict:
 		count = 0
+		
 		student_list= frappe.get_all("Educational Details",{"parent":t}, ['qualification',"score",'year_of_completion','parent'])  #from student
 		experience_detail = frappe.get_all("Experience child table" , {"parent":t} , ['job_duration' , 'parent'])  #from student
 		student_cgpa = frappe.get_all("Exam Assessment Result" , {"student":t, "docstatus":1} , ['name' ,'overall_cgpa' , 'result'])
 		backlog_record = frappe.get_all("Evaluation Result Item" , {"parent":student_cgpa[0]['name']} , ['result' , 'parent'])  
-		# print(backlog_record)
+		print(student_cgpa)
 
 		for m in backlog_record:
 			print(m)
