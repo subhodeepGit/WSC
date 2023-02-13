@@ -53,7 +53,10 @@ frappe.ui.form.on('Placement Tool', {
 				},
 				callback: function(result){
 						// alert(result.message)
-						frm.set_value("scheduled_date_of_round", result.message[0]);
+						console.log(result.message[0][0]);
+						// frm.set_value("scheduled_date_of_round", result.message[0]);
+						frm.set_value("scheduled_date_of_round", result.message[0][0]);
+						frm.set_value("scheduled_time_of_round", result.message[0][1]);
 				}
 			})
 		// }
