@@ -8,49 +8,45 @@ frappe.ui.form.on('Placement Drive', {
 	// 	if(frm.doc.docstatus == 1 ){
 	// 		frm.add_custom_button('Eligible Students' , () => {
 	// 			console.log("click")
-	// 			frappe.call({
-	// 				method: 'wsc.wsc.doctype.placement_drive.placement_drive.get_eligibility',
-	// 				args: {
-	// 					'name': frm.doc.name,
-	// 				},
-	// 			})
-				
+
 	// 		})
 	// 	}
 	// } , 
 
 	get_students: function(frm){
 		// console.log(frm.doc.placement_company , frm.doc.academic_year , frm.doc.academic_term)
-		frappe.call({
-			method: 'wsc.wsc.doctype.placement_drive.placement_drive.get_eligibility',
-			args: {
-				'name': frm.doc.name,
-				'academic_year':frm.doc.academic_year,
-				'academic_term':frm.doc.academic_term,
-				'placement_drive_for':frm.doc.placement_drive_for,
-				'required_cgpa':frm.doc.current_cgpapercentage,
-				'backlog':frm.doc.active_backlog
-			},
-			callback: function(result){
-				const res = Object.values(result)
-				const values = Object.values(res[0])
-				// console.log(res)
-				// console.log(values.length)
-				let r = values[0]
-				console.log(result)
-
-				frappe.model.clear_table(frm.doc, 'eligible_student');
-				values.forEach(r => {
-					let c =frm.add_child('eligible_student')
-					c.student_doctype_name= r[0].parent
-					c.student_name = r[0].name
-					c.program_enrollment = r[0].programs
-					c.academic_year = r[0].academic_year
-				})
+		if(!frm.doc.__isLocal){
+			frappe.call({
+				method: 'wsc.wsc.doctype.placement_drive.placement_drive.get_eligibility',
+				args: {
+					'name': frm.doc.name,
+					'academic_year':frm.doc.academic_year,
+					'academic_term':frm.doc.academic_term,
+					'placement_drive_for':frm.doc.placement_drive_for,
+					'required_cgpa':frm.doc.current_cgpapercentage,
+					'backlog':frm.doc.active_backlog
+				},
+				callback: function(result){
+					const res = Object.values(result)
+					const values = Object.values(res[0])
+					// console.log(res)
+					// console.log(values.length)
+					let r = values[0]
+					// console.log(r[0])
+	
+					frappe.model.clear_table(frm.doc, 'eligible_student');
+					values.forEach(r => {
+						let c =frm.add_child('eligible_student')
+						c.student_doctype_name= r[0].parent
+						c.student_name = r[0].name
+						c.program_enrollment = r[0].programs
+						c.academic_year = r[0].academic_year
+					})
+				}
+			})
+			frm.refresh();
+			frm.refresh_field("eligible_student")
 		}
-	})
-		frm.refresh();
-		frm.refresh_field("eligible_student")
 		
 	},
 	setup:function(frm){

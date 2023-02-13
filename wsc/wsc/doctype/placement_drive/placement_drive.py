@@ -50,7 +50,8 @@ def get_eligibility(name , academic_year , academic_term , placement_drive_for ,
 			if j['programs']==t['programs'] and j['semester']==t['semesters'] :
 			# if j['programs'] == t['programs']:
 				final_studnet_list.append(t)
-
+	
+	
 	student_dict = {}
 	for i in final_studnet_list:
 		student_dict[i['parent']] = []
@@ -63,9 +64,10 @@ def get_eligibility(name , academic_year , academic_term , placement_drive_for ,
 		experience_detail = frappe.get_all("Experience child table" , {"parent":t} , ['job_duration' , 'parent'])  #from student
 		student_cgpa = frappe.get_all("Exam Assessment Result" , {"student":t, "docstatus":1} , ['name' ,'overall_cgpa' , 'result'])
 		backlog_record = frappe.get_all("Evaluation Result Item" , {"parent":student_cgpa[0]['name']} , ['result' , 'parent'])  
-		
+		# print(student_cgpa)
+
 		for m in backlog_record:
-			print(m)
+			# print(m)
 			if m['result'] == 'F':
 				count+=1
 
@@ -93,16 +95,12 @@ def get_eligibility(name , academic_year , academic_term , placement_drive_for ,
 		student_dict[t]=list_data
 
 	for i in student_dict:
-		# print(student_dict[i])
 		for j in final_studnet_list:
 			# print(j)
 			for k in student_dict[i]:
 				k['programs'] = j['programs']
 				k['academic_year'] = j['academic_year']
 				k['name'] = j['name']
-				# print(k)
-	# print("\n\nstudent_dict")
-	# print(student_dict)
 	return student_dict
 
 	
