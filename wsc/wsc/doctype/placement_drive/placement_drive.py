@@ -50,13 +50,13 @@ def get_eligibility(name , academic_year , academic_term , placement_drive_for ,
 			if j['programs']==t['programs'] and j['semester']==t['semesters'] :
 			# if j['programs'] == t['programs']:
 				final_studnet_list.append(t)
-	# print(programs)
-	placement_rounds = frappe.get_all("Placement Tool" , ["company_name" , "round_of_placement" , "scheduled_date_of_round" , "scheduled_time_of_round"])
-	print(placement_rounds)
+	
+	
 	student_dict = {}
 	for i in final_studnet_list:
 		student_dict[i['parent']] = []
 
+	print(final_studnet_list)
 	for t in student_dict:
 		count = 0
 		
@@ -71,7 +71,6 @@ def get_eligibility(name , academic_year , academic_term , placement_drive_for ,
 			if m['result'] == 'F':
 				count+=1
 
-		# print(t)
 		list_data = student_dict[t]
 		for i in experience_detail:
 
