@@ -23,7 +23,7 @@ class Scholarships(Document):
 		for x in topper:
 			if x['sgpa']==top:
 				topperlist.append(x)
-		return(topperlist)
+		return topperlist
 		
 
 
