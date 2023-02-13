@@ -95,16 +95,12 @@ def get_eligibility(name , academic_year , academic_term , placement_drive_for ,
 		student_dict[t]=list_data
 
 	for i in student_dict:
-		# print(student_dict[i])
 		for j in final_studnet_list:
 			# print(j)
 			for k in student_dict[i]:
 				k['programs'] = j['programs']
 				k['academic_year'] = j['academic_year']
 				k['name'] = j['name']
-				# print(k)
-	# print("\n\nstudent_dict")
-	# print(student_dict)
 	return student_dict
 
 	
