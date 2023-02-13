@@ -37,7 +37,7 @@ frappe.ui.form.on('Placement Drive', {
 				// console.log(res)
 				// console.log(values.length)
 				let r = values[0]
-				// console.log(r[0])
+				console.log(result)
 
 				frappe.model.clear_table(frm.doc, 'eligible_student');
 				values.forEach(r => {
