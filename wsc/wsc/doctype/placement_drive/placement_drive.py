@@ -35,6 +35,7 @@ class PlacementDrive(Document):
 	
 @frappe.whitelist()
 def get_eligibility(name , academic_year , academic_term , placement_drive_for , required_cgpa , backlog):
+	backlog = int(backlog)
 	req_cgpa = float(required_cgpa)
 	current_education= frappe.get_all("Current Educational Details" ,{"academic_year":academic_year , "academic_term":academic_term,"parenttype":"Student"} , 
 	['programs' , 'semesters' , 'academic_year' , 'academic_term',"parent","name"]) #from students.
