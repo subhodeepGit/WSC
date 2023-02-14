@@ -1,17 +1,18 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{placement_drive}-{####}",
+ "autoname": "format:{placement_company}-{####}",
  "creation": "2023-01-27 15:57:17.102780",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "academic_year",
+  "placement_company",
   "placement_drive",
   "round_of_placement",
   "reporting_date",
-  "round_name",
   "column_break_4",
   "reporting_time",
   "location",
@@ -30,19 +31,15 @@
    "label": "Reporting Date"
   },
   {
-   "fieldname": "round_name",
-   "fieldtype": "Data",
-   "label": "Round Name"
-  },
-  {
    "fieldname": "reporting_time",
    "fieldtype": "Time",
    "label": "Reporting Time"
   },
   {
    "fieldname": "location",
-   "fieldtype": "Data",
-   "label": "Location"
+   "fieldtype": "Link",
+   "label": "Location",
+   "options": "Location"
   },
   {
    "fieldname": "column_break_4",
@@ -55,13 +52,25 @@
   },
   {
    "fieldname": "round_of_placement",
-   "fieldtype": "Data",
+   "fieldtype": "Select",
    "label": "Round of Placement"
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
+  },
+  {
+   "fieldname": "placement_company",
+   "fieldtype": "Link",
+   "label": "Placement company",
+   "options": "Placement Company"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-02-01 16:46:37.668849",
+ "modified": "2023-02-13 18:08:01.477669",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive Calendar",

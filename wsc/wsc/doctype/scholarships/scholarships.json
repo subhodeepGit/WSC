@@ -15,6 +15,7 @@
   "programs",
   "semester",
   "section_break_7",
+  "type_of_scholarship",
   "topper_scholarship",
   "get_students",
   "topper_scholarship_table",
@@ -27,22 +28,28 @@
   {
    "fieldname": "academic_year",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Academic Year",
-   "options": "Academic Year"
+   "options": "Academic Year",
+   "reqd": 1
   },
   {
    "fieldname": "semester",
    "fieldtype": "Link",
    "label": "Semester",
-   "options": "Program"
+   "options": "Program",
+   "reqd": 1
   },
   {
+   "depends_on": "eval:doc.type_of_scholarship==\"Merit basis\"",
    "fieldname": "topper_scholarship_table",
    "fieldtype": "Table",
    "label": "Topper Scholarship table",
-   "options": "Topper Scholarship"
+   "options": "Topper Scholarship",
+   "reqd": 1
   },
   {
+   "depends_on": "eval:doc.type_of_scholarship==\"Merit basis\"",
    "fieldname": "cutoff_scholarship_table",
    "fieldtype": "Table",
    "label": "Cutoff Scholarship table",
@@ -51,20 +58,26 @@
   {
    "fieldname": "program_grade",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Program Grade",
-   "options": "Program Grades"
+   "options": "Program Grades",
+   "reqd": 1
   },
   {
    "fieldname": "academic_term",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Academic Term",
-   "options": "Academic Term"
+   "options": "Academic Term",
+   "reqd": 1
   },
   {
    "fieldname": "programs",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Programs",
-   "options": "Programs"
+   "options": "Programs",
+   "reqd": 1
   },
   {
    "fieldname": "academic_details_section",
@@ -72,6 +85,7 @@
    "label": "Academic Details"
   },
   {
+   "depends_on": "eval:doc.type_of_scholarship==\"Merit basis\"",
    "fieldname": "cutoff_scholarship",
    "fieldtype": "Heading",
    "label": "Cutoff Scholarship"
@@ -86,29 +100,41 @@
    "fieldtype": "Column Break"
   },
   {
+   "depends_on": "eval:doc.type_of_scholarship==\"Merit basis\"",
    "fieldname": "topper_scholarship",
    "fieldtype": "Heading",
    "label": "Topper Scholarship"
   },
   {
+   "depends_on": "eval:doc.type_of_scholarship==\"Merit basis\"",
    "fieldname": "cutoff_sgpa",
    "fieldtype": "Data",
-   "label": "Cutoff SGPA"
+   "label": "Cutoff SGPA",
+   "reqd": 1
   },
   {
+   "depends_on": "eval:doc.type_of_scholarship==\"Merit basis\"",
    "fieldname": "get_students",
    "fieldtype": "Button",
    "label": "Get Students"
   },
   {
+   "depends_on": "eval:doc.type_of_scholarship==\"Merit basis\"",
    "fieldname": "get_cutoff_students",
    "fieldtype": "Button",
    "label": "Get cutoff students"
+  },
+  {
+   "fieldname": "type_of_scholarship",
+   "fieldtype": "Select",
+   "label": "Type of Scholarship",
+   "options": "\nMerit basis",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-02-06 10:49:30.932043",
+ "modified": "2023-02-08 15:21:59.994661",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Scholarships",

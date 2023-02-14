@@ -87,15 +87,6 @@
    "read_only": 1
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Application for Residence",
-   "print_hide": 1,
-   "read_only": 1
-  },
-  {
    "fieldname": "current_application_status",
    "fieldtype": "Data",
    "label": "Current Application Status",
@@ -142,12 +133,21 @@
    "fieldtype": "Data",
    "label": "Employee Email",
    "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Application for Residence",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-30 11:27:12.831806",
+ "modified": "2023-02-10 13:11:55.525060",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Application for Residence",

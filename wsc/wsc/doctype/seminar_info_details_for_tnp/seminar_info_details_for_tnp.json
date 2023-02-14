@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{topic}-{date}",
  "creation": "2023-02-06 16:03:25.478846",
  "default_view": "List",
  "doctype": "DocType",
@@ -16,19 +17,22 @@
   {
    "fieldname": "topic",
    "fieldtype": "Data",
-   "label": "Topic"
+   "label": "Topic",
+   "unique": 1
   },
   {
    "fieldname": "student_attending_seminar",
    "fieldtype": "Table",
    "label": "Student attending Seminar",
-   "options": "Seminars And Guest Lecture"
+   "options": "Seminars And Guest Lecture",
+   "read_only": 1
   },
   {
    "fieldname": "instructor_attending_or_giving_seminar",
    "fieldtype": "Table",
    "label": "Instructor Attending or Giving Seminar",
-   "options": "Non Teaching Activities"
+   "options": "Non Teaching Activities",
+   "read_only": 1
   },
   {
    "fieldname": "date",
@@ -38,10 +42,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-02-06 16:28:30.195801",
+ "modified": "2023-02-09 12:59:19.949378",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Seminar Info Details For TnP",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

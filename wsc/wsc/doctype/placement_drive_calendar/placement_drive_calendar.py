@@ -6,18 +6,32 @@ from frappe.model.document import Document
 
 class PlacementDriveCalendar(Document):
 	pass
-	# def validate(self):
-	# 	self.some_func(self)
-
-	# def some_func(self):
-	# 	placement_drive = frappe.get_all('Placement Drive' , ['name'])
-
-	# 	for i in placement_drive:
-	# 		data = frappe.get_all('Rounds of Placement' , {'parent':i} , ['reporting_date' , 'round_name' , 'reporting_time' , 'location'])
-	# 		print(data)
 
 @frappe.whitelist()
-def get_rounds(placement_drive):
-	# pass
-	data = frappe.get_all("Non Teaching Activities" , ['academic_year' , 'department' , 'activities' , 'duration' , 'description'])
-	print(data)
+def get_round_placement_event(date, time, filters=None):
+	"""Returns events for Course Schedule Calendar view rendering.
+
+	:param start: Start date-time.
+	:param end: End date-time.
+	:param filters: Filters (JSON).
+	"""
+	from frappe.desk.calendar import get_event_conditions
+
+	conditions = get_event_conditions("Placement Tool", filters)
+
+	data = frappe.db.sql(
+		"""select company_name, round_of_placement, color,
+			timestamp(schedule_date, from_time) as from_time,
+			room, student_group, 0 as 'allDay'
+		from `tabCourse Schedule`
+		where ( schedule_date between %(start)s and %(end)s )
+		{conditions}""".format(
+			conditions=conditions
+		),
+		# {"start": start, "end": end},
+		{"start": date, "end": time},
+		as_dict=True,
+		update={"allDay": 0},
+	)
+
+	return data

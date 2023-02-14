@@ -26,16 +26,18 @@
   "alloted_building",
   "column_break_4",
   "alloted_residence_type",
+  "alloted_residence_start_date",
+  "alloted_residence_end_date",
   "employee_request_section",
   "residence_type_requested",
   "residence_type_name_requested",
   "residence_change_request_reason_section",
   "residence_change_request_details_section",
-  "residence_building",
-  "residence_type",
-  "residence_type_name",
-  "column_break_13",
+  "start_date",
+  "end_date",
   "residence_serial_number",
+  "column_break_13",
+  "residence_building",
   "residence_number",
   "request_status",
   "residence_details_section",
@@ -118,14 +120,6 @@
    "read_only": 1
   },
   {
-   "fieldname": "residence_type_name",
-   "fieldtype": "Link",
-   "label": "Residence Type name",
-   "mandatory_depends_on": "eval:(doc.request_status==\"Approved\")",
-   "options": "Residence Type",
-   "permlevel": 1
-  },
-  {
    "fieldname": "employee_details_section",
    "fieldtype": "Section Break",
    "label": "Employee Details"
@@ -160,7 +154,8 @@
    "fetch_from": "residence_allotment_number.residence_type_name",
    "fieldname": "alloted_residence_type_name",
    "fieldtype": "Data",
-   "label": "Alloted Residence Type Name"
+   "label": "Alloted Residence Type Name",
+   "read_only": 1
   },
   {
    "fieldname": "request_status",
@@ -169,12 +164,13 @@
    "read_only": 1
   },
   {
+   "fetch_from": "residence_serial_number.building_name",
    "fieldname": "residence_building",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "label": "Residence Building",
    "mandatory_depends_on": "eval:(doc.request_status==\"Approved\")",
-   "options": "Buildings",
-   "permlevel": 1
+   "permlevel": 1,
+   "read_only": 1
   },
   {
    "fieldname": "residence_type_name_requested",
@@ -187,14 +183,6 @@
    "fieldname": "residence_change_request_details_section",
    "fieldtype": "Section Break",
    "label": "Changed Residence  Details"
-  },
-  {
-   "fieldname": "residence_type",
-   "fieldtype": "Link",
-   "label": "Residence Type",
-   "mandatory_depends_on": "eval:(doc.request_status==\"Approved\")",
-   "options": "Type of Residence",
-   "permlevel": 1
   },
   {
    "fieldname": "residence_details_section",
@@ -362,13 +350,40 @@
    "fetch_from": "residence_allotment_number.building",
    "fieldname": "alloted_building",
    "fieldtype": "Data",
-   "label": "Alloted Building"
+   "label": "Alloted Building",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date"
+  },
+  {
+   "default": "9999-12-30",
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date"
+  },
+  {
+   "fetch_from": "residence_allotment_number.current_start_date",
+   "fieldname": "alloted_residence_start_date",
+   "fieldtype": "Date",
+   "label": "Alloted Residence Start Date",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_allotment_number.current_end_date",
+   "fieldname": "alloted_residence_end_date",
+   "fieldtype": "Date",
+   "label": "Alloted Residence End Date",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-06 17:10:14.081206",
+ "modified": "2023-02-08 12:52:00.819197",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Change Request",

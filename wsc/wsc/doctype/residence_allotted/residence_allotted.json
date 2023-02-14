@@ -10,6 +10,7 @@
   "application_number",
   "residence_type",
   "residence_type_name",
+  "residence_serial_number",
   "residence_number",
   "floor",
   "building_address",
@@ -19,7 +20,9 @@
   "parking_area_sq_m",
   "parking_vehicle",
   "current_employee_allotment_status",
-  "date"
+  "date",
+  "start_date",
+  "end_date"
  ],
  "fields": [
   {
@@ -106,12 +109,29 @@
    "fieldname": "date",
    "fieldtype": "Date",
    "label": "Date"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Start Date"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "End Date"
+  },
+  {
+   "fieldname": "residence_serial_number",
+   "fieldtype": "Data",
+   "label": "Residence Serial Number"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-01-24 16:45:55.229467",
+ "modified": "2023-02-09 11:04:06.416748",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Allotted",
