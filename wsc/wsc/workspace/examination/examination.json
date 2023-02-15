@@ -1,0 +1,437 @@
+{
+ "charts": [],
+ "content": "[{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h1\\\">Examination</span>\",\"col\":12}},{\"type\":\"spacer\",\"data\":{\"col\":12}},{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Shortcuts</span>\",\"col\":12}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Exam Declaration\",\"col\":4}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Admit Card\",\"col\":4}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Post Exam Declaration\",\"col\":4}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Exam Evaluation Plan\",\"col\":4}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Exam Application\",\"col\":4}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Final Exam Result Report\",\"col\":4}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Final Grade  Report\",\"col\":4}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Program Wise Pass Percentage\",\"col\":4}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Subject Wise Pass Percentage\",\"col\":4}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"School Wise Pass Percentage\",\"col\":4}},{\"type\":\"spacer\",\"data\":{\"col\":12}},{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Reports &amp; Master</span><span class=\\\"h4\\\"><b><br></b></span>\",\"col\":12}},{\"type\":\"card\",\"data\":{\"card_name\":\"Examination Master\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Examination\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Evaluation\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Tools\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Transcripts\",\"col\":4}}]",
+ "creation": "2023-02-15 15:34:12.842177",
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Examination",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Examination Master",
+   "link_count": 4,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Exam Type",
+   "link_count": 0,
+   "link_to": "Exam Type",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Assement Criteria",
+   "link_count": 0,
+   "link_to": "Assessment Criteria",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Grading Scale",
+   "link_count": 0,
+   "link_to": "Grading Scale",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Exam Block Criteria",
+   "link_count": 0,
+   "link_to": "Student Exam Block Criteria",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Examination",
+   "link_count": 9,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Exam Delcaration",
+   "link_count": 0,
+   "link_to": "Exam Declaration",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Exam Application",
+   "link_count": 0,
+   "link_to": "Exam Application",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Exam Paper Setting",
+   "link_count": 0,
+   "link_to": "Exam Paper Setting",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Exam Block List",
+   "link_count": 0,
+   "link_to": "Student Exam Block List",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Admit Card",
+   "link_count": 0,
+   "link_to": "Student Admit Card",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Post Exam Declaration",
+   "link_count": 0,
+   "link_to": "Post Exam Declaration",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Photocopy Application",
+   "link_count": 0,
+   "link_to": "Photocopy Application",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Re-Evaluation Application",
+   "link_count": 0,
+   "link_to": "Reevaluation Application",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Backpaer Tracking",
+   "link_count": 0,
+   "link_to": "Back Paper Tracker",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Evaluation",
+   "link_count": 4,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Exam Evaluation Plan",
+   "link_count": 0,
+   "link_to": "Exam Assessment Plan",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Criteria Wise Evaluation",
+   "link_count": 0,
+   "link_to": "Course Assessment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Continuous Evaluation",
+   "link_count": 0,
+   "link_to": "Assessment Credits Allocation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Final Exam Result",
+   "link_count": 0,
+   "link_to": "Exam Assessment Result",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Tools",
+   "link_count": 8,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Criteria Wise Evaluation Tool",
+   "link_count": 0,
+   "link_to": "Course Assessment Result Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Continuous Evaluation Tool",
+   "link_count": 0,
+   "link_to": "Continuous Evaluation Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Final Result Declaration Tool",
+   "link_count": 0,
+   "link_to": "Final Result Declaration",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Cumulative Marksheet Tool",
+   "link_count": 0,
+   "link_to": "Cumulative Marksheet Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Provisional Certificate Tool",
+   "link_count": 0,
+   "link_to": "Provisional Certificate Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Migration Certificate Tool",
+   "link_count": 0,
+   "link_to": "Migration Certificate Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Conduct Certificate Tool",
+   "link_count": 0,
+   "link_to": "Conduct Certificate Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Leaving Certificate Tool",
+   "link_count": 0,
+   "link_to": "Leaving Certificate Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Transcripts",
+   "link_count": 5,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Leaving Certificate",
+   "link_count": 0,
+   "link_to": "Leaving Certificate",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Provisional Certificate",
+   "link_count": 0,
+   "link_to": "Provisional Certificate",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Migration Certificate",
+   "link_count": 0,
+   "link_to": "Migration Certificate",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Conduct Certificate",
+   "link_count": 0,
+   "link_to": "Conduct Certificate",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Cumulative Marksheet",
+   "link_count": 0,
+   "link_to": "Cumulative Marksheet",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2023-02-15 16:08:02.524743",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Examination",
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 41.0,
+ "shortcuts": [
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Exam Declaration",
+   "link_to": "Exam Declaration",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Admit Card",
+   "link_to": "Student Admit Card",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Post Exam Declaration",
+   "link_to": "Post Exam Declaration",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Exam Evaluation Plan",
+   "link_to": "Exam Assessment Plan",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Exam Application",
+   "link_to": "Exam Application",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Final Exam Result Report",
+   "link_to": "Final Exam Result Report",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Final Grade  Report",
+   "link_to": "Final Grade Report",
+   "type": "Report"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Program Wise Pass Percentage",
+   "link_to": "Pass Percentage",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Subject Wise Pass Percentage",
+   "link_to": "Subject Wise Performance",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "School Wise Pass Percentage",
+   "link_to": "School Wise Pass Percentage",
+   "type": "DocType"
+  }
+ ],
+ "title": "Examination"
+}
