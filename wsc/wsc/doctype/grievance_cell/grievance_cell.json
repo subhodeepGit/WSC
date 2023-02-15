@@ -198,12 +198,13 @@
   {
    "fieldname": "students_grievance",
    "fieldtype": "Read Only",
+   "in_list_view": 1,
    "label": "Students Grievance"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-02-10 12:30:45.082453",
+ "modified": "2023-02-13 10:00:28.920149",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Grievance Cell",
