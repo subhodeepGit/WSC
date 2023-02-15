@@ -91,3 +91,18 @@ frappe.ui.form.on('Scholarships', {
 		});
 	}
 });
+
+
+frappe.ui.form.on('Scholarships', {
+	onload: function(frm) {
+
+		frm.get_field('topper_scholarship_table').grid.cannot_add_rows = true;
+	}
+});
+
+frappe.ui.form.on('Scholarships', {
+	onload: function(frm) {
+
+		frm.get_field('cutoff_scholarship_table').grid.cannot_add_rows = true;
+	}
+});
