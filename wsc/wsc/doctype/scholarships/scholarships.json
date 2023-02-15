@@ -21,8 +21,8 @@
   "get_students",
   "topper_scholarship_table",
   "cutoff_scholarship",
-  "get_cutoff_students",
   "cutoff_sgpa",
+  "get_cutoff_students",
   "cutoff_scholarship_table",
   "amended_from"
  ],
@@ -47,8 +47,7 @@
    "fieldname": "topper_scholarship_table",
    "fieldtype": "Table",
    "label": "Topper Scholarship table",
-   "options": "Topper Scholarship",
-   "reqd": 1
+   "options": "Topper Scholarship"
   },
   {
    "depends_on": "eval:doc.type_of_scholarship==\"Merit basis\"",
@@ -110,7 +109,7 @@
   {
    "depends_on": "eval:doc.type_of_scholarship==\"Merit basis\"",
    "fieldname": "cutoff_sgpa",
-   "fieldtype": "Data",
+   "fieldtype": "Float",
    "label": "Cutoff SGPA",
    "reqd": 1
   },
@@ -146,7 +145,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-15 10:36:16.418622",
+ "modified": "2023-02-15 18:17:10.743668",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Scholarships",
