@@ -8,7 +8,7 @@ class PlacementDriveCalendar(Document):
 	pass
 
 @frappe.whitelist()
-def get_round_placement_event(date, time, filters=None):
+def get_round_placement_event(start, end,filters=None):
 # def get_round_placement_event(date, time):
 	"""Returns events for Placement Drive Calendar Calendar view rendering.
 
@@ -17,56 +17,27 @@ def get_round_placement_event(date, time, filters=None):
 	:param filters: Filters (JSON).
 	"""
 	from frappe.desk.calendar import get_event_conditions
-
+	# print(data ,time)
 	conditions = get_event_conditions("Placement Drive Calendar", filters)
-
 	data = frappe.db.sql(
-		"""select company_name,id, round_of_placement, color,
-			timestamp(schedule_date, reporting_time) as reporting_time,
-			room, student_group
-		from `tabPlacement Drive Calendar`
-		where ( schedule_date between %(start)s and %(end)s )
-		{conditions}""".format(
-			conditions=conditions
-		),
-		# {"start": start, "end": end},
-		{"start": date, "end": time},
-		as_dict=True,
-		# update={"allDay": 0},
-	)
-	print(data)
+			"""select name, placement_drive, 
+				timestamp(reporting_date, reporting_time) as from_time,
+				timestamp(reporting_date, reporting_end_time) as to_time,
+				0 as 'allDay'
+			from `tabPlacement Drive Calendar`
+			where ( reporting_date between %(start)s and %(end)s )
+			{conditions}""".format(
+				conditions=conditions
+			),
+			{"start": start, "end": end},
+			as_dict=True,
+			update={"allDay": 0},
+		)
+
 	return data
-	# data = frappe.db.sql("""
-	# 	select * FROM `tabPlacement Drive Calendar` WHERE placement_company = 'somethings'
-	# """)
+
+	# query = """SELECT placement_company,round_of_placement,color,placement_drive  FROM `tabPlacement Drive Calendar` WHERE reporting_date = '2023-02-23' AND reporting_time = '17:08:49'"""
+	# data = frappe.db.sql(query , as_dict=True)
+	# print(data)
+	# return data
 	
-
-
-# @frappe.whitelist()
-# def get_course_schedule_events(start, end, filters=None):
-# 	"""Returns events for Course Schedule Calendar view rendering.
-
-# 	:param start: Start date-time.
-# 	:param end: End date-time.
-# 	:param filters: Filters (JSON).
-# 	"""
-# 	from frappe.desk.calendar import get_event_conditions
-
-# 	conditions = get_event_conditions("Course Schedule", filters)
-
-# 	data = frappe.db.sql(
-# 		"""select name, course, color,
-# 			timestamp(schedule_date, from_time) as from_time,
-# 			timestamp(schedule_date, to_time) as to_time,
-# 			room, student_group, 0 as 'allDay'
-# 		from `tabCourse Schedule`
-# 		where ( schedule_date between %(start)s and %(end)s )
-# 		{conditions}""".format(
-# 			conditions=conditions
-# 		),
-# 		{"start": start, "end": end},
-# 		as_dict=True,
-# 		update={"allDay": 0},
-# 	)
-
-# 	return data
