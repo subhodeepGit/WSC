@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Pending Applications for Residence\",\"col\":4}},{\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Pending Residence Change Request\",\"col\":4}},{\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Pending Residence De-Allottment\",\"col\":4}},{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Masters and Sub Masters<br></b></span>\",\"col\":12}},{\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Building Room Sub Masters\",\"col\":4}},{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Residence Procedure <br></b></span>\",\"col\":12}},{\"type\":\"card\",\"data\":{\"card_name\":\"Residence Allotment\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Residence De-Allotment\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Residence Change Request\",\"col\":4}}]",
+ "content": "[{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Masters and Sub Masters<br></b></span>\",\"col\":12}},{\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Building Room Sub Masters\",\"col\":4}},{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Residence Procedure <br></b></span>\",\"col\":12}},{\"type\":\"card\",\"data\":{\"card_name\":\"Residence Allotment\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Residence De-Allotment\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Residence Change Request\",\"col\":4}}]",
  "creation": "2023-02-15 12:28:13.024508",
  "docstatus": 0,
  "doctype": "Workspace",
@@ -87,54 +87,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Masters",
-   "link_count": 4,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Land",
-   "link_count": 0,
-   "link_to": "Land",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Building",
-   "link_count": 0,
-   "link_to": "Building",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Building Type Room",
-   "link_count": 0,
-   "link_to": "Building type Room",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Building Room",
-   "link_count": 0,
-   "link_to": "Building Room",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Building Room Sub Masters",
    "link_count": 2,
    "onboard": 0,
@@ -159,32 +111,64 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Masters",
+   "link_count": 4,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Land",
+   "link_count": 0,
+   "link_to": "Land",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Building",
+   "link_count": 0,
+   "link_to": "Buildings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Building Type Room",
+   "link_count": 0,
+   "link_to": "Building type Room",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Building Room",
+   "link_count": 0,
+   "link_to": "Building Room",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-02-15 16:45:27.414625",
+ "modified": "2023-02-16 11:29:29.217618",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Infrastructure",
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,
- "quick_lists": [
-  {
-   "document_type": "Application for Residence De-Allottment",
-   "label": "Pending Residence De-Allottment",
-   "quick_list_filter": "{\"current_application_status\":[\"=\",\"Applied\"]}"
-  },
-  {
-   "document_type": "Residence Change Request",
-   "label": "Pending Residence Change Request",
-   "quick_list_filter": "{\"request_status\":[\"=\",\"Pending Approval\"]}"
-  },
-  {
-   "document_type": "Application for Residence",
-   "label": "Pending Applications for Residence",
-   "quick_list_filter": "{\"current_application_status\":[\"=\",\"Applied\"]}"
-  }
- ],
+ "quick_lists": [],
  "roles": [],
  "sequence_id": 17.0,
  "shortcuts": [],
