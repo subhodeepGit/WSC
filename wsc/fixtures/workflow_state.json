@@ -2,12 +2,27 @@
  {
   "docstatus": 0,
   "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-01-13 13:34:36.308396",
+  "name": "Pending Approval",
+  "style": "",
+  "workflow_state_name": "Pending Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-01-13 13:35:18.245047",
+  "name": "Cancelled",
+  "style": "",
+  "workflow_state_name": "Cancelled"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
   "icon": "question-sign",
   "modified": "2021-12-15 11:12:05.156592",
   "name": "Pending",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "style": "",
   "workflow_state_name": "Pending"
  },
@@ -17,9 +32,6 @@
   "icon": "ok-sign",
   "modified": "2021-12-15 11:12:05.160346",
   "name": "Approved",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "style": "Success",
   "workflow_state_name": "Approved"
  },
@@ -29,9 +41,6 @@
   "icon": "remove",
   "modified": "2021-12-15 11:12:05.163930",
   "name": "Rejected",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "style": "Danger",
   "workflow_state_name": "Rejected"
  },
@@ -41,9 +50,6 @@
   "icon": "",
   "modified": "2022-12-05 12:32:12.344704",
   "name": "Draft",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "style": "",
   "workflow_state_name": "Draft"
  },
@@ -53,9 +59,6 @@
   "icon": "",
   "modified": "2022-12-05 12:32:49.122162",
   "name": "Approved by Registrar",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "style": "",
   "workflow_state_name": "Approved by Registrar"
  },
@@ -65,9 +68,6 @@
   "icon": "",
   "modified": "2022-12-05 12:33:51.038660",
   "name": "Rejected by Registrar",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "style": "",
   "workflow_state_name": "Rejected by Registrar"
  },
@@ -77,9 +77,6 @@
   "icon": "",
   "modified": "2022-12-05 12:34:13.214910",
   "name": "Approved by VC",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "style": "",
   "workflow_state_name": "Approved by VC"
  },
@@ -89,9 +86,6 @@
   "icon": "",
   "modified": "2022-12-05 12:34:31.292154",
   "name": "Rejected by VC",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "style": "",
   "workflow_state_name": "Rejected by VC"
  },
@@ -101,9 +95,6 @@
   "icon": "",
   "modified": "2022-12-05 15:34:54.693216",
   "name": "Approved by COE",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "style": "",
   "workflow_state_name": "Approved by COE"
  }
