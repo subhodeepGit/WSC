@@ -54,7 +54,7 @@ doctype_js = {
                 "Topic":"public/js/topic.js",
                 "User":"public/js/user.js",
             }
-
+calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
     "Branch Sliding Application": "wsc/wsc/doctype/branch_sliding_application/branch_sliding_application_list.js",
     "Fees":"public/js/fees_list.js",
@@ -272,10 +272,10 @@ doc_events = {
     "Student Leave Application":{
         "validate":"wsc.wsc.validations.student_leave_application.validate"
     },
-    # "Student Applicant":{
+    "Student Applicant":{
     #     "validate":"wsc.wsc.doctype.student_applicant.validate",
-    #     "on_change":"wsc.wsc.doctype.student_applicant.on_update"
-    # },
+        "on_change":"wsc.wsc.doctype.student_applicant.on_update"
+    },
     "Student Admission":{
         "validate":"wsc.wsc.validations.student_admission.validate"
     },

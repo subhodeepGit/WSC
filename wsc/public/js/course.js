@@ -56,7 +56,6 @@ frappe.ui.form.on('Course', {
 				function(data) {
 					frappe.call({
 						method: 'wsc.wsc.validations.course.add_course_to_programs',
-						// /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/validations/course.py
 						args: {
 							'course': frm.doc.name,
 							'programs': data.programs,
