@@ -1,39 +1,43 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "RESCh.####",
+ "autoname": "RESCH.####",
  "creation": "2023-01-13 11:45:19.191721",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "residence_change_request_number",
   "residence_allotment_number",
   "application_number",
   "change_request_date",
   "employee_details_section",
   "employee_name",
   "employee",
+  "employee_email",
   "column_break_7",
   "employee_designation",
   "employee_department",
   "alloted_residence_details_section",
   "alloted_residence_serial_number",
   "alloted_residence_number",
-  "alloted_residence_building",
+  "alloted_residence_type_name",
+  "alloted_building",
   "column_break_4",
   "alloted_residence_type",
-  "alloted_residence_type_name",
+  "alloted_residence_start_date",
+  "alloted_residence_end_date",
   "employee_request_section",
   "residence_type_requested",
   "residence_type_name_requested",
   "residence_change_request_reason_section",
   "residence_change_request_details_section",
-  "residence_building",
-  "residence_type",
-  "residence_type_name",
-  "column_break_13",
+  "start_date",
+  "end_date",
   "residence_serial_number",
+  "column_break_13",
+  "residence_building",
   "residence_number",
   "request_status",
   "residence_details_section",
@@ -96,12 +100,16 @@
    "fieldname": "residence_serial_number",
    "fieldtype": "Link",
    "label": "Residence Serial Number",
-   "options": "Building Room"
+   "mandatory_depends_on": "eval:(doc.request_status==\"Approved\")",
+   "options": "Building Room",
+   "permlevel": 1
   },
   {
+   "fetch_from": "residence_serial_number.room_no",
    "fieldname": "residence_number",
    "fieldtype": "Data",
    "label": "Residence Number",
+   "mandatory_depends_on": "eval:(doc.request_status==\"Approved\")",
    "read_only": 1
   },
   {
@@ -110,12 +118,6 @@
    "fieldtype": "Data",
    "label": "Alloted Residence Number",
    "read_only": 1
-  },
-  {
-   "fieldname": "residence_type_name",
-   "fieldtype": "Link",
-   "label": "Residence Type name",
-   "options": "Residence Type"
   },
   {
    "fieldname": "employee_details_section",
@@ -142,17 +144,17 @@
    "fieldtype": "Column Break"
   },
   {
-   "fetch_from": "application_number.residence_type",
+   "fetch_from": "residence_allotment_number.residence_type",
    "fieldname": "alloted_residence_type",
    "fieldtype": "Data",
    "label": "Alloted Residence Type",
    "read_only": 1
   },
   {
-   "fetch_from": "application_number.residence_type_name",
+   "fetch_from": "residence_allotment_number.residence_type_name",
    "fieldname": "alloted_residence_type_name",
    "fieldtype": "Data",
-   "label": "Alloted Residence Type name",
+   "label": "Alloted Residence Type Name",
    "read_only": 1
   },
   {
@@ -162,17 +164,13 @@
    "read_only": 1
   },
   {
-   "fetch_from": "application_number.building",
-   "fieldname": "alloted_residence_building",
-   "fieldtype": "Data",
-   "label": "Alloted Residence Building",
-   "read_only": 1
-  },
-  {
+   "fetch_from": "residence_serial_number.building_name",
    "fieldname": "residence_building",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "label": "Residence Building",
-   "options": "Buildings"
+   "mandatory_depends_on": "eval:(doc.request_status==\"Approved\")",
+   "permlevel": 1,
+   "read_only": 1
   },
   {
    "fieldname": "residence_type_name_requested",
@@ -185,12 +183,6 @@
    "fieldname": "residence_change_request_details_section",
    "fieldtype": "Section Break",
    "label": "Changed Residence  Details"
-  },
-  {
-   "fieldname": "residence_type",
-   "fieldtype": "Link",
-   "label": "Residence Type",
-   "options": "Type of Residence"
   },
   {
    "fieldname": "residence_details_section",
@@ -302,8 +294,7 @@
    "in_list_view": 1,
    "label": "Residence Allotment Number",
    "options": "Residence Allotment",
-   "reqd": 1,
-   "unique": 1
+   "reqd": 1
   },
   {
    "fetch_from": "residence_allotment_number.application_number",
@@ -341,12 +332,58 @@
    "fieldname": "alloted_residence_details_section",
    "fieldtype": "Section Break",
    "label": "Alloted Residence Details"
+  },
+  {
+   "fieldname": "residence_change_request_number",
+   "fieldtype": "Data",
+   "label": "Residence Change Request Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_allotment_number.employee_email",
+   "fieldname": "employee_email",
+   "fieldtype": "Data",
+   "label": "Employee Email",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_allotment_number.building",
+   "fieldname": "alloted_building",
+   "fieldtype": "Data",
+   "label": "Alloted Building",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date"
+  },
+  {
+   "default": "9999-12-30",
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date"
+  },
+  {
+   "fetch_from": "residence_allotment_number.current_start_date",
+   "fieldname": "alloted_residence_start_date",
+   "fieldtype": "Date",
+   "label": "Alloted Residence Start Date",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_allotment_number.current_end_date",
+   "fieldname": "alloted_residence_end_date",
+   "fieldtype": "Date",
+   "label": "Alloted Residence End Date",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-19 16:17:47.086321",
+ "modified": "2023-02-08 12:52:00.819197",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Change Request",

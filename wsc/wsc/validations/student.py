@@ -62,6 +62,11 @@ def validate(doc,method):
 	duplicate_row_validation(doc, "education_details", ['qualification','percentage'])
 	duplicate_row_validation(doc, "siblings", ['full_name', 'gender'])
 	duplicate_row_validation(doc, "disable_type", ['disability_type', 'percentage_of_disability'])
+	records = frappe.get_all("Program Intermit Form",{"form_status":"Approve"},["student","student_name"])
+
+
+		# frappe.throw(data)
+		# return data
 # def attachImage(self):
 # 	if self.passport_photo!=None:
 # 		self.image=self.passport_photo
@@ -95,3 +100,14 @@ def create_user_permission(doc):
 
 		for stu_appl in frappe.get_all("Student Exchange Applicant",{"student_email_id":doc.user}):
 			add_user_permission("Student Exchange Applicant",stu_appl.name, doc.user,doc)
+
+# @frappe.whitelist()
+# def get_program_intermit_students():
+# 	data = frappe.get_all("Program Intermit Form",{"form_status":"Approve"},["student","student_name"])
+# 	if len(data)==0 :
+# 		frappe.throw("There is No Applicants to Intermit a Program")
+# 	else :
+# 		print("\n\n\n\n\nData is ")
+# 		print(data)
+# 		frappe.throw(data)
+# 		return data

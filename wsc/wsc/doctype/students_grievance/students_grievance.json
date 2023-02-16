@@ -6,33 +6,38 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "subject",
+  "student_details_section",
   "raised_by",
+  "student_name",
+  "emergency_phone_no",
+  "column_break_4",
+  "email_id",
+  "gender",
+  "contact_phone_no",
+  "section_break_2",
+  "posting_date",
+  "type_of_grievance",
+  "description_of_grievance",
+  "areas_of_grivence",
   "column_break_3",
-  "date",
+  "date_of_incident",
   "status",
-  "reports_to",
-  "grievance_details_section",
-  "grievance_against_party",
-  "grievance_against",
   "column_break_11",
-  "grievance_type",
-  "ivestigation_authority",
+  "reports_to",
+  "employee_name_grievance_cell",
   "section_break_14",
+  "subject",
   "description",
-  "investigation_details_section",
-  "cause_of_grievance",
+  "attachment",
   "resolution_details_section",
   "resolution_date",
-  "employee_responsible",
-  "column_break_16",
   "resolution_detail",
   "amended_from"
  ],
  "fields": [
   {
    "fieldname": "subject",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Subject",
    "reqd": 1
   },
@@ -48,55 +53,21 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "date",
-   "fieldtype": "Date",
-   "in_list_view": 1,
-   "label": "Date ",
-   "reqd": 1
-  },
-  {
-   "default": "Open",
+   "allow_on_submit": 1,
+   "default": "Issue Posted By the Student",
    "fieldname": "status",
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-   "options": "Open\nInvestigation in progress\nResolved\nInvalid",
+   "options": "Issue Posted By the Student\nIssue Received By Grievance Cell\nIssue Forwarded to Competent Authority\nIssue pending from Competent Authority\nIssue Closed",
+   "read_only": 1,
    "reqd": 1
   },
   {
    "fieldname": "reports_to",
-   "fieldtype": "Link",
-   "label": "Reports To",
-   "options": "Employee",
+   "fieldtype": "Data",
+   "label": "Employee Grievance Cell",
    "read_only": 1
-  },
-  {
-   "fieldname": "grievance_details_section",
-   "fieldtype": "Section Break",
-   "label": "Grievance Details"
-  },
-  {
-   "fieldname": "grievance_against_party",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Grievance Against Party",
-   "options": "DocType",
-   "reqd": 1
-  },
-  {
-   "fieldname": "grievance_against",
-   "fieldtype": "Dynamic Link",
-   "label": "Grievance Against",
-   "options": "grievance_against_party",
-   "reqd": 1
-  },
-  {
-   "fieldname": "grievance_type",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Grievance Type",
-   "options": "Grievance Type",
-   "reqd": 1
   },
   {
    "fieldname": "column_break_11",
@@ -104,7 +75,8 @@
   },
   {
    "fieldname": "section_break_14",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Grievance Discription"
   },
   {
    "fieldname": "description",
@@ -113,42 +85,106 @@
    "reqd": 1
   },
   {
-   "fieldname": "investigation_details_section",
-   "fieldtype": "Section Break",
-   "label": "Investigation Details"
-  },
-  {
-   "fieldname": "cause_of_grievance",
-   "fieldtype": "Text",
-   "label": "Cause of Grievance",
-   "mandatory_depends_on": "eval: doc.status == \"Investigated\" || doc.status ==  \"Resolved\""
-  },
-  {
+   "allow_on_submit": 1,
+   "collapsible": 1,
    "fieldname": "resolution_details_section",
    "fieldtype": "Section Break",
    "label": "Resolution Details"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "resolution_date",
    "fieldtype": "Date",
    "label": "Resolution Date",
-   "mandatory_depends_on": "eval: doc.status == \"Resolved\""
+   "mandatory_depends_on": "eval: doc.status == \"Resolved\"",
+   "read_only": 1
   },
   {
-   "fieldname": "employee_responsible",
-   "fieldtype": "Link",
-   "label": "Employee Responsible ",
-   "options": "Employee"
-  },
-  {
-   "fieldname": "column_break_16",
-   "fieldtype": "Column Break"
-  },
-  {
+   "allow_on_submit": 1,
    "fieldname": "resolution_detail",
    "fieldtype": "Small Text",
    "label": "Resolution Details",
-   "mandatory_depends_on": "eval: doc.status == \"Resolved\""
+   "read_only": 1
+  },
+  {
+   "fieldname": "type_of_grievance",
+   "fieldtype": "Link",
+   "label": "Type of Grievance",
+   "options": "Type of Grievance",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "type_of_grievance.description_of_grivence",
+   "fieldname": "description_of_grievance",
+   "fieldtype": "Data",
+   "label": "Description of Grievance",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Grievance Section"
+  },
+  {
+   "fieldname": "student_details_section",
+   "fieldtype": "Section Break",
+   "label": "Student Details"
+  },
+  {
+   "fetch_from": "raised_by.student_name",
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "label": "Student Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "raised_by.user",
+   "fieldname": "email_id",
+   "fieldtype": "Data",
+   "label": "Email Id",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "raised_by.gender",
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "label": "Gender",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employee_name_grievance_cell",
+   "fieldtype": "Data",
+   "label": "Employee Name Grievance Cell",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "type_of_grievance.areas_of_grivence",
+   "fieldname": "areas_of_grivence",
+   "fieldtype": "Data",
+   "label": "Areas of Grivence",
+   "read_only": 1
+  },
+  {
+   "fieldname": "attachment",
+   "fieldtype": "Attach",
+   "label": "Attachment"
+  },
+  {
+   "fieldname": "emergency_phone_no",
+   "fieldtype": "Phone",
+   "label": "Emergency Phone No",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "raised_by.student_mobile_number",
+   "fieldname": "contact_phone_no",
+   "fieldtype": "Phone",
+   "label": "Contact Phone No",
+   "read_only": 1
   },
   {
    "fieldname": "amended_from",
@@ -160,17 +196,25 @@
    "read_only": 1
   },
   {
-   "fetch_from": "grievance_type.employee_for_investigation",
-   "fieldname": "ivestigation_authority",
-   "fieldtype": "Data",
-   "label": "Ivestigation Authority",
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date",
    "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "date_of_incident",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date Of Incident",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-10 17:36:25.355948",
+ "modified": "2023-02-10 16:11:25.154996",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Students Grievance",
@@ -222,10 +266,8 @@
    "write": 1
   }
  ],
- "search_fields": "subject,raised_by,grievance_against_party",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "title_field": "subject",
  "track_changes": 1
 }

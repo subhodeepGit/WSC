@@ -1,0 +1,93 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-02-08 12:21:36.589746",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "application_number",
+  "residence_allotment_number",
+  "residence_serial_number",
+  "residence_number",
+  "residence_type_name",
+  "building_name",
+  "status",
+  "start_date",
+  "end_date",
+  "date"
+ ],
+ "fields": [
+  {
+   "fieldname": "residence_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Residence Number"
+  },
+  {
+   "fieldname": "residence_type_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Residence Type Name"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Status"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Start Date"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "End Date"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date"
+  },
+  {
+   "fieldname": "residence_allotment_number",
+   "fieldtype": "Data",
+   "label": "Residence Allotment Number"
+  },
+  {
+   "fieldname": "application_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Application Number"
+  },
+  {
+   "fieldname": "residence_serial_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Residence Serial Number"
+  },
+  {
+   "fieldname": "building_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Building Name"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-02-09 10:54:33.021083",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Residence Allotment History",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,27 +1,31 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "DeRES.####",
+ "autoname": "ADALT.####",
  "creation": "2023-01-17 11:15:44.938445",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "residence_de_allotment_number",
+  "residence_de_allotment_application_number",
   "residence_allotment_number",
   "column_break_3",
   "application_number",
   "last_update_date",
   "allotment_details_section",
-  "residence_serial_number",
-  "residence_number",
   "employee_name",
   "employee_id",
   "column_break_10",
-  "building_name",
-  "residence_type",
-  "residence_type_name",
+  "changed_residence_details_section",
+  "residence_change_status",
+  "start_date",
+  "changed_residence_serial_number",
+  "changed_residence_number",
+  "column_break_24",
+  "changed_building_name",
+  "changed_residence_type",
+  "changed_residence_type_name",
   "de_allotment_application_details_section",
   "reason_for_de_allottment",
   "application_status",
@@ -37,13 +41,6 @@
    "unique": 1
   },
   {
-   "fetch_from": "residence_allotment_number.residence_number",
-   "fieldname": "residence_number",
-   "fieldtype": "Data",
-   "label": "Residence Number",
-   "read_only": 1
-  },
-  {
    "fetch_from": "residence_allotment_number.employee_name",
    "fieldname": "employee_name",
    "fieldtype": "Data",
@@ -55,27 +52,6 @@
    "fieldname": "employee_id",
    "fieldtype": "Data",
    "label": "Employee ID",
-   "read_only": 1
-  },
-  {
-   "fetch_from": "residence_allotment_number.building",
-   "fieldname": "building_name",
-   "fieldtype": "Data",
-   "label": "Building Name",
-   "read_only": 1
-  },
-  {
-   "fetch_from": "residence_allotment_number.residence_type",
-   "fieldname": "residence_type",
-   "fieldtype": "Data",
-   "label": "Residence Type",
-   "read_only": 1
-  },
-  {
-   "fetch_from": "residence_allotment_number.residence_type_name",
-   "fieldname": "residence_type_name",
-   "fieldtype": "Data",
-   "label": "Residence Type Name",
    "read_only": 1
   },
   {
@@ -101,13 +77,6 @@
    "read_only": 1
   },
   {
-   "fetch_from": "residence_allotment_number.residence_serial_number",
-   "fieldname": "residence_serial_number",
-   "fieldtype": "Data",
-   "label": "Residence Serial Number",
-   "read_only": 1
-  },
-  {
    "fieldname": "current_application_status",
    "fieldtype": "Data",
    "label": "Current Application Status",
@@ -117,7 +86,7 @@
    "default": "Today",
    "fieldname": "last_update_date",
    "fieldtype": "Date",
-   "label": "Last Update Date",
+   "label": "Application Date",
    "read_only": 1
   },
   {
@@ -128,12 +97,6 @@
    "options": "Residence Allotment",
    "reqd": 1,
    "unique": 1
-  },
-  {
-   "fieldname": "residence_de_allotment_number",
-   "fieldtype": "Data",
-   "label": "Residence De Allotment Number",
-   "read_only": 1
   },
   {
    "fieldname": "allotment_details_section",
@@ -152,12 +115,76 @@
   {
    "fieldname": "column_break_3",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "residence_de_allotment_application_number",
+   "fieldtype": "Data",
+   "label": "Residence De Allotment Application Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "changed_residence_details_section",
+   "fieldtype": "Section Break",
+   "label": "Current Residence Details"
+  },
+  {
+   "fetch_from": "residence_allotment_number.residence_change_status",
+   "fieldname": "residence_change_status",
+   "fieldtype": "Data",
+   "label": "Residence Change Status",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_allotment_number.changed_residence_serial_number",
+   "fieldname": "changed_residence_serial_number",
+   "fieldtype": "Data",
+   "label": "Current Residence Serial Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_allotment_number.changed_residence_number",
+   "fieldname": "changed_residence_number",
+   "fieldtype": "Data",
+   "label": "Current Residence Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_24",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "residence_allotment_number.changed_building_name",
+   "fieldname": "changed_building_name",
+   "fieldtype": "Data",
+   "label": "Current Building Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_allotment_number.changed_residence_type",
+   "fieldname": "changed_residence_type",
+   "fieldtype": "Data",
+   "label": "Current Residence Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_allotment_number.changed_residence_type_name",
+   "fieldname": "changed_residence_type_name",
+   "fieldtype": "Data",
+   "label": "Current Residence Type Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_allotment_number.current_start_date",
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-19 13:24:50.464756",
+ "modified": "2023-02-10 13:12:48.495313",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Application for Residence De-Allottment",

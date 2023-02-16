@@ -1,0 +1,102 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{placement_company}-{####}",
+ "creation": "2023-01-27 15:57:17.102780",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "academic_year",
+  "placement_company",
+  "placement_drive",
+  "round_of_placement",
+  "reporting_date",
+  "column_break_4",
+  "reporting_time",
+  "reporting_end_time",
+  "location",
+  "color"
+ ],
+ "fields": [
+  {
+   "fieldname": "placement_drive",
+   "fieldtype": "Link",
+   "label": "Placement Drive",
+   "options": "Placement Drive"
+  },
+  {
+   "fieldname": "reporting_date",
+   "fieldtype": "Date",
+   "label": "Reporting Date"
+  },
+  {
+   "fieldname": "reporting_time",
+   "fieldtype": "Time",
+   "label": "Reporting Time"
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Link",
+   "label": "Location",
+   "options": "Location"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "color",
+   "fieldtype": "Color",
+   "label": "color"
+  },
+  {
+   "fieldname": "round_of_placement",
+   "fieldtype": "Select",
+   "label": "Round of Placement"
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
+  },
+  {
+   "fieldname": "placement_company",
+   "fieldtype": "Link",
+   "label": "Placement company",
+   "options": "Placement Company"
+  },
+  {
+   "fieldname": "reporting_end_time",
+   "fieldtype": "Time",
+   "label": "Reporting End Time"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-02-15 18:01:06.968212",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Placement Drive Calendar",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

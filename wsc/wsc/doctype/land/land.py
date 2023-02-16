@@ -4,22 +4,27 @@
 import frappe
 from frappe.model.document import Document
 
-# To validate if the start date is not after the end date
+
 class Land(Document):
 	def validate(self):
-		if self.start_date > self.end_date:
-			frappe.throw("Start date cannot be greater than End date")
+		dateValidate(self)
 		pincode(self)
 
 
+# To validate if the start date is not after the end date
+def dateValidate(self):
+	if self.start_date > self.end_date:
+		frappe.throw("Start date cannot be greater than End date")
+		
+
 # Validation for pincode length	
-def pincode(doc):
-	if doc.pin_code:
-		if not (doc.pin_code).isdigit():
+def pincode(self):
+	if self.pin_code:
+		if not (self.pin_code).isdigit():
 			frappe.throw("Field <b>Pin Code</b> Accept Digits Only")
 
-	if len(doc.pin_code)>6:
+	if len(self.pin_code)>6:
 			frappe.throw("Field <b>Pin Code</b> must be 6 Digits")
 
-	if len(doc.pin_code)<6:	
+	if len(self.pin_code)<6:	
 			frappe.throw("Field <b>Pin Code</b> must be 6 Digits")

@@ -80,7 +80,8 @@ frappe.ui.form.on('Course', {
 let get_semester_without_course = function(course) {
 	return frappe.call({
 		args:{"course":course},
-		method: 'wsc.wsc.doctype.course.get_semesters_name',
+		method: 'wsc.wsc.validations.course.get_semesters_name',
+		// /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/validations/course.py
 	});
 }
 // frappe.ui.form.on("Course Credit", "lectures", function(frm, cdt, cdn) {

@@ -9,7 +9,7 @@ class BuildingRoom(Document):
 		duplicate(self)
 		dateValidate(self)
 
-# To filter out buildings which are currently between start and end date
+# To filter buildings which are currently between start and end date
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
 def room_type_query(doctype, txt, searchfield, start, page_len, filters):

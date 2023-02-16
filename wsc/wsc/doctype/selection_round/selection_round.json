@@ -7,13 +7,58 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "student_details",
+  "student_name",
+  "student_no",
+  "program_name",
+  "column_break_5",
+  "academic_year",
+  "semesters",
+  "company_details",
   "company_name",
   "placement_batch_year",
   "placement_drive_name",
+  "column_break_12",
   "round_of_placement",
-  "scheduled_date_of_round"
+  "scheduled_date_of_round",
+  "amended_from"
  ],
  "fields": [
+  {
+   "fieldname": "student_no",
+   "fieldtype": "Data",
+   "label": "Student no."
+  },
+  {
+   "fieldname": "student_details",
+   "fieldtype": "Section Break",
+   "label": "Student Details"
+  },
+  {
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "label": "Student name"
+  },
+  {
+   "fieldname": "program_name",
+   "fieldtype": "Data",
+   "label": "Program name"
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Data",
+   "label": "Academic year"
+  },
+  {
+   "fieldname": "semesters",
+   "fieldtype": "Data",
+   "label": "Semesters"
+  },
+  {
+   "fieldname": "company_details",
+   "fieldtype": "Section Break",
+   "label": "Company Details"
+  },
   {
    "fieldname": "company_name",
    "fieldtype": "Data",
@@ -38,11 +83,29 @@
    "fieldname": "scheduled_date_of_round",
    "fieldtype": "Data",
    "label": "Scheduled date of round"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Selection Round",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-01-13 16:00:08.405217",
+ "modified": "2023-01-20 17:20:57.740061",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Selection Round",
