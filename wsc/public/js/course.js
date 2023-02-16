@@ -55,7 +55,7 @@ frappe.ui.form.on('Course', {
 				],
 				function(data) {
 					frappe.call({
-						method: 'wsc.wsc.doctype.course.add_course_to_programs',
+						method: 'wsc.wsc.validations.course.add_course_to_programs',
 						args: {
 							'course': frm.doc.name,
 							'programs': data.programs,
