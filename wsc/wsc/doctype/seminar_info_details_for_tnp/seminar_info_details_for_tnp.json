@@ -1,0 +1,68 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{topic}-{date}",
+ "creation": "2023-02-06 16:03:25.478846",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "topic",
+  "date",
+  "student_attending_seminar",
+  "instructor_attending_or_giving_seminar"
+ ],
+ "fields": [
+  {
+   "fieldname": "topic",
+   "fieldtype": "Data",
+   "label": "Topic",
+   "unique": 1
+  },
+  {
+   "fieldname": "student_attending_seminar",
+   "fieldtype": "Table",
+   "label": "Student attending Seminar",
+   "options": "Seminars And Guest Lecture",
+   "read_only": 1
+  },
+  {
+   "fieldname": "instructor_attending_or_giving_seminar",
+   "fieldtype": "Table",
+   "label": "Instructor Attending or Giving Seminar",
+   "options": "Non Teaching Activities",
+   "read_only": 1
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-02-09 12:59:19.949378",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Seminar Info Details For TnP",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

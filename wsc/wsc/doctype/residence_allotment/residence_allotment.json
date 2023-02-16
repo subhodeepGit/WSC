@@ -1,16 +1,19 @@
 {
  "actions": [],
  "allow_import": 1,
- "autoname": "field:application_number",
+ "autoname": "RES.####",
  "creation": "2023-01-03 16:22:41.474014",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "residence_allotment_number",
   "application_number",
+  "last_update_date",
   "employee_info_section",
   "employee_name",
   "employee_id",
+  "employee_email",
   "column_break_3",
   "employee_designation",
   "employee_department",
@@ -18,31 +21,43 @@
   "type_of_residence_requested",
   "type_of_residence_name_requested",
   "section_break_4",
-  "start_date",
-  "end_date",
+  "approval_status",
   "building",
   "residence_type",
+  "column_break_18",
   "residence_type_name",
   "residence_serial_number",
-  "column_break_9",
   "residence_number",
+  "column_break_24",
   "employee_allotment_status",
   "vacancy_status",
+  "changed_residence_details_section",
+  "current_application_status",
+  "changed_residence_serial_number",
+  "changed_residence_number",
+  "changed_building_name",
+  "column_break_49",
+  "changed_residence_type",
+  "changed_residence_type_name",
+  "residence_change_status",
   "current_employee_allotment_status",
+  "column_break_35",
   "current_vacancy_status",
+  "current_start_date",
+  "current_end_date",
   "residence_details_section",
   "floor",
   "building_address",
   "buidings_land_address",
   "description",
   "unit_area_sq_m",
-  "column_break_23",
+  "column_break_45",
   "residence_orientation",
   "lawngarden_available",
   "lawngarden_area_sq_m",
   "roof_type",
-  "column_break_27",
   "parking_available",
+  "column_break_23",
   "parking_type",
   "parking_vehicle",
   "parking_area_sq_m",
@@ -59,28 +74,14 @@
    "label": "Allotment Details"
   },
   {
+   "depends_on": "eval:doc.approval_status==\"Approved\"",
    "fieldname": "building",
    "fieldtype": "Link",
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Building",
-   "options": "Buildings",
-   "reqd": 1
-  },
-  {
-   "default": "Today",
-   "fieldname": "start_date",
-   "fieldtype": "Date",
-   "label": "Start Date",
-   "reqd": 1
-  },
-  {
-   "default": "9999-12-30",
-   "fieldname": "end_date",
-   "fieldtype": "Date",
-   "in_standard_filter": 1,
-   "label": "End Date",
-   "reqd": 1
+   "mandatory_depends_on": "eval:doc.approval_status==\"Approved\"",
+   "options": "Buildings"
   },
   {
    "fieldname": "employee_info_section",
@@ -93,33 +94,40 @@
    "fieldtype": "Data",
    "in_standard_filter": 1,
    "label": "Employee Name",
+   "read_only": 1,
    "reqd": 1
   },
   {
+   "depends_on": "eval:doc.approval_status==\"Approved\"",
    "fieldname": "residence_type_name",
    "fieldtype": "Link",
    "label": "Residence Type Name",
+   "mandatory_depends_on": "eval:doc.approval_status==\"Approved\"",
    "options": "Residence Type"
   },
   {
+   "depends_on": "eval:doc.approval_status==\"Approved\"",
    "fieldname": "residence_serial_number",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Residence Serial Number",
-   "options": "Building Room",
-   "reqd": 1
+   "mandatory_depends_on": "eval:doc.approval_status==\"Approved\"",
+   "options": "Building Room"
   },
   {
    "fetch_from": "residence_serial_number.room_no",
    "fieldname": "residence_number",
    "fieldtype": "Data",
    "label": "Residence Number",
+   "mandatory_depends_on": "eval:doc.approval_status==\"Approved\"",
    "read_only": 1
   },
   {
+   "depends_on": "eval:doc.approval_status==\"Approved\"",
    "fieldname": "residence_type",
    "fieldtype": "Link",
    "label": "Residence Type",
+   "mandatory_depends_on": "eval:doc.approval_status==\"Approved\"",
    "options": "Type of Residence"
   },
   {
@@ -149,7 +157,7 @@
    "fetch_from": "residence_serial_number.buidings_land_address",
    "fieldname": "buidings_land_address",
    "fieldtype": "Data",
-   "label": "Buiding's Land Address",
+   "label": "Building's Land Address",
    "read_only": 1
   },
   {
@@ -235,15 +243,7 @@
    "label": "Residence Details"
   },
   {
-   "fieldname": "column_break_9",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "column_break_23",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "column_break_27",
    "fieldtype": "Column Break"
   },
   {
@@ -258,25 +258,32 @@
    "fieldtype": "Link",
    "label": "Application Number",
    "options": "Application for Residence",
-   "unique": 1
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fetch_from": "application_number.employee_id",
    "fieldname": "employee_id",
    "fieldtype": "Data",
-   "label": "Employee ID"
+   "label": "Employee ID",
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fetch_from": "application_number.designation",
    "fieldname": "employee_designation",
    "fieldtype": "Data",
-   "label": "Employee Designation"
+   "label": "Employee Designation",
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fetch_from": "application_number.department",
    "fieldname": "employee_department",
    "fieldtype": "Data",
-   "label": "Employee Department"
+   "label": "Employee Department",
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fieldname": "residence_request_section",
@@ -287,33 +294,150 @@
    "fetch_from": "application_number.type_of_residence_requested",
    "fieldname": "type_of_residence_requested",
    "fieldtype": "Data",
-   "label": "Type of residence requested"
+   "label": "Type of residence requested",
+   "read_only": 1
   },
   {
    "fetch_from": "application_number.type_of_residence_name_requested",
    "fieldname": "type_of_residence_name_requested",
    "fieldtype": "Data",
-   "label": "Type of residence name requested"
+   "label": "Type of residence name requested",
+   "read_only": 1
   },
   {
    "fieldname": "current_employee_allotment_status",
    "fieldtype": "Data",
-   "label": "Current Employee Allotment status"
+   "label": "Current Employee Allotment status",
+   "read_only": 1
   },
   {
    "fieldname": "current_vacancy_status",
    "fieldtype": "Data",
-   "label": "Current Vacancy Status"
+   "label": "Current Vacancy Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "approval_status",
+   "fieldtype": "Select",
+   "label": "Approval status",
+   "options": "\nApproved\nPending for Approval\nRejected",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "last_update_date",
+   "fieldtype": "Date",
+   "label": "Allotment Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "residence_allotment_number",
+   "fieldtype": "Data",
+   "label": "Residence Allotment Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_18",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "changed_residence_details_section",
+   "fieldtype": "Section Break",
+   "label": "Current Residence",
+   "read_only": 1
+  },
+  {
+   "fieldname": "changed_residence_serial_number",
+   "fieldtype": "Data",
+   "label": "Current Residence Serial Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "changed_residence_number",
+   "fieldtype": "Data",
+   "label": "Current Residence Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "changed_building_name",
+   "fieldtype": "Data",
+   "label": "Current Building Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_49",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "changed_residence_type",
+   "fieldtype": "Data",
+   "label": "Current Residence Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "changed_residence_type_name",
+   "fieldtype": "Data",
+   "label": "Current Residence Type Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "residence_change_status",
+   "fieldtype": "Data",
+   "label": "Residence Change Status",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "application_number.employee_email",
+   "fieldname": "employee_email",
+   "fieldtype": "Data",
+   "label": "Employee Email",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "application_number.current_application_status",
+   "fieldname": "current_application_status",
+   "fieldtype": "Data",
+   "label": "Current Application Status",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "depends_on": "eval:doc.approval_status==\"Approved\"",
+   "fieldname": "current_start_date",
+   "fieldtype": "Date",
+   "label": "Current Start Date",
+   "mandatory_depends_on": "eval:doc.approval_status==\"Approved\""
+  },
+  {
+   "default": "9999-12-30",
+   "depends_on": "eval:doc.approval_status==\"Approved\"",
+   "fieldname": "current_end_date",
+   "fieldtype": "Date",
+   "label": "Current End Date",
+   "mandatory_depends_on": "eval:doc.approval_status==\"Approved\""
+  },
+  {
+   "fieldname": "column_break_24",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_35",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_45",
+   "fieldtype": "Column Break"
   }
  ],
+ "in_create": 1,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-17 16:28:11.137049",
+ "modified": "2023-02-10 16:21:38.786432",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Allotment",
- "naming_rule": "By fieldname",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

@@ -1,29 +1,13 @@
 // Copyright (c) 2023, SOUL Limited and contributors
 // For license information, please see license.txt
 
-// // To filter employees in the employee link field based if residence alloted
-// frappe.ui.form.on("Residence Allotment", {
-// 	setup: function(frm) {
-// 		frm.set_query("employee", function() {
-// 			return {
-// 				filters: [
-// 					["Building Room","employee_allotment_status", "=", "Not Alloted"]
-                    
-// 				]
-// 			}
-		
-// 		});
-// 	}
-// });
-
-// To filter applications in the link field based on ithe application status
+// To filter applications in the link field based on the application status
 frappe.ui.form.on("Residence Allotment", {
 	setup: function(frm) {
 		frm.set_query("application_number", function() {
 			return {
 				filters: [
-					["Application for Residence","application_status", "=", "Applied"]
-                    
+					["Application for Residence","current_application_status", "=", "Applied"]   
 				]
 			}
 		
@@ -85,15 +69,15 @@ frappe.ui.form.on("Residence Allotment", {
 
 // To validate end date is not before start date
 frappe.ui.form.on("Residence Allotment", {
-    start_date: function(frm) {
-        frm.fields_dict.end_date.datepicker.update({
-            minDate: frm.doc.start_date ? new Date(frm.doc.start_date) : null
+    current_start_date: function(frm) {
+        frm.fields_dict.current_end_date.datepicker.update({
+            minDate: frm.doc.current_start_date ? new Date(frm.doc.current_start_date) : null
         });
     },
 
-    end_date: function(frm) {
-        frm.fields_dict.start_date.datepicker.update({
-            maxDate: frm.doc.end_date ? new Date(frm.doc.end_date) : null
+    current_end_date: function(frm) {
+        frm.fields_dict.current_start_date.datepicker.update({
+            maxDate: frm.doc.current_end_date ? new Date(frm.doc.current_end_date) : null
         });
     },
 });

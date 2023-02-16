@@ -1,112 +1,174 @@
 {
-    "actions": [],
-    "allow_rename": 1,
-    "autoname": "Application-.####",
-    "creation": "2023-01-16 16:45:33.003882",
-    "default_view": "List",
-    "doctype": "DocType",
-    "editable_grid": 1,
-    "engine": "InnoDB",
-    "field_order": [
-     "employee_id",
-     "employee_name",
-     "designation",
-     "department",
-     "type_of_residence_requested",
-     "type_of_residence_name_requested",
-     "application_attachments",
-     "application_status",
-     "current_application_status",
-     "amended_from"
-    ],
-    "fields": [
-     {
-      "fieldname": "employee_id",
-      "fieldtype": "Link",
-      "label": "Employee ID",
-      "options": "Employee"
-     },
-     {
-      "fetch_from": "employee_id.employee_name",
-      "fieldname": "employee_name",
-      "fieldtype": "Data",
-      "label": "Employee Name"
-     },
-     {
-      "fetch_from": "employee_id.designation",
-      "fieldname": "designation",
-      "fieldtype": "Data",
-      "label": "Designation"
-     },
-     {
-      "fetch_from": "employee_id.department",
-      "fieldname": "department",
-      "fieldtype": "Data",
-      "label": "Department"
-     },
-     {
-      "fieldname": "type_of_residence_requested",
-      "fieldtype": "Link",
-      "label": "Type of residence requested",
-      "options": "Type of Residence"
-     },
-     {
-      "fieldname": "type_of_residence_name_requested",
-      "fieldtype": "Link",
-      "label": "Type of residence name requested",
-      "options": "Residence Type"
-     },
-     {
-      "fieldname": "application_attachments",
-      "fieldtype": "Attach",
-      "label": "Application Attachments"
-     },
-     {
-      "fieldname": "application_status",
-      "fieldtype": "Data",
-      "label": "Application Status",
-      "read_only": 1
-     },
-     {
-      "fieldname": "amended_from",
-      "fieldtype": "Link",
-      "label": "Amended From",
-      "no_copy": 1,
-      "options": "Application for Residence",
-      "print_hide": 1,
-      "read_only": 1
-     },
-     {
-      "fieldname": "current_application_status",
-      "fieldtype": "Data",
-      "label": "Current Application Status"
-     }
-    ],
-    "index_web_pages_for_search": 1,
-    "is_submittable": 1,
-    "links": [],
-    "modified": "2023-01-17 14:25:22.895527",
-    "modified_by": "Administrator",
-    "module": "WSC",
-    "name": "Application for Residence",
-    "naming_rule": "Expression (old style)",
-    "owner": "Administrator",
-    "permissions": [
-     {
-      "create": 1,
-      "delete": 1,
-      "email": 1,
-      "export": 1,
-      "print": 1,
-      "read": 1,
-      "report": 1,
-      "role": "System Manager",
-      "share": 1,
-      "write": 1
-     }
-    ],
-    "sort_field": "modified",
-    "sort_order": "DESC",
-    "states": [],
-    "title_field": "employee_name"
-   }
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "ALT-.####",
+ "creation": "2023-01-16 16:45:33.003882",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "date_of_application",
+  "column_break_2",
+  "application_number",
+  "employee_details_section",
+  "employee_id",
+  "employee_name",
+  "employee_email",
+  "column_break_5",
+  "designation",
+  "department",
+  "allotment_appliication_details_section",
+  "type_of_residence_requested",
+  "type_of_residence_name_requested",
+  "application_attachments",
+  "column_break_12",
+  "application_status",
+  "current_application_status",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee ID",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee_id.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Employee Name",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee_id.designation",
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Designation",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee_id.department",
+   "fieldname": "department",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Department",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "type_of_residence_requested",
+   "fieldtype": "Link",
+   "label": "Type of residence requested",
+   "options": "Type of Residence"
+  },
+  {
+   "fieldname": "type_of_residence_name_requested",
+   "fieldtype": "Link",
+   "label": "Type of residence name requested",
+   "options": "Residence Type"
+  },
+  {
+   "fieldname": "application_attachments",
+   "fieldtype": "Attach",
+   "label": "Application Attachments"
+  },
+  {
+   "fieldname": "application_status",
+   "fieldtype": "Data",
+   "label": "Application Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "current_application_status",
+   "fieldtype": "Data",
+   "label": "Current Application Status",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "date_of_application",
+   "fieldtype": "Date",
+   "label": "Date of Application",
+   "read_only": 1
+  },
+  {
+   "fieldname": "application_number",
+   "fieldtype": "Data",
+   "label": "Application Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employee_details_section",
+   "fieldtype": "Section Break",
+   "label": "Employee Details"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "allotment_appliication_details_section",
+   "fieldtype": "Section Break",
+   "label": "Allotment Application Details"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "employee_id.personal_email",
+   "fieldname": "employee_email",
+   "fieldtype": "Data",
+   "label": "Employee Email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Application for Residence",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-02-10 13:11:55.525060",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Application for Residence",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "employee_name"
+}

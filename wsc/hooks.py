@@ -6,7 +6,7 @@ app_publisher = "SOUL Limited"
 app_description = "SOUL Limited"
 app_email = "soul@soulunileaders.com"
 app_license = "MIT"
-required_apps = ["payments","erpnext","education","hrms"]
+required_apps = ["education","hrms"]
 # Includes in <head>
 # ------------------
 
@@ -54,7 +54,7 @@ doctype_js = {
                 "Topic":"public/js/topic.js",
                 "User":"public/js/user.js",
             }
-
+calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
     "Branch Sliding Application": "wsc/wsc/doctype/branch_sliding_application/branch_sliding_application_list.js",
     "Fees":"public/js/fees_list.js",

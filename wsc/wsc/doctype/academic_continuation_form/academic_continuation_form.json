@@ -1,0 +1,188 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:ACF-{student}",
+ "creation": "2023-02-03 12:50:30.653647",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "student",
+  "student_name",
+  "roll_no",
+  "column_break_4",
+  "earlier_academic_year",
+  "earlier_academic_term",
+  "earlier_program",
+  "earlier_semester",
+  "section_break_9",
+  "form_status",
+  "want_to_continue_your_study",
+  "application_for_section",
+  "academic_year",
+  "academic_term",
+  "program_grade",
+  "programs",
+  "semester",
+  "section_break_16",
+  "why_do_you_want_to_continue_you_study_",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "student",
+   "fieldtype": "Link",
+   "label": "Student",
+   "options": "Student",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "student.student_name",
+   "fieldname": "student_name",
+   "fieldtype": "Read Only",
+   "label": "Student Name"
+  },
+  {
+   "fetch_from": "student.roll_no",
+   "fieldname": "roll_no",
+   "fieldtype": "Read Only",
+   "label": "Roll no"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "earlier_academic_year",
+   "fieldtype": "Read Only",
+   "label": "Earlier Academic Year"
+  },
+  {
+   "fieldname": "earlier_academic_term",
+   "fieldtype": "Read Only",
+   "label": "Earlier Academic Term"
+  },
+  {
+   "fieldname": "earlier_program",
+   "fieldtype": "Read Only",
+   "label": "Earlier Program"
+  },
+  {
+   "fieldname": "section_break_9",
+   "fieldtype": "Section Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "form_status",
+   "fieldtype": "Select",
+   "label": "Form Status",
+   "options": "\nApprove\nReject"
+  },
+  {
+   "depends_on": "want_to_continue_your_study",
+   "fieldname": "application_for_section",
+   "fieldtype": "Section Break",
+   "label": "Submit the academic details relevant to your continuation."
+  },
+  {
+   "depends_on": "want_to_continue_your_study",
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year",
+   "reqd": 1
+  },
+  {
+   "depends_on": "want_to_continue_your_study",
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term",
+   "reqd": 1
+  },
+  {
+   "depends_on": "want_to_continue_your_study",
+   "fieldname": "semester",
+   "fieldtype": "Link",
+   "label": "Semester",
+   "options": "Program",
+   "reqd": 1
+  },
+  {
+   "depends_on": "want_to_continue_your_study",
+   "fieldname": "section_break_16",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "want_to_continue_your_study",
+   "fieldname": "why_do_you_want_to_continue_you_study_",
+   "fieldtype": "Text",
+   "label": "Why do you want to continue you Study ?"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Academic Continuation Form",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "earlier_semester",
+   "fieldtype": "Read Only",
+   "label": "Earlier Semester"
+  },
+  {
+   "depends_on": "want_to_continue_your_study",
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "label": "Programs",
+   "options": "Programs",
+   "reqd": 1
+  },
+  {
+   "depends_on": "want_to_continue_your_study",
+   "fieldname": "program_grade",
+   "fieldtype": "Link",
+   "label": "Program Grade",
+   "options": "Program Grades",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "want_to_continue_your_study",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Want to continue Your Study",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-02-06 15:01:48.615835",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Academic Continuation Form",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

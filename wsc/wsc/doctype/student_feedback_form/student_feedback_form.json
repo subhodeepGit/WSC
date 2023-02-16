@@ -21,6 +21,7 @@
   "section_break_9",
   "please_provide_a_rating_for_each_of_the_statement__section",
   "questionnarie",
+  "comment",
   "amended_from"
  ],
  "fields": [
@@ -101,14 +102,21 @@
   {
    "fieldname": "student",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Student",
-   "options": "Student"
+   "options": "Student",
+   "reqd": 1
+  },
+  {
+   "fieldname": "comment",
+   "fieldtype": "Text",
+   "label": "Comment"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-12 17:00:40.344751",
+ "modified": "2023-01-25 10:53:25.324169",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Feedback Form",

@@ -26,9 +26,9 @@
   "end_date",
   "land_use",
   "time_of_planned_development",
-  "amended_from",
   "bda_approval",
-  "land_blueprint"
+  "land_blueprint",
+  "amended_from"
  ],
  "fields": [
   {
@@ -80,7 +80,8 @@
   {
    "fieldname": "land_complete_address",
    "fieldtype": "Small Text",
-   "label": "Land Complete Address"
+   "label": "Land Complete Address",
+   "reqd": 1
   },
   {
    "fieldname": "land_size",
@@ -167,7 +168,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-09 18:24:17.940493",
+ "modified": "2023-01-23 11:46:16.289061",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Land",

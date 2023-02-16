@@ -1,109 +1,115 @@
 {
- "actions": [],
- "allow_rename": 1,
- "creation": "2023-01-09 16:09:40.054254",
- "default_view": "List",
- "doctype": "DocType",
- "editable_grid": 1,
- "engine": "InnoDB",
- "field_order": [
-  "drive_details_section",
-  "company_name",
-  "placement_batch_year",
-  "placement_drive_name",
-  "get_eligible_students_list",
-  "column_break_6",
-  "round_of_placement",
-  "scheduled_date_of_round",
-  "eligible_students_list_section",
-  "student_list"
- ],
- "fields": [
-  {
-   "fieldname": "placement_drive_name",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Placement Drive Name",
-   "options": "Placement Drive",
-   "reqd": 1
-  },
-  {
-   "fieldname": "round_of_placement",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Round of Placement",
-   "reqd": 1
-  },
-  {
-   "fieldname": "company_name",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Company Name",
-   "options": "Placement Company",
-   "reqd": 1
-  },
-  {
-   "fieldname": "placement_batch_year",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Placement Batch Year",
-   "options": "Academic Year",
-   "reqd": 1
-  },
-  {
-   "fieldname": "drive_details_section",
-   "fieldtype": "Section Break",
-   "label": "Drive Details"
-  },
-  {
-   "fieldname": "get_eligible_students_list",
-   "fieldtype": "Button",
-   "label": "Get Eligible Students List"
-  },
-  {
-   "fieldname": "column_break_6",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "scheduled_date_of_round",
-   "fieldtype": "Date",
-   "label": "Scheduled Date of Round",
-   "reqd": 1
-  },
-  {
-   "fieldname": "eligible_students_list_section",
-   "fieldtype": "Section Break",
-   "label": "Eligible Students List"
-  },
-  {
-   "fieldname": "student_list",
-   "fieldtype": "Table",
-   "label": "Student List",
-   "options": "Student child table",
-   "reqd": 1
-  }
- ],
- "index_web_pages_for_search": 1,
- "issingle": 1,
- "links": [],
- "modified": "2023-02-08 18:27:39.445406",
- "modified_by": "Administrator",
- "module": "WSC",
- "name": "Placement tool",
- "owner": "Administrator",
- "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "print": 1,
-   "read": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  }
- ],
- "sort_field": "modified",
- "sort_order": "DESC",
- "states": []
-}
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2023-02-03 15:43:00.706005",
+  "default_view": "List",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+   "drive_details_section",
+   "company_name",
+   "placement_batch_year",
+   "placement_drive_name",
+   "get_eligible_students_list",
+   "column_break_5",
+   "round_of_placement",
+   "scheduled_date_of_round",
+   "scheduled_time_of_round",
+   "eligible_students_list_section",
+   "student_list"
+  ],
+  "fields": [
+   {
+    "fieldname": "drive_details_section",
+    "fieldtype": "Section Break",
+    "label": "Drive Details"
+   },
+   {
+    "fieldname": "company_name",
+    "fieldtype": "Link",
+    "in_list_view": 1,
+    "label": "Company name",
+    "options": "Placement Company",
+    "reqd": 1
+   },
+   {
+    "fieldname": "placement_batch_year",
+    "fieldtype": "Link",
+    "in_list_view": 1,
+    "label": "Placement Batch Year",
+    "options": "Academic Year",
+    "reqd": 1
+   },
+   {
+    "fieldname": "placement_drive_name",
+    "fieldtype": "Link",
+    "in_list_view": 1,
+    "label": "Placement Drive Name",
+    "options": "Placement Drive",
+    "reqd": 1
+   },
+   {
+    "fieldname": "round_of_placement",
+    "fieldtype": "Select",
+    "in_list_view": 1,
+    "label": "Round of Placement",
+    "reqd": 1
+   },
+   {
+    "fieldname": "scheduled_date_of_round",
+    "fieldtype": "Date",
+    "label": "Scheduled Date of Round",
+    "reqd": 1
+   },
+   {
+    "fieldname": "get_eligible_students_list",
+    "fieldtype": "Button",
+    "label": "Get Eligible Students list"
+   },
+   {
+    "fieldname": "eligible_students_list_section",
+    "fieldtype": "Section Break",
+    "label": "Eligible Students List"
+   },
+   {
+    "fieldname": "student_list",
+    "fieldtype": "Table",
+    "label": "Student List",
+    "options": "Student child table"
+   },
+   {
+    "fieldname": "column_break_5",
+    "fieldtype": "Column Break"
+   },
+   {
+    "fieldname": "scheduled_time_of_round",
+    "fieldtype": "Data",
+    "label": "Scheduled Time of Round"
+   }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2023-02-13 17:40:42.253748",
+  "modified_by": "Administrator",
+  "module": "WSC",
+  "name": "Placement Tool",
+  "owner": "Administrator",
+  "permissions": [
+   {
+    "create": 1,
+    "delete": 1,
+    "email": 1,
+    "export": 1,
+    "print": 1,
+    "read": 1,
+    "report": 1,
+    "role": "System Manager",
+    "share": 1,
+    "write": 1
+   }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": []
+ }

@@ -14,6 +14,7 @@
   "academic_year",
   "year_end_date",
   "academic_term",
+  "exam_category",
   "application_form_start_date",
   "application_form_end_date",
   "section_break_4",
@@ -258,12 +259,18 @@
    "label": "Program Grade",
    "options": "Program Grades",
    "reqd": 1
+  },
+  {
+   "fieldname": "exam_category",
+   "fieldtype": "Select",
+   "label": "Exam Category",
+   "options": "Regular\nRe-Exam"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-16 11:59:02.074876",
+ "modified": "2023-01-18 16:08:53.166484",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Declaration",

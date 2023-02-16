@@ -6,13 +6,18 @@
  "engine": "InnoDB",
  "field_order": [
   "topic",
+  "activities",
+  "description",
+  "duration",
+  "department",
+  "academic_year",
   "date",
-  "score"
+  "student_id"
  ],
  "fields": [
   {
    "fieldname": "topic",
-   "fieldtype": "Text Editor",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Topic"
   },
@@ -23,16 +28,43 @@
    "label": "Date"
   },
   {
-   "fieldname": "score",
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "activities",
+   "fieldtype": "Select",
+   "label": "Activities",
+   "options": "\nSeminar\nInternships\nWorkshops"
+  },
+  {
+   "fieldname": "duration",
    "fieldtype": "Float",
-   "in_list_view": 1,
-   "label": "Score"
+   "label": "Duration"
+  },
+  {
+   "fieldname": "student_id",
+   "fieldtype": "Data",
+   "label": "Student Id"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2021-09-25 13:09:57.926685",
+ "modified": "2023-02-08 16:11:47.990220",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Seminars And Guest Lecture",
@@ -40,5 +72,6 @@
  "permissions": [],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }
