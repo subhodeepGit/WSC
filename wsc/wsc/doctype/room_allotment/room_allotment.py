@@ -160,11 +160,11 @@ def vacancy_quety_vali(flag,info):
 @frappe.whitelist()
 # @frappe.validate_and_sanitize_search_inputs
 def hostel_req_query(doctype, txt, searchfield, start, page_len, filters):						
-	# return frappe.db.sql(""" SELECT S.name,SA.name,SA.hostel_required,S.title
+	# return frappe.db.sql(""" SELECT S.name,SA.name,SA.hostel_required,S.student_name
 	# 						from `tabStudent Applicant` as SA
 	# 						JOIN `tabStudent` S on S.student_applicant=SA.name 
 	# 						where SA.hostel_required=1""") ##### Student Applicant
-	return frappe.db.sql(""" SELECT S.name,SHA.name,S.title from `tabStudent Hostel Admission` as SHA 
+	return frappe.db.sql(""" SELECT S.name,SHA.name,S.student_name from `tabStudent Hostel Admission` as SHA 
 							JOIN `tabStudent` S on S.name=SHA.student 
 							where SHA.allotment_status="Not Reported" and SHA.docstatus=1 """)
 						
