@@ -42,7 +42,7 @@
    "reqd": 1
   },
   {
-   "fetch_from": "student.title",
+   "fetch_from": "student.student_name",
    "fieldname": "student_name",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -53,14 +53,14 @@
    "fieldname": "building",
    "fieldtype": "Link",
    "label": "Building",
-   "options": "Building",
+   "options": "Student",
    "read_only": 1
   },
   {
    "fieldname": "room_number",
    "fieldtype": "Link",
    "label": "Room Number",
-   "options": "Hostel Room",
+   "options": "Student",
    "read_only": 1
   },
   {
@@ -194,10 +194,11 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-03-09 13:13:32.715308",
+ "modified": "2023-02-17 13:11:43.112218",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Disciplinary Complaints",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -215,5 +216,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }
