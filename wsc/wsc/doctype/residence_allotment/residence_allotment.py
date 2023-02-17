@@ -65,7 +65,7 @@ def currentResidenceApplicationStatus(self):
 	elif self.approval_status=="Pending for Approval":
 		frappe.db.set_value("Application for Residence", self.application_number, "current_application_status", "Pending for Approval")
 	elif self.approval_status=="Rejected":
-		frappe.db.set_value("Application for Residence", self.application_number, "current_application_status", "Rejected")
+		frappe.db.set_value("Application for Residence", self.application_number, "current_application_status", "Application Rejected")
 
 # To set value of current employee allotment status and current vacancy status in "Residence allotment"
 def currentResidenceAllotmentStatus(self):
@@ -108,6 +108,20 @@ def residenceUpdate(self):
 			"residence_type":self.type_of_residence_requested,
 			"residence_type_name":self.type_of_residence_name_requested,
 			"status":"Pending for Approval",
+			"date":datetime.date.today()
+		})
+		allotmentData.save()
+		frappe.db.delete("Residence Allotment", self.name)
+
+# To update the "Application Rejected" status in "Residence Allotment History" child table in Employee doctype
+	if self.approval_status=="Rejected":	
+		allotmentData=frappe.get_doc('Employee', self.employee_id)
+		allotmentData.append("residence_allotment_history_table",{
+			"residence_allotment_number":self.residence_allotment_number,
+			"application_number":self.application_number,
+			"residence_type":self.type_of_residence_requested,
+			"residence_type_name":self.type_of_residence_name_requested,
+			"status":"Application Rejected",
 			"date":datetime.date.today()
 		})
 		allotmentData.save()
