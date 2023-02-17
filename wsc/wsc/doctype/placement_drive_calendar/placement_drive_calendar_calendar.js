@@ -1,8 +1,9 @@
 frappe.views.calendar["Placement Drive Calendar"] = {
 	field_map: {
-		"start": "reporting_time",
-		"end": "reporting_end_time",
+		"start": "reporting_date",
+		"end": "reporting_date",
 		"id": "name",
+		// "reporting_date":"reporting_date",
 		"title": "placement_drive",
 		"allDay": "allDay",
         // "date": "reporting_date",
@@ -25,12 +26,11 @@ frappe.views.calendar["Placement Drive Calendar"] = {
 			"options": "Placement Drive",
 			"label": __("Placement Drive")
 		},
-		// {
-		// 	"fieldtype": "Select",
-		// 	"fieldname": "round_of_placement",
-		// 	"options": "Instructor",
-		// 	"label": __("Round of Placement")
-		// }
+		{
+			"fieldtype": "Date",
+			"fieldname": "reporting_date",
+			"label": __("Reporting Date")
+		}
 	// 	{
 	// 		"fieldtype": "Link",
 	// 		"fieldname": "room",
