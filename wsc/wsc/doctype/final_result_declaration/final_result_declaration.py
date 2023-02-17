@@ -1,5 +1,3 @@
-# Copyright (c) 2023, SOUL Limited and Contributors
-# For license information, please see license.txt
 
 from pytz import all_timezones, country_names
 import frappe
@@ -54,7 +52,7 @@ def create_exam_assessment_result(final_result_declaration):
 		result.student=d.student
 		result.grading_scale=doc.grading_scale
 
-		for enroll in frappe.get_all("Program Enrollment",{'student':d.student,'docstatus':1,"academic_year":doc.academic_year},['programs', 'program', 'academic_year', 'academic_term'],limit=1):
+		for enroll in frappe.get_all("Program Enrollment",{'student':d.student,'docstatus':1,"academic_year":doc.academic_year,"academic_term":doc.academic_term},['programs', 'program', 'academic_year', 'academic_term'],limit=1):
 			result.programs=enroll.programs
 			result.program=enroll.program
 			result.academic_year=enroll.academic_year
@@ -130,14 +128,15 @@ def get_enroll_students(programs=None,semester=None,academic_year=None,academic_
 	if academic_term:
 		filter.update({"academic_term":academic_term})
 	students=[]
-	for student in frappe.get_all("Current Educational Details",filter,['parent'],group_by="parent"):
+	for student in frappe.get_all("Program Enrollment",{"academic_year":academic_year,"programs":programs,"program":semester,"docstatus":1,"academic_term":academic_term},['student'],group_by="student",order_by="roll_no asc"):
+	# for student in frappe.get_all("Current Educational Details",filter,['parent'],group_by="parent"):
 		completed=False
-		for course_enroll in frappe.get_all("Course Enrollment",{"student":student.parent,"academic_year":academic_year}):
+		for course_enroll in frappe.get_all("Course Enrollment",{"student":student.student,"academic_year":academic_year}):
 			for enroll_item in frappe.get_all("Credit distribution List",{"parent":course_enroll.name},['assessment_criteria']):
 				completed=True
-				if len(frappe.get_all("Assessment Credits Allocation",{'student':student.parent,'assessment_criteria':enroll_item.assessment_criteria,"academic_year":academic_year,"docstatus":1}))==0:
+				if len(frappe.get_all("Assessment Credits Allocation",{'student':student.student,'assessment_criteria':enroll_item.assessment_criteria,"academic_year":academic_year,"docstatus":1}))==0:
 					completed=False				
-		for d in frappe.get_all("Student",{"name":student.parent},["name","student_name"]):
+		for d in frappe.get_all("Student",{"name":student.student},["name","student_name"]):
 			d.update({"completion_status":"Pending"})
 			if completed:
 				d.update({"completion_status":"Completed"})
@@ -145,4 +144,3 @@ def get_enroll_students(programs=None,semester=None,academic_year=None,academic_
 	if len(students)==0:
 		frappe.msgprint("No Records Found")
 	return students
-

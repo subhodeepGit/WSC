@@ -67,13 +67,15 @@
    "fieldname": "type_of_residence_requested",
    "fieldtype": "Link",
    "label": "Type of residence requested",
-   "options": "Type of Residence"
+   "options": "Type of Residence",
+   "reqd": 1
   },
   {
    "fieldname": "type_of_residence_name_requested",
    "fieldtype": "Link",
    "label": "Type of residence name requested",
-   "options": "Residence Type"
+   "options": "Residence Type",
+   "reqd": 1
   },
   {
    "fieldname": "application_attachments",
@@ -147,7 +149,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-10 13:11:55.525060",
+ "modified": "2023-02-16 10:52:59.708151",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Application for Residence",

@@ -1,5 +1,3 @@
-// Copyright (c) 2023, SOUL Limited and Contributors
-// For license information, please see license.txt
 frappe.ui.form.on('Exam Assessment Result', {
 	on_submit: function(frm) {
 		
@@ -15,13 +13,7 @@ frappe.ui.form.on('Exam Assessment Result', {
 			frm.trigger('setup_chart');
 		}
 		frm.set_df_property('details', 'read_only', 1);
-        frm.set_query('program', function(doc) {
-			return {
-				filters: {
-					"programs":frm.doc.programs
-				}
-			};
-		});
+      
         frm.set_query("academic_term", function() {
             return {
                 filters: {
@@ -46,6 +38,24 @@ frappe.ui.form.on('Exam Assessment Result', {
 				}
 			};
 		});
+	
+	},
+	setup:function(frm){
+		// frm.set_query("student", function() {
+		// 	return {
+		// 		query: 'wsc.wsc.doctype.student_group.filter_student',
+		// 		filters: {
+		// 			"student_group":frm.doc.student_group
+		// 		}
+		// 	};
+		// });
+		frm.set_query('program', function(doc) {
+			return {
+				filters: {
+					"programs":frm.doc.programs
+				}
+			};
+		});
 		frm.set_query('academic_term', function() {
 			return {
 				filters: {
@@ -53,16 +63,6 @@ frappe.ui.form.on('Exam Assessment Result', {
 				}
 			};
 		});
-	},
-	setup:function(frm){
-		// frm.set_query("student", function() {
-		// 	return {
-		// 		query: 'wsc.wsc.validations.student_group.filter_student',
-		// 		filters: {
-		// 			"student_group":frm.doc.student_group
-		// 		}
-		// 	};
-		// });
 		if(frm.doc.student){
     		frm.set_query("programs", function() {
                 return {
@@ -85,11 +85,11 @@ frappe.ui.form.on('Exam Assessment Result', {
 				callback: function(r) { 
 					if(r.message){
 						frm.set_value("programs",r.message.programs)
-						frm.set_value("program",r.message.program)
+						// frm.set_value("program",r.message.program)
 						frm.set_value("academic_year",r.message.academic_year)
-						frm.set_value("academic_term",r.message.academic_term)
+						// frm.set_value("academic_term",r.message.academic_term)
 					}
-				} 
+				}
 			});
 	    }
 	    else{

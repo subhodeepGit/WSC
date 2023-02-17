@@ -105,43 +105,40 @@ def residenceUpdate(self):
 		allotmentData.append("residence_allotment_history_table",{
 			"residence_allotment_number":self.residence_allotment_number,
 			"application_number":self.application_number,
-			"residence_type":self.changed_residence_type,
-			"residence_type_name":self.changed_residence_type_name,
-			"residence_serial_number":self.changed_residence_serial_number,
-			"residence_number":self.changed_residence_number,
-			"floor":self.floor,
-			"building_address":self.building_address,
-			"unit_area_sq_m":self.unit_area_sq_m,
-			"parking_available":self.parking_available,
-			"parking_type":self.parking_type,
-			"parking_area_sq_m":self.parking_area_sq_m,
-			"parking_vehicle":self.parking_vehicle,
-			"current_employee_allotment_status":"Allottment Cancelled",
+			"residence_type":self.type_of_residence_requested,
+			"residence_type_name":self.type_of_residence_name_requested,
+			"status":"Pending for Approval",
 			"date":datetime.date.today()
 		})
 		allotmentData.save()
+		frappe.db.delete("Residence Allotment", self.name)
 
 # To update the value of Allotment status and vacancy status field in Residence Allotment screen
 def allottmentstatusCancel(self):
-	self.db_set("Residence Allotment",self.name,"current_employee_allotment_status", "Not Alloted")
-	self.db_set("Residence Allotment",self.name,"current_vacancy_status", "Vacant")
-	self.db_set("Residence Allotment",self.name,"current_application_status", "Allottment Cancelled")
+	if self.current_employee_allotment_status=="Alloted":
+		self.db_set("Residence Allotment",self.name,"current_employee_allotment_status", "Not Alloted")
+		self.db_set("Residence Allotment",self.name,"current_vacancy_status", "Vacant")
+		self.db_set("Residence Allotment",self.name,"current_application_status", "Allottment Cancelled")
 
 # To update value of current application status in Application for Residence screen on cancellation of allotment
 def allottmentCancelled(self):
-	frappe.db.set_value("Application for Residence",self.application_number,"current_application_status", "Allottment Cancelled")
+	if self.current_employee_allotment_status=="Alloted":
+		frappe.db.set_value("Application for Residence",self.application_number,"current_application_status", "Allottment Cancelled")
 
 
 # To update the value of Allotment status and vacancy status field in "Building Room" on Cancel
 def allottmentCancelledRoom(self):
-	frappe.db.set_value("Building Room", self.residence_serial_number, "employee_allotment_status", "Not Alloted")
-	frappe.db.set_value("Building Room",self.residence_serial_number,"vacancy_status","Vacant")
+	if self.current_employee_allotment_status=="Alloted":
+		frappe.db.set_value("Building Room", self.residence_serial_number, "employee_allotment_status", "Not Alloted")
+		frappe.db.set_value("Building Room",self.residence_serial_number,"vacancy_status","Vacant")
 
 # To clear all residence details after Allotment cancellation in "Residence Allotment Details" child table in Employee doctype
 def currentResidenceCancelUpdate(self):
-	frappe.db.delete("Residence Allotted", {"parent":self.employee_id})
+	if self.current_employee_allotment_status=="Alloted":
+		frappe.db.delete("Residence Allotted", {"parent":self.employee_id})
 
 def residenceCancelUpdate(self):
+	if self.current_employee_allotment_status=="Alloted":
 		allotmentData=frappe.get_doc('Employee', self.employee_id)
 		allotmentData.append("residence_allotment_history_table",{
 			"residence_allotment_number":self.residence_allotment_number,
@@ -157,7 +154,7 @@ def residenceCancelUpdate(self):
 			"parking_type":self.parking_type,
 			"parking_area_sq_m":self.parking_area_sq_m,
 			"parking_vehicle":self.parking_vehicle,
-			"current_employee_allotment_status":"Allottment Cancelled",
+			"status":"Allottment Cancelled",
 			"date":datetime.date.today()
 		})
 		allotmentData.save()

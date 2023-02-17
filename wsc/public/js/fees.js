@@ -37,7 +37,7 @@ frappe.ui.form.on('Fees', {
 		frm.set_value("components" ,"");
 		if (frm.doc.fee_structure) {
 			frappe.call({
-				method: "custom_finance.custom_finance.validations.fees.get_fee_components",
+				method: "wsc.wsc.validations.fees.get_fee_components",
 				args: {
 					"fee_structure": frm.doc.fee_structure
 				},

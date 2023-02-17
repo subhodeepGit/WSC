@@ -65,7 +65,7 @@
    "read_only": 1
   },
   {
-   "fetch_from": "student.title",
+   "fetch_from": "student.student_name",
    "fieldname": "student_name",
    "fieldtype": "Data",
    "in_global_search": 1,
@@ -387,10 +387,11 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-06-20 11:28:19.084631",
+ "modified": "2023-02-17 13:17:27.014691",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Hostel Fees",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -408,5 +409,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

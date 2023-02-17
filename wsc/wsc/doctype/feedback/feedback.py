@@ -21,7 +21,7 @@ class Feedback(Document):
 
 @frappe.whitelist()
 def get_student_program(doctype, txt, searchfield, start, page_len, filters):
-   return frappe.db.sql("""SELECT distinct(ced.programs) as student, st.title as student_name 
+   return frappe.db.sql("""SELECT distinct(ced.programs) as student, st.student_name as student_name 
    from `tabCurrent Educational Details` ced left join `tabStudent` st on st.name=ced.parent 
    where enabled=1 and st.name='{0}'""".format(filters.get("student")))    
 

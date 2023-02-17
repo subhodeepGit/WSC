@@ -4,9 +4,6 @@
   "doctype": "Workflow Action Master",
   "modified": "2021-12-15 11:12:05.184403",
   "name": "Approve",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "workflow_action_name": "Approve"
  },
  {
@@ -14,9 +11,6 @@
   "doctype": "Workflow Action Master",
   "modified": "2021-12-15 11:12:05.187814",
   "name": "Reject",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "workflow_action_name": "Reject"
  },
  {
@@ -24,9 +18,6 @@
   "doctype": "Workflow Action Master",
   "modified": "2021-12-15 11:12:05.191443",
   "name": "Review",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "workflow_action_name": "Review"
  },
  {
@@ -34,9 +25,104 @@
   "doctype": "Workflow Action Master",
   "modified": "2022-12-05 12:34:53.733102",
   "name": "Submit",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "workflow_action_name": "Submit"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-02-17 17:03:48.451504",
+  "name": "Not Going to Report",
+  "workflow_action_name": "Not Going to Report"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-02-17 17:03:48.588991",
+  "name": "Proceed for De-allotment",
+  "workflow_action_name": "Proceed for De-allotment"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-02-17 17:03:48.603932",
+  "name": "Willing to Report",
+  "workflow_action_name": "Willing to Report"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-02-17 17:03:48.617173",
+  "name": "No Response form student",
+  "workflow_action_name": "No Response form student"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-02-17 17:03:48.632673",
+  "name": "Close Application",
+  "workflow_action_name": "Close Application"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-02-17 17:03:48.644392",
+  "name": "Communication to the Student",
+  "workflow_action_name": "Communication to the Student"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-02-17 17:03:48.654602",
+  "name": "De-allotment",
+  "workflow_action_name": "De-allotment"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-02-17 17:03:48.665849",
+  "name": "No Response",
+  "workflow_action_name": "No Response"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-02-17 17:03:48.704252",
+  "name": "Notification",
+  "workflow_action_name": "Notification"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-02-17 17:03:48.716260",
+  "name": "Clearence From Hostel",
+  "workflow_action_name": "Clearence From Hostel"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-02-17 17:03:48.727566",
+  "name": "Not Reported",
+  "workflow_action_name": "Not Reported"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-02-17 17:03:48.738891",
+  "name": "Reporting",
+  "workflow_action_name": "Reporting"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-02-17 17:03:48.758285",
+  "name": "Withdrawl",
+  "workflow_action_name": "Withdrawl"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-02-17 17:03:48.774355",
+  "name": "Submitted",
+  "workflow_action_name": "Submitted"
  }
 ]

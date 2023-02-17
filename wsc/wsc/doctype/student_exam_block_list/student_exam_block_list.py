@@ -34,4 +34,4 @@ def get_student(student, target_doc = None):
             
 @frappe.whitelist()
 def get_student_by_program(doctype, txt, searchfield, start, page_len, filters):
-    return frappe.db.sql("""Select distinct(st.name),st.title from `tabStudent` st left join `tabCurrent Educational Details` ced on ced.parent=st.name where ced.programs='{0}' and (st.name like '%{1}%' or st.title like '%{1}%')""".format(filters.get("program"),txt))
+    return frappe.db.sql("""Select distinct(st.name),st.student_name from `tabStudent` st left join `tabCurrent Educational Details` ced on ced.parent=st.name where ced.programs='{0}' and (st.name like '%{1}%' or st.title like '%{1}%')""".format(filters.get("program"),txt))

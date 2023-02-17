@@ -70,7 +70,7 @@
    "reqd": 1
   },
   {
-   "fetch_from": "student.title",
+   "fetch_from": "student.student_name",
    "fieldname": "student_name",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -409,10 +409,11 @@
    "link_fieldname": "room_allotment_no"
   }
  ],
- "modified": "2022-09-20 14:53:32.846560",
+ "modified": "2023-02-17 13:26:41.456258",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Room Allotment",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -430,6 +431,7 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "title_field": "student_name",
  "track_changes": 1,
  "track_seen": 1,
