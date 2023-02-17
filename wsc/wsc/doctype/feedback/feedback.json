@@ -68,7 +68,7 @@
    "options": "Student Group"
   },
   {
-   "fetch_from": "student.title",
+   "fetch_from": "student.student_name",
    "fieldname": "student_name",
    "fieldtype": "Data",
    "label": "Student Name"
@@ -94,7 +94,7 @@
    "fieldname": "building",
    "fieldtype": "Link",
    "label": "Building",
-   "options": "Building"
+   "options": "Student"
   },
   {
    "fieldname": "room",
@@ -131,7 +131,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-11-16 10:46:47.734845",
+ "modified": "2023-02-17 13:16:17.408627",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Feedback",
@@ -152,5 +152,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }
