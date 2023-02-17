@@ -97,5 +97,221 @@
   "name": "Approved by COE",
   "style": "",
   "workflow_state_name": "Approved by COE"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.699585",
+  "name": "Close Application",
+  "style": "",
+  "workflow_state_name": "Close Application"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.789238",
+  "name": "Proceed for De-allotment",
+  "style": "",
+  "workflow_state_name": "Proceed for De-allotment"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.813740",
+  "name": "Not Going to Report",
+  "style": "",
+  "workflow_state_name": "Not Going to Report"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.834548",
+  "name": "Willing to Report",
+  "style": "",
+  "workflow_state_name": "Willing to Report"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.850057",
+  "name": "No Response form student",
+  "style": "",
+  "workflow_state_name": "No Response form student"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.870957",
+  "name": "Communication to the Student",
+  "style": "",
+  "workflow_state_name": "Communication to the Student"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.888028",
+  "name": "Notification To Administration",
+  "style": "",
+  "workflow_state_name": "Notification To Administration"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.912116",
+  "name": "Closing of Application",
+  "style": "",
+  "workflow_state_name": "Closing of Application"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.944858",
+  "name": "Remove Allotment",
+  "style": "",
+  "workflow_state_name": "Remove Allotment"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.955731",
+  "name": "No Response from the Student",
+  "style": "",
+  "workflow_state_name": "No Response from the Student"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.968294",
+  "name": "Response from the Student",
+  "style": "",
+  "workflow_state_name": "Response from the Student"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.978677",
+  "name": "contact to student",
+  "style": "",
+  "workflow_state_name": "contact to student"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.990057",
+  "name": "Long Reporting",
+  "style": "",
+  "workflow_state_name": "Long Reporting"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:47.002679",
+  "name": "Approve By Hostel Warden",
+  "style": "",
+  "workflow_state_name": "Approve By Hostel Warden"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:47.015087",
+  "name": "Approve By Dean",
+  "style": "",
+  "workflow_state_name": "Approve By Dean"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:47.026198",
+  "name": "Approve By Mentor",
+  "style": "",
+  "workflow_state_name": "Approve By Mentor"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:47.037021",
+  "name": "Clearence From Hostel",
+  "style": "",
+  "workflow_state_name": "Clearence From Hostel"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:47.048311",
+  "name": "clearence",
+  "style": "",
+  "workflow_state_name": "clearence"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:47.059420",
+  "name": "Reported",
+  "style": "",
+  "workflow_state_name": "Reported"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:47.079172",
+  "name": "Save",
+  "style": "",
+  "workflow_state_name": "Save"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:47.090047",
+  "name": "Not Reported",
+  "style": "",
+  "workflow_state_name": "Not Reported"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:47.101897",
+  "name": "Reporting",
+  "style": "",
+  "workflow_state_name": "Reporting"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:47.112763",
+  "name": "Withdrawl of Application",
+  "style": "",
+  "workflow_state_name": "Withdrawl of Application"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:47.123474",
+  "name": "Submit",
+  "style": "",
+  "workflow_state_name": "Submit"
  }
 ]

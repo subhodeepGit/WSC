@@ -17,7 +17,8 @@
   "reporting_time",
   "reporting_end_time",
   "location",
-  "color"
+  "color",
+  "amended_from"
  ],
  "fields": [
   {
@@ -72,11 +73,21 @@
    "fieldname": "reporting_end_time",
    "fieldtype": "Time",
    "label": "Reporting End Time"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Placement Drive Calendar",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-02-15 18:01:06.968212",
+ "modified": "2023-02-17 17:41:09.360465",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive Calendar",
