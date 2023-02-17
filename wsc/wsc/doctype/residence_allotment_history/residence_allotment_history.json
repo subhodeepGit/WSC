@@ -55,12 +55,12 @@
   {
    "fieldname": "residence_allotment_number",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "Residence Allotment Number"
   },
   {
    "fieldname": "application_number",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Application Number"
   },
   {
@@ -77,7 +77,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-02-16 11:25:27.461466",
+ "modified": "2023-02-16 11:55:04.583451",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Allotment History",

@@ -9,7 +9,7 @@ class Module(Document):
 		if frappe.session.user !="Administrator":
 			frappe.throw("Only Developer can able to do the changes")
 		duplicate_row_validation(self, "doc_type",['doctype_list'])
-		duplicate_data(self)
+		# duplicate_data(self)
 	
 	def on_trash(self):
 		if frappe.session.user !="Administrator":
@@ -28,12 +28,12 @@ def duplicate_row_validation(doc,table_field_name,comapre_fields):
             if duplicate.name in row_names:
                 frappe.throw("#Row {0} Duplicate values in <b>Doctype list</b> Not Allowed".format(duplicate.idx))
 
-def duplicate_data(self):
-	for data in self.get("doc_type"):
-		for t in frappe.get_all("Module",["name"]):
-			if t.name==self.name:
-				pass
-			else:
-				for x in frappe.get_all("Module Child",{"parent":t.name},["doctype_list"]):
-					if x.doctype_list==data.doctype_list:
-						frappe.throw("<b>{0}</b> already present in <b>{1}</b> data".format(data.doctype_list,t.name))
+# def duplicate_data(self):
+# 	for data in self.get("doc_type"):
+# 		for t in frappe.get_all("Module",["name"]):
+# 			if t.name==self.name:
+# 				pass
+# 			else:
+# 				for x in frappe.get_all("Module Child",{"parent":t.name},["doctype_list"]):
+# 					if x.doctype_list==data.doctype_list:
+# 						frappe.throw("<b>{0}</b> already present in <b>{1}</b> data".format(data.doctype_list,t.name))
