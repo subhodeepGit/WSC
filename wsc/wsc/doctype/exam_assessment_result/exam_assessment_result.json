@@ -55,8 +55,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Semester",
-   "options": "Program",
-   "read_only": 1
+   "options": "Program"
   },
   {
    "fieldname": "course",
@@ -69,15 +68,13 @@
    "fieldname": "academic_year",
    "fieldtype": "Link",
    "label": "Academic Year",
-   "options": "Academic Year",
-   "read_only": 1
+   "options": "Academic Year"
   },
   {
    "fieldname": "academic_term",
    "fieldtype": "Link",
    "label": "Academic Term",
-   "options": "Academic Term",
-   "read_only": 1
+   "options": "Academic Term"
   },
   {
    "fieldname": "column_break_3",
@@ -250,19 +247,23 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "credit_point",
    "fieldtype": "Float",
-   "label": "Credit Point"
+   "label": "Credit Point",
+   "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "sgpa_in_to_credit_point",
    "fieldtype": "Data",
-   "label": "SGPA in to Credit Point"
+   "label": "SGPA in to Credit Point",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-19 11:06:43.574538",
+ "modified": "2023-02-17 15:23:38.340587",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Assessment Result",
