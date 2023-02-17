@@ -40,7 +40,7 @@
    "options": "Student"
   },
   {
-   "fetch_from": "student.title",
+   "fetch_from": "student.student_name",
    "fieldname": "student_name",
    "fieldtype": "Data",
    "label": "Student Name"
@@ -167,10 +167,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-06-01 17:02:47.026473",
+ "modified": "2023-02-17 13:32:33.094434",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Transfer Certificate",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -188,5 +189,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

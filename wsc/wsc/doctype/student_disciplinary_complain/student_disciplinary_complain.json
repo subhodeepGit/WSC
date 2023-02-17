@@ -24,7 +24,7 @@
    "options": "Student"
   },
   {
-   "fetch_from": "student.title",
+   "fetch_from": "student.student_name",
    "fieldname": "student_name",
    "fieldtype": "Data",
    "label": "Student Name"
@@ -68,10 +68,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-10-04 02:23:45.121444",
+ "modified": "2023-02-17 13:27:35.945798",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Disciplinary Complain",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -89,5 +90,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

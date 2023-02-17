@@ -1,3 +1,4 @@
+
 import frappe
 from frappe.exceptions import DocumentAlreadyRestored
 from frappe.model.document import Document
@@ -17,24 +18,24 @@ class ExamAssessmentResult(Document):
         if len(self.assessment_result_item) > 0:
             self.calculate_sgpa()
         self.map_fields()
-        self.calculate_cgpa()
+        self.calculate_sgpa_cgpa()
         self.validate_duplicate_for_submit()
         self.complete_course_enrollment()
-        self.get_sgpa_into_total_credit()
-    def validate(self):
         # self.get_sgpa_into_total_credit()
+    def validate(self):
         self.set_evaluation_result_item()
         self.set_grade()
-        self.calculate_cgpa()
         if len(self.assessment_result_item) > 0:
             self.calculate_sgpa()
+            self.calculate_sgpa_cgpa()
+      
     def on_change(self):
         if len(self.assessment_result_item) > 0:
             self.calculate_sgpa()
-        self.calculate_cgpa()
-        self.get_sgpa_into_total_credit()
+            self.calculate_sgpa_cgpa()
+        # self.get_sgpa_into_total_credit()
 
-    @frappe.whitelist()
+
     def set_assessment_result_items(self):
         allocations=0
         self.assessment_result_item = []
@@ -54,20 +55,24 @@ class ExamAssessmentResult(Document):
         for r in result:
             self.append("assessment_result_item", r)
         self.credit_point=allocations
-    def get_sgpa_into_total_credit(self):
-        allocations=0
-        sgpa_in_to_credit_points=0
-        for allocation in frappe.get_all("Assessment Credits Allocation",{"docstatus":1,"student":self.student,"academic_year":self.academic_year,"academic_term":self.academic_term},["course","earned_credits","total_credits","final_marks","out_of_marks","assessment_criteria"]):
-            allocations+=allocation.total_credits
-        # print(self.sgpa_in_to_credit_point)
-        self.credit_point=allocations
-        
-        sgpa_in_to_credit_points= float(self.credit_point) * float(self.sgpa)
-        resu = "{:.2f}".format(sgpa_in_to_credit_points)
-        self.sgpa_in_to_credit_point=resu
-        frappe.db.set_value("Exam Assessment Result",self.name,"credit_point",allocations)
-        frappe.db.set_value("Exam Assessment Result",self.name,"sgpa_in_to_credit_point",resu)
+    #########################################################################################################################################
+    # IT WILL USE WHEN AFTER SUBMIT THE FINAL EXAM RESULT IF CREDIT POINT OR SGPA INTO CREDIT POINT OR SGPA OR CGPA NEED TO CHANGE #
+
+    # def get_sgpa_into_total_credit(self):
+    #     allocations=0
+    #     sgpa_in_to_credit_points=0
+    #     for allocation in frappe.get_all("Assessment Credits Allocation",{"docstatus":1,"student":self.student,"academic_year":self.academic_year,"academic_term":self.academic_term},["course","earned_credits","total_credits","final_marks","out_of_marks","assessment_criteria"]):
+    #         allocations+=allocation.total_credits
+    #     self.credit_point=allocations
+    #     sgpa_in_to_credit_points= float(self.credit_point) * float(self.sgpa)
+    #     resu = "{:.2f}".format(sgpa_in_to_credit_points)
+    #     self.sgpa_in_to_credit_point=resu
+    #     frappe.db.set_value("Exam Assessment Result",self.name,"credit_point",allocations)
+    #     frappe.db.set_value("Exam Assessment Result",self.name,"sgpa_in_to_credit_point",resu)
         # frappe.db.set("credit_point",allocations)
+    #########################################################################################################################################
+
+
     @frappe.whitelist()
     def set_assessment_result_item(self):
         allocations=0
@@ -88,15 +93,6 @@ class ExamAssessmentResult(Document):
         for r in result:
             self.append("assessment_result_item", r)
         self.credit_point=allocations
-    # def on_submit(self):
-        # print("\n\n\n\n\n\nhelll4")
-        # self.validate_duplicate_for_save()
-        # self.complete_course_enrollment()
-        # if len(self.assessment_result_item) > 0:
-        #     self.calculate_sgpa()
-        # self.set_evaluation_result_item()
-        # self.validate_duplicate_for_submit()
-        # self.update_program_enrollment_result()
 
     def set_grade(self):
         self.total_score = 0.0
@@ -150,20 +146,41 @@ class ExamAssessmentResult(Document):
                 else:
                     d.result="F"
 
-    # def validate_duplicate_for_save(self):
-    #     print("\n\n\nHello12")
-    #     assessment_result = frappe.get_list("Exam Assessment Result", filters={"name": ("not in", [self.name]),
-    #         "student":self.student, "docstatus":0,'programs':self.programs, 'program':self.program})
-    #         # "docstatus":1,
-    #     if assessment_result:
-    #         frappe.throw(_("Exam Assessment Result record {0} already exists.").format(getlink("Exam Assessment Result",assessment_result[0].name)))
     def validate_duplicate_for_submit(self):
         assessment_result = frappe.get_list("Exam Assessment Result", filters={"name": ("not in", [self.name]),
             "student":self.student, "docstatus":1,'programs':self.programs, 'program':self.program})
             # "docstatus":1,
         if assessment_result:
             frappe.throw(_("Exam Assessment Result record {0} already exists.").format(getlink("Exam Assessment Result",assessment_result[0].name)))
+    ################################################################################################################################
+    # IT WILL USE WHEN AFTER SUBMIT THE FINAL EXAM RESULT IF CREDIT POINT OR SGPA INTO CREDIT POINT OR SGPA
     def calculate_sgpa(self):
+        earn_and_garde=earn=0
+        allocations=0
+       
+        for allocation in frappe.get_all("Assessment Credits Allocation",{"docstatus":1,"student":self.student,"academic_year":self.academic_year,"academic_term":self.academic_term},["course","earned_credits","total_credits","final_marks","out_of_marks","assessment_criteria"]):
+            allocations+=allocation.total_credits
+        self.credit_point=allocations
+        for d in self.get("evaluation_result_item"):
+            if self.grade and self.grading_scale:
+                if d.earned_cr:
+                    earn+=d.earned_cr
+                    for g in frappe.get_all("Grading Scale Interval",{"parent":self.grading_scale,"grade_code":d.grade},['grade_point']):
+                        earn_and_garde+=((d.earned_cr or 0)*(g.grade_point or 0))
+        if earn > 0 :
+            self.sgpa=round((earn_and_garde/earn),2)
+            self.sgpa="{:.2f}".format(earn_and_garde/earn)
+            self.sgpa_in_to_credit_point= float(self.credit_point) * float(self.sgpa)
+    #########################################################################################################################################
+    def map_fields(self):
+        order_dict={1:"1ST SEM",2:"2ND SEM",3:"3RD SEM",4:"4TH SEM",5:"5TH SEM",6:"6TH SEM",7:"7TH SEM",8:"8TH SEM",9:"9TH SEM",10:"10TH SEM"}
+        for d in self.get("previous_semesters_sgpa"):
+            if not d.semester_order:
+                db=frappe.db.sql("""select name,semester_order from tabProgram where name="%s" """%(d.semester))
+                for sem in frappe.db.get_all("Program",{"name":"%s"%(d.semester)},['name',"semester_order"]):
+                    d.seemster_order=order_dict.get(sem.semester_order)
+                
+    def calculate_sgpa_cgpa(self):
         earn_and_garde=earn=0
         allocations=0
         for allocation in frappe.get_all("Assessment Credits Allocation",{"docstatus":1,"student":self.student,"academic_year":self.academic_year,"academic_term":self.academic_term},["course","earned_credits","total_credits","final_marks","out_of_marks","assessment_criteria"]):
@@ -176,46 +193,19 @@ class ExamAssessmentResult(Document):
                     for g in frappe.get_all("Grading Scale Interval",{"parent":self.grading_scale,"grade_code":d.grade},['grade_point']):
                         earn_and_garde+=((d.earned_cr or 0)*(g.grade_point or 0))
         if earn > 0 :
-            # self.sgpa=(earn_and_garde/earn)
             self.sgpa=round((earn_and_garde/earn),2)
             self.sgpa="{:.2f}".format(earn_and_garde/earn)
             self.sgpa_in_to_credit_point= float(self.credit_point) * float(self.sgpa)
-    def map_fields(self):
-        order_dict={1:"1ST SEM",2:"2ND SEM",3:"3RD SEM",4:"4TH SEM",5:"5TH SEM",6:"6TH SEM",7:"7TH SEM",8:"8TH SEM",9:"9TH SEM",10:"10TH SEM"}
-        for d in self.get("previous_semesters_sgpa"):
-            if not d.semester_order:
-                db=frappe.db.sql("""select name,semester_order from `tabProgram` where name="%s" """%(d.semester))
-                for sem in frappe.db.get_all("Program",{"name":"%s"%(d.semester)},['name',"semester_order"]):
-                    d.seemster_order=order_dict.get(sem.semester_order)
-                
-    def calculate_cgpa(self):
-        total_sgpa=0
         credit_points=0
-        semester_numbers=0
-        tot_multi_credit=0
-        sgpa_in_to_credit_points=0
+        allocations=0
         overall_cgpa=0
-        order_dict={1:"1ST SEM",2:"2ND SEM",3:"3RD SEM",4:"4TH SEM",5:"5TH SEM",6:"6TH SEM",7:"7TH SEM",8:"8TH SEM",9:"9TH SEM",10:"10TH SEM"}
-        for sem in frappe.get_all("Program",{"name":self.program},['name',"semester_order"],order_by="semester_order"):
-            for result in frappe.get_all("Exam Assessment Result",{"student":self.student},['sgpa','program','programs','sgpa_in_to_credit_point','credit_point']):        
-                real_credit_point=float(result.credit_point)
-                tot_multi_credit=float(result.sgpa_in_to_credit_point)
-                sgpa_in_to_credit_points+=tot_multi_credit
-                credit_points+=real_credit_point
-                self.append("previous_semesters_sgpa",{
-                    "semester":result.program,
-                    "semester_order":order_dict.get(sem.semester_order),
-                    "sgpa":round(result.sgpa,2),
-                })
-                self.programs=result.programs
-                self.semester_number=1
-                semester_numbers+=self.semester_number
-                self.result_p_f=frappe.db.get_value("Exam Assessment Result",result.exam_assessment_result,'result')
-                overall_cgpa=(sgpa_in_to_credit_points/credit_points)
-                res = "{:.2f}".format(overall_cgpa)
-                self.overall_cgpa=res
-                frappe.db.set_value("Exam Assessment Result",self.name,"overall_cgpa",res)
-
+        for result in frappe.get_all("Exam Assessment Result",{"student":self.student},['sgpa','program','programs','sgpa_in_to_credit_point','credit_point']):        
+            allocations+=float(result.sgpa_in_to_credit_point)
+            credit_points+=result.credit_point
+            overall_cgpa=(allocations/credit_points)
+            res = "{:.2f}".format(overall_cgpa)
+            self.overall_cgpa=res
+            frappe.db.set_value("Exam Assessment Result",self.name,"overall_cgpa",res)
     def complete_course_enrollment(self):
         for item in self.get("evaluation_result_item"):
             if item.result=="P":

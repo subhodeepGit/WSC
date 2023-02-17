@@ -65,7 +65,7 @@ def enroll_student(source_name):
 		program_enrollment = frappe.new_doc("Program Enrollment")
 		program_enrollment.student = student.name
 		program_enrollment.student_category = student.student_category
-		program_enrollment.student_name = student.title
+		program_enrollment.student_name = student.student_name
 		program_enrollment.reference_doctype="Student Exchange Applicant"
 		program_enrollment.reference_name=source_name
 		program_enrollment.programs = exchange_program_declaration.program__to_exchange
