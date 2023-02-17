@@ -121,10 +121,13 @@ def room_query(doctype, txt, searchfield, start, page_len, filters):
 def fst_query(doc):
 	doc = json.loads(doc)
 	current_education_fetch=doc.get("current_education_fetch")
-	filtered_fst={'programs':current_education_fetch[0]['programs'],
-				'semesters':current_education_fetch[0]['semesters'],
-				"room_type":doc.get("room_type"),
-				'academic_year':current_education_fetch[0]['academic_year'],
-				'academic_term':current_education_fetch[0]['academic_term']
-				}		
+	filtered_fst=[]
+	if current_education_fetch:
+		filtered_fst={'programs':current_education_fetch[0]['programs'],
+					'semesters':current_education_fetch[0]['semesters'],
+					"room_type":doc.get("room_type"),
+					'academic_year':current_education_fetch[0]['academic_year'],
+					'academic_term':current_education_fetch[0]['academic_term']
+					}		
 	return filtered_fst
+
