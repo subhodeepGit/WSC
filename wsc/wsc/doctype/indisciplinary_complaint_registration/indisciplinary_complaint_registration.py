@@ -11,8 +11,6 @@ class IndisciplinaryComplaintRegistration(Document):
     def on_update(self):
         icr_id = self.name
         in_doc_info=frappe.db.sql("""select * from `tabIndisciplinary Complaint Registration` where  name="%s" """%(icr_id))
-        print("\n\n\n\n\n")
-        print(in_doc_info)
         
         if len(in_doc_info)!=0:
             icr = frappe.get_doc("Indisciplinary Complaint Registration",icr_id)
@@ -32,10 +30,8 @@ class IndisciplinaryComplaintRegistration(Document):
                         a="%s  "%(duplicate['Al_no'][t])
                         b=b+a
                     frappe.throw("Duplicate value found on allotment number "+b)
-            else:
-                frappe.throw("No Student is Mentioned")        
-        else:
-            pass  
+            # else:
+            #     frappe.throw("No Student is Mentioned")        
 
 
 
