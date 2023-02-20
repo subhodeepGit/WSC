@@ -13,7 +13,7 @@ class ResidenceChangeRequest(Document):
 		buildingStatusChange(self)
 		changeNewRoomStatus(self)
 		residenceUpdate(self)
-		residenceChangeHistory(self)
+		residenceChangerequestHistory(self)
 		changedResidenceDetails(self)
 		residenceChangeCancel(self)
 
@@ -25,8 +25,7 @@ def duplicate(self):
 
 # To change vacancy status and employee allotment status of alloted residence
 def changeRoomStatus(self):
-	data= self.request_status
-	if data == "Approved":
+	if self.request_status == "Approved":
 		frappe.db.set_value("Residence Allotment",self.alloted_residence_serial_number,"vacancy_status","Vacant")
 		frappe.db.set_value("Residence Allotment",self.alloted_residence_serial_number,"employee_allotment_status", "Not Alloted")
 
@@ -68,8 +67,17 @@ def residenceUpdate(self):
 			})
 		allotmentData.save()
 
-#To insert the changed residence details in "Residence Allotment History" child table in Employee doctype
-def residenceChangeHistory(self):
+# To Insert the updated residence change request status details in "Residence Allotment History" child table in Employee doctype
+def residenceChangerequestHistory(self):
+	if self.request_status== "Pending Approval":
+		allotmentData=frappe.get_doc('Employee', self.employee)
+		allotmentData.append("residence_allotment_history_table",{
+			"application_number":self.residence_change_request_number,
+			"date":datetime.date.today(),
+			"status": "Pending Approval- Change Request"
+			})
+		allotmentData.save()
+
 	if self.request_status== "Approved":
 		allotmentData=frappe.get_doc('Employee', self.employee)
 		allotmentData.append("residence_allotment_history_table",{
@@ -87,6 +95,14 @@ def residenceChangeHistory(self):
 			})
 		allotmentData.save()	
 
+	if self.request_status== "Rejected":
+		allotmentData=frappe.get_doc('Employee', self.employee)
+		allotmentData.append("residence_allotment_history_table",{
+			"application_number":self.residence_change_request_number,
+			"date":datetime.date.today(),
+			"status": "Rejected- Change Request"
+			})
+		allotmentData.save()
 
 # To set value of doc series in residence_change_request_number field
 def changeRequestNumberField(self):
