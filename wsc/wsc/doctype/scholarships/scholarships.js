@@ -92,6 +92,18 @@ frappe.ui.form.on('Scholarships', {
 	}
 });
 
+frappe.ui.form.on('Scholarships', {
+	semester: function(frm) {
+		cur_frm.clear_table("topper_scholarship_table");
+		frm.set_value("cutoff_sgpa", "");
+		cur_frm.clear_table("cutoff_scholarship_table");
+		refresh_field("topper_scholarship_table");
+		refresh_field("cutoff_sgpa");
+		refresh_field("cutoff_scholarship_table");
+					}
+				}
+			);
+		
 
 frappe.ui.form.on('Scholarships', {
 	onload: function(frm) {

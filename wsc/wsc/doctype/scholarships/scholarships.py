@@ -18,12 +18,13 @@ class Scholarships(Document):
 			(self.semester),
 			as_dict=1,
 		)
-		topperlist= []
-		top = topper[0]['sgpa']
-		for x in topper:
-			if x['sgpa']==top:
-				topperlist.append(x)
-		return topperlist
+		if topper:
+			topperlist= []
+			top = topper[0]['sgpa']
+			for x in topper:
+				if x['sgpa']==top:
+					topperlist.append(x)
+			return topperlist
 		
 
 
@@ -38,14 +39,15 @@ class Scholarships(Document):
 			(self.semester, self.cutoff_sgpa),
 			as_dict=1,
 		)
-		top_sgpa=cutofftopper[0]['sgpa']
-		true_cutofftopper = []
-		for x in cutofftopper:
-			if x['sgpa']==top_sgpa:
-				pass
-			else :
-				true_cutofftopper.append(x)
-		return true_cutofftopper
+		if cutofftopper:
+			top_sgpa=cutofftopper[0]['sgpa']
+			true_cutofftopper = []
+			for x in cutofftopper:
+				if x['sgpa']==top_sgpa:
+					pass
+				else :
+					true_cutofftopper.append(x)
+			return true_cutofftopper
 
         
 
