@@ -89,7 +89,8 @@
    "fieldname": "student",
    "fieldtype": "Table",
    "label": "Student",
-   "options": "Indisciplinary Complaint Registration Student"
+   "options": "Indisciplinary Complaint Registration Student",
+   "reqd": 1
   },
   {
    "fieldname": "previous_complaint_id",
@@ -109,7 +110,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-11-17 15:06:13.977846",
+ "modified": "2023-02-20 14:28:02.366931",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Indisciplinary Complaint Registration",
@@ -131,6 +132,7 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1,
  "track_seen": 1,
  "track_views": 1
