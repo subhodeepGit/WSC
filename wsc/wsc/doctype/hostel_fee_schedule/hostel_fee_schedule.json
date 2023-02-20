@@ -10,9 +10,10 @@
   "program_filter",
   "academic_year_filter",
   "fee_structure",
+  "column_break_4",
+  "naming_series",
   "posting_date",
   "due_date",
-  "naming_series",
   "fee_creation_status",
   "send_email",
   "column_break_7",
@@ -52,6 +53,7 @@
  ],
  "fields": [
   {
+   "depends_on": "eval:doc.program_filter && doc.academic_year_filter",
    "fieldname": "fee_structure",
    "fieldtype": "Link",
    "in_global_search": 1,
@@ -319,22 +321,29 @@
    "fieldname": "program_filter",
    "fieldtype": "Link",
    "label": "Program Filter",
-   "options": "Programs"
+   "options": "Programs",
+   "reqd": 1
   },
   {
    "fieldname": "academic_year_filter",
    "fieldtype": "Link",
    "label": "Academic Year Filter",
-   "options": "Academic Year"
+   "options": "Academic Year",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-09-16 13:27:40.301014",
+ "modified": "2023-02-20 12:57:41.683300",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Hostel Fee Schedule",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -351,5 +360,6 @@
   }
  ],
  "sort_field": "modified",
- "sort_order": "DESC"
+ "sort_order": "DESC",
+ "states": []
 }
