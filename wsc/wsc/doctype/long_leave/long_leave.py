@@ -9,7 +9,7 @@ class LongLeave(Document):
 	# @frappe.whitelist()
 	def validate(doc):
 		pincode_validation(doc)
-		mobile_number_validation(doc)
+		# mobile_number_validation(doc) #v14 phone data type present
 		Al_no=doc.allotment_number
 		workflow_state=doc.workflow_state
 		if workflow_state=="Submit":
@@ -54,14 +54,7 @@ class LongLeave(Document):
 			frappe.db.sql("""UPDATE `tabRoom Masters` SET `vacancy`=`vacancy`+1 WHERE `name`="%s" """%(status[0]['room_id']))
 			frappe.db.set_value("Student Hostel Admission",status[0]['hostel_registration_no'], "allotment_status", "De-allotted") 
 			pass	
-					
-						
-
-
-
-
-
-
+											
 
 def Long_leave_def(info):
 		Long_leave=frappe.db.sql("""SELECT name,allotment_number,student,student_name,hostel,room_number,start_date,data_11,medium_of_communicatinon,
