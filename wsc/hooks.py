@@ -388,3 +388,12 @@ override_doctype_class = {
 # auth_hooks = [
 #	"wsc.auth.validate"
 # ]
+
+# fixtures = [
+    #  {"dt": "Role"},
+    #  {"dt": "Role Profile"},
+    #  {"dt": "Module Profile"},
+    # {"dt" : "Workflow"},
+    #  {"dt": "Workflow Action Master"},
+    # {"dt" : "Workflow State"}
+# ]
