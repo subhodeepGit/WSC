@@ -8,35 +8,43 @@
  "field_order": [
   "student_id",
   "student_name",
-  "scholarship_amount",
-  "sgpa"
+  "sgpa",
+  "scholarship_amount"
  ],
  "fields": [
   {
    "fieldname": "student_name",
    "fieldtype": "Data",
-   "label": "Student Name"
+   "in_list_view": 1,
+   "label": "Student Name",
+   "read_only": 1
   },
   {
    "fieldname": "scholarship_amount",
-   "fieldtype": "Data",
-   "label": "Scholarship Amount"
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Scholarship Amount",
+   "reqd": 1
   },
   {
    "fieldname": "student_id",
    "fieldtype": "Data",
-   "label": "Student ID"
+   "in_list_view": 1,
+   "label": "Student ID",
+   "read_only": 1
   },
   {
    "fieldname": "sgpa",
    "fieldtype": "Data",
-   "label": "SGPA"
+   "in_list_view": 1,
+   "label": "SGPA",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-02-03 18:29:23.698366",
+ "modified": "2023-02-21 09:25:53.701342",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Cutoff Scholarship",
