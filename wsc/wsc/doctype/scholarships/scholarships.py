@@ -2,83 +2,62 @@
 # For license information, please see license.txt
 import frappe
 from frappe.model.document import Document
+import pandas as pd
+from pandas import DataFrame
+
 
 class Scholarships(Document):
 		pass
 
+# To fetch students with Rank 1, 2 & 3 in selected semester group and assign ranks
+
 @frappe.whitelist()
-def get_students(semester):
-	topper=[]
+def get_students(programs,semester,academic_year,academic_term):
+	# topper=[]
 	topper = frappe.db.sql(
 		'''SELECT student, student_name, sgpa 
 		FROM `tabExam Assessment Result` 
-		WHERE program= %s
+		WHERE programs= %s AND program= %s AND academic_year=%s AND academic_term=%s
 		ORDER BY sgpa DESC;''',
-		(semester),
-		as_dict=1,
-
-	
+		(programs,semester,academic_year,academic_term),
+		as_dict=True
 	)
-	print(topper)
-	if topper:
-		topperlist= []
-		nextTopperList=[]
-		nextTopperList2=[]
-		nextTopperList3=[]
 
-		top = topper[0]['sgpa']
-		for x in topper:
-			if x['sgpa']==top:
-				topperlist.append(x)
-			if x['sgpa']!=top:
-				nextTopperList.append(x)
+	df = pd.DataFrame.from_records(topper, columns=['student', 'student_name','sgpa'])
+	df['rank']=df['sgpa'].rank(ascending=False, method='dense')
+	df=df[(df['rank'] <= 3)]
+	topperlist=df.to_dict('records')
+	if not topperlist:
+		frappe.msgprint("No Record found")
+	return topperlist
 
-		rank2=[]
-		top2 = nextTopperList[0]['sgpa']
-		for x in nextTopperList:
-			if x['sgpa']==top2:
-				rank2.append(x)
-			if x['sgpa']!=top2:
-				nextTopperList2.append(x)
-
-		rank3=[]
-		top3= nextTopperList2[0]['sgpa']
-		for x in nextTopperList2:
-			if x['sgpa']==top3:
-				rank3.append(x)
-			if x['sgpa']!=top3:
-				nextTopperList3.append(x)
-
-		topperlist.extend(rank2)
-		topperlist.extend(rank3)
-		return topperlist
+# To fetch students based on the cutoff cgpa
 
 @frappe.whitelist()
-def get_cutoffStudents(semester,lower_cutoff_sgpa,upper_cutoff_sgpa):
-		cutoff= []
-		if lower_cutoff_sgpa:
-			cutoff= frappe.db.sql(
-			'''SELECT student, student_name, sgpa 
-			FROM `tabExam Assessment Result` 
-			WHERE program= %s AND sgpa BETWEEN %s AND %s
-			ORDER BY sgpa DESC;''',
-			(semester, lower_cutoff_sgpa, upper_cutoff_sgpa),
-			as_dict=1,
-		
-	)
-			print("\n\n\n\n\n 1st")
-		else:
-			cutoff= frappe.db.sql(
-			'''SELECT student, student_name, sgpa 
-			FROM `tabExam Assessment Result` 
-			WHERE program= %s AND sgpa < %s
-			ORDER BY sgpa DESC;''',
-			(semester, lower_cutoff_sgpa),
-			as_dict=1,
+def get_cutoffStudents(programs,semester,academic_year,academic_term,lower_cutoff_sgpa,upper_cutoff_sgpa):
+	cutoff= []
+	if lower_cutoff_sgpa:
+		cutoff= frappe.db.sql(
+		'''SELECT student, student_name, sgpa 
+		FROM `tabExam Assessment Result` 
+		WHERE programs= %s AND program= %s AND academic_year=%s AND academic_term=%s AND sgpa BETWEEN %s AND %s
+		ORDER BY sgpa DESC;''',
+		(programs,semester,academic_year,academic_term, lower_cutoff_sgpa, upper_cutoff_sgpa),
+		as_dict=1,
 		)
-			print("\n\n\n\n\n 2st")
-			print(cutoff)
-		return cutoff
+	else:
+		cutoff= frappe.db.sql(
+		'''SELECT student, student_name, sgpa 
+		FROM `tabExam Assessment Result` 
+		WHERE programs= %s AND program= %s AND academic_year=%s AND academic_term=%s AND sgpa > %s
+		ORDER BY sgpa DESC;''',
+		(programs,semester,academic_year,academic_term, upper_cutoff_sgpa),
+		as_dict=1,
+		)
+	
+	if not cutoff:
+		frappe.msgprint("No Record found")	
+	return cutoff
 
 		
 
