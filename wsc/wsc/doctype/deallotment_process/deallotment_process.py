@@ -4,11 +4,15 @@
 import frappe
 from frappe.model.document import Document
 import pandas as pd
+from datetime import datetime
 
 class DeallotmentProcess(Document):
 	#frappe.db.sql(""" UPDATE `tabEmployee Hostel Allotment`  SET  start_date= '2000-09-01' where name='RAN-2021-00001';""")	
 	def validate(self):
 		deallotment(self)
+
+	def on_cancel(self):
+		frappe.throw('You can not cancel the document')
 
 def deallotment(self):
 	Al_no=self.allotment_number
@@ -31,19 +35,18 @@ def deallotment(self):
 							(De_allotment_df['workflow_state']!="Rejected")|
 							(De_allotment_df['workflow_state']!="Withdrawl of Application")]	
 	if workflow_state=="Submit":
-		Chk_df=Chk_df[(Chk_df['application_status'].isnull())|(Chk_df['application_status']=="Open")].reset_index()
+		Chk_df=Chk_df[(Chk_df['workflow_state'].isnull())|(Chk_df['workflow_state']=="Open")].reset_index()
 		if len(Chk_df)!=0:
-			frappe.throw("Document already Present Dco no %s"%(Chk_df['Deall_doc_no'][0]))
-		else:
-			pass
+			frappe.throw("Document already Present DOC no %s"%(Chk_df['Deall_doc_no'][0]))
 	elif workflow_state=="Clearence From Hostel":
 		if End_date==None:
-			frappe.throw("Please provide End Date")	
+			frappe.throw("Please Provide End Date")	
 		else:
 			Al_data=frappe.db.sql("""select `start_date`,`end_date`,`room_id` from `tabRoom Allotment` as RA WHERE `name`="%s" """%(Al_no))
 			al_st_date=Al_data[0][0]
 			al_end_date=Al_data[0][1]
 			room_id=Al_data[0][2]
+			End_date =  datetime.strptime(End_date, '%Y-%m-%d').date()
 			if al_st_date<=End_date and al_end_date>=End_date:
 				frappe.db.sql("""UPDATE `tabRoom Allotment` SET `end_date`="%s",`allotment_type`="De-Allotted" WHERE `name`="%s" """%(End_date,Al_no))
 				frappe.db.sql("""UPDATE `tabRoom Masters` SET `vacancy`=`vacancy`+1 WHERE `name`="%s" """%(room_id))

@@ -107,7 +107,7 @@ def vacancy_quety_vali(flag,info):
 								And (RA.start_date<=now() and RA.end_date>=now()) and RA.docstatus!=2 and RA.docstatus!=0
 								))AS Vacancy 
 								from `tabRoom Masters` as HR
-								where HR.name="%s" """%(info))
+								where HR.name="%s" """%(info))					
 		df1=pd.DataFrame({
 			"Room_id":[],"room_number":[],"present_capacity":[],"hostel_id":[],"validity":[],"room_description":[],"Room_al_status":[],"Vacancy":[] 
 			})
@@ -118,12 +118,9 @@ def vacancy_quety_vali(flag,info):
 		return df1
 	elif flag=="Student_info":	
 		# Stu_info=frappe.db.sql(""" select * from `tabRoom Allotment` as RA where RA.student="%s" and RA.docstatus!=2 """%(info))
-
 		Stu_info=frappe.db.sql(""" select name,creation,modified,modified_by,owner,docstatus,
 			idx,naming_series,student,student_name,hostel_id,start_date,allotment_type,end_date,room_id,
 			room_type,employee,employee_name,room_number from `tabRoom Allotment` where student="%s" and docstatus!=2 and docstatus!=0 """%(info))
-
-
 		df1=pd.DataFrame({
 			'Al_no':[],'creation':[],'modified':[],'modified_by':[],
 			'owner':[],'docstatus':[],'parent':[],'parentfield':[],
@@ -135,10 +132,9 @@ def vacancy_quety_vali(flag,info):
 			s=pd.Series([Stu_info[t][0],Stu_info[t][1],Stu_info[t][2],Stu_info[t][3],Stu_info[t][4],Stu_info[t][5],
 						Stu_info[t][6],Stu_info[t][7],Stu_info[t][8],Stu_info[t][9],Stu_info[t][10],Stu_info[t][11],
 						Stu_info[t][12],Stu_info[t][13],Stu_info[t][14],Stu_info[t][15],Stu_info[t][16],Stu_info[t][17],
-						Stu_info[t][18],Stu_info[t][19],Stu_info[t][20],Stu_info[t][21]],
+						Stu_info[t][18]],
 								index=['Al_no','creation','modified','modified_by',
-										'owner','docstatus','parent','parentfield',
-										'parenttype','idx','naming_series','student',
+										'owner','docstatus','idx','naming_series','student',
 										'student_name','hostel_id','start_date','allotment_type',
 										'end_date','room_id','room_type','employee','employee_name','Room_No'])
 			df1=df1.append(s,ignore_index=True)	
