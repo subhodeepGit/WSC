@@ -38,6 +38,7 @@ class StudentLeaveProcess(Document):
 				else:
 					frappe.throw("Please check Start Date and End Date of Leave")	
 
-		
+	def on_cancel(self):
+		frappe.throw('You can not cancel the document')	
 
 	
