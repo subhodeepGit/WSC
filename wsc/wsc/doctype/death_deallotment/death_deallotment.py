@@ -19,6 +19,9 @@ class DeathDeallotment(Document):
 		frappe.db.set_value("Student Hostel Admission",status[0]['hostel_registration_no'], "allotment_status", "Death-Deallotted") 			
 
 
+	def on_cancel(doc):
+		frappe.throw("You cannot cancel the Document")
+
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
 def ra_query(doctype, txt, searchfield, start, page_len, filters):
