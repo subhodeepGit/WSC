@@ -1,0 +1,80 @@
+{
+ "actions": [],
+ "allow_guest_to_view": 1,
+ "creation": "2021-04-10 14:43:10.994330",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "favicon",
+  "logo",
+  "login_background",
+  "main_background",
+  "student_background",
+  "employee_background"
+ ],
+ "fields": [
+  {
+   "fieldname": "logo",
+   "fieldtype": "Attach Image",
+   "label": "Logo"
+  },
+  {
+   "fieldname": "favicon",
+   "fieldtype": "Attach Image",
+   "label": "Favicon"
+  },
+  {
+   "fieldname": "login_background",
+   "fieldtype": "Attach Image",
+   "label": "Login Background"
+  },
+  {
+   "fieldname": "student_background",
+   "fieldtype": "Attach Image",
+   "label": "Student Background"
+  },
+  {
+   "fieldname": "employee_background",
+   "fieldtype": "Attach Image",
+   "label": "Employee Background"
+  },
+  {
+   "fieldname": "main_background",
+   "fieldtype": "Attach Image",
+   "label": "Main Background"
+  }
+ ],
+ "issingle": 1,
+ "links": [],
+ "modified": "2021-04-17 15:47:38.764118",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Site Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "All",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
