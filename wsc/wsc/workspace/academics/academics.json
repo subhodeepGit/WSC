@@ -89,34 +89,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Mentor-Mentee",
-   "link_count": 2,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Mentor Allocation",
-   "link_count": 0,
-   "link_to": "Mentor Allocation",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Communication",
-   "link_count": 0,
-   "link_to": "Mentor Mentee Communication",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Placement &amp; Drives",
    "link_count": 4,
    "onboard": 0,
@@ -217,9 +189,37 @@
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Mentor-Mentee",
+   "link_count": 2,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Mentor Allocation",
+   "link_count": 0,
+   "link_to": "Mentor Allocation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Communication",
+   "link_count": 0,
+   "link_to": "Mentor Mentee Communication",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-02-15 16:08:11.701553",
+ "modified": "2023-02-16 12:02:02.908165",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Academics",
