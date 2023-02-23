@@ -1,5 +1,5 @@
-// Copyright (c) 2023, SOUL Limited and contributors
-// For license information, please see license.txt
+// // Copyright (c) 2023, SOUL Limited and contributors
+// // For license information, please see license.txt
 
 frappe.ui.form.on('Placement Tool', {
 	refresh: function(frm) {
@@ -10,7 +10,8 @@ frappe.ui.form.on('Placement Tool', {
 			return{
 				filters:{
 					'placement_company': frm.doc.company_name,
-					'academic_year': frm.doc.placement_batch_year
+					'academic_year': frm.doc.placement_batch_year,
+					'title' : frm.doc.drive_title
 				}
 			}
 		}) // end of set_query
@@ -21,14 +22,17 @@ frappe.ui.form.on('Placement Tool', {
 					doc: frm.doc
 				})
 			}).addClass('btn-primary');
+			//For Calendar
 		} // end if
 	}, // end of refresh
-	placement_drive_name: function(frm){
+	round_status: function(frm){
 		// if(frm.doc.company_name && frm.doc.placement_batch_year && frm.doc.placement_drive_name){
 			frappe.call({
 				method:'wsc.wsc.doctype.placement_tool.placement_tool.get_rounds_of_placement',
 				args:{
-					drive_name: frm.doc.placement_drive_name
+					self: frm.doc,
+					drive_name: frm.doc.placement_drive_name,
+					round_status: frm.doc.round_status,	
 				},
 				callback: function(result){
 					let arr = [];
@@ -64,12 +68,13 @@ frappe.ui.form.on('Placement Tool', {
 	get_eligible_students_list: function(frm){
 		// if(frm.doc.company_name && frm.doc.placement_batch_year && frm.doc.placement_drive_name){
 			frappe.call({
-				method: 'wsc.wsc.doctype.placement_test_tool.placement_test_tool.get_student',
+				method: 'wsc.wsc.doctype.placement_tool.placement_tool.get_student',
 				args:{
-					drive_name: frm.doc.placement_drive_name
-				},
+					drive_name: frm.doc.placement_drive_name,
+					},
 				callback: function(result){
-					if(result.message){						
+					if(result.message){		
+						// alert(JSON.stringify(result.message))				
 						frappe.model.clear_table(frm.doc, 'student_list')
 						result.message.forEach(element => {
 							var childTable = frm.add_child('student_list')
@@ -87,4 +92,32 @@ frappe.ui.form.on('Placement Tool', {
 			})
 		// }
 	},
+	company_name: function(frm){
+		frappe.call({
+			method: 'wsc.wsc.doctype.placement_tool.placement_tool.get_title',
+			args:{
+				company_name: frm.doc.company_name
+			},
+			callback: function(result){
+				// alert(JSON.stringify(result.message))
+				let arr = [];
+				for(let x in result.message){
+					arr.push(result.message[x]);
+				}
+				// alert(arr)
+				frm.set_df_property('drive_title', 'options', arr)
+			}
+		})
+	},
+	test_btn: function(frm){
+		frappe.call({
+			method: 'wsc.wsc.doctype.placement_tool.placement_tool.testing',
+			args:{
+				self:frm.doc
+			},
+			callback: function(result){
+				alert(JSON.stringify(result.message))
+			}
+		})
+	}
 });

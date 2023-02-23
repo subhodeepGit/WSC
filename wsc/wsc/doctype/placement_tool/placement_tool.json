@@ -10,9 +10,12 @@
   "drive_details_section",
   "company_name",
   "placement_batch_year",
+  "drive_title",
   "placement_drive_name",
   "get_eligible_students_list",
+  "test_btn",
   "column_break_5",
+  "round_status",
   "round_of_placement",
   "scheduled_date_of_round",
   "scheduled_time_of_round",
@@ -87,11 +90,29 @@
    "fieldname": "scheduled_time_of_round",
    "fieldtype": "Data",
    "label": "Scheduled Time of Round"
+  },
+  {
+   "fieldname": "drive_title",
+   "fieldtype": "Select",
+   "label": "Drive title",
+   "reqd": 1
+  },
+  {
+   "fieldname": "round_status",
+   "fieldtype": "Select",
+   "label": "Round Status",
+   "options": "\nScheduling Of Round\nRound Result Declaration",
+   "reqd": 1
+  },
+  {
+   "fieldname": "test_btn",
+   "fieldtype": "Button",
+   "label": "Test button"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-02-09 17:58:40.918535",
+ "modified": "2023-02-21 16:53:54.651335",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Tool",
