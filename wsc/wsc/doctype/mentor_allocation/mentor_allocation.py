@@ -33,10 +33,10 @@ class MentorAllocation(Document):
 def get_students(doctype, txt, searchfield, start, page_len, filters):
     return frappe.db.sql("""
                                 Select 
-                                        distinct(st.name) as student, st.title as student_name ,st.roll_no as roll_no
+                                        distinct(st.name) as student, st.student_name as student_name ,st.roll_no as roll_no
                                 from `tabCurrent Educational Details` ced 
                                 left join `tabStudent` st on st.name=ced.parent 
-                                where enabled=1 and (st.name LIKE %(txt)s or st.title LIKE %(txt)s) and ced.programs='{0}'""".format(filters.get("programs")),dict(txt="%{}%".format(txt))) 
+                                where enabled=1 and (st.name LIKE %(txt)s or st.student_name LIKE %(txt)s) and ced.programs='{0}'""".format(filters.get("programs")),dict(txt="%{}%".format(txt))) 
 
 def validate_allocation_from_to(doc):
     if doc.allocation_from and doc.allocation_to and doc.allocation_from > doc.allocation_to:

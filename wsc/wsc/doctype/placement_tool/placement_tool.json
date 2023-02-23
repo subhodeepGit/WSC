@@ -79,8 +79,7 @@
    "fieldname": "student_list",
    "fieldtype": "Table",
    "label": "Student List",
-   "options": "Student child table",
-   "reqd": 1
+   "options": "Student child table"
   },
   {
    "fieldname": "column_break_5",

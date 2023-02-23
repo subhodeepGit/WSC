@@ -39,13 +39,11 @@
   {
    "fieldname": "start_date",
    "fieldtype": "Date",
-   "in_list_view": 1,
    "label": "Start Date"
   },
   {
    "fieldname": "end_date",
    "fieldtype": "Date",
-   "in_list_view": 1,
    "label": "End Date"
   },
   {
@@ -68,20 +66,18 @@
   {
    "fieldname": "residence_serial_number",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "Residence Serial Number"
   },
   {
    "fieldname": "building_name",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "Building Name"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-02-09 10:54:33.021083",
+ "modified": "2023-02-16 11:55:04.583451",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Allotment History",

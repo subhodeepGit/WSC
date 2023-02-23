@@ -5,15 +5,15 @@ frappe.ui.form.on('Selection Round', {
 	// refresh: function(frm) {
 
 	// }
-	// onsubmit: function(frm){
-	// 	frappe.call({
-	// 		method: 'wsc.wsc.doctype.selection_round.selection_round.update_profile',
-	// 		args:{
-	// 			self: frm.doc
-	// 		},
-	// 		callback: function(result){
-	// 			alert('updated')
-	// 		}
-	// 	})
-	// }
+	onsubmit: function(frm){
+		frappe.call({
+			method: 'wsc.wsc.doctype.placement_tool.placement_tool.update_profile',
+			args:{
+				doc: frm.doc
+			},
+			callback: function(result){
+				alert(result.message)
+			}
+		})
+	}
 });

@@ -8,7 +8,6 @@
  "hide_custom": 0,
  "icon": "",
  "idx": 0,
- "is_hidden": 0,
  "label": "WSC",
  "links": [
   {
@@ -976,7 +975,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-02-02 16:52:25.402571",
+ "modified": "2023-02-15 16:40:14.817728",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "WSC",

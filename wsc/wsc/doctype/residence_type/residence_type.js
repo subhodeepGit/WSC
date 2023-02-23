@@ -6,3 +6,9 @@ frappe.ui.form.on('Residence Type', {
 
 	// }
 });
+
+frappe.ui.form.on('Residence Type', {
+	validate: function(frm) {
+		frm.get_field('eligibility').grid.cannot_add_rows = true;
+	}
+});

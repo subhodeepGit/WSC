@@ -11,13 +11,14 @@ required_apps = ["education","hrms"]
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/wsc/css/wsc.css"
-# app_include_js = "/assets/wsc/js/wsc.js"
+app_include_css = "/assets/wsc/css/wsc_ui.css"
+app_include_js = "/assets/wsc/js/wsc_ui.js"
+
 app_include_js = "wsc.bundle.js"
 
 # include js, css files in header of web template
-# web_include_css = "/assets/wsc/css/wsc.css"
-# web_include_js = "/assets/wsc/js/wsc.js"
+web_include_css = "/assets/wsc/css/wsc_ui.css"
+web_include_js = "/assets/wsc/js/wsc_ui.js"
 
 # include custom scss in every website theme (without file extension ".scss")
 # website_theme_scss = "wsc/public/scss/website"
@@ -54,7 +55,7 @@ doctype_js = {
                 "Topic":"public/js/topic.js",
                 "User":"public/js/user.js",
             }
-
+# calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
     "Branch Sliding Application": "wsc/wsc/doctype/branch_sliding_application/branch_sliding_application_list.js",
     "Fees":"public/js/fees_list.js",
@@ -272,10 +273,10 @@ doc_events = {
     "Student Leave Application":{
         "validate":"wsc.wsc.validations.student_leave_application.validate"
     },
-    # "Student Applicant":{
+    "Student Applicant":{
     #     "validate":"wsc.wsc.doctype.student_applicant.validate",
-    #     "on_change":"wsc.wsc.doctype.student_applicant.on_update"
-    # },
+        "on_change":"wsc.wsc.doctype.student_applicant.on_update"
+    },
     "Student Admission":{
         "validate":"wsc.wsc.validations.student_admission.validate"
     },
@@ -319,7 +320,6 @@ scheduler_events = {
 override_whitelisted_methods = {
 	"education.education.api.get_course_schedule_events": "wsc.wsc.doctype.course_schedule.get_course_schedule_events",
     "education.education.api.mark_attendance": "wsc.wsc.doctype.student_attendance.mark_attendance",
-
     "erpnext.accounts.doctype.payment_entry.payment_entry.get_payment_entry":"wsc.wsc.doctype.payment_entry.get_payment_entry",	
 	"erpnext.accounts.doctype.payment_entry.payment_entry.get_party_details":"wsc.wsc.doctype.payment_entry.get_party_details",
 	"erpnext.accounts.doctype.payment_entry.payment_entry.get_account_details":"wsc.wsc.doctype.payment_entry.get_account_details",
@@ -388,3 +388,17 @@ override_doctype_class = {
 # auth_hooks = [
 #	"wsc.auth.validate"
 # ]
+
+# fixtures = [
+    #  {"dt": "Role"},
+    #  {"dt": "Role Profile"},
+    #  {"dt": "Module Profile"},
+    # {"dt" : "Workflow"},
+    #  {"dt": "Workflow Action Master"},
+    # {"dt" : "Workflow State"}
+# ]
+
+website_context = {
+    "favicon": "/assets/wsc/images/logo.jpg",
+    "splash_image": "/assets/wsc/images/logo.jpg"
+}

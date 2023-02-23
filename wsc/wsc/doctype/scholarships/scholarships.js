@@ -48,17 +48,23 @@ frappe.ui.form.on('Scholarships', {
 
 frappe.ui.form.on('Scholarships', {
 	"get_students": function(frm) {
-		// frm.set_value("topper_scholarship_table",[]);
+		cur_frm.clear_table("topper_scholarship_table")
 		frappe.call({
-			method: "get_students",
-			doc:frm.doc,
+			method: "wsc.wsc.doctype.scholarships.scholarships.get_students",
+			args:{
+				programs:frm.doc.programs,
+				semester:frm.doc.semester,
+				academic_year:frm.doc.academic_year,
+				academic_term:frm.doc.academic_term
+			},
 			callback: function(r) {
 				if(r.message) {
 					r.message.forEach(element => {
 						var c = frm.add_child("topper_scholarship_table")
 						c.student_id = element.student,
 						c.student_name = element.student_name,
-						c.sgpa= element.sgpa
+						c.sgpa= element.sgpa,
+						c.rank= element.rank
 
 					});
 				}
@@ -71,10 +77,17 @@ frappe.ui.form.on('Scholarships', {
 
 frappe.ui.form.on('Scholarships', {
 	"get_cutoff_students": function(frm) {
-		// frm.set_value("topper_scholarship_table",[]);
+		cur_frm.clear_table("cutoff_scholarship_table");
 		frappe.call({
-			method: "get_cutoffStudents",
-			doc:frm.doc,
+			method: "wsc.wsc.doctype.scholarships.scholarships.get_cutoffStudents",
+			args:{
+				programs:frm.doc.programs,
+				semester:frm.doc.semester,
+				academic_year:frm.doc.academic_year,
+				academic_term:frm.doc.academic_term,
+				lower_cutoff_sgpa:frm.doc.lower_cutoff_sgpa,
+				upper_cutoff_sgpa:frm.doc.upper_cutoff_sgpa
+			},
 			callback: function(r) {
 				if(r.message) {
 					r.message.forEach(element => {
@@ -91,3 +104,46 @@ frappe.ui.form.on('Scholarships', {
 		});
 	}
 });
+
+frappe.ui.form.on('Scholarships', {
+	semester: function(frm) {
+		cur_frm.clear_table("topper_scholarship_table");
+		frm.set_value("upper_cutoff_sgpa", "");
+		frm.set_value("lower_cutoff_sgpa", "");
+		cur_frm.clear_table("cutoff_scholarship_table");
+		refresh_field("topper_scholarship_table");
+		refresh_field("upper_cutoff_sgpa");
+		refresh_field("lower_cutoff_sgpa");
+		refresh_field("cutoff_scholarship_table");
+					}
+				}
+			);
+		
+
+frappe.ui.form.on('Scholarships', {
+	onload: function(frm) {
+
+		frm.get_field('topper_scholarship_table').grid.cannot_add_rows = true;
+	}
+});
+
+frappe.ui.form.on('Scholarships', {
+	onload: function(frm) {
+
+		frm.get_field('cutoff_scholarship_table').grid.cannot_add_rows = true;
+	}
+});
+
+frappe.ui.form.on('Scholarships', {
+	type_of_scholarship: function(frm) {
+		cur_frm.clear_table("topper_scholarship_table");
+		frm.set_value("upper_cutoff_sgpa", "");
+		frm.set_value("lower_cutoff_sgpa", "");
+		cur_frm.clear_table("cutoff_scholarship_table");
+		refresh_field("topper_scholarship_table");
+		refresh_field("upper_cutoff_sgpa");
+		refresh_field("lower_cutoff_sgpa");
+		refresh_field("cutoff_scholarship_table");
+					}
+				}
+			);

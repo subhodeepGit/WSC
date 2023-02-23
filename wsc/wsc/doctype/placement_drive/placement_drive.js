@@ -15,7 +15,7 @@ frappe.ui.form.on('Placement Drive', {
 
 	get_students: function(frm){
 		// console.log(frm.doc.placement_company , frm.doc.academic_year , frm.doc.academic_term)
-		// if(!frm.doc.__isLocal){
+		if(!frm.is_new()){
 			frappe.call({
 				method: 'wsc.wsc.doctype.placement_drive.placement_drive.get_eligibility',
 				args: {
@@ -46,7 +46,7 @@ frappe.ui.form.on('Placement Drive', {
 			})
 			frm.refresh();
 			frm.refresh_field("eligible_student")
-		// }
+		}
 		
 	},
 	setup:function(frm){
@@ -97,19 +97,9 @@ frappe.ui.form.on('Placement Drive', {
 			}
 		}
 	},
-	// before_save:function(frm){
-	// 	var result = {}
-	// 	var classes = [];
-	// 	var marks = [];
-	// 	for (var i = 0; i < frm.doc.eligibility_criteria.length; i++) {
-	// 		classes.push(frm.doc.eligibility_criteria[i].class)  
-	// 		marks.push(frm.doc.eligibility_criteria[i].percentage)
-	// 	}
-
-	// 	// console.log(classes , marks)
-	// 	result.class = classes
-	// 	result.marks = marks
-	// 	// console.log(1)
-	// 	// frm.add_custom_button("Get Student")
-	// }
+	validate:function(frm){
+		if(!frm.is_new()){
+			frm.set_df_property('get_students' , 'hidden' , 0)
+		}
+	}
 });

@@ -47,8 +47,6 @@ def applicationUpdateTable(self):
 			"residence_type":self.type_of_residence_requested,
 			"residence_type_name":self.type_of_residence_name_requested,
 			"date":datetime.date.today(),
-			"start_date":"",
-			"end_date":"",
 			"status":"Applied for Allotment"
 			})
 		allotmentData.save()	
@@ -64,8 +62,6 @@ def cancelRejected(self):
 				"residence_type":self.type_of_residence_requested,
 				"residence_type_name":self.type_of_residence_name_requested,
 				"date":datetime.date.today(),
-				"start_date":"",
-				"end_date":"",
 				"status":"Cancelled by Applicant"
 				})
 	allotmentData.save()	

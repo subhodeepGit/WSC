@@ -17,8 +17,10 @@ class DeathDeallotment(Document):
 		frappe.db.sql("""UPDATE `tabRoom Masters` SET `vacancy`=`vacancy`+1 WHERE `name`="%s" """%(room_id))
 		status=frappe.get_all("Room Allotment",{"name":doc.student},['hostel_registration_no'])
 		frappe.db.set_value("Student Hostel Admission",status[0]['hostel_registration_no'], "allotment_status", "Death-Deallotted") 			
-		pass
 
+
+	def on_cancel(doc):
+		frappe.throw("You cannot cancel the Document")
 
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs

@@ -294,7 +294,7 @@ def make_student_admit_card(doc):
                     sac.current_program=doc.exam_program
                     sac.registration_no = program_enrollment
                     sac.student_roll_no = stud.parent
-                    sac.student_name = frappe.db.get_value("Student",stud.parent,'title')
+                    sac.student_name = frappe.db.get_value("Student",stud.parent,'student_name')
                     sac.set("courses",[])
                     for course in doc.courses_offered:
                         sac.append("courses",{

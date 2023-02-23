@@ -14,6 +14,15 @@ frappe.ui.form.on('Deallotment Process', {
 		if(frm.doc.workflow_state == 'Approved'){
 			frm.trigger("fee_components");
 		}
+		if(frm.doc.workflow_state == "Rejected" || frm.doc.workflow_state == "Clearence From Hostel" || frm.doc.workflow_state == "Withdrawl of Application"){
+			frm.set_df_property('allotment_number', 'read_only', 1);
+			frm.set_df_property('guardians_application', 'read_only', 1);
+			frm.set_df_property('students_application', 'read_only', 1);
+			frm.set_df_property('address_proof', 'read_only', 1);
+			frm.set_df_property('end_date', 'read_only', 1);
+			frm.set_df_property("components", "cannot_add_rows", true);			
+			frm.set_df_property("components", "cannot_delete_rows", true);
+		}
 	},
 
 	fee_components(frm){

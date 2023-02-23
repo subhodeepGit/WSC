@@ -43,8 +43,6 @@ def residenceHistoryUpdate(self):
 			"building_name":self.changed_building_name,
 			"residence_allotment_number":self.residence_allotment_number,
 			"date":datetime.date.today(),
-			"start_date":"",
-			"end_date":"",
 			"status":"Applied for De-Allotment"
 			})
 	allotmentData.save()

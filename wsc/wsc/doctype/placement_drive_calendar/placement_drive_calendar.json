@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{placement_drive}-{####}",
+ "autoname": "format:{placement_company}-{####}",
  "creation": "2023-01-27 15:57:17.102780",
  "default_view": "List",
  "doctype": "DocType",
@@ -9,14 +9,16 @@
  "engine": "InnoDB",
  "field_order": [
   "academic_year",
+  "placement_company",
   "placement_drive",
   "round_of_placement",
   "reporting_date",
-  "round_name",
   "column_break_4",
   "reporting_time",
+  "reporting_end_time",
   "location",
-  "color"
+  "color",
+  "amended_from"
  ],
  "fields": [
   {
@@ -31,19 +33,15 @@
    "label": "Reporting Date"
   },
   {
-   "fieldname": "round_name",
-   "fieldtype": "Data",
-   "label": "Round Name"
-  },
-  {
    "fieldname": "reporting_time",
    "fieldtype": "Time",
    "label": "Reporting Time"
   },
   {
    "fieldname": "location",
-   "fieldtype": "Data",
-   "label": "Location"
+   "fieldtype": "Link",
+   "label": "Location",
+   "options": "Location"
   },
   {
    "fieldname": "column_break_4",
@@ -56,7 +54,7 @@
   },
   {
    "fieldname": "round_of_placement",
-   "fieldtype": "Data",
+   "fieldtype": "Select",
    "label": "Round of Placement"
   },
   {
@@ -64,11 +62,32 @@
    "fieldtype": "Link",
    "label": "Academic Year",
    "options": "Academic Year"
+  },
+  {
+   "fieldname": "placement_company",
+   "fieldtype": "Link",
+   "label": "Placement company",
+   "options": "Placement Company"
+  },
+  {
+   "fieldname": "reporting_end_time",
+   "fieldtype": "Time",
+   "label": "Reporting End Time"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Placement Drive Calendar",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-02-09 17:19:20.669234",
+ "modified": "2023-02-17 17:41:09.360465",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive Calendar",

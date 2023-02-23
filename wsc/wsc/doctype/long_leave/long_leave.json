@@ -35,7 +35,15 @@
   "state",
   "student_reply_section",
   "medium_of_communicatinon_from_student",
+  "letter_attacmnent_student",
+  "email",
   "communication_phone_no",
+  "column_break_32",
+  "address_line_1_student",
+  "address_line_2_student",
+  "pincode_student",
+  "city_student",
+  "state_student",
   "reply_of_letter"
  ],
  "fields": [
@@ -142,7 +150,7 @@
   {
    "depends_on": "eval:doc.medium_of_communicatinon == \"Telephone\";",
    "fieldname": "phone_no",
-   "fieldtype": "Data",
+   "fieldtype": "Phone",
    "label": "Phone No"
   },
   {
@@ -157,16 +165,16 @@
    "options": "\nTelephone\nEmail\nPostal"
   },
   {
+   "depends_on": "eval:doc.medium_of_communicatinon_from_student == \"Telephone\";",
    "fieldname": "communication_phone_no",
-   "fieldtype": "Data",
+   "fieldtype": "Phone",
    "label": "Communication Phone no"
   },
   {
    "depends_on": "eval:doc.medium_of_communicatinon == \"Email\";",
    "fieldname": "email_id",
    "fieldtype": "Data",
-   "label": "Email Id",
-   "options": "Email"
+   "label": "Email Id"
   },
   {
    "fieldname": "column_break_18",
@@ -226,31 +234,79 @@
    "fieldtype": "Data",
    "label": "Registration Number",
    "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.medium_of_communicatinon_from_student == \"Postal\";",
+   "fieldname": "letter_attacmnent_student",
+   "fieldtype": "Attach",
+   "label": "Letter Attacmnent"
+  },
+  {
+   "depends_on": "eval:doc.medium_of_communicatinon_from_student == \"Email\";",
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "fieldname": "column_break_32",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.medium_of_communicatinon_from_student == \"Postal\";",
+   "fieldname": "address_line_1_student",
+   "fieldtype": "Data",
+   "label": "Address Line 1"
+  },
+  {
+   "depends_on": "eval:doc.medium_of_communicatinon_from_student == \"Postal\";",
+   "fieldname": "address_line_2_student",
+   "fieldtype": "Data",
+   "label": "Address Line 2"
+  },
+  {
+   "depends_on": "eval:doc.medium_of_communicatinon_from_student == \"Postal\";",
+   "fieldname": "pincode_student",
+   "fieldtype": "Data",
+   "label": "Pincode"
+  },
+  {
+   "depends_on": "eval:doc.medium_of_communicatinon_from_student == \"Postal\";",
+   "fieldname": "city_student",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "depends_on": "eval:doc.medium_of_communicatinon_from_student == \"Postal\";",
+   "fieldname": "state_student",
+   "fieldtype": "Data",
+   "label": "State"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-09-15 18:38:07.887862",
+ "modified": "2023-02-21 15:36:49.730293",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Long Leave",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
-    {
-     "create": 1,
-     "delete": 1,
-     "email": 1,
-     "export": 1,
-     "print": 1,
-     "read": 1,
-     "report": 1,
-     "role": "System Manager",
-     "share": 1,
-     "write": 1
-    }
-   ],
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1,
  "track_seen": 1,
  "track_views": 1

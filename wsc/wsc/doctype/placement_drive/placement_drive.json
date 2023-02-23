@@ -123,7 +123,8 @@
    "fieldname": "posting_date",
    "fieldtype": "Date",
    "label": "Posting Date",
-   "read_only": 1
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fieldname": "for_programs",
@@ -170,13 +171,15 @@
    "fieldname": "sector_of_work",
    "fieldtype": "Link",
    "label": "Sector of Work",
-   "options": "Sector"
+   "options": "Sector",
+   "reqd": 1
   },
   {
    "fieldname": "placement_drive_for",
    "fieldtype": "Select",
    "label": "Placement Drive For",
-   "options": "\nFreshers\nExperience\nBoth"
+   "options": "\nFreshers\nExperience\nBoth",
+   "reqd": 1
   },
   {
    "fieldname": "eligibility_section",
@@ -224,11 +227,13 @@
    "fieldname": "eligible_student",
    "fieldtype": "Table",
    "label": "Eligible Student",
-   "options": "Eligible Student"
+   "options": "Eligible Student",
+   "read_only": 1
   },
   {
    "fieldname": "get_students",
    "fieldtype": "Button",
+   "hidden": 1,
    "label": "Get Students"
   },
   {
@@ -244,7 +249,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-17 15:28:07.853085",
+ "modified": "2023-02-21 17:28:28.265387",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive",

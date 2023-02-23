@@ -69,36 +69,6 @@ def get_date_of_round(doc, drive_name, round_name):
 	return data
 
 @frappe.whitelist()
-def get_round_placement_event(date, time, filters=None):
-	"""Returns events for Course Schedule Calendar view rendering.
-
-	:param start: Start date-time.
-	:param end: End date-time.
-	:param filters: Filters (JSON).
-	"""
-	from frappe.desk.calendar import get_event_conditions
-
-	conditions = get_event_conditions("Course Schedule", filters)
-
-	data = frappe.db.sql(
-		"""select name, course, color,
-			timestamp(schedule_date, from_time) as from_time,
-			timestamp(schedule_date, to_time) as to_time,
-			room, student_group, 0 as 'allDay'
-		from `tabCourse Schedule`
-		where ( schedule_date between %(start)s and %(end)s )
-		{conditions}""".format(
-			conditions=conditions
-		),
-		# {"start": start, "end": end},
-		as_dict=True,
-		update={"allDay": 0},
-	)
-
-	return data
-
-
-@frappe.whitelist()
 def get_title(company_name):
 	data = frappe.db.sql(""" SELECT title FROM `tabPlacement Drive` where placement_company = '%s' """%(company_name))
 	return data

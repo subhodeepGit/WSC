@@ -101,9 +101,11 @@ def create_fees(doc,fee_structure_id,cost_center=None,on_submit=0):
 	frappe.db.set_value("Student Hostel Admission",doc.name,"hostel_fees_id",fees.name)
 
 def cancel_fees(doc):
-	hostel_fee_object= frappe.get_doc("Hostel Fees",doc.hostel_fees_id)
-	hostel_fee_object.cancel()
-	frappe.msgprint("Hostel Fees is also cancelled")
+	if doc.hostel_fees_id:
+		hostel_fee_object= frappe.get_doc("Hostel Fees",doc.hostel_fees_id)
+		# if hostel_fee_object:
+		hostel_fee_object.cancel()
+		frappe.msgprint("Hostel Fees is also cancelled")
 
 
 @frappe.whitelist()
@@ -121,10 +123,13 @@ def room_query(doctype, txt, searchfield, start, page_len, filters):
 def fst_query(doc):
 	doc = json.loads(doc)
 	current_education_fetch=doc.get("current_education_fetch")
-	filtered_fst={'programs':current_education_fetch[0]['programs'],
-				'semesters':current_education_fetch[0]['semesters'],
-				"room_type":doc.get("room_type"),
-				'academic_year':current_education_fetch[0]['academic_year'],
-				'academic_term':current_education_fetch[0]['academic_term']
-				}		
+	filtered_fst=[]
+	if current_education_fetch:
+		filtered_fst={'programs':current_education_fetch[0]['programs'],
+					'semesters':current_education_fetch[0]['semesters'],
+					"room_type":doc.get("room_type"),
+					'academic_year':current_education_fetch[0]['academic_year'],
+					'academic_term':current_education_fetch[0]['academic_term']
+					}		
 	return filtered_fst
+
