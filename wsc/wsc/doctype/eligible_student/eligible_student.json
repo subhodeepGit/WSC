@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "hash",
  "creation": "2023-01-06 17:08:33.466393",
  "default_view": "List",
  "doctype": "DocType",
@@ -16,8 +17,10 @@
   {
    "fieldname": "student_doctype_name",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Student No.",
-   "options": "Student"
+   "options": "Student",
+   "reqd": 1
   },
   {
    "fieldname": "student_name",

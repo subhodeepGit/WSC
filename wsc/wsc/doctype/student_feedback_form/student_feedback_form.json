@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:EDU-FED-.YYYY.-#####",
+ "autoname": "STU-.YYYY.-.#####",
  "creation": "2023-01-11 14:57:08.231908",
  "default_view": "List",
  "doctype": "DocType",
@@ -116,11 +116,11 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-25 10:53:25.324169",
+ "modified": "2023-02-24 15:05:08.275215",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Feedback Form",
- "naming_rule": "Expression",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
