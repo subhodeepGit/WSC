@@ -23,7 +23,7 @@ frappe.ui.form.on('Download Student Passport Photo', {
 						var c = frm.add_child("document_details")
 						c.applicant_number=element.name
 						c.student_name=element.title
-						c.file=element.passport_photo
+						c.file=element.image
 					});
 				}
 				frm.refresh();
@@ -124,7 +124,7 @@ frappe.ui.form.on('Download Student Passport Photo', {
                             var c = frm.add_child("document_details")
                             c.applicant_number=element.name
                             c.student_name=element.title
-                            c.file=element.passport_photo
+                            c.file=element.image
                         });
                     }
                     frm.refresh();
@@ -195,7 +195,7 @@ frappe.ui.form.on('Download Student Passport Photo', {
                             var c = frm.add_child("document_details")
                             c.applicant_number=element.name
                             c.student_name=element.title
-                            c.file=element.passport_photo
+                            c.file=element.image
 							c.programs=element.programs
                         });
                     }
@@ -252,7 +252,7 @@ frappe.ui.form.on('Download Student Passport Photo', {
                             var c = frm.add_child("document_details")
                             c.applicant_number=element.name
                             c.student_name=element.title
-                            c.file=element.passport_photo
+                            c.file=element.image
 							c.programs=element.programs
                         });
                     }
