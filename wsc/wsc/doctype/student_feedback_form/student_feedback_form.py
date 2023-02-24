@@ -6,7 +6,7 @@ from frappe.model.document import Document
 
 class StudentFeedbackForm(Document):
 	def validate(self):
-		data=frappe.get_all("Student Feedback Form",{"student":self.student,"course":self.course,"instructor":self.instructor})
+		data=frappe.get_all("Student Feedback Form",{"student":self.student,"course":self.course,"instructor":self.instructor,"docstatus":1})
 		if data:
 			frappe.throw("Your Feedback For This Course and This Instructor Already Exists")
 		

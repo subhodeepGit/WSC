@@ -117,7 +117,7 @@
   },
   {
    "depends_on": "eval:doc.document_based_on==\"Students\"",
-   "fetch_from": "student_application_number.title_name",
+   "fetch_from": "student_application_number.title",
    "fieldname": "first_name",
    "fieldtype": "Data",
    "label": "Student Name",
@@ -223,10 +223,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-10-27 11:21:34.111736",
+ "modified": "2023-02-24 18:10:19.064727",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Download Student Passport Photo",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -244,5 +245,6 @@
  ],
  "show_preview_popup": 1,
  "sort_field": "modified",
- "sort_order": "DESC"
+ "sort_order": "DESC",
+ "states": []
 }

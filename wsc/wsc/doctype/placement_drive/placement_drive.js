@@ -26,40 +26,26 @@ frappe.ui.form.on('Placement Drive', {
 					'required_cgpa':frm.doc.current_cgpapercentage,
 					'backlog':frm.doc.active_backlog
 				},
-				callback: function(result){				
+				callback: function(result){
 					const res = Object.values(result)
-					
 					const values = Object.values(res[0])
-					console.log(values[0].length);
-					if(values[0].length !== 0){
-						
 					// console.log(res)
 					// console.log(values.length)
-						let r = values[0]
-						// console.log(r)
-						// console.log(r.push("update"));
+					let r = values[0]
+					// console.log(r[0])
 	
-						frappe.model.clear_table(frm.doc, 'eligible_student');
-						values.forEach(r => {
-							// console.log(r);
-							let c =frm.add_child('eligible_student')
-							c.student_doctype_name= r[0].parent
-							c.student_name = r[0].name
-							c.program_enrollment = r[0].programs
-							c.academic_year = r[0].academic_year
-						})	
-						frm.refresh();
-						frm.refresh_field("eligible_student")
-					} else {
-						alert("No Eligible Students found")
-						frappe.model.clear_table(frm.doc, 'eligible_student');
-						frm.refresh();
-						frm.refresh_field("eligible_student")
-					}
+					frappe.model.clear_table(frm.doc, 'eligible_student');
+					values.forEach(r => {
+						let c =frm.add_child('eligible_student')
+						c.student_doctype_name= r[0].parent
+						c.student_name = r[0].name
+						c.program_enrollment = r[0].programs
+						c.academic_year = r[0].academic_year
+					})
 				}
 			})
-			// frm.refresh();
-			// frm.refresh_field("eligible_student")
+			frm.refresh();
+			frm.refresh_field("eligible_student")
 		}
 		
 	},

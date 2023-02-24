@@ -13,8 +13,8 @@ frappe.ui.form.on('Student Admit Card', {
 		frm.trigger("filters")
 	},
 	student_roll_no(frm){
-		frappe.db.get_value("Student", {'name':frm.doc.student_roll_no},'title', resp => {
-            frm.set_value('student_name', resp.title)
+		frappe.db.get_value("Student", {'name':frm.doc.student_roll_no},'student_name', resp => {
+            frm.set_value('student_name', resp.student_name)
         })
         frm.trigger("filters")
         frm.clear_table("courses");
