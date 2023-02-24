@@ -11,13 +11,14 @@ required_apps = ["education","hrms"]
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/wsc/css/wsc.css"
-# app_include_js = "/assets/wsc/js/wsc.js"
+app_include_css = "/assets/wsc/css/wsc_ui.css"
+app_include_js = "/assets/wsc/js/wsc_ui.js"
+
 app_include_js = "wsc.bundle.js"
 
 # include js, css files in header of web template
-# web_include_css = "/assets/wsc/css/wsc.css"
-# web_include_js = "/assets/wsc/js/wsc.js"
+web_include_css = "/assets/wsc/css/wsc_ui.css"
+web_include_js = "/assets/wsc/js/wsc_ui.js"
 
 # include custom scss in every website theme (without file extension ".scss")
 # website_theme_scss = "wsc/public/scss/website"
@@ -319,7 +320,6 @@ scheduler_events = {
 override_whitelisted_methods = {
 	"education.education.api.get_course_schedule_events": "wsc.wsc.doctype.course_schedule.get_course_schedule_events",
     "education.education.api.mark_attendance": "wsc.wsc.doctype.student_attendance.mark_attendance",
-
     "erpnext.accounts.doctype.payment_entry.payment_entry.get_payment_entry":"wsc.wsc.doctype.payment_entry.get_payment_entry",	
 	"erpnext.accounts.doctype.payment_entry.payment_entry.get_party_details":"wsc.wsc.doctype.payment_entry.get_party_details",
 	"erpnext.accounts.doctype.payment_entry.payment_entry.get_account_details":"wsc.wsc.doctype.payment_entry.get_account_details",
@@ -397,3 +397,8 @@ override_doctype_class = {
     #  {"dt": "Workflow Action Master"},
     # {"dt" : "Workflow State"}
 # ]
+
+website_context = {
+    "favicon": "/assets/wsc/images/logo.jpg",
+    "splash_image": "/assets/wsc/images/logo.jpg"
+}

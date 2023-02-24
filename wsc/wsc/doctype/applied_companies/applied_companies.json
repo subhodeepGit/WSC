@@ -1,14 +1,15 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2023-02-13 17:25:41.520919",
+ "creation": "2023-02-15 11:04:11.929745",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "company_name",
-  "current_round",
-  "status"
+  "drive_title",
+  "round_name",
+  "round_status"
  ],
  "fields": [
   {
@@ -18,22 +19,28 @@
    "label": "Company name"
   },
   {
-   "fieldname": "current_round",
+   "fieldname": "round_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Current round"
+   "label": "Round name"
   },
   {
-   "fieldname": "status",
+   "fieldname": "round_status",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Status"
+   "label": "Round Status"
+  },
+  {
+   "fieldname": "drive_title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Drive title"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-02-13 17:28:09.289845",
+ "modified": "2023-02-20 12:13:14.790874",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Applied Companies",

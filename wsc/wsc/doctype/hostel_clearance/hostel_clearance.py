@@ -15,18 +15,14 @@ class HostelClearance(Document):
 		due_status=doc.due_status
 		due_amount=doc.due_amount
 		reason_of_due=doc.reason_of_due
-		info=""" WHERE `allotment_number`="%s" and (`docstatus`!=1 and `docstatus`!=2) """%(allotment_number)
+		info=""" WHERE `allotment_number`="%s" and (`docstatus`=1 and `docstatus`=2) """%(allotment_number)
 		HC_info=hostel_cle_df("Genaral",info)
-		print("\n\n\n")
-		print(HC_info)
 		if len(HC_info)==0:
 			if due_status=="Dues":
 				if due_amount!=None and reason_of_due!=None:
 					pass
 				else:
 					frappe.throw("Due amount or Reason of Due")
-			else:
-				pass
 		else:
 			frappe.throw("Document is already present in Doc no %s"%(HC_info["HC_doc_no"][0]))	
 
@@ -52,9 +48,8 @@ class HostelClearance(Document):
 								(end_date,type_of_clearance,allotment_number))
 					room_id=doc.room_number			
 					frappe.db.sql("""UPDATE `tabRoom Masters` SET `vacancy`=`vacancy`+1 WHERE `name`="%s" """%(room_id))
-					status=frappe.get_all("Room Allotment",{"name":doc.student},['hostel_registration_no'])
+					status=frappe.get_all("Room Allotment",{"name":doc.allotment_number},['hostel_registration_no'])
 					frappe.db.set_value("Student Hostel Admission",status[0]['hostel_registration_no'], "allotment_status", "Deallotted") 				
-					pass
 				else:
 					frappe.throw("Kindly check the End Date")
 			else:
@@ -73,9 +68,6 @@ class HostelClearance(Document):
 			else:
 				frappe.throw("Kindly check the End Date")
 
-
-
-
 	# @frappe.whitelist()		
 	def on_cancel(doc):
 		#doc status-2
@@ -86,15 +78,6 @@ class HostelClearance(Document):
 		frappe.db.sql("""UPDATE `tabRoom Masters` SET `vacancy`=`vacancy`-1 WHERE `name`="%s" """%(room_id))
 		status=frappe.get_all("Room Allotment",{"name":doc.allotment_number},['hostel_registration_no'])
 		frappe.db.set_value("Student Hostel Admission",status[0]['hostel_registration_no'], "allotment_status", "Deallotted") 							
-		pass
-
-
-
-
-
-
-
-
 
 def hostel_cle_df(flag,info):
 	if flag=="Genaral":

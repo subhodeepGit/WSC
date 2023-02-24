@@ -59,3 +59,17 @@ def get_fee_types():
     for d in frappe.get_all("Fee Type",order_by="name"):
         types.append(d.name)
     return "\n".join([''] + types)
+
+@frappe.whitelist()
+def make_fee_schedule(source_name, target_doc=None):
+    return get_mapped_doc("Fee Structure", source_name,	{
+        "Fee Structure": {
+            "doctype": "Fee Schedule",
+            "validation": {
+                "docstatus": ["=", 1],
+            }
+        },
+        "Fee Component": {
+            "doctype": "Fee Component"
+        }
+    }, target_doc)
