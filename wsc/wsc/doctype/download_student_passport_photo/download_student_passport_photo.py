@@ -17,7 +17,7 @@ def generate_passport_photo(programs,have_you_approved_the_selected_program,appl
 	last_result=[]
 	if(have_you_approved_the_selected_program=="1"):
 		for priority_program in frappe.get_all("Program Priority",{'idx':1,"programs":programs,"approve":1},['programs','idx','parent']):
-			student_list = frappe.db.get_all("Student Applicant",{"name":priority_program.parent,"academic_year":academic_year,"department":department,"program_grade":program_grade,"docstatus":1,"application_status":application_status},["name","title","passport_photo"])
+			student_list = frappe.db.get_all("Student Applicant",{"name":priority_program.parent,"academic_year":academic_year,"department":department,"program_grade":program_grade,"docstatus":1,"application_status":application_status},["name","title","image"])
 			last_result.extend(student_list)
 		if len(last_result)==0:
 			frappe.throw(_("Not a single Student {0} for {1} as their First Priority").format(getlink("Student Applicant",application_status),(programs)))
@@ -25,7 +25,7 @@ def generate_passport_photo(programs,have_you_approved_the_selected_program,appl
 			return last_result
 	else:
 		for priority_program in frappe.db.get_all("Program Priority",{'idx':1,"programs":programs},['programs','idx','parent']):
-			student_list = frappe.db.get_all("Student Applicant",{"name":priority_program.parent,"academic_year":academic_year,"department":department,"program_grade":program_grade,"docstatus":1,"application_status":application_status},["name","title","passport_photo"])
+			student_list = frappe.db.get_all("Student Applicant",{"name":priority_program.parent,"academic_year":academic_year,"department":department,"program_grade":program_grade,"docstatus":1,"application_status":application_status},["name","title","image"])
 			last_result.extend(student_list)
 		if len(last_result)==0:
 			frappe.throw(_("Not a single Student {0} for {1} as their First Priority").format(getlink("Student Applicant",application_status),(programs)))
@@ -36,7 +36,7 @@ def generate_passport_photo2(programs,have_you_approved_the_selected_program,app
 	last_result=[]
 	if(have_you_approved_the_selected_program=="1"):
 		for priority_program in frappe.db.get_all("Program Priority",{'idx':2,"programs":programs,"approve":1},['programs','idx','parent']):
-			student_list = frappe.db.get_all("Student Applicant",{"name":priority_program.parent,"academic_year":academic_year,"department":department,"program_grade":program_grade,"docstatus":1,"application_status":application_status},["name","title","passport_photo"])
+			student_list = frappe.db.get_all("Student Applicant",{"name":priority_program.parent,"academic_year":academic_year,"department":department,"program_grade":program_grade,"docstatus":1,"application_status":application_status},["name","title","image"])
 			last_result.extend(student_list)
 		if len(last_result)==0:
 				frappe.throw(_("Not a single Student {0} for {1} as their Second Priority").format(getlink("Student Applicant",application_status),(programs)))
@@ -44,7 +44,7 @@ def generate_passport_photo2(programs,have_you_approved_the_selected_program,app
 			return last_result
 	else:
 		for priority_program in frappe.db.get_all("Program Priority",{'idx':2,"programs":programs},['programs','idx','parent']):
-			student_list = frappe.db.get_all("Student Applicant",{"name":priority_program.parent,"academic_year":academic_year,"department":department,"program_grade":program_grade,"docstatus":1,"application_status":application_status},["name","title","passport_photo"])
+			student_list = frappe.db.get_all("Student Applicant",{"name":priority_program.parent,"academic_year":academic_year,"department":department,"program_grade":program_grade,"docstatus":1,"application_status":application_status},["name","title","image"])
 			last_result.extend(student_list)
 		if len(last_result)==0:
 				frappe.throw(_("Not a single Student {0} for {1} as their Second Priority").format(getlink("Student Applicant",application_status),(programs)))
@@ -55,7 +55,7 @@ def generate_passport_photo3(programs,have_you_approved_the_selected_program,app
 	last_result=[]
 	if(have_you_approved_the_selected_program=="1"):
 		for priority_program in frappe.db.get_all("Program Priority",{'idx':3,"programs":programs,"approve":1},['programs','idx','parent']):
-			student_list = frappe.db.get_all("Student Applicant",{"name":priority_program.parent,"academic_year":academic_year,"department":department,"program_grade":program_grade,"docstatus":1,"application_status":application_status},["name","title","passport_photo"])
+			student_list = frappe.db.get_all("Student Applicant",{"name":priority_program.parent,"academic_year":academic_year,"department":department,"program_grade":program_grade,"docstatus":1,"application_status":application_status},["name","title","image"])
 			last_result.extend(student_list)
 		if len(last_result)==0:
 			frappe.throw(_("Not a single Student {0} for {1} as their Third Priority").format(getlink("Student Applicant",application_status),(programs)))
@@ -64,7 +64,7 @@ def generate_passport_photo3(programs,have_you_approved_the_selected_program,app
 			return last_result
 	else:
 		for priority_program in frappe.db.get_all("Program Priority",{'idx':3,"programs":programs},['programs','idx','parent']):
-			student_list = frappe.db.get_all("Student Applicant",{"name":priority_program.parent,"academic_year":academic_year,"department":department,"program_grade":program_grade,"docstatus":1,"application_status":application_status},["name","title","passport_photo"])
+			student_list = frappe.db.get_all("Student Applicant",{"name":priority_program.parent,"academic_year":academic_year,"department":department,"program_grade":program_grade,"docstatus":1,"application_status":application_status},["name","title","image"])
 			last_result.extend(student_list)
 		if len(last_result)==0:
 			frappe.throw(_("Not a single Student {0} for {1} as their Third Priority").format(getlink("Student Applicant",application_status),(programs)))
@@ -73,5 +73,5 @@ def generate_passport_photo3(programs,have_you_approved_the_selected_program,app
 			return last_result
 @frappe.whitelist()
 def student_passport_photo(student_applicant):
-	ind_student_photo=frappe.get_all("Student Applicant",filters=[["name","=","%s"%(student_applicant)],["docstatus","=",1]],fields=["name","title","passport_photo"])
+	ind_student_photo=frappe.get_all("Student Applicant",filters=[["name","=","%s"%(student_applicant)],["docstatus","=",1]],fields=["name","title","image"])
 	return ind_student_photo
