@@ -254,7 +254,7 @@ def placement_drive_submit(doc):
     msg+="""<p>Eligibility Criteria: {0}</p>""".format(doc.eligibility_criteria)
     msg+="""<p>Placement Process: {0}</p>""".format(doc.process_of_placement)
     for s in doc.for_programs:
-        student_list = frappe.get_list("Current Educational Details",{'programs':s.programs, 'semesters':s.semester}, 'parent')
+        student_list = frappe.get_all("Current Educational Details",{'programs':s.programs, 'semesters':s.semester}, 'parent')
         for stud in student_list:
             send_mail(frappe.db.get_value("Student",stud.parent,"student_email_id"),sub,msg)
 
