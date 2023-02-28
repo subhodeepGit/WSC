@@ -8,7 +8,7 @@ frappe.ui.form.on('Migration Certificate', {
 				doc:frm.doc,
 				method: "get_missing_fields",
 				callback: function(r) { 
-					frm.set_value("date",frappe.datetime.get_today())
+					// frm.set_value("date",frappe.datetime.get_today())
 					if(r.message){
 						if (r.message['academic_year']){
 							frm.set_value("academic_year",r.message['academic_year'])
