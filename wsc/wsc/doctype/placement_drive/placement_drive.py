@@ -20,7 +20,6 @@ class PlacementDrive(Document):
 		rounds_set = set(rounds)
 		# error_code = 500
 		if len(rounds) != len(rounds_set):
-			print("\n\n\n\nrounds")
 			print(len(rounds) , len(rounds_set))
 			frappe.throw("Duplicate Round Names in rounds of placement")
 
