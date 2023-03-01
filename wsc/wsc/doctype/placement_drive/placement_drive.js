@@ -2,19 +2,7 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Placement Drive', {
-	// refresh: function(frm) {
-
-	// 	// console.log(frm.doc.doc_status)
-	// 	if(frm.doc.docstatus == 1 ){
-	// 		frm.add_custom_button('Eligible Students' , () => {
-	// 			console.log("click")
-
-	// 		})
-	// 	}
-	// } , 
-
 	get_students: function(frm){
-		// console.log(frm.doc.placement_company , frm.doc.academic_year , frm.doc.academic_term)
 		if(!frm.is_new()){
 			frappe.call({
 				method: 'wsc.wsc.doctype.placement_drive.placement_drive.get_eligibility',
@@ -29,23 +17,26 @@ frappe.ui.form.on('Placement Drive', {
 				callback: function(result){
 					const res = Object.values(result)
 					const values = Object.values(res[0])
-					// console.log(res)
-					// console.log(values.length)
-					let r = values[0]
-					// console.log(r[0])
-	
-					frappe.model.clear_table(frm.doc, 'eligible_student');
-					values.forEach(r => {
-						let c =frm.add_child('eligible_student')
-						c.student_doctype_name= r[0].parent
-						c.student_name = r[0].name
-						c.program_enrollment = r[0].programs
-						c.academic_year = r[0].academic_year
-					})
+					if(values[0].length !== 0){
+						let r = values[0]
+						frappe.model.clear_table(frm.doc, 'eligible_student');
+						values.forEach(r => {
+							let c =frm.add_child('eligible_student')
+							c.student_doctype_name= r[0].parent
+							c.student_name = r[0].name
+							c.program_enrollment = r[0].programs
+							c.academic_year = r[0].academic_year
+						})
+						frm.refresh();
+						frm.refresh_field("eligible_student")	
+					} else {
+						alert("No Eligible Students found")
+						frappe.model.clear_table(frm.doc, 'eligible_student');
+						frm.refresh();
+						frm.refresh_field("eligible_student")
+					}
 				}
 			})
-			frm.refresh();
-			frm.refresh_field("eligible_student")
 		}
 		
 	},
@@ -97,7 +88,7 @@ frappe.ui.form.on('Placement Drive', {
 			}
 		}
 	},
-	validate:function(frm){
+	onload:function(frm){
 		if(!frm.is_new()){
 			frm.set_df_property('get_students' , 'hidden' , 0)
 		}
