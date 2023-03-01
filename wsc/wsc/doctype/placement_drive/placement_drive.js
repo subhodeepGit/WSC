@@ -72,14 +72,18 @@ frappe.ui.form.on('Placement Drive', {
 		if(frm.doc.placement_company){
 			frappe.model.with_doc("Placement Company", frm.doc.placement_company, function() {
                 var tabletransfer= frappe.model.get_doc("Placement Company", frm.doc.placement_company)
-                frm.clear_table("for_department");
+                frm.clear_table("for_department");	
                 $.each(tabletransfer.belong_to_department, function(index, row){
                     var d = frm.add_child("for_department");
                     d.department = row.department;
                     frm.refresh_field("for_department");
                 });
             });
-        }
+        } else{
+			frm.clear_table("for_department");
+			frm.refresh();
+			frm.refresh_field("eligible_student")
+		}
 	},
 	application_end_date:function(frm){
 		if(frm.doc.application_start_date && frm.doc.application_end_date){

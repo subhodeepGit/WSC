@@ -7,7 +7,8 @@
  "engine": "InnoDB",
  "field_order": [
   "programs",
-  "semester"
+  "semester",
+  "amended_from"
  ],
  "fields": [
   {
@@ -16,7 +17,8 @@
    "ignore_user_permissions": 1,
    "in_list_view": 1,
    "label": "Programs",
-   "options": "Programs"
+   "options": "Programs",
+   "reqd": 1
   },
   {
    "fieldname": "semester",
@@ -24,14 +26,24 @@
    "ignore_user_permissions": 1,
    "in_list_view": 1,
    "label": "Semester",
-   "options": "Program"
+   "options": "Program",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Place Eligible Programs",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-02-03 11:31:17.261004",
+ "modified": "2023-03-01 15:15:33.517777",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Place Eligible Programs",
@@ -39,5 +51,6 @@
  "permissions": [],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }
