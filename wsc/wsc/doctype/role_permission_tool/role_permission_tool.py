@@ -8,7 +8,12 @@ class RolePermissionTool(Document):
 	def validate(self):
 		if self.role =="Administrator":
 			frappe.throw("Administrator is not for User")
+
+	def before_submit(self):
+		inactive_role(self)
+
 	def on_submit(self):
+		active_role(self)
 		for t_object in self.get("role_permission"):
 			role_permissions_manager_cration(t_object,self.role)
 	
@@ -58,6 +63,15 @@ def role_permissions_manager_cration(t_object,role):
 		role_permissions_manager_doc.email=t_object.eml_data
 		role_permissions_manager_doc.save()
 		frappe.db.sql(""" Update `tabCustom DocPerm` set import="%s" where name='%s' """%(t_object.import_data,role_permissions_manager_doc.name))
+
+def inactive_role(self):
+	old_data = frappe.get_all("Role Permission Tool",{"role":self.role,"module_name":self.module_name,"docstatus":1,"active_status":"Active"},["name"])
+	for Nr in old_data:
+		if Nr:
+			frappe.db.set_value("Role Permission Tool", Nr, "active_status","Inactive")
+
+def active_role(self):
+	frappe.db.set_value("Role Permission Tool",self.name,"active_status","Active")
 
 @frappe.whitelist()
 def fetch_data(role,module_name):

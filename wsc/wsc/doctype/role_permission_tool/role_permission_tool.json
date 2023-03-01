@@ -10,6 +10,7 @@
  "field_order": [
   "role",
   "column_break_2",
+  "active_status",
   "posting_date",
   "section_break_4",
   "module_name",
@@ -68,16 +69,26 @@
    "depends_on": "eval:doc.role",
    "fieldname": "module_name",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Module Name",
    "options": "Module",
    "reqd": 1
+  },
+  {
+   "fieldname": "active_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Active Status",
+   "options": "\nActive\nInactive",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-24 17:14:37.945381",
+ "modified": "2023-03-01 13:36:00.023430",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Role Permission Tool",
