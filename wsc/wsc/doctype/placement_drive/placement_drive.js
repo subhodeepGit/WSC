@@ -4,17 +4,23 @@
 frappe.ui.form.on('Placement Drive', {
 	get_students: function(frm){
 		if(!frm.is_new()){
+			let body = JSON.stringify({
+				academic_year:frm.doc.academic_year,
+				academic_term:frm.doc.academic_term,
+				placement_drive_for:frm.doc.placement_drive_for,
+				required_cgpa:frm.doc.current_cgpapercentage,
+				backlog:frm.doc.active_backlog,
+				program:frm.doc.for_programs,
+				eligibility_criteria:frm.doc.eligibility_criteria
+			})
+			// console.log(body)
 			frappe.call({
 				method: 'wsc.wsc.doctype.placement_drive.placement_drive.get_eligibility',
 				args: {
-					'name': frm.doc.name,
-					'academic_year':frm.doc.academic_year,
-					'academic_term':frm.doc.academic_term,
-					'placement_drive_for':frm.doc.placement_drive_for,
-					'required_cgpa':frm.doc.current_cgpapercentage,
-					'backlog':frm.doc.active_backlog
+					'body':body
 				},
 				callback: function(result){
+					console.log(result)
 					const res = Object.values(result)
 					const values = Object.values(res[0])
 					if(values[0].length !== 0){
@@ -67,6 +73,13 @@ frappe.ui.form.on('Placement Drive', {
                 }
             };
         });
+		frm.set_query("placement_company" , function(){
+			return{
+				filters:{
+					"black_list":0
+				}
+			}
+		})
 	},
 	placement_company:function(frm){
 		if(frm.doc.placement_company){
@@ -92,9 +105,18 @@ frappe.ui.form.on('Placement Drive', {
 			}
 		}
 	},
-	onload:function(frm){
+	refresh:function(frm){
 		if(!frm.is_new()){
 			frm.set_df_property('get_students' , 'hidden' , 0)
+		}
+	},
+	before_submit:function(frm){
+		if(frm.doc.eligible_student.length === 0){
+			frm.set_df_property("eligible_student" , 'reqd' , 1)
+			frm.refresh()
+		} else {
+			frm.set_df_property("eligible_student" , 'reqd' , 0)
+			frm.refresh()
 		}
 	}
 });
