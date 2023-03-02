@@ -1,189 +1,189 @@
 {
-    "actions": [],
-    "autoname": "DERESS.####",
-    "creation": "2023-01-11 14:00:17.001705",
-    "default_view": "List",
-    "doctype": "DocType",
-    "editable_grid": 1,
-    "engine": "InnoDB",
-    "field_order": [
-     "residence_de_allotment_application_number",
-     "residence_de_allotment_number",
-     "reason_for_de_allottment",
-     "residence_allotment_number",
-     "column_break_3",
-     "application_number",
-     "de_allotment_date",
-     "de_allotment_details_section",
-     "start_date",
-     "end_date",
-     "residence_serial_number",
-     "residence_number",
-     "employee_name",
-     "employee_id",
-     "column_break_11",
-     "building_name",
-     "residence_type",
-     "residence_type_name",
-     "amended_from"
-    ],
-    "fields": [
-     {
-      "fetch_from": "residence_de_allotment_application_number.employee_name",
-      "fieldname": "employee_name",
-      "fieldtype": "Data",
-      "label": "Employee Name",
-      "read_only": 1
-     },
-     {
-      "fetch_from": "residence_de_allotment_application_number.changed_residence_type",
-      "fieldname": "residence_type",
-      "fieldtype": "Data",
-      "label": "Residence Type",
-      "read_only": 1
-     },
-     {
-      "fetch_from": "residence_de_allotment_application_number.changed_residence_type_name",
-      "fieldname": "residence_type_name",
-      "fieldtype": "Data",
-      "label": "Residence Type Name",
-      "read_only": 1
-     },
-     {
-      "fetch_from": "residence_de_allotment_application_number.changed_building_name",
-      "fieldname": "building_name",
-      "fieldtype": "Data",
-      "label": "Building Name",
-      "read_only": 1
-     },
-     {
-      "fetch_from": "residence_de_allotment_application_number.changed_residence_number",
-      "fieldname": "residence_number",
-      "fieldtype": "Data",
-      "label": "Residence Number",
-      "read_only": 1
-     },
-     {
-      "fetch_from": "residence_de_allotment_application_number.employee_id",
-      "fieldname": "employee_id",
-      "fieldtype": "Data",
-      "label": "Employee ID",
-      "read_only": 1
-     },
-     {
-      "fetch_from": "residence_de_allotment_application_number.application_number",
-      "fieldname": "application_number",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Application Number",
-      "read_only": 1
-     },
-     {
-      "fieldname": "amended_from",
-      "fieldtype": "Link",
-      "label": "Amended From",
-      "no_copy": 1,
-      "options": "Residence De-Allottment",
-      "print_hide": 1,
-      "read_only": 1
-     },
-     {
-      "fetch_from": "residence_de_allotment_application_number.changed_residence_serial_number",
-      "fieldname": "residence_serial_number",
-      "fieldtype": "Data",
-      "label": "Residence Serial Number",
-      "read_only": 1
-     },
-     {
-      "default": "Today",
-      "fieldname": "de_allotment_date",
-      "fieldtype": "Date",
-      "label": "De Allotment Date",
-      "read_only": 1
-     },
-     {
-      "fieldname": "residence_de_allotment_number",
-      "fieldtype": "Data",
-      "label": "Residence De Allotment Number",
-      "read_only": 1
-     },
-     {
-      "fetch_from": "residence_de_allotment_application_number.residence_allotment_number",
-      "fieldname": "residence_allotment_number",
-      "fieldtype": "Data",
-      "label": "Residence Allotment Number",
-      "read_only": 1
-     },
-     {
-      "fieldname": "column_break_3",
-      "fieldtype": "Column Break"
-     },
-     {
-      "fieldname": "de_allotment_details_section",
-      "fieldtype": "Section Break",
-      "label": "De Allotment Details"
-     },
-     {
-      "fieldname": "column_break_11",
-      "fieldtype": "Column Break"
-     },
-     {
-      "fieldname": "residence_de_allotment_application_number",
-      "fieldtype": "Link",
-      "label": "Residence De Allotment Application Number",
-      "options": "Application for Residence De-Allottment",
-      "read_only": 1,
-      "reqd": 1,
-      "unique": 1
-     },
-     {
-      "fetch_from": "residence_de_allotment_application_number.start_date",
-      "fieldname": "start_date",
-      "fieldtype": "Date",
-      "label": "Start Date",
-      "read_only": 1
-     },
-     {
-      "default": "Today",
-      "fieldname": "end_date",
-      "fieldtype": "Date",
-      "label": "End Date",
-      "reqd": 1
-     },
-     {
-      "fetch_from": "residence_de_allotment_application_number.reason_for_de_allottment",
-      "fieldname": "reason_for_de_allottment",
-      "fieldtype": "Data",
-      "label": "Reason for De Allottment",
-      "read_only": 1
-     }
-    ],
-    "in_create": 1,
-    "index_web_pages_for_search": 1,
-    "is_submittable": 1,
-    "links": [],
-    "modified": "2023-03-02 15:56:50.643812",
-    "modified_by": "Administrator",
-    "module": "WSC",
-    "name": "Residence De-Allottment",
-    "naming_rule": "Expression (old style)",
-    "owner": "Administrator",
-    "permissions": [
-     {
-      "create": 1,
-      "delete": 1,
-      "email": 1,
-      "export": 1,
-      "print": 1,
-      "read": 1,
-      "report": 1,
-      "role": "System Manager",
-      "share": 1,
-      "write": 1
-     }
-    ],
-    "sort_field": "modified",
-    "sort_order": "DESC",
-    "states": [],
-    "title_field": "employee_name"
-   }
+ "actions": [],
+ "autoname": "DERES.####",
+ "creation": "2023-03-02 15:57:18.192264",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "residence_de_allotment_application_number",
+  "residence_de_allotment_number",
+  "reason_for_de_allottment",
+  "residence_allotment_number",
+  "column_break_3",
+  "application_number",
+  "de_allotment_date",
+  "de_allotment_details_section",
+  "start_date",
+  "end_date",
+  "residence_serial_number",
+  "residence_number",
+  "employee_name",
+  "employee_id",
+  "column_break_11",
+  "building_name",
+  "residence_type",
+  "residence_type_name",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fetch_from": "residence_de_allotment_application_number.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_de_allotment_application_number.changed_residence_type",
+   "fieldname": "residence_type",
+   "fieldtype": "Data",
+   "label": "Residence Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_de_allotment_application_number.changed_residence_type_name",
+   "fieldname": "residence_type_name",
+   "fieldtype": "Data",
+   "label": "Residence Type Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_de_allotment_application_number.changed_building_name",
+   "fieldname": "building_name",
+   "fieldtype": "Data",
+   "label": "Building Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_de_allotment_application_number.changed_residence_number",
+   "fieldname": "residence_number",
+   "fieldtype": "Data",
+   "label": "Residence Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_de_allotment_application_number.employee_id",
+   "fieldname": "employee_id",
+   "fieldtype": "Data",
+   "label": "Employee ID",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_de_allotment_application_number.application_number",
+   "fieldname": "application_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Application Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Residence De-Allotment",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_de_allotment_application_number.changed_residence_serial_number",
+   "fieldname": "residence_serial_number",
+   "fieldtype": "Data",
+   "label": "Residence Serial Number",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "de_allotment_date",
+   "fieldtype": "Date",
+   "label": "De Allotment Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "residence_de_allotment_number",
+   "fieldtype": "Data",
+   "label": "Residence De Allotment Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "residence_de_allotment_application_number.residence_allotment_number",
+   "fieldname": "residence_allotment_number",
+   "fieldtype": "Data",
+   "label": "Residence Allotment Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "de_allotment_details_section",
+   "fieldtype": "Section Break",
+   "label": "De Allotment Details"
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "residence_de_allotment_application_number",
+   "fieldtype": "Link",
+   "label": "Residence De Allotment Application Number",
+   "options": "Application for Residence De-Allotment",
+   "read_only": 1,
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fetch_from": "residence_de_allotment_application_number.start_date",
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "residence_de_allotment_application_number.reason_for_de_allotment",
+   "fieldname": "reason_for_de_allottment",
+   "fieldtype": "Data",
+   "label": "Reason for De Allotment",
+   "read_only": 1
+  }
+ ],
+ "in_create": 1,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-03-02 17:36:42.724553",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Residence De-Allotment",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "employee_name"
+}
