@@ -2,7 +2,7 @@
 // For license information, please see license.txt
 
 // To filter applications in the link field based on employee allotment status
-frappe.ui.form.on("Application for Residence De-Allottment", {
+frappe.ui.form.on("Application for Residence De-Allotment", {
 	setup: function(frm) {
 		frm.set_query("residence_allotment_number", function() {
 			return {
@@ -15,7 +15,7 @@ frappe.ui.form.on("Application for Residence De-Allottment", {
 	}
 });
 
-frappe.ui.form.on('Application for Residence De-Allottment',{
+frappe.ui.form.on('Application for Residence De-Allotment',{
 	refresh: function(frm){
 		if(frm.doc.current_application_status=="Applied"){
 			frm.add_custom_button(__("Residence De-Allotment"), function() {
@@ -25,10 +25,10 @@ frappe.ui.form.on('Application for Residence De-Allottment',{
 	},
 	residence_deallotments: function(frm) {
 		return frappe.call({
-			method: "wsc.wsc.doctype.residence_de_allottment.residence_de_allottment.residence_deallotments",
+			method: "wsc.wsc.doctype.residence_de_allotment.residence_de_allotment.residence_deallotments",
 			args: {
 				"residence_de_allotment_application_number": frm.doc.residence_de_allotment_application_number,
-				"reason_for_de_allottment": frm.doc.reason_for_de_allottment,
+				"reason_for_de_allotment": frm.doc.reason_for_de_allotment,
 				"residence_allotment_number": frm.doc.residence_allotment_number,
 				"application_number": frm.doc.application_number,
 				"start_date": frm.doc.start_date,
