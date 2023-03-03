@@ -27,10 +27,11 @@
  "fields": [
   {
    "fieldname": "doctype_name",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Doctype name",
+   "options": "DocType",
    "read_only": 1
   },
   {
@@ -143,7 +144,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-01-24 13:04:29.996506",
+ "modified": "2023-03-01 13:46:26.205397",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Role permission Tool Child",

@@ -22,16 +22,15 @@ frappe.ui.form.on('Placement Company', {
 		// }, __('Create'))
 	},
 	refresh: function(frm){
-		// if(!frm.is_new()){
 		if (!frm.doc.__islocal)	{
-		console.log(5)
-		// frm.add_custom_button("Student Admit Card", () => {
+		if(frm.doc.black_list!=1){
 		frm.add_custom_button(__("Placement Drive"), function() {
 			frappe.model.open_mapped_doc({
 				method: "wsc.wsc.doctype.placement_company.placement_company.create_placement_drive",
 				frm: frm,
 			});
 		}, __('Create'))
+	}
 	}
 	} ,
 	setup(frm) {
@@ -42,5 +41,12 @@ frappe.ui.form.on('Placement Company', {
 				}
 			};
 		});
-    }
+		frm.set_query("sector" , function(){
+			return{
+				filters:{
+					"blacklist_sector":0
+				}
+			}
+		})
+    } 
 });
