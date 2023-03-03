@@ -65,8 +65,8 @@ frappe.ui.form.on('Student Attendance',{
                         method: "wsc.wsc.doctype.student_attendance.get_student_details",
                         callback: function(r) { 
                             if(r.message){
-                                frm.set_value("building",r.message["building"])
-                                frm.set_value("hostel_room",r.message["to_room"])
+                                frm.set_value("building",r.message["hostel_id"])
+                                frm.set_value("hostel_room",r.message["room_id"])
                             }
                             
                         } 
