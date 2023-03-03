@@ -47,6 +47,7 @@ def create_student_group(self):
     mentor_cnt = [m.get('inst_cnt') for m in frappe.db.sql("""SELECT count(mentor_name) as inst_cnt
     from `tabStudent Group` where mentor_name='{0}'""".format(self.mentor), as_dict=1)]
     sg_doc = frappe.new_doc('Student Group')
+    sg_doc.academic_year=self.academic_year
     sg_doc.group_based_on = "Mentor-Mentee"
     sg_doc.mentor_allocation = self.name
     if len(mentor_cnt) > 0 :

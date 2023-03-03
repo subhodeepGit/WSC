@@ -2,7 +2,7 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "ADALT.####",
- "creation": "2023-01-17 11:15:44.938445",
+ "creation": "2023-03-02 15:54:17.559759",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -27,7 +27,7 @@
   "changed_residence_type",
   "changed_residence_type_name",
   "de_allotment_application_details_section",
-  "reason_for_de_allottment",
+  "reason_for_de_allotment",
   "application_status",
   "current_application_status",
   "amended_from"
@@ -55,13 +55,6 @@
    "read_only": 1
   },
   {
-   "fieldname": "reason_for_de_allottment",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Reason for De Allottment",
-   "reqd": 1
-  },
-  {
    "fieldname": "application_status",
    "fieldtype": "Data",
    "label": "Application Status",
@@ -72,7 +65,7 @@
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Application for Residence De-Allottment",
+   "options": "Application for Residence De-Allotment",
    "print_hide": 1,
    "read_only": 1
   },
@@ -179,15 +172,22 @@
    "fieldtype": "Date",
    "label": "Start Date",
    "read_only": 1
+  },
+  {
+   "fieldname": "reason_for_de_allotment",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Reason for De Allotment",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-10 13:12:48.495313",
+ "modified": "2023-03-02 16:18:00.054402",
  "modified_by": "Administrator",
  "module": "WSC",
- "name": "Application for Residence De-Allottment",
+ "name": "Application for Residence De-Allotment",
  "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [

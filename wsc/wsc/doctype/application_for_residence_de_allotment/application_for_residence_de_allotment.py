@@ -5,7 +5,7 @@ import frappe
 from frappe.model.document import Document
 import datetime
 
-class ApplicationforResidenceDeAllottment(Document):
+class ApplicationforResidenceDeAllotment(Document):
 	def validate(self):
 		duplicate(self)
 	def on_submit(self):
@@ -16,7 +16,7 @@ class ApplicationforResidenceDeAllottment(Document):
 
 # To check for any duplicate record in "applied" applications for de-allotment
 def duplicate(self):
-	data=frappe.get_all("Application for Residence De-Allottment",{"application_status":self.application_status,"application_number":self.application_number})
+	data=frappe.get_all("Application for Residence De-Allotment",{"application_status":self.application_status,"application_number":self.application_number})
 	if data:
 		frappe.throw("Same application number cant apply again")
 
