@@ -20,7 +20,6 @@ frappe.ui.form.on('Placement Drive', {
 					'body':body
 				},
 				callback: function(result){
-					console.log(result)
 					const res = Object.values(result)
 					const values = Object.values(res[0])
 					if(values[0].length !== 0){
@@ -29,7 +28,7 @@ frappe.ui.form.on('Placement Drive', {
 						values.forEach(r => {
 							let c =frm.add_child('eligible_student')
 							c.student_doctype_name= r[0].parent
-							c.student_name = r[0].name
+							c.student_name = r[0].student_name
 							c.program_enrollment = r[0].programs
 							c.academic_year = r[0].academic_year
 						})

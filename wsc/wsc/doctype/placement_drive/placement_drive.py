@@ -80,15 +80,14 @@ def get_eligibility(body):
 							['programs' , 'semesters' , 'academic_year' , 'academic_term',"parent","name"]) #from students.
 		for t in current_education:
 			student_dict[t['parent']] = []
+			final_student_list.append(t)
 	
 	for t in student_dict:
 		count = 0
 		student_list= frappe.get_all("Educational Details",{"parent":t}, ['qualification',"score",'year_of_completion','parent'])  #from student
-		experience_detail = frappe.get_all("Experience child table" , {"parent":t} , ['job_duration' , 'parent'])  #from student  #can be empty
+		experience_detail = frappe.get_all("Experience child table" , {"parent":t} , ['job_duration'])  #from student  #can be empty
 		student_cgpa = frappe.get_all("Exam Assessment Result" , {"student":t, "docstatus":1} , ['name' ,'overall_cgpa' , 'result'])
-		print("\n\n\n\nstudent_cgpa")
-		print(len(student_cgpa))
-
+		
 		if(len(student_cgpa) != 0 and len(student_list) != 0):
 			backlog_record = frappe.get_all("Evaluation Result Item" , {"parent":student_cgpa[0]['name']} , ['result' , 'parent'])  
 			for m in backlog_record:
@@ -104,7 +103,7 @@ def get_eligibility(body):
 						for j in eligibility_criteria:	
 							if k['qualification'] == j['qualification'] and k['score'] >= j['percentage'] and req_cgpa <= student_cgpa[0]['overall_cgpa'] and count <= backlog:
 								list_data.append(k)
-
+								
 			elif len(experience_detail) > 0 and placement_drive_for == "experience": #For Experience only
 				
 				for k in student_list:
@@ -119,12 +118,20 @@ def get_eligibility(body):
 						if k['qualification'] == j['qualification'] and k['score'] >= j['percentage'] and req_cgpa <= student_cgpa[0]['overall_cgpa'] and count <= backlog:
 							list_data.append(k)
 		else:
-			return student_dict
+			continue
 			
 	student_dict[t]=list_data
 
-	# print("\n\n\n")
-	# print(student_dict)
+	for i in student_dict:
+		for j in final_student_list:
+			student = frappe.get_all("Student" , {"name":j['parent']} , ['student_name'])
+			print(student)
+			for k in student_dict[i]:
+				
+				k['programs'] = j['programs']
+				k['academic_year'] = j['academic_year']
+				k['student_name'] = student[0]['student_name']
+				
 	return student_dict
 
 	
