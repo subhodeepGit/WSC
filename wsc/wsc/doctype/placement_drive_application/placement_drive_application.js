@@ -56,7 +56,8 @@ frappe.ui.form.on('Placement Drive Application', {
 	placement_drive:function(frm){
 		if(frm.doc.placement_drive){
 			frappe.db.get_value("Placement Drive", {'name':frm.doc.placement_drive, "docstatus":1},'process_of_placement', resp => {
-				frm.set_value("eligibility_details",resp.eligibility_criteria)
+				console.log(resp);
+				frm.set_value("eligibility_details",resp.process_of_placement)
 			})
 			frm.refresh_field("eligibility_details");
 		}

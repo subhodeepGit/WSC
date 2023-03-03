@@ -125,13 +125,12 @@ def get_eligibility(body):
 	for i in student_dict:
 		for j in final_student_list:
 			student = frappe.get_all("Student" , {"name":j['parent']} , ['student_name'])
-			print(student)
+			
 			for k in student_dict[i]:
-				
 				k['programs'] = j['programs']
 				k['academic_year'] = j['academic_year']
 				k['student_name'] = student[0]['student_name']
-
+				
 	return student_dict
 
 	
