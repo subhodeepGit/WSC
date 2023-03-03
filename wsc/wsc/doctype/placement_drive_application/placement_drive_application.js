@@ -46,11 +46,18 @@ frappe.ui.form.on('Placement Drive Application', {
                 });
             });
         }
+		else{
+			frm.set_value('programs', '')
+			frm.set_value('current_semester', '')
+			frm.clear_table("educational_details");
+			frm.refresh_field("educational_details");
+		}
 	},
 	placement_drive:function(frm){
 		if(frm.doc.placement_drive){
-			frappe.db.get_value("Placement Drive", {'name':frm.doc.placement_drive, "docstatus":1},'eligibility_criteria', resp => {
-				frm.set_value("eligibility_details",resp.eligibility_criteria)
+			frappe.db.get_value("Placement Drive", {'name':frm.doc.placement_drive, "docstatus":1},'process_of_placement', resp => {
+				console.log(resp);
+				frm.set_value("eligibility_details",resp.process_of_placement)
 			})
 			frm.refresh_field("eligibility_details");
 		}

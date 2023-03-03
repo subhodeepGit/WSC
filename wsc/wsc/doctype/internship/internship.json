@@ -10,9 +10,7 @@
   "seminar_topic",
   "venue",
   "seminar_start_date",
-  "seminar_start_time",
   "seminar_end_date",
-  "seminar_end_time",
   "seminar_presenter_name",
   "seminar_presenter_number",
   "seminar_presenter_email"
@@ -34,19 +32,9 @@
    "label": "Seminar start date"
   },
   {
-   "fieldname": "seminar_start_time",
-   "fieldtype": "Time",
-   "label": "Seminar start time"
-  },
-  {
    "fieldname": "seminar_end_date",
    "fieldtype": "Date",
    "label": "Seminar end date"
-  },
-  {
-   "fieldname": "seminar_end_time",
-   "fieldtype": "Time",
-   "label": "Seminar end time"
   },
   {
    "fieldname": "seminar_presenter_name",
@@ -55,19 +43,18 @@
   },
   {
    "fieldname": "seminar_presenter_number",
-   "fieldtype": "Data",
+   "fieldtype": "Phone",
    "label": "Seminar presenter number"
   },
   {
    "fieldname": "seminar_presenter_email",
    "fieldtype": "Data",
-   "label": "Seminar presenter email",
-   "options": "Email"
+   "label": "Seminar presenter email"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-04 15:21:08.027420",
+ "modified": "2023-03-02 15:52:05.021948",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship",

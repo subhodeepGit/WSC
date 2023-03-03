@@ -4,15 +4,20 @@
 frappe.ui.form.on('Placement Drive', {
 	get_students: function(frm){
 		if(!frm.is_new()){
+			let body = JSON.stringify({
+				academic_year:frm.doc.academic_year,
+				academic_term:frm.doc.academic_term,
+				placement_drive_for:frm.doc.placement_drive_for,
+				required_cgpa:frm.doc.current_cgpapercentage,
+				backlog:frm.doc.active_backlog,
+				program:frm.doc.for_programs,
+				eligibility_criteria:frm.doc.eligibility_criteria
+			})
+			// console.log(body)
 			frappe.call({
 				method: 'wsc.wsc.doctype.placement_drive.placement_drive.get_eligibility',
 				args: {
-					'name': frm.doc.name,
-					'academic_year':frm.doc.academic_year,
-					'academic_term':frm.doc.academic_term,
-					'placement_drive_for':frm.doc.placement_drive_for,
-					'required_cgpa':frm.doc.current_cgpapercentage,
-					'backlog':frm.doc.active_backlog
+					'body':body
 				},
 				callback: function(result){
 					const res = Object.values(result)
@@ -23,7 +28,7 @@ frappe.ui.form.on('Placement Drive', {
 						values.forEach(r => {
 							let c =frm.add_child('eligible_student')
 							c.student_doctype_name= r[0].parent
-							c.student_name = r[0].name
+							c.student_name = r[0].student_name
 							c.program_enrollment = r[0].programs
 							c.academic_year = r[0].academic_year
 						})
@@ -67,6 +72,13 @@ frappe.ui.form.on('Placement Drive', {
                 }
             };
         });
+		frm.set_query("placement_company" , function(){
+			return{
+				filters:{
+					"black_list":0
+				}
+			}
+		})
 	},
 	placement_company:function(frm){
 		if(frm.doc.placement_company){
@@ -92,9 +104,18 @@ frappe.ui.form.on('Placement Drive', {
 			}
 		}
 	},
-	onload:function(frm){
+	refresh:function(frm){
 		if(!frm.is_new()){
 			frm.set_df_property('get_students' , 'hidden' , 0)
+		}
+	},
+	before_submit:function(frm){
+		if(frm.doc.eligible_student.length === 0){
+			frm.set_df_property("eligible_student" , 'reqd' , 1)
+			frm.refresh()
+		} else {
+			frm.set_df_property("eligible_student" , 'reqd' , 0)
+			frm.refresh()
 		}
 	}
 });
