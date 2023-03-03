@@ -120,7 +120,7 @@ def get_eligibility(body):
 		else:
 			continue
 			
-	student_dict[t]=list_data
+		student_dict[t]=list_data
 
 	for i in student_dict:
 		for j in final_student_list:
@@ -131,7 +131,7 @@ def get_eligibility(body):
 				k['programs'] = j['programs']
 				k['academic_year'] = j['academic_year']
 				k['student_name'] = student[0]['student_name']
-				
+
 	return student_dict
 
 	
