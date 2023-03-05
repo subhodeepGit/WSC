@@ -86,6 +86,8 @@ frappe.ui.form.on('Course Assessment Result Tool', {
 			course_assessment["academic_year"]=frm.doc.academic_year;
 			course_assessment["academic_term"]=frm.doc.academic_term;
 			course_assessment["course"]=frm.doc.course;
+			course_assessment["programs"]=frm.doc.programs;
+			course_assessment["program_grade"]=frm.doc.program_grade;
 			course_assessment["exam_declaration"]=frm.doc.exam_declaration;
 			course_assessment["exam_assessment_plan"]=frm.doc.exam_assessment_plan;
 			(cur_frm.doc.students).forEach(resp => {
