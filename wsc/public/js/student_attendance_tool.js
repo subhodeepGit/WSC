@@ -42,45 +42,33 @@ frappe.ui.form.on('Student Attendance Tool', {
 			title: __('Hostel Details'),
 			fields: [
 				{
-					"label" : "Hostel Category",
-					"fieldname": "hostel_category",
+					"label" : "Hostel",
+					"fieldname": "hostel",
 					"fieldtype": "Link",
-					"options": "Hostel Category"
-				},
-                {
-					"label" : "Building",
-					"fieldname": "building",
-					"fieldtype": "Link",
-					"options": "Building",
-					"reqd":1,
-					get_query: function () {
-						if (dialog.get_value("hostel_category")){
-							return {
-								filters:{"hostel_category":dialog.get_value("hostel_category")}
-							}
-						}
-					}
+					"options": "Hostel Masters"
 				},
 				{
 					"label" : "Hostel Room",
 					"fieldname": "hostel_room",
 					"fieldtype": "Link",
-					"options": "Hostel Room",
+					"options": "Room Masters",
 					get_query: function () {
 						return {
-							filters:{"building":dialog.get_value("building")}
-						}
-						
+							filters:{
+								"hostel_id":dialog.get_value("hostel"),
+								"validity":"Approved",
+								"status":"Allotted"
+							}
+						}						
 					}
 				},
 			],
 			primary_action: function() {
 				var data = dialog.get_values();
-				frm.doc.hostel_category=dialog.get_value("hostel_category");
-				frm.doc.building=dialog.get_value("building");
+				frm.doc.hostel=dialog.get_value("hostel");
 				frm.doc.hostel_room=dialog.get_value("hostel_room");
-                if (data.building) {
-					frm.trigger("building")
+                if (data.hostel_room) {
+					frm.trigger("hostel_room")
                     dialog.hide();
                 }
 			},
@@ -88,14 +76,15 @@ frappe.ui.form.on('Student Attendance Tool', {
 		});
 		dialog.show();
     },
-	building:function(frm){
-		var method = "wsc.wsc.doctype.student_attendance_tool.get_student_records";
+	hostel_room:function(frm){		
+		var method = "wsc.wsc.validations.student_attendance_tool.get_employees";
 		frm.set_df_property('attendance', 'depends_on','eval: (doc.course_schedule || (doc.student_group && doc.date) || doc.date)');
 		frappe.call({
 			method: method,
 			args: {
-				building: frm.doc.building,
-				hostel_room:frm.doc.hostel_room
+					date: frm.doc.date,
+					department: frm.doc.hostel,
+					branch: frm.doc.hostel_room,
 			},
 			callback: function(r) {
 				if (!frm.students_area) {
@@ -226,8 +215,8 @@ education.StudentsEditor = Class.extend({
 									"students_absent": students_absent,
 									"student_group": frm.doc.student_group,
 									"course_schedule": frm.doc.course_schedule,
-									"building": frm.doc.building,
-									"hostel_category": frm.doc.hostel_category,
+									"building": frm.doc.hostel,
+									"hostel_category": frm.doc.hostel_room,
 									"attendance_for":frm.doc.based_on=="Hostel"?"Hosteler":"",
 									"date": frm.doc.date
 								},

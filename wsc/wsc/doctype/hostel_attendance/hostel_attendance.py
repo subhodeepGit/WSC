@@ -11,77 +11,61 @@ from datetime import datetime,date
 
 
 class HostelAttendance(Document):
-    # @frappe.whitelist()
     def before_save(doc):
         allotment_date_validation(doc)
         Al_no=doc.room_allotment_no
         Date_att=doc.attendance_date
+        if type(Date_att)==str:
+            Date_att=datetime.strptime(Date_att,'%Y-%m-%d').date() 
+
+        else:
+            if isinstance(Date_att, datetime)==True:
+                Date_att=Date_att.date()
+
 
         info="""WHERE `room_allotment_no`="%s" and `attendance_date`="%s" and `docstatus`!=2 """%(Al_no,Date_att)
         AT_info=Attendence_info(info,"Genaral")
-        try:
-            if len(AT_info)==0:
-                info=""" WHERE `allotment_number`="%s" and (`start_date`<="%s" and `end_date`>="%s") and (`workflow_state`="Approved" and `docstatus`=1) """%(Al_no,Date_att,Date_att)
-                leave_info=Attendence_info(info,"Leave")            
+        if len(AT_info)==0:
+            info=""" WHERE `allotment_number`="%s" and (`start_date`<="%s" and `end_date`>="%s") and (`workflow_state`="Approved" and `docstatus`=1) """%(Al_no,Date_att,Date_att)
+            leave_info=Attendence_info(info,"Leave")            
 
-                if len(leave_info)==0:
-                    if Date_att <= datetime.now():
-                        pass
-                    else:
-                        frappe.throw("Attendance can not be marked for future dates")
+            if len(leave_info)==0:
+                if Date_att <= datetime.today().date():
+                    pass
                 else:
-                    frappe.throw("Studnet is in leave from %s to %s long leave doc No-%s"%(leave_info["start_date"][0],
-                                    leave_info["end_date"][0],leave_info["LL_doc_no"][0]))
+                    frappe.throw("Attendance can not be marked for future dates")
             else:
-                frappe.throw("Attendance is already registered for the %s doc No- %s"%(Date_att,AT_info["AT_doc_no"][0]))
-        except:
-            Date_att=datetime.strptime(Date_att, '%Y-%m-%d').date() 
-            if len(AT_info)==0:
-                info=""" WHERE `allotment_number`="%s" and (`start_date`<="%s" and `end_date`>="%s") and (`workflow_state`="Approved" and `docstatus`=1) """%(Al_no,Date_att,Date_att)
-                leave_info=Attendence_info(info,"Leave")            
+                frappe.throw("Studnet is in leave from %s to %s long leave doc No-%s"%(leave_info["start_date"][0],
+                                leave_info["end_date"][0],leave_info["LL_doc_no"][0]))
+        else:
+            frappe.throw("Attendance is already registered for the %s doc No- %s"%(Date_att,AT_info["AT_doc_no"][0]))
+   
 
-                if len(leave_info)==0:
-                    if Date_att <= date.today():
-                        pass
-                    else:
-                        frappe.throw("Attendance can not be marked for future dates")
-                else:
-                    frappe.throw("Studnet is in leave from %s to %s long leave doc No-%s"%(leave_info["start_date"][0],
-                                    leave_info["end_date"][0],leave_info["LL_doc_no"][0]))
-            else:
-                frappe.throw("Attendance is already registered for the %s doc No- %s"%(Date_att,AT_info["AT_doc_no"][0]))
-
-    # @frappe.whitelist()
     def on_submit(doc):
         Al_no=doc.room_allotment_no
         Date_att=doc.attendance_date
         
+
+        if type(Date_att)==str:
+            Date_att=datetime.strptime(Date_att,'%Y-%m-%d').date() 
+
+        else:
+            if isinstance(Date_att, datetime)==True:
+                Date_att=Date_att.date()
+
+
         info=""" WHERE `allotment_number`="%s" and (`start_date`<="%s" and `end_date`>="%s") and `workflow_state`="Approved" """%(Al_no,Date_att,Date_att)
         leave_info=Attendence_info(info,"Leave")
-        try:
-            if len(leave_info)==0:
-                if Date_att <= datetime.now():
-                    pass
-                else:
-                    frappe.throw("Attendance can not be marked for future dates")
+
+
+        if len(leave_info)==0:
+            if Date_att <= datetime.today().date():
+                pass
             else:
-                frappe.throw("Studnet is in leave from %s to %s long leave doc No-%s"%(leave_info["start_date"][0],
-                                    leave_info["end_date"][0],leave_info["LL_doc_no"][0]))
-        except:
-            Date_att=datetime.strptime(Date_att, '%Y-%m-%d').date()   
-            if len(leave_info)==0:
-                if Date_att <= date.today():
-                    pass
-                else:
-                    frappe.throw("Attendance can not be marked for future dates")
-            else:
-                frappe.throw("Studnet is in leave from %s to %s long leave doc No-%s"%(leave_info["start_date"][0],
-                                    leave_info["end_date"][0],leave_info["LL_doc_no"][0]))                        
-
-
-
-
-
+                frappe.throw("Attendance can not be marked for future dates")
+        else:
+            frappe.throw("Studnet is in leave from %s to %s long leave doc No-%s"%(leave_info["start_date"][0],
+                                    leave_info["end_date"][0],leave_info["LL_doc_no"][0]))  
 
 
 def Attendence_info(info,flag):
@@ -147,9 +131,11 @@ def allotment_date_validation(doc):
         Date_att=doc.attendance_date
         if type(Date_att)==str:
             Date_att=datetime.strptime(Date_att,'%Y-%m-%d').date() 
-        else:
-            Date_att=Date_att.date()    
 
+        else:
+            if isinstance(Date_att, datetime)==True:
+                Date_att=Date_att.date()
+            
         if al_data[0]['start_date'] > Date_att:
             frappe.throw("Student is not alloted for this date. Please check room allotment date")
         

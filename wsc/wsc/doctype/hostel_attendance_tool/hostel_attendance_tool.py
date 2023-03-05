@@ -16,27 +16,32 @@ class HostelAttendanceTool(Document):
 
 @frappe.whitelist()
 def get_employees(date, department = None, branch = None, company = None):
-	attendance_not_marked = []
-	attendance_marked = []
-	filters = {"start_date": ["<=", date],"end_date": [">=", date]}
-	for field, value in {'hostel_id': department,'room_id': branch}.items():
-		if value:
-			filters[field] = value			
-	stu_list = frappe.get_list("Room Allotment", fields=["name", "student_name","room_number","room_id","hostel_id"],filters=filters,order_by="room_number")
-	marked_employee = {}
+	if department!=None and branch!=None:
+		attendance_not_marked = []
+		attendance_marked = []
+		filters = {"start_date": ["<=", date],"end_date": [">=", date],"allotment_type":"Allotted","docstatus":1}
+		for field, value in {'hostel_id': department,'room_id': branch}.items():
+			if value:
+				filters[field] = value			
+		stu_list = frappe.get_list("Room Allotment", fields=["name", "student_name","room_number","room_id","hostel_id"],filters=filters,order_by="room_number")
+		marked_employee = {}
 
-	for emp in frappe.get_list("Hostel Attendance", fields=["room_allotment_no","status"],filters={"attendance_date": date}):	
-		marked_employee[emp["room_allotment_no"]] = emp['status']	
-	for student in stu_list:
-		student['status'] = marked_employee.get(student["name"])
-		if student["name"] not in marked_employee:
-			attendance_not_marked.append(student)
-		else:
-			attendance_marked.append(student)
-	return {
-		"marked": attendance_marked,
-		"unmarked": attendance_not_marked
-	}
+		for emp in frappe.get_list("Hostel Attendance", fields=["room_allotment_no","status"],filters={"attendance_date": date,"docstatus":1}):	
+			marked_employee[emp["room_allotment_no"]] = emp['status']	
+		for student in stu_list:
+			student['status'] = marked_employee.get(student["name"])
+			if student["name"] not in marked_employee:
+				attendance_not_marked.append(student)
+			else:
+				attendance_marked.append(student)
+		if not attendance_marked and not attendance_not_marked:
+			frappe.throw("No Students Found")
+		return {
+			"marked": attendance_marked,
+			"unmarked": attendance_not_marked
+		}
+	else:
+		return {}
 
 
 @frappe.whitelist()

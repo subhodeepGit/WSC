@@ -18,8 +18,8 @@ class ResidenceChangeRequest(Document):
 		residenceChangeCancel(self)
 
 def duplicate(self):
-	if self.workflow_state == "Approved":
-		data=frappe.get_all("Residence Change Request",[["employee_name","=",self.employee_name],['request_status',"=","Approved"]])
+	if self.workflow_state == "Draft":
+		data=frappe.get_all("Residence Change Request",[["employee_name","=",self.employee_name],['request_status',"=","Pending Approval"]])
 		if data:
 			frappe.throw("Can't Apply again as Residence change request for this employee is Pending for Approval")
 
@@ -69,19 +69,12 @@ def residenceUpdate(self):
 
 # To Insert the updated residence change request status details in "Residence Allotment History" child table in Employee doctype
 def residenceChangerequestHistory(self):
-	if self.request_status== "Pending Approval":
-		allotmentData=frappe.get_doc('Employee', self.employee)
-		allotmentData.append("residence_allotment_history_table",{
-			"application_number":self.residence_change_request_number,
-			"date":datetime.date.today(),
-			"status": "Pending Approval- Change Request"
-			})
-		allotmentData.save()
 
 	if self.request_status== "Approved":
 		allotmentData=frappe.get_doc('Employee', self.employee)
 		allotmentData.append("residence_allotment_history_table",{
 			"residence_allotment_number":self.residence_allotment_number,
+			"application_number":self.residence_change_request_number,
 			"residence_type":self.alloted_residence_type,
 			"residence_type_name":self.alloted_residence_type_name,
 			"residence_serial_number":self.alloted_residence_number,
