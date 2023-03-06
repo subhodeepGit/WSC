@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"49AhcckM7o\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Your Shortcuts</span><br>\",\"col\":12}},{\"id\":\"HgEq9csbTU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee\",\"col\":3}},{\"id\":\"TIihatf2_X\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Application\",\"col\":3}},{\"id\":\"wTzltOB7NU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Attendance\",\"col\":3}},{\"id\":\"aYgVuRDXzF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Job Applicant\",\"col\":3}},{\"id\":\"EwyBi97eqa\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"5idSunWgom\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"5ItTeMi9s4\",\"type\":\"paragraph\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Reports &amp; Masters</span>\",\"col\":12}},{\"id\":\"pY_XapGpSk\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee\",\"col\":4}},{\"id\":\"nSUIUfYy2Q\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee Lifecycle\",\"col\":4}},{\"id\":\"MRnGqEF6Wk\",\"type\":\"card\",\"data\":{\"card_name\":\"Leaves\",\"col\":4}},{\"id\":\"MaXp4yaqM_\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance\",\"col\":4}},{\"id\":\"cCRRTHJBK6\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"id\":\"veDMNa42x0\",\"type\":\"card\",\"data\":{\"card_name\":\"Recruitment\",\"col\":4}},{\"id\":\"km6rAvXMC5\",\"type\":\"card\",\"data\":{\"card_name\":\"Performance\",\"col\":4}}]",
+ "content": "[{\"id\":\"49AhcckM7o\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Your Shortcuts</span><br>\",\"col\":12}},{\"id\":\"HgEq9csbTU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee\",\"col\":3}},{\"id\":\"TIihatf2_X\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Application\",\"col\":3}},{\"id\":\"wTzltOB7NU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Attendance\",\"col\":3}},{\"id\":\"aYgVuRDXzF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Job Applicant\",\"col\":3}},{\"id\":\"EwyBi97eqa\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"5idSunWgom\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"5ItTeMi9s4\",\"type\":\"paragraph\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Reports &amp; Masters</span>\",\"col\":12}},{\"id\":\"pY_XapGpSk\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee\",\"col\":3}},{\"id\":\"nSUIUfYy2Q\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee Lifecycle\",\"col\":3}},{\"id\":\"kltSFnGtJR\",\"type\":\"card\",\"data\":{\"card_name\":\"Shift Management\",\"col\":3}},{\"id\":\"MRnGqEF6Wk\",\"type\":\"card\",\"data\":{\"card_name\":\"Leaves\",\"col\":3}},{\"id\":\"MaXp4yaqM_\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance\",\"col\":3}},{\"id\":\"cCRRTHJBK6\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":3}},{\"id\":\"veDMNa42x0\",\"type\":\"card\",\"data\":{\"card_name\":\"Recruitment\",\"col\":3}},{\"id\":\"km6rAvXMC5\",\"type\":\"card\",\"data\":{\"card_name\":\"Performance\",\"col\":3}}]",
  "creation": "2023-03-02 11:42:46.665842",
  "docstatus": 0,
  "doctype": "Workspace",
@@ -536,9 +536,47 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Shift Management",
+   "link_count": 3,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Shift Type",
+   "link_count": 0,
+   "link_to": "Shift Type",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Shift Request",
+   "link_count": 0,
+   "link_to": "Shift Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Shift Assignment",
+   "link_count": 0,
+   "link_to": "Shift Assignment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-03-03 14:43:17.794948",
+ "modified": "2023-03-06 09:59:23.072685",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "HRMS",
