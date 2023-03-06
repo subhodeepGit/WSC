@@ -18,3 +18,21 @@ def get_student_records(building,hostel_room=None):
             student_list.append(st.update({"group_roll_number":count}))
             count+=1
     return student_list
+
+@frappe.whitelist()
+def get_employees(date, department = None, branch = None):
+    student_list = []
+    count=1
+    filters = {"start_date": ["<=", date],"end_date": [">=", date],"allotment_type":"Allotted"}
+    for field, value in {'hostel_id': department,'room_id': branch}.items():
+        if value:
+            filters[field] = value	
+    for stu in frappe.get_list("Room Allotment", fields=["student","student_name"],filters=filters,order_by="room_number"):
+            roll_no=frappe.get_all("Student",filters={"name":stu['student']},fields=['roll_no'])
+            if roll_no:
+                stu['roll_no']=roll_no[0]['roll_no']
+            else:
+               stu['roll_no']=""
+            student_list.append(stu.update({"group_roll_number":count}))
+            count+=1
+    return student_list

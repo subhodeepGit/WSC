@@ -108,6 +108,13 @@ frappe.ui.form.on('Placement Drive', {
 		if(!frm.is_new()){
 			frm.set_df_property('get_students' , 'hidden' , 0)
 		}
+		else{
+			frm.set_df_property('get_students' , 'hidden' , 1)
+		}
+		if(frm.doc.docstatus==1){
+			frm.set_df_property('get_students' , 'hidden' , 1)
+		}
+		frm.set_df_property("authorized_signature", "cannot_add_rows", true);
 	},
 	before_submit:function(frm){
 		if(frm.doc.eligible_student.length === 0){

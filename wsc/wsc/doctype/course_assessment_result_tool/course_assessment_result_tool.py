@@ -21,10 +21,10 @@ def get_enroll_students(academic_year,academic_term,programs,semesters,course,cr
 	course_assessment={}
 	count=0
 	for pr_enroll in frappe.get_all("Program Enrollment",{"academic_year":academic_year,"programs":programs,"program":semesters,"docstatus":1,"academic_term":academic_term},order_by="roll_no asc"):
-		for cr_enroll in frappe.get_all("Course Enrollment",{"course":course,"program_enrollment":pr_enroll.name},["student","student_name","roll_no","registration_number","semester"]):
+		for cr_enroll in frappe.get_all("Course Enrollment",{"course":course,"program_enrollment":pr_enroll.name},["student","student_name","roll_no","registration_number","semester","programs"]):
 			count+=1
 			cr_enroll.update({"id":count})
-			for cr_asmt in frappe.get_all("Course Assessment",{"docstatus":("!=",2),"student":cr_enroll.student,"academic_year":academic_year,"academic_term":academic_term,'course':course,"assessment_criteria":criteria},['earned_marks','total_marks',"name"]):
+			for cr_asmt in frappe.get_all("Course Assessment",{"docstatus":("!=",2),"student":cr_enroll.student,"academic_year":academic_year,"academic_term":academic_term,'course':course,'programs':programs,"assessment_criteria":criteria},['earned_marks','total_marks',"name","programs"]):
 				course_assessment[cr_enroll.student]={"earned_marks":cr_asmt.earned_marks,"total_marks":cr_asmt.total_marks}
 			student_list.append(cr_enroll.update(get_total_marks(course,criteria)))
 	return student_list,course_assessment
@@ -412,6 +412,7 @@ def make_course_assessment(course_assessment):
 			doc.student_name=result.get('rows')[d].get("student_name")
 			doc.academic_year=result.get("academic_year")
 			doc.academic_term=result.get("academic_term")
+			doc.program_grade=result.get("program_grade")
 			doc.programs=result.get('rows')[d].get("programs")
 			doc.semester=result.get('rows')[d].get("semester")
 			doc.assessment_criteria=result.get("criteria")
