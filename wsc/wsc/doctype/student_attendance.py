@@ -24,10 +24,10 @@ class StudentAttendance(Document):
         # frappe.db.set_value("Instructor",self.instructor,"total_classes_taken",total_classes_taken+1)
 
 
-    def on_submit(self):
-        class_taken = frappe.db.sql("""Select count(*) from `tabStudent Attendance` where instructor = %s""",self.instructor)
-        total_classes_taken = class_taken[0][0]
-        frappe.db.set_value("Instructor",self.instructor,"total_classes_taken",total_classes_taken+1)
+    # def on_submit(self):
+    #     class_taken = frappe.db.sql("""Select count(*) from `tabStudent Attendance` where instructor = %s""",self.instructor)
+    #     total_classes_taken = class_taken[0][0]
+    #     frappe.db.set_value("Instructor",self.instructor,"total_classes_taken",total_classes_taken+1)
 
 
         self.update_course_schedule()
