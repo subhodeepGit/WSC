@@ -63,8 +63,8 @@ class StudentAttendance(Document):
             frappe.throw(_('Student {0}: {1} does not belong to Student Group {2}').format(
                 frappe.bold(self.student), self.student_name, frappe.bold(student_group_doc)))
 
-        if self.attendance_for == 'Hosteler' and not frappe.db.count("Hostel Allotment",{"docstatus":1,"student":self.student}):
-            frappe.throw("Hostel Allotment not exist for Student")
+        if self.attendance_for == 'Hosteler' and not frappe.db.count("Room Allotment",{"docstatus":1,"student":self.student}):
+            frappe.throw("Room Allotment not exist for Student")
 
 
     def validate_duplication(self):
@@ -110,7 +110,7 @@ class StudentAttendance(Document):
 @frappe.whitelist()
 def get_student_details(student):
     data={}
-    for allotment in frappe.get_all("Hostel Allotment",{"student":student,"docstatus":1},["building", "to_room","room_type", "floor"]):
+    for allotment in frappe.get_all("Room Allotment",{"student":student,"docstatus":1},["room_id","hostel_id"]):
         data.update(allotment)
     return data
 
@@ -155,7 +155,6 @@ def get_course(doctype, txt, searchfield, start, page_len, filters):
 
 def validate(doc,method):
     for d in frappe.get_all("Student Attendance",{"date":doc.date,"student":doc.student,"student_group":doc.student_group,"name":("!=",doc.name),"docstatus": 1}):
-        # print("@@@@@@@@@@ d",d)
         frappe.throw("Attendance Already Exist <b>{0}</b>".format(d.name))
 
 @frappe.whitelist()
@@ -216,9 +215,10 @@ def make_attendance_records(student, student_name, status, course_schedule=None,
 
     if attendance_for and building:
         student_attendance.building=building
+        student_attendance.hostel_room=hostel_category
         
-        for d in frappe.get_all("Hostel Allotment",{"student":student,"docstatus":1,"building":building},['name','to_room']):
-            student_attendance.hostel_room=d.to_room
+        # for d in frappe.get_all("Hostel Allotment",{"student":student,"docstatus":1,"building":building},['name','to_room']):
+        #     student_attendance.hostel_room=d.to_room
 
     student_attendance.attendance_for=attendance_for if attendance_for else "Day Scholar"
     student_attendance.save()
@@ -227,11 +227,12 @@ def make_attendance_records(student, student_name, status, course_schedule=None,
 
 @frappe.whitelist()
 def get_hostel_students(doctype, txt, searchfield, start, page_len, filters):
-    return frappe.db.sql("""
+    result= frappe.db.sql("""
                             SELECT student,student_name FROM `tabHostel Allotment` 
                             WHERE docstatus=1 and (student like %(txt)s or student_name like %(txt)s) 
                                 And student NOT IN(SELECT student FROM `tabHostel Deallotment` where docstatus=1)
             """,{'txt': '%%%s%%' % txt})
+    return result
 @frappe.whitelist()
 def get_topic(doctype, txt, searchfield, start, page_len, filters):
     return frappe.get_all("Course Topic",{"parent":filters.get("course")},['topic'],as_list = 1)

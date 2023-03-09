@@ -7,7 +7,14 @@ from pandas import DataFrame
 
 
 class Scholarships(Document):
-		pass
+		def validate(self):
+			sgpaValidate(self)
+
+
+# To validate if the Lower Cutoff SGPA is not greater than Upper Cutoff SGPA
+def sgpaValidate(self):
+	if self.upper_cutoff_sgpa < self.lower_cutoff_sgpa:
+		frappe.throw("Lower Cutoff SGPA cannot be greater than the Upper Cutoff SGPA")
 
 # To fetch students with Rank 1, 2 & 3 in selected semester group and assign ranks
 

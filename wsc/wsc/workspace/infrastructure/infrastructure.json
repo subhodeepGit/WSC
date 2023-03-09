@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Masters and Sub Masters<br></b></span>\",\"col\":12}},{\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Building Room Sub Masters\",\"col\":4}},{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Residence Procedure <br></b></span>\",\"col\":12}},{\"type\":\"card\",\"data\":{\"card_name\":\"Residence Allotment\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Residence De-Allotment\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Residence Change Request\",\"col\":4}}]",
+ "content": "[{\"id\":\"sqQDj33SZK\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Reports &amp; Masters</span>\",\"col\":12}},{\"id\":\"JhbOEEDL8w\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"7isWbQDCHe\",\"type\":\"card\",\"data\":{\"card_name\":\"Building Room Sub Masters\",\"col\":4}},{\"id\":\"vR9kNSa_YY\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"2K7aDgkyM-\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Residence Procedure </span><span class=\\\"h4\\\"><b><br></b></span>\",\"col\":12}},{\"id\":\"gTgoSt0mw6\",\"type\":\"card\",\"data\":{\"card_name\":\"Residence Allotment\",\"col\":4}},{\"id\":\"En-5pdk_qW\",\"type\":\"card\",\"data\":{\"card_name\":\"Residence De-Allotment\",\"col\":4}},{\"id\":\"dmjwBbBBvh\",\"type\":\"card\",\"data\":{\"card_name\":\"Residence Change Request\",\"col\":4}}]",
  "creation": "2023-02-15 12:28:13.024508",
  "docstatus": 0,
  "doctype": "Workspace",
@@ -8,6 +8,7 @@
  "hide_custom": 0,
  "icon": "organization",
  "idx": 0,
+ "is_hidden": 0,
  "label": "Infrastructure",
  "links": [
   {
@@ -52,34 +53,6 @@
    "label": "Residence Change Request",
    "link_count": 0,
    "link_to": "Residence Change Request",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Residence De-Allotment",
-   "link_count": 2,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Application for Residence De-Allottment",
-   "link_count": 0,
-   "link_to": "Application for Residence De-Allottment",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Residence De-Allottment",
-   "link_count": 0,
-   "link_to": "Residence De-Allottment",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -159,9 +132,37 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Residence De-Allotment",
+   "link_count": 2,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Application for Residence De-Allotment",
+   "link_count": 0,
+   "link_to": "Application for Residence De-Allotment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Residence De-Allotment",
+   "link_count": 0,
+   "link_to": "Residence De-Allotment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-02-16 11:29:29.217618",
+ "modified": "2023-03-03 14:52:27.537188",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Infrastructure",
@@ -169,8 +170,12 @@
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
- "roles": [],
- "sequence_id": 17.0,
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ],
+ "sequence_id": 13.0,
  "shortcuts": [],
  "title": "Infrastructure"
 }

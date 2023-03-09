@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h1\\\">Admission</span>\",\"col\":12}},{\"type\":\"spacer\",\"data\":{\"col\":12}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Semester\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Department\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instructor\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Fees\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Applicant\",\"col\":3}},{\"type\":\"spacer\",\"data\":{\"col\":12}},{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Master &amp; Application</span><span class=\\\"h4\\\"><b><br></b></span>\",\"col\":12}},{\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Student and Instructor\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Admission Master\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Counselling\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Application and Enrollment\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Branch Change &amp; Exchange Application\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Fees\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Tools\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Document Management System\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Study Continuation and Discontinuation\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Feedback\",\"col\":4}}]",
+ "content": "[{\"id\":\"ZAhiP8nmAS\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h1\\\">Admission</span>\",\"col\":12}},{\"id\":\"OhxaqSfchd\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"EFZml1AjqP\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":3}},{\"id\":\"kWyC1fL-3M\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Semester\",\"col\":3}},{\"id\":\"DHPZAxaZmb\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course\",\"col\":3}},{\"id\":\"yvdGFb9NHz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Department\",\"col\":3}},{\"id\":\"eMSDXPKm1s\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student\",\"col\":3}},{\"id\":\"0g9gEk4D7L\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instructor\",\"col\":3}},{\"id\":\"YeaO4SlGZM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Fees\",\"col\":3}},{\"id\":\"GBSqmVQoT0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Applicant\",\"col\":3}},{\"id\":\"zYYDE8rUfc\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"_FVFapedvD\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Master &amp; Application</span><span class=\\\"h4\\\"><b><br></b></span>\",\"col\":12}},{\"id\":\"QzYFLTBBbr\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"wsxg3m37KQ\",\"type\":\"card\",\"data\":{\"card_name\":\"Student and Instructor\",\"col\":4}},{\"id\":\"UPlhZnksj6\",\"type\":\"card\",\"data\":{\"card_name\":\"Admission Master\",\"col\":4}},{\"id\":\"JsE8zsVNpX\",\"type\":\"card\",\"data\":{\"card_name\":\"Counselling\",\"col\":4}},{\"id\":\"Nv6NMypUha\",\"type\":\"card\",\"data\":{\"card_name\":\"Application and Enrollment\",\"col\":4}},{\"id\":\"TMruqLt3YR\",\"type\":\"card\",\"data\":{\"card_name\":\"Branch Change &amp; Exchange Application\",\"col\":4}},{\"id\":\"b1M5n2Iikg\",\"type\":\"card\",\"data\":{\"card_name\":\"Fees\",\"col\":4}},{\"id\":\"I205raUzpg\",\"type\":\"card\",\"data\":{\"card_name\":\"Tools\",\"col\":4}},{\"id\":\"Ers9XXmfMh\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"4ILuIdVgJZ\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"id\":\"vYDsjuAytI\",\"type\":\"card\",\"data\":{\"card_name\":\"Document Management System\",\"col\":4}},{\"id\":\"Y0DVP8Z49d\",\"type\":\"card\",\"data\":{\"card_name\":\"Study Continuation and Discontinuation\",\"col\":4}},{\"id\":\"UPrKXlYXbw\",\"type\":\"card\",\"data\":{\"card_name\":\"Feedback\",\"col\":4}}]",
  "creation": "2023-02-15 12:40:14.406775",
  "docstatus": 0,
  "doctype": "Workspace",
@@ -526,7 +526,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-02-22 09:58:35.323494",
+ "modified": "2023-02-28 12:26:59.030299",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Admission",
@@ -534,7 +534,11 @@
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
- "roles": [],
+ "roles": [
+  {
+   "role": "Admin"
+  }
+ ],
  "sequence_id": 1.0,
  "shortcuts": [
   {
@@ -545,17 +549,17 @@
    "type": "DocType"
   },
   {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Programs",
+   "link_to": "Programs",
+   "type": "DocType"
+  },
+  {
    "color": "Green",
    "doc_view": "List",
    "label": "Semester",
    "link_to": "Program",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "Report Builder",
-   "label": "Programs",
-   "link_to": "Programs",
    "type": "DocType"
   },
   {

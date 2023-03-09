@@ -168,10 +168,12 @@
    "reqd": 1
   },
   {
+   "fetch_from": "placement_company.sector",
    "fieldname": "sector_of_work",
    "fieldtype": "Link",
    "label": "Sector of Work",
    "options": "Sector",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -213,7 +215,8 @@
    "reqd": 1
   },
   {
-   "default": "0",
+   "allow_on_submit": 1,
+   "default": "1",
    "fieldname": "enable",
    "fieldtype": "Check",
    "label": "Enable"
@@ -233,7 +236,6 @@
   {
    "fieldname": "get_students",
    "fieldtype": "Button",
-   "hidden": 1,
    "label": "Get Students"
   },
   {
@@ -249,7 +251,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-21 17:28:28.265387",
+ "modified": "2023-03-03 17:50:43.268785",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive",

@@ -6,7 +6,7 @@ from frappe.model.document import Document
 import datetime
 
 
-class ResidenceDeAllottment(Document):
+class ResidenceDeAllotment(Document):
 	def validate(self):
 		endDateUpdate(self)
 
@@ -33,9 +33,9 @@ def residenceAllotmentStatus(self):
 	frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"current_employee_allotment_status", "Not Alloted")
 	frappe.db.set_value("Residence Allotment",self.residence_allotment_number,"current_application_status", "De-Alloted")
 
-# To set value of current application status in "Application for Residence De-Allottment"
+# To set value of current application status in "Application for Residence De-Allotment"
 def currentApplicationStatus(self):
-	frappe.db.set_value("Application for Residence De-Allottment", self.residence_de_allotment_application_number, "current_application_status", "De-Alloted")
+	frappe.db.set_value("Application for Residence De-Allotment", self.residence_de_allotment_application_number, "current_application_status", "De-Alloted")
 
 # To change employee allotment status and vacancy status in "Building Room"
 def buildingRoomStatus(self):
@@ -70,10 +70,10 @@ def residenceHistoryUpdate(self):
 	allotmentData.save()
 
 @frappe.whitelist()
-def residence_deallotments(residence_de_allotment_application_number,reason_for_de_allottment,residence_allotment_number,application_number,start_date,changed_residence_serial_number,changed_residence_number,employee_name,employee_id,changed_building_name,changed_residence_type,changed_residence_type_name):
-	ra = frappe.new_doc("Residence De-Allottment")
+def residence_deallotments(residence_de_allotment_application_number,reason_for_de_allotment,residence_allotment_number,application_number,start_date,changed_residence_serial_number,changed_residence_number,employee_name,employee_id,changed_building_name,changed_residence_type,changed_residence_type_name):
+	ra = frappe.new_doc("Residence De-Allotment")
 	ra.residence_de_allotment_application_number = residence_de_allotment_application_number
-	ra.reason_for_de_allottment = reason_for_de_allottment
+	ra.reason_for_de_allotment = reason_for_de_allotment
 	ra.residence_allotment_number= residence_allotment_number
 	ra.application_number=application_number
 	ra.start_date=start_date

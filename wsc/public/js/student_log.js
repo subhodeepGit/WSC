@@ -9,7 +9,7 @@ frappe.ui.form.on('Student Log',{
         });
         frm.set_query("program", function() {
             return {
-                query: 'wsc.wsc.doctype.student.get_sem',
+                query: 'wsc.wsc.validations.student.get_sem',
                 filters: {
                     "student":frm.doc.student
                 }
@@ -17,7 +17,7 @@ frappe.ui.form.on('Student Log',{
         });
         frm.set_query("student_batch", function() {
             return {
-                query: 'wsc.wsc.doctype.student.get_batch',
+                query: 'wsc.wsc.validations.student.get_batch',
                 filters: {
                     "student":frm.doc.student
                 }
