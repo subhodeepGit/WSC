@@ -81,5 +81,5 @@ def custom_json(Trans_df,cus_json):
                         data_return.append(a)
     df = pd.DataFrame.from_records(data_return)
     print(df)
-    return  data_return
+    df.to_excel("/home/erpnext/Downloads/newdata.xlsx", index=False)
 	
