@@ -396,9 +396,9 @@ fixtures = [
 	# 	],
     #     ["role","=","HR"]
 	# ]},
-    {"dt": "Role"},
-    {"dt": "Role Profile"},
-    {"dt": "Module Profile"},
+    # {"dt": "Role"},
+    # {"dt": "Role Profile"},
+    # {"dt": "Module Profile"},
 #     # {"dt" : "Workflow"},
 #     # {"dt": "Workflow Action Master"},
 #     # {"dt" : "Workflow State"}
