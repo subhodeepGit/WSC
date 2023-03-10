@@ -15,7 +15,7 @@ frappe.ui.form.on('Instructor',{
 		// 		});
 		// 	}, __("Course Assessment Plan"));
 		// }
-        if(frm.doc.docstatus == 0) {
+        if(frm.doc.docstatus == 0 && frm.doc.employee!=null) {
             // alert("Hello")
 			frm.add_custom_button(__('Instructor Workload'), function() {
 				frappe.route_options = {

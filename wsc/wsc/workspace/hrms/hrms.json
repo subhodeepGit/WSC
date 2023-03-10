@@ -576,7 +576,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-03-06 09:59:23.072685",
+ "modified": "2023-03-10 10:58:37.345416",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "HRMS",
@@ -584,7 +584,11 @@
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
- "roles": [],
+ "roles": [
+  {
+   "role": "HR"
+  }
+ ],
  "sequence_id": 11.0,
  "shortcuts": [
   {
