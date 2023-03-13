@@ -7,6 +7,7 @@ from frappe import _
 def execute(filters=None):
 	data,label_name=get_data(filters)
 	columns=get_columns(label_name)
+
 	return columns,data
 
 
@@ -27,6 +28,7 @@ def get_data(filters):
 	if filters.get("semester"):
 		fltr.update({"semester":filters.get("semester")})
 	course,assessment_criteria,label_name=get_course(students)
+
 	for t in ["Total","Cr  P","Grade","Credit"]:
 		assessment_criteria.append(t)
 	for t in course:
@@ -172,4 +174,6 @@ def get_columns(label_name):
 				"width":200
 			}
 	columns.append(columns_add)
+	# print("\n\n\n\ncolumns")
+	# print(columns)
 	return columns	
