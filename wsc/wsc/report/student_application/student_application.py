@@ -27,8 +27,8 @@ def get_data(filters):
 	
 
    
-	student_data_info=frappe.db.get_list("Student Applicant",filters=fltr,fields=["name","last_institute_attended",
-																									"kiss_roll_number","first_name","middle_name","last_name","gender",
+	student_data_info=frappe.db.get_list("Student Applicant",filters=fltr,fields=["name",
+																									"first_name","middle_name","last_name","gender",
 	                                                                             					"fathers_name","fathers_occupation","qualification","mothers_name","mothers_occupation",
 																									"mothers_qualification","father_annual_income","blood_group","religion",
                                                                                                      "adhaar_number","states","districts","blocks","city","police_station","pin_code",
@@ -99,18 +99,18 @@ def get_columns(headin_list):
 			"width": 180
 		},
 		
-		{
-			"label": _("Last Institute Attended"),
-			"fieldname": "last_institute_attended",
-			"fieldtype": "Data",
-			"width": 180
-		},
-		{
-			"label": _("KISS Roll Number"),
-			"fieldname": "kiss_roll_number",
-			"fieldtype": "Data",
-			"width": 180
-		},
+		# {
+		# 	"label": _("Last Institute Attended"),
+		# 	"fieldname": "last_institute_attended",
+		# 	"fieldtype": "Data",
+		# 	"width": 180
+		# },
+		# {
+		# 	"label": _("KISS Roll Number"),
+		# 	"fieldname": "kiss_roll_number",
+		# 	"fieldtype": "Data",
+		# 	"width": 180
+		# },
 		
 		{			
 			"label": _("First Name"),
