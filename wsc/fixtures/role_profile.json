@@ -292,5 +292,35 @@
     "role": "Employee"
    }
   ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2023-03-10 10:50:48.571514",
+  "name": "HR",
+  "role_profile": "HR",
+  "roles": [
+   {
+    "parent": "HR",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "HR"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2023-03-10 10:58:41.822484",
+  "name": "Accountant Admin",
+  "role_profile": "Accountant Admin",
+  "roles": [
+   {
+    "parent": "Accountant Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Accountant Admin"
+   }
+  ]
  }
 ]

@@ -1,0 +1,68 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "creation": "2023-03-10 10:48:53.160634",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "get_data",
+  "data_import_child",
+  "amended_from",
+  "name_data"
+ ],
+ "fields": [
+  {
+   "fieldname": "get_data",
+   "fieldtype": "Button",
+   "label": "Get data"
+  },
+  {
+   "fieldname": "data_import_child",
+   "fieldtype": "Table",
+   "label": "Data import child",
+   "options": "Data import child"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Template Data",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "name_data",
+   "fieldtype": "Data",
+   "label": "Name data"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-03-10 15:31:26.506491",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Template Data",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

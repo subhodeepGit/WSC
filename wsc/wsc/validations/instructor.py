@@ -9,14 +9,14 @@ def validate(doc,method):
     # director_permission(doc)
     validate_instructor_log(doc)
     academic_term(doc)
-    classes_scheduled = doc.get("total_scheduled_classes")
-    classes_taken = doc.get("total_classes_taken")
+    # classes_scheduled = doc.get("total_scheduled_classes")
+    # classes_taken = doc.get("total_classes_taken")
 
-    if classes_scheduled==None or classes_scheduled==0:
-        pass
-    else :
-        work_load_percent = (classes_taken/classes_scheduled)*100
-        doc.work_load_percent = "%.2f" % work_load_percent
+    # if classes_scheduled==None or classes_scheduled==0:
+    #     pass
+    # else :
+    #     work_load_percent = (classes_taken/classes_scheduled)*100
+    #     doc.work_load_percent = "%.2f" % work_load_percent
 
     # a.s
 
@@ -26,7 +26,7 @@ def validate(doc,method):
         count +=1
         sum = sum+(t.duration)
     doc.number_of_other_activities = count
-    doc.total_work_load = "%.2f" % sum
+    # doc.total_work_load = "%.2f" % sum
     
 
 def validate_instructor_log(doc):

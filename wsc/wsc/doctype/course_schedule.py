@@ -22,8 +22,8 @@ class CourseSchedule(Document):
 		validate_exam_declaration(self)
 		validate_student_for_student_group(self)
 		validate_instructor_for_course(self)
-		class_scheduled = frappe.db.sql("""Select count(*) from `tabCourse Schedule` where instructor = %s""",self.instructor_name)
-		frappe.db.set_value("Instructor",self.instructor_name,"total_scheduled_classes",class_scheduled[0][0]+1)
+		# class_scheduled = frappe.db.sql("""Select count(*) from `tabCourse Schedule` where instructor = %s""",self.instructor_name)
+		# frappe.db.set_value("Instructor",self.instructor_name,"total_scheduled_classes",class_scheduled[0][0]+1)
 
 	def set_title(self):
 		"""Set document Title"""
@@ -150,8 +150,8 @@ def get_course_schedule_events(start, end, filters=None):
 	for d in data:
 		from_time=d["from_time"].strftime("%H:%M:%S")
 		to_time=d["to_time"].strftime("%H:%M:%S")
-
-		d.update({"course":d.course_name+"\n"+d.course_code+"\n"+d.instructor+"\n"+d.room_name+"\n"+to_time+"\n"+from_time})
+		d.update({"course":d.course_name+"\n"+d.course_code+"\n"+d.instructor+"\n"+d.room})
+		# +"\n"+to_time+"\n"+from_time
 		result.append(d)
 	return result
 
