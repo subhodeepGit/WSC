@@ -147,12 +147,18 @@ def get_course_schedule_events(start, end, filters=None):
 			
 		)
 	result=[]
+	print("\n\nData")
+	print(data)
 	for d in data:
 		from_time=d["from_time"].strftime("%H:%M:%S")
 		to_time=d["to_time"].strftime("%H:%M:%S")
-
-		d.update({"course":d.course_name+"\n"+d.course_code+"\n"+d.instructor+"\n"+d.room_name+"\n"+to_time+"\n"+from_time})
+		print("\n\nFOR loop D")
+		print(d)
+		d.update({"course":d.course_name+"\n"+d.course_code+"\n"+d.instructor+"\n"+d.room})
+		# +"\n"+to_time+"\n"+from_time
 		result.append(d)
+	print("\n\nResult")
+	print(result)
 	return result
 
 @frappe.whitelist()
