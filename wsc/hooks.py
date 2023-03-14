@@ -61,6 +61,7 @@ doctype_list_js = {
     "Fees":"public/js/fees_list.js",
     "Student Attendance":"public/js/student_attendance_list.js",
     "Student Applicant" :"public/js/student_applicant_list.js",
+    "Asset Maintenance Log":"public/js/asset_maintenance_log_list.js",
 }
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
