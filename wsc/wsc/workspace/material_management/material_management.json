@@ -644,7 +644,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-03-10 11:00:05.882631",
+ "modified": "2023-03-13 14:17:37.941960",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Material Management",
@@ -655,6 +655,9 @@
  "roles": [
   {
    "role": "System Manager"
+  },
+  {
+   "role": "Material Management Admin"
   }
  ],
  "sequence_id": 12.0,

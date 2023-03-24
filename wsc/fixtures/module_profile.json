@@ -3,6 +3,225 @@
   "block_modules": [
    {
     "module": "Core",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Website",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Workflow",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Email",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Custom",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Geo",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Desk",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Integrations",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Printing",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Contacts",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Social",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Automation",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Event Streaming",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Payments",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Payment Gateways",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "CRM",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Projects",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Selling",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Setup",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Manufacturing",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Support",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Utilities",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Portal",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Maintenance",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Regional",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "ERPNext Integrations",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Quality Management",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Communication",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Loan Management",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Telephony",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Bulk Transaction",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "E-commerce",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Subcontracting",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Education",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Payroll",
+    "parent": "Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   }
+  ],
+  "docstatus": 0,
+  "doctype": "Module Profile",
+  "modified": "2023-02-17 09:50:29.710927",
+  "module_profile_name": "Admin",
+  "name": "Admin"
+ },
+ {
+  "block_modules": [
+   {
+    "module": "Core",
     "parent": "Student",
     "parentfield": "block_modules",
     "parenttype": "Module Profile"
@@ -276,286 +495,7 @@
   "doctype": "Module Profile",
   "modified": "2021-12-21 11:02:19.804729",
   "module_profile_name": "Student",
-  "name": "Student",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null
- },
- {
-  "block_modules": [
-   {
-    "module": "Core",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Workflow",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Custom",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Desk",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Printing",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Data Migration",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Social",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Event Streaming",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Accounts",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Selling",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Buying",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "HR",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Stock",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Utilities",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Regional",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Restaurant",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Portal",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Quality Management",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Hotels",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Loan Management",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Telephony",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Agriculture",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Non Profit",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "E-commerce",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Payroll",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Communication",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Hub Node",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Shopping Cart",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "ERPNext Integrations",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Healthcare",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Maintenance",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Assets",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Support",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Manufacturing",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Setup",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Projects",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "CRM",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Automation",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Chat",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Contacts",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Integrations",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Geo",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Email",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Website",
-    "parent": "Education Administrator",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   }
-  ],
-  "docstatus": 0,
-  "doctype": "Module Profile",
-  "modified": "2022-09-05 11:08:30.221865",
-  "module_profile_name": "Education Administrator",
-  "name": "Education Administrator",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null
+  "name": "Student"
  },
  {
   "block_modules": [
@@ -816,10 +756,7 @@
   "doctype": "Module Profile",
   "modified": "2022-02-17 11:12:52.460734",
   "module_profile_name": "Hostel Admin",
-  "name": "Hostel Admin",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null
+  "name": "Hostel Admin"
  },
  {
   "block_modules": [
@@ -1056,10 +993,7 @@
   "doctype": "Module Profile",
   "modified": "2022-06-20 17:22:59.969196",
   "module_profile_name": "Student Applicant",
-  "name": "Student Applicant",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null
+  "name": "Student Applicant"
  },
  {
   "block_modules": [
@@ -1338,10 +1272,7 @@
   "doctype": "Module Profile",
   "modified": "2021-12-21 11:02:53.752577",
   "module_profile_name": "Education Administrator",
-  "name": "Education Administrator",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null
+  "name": "Education Administrator"
  },
  {
   "block_modules": [
@@ -1620,10 +1551,7 @@
   "doctype": "Module Profile",
   "modified": "2021-12-21 11:03:06.739694",
   "module_profile_name": "Instructor",
-  "name": "Instructor",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null
+  "name": "Instructor"
  },
  {
   "block_modules": [
@@ -1868,7 +1796,7 @@
   "module_profile_name": "HR",
   "name": "HR"
  },
-{
+ {
   "block_modules": [
    {
     "module": "Core",
@@ -2134,5 +2062,272 @@
   "modified": "2023-03-10 11:02:06.773943",
   "module_profile_name": "Accountant Admin",
   "name": "Accountant Admin"
+ },
+ {
+  "block_modules": [
+   {
+    "module": "Core",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Website",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Workflow",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Email",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Custom",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Geo",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Desk",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Integrations",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Printing",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Contacts",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Social",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Automation",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Event Streaming",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Payments",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Payment Gateways",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Accounts",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "CRM",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Buying",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Projects",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Selling",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Setup",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Manufacturing",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Stock",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Support",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Utilities",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Assets",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Portal",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Maintenance",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Regional",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "ERPNext Integrations",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Quality Management",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Communication",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Loan Management",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Telephony",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Bulk Transaction",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "E-commerce",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Subcontracting",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Education",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "HR",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Payroll",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "GST India",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Income Tax India",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "VAT India",
+    "parent": "Material Management Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   }
+  ],
+  "docstatus": 0,
+  "doctype": "Module Profile",
+  "modified": "2023-03-13 13:31:49.613995",
+  "module_profile_name": "Material Management Admin",
+  "name": "Material Management Admin"
  }
 ]

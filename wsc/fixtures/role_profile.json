@@ -2,11 +2,23 @@
  {
   "docstatus": 0,
   "doctype": "Role Profile",
+  "modified": "2023-02-27 17:05:06.273722",
+  "name": "Admin",
+  "role_profile": "Admin",
+  "roles": [
+   {
+    "parent": "Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Admin"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
   "modified": "2021-12-13 22:44:52.544054",
   "name": "Student",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "role_profile": "Student",
   "roles": [
    {
@@ -22,9 +34,6 @@
   "doctype": "Role Profile",
   "modified": "2021-12-13 23:58:16.012231",
   "name": "Employee Role",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "role_profile": "Employee Role",
   "roles": [
    {
@@ -46,9 +55,6 @@
   "doctype": "Role Profile",
   "modified": "2022-04-29 15:57:56.170494",
   "name": "Student Applicant",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "role_profile": "Student Applicant",
   "roles": [
    {
@@ -64,9 +70,6 @@
   "doctype": "Role Profile",
   "modified": "2022-09-19 13:31:59.580918",
   "name": "Admission Administrator",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "role_profile": "Admission Administrator",
   "roles": [
    {
@@ -100,9 +103,6 @@
   "doctype": "Role Profile",
   "modified": "2022-09-19 11:48:57.065406",
   "name": "Admission Management Group",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "role_profile": "Admission Management Group",
   "roles": [
    {
@@ -124,9 +124,6 @@
   "doctype": "Role Profile",
   "modified": "2022-09-19 11:49:21.942893",
   "name": "Admission Manager",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "role_profile": "Admission Manager",
   "roles": [
    {
@@ -154,9 +151,6 @@
   "doctype": "Role Profile",
   "modified": "2022-10-10 10:58:14.780651",
   "name": "Examination Management Group",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "role_profile": "Examination Management Group",
   "roles": [
    {
@@ -184,9 +178,6 @@
   "doctype": "Role Profile",
   "modified": "2022-07-21 14:32:34.331118",
   "name": "Education Administrator",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "role_profile": "Education Administrator",
   "roles": [
    {
@@ -208,9 +199,6 @@
   "doctype": "Role Profile",
   "modified": "2022-09-19 11:10:54.987155",
   "name": "Admission Managerment Group",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "role_profile": "Admission Managerment Group",
   "roles": [
    {
@@ -232,9 +220,6 @@
   "doctype": "Role Profile",
   "modified": "2022-12-05 17:13:18.861394",
   "name": "Examination Administrator",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "role_profile": "Examination Administrator",
   "roles": [
    {
@@ -268,9 +253,6 @@
   "doctype": "Role Profile",
   "modified": "2022-10-17 19:55:16.674192",
   "name": "Director",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
   "role_profile": "Director",
   "roles": [
    {
@@ -320,6 +302,21 @@
     "parentfield": "roles",
     "parenttype": "Role Profile",
     "role": "Accountant Admin"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2023-03-13 13:31:01.392347",
+  "name": "Material Management Admin",
+  "role_profile": "Material Management Admin",
+  "roles": [
+   {
+    "parent": "Material Management Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Material Management Admin"
    }
   ]
  }
