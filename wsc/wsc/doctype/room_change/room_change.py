@@ -61,7 +61,6 @@ class RoomChange(Document):
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
 def ra_query(doctype, txt, searchfield, start, page_len, filters):
-
 	if frappe.session.user == "Administrator":
 		info=""
 	else:
@@ -71,12 +70,13 @@ def ra_query(doctype, txt, searchfield, start, page_len, filters):
 				SELECT `hostel_masters` from `tabEmployee Hostel Allotment` WHERE employees="%s" and
 				(`start_date`<=now() and `end_date`>=now())"""%(emp_id[0]['name']))
 		if 	Emp_al:	
-			if len(Emp_al)==1:
+			if len(Emp_al)==1:			
 				info="""and hostel_id="%s" """%(Emp_al[0][0])
 			else:
 				hostel=[]
-				for t in range(len(Emp_al)):
-					hostel.append(Emp_al[0][t])
+				for t in Emp_al:
+					for i in t:
+						hostel.append(i)
 				hostel=str(tuple(hostel))	
 				info="""and hostel_id in """+hostel
 		else:

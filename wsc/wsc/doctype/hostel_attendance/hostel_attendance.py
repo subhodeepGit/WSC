@@ -112,8 +112,9 @@ def ra_query(doctype, txt, searchfield, start, page_len, filters):
 				info="""and hostel_id="%s" """%(Emp_al[0][0])
 			else:
 				hostel=[]
-				for t in range(len(Emp_al)):
-					hostel.append(Emp_al[0][t])
+				for t in Emp_al:
+					for i in t:
+						hostel.append(i)
 				hostel=str(tuple(hostel))	
 				info="""and hostel_id in """+hostel
 		else:
