@@ -92,7 +92,8 @@
    "fieldname": "hostel",
    "fieldtype": "Link",
    "label": "Hostel",
-   "options": "Hostel Masters"
+   "options": "Hostel Masters",
+   "reqd": 1
   },
   {
    "fieldname": "hostel_info_section",
@@ -246,16 +247,18 @@
    "fieldname": "hostel_fee_applicable",
    "fieldtype": "Select",
    "label": "Is Hostel Fee Applicable",
-   "options": "\nYES\nNO"
+   "options": "\nYES\nNO",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-07-06 13:16:10.620723",
+ "modified": "2023-03-25 12:31:23.798666",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Hostel Admission",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -273,6 +276,7 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1,
  "track_seen": 1,
  "track_views": 1
