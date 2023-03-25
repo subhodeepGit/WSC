@@ -61,6 +61,7 @@ doctype_list_js = {
     "Fees":"public/js/fees_list.js",
     "Student Attendance":"public/js/student_attendance_list.js",
     "Student Applicant" :"public/js/student_applicant_list.js",
+    "Asset Maintenance Log":"public/js/asset_maintenance_log_list.js",
 }
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
@@ -330,6 +331,7 @@ override_whitelisted_methods = {
 	"education.education.api.get_fee_components":"wsc.wsc.validations.api.get_fee_components",
 	"education.education.doctype.fee_structure.fee_structure.make_fee_schedule":"wsc.wsc.doctype.fee_structure.make_fee_schedule",
     "education.education.doctype.student_attendance_tool.student_attendance_tool.get_student_attendance_records":"wsc.wsc.doctype.student_attendance.get_student_attendance_records"
+    # "frappe.core.doctype.data_import.data_import.download_template":"wsc.wsc.doctype.data_import.download_template"
 	# "kp_edtec.kp_edtec.doctype.fees.make_refund_fees":"wsc.wsc.validations.fees.make_refund_fees",
 }
 override_doctype_class = {
@@ -342,6 +344,7 @@ override_doctype_class = {
     "Student Applicant": "wsc.wsc.doctype.student_applicant.StudentApplicant",
     "Student Attendance": "wsc.wsc.doctype.student_attendance.StudentAttendance",
     "User Permission": "wsc.wsc.doctype.user_permission.UserPermission"
+    # "Data Import": "wsc.wsc.doctype.data_import.DataImport"
 }
 #
 # each overriding function accepts a `data` argument;
@@ -389,20 +392,19 @@ override_doctype_class = {
 #	"wsc.auth.validate"
 # ]
 
-fixtures = [
-	# {"dt": "Custom DocPerm", "filters": [
-	# 	[
-	# 		"parent", "not in", ["DocType"]
-	# 	],
-    #     ["role","=","HR"]
-	# ]},
+# fixtures = [
+# 	{"dt": "Custom DocPerm", "filters": [
+# 		[
+# 			"parent", "not in", ["DocType"]
+# 		],
+# 	]},
     # {"dt": "Role"},
     # {"dt": "Role Profile"},
     # {"dt": "Module Profile"},
 #     # {"dt" : "Workflow"},
 #     # {"dt": "Workflow Action Master"},
 #     # {"dt" : "Workflow State"}
-]
+# ]
 website_context = {
     "favicon": "/assets/wsc/images/logo.jpg",
     "splash_image": "/assets/wsc/images/logo.jpg"
