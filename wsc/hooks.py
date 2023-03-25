@@ -392,20 +392,19 @@ override_doctype_class = {
 #	"wsc.auth.validate"
 # ]
 
-fixtures = [
-	# {"dt": "Custom DocPerm", "filters": [
-	# 	[
-	# 		"parent", "not in", ["DocType"]
-	# 	],
-    #     ["role","=","HR"]
-	# ]},
+# fixtures = [
+# 	{"dt": "Custom DocPerm", "filters": [
+# 		[
+# 			"parent", "not in", ["DocType"]
+# 		],
+# 	]},
     # {"dt": "Role"},
     # {"dt": "Role Profile"},
     # {"dt": "Module Profile"},
 #     # {"dt" : "Workflow"},
 #     # {"dt": "Workflow Action Master"},
 #     # {"dt" : "Workflow State"}
-]
+# ]
 website_context = {
     "favicon": "/assets/wsc/images/logo.jpg",
     "splash_image": "/assets/wsc/images/logo.jpg"
