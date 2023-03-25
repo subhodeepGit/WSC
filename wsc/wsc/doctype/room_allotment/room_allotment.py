@@ -168,8 +168,8 @@ def hostel_req_query(doctype, txt, searchfield, start, page_len, filters):
 @frappe.whitelist()
 # @frappe.validate_and_sanitize_search_inputs
 def allotment(student):
-	data=frappe.get_all("Student Hostel Admission",fields=[["student","=",student],["allotment_status","!=","Allotted"],
-					["allotment_status","!=","De-Allotted"],["docstatus","=",1]])
+	data=frappe.get_all("Student Hostel Admission",[["student","=",student],["allotment_status","!=","Allotted"],
+					["allotment_status","!=","De-Allotted"],["docstatus","=",1]],['name','hostel'])
 	if len(data)>0:
 		return data[0]
 			

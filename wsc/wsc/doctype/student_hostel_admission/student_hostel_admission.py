@@ -8,7 +8,7 @@ import json
 
 class StudentHostelAdmission(Document):
 	def validate(doc):
-		doc.allotment_status = "Not Reported"
+		# doc.allotment_status = "Not Reported"
 		data=frappe.get_all("Student Hostel Admission",fields=[["student","=",doc.student],["allotment_status","!=","Allotted"],
 					["allotment_status","!=","De-Allotted"],["docstatus","=",1]])		
 		if len(data)!=0:
@@ -16,6 +16,7 @@ class StudentHostelAdmission(Document):
 
 
 	def on_submit(doc):
+		frappe.db.set_value("Student Hostel Admission",doc.name,"allotment_status","Not Reported")
 		if doc.hostel_fee_applicable=="YES":
 			fee_structure_id= fee_structure_validation(doc)
 			create_fees(doc,fee_structure_id[0],fee_structure_id[1],on_submit=0)
@@ -114,10 +115,31 @@ def hostel_query(doctype, txt, searchfield, start, page_len, filters):
 	return frappe.db.sql("""SELECT `name`,`hostel_type` from `tabHostel Masters` WHERE `start_date`<=now() and `end_date`>=now()""")
 
 
+
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
-def room_query(doctype, txt, searchfield, start, page_len, filters):
-	return frappe.db.sql("""SELECT `name`,`feature`,`capacity` from `tabRoom Type` WHERE `start_date`<=now() and `end_date`>=now()""")
+def room_type_query(doctype, txt, searchfield, start, page_len, filters):
+	hostel_name=txt
+	hostel_room_info=frappe.get_all("Room Masters",{"hostel_id":hostel_name},['name','actual_room_type','vacancy'])
+	room_type_list=[]
+	for t in hostel_room_info:
+		room_type_list.append(t['actual_room_type'])
+	room_type_list=list(set(room_type_list))
+	final_list=[]
+	for t in room_type_list:
+		count=0
+		for j in hostel_room_info:
+			if j['actual_room_type']==t:
+				count=count+int(j['vacancy'])
+		if count>0:
+			a=[]
+			a.append(t)
+			a.append(count)
+			a.append(hostel_name)
+			final_list.append(a)
+	return final_list
+
+
 
 @frappe.whitelist()
 def fst_query(doc):
@@ -132,4 +154,16 @@ def fst_query(doc):
 					'academic_term':current_education_fetch[0]['academic_term']
 					}		
 	return filtered_fst
+
+@frappe.whitelist()
+def get_non_alloted_stud(doctype, txt, searchfield, start, page_len, filters):
+	fltr = filters
+	ser=searchfield
+	# data=frappe.get_all("Student",filters=fltr,searchfield=ser, fields=['name','student_name','roll_no','permanant_registration_number'], as_list=1)
+	data=frappe.get_all("Student",filters=fltr, fields=['name','student_name','roll_no','permanant_registration_number'], as_list=1)
+    # fltr = {"parent":filters.get("student_applicant")}
+    # if txt:
+    #     fltr.update({'semester': ['like', '%{}%'.format(txt)]})
+    # return frappe.get_all("Program Priority",fltr,['programs'], as_list=1)
+	return data
 
