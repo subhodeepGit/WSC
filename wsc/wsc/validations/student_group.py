@@ -205,8 +205,8 @@ def filter_courses(doctype, txt, searchfield, start, page_len, filters):
     return []
 @frappe.whitelist()
 def get_courses_from_ed(doctype, txt, searchfield, start, page_len, filters):
-    return frappe.get_all("Exam Courses",filters={"parent":filters.get("exam_declaration"),'is_disable':0,},fields=['courses','course_name',"course_code"],order_by="idx",as_list=1)
-
+    return frappe.get_all("Exam Courses",filters={"parent":filters.get("exam_declaration"),},fields=['courses','course_name',"course_code"],order_by="idx",as_list=1)
+# 'is_disable':0,
 @frappe.whitelist()
 def filter_programs(doctype, txt, searchfield, start, page_len, filters):
     lst=[]

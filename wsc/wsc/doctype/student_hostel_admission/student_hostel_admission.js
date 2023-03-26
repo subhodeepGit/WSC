@@ -10,7 +10,8 @@ frappe.ui.form.on('Student Hostel Admission', {
 		});
 		frm.set_query("room_type", function () {
 			return {
-				query: "wsc.wsc.doctype.student_hostel_admission.student_hostel_admission.room_query"
+				query: "wsc.wsc.doctype.student_hostel_admission.student_hostel_admission.room_type_query",
+				txt:frm.doc.hostel,
 			};
 		});
 	},
@@ -53,6 +54,15 @@ frappe.ui.form.on('Student Hostel Admission', {
 				frappe.set_route("query-report", "General Ledger");
 			}, __("View"));
 		}
+		frm.set_query('student', function() {
+			return{
+				// query: 'wsc.wsc.doctype.student_hostel_admission.student_hostel_admission.get_non_alloted_stud',
+				filters: {
+					"hostel_required":1
+				},
+				
+			}
+		});
 	}
 })
 
@@ -77,6 +87,13 @@ frappe.ui.form.on("Student Hostel Admission", "student", function (frm) {
 }
 
 });
+
+frappe.ui.form.on('Student Hostel Admission', {
+	hostel: function(frm) {
+		frm.set_value("room_type", "");
+					}
+				}
+			);
 
 frappe.ui.form.on("Student Hostel Admission", "hostel_fee_structure", function (frm) {
 	if (frm.doc.hostel_fee_structure == undefined || frm.doc.hostel_fee_structure == "" || frm.doc.hostel_fee_structure == null){
