@@ -3,9 +3,23 @@
 
 import frappe
 from frappe.model.document import Document
-from jpype import startJVM, shutdownJVM, java, addClassPath, JClass, JInt
-addClassPath("/home/erpnext/frappe-bench/apps/wsc/wsc/wsc/doctype/onlinepayment/TokenClass.jar")
-addClassPath("/home/erpnext/frappe-bench/apps/wsc/wsc/wsc/doctype/onlinepayment/CommerceConnect.jar")
+# from jpype import startJVM, shutdownJVM, java, addClassPath, JClass, JInt
+# addClassPath("/opt/bench/frappe-bench/apps/icici_integration/icici_integration/icici_integration/doctype/onlinepayment/TokenClass.jar")
+# addClassPath("/opt/bench/frappe-bench/apps/icici_integration/icici_integration/icici_integration/doctype/onlinepayment/CommerceConnect.jar")            
+import os
+def find_file_path(filename):
+    for dirpath, dirnames, filenames in os.walk('/'):  
+        if filename in filenames:
+            return os.path.join(dirpath, filename)  
+    return None  
+file_name_connectJar = 'CommerceConnect.jar'  
+file_path_connectJar= find_file_path(file_name_connectJar) #/opt/bench/frappe-bench/apps/icici_integration/icici_integration/icici_integration/doctype/onlinepayment/CommerceConnect.jar
+file_name_tokenJar = 'TokenClass.jar'  
+file_path_tokenJar= find_file_path(file_name_tokenJar)
+# if file_path:
+#     print(f'The file "{filename}" is located at: {file_path}')
+# else:
+#     print(f'File "{filename}" not found.')
 from urllib.request import urlopen
 from wsc.wsc.notification.custom_notification import online_payment_submit
 import json

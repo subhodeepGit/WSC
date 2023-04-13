@@ -6,9 +6,7 @@ import frappe
 from frappe.model.document import Document
 import datetime
 
-
 class HostelMasters(Document):
-	# @frappe.whitelist()
 	def validate(doc):
 		hostel_name=doc.hostel_name
 		try:
@@ -19,14 +17,14 @@ class HostelMasters(Document):
 			end_date=datetime.datetime.strptime(str(doc.end_date),'%Y-%m-%d %H:%M:%S').date()	
 
 		Hostel=frappe.db.sql("""select * from `tabHostel Masters` HM WHERE (HM.hostel_name= "%s") 
-		and (HM.start_date<=now() and HM.end_date >=now() )"""%(hostel_name))
+		and (HM.start_date<=now() and HM.end_date >=now() )"""%(hostel_name), as_dict=1)
 		if len(Hostel)==0:
 			if start_date<=end_date:
 				pass
 			else:
 				frappe.throw("Kindly check the start date and End Date")
 		else:
-			end_date_info=Hostel[0][20]
+			end_date_info=Hostel[0]['end_date']
 			if end_date_info==end_date:
 				pass
 			else:
@@ -39,5 +37,4 @@ class HostelMasters(Document):
 									)
 					pass
 				else:
-					frappe.throw("Can't be updated as students are already allotted in hostel")				
-
+					frappe.throw("Can't be updated as students are already allotted in hostel")		

@@ -1,176 +1,175 @@
 {
-    "actions": [],
-    "allow_rename": 1,
-    "autoname": "field:hostel_name",
-    "creation": "2021-09-15 12:34:30.819249",
-    "doctype": "DocType",
-    "editable_grid": 1,
-    "engine": "InnoDB",
-    "field_order": [
-     "hostel_info_section",
-     "hostel_name",
-     "hostel_short_name",
-     "hostel_phone_number",
-     "hostel_phone_number_2",
-     "hostel_type",
-     "column_break_6",
-     "total_floors",
-     "total_rooms",
-     "campus",
-     "no_of_blocks",
-     "start_date",
-     "end_date",
-     "address_section",
-     "address",
-     "address_line_2",
-     "pincode",
-     "column_break_20",
-     "city",
-     "state"
-    ],
-    "fields": [
-     {
-      "fieldname": "hostel_info_section",
-      "fieldtype": "Section Break",
-      "label": "Hostel Info"
-     },
-     {
-      "fetch_from": "hostel_id.hostel_name",
-      "fieldname": "hostel_name",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Hostel Name",
-      "reqd": 1,
-      "unique": 1
-     },
-     {
-      "fetch_from": "hostel_id.hostel_short_name",
-      "fieldname": "hostel_short_name",
-      "fieldtype": "Data",
-      "label": "Hostel Short Name",
-      "reqd": 1
-     },
-     {
-      "fieldname": "hostel_phone_number",
-      "fieldtype": "Data",
-      "label": "Hostel Phone Number 1",
-      "length": 10,
-      "reqd": 1
-     },
-     {
-      "fieldname": "hostel_phone_number_2",
-      "fieldtype": "Data",
-      "label": "Hostel Phone Number 2",
-      "length": 10
-     },
-     {
-      "fieldname": "hostel_type",
-      "fieldtype": "Link",
-      "label": "Hostel Type",
-      "options": "Hostel Type",
-      "reqd": 1
-     },
-     {
-      "fieldname": "column_break_6",
-      "fieldtype": "Column Break"
-     },
-     {
-      "fieldname": "total_floors",
-      "fieldtype": "Int",
-      "label": "Total Floors",
-      "reqd": 1
-     },
-     {
-      "fieldname": "total_rooms",
-      "fieldtype": "Int",
-      "label": "Total Rooms",
-      "reqd": 1
-     },
-     {
-      "fieldname": "campus",
-      "fieldtype": "Data",
-      "label": "Campus"
-     },
-     {
-      "fieldname": "no_of_blocks",
-      "fieldtype": "Int",
-      "label": "No. Of Blocks"
-     },
-     {
-      "default": "Today",
-      "fieldname": "start_date",
-      "fieldtype": "Date",
-      "label": "Start Date",
-      "read_only": 1,
-      "reqd": 1
-     },
-     {
-      "default": "9999-12-01",
-      "fieldname": "end_date",
-      "fieldtype": "Date",
-      "label": "End Date",
-      "reqd": 1
-     },
-     {
-      "fieldname": "address_section",
-      "fieldtype": "Section Break",
-      "label": "Address"
-     },
-     {
-      "fieldname": "address",
-      "fieldtype": "Data",
-      "label": "Address Line 1"
-     },
-     {
-      "fieldname": "address_line_2",
-      "fieldtype": "Data",
-      "label": "Address Line 2"
-     },
-     {
-      "fieldname": "pincode",
-      "fieldtype": "Data",
-      "label": "Pincode",
-      "length": 6
-     },
-     {
-      "fieldname": "column_break_20",
-      "fieldtype": "Column Break"
-     },
-     {
-      "fieldname": "city",
-      "fieldtype": "Data",
-      "label": "City"
-     },
-     {
-      "fieldname": "state",
-      "fieldtype": "Data",
-      "label": "State"
-     }
-    ],
-    "index_web_pages_for_search": 1,
-    "links": [],
-    "modified": "2021-11-10 12:16:36.873114",
-    "modified_by": "Administrator",
-    "module": "WSC",
-    "name": "Hostel Masters",
-    "naming_rule": "By fieldname",
-    "owner": "Administrator",
-    "permissions": [
-     {
-      "create": 1,
-      "delete": 1,
-      "email": 1,
-      "export": 1,
-      "print": 1,
-      "read": 1,
-      "report": 1,
-      "role": "System Manager",
-      "share": 1,
-      "write": 1
-     }
-    ],
-    "sort_field": "modified",
-    "sort_order": "DESC",
-    "title_field": "hostel_name",
-    "track_changes": 1
-   }
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:hostel_name",
+ "creation": "2021-09-15 12:34:30.819249",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "hostel_info_section",
+  "hostel_name",
+  "hostel_short_name",
+  "hostel_phone_number",
+  "hostel_phone_number_2",
+  "hostel_type",
+  "column_break_6",
+  "total_floors",
+  "total_rooms",
+  "campus",
+  "no_of_blocks",
+  "start_date",
+  "end_date",
+  "address_section",
+  "address",
+  "address_line_2",
+  "pincode",
+  "column_break_20",
+  "city",
+  "state"
+ ],
+ "fields": [
+  {
+   "fieldname": "hostel_info_section",
+   "fieldtype": "Section Break",
+   "label": "Hostel Info"
+  },
+  {
+   "fetch_from": "hostel_id.hostel_name",
+   "fieldname": "hostel_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Hostel Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fetch_from": "hostel_id.hostel_short_name",
+   "fieldname": "hostel_short_name",
+   "fieldtype": "Data",
+   "label": "Hostel Short Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "hostel_type",
+   "fieldtype": "Link",
+   "label": "Hostel Type",
+   "options": "Hostel Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_floors",
+   "fieldtype": "Int",
+   "label": "Total Floors",
+   "reqd": 1
+  },
+  {
+   "fieldname": "total_rooms",
+   "fieldtype": "Int",
+   "label": "Total Rooms",
+   "reqd": 1
+  },
+  {
+   "fieldname": "campus",
+   "fieldtype": "Data",
+   "label": "Campus"
+  },
+  {
+   "fieldname": "no_of_blocks",
+   "fieldtype": "Int",
+   "label": "No. Of Blocks"
+  },
+  {
+   "default": "Today",
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "default": "9999-12-01",
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "address_section",
+   "fieldtype": "Section Break",
+   "label": "Address"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "label": "Address Line 1"
+  },
+  {
+   "fieldname": "address_line_2",
+   "fieldtype": "Data",
+   "label": "Address Line 2"
+  },
+  {
+   "fieldname": "pincode",
+   "fieldtype": "Data",
+   "label": "Pincode",
+   "length": 6
+  },
+  {
+   "fieldname": "column_break_20",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State"
+  },
+  {
+   "fieldname": "hostel_phone_number",
+   "fieldtype": "Phone",
+   "label": "Hostel Phone Number 1",
+   "reqd": 1
+  },
+  {
+   "fieldname": "hostel_phone_number_2",
+   "fieldtype": "Phone",
+   "label": "Hostel Phone Number 2"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-03-30 13:18:47.061554",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Hostel Masters",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "hostel_name",
+ "track_changes": 1
+}
