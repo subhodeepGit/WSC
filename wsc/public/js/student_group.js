@@ -130,7 +130,7 @@ frappe.ui.form.on("Student Group", {
             return {   
                 query: 'wsc.wsc.validations.student_group.filter_programs_by_course', 
                 filters:{
-                    "course":frm.doc.course
+                    "course":frm.doc.module
                 }
             }
         }
@@ -459,6 +459,76 @@ frappe.ui.form.on('Student Group Instructor', {
 					frm.refresh_field('instructors')
 				})
 				frm.refresh_field('instructors')
+				d.hide();
+			},
+			primary_action_label: __('Add Values')
+		});
+		d.show();
+	}
+});
+frappe.ui.form.on('Student Group Trainer', {
+	trainers_add: function(frm, cdt, cdn){
+		var course_options="\n"
+		var instructor_options=''
+		var semesters=[]
+		if (frm.doc.group_based_on =="Combined Course"){
+			course_options=frm.doc.module
+			semesters.push(frm.doc.program)
+		}
+
+		var d = new frappe.ui.Dialog({
+			title: __('Add Instructor'),
+			fields: [
+				{
+					"label" : "Module",
+					"fieldname": "course",
+					"fieldtype": "Select",
+					"reqd":1,
+					"options": course_options,
+					onchange: function() {
+						var course=d.get_value('course');
+						d.set_value("instructor","");
+						if (course){
+							frappe.call({
+								method: 'wsc.wsc.validations.student_group.get_trainer',
+								args: {
+									filters:
+										{
+											academic_year: frm.doc.academic_year,
+											course:frm.doc.module,
+											semesters:semesters,
+											apply_semester_filter:frm.doc.group_based_on=="Combined Course"?0:1
+										}
+								},
+								callback: function(resp){
+									if(resp.message){
+										instructor_options=resp.message
+										d.set_df_property('instructor', 'options', instructor_options);
+									}
+								}
+							})
+						}
+					}
+				},
+				{
+					"label" : "Trainer",
+					"fieldname": "instructor",
+					"fieldtype": "Select",
+					"reqd":1,
+					"options": instructor_options
+				}
+			],
+			primary_action: function() {
+				var values = d.get_values();
+				var row = frappe.get_doc(cdt, cdn);
+				row.course=values.course
+				row.instructor=values.instructor
+				frappe.db.get_value("Course", {'name':values.course},['course_code','course_name'], resp => {
+					row.module_code = resp.course_code
+					row.module_name = resp.course_name
+					frm.refresh_field('trainers')
+				})
+				frm.refresh_field('trainers')
 				d.hide();
 			},
 			primary_action_label: __('Add Values')

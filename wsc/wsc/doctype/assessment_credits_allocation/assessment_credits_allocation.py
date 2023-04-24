@@ -5,6 +5,7 @@ import frappe
 from frappe.model.document import Document
 from frappe.utils import flt
 from wsc.wsc.utils import academic_term
+from frappe.utils.csvutils import getlink
 
 class AssessmentCreditsAllocation(Document):
     def validate(self):

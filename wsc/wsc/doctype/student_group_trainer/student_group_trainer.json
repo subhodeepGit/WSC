@@ -1,0 +1,73 @@
+{
+ "actions": [],
+ "creation": "2023-03-25 16:20:18.191478",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "instructor",
+  "column_break_2",
+  "instructor_name",
+  "course",
+  "course_code",
+  "course_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "instructor",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Trainer",
+   "options": "Instructor",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "instructor.instructor_name",
+   "fieldname": "instructor_name",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Trainer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "label": "Module",
+   "options": "Course",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "module.course_code",
+   "fieldname": "course_code",
+   "fieldtype": "Data",
+   "label": "Module Code",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "module.course_name",
+   "fieldname": "course_name",
+   "fieldtype": "Data",
+   "label": "Module Name",
+   "read_only": 1
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2023-03-25 17:14:18.312341",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Student Group Trainer",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "restrict_to_domain": "Education",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

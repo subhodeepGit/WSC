@@ -58,6 +58,9 @@ def make_continuous_evaluation(continuous_evaluation):
 				doc.academic_year=result.get("academic_year")
 				doc.academic_term=result.get("academic_term")
 				doc.assessment_criteria=result.get("criteria")
+				doc.program_grade=result.get("program_grade")
+				doc.programs=result.get("programs")
+				doc.semester=result.get("semester")
 				doc.course=result.get("course")
 				doc.course_name=result.get("course_name")
 				doc.course_code=result.get("course_code")
@@ -75,7 +78,7 @@ def make_continuous_evaluation(continuous_evaluation):
 				doc.total_credits=flt(result.get('rows')[d].get("total_credits"))
 				doc.out_of_marks=flt(result.get('rows')[d].get("out_of_marks"))			
 				doc.save()
-				doc.submit()
+				# doc.submit()
 				records=True
 			else:
 				frappe.msgprint("Please add final marks and earned credits for student <b>{0}</b>".format(result.get('rows')[d].get("student")))
@@ -101,7 +104,11 @@ def get_student_allocations_dict(doc):
 		student["total_credits"]=course_details.credits or 0
 		data_list[student.student]=student
 	return data_list
-
+def validate_duplicate_record(self):
+	if self.student and self.course and self.assessment_criteria and self.academic_year and self.academic_term:
+		for a in frappe.get_all('Assessment Credits Allocation', {'student':self.student, 'course':self.course,'assessment_criteria':self.assessment_criteria,'academic_year':self.academic_year, 'academic_term':self.academic_term, 'docstatus':('!=', 2)}):
+			if a.name and a.name != self.name:
+				frappe.throw("The data is already exist in <b>{0}</b>".format(a.name))
 def get_course_details(doc):
 	course=frappe.get_doc("Course",doc.course)
 	for d in course.get("credit_distribution"):
