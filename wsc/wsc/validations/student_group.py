@@ -176,6 +176,19 @@ def get_instructor(filters):
             lst.append(i.parent)
             instructor+=("\n"+i.parent)
     return instructor
+@frappe.whitelist()
+def get_trainer(filters):
+    filters=json.loads(filters)
+    lst = []
+    instructor=""
+    fltr={"academic_year":filters.get("academic_year"),"course":filters.get("course")}
+    if filters.get("apply_semester_filter"):
+        fltr.update({"program":["IN",filters.get("semesters")]})
+    for i in frappe.get_all("Instructor Log",filters=fltr,fields=['parent'],order_by="parent"):
+        if i.parent not in lst:
+            lst.append(i.parent)
+            instructor+=("\n"+i.parent)
+    return instructor
 
 
 @frappe.whitelist()
