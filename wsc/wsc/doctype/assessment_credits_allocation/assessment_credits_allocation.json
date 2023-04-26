@@ -8,12 +8,15 @@
  "field_order": [
   "student",
   "student_name",
-  "course",
   "roll_no",
   "registration_number",
+  "course",
   "course_code",
   "course_name",
   "column_break_4",
+  "program_grade",
+  "programs",
+  "semester",
   "assessment_criteria",
   "academic_year",
   "academic_term",
@@ -180,12 +183,30 @@
    "fieldtype": "Data",
    "label": " Registration Number",
    "read_only": 1
+  },
+  {
+   "fieldname": "semester",
+   "fieldtype": "Link",
+   "label": "Semester",
+   "options": "Program"
+  },
+  {
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "label": "Programs",
+   "options": "Programs"
+  },
+  {
+   "fieldname": "program_grade",
+   "fieldtype": "Link",
+   "label": "Program Grade",
+   "options": "Program Grades"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-02 17:48:57.347931",
+ "modified": "2023-04-11 12:10:10.149756",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assessment Credits Allocation",
