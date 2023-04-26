@@ -54,7 +54,6 @@ doctype_js = {
                 "Student Log":"public/js/student_log.js",
                 "Topic":"public/js/topic.js",
                 "User":"public/js/user.js",
-                "Employee":"public/js/employee.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {

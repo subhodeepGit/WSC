@@ -14,8 +14,6 @@ class StudentFeedbackForm(Document):
 @frappe.whitelist()
 def getvalue():
 	data = frappe.get_all("Student Feedback Questions",{"enable":1},["question"])
-	print("\n\n\n\nFeedback Questions")
-	print(data)
 	return data
 @frappe.whitelist()
 def get_course(doctype, txt, searchfield, start, page_len, filters):
