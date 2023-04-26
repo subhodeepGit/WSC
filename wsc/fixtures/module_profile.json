@@ -3,6 +3,1494 @@
   "block_modules": [
    {
     "module": "Core",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Website",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Workflow",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Email",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Custom",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Geo",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Desk",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Integrations",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Printing",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Contacts",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Social",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Automation",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Event Streaming",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Payments",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Payment Gateways",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Accounts",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "CRM",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Buying",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Projects",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Selling",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Setup",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Manufacturing",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Stock",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Support",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Utilities",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Assets",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Portal",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Maintenance",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Regional",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "ERPNext Integrations",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Quality Management",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Communication",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Loan Management",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Telephony",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Bulk Transaction",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "E-commerce",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Subcontracting",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Education",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "HR",
+    "parent": "Payroll Admin",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   }
+  ],
+  "docstatus": 0,
+  "doctype": "Module Profile",
+  "modified": "2023-03-14 15:43:12.260356",
+  "module_profile_name": "Payroll Admin",
+  "name": "Payroll Admin"
+ },
+ {
+  "block_modules": [
+   {
+    "module": "Core",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Website",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Workflow",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Email",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Custom",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Geo",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Desk",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Integrations",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Printing",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Contacts",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Social",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Automation",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Event Streaming",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Payments",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Payment Gateways",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Accounts",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "CRM",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Buying",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Projects",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Selling",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Setup",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Manufacturing",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Stock",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Support",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Utilities",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Assets",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Portal",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Maintenance",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Regional",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "ERPNext Integrations",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Quality Management",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Communication",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Loan Management",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Telephony",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Bulk Transaction",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "E-commerce",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Subcontracting",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Education",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Payroll",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "HR",
+    "parent": "HR Assistant",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   }
+  ],
+  "docstatus": 0,
+  "doctype": "Module Profile",
+  "modified": "2023-04-25 14:28:46.149330",
+  "module_profile_name": "HR Assistant",
+  "name": "HR Assistant"
+ },
+ {
+  "block_modules": [
+   {
+    "module": "Core",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Website",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Workflow",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Email",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Custom",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Geo",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Desk",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Integrations",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Printing",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Contacts",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Social",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Automation",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Event Streaming",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Payments",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Payment Gateways",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Accounts",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "CRM",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Buying",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Projects",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Selling",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Setup",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Manufacturing",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Stock",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Support",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Utilities",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Assets",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Portal",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Maintenance",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Regional",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "ERPNext Integrations",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Quality Management",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Communication",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Loan Management",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Telephony",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Bulk Transaction",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "E-commerce",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Subcontracting",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Education",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "HR",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Payroll",
+    "parent": "Hostel Administrator",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   }
+  ],
+  "docstatus": 0,
+  "doctype": "Module Profile",
+  "modified": "2023-04-25 16:44:28.479235",
+  "module_profile_name": "Hostel Administrator",
+  "name": "Hostel Administrator"
+ },
+ {
+  "block_modules": [
+   {
+    "module": "Core",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Website",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Workflow",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Email",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Custom",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Geo",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Desk",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Integrations",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Printing",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Contacts",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Social",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Automation",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Event Streaming",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Payments",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Payment Gateways",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Accounts",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "CRM",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Buying",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Projects",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Selling",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Setup",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Manufacturing",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Stock",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Support",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Utilities",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Assets",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Portal",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Maintenance",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Regional",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "ERPNext Integrations",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Quality Management",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Communication",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Loan Management",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Telephony",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Bulk Transaction",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "E-commerce",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Subcontracting",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Education",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "HR",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Payroll",
+    "parent": "Hostel Superintendent",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   }
+  ],
+  "docstatus": 0,
+  "doctype": "Module Profile",
+  "modified": "2023-04-25 16:44:52.388585",
+  "module_profile_name": "Hostel Superintendent",
+  "name": "Hostel Superintendent"
+ },
+ {
+  "block_modules": [
+   {
+    "module": "Core",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Website",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Workflow",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Email",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Custom",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Geo",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Desk",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Integrations",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Printing",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Contacts",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Social",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Automation",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Event Streaming",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Payments",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Payment Gateways",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Accounts",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "CRM",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Buying",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Projects",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Selling",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Setup",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Manufacturing",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Stock",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Support",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Utilities",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Assets",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Portal",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Maintenance",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Regional",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "ERPNext Integrations",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Quality Management",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Communication",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Loan Management",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Telephony",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Bulk Transaction",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "E-commerce",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Subcontracting",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Education",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "HR",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Payroll",
+    "parent": "Hostel Warden",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   }
+  ],
+  "docstatus": 0,
+  "doctype": "Module Profile",
+  "modified": "2023-04-25 16:45:29.621892",
+  "module_profile_name": "Hostel Warden",
+  "name": "Hostel Warden"
+ },
+ {
+  "block_modules": [
+   {
+    "module": "Core",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Website",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Workflow",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Email",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Custom",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Geo",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Desk",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Integrations",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Printing",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Contacts",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Social",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Automation",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Event Streaming",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Payments",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Payment Gateways",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Accounts",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "CRM",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Buying",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Projects",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Selling",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Setup",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Manufacturing",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Stock",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Support",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Utilities",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Assets",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Portal",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Maintenance",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Regional",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "ERPNext Integrations",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Quality Management",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Communication",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Loan Management",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Telephony",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Bulk Transaction",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "E-commerce",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Subcontracting",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Education",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "HR",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Payroll",
+    "parent": "Employee",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   }
+  ],
+  "docstatus": 0,
+  "doctype": "Module Profile",
+  "modified": "2023-04-26 13:56:25.511753",
+  "module_profile_name": "Employee",
+  "name": "Employee"
+ },
+ {
+  "block_modules": [
+   {
+    "module": "Core",
     "parent": "Admin",
     "parentfield": "block_modules",
     "parenttype": "Module Profile"

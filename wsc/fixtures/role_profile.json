@@ -2,6 +2,69 @@
  {
   "docstatus": 0,
   "doctype": "Role Profile",
+  "modified": "2023-03-14 15:42:10.771714",
+  "name": "Payroll Admin",
+  "role_profile": "Payroll Admin",
+  "roles": [
+   {
+    "parent": "Payroll Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Payroll Admin"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2023-04-26 10:51:20.125534",
+  "name": "HR Assistant",
+  "role_profile": "HR Assistant",
+  "roles": [
+   {
+    "parent": "HR Assistant",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "HR Assistant"
+   },
+   {
+    "parent": "HR Assistant",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Employee"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2023-04-25 15:32:43.463284",
+  "name": "HR Manager/CS Officer",
+  "role_profile": "HR Manager/CS Officer",
+  "roles": [
+   {
+    "parent": "HR Manager/CS Officer",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Leave Approver"
+   },
+   {
+    "parent": "HR Manager/CS Officer",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Expense Approver"
+   },
+   {
+    "parent": "HR Manager/CS Officer",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "HR Manager/CS Officer"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
   "modified": "2023-02-27 17:05:06.273722",
   "name": "Admin",
   "role_profile": "Admin",
