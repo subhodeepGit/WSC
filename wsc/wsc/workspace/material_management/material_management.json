@@ -554,7 +554,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-03-25 11:50:18.650795",
+ "modified": "2023-04-26 16:25:09.968286",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Material Management",
@@ -568,6 +568,12 @@
   },
   {
    "role": "Material Management Admin"
+  },
+  {
+   "role": "GM-Procurement & Contract Management"
+  },
+  {
+   "role": "Purchase Manager-MM"
   }
  ],
  "sequence_id": 12.0,

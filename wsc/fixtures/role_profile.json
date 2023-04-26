@@ -382,5 +382,35 @@
     "role": "Material Management Admin"
    }
   ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2023-04-26 16:23:02.102654",
+  "name": "Purchase Manager-MM",
+  "role_profile": "Purchase Manager-MM",
+  "roles": [
+   {
+    "parent": "Purchase Manager-MM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Purchase Manager-MM"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2023-04-26 16:23:20.093214",
+  "name": "GM-Procurement & Contract Management",
+  "role_profile": "GM-Procurement & Contract Management",
+  "roles": [
+   {
+    "parent": "GM-Procurement & Contract Management",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "GM-Procurement & Contract Management"
+   }
+  ]
  }
 ]
