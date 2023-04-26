@@ -1,0 +1,73 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-04-20 16:41:09.519639",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "exam_declaration",
+  "job_opening",
+  "exam_date",
+  "section_break_4",
+  "get_applicants",
+  "applicant_result"
+ ],
+ "fields": [
+  {
+   "fieldname": "exam_declaration",
+   "fieldtype": "Link",
+   "label": "Exam Declaration",
+   "options": "Recruitment Exam Declaration"
+  },
+  {
+   "fieldname": "job_opening",
+   "fieldtype": "Data",
+   "label": "Job Opening"
+  },
+  {
+   "fieldname": "exam_date",
+   "fieldtype": "Data",
+   "label": "Exam Date"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "get_applicants",
+   "fieldtype": "Button",
+   "label": "Get Applicants"
+  },
+  {
+   "fieldname": "applicant_result",
+   "fieldtype": "Table",
+   "label": "Applicant Result",
+   "options": "Job Applicant Result"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2023-04-20 16:41:09.519639",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Recruitment Exam Result Declration Tool",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

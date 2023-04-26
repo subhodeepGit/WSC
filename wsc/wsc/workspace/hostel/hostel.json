@@ -366,7 +366,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-03-25 09:59:03.236482",
+ "modified": "2023-04-25 15:57:18.477699",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Hostel",
@@ -377,6 +377,15 @@
  "roles": [
   {
    "role": "Admin"
+  },
+  {
+   "role": "Hostel Administrator"
+  },
+  {
+   "role": "Hostel Superintendent"
+  },
+  {
+   "role": "Hostel Warden"
   }
  ],
  "sequence_id": 14.0,

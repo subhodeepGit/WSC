@@ -478,3 +478,24 @@ def check_duplicate_permission(doc):
 			'applicable_for': "Mentor Allocation",
 			'name': ['!=', doc.name]
 		}, limit=1)
+
+
+@frappe.whitelist()
+def get_educational_details(job_applicant):
+	data = frappe.get_all("Employee Education",{'parent':job_applicant},["level","school_univ","year_of_passing","class_per","document"])
+	if data :
+		print("\n\n\n\n\n\nEmployee Education Details")
+		print(data)
+		return data
+	else :
+		pass
+@frappe.whitelist()
+
+def get_job_applicant(doctype, txt, searchfield, start, page_len, filters):
+	data = frappe.get_all("Job Applicant",{"status":"Accepted"},["name"],as_list = 1)
+	if data :
+		print("\n\n\n\n\njob applicant")
+		print(data)
+		return data
+	else :
+		pass
