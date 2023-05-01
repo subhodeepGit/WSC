@@ -88,12 +88,12 @@
   },
   {
    "fieldname": "date_of_admission",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "Date of Admission"
   },
   {
    "fieldname": "date_of_leaving_the_school",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "Date of Leaving the School"
   },
   {
@@ -116,10 +116,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-08-17 11:30:11.765585",
+ "modified": "2023-05-01 12:55:55.027838",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Leaving Certificate Tool",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
@@ -137,5 +138,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }
