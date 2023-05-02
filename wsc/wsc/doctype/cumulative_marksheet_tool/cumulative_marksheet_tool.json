@@ -102,15 +102,17 @@
   {
    "fieldname": "year_of_admision",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Year of Admission"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-08-03 12:27:24.441714",
+ "modified": "2023-05-01 12:59:53.622080",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Cumulative Marksheet Tool",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
@@ -128,5 +130,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }
