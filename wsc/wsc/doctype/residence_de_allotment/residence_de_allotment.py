@@ -70,18 +70,18 @@ def residenceHistoryUpdate(self):
 	allotmentData.save()
 
 @frappe.whitelist()
-def residence_deallotments(residence_de_allotment_application_number,reason_for_de_allotment,residence_allotment_number,application_number,start_date,changed_residence_serial_number,changed_residence_number,employee_name,employee_id,changed_building_name,changed_residence_type,changed_residence_type_name):
+def residence_deallotments(residence_de_allotment_application_number,reason_for_de_allotment,residence_allotment_number,application_number,start_date,current_residence_serial_number,current_residence_number,employee_name,employee_id,current_building_name,current_residence_type,current_residence_type_name):
 	ra = frappe.new_doc("Residence De-Allotment")
 	ra.residence_de_allotment_application_number = residence_de_allotment_application_number
 	ra.reason_for_de_allotment = reason_for_de_allotment
 	ra.residence_allotment_number= residence_allotment_number
 	ra.application_number=application_number
 	ra.start_date=start_date
-	ra.residence_serial_number=changed_residence_serial_number
-	ra.residence_number=changed_residence_number
+	ra.residence_serial_number= current_residence_serial_number
+	ra.residence_number=current_residence_number
 	ra.employee_name=employee_name
 	ra.employee_id = employee_id
-	ra.building_name= changed_building_name
-	ra.residence_type=changed_residence_type
-	ra.residence_type_name=changed_residence_type_name
+	ra.building_name= current_building_name
+	ra.residence_type=current_residence_type
+	ra.residence_type_name=current_residence_type_name
 	return ra

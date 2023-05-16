@@ -1,0 +1,100 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-09 18:04:18.875617",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "applicant_id",
+  "applicant_name",
+  "address",
+  "venue",
+  "district",
+  "pin_code",
+  "department",
+  "date_of_exam",
+  "exam_start_time",
+  "exam_end_time"
+ ],
+ "fields": [
+  {
+   "fieldname": "applicant_id",
+   "fieldtype": "Link",
+   "label": "Applicant ID",
+   "options": "Student Applicant"
+  },
+  {
+   "fetch_from": "applicant_id.title",
+   "fieldname": "applicant_name",
+   "fieldtype": "Data",
+   "label": "Applicant Name"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "label": "Address"
+  },
+  {
+   "fieldname": "venue",
+   "fieldtype": "Data",
+   "label": "Venue"
+  },
+  {
+   "fieldname": "district",
+   "fieldtype": "Data",
+   "label": "District"
+  },
+  {
+   "fieldname": "pin_code",
+   "fieldtype": "Data",
+   "label": "Pin Code"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
+  },
+  {
+   "fieldname": "date_of_exam",
+   "fieldtype": "Data",
+   "label": "Date of Exam"
+  },
+  {
+   "fieldname": "exam_start_time",
+   "fieldtype": "Time",
+   "label": "Exam Start Time"
+  },
+  {
+   "fieldname": "exam_end_time",
+   "fieldtype": "Time",
+   "label": "Exam End Time"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-05-09 18:05:38.605465",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Entrance Exam Admit Card",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

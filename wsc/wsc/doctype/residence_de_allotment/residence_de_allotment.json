@@ -1,7 +1,7 @@
 {
  "actions": [],
- "autoname": "DERES.####",
- "creation": "2023-03-02 15:57:18.192264",
+ "autoname": "DERE.####",
+ "creation": "2023-05-15 12:06:29.538684",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -25,6 +25,7 @@
   "building_name",
   "residence_type",
   "residence_type_name",
+  "amended_from",
   "amended_from"
  ],
  "fields": [
@@ -83,7 +84,7 @@
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Residence De-Allotment",
+   "options": "Residence De-Allottment",
    "print_hide": 1,
    "read_only": 1
   },
@@ -131,7 +132,7 @@
    "fieldname": "residence_de_allotment_application_number",
    "fieldtype": "Link",
    "label": "Residence De Allotment Application Number",
-   "options": "Application for Residence De-Allotment",
+   "options": "Application for Residence De-Allottment",
    "read_only": 1,
    "reqd": 1,
    "unique": 1
@@ -151,10 +152,19 @@
    "reqd": 1
   },
   {
-   "fetch_from": "residence_de_allotment_application_number.reason_for_de_allotment",
+   "fetch_from": "residence_de_allotment_application_number.reason_for_de_allottment",
    "fieldname": "reason_for_de_allottment",
    "fieldtype": "Data",
-   "label": "Reason for De Allotment",
+   "label": "Reason for De Allottment",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Residence De-Allottment",
+   "print_hide": 1,
    "read_only": 1
   }
  ],
@@ -162,7 +172,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-03-02 17:36:42.724553",
+ "modified": "2023-05-15 12:06:29.538684",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence De-Allotment",

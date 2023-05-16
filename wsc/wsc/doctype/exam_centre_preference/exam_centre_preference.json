@@ -1,0 +1,57 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-09 16:25:59.659957",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "center_name",
+  "state",
+  "districts",
+  "cityvillage"
+ ],
+ "fields": [
+  {
+   "fieldname": "center_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Centre Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "State",
+   "options": "State",
+   "reqd": 1
+  },
+  {
+   "fieldname": "districts",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "District",
+   "options": "Districts"
+  },
+  {
+   "fieldname": "cityvillage",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "City/Village"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-05-10 09:47:26.040426",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Exam Centre Preference",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

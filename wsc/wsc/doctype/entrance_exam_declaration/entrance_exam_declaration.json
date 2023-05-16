@@ -1,0 +1,98 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-04-05 15:44:00.331759",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "entrance_name",
+  "department_name",
+  "course_name",
+  "column_break_av5ib",
+  "entrance_date",
+  "exam_time",
+  "academic_year",
+  "section_break_06hu9",
+  "description_of_entrance_test"
+ ],
+ "fields": [
+  {
+   "fieldname": "entrance_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Entrance Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "department_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Department Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "course_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Course Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "entrance_date",
+   "fieldtype": "Date",
+   "label": "Entrance Date"
+  },
+  {
+   "fieldname": "exam_time",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Exam Time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Data",
+   "label": "Academic Year",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description_of_entrance_test",
+   "fieldtype": "Long Text",
+   "label": "Description of Entrance Test"
+  },
+  {
+   "fieldname": "column_break_av5ib",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_06hu9",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-04-05 15:48:44.083767",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Entrance Exam Declaration",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,54 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-04-05 16:22:42.219975",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "student",
+  "roll_no",
+  "student_name",
+  "signature"
+ ],
+ "fields": [
+  {
+   "fieldname": "student",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Student",
+   "reqd": 1
+  },
+  {
+   "fieldname": "roll_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Roll No.",
+   "reqd": 1
+  },
+  {
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Student Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "signature",
+   "fieldtype": "Signature",
+   "label": "Signature"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-04-05 16:23:49.729974",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Student attendance table",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

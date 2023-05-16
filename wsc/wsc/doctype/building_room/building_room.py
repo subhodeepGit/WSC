@@ -7,7 +7,7 @@ from frappe.model.document import Document
 class BuildingRoom(Document):
 	def validate(self):
 		duplicate(self)
-		dateValidate(self)
+		# dateValidate(self)
 
 # To filter buildings which are currently between start and end date
 @frappe.whitelist()
@@ -18,7 +18,10 @@ def room_type_query(doctype, txt, searchfield, start, page_len, filters):
 # To check for any duplicate record within a building regarding room no. or room type
 def duplicate(self):
 	data=frappe.get_all("Building Room",{"room_no":self.room_no,"building_name":self.building_name,"type_of_room":self.type_of_room})
-	if data:
+	name=data[0]['name']                                         
+	if name==self.name:
+		return
+	else:
 		frappe.throw("Same room no. cant exist within the building")
 
 ########################### alternate code written in js but still required for date validation ######################################

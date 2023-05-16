@@ -1,162 +1,113 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "SCH-.####",
- "creation": "2023-01-30 15:30:53.654935",
+ "creation": "2023-03-31 17:06:47.463854",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "academic_details_section",
+  "scholarship_name",
+  "scholarship_company",
+  "column_break_yxxgs",
   "academic_year",
-  "academic_term",
-  "program_grade",
-  "column_break_6",
-  "programs",
-  "semester",
-  "section_break_7",
-  "type_of_scholarship",
-  "topper_scholarship",
-  "get_students",
-  "topper_scholarship_table",
-  "cutoff_scholarship",
-  "upper_cutoff_sgpa",
-  "lower_cutoff_sgpa",
-  "get_cutoff_students",
-  "cutoff_scholarship_table",
-  "amended_from"
+  "scholarship_criteria_section",
+  "10th_percentage",
+  "12th_percentage",
+  "itidiploma_percentage",
+  "semester_1_marks",
+  "column_break_kksne",
+  "semester_2_marks",
+  "document_required",
+  "start_date",
+  "end_date"
  ],
  "fields": [
   {
+   "fieldname": "scholarship_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Scholarship Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "scholarship_company",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Scholarship Company",
+   "reqd": 1
+  },
+  {
    "fieldname": "academic_year",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Academic Year",
-   "options": "Academic Year",
    "reqd": 1
   },
   {
-   "fieldname": "semester",
-   "fieldtype": "Link",
-   "label": "Semester",
-   "options": "Program",
-   "reqd": 1
-  },
-  {
-   "depends_on": "eval:doc.type_of_scholarship==\"Merit basis\"",
-   "fieldname": "topper_scholarship_table",
-   "fieldtype": "Table",
-   "label": "Topper Scholarship table",
-   "options": "Topper Scholarship"
-  },
-  {
-   "depends_on": "eval:doc.type_of_scholarship==\"Cutoff basis\"",
-   "fieldname": "cutoff_scholarship_table",
-   "fieldtype": "Table",
-   "label": "Cutoff Scholarship table",
-   "options": "Cutoff Scholarship"
-  },
-  {
-   "fieldname": "program_grade",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Program Grade",
-   "options": "Program Grades",
-   "reqd": 1
-  },
-  {
-   "fieldname": "academic_term",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Academic Term",
-   "options": "Academic Term",
-   "reqd": 1
-  },
-  {
-   "fieldname": "programs",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Programs",
-   "options": "Programs",
-   "reqd": 1
-  },
-  {
-   "fieldname": "academic_details_section",
+   "fieldname": "scholarship_criteria_section",
    "fieldtype": "Section Break",
-   "label": "Academic Details"
+   "label": "Scholarship Criteria"
   },
   {
-   "depends_on": "eval:doc.type_of_scholarship==\"Cutoff basis\"",
-   "fieldname": "cutoff_scholarship",
-   "fieldtype": "Section Break",
-   "label": "Cutoff Scholarship"
+   "fieldname": "10th_percentage",
+   "fieldtype": "Data",
+   "label": "10th Percentage"
   },
   {
-   "fieldname": "section_break_7",
-   "fieldtype": "Section Break",
-   "label": "Scholarships"
+   "fieldname": "12th_percentage",
+   "fieldtype": "Data",
+   "label": "12th Percentage"
   },
   {
-   "fieldname": "column_break_6",
+   "fieldname": "itidiploma_percentage",
+   "fieldtype": "Data",
+   "label": "ITI/Diploma Percentage"
+  },
+  {
+   "fieldname": "semester_1_marks",
+   "fieldtype": "Float",
+   "label": "Semester 1 Marks"
+  },
+  {
+   "fieldname": "semester_2_marks",
+   "fieldtype": "Float",
+   "label": "Semester 2 Marks"
+  },
+  {
+   "fieldname": "document_required",
+   "fieldtype": "Link",
+   "label": "Document Required",
+   "options": "Documents Template"
+  },
+  {
+   "fieldname": "column_break_yxxgs",
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "eval:doc.type_of_scholarship==\"Merit basis\"",
-   "fieldname": "topper_scholarship",
-   "fieldtype": "Section Break",
-   "label": "Topper Scholarship"
+   "fieldname": "column_break_kksne",
+   "fieldtype": "Column Break"
   },
   {
-   "depends_on": "eval:doc.type_of_scholarship==\"Merit basis\"",
-   "fieldname": "get_students",
-   "fieldtype": "Button",
-   "label": "Get Students"
-  },
-  {
-   "depends_on": "eval:doc.type_of_scholarship==\"Cutoff basis\"",
-   "fieldname": "get_cutoff_students",
-   "fieldtype": "Button",
-   "label": "Get cutoff students"
-  },
-  {
-   "fieldname": "type_of_scholarship",
-   "fieldtype": "Select",
-   "label": "Type of Scholarship",
-   "options": "\nMerit basis\nCutoff basis",
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Start Date",
    "reqd": 1
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Scholarships",
-   "print_hide": 1,
-   "read_only": 1
-  },
-  {
-   "depends_on": "eval:doc.type_of_scholarship==\"Cutoff basis\"",
-   "fieldname": "upper_cutoff_sgpa",
-   "fieldtype": "Float",
-   "label": "Upper Cutoff SGPA",
-   "mandatory_depends_on": "eval:doc.type_of_scholarship==\"Cutoff basis\""
-  },
-  {
-   "depends_on": "eval:doc.type_of_scholarship==\"Cutoff basis\"",
-   "fieldname": "lower_cutoff_sgpa",
-   "fieldtype": "Float",
-   "label": "Lower Cutoff SGPA"
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End date",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
- "is_submittable": 1,
  "links": [],
- "modified": "2023-02-21 10:28:48.595389",
+ "modified": "2023-03-31 17:10:49.394401",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Scholarships",
- "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

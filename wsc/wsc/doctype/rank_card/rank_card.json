@@ -1,0 +1,105 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-09 18:17:52.450996",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "applicant_id",
+  "applicant_name",
+  "gender",
+  "student_category",
+  "entrance_exam_declaration",
+  "academic_year",
+  "posting_date",
+  "physically_disabled",
+  "total_marks",
+  "earned_marks",
+  "student_ranks_list"
+ ],
+ "fields": [
+  {
+   "fieldname": "applicant_id",
+   "fieldtype": "Link",
+   "label": "Applicant ID",
+   "options": "Student Applicant"
+  },
+  {
+   "fieldname": "applicant_name",
+   "fieldtype": "Data",
+   "label": "Applicant Name"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "label": "Gender"
+  },
+  {
+   "fieldname": "student_category",
+   "fieldtype": "Data",
+   "label": "Student Category"
+  },
+  {
+   "fieldname": "entrance_exam_declaration",
+   "fieldtype": "Data",
+   "label": "Entrance Exam Declaration"
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Data",
+   "label": "Academic Year"
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Data",
+   "label": "Posting Date"
+  },
+  {
+   "fieldname": "physically_disabled",
+   "fieldtype": "Data",
+   "label": "Physically Disabled"
+  },
+  {
+   "fieldname": "total_marks",
+   "fieldtype": "Data",
+   "label": "Total Marks"
+  },
+  {
+   "fieldname": "earned_marks",
+   "fieldtype": "Data",
+   "label": "Earned Marks"
+  },
+  {
+   "fieldname": "student_ranks_list",
+   "fieldtype": "Table",
+   "label": "Student Ranks List",
+   "options": "Student Ranks List"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-05-09 18:17:52.450996",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Rank Card",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

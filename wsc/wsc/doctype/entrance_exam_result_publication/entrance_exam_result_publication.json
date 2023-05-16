@@ -1,0 +1,98 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-09 18:07:30.539407",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "applicant_id",
+  "applicant_name",
+  "academic_year",
+  "result_declaration_date",
+  "department",
+  "student_category",
+  "physically_disabled",
+  "total_marks",
+  "earned_marks"
+ ],
+ "fields": [
+  {
+   "fieldname": "applicant_id",
+   "fieldtype": "Link",
+   "label": "Applicant ID",
+   "options": "Student Applicant"
+  },
+  {
+   "fetch_from": "applicant_id.title",
+   "fieldname": "applicant_name",
+   "fieldtype": "Data",
+   "label": "Applicant Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
+  },
+  {
+   "fieldname": "result_declaration_date",
+   "fieldtype": "Date",
+   "label": "Result Declaration Date"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
+  },
+  {
+   "fetch_from": "applicant_id.student_category",
+   "fieldname": "student_category",
+   "fieldtype": "Data",
+   "label": "Student Category"
+  },
+  {
+   "default": "0",
+   "fieldname": "physically_disabled",
+   "fieldtype": "Check",
+   "label": "Physically Disabled"
+  },
+  {
+   "fieldname": "total_marks",
+   "fieldtype": "Float",
+   "label": "Total Marks"
+  },
+  {
+   "fieldname": "earned_marks",
+   "fieldtype": "Float",
+   "label": "Earned Marks"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-05-09 18:09:38.242895",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Entrance Exam Result Publication",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

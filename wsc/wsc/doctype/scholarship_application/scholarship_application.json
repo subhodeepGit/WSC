@@ -1,0 +1,263 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "SCHAPP-.####",
+ "creation": "2023-03-31 15:55:50.962450",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "scholarship_id",
+  "column_break_1jlkm",
+  "scholarship_name",
+  "column_break_wm92l",
+  "scholarship_company_name",
+  "student_details_section",
+  "student_id",
+  "name_of_the_student",
+  "wsc_registration_number",
+  "age",
+  "column_break_hnqbj",
+  "family_income_per_annum",
+  "mobile_no",
+  "basic_education_details_section",
+  "10th_marks",
+  "12th_marks",
+  "enrolled_course",
+  "column_break_6d9s5",
+  "semester_1_marks",
+  "semester_2_marks",
+  "section_break_falde",
+  "scholarship_documents",
+  "have_you_availed_any_other_scholarships",
+  "parents_occupation_section",
+  "fathers_occupation",
+  "mothers_occupation",
+  "bank_details_section",
+  "account_holder_name",
+  "bank_name",
+  "ac_number",
+  "column_break_fyuab",
+  "bank_ifsc",
+  "bank_address",
+  "status"
+ ],
+ "fields": [
+  {
+   "fieldname": "student_details_section",
+   "fieldtype": "Section Break",
+   "label": "Student Details"
+  },
+  {
+   "fieldname": "student_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Student ID",
+   "options": "Student",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "student_id.student_name",
+   "fieldname": "name_of_the_student",
+   "fieldtype": "Data",
+   "label": "Student Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "wsc_registration_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "WSC Registration Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Age",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_hnqbj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "family_income_per_annum",
+   "fieldtype": "Select",
+   "label": "Family Income Per Annum",
+   "options": "\nBelow 1.25 Lakh\n1.25 - 2.5 Lakh\n2.5 - 3.5 Lakh\n3.5 - 4.5 Lakh\n4.5 - 5.5 Lakh\n5.5 - 6.5 Lakh",
+   "reqd": 1
+  },
+  {
+   "fieldname": "mobile_no",
+   "fieldtype": "Phone",
+   "label": "Mobile No."
+  },
+  {
+   "fieldname": "basic_education_details_section",
+   "fieldtype": "Section Break",
+   "label": "Basic Education Details"
+  },
+  {
+   "fieldname": "10th_marks",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "10th Percentage",
+   "reqd": 1
+  },
+  {
+   "fieldname": "12th_marks",
+   "fieldtype": "Percent",
+   "label": "12th Percentage"
+  },
+  {
+   "fieldname": "enrolled_course",
+   "fieldtype": "Link",
+   "label": "Enrolled Course",
+   "options": "Course",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_6d9s5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "semester_1_marks",
+   "fieldtype": "Float",
+   "label": "Semester 1 marks"
+  },
+  {
+   "fieldname": "semester_2_marks",
+   "fieldtype": "Float",
+   "label": "Semester 2 marks"
+  },
+  {
+   "fieldname": "section_break_falde",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "scholarship_documents",
+   "fieldtype": "Table",
+   "label": "Scholarship Documents",
+   "options": "Scholarship Documents",
+   "reqd": 1
+  },
+  {
+   "fieldname": "have_you_availed_any_other_scholarships",
+   "fieldtype": "Select",
+   "label": "Have you Availed any other scholarships?",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "parents_occupation_section",
+   "fieldtype": "Section Break",
+   "label": "Parent's Occupation"
+  },
+  {
+   "fieldname": "fathers_occupation",
+   "fieldtype": "Data",
+   "label": "Father's Occupation"
+  },
+  {
+   "fieldname": "mothers_occupation",
+   "fieldtype": "Data",
+   "label": "Mother's Occupation"
+  },
+  {
+   "fieldname": "bank_details_section",
+   "fieldtype": "Section Break",
+   "label": "Bank Details"
+  },
+  {
+   "fieldname": "account_holder_name",
+   "fieldtype": "Data",
+   "label": "Account Holder Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "bank_name",
+   "fieldtype": "Data",
+   "label": "Bank Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "ac_number",
+   "fieldtype": "Data",
+   "label": "A/c Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_fyuab",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "bank_ifsc",
+   "fieldtype": "Data",
+   "label": "Bank IFSC",
+   "reqd": 1
+  },
+  {
+   "fieldname": "bank_address",
+   "fieldtype": "Data",
+   "label": "Bank Address",
+   "reqd": 1
+  },
+  {
+   "fieldname": "scholarship_id",
+   "fieldtype": "Data",
+   "label": "Scholarship ID"
+  },
+  {
+   "fieldname": "scholarship_name",
+   "fieldtype": "Data",
+   "label": "Scholarship Name"
+  },
+  {
+   "fieldname": "scholarship_company_name",
+   "fieldtype": "Data",
+   "label": "Scholarship Company Name"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status"
+  },
+  {
+   "fieldname": "column_break_1jlkm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_wm92l",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-03-31 17:15:00.296134",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Scholarship Application",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "name_of_the_student"
+}

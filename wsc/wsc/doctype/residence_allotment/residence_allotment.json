@@ -131,15 +131,6 @@
    "options": "Type of Residence"
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Residence Allotment",
-   "print_hide": 1,
-   "read_only": 1
-  },
-  {
    "fetch_from": "residence_serial_number.employee_allotment_status",
    "fieldname": "employee_allotment_status",
    "fieldtype": "Data",
@@ -171,15 +162,13 @@
    "fetch_from": "residence_serial_number.description",
    "fieldname": "description",
    "fieldtype": "Data",
-   "label": "Description",
-   "read_only": 1
+   "label": "Description"
   },
   {
    "fetch_from": "residence_serial_number.unit_area_sq_m",
    "fieldname": "unit_area_sq_m",
    "fieldtype": "Data",
-   "label": "Unit Area (sq. m.)",
-   "read_only": 1
+   "label": "Unit Area (sq. m.)"
   },
   {
    "fetch_from": "residence_serial_number.orientation",
@@ -192,50 +181,43 @@
    "fetch_from": "residence_serial_number.lawngarden_available",
    "fieldname": "lawngarden_available",
    "fieldtype": "Data",
-   "label": "Lawn/Garden Available",
-   "read_only": 1
+   "label": "Lawn/Garden Available"
   },
   {
    "fetch_from": "residence_serial_number.lawngarden_area_sq_m",
    "fieldname": "lawngarden_area_sq_m",
    "fieldtype": "Data",
-   "label": "Lawn/Garden Area (sq. m.)",
-   "read_only": 1
+   "label": "Lawn/Garden Area (sq. m.)"
   },
   {
    "fetch_from": "residence_serial_number.roof_type",
    "fieldname": "roof_type",
    "fieldtype": "Data",
-   "label": "Roof type",
-   "read_only": 1
+   "label": "Roof type"
   },
   {
    "fetch_from": "residence_serial_number.parking_available",
    "fieldname": "parking_available",
    "fieldtype": "Data",
-   "label": "Parking Available",
-   "read_only": 1
+   "label": "Parking Available"
   },
   {
    "fetch_from": "residence_serial_number.parking_type",
    "fieldname": "parking_type",
    "fieldtype": "Data",
-   "label": "Parking Type",
-   "read_only": 1
+   "label": "Parking Type"
   },
   {
    "fetch_from": "residence_serial_number.parking_vehicle",
    "fieldname": "parking_vehicle",
    "fieldtype": "Data",
-   "label": "Parking Vehicle",
-   "read_only": 1
+   "label": "Parking Vehicle"
   },
   {
    "fetch_from": "residence_serial_number.parking_area_sq_m",
    "fieldname": "parking_area_sq_m",
    "fieldtype": "Data",
-   "label": "Parking Area (sq. m.)",
-   "read_only": 1
+   "label": "Parking Area (sq. m.)"
   },
   {
    "fieldname": "residence_details_section",
@@ -427,13 +409,22 @@
   {
    "fieldname": "column_break_45",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Residence Allotment",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "in_create": 1,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-10 16:21:38.786432",
+ "modified": "2023-05-15 15:25:08.821746",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Residence Allotment",

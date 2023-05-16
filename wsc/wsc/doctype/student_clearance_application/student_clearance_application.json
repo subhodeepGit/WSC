@@ -1,0 +1,135 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-04-04 12:08:04.750184",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "posting_date",
+  "column_break_9ecln",
+  "user_disable_date",
+  "section_break_gcpf2",
+  "student_id",
+  "student_name",
+  "programs",
+  "column_break_7qx3v",
+  "semesters",
+  "academic_year",
+  "academic_term",
+  "section_break_7qjxa",
+  "departments_clearance_status",
+  "status",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Posting Date",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "student_id",
+   "fieldtype": "Link",
+   "label": "Student ID",
+   "options": "Student",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "student_id.student_name",
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "label": "Student Name"
+  },
+  {
+   "fieldname": "programs",
+   "fieldtype": "Data",
+   "label": "Programs"
+  },
+  {
+   "fieldname": "semesters",
+   "fieldtype": "Data",
+   "label": "Semesters"
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Data",
+   "label": "Academic Year"
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Data",
+   "label": "Academic Term"
+  },
+  {
+   "fieldname": "departments_clearance_status",
+   "fieldtype": "Table",
+   "options": "Departments Clearance Status"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Student Clearance Application",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status"
+  },
+  {
+   "fieldname": "section_break_gcpf2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_7qx3v",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_7qjxa",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_9ecln",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "user_disable_date",
+   "fieldtype": "Data",
+   "label": "User Disable Date"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-04-04 12:20:16.722811",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Student Clearance Application",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

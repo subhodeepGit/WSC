@@ -19,9 +19,8 @@ def dateValidate(self):
 
 # Validation for pincode length	
 def pincode(self):
-	if self.pin_code:
-		if not (self.pin_code).isdigit():
-			frappe.throw("Field <b>Pin Code</b> Accept Digits Only")
+	if not self.pin_code:
+		return
 
 	if len(self.pin_code)>6:
 			frappe.throw("Field <b>Pin Code</b> must be 6 Digits")

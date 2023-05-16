@@ -18,7 +18,6 @@
   "state",
   "pin_code",
   "building_on_lease",
-  "lease",
   "building_details_section",
   "building_type",
   "total_rooms",
@@ -28,6 +27,9 @@
   "column_break_15",
   "start_date",
   "end_date",
+  "section_break_l0ekc",
+  "building_documents",
+  "column_break_dlio7",
   "amended_from"
  ],
  "fields": [
@@ -108,9 +110,9 @@
   {
    "fieldname": "building_type",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Building Type",
-   "options": "\nAcademic\nNon-Academic\nResidential\nOthers",
-   "reqd": 1
+   "options": "\nAcademic\nNon-Academic\nResidential\nOthers"
   },
   {
    "fieldname": "column_break_15",
@@ -119,19 +121,22 @@
   {
    "fieldname": "facing",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Facing",
    "options": "\nNorth\nSouth\nEast\nWest"
   },
   {
    "fieldname": "campus",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Campus"
   },
   {
    "fieldname": "plot_number",
    "fieldtype": "Link",
    "label": "Land Plot number",
-   "options": "Land"
+   "options": "Land",
+   "reqd": 1
   },
   {
    "fieldname": "start_date",
@@ -153,17 +158,11 @@
    "reqd": 1
   },
   {
+   "default": "No",
    "fieldname": "building_on_lease",
    "fieldtype": "Select",
    "label": "Building on Lease",
    "options": "\nYes\nNo"
-  },
-  {
-   "depends_on": "eval:(doc.building_on_lease==\"Yes\")",
-   "fieldname": "lease",
-   "fieldtype": "Attach",
-   "label": "Lease ",
-   "mandatory_depends_on": "eval:(doc.building_on_lease==\"Yes\")"
   },
   {
    "fieldname": "building_address",
@@ -171,11 +170,25 @@
    "in_list_view": 1,
    "label": "Building Address",
    "reqd": 1
+  },
+  {
+   "fieldname": "building_documents",
+   "fieldtype": "Table",
+   "label": "Building Documents",
+   "options": "Building Documents"
+  },
+  {
+   "fieldname": "section_break_l0ekc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_dlio7",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-23 12:30:41.078415",
+ "modified": "2023-05-16 12:53:37.642937",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Buildings",

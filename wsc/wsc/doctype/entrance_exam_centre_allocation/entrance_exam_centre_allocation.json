@@ -1,0 +1,129 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-09 17:28:02.897730",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "entrance_exam_declaration",
+  "academic_year",
+  "academic_term",
+  "department",
+  "exam_date",
+  "centre",
+  "centre_name",
+  "address",
+  "district",
+  "state",
+  "pin_code",
+  "centre_booking_time_start",
+  "centre_booking_time_end",
+  "exam_slot_timings",
+  "entrance_exam_invigilator"
+ ],
+ "fields": [
+  {
+   "fieldname": "entrance_exam_declaration",
+   "fieldtype": "Data",
+   "label": "Entrance Exam Declaration"
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Data",
+   "label": "Academic Year"
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Data",
+   "label": "Academic Term"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Data",
+   "label": "Department"
+  },
+  {
+   "fieldname": "exam_date",
+   "fieldtype": "Data",
+   "label": "Exam Date"
+  },
+  {
+   "fieldname": "centre",
+   "fieldtype": "Data",
+   "label": "Centre"
+  },
+  {
+   "fieldname": "centre_name",
+   "fieldtype": "Data",
+   "label": "Centre Name"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "label": "Address"
+  },
+  {
+   "fieldname": "district",
+   "fieldtype": "Data",
+   "label": "District"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State"
+  },
+  {
+   "fieldname": "pin_code",
+   "fieldtype": "Data",
+   "label": "Pin Code"
+  },
+  {
+   "fieldname": "centre_booking_time_start",
+   "fieldtype": "Data",
+   "label": "Centre Booking Time Start"
+  },
+  {
+   "fieldname": "centre_booking_time_end",
+   "fieldtype": "Data",
+   "label": "Centre Booking Time End"
+  },
+  {
+   "fieldname": "exam_slot_timings",
+   "fieldtype": "Table",
+   "label": "Exam Slot Timings",
+   "options": "Exam Slot Timings"
+  },
+  {
+   "fieldname": "entrance_exam_invigilator",
+   "fieldtype": "Table",
+   "label": "Entrance Exam Invigilator",
+   "options": "Entrance Exam Invigilator"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-05-09 17:44:20.608215",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Entrance Exam Centre Allocation",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
