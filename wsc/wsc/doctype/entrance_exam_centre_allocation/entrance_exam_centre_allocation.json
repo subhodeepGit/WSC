@@ -12,41 +12,51 @@
   "academic_term",
   "department",
   "exam_date",
+  "column_break_6",
   "centre",
   "centre_name",
   "address",
   "district",
   "state",
   "pin_code",
+  "section_break_13",
   "centre_booking_time_start",
+  "column_break_15",
   "centre_booking_time_end",
+  "section_break_17",
   "exam_slot_timings",
-  "entrance_exam_invigilator"
+  "entrance_exam_invigilator",
+  "amended_from"
  ],
  "fields": [
   {
    "fieldname": "entrance_exam_declaration",
-   "fieldtype": "Data",
-   "label": "Entrance Exam Declaration"
+   "fieldtype": "Link",
+   "label": "Entrance Exam Declaration",
+   "options": "Entrance Exam Declaration"
   },
   {
+   "fetch_from": "entrance_exam_declaration.academic_year",
    "fieldname": "academic_year",
    "fieldtype": "Data",
    "label": "Academic Year"
   },
   {
+   "fetch_from": "entrance_exam_declaration.academic_term",
    "fieldname": "academic_term",
    "fieldtype": "Data",
    "label": "Academic Term"
   },
   {
+   "fetch_from": "entrance_exam_declaration.department",
    "fieldname": "department",
    "fieldtype": "Data",
    "label": "Department"
   },
   {
+   "fetch_from": "entrance_exam_declaration.exam_start_date",
    "fieldname": "exam_date",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "Exam Date"
   },
   {
@@ -100,11 +110,37 @@
    "fieldtype": "Table",
    "label": "Entrance Exam Invigilator",
    "options": "Entrance Exam Invigilator"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Entrance Exam Centre Allocation",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_13",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_17",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-05-09 17:44:20.608215",
+ "modified": "2023-05-18 12:18:18.081211",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Centre Allocation",

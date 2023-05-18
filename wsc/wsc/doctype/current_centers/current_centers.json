@@ -1,13 +1,12 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2023-05-09 17:11:25.871253",
+ "creation": "2023-04-26 15:12:31.268064",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "center",
-  "center_name",
   "address",
   "citytownvillage",
   "district",
@@ -21,48 +20,37 @@
    "options": "Entrance Exam Centre Master"
   },
   {
-   "fetch_from": "center.center_name",
-   "fieldname": "center_name",
-   "fieldtype": "Data",
-   "label": "Center Name",
-   "read_only": 1
-  },
-  {
-   "fetch_from": "center.full_address",
+   "fetch_from": "center.address",
    "fieldname": "address",
    "fieldtype": "Data",
-   "label": "Address",
-   "read_only": 1
+   "label": "Address"
   },
   {
    "fetch_from": "center.cityvillage",
    "fieldname": "citytownvillage",
    "fieldtype": "Data",
-   "label": "City/Town/Village",
-   "read_only": 1
+   "label": "City/Town/Village"
   },
   {
    "fetch_from": "center.district",
    "fieldname": "district",
    "fieldtype": "Data",
-   "label": "District",
-   "read_only": 1
+   "label": "District"
   },
   {
    "fetch_from": "center.pincode",
    "fieldname": "pincode",
-   "fieldtype": "Data",
-   "label": "Pincode",
-   "read_only": 1
+   "fieldtype": "Int",
+   "label": "Pincode"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-05-09 17:29:59.544131",
+ "modified": "2023-05-17 11:38:42.456277",
  "modified_by": "Administrator",
  "module": "WSC",
- "name": "Current Centres",
+ "name": "Current Centers",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",
