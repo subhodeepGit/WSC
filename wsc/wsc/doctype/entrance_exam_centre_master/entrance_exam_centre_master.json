@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{center_name}-{district}-{cityvillage}-{pincode}",
  "creation": "2023-05-09 17:01:29.238429",
  "default_view": "List",
  "doctype": "DocType",
@@ -9,7 +10,6 @@
  "field_order": [
   "enable",
   "center_name",
-  "full_address",
   "state",
   "district",
   "block",
@@ -29,63 +29,72 @@
   {
    "fieldname": "center_name",
    "fieldtype": "Data",
-   "label": "Centre Name"
+   "in_list_view": 1,
+   "label": "Centre Name",
+   "reqd": 1
   },
   {
    "fieldname": "state",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "State",
-   "options": "State"
+   "options": "State",
+   "reqd": 1
   },
   {
    "fieldname": "district",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "District",
-   "options": "Districts"
+   "options": "Districts",
+   "reqd": 1
   },
   {
    "fieldname": "block",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Block",
-   "options": "Blocks"
+   "options": "Blocks",
+   "reqd": 1
   },
   {
    "fieldname": "post_office",
    "fieldtype": "Data",
-   "label": "Post Office"
+   "label": "Post Office",
+   "reqd": 1
   },
   {
    "fieldname": "cityvillage",
    "fieldtype": "Data",
-   "label": "City/Village"
+   "label": "City/Village",
+   "reqd": 1
   },
   {
    "fieldname": "address",
    "fieldtype": "Data",
-   "label": "Address"
+   "label": "Address",
+   "reqd": 1
   },
   {
    "fieldname": "pincode",
    "fieldtype": "Int",
-   "label": "Pincode"
+   "label": "Pincode",
+   "reqd": 1
   },
   {
    "fieldname": "total_seating_capacity",
    "fieldtype": "Int",
-   "label": "Total Seating Capacity"
-  },
-  {
-   "fieldname": "full_address",
-   "fieldtype": "Data",
-   "label": "Full Address"
+   "label": "Total Seating Capacity",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-09 17:30:09.851815",
+ "modified": "2023-05-18 12:06:16.421328",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Centre Master",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

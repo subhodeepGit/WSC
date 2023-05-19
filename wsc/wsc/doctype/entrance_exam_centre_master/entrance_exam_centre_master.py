@@ -5,4 +5,5 @@
 from frappe.model.document import Document
 
 class EntranceExamCentreMaster(Document):
-	pass
+	print("\n\n\n")
+	print(1)

@@ -2,7 +2,13 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Entrance Exam Centre Allocation', {
-	// refresh: function(frm) {
-
-	// }
+	setup:function(frm){
+		frm.set_query("entrance_exam_declaration", function() {
+			return{
+				filters:{
+					"docstatus":1
+				}
+			}
+		})
+	}
 });

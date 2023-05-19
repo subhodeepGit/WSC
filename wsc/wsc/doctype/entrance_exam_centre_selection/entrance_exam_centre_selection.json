@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{academic_year}-{academic_term}",
  "creation": "2023-05-09 17:03:32.366576",
  "default_view": "List",
  "doctype": "DocType",
@@ -8,6 +9,9 @@
  "engine": "InnoDB",
  "field_order": [
   "academic_year",
+  "column_break_2",
+  "academic_term",
+  "section_break_4",
   "current_centers"
  ],
  "fields": [
@@ -15,21 +19,37 @@
    "fieldname": "academic_year",
    "fieldtype": "Link",
    "label": "Academic Year",
-   "options": "Academic Year"
+   "options": "Academic Year",
+   "unique": 1
   },
   {
    "fieldname": "current_centers",
    "fieldtype": "Table",
    "label": "Current Centers",
-   "options": "Current Centres"
+   "options": "Current Centers"
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-09 17:28:30.004372",
+ "modified": "2023-05-17 14:31:01.474875",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Centre Selection",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
