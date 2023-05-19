@@ -23,6 +23,11 @@
   "floor",
   "type_of_room",
   "is_temporary",
+  "is_scheduled",
+  "seating_capacity",
+  "room_name",
+  "classroom",
+  "column_break_lz6a9",
   "start_date",
   "end_date",
   "type_of_residence",
@@ -280,13 +285,16 @@
    "fieldname": "start_date",
    "fieldtype": "Date",
    "label": "Start date",
-   "mandatory_depends_on": "eval:(doc.type_of_room==\"Residential\")"
+   "mandatory_depends_on": "eval:(doc.type_of_room==\"Residential\")",
+   "reqd": 1
   },
   {
+   "default": "9999-12-30",
    "fieldname": "end_date",
    "fieldtype": "Date",
    "label": "End date",
-   "mandatory_depends_on": "eval:(doc.type_of_room==\"Residential\")"
+   "mandatory_depends_on": "eval:(doc.type_of_room==\"Residential\")",
+   "reqd": 1
   },
   {
    "fetch_from": "building_name.building_type",
@@ -348,11 +356,41 @@
    "fieldname": "enabled",
    "fieldtype": "Check",
    "label": "Enabled"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_scheduled",
+   "fieldtype": "Check",
+   "label": "Is Scheduled"
+  },
+  {
+   "fieldname": "column_break_lz6a9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:(doc.is_scheduled==\"1\")",
+   "fieldname": "seating_capacity",
+   "fieldtype": "Data",
+   "label": "Seating Capacity"
+  },
+  {
+   "depends_on": "eval:(doc.is_scheduled==\"1\")",
+   "fieldname": "room_name",
+   "fieldtype": "Data",
+   "label": "Room Name",
+   "mandatory_depends_on": "eval:(doc.is_scheduled==\"1\")"
+  },
+  {
+   "fieldname": "classroom",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Classroom",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-16 12:24:51.949609",
+ "modified": "2023-05-17 14:29:41.924759",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Building Room",

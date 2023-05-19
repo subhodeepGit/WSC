@@ -8,11 +8,14 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "scholarship_details_section",
   "scholarship_id",
   "column_break_1jlkm",
   "scholarship_name",
   "column_break_wm92l",
   "scholarship_company_name",
+  "column_break_letlo",
+  "academic_year",
   "student_details_section",
   "student_id",
   "name_of_the_student",
@@ -28,9 +31,10 @@
   "column_break_6d9s5",
   "semester_1_marks",
   "semester_2_marks",
+  "have_you_availed_any_other_scholarships",
   "section_break_falde",
   "scholarship_documents",
-  "have_you_availed_any_other_scholarships",
+  "column_break_j1av6",
   "parents_occupation_section",
   "fathers_occupation",
   "mothers_occupation",
@@ -206,15 +210,18 @@
   },
   {
    "fieldname": "scholarship_id",
-   "fieldtype": "Data",
-   "label": "Scholarship ID"
+   "fieldtype": "Link",
+   "label": "Scholarship ID",
+   "options": "Scholarships"
   },
   {
+   "fetch_from": "scholarship_id.scholarship_name",
    "fieldname": "scholarship_name",
    "fieldtype": "Data",
    "label": "Scholarship Name"
   },
   {
+   "fetch_from": "scholarship_id.scholarship_company",
    "fieldname": "scholarship_company_name",
    "fieldtype": "Data",
    "label": "Scholarship Company Name"
@@ -231,11 +238,30 @@
   {
    "fieldname": "column_break_wm92l",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_j1av6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_letlo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "scholarship_id.academic_year",
+   "fieldname": "academic_year",
+   "fieldtype": "Data",
+   "label": "Academic Year"
+  },
+  {
+   "fieldname": "scholarship_details_section",
+   "fieldtype": "Section Break",
+   "label": "Scholarship Details"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-03-31 17:15:00.296134",
+ "modified": "2023-05-16 17:32:58.175272",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Scholarship Application",

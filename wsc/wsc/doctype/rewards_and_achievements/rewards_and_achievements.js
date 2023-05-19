@@ -50,7 +50,7 @@ frappe.ui.form.on('Rewards and Achievements', {
 	"get_students": function(frm) {
 		cur_frm.clear_table("topper_scholarship_table")
 		frappe.call({
-			method: "wsc.wsc.doctype.scholarships.scholarships.get_students",
+			method: "wsc.wsc.doctype.rewards_and_achievements.rewards_and_achievements.get_students",
 			args:{
 				programs:frm.doc.programs,
 				semester:frm.doc.semester,
