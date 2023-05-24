@@ -17,8 +17,9 @@ frappe.ui.form.on('Entrance Exam Centre Allocation', {
 						const { center } = r
 						arr.push(center)
 						// frm.set_df_property('centre', 'options', arr)
-						set_field_options("centre" , arr)
+						
 					})
+					set_field_options("centre" , arr)
 				}
 			})	
 		}
@@ -48,8 +49,10 @@ frappe.ui.form.on('Entrance Exam Centre Allocation', {
 					const { center } = r
 					arr.push(center)
 					// frm.set_df_property('centre', 'options', arr)
-					set_field_options("centre" , arr)
+					
 				})
+				// console.log(arr);
+				set_field_options("centre" , arr)
 			}
 		})
 	},
