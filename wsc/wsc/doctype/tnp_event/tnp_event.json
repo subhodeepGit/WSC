@@ -1,0 +1,143 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-29 18:04:25.977564",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "in_a_program",
+  "column_break_ztkus",
+  "has_certificate",
+  "section_break_de69j",
+  "event_name",
+  "event_date",
+  "column_break_2qkdb",
+  "event_status",
+  "section_break_ek8db",
+  "start_time",
+  "event_start_date",
+  "event_location",
+  "column_break_g5m7x",
+  "end_time",
+  "event_end_date",
+  "event_type",
+  "coordinators_section",
+  "coordinators_list"
+ ],
+ "fields": [
+  {
+   "default": "0",
+   "fieldname": "in_a_program",
+   "fieldtype": "Check",
+   "label": "In a program"
+  },
+  {
+   "fieldname": "column_break_ztkus",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "has_certificate",
+   "fieldtype": "Check",
+   "label": "Has Certificate"
+  },
+  {
+   "fieldname": "section_break_de69j",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "event_name",
+   "fieldtype": "Data",
+   "label": "Event Name"
+  },
+  {
+   "fieldname": "event_date",
+   "fieldtype": "Data",
+   "label": "Event Date"
+  },
+  {
+   "fieldname": "column_break_2qkdb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "event_status",
+   "fieldtype": "Data",
+   "label": "Event Status"
+  },
+  {
+   "fieldname": "section_break_ek8db",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "start_time",
+   "fieldtype": "Data",
+   "label": "Start Time"
+  },
+  {
+   "fieldname": "event_start_date",
+   "fieldtype": "Data",
+   "label": "Event Start Date"
+  },
+  {
+   "fieldname": "event_location",
+   "fieldtype": "Data",
+   "label": "Event Location"
+  },
+  {
+   "fieldname": "column_break_g5m7x",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "end_time",
+   "fieldtype": "Data",
+   "label": "End Time"
+  },
+  {
+   "fieldname": "event_end_date",
+   "fieldtype": "Data",
+   "label": "Event End Date"
+  },
+  {
+   "fieldname": "event_type",
+   "fieldtype": "Data",
+   "label": "Event Type"
+  },
+  {
+   "fieldname": "coordinators_section",
+   "fieldtype": "Section Break",
+   "label": "Coordinators"
+  },
+  {
+   "fieldname": "coordinators_list",
+   "fieldtype": "Table",
+   "label": "Coordinators List",
+   "options": "coordinators list"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-05-29 18:04:25.977564",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "TnP Event",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

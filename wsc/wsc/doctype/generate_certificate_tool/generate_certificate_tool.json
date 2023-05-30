@@ -1,0 +1,91 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-30 11:15:00.863955",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "select_program",
+  "select_event",
+  "get_eligible_participants_list",
+  "column_break_rqlmf",
+  "program_name",
+  "event_name",
+  "eligible_participants_section",
+  "selected_participants_list",
+  "generate_certificate"
+ ],
+ "fields": [
+  {
+   "fieldname": "select_program",
+   "fieldtype": "Data",
+   "label": "Select Program"
+  },
+  {
+   "fieldname": "select_event",
+   "fieldtype": "Data",
+   "label": "Select Event"
+  },
+  {
+   "fieldname": "get_eligible_participants_list",
+   "fieldtype": "Button",
+   "label": "Get Eligible Participants List"
+  },
+  {
+   "fieldname": "column_break_rqlmf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "program_name",
+   "fieldtype": "Data",
+   "label": "Program Name"
+  },
+  {
+   "fieldname": "event_name",
+   "fieldtype": "Data",
+   "label": "Event Name"
+  },
+  {
+   "fieldname": "eligible_participants_section",
+   "fieldtype": "Section Break",
+   "label": "Eligible Participants"
+  },
+  {
+   "fieldname": "selected_participants_list",
+   "fieldtype": "Table",
+   "label": "Selected Participants List",
+   "options": "Selected Training Participants List"
+  },
+  {
+   "fieldname": "generate_certificate",
+   "fieldtype": "Button",
+   "label": "Generate Certificate"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-05-30 11:15:00.863955",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Generate certificate tool",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

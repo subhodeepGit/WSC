@@ -1,0 +1,152 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-30 11:28:21.204530",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "enable",
+  "section_break_2armi",
+  "title_of_drive",
+  "posting_date",
+  "application_start_date",
+  "semester",
+  "current_cgpa",
+  "internship_drive_for",
+  "column_break_usibm",
+  "internship_company",
+  "type_of_drive",
+  "application_end_date",
+  "active_backlog",
+  "location_of_drive",
+  "section_break_f4br7",
+  "designationsposition_section",
+  "designations_table",
+  "for_programs",
+  "eligibility_criteria"
+ ],
+ "fields": [
+  {
+   "default": "0",
+   "fieldname": "enable",
+   "fieldtype": "Check",
+   "label": "Enable"
+  },
+  {
+   "fieldname": "section_break_2armi",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "title_of_drive",
+   "fieldtype": "Data",
+   "label": "Title of Drive"
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Data",
+   "label": "Posting Date"
+  },
+  {
+   "fieldname": "application_start_date",
+   "fieldtype": "Data",
+   "label": "Application Start Date"
+  },
+  {
+   "fieldname": "semester",
+   "fieldtype": "Data",
+   "label": "Semester"
+  },
+  {
+   "fieldname": "current_cgpa",
+   "fieldtype": "Data",
+   "label": "Current CGPA"
+  },
+  {
+   "fieldname": "internship_drive_for",
+   "fieldtype": "Data",
+   "label": "Internship Drive For"
+  },
+  {
+   "fieldname": "column_break_usibm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "internship_company",
+   "fieldtype": "Data",
+   "label": "Internship Company"
+  },
+  {
+   "fieldname": "type_of_drive",
+   "fieldtype": "Data",
+   "label": "Type of Drive"
+  },
+  {
+   "fieldname": "application_end_date",
+   "fieldtype": "Data",
+   "label": "Application End Date"
+  },
+  {
+   "fieldname": "active_backlog",
+   "fieldtype": "Data",
+   "label": "Active Backlog"
+  },
+  {
+   "fieldname": "location_of_drive",
+   "fieldtype": "Data",
+   "label": "Location of Drive"
+  },
+  {
+   "fieldname": "section_break_f4br7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "designationsposition_section",
+   "fieldtype": "Section Break",
+   "label": "Designations/Position"
+  },
+  {
+   "fieldname": "designations_table",
+   "fieldtype": "Table",
+   "label": "Designations table",
+   "options": "Internship Designation Table"
+  },
+  {
+   "fieldname": "for_programs",
+   "fieldtype": "Table",
+   "label": "For Programs",
+   "options": "Internship for Programs"
+  },
+  {
+   "fieldname": "eligibility_criteria",
+   "fieldtype": "Table",
+   "label": "Eligibility Criteria",
+   "options": "Internship Eligibility Criteria"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-05-30 11:28:21.204530",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Internship Drive",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
