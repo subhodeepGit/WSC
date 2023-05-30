@@ -14,17 +14,6 @@ frappe.ui.form.on('Placement Tool', {
 				}
 			}
 		})
-		if(!frm.doc._isLocal){
-			frm.add_custom_button(__('Declare round'), function(){
-				frappe.call({
-					method : 'declare_round',
-					args:{
-						doc : frm.doc,
-						round_status : frm.doc.round_status
-					}
-				}).addClass('btn-primary')
-			})
-		} //end of if
 	}, // end of refresh
 
 	company_name : function(frm){
@@ -69,8 +58,8 @@ frappe.ui.form.on('Placement Tool', {
 				round_name : frm.doc.round_of_placement
 			},
 			callback : function(result){
-				frm.set_value("scheduled_date_of_round", result.message[0][0])
-				frm.set_value("scheduled_date_of_round", result.message[0][1])
+				frm.set_value("scheduled_date_of_round", result.message[0])
+				frm.set_value("scheduled_time_of_round", result.message[1])
 			}
 		})
 	},
