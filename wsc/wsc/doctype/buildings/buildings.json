@@ -18,8 +18,10 @@
   "state",
   "pin_code",
   "building_on_lease",
+  "lease",
   "building_details_section",
   "building_type",
+  "building_type_if_any_other",
   "total_rooms",
   "total_floors",
   "facing",
@@ -27,9 +29,7 @@
   "column_break_15",
   "start_date",
   "end_date",
-  "section_break_l0ekc",
   "building_documents",
-  "column_break_dlio7",
   "amended_from"
  ],
  "fields": [
@@ -110,9 +110,9 @@
   {
    "fieldname": "building_type",
    "fieldtype": "Select",
-   "hidden": 1,
    "label": "Building Type",
-   "options": "\nAcademic\nNon-Academic\nResidential\nOthers"
+   "options": "\nAcademic\nNon-Academic\nResidential\nOthers",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_15",
@@ -121,22 +121,19 @@
   {
    "fieldname": "facing",
    "fieldtype": "Select",
-   "hidden": 1,
    "label": "Facing",
    "options": "\nNorth\nSouth\nEast\nWest"
   },
   {
    "fieldname": "campus",
    "fieldtype": "Data",
-   "hidden": 1,
    "label": "Campus"
   },
   {
    "fieldname": "plot_number",
    "fieldtype": "Link",
    "label": "Land Plot number",
-   "options": "Land",
-   "reqd": 1
+   "options": "Land"
   },
   {
    "fieldname": "start_date",
@@ -158,7 +155,6 @@
    "reqd": 1
   },
   {
-   "default": "No",
    "fieldname": "building_on_lease",
    "fieldtype": "Select",
    "label": "Building on Lease",
@@ -175,20 +171,25 @@
    "fieldname": "building_documents",
    "fieldtype": "Table",
    "label": "Building Documents",
-   "options": "Building Documents"
+   "options": "Land Documents"
   },
   {
-   "fieldname": "section_break_l0ekc",
-   "fieldtype": "Section Break"
+   "depends_on": "eval:(doc.building_on_lease==\"Yes\")",
+   "fieldname": "lease",
+   "fieldtype": "Attach",
+   "label": "Lease ",
+   "mandatory_depends_on": "eval:(doc.building_on_lease==\"Yes\")"
   },
   {
-   "fieldname": "column_break_dlio7",
-   "fieldtype": "Column Break"
+   "depends_on": "eval:(doc.building_type==\"Others\")",
+   "fieldname": "building_type_if_any_other",
+   "fieldtype": "Data",
+   "label": "Building Type, if any other"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-16 12:53:37.642937",
+ "modified": "2023-05-30 15:30:56.357653",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Buildings",

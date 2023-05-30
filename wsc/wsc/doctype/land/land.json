@@ -7,25 +7,27 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "land_owner_details_section",
+  "name1",
+  "address",
+  "phone",
+  "column_break_4",
+  "email",
+  "property_on_lease",
+  "lease",
   "land_details_section",
   "plot_number",
   "land_complete_address",
   "pin_code",
   "land_size",
   "land_valuation",
-  "property_on_lease",
-  "lease",
   "column_break_12",
   "start_date",
   "end_date",
   "land_use",
+  "land_use_if_others",
   "time_of_planned_development",
-  "section_break_csfcm",
   "land_documents",
-  "column_break_hgprj",
-  "lanscape",
-  "column_break_njgha",
-  "land_asset",
   "amended_from"
  ],
  "fields": [
@@ -37,7 +39,6 @@
   {
    "fieldname": "plot_number",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "Plot number",
    "reqd": 1,
    "unique": 1
@@ -45,14 +46,12 @@
   {
    "fieldname": "land_complete_address",
    "fieldtype": "Small Text",
-   "in_list_view": 1,
    "label": "Land Complete Address",
    "reqd": 1
   },
   {
    "fieldname": "land_size",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "Land Size",
    "reqd": 1
   },
@@ -64,9 +63,9 @@
   {
    "fieldname": "land_use",
    "fieldtype": "Select",
-   "hidden": 1,
    "label": "Land Use",
-   "options": "Academic\nResidential\nBoth"
+   "options": "Academic\nResidential\nOthers",
+   "reqd": 1
   },
   {
    "fieldname": "time_of_planned_development",
@@ -102,7 +101,6 @@
   {
    "fieldname": "property_on_lease",
    "fieldtype": "Select",
-   "in_list_view": 1,
    "label": "Property on lease",
    "options": "\nYes\nNo",
    "reqd": 1
@@ -120,39 +118,59 @@
    "label": "Pin code"
   },
   {
+   "fieldname": "land_owner_details_section",
+   "fieldtype": "Section Break",
+   "label": "Land Owner Details"
+  },
+  {
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Address",
+   "reqd": 1
+  },
+  {
+   "fieldname": "phone",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Phone",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Email",
+   "options": "Email",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:(doc.land_use==\"Others\")",
+   "fieldname": "land_use_if_others",
+   "fieldtype": "Small Text",
+   "label": "Land Use, If others"
+  },
+  {
    "fieldname": "land_documents",
    "fieldtype": "Table",
    "label": "Land Documents",
    "options": "Land Documents"
-  },
-  {
-   "fieldname": "section_break_csfcm",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "lanscape",
-   "fieldtype": "Table",
-   "label": "Landscape",
-   "options": "Landscape"
-  },
-  {
-   "fieldname": "column_break_hgprj",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "column_break_njgha",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "land_asset",
-   "fieldtype": "Table",
-   "label": "Land Asset",
-   "options": "Land Asset"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-16 12:48:08.057006",
+ "modified": "2023-05-30 15:21:38.753031",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Land",
@@ -176,5 +194,5 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "title_field": "land_complete_address"
+ "title_field": "address"
 }
