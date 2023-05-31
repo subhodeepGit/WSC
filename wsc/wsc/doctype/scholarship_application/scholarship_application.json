@@ -16,6 +16,8 @@
   "scholarship_company_name",
   "column_break_letlo",
   "academic_year",
+  "column_break_9",
+  "student_catagory",
   "student_details_section",
   "student_id",
   "name_of_the_student",
@@ -30,6 +32,8 @@
   "parents_occupation_section",
   "fathers_occupation",
   "mothers_occupation",
+  "documents_required_section",
+  "document_list_tab",
   "bank_details_section",
   "account_holder_name",
   "bank_name",
@@ -177,7 +181,8 @@
   {
    "fieldname": "status",
    "fieldtype": "Data",
-   "label": "Status"
+   "label": "Status",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_1jlkm",
@@ -214,11 +219,34 @@
    "fieldname": "current_educational_details_section",
    "fieldtype": "Section Break",
    "label": "Current Educational Details"
+  },
+  {
+   "fieldname": "documents_required_section",
+   "fieldtype": "Section Break",
+   "label": "Documents Required"
+  },
+  {
+   "depends_on": "eval:!(doc.__islocal) ",
+   "fieldname": "document_list_tab",
+   "fieldtype": "Table",
+   "label": "Document List",
+   "options": "Document List"
+  },
+  {
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "scholarship_id.student_category",
+   "fieldname": "student_catagory",
+   "fieldtype": "Link",
+   "label": "Student Catagory",
+   "options": "Student Category"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-31 10:36:21.341027",
+ "modified": "2023-05-31 15:33:42.515836",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Scholarship Application",
