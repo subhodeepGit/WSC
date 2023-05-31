@@ -2,6 +2,9 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Scholarship Application', {
+	refresh: function(frm) {
+		frm.set_df_property('document_list_tab', 'cannot_add_rows', true);
+	},
 	student_id: function(frm) {
 		frappe.call({
 			method: 'wsc.wsc.doctype.scholarship_application.scholarship_application.calculateAge',
