@@ -1,8 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:floor_name",
- "creation": "2023-04-18 15:14:07.569629",
+ "creation": "2023-05-30 15:41:42.009834",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -10,47 +9,35 @@
  "field_order": [
   "building_name",
   "floor_number",
-  "floor_name",
-  "floor_department",
-  "column_break_hgsdb",
   "floor_size",
   "number_of_rooms",
+  "floor_plan",
   "floor_incharge",
-  "section_break_zcofv",
   "floor_assets",
-  "column_break_dcrvk",
-  "floor_documents"
+  "floor_documents",
+  "amended_from"
  ],
  "fields": [
   {
    "fieldname": "building_name",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Building Name",
-   "options": "Buildings",
-   "reqd": 1
+   "options": "Buildings"
   },
   {
    "fieldname": "floor_size",
-   "fieldtype": "Data",
+   "fieldtype": "Int",
    "label": "Floor Size"
   },
   {
    "fieldname": "number_of_rooms",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "Number of rooms"
   },
   {
    "fieldname": "floor_incharge",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Floor Incharge",
-   "options": "Employee"
-  },
-  {
-   "fieldname": "column_break_hgsdb",
-   "fieldtype": "Column Break"
+   "fieldtype": "Data",
+   "label": "Floor Incharge"
   },
   {
    "fieldname": "floor_assets",
@@ -59,50 +46,38 @@
    "options": "Floor Assets"
   },
   {
-   "fieldname": "section_break_zcofv",
-   "fieldtype": "Section Break"
-  },
-  {
    "fieldname": "floor_documents",
    "fieldtype": "Table",
    "label": "Floor Documents",
-   "options": "Floor Documents"
-  },
-  {
-   "fieldname": "column_break_dcrvk",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "floor_name",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Floor Name",
-   "reqd": 1,
-   "unique": 1
+   "options": "Land Documents"
   },
   {
    "fieldname": "floor_number",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Floor Number",
-   "options": "-2\n-1\nGround\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\nRoof",
-   "reqd": 1
+   "fieldtype": "Data",
+   "label": "Floor Number"
   },
   {
-   "fieldname": "floor_department",
+   "fieldname": "floor_plan",
+   "fieldtype": "Attach",
+   "label": "Floor Plan"
+  },
+  {
+   "fieldname": "amended_from",
    "fieldtype": "Link",
-   "label": "Floor Department",
-   "options": "Department",
-   "reqd": 1
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Floor",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-05-16 13:04:07.609483",
+ "modified": "2023-05-30 15:41:42.009834",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Floor",
- "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -120,6 +95,5 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": [],
- "title_field": "floor_number"
+ "states": []
 }
