@@ -10,6 +10,15 @@ frappe.ui.form.on('Entrance Exam Declaration', {
 				}
 			}
 		})
+		frm.set_query("center_selection" , function() { 
+			return {
+				filters:{
+					 "docstatus":1,
+					 "academic_year":frm.doc.academic_year,
+					 "academic_term":frm.doc.academic_term
+				}
+			}
+		})
 	}, 
 	get_applicants:function(frm){
 		if(!frm.is_new()){

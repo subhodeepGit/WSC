@@ -45,4 +45,11 @@ frappe.ui.form.on("Building Room", {
     },
 });
 
-
+// To clear the values of Seationg Capacity and Room name once "Is scheduled" check is clicked
+frappe.ui.form.on('Building Room', {
+	is_scheduled: function(frm) {
+		frm.set_value("seating_capacity", "");
+		frm.set_value("room_name", "");
+					}
+				}
+			);

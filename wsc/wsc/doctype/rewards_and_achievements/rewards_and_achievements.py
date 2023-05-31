@@ -30,7 +30,7 @@ def get_students(programs,semester,academic_year,academic_term):
 		(programs,semester,academic_year,academic_term),
 		as_dict=True
 	)
-	print (topper)
+	
 	df = pd.DataFrame.from_records(topper, columns=['student', 'student_name','sgpa'])
 	df['rank']=df['sgpa'].rank(ascending=False, method='dense')
 	df=df[(df['rank'] <= 3)]

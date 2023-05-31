@@ -18,8 +18,11 @@
  "fields": [
   {
    "fieldname": "entrance_exam_allocation",
-   "fieldtype": "Data",
-   "label": "Entrance Exam Allocation"
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Entrance Exam Allocation",
+   "options": "Entrance Exam Centre Allocation",
+   "reqd": 1
   },
   {
    "fieldname": "centre_name",
@@ -55,7 +58,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-09 17:48:35.315238",
+ "modified": "2023-05-23 14:50:13.583607",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Admit Card Generation Tool",

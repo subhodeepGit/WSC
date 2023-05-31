@@ -1,0 +1,100 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-30 11:05:04.069481",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "participant_type",
+  "select_program",
+  "select_event",
+  "column_break_syaza",
+  "participant_id",
+  "program_name",
+  "event_name",
+  "column_break_czfcl",
+  "participant_name",
+  "section_break_lxfyb",
+  "feedback"
+ ],
+ "fields": [
+  {
+   "fieldname": "participant_type",
+   "fieldtype": "Data",
+   "label": "Participant Type"
+  },
+  {
+   "fieldname": "select_program",
+   "fieldtype": "Data",
+   "label": "Select Program"
+  },
+  {
+   "fieldname": "select_event",
+   "fieldtype": "Data",
+   "label": "Select Event"
+  },
+  {
+   "fieldname": "column_break_syaza",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "participant_id",
+   "fieldtype": "Data",
+   "label": "Participant ID"
+  },
+  {
+   "fieldname": "program_name",
+   "fieldtype": "Data",
+   "label": "Program Name"
+  },
+  {
+   "fieldname": "event_name",
+   "fieldtype": "Data",
+   "label": "Event Name"
+  },
+  {
+   "fieldname": "column_break_czfcl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "participant_name",
+   "fieldtype": "Data",
+   "label": "Participant Name"
+  },
+  {
+   "fieldname": "section_break_lxfyb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "feedback",
+   "fieldtype": "Text Editor",
+   "label": "Feedback"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-05-30 11:05:04.069481",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Event feedback",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

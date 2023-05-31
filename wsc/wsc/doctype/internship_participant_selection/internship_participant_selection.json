@@ -1,0 +1,73 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-30 11:38:28.329342",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "select_internship",
+  "get_participants",
+  "column_break_249o1",
+  "internship_name",
+  "select_participants_section",
+  "select_participants_table"
+ ],
+ "fields": [
+  {
+   "fieldname": "select_internship",
+   "fieldtype": "Data",
+   "label": "Select Internship"
+  },
+  {
+   "fieldname": "get_participants",
+   "fieldtype": "Button",
+   "label": "Get participants"
+  },
+  {
+   "fieldname": "column_break_249o1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "internship_name",
+   "fieldtype": "Data",
+   "label": "Internship Name"
+  },
+  {
+   "fieldname": "select_participants_section",
+   "fieldtype": "Section Break",
+   "label": "Select Participants"
+  },
+  {
+   "fieldname": "select_participants_table",
+   "fieldtype": "Table",
+   "label": "Select Participants Table",
+   "options": "Internship Select Participants Table"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-05-30 11:38:28.329342",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Internship Participant Selection",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

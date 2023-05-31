@@ -2,122 +2,91 @@
 // // For license information, please see license.txt
 
 frappe.ui.form.on('Placement Tool', {
-	refresh: function(frm) {
-		frm.disable_save()
+	refresh: function(frm){
 		frm.set_df_property('student_list', 'cannot_add_rows', true)
 		frm.set_df_property('student_list', 'cannot_delete_rows', true)
 		frm.set_query('placement_drive_name', function(){
 			return{
 				filters:{
-					'placement_company': frm.doc.company_name,
-					'academic_year': frm.doc.placement_batch_year,
+					'placement_company' : frm.doc.company_name,
+					'academic_year' : frm.doc.placement_batch_year,
 					'title' : frm.doc.drive_title
 				}
 			}
-		}) // end of set_query
-		if(!frm.doc.__isLocal){
-			frm.add_custom_button(__('Schedule round'), function(){
-				frappe.call({
-					method: 'schedule_round',
-					doc: frm.doc
-				})
-			}).addClass('btn-primary');
-			//For Calendar
-		} // end if
+		})
 	}, // end of refresh
-	round_status: function(frm){
-		// if(frm.doc.company_name && frm.doc.placement_batch_year && frm.doc.placement_drive_name){
-			frappe.call({
-				method:'wsc.wsc.doctype.placement_tool.placement_tool.get_rounds_of_placement',
-				args:{
-					self: frm.doc,
-					drive_name: frm.doc.placement_drive_name,
-					round_status: frm.doc.round_status,	
-				},
-				callback: function(result){
-					let arr = [];
-					for(let x in result.message){
-						arr.push(result.message[x]);
-					}
-					// alert(arr)
-					frm.set_df_property('round_of_placement', 'options', arr)
-					
-				}
-			})
-		
-	}, // end of placement_drive_name
-	round_of_placement: function(frm){
-		// if(frm.doc.company_name && frm.doc.placement_batch_year && frm.doc.placement_drive_name && frm.doc.round_of_placement){
-			frappe.call({
-				method:'wsc.wsc.doctype.placement_tool.placement_tool.get_date_of_round',
-				args:{
-					doc:frm.doc,
-					drive_name: frm.doc.placement_drive_name,
-					round_name: frm.doc.round_of_placement
-				},
-				callback: function(result){
-						// alert(result.message)
-						// console.log(result.message[0][0]);
-						// frm.set_value("scheduled_date_of_round", result.message[0]);
-						frm.set_value("scheduled_date_of_round", result.message[0][0]);
-						frm.set_value("scheduled_time_of_round", result.message[0][1]);
-				}
-			})
-		// }
-	}, // end of round_of_placement
-	get_eligible_students_list: function(frm){
-		// if(frm.doc.company_name && frm.doc.placement_batch_year && frm.doc.placement_drive_name){
-			frappe.call({
-				method: 'wsc.wsc.doctype.placement_tool.placement_tool.get_student',
-				args:{
-					drive_name: frm.doc.placement_drive_name,
-					},
-				callback: function(result){
-					if(result.message){		
-						// alert(JSON.stringify(result.message))				
-						frappe.model.clear_table(frm.doc, 'student_list')
-						result.message.forEach(element => {
-							var childTable = frm.add_child('student_list')
-							childTable.ref_no = element.name
-							childTable.student_no = element.student
-							childTable.student_name = element.student_name
-							childTable.program_name = element.programs
-							childTable.academic_year = element.academic_year
-							childTable.semesters = element.semesters
-						})
-					}
-					frm.refresh()
-					frm.refresh_field('student_list')
-				}
-			})
-		// }
-	},
-	company_name: function(frm){
+
+	company_name : function(frm){
+		// get the name of different placment drives based on the company name and the chosen placement batch year and set it in drive_title
 		frappe.call({
-			method: 'wsc.wsc.doctype.placement_tool.placement_tool.get_title',
-			args:{
-				company_name: frm.doc.company_name
-			},
-			callback: function(result){
-				// alert(JSON.stringify(result.message))
+			method : 'wsc.wsc.doctype.placement_tool.placement_tool.get_drive_names',
+			args : {
+				company_name : frm.doc.company_name
+			}, 
+			callback : function(result){
 				let arr = [];
 				for(let x in result.message){
 					arr.push(result.message[x]);
 				}
-				// alert(arr)
 				frm.set_df_property('drive_title', 'options', arr)
 			}
 		})
 	},
-	test_btn: function(frm){
+
+	round_status : function(frm){
+		//  get rounds based on whether rounds are being scheduled or result is being declared
 		frappe.call({
-			method: 'wsc.wsc.doctype.placement_tool.placement_tool.testing',
-			args:{
-				self:frm.doc
+			method : 'wsc.wsc.doctype.placement_tool.placement_tool.get_placement_round_names',
+			args : {
+				self : frm.doc,
+				drive_name : frm.doc.placement_drive_name,
+				round_status : frm.doc.round_status
 			},
-			callback: function(result){
-				alert(JSON.stringify(result.message))
+			callback : function(result){
+				frm.set_df_property('round_of_placement', 'options', result.message)
+			}
+		})
+	},
+
+	round_of_placement : function(frm){
+		// based on the chosen round of the placement drive, the scheduled date, time and location of the round will be filled in the fields
+		frappe.call({
+			method : 'wsc.wsc.doctype.placement_tool.placement_tool.get_round_details',
+			args : {
+				doc : frm.doc,
+				drive_name : frm.doc.placement_drive_name,
+				round_name : frm.doc.round_of_placement
+			},
+			callback : function(result){
+				frm.set_value("scheduled_date_of_round", result.message[0])
+				frm.set_value("scheduled_time_of_round", result.message[1])
+			}
+		})
+	},
+
+	get_eligible_students_list : function(frm){
+		// get the students from the placement drive and fill the fields of the student_list child table
+		frappe.call({
+			method : 'wsc.wsc.doctype.placement_tool.placement_tool.get_students',
+			args: {
+				drive_name : frm.doc.placement_drive_name
+			},
+			callback : function(result){
+				if(result.message){
+					frappe.model.clear_table(frm.doc, 'student_list')
+					result.message.forEach(element => {
+						var childTable = frm.add_child('student_list')
+						childTable.ref_no = element.name
+						childTable.student_no = element.student
+						childTable.student_name = element.student_name
+						childTable.program_name = element.programs
+						childTable.academic_year = element.academic_year
+						childTable.semesters = element.semesters
+					})
+				}
+				frm.refresh()
+				frm.refresh_field('student_list')
 			}
 		})
 	}
-});
+})

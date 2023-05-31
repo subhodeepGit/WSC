@@ -11,6 +11,7 @@
   "exam_name",
   "academic_year",
   "academic_term",
+  "center_selection",
   "column_break_4",
   "exam_start_date",
   "exam_end_date",
@@ -92,12 +93,19 @@
   {
    "fieldname": "section_break_8",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "center_selection",
+   "fieldtype": "Link",
+   "label": "Center Selection",
+   "options": "Entrance Exam Centre Selection",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-05-17 15:03:54.471097",
+ "modified": "2023-05-22 12:12:37.729460",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Declaration",

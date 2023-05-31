@@ -8,7 +8,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "enable",
+  "current_centers",
   "center_name",
   "state",
   "district",
@@ -20,12 +20,6 @@
   "total_seating_capacity"
  ],
  "fields": [
-  {
-   "default": "0",
-   "fieldname": "enable",
-   "fieldtype": "Check",
-   "label": "Enable"
-  },
   {
    "fieldname": "center_name",
    "fieldtype": "Data",
@@ -86,11 +80,17 @@
    "fieldtype": "Int",
    "label": "Total Seating Capacity",
    "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "current_centers",
+   "fieldtype": "Check",
+   "label": "Current Centers"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-18 12:06:16.421328",
+ "modified": "2023-05-23 17:54:27.512306",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Centre Master",

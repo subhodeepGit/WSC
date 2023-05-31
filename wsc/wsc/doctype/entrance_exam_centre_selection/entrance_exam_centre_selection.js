@@ -10,6 +10,13 @@ frappe.ui.form.on('Entrance Exam Centre Selection', {
 				}
 			}
 		})
-	}
+		frm.set_query('center', 'current_centers', function() {
+			return {
+				filters: {
+					'current_centers':1
+				}
+			};
+		});
+	},
+	
 });
-

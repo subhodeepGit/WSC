@@ -7,9 +7,11 @@
  "engine": "InnoDB",
  "field_order": [
   "center",
+  "center_name",
   "address",
   "citytownvillage",
   "district",
+  "state",
   "pincode"
  ],
  "fields": [
@@ -42,12 +44,24 @@
    "fieldname": "pincode",
    "fieldtype": "Int",
    "label": "Pincode"
+  },
+  {
+   "fetch_from": "center.center_name",
+   "fieldname": "center_name",
+   "fieldtype": "Data",
+   "label": "Center Name"
+  },
+  {
+   "fetch_from": "center.state",
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-05-17 11:38:42.456277",
+ "modified": "2023-05-19 12:52:20.679058",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Current Centers",
