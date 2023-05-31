@@ -1,0 +1,167 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-26 16:44:08.580293",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "fd_details_section",
+  "fd_number",
+  "posting_date",
+  "fd_account",
+  "fd_start_date",
+  "column_break_6",
+  "company",
+  "bank_account",
+  "interest_account",
+  "maturity_date",
+  "amounts_section",
+  "fd_amount",
+  "column_break_13",
+  "maturity_amount",
+  "data_12",
+  "interest_payable",
+  "fd_tenure",
+  "column_break_17",
+  "interest_type",
+  "interest_percentage",
+  "interest_calculation"
+ ],
+ "fields": [
+  {
+   "fieldname": "fd_number",
+   "fieldtype": "Int",
+   "label": "FD Number"
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date"
+  },
+  {
+   "fieldname": "fd_account",
+   "fieldtype": "Link",
+   "label": "FD Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "fd_start_date",
+   "fieldtype": "Date",
+   "label": "FD Start Date"
+  },
+  {
+   "fieldname": "maturity_date",
+   "fieldtype": "Date",
+   "label": "Maturity Date"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "bank_account",
+   "fieldtype": "Link",
+   "label": "Bank Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "interest_account",
+   "fieldtype": "Link",
+   "label": "Interest Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "fd_amount",
+   "fieldtype": "Currency",
+   "label": "FD Amount"
+  },
+  {
+   "fieldname": "maturity_amount",
+   "fieldtype": "Currency",
+   "label": "Maturity Amount"
+  },
+  {
+   "fieldname": "data_12",
+   "fieldtype": "Section Break",
+   "label": "Interest"
+  },
+  {
+   "fieldname": "fd_details_section",
+   "fieldtype": "Section Break",
+   "label": "FD Details"
+  },
+  {
+   "fieldname": "amounts_section",
+   "fieldtype": "Section Break",
+   "label": "Amounts"
+  },
+  {
+   "fieldname": "column_break_13",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "interest_payable",
+   "fieldtype": "Select",
+   "label": "Interest Payable",
+   "options": "\nOn Maturity\nQuarterly\nMonthly"
+  },
+  {
+   "fieldname": "column_break_17",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "interest_type",
+   "fieldtype": "Select",
+   "label": "Interest Type",
+   "options": "\nSimple\nCompound"
+  },
+  {
+   "fieldname": "interest_calculation",
+   "fieldtype": "Table",
+   "label": "Interest Calculation",
+   "options": "Fixed Deposit Interest"
+  },
+  {
+   "fieldname": "fd_tenure",
+   "fieldtype": "Data",
+   "label": "FD Tenure"
+  },
+  {
+   "fieldname": "interest_percentage",
+   "fieldtype": "Float",
+   "label": "Interest Percentage"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-05-26 17:58:35.391797",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Fixed Deposit",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
