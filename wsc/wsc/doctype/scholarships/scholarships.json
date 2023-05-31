@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{scholarship_name}-{scholarship_company}",
  "creation": "2023-03-31 17:06:47.463854",
  "default_view": "List",
  "doctype": "DocType",
@@ -11,6 +12,7 @@
   "scholarship_company",
   "column_break_yxxgs",
   "academic_year",
+  "student_category",
   "scholarship_criteria_section",
   "10th_percentage",
   "12th_percentage",
@@ -20,7 +22,8 @@
   "semester_2_marks",
   "document_required",
   "start_date",
-  "end_date"
+  "end_date",
+  "amended_from"
  ],
  "fields": [
   {
@@ -79,7 +82,8 @@
    "fieldname": "document_required",
    "fieldtype": "Link",
    "label": "Document Required",
-   "options": "Documents Template"
+   "options": "Documents Template",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_yxxgs",
@@ -101,14 +105,31 @@
    "fieldtype": "Date",
    "label": "End date",
    "reqd": 1
+  },
+  {
+   "fieldname": "student_category",
+   "fieldtype": "Link",
+   "label": "Student Category",
+   "options": "Student Category"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Scholarships",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-05-16 17:29:58.450511",
+ "modified": "2023-05-31 11:13:27.540061",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Scholarships",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

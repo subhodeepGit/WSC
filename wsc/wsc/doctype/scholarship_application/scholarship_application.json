@@ -24,17 +24,9 @@
   "column_break_hnqbj",
   "family_income_per_annum",
   "mobile_no",
-  "basic_education_details_section",
-  "10th_marks",
-  "12th_marks",
-  "enrolled_course",
-  "column_break_6d9s5",
-  "semester_1_marks",
-  "semester_2_marks",
   "have_you_availed_any_other_scholarships",
-  "section_break_falde",
-  "scholarship_documents",
-  "column_break_j1av6",
+  "current_educational_details_section",
+  "current_education",
   "parents_occupation_section",
   "fathers_occupation",
   "mothers_occupation",
@@ -69,17 +61,19 @@
    "read_only": 1
   },
   {
+   "fetch_from": "student_id.roll_no",
    "fieldname": "wsc_registration_number",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "WSC Registration Number",
-   "reqd": 1
+   "read_only": 1
   },
   {
    "fieldname": "age",
    "fieldtype": "Int",
    "in_list_view": 1,
    "label": "Age",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -94,58 +88,10 @@
    "reqd": 1
   },
   {
+   "fetch_from": "student_id.student_mobile_number",
    "fieldname": "mobile_no",
-   "fieldtype": "Phone",
+   "fieldtype": "Data",
    "label": "Mobile No."
-  },
-  {
-   "fieldname": "basic_education_details_section",
-   "fieldtype": "Section Break",
-   "label": "Basic Education Details"
-  },
-  {
-   "fieldname": "10th_marks",
-   "fieldtype": "Percent",
-   "in_list_view": 1,
-   "label": "10th Percentage",
-   "reqd": 1
-  },
-  {
-   "fieldname": "12th_marks",
-   "fieldtype": "Percent",
-   "label": "12th Percentage"
-  },
-  {
-   "fieldname": "enrolled_course",
-   "fieldtype": "Link",
-   "label": "Enrolled Course",
-   "options": "Course",
-   "reqd": 1
-  },
-  {
-   "fieldname": "column_break_6d9s5",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "semester_1_marks",
-   "fieldtype": "Float",
-   "label": "Semester 1 marks"
-  },
-  {
-   "fieldname": "semester_2_marks",
-   "fieldtype": "Float",
-   "label": "Semester 2 marks"
-  },
-  {
-   "fieldname": "section_break_falde",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "scholarship_documents",
-   "fieldtype": "Table",
-   "label": "Scholarship Documents",
-   "options": "Scholarship Documents",
-   "reqd": 1
   },
   {
    "fieldname": "have_you_availed_any_other_scholarships",
@@ -218,13 +164,15 @@
    "fetch_from": "scholarship_id.scholarship_name",
    "fieldname": "scholarship_name",
    "fieldtype": "Data",
-   "label": "Scholarship Name"
+   "label": "Scholarship Name",
+   "read_only": 1
   },
   {
    "fetch_from": "scholarship_id.scholarship_company",
    "fieldname": "scholarship_company_name",
    "fieldtype": "Data",
-   "label": "Scholarship Company Name"
+   "label": "Scholarship Company Name",
+   "read_only": 1
   },
   {
    "fieldname": "status",
@@ -240,10 +188,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "column_break_j1av6",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "column_break_letlo",
    "fieldtype": "Column Break"
   },
@@ -251,17 +195,30 @@
    "fetch_from": "scholarship_id.academic_year",
    "fieldname": "academic_year",
    "fieldtype": "Data",
-   "label": "Academic Year"
+   "label": "Academic Year",
+   "read_only": 1
   },
   {
    "fieldname": "scholarship_details_section",
    "fieldtype": "Section Break",
    "label": "Scholarship Details"
+  },
+  {
+   "fieldname": "current_education",
+   "fieldtype": "Table",
+   "label": "Current Education",
+   "options": "Current Educational Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "current_educational_details_section",
+   "fieldtype": "Section Break",
+   "label": "Current Educational Details"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-16 17:32:58.175272",
+ "modified": "2023-05-31 10:36:21.341027",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Scholarship Application",
