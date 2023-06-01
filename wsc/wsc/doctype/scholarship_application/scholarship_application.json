@@ -243,7 +243,8 @@
    "fieldname": "student_catagory",
    "fieldtype": "Link",
    "label": "Student Catagory",
-   "options": "Student Category"
+   "options": "Student Category",
+   "read_only": 1
   },
   {
    "fieldname": "amended_from",
@@ -258,7 +259,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-05-31 16:55:57.241265",
+ "modified": "2023-06-01 15:15:10.023378",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Scholarship Application",
