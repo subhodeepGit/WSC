@@ -54,6 +54,7 @@ doctype_js = {
                 "Student Log":"public/js/student_log.js",
                 "Topic":"public/js/topic.js",
                 "User":"public/js/user.js",
+                "Job Opening":"public/js/job_opening.js",
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -294,6 +295,9 @@ doc_events = {
 		"on_cancel":"wsc.wsc.validations.fees_extention.on_cancel",
 		"validate": "wsc.wsc.validations.fees_extention.validate"
 	},
+    # "User":{
+    #     "validate":"wsc.wsc.validations.user.validate",
+    # }
     # "Department":{
     #     "validate": "wsc.wsc.doctype.department.validate"
     # },

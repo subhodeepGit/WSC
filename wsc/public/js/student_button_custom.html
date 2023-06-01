@@ -1,19 +1,23 @@
 <div class="col-sm-12">
     <div class="checkbox">
-        <label>
-            <input
-                type="checkbox"
-                data-group_roll_number="{{group_roll_number}}"
-                data-roll_no="{{roll_no}}"
-                data-student="{{student}}"
-                data-student_name="{{student_name}}"
-                class="students-check"
-                {% if status === "Present" %}
-                checked
-                {% endif %}
-                >
-                <!-- {{ group_roll_number }} -  -->
-                {{ group_roll_number }}-> {{ roll_no }} --><b>{{ student_name }}</b>   ({{student}})
-        </label>
+            <table class="table table-bordered table-sm table-hover">
+                <tbody>
+                <tr><td width="10%"><input
+                    type="checkbox"
+                    data-group_roll_number="{{group_roll_number}}"
+                    data-roll_no="{{roll_no}}"
+                    data-student="{{student}}"
+                    data-student_name="{{student_name}}"
+                    class="students-check"
+                    {% if status === "Present" %}
+                    checked
+                    {% endif %}
+                    ></td>
+                    <td width="20%">{{ group_roll_number }}</td>
+                    <td width="20%">{{ roll_no }}</td>
+                    <td width="25%">{{ student_name }}</td>
+                    <td width="25%">{{ student }}</td></tr>
+                </tbody>
+            </table>
     </div>
 </div>

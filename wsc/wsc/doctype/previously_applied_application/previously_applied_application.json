@@ -1,0 +1,47 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-26 16:48:17.085244",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "job_applicant",
+  "job_opening",
+  "round_detaillast"
+ ],
+ "fields": [
+  {
+   "fieldname": "job_applicant",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Job Applicant",
+   "options": "Job Applicant"
+  },
+  {
+   "fetch_from": "job_applicant.job_title",
+   "fieldname": "job_opening",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Job Opening"
+  },
+  {
+   "fieldname": "round_detaillast",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Round Detail(Last)"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-05-26 17:08:56.335585",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Previously Applied Application",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

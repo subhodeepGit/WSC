@@ -154,7 +154,6 @@ frappe.ui.form.on('Student Applicant', {
             frappe.db.get_value('User',{'name':frappe.session.user},['module_profile'],(val) =>
 			{
                 if (val.module_profile!="Student"){
-                    console.log("............1")
                     frm.trigger("show_fees_button")
                     frappe.db.get_list("Program Enrollment", {
                         filters:{"reference_doctype":"Student Applicant","reference_name":frm.doc.name},

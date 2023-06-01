@@ -1,0 +1,90 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-29 17:49:04.127045",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "program_name",
+  "start_date",
+  "column_break_wyvzc",
+  "program_status",
+  "end_date",
+  "section_break_mj4id",
+  "description",
+  "chief_coordinators_section",
+  "chief_coordinators_list"
+ ],
+ "fields": [
+  {
+   "fieldname": "program_name",
+   "fieldtype": "Data",
+   "label": "Program Name"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Data",
+   "label": "Start Date"
+  },
+  {
+   "fieldname": "column_break_wyvzc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "program_status",
+   "fieldtype": "Data",
+   "label": "Program Status"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Data",
+   "label": "End Date"
+  },
+  {
+   "fieldname": "section_break_mj4id",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "fieldname": "chief_coordinators_section",
+   "fieldtype": "Section Break",
+   "label": "Chief coordinators"
+  },
+  {
+   "fieldname": "chief_coordinators_list",
+   "fieldtype": "Table",
+   "label": "Chief coordinators list",
+   "options": "chief coordinators list"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-05-29 17:49:04.127045",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "TnP Program",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,26 +1,29 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{scholarship_name}-{scholarship_company}",
  "creation": "2023-03-31 17:06:47.463854",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "scholarship_details_section",
   "scholarship_name",
   "scholarship_company",
+  "scholarship_type",
   "column_break_yxxgs",
   "academic_year",
+  "student_category",
   "scholarship_criteria_section",
-  "10th_percentage",
-  "12th_percentage",
-  "itidiploma_percentage",
   "semester_1_marks",
-  "column_break_kksne",
   "semester_2_marks",
+  "eligibility_parameter_list",
+  "column_break_kksne",
   "document_required",
   "start_date",
-  "end_date"
+  "end_date",
+  "amended_from"
  ],
  "fields": [
   {
@@ -51,21 +54,6 @@
    "label": "Scholarship Criteria"
   },
   {
-   "fieldname": "10th_percentage",
-   "fieldtype": "Data",
-   "label": "10th Percentage"
-  },
-  {
-   "fieldname": "12th_percentage",
-   "fieldtype": "Data",
-   "label": "12th Percentage"
-  },
-  {
-   "fieldname": "itidiploma_percentage",
-   "fieldtype": "Data",
-   "label": "ITI/Diploma Percentage"
-  },
-  {
    "fieldname": "semester_1_marks",
    "fieldtype": "Float",
    "label": "Semester 1 Marks"
@@ -79,7 +67,8 @@
    "fieldname": "document_required",
    "fieldtype": "Link",
    "label": "Document Required",
-   "options": "Documents Template"
+   "options": "Documents Template",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_yxxgs",
@@ -101,14 +90,49 @@
    "fieldtype": "Date",
    "label": "End date",
    "reqd": 1
+  },
+  {
+   "fieldname": "student_category",
+   "fieldtype": "Link",
+   "label": "Student Category",
+   "options": "Student Category"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Scholarships",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "eligibility_parameter_list",
+   "fieldtype": "Table",
+   "label": "Eligibility Parameter List",
+   "options": "Scholarship Eligibility Paramete"
+  },
+  {
+   "fieldname": "scholarship_details_section",
+   "fieldtype": "Section Break",
+   "label": "Scholarship Details"
+  },
+  {
+   "fieldname": "scholarship_type",
+   "fieldtype": "Select",
+   "label": "Scholarship Type",
+   "options": "\nGovernment\nCorporate\nOthers",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-05-16 17:29:58.450511",
+ "modified": "2023-06-01 15:13:17.627702",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Scholarships",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
