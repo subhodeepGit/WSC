@@ -8,6 +8,7 @@ from frappe.model.document import Document
 class ScholarshipApplication(Document):
 	def validate(self):
 		duplicacy_check(self)
+		validate_elgibility(self)
 		if len(self.document_list_tab) == 0:     
 			add_document_list_rows(self)
 
@@ -15,8 +16,6 @@ class ScholarshipApplication(Document):
 
 	def on_submit(self):
 		for t in self.document_list_tab:
-			print(t)
-			print(t.attach)
 			if t.mandatory==1 and (t.attach==None or t.attach==""):
 				frappe.throw("Document List not uploded. Kindly upload the Document")		
 
@@ -52,3 +51,26 @@ def duplicacy_check(self):
 	data=frappe.get_all("Scholarship Application",{"student_id":self.student_id,"scholarship_id":self.scholarship_id,"docstatus":1})
 	if data:
 		frappe.throw("Application has already filled up for this Scholarship Notification")  
+
+@frappe.whitelist()
+def eligibility(scholarship_id_data):
+	data=frappe.get_all("Scholarship Eligibility Paramete",{"parent":scholarship_id_data},['name','parameter','percentagecgpa','eligible_score'])
+	return data
+
+@frappe.whitelist()
+def valid_scholarship(doctype, txt, searchfield, start, page_len, filters):
+	print("\n\n\n\n")
+	print(filters)
+	print(txt)
+	today = date.today
+
+	pass
+
+def validate_elgibility(self):
+	print("\n\n\n")
+	scholarship_elgibility=frappe.get_all("Scholarship Eligibility Paramete",
+				       {"parent":self.scholarship_id},['name','parameter','percentagecgpa','eligible_score'],order_by="idx")
+	print()
+	for t in self.get('scholarship_eligibility_parameter'):
+		print(t.parameter)
+			
