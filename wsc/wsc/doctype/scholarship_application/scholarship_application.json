@@ -24,11 +24,13 @@
   "wsc_registration_number",
   "age",
   "column_break_hnqbj",
-  "family_income_per_annum",
   "mobile_no",
+  "family_income_per_annum",
   "have_you_availed_any_other_scholarships",
   "current_educational_details_section",
   "current_education",
+  "eligibility_parameter_section",
+  "scholarship_eligibility_parameter",
   "parents_occupation_section",
   "fathers_occupation",
   "mothers_occupation",
@@ -254,12 +256,23 @@
    "options": "Scholarship Application",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "eligibility_parameter_section",
+   "fieldtype": "Section Break",
+   "label": "Eligibility Parameter "
+  },
+  {
+   "fieldname": "scholarship_eligibility_parameter",
+   "fieldtype": "Table",
+   "label": "Scholarship Eligibility Parameter",
+   "options": "Scholarship Eligibility Paramete"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-01 15:15:10.023378",
+ "modified": "2023-06-01 17:54:22.233222",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Scholarship Application",
