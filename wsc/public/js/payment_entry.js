@@ -316,7 +316,7 @@ frappe.ui.form.on('Payment Entry', {
 			
 			
 		} else  
-		   frm.set_df_property("paid_amount","read_only",1);
+		   frm.set_df_property("paid_amount","read_only",0);
         // Rupali:Code for Refund amount:End	
 		
 		erpnext.accounts.dimensions.setup_dimension_filters(frm, frm.doctype);
