@@ -1,12 +1,15 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "TPR.-.#####",
  "creation": "2023-05-29 18:07:30.384808",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "is_in_a_program",
+  "section_break_2jazj",
   "participant_id",
   "select_program",
   "select_event",
@@ -20,22 +23,26 @@
  "fields": [
   {
    "fieldname": "participant_id",
-   "fieldtype": "Data",
-   "label": "Participant ID"
+   "fieldtype": "Link",
+   "label": "Participant ID",
+   "options": "Student"
   },
   {
+   "depends_on": "is_in_a_program",
    "fieldname": "select_program",
-   "fieldtype": "Data",
-   "label": "Select Program"
+   "fieldtype": "Link",
+   "label": "Select Program",
+   "options": "TnP Program"
   },
   {
    "fieldname": "select_event",
-   "fieldtype": "Data",
-   "label": "Select Event"
+   "fieldtype": "Link",
+   "label": "Select Event",
+   "options": "TnP Event"
   },
   {
    "fieldname": "event_date",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "Event Date"
   },
   {
@@ -44,10 +51,12 @@
   },
   {
    "fieldname": "participant_type",
-   "fieldtype": "Data",
-   "label": "Participant Type"
+   "fieldtype": "Select",
+   "label": "Participant Type",
+   "options": "Student\nStaff"
   },
   {
+   "depends_on": "is_in_a_program",
    "fieldname": "program_name",
    "fieldtype": "Data",
    "label": "Program Name"
@@ -61,14 +70,25 @@
    "fieldname": "event_time",
    "fieldtype": "Data",
    "label": "Event Time"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_in_a_program",
+   "fieldtype": "Check",
+   "label": "Is in a program"
+  },
+  {
+   "fieldname": "section_break_2jazj",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-29 18:07:30.384808",
+ "modified": "2023-05-31 14:26:22.855585",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Registration",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

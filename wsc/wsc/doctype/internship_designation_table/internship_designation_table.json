@@ -12,13 +12,14 @@
  "fields": [
   {
    "fieldname": "designation",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Designation"
+   "label": "Designation",
+   "options": "Designation"
   },
   {
    "fieldname": "no_of_positions",
-   "fieldtype": "Data",
+   "fieldtype": "Int",
    "in_list_view": 1,
    "label": "No. of Positions"
   }
@@ -26,7 +27,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-05-30 11:23:20.329189",
+ "modified": "2023-06-01 15:52:52.252700",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Designation Table",

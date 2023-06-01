@@ -19,13 +19,15 @@
  "fields": [
   {
    "fieldname": "selected_program",
-   "fieldtype": "Data",
-   "label": "Selected Program"
+   "fieldtype": "Link",
+   "label": "Select Program",
+   "options": "TnP Program"
   },
   {
    "fieldname": "select_event",
-   "fieldtype": "Data",
-   "label": "Select Event"
+   "fieldtype": "Link",
+   "label": "Select Event",
+   "options": "TnP Event"
   },
   {
    "fieldname": "section_break_kouut",
@@ -60,7 +62,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-29 18:18:46.396477",
+ "modified": "2023-05-31 15:04:25.839300",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Attendance",

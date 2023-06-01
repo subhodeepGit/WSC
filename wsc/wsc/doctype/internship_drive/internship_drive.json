@@ -12,9 +12,9 @@
   "title_of_drive",
   "posting_date",
   "application_start_date",
-  "semester",
   "current_cgpa",
   "internship_drive_for",
+  "about_drive",
   "column_break_usibm",
   "internship_company",
   "type_of_drive",
@@ -45,18 +45,13 @@
   },
   {
    "fieldname": "posting_date",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "Posting Date"
   },
   {
    "fieldname": "application_start_date",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "Application Start Date"
-  },
-  {
-   "fieldname": "semester",
-   "fieldtype": "Data",
-   "label": "Semester"
   },
   {
    "fieldname": "current_cgpa",
@@ -65,8 +60,9 @@
   },
   {
    "fieldname": "internship_drive_for",
-   "fieldtype": "Data",
-   "label": "Internship Drive For"
+   "fieldtype": "Select",
+   "label": "Internship Drive For",
+   "options": "Freshers\nExperienced\nBoth"
   },
   {
    "fieldname": "column_break_usibm",
@@ -74,17 +70,19 @@
   },
   {
    "fieldname": "internship_company",
-   "fieldtype": "Data",
-   "label": "Internship Company"
+   "fieldtype": "Link",
+   "label": "Internship Company",
+   "options": "Placement Company"
   },
   {
    "fieldname": "type_of_drive",
-   "fieldtype": "Data",
-   "label": "Type of Drive"
+   "fieldtype": "Select",
+   "label": "Type of Drive",
+   "options": "In Campus\nOff Campus"
   },
   {
    "fieldname": "application_end_date",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "Application End Date"
   },
   {
@@ -94,8 +92,9 @@
   },
   {
    "fieldname": "location_of_drive",
-   "fieldtype": "Data",
-   "label": "Location of Drive"
+   "fieldtype": "Link",
+   "label": "Location of Drive",
+   "options": "Location"
   },
   {
    "fieldname": "section_break_f4br7",
@@ -123,11 +122,16 @@
    "fieldtype": "Table",
    "label": "Eligibility Criteria",
    "options": "Internship Eligibility Criteria"
+  },
+  {
+   "fieldname": "about_drive",
+   "fieldtype": "Text Editor",
+   "label": "About Drive"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-30 11:28:21.204530",
+ "modified": "2023-06-01 18:00:59.273680",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Drive",

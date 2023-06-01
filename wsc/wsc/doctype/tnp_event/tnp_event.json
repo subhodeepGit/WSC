@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "TPE.-.#####",
  "creation": "2023-05-29 18:04:25.977564",
  "default_view": "List",
  "doctype": "DocType",
@@ -11,6 +12,7 @@
   "column_break_ztkus",
   "has_certificate",
   "section_break_de69j",
+  "select_program",
   "event_name",
   "event_date",
   "column_break_2qkdb",
@@ -54,7 +56,7 @@
   },
   {
    "fieldname": "event_date",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "Event Date"
   },
   {
@@ -63,8 +65,9 @@
   },
   {
    "fieldname": "event_status",
-   "fieldtype": "Data",
-   "label": "Event Status"
+   "fieldtype": "Select",
+   "label": "Event Status",
+   "options": "Scheduled\nCompleted\nCancelled"
   },
   {
    "fieldname": "section_break_ek8db",
@@ -72,18 +75,19 @@
   },
   {
    "fieldname": "start_time",
-   "fieldtype": "Data",
+   "fieldtype": "Time",
    "label": "Start Time"
   },
   {
    "fieldname": "event_start_date",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "Event Start Date"
   },
   {
    "fieldname": "event_location",
-   "fieldtype": "Data",
-   "label": "Event Location"
+   "fieldtype": "Link",
+   "label": "Event Location",
+   "options": "Location"
   },
   {
    "fieldname": "column_break_g5m7x",
@@ -91,18 +95,19 @@
   },
   {
    "fieldname": "end_time",
-   "fieldtype": "Data",
+   "fieldtype": "Time",
    "label": "End Time"
   },
   {
    "fieldname": "event_end_date",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "Event End Date"
   },
   {
    "fieldname": "event_type",
-   "fieldtype": "Data",
-   "label": "Event Type"
+   "fieldtype": "Select",
+   "label": "Event Type",
+   "options": "Seminar\nConference"
   },
   {
    "fieldname": "coordinators_section",
@@ -114,14 +119,22 @@
    "fieldtype": "Table",
    "label": "Coordinators List",
    "options": "coordinators list"
+  },
+  {
+   "depends_on": "in_a_program",
+   "fieldname": "select_program",
+   "fieldtype": "Link",
+   "label": "Select Program",
+   "options": "TnP Program"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-29 18:04:25.977564",
+ "modified": "2023-05-31 11:04:04.185107",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "TnP Event",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

@@ -22,18 +22,21 @@
  "fields": [
   {
    "fieldname": "participant_type",
-   "fieldtype": "Data",
-   "label": "Participant Type"
+   "fieldtype": "Select",
+   "label": "Participant Type",
+   "options": "Student\nStaff"
   },
   {
    "fieldname": "select_program",
-   "fieldtype": "Data",
-   "label": "Select Program"
+   "fieldtype": "Link",
+   "label": "Select Program",
+   "options": "TnP Program"
   },
   {
    "fieldname": "select_event",
-   "fieldtype": "Data",
-   "label": "Select Event"
+   "fieldtype": "Link",
+   "label": "Select Event",
+   "options": "TnP Event"
   },
   {
    "fieldname": "column_break_syaza",
@@ -41,8 +44,9 @@
   },
   {
    "fieldname": "participant_id",
-   "fieldtype": "Data",
-   "label": "Participant ID"
+   "fieldtype": "Link",
+   "label": "Participant ID",
+   "options": "Student"
   },
   {
    "fieldname": "program_name",
@@ -75,7 +79,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-30 11:05:04.069481",
+ "modified": "2023-05-31 16:54:01.606459",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Event feedback",
