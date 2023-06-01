@@ -837,6 +837,17 @@ class PaymentEntry(AccountsController):
 					.format(self.company_currency, d.amount, d.account))
 
 		self.set("remarks", "\n".join(remarks))
+### Added for advance payment mm
+	def build_gl_map(self):
+		if self.payment_type in ("Receive", "Pay") and not self.get("party_account_field"):
+			self.setup_party_account_field()
+
+		gl_entries = []
+		self.add_party_gl_entries(gl_entries)
+		self.add_bank_gl_entries(gl_entries)
+		self.add_deductions_gl_entries(gl_entries)
+		self.add_tax_gl_entries(gl_entries)
+		return gl_entries
 ###################################################################################################################
 	def make_gl_entries(self, cancel=0, adv_adj=0):
 		if self.payment_type in ("Receive", "Pay") and not self.get("party_account_field"):
@@ -846,6 +857,7 @@ class PaymentEntry(AccountsController):
 		self.add_bank_gl_entries(gl_entries)
 		self.add_deductions_gl_entries(gl_entries)
 		self.add_tax_gl_entries(gl_entries)
+		gl_entries = self.build_gl_map()
 		gl_entries = process_gl_map(gl_entries)
 		make_gl_entries(gl_entries, cancel=cancel, adv_adj=adv_adj)
 #####################################################################################################################
