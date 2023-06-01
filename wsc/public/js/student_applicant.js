@@ -64,10 +64,9 @@ frappe.ui.form.on('Student Applicant', {
             return {
                 filters: {
                     "districts":frm.doc.districts
-            }
-        };
-        
-    });
+                }
+            }; 
+        });
 
         frm.set_query("districts", function() {
             return {
@@ -76,7 +75,24 @@ frappe.ui.form.on('Student Applicant', {
                 }
             };
         });
-      
+
+        // frm.set_query("districts", "exam_center_locations" , function(){
+        //     return {
+        //         filters: {
+        //             "districts":frm.doc.districts
+        //         }
+        //     }
+        // })      
+        // frm.set_query("center_name" , "exam_center_locations" , function(){
+        //     return {
+        //         filters: {
+        //             state:frm.doc.state,
+        //             district:frm.doc.districts,
+        //             academic_year:frm.doc.academic_year,
+        //             academic_term:frm.doc.academic_term
+        //         }
+        //     }
+        // })
     },
    
     hide_n_show_child_table_fields(frm){
@@ -224,7 +240,6 @@ frappe.ui.form.on('Student Applicant', {
     student_category(frm){
         frm.trigger("get_education_and_document_list");
     },
-    
     // get_counselling_structure(frm){
     //     frm.set_value("counselling_structure",'');
     //     if (frm.doc.program_grade && frm.doc.academic_year && frm.doc.department){
@@ -291,6 +306,7 @@ frappe.ui.form.on('Student Applicant', {
     //     }
     // }
 })
+
 frappe.ui.form.on("Education Qualifications Details", "earned_marks", function(frm, cdt, cdn) {
        
     var data = locals[cdt][cdn];
@@ -396,3 +412,4 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
         }); 
     }
 });
+
