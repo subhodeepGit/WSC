@@ -1,0 +1,58 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-24 12:02:19.589600",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "name_of_rounds",
+  "exam_declaration_status",
+  "admit_card_status",
+  "result_declaration_status"
+ ],
+ "fields": [
+  {
+   "fieldname": "name_of_rounds",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Name of Rounds"
+  },
+  {
+   "default": "Not Declared",
+   "fieldname": "exam_declaration_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Exam Declaration Status",
+   "options": "\nDeclared\nNot Declared"
+  },
+  {
+   "default": "Not Declared",
+   "fieldname": "admit_card_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Admit Card Status",
+   "options": "\nDeclared\nNot Declared"
+  },
+  {
+   "default": "Not Declared",
+   "fieldname": "result_declaration_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Result Declaration Status",
+   "options": "\nDeclared\nNot Declared"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-05-24 12:49:01.218612",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Job Selection Round",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

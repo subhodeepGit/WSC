@@ -1,0 +1,98 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{job_opening}-{selection_round}",
+ "creation": "2023-04-20 15:35:47.246887",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "job_opening",
+  "exam_date",
+  "exam_name",
+  "recruitment_exam_center",
+  "selection_round",
+  "section_break_4",
+  "get_applicants",
+  "applicant_details"
+ ],
+ "fields": [
+  {
+   "fieldname": "job_opening",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Job Opening",
+   "options": "Job Opening",
+   "reqd": 1
+  },
+  {
+   "fieldname": "exam_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Exam Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "exam_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Exam Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "selection_round",
+   "fieldtype": "Select",
+   "label": "Selection Round",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "get_applicants",
+   "fieldtype": "Button",
+   "label": "Get Applicants"
+  },
+  {
+   "fieldname": "applicant_details",
+   "fieldtype": "Table",
+   "label": "Applicant Details",
+   "options": "Job Applicant Details"
+  },
+  {
+   "fieldname": "recruitment_exam_center",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Recruitment Exam Center",
+   "options": "Recruitment Exam Center",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-05-31 17:02:43.615426",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Recruitment Exam Declaration",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
