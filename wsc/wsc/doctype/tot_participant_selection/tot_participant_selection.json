@@ -1,0 +1,128 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-06-02 10:27:31.325058",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "course_type",
+  "course",
+  "semester",
+  "tot_participant_batch",
+  "participant_selection_date",
+  "column_break_4rwsg",
+  "academic_year",
+  "start_date",
+  "end_date",
+  "naming_series",
+  "participant_list_section",
+  "participants"
+ ],
+ "fields": [
+  {
+   "fieldname": "course_type",
+   "fieldtype": "Link",
+   "label": "Course Type",
+   "options": "Program Grades"
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Programs",
+   "options": "Programs"
+  },
+  {
+   "description": "For Internal Purpose (Not Visible in the Application Front)",
+   "fieldname": "semester",
+   "fieldtype": "Link",
+   "label": "Semester",
+   "options": "Program"
+  },
+  {
+   "fieldname": "tot_participant_batch",
+   "fieldtype": "Data",
+   "label": "ToT Participant Batch"
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Academic Year",
+   "options": "Academic Year"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Naming Series",
+   "options": "TOT-PART-SEL-.YYYY.-"
+  },
+  {
+   "fieldname": "column_break_4rwsg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "participant_list_section",
+   "fieldtype": "Section Break",
+   "label": "Participant List"
+  },
+  {
+   "fieldname": "participants",
+   "fieldtype": "Table",
+   "label": "Participants",
+   "options": "Selected Participant"
+  },
+  {
+   "default": "Today",
+   "fieldname": "participant_selection_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Participant Selection Date"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-06-02 15:54:07.055011",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "ToT Participant Selection",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "course,participant_selection_date",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
