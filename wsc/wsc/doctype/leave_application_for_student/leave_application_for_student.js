@@ -91,7 +91,7 @@ frappe.ui.form.on('Leave Application for Student', {
     }
 );
 
-frappe.ui.form.on("Task", {
+frappe.ui.form.on("Leave Application for Student", {
     from_date: function(frm) {
         // set To Date equal to From Date, if it's still empty
         // if (!frm.doc.to_date) {
