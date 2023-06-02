@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{center_name}-{cityvillage}-{districts}",
  "creation": "2023-05-09 16:25:59.659957",
  "default_view": "List",
  "doctype": "DocType",
@@ -9,8 +10,8 @@
  "field_order": [
   "state",
   "districts",
-  "center_name",
-  "cityvillage"
+  "cityvillage",
+  "center_name"
  ],
  "fields": [
   {
@@ -18,7 +19,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Centre Name",
-   "options": "Entrance Exam Centre Master",
+   "options": "Entrance exam select",
    "reqd": 1
   },
   {
@@ -41,13 +42,13 @@
    "fieldname": "cityvillage",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "City/Village"
+   "label": "City/Village/Town"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-05-18 15:45:45.651558",
+ "modified": "2023-05-31 18:02:29.184766",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Centre Preference",

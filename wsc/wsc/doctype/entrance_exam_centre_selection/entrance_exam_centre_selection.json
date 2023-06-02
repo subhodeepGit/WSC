@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{academic_year}-{academic_term}",
+ "autoname": "format:{academic_term}",
  "creation": "2023-05-09 17:03:32.366576",
  "default_view": "List",
  "doctype": "DocType",
@@ -55,7 +55,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-05-24 11:11:22.166542",
+ "modified": "2023-05-30 16:28:01.868390",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Centre Selection",

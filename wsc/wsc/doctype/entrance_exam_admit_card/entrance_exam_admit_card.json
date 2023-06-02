@@ -7,15 +7,25 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "exam_allocation",
   "applicant_id",
-  "applicant_name",
-  "address",
-  "venue",
-  "district",
-  "pin_code",
   "department",
+  "academic_year",
+  "column_break_2",
+  "applicant_name",
+  "academic_term",
+  "section_break_4",
+  "venue",
+  "address",
+  "district",
+  "column_break_7",
+  "pin_code",
+  "slot_no",
+  "section_break_11",
   "date_of_exam",
+  "column_break_13",
   "exam_start_time",
+  "column_break_15",
   "exam_end_time"
  ],
  "fields": [
@@ -38,7 +48,7 @@
   },
   {
    "fieldname": "venue",
-   "fieldtype": "Data",
+   "fieldtype": "Select",
    "label": "Venue"
   },
   {
@@ -52,6 +62,7 @@
    "label": "Pin Code"
   },
   {
+   "fetch_from": "applicant_id.department",
    "fieldname": "department",
    "fieldtype": "Link",
    "label": "Department",
@@ -59,7 +70,7 @@
   },
   {
    "fieldname": "date_of_exam",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "Date of Exam"
   },
   {
@@ -71,11 +82,61 @@
    "fieldname": "exam_end_time",
    "fieldtype": "Time",
    "label": "Exam End Time"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break",
+   "label": "Exam Center Details"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_11",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_13",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "applicant_id.academic_year",
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
+  },
+  {
+   "fetch_from": "applicant_id.academic_term",
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
+  },
+  {
+   "fieldname": "slot_no",
+   "fieldtype": "Select",
+   "label": "Slot no."
+  },
+  {
+   "fieldname": "exam_allocation",
+   "fieldtype": "Link",
+   "label": "Exam Allocation",
+   "options": "Entrance Exam Centre Allocation"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-09 18:05:38.605465",
+ "modified": "2023-06-01 10:01:15.967049",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Admit Card",
