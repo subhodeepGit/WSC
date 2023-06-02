@@ -7,9 +7,17 @@ from frappe.model.document import Document
 
 class ScholarshipApplication(Document):
 	def validate(self):
+		duplicacy_check(self)
+		validate_elgibility(self)
+		if self.student_category!=self.student_catagory:
+			frappe.throw("Student don’t belong to the student category given by the company")
 		if len(self.document_list_tab) == 0:     
 			add_document_list_rows(self)
 
+	def on_submit(self):
+		for t in self.document_list_tab:
+			if t.mandatory==1 and (t.attach==None or t.attach==""):
+				frappe.throw("Document List not uploded. Kindly upload the Document")		
 
 @frappe.whitelist()
 def calculateAge(student_no):
@@ -30,22 +38,49 @@ def current_education(student_no):
 def add_document_list_rows(self): 
 	if self.student_catagory and self.academic_year:
 		self.set("document_list_tab",[])
-	# get_document_list_by_category(self)
-        # for d in get_document_list_by_category(doc):
-        #     doc.append("document_list",{
-        #         "document_name":d.document_name,
-        #         "mandatory":d.mandatory,
-        #         "is_available" :d.is_available
-        #     })
+	document_temp=frappe.get_all("Scholarships",{"name":self.scholarship_id},['name','document_required'])
+	document_temp_data=frappe.get_all("Documents Template List",{"parent":document_temp[0]['document_required']},['document_name','mandatory','is_available'])
+	for t in document_temp_data:
+		self.append("document_list_tab",{
+                "document_name":t['document_name'],
+                "mandatory":t['mandatory'],
+                "is_available" :t['is_available']
+            })
 
-def get_document_list_by_category(self):
-    filters={"student_category":self.student_category}
-    group_by=""
-    # if doc.counselling_structure:
-    #     filters.update({"parent":doc.counselling_structure,"parenttype":"Counselling Structure"})
-    # else:
-    #     filters.update({"parent":["IN",[d.student_admission for d in doc.get('program_priority')]],"parenttype":"Student Admission"})
-    #     group_by="document_name"
-    # doc_list  = frappe.db.sql("""SELECT DL.document_name, DL.mandatory, DL.is_available from `tabDocuments Template List` as DL 
-    # inner join `tabDocuments Template` as D on DL.parent= D.name where D.student_category='{0}' and D.academic_year = '{1}' ORDER BY document_name ASC""".format(doc.student_category,doc.academic_year) ,as_dict=1)
-    # return doc_list if doc_list else []	    
+def duplicacy_check(self):
+	data=frappe.get_all("Scholarship Application",{"student_id":self.student_id,"scholarship_id":self.scholarship_id,"docstatus":1})
+	if data:
+		frappe.throw("Application has already filled up for this Scholarship Notification")  
+
+@frappe.whitelist()
+def eligibility(scholarship_id_data):
+	data=frappe.get_all("Scholarship Eligibility Paramete",{"parent":scholarship_id_data},['name','parameter','percentagecgpa','eligible_score'])
+	return data
+
+@frappe.whitelist()
+def valid_scholarship(doctype, txt, searchfield, start, page_len, filters):
+	from frappe import utils
+	today = utils.today()
+	fil_data=frappe.db.sql(""" Select name from tabScholarships where start_date<'%s' and end_date>'%s' and docstatus=%s """%(today,today,filters.get('docstatus')))
+	return fil_data
+
+def validate_elgibility(self):
+	scholarship_elgibility=frappe.get_all("Scholarship Eligibility Paramete",
+				       {"parent":self.scholarship_id},['name','parameter','percentagecgpa','eligible_score'],order_by="idx")
+	not_matching_parameter=[]
+	for t in self.get('scholarship_eligibility_parameter'):
+		for j in scholarship_elgibility:
+			if t.parameter==j['parameter']:
+				if float(j['eligible_score'])>float(t.eligible_score):
+					not_matching_parameter.append(t.parameter)
+
+	if not_matching_parameter:
+		frappe.throw("Eligibility parameters for scholarship don't match as per the eligibility criteria given by the company")
+
+	semester_1_marks=self.semester_1_marks
+	semester_2_marks=self.semester_2_marks
+	sem_data=frappe.get_all("Scholarships",{"name":self.scholarship_id},['semester_1_marks','semester_2_marks'])
+	if sem_data[0]['semester_1_marks']>semester_1_marks:
+		frappe.throw("Semester Eligibility parameters for scholarship don't match as per the eligibility criteria given by the company")
+	if sem_data[0]['semester_2_marks']>semester_2_marks:
+		frappe.throw("Semester Eligibility parameters for scholarship don't match as per the eligibility criteria given by the company")	

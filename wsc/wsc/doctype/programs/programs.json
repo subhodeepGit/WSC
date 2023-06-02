@@ -7,6 +7,7 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "is_tot",
   "program_grade",
   "programs_name",
   "department",
@@ -16,9 +17,12 @@
   "creation_date",
   "programs_duration",
   "no_of_semesters",
+  "tot_programme",
   "section_break_semester",
   "add_semesters",
   "semesters",
+  "modules_list_section",
+  "courses",
   "section_break_5",
   "is_published",
   "allow_self_enroll",
@@ -32,12 +36,11 @@
   {
    "fieldname": "programs_name",
    "fieldtype": "Data",
-   "label": "Programs Name",
+   "label": "Course Name",
    "reqd": 1,
    "unique": 1
   },
   {
-   "depends_on": "eval:!(doc.__islocal) ",
    "fieldname": "department",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -53,7 +56,7 @@
    "fieldname": "programs_abbreviation",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Programs Abbreviation",
+   "label": "Course Abbreviation",
    "reqd": 1,
    "unique": 1
   },
@@ -63,13 +66,15 @@
    "label": "Creation Date"
   },
   {
+   "depends_on": "eval:doc.is_tot==0",
    "fieldname": "programs_duration",
    "fieldtype": "Select",
    "label": "Programs Duration ",
-   "options": "\n1 Year\n2 Years\n3 Years\n4 Years\n5 Years\n6 Years\n7 Years\n8 Years\n9 Years\n10 Years",
-   "reqd": 1
+   "mandatory_depends_on": "eval:doc.is_tot==0",
+   "options": "\n1 Year\n2 Years\n3 Years\n4 Years\n5 Years\n6 Years\n7 Years\n8 Years\n9 Years\n10 Years"
   },
   {
+   "depends_on": "eval:doc.is_tot==0",
    "fieldname": "section_break_semester",
    "fieldtype": "Section Break",
    "label": "Semesters"
@@ -141,22 +146,49 @@
    "label": "Description"
   },
   {
+   "depends_on": "eval:doc.is_tot==0",
    "fieldname": "no_of_semesters",
    "fieldtype": "Int",
    "label": "No. of Semesters",
-   "reqd": 1
+   "mandatory_depends_on": "eval:doc.is_tot==0"
   },
   {
    "fieldname": "program_grade",
    "fieldtype": "Link",
-   "label": "Program Grade",
+   "label": "Course Type",
    "options": "Program Grades",
    "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_tot",
+   "fieldtype": "Check",
+   "label": "Is ToT"
+  },
+  {
+   "default": "1",
+   "depends_on": "eval:doc.is_tot==1",
+   "fieldname": "tot_programme",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "ToT Programme"
+  },
+  {
+   "depends_on": "eval:doc.is_tot==1",
+   "fieldname": "modules_list_section",
+   "fieldtype": "Section Break",
+   "label": "Modules List"
+  },
+  {
+   "fieldname": "courses",
+   "fieldtype": "Table",
+   "label": "Modules",
+   "options": "Program Course"
   }
  ],
  "image_field": "hero_image",
  "links": [],
- "modified": "2023-01-19 11:04:57.833118",
+ "modified": "2023-06-01 17:20:46.936798",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Programs",

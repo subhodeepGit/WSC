@@ -1,11 +1,24 @@
 frappe.ui.form.on('Course', {
 	refresh: function(frm) {
-        frm.remove_custom_button("Add to Programs","Action");
+		frm.remove_custom_button("Add to Programs","Action");
 		frm.remove_custom_button("Add to Semester","Action");
-		if (!cur_frm.doc.__islocal && (!frappe.user.has_role(["Student","Instructor"]) || frappe.user.has_role(["System Manager"]))) {
-			frm.add_custom_button(__('Add to Semester'), function() {
-				frm.trigger('add_course_to_semester')
-			}, __('Action'));
+		if (frm.doc.is_tot==0){
+			if (!cur_frm.doc.__islocal && (!frappe.user.has_role(["Student","Instructor"]) || frappe.user.has_role(["System Manager"]))) {
+				frm.add_custom_button(__('Add to Semester'), function() {
+					frm.trigger('add_course_to_semester')
+				}, __('Action'));
+			}
+		}
+	},
+	refresh: function(frm) {
+		if (frm.doc.is_tot==1){
+			frm.remove_custom_button("Add to Programs","Action");
+			frm.remove_custom_button("Add to Semester","Action");
+			if (!cur_frm.doc.__islocal && (!frappe.user.has_role(["Student","Instructor"]) || frappe.user.has_role(["System Manager"]))) {
+				frm.add_custom_button(__('Add to ToT Course'), function() {
+					frm.trigger('add_module_to_tot_course')
+				}, __('Action'));
+			}
 		}
 	},
 	disable:function(frm){
@@ -73,14 +86,54 @@ frappe.ui.form.on('Course', {
 				frappe.msgprint(__('This course is already added to the existing semester'));
 			}
 		});
+	},
+	add_module_to_tot_course: function(frm) {
+		get_course_without_module(frm.doc.name).then(r => {
+			if (r.message.length) {
+				frappe.prompt([
+					{
+						fieldname: 'programs',
+						label: __('Course'),
+						fieldtype: 'MultiSelectPills',
+						get_data: function() {
+							return r.message;
+						}
+					}
+				],
+				function(data) {
+					frappe.call({
+						method: 'wsc.wsc.validations.course.add_module_to_tot_course',
+						args: {
+							'course': frm.doc.name,
+							'programs': data.programs,
+						},
+						callback: function(r) {
+							if (!r.exc) {
+								frm.reload_doc();
+							}
+						},
+						freeze: true,
+						freeze_message: __('...Adding Module to Tot Course')
+					})
+				}, __('Add Module to Course'), __('Add'));
+			} else {
+				frappe.msgprint(__('This Mdoule is already added to the existing Course'));
+			}
+		});
 	}
 });
-
-
 let get_semester_without_course = function(course) {
 	return frappe.call({
 		args:{"course":course},
 		method: 'wsc.wsc.validations.course.get_semesters_name',
+		// /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/validations/course.py
+	});
+}
+
+let get_course_without_module = function(course) {
+	return frappe.call({
+		args:{"course":course},
+		method: 'wsc.wsc.validations.course.get_course_name',
 		// /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/validations/course.py
 	});
 }

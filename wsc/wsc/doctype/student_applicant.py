@@ -590,3 +590,16 @@ def validate_counselling_structure(doc):
         #                         if e.score > pt.total_score:
         #                             frappe.throw("Score <b>'{0}'</b> of education qualifications details should not be greater than the total score <b>'{1}'</b>".format(e.score, pt.total_score))
 
+
+@frappe.whitelist()
+# def center_selection(academic_year , academic_term):
+def custom_query(doctype, txt, searchfield, start, page_len, filters):
+
+
+    # center_selection = frappe.get_all("Entrance Exam Centre Selection" , {'academic_year':academic_year , 'academic_term':academic_term} , ['name'])
+    
+    # center = frappe.get_all("Current Centers" , {'parent':center_selection[0]['name']} , ['center' , 'center_name' , 'citytownvillage' , 'state' , 'district'])
+
+    print("\n\n\n")
+    print(doctype)
+    

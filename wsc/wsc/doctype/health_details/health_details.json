@@ -1,0 +1,52 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-03 15:13:02.625511",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "disease_name",
+  "description",
+  "recommendation_by_physician",
+  "attachment"
+ ],
+ "fields": [
+  {
+   "fieldname": "disease_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Disease name"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "in_list_view": 1,
+   "label": "Description"
+  },
+  {
+   "fieldname": "recommendation_by_physician",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Recommendation by Physician"
+  },
+  {
+   "fieldname": "attachment",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "Attachment"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-05-03 15:13:32.770447",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Health Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
