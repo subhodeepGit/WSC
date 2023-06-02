@@ -13,9 +13,6 @@ class ScholarshipApplication(Document):
 			frappe.throw("Student don’t belong to the student category given by the company")
 		if len(self.document_list_tab) == 0:     
 			add_document_list_rows(self)
-			
-
-
 
 	def on_submit(self):
 		for t in self.document_list_tab:
