@@ -15,6 +15,7 @@
   "participant_selection_date",
   "column_break_4rwsg",
   "academic_year",
+  "academic_term",
   "start_date",
   "end_date",
   "naming_series",
@@ -41,6 +42,7 @@
    "description": "For Internal Purpose (Not Visible in the Application Front)",
    "fieldname": "semester",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Semester",
    "options": "Program"
   },
@@ -97,11 +99,19 @@
    "fieldname": "end_date",
    "fieldtype": "Date",
    "label": "End Date"
+  },
+  {
+   "description": "For Internal Purpose (Not Visible in the Application Front)",
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Academic Term",
+   "options": "Academic Term"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-06-02 15:54:07.055011",
+ "modified": "2023-06-03 20:27:20.689510",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant Selection",

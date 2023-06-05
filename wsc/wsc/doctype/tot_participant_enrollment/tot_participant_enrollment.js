@@ -29,22 +29,32 @@ frappe.ui.form.on('ToT Participant Enrollment', {
 		}
 	},
 	refresh(frm){
-
         frm.set_df_property('participant_list', 'cannot_add_rows', true);
         frm.set_df_property('participant_list', 'cannot_delete_rows', true);
+
+		if (!frm.doc.__islocal){
+			frm.add_custom_button(__('1) Create Participant'), function() {
+				frappe.call({
+					method: 'create_participant',
+					doc: frm.doc,
+					callback: function() {
+						frm.refresh();
+					}
+				});
+			},'Actions').addClass('btn-primary');
+		}
+		if (!frm.doc.__islocal){
+			frm.add_custom_button(__('2) Enroll Participant'), function() {
+				frappe.call({
+					method: 'enroll_participant',
+					doc: frm.doc,
+					// tot_participant_selection_id:doc.tot_participant_selection_id,
+					// callback: function() {
+					// 	frm.refresh();
+					// }
+				});
+			},'Actions').addClass('btn-primary');
+		}
 	},
 	
-	// "enroll_particpant": function(frm) {
-	// 	if (frm.doc.semester && frm.doc.academic_year){
-	// 		frappe.call({
-	// 			method: "enroll_participants",
-	// 			doc:frm.doc,
-	// 			callback: function(r) {
-	// 				// frm.set_value("students", []);
-	// 				frappe.hide_msgprint(true);
-	// 			}
-	// 		});
-	// 	}
-
-	// },
 });

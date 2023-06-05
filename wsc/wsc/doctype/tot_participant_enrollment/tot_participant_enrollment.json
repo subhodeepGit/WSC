@@ -14,13 +14,16 @@
   "tot_participant_batch",
   "column_break_psgj4",
   "academic_year",
+  "academic_term",
   "start_date",
   "end_date",
   "naming_series",
   "section_break_0tpkx",
+  "participant_creation_status",
+  "participant_enrollment_status",
   "get_participants",
   "participant_list",
-  "enroll_participants"
+  "amended_from"
  ],
  "fields": [
   {
@@ -65,6 +68,7 @@
    "fetch_from": "tot_participant_selection_id.semester",
    "fieldname": "semester",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Semester",
    "options": "Program",
    "read_only": 1
@@ -103,14 +107,41 @@
    "read_only": 1
   },
   {
-   "fieldname": "enroll_participants",
-   "fieldtype": "Button",
-   "label": "Enroll Participants"
+   "fieldname": "participant_creation_status",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Participant Creation Status",
+   "options": "\nIn Process\nFailed\nSuccessful"
+  },
+  {
+   "fieldname": "participant_enrollment_status",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Participant Enrollment Status",
+   "options": "\nIn Process\nFailed\nSuccessful"
+  },
+  {
+   "fetch_from": "tot_participant_selection_id.academic_term",
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Academic Term",
+   "options": "Academic Term"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "ToT Participant Enrollment",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-06-02 16:01:29.085503",
+ "modified": "2023-06-04 01:52:54.848956",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant Enrollment",
