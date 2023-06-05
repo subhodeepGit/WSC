@@ -31,7 +31,7 @@ job_opening: function(frm){
 	});
 },
 get_applicants: function(frm){
-	alert("Hello")
+	// alert("Hello")
 	frappe.call({
 		method: 'wsc.wsc.doctype.recruitment_exam_declaration.recruitment_exam_declaration.get_job_applicants',
 		args:{

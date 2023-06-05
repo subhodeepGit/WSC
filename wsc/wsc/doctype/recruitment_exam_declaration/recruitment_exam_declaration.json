@@ -10,6 +10,7 @@
  "field_order": [
   "job_opening",
   "exam_date",
+  "exam_time",
   "exam_name",
   "recruitment_exam_center",
   "selection_round",
@@ -68,11 +69,17 @@
    "label": "Recruitment Exam Center",
    "options": "Recruitment Exam Center",
    "reqd": 1
+  },
+  {
+   "fieldname": "exam_time",
+   "fieldtype": "Time",
+   "label": "Exam Time",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-31 17:02:43.615426",
+ "modified": "2023-06-01 14:43:56.810874",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Recruitment Exam Declaration",

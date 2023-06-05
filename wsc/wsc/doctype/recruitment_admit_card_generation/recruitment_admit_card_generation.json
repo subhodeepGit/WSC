@@ -75,18 +75,19 @@
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Recruitment  Admit Card Generation",
+   "options": "Recruitment Admit Card Generation",
    "print_hide": 1,
    "read_only": 1
   }
  ],
+ "in_create": 1,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-01 12:21:06.823224",
+ "modified": "2023-06-02 10:11:54.484945",
  "modified_by": "Administrator",
  "module": "WSC",
- "name": "Recruitment  Admit Card Generation",
+ "name": "Recruitment Admit Card Generation",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
