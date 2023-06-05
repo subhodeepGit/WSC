@@ -1,0 +1,431 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "STU-ATT.-.#####",
+ "creation": "2023-06-02 15:16:11.649335",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "student_infromation_section",
+  "student_no",
+  "student_name",
+  "joining_date",
+  "student_applicant",
+  "column_break_5",
+  "student_email_address",
+  "student_mobile_number",
+  "student_category",
+  "gender",
+  "current_educational_details_section",
+  "current_education",
+  "last_date_of_attendance",
+  "status_of_attendence",
+  "section_break_16",
+  "posting_date",
+  "reason_for_leaving_section",
+  "decided_to_further_education_or_training_abroad",
+  "decided_to_join_other_local_institution",
+  "decided_to_join_the_college_polytechnic",
+  "column_break_19",
+  "name_of_institution",
+  "level_of_course",
+  "course_title",
+  "section_break_24",
+  "had_to_work_to_supplement_family_income_financial_difficulty",
+  "needed_to_help_out_in_family_business",
+  "column_break_26",
+  "preferred_to_work_than_to_continue_with_training",
+  "needed_to_work_to_support_myself",
+  "section_break_29",
+  "lost_interest_in_study",
+  "course_not_of_my_interestchoice",
+  "column_break_32",
+  "persuaded_to_leave_by_parentsfamily_membersrelatives",
+  "section_break_34",
+  "campushostel_too_far_from_home",
+  "family_problems",
+  "section_break_37",
+  "could_not_cope_with_course",
+  "enforced_attrition_under_full_time_legal_detention",
+  "column_break_40",
+  "medical_reasons",
+  "section_break_42",
+  "non_reporting",
+  "classmates_and_peers_not_helpful_and_friendly",
+  "column_break_45",
+  "long_absence_from_training_without_reason_and_not_contactable",
+  "unable_to_pay_fees_due_to_financial_difficulties",
+  "section_break_47",
+  "deceased",
+  "amended_from",
+  "section_break_51",
+  "additional_details_by_ca"
+ ],
+ "fields": [
+  {
+   "fieldname": "student_no",
+   "fieldtype": "Link",
+   "label": "Student No",
+   "options": "Student",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "student_no.student_name",
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "label": "Student Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student_no.joining_date",
+   "fieldname": "joining_date",
+   "fieldtype": "Data",
+   "label": "Joining Date",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student_no.student_email_id",
+   "fieldname": "student_email_address",
+   "fieldtype": "Data",
+   "label": "Student Email Address",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student_no.student_mobile_number",
+   "fieldname": "student_mobile_number",
+   "fieldtype": "Data",
+   "label": "Student Mobile Number"
+  },
+  {
+   "fetch_from": "student_no.student_category",
+   "fieldname": "student_category",
+   "fieldtype": "Data",
+   "label": "Student Category",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student_no.gender",
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "label": "Gender",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student_no.student_applicant",
+   "fieldname": "student_applicant",
+   "fieldtype": "Data",
+   "label": "Student Applicant",
+   "read_only": 1
+  },
+  {
+   "fieldname": "student_infromation_section",
+   "fieldtype": "Section Break",
+   "label": "Student Information"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "current_educational_details_section",
+   "fieldtype": "Section Break",
+   "label": "Current Educational Details "
+  },
+  {
+   "fieldname": "current_education",
+   "fieldtype": "Table",
+   "label": "Current Education",
+   "options": "Current Educational Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_date_of_attendance",
+   "fieldtype": "Date",
+   "label": "Last Date Of Attendance",
+   "read_only": 1
+  },
+  {
+   "fieldname": "status_of_attendence",
+   "fieldtype": "Data",
+   "label": "Status of Attendence",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reason_for_leaving_section",
+   "fieldtype": "Section Break",
+   "label": "Reason For Leaving "
+  },
+  {
+   "fieldname": "decided_to_further_education_or_training_abroad",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Decided to further education or training abroad",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "decided_to_join_other_local_institution",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Decided to join other local institution",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "decided_to_join_the_college_polytechnic",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Decided to join the College, Polytechnic",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_19",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.decided_to_further_education_or_training_abroad==\"Yes\"||doc.decided_to_join_other_local_institution==\"Yes\"||doc.decided_to_join_the_college_polytechnic==\"Yes\"",
+   "fieldname": "name_of_institution",
+   "fieldtype": "Data",
+   "label": "Name of Institution",
+   "mandatory_depends_on": "eval:doc.decided_to_further_education_or_training_abroad==\"Yes\"||doc.decided_to_join_other_local_institution==\"Yes\"||doc.decided_to_join_the_college_polytechnic==\"Yes\""
+  },
+  {
+   "depends_on": "eval:doc.decided_to_further_education_or_training_abroad==\"Yes\"||doc.decided_to_join_other_local_institution==\"Yes\"||doc.decided_to_join_the_college_polytechnic==\"Yes\"",
+   "fieldname": "level_of_course",
+   "fieldtype": "Select",
+   "label": "Level of Course",
+   "mandatory_depends_on": "eval:doc.decided_to_further_education_or_training_abroad==\"Yes\"||doc.decided_to_join_other_local_institution==\"Yes\"||doc.decided_to_join_the_college_polytechnic==\"Yes\"",
+   "options": "\nITI\nDiploma\nEngineering\nOther"
+  },
+  {
+   "depends_on": "eval:doc.decided_to_further_education_or_training_abroad==\"Yes\"||doc.decided_to_join_other_local_institution==\"Yes\"||doc.decided_to_join_the_college_polytechnic==\"Yes\"",
+   "fieldname": "course_title",
+   "fieldtype": "Data",
+   "label": "Course Title ",
+   "mandatory_depends_on": "eval:doc.decided_to_further_education_or_training_abroad==\"Yes\"||doc.decided_to_join_other_local_institution==\"Yes\"||doc.decided_to_join_the_college_polytechnic==\"Yes\""
+  },
+  {
+   "fieldname": "section_break_24",
+   "fieldtype": "Section Break"
+  },
+  {
+   "description": "Financial difficulty",
+   "fieldname": "had_to_work_to_supplement_family_income_financial_difficulty",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Had to work to supplement family income ",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "needed_to_help_out_in_family_business",
+   "fieldtype": "Select",
+   "label": "Needed to help out in family business",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_26",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "preferred_to_work_than_to_continue_with_training",
+   "fieldtype": "Select",
+   "label": "Preferred to work than to continue with training",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "needed_to_work_to_support_myself",
+   "fieldtype": "Select",
+   "label": "Needed to work to support myself",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_29",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "lost_interest_in_study",
+   "fieldtype": "Select",
+   "label": "Lost interest in study",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "course_not_of_my_interestchoice",
+   "fieldtype": "Select",
+   "label": "Course not of my interest/choice",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_32",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "persuaded_to_leave_by_parentsfamily_membersrelatives",
+   "fieldtype": "Select",
+   "label": "Persuaded to leave by parents/family members/relatives",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_34",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "campushostel_too_far_from_home",
+   "fieldtype": "Select",
+   "label": "Campus/Hostel too far from home",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "family_problems",
+   "fieldtype": "Select",
+   "label": "Family problems",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_37",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "could_not_cope_with_course",
+   "fieldtype": "Select",
+   "label": "Could not cope with course",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "enforced_attrition_under_full_time_legal_detention",
+   "fieldtype": "Select",
+   "label": "Enforced attrition (under full time legal detention)",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_40",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "medical_reasons",
+   "fieldtype": "Select",
+   "label": "Medical reasons",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_42",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "non_reporting",
+   "fieldtype": "Select",
+   "label": "Non reporting",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "classmates_and_peers_not_helpful_and_friendly",
+   "fieldtype": "Select",
+   "label": "Classmates and peers not helpful and friendly",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_45",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "For ongoing student",
+   "fieldname": "long_absence_from_training_without_reason_and_not_contactable",
+   "fieldtype": "Select",
+   "label": "Long absence from training without reason and not contactable",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_47",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "unable_to_pay_fees_due_to_financial_difficulties",
+   "fieldtype": "Select",
+   "label": "Unable to pay fees due to Financial Difficulties",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "deceased",
+   "fieldtype": "Select",
+   "label": "Deceased",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Student Attrition Form",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "additional_details_by_ca",
+   "fieldtype": "Text Editor",
+   "label": "Additional Details by CA "
+  },
+  {
+   "fieldname": "section_break_51",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_16",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-06-02 18:12:14.655059",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Student Attrition Form",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

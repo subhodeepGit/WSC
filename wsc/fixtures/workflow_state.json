@@ -313,5 +313,14 @@
   "name": "Submit",
   "style": "",
   "workflow_state_name": "Submit"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-02 12:34:26.749538",
+  "name": "Sent For Approval",
+  "style": "",
+  "workflow_state_name": "Sent For Approval"
  }
 ]
