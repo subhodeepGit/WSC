@@ -47,7 +47,7 @@ frappe.ui.form.on('Exam Declaration', {
                 },__('Create')); 
             }
         }
-    
+        frm.set_df_property('semesters', 'cannot_add_rows', true);
     
  
 		// if (!frm.doc.__islocal){
@@ -154,7 +154,8 @@ frappe.ui.form.on('Exam Declaration', {
 			method: "wsc.wsc.doctype.exam_declaration.exam_declaration.get_students",
 			args: {
 				programs: frm.doc.exam_program,
-				academic_term: frm.doc.academic_term
+				academic_term: frm.doc.academic_term,
+                class_data: frm.doc.class
 			},
 			callback: function(r) {
 				
