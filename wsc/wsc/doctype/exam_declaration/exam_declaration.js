@@ -2,6 +2,17 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Exam Declaration', {
+    exam_start_date(frm) {
+        frm.fields_dict.exam_end_date.datepicker.update({
+            minDate: frm.doc.exam_start_date ? new Date(frm.doc.exam_start_date) : null
+        });
+    },
+
+    exam_end_date(frm) {
+        frm.fields_dict.exam_start_date.datepicker.update({
+            maxDate: frm.doc.exam_end_date ? new Date(frm.doc.exam_end_date) : null
+        });
+    },
     refresh: function(frm){
         frm.set_query("exam_program", function () {
 			return {
@@ -21,33 +32,33 @@ frappe.ui.form.on('Exam Declaration', {
                 frappe.new_doc("Exam Assessment Plan", data)
             },__('Create'));
 
-            frm.add_custom_button("Student Group", () => {
-                let data = {}
-                data.group_based_on = frm.doc.doctype
-                data.programs = frm.doc.exam_program
-                data.program = frm.doc.program
-                data.academic_year = frm.doc.academic_year
-                data.academic_term = frm.doc.academic_term
-                data.exam_declaration = frm.doc.name
-                frappe.new_doc("Student Group", data)
-            },__('Create'));
+            // frm.add_custom_button("Student Group", () => {
+            //     let data = {}
+            //     data.group_based_on = frm.doc.doctype
+            //     data.programs = frm.doc.exam_program
+            //     data.program = frm.doc.program
+            //     data.academic_year = frm.doc.academic_year
+            //     data.academic_term = frm.doc.academic_term
+            //     data.exam_declaration = frm.doc.name
+            //     frappe.new_doc("Student Group", data)
+            // },__('Create'));
 
-            if(frm.doc.is_application_required==0){
-                frm.add_custom_button("Student Admit Card", () => {
-                    frappe.call({
-                        // method: 'wsc.wsc.doctype.exam_declaration.exam_declaration.create_student_admit_card',
-                        method: 'create_student_admit_card',
-                        doc:frm.doc,
-                        callback: function(r) {
-                            if (r.message) {
-                                frappe.msgprint("Student Admit Card Created")
-                            }
-                        }
-                    });
-                },__('Create')); 
-            }
+            // if(frm.doc.is_application_required==0){
+            //     frm.add_custom_button("Student Admit Card", () => {
+            //         frappe.call({
+            //             // method: 'wsc.wsc.doctype.exam_declaration.exam_declaration.create_student_admit_card',
+            //             method: 'create_student_admit_card',
+            //             doc:frm.doc,
+            //             callback: function(r) {
+            //                 if (r.message) {
+            //                     frappe.msgprint("Student Admit Card Created")
+            //                 }
+            //             }
+            //         });
+            //     },__('Create')); 
+            // }
         }
-    
+        frm.set_df_property('semesters', 'cannot_add_rows', true);
     
  
 		// if (!frm.doc.__islocal){
@@ -154,7 +165,8 @@ frappe.ui.form.on('Exam Declaration', {
 			method: "wsc.wsc.doctype.exam_declaration.exam_declaration.get_students",
 			args: {
 				programs: frm.doc.exam_program,
-				academic_term: frm.doc.academic_term
+				academic_term: frm.doc.academic_term,
+                class_data: frm.doc.class
 			},
 			callback: function(r) {
 				
@@ -171,7 +183,7 @@ frappe.ui.form.on('Exam Declaration', {
 			}
 			
 		});
-	}
+	},
 }); 
 
 
@@ -203,7 +215,7 @@ frappe.ui.form.on("Exam Declaration Fee Item",{
 // 	}
 // })
 
-frappe.ui.form.on("Exam Declaration Fee Item", "fee_structure", function(frm, cdt, cdn) {
+frappe.ui.form.on("Exam Courses", "fee_structure", function(frm, cdt, cdn) {
     var d = locals[cdt][cdn];
     var a=0;
     if (d.fee_structure){
@@ -215,3 +227,25 @@ frappe.ui.form.on("Exam Declaration Fee Item", "fee_structure", function(frm, cd
         }
     }
 });
+// frappe.ui.form.on("Exam Courses", "examination_date", function(frm, cdt, cdn) {
+//     // var d = locals[cdt][cdn];
+//     var ed_details = frm.doc.courses_offered;
+//     for (var i in ed_details){
+//         frm.fields_dict['courses_offered'].grid.get_field("examination_end_date").datepicker.update({
+//             minDate: ed_details[i].examination_date ? new Date(ed_details[i].examination_date) : null
+//         });
+//     }
+//         cur_frm.refresh_field ("courses_offered");   
+// });
+
+// frappe.ui.form.on("Exam Courses", "examination_end_date", function(frm, cdt, cdn) {
+//     // var d = locals[cdt][cdn];
+//     var ed_details = frm.doc.courses_offered;
+//     for (var i in ed_details){
+//         frm.fields_dict['courses_offered'].grid.get_field("examination_date").datepicker.update({
+//             maxDate: ed_details[i].examination_end_date ? new Date(ed_details[i].examination_end_date) : null
+//         });
+//     }
+//         cur_frm.refresh_field ("courses_offered");   
+// });
+

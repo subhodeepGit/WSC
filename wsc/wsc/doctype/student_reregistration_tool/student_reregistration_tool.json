@@ -125,7 +125,7 @@
   {
    "fieldname": "program_grade",
    "fieldtype": "Link",
-   "label": "Program Grade",
+   "label": "Course Type",
    "options": "Program Grades",
    "reqd": 1
   },
@@ -151,7 +151,7 @@
  "hide_toolbar": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-01-19 11:10:06.348625",
+ "modified": "2023-06-05 16:26:19.892615",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Reregistration Tool",

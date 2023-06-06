@@ -26,6 +26,7 @@
   "section_break_8",
   "program_grade",
   "exam_program",
+  "class",
   "semesters",
   "get_courses",
   "courses_offered",
@@ -88,7 +89,7 @@
    "allow_on_submit": 1,
    "fieldname": "courses_offered",
    "fieldtype": "Table",
-   "label": "Courses Offered",
+   "label": "Module Offered",
    "options": "Exam Courses",
    "reqd": 1
   },
@@ -113,6 +114,7 @@
    "reqd": 1
   },
   {
+   "default": "Allow all",
    "fieldname": "fees_status",
    "fieldtype": "Select",
    "in_list_view": 1,
@@ -131,7 +133,7 @@
   {
    "fieldname": "exam_program",
    "fieldtype": "Link",
-   "label": "Exam Program",
+   "label": "Exam Module",
    "options": "Programs",
    "reqd": 1
   },
@@ -172,6 +174,7 @@
    "options": "Exam Declaration Fee Item"
   },
   {
+   "default": "NO",
    "fieldname": "exam_fees_applicable",
    "fieldtype": "Select",
    "label": "Exam Fees Applicable",
@@ -210,7 +213,7 @@
   {
    "fieldname": "get_courses",
    "fieldtype": "Button",
-   "label": "Get Courses"
+   "label": "Get Module"
   },
   {
    "allow_on_submit": 1,
@@ -256,7 +259,7 @@
   {
    "fieldname": "program_grade",
    "fieldtype": "Link",
-   "label": "Program Grade",
+   "label": "Course Type",
    "options": "Program Grades",
    "reqd": 1
   },
@@ -265,12 +268,18 @@
    "fieldtype": "Select",
    "label": "Exam Category",
    "options": "Regular\nRe-Exam"
+  },
+  {
+   "fieldname": "class",
+   "fieldtype": "Link",
+   "label": "Class",
+   "options": "School House"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-18 16:08:53.166484",
+ "modified": "2023-06-05 18:18:30.198734",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Declaration",

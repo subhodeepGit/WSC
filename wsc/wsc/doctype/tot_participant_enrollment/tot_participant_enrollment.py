@@ -6,59 +6,104 @@ from frappe.model.document import Document
 
 class ToTParticipantEnrollment(Document):
 	pass
+	@frappe.whitelist()
+	def enroll_participant(self):
+		self.db_set("participant_enrollment_status", "In Process")
+		frappe.publish_realtime("tot_participant_enrollment_progress",
+			{"progress": "0", "reload": 1}, user=frappe.session.user)
+
+		total_records = len(self.get("participant_list"))
+		if total_records > 41:
+			frappe.msgprint(_(''' Records will be created in the background.
+				In case of any error the error message will be updated in the Schedule.'''))
+			frappe.enqueue(make_enrollment, queue='default', timeout=6000, event='make_enrollment',
+				tot_participant_enrollment=self.name)
+
+		else:
+			make_enrollment(self.name)
+	@frappe.whitelist()
+	def create_participant(self):
+		self.db_set("participant_creation_status", "In Process")
+		frappe.publish_realtime("tot_participant_enrollment_progress",
+			{"progress": "0", "reload": 1}, user=frappe.session.user)
+
+		total_records = len(self.get("participant_list"))
+		if total_records > 41:
+			frappe.msgprint(_(''' Records will be created in the background.
+				In case of any error the error message will be updated in the Schedule.'''))
+			frappe.enqueue(make_participant, queue='default', timeout=6000, event='make_participant',
+				tot_participant_enrollment=self.name)
+
+		else:
+			make_participant(self.name)
+def make_participant(tot_participant_enrollment):
+
+	doc = frappe.get_doc("ToT Participant Enrollment", tot_participant_enrollment)
+	error = False
+	total_records = len(doc.get("participant_list"))
+	created_records = 0
+
+	created_records += 1
+	if not total_records:
+		frappe.throw(_("Please Create Participant Selection Record First"))
+	for d in doc.get("participant_list",{'is_reported':1}):
+		result=frappe.new_doc("Student")
+		result.first_name=d.first_name
+		result.middle_name=d.middle_name
+		result.last_name=d.last_name
+		result.student_email_id=d.email_address
+		check_duplicate_student = frappe.get_all("Student",{'student_email_id':d.email_address},['student_email_id'])
+		if(check_duplicate_student):
+			X=check_duplicate_student
+			Y=list(X[0].values())
+			if Y[0]==d.email_address:
+				pass
+		else:
+			result.save()
+			created_records += 1
+			frappe.msgprint("Record Created")
+			frappe.publish_realtime("tot_participant_enrollment_progress", {"progress": str(int(created_records * 100/total_records)),"current":str(created_records),"total":str(total_records)}, user=frappe.session.user)
+			frappe.db.set_value("ToT Participant Enrollment", tot_participant_enrollment, "participant_creation_status", "Successful")
+			frappe.publish_realtime("tot_participant_enrollment_progress",
+			{"progress": "100", "reload": 1}, user=frappe.session.user)
+
+
+	
+def make_enrollment(tot_participant_enrollment):
+	doc = frappe.get_doc("ToT Participant Enrollment", tot_participant_enrollment)
+	error = False
+	total_records = len(doc.get("participant_list"))
+	created_records = 0
+	if not total_records:
+		frappe.throw(_("Please Create Participant Record First"))
+	
+	for d in doc.get("participant_list",{'is_reported':1}):
+		for stud in frappe.get_all("Student",{"student_email_id":d.email_address},['name']):
+			pass
+			# print("\n\n\nStudent",stud.name)
+		result=frappe.new_doc("Program Enrollment")
+		result.student=stud.name
+	for data in frappe.get_all("ToT Participant Selection",{"name":doc.tot_participant_selection_id},['participant_selection_date']):
+		result.programs=doc.programs
+		result.program=doc.semester
+		result.academic_year=doc.academic_year
+		result.academic_term=doc.academic_term
+		result.enrollment_date=data.participant_selection_date
+		result.student_batch_name=doc.tot_participant_batch
+		result.is_tot=1
+		result.save()
+		result.submit()
+		created_records += 1
+	frappe.msgprint("Record Created")
+	frappe.publish_realtime("tot_participant_enrollment_progress", {"progress": str(int(created_records * 100/total_records)),"current":str(created_records),"total":str(total_records)}, user=frappe.session.user)
+	frappe.db.set_value("ToT Participant Enrollment", tot_participant_enrollment, "participant_enrollment_status", "Successful")
+	frappe.publish_realtime("tot_participant_enrollment_progress",
+	{"progress": "100", "reload": 1}, user=frappe.session.user)
+
+
+
+
 @frappe.whitelist()
 def get_participants(participant_selection_id):
     participant_list=frappe.get_all("Selected Participant",{'parent':participant_selection_id},['participant_id','hrms_id','district','mobile_number','email_address'])
     return participant_list
-# @frappe.whitelist()
-# def enroll_participants(self):
-#         total = len(self.participant_list)
-#         if total > 10:
-#                     frappe.msgprint(_('''Student Re-registration will be created in the background.
-#                         In case of any error the error message will be updated in the Schedule.'''))
-#                     frappe.enqueue(enroll_stud, queue='default', timeout=6000, event='enroll_stud',self=self)
-#         else:
-#             enroll_stud(self)
-# def enroll_stud(self):
-#     total = len(self.participant_list)
-#     # print("\n\ntotal",total)
-#     existed_enrollment = [p.get('student') for p in frappe.db.get_list("Program Enrollment", {'student':['in', [s.student for s in self.students]],'programs':self.programs, 'program': self.new_semester,'academic_year':self.new_academic_year, 'academic_term':self.new_academic_term,'docstatus':1 }, 'student')]
-#     # print("\n\nexisted_enrollment",existed_enrollment)
-#     # print(len(existed_enrollment))
-#     if len(existed_enrollment) > 0:
-#         frappe.msgprint(_("{0} Students already enrolled").format( ', '.join(map(str, existed_enrollment))))
-#     enrolled_students = []
-#     for i, stud in enumerate(self.participant_list):
-#         frappe.publish_realtime("student_reregistration_tool", dict(progress=[i+1, total]), user=frappe.session.user)
-#         if stud.student and stud.student not in existed_enrollment:
-#             prog_enrollment = frappe.new_doc("Program Enrollment")
-#             prog_enrollment.student = stud.student
-#             prog_enrollment.student_name = stud.student_name
-#             prog_enrollment.roll_no=stud.roll_no
-#             prog_enrollment.permanant_registration_number=stud.permanant_registration_number
-#             prog_enrollment.programs = self.programs
-#             prog_enrollment.program = self.new_semester
-#             prog_enrollment.academic_year = self.new_academic_year
-#             prog_enrollment.academic_term = self.new_academic_term
-#             prog_enrollment.is_provisional_admission="No"
-#             prog_enrollment.admission_status="Admitted"
-#             # prog_enrollment.student_batch_name = stud.student_batch_name if stud.student_batch_name else self.new_student_batch
-#             if self.new_student_batch:
-#                 prog_enrollment.student_batch_name = self.new_student_batch
-#             else:
-#                 prog_enrollment.student_batch_name = stud.student_batch_name
-#             if stud.additional_course_1:
-#                 course_data  = frappe.db.get_value("Course",{'name':stud.additional_course_1},["course_name", "course_code"], as_dict=1)
-#                 if course_data:
-#                     course_data = course_data
-#                     create_course_row(prog_enrollment,stud.additional_course_1,course_data.course_name,course_data.course_code)
-#             for c in self.courses:
-#                 create_course_row(prog_enrollment,c.course,c.course_name,c.course_code)
-#             for pe in frappe.get_all("Program Enrollment",filters={"student":stud.student},order_by='`creation` DESC',limit=1):
-#                 prog_enrollment.reference_doctype="Program Enrollment"
-#                 prog_enrollment.reference_name=pe.name
-#             prog_enrollment.save()
-#             prog_enrollment.submit()
-#             enrolled_students.append(stud.student)
-#     frappe.msgprint(_("{0} Students have been enrolled").format(', '.join(map(str, enrolled_students))))
-#     # frappe.publish_realtime("fee_schedule_progress", {"progress": str(int(created_records * 100/total_records)),"reload": 1}, user=frappe.session.user)

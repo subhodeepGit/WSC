@@ -11,6 +11,24 @@ frappe.ui.form.on('Leave Application for Student', {
         frm.set_df_property('class_wise_leave', 'cannot_add_rows', true);
         frm.set_df_property('class_wise_leave', 'cannot_delete_rows', true);
 	},
+    // show_class: function(frm) {
+    //     $(frm.wrapper).on("grid-row-render", function(e, grid_row){
+    //         if (frm.doc.leave_criteria=="Full Day"){
+    //             grid_row.columns.leave_applicability_check.addClass("table-cell-disabled");
+
+    //             grid_row.wrapper.one('focus', 'input', function(e){
+    //             grid_row.toggle_editable("leave_applicability_check", true);
+    //         })}
+    //         // } else if(frm.doc.leave_criteria=="Class-Wise Leave")
+    //         // {
+    //         //     grid_row.columns.leave_applicability_check.addClass("table-cell-disabled");
+
+    //         //     grid_row.wrapper.one('focus', 'input', function(e){
+    //         //     grid_row.toggle_editable("leave_applicability_check", true);
+    //         // })
+    //         // }
+    //     })
+    // },
     onload: function(frm) {
            frappe.call({            
                "method": "wsc.wsc.doctype.room_allotment.room_allotment.get",
@@ -41,13 +59,28 @@ frappe.ui.form.on('Leave Application for Student', {
                }}
            })
         },
-    show_classes: function(frm){
+    leave_criteria: function(frm){
+        if (frm.doc.leave_criteria == "Class-Wise Leave"){
+			var df = frappe.meta.get_docfield("Class Wise Leave","leave_applicability_check", frm.doc.name);
+			df.read_only = 0;
+            frm.clear_table("class_wise_leave");
+            frm.refresh_field('class_wise_leave');
+			frm.refresh_field('leave_applicability_check');
+		} else if (frm.doc.leave_criteria == "Full Day"){
+			var df1 = frappe.meta.get_docfield("Class Wise Leave","leave_applicability_check", frm.doc.name);
+			df1.read_only = 1;
+            frm.clear_table("class_wise_leave");
+            frm.refresh_field('class_wise_leave');
+			frm.refresh_field('leave_applicability_check');
+		}
+        
             frappe.call({
                 "method": "wsc.wsc.doctype.leave_application_for_student.leave_application_for_student.get_classes",
                 args:{
                     from_date:frm.doc.from_date,
                     to_date:frm.doc.to_date,
-                    curr:frm.doc.current_education_details
+                    curr:frm.doc.current_education_details,
+                    leave_criteria:frm.doc.leave_criteria
                 },
                 callback: function(r) {
                     if (r.message){
@@ -60,6 +93,7 @@ frappe.ui.form.on('Leave Application for Student', {
                             c.schedule_date=element.schedule_date
                             c.from_time=element.from_time
                             c.to_time=element.to_time
+                            c.leave_applicability_check=element.check
                         });
                         frm.refresh_field("class_wise_leave")
                     }
@@ -90,6 +124,7 @@ frappe.ui.form.on('Leave Application for Student', {
 
     }
 );
+
 
 frappe.ui.form.on("Leave Application for Student", {
     from_date: function(frm) {

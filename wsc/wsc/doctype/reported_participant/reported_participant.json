@@ -6,6 +6,9 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "first_name",
+  "middle_name",
+  "last_name",
   "participant",
   "hrms_id",
   "district",
@@ -60,12 +63,30 @@
    "fieldtype": "Check",
    "in_list_view": 1,
    "label": "Is Reported"
+  },
+  {
+   "fetch_from": "participant.first_name",
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "label": "First Name"
+  },
+  {
+   "fetch_from": "participant.middle_name",
+   "fieldname": "middle_name",
+   "fieldtype": "Data",
+   "label": "Middle Name"
+  },
+  {
+   "fetch_from": "participant.last_name",
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "label": "Last Name"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-06-02 15:42:00.264309",
+ "modified": "2023-06-03 13:43:34.870323",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Reported Participant",
