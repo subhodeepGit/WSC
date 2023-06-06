@@ -9,10 +9,10 @@ class ScholarshipApplication(Document):
 	def validate(self):
 		duplicacy_check(self)
 		validate_elgibility(self)
+		if self.student_category!=self.student_catagory:
+			frappe.throw("Student don’t belong to the student category given by the company")
 		if len(self.document_list_tab) == 0:     
 			add_document_list_rows(self)
-
-
 
 	def on_submit(self):
 		for t in self.document_list_tab:
@@ -59,18 +59,28 @@ def eligibility(scholarship_id_data):
 
 @frappe.whitelist()
 def valid_scholarship(doctype, txt, searchfield, start, page_len, filters):
-	print("\n\n\n\n")
-	print(filters)
-	print(txt)
-	today = date.today
-
-	pass
+	from frappe import utils
+	today = utils.today()
+	fil_data=frappe.db.sql(""" Select name from tabScholarships where start_date<'%s' and end_date>'%s' and docstatus=%s """%(today,today,filters.get('docstatus')))
+	return fil_data
 
 def validate_elgibility(self):
-	print("\n\n\n")
 	scholarship_elgibility=frappe.get_all("Scholarship Eligibility Paramete",
 				       {"parent":self.scholarship_id},['name','parameter','percentagecgpa','eligible_score'],order_by="idx")
-	print()
+	not_matching_parameter=[]
 	for t in self.get('scholarship_eligibility_parameter'):
-		print(t.parameter)
-			
+		for j in scholarship_elgibility:
+			if t.parameter==j['parameter']:
+				if float(j['eligible_score'])>float(t.eligible_score):
+					not_matching_parameter.append(t.parameter)
+
+	if not_matching_parameter:
+		frappe.throw("Eligibility parameters for scholarship don't match as per the eligibility criteria given by the company")
+
+	semester_1_marks=self.semester_1_marks
+	semester_2_marks=self.semester_2_marks
+	sem_data=frappe.get_all("Scholarships",{"name":self.scholarship_id},['semester_1_marks','semester_2_marks'])
+	if sem_data[0]['semester_1_marks']>semester_1_marks:
+		frappe.throw("Semester Eligibility parameters for scholarship don't match as per the eligibility criteria given by the company")
+	if sem_data[0]['semester_2_marks']>semester_2_marks:
+		frappe.throw("Semester Eligibility parameters for scholarship don't match as per the eligibility criteria given by the company")	

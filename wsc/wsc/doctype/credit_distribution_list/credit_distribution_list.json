@@ -10,13 +10,16 @@
   "credits",
   "passing_credits",
   "total_marks",
-  "passing_marks"
+  "passing_marks",
+  "amended_from"
  ],
  "fields": [
   {
    "columns": 1,
+   "default": "1",
    "fieldname": "credits",
    "fieldtype": "Float",
+   "hidden": 1,
    "in_list_view": 1,
    "label": "Credits",
    "reqd": 1,
@@ -38,8 +41,10 @@
    "reqd": 1
   },
   {
+   "default": "1",
    "fieldname": "passing_credits",
    "fieldtype": "Float",
+   "hidden": 1,
    "in_list_view": 1,
    "label": "Passing Credits",
    "reqd": 1
@@ -59,13 +64,22 @@
    "label": "Weightage",
    "reqd": 1,
    "width": "10px"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Credit distribution List",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "istable": 1,
  "links": [],
- "modified": "2021-12-17 17:10:36.265857",
+ "modified": "2023-06-04 16:49:15.717066",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Credit distribution List",
@@ -73,5 +87,6 @@
  "permissions": [],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

@@ -55,6 +55,7 @@ doctype_js = {
                 "Topic":"public/js/topic.js",
                 "User":"public/js/user.js",
                 "Job Opening":"public/js/job_opening.js",
+                "Item":"public/js/item.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -347,7 +348,8 @@ override_doctype_class = {
     "Payment Entry":"wsc.wsc.doctype.payment_entry.PaymentEntry",
     "Student Applicant": "wsc.wsc.doctype.student_applicant.StudentApplicant",
     "Student Attendance": "wsc.wsc.doctype.student_attendance.StudentAttendance",
-    "User Permission": "wsc.wsc.doctype.user_permission.UserPermission"
+    "User Permission": "wsc.wsc.doctype.user_permission.UserPermission",
+    "Item": "wsc.wsc.validations.item.Item"
     # "Data Import": "wsc.wsc.doctype.data_import.DataImport"
 }
 #

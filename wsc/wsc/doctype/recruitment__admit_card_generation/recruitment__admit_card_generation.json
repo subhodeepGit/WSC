@@ -22,11 +22,9 @@
  "fields": [
   {
    "fieldname": "exam_declaration",
-   "fieldtype": "Text",
-   "in_list_view": 1,
+   "fieldtype": "Link",
    "label": "Exam Declaration",
-   "options": "\n",
-   "reqd": 1
+   "options": "Recruitment Exam Declaration"
   },
   {
    "fieldname": "exam_date",
@@ -85,7 +83,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-05-29 15:51:52.312475",
+ "modified": "2023-06-01 12:21:06.823224",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Recruitment  Admit Card Generation",

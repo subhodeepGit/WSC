@@ -18,16 +18,16 @@ frappe.ui.form.on('Scholarship Application', {
 
 
 
-	// setup:function(frm){
-	// 	frm.set_query("scholarship_id", function() {
-	// 		return {
-	// 			query:"wsc.wsc.doctype.scholarship_application.scholarship_application.valid_scholarship",
-	// 			// filters: {
-	// 			// 	"docstatus": 1,
-	// 			// }
-	// 		}
-	// 	})	
-	// },
+	setup:function(frm){
+		frm.set_query("scholarship_id", function() {
+			return {
+				query:"wsc.wsc.doctype.scholarship_application.scholarship_application.valid_scholarship",
+				filters: {
+					"docstatus": 1,
+				}
+			}
+		})	
+	},
 
 	student_id: function(frm) {
 		frappe.call({
