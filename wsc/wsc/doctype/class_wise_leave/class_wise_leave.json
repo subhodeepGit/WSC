@@ -37,7 +37,7 @@
    "fieldname": "class",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Class",
+   "label": "Class Room",
    "read_only": 1
   },
   {
@@ -77,7 +77,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-06-02 15:49:27.454804",
+ "modified": "2023-06-05 15:59:25.209970",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Class Wise Leave",
