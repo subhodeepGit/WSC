@@ -173,23 +173,46 @@ def create_fees(doc,fee_structure_id,on_submit=0):
     fees.academic_year= data[0]['academic_year']
     fees.academic_term=data[0]['academic_term']                 
     fees.fee_structure = fee_structure_id
-    ref_details = frappe.get_all("Fee Component",{"parent":fee_structure_id},['fees_category','amount','receivable_account','income_account','company','grand_fee_amount','outstanding_fees'],order_by ="idx asc")
-    for i in ref_details:
-        fees.append("components",{
-            'fees_category' : i['fees_category'],
-            'amount' : i['amount'],
-            'receivable_account' : i['receivable_account'],
-            'income_account' : i['income_account'],
-            'company' : i['company'],
-            'grand_fee_amount' : i['grand_fee_amount'],
-            'outstanding_fees' : i['outstanding_fees'],
-        })
+    fee_waiver_student = frappe.get_all("Fees Waiver",{"student":doc.student,'programs':doc.programs,'semester':doc.program,'academic_year':doc.academic_year,'academic_term':doc.academic_term},['name'])
+    if fee_waiver_student:
+        fee_waiver = frappe.get_all("Fee Component",{"parent":fee_waiver_student[0]['name']},['fees_category','description','amount','waiver_type','percentage','waiver_amount','total_waiver_amount','receivable_account','income_account','company','grand_fee_amount','outstanding_fees'],order_by ="idx asc")
+        for i in fee_waiver:
+            fees.append("components",{
+                'fees_category' : i['fees_category'],
+                'description':i['description'],
+                'amount' : i['amount'],
+                'waiver_type':i['waiver_type'],
+                'percentage':i['percentage'],
+                'waiver_amount':i['waiver_amount'],
+                'total_waiver_amount':i['total_waiver_amount'],
+                'receivable_account' : i['receivable_account'],
+                'income_account' : i['income_account'],
+                'company' : i['company'],
+                'grand_fee_amount' : i['grand_fee_amount'],
+                'outstanding_fees' : i['outstanding_fees'],
+            })
+    else:
+        ref_details = frappe.get_all("Fee Component",{"parent":fee_structure_id},['fees_category','description','amount','receivable_account','income_account','company','grand_fee_amount','outstanding_fees'],order_by ="idx asc")
+        for i in ref_details:
+            fees.append("components",{
+                'fees_category' : i['fees_category'],
+                'description':i['description'],
+                'amount' : i['amount'],
+                'receivable_account' : i['receivable_account'],
+                'income_account' : i['income_account'],
+                'company' : i['company'],
+                'grand_fee_amount' : i['grand_fee_amount'],
+                'outstanding_fees' : i['outstanding_fees'],
+            })
+
     if doc.due_date == None:                           
              frappe.throw("Enter the Due Date.")
     fees.save()
     fees.submit()
     frappe.db.set_value("Program Enrollment",doc.name, "voucher_no",fees.name) 
     doc.voucher_no=fees.name
+    if fee_waiver_student:
+        frappe.db.set_value("Fees Waiver",fee_waiver_student[0]['name'], "fees",fees.name)
     
     
 
@@ -711,7 +734,7 @@ def validate_enrollment_admission_status(doc):
 
 @frappe.whitelist()
 def get_program_enrollment(student):
-    data=frappe.get_all("Program Enrollment",{'student':student,'docstatus':1},['name','program','programs'],limit=1)
+    data=frappe.get_all("Program Enrollment",{'student':student,'docstatus':1},['name','program','programs','academic_year','academic_term'],limit=1)
     if len(data)>0:
         return data[0]
 

@@ -6,7 +6,7 @@ app_publisher = "SOUL Limited"
 app_description = "SOUL Limited"
 app_email = "soul@soulunileaders.com"
 app_license = "MIT"
-required_apps = ["education","hrms"]
+# required_apps = ["education","hrms"]
 # Includes in <head>
 # ------------------
 
