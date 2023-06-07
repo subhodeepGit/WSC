@@ -314,15 +314,17 @@ doc_events = {
 
 scheduler_events = {
 
-    "cron":{
-        "0 10 * * *" : [
-            "wsc.task.warranty_notification",
-            "wsc.task.safety_stock_reach"
-        ]
-    },
+    # "cron":{
+    #     "0 10 * * *" : [
+    #         "wsc.task.warranty_notification",
+    #         "wsc.task.safety_stock_reach"
+    #     ]
+    # },
 
     "daily": [
 		"wsc.wsc.validations.student_blocklist_check.student_blocklist_check",
+        "wsc.task.warranty_notification",
+        "wsc.task.safety_stock_reach"
         # "wsc.wsc.validations.exam_assessment_plan.make_exam_paper_setting_by_paper_setting_date"
 	]
 
