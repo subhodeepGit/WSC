@@ -300,7 +300,7 @@ doc_events = {
 	},
     "Item Price":{
         "validate":"wsc.wsc.validations.item_price.validate"
-    }
+    },
     # "User":{
     #     "validate":"wsc.wsc.validations.user.validate",
     # }
