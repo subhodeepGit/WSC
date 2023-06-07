@@ -55,7 +55,9 @@ doctype_js = {
                 "Topic":"public/js/topic.js",
                 "User":"public/js/user.js",
                 "Job Opening":"public/js/job_opening.js",
-                "Item":"public/js/item.js"
+                "Item":"public/js/item.js",
+                "Job Applicant":"public/js/job_applicant.js",
+                "Employee":"public/js/employee.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -398,19 +400,20 @@ override_doctype_class = {
 #	"wsc.auth.validate"
 # ]
 
-fixtures = [
-	{"dt": "Custom DocPerm", "filters": [
-		[
-			"parent", "not in", ["DocType"]
-		],
-	]},
+# fixtures = [
+	# {"dt": "Custom DocPerm", "filters": [
+	# 	[
+	# 		"parent", "not in", ["DocType"]
+	# 	],
+	# ]},
     # {"dt": "Role"},
     # {"dt": "Role Profile"},
     # {"dt": "Module Profile"},
     # {"dt" : "Workflow"},
     # {"dt": "Workflow Action Master"},
     # {"dt" : "Workflow State"}
-]
+    # {"dt" : "Translation"}
+# ]
 website_context = {
     "favicon": "/assets/wsc/images/logo.jpg",
     "splash_image": "/assets/wsc/images/logo.jpg"

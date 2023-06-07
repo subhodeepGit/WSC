@@ -112,7 +112,7 @@ class ExamDeclaration(Document):
        
     def validate(self):
         self.date_validation()
-        self.calculate_total_hours()
+        # self.calculate_total_hours()
         self.validate_courses()
         self.validate_fee_structure()
 #       self.validate_assessment_plan()

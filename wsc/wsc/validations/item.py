@@ -32,6 +32,10 @@ from erpnext.controllers.item_variant import (
 )
 from erpnext.setup.doctype.item_group.item_group import invalidate_cache_for
 from erpnext.stock.doctype.item_default.item_default import ItemDefault
+import datetime
+from datetime import datetime
+from datetime import date, timedelta
+from wsc.wsc.notification.custom_notification import item_expiry
 
 
 class DuplicateReorderRows(frappe.ValidationError):
@@ -83,11 +87,29 @@ class Item(Document):
             self.set_opening_stock()
 
     def validate(self):
+        print("\n\n\n")
+        time_data = self.creation                                                   #creation_date of document
+        datetime_object = datetime.strptime(time_data, '%Y-%m-%d %H:%M:%S.%f')      #converting date_time from date,time,milliseconds to date
+        creation_date = datetime_object.date()                                      #converting date_time to date()
+        # print(creation_date)
+        if self.warranty_period != "NULL":                                      
+            warranty_period = int(self.warranty_period)
+            warranty_over_date = creation_date + timedelta(days=warranty_period)    #adding date of creation with number of days to get warranty_end_date
+            today = date.today()
+            date_diff = warranty_over_date - today
+            date_diff_int = date_diff.days                                          #difference between warranty expires and creation in days
+            if date_diff_int == 30 or date_diff_int <= 30:
+                item_expiry(self)
+        
+
+
         if not self.item_name:
             self.item_name = self.item_code
 
         if not strip_html(cstr(self.description)).strip():
             self.description = self.item_name
+
+        # if self.warranty_period
 
         self.validate_uom()
         self.validate_description()
