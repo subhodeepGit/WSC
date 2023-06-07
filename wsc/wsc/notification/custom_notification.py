@@ -372,10 +372,16 @@ def online_payment_submit(doc):
     send_mail(recipients,'Payment Details',msg,attachments)
 
 def item_expiry(doc):
-    msg="""<b>---------------------Item Expiry Remainder---------------------</b><br>"""
-    msg+="""<b>{0} will be expiring in 30 days""".format(doc.get('item_name'))
+    msg="""<b>---------------------Item Warranty Expiry Remainder---------------------</b><br>"""
+    msg+="""<b>Warranty for {0} will be expiring in 30 days""".format(doc.get('item_name'))
     recipients_list = list(frappe.db.sql("select department_email_id from `tabDepartment Email ID`"))
     recipients = recipients_list[0]
+    attachments = None
+    send_mail(recipients,'Payment Details',msg,attachments)
+
+def changed_impaneled_price(doc):
+    msg="""<b>---------------------Impanelement Price Changed for Item {0}---------------------</b><br>""".format(doc.get('item_name'))
+    recipients = doc.supllier_email
     attachments = None
     send_mail(recipients,'Payment Details',msg,attachments)
 

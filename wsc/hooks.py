@@ -298,6 +298,9 @@ doc_events = {
 		"on_cancel":"wsc.wsc.validations.fees_extention.on_cancel",
 		"validate": "wsc.wsc.validations.fees_extention.validate"
 	},
+    "Item Price":{
+        "validate":"wsc.wsc.validations.item_price.validate"
+    }
     # "User":{
     #     "validate":"wsc.wsc.validations.user.validate",
     # }
@@ -310,6 +313,14 @@ doc_events = {
 # ---------------
 
 scheduler_events = {
+
+    "cron":{
+        "0 10 * * *" : [
+            "wsc.task.warranty_notification",
+            "wsc.task.safety_stock_reach"
+        ]
+    },
+
     "daily": [
 		"wsc.wsc.validations.student_blocklist_check.student_blocklist_check",
         # "wsc.wsc.validations.exam_assessment_plan.make_exam_paper_setting_by_paper_setting_date"
