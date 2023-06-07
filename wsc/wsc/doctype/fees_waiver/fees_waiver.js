@@ -98,6 +98,22 @@ frappe.ui.form.on('Fees Waiver', {
 					refresh_field("components");
 				}
 			});
+			var df_amount = frappe.meta.get_docfield("Fee Component","amount", frm.doc.name);
+            df_amount.read_only = 1;
+			var df_receivable_account = frappe.meta.get_docfield("Fee Component","receivable_account", frm.doc.name);
+            df_receivable_account.read_only = 1;
+			var df_income_account = frappe.meta.get_docfield("Fee Component","income_account", frm.doc.name);
+            df_income_account.read_only = 1;
+			var df_company = frappe.meta.get_docfield("Fee Component","company", frm.doc.name);
+            df_company.read_only = 1;
+			var df_total_waiver_amount = frappe.meta.get_docfield("Fee Component","total_waiver_amount", frm.doc.name);
+            df_total_waiver_amount.read_only = 1;
+            frm.clear_table("components");
+            frm.refresh_field('components');
+            frm.refresh_field('amount');
+			frm.refresh_field('receivable_account');
+			frm.refresh_field('income_account');
+			frm.refresh_field('company');
 		}
 	},
 	student(frm){
