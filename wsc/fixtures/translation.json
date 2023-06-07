@@ -271,5 +271,18 @@
   "name": "1e98acc9e2",
   "source_text": "Module",
   "translated_text": "Modules Selection"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-06-07 09:56:32.349454",
+  "name": "f9d52c4818",
+  "source_text": "Material Request",
+  "translated_text": "Purchase Requisition"
  }
 ]
