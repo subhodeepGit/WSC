@@ -14,17 +14,13 @@ class LeaveApplicationforStudent(Document):
 			hostel_leave(self)
 
 	def validate(self):
-		print("\n\n\n\n\n")
 		check_list=[]
 		for t in self.get('class_wise_leave'):
-			print(t.leave_applicability_check)
 			check_list.append(t.leave_applicability_check)
-		print(check_list)
 		all_zero_or_none = all(element == 0 or element is None for element in check_list)
 		if all_zero_or_none:
 			frappe.throw("You have not selected any class for leave application!!")
-		else:
-			pass
+
 
 
 def hostel_leave(self):
