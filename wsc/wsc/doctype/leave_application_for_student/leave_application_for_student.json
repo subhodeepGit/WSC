@@ -90,7 +90,7 @@
   {
    "fieldname": "reason_for_leave",
    "fieldtype": "Link",
-   "label": "Reason for Leave ",
+   "label": "Leave Type",
    "options": "Reason for Leave",
    "reqd": 1
   },
@@ -157,7 +157,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-08 12:26:11.554180",
+ "modified": "2023-06-08 14:57:11.669923",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Leave Application for Student",
