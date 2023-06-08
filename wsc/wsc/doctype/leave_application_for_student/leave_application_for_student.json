@@ -135,7 +135,7 @@
   },
   {
    "depends_on": "eval:doc.student && doc.from_date && doc.to_date",
-   "description": "Select \"Academics and Hostel\" if you are also applying leave for both hostel and academics else select \"Academics\"",
+   "description": "Select \"Academics and Hostel\" if you are applying leave for both else select \"Academics\"",
    "fieldname": "leave_applicability_hostel",
    "fieldtype": "Select",
    "label": "Leave Applicability Hostel",
@@ -157,7 +157,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-08 14:57:11.669923",
+ "modified": "2023-06-08 15:20:09.518084",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Leave Application for Student",
