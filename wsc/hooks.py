@@ -55,7 +55,9 @@ doctype_js = {
                 "Topic":"public/js/topic.js",
                 "User":"public/js/user.js",
                 "Job Opening":"public/js/job_opening.js",
-                "Item":"public/js/item.js"
+                "Item":"public/js/item.js",
+                "Job Applicant":"public/js/job_applicant.js",
+                "Employee":"public/js/employee.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -296,6 +298,9 @@ doc_events = {
 		"on_cancel":"wsc.wsc.validations.fees_extention.on_cancel",
 		"validate": "wsc.wsc.validations.fees_extention.validate"
 	},
+    "Item Price":{
+        "validate":"wsc.wsc.validations.item_price.validate"
+    },
     # "User":{
     #     "validate":"wsc.wsc.validations.user.validate",
     # }
@@ -308,8 +313,18 @@ doc_events = {
 # ---------------
 
 scheduler_events = {
+
+    # "cron":{
+    #     "0 10 * * *" : [
+    #         "wsc.task.warranty_notification",
+    #         "wsc.task.safety_stock_reach"
+    #     ]
+    # },
+
     "daily": [
 		"wsc.wsc.validations.student_blocklist_check.student_blocklist_check",
+        "wsc.task.warranty_notification",
+        "wsc.task.safety_stock_reach"
         # "wsc.wsc.validations.exam_assessment_plan.make_exam_paper_setting_by_paper_setting_date"
 	]
 
@@ -398,19 +413,20 @@ override_doctype_class = {
 #	"wsc.auth.validate"
 # ]
 
-fixtures = [
-	{"dt": "Custom DocPerm", "filters": [
-		[
-			"parent", "not in", ["DocType"]
-		],
-	]},
+# fixtures = [
+	# {"dt": "Custom DocPerm", "filters": [
+	# 	[
+	# 		"parent", "not in", ["DocType"]
+	# 	],
+	# ]},
     # {"dt": "Role"},
     # {"dt": "Role Profile"},
     # {"dt": "Module Profile"},
     # {"dt" : "Workflow"},
     # {"dt": "Workflow Action Master"},
     # {"dt" : "Workflow State"}
-]
+    # {"dt" : "Translation"}
+# ]
 website_context = {
     "favicon": "/assets/wsc/images/logo.jpg",
     "splash_image": "/assets/wsc/images/logo.jpg"

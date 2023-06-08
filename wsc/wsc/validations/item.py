@@ -34,6 +34,7 @@ from erpnext.setup.doctype.item_group.item_group import invalidate_cache_for
 from erpnext.stock.doctype.item_default.item_default import ItemDefault
 
 
+
 class DuplicateReorderRows(frappe.ValidationError):
     pass
 
@@ -83,11 +84,14 @@ class Item(Document):
             self.set_opening_stock()
 
     def validate(self):
+    
         if not self.item_name:
             self.item_name = self.item_code
 
         if not strip_html(cstr(self.description)).strip():
             self.description = self.item_name
+
+        # if self.warranty_period
 
         self.validate_uom()
         self.validate_description()
