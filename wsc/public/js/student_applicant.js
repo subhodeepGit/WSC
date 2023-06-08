@@ -76,25 +76,28 @@ frappe.ui.form.on('Student Applicant', {
             };
         });
 
-        // frm.set_query("districts", "exam_center_locations" , function(){
-        //     return {
-        //         filters: {
-        //             "districts":frm.doc.districts
-        //         }
-        //     }
-        // })      
-        // frm.set_query("center_name" , "exam_center_locations" , function(){
-        //     return {
-        //         filters: {
-        //             state:frm.doc.state,
-        //             district:frm.doc.districts,
-        //             academic_year:frm.doc.academic_year,
-        //             academic_term:frm.doc.academic_term
-        //         }
-        //     }
-        // })
+        frm.set_query("districts", "exam_center_locations" , function(_doc , cdt, cdn){
+            var d = locals[cdt][cdn];
+            return {
+                filters: {
+                    "state":d.state
+                }
+            }
+        })      
+        frm.set_query("center_name" , "exam_center_locations" , function(_doc , cdt , cdn){
+            var d = locals[cdt][cdn]
+            return {
+                filters: {
+                    'docstatus':1,
+                    "academic_year":frm.doc.academic_year,
+                    'academic_term':frm.doc.academic_term,
+                    "state":d.state,
+                    "district":d.districts,
+                    "available_center":1 
+                }
+            }
+        })
     },
-   
     hide_n_show_child_table_fields(frm){
         var df = frappe.meta.get_docfield("Education Qualifications Details","qualification_", frm.doc.name);
         df.hidden = 1

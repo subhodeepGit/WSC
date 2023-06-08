@@ -1,7 +1,6 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{center_name}-{cityvillage}-{districts}",
  "creation": "2023-05-09 16:25:59.659957",
  "default_view": "List",
  "doctype": "DocType",
@@ -10,8 +9,9 @@
  "field_order": [
   "state",
   "districts",
+  "center_name",
   "cityvillage",
-  "center_name"
+  "center"
  ],
  "fields": [
   {
@@ -39,16 +39,24 @@
    "reqd": 1
   },
   {
+   "fetch_from": "center_name.cityvillagetown",
    "fieldname": "cityvillage",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "City/Village/Town"
+  },
+  {
+   "fetch_from": "center_name.center",
+   "fieldname": "center",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "center"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-05-31 18:02:29.184766",
+ "modified": "2023-06-08 16:46:13.235163",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Centre Preference",

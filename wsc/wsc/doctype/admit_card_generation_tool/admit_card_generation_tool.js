@@ -20,7 +20,7 @@ frappe.ui.form.on('Admit Card Generation Tool', {
 	
 			const slot = frm.doc.slot.split(",")
 			body = JSON.stringify({
-				deallotted_applicant_list:frm.doc.deallotted_applicant_list,
+				center_allocation:frm.doc.entrance_exam_allocation,
 				centre_name:frm.doc.centre_name,
 				slot:slot[0],
 				exam_start_time:frm.doc.exam_start_time,
@@ -35,61 +35,61 @@ frappe.ui.form.on('Admit Card Generation Tool', {
 			})
 		}).addClass('btn-primary');
 	},
-	entrance_exam_allocation: function(frm){
-		let arr = ['']
-		frappe.call({
-			method:'wsc.wsc.doctype.admit_card_generation_tool.admit_card_generation_tool.get_slots',
-			args:{
-				center_allocation:frm.doc.entrance_exam_allocation
-			},
-			callback:function(result){
-				const res = result.message
-				res.map((r) => {
+	// entrance_exam_allocation: function(frm){
+	// 	let arr = ['']
+	// 	frappe.call({
+	// 		method:'wsc.wsc.doctype.admit_card_generation_tool.admit_card_generation_tool.get_slots',
+	// 		args:{
+	// 			center_allocation:frm.doc.entrance_exam_allocation
+	// 		},
+	// 		callback:function(result){
+	// 			const res = result.message
+	// 			res.map((r) => {
 	
-					const { slot_name , slot_starting_time , slot_ending_time } = r
-					const slot_date = slot_starting_time.split(" ")
+	// 				const { slot_name , slot_starting_time , slot_ending_time } = r
+	// 				const slot_date = slot_starting_time.split(" ")
 					
-					arr.push(`${slot_name} , ${slot_date[0]}`)
-				})
-				set_field_options("slot" , arr)
-			}
-		})
-		if(frm.doc.entrance_exam_allocation.length === 0){
-			frappe.model.clear_table(frm.doc, 'deallotted_applicant_list');
-			frm.refresh();
-			frm.refresh_field("deallotted_applicant_list")	
-		}
-	},
-	slot:function(frm){
-		if(frm.doc.slot){
-			const slot = frm.doc.slot.split(",")
+	// 				arr.push(`${slot_name} , ${slot_date[0]}`)
+	// 			})
+	// 			set_field_options("slot" , arr)
+	// 		}
+	// 	})
+	// 	if(frm.doc.entrance_exam_allocation.length === 0){
+	// 		frappe.model.clear_table(frm.doc, 'deallotted_applicant_list');
+	// 		frm.refresh();
+	// 		frm.refresh_field("deallotted_applicant_list")	
+	// 	}
+	// },
+	// slot:function(frm){
+	// 	if(frm.doc.slot){
+	// 		const slot = frm.doc.slot.split(",")
 			
-			frappe.call({
-			method:'wsc.wsc.doctype.admit_card_generation_tool.admit_card_generation_tool.slot_timings',
-			args:{
-				slot:slot[0],
-				parent:frm.doc.entrance_exam_allocation
-			},
-			callback:function(res){
+	// 		frappe.call({
+	// 		method:'wsc.wsc.doctype.admit_card_generation_tool.admit_card_generation_tool.slot_timings',
+	// 		args:{
+	// 			slot:slot[0],
+	// 			parent:frm.doc.entrance_exam_allocation
+	// 		},
+	// 		callback:function(res){
 				
-				if(res.message){
-					res.message.map((r) => {
-						console.log(r);
-						const { slot_starting_time , slot_ending_time } = r
+	// 			if(res.message){
+	// 				res.message.map((r) => {
+
+	// 					const { slot_starting_time , slot_ending_time } = r
 						
-						const date_time_starting = slot_starting_time.split(" ")
-						const date_time_ending = slot_ending_time.split(" ")
-						frm.doc.exam_date = date_time_starting[0]
-						frm.doc.exam_start_time = date_time_starting[1]
-						frm.doc.exam_end_time = date_time_ending[1]
-					})
-					frm.refresh()
-				}
-			}
-		})
-		}
+	// 					const date_time_starting = slot_starting_time.split(" ")
+	// 					const date_time_ending = slot_ending_time.split(" ")
+	// 					frm.doc.exam_date = date_time_starting[0]
+	// 					frm.doc.exam_start_time = date_time_starting[1]
+	// 					frm.doc.exam_end_time = date_time_ending[1]
+	// 				})
+	// 				frm.refresh()
+	// 			}
+	// 		}
+	// 	})
+	// 	}
 		
-	},
+	// },
 	get_applicant_list:function(frm){
 		if(frm.doc.entrance_exam_allocation.length !== 0){
 			frappe.call({
