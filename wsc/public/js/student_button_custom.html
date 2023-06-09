@@ -1,8 +1,8 @@
 <div class="col-sm-12">
     <div class="checkbox">
-            <table class="table table-bordered table-sm table-hover">
+            <table class="table table-borderless table-sm">
                 <tbody>
-                <tr><td width="10%"><input
+                <tr><td width="5%" style="text-align: center"><input
                     type="checkbox"
                     data-group_roll_number="{{group_roll_number}}"
                     data-roll_no="{{roll_no}}"
@@ -13,10 +13,14 @@
                     checked
                     {% endif %}
                     ></td>
-                    <td width="20%">{{ group_roll_number }}</td>
-                    <td width="20%">{{ roll_no }}</td>
-                    <td width="25%">{{ student_name }}</td>
-                    <td width="25%">{{ student }}</td></tr>
+                    <td width="10%" style="text-align: center">{{ group_roll_number }}</td>
+                    <td width="10%" style="text-align: center">{{ roll_no }}</td>
+                    <td width="15%" style="text-align: center">{{ student_name }}</td>
+                    <td width="15%" style="text-align: center">{{ student }}</td>
+                    <td width="15%" style="text-align: center">{{ leave_status }}</td>
+                    <td width="15%" style="text-align: center">{{ reason_for_leave }}</td>
+                    <td width="15%" style="text-align: center">{{ leave_app_id }}</td>
+                </tr>
                 </tbody>
             </table>
     </div>

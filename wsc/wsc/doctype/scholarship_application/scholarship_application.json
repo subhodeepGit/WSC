@@ -18,17 +18,25 @@
   "academic_year",
   "column_break_9",
   "student_catagory",
+  "scholarship_type",
   "student_details_section",
   "student_id",
   "name_of_the_student",
   "wsc_registration_number",
   "age",
   "column_break_hnqbj",
-  "family_income_per_annum",
   "mobile_no",
+  "student_category",
+  "family_income_per_annum",
   "have_you_availed_any_other_scholarships",
   "current_educational_details_section",
   "current_education",
+  "eligibility_parameter_section",
+  "scholarship_eligibility_parameter",
+  "section_break_24",
+  "semester_1_marks",
+  "column_break_26",
+  "semester_2_marks",
   "parents_occupation_section",
   "fathers_occupation",
   "mothers_occupation",
@@ -242,8 +250,9 @@
    "fetch_from": "scholarship_id.student_category",
    "fieldname": "student_catagory",
    "fieldtype": "Link",
-   "label": "Student Catagory",
-   "options": "Student Category"
+   "label": "Eligible Student Catagory",
+   "options": "Student Category",
+   "read_only": 1
   },
   {
    "fieldname": "amended_from",
@@ -253,12 +262,57 @@
    "options": "Scholarship Application",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "eligibility_parameter_section",
+   "fieldtype": "Section Break",
+   "label": "Eligibility Parameter "
+  },
+  {
+   "fieldname": "scholarship_eligibility_parameter",
+   "fieldtype": "Table",
+   "label": "Scholarship Eligibility Parameter",
+   "options": "Scholarship Eligibility Paramete"
+  },
+  {
+   "fieldname": "semester_1_marks",
+   "fieldtype": "Float",
+   "label": "Semester I Marks Obtained",
+   "reqd": 1
+  },
+  {
+   "fieldname": "semester_2_marks",
+   "fieldtype": "Float",
+   "label": "Semester II Marks Obtained",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_24",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_26",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "scholarship_id.scholarship_type",
+   "fieldname": "scholarship_type",
+   "fieldtype": "Data",
+   "label": "Scholarship Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student_id.student_category",
+   "fieldname": "student_category",
+   "fieldtype": "Data",
+   "label": "Student Category",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-05-31 16:55:57.241265",
+ "modified": "2023-06-02 11:56:25.178333",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Scholarship Application",

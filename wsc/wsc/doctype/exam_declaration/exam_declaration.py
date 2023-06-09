@@ -112,7 +112,7 @@ class ExamDeclaration(Document):
        
     def validate(self):
         self.date_validation()
-        self.calculate_total_hours()
+        # self.calculate_total_hours()
         self.validate_courses()
         self.validate_fee_structure()
 #       self.validate_assessment_plan()
@@ -232,8 +232,8 @@ class ExamDeclaration(Document):
         make_student_admit_card(self)     
 
 @frappe.whitelist()
-def get_students(academic_term=None, programs=None):
-    enrolled_students = get_program_enrollment(academic_term,programs)
+def get_students(academic_term=None, programs=None,class_data=None):
+    enrolled_students = get_program_enrollment(academic_term,programs,class_data)
     if enrolled_students:
         student_list = []
 		
@@ -248,11 +248,14 @@ def get_students(academic_term=None, programs=None):
 		
         frappe.msgprint("No students found")
         return []
-def get_program_enrollment(academic_term,programs=None):
+    
+def get_program_enrollment(academic_term,programs=None,class_data=None):
     condition1 = " "
     condition2 = " "
     if programs:
         condition1 += " and pe.programs = %(programs)s"
+    if class_data:
+        condition1 +=" and pe.school_house = '%s' "%(class_data)     
     return frappe.db.sql('''
         select
             pe.student, pe.student_name,pe.roll_no,pe.permanant_registration_number
@@ -264,6 +267,7 @@ def get_program_enrollment(academic_term,programs=None):
             pe.student_name asc
         '''.format(condition1=condition1, condition2=condition2),
                 ({"academic_term": academic_term,"programs": programs}), as_dict=1) 
+
 @frappe.whitelist()
 def get_fee_structure(doctype, txt, searchfield, start, page_len, filters):
     return frappe.get_all("Fee Structure",{"programs":filters.get("program"), "docstatus":1},['name','programs'],as_list = 1)

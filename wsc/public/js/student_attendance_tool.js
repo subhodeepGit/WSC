@@ -232,14 +232,17 @@ education.StudentsEditor = Class.extend({
 					}
 				);
 			});
-		$('<div class="col-sm-12"><div class="checkbox"><table class="table table-bordered table-sm"><tr class="table-primary"><th width="10%"></th><th width="20%">Group Roll No.</th><th width="20%">Roll No.</th><th width="25%">Student Name</th><th width="25%">Student ID</th></tr></table></div></div>').appendTo($(this.wrapper));
+		$('<div class="col-sm-12"><div class="checkbox"><table class="table table-bordered table-sm"><tr class="abc"><th width="5%" style="text-align: center"></th><th width="10%" style="text-align: center">Group Roll No.</th><th width="10%" style="text-align: center">Roll No.</th><th width="15%" style="text-align: center">Student Name</th><th width="15%" style="text-align: center">Student ID</th><th width="15%" style="text-align: center">Leave Status</th><th width="15%" style="text-align: center">Leave Type</th><th width="15%" style="text-align: center">Leave Application ID</th></tr></table></div></div>').appendTo($(this.wrapper));
 		var htmls = students.map(function(student) {
 			return frappe.render_template("student_button_custom", {
 				student: student.student,
 				roll_no: student.roll_no,
 				student_name: student.student_name,
 				group_roll_number: student.group_roll_number,
-				status: student.status
+				status: student.status,
+				leave_status: student.leave_status,
+				reason_for_leave: student.reason_for_leave,
+				leave_app_id: student.leave_app_id
 			})
 			
 		});

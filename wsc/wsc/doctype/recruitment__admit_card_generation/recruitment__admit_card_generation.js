@@ -3,6 +3,6 @@
 
 frappe.ui.form.on('Recruitment  Admit Card Generation', {
 	// refresh: function(frm) {
-
+			
 	// }
 });

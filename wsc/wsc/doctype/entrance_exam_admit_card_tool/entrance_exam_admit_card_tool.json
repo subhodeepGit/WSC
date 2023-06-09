@@ -1,0 +1,57 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-06-02 17:28:13.459835",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "entrance_exam_declaration",
+  "get_applicants",
+  "deallotted_applicant_list"
+ ],
+ "fields": [
+  {
+   "fieldname": "entrance_exam_declaration",
+   "fieldtype": "Link",
+   "label": "Entrance Exam Declaration",
+   "options": "Entrance Exam Declaration"
+  },
+  {
+   "fieldname": "get_applicants",
+   "fieldtype": "Button",
+   "label": "Get Applicants"
+  },
+  {
+   "fieldname": "deallotted_applicant_list",
+   "fieldtype": "Table",
+   "label": "DeAllotted Applicant List",
+   "options": "DeAllotted Applicant List"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-06-02 17:47:47.867847",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Entrance Exam Admit Card Tool",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

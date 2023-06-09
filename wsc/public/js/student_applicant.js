@@ -64,10 +64,9 @@ frappe.ui.form.on('Student Applicant', {
             return {
                 filters: {
                     "districts":frm.doc.districts
-            }
-        };
-        
-    });
+                }
+            }; 
+        });
 
         frm.set_query("districts", function() {
             return {
@@ -76,9 +75,29 @@ frappe.ui.form.on('Student Applicant', {
                 }
             };
         });
-      
+
+        frm.set_query("districts", "exam_center_locations" , function(_doc , cdt, cdn){
+            var d = locals[cdt][cdn];
+            return {
+                filters: {
+                    "state":d.state
+                }
+            }
+        })      
+        frm.set_query("center_name" , "exam_center_locations" , function(_doc , cdt , cdn){
+            var d = locals[cdt][cdn]
+            return {
+                filters: {
+                    'docstatus':1,
+                    "academic_year":frm.doc.academic_year,
+                    'academic_term':frm.doc.academic_term,
+                    "state":d.state,
+                    "district":d.districts,
+                    "available_center":1 
+                }
+            }
+        })
     },
-   
     hide_n_show_child_table_fields(frm){
         var df = frappe.meta.get_docfield("Education Qualifications Details","qualification_", frm.doc.name);
         df.hidden = 1
@@ -223,7 +242,6 @@ frappe.ui.form.on('Student Applicant', {
     student_category(frm){
         frm.trigger("get_education_and_document_list");
     },
-    
     // get_counselling_structure(frm){
     //     frm.set_value("counselling_structure",'');
     //     if (frm.doc.program_grade && frm.doc.academic_year && frm.doc.department){
@@ -290,6 +308,7 @@ frappe.ui.form.on('Student Applicant', {
     //     }
     // }
 })
+
 frappe.ui.form.on("Education Qualifications Details", "earned_marks", function(frm, cdt, cdn) {
        
     var data = locals[cdt][cdn];
@@ -395,3 +414,4 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
         }); 
     }
 });
+

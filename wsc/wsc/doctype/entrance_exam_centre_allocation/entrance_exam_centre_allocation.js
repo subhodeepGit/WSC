@@ -80,32 +80,21 @@ frappe.ui.form.on('Entrance Exam Centre Allocation', {
 	},
 	before_save:function(frm){
 		
-		const center_booking_start_date = new Date(frm.doc.centre_booking_time_start)
-		const center_booking_end_date = new Date(frm.doc.centre_booking_time_end)
-
 		const exam_start_date = new Date(frm.doc.exam_start_date)
 		const exam_end_date = new Date(frm.doc.exam_end_date)
 
-		
-		if((center_booking_start_date >= exam_start_date && center_booking_start_date < exam_end_date) && (center_booking_end_date > exam_start_date && center_booking_end_date <= exam_end_date)){
-			frm.doc.exam_slot_timings.map((item) => {
-				
-				const start_time = new Date(item.slot_starting_time)
-				const end_time = new Date(item.slot_ending_time)
-	 
-				if((start_time >= center_booking_start_date && start_time < center_booking_end_date) && (end_time > center_booking_start_date && end_time <= center_booking_end_date)){
-					console.log("its within range of center booking timings");
-
-				} else {
-					alert("its out of range of center booking timings")
-				}
-			})
+		frm.doc.exam_slot_timings.map((item) => {
+			
+			const start_time = new Date(item.slot_starting_time)
+			const end_time = new Date(item.slot_ending_time)
 	
-		} else {
-			alert("dates outside of scope")
-		}
-		
-		console.log(center_booking_start_date , center_booking_end_date);
+			if((start_time >= exam_start_date && start_time < exam_end_date) && (end_time > exam_start_date && end_time <= exam_end_date)){
+				console.log("its within range of center booking timings");
+
+			} else {
+				alert("its out of range of center booking timings")
+			}
+		})
 		
 	}
 });

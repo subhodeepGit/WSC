@@ -1,0 +1,90 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-06-01 17:45:19.240125",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "class_schedule_id",
+  "module_name",
+  "class",
+  "schedule_date",
+  "from_time",
+  "to_time",
+  "leave_applicability_check"
+ ],
+ "fields": [
+  {
+   "columns": 1,
+   "fieldname": "class_schedule_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Class Schedule ID",
+   "options": "Course Schedule",
+   "read_only": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "module_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Module Name",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "class",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Class Room",
+   "read_only": 1
+  },
+  {
+   "columns": 2,
+   "default": "0",
+   "description": "Check the classes for which you want to apply leave ",
+   "fieldname": "leave_applicability_check",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Leave Applicability Check",
+   "width": "2px"
+  },
+  {
+   "columns": 1,
+   "fieldname": "schedule_date",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Schedule Date",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "from_time",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "From Time",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "to_time",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "To Time",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-06-07 13:39:47.776336",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Class Wise Leave",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
