@@ -301,5 +301,5 @@ def get_student_attendance_records(
             t['leave_status']="On Leave"
             t['reason_for_leave']=get_leave_status[0]['reason_for_leave']
             t['leave_app_id']=get_leave_status[0]['name']
-    print(student_list)
+    # print(student_list)
     return student_list
