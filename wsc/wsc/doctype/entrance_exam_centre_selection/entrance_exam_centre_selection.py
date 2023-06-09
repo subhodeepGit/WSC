@@ -20,7 +20,7 @@ class EntranceExamCentreSelection(Document):
 			result.district = i.district
 			result.state = i.state
 			result.pincode = i.pincode
-
+			result.available_center = 1
 			result.save()
 			result.submit()
 
@@ -31,7 +31,7 @@ class EntranceExamCentreSelection(Document):
 		print("\n\n\n\n")
 		print(self.academic_term)
 		frappe.db.sql("""
-			UPDATE `tabEntrance exam select` SET available_center = '1' WHERE academic_year = '{academic_year}' AND academic_term = '{academic_term}'
+			UPDATE `tabEntrance exam select` SET available_center = '0' WHERE academic_year = '{academic_year}' AND academic_term = '{academic_term}'
 		""".format(academic_year = self.academic_year , academic_term = self.academic_term))
 		print("cancel")
 

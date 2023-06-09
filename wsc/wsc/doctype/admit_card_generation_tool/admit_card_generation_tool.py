@@ -36,4 +36,14 @@ def slot_timings(slot , parent):
 def student_allotment(body):
 	print("\n\n\n\n\n")
 	data = json.loads(body)
-	print(data)
+	exam_dec = frappe.get_all("Entrance Exam Centre Allocation" , {'name':data['center_allocation']} , ['entrance_exam_declaration' , 'centre_name'])
+	de_alloted_student = frappe.get_all("Applicant List" , { 'parent':exam_dec[0]['entrance_exam_declaration'] } , ['applicant_id' , 'applicant_name' , 'gender' , 'student_category' , 'physical_disability' , 'center_allocated_status'])
+	slots = frappe.get_all('Exam Slot Timings' , { 'parent' : data['center_allocation'] } , ['slot_name' , 'slot_starting_time' , 'slot_ending_time' , 'seating_capacity'])
+
+	for i in de_alloted_student:
+		prefered_center = frappe.get_all("Exam Centre Preference" , {'parent' : i['applicant_id'] } , ['parent' , 'center_name' , 'districts' , 'state'])
+		if prefered_center[0]['center_name'] == exam_dec[0]['centre_name']:
+			
+			print(prefered_center[0]['center_name'] , exam_dec[0]['centre_name'])
+		
+	
