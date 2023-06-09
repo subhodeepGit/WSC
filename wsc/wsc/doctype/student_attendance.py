@@ -239,56 +239,67 @@ def get_topic(doctype, txt, searchfield, start, page_len, filters):
 
 @frappe.whitelist()
 def get_student_attendance_records(
-	based_on, date=None, student_group=None, course_schedule=None
+    based_on, date=None, student_group=None, course_schedule=None
 ):
-	student_list = []
-	student_attendance_list = []
+    student_list = []
+    student_attendance_list = []
 
-	if based_on == "Course Schedule":
-		student_group = frappe.db.get_value(
-			"Course Schedule", course_schedule, "student_group"
-		)
-		if student_group:
-			student_list = frappe.get_all(
-				"Student Group Student",
-				fields=["student", "student_name", "group_roll_number",'roll_no'],
-				filters={"parent": student_group, "active": 1},
-				order_by="group_roll_number",
-			)
+    if based_on == "Course Schedule":
+        student_group = frappe.db.get_value(
+            "Course Schedule", course_schedule, "student_group"
+        )
+        if student_group:
+            student_list = frappe.get_all(
+                "Student Group Student",
+                fields=["student", "student_name", "group_roll_number",'roll_no'],
+                filters={"parent": student_group, "active": 1},
+                order_by="group_roll_number",
+            )
 
-	if not student_list:
-		student_list = frappe.get_all(
-			"Student Group Student",
-			fields=["student", "student_name", "group_roll_number",'roll_no'],
-			filters={"parent": student_group, "active": 1},
-			order_by="group_roll_number",
-		)
+    if not student_list:
+        student_list = frappe.get_all(
+            "Student Group Student",
+            fields=["student", "student_name", "group_roll_number",'roll_no'],
+            filters={"parent": student_group, "active": 1},
+            order_by="group_roll_number",
+        )
 
-	StudentAttendance = frappe.qb.DocType("Student Attendance")
+    StudentAttendance = frappe.qb.DocType("Student Attendance")
 
-	if course_schedule:
-		student_attendance_list = (
-			frappe.qb.from_(StudentAttendance)
-			.select(StudentAttendance.student, StudentAttendance.status)
-			.where((StudentAttendance.course_schedule == course_schedule))
-		).run(as_dict=True)
-	else:
-		student_attendance_list = (
-			frappe.qb.from_(StudentAttendance)
-			.select(StudentAttendance.student, StudentAttendance.status)
-			.where(
-				(StudentAttendance.student_group == student_group)
-				& (StudentAttendance.date == date)
-				& (
-					(StudentAttendance.course_schedule == "")
-					| (StudentAttendance.course_schedule.isnull())
-				)
-			)
-		).run(as_dict=True)
+    if course_schedule:
+        student_attendance_list = (
+            frappe.qb.from_(StudentAttendance)
+            .select(StudentAttendance.student, StudentAttendance.status)
+            .where((StudentAttendance.course_schedule == course_schedule))
+        ).run(as_dict=True)
+    else:
+        student_attendance_list = (
+            frappe.qb.from_(StudentAttendance)
+            .select(StudentAttendance.student, StudentAttendance.status)
+            .where(
+                (StudentAttendance.student_group == student_group)
+                & (StudentAttendance.date == date)
+                & (
+                    (StudentAttendance.course_schedule == "")
+                    | (StudentAttendance.course_schedule.isnull())
+                )
+            )
+        ).run(as_dict=True)
 
-	for attendance in student_attendance_list:
-		for student in student_list:
-			if student.student == attendance.student:
-				student.status = attendance.status
+    for attendance in student_attendance_list:
+        for student in student_list:
+            if student.student == attendance.student:
+                student.status = attendance.status
 
-	return student_list
+    for t in student_list:
+        get_leave_status = frappe.get_all("Leave Application for Student",filters=[['student',"=",t['student']], ['docstatus',"=",1], ['workflow_state',"=","Approved"],['from_date','<=',date],['to_date','>=', date]],fields=['name','student','reason_for_leave'])
+
+        # get_leave_status = frappe.db.sql("""SELECT `name`, `student`, `reason_for_leave` FROM `tabLeave Application for Student` WHERE student="%s" AND docstatus=1 AND workflow_state="Approved" AND (`from_date`<="%s" and `to_date`>="%s") """%(t['student'],date,date),as_dict=1)
+
+        print(get_leave_status) 
+        if get_leave_status:
+            t['leave_status']="On Leave"
+            t['reason_for_leave']=get_leave_status[0]['reason_for_leave']
+            t['leave_app_id']=get_leave_status[0]['name']
+    print(student_list)
+    return student_list
