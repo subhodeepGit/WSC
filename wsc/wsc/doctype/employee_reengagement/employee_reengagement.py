@@ -14,9 +14,6 @@ def isrfp(docname):
 	# if frappe.db.exists(docname):
 
 	doc = frappe.get_doc("Employee Reengagement",docname)
-	print("\n\n\n\n\n\n")
-	print(doc.employee)
-	print("\n\n\n\n\n\n")
 	emp_user_id = frappe.get_all("Employee",{"name":doc.employee},["user_id"])
 	if emp_user_id:
 		employee_user_id = emp_user_id[0]["user_id"]
