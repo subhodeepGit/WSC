@@ -1,11 +1,9 @@
-// Copyright (c) 2023, SOUL Limited and contributors
-// For license information, please see license.txt
-frappe.ui.form.on('Employee Reengagement', {
+frappe.ui.form.on('Shift Request', {
     refresh: function(frm) {
         if(!frm.is_new()){
             frappe.call({
                 // wsc.wsc.doctype.employee_reengagement.employee_reengagement.isrfp
-                method: 'wsc.wsc.doctype.employee_reengagement.employee_reengagement.isrfp',
+                method: 'wsc.wsc.validations.shift_request.isrfp',
                 args: {
                     docname: frm.doc.name
                 },
@@ -25,16 +23,3 @@ frappe.ui.form.on('Employee Reengagement', {
 	},
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-

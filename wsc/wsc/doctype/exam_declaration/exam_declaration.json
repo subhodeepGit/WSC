@@ -117,10 +117,10 @@
    "default": "Allow all",
    "fieldname": "fees_status",
    "fieldtype": "Select",
+   "hidden": 1,
    "in_list_view": 1,
    "label": "Fees Status",
-   "options": "\nFull Paid\nMore than 50%\nAllow all",
-   "reqd": 1
+   "options": "\nFull Paid\nMore than 50%\nAllow all"
   },
   {
    "fieldname": "column_break_2",
@@ -133,7 +133,7 @@
   {
    "fieldname": "exam_program",
    "fieldtype": "Link",
-   "label": "Exam Module",
+   "label": "Exam Program",
    "options": "Programs",
    "reqd": 1
   },
@@ -177,6 +177,7 @@
    "default": "NO",
    "fieldname": "exam_fees_applicable",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Exam Fees Applicable",
    "options": "\nYES\nNO"
   },
@@ -279,7 +280,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-05 18:18:30.198734",
+ "modified": "2023-06-08 10:00:43.441486",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Declaration",

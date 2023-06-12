@@ -166,7 +166,8 @@ frappe.ui.form.on('Exam Declaration', {
 			args: {
 				programs: frm.doc.exam_program,
 				academic_term: frm.doc.academic_term,
-                class_data: frm.doc.class
+                class_data: frm.doc.class,
+                minimum_attendance_criteria:frm.doc.minimum_attendance_criteria,
 			},
 			callback: function(r) {
 				
