@@ -101,7 +101,7 @@ frappe.ui.form.on('Student Attendance Tool', {
             frm.trigger("hostel_fields")
         }
     },
-    
+ 
     student_group:function(frm){
         if (frm.doc.based_on=="Student Group" && !frm.doc.date){
             // if (frm.doc.group_based_on == 'Batch' || frm.doc.group_based_on == 'Course'){
@@ -189,21 +189,27 @@ education.StudentsEditor = Class.extend({
 						student_name: $check.data().student_name,
 						roll_no: $check.data().roll_no,
 						group_roll_number: $check.data().group_roll_number,
+						leave_status: $check.data().leave_status,
 						disabled: $check.prop("disabled"),
-						checked: $check.is(":checked")
+						checked: $check.is(":checked"),
 					});
-					
 				});
 				var students_present = studs.filter(function(stud) {
 					return !stud.disabled && stud.checked;
 				});
 
 				var students_absent = studs.filter(function(stud) {
-					return !stud.disabled && !stud.checked;
+					return !stud.disabled && !stud.checked && !stud.leave_status;
 				});
 
-				frappe.confirm(__("Do you want to update attendance? <br> Present: {0} <br> Absent: {1}",
-					[students_present.length, students_absent.length]),
+				var students_on_leave = studs.filter(function(stud) {
+					return !stud.disabled && !stud.checked && stud.leave_status;
+				});
+				console.log(students_present);
+				console.log(students_absent);
+				console.log(students_on_leave);
+				frappe.confirm(__("Do you want to update attendance? <br> Present: {0} <br> Absent: {1} <br> On Leave: {2} ",
+					[students_present.length, students_absent.length, students_on_leave.length]),
 					function() {	//ifyes
 						if(!frappe.request.ajax_count) {
 							frappe.call({
@@ -213,6 +219,7 @@ education.StudentsEditor = Class.extend({
 								args: {
 									"students_present": students_present,
 									"students_absent": students_absent,
+									"students_on_leave": students_on_leave,
 									"student_group": frm.doc.student_group,
 									"course_schedule": frm.doc.course_schedule,
 									"building": frm.doc.hostel,
@@ -244,7 +251,7 @@ education.StudentsEditor = Class.extend({
 				reason_for_leave: student.reason_for_leave,
 				leave_app_id: student.leave_app_id
 			})
-			
+
 		});
 		$(htmls.join("")).appendTo(me.wrapper);
 	},
