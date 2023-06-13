@@ -159,6 +159,8 @@ class ExamDeclaration(Document):
         exam_declaration_for_instructor_submit(self)
         if self.exam_fees_applicable=="YES":
             make_exam_assessment_result(self)
+        if self.name==self.exam_declaration_no:
+            frappe.throw("Exam Declaration no. can't be same as the Re-Exam no.")    
         # fee_structure_id = fee_structure_validation(self)
         # create_fees(self,fee_structure_id,on_submit=1) 
         # on_update(self,on_submit=1)
@@ -239,51 +241,51 @@ class ExamDeclaration(Document):
     def create_student_admit_card(self):
         make_student_admit_card(self)     
 
-@frappe.whitelist()
-def get_students(academic_term=None, programs=None,class_data=None,minimum_attendance_criteria=None):
-    enrolled_students = get_program_enrollment(academic_term,programs,class_data)
-    if enrolled_students:
-        attendence_validation(enrolled_students,academic_term)
-        if enrolled_students:
-            student_list = []
+# @frappe.whitelist()
+# def get_students(academic_term=None, programs=None,class_data=None,minimum_attendance_criteria=None):
+#     enrolled_students = get_program_enrollment(academic_term,programs,class_data)
+#     if enrolled_students:
+#         attendence_validation(enrolled_students,academic_term)
+#         if enrolled_students:
+#             student_list = []
             
-            for s in enrolled_students:
-                if frappe.db.get_value("Student", s.student, "enabled"):
-                    s.update({"active": 1})
-                else:
-                    s.update({"active": 0})
-                student_list.append(s)
+#             for s in enrolled_students:
+#                 if frappe.db.get_value("Student", s.student, "enabled"):
+#                     s.update({"active": 1})
+#                 else:
+#                     s.update({"active": 0})
+#                 student_list.append(s)
 
-            return student_list
-        else:
+#             return student_list
+#         else:
             
-            frappe.msgprint("No students found")
-            return []
+#             frappe.msgprint("No students found")
+#             return []
     
-def get_program_enrollment(academic_term,programs=None,class_data=None):
-    condition1 = " "
-    condition2 = " "
-    if programs:
-        condition1 += " and pe.programs = %(programs)s"
-    if class_data:
-        condition1 +=" and pe.school_house = '%s' "%(class_data)     
-    return frappe.db.sql('''
-        select
-            pe.student, pe.student_name,pe.roll_no,pe.permanant_registration_number
-        from
-            `tabProgram Enrollment` pe {condition2}
-        where
-            pe.academic_term = %(academic_term)s  {condition1}
-        order by
-            pe.student_name asc
-        '''.format(condition1=condition1, condition2=condition2),
-                ({"academic_term": academic_term,"programs": programs}), as_dict=1) 
+# def get_program_enrollment(academic_term,programs=None,class_data=None):
+#     condition1 = " "
+#     condition2 = " "
+#     if programs:
+#         condition1 += " and pe.programs = %(programs)s"
+#     if class_data:
+#         condition1 +=" and pe.school_house = '%s' "%(class_data)     
+#     return frappe.db.sql('''
+#         select
+#             pe.student, pe.student_name,pe.roll_no,pe.permanant_registration_number
+#         from
+#             `tabProgram Enrollment` pe {condition2}
+#         where
+#             pe.academic_term = %(academic_term)s  {condition1}
+#         order by
+#             pe.student_name asc
+#         '''.format(condition1=condition1, condition2=condition2),
+#                 ({"academic_term": academic_term,"programs": programs}), as_dict=1) 
 
-def attendence_validation(student_list,academic_term):
-    academic_term_data=frappe.get_all("Academic Term",{"name":academic_term},['term_start_date','term_end_date'])
-    academic_term_start_date=academic_term_data[0]['term_start_date']
-    academic_term_end_date=academic_term_data[0]['term_end_date']
-    print("\n\n\n\n")
+# def attendence_validation(student_list,academic_term):
+#     academic_term_data=frappe.get_all("Academic Term",{"name":academic_term},['term_start_date','term_end_date'])
+#     academic_term_start_date=academic_term_data[0]['term_start_date']
+#     academic_term_end_date=academic_term_data[0]['term_end_date']
+#     print("\n\n\n\n")
     
 
 
@@ -414,5 +416,9 @@ def cancel_fees(self):
             voucher_no.append(fee_id[0]['name'])
     for t in voucher_no:
         cancel_doc = frappe.get_doc("Fees",t)
-        cancel_doc.cancel()      
-    
+        cancel_doc.cancel()    
+
+@frappe.whitelist()
+def valid_exam_declaration_no(doctype, txt, searchfield, start, page_len, filters):
+    fil_data=frappe.db.sql(""" Select name,exam_name from `tabExam Declaration` where docstatus=1 and disabled=0""")
+    return fil_data        

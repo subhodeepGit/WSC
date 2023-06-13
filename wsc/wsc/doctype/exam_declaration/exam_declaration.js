@@ -99,6 +99,14 @@ frappe.ui.form.on('Exam Declaration', {
 				}
 			};
 		});
+        frm.set_query("exam_declaration_no", function() {
+			return {
+				query:"wsc.wsc.doctype.exam_declaration.exam_declaration.valid_exam_declaration_no",
+				filters: {
+					"docstatus": 1,
+				}
+			}
+		});
   //       frm.set_query("course_assessment_plan", function() {
   //           var semesters = cur_frm.doc.semesters.map(d => d.semester);
 		// 	return {
@@ -158,33 +166,32 @@ frappe.ui.form.on('Exam Declaration', {
             }
         });
 	},
- 
-    get_students:function(frm){
-		frm.clear_table("students");
-		frappe.call({
-			method: "wsc.wsc.doctype.exam_declaration.exam_declaration.get_students",
-			args: {
-				programs: frm.doc.exam_program,
-				academic_term: frm.doc.academic_term,
-                class_data: frm.doc.class,
-                minimum_attendance_criteria:frm.doc.minimum_attendance_criteria,
-			},
-			callback: function(r) {
+    // get_students:function(frm){
+	// 	frm.clear_table("students");
+	// 	frappe.call({
+	// 		method: "wsc.wsc.doctype.exam_declaration.exam_declaration.get_students",
+	// 		args: {
+	// 			programs: frm.doc.exam_program,
+	// 			academic_term: frm.doc.academic_term,
+    //             class_data: frm.doc.class,
+    //             minimum_attendance_criteria:frm.doc.minimum_attendance_criteria,
+	// 		},
+	// 		callback: function(r) {
 				
-				(r.message).forEach(element => {
-					var row = frm.add_child("students")
-					row.student=element.student
-					row.student_name=element.student_name
-                    row.roll_no = element.roll_no
-                    row.registration_number = element.permanant_registration_number
-				});
-				frm.refresh_field("students")
-                frm.save();
-				frm.set_value("total_enrolled_student",(r.message).length)
-			}
+	// 			(r.message).forEach(element => {
+	// 				var row = frm.add_child("students")
+	// 				row.student=element.student
+	// 				row.student_name=element.student_name
+    //                 row.roll_no = element.roll_no
+    //                 row.registration_number = element.permanant_registration_number
+	// 			});
+	// 			frm.refresh_field("students")
+    //             frm.save();
+	// 			frm.set_value("total_enrolled_student",(r.message).length)
+	// 		}
 			
-		});
-	},
+	// 	});
+	// },
 }); 
 
 

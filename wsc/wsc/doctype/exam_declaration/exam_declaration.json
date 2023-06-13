@@ -15,6 +15,8 @@
   "year_end_date",
   "academic_term",
   "exam_category",
+  "exam_declaration_no",
+  "exam_declaration_name",
   "application_form_start_date",
   "application_form_end_date",
   "section_break_4",
@@ -31,11 +33,9 @@
   "get_courses",
   "courses_offered",
   "eligibility_deails_section",
+  "attendance_criteria_applicable",
   "minimum_attendance_criteria",
   "certificate_creation_status",
-  "get_students",
-  "total_enrolled_student",
-  "students",
   "fees_status",
   "exam_fees_section",
   "exam_fees_applicable",
@@ -106,12 +106,13 @@
    "label": "Eligibility Details"
   },
   {
+   "depends_on": "eval:doc.attendance_criteria_applicable==\"Yes\"",
    "description": "in %",
    "fieldname": "minimum_attendance_criteria",
    "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Minimum Attendance Criteria",
-   "reqd": 1
+   "mandatory_depends_on": "eval:doc.attendance_criteria_applicable==\"Yes\""
   },
   {
    "default": "Allow all",
@@ -217,23 +218,11 @@
    "label": "Get Module"
   },
   {
-   "allow_on_submit": 1,
    "default": "0",
    "fieldname": "is_application_required",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Is Application Required"
-  },
-  {
-   "allow_on_submit": 1,
-   "fieldname": "students",
-   "fieldtype": "Table",
-   "label": "Students",
-   "options": "Students"
-  },
-  {
-   "fieldname": "get_students",
-   "fieldtype": "Button",
-   "label": "Get Students"
   },
   {
    "fieldname": "certificate_creation_status",
@@ -241,12 +230,6 @@
    "hidden": 1,
    "label": "Certificate Creation Status",
    "options": "\nIn Process\nFailed\nSuccessful"
-  },
-  {
-   "fieldname": "total_enrolled_student",
-   "fieldtype": "Int",
-   "label": "Total Enrolled Student",
-   "permlevel": 1
   },
   {
    "allow_on_submit": 1,
@@ -275,12 +258,34 @@
    "fieldtype": "Link",
    "label": "Class",
    "options": "School House"
+  },
+  {
+   "depends_on": "eval:doc.exam_category==\"Re-Exam\"",
+   "fieldname": "exam_declaration_no",
+   "fieldtype": "Link",
+   "label": "Exam Declaration No",
+   "options": "Exam Declaration"
+  },
+  {
+   "fetch_from": "exam_declaration_no.exam_name",
+   "fieldname": "exam_declaration_name",
+   "fieldtype": "Data",
+   "label": "Exam Declaration Name",
+   "read_only": 1
+  },
+  {
+   "default": "No",
+   "fieldname": "attendance_criteria_applicable",
+   "fieldtype": "Select",
+   "label": "Attendance Criteria Applicable",
+   "options": "\nYes\nNo",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-08 10:00:43.441486",
+ "modified": "2023-06-13 11:52:12.746072",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Declaration",
