@@ -16,6 +16,7 @@
   "event_name",
   "event_date",
   "column_break_2qkdb",
+  "program_name",
   "event_status",
   "section_break_ek8db",
   "start_time",
@@ -126,11 +127,17 @@
    "fieldtype": "Link",
    "label": "Select Program",
    "options": "TnP Program"
+  },
+  {
+   "depends_on": "in_a_program",
+   "fieldname": "program_name",
+   "fieldtype": "Data",
+   "label": "Program Name"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-31 11:04:04.185107",
+ "modified": "2023-06-05 16:24:00.832735",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "TnP Event",

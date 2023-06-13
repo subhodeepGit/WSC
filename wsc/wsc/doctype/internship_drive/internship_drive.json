@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "TID.-.#####",
  "creation": "2023-05-30 11:28:21.204530",
  "default_view": "List",
  "doctype": "DocType",
@@ -131,10 +132,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-06-01 18:00:59.273680",
+ "modified": "2023-06-05 17:24:37.792395",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Drive",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

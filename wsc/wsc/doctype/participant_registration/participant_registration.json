@@ -10,15 +10,15 @@
  "field_order": [
   "is_in_a_program",
   "section_break_2jazj",
-  "participant_id",
   "select_program",
   "select_event",
   "event_date",
+  "participant_id",
   "column_break_id4mt",
-  "participant_type",
   "program_name",
   "event_name",
-  "event_time"
+  "event_time",
+  "participant_type"
  ],
  "fields": [
   {
@@ -84,7 +84,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-31 14:26:22.855585",
+ "modified": "2023-06-05 16:39:43.510378",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Registration",

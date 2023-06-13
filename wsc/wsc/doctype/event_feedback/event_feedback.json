@@ -1,21 +1,24 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "TEF.-.#####",
  "creation": "2023-05-30 11:05:04.069481",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "participant_type",
+  "is_in_a_program",
+  "section_break_d1ecc",
   "select_program",
   "select_event",
+  "participant_type",
   "column_break_syaza",
-  "participant_id",
   "program_name",
   "event_name",
-  "column_break_czfcl",
+  "participant_id",
   "participant_name",
+  "column_break_czfcl",
   "section_break_lxfyb",
   "feedback"
  ],
@@ -75,14 +78,24 @@
    "fieldname": "feedback",
    "fieldtype": "Text Editor",
    "label": "Feedback"
+  },
+  {
+   "fieldname": "is_in_a_program",
+   "fieldtype": "Data",
+   "label": "is in a program"
+  },
+  {
+   "fieldname": "section_break_d1ecc",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-31 16:54:01.606459",
+ "modified": "2023-06-05 17:13:03.254344",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Event feedback",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "TIFLD.-.#####",
  "creation": "2023-05-30 11:45:01.700678",
  "default_view": "List",
  "doctype": "DocType",
@@ -17,8 +18,9 @@
  "fields": [
   {
    "fieldname": "select_internship",
-   "fieldtype": "Data",
-   "label": "Select Internship"
+   "fieldtype": "Link",
+   "label": "Select Internship",
+   "options": "Internship Drive"
   },
   {
    "fieldname": "get_participants",
@@ -48,10 +50,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-30 11:45:01.700678",
+ "modified": "2023-06-06 17:06:01.672683",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Final List Declaration",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

@@ -5,11 +5,22 @@ frappe.ui.form.on('Participant Attendance', {
 	refresh: function(frm) {
 
 	},
-	select_program : function(frm){
+	is_in_a_program : function(frm){
+		if(frm.doc.is_in_a_program == 1){
+			frm.set_query('select_event', function(){
+				return{
+					filters:{
+						'select_program' : frm.doc.selected_program
+					}
+				}
+			})
+		}
+	},
+	selected_program : function(frm){
 		frappe.call({
 			method: 'wsc.wsc.doctype.participant_attendance.participant_attendance.get_program_name',
 			args: {
-				program_id : frm.doc.select_program
+				program_id : frm.doc.selected_program
 			},
 			callback : function(result){
 				frm.set_value('program_name', result.message)
@@ -43,8 +54,7 @@ frappe.ui.form.on('Participant Attendance', {
 					})
 				}
 				frm.refresh()
-				frm
-				.refresh_field('selected_participants_table')
+				frm.refresh_field('selected_participants_table')
 			}
 		})
 	}
