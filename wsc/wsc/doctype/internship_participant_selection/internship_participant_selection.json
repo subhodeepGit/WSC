@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "TIPS.-.#####",
  "creation": "2023-05-30 11:38:28.329342",
  "default_view": "List",
  "doctype": "DocType",
@@ -17,8 +18,9 @@
  "fields": [
   {
    "fieldname": "select_internship",
-   "fieldtype": "Data",
-   "label": "Select Internship"
+   "fieldtype": "Link",
+   "label": "Select Internship",
+   "options": "Internship Drive"
   },
   {
    "fieldname": "get_participants",
@@ -48,10 +50,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-30 11:38:28.329342",
+ "modified": "2023-06-05 17:39:55.179652",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Participant Selection",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
