@@ -18,38 +18,46 @@ frappe.ui.form.on('Entrance Exam Admit Card Tool', {
 
 		frm.add_custom_button(__('Admit Card Generation'), function(){
 
-			console.log(frm.doc.entrance_exam_declaration);
+			// console.log(frm.doc.deallotted_applicant_list);
+			const body = JSON.stringify({
+				declaration:frm.doc.entrance_exam_declaration,
+				de_allocated_student:frm.doc.deallotted_applicant_list
+			})
 			frappe.call({
 				method:'wsc.wsc.doctype.entrance_exam_admit_card_tool.entrance_exam_admit_card_tool.student_allotment',
 				args:{
-					declaration:frm.doc.entrance_exam_declaration,
+					body:body
 				}	
 			})
 		}).addClass('btn-primary');
 	},
 	get_applicants:function(frm){
 		if(frm.doc.entrance_exam_declaration.length !== 0){
-			console.log(frm.doc.entrance_exam_declaration);
+			
 			frappe.call({
 				method:'wsc.wsc.doctype.entrance_exam_admit_card_tool.entrance_exam_admit_card_tool.get_applicants',
 				args:{
 					declaration:frm.doc.entrance_exam_declaration,
 				},
 				callback:function(result){
-					const res = result.message
+					
 					frappe.model.clear_table(frm.doc, 'deallotted_applicant_list');
-					res.map((r) => {
-						const { applicant_id , applicant_name , student_category , gender  , physical_disability , center_allocated_status} = r
-						let c =frm.add_child('deallotted_applicant_list')
-						c.applicant_id= applicant_id
-						c.applicant_name = applicant_name
-						c.student_category = student_category
-						c.gender = gender
-						c.physical_disability = physical_disability
-						c.center_allocated_status = center_allocated_status
-					})
-					frm.refresh();
-					frm.refresh_field("deallotted_applicant_list")
+					if(result.message.length !== 0){
+						result.message.map((r) => {
+							const { applicant_id , applicant_name , student_category , gender , physical_disability } = r
+							let c =frm.add_child('deallotted_applicant_list')
+							c.applicant_id= applicant_id
+							c.applicant_name = applicant_name
+							c.student_category = student_category
+							c.gender = gender
+							c.physical_disability = physical_disability
+						})
+						frm.refresh();
+						frm.refresh_field("deallotted_applicant_list")
+						alert("Students Alerted")
+					} else {
+						alert("All Students Alloted")
+					}
 				}
 			})
 		} 
