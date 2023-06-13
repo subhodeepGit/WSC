@@ -26,6 +26,7 @@
   "section_break_8",
   "program_grade",
   "exam_program",
+  "class",
   "semesters",
   "get_courses",
   "courses_offered",
@@ -88,7 +89,7 @@
    "allow_on_submit": 1,
    "fieldname": "courses_offered",
    "fieldtype": "Table",
-   "label": "Courses Offered",
+   "label": "Module Offered",
    "options": "Exam Courses",
    "reqd": 1
   },
@@ -113,12 +114,13 @@
    "reqd": 1
   },
   {
+   "default": "Allow all",
    "fieldname": "fees_status",
    "fieldtype": "Select",
+   "hidden": 1,
    "in_list_view": 1,
    "label": "Fees Status",
-   "options": "\nFull Paid\nMore than 50%\nAllow all",
-   "reqd": 1
+   "options": "\nFull Paid\nMore than 50%\nAllow all"
   },
   {
    "fieldname": "column_break_2",
@@ -172,8 +174,10 @@
    "options": "Exam Declaration Fee Item"
   },
   {
+   "default": "NO",
    "fieldname": "exam_fees_applicable",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Exam Fees Applicable",
    "options": "\nYES\nNO"
   },
@@ -210,7 +214,7 @@
   {
    "fieldname": "get_courses",
    "fieldtype": "Button",
-   "label": "Get Courses"
+   "label": "Get Module"
   },
   {
    "allow_on_submit": 1,
@@ -256,7 +260,7 @@
   {
    "fieldname": "program_grade",
    "fieldtype": "Link",
-   "label": "Program Grade",
+   "label": "Course Type",
    "options": "Program Grades",
    "reqd": 1
   },
@@ -265,12 +269,18 @@
    "fieldtype": "Select",
    "label": "Exam Category",
    "options": "Regular\nRe-Exam"
+  },
+  {
+   "fieldname": "class",
+   "fieldtype": "Link",
+   "label": "Class",
+   "options": "School House"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-18 16:08:53.166484",
+ "modified": "2023-06-08 10:00:43.441486",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Declaration",

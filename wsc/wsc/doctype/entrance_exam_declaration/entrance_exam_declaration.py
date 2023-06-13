@@ -15,7 +15,7 @@ def get_applicants(body):
 	academic_term = body['academic_term']
 	department = body['department']
 	
-	data = frappe.get_all('Student Applicant' , { "academic_year":academic_year , "academic_term":academic_term , "department":department } , ['name' , 'title' , 'gender' , 'student_category' , 'physically_disabled'])
+	data = frappe.get_all('Student Applicant' , { "academic_year":academic_year , "academic_term":academic_term , "department":department ,'docstatus':1} , ['name' , 'title' , 'gender' , 'student_category' , 'physically_disabled'])
 	print("\n\n\n")
 	print(data)
 

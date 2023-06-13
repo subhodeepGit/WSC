@@ -1,0 +1,167 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-06-02 15:00:27.987900",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "tot_participant_selection_id",
+  "programs",
+  "semester",
+  "tot_participant_batch",
+  "column_break_psgj4",
+  "academic_year",
+  "academic_term",
+  "start_date",
+  "end_date",
+  "naming_series",
+  "section_break_0tpkx",
+  "participant_creation_status",
+  "participant_enrollment_status",
+  "get_participants",
+  "participant_list",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "tot_participant_selection_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "ToT Participant Selection ID",
+   "options": "ToT Participant Selection",
+   "reqd": 1
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Naming Series",
+   "options": "TOT-PART-ENR-.YYYY.-"
+  },
+  {
+   "fieldname": "get_participants",
+   "fieldtype": "Button",
+   "label": "Get Participants"
+  },
+  {
+   "fieldname": "section_break_0tpkx",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "participant_list",
+   "fieldtype": "Table",
+   "label": "Participant List",
+   "options": "Reported Participant"
+  },
+  {
+   "fetch_from": "tot_participant_selection_id.course",
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "label": "Programs",
+   "options": "Programs",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "tot_participant_selection_id.semester",
+   "fieldname": "semester",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Semester",
+   "options": "Program",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "tot_participant_selection_id.tot_participant_batch",
+   "fieldname": "tot_participant_batch",
+   "fieldtype": "Data",
+   "label": "ToT Participant Batch",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_psgj4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "tot_participant_selection_id.academic_year",
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "tot_participant_selection_id.start_date",
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "tot_participant_selection_id.end_date",
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "participant_creation_status",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Participant Creation Status",
+   "options": "\nIn Process\nFailed\nSuccessful"
+  },
+  {
+   "fieldname": "participant_enrollment_status",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Participant Enrollment Status",
+   "options": "\nIn Process\nFailed\nSuccessful"
+  },
+  {
+   "fetch_from": "tot_participant_selection_id.academic_term",
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Academic Term",
+   "options": "Academic Term"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "ToT Participant Enrollment",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-06-04 01:52:54.848956",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "ToT Participant Enrollment",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

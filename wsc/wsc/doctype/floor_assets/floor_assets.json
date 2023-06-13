@@ -1,7 +1,8 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2023-04-18 15:15:44.552867",
+ "creation": "2023-05-30 15:38:01.406038",
+ "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -28,8 +29,9 @@
   },
   {
    "fieldname": "location",
-   "fieldtype": "Data",
-   "label": "Location"
+   "fieldtype": "Link",
+   "label": "Location",
+   "options": "Location"
   },
   {
    "fieldname": "asset_name",
@@ -38,19 +40,21 @@
   },
   {
    "fieldname": "custodian",
-   "fieldtype": "Data",
-   "label": "Custodian"
+   "fieldtype": "Link",
+   "label": "Custodian",
+   "options": "Employee"
   },
   {
    "fieldname": "department",
-   "fieldtype": "Data",
-   "label": "Department"
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-04-18 15:15:59.580570",
+ "modified": "2023-05-30 15:41:38.243151",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Floor Assets",

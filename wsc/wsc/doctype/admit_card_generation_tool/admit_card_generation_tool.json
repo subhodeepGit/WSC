@@ -10,8 +10,10 @@
   "entrance_exam_allocation",
   "centre_name",
   "address",
-  "exam_date",
   "slot",
+  "exam_date",
+  "exam_start_time",
+  "exam_end_time",
   "get_applicant_list",
   "deallotted_applicant_list"
  ],
@@ -25,23 +27,25 @@
    "reqd": 1
   },
   {
+   "fetch_from": "entrance_exam_allocation.centre",
    "fieldname": "centre_name",
    "fieldtype": "Data",
    "label": "Centre Name"
   },
   {
+   "fetch_from": "entrance_exam_allocation.address",
    "fieldname": "address",
    "fieldtype": "Data",
    "label": "Address"
   },
   {
    "fieldname": "exam_date",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "Exam Date"
   },
   {
    "fieldname": "slot",
-   "fieldtype": "Data",
+   "fieldtype": "Select",
    "label": "Slot"
   },
   {
@@ -54,11 +58,21 @@
    "fieldtype": "Table",
    "label": "DeAllotted Applicant List",
    "options": "DeAllotted Applicant List"
+  },
+  {
+   "fieldname": "exam_start_time",
+   "fieldtype": "Time",
+   "label": "Exam Start Time"
+  },
+  {
+   "fieldname": "exam_end_time",
+   "fieldtype": "Time",
+   "label": "Exam End Time"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-23 14:50:13.583607",
+ "modified": "2023-06-01 12:30:09.019808",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Admit Card Generation Tool",

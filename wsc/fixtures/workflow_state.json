@@ -313,5 +313,131 @@
   "name": "Submit",
   "style": "",
   "workflow_state_name": "Submit"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-02 12:34:26.749538",
+  "name": "Sent For Approval",
+  "style": "",
+  "workflow_state_name": "Sent For Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 11:50:03.902692",
+  "name": "Sent for Approval to GM-Procurement & Contract Management",
+  "style": "",
+  "workflow_state_name": "Sent for Approval to GM-Procurement & Contract Management"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 11:50:28.146669",
+  "name": "Rejected by GM-Procurement & Contract Management",
+  "style": "",
+  "workflow_state_name": "Rejected by GM-Procurement & Contract Management"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 11:50:59.316615",
+  "name": "Approved by GM-Procurement & Contract Management",
+  "style": "",
+  "workflow_state_name": "Approved by GM-Procurement & Contract Management"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 12:17:00.516038",
+  "name": "Sent For Approval to Dy, Director",
+  "style": "",
+  "workflow_state_name": "Sent For Approval to Dy, Director"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 12:17:13.057555",
+  "name": "Approved by Dy, Director",
+  "style": "",
+  "workflow_state_name": "Approved by Dy, Director"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 12:17:22.776845",
+  "name": "Rejected by Dy, Director",
+  "style": "",
+  "workflow_state_name": "Rejected by Dy, Director"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 12:18:05.402048",
+  "name": "Sent for Approval to Principal",
+  "style": "",
+  "workflow_state_name": "Sent for Approval to Principal"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 12:18:16.497195",
+  "name": "Approved by Principal",
+  "style": "",
+  "workflow_state_name": "Approved by Principal"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 12:18:26.780996",
+  "name": "Rejected by Principal",
+  "style": "",
+  "workflow_state_name": "Rejected by Principal"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 12:18:56.298069",
+  "name": "Sent for Approval to CFO",
+  "style": "",
+  "workflow_state_name": "Sent for Approval to CFO"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 12:19:07.334064",
+  "name": "Approved by CFO",
+  "style": "",
+  "workflow_state_name": "Approved by CFO"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 12:19:15.055869",
+  "name": "Rejected by CFO",
+  "style": "",
+  "workflow_state_name": "Rejected by CFO"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 13:07:09.587217",
+  "name": "Approved by Purchase Manager-MM",
+  "style": "",
+  "workflow_state_name": "Approved by Purchase Manager-MM"
  }
 ]
