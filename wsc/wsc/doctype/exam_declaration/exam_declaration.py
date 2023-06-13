@@ -75,7 +75,8 @@ class ExamDeclaration(Document):
             row = self.append('courses_offered', {})
             row.update({'courses':d.courses, 'examination_date':d.examination_date,'examination_end_date':d.examination_end_date, 'from_time':d.from_time, 'to_time':d.to_time, 
                         'semester':frappe.db.get_value('Program Course', {'course': d.courses,"parent":["IN",[d.semester for d in self.semesters]]}, 'parent'), 
-                        'course_name':d.course_name,'course_code':d.course_code, 'total_duration_in_hours':d.total_duration_in_hours})                                              
+                        'course_name':d.course_name,'course_code':d.course_code, 'total_duration_in_hours':d.total_duration_in_hours,
+                        'attendance_criteria':d.attendance_criteria,'minimum_attendance_criteria':d.minimum_attendance_criteria})                                              
     @frappe.whitelist()
     def get_courses(self,year_end_date):
         if self.exam_category=="Regular":
@@ -421,4 +422,5 @@ def cancel_fees(self):
 @frappe.whitelist()
 def valid_exam_declaration_no(doctype, txt, searchfield, start, page_len, filters):
     fil_data=frappe.db.sql(""" Select name,exam_name from `tabExam Declaration` where docstatus=1 and disabled=0""")
-    return fil_data        
+    return fil_data
+
