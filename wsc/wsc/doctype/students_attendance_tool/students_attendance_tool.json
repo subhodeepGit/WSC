@@ -31,7 +31,7 @@
    "fieldname": "group_based_on",
    "fieldtype": "Select",
    "label": "Group Based On",
-   "options": "Batch\nCourse\nActivity"
+   "options": "Batch\nActivity"
   },
   {
    "fieldname": "column_break_2",
@@ -93,7 +93,7 @@
  "hide_toolbar": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-06-12 17:10:24.781349",
+ "modified": "2023-06-14 15:16:15.023225",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Students Attendance Tool",
