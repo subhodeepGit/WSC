@@ -3,6 +3,7 @@
 
 import frappe
 import json
+import datetime
 from frappe.model.document import Document
 
 class EntranceExamAdmitCardTool(Document):
@@ -47,6 +48,7 @@ def student_allotment(body):
 						data['physical_disability'] = k['physical_disability']
 						data['academic_year'] = i['academic_year']
 						data['academic_term'] = i['academic_term']
+						data['department'] = i['department']
 						data['centre'] = i['centre']
 						data['centre_name'] = i['centre_name']
 						data['address'] = i['address']
@@ -62,9 +64,9 @@ def student_allotment(body):
 		if len(data) != 0:
 			alloted_student_data.append(data)
 
-	print(alloted_student_data)
 	
 	for i in alloted_student_data:
+		print(i['starting_time'].time())
 		if len(i) != 0:
 
 			exam_center_allocation = frappe.get_all("Entrance Exam Centre Allocation" , {'centre':i['centre']} , ['centre' , 'name'])
@@ -75,8 +77,28 @@ def student_allotment(body):
 						UPDATE `tabExam Slot Timings` SET seating_capacity = '{current_capacity}' WHERE parent = '{parent}' AND slot_name = '{slot_name}'
 					""".format(current_capacity = i['seating_capacity'] - 1 , parent = exam_center_allocation[0]['name'] , slot_name = i['slot_name']))	
 			
-				frappe.db.sql("""
+				frappe.db.sql(""" 
 						UPDATE `tabApplicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}'
 					""".format(applicant_id = i['applicant_id']))   
-		
 
+				frappe.db.sql("""
+						UPDATE `tabDeAllotted Applicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}'
+				""".format(applicant_id = i['applicant_id']))
+
+				
+				admit_card = frappe.new_doc("Entrance Exam Admit Card")
+				admit_card.applicant_id = i['applicant_id']
+				admit_card.applicant_name = i['applicant_name']
+				admit_card.department = i['department']
+				admit_card.academic_year = i['academic_year']
+				admit_card.academic_term = i['academic_term']
+				admit_card.venue = i['centre_name']
+				admit_card.address = i['address']
+				admit_card.district = i['district']
+				admit_card.pin_code = i['pincode']
+				admit_card.slot = i['slot_name']
+				admit_card.date_of_exam = i['starting_time'].date()
+				admit_card.exam_start_time = i['starting_time'].time()
+				admit_card.exam_end_time = i['ending_time'].time()
+				
+				admit_card.save()
