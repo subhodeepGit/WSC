@@ -68,7 +68,9 @@ frappe.ui.form.on('Module Wise Exam Group', {
                 minimum_attendance_criteria:frm.doc.percentage,
 				attendance_criteria:frm.doc.attendance_criteria,
 				start_date_of_attendence_duration:frm.doc.start_date_of_attendence_duration,
-				end_date_of_attendence_duration:frm.doc.end_date_of_attendence_duration
+				end_date_of_attendence_duration:frm.doc.end_date_of_attendence_duration,
+				modules_id:frm.doc.modules_id,
+				semester:frm.doc.semester
 			},
 			callback: function(r) {
 				(r.message).forEach(element => {
@@ -77,6 +79,9 @@ frappe.ui.form.on('Module Wise Exam Group', {
 					row.student_name=element.student_name
                     row.roll_no = element.roll_no
                     row.permanent_registration_no = element.permanant_registration_number
+					row.total_no_of_classes_scheduled = element.total_no_of_classes_scheduled
+					row.elegibility_status = element.elegibility_status
+					row.examination_qualification_approval = element.examination_qualification_approval
 				});
 				frm.refresh_field("student_list")
 				frm.save();

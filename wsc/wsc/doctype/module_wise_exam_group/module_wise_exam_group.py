@@ -41,7 +41,8 @@ def module_start_date(modules_id=None,exam_id=None,academic_term=None):
 
 @frappe.whitelist()
 def get_student(academic_term=None, programs=None,class_data=None,minimum_attendance_criteria=None,attendance_criteria=None,
-				start_date_of_attendence_duration=None,end_date_of_attendence_duration=None):
+				start_date_of_attendence_duration=None,end_date_of_attendence_duration=None,modules_id=None,
+				semester=None):
 	print("\n\n\n")
 	enrolled_students = get_program_enrollment(academic_term,programs,class_data)
 	student_list=[]
@@ -49,8 +50,18 @@ def get_student(academic_term=None, programs=None,class_data=None,minimum_attend
 		student_list=enrolled_students
 		print(start_date_of_attendence_duration)
 		print(end_date_of_attendence_duration)
-		# for t in student_list:
-		# 	pass
+		print(modules_id)
+		print(semester)
+		total_no_class_scheduled=frappe.db.count('Course Schedule', filters=[["course","=",modules_id],['program','=',semester],
+								     ['schedule_date','between',[start_date_of_attendence_duration,end_date_of_attendence_duration]]])
+		print(total_no_class_scheduled)
+		
+		for t in student_list:
+			t.update({"total_no_of_classes_scheduled": total_no_class_scheduled})
+			if attendance_criteria=="No":
+				t.update({"elegibility_status": "Qualified"})
+				t.update({"examination_qualification_approval":1})
+				
 		return student_list
 	else:
 		frappe.msgprint("No students found")
