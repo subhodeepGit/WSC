@@ -4,13 +4,13 @@
   "doctype": "Workflow",
   "document_type": "Leave Application for Student",
   "is_active": 1,
-  "modified": "2023-06-07 12:39:58.479075",
+  "modified": "2023-06-15 13:50:21.900819",
   "name": "Student Leave Application",
   "override_status": 0,
   "send_email_alert": 0,
   "states": [
    {
-    "allow_edit": "All",
+    "allow_edit": "Course Advisor",
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -23,7 +23,7 @@
     "update_value": null
    },
    {
-    "allow_edit": "All",
+    "allow_edit": "Course Manager",
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -36,7 +36,7 @@
     "update_value": null
    },
    {
-    "allow_edit": "All",
+    "allow_edit": "Course Advisor",
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -49,7 +49,7 @@
     "update_value": null
    },
    {
-    "allow_edit": "All",
+    "allow_edit": "Course Manager",
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -62,7 +62,7 @@
     "update_value": null
    },
    {
-    "allow_edit": "All",
+    "allow_edit": "Course Manager",
     "doc_status": "1",
     "is_optional_state": 0,
     "message": null,
@@ -75,7 +75,7 @@
     "update_value": null
    },
    {
-    "allow_edit": "All",
+    "allow_edit": "Course Manager",
     "doc_status": "1",
     "is_optional_state": 0,
     "message": null,
@@ -92,7 +92,7 @@
    {
     "action": "Approve",
     "allow_self_approval": 1,
-    "allowed": "All",
+    "allowed": "Course Advisor",
     "condition": null,
     "next_state": "Sent for Approval to Course Manager",
     "parent": "Student Leave Application",
@@ -103,7 +103,7 @@
    {
     "action": "Reject",
     "allow_self_approval": 1,
-    "allowed": "All",
+    "allowed": "Course Advisor",
     "condition": null,
     "next_state": "Rejected by Class Advisor",
     "parent": "Student Leave Application",
@@ -114,7 +114,7 @@
    {
     "action": "Approve",
     "allow_self_approval": 1,
-    "allowed": "All",
+    "allowed": "Course Manager",
     "condition": null,
     "next_state": "Approved",
     "parent": "Student Leave Application",
@@ -125,7 +125,7 @@
    {
     "action": "Reject",
     "allow_self_approval": 1,
-    "allowed": "All",
+    "allowed": "Course Manager",
     "condition": null,
     "next_state": "Rejected",
     "parent": "Student Leave Application",
