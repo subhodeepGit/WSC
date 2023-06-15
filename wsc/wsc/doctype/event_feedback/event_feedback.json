@@ -80,8 +80,9 @@
    "label": "Feedback"
   },
   {
+   "default": "0",
    "fieldname": "is_in_a_program",
-   "fieldtype": "Data",
+   "fieldtype": "Check",
    "label": "is in a program"
   },
   {
@@ -91,7 +92,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-06-05 17:13:03.254344",
+ "modified": "2023-06-15 12:52:30.394387",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Event feedback",

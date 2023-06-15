@@ -236,8 +236,11 @@ def get_courses_on_declaration(declaration):
     return courses
     
 @frappe.whitelist()
-def get_students(academic_year, group_based_on, academic_term=None, program=None, batch=None, student_category=None, course=None):
-    enrolled_students = get_program_enrollment(academic_year, academic_term, program, batch, student_category, course)
+def get_students(academic_year, group_based_on, academic_term=None, program=None, batch=None, student_category=None, course=None, class_name = None):
+    enrolled_students = get_program_enrollment(academic_year, academic_term, program, batch, student_category, course, class_name)
+    print('\n\n\n\n')
+    print(enrolled_students)
+    print('\n\n\n\n')
     if enrolled_students:
         student_list = []
         for s in enrolled_students:
@@ -269,7 +272,10 @@ def get_student_based_on_exam_declaration(**args):
                 student_list.append(cr_enroll)
     return student_list
 
-def get_program_enrollment(academic_year, academic_term=None, program=None, batch=None, student_category=None, course=None):
+def get_program_enrollment(academic_year, academic_term=None, program=None, batch=None, student_category=None, course=None, class_name = None):
+    print('\n\n\n\n')
+    print(class_name)
+    print('\n\n\n\n')
     condition1 = " "
     condition2 = " "
     if academic_term:
@@ -280,11 +286,13 @@ def get_program_enrollment(academic_year, academic_term=None, program=None, batc
         condition1 += " and pe.student_batch_name = %(batch)s"
     if student_category:
         condition1 += " and pe.student_category = %(student_category)s"
+    if class_name:
+        condition1 += " and pe.school_house = '%s' "%(class_name)    
     if course:
         condition1 += " and pe.name = pec.parent and pec.course = %(course)s"
         condition2 = ", `tabProgram Enrollment Course` pec"
     
-    return frappe.db.sql('''
+    testVar = frappe.db.sql('''
         select
             pe.student, pe.student_name
         from
@@ -296,6 +304,25 @@ def get_program_enrollment(academic_year, academic_term=None, program=None, batc
             pe.student_name asc
         '''.format(condition1=condition1, condition2=condition2),
                 ({"academic_year": academic_year, "academic_term":academic_term, "program": program, "batch": batch, "student_category": student_category, "course": course}), as_dict=1)
+    print('\n\n\n\n')
+    print(testVar)
+    print({condition1})
+    print({condition2})
+    print('\n\n\n\n')
+    return testVar
+
+    # return frappe.db.sql('''
+    #     select
+    #         pe.student, pe.student_name
+    #     from
+    #         `tabProgram Enrollment` pe {condition2}
+    #     where
+    #         (pe.is_provisional_admission IS NULL or pe.is_provisional_admission="No") and
+    #         pe.academic_year = %(academic_year)s  {condition1}
+    #     order by
+    #         pe.student_name asc
+    #     '''.format(condition1=condition1, condition2=condition2),
+    #             ({"academic_year": academic_year, "academic_term":academic_term, "program": program, "batch": batch, "student_category": student_category, "course": course}), as_dict=1)
 
 @frappe.whitelist()
 def get_student_based_on_combined_course(filters):

@@ -1,5 +1,7 @@
 frappe.ui.form.on("Student Group", {
     refresh:function(frm){
+		frm.set_df_property('group_based_on', 'options', ['Batch', 'Course', 'Activity', 'Exam Declaration', 'Mentor-Mentee']);
+
 		frm.set_query("programs", function () {
 			return {
 				filters: [
@@ -155,7 +157,14 @@ frappe.ui.form.on("Student Group", {
         }
         
 	},
+	group_based_on: function(frm){
+		// if(frm.doc.group_based_on == 'Batch'){
+		// 	alert('hello')
+		// }
+		// alert(frm.doc.group_based_on)
+	},
     get_student: function(frm) {
+		alert(200)
         frm.clear_table('students')
 		if (frm.doc.group_based_on == 'Batch' || frm.doc.group_based_on == 'Course') {
 			var student_list = [];
@@ -177,7 +186,8 @@ frappe.ui.form.on("Student Group", {
 						'program': frm.doc.program,
 						'batch' : frm.doc.batch,
 						'student_category' : frm.doc.student_category,
-						'course': frm.doc.course
+						'course': frm.doc.course,
+						'class_name': frm.doc.school_house
 					},
 					callback: function(r) {
 						if (r.message) {
