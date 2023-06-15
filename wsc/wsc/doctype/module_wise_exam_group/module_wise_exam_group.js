@@ -58,8 +58,28 @@ frappe.ui.form.on('Module Wise Exam Group', {
 		})
 	},
 	get_student:function(frm){
+		frm.clear_table("student_list");
 		frappe.call({
-			
+			method: 'wsc.wsc.doctype.module_wise_exam_group.module_wise_exam_group.get_student',
+			args:{
+				programs: frm.doc.exam_course,
+				academic_term: frm.doc.academic_term,
+                class_data: frm.doc.class,
+                minimum_attendance_criteria:frm.doc.percentage,
+				attendance_criteria:frm.doc.attendance_criteria,
+			},
+			callback: function(r) {
+				(r.message).forEach(element => {
+					var row = frm.add_child("student_list")
+					row.student_no=element.student
+					row.student_name=element.student_name
+                    row.roll_no = element.roll_no
+                    row.permanent_registration_no = element.permanant_registration_number
+				});
+				frm.refresh_field("student_list")
+				frm.save();
+				frm.set_value("total_enrolled_student",(r.message).length)
+			}
 		})
 	}
 });
