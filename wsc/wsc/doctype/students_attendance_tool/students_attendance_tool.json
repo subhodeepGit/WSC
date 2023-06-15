@@ -9,12 +9,16 @@
  "field_order": [
   "based_on",
   "group_based_on",
+  "date",
   "course_schedule",
-  "column_break_2",
-  "student_group",
   "academic_year",
   "academic_term",
-  "date",
+  "column_break_2",
+  "student_group",
+  "semester",
+  "course",
+  "module_name",
+  "school_house",
   "attendance",
   "students_html"
  ],
@@ -38,7 +42,8 @@
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "eval:doc.based_on ==\"Student Group\"",
+   "depends_on": "eval:doc.based_on ==\"Student Group\" || doc.course_schedule",
+   "fetch_from": "course_schedule.student_group",
    "fieldname": "student_group",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -88,12 +93,43 @@
    "fieldname": "students_html",
    "fieldtype": "HTML",
    "label": "Students HTML"
+  },
+  {
+   "depends_on": "eval:doc.course_schedule",
+   "fetch_from": "student_group.program",
+   "fieldname": "semester",
+   "fieldtype": "Link",
+   "label": "Semester",
+   "options": "Program"
+  },
+  {
+   "depends_on": "eval:doc.course_schedule",
+   "fetch_from": "student_group.course",
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "label": "Course",
+   "options": "Course"
+  },
+  {
+   "depends_on": "eval:doc.course_schedule",
+   "fetch_from": "student_group.school_house",
+   "fieldname": "school_house",
+   "fieldtype": "Link",
+   "label": "School House",
+   "options": "School House"
+  },
+  {
+   "depends_on": "eval:doc.course_schedule",
+   "fetch_from": "course.course_name",
+   "fieldname": "module_name",
+   "fieldtype": "Data",
+   "label": "Module Name"
   }
  ],
  "hide_toolbar": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-06-14 15:16:15.023225",
+ "modified": "2023-06-15 15:27:29.158063",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Students Attendance Tool",
