@@ -5,15 +5,21 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "module_details_section",
   "courses",
   "course_name",
+  "column_break_4",
   "course_code",
   "semester",
+  "section_break_7",
   "examination_date",
   "examination_end_date",
   "from_time",
   "to_time",
-  "total_duration_in_hours"
+  "total_duration_in_hours",
+  "eligibility_details_section",
+  "attendance_criteria",
+  "minimum_attendance_criteria"
  ],
  "fields": [
   {
@@ -91,12 +97,44 @@
    "fieldtype": "Date",
    "label": "Examination End Date",
    "reqd": 1
+  },
+  {
+   "fieldname": "eligibility_details_section",
+   "fieldtype": "Section Break",
+   "label": "Eligibility Details"
+  },
+  {
+   "default": "No",
+   "fieldname": "attendance_criteria",
+   "fieldtype": "Select",
+   "label": "Attendance Criteria",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval:doc.attendance_criteria==\"Yes\"",
+   "fieldname": "minimum_attendance_criteria",
+   "fieldtype": "Data",
+   "label": "Minimum Attendance Criteria",
+   "mandatory_depends_on": "eval:doc.attendance_criteria==\"Yes\""
+  },
+  {
+   "fieldname": "module_details_section",
+   "fieldtype": "Section Break",
+   "label": "Module Details"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-06-06 17:19:40.103051",
+ "modified": "2023-06-13 12:50:32.606688",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Courses",

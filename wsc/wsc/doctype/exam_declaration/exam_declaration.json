@@ -21,8 +21,8 @@
   "application_form_end_date",
   "section_break_4",
   "exam_start_date",
-  "exam_end_date",
   "column_break_8",
+  "exam_end_date",
   "admit_card_issue_date",
   "block_list_display_date",
   "section_break_8",
@@ -33,7 +33,6 @@
   "get_courses",
   "courses_offered",
   "eligibility_deails_section",
-  "attendance_criteria_applicable",
   "minimum_attendance_criteria",
   "certificate_creation_status",
   "fees_status",
@@ -86,7 +85,6 @@
    "fieldtype": "Section Break"
   },
   {
-   "allow_on_submit": 1,
    "fieldname": "courses_offered",
    "fieldtype": "Table",
    "label": "Module Offered",
@@ -103,6 +101,7 @@
   {
    "fieldname": "eligibility_deails_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Eligibility Details"
   },
   {
@@ -183,7 +182,6 @@
    "options": "\nYES\nNO"
   },
   {
-   "allow_on_submit": 1,
    "bold": 1,
    "columns": 6,
    "fieldname": "exam_name",
@@ -202,6 +200,7 @@
   {
    "fieldname": "block_list_display_date",
    "fieldtype": "Date",
+   "hidden": 1,
    "label": "Block List Display Date",
    "mandatory_depends_on": "is_application_required"
   },
@@ -261,9 +260,11 @@
   },
   {
    "depends_on": "eval:doc.exam_category==\"Re-Exam\"",
+   "description": "Previous Exam Declamation Id ",
    "fieldname": "exam_declaration_no",
    "fieldtype": "Link",
    "label": "Exam Declaration No",
+   "mandatory_depends_on": "eval:doc.exam_category==\"Re-Exam\"",
    "options": "Exam Declaration"
   },
   {
@@ -272,20 +273,12 @@
    "fieldtype": "Data",
    "label": "Exam Declaration Name",
    "read_only": 1
-  },
-  {
-   "default": "No",
-   "fieldname": "attendance_criteria_applicable",
-   "fieldtype": "Select",
-   "label": "Attendance Criteria Applicable",
-   "options": "\nYes\nNo",
-   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-13 11:52:12.746072",
+ "modified": "2023-06-14 12:47:29.759271",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Declaration",

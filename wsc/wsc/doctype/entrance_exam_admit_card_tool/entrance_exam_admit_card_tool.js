@@ -40,7 +40,7 @@ frappe.ui.form.on('Entrance Exam Admit Card Tool', {
 					declaration:frm.doc.entrance_exam_declaration,
 				},
 				callback:function(result){
-					
+					console.log(result.message);
 					frappe.model.clear_table(frm.doc, 'deallotted_applicant_list');
 					if(result.message.length !== 0){
 						result.message.map((r) => {
@@ -54,7 +54,7 @@ frappe.ui.form.on('Entrance Exam Admit Card Tool', {
 						})
 						frm.refresh();
 						frm.refresh_field("deallotted_applicant_list")
-						alert("Students Alerted")
+						// alert("Students Alloted")
 					} else {
 						alert("All Students Alloted")
 					}

@@ -1,0 +1,307 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "EXAM-MWEG-.YYYY.-",
+ "creation": "2023-06-13 17:28:16.316390",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "exam_declaration_information_section",
+  "exam_declaration_id",
+  "exam_name",
+  "academic_year",
+  "academic_term",
+  "exam_category",
+  "exam_end_date",
+  "column_break_8",
+  "course_type",
+  "exam_schedule_id",
+  "exam_course",
+  "class",
+  "semester",
+  "exam_start_date",
+  "section_break_16",
+  "modules_id",
+  "modules_name",
+  "module_code",
+  "column_break_21",
+  "module_exam_start_date",
+  "module_exam_end_date",
+  "section_break_22",
+  "attendance_criteria",
+  "percentage",
+  "column_break_24",
+  "start_date_of_attendence_duration",
+  "end_date_of_attendence_duration",
+  "section_break_25",
+  "marker_name",
+  "checker",
+  "column_break_31",
+  "course_manager_name",
+  "section_break_33",
+  "get_student",
+  "total_enrolled_student",
+  "student_list",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "exam_declaration_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Exam Declaration Id",
+   "options": "Exam Declaration",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "exam_declaration_id.academic_year",
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "exam_declaration_id.exam_name",
+   "fieldname": "exam_name",
+   "fieldtype": "Data",
+   "label": "Exam Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "exam_declaration_id.academic_term",
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "exam_declaration_id.exam_category",
+   "fieldname": "exam_category",
+   "fieldtype": "Data",
+   "label": "Exam Category",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "exam_declaration_id.exam_start_date",
+   "fieldname": "exam_start_date",
+   "fieldtype": "Data",
+   "label": "Exam Start Date",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "exam_declaration_id.exam_end_date",
+   "fieldname": "exam_end_date",
+   "fieldtype": "Data",
+   "label": "Exam End Date",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "exam_declaration_id.program_grade",
+   "fieldname": "course_type",
+   "fieldtype": "Data",
+   "label": "Course Type",
+   "read_only": 1
+  },
+  {
+   "description": "Previous Exam Declamation Id",
+   "fetch_from": "exam_declaration_id.exam_declaration_no",
+   "fieldname": "exam_schedule_id",
+   "fieldtype": "Link",
+   "label": "Exam Schedule Id",
+   "options": "Exam Declaration",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "exam_declaration_id.exam_program",
+   "fieldname": "exam_course",
+   "fieldtype": "Data",
+   "label": "Exam Progarme",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "exam_declaration_id.class",
+   "fieldname": "class",
+   "fieldtype": "Data",
+   "label": "Class",
+   "read_only": 1
+  },
+  {
+   "fieldname": "module_exam_start_date",
+   "fieldtype": "Data",
+   "label": "Module Exam Start Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "module_exam_end_date",
+   "fieldtype": "Data",
+   "label": "Module Exam End Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "semester",
+   "fieldtype": "Link",
+   "label": "Semester",
+   "options": "Program",
+   "read_only": 1
+  },
+  {
+   "fieldname": "modules_id",
+   "fieldtype": "Link",
+   "label": "Modules Id",
+   "options": "Course",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "modules_id.course_name",
+   "fieldname": "modules_name",
+   "fieldtype": "Data",
+   "label": "Modules Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "modules_id.course_code",
+   "fieldname": "module_code",
+   "fieldtype": "Data",
+   "label": "Module Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "percentage",
+   "fieldtype": "Float",
+   "label": "Qualification Attendance Percentage",
+   "read_only": 1
+  },
+  {
+   "fieldname": "marker_name",
+   "fieldtype": "Data",
+   "label": "Marker Name"
+  },
+  {
+   "fieldname": "checker",
+   "fieldtype": "Data",
+   "label": "Checker Name"
+  },
+  {
+   "fieldname": "course_manager_name",
+   "fieldtype": "Data",
+   "label": "Course Manager Name"
+  },
+  {
+   "fieldname": "exam_declaration_information_section",
+   "fieldtype": "Section Break",
+   "label": "Exam Declaration Information"
+  },
+  {
+   "fieldname": "section_break_16",
+   "fieldtype": "Section Break",
+   "label": "Module Criteria"
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_21",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_22",
+   "fieldtype": "Section Break",
+   "label": "Attendance Criteria"
+  },
+  {
+   "fieldname": "attendance_criteria",
+   "fieldtype": "Data",
+   "label": "Attendance Criteria",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_25",
+   "fieldtype": "Section Break",
+   "label": "Maker and Checker Details"
+  },
+  {
+   "fieldname": "column_break_24",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.attendance_criteria==\"Yes\"",
+   "fieldname": "start_date_of_attendence_duration",
+   "fieldtype": "Date",
+   "label": "Start date of Attendence Duration",
+   "mandatory_depends_on": "eval:doc.attendance_criteria==\"Yes\"",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.attendance_criteria==\"Yes\"",
+   "fieldname": "end_date_of_attendence_duration",
+   "fieldtype": "Date",
+   "label": "End date of Attendence Duration",
+   "mandatory_depends_on": "eval:doc.attendance_criteria==\"Yes\""
+  },
+  {
+   "fieldname": "column_break_31",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_33",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "student_list",
+   "fieldtype": "Table",
+   "label": "Student List",
+   "options": "Module Wise Exam Student"
+  },
+  {
+   "fieldname": "get_student",
+   "fieldtype": "Button",
+   "label": "Get Student"
+  },
+  {
+   "fieldname": "total_enrolled_student",
+   "fieldtype": "Data",
+   "label": "Total Enrolled Student",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Module Wise Exam Group",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-06-15 10:57:41.496655",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Module Wise Exam Group",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

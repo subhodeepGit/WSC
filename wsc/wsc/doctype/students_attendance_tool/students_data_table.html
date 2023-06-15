@@ -1,0 +1,28 @@
+<div class="col-sm-12">
+    <div class="checkbox">
+            <table class="table table-borderless table-sm">
+                <tbody>
+                <tr><td width="5%" style="text-align: center"><input
+                    type="checkbox"
+                    data-group_roll_number="{{group_roll_number}}"
+                    data-roll_no="{{roll_no}}"
+                    data-student="{{student}}"
+                    data-student_name="{{student_name}}"
+                    data-leave_status="{{leave_status}}"
+                    class="students-check"
+                    {% if status === "Present" %}
+                    checked
+                    {% endif %}
+                    ></td>
+                    <td width="10%" style="text-align: center">{{ group_roll_number }}</td>
+                    <td width="10%" style="text-align: center">{{ roll_no }}</td>
+                    <td width="15%" style="text-align: center">{{ student_name }}</td>
+                    <td width="15%" style="text-align: center">{{ student }}</td>
+                    <td width="15%" style="text-align: center">{{ leave_status }}</td>
+                    <td width="15%" style="text-align: center">{{ reason_for_leave }}</td>
+                    <td width="15%" style="text-align: center">{{ leave_app_id }}</td>
+                </tr>
+                </tbody>
+            </table>
+    </div>
+</div>

@@ -1,13 +1,13 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{applicant_id}-{academic_year}-{department}",
  "creation": "2023-05-09 18:04:18.875617",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "exam_allocation",
   "applicant_id",
   "department",
   "academic_year",
@@ -20,7 +20,7 @@
   "district",
   "column_break_7",
   "pin_code",
-  "slot_no",
+  "slot",
   "section_break_11",
   "date_of_exam",
   "column_break_13",
@@ -42,21 +42,25 @@
    "label": "Applicant Name"
   },
   {
+   "fetch_from": "venue.center",
    "fieldname": "address",
    "fieldtype": "Data",
    "label": "Address"
   },
   {
    "fieldname": "venue",
-   "fieldtype": "Select",
-   "label": "Venue"
+   "fieldtype": "Link",
+   "label": "Venue",
+   "options": "Entrance exam select"
   },
   {
+   "fetch_from": "venue.district",
    "fieldname": "district",
    "fieldtype": "Data",
    "label": "District"
   },
   {
+   "fetch_from": "venue.pincode",
    "fieldname": "pin_code",
    "fieldtype": "Data",
    "label": "Pin Code"
@@ -123,23 +127,18 @@
    "options": "Academic Term"
   },
   {
-   "fieldname": "slot_no",
-   "fieldtype": "Select",
-   "label": "Slot no."
-  },
-  {
-   "fieldname": "exam_allocation",
-   "fieldtype": "Link",
-   "label": "Exam Allocation",
-   "options": "Entrance Exam Centre Allocation"
+   "fieldname": "slot",
+   "fieldtype": "Data",
+   "label": "Slot "
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-06-01 10:01:15.967049",
+ "modified": "2023-06-14 16:53:24.591070",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Admit Card",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

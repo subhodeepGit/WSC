@@ -235,25 +235,6 @@ frappe.ui.form.on("Exam Courses", "fee_structure", function(frm, cdt, cdn) {
         }
     }
 });
-// frappe.ui.form.on("Exam Courses", "examination_date", function(frm, cdt, cdn) {
-//     // var d = locals[cdt][cdn];
-//     var ed_details = frm.doc.courses_offered;
-//     for (var i in ed_details){
-//         frm.fields_dict['courses_offered'].grid.get_field("examination_end_date").datepicker.update({
-//             minDate: ed_details[i].examination_date ? new Date(ed_details[i].examination_date) : null
-//         });
-//     }
-//         cur_frm.refresh_field ("courses_offered");   
-// });
 
-// frappe.ui.form.on("Exam Courses", "examination_end_date", function(frm, cdt, cdn) {
-//     // var d = locals[cdt][cdn];
-//     var ed_details = frm.doc.courses_offered;
-//     for (var i in ed_details){
-//         frm.fields_dict['courses_offered'].grid.get_field("examination_date").datepicker.update({
-//             maxDate: ed_details[i].examination_end_date ? new Date(ed_details[i].examination_end_date) : null
-//         });
-//     }
-//         cur_frm.refresh_field ("courses_offered");   
-// });
+
 

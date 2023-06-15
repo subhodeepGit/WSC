@@ -20,7 +20,7 @@ frappe.ui.form.on('Entrance Exam Centre Selection', {
 	},
 	refresh:function(frm){
 		if(!frm.is_new()){
-			frm.add_custom_button(__('Admit Card Generation'), function(){
+			frm.add_custom_button(__('Center Select'), function(){
 				frappe.call({
 					method: 'selected_centers',
 					doc: frm.doc

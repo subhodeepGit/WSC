@@ -3,6 +3,42 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
+  "modified": "2023-06-07 12:47:03.274468",
+  "name": "Sent for Approval to Class Advisor",
+  "style": "Info",
+  "workflow_state_name": "Sent for Approval to Class Advisor"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-07 12:46:52.487125",
+  "name": "Sent for Approval to Course Manager",
+  "style": "Info",
+  "workflow_state_name": "Sent for Approval to Course Manager"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-07 12:46:44.537535",
+  "name": "Rejected by Class Advisor",
+  "style": "Danger",
+  "workflow_state_name": "Rejected by Class Advisor"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-07 12:46:35.162193",
+  "name": "Rejected by Course Manager",
+  "style": "Danger",
+  "workflow_state_name": "Rejected by Course Manager"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
   "modified": "2023-01-13 13:34:36.308396",
   "name": "Pending Approval",
   "style": "",
