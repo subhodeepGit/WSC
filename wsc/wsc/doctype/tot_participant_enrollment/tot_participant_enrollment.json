@@ -39,7 +39,7 @@
    "fieldtype": "Select",
    "hidden": 1,
    "label": "Naming Series",
-   "options": "TOT-PART-ENR-.YYYY.-"
+   "options": "TOT-PAR-ENR-.YYYY.-"
   },
   {
    "fieldname": "get_participants",
@@ -141,7 +141,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-04 01:52:54.848956",
+ "modified": "2023-06-12 11:55:07.925989",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant Enrollment",

@@ -15,6 +15,7 @@ frappe.ui.form.on('ToT Participant Enrollment', {
 						(r.message).forEach(element => {
 							var c = frm.add_child("participant_list")
 							c.participant=element.participant_id
+							c.participant_name=element.participant_name
 							c.hrms_id=element.hrms_id
 							c.district=element.district
 							c.mobile_number=element.mobile_number
@@ -32,20 +33,10 @@ frappe.ui.form.on('ToT Participant Enrollment', {
         frm.set_df_property('participant_list', 'cannot_add_rows', true);
         frm.set_df_property('participant_list', 'cannot_delete_rows', true);
 
-		if (!frm.doc.__islocal){
-			frm.add_custom_button(__('1) Create Participant'), function() {
+		if (frm.doc.docstatus===1){
+			frm.add_custom_button(__('Enroll Participant'), function() {
 				frappe.call({
-					method: 'create_participant',
-					doc: frm.doc,
-					callback: function() {
-						frm.refresh();
-					}
-				});
-			},'Actions').addClass('btn-primary');
-		}
-		if (!frm.doc.__islocal){
-			frm.add_custom_button(__('2) Enroll Participant'), function() {
-				frappe.call({
+					// wsc.wsc.doctype.tot_participant_enrollment.tot_participant_enrollment.
 					method: 'enroll_participant',
 					doc: frm.doc,
 					// tot_participant_selection_id:doc.tot_participant_selection_id,
@@ -53,7 +44,7 @@ frappe.ui.form.on('ToT Participant Enrollment', {
 					// 	frm.refresh();
 					// }
 				});
-			},'Actions').addClass('btn-primary');
+			}).addClass('btn-primary');
 		}
 	},
 	

@@ -20,7 +20,8 @@
   "end_date",
   "naming_series",
   "participant_list_section",
-  "participants"
+  "participants",
+  "amended_from"
  ],
  "fields": [
   {
@@ -107,11 +108,21 @@
    "hidden": 1,
    "label": "Academic Term",
    "options": "Academic Term"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "ToT Participant Selection",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-06-03 20:27:20.689510",
+ "modified": "2023-06-05 18:12:06.553412",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant Selection",
