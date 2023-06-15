@@ -40,14 +40,17 @@ def module_start_date(modules_id=None,exam_id=None,academic_term=None):
 	return output_date
 
 @frappe.whitelist()
-def get_student(academic_term=None, programs=None,class_data=None,minimum_attendance_criteria=None,attendance_criteria=None):
+def get_student(academic_term=None, programs=None,class_data=None,minimum_attendance_criteria=None,attendance_criteria=None,
+				start_date_of_attendence_duration=None,end_date_of_attendence_duration=None):
 	print("\n\n\n")
 	enrolled_students = get_program_enrollment(academic_term,programs,class_data)
 	student_list=[]
 	if enrolled_students:
 		student_list=enrolled_students
-		for t in student_list:
-			pass
+		print(start_date_of_attendence_duration)
+		print(end_date_of_attendence_duration)
+		# for t in student_list:
+		# 	pass
 		return student_list
 	else:
 		frappe.msgprint("No students found")

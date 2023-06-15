@@ -67,6 +67,8 @@ frappe.ui.form.on('Module Wise Exam Group', {
                 class_data: frm.doc.class,
                 minimum_attendance_criteria:frm.doc.percentage,
 				attendance_criteria:frm.doc.attendance_criteria,
+				start_date_of_attendence_duration:frm.doc.start_date_of_attendence_duration,
+				end_date_of_attendence_duration:frm.doc.end_date_of_attendence_duration
 			},
 			callback: function(r) {
 				(r.message).forEach(element => {
