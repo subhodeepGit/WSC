@@ -151,7 +151,7 @@ wsc.StudentsEditor = class StudentsEditor {
 				});
 
 				var students_absent = studs.filter(function(stud) {
-					return !stud.disabled && !stud.checked && (stud.leave_status=="Sent for Approval to Class Advisor" || stud.leave_status=="Sent for Approval to Course Manager");
+					return !stud.disabled && !stud.checked && (stud.leave_status=="Sent for Approval to Class Advisor" || stud.leave_status=="Sent for Approval to Course Manager" || stud.leave_status=="");
 				});
 
 				var students_on_leave = studs.filter(function(stud) {
