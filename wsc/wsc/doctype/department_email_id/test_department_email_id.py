@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestRecruitmentExamAdmitCardGeneration(FrappeTestCase):
+class TestDepartmentEmailID(FrappeTestCase):
 	pass

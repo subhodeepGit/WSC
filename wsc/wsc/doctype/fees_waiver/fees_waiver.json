@@ -1,0 +1,177 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "FW-.YYYY.-.####",
+ "creation": "2023-06-02 11:44:09.017945",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "student",
+  "student_applicant",
+  "student_name",
+  "roll_number",
+  "student_category",
+  "fee_type",
+  "column_break_ndlba",
+  "programs",
+  "semester",
+  "academic_year",
+  "academic_term",
+  "approval_letter",
+  "section_break_ehvcz",
+  "fee_structure",
+  "column_break_cn9tz",
+  "fees",
+  "section_break_tvqsa",
+  "components",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "student",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Student",
+   "options": "Student",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "student.student_applicant",
+   "fieldname": "student_applicant",
+   "fieldtype": "Link",
+   "label": "Student Applicant",
+   "options": "Student Applicant",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.student_name",
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "label": "Student Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Fees Waiver",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.roll_no",
+   "fieldname": "roll_number",
+   "fieldtype": "Data",
+   "label": "Roll Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student.student_category",
+   "fieldname": "student_category",
+   "fieldtype": "Data",
+   "label": "Student Category",
+   "read_only": 1
+  },
+  {
+   "fieldname": "semester",
+   "fieldtype": "Link",
+   "label": "Semester",
+   "options": "Program"
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
+  },
+  {
+   "fieldname": "fees",
+   "fieldtype": "Read Only",
+   "label": "Fees",
+   "options": "Fees"
+  },
+  {
+   "fieldname": "approval_letter",
+   "fieldtype": "Attach",
+   "label": "Approval letter"
+  },
+  {
+   "fieldname": "fee_structure",
+   "fieldtype": "Link",
+   "label": "Fee Structure",
+   "options": "Fee Structure",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ndlba",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_ehvcz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_cn9tz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_tvqsa",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "label": "Programs",
+   "options": "Programs"
+  },
+  {
+   "fieldname": "components",
+   "fieldtype": "Table",
+   "label": "Fee Components",
+   "options": "Fee Component",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fee_type",
+   "fieldtype": "Link",
+   "label": "Fee Type",
+   "options": "Fee Type",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-06-05 16:36:24.016888",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Fees Waiver",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

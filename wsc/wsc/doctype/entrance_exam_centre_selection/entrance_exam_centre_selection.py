@@ -20,7 +20,7 @@ class EntranceExamCentreSelection(Document):
 			result.district = i.district
 			result.state = i.state
 			result.pincode = i.pincode
-
+			result.available_center = 1
 			result.save()
 			result.submit()
 
@@ -31,7 +31,7 @@ class EntranceExamCentreSelection(Document):
 		print("\n\n\n\n")
 		print(self.academic_term)
 		frappe.db.sql("""
-			UPDATE `tabEntrance exam select` SET available_center = '1' WHERE academic_year = '{academic_year}' AND academic_term = '{academic_term}'
+			UPDATE `tabEntrance exam select` SET available_center = 0 WHERE academic_year = '{academic_year}' AND academic_term = '{academic_term}'
 		""".format(academic_year = self.academic_year , academic_term = self.academic_term))
 		print("cancel")
 
@@ -42,13 +42,4 @@ class EntranceExamCentreSelection(Document):
 					frappe.throw("The data is already exist in <b>{0}</b>".format(a.name))
 		
 
-# @frappe.whitelist()
-# def centers_cancel(academic_year , academic_term):
-# 	print("\n\n\n\n")
-# 	centers = frappe.get_all("Entrance exam select" , {'academic_year':academic_year , 'academic_term': academic_term} , ['available_center'])
-# 	# res = frappe.get_doc('Entrance exam select')
-# 	# print(res)
-# 	for i in centers:
-# 		i['available_center'] = 1
-		
 	

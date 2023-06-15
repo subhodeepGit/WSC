@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "TPP.-.#####",
  "creation": "2023-05-29 17:49:04.127045",
  "default_view": "List",
  "doctype": "DocType",
@@ -21,12 +22,18 @@
   {
    "fieldname": "program_name",
    "fieldtype": "Data",
-   "label": "Program Name"
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Program Name",
+   "reqd": 1
   },
   {
    "fieldname": "start_date",
-   "fieldtype": "Data",
-   "label": "Start Date"
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Start Date",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_wyvzc",
@@ -34,13 +41,18 @@
   },
   {
    "fieldname": "program_status",
-   "fieldtype": "Data",
-   "label": "Program Status"
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Program Status",
+   "options": "Scheduled\nCompleted\nCancelled",
+   "reqd": 1
   },
   {
    "fieldname": "end_date",
-   "fieldtype": "Data",
-   "label": "End Date"
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "End Date",
+   "reqd": 1
   },
   {
    "fieldname": "section_break_mj4id",
@@ -49,7 +61,8 @@
   {
    "fieldname": "description",
    "fieldtype": "Text Editor",
-   "label": "Description"
+   "label": "Description",
+   "reqd": 1
   },
   {
    "fieldname": "chief_coordinators_section",
@@ -60,15 +73,17 @@
    "fieldname": "chief_coordinators_list",
    "fieldtype": "Table",
    "label": "Chief coordinators list",
-   "options": "chief coordinators list"
+   "options": "chief coordinators list",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-29 17:49:04.127045",
+ "modified": "2023-05-31 11:03:24.014346",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "TnP Program",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

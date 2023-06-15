@@ -14,9 +14,10 @@
  "fields": [
   {
    "fieldname": "coordinator_name",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Coordinator Name"
+   "label": "Coordinator Name",
+   "options": "Employee"
   },
   {
    "fieldname": "role",
@@ -26,7 +27,7 @@
   },
   {
    "fieldname": "contact_number",
-   "fieldtype": "Data",
+   "fieldtype": "Phone",
    "in_list_view": 1,
    "label": "Contact number"
   },
@@ -40,7 +41,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-05-29 17:54:43.605267",
+ "modified": "2023-05-30 15:41:34.603822",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "coordinators list",

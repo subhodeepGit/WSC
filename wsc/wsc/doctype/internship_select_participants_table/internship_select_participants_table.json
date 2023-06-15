@@ -16,28 +16,33 @@
   {
    "fieldname": "applicant_id",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Applicant ID"
   },
   {
    "fieldname": "applicant_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Applicant Name"
   },
   {
    "fieldname": "applicant_type",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Applicant Type"
   },
   {
+   "default": "0",
    "fieldname": "select",
-   "fieldtype": "Data",
+   "fieldtype": "Check",
+   "in_list_view": 1,
    "label": "Select"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-05-30 11:38:20.558401",
+ "modified": "2023-06-06 15:22:46.311503",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Select Participants Table",

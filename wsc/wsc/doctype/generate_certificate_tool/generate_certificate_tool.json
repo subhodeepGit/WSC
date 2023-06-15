@@ -1,12 +1,15 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "TGCT.-.#####",
  "creation": "2023-05-30 11:15:00.863955",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "is_in_a_program",
+  "section_break_jlheb",
   "select_program",
   "select_event",
   "get_eligible_participants_list",
@@ -19,14 +22,17 @@
  ],
  "fields": [
   {
+   "depends_on": "is_in_a_program",
    "fieldname": "select_program",
-   "fieldtype": "Data",
-   "label": "Select Program"
+   "fieldtype": "Link",
+   "label": "Select Program",
+   "options": "TnP Program"
   },
   {
    "fieldname": "select_event",
-   "fieldtype": "Data",
-   "label": "Select Event"
+   "fieldtype": "Link",
+   "label": "Select Event",
+   "options": "TnP Event"
   },
   {
    "fieldname": "get_eligible_participants_list",
@@ -38,6 +44,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "depends_on": "is_in_a_program",
    "fieldname": "program_name",
    "fieldtype": "Data",
    "label": "Program Name"
@@ -62,14 +69,25 @@
    "fieldname": "generate_certificate",
    "fieldtype": "Button",
    "label": "Generate Certificate"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_in_a_program",
+   "fieldtype": "Check",
+   "label": "is in a program"
+  },
+  {
+   "fieldname": "section_break_jlheb",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-30 11:15:00.863955",
+ "modified": "2023-06-06 17:51:15.970036",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Generate certificate tool",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

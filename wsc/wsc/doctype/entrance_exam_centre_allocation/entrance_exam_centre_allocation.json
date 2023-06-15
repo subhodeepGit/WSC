@@ -23,10 +23,6 @@
   "state",
   "pin_code",
   "section_break_13",
-  "centre_booking_time_start",
-  "column_break_15",
-  "centre_booking_time_end",
-  "section_break_17",
   "exam_slot_timings",
   "entrance_exam_invigilator",
   "amended_from"
@@ -62,6 +58,7 @@
   {
    "fieldname": "centre",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Centre",
    "reqd": 1
   },
@@ -89,20 +86,6 @@
    "fieldname": "pin_code",
    "fieldtype": "Data",
    "label": "Pin Code"
-  },
-  {
-   "fieldname": "centre_booking_time_start",
-   "fieldtype": "Datetime",
-   "in_list_view": 1,
-   "label": "Centre Booking Time Start",
-   "reqd": 1
-  },
-  {
-   "fieldname": "centre_booking_time_end",
-   "fieldtype": "Datetime",
-   "in_list_view": 1,
-   "label": "Centre Booking Time End",
-   "reqd": 1
   },
   {
    "fieldname": "exam_slot_timings",
@@ -134,14 +117,6 @@
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "column_break_15",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "section_break_17",
-   "fieldtype": "Section Break"
-  },
-  {
    "fetch_from": "entrance_exam_declaration.exam_start_date",
    "fieldname": "exam_start_date",
    "fieldtype": "Data",
@@ -165,7 +140,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-05-24 11:13:23.938180",
+ "modified": "2023-06-14 11:42:25.514503",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Centre Allocation",

@@ -30,7 +30,8 @@ class StudentAttendance(Document):
     #     frappe.db.set_value("Instructor",self.instructor,"total_classes_taken",total_classes_taken+1)
 
 
-        self.update_course_schedule()
+        # self.update_course_schedule()
+
 
     def set_date(self):
         if self.course_schedule:
@@ -98,14 +99,14 @@ class StudentAttendance(Document):
             frappe.throw(_('Attendance cannot be marked for {0} as it is a holiday.').format(
                 frappe.bold(formatdate(self.date))))
 
-    def update_course_schedule(self):
-        if self.course_schedule and self.status=="Present":
-            course_schedule=frappe.get_doc("Course Schedule",self.course_schedule)
-            course_schedule.append("student_paper_code",{
-                "student":self.student,
-                "student_name":self.student_name
-            })
-            course_schedule.save()
+    # def update_course_schedule(self):
+    #     if self.course_schedule and self.status=="Present":
+    #         course_schedule=frappe.get_doc("Course Schedule",self.course_schedule)
+    #         course_schedule.append("student_paper_code",{
+    #             "student":self.student,
+    #             "student_name":self.student_name
+    #         })
+    #         course_schedule.save()
 
 @frappe.whitelist()
 def get_student_details(student):
@@ -158,7 +159,7 @@ def validate(doc,method):
         frappe.throw("Attendance Already Exist <b>{0}</b>".format(d.name))
 
 @frappe.whitelist()
-def mark_attendance(students_present, students_absent, course_schedule=None, student_group=None,building=None,hostel_category=None, date=None,attendance_for=None):
+def mark_attendance(students_present, students_absent, students_on_leave, course_schedule=None, student_group=None,building=None,hostel_category=None, date=None,attendance_for=None):
     """Creates Multiple Attendance Records.
 
     :param students_present: Students Present JSON.
@@ -167,7 +168,12 @@ def mark_attendance(students_present, students_absent, course_schedule=None, stu
     :param student_group: Student Group.
     :param date: Date.
     """
-
+    print("\n\n\n\n")
+    print(students_present)
+    print("\n\n\n\n")
+    print(students_absent)
+    print("\n\n\n\n")
+    print(students_on_leave)
     if student_group:
         academic_year = frappe.db.get_value('Student Group', student_group, 'academic_year')
         if academic_year:
@@ -177,12 +183,16 @@ def mark_attendance(students_present, students_absent, course_schedule=None, stu
 
     present = json.loads(students_present)
     absent = json.loads(students_absent)
+    on_leave = json.loads(students_on_leave)
 
     for d in present:
         make_attendance_records(d["student"], d["student_name"], "Present", course_schedule, student_group,building,hostel_category, date,attendance_for)
 
     for d in absent:
         make_attendance_records(d["student"], d["student_name"], "Absent", course_schedule, student_group,building,hostel_category, date,attendance_for)
+
+    for d in on_leave:
+        make_attendance_records(d["student"], d["student_name"], "On Leave", course_schedule, student_group,building,hostel_category, date,attendance_for)
 
     frappe.db.commit()
     frappe.msgprint(_("Attendance has been marked successfully."))
@@ -239,56 +249,72 @@ def get_topic(doctype, txt, searchfield, start, page_len, filters):
 
 @frappe.whitelist()
 def get_student_attendance_records(
-	based_on, date=None, student_group=None, course_schedule=None
+    based_on, date=None, student_group=None, course_schedule=None
 ):
-	student_list = []
-	student_attendance_list = []
+    student_list = []
+    student_attendance_list = []
 
-	if based_on == "Course Schedule":
-		student_group = frappe.db.get_value(
-			"Course Schedule", course_schedule, "student_group"
-		)
-		if student_group:
-			student_list = frappe.get_all(
-				"Student Group Student",
-				fields=["student", "student_name", "group_roll_number",'roll_no'],
-				filters={"parent": student_group, "active": 1},
-				order_by="group_roll_number",
-			)
+    if based_on == "Course Schedule":
+        student_group = frappe.db.get_value(
+            "Course Schedule", course_schedule, "student_group"
+        )
+        if student_group:
+            student_list = frappe.get_all(
+                "Student Group Student",
+                fields=["student", "student_name", "group_roll_number",'roll_no'],
+                filters={"parent": student_group, "active": 1},
+                order_by="group_roll_number",
+            )
 
-	if not student_list:
-		student_list = frappe.get_all(
-			"Student Group Student",
-			fields=["student", "student_name", "group_roll_number",'roll_no'],
-			filters={"parent": student_group, "active": 1},
-			order_by="group_roll_number",
-		)
+    if not student_list:
+        student_list = frappe.get_all(
+            "Student Group Student",
+            fields=["student", "student_name", "group_roll_number",'roll_no'],
+            filters={"parent": student_group, "active": 1},
+            order_by="group_roll_number",
+        )
 
-	StudentAttendance = frappe.qb.DocType("Student Attendance")
+    StudentAttendance = frappe.qb.DocType("Student Attendance")
 
-	if course_schedule:
-		student_attendance_list = (
-			frappe.qb.from_(StudentAttendance)
-			.select(StudentAttendance.student, StudentAttendance.status)
-			.where((StudentAttendance.course_schedule == course_schedule))
-		).run(as_dict=True)
-	else:
-		student_attendance_list = (
-			frappe.qb.from_(StudentAttendance)
-			.select(StudentAttendance.student, StudentAttendance.status)
-			.where(
-				(StudentAttendance.student_group == student_group)
-				& (StudentAttendance.date == date)
-				& (
-					(StudentAttendance.course_schedule == "")
-					| (StudentAttendance.course_schedule.isnull())
-				)
-			)
-		).run(as_dict=True)
+    if course_schedule:
+        student_attendance_list = (
+            frappe.qb.from_(StudentAttendance)
+            .select(StudentAttendance.student, StudentAttendance.status)
+            .where((StudentAttendance.course_schedule == course_schedule))
+        ).run(as_dict=True)
+    else:
+        student_attendance_list = (
+            frappe.qb.from_(StudentAttendance)
+            .select(StudentAttendance.student, StudentAttendance.status)
+            .where(
+                (StudentAttendance.student_group == student_group)
+                & (StudentAttendance.date == date)
+                & (
+                    (StudentAttendance.course_schedule == "")
+                    | (StudentAttendance.course_schedule.isnull())
+                )
+            )
+        ).run(as_dict=True)
 
-	for attendance in student_attendance_list:
-		for student in student_list:
-			if student.student == attendance.student:
-				student.status = attendance.status
+    for attendance in student_attendance_list:
+        for student in student_list:
+            if student.student == attendance.student:
+                student.status = attendance.status
 
-	return student_list
+    for t in student_list:
+        get_leave_status = frappe.get_all("Leave Application for Student",filters=[['student',"=",t['student']], ['docstatus',"=",1], ['workflow_state',"=","Approved"],['from_date','<=',date],['to_date','>=', date]],fields=['name','student','reason_for_leave'])
+
+        # get_leave_status = frappe.db.sql("""SELECT `name`, `student`, `reason_for_leave` FROM `tabLeave Application for Student` WHERE student="%s" AND docstatus=1 AND workflow_state="Approved" AND (`from_date`<="%s" and `to_date`>="%s") """%(t['student'],date,date),as_dict=1)
+        # print("\n\n\n\n")
+        # print(get_leave_status) 
+        if get_leave_status:
+            t['leave_status']="On Leave"
+            t['reason_for_leave']=get_leave_status[0]['reason_for_leave']
+            t['leave_app_id']=get_leave_status[0]['name']
+    # print(student_list)
+    return student_list
+
+# @frappe.whitelist()
+# def get_leave_student(course_schedule,attendance_date):
+#     res=frappe.get_all("Class Wise Leave",{'class_schedule_id':course_schedule,'schedule_date':attendance_date,'leave_applicability_check':1},['name','schedule_date','parenttype','parent','leave_applicability_check'])
+#     print("\n\nRESULT",res)

@@ -1,0 +1,97 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-06-14 16:31:36.782740",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "student_no",
+  "student_name",
+  "roll_no",
+  "permanent_registration_no",
+  "total_no_of_classes_scheduled",
+  "total_no_of_class_attended_by_the_studen",
+  "attendance_percentage",
+  "elegibility_status",
+  "examination_qualification_approval",
+  "group_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "student_no",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Student No",
+   "options": "Student"
+  },
+  {
+   "fetch_from": "student_no.student_name",
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Student Name"
+  },
+  {
+   "fetch_from": "student_no.roll_no",
+   "fieldname": "roll_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Roll No"
+  },
+  {
+   "fetch_from": "student_no.permanant_registration_number",
+   "fieldname": "permanent_registration_no",
+   "fieldtype": "Data",
+   "label": "Permanent Registration No"
+  },
+  {
+   "fieldname": "total_no_of_classes_scheduled",
+   "fieldtype": "Data",
+   "label": "Total no of Classes Scheduled"
+  },
+  {
+   "fieldname": "total_no_of_class_attended_by_the_studen",
+   "fieldtype": "Data",
+   "label": "Total No of Class Attended By the studen"
+  },
+  {
+   "fieldname": "attendance_percentage",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "Attendance Percentage"
+  },
+  {
+   "fieldname": "elegibility_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Elegibility Status",
+   "options": "\nQualified\nNot-Qualified"
+  },
+  {
+   "default": "0",
+   "fieldname": "examination_qualification_approval",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Examination Qualification Approval"
+  },
+  {
+   "fieldname": "group_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Group Name"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-06-14 17:07:27.838768",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Module Wise Exam Student",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

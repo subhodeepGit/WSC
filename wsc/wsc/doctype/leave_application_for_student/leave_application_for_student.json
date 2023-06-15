@@ -14,11 +14,14 @@
   "column_break_4",
   "from_date",
   "to_date",
+  "registration_no",
   "section_break_8",
   "current_education_details",
   "section_break_7",
   "leave_criteria",
-  "show_classes",
+  "column_break_11",
+  "leave_applicability_hostel",
+  "section_break_13",
   "class_wise_leave",
   "column_break_9",
   "reason_for_leave",
@@ -71,6 +74,8 @@
    "fieldtype": "Section Break"
   },
   {
+   "depends_on": "eval:doc.student && doc.from_date && doc.to_date",
+   "description": "Select \"Class-Wise Leave\" to apply leave for individual classes else select \"Full Day\"",
    "fieldname": "leave_criteria",
    "fieldtype": "Select",
    "in_list_view": 1,
@@ -85,28 +90,24 @@
   {
    "fieldname": "reason_for_leave",
    "fieldtype": "Link",
-   "label": "Reason for Leave ",
+   "label": "Leave Type",
    "options": "Reason for Leave",
    "reqd": 1
   },
   {
+   "description": "--Application Writing Area",
    "fieldname": "reason",
    "fieldtype": "Text Editor",
    "label": "Reason",
    "reqd": 1
   },
   {
-   "depends_on": "eval:doc.leave_criteria==\"Class-Wise Leave\"",
+   "depends_on": "eval:doc.student && doc.from_date && doc.to_date && doc.leave_criteria",
+   "description": "Check the classes for which you want to apply leave in the \"Leave Applicability Check\"  column",
    "fieldname": "class_wise_leave",
    "fieldtype": "Table",
    "label": "Class Wise Leave",
    "options": "Class Wise Leave"
-  },
-  {
-   "depends_on": "eval:doc.leave_criteria==\"Class-Wise Leave\"",
-   "fieldname": "show_classes",
-   "fieldtype": "Button",
-   "label": "Show Classes"
   },
   {
    "fieldname": "section_break_8",
@@ -127,12 +128,36 @@
    "options": "Leave Application for Student",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.student && doc.from_date && doc.to_date",
+   "description": "Select \"Academics and Hostel\" if you are applying leave for both else select \"Academics\"",
+   "fieldname": "leave_applicability_hostel",
+   "fieldtype": "Select",
+   "label": "Leave Applicability Hostel",
+   "options": "\nAcademics\nAcademics and Hostel",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_13",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "student.permanant_registration_number",
+   "fieldname": "registration_no",
+   "fieldtype": "Data",
+   "label": "Registration No",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-02 16:37:08.537827",
+ "modified": "2023-06-08 15:20:09.518084",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Leave Application for Student",
