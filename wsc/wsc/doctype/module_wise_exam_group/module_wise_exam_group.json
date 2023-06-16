@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "EXAM-MWEG-.YYYY.-",
+ "autoname": "MWEG-.YYYY.-.#####",
  "creation": "2023-06-13 17:28:16.316390",
  "default_view": "List",
  "doctype": "DocType",
@@ -281,7 +281,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-15 10:57:41.496655",
+ "modified": "2023-06-16 11:54:01.587226",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Module Wise Exam Group",

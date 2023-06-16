@@ -25,12 +25,6 @@ def mark_attendance(students_present, students_absent, students_on_leave, course
     :param student_group: Student Group.
     :param date: Date.
     """
-    # print("\n\n\n\n")
-    # print(students_present)
-    # print("\n\n\n\n")
-    # print(students_absent)
-    # print("\n\n\n\n")
-    # print(students_on_leave)
     if student_group:
         academic_year = frappe.db.get_value('Student Group', student_group, 'academic_year')
         if academic_year:
@@ -88,14 +82,7 @@ def make_attendance_records(student, student_name, status, course_schedule=None,
     student_attendance.save()
     student_attendance.submit()
 
-# @frappe.whitelist()
-# def get_students_based_on_leave(date=None,course_schedule=None):
-#     for res in frappe.get_all("Class Wise Leave",{'schedule_date':date,'class_schedule_id':course_schedule,'leave_applicability_check': 1},["class_schedule_id","parent","leave_applicability_check"]):
-#         print("\n\n\nleave_applicability_check",res)
-#         for fin_res in frappe.get_all("Leave Application for Student",{"name":res.parent, "workflow_state": "Approved"},['student','student_name']):
-#             print("\n\n\nFinal Result",fin_res)
-#             if fin_res:
-#                 break
+
 @frappe.whitelist()
 def get_student_attendance_records(
     based_on, date=None, student_group=None, course_schedule=None
@@ -150,7 +137,7 @@ def get_student_attendance_records(
             if student.student == attendance.student:
                 student.status = attendance.status
 
-
+    print("\n\n\n\n",student_list)
     if based_on=="Student Group":
         for t in student_list:
             get_leave_status = frappe.get_all("Leave Application for Student",filters=[['student',"=",t['student']], ['from_date','<=',date],['to_date','>=', date], ['leave_criteria','=','Full Day']],fields=['name','student','reason_for_leave','workflow_state'])

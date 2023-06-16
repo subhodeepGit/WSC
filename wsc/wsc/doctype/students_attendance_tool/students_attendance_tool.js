@@ -53,8 +53,9 @@ frappe.ui.form.on('Students Attendance Tool', {
 		}
 	},
 
-	student_group: function(frm) {
-		if ((frm.doc.student_group && frm.doc.date) || frm.doc.course_schedule) {
+	sg: function(frm) {
+		if(frm.doc.based_on == "Student Group"){
+		if ((frm.doc.student_group && frm.doc.date) || (frm.doc.course_schedule && frm.doc.date)) {
 			frm.students_area.find('.student-attendance-checks').html(`<div style='padding: 2rem 0'>Fetching...</div>`);
 			var method = "wsc.wsc.doctype.students_attendance_tool.students_attendance_tool.get_student_attendance_records";
 
@@ -70,17 +71,42 @@ frappe.ui.form.on('Students Attendance Tool', {
 					frm.events.get_students(frm, r.message);
 				}
 			})
-		}
+		}}
+	},
+
+	cs: function(frm) {
+		if(frm.doc.based_on == "Course Schedule"){
+		if ((frm.doc.student_group && frm.doc.date) || (frm.doc.course_schedule && frm.doc.date)) {
+			frm.students_area.find('.student-attendance-checks').html(`<div style='padding: 2rem 0'>Fetching...</div>`);
+			var method = "wsc.wsc.doctype.students_attendance_tool.students_attendance_tool.get_student_attendance_records";
+
+			frappe.call({
+				method: method,
+				args: {
+					based_on: frm.doc.based_on,
+					student_group: frm.doc.student_group,
+					date: frm.doc.date,
+					course_schedule: frm.doc.course_schedule
+				},
+				callback: function(r) {
+					frm.events.get_students(frm, r.message);
+				}
+			})
+		}}
 	},
 
 	date: function(frm) {
 		if (frm.doc.date > frappe.datetime.get_today())
 			frappe.throw(__("Cannot mark attendance for future dates."));
-		frm.trigger("student_group");
+		if (frm.doc.based_on == "Student Group") {
+			frm.trigger("sg");
+		} else if (frm.doc.based_on == "Course Schedule") {
+			frm.trigger("cs")
+		}
 	},
 
 	course_schedule: function(frm) {
-		frm.trigger("student_group");
+		frm.trigger("cs");
 	},
 
 	get_students: function(frm, students) {

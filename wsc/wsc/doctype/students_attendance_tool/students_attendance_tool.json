@@ -77,6 +77,7 @@
    "reqd": 1
   },
   {
+   "depends_on": "eval:(doc.based_on ==\"Student Group\" && doc.student_group) || doc.based_on == \"Course Schedule\"",
    "fieldname": "date",
    "fieldtype": "Date",
    "in_list_view": 1,
@@ -129,7 +130,7 @@
  "hide_toolbar": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-06-15 15:27:29.158063",
+ "modified": "2023-06-16 12:36:31.577357",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Students Attendance Tool",
