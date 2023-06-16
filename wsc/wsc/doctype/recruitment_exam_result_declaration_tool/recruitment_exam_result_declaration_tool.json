@@ -12,7 +12,6 @@
   "exam_name",
   "job_opening",
   "job_selection_round",
-  "result_creation_status",
   "get_applicants",
   "applicant_details"
  ],
@@ -60,17 +59,11 @@
    "fieldtype": "Table",
    "label": "Applicant Details",
    "options": "Job Applicant Result Details"
-  },
-  {
-   "fieldname": "result_creation_status",
-   "fieldtype": "Select",
-   "label": "Result Creation Status",
-   "options": "\nIn Process\nFailed\nSuccessful"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-06-02 12:06:43.051133",
+ "modified": "2023-06-15 17:11:58.312308",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Recruitment Exam Result Declaration Tool",
