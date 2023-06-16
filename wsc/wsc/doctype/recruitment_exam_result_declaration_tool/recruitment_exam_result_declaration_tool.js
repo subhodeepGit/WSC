@@ -26,7 +26,7 @@ frappe.ui.form.on('Recruitment Exam Result Declaration Tool', {
 				})
 				if (isUpdateExecuting) {
 					console.log("Second frappe.call() is executing.");
-				  } else {
+				  } else {         
 					console.log("Second frappe.call() is not executing.");
 				  }
 			}).addClass('btn-primary');
