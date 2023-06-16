@@ -15,9 +15,7 @@ def current_education(student_no):
 
 @frappe.whitelist()
 def last_attendence(student_no):
-	print("\n\n\n\n")
 	attendence_data=frappe.get_all("Student Attendance",{"student":student_no},['name','date'],order_by='date DESC')
-	print(attendence_data)
 	last_date=""
 	status=''
 	if attendence_data:

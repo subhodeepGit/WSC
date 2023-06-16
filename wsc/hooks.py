@@ -365,7 +365,8 @@ override_doctype_class = {
     "Student Applicant": "wsc.wsc.doctype.student_applicant.StudentApplicant",
     "Student Attendance": "wsc.wsc.doctype.student_attendance.StudentAttendance",
     "User Permission": "wsc.wsc.doctype.user_permission.UserPermission",
-    "Item": "wsc.wsc.validations.item.Item"
+    "Item": "wsc.wsc.validations.item.Item",
+    # "Job Applicant": "wsc.wsc.doctype.job_applicant.Job Applicant"
     # "Data Import": "wsc.wsc.doctype.data_import.DataImport"
 }
 #
