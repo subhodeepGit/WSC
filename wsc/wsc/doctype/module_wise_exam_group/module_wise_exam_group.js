@@ -5,6 +5,8 @@ frappe.ui.form.on('Module Wise Exam Group', {
 	refresh: function(frm){
 		frm.set_df_property('student_list', 'cannot_add_rows', true);
 		frm.set_df_property('student_list', 'cannot_delete_rows', true);
+		frm.set_df_property('scheduling_group_exam', 'cannot_add_rows', true);
+		frm.set_df_property('scheduling_group_exam', 'cannot_delete_rows', true);
 	},
 	setup: function(frm) {
         frm.set_query("exam_declaration_id", function() {
@@ -82,6 +84,8 @@ frappe.ui.form.on('Module Wise Exam Group', {
 					row.total_no_of_classes_scheduled = element.total_no_of_classes_scheduled
 					row.elegibility_status = element.elegibility_status
 					row.examination_qualification_approval = element.examination_qualification_approval
+					row.total_no_of_class_attended_by_the_studen = element.total_no_of_class_attended_by_the_studen
+					row.attendance_percentage=element.attendance_percentage
 				});
 				frm.refresh_field("student_list")
 				frm.save();

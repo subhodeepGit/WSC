@@ -43,24 +43,30 @@ def module_start_date(modules_id=None,exam_id=None,academic_term=None):
 def get_student(academic_term=None, programs=None,class_data=None,minimum_attendance_criteria=None,attendance_criteria=None,
 				start_date_of_attendence_duration=None,end_date_of_attendence_duration=None,modules_id=None,
 				semester=None):
-	print("\n\n\n")
 	enrolled_students = get_program_enrollment(academic_term,programs,class_data)
 	student_list=[]
 	if enrolled_students:
 		student_list=enrolled_students
-		print(start_date_of_attendence_duration)
-		print(end_date_of_attendence_duration)
-		print(modules_id)
-		print(semester)
 		total_no_class_scheduled=frappe.db.count('Course Schedule', filters=[["course","=",modules_id],['program','=',semester],
 								     ['schedule_date','between',[start_date_of_attendence_duration,end_date_of_attendence_duration]]])
-		print(total_no_class_scheduled)
 		
 		for t in student_list:
 			t.update({"total_no_of_classes_scheduled": total_no_class_scheduled})
+			class_att_date=frappe.db.count("Student Attendance",filters=[["student","=",t['student']],
+								['course','=',modules_id],['program','=',semester],['program','=',semester],
+								['date','between',[start_date_of_attendence_duration,end_date_of_attendence_duration]]])
+			t.update({"total_no_of_class_attended_by_the_studen":class_att_date})
+			t.update({"attendance_percentage":round((t.total_no_of_class_attended_by_the_studen/t.total_no_of_classes_scheduled)*100,2)})
 			if attendance_criteria=="No":
 				t.update({"elegibility_status": "Qualified"})
 				t.update({"examination_qualification_approval":1})
+			if attendance_criteria=="Yes":
+				if t.attendance_percentage>=float(minimum_attendance_criteria):
+					t.update({"elegibility_status": "Qualified"})
+					t.update({"examination_qualification_approval":1})
+				else:
+					t.update({"elegibility_status": "Not-Qualified"})
+					t.update({"examination_qualification_approval":0})		
 				
 		return student_list
 	else:
@@ -87,7 +93,7 @@ def get_program_enrollment(academic_term,programs=None,class_data=None):
 		where
 			pe.academic_term = %(academic_term)s  {condition1}
 		order by
-			pe.student_name asc
+			pe.student asc
 		'''.format(condition1=condition1, condition2=condition2),
 				({"academic_term": academic_term,"programs": programs}), as_dict=1) 
 

@@ -58,7 +58,7 @@
   {
    "fieldname": "total_no_of_class_attended_by_the_studen",
    "fieldtype": "Data",
-   "label": "Total No of Class Attended By the studen",
+   "label": "Total No of Class Attended By the student",
    "read_only": 1
   },
   {
@@ -93,7 +93,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-06-15 12:54:48.816313",
+ "modified": "2023-06-16 16:27:06.450822",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Module Wise Exam Student",
