@@ -238,9 +238,6 @@ def get_courses_on_declaration(declaration):
 @frappe.whitelist()
 def get_students(academic_year, group_based_on, academic_term=None, program=None, batch=None, student_category=None, course=None, class_name = None):
     enrolled_students = get_program_enrollment(academic_year, academic_term, program, batch, student_category, course, class_name)
-    print('\n\n\n\n')
-    print(enrolled_students)
-    print('\n\n\n\n')
     if enrolled_students:
         student_list = []
         for s in enrolled_students:
