@@ -45,7 +45,8 @@
   "total_enrolled_student",
   "student_list",
   "section_break_37",
-  "scheduling_group_exam"
+  "scheduling_group_exam",
+  "amended_from"
  ],
  "fields": [
   {
@@ -178,18 +179,21 @@
   },
   {
    "fieldname": "marker_name",
-   "fieldtype": "Data",
-   "label": "Marker Name"
+   "fieldtype": "Link",
+   "label": "Marker Name",
+   "options": "Instructor"
   },
   {
    "fieldname": "checker",
-   "fieldtype": "Data",
-   "label": "Checker Name"
+   "fieldtype": "Link",
+   "label": "Checker Name",
+   "options": "Instructor"
   },
   {
    "fieldname": "course_manager_name",
-   "fieldtype": "Data",
-   "label": "Course Manager Name"
+   "fieldtype": "Link",
+   "label": "Course Manager Name",
+   "options": "Instructor"
   },
   {
    "fieldname": "exam_declaration_information_section",
@@ -279,12 +283,21 @@
    "fieldtype": "Table",
    "label": "Scheduling Group Exam",
    "options": "Student Group Exam Scheduling"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Module Wise Exam Group",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-16 18:03:45.435312",
+ "modified": "2023-06-19 18:07:12.652452",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Module Wise Exam Group",

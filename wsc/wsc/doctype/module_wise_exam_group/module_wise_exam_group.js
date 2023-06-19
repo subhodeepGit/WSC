@@ -6,7 +6,7 @@ frappe.ui.form.on('Module Wise Exam Group', {
 		frm.set_df_property('student_list', 'cannot_add_rows', true);
 		frm.set_df_property('student_list', 'cannot_delete_rows', true);
 		frm.set_df_property('scheduling_group_exam', 'cannot_add_rows', true);
-		frm.set_df_property('scheduling_group_exam', 'cannot_delete_rows', true);
+		// frm.set_df_property('scheduling_group_exam', 'cannot_delete_rows', true);
 	},
 	setup: function(frm) {
         frm.set_query("exam_declaration_id", function() {
