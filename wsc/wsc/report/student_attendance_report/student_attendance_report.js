@@ -24,6 +24,16 @@ frappe.query_reports["Student Attendance Report"] = {
 				return frappe.db.get_link_options('Program', txt)
 			}
         },
+		{
+            "fieldname":"course",
+            "label": __("Module"),
+            "fieldtype": "MultiSelectList",
+            // "options": "Project",
+            // "reqd":1,
+            get_data: function(txt) {
+				return frappe.db.get_link_options('Course', txt)
+			}
+        },
         {
             "fieldname":"from_date",
             "label": __("From Date"),

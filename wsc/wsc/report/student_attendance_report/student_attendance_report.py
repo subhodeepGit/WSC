@@ -7,6 +7,7 @@ import frappe
 from frappe import _
 import itertools
 from datetime import datetime
+import copy
 
 def execute(filters=None):
     pe_data , course_schedule_data=get_data(filters)
@@ -19,7 +20,7 @@ def get_data(filters=None):
     from_date=filters.get('from_date')
     academic_term=filters.get('academic_term')
     semester=filters.get('semester')
-    
+    course=filters.get('course')
     filt=[]
     if academic_term:
         filt.append(["academic_term","in",tuple(academic_term)])
@@ -31,15 +32,18 @@ def get_data(filters=None):
     pe_data = frappe.get_all("Program Enrollment", filters=filt,fields = ["student", "student_name"])
 
     filter=[]
-    if from_date and to_date:
+    if from_date and to_date==None:
+        filter.append(["schedule_date", ">=", from_date])
+    elif to_date and from_date==None:
+        filter.append(["schedule_date", "<=", to_date])
+    elif from_date and to_date:
         filter.append(["schedule_date", "between", [from_date,to_date]])
-    if semester:
-        filt.append(["semester","in",tuple(semester)])
+    if course:
+        filter.append(["course","in",tuple(course)])
 
-    course_schedule_data = frappe.get_all("Course Schedule", filters=filter, fields=['name','schedule_date'])
+    course_schedule_data = frappe.get_all("Course Schedule", filters=filter, fields=['name','schedule_date','from_time','to_time'])
     student_attendance_data = frappe.get_all("Student Attendance", ['student','course_schedule','status'])
-    print("\n\n\n\n")
-    # print(course_schedule_data)
+    print(course_schedule_data)
     # print(pe_data)
     c_data=[]
     for t in course_schedule_data:
@@ -50,7 +54,7 @@ def get_data(filters=None):
 
     for t in pe_data:
         for j in c_data:
-            t['%s'%(j)]=''
+            t['%s'%(j)]='Attendance not marked'
 
     for t in pe_data:
         for d in student_attendance_data:
@@ -58,23 +62,44 @@ def get_data(filters=None):
                 t['%s'%(d['course_schedule'])]=d['status']
 
 
+
+    scheduled_classes = {}
+    present_classes = {}
+
+    for record in pe_data:
+        student_id = record['student']
+        for key, value in record.items():
+            if key.startswith('EDU-CSH-'):
+                if value != 'Attendance not marked':
+                    if student_id in scheduled_classes:
+                        scheduled_classes[student_id] += 1
+                    else:
+                        scheduled_classes[student_id] = 1
+                    if value == 'Present':
+                        if student_id in present_classes:
+                            present_classes[student_id] += 1
+                        else:
+                            present_classes[student_id] = 1
+    print("\n\n\n\n")
+    print(scheduled_classes)
+    print("\n\n\n\n")
+    print(present_classes)
+    
+    for record in pe_data:
+        student_id = record['student']
+        num_classes = scheduled_classes.get(student_id, 0)
+        if student_id in present_classes:
+            percentage = round((present_classes[student_id] / num_classes) * 100, 2)
+        else:
+            percentage = 0.0
+        record['percentage'] = percentage
+        record['total_classes_attended'] = present_classes[student_id]
+        record['total_classes_conducted'] = scheduled_classes[student_id]
+
+
+
+    print("\n\n\n\n")
     print(pe_data)
-    # head_list = []
-    # field_list = []
- 
-    # for t in course_schedule_data:
-    #     head_list.append(t['schedule_date'].strftime("%d-%m-%Y"))
-    
-    # head_list=list(set(head_list))
-    
-    # for t in course_schedule_data:
-    #     field_list.append(t['name'])
-
-    # field_list=list(set(head_list))
-
-    
-
-    # return pe_data, head_list, field_list
     return pe_data, course_schedule_data
 
     
@@ -94,29 +119,51 @@ def get_columns(head_name=None):
             "width":160
         },
     ]
-    # if len(head_name)!=0 and len(head_field_name)!=0:
-    #     for (t,d) in zip(head_name, head_field_name):
-    #         label=t
-    #         field_name=d
-    #         columns_add={
-    #             "label": _("%s"%(label)),
-    #             "fieldname": "%s"%(field_name),
-    #             "fieldtype": "Data",
-    #             "width":180
-    #         }
-    #         columns.append(columns_add)
 
     if len(head_name) != 0:
         for t in head_name:
             field_name=t['name']
-            label=t['schedule_date']
+            from_time_string = "%s"%t['from_time']
+            to_time_string = "%s"%t['to_time']
+            try:
+                from_time_object = datetime.strptime(from_time_string, '%H:%M:%S.%f')
+            except ValueError:
+                from_time_object = datetime.strptime(from_time_string, '%H:%M:%S')
+            try:
+                to_time_object = datetime.strptime(to_time_string, '%H:%M:%S.%f')
+            except ValueError:
+                to_time_object = datetime.strptime(to_time_string, '%H:%M:%S')
+            rounded_from_time = from_time_object.strftime("%H:%M")
+            rounded_to_time = to_time_object.strftime("%H:%M")
+            label='%s(%s to %s)'%(t['schedule_date'].strftime("%d-%m-%Y"),rounded_from_time,rounded_to_time)
             columns_add={
                 "label": _("%s"%(label)),
                 "fieldname": "%s"%(field_name),
                 "fieldtype": "Data",
-                "width":180
+                "width":250
             }
             columns.append(columns_add)
 
+    total_classes_attended={
+        "label": _("Total Classes Attended"),
+        "fieldname": "total_classes_attended",
+        "fieldtype": "Data",
+        "width":180
+    }
+    total_classes_conducted={
+        "label": _("Total Classes Conducted"),
+        "fieldname": "total_classes_conducted",
+        "fieldtype": "Data",
+        "width":180
+    }
+    percentage={
+        "label": _("Attendance Percentage"),
+        "fieldname": "percentage",
+        "fieldtype": "Data",
+        "width":180
+    }
+    columns.append(total_classes_conducted)
+    columns.append(total_classes_attended)
+    columns.append(percentage)
 
     return columns
