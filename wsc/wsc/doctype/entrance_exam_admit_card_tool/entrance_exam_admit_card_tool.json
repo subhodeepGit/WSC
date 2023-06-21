@@ -3,13 +3,16 @@
  "allow_rename": 1,
  "creation": "2023-06-02 17:28:13.459835",
  "default_view": "List",
+ "description": "For Applicants who did not get their prefered centers",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "entrance_exam_declaration",
   "get_applicants",
-  "deallotted_applicant_list"
+  "deallotted_applicant_list",
+  "use_in_case_there_are_unalloted_students_section",
+  "centre"
  ],
  "fields": [
   {
@@ -28,11 +31,21 @@
    "fieldtype": "Table",
    "label": "DeAllotted Applicant List",
    "options": "DeAllotted Applicant List"
+  },
+  {
+   "fieldname": "centre",
+   "fieldtype": "Select",
+   "label": "Centre"
+  },
+  {
+   "fieldname": "use_in_case_there_are_unalloted_students_section",
+   "fieldtype": "Section Break",
+   "label": "Use in case there are unalloted students"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-06-02 17:47:47.867847",
+ "modified": "2023-06-19 18:10:08.686777",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Admit Card Tool",

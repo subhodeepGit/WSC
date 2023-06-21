@@ -3,10 +3,108 @@
 
 import frappe
 from frappe.model.document import Document
+from datetime import datetime
+from frappe.utils import flt
+
+
 
 class ModuleWiseExamGroup(Document):
-	pass
+	def validate(self):
+		print("\n\n\n")
+		group_validation(self,"validate")	
+		filter_group(self)
+		
+		date_validation(self)
+		validate_time(self)
+		self.calculate_total_hours()
 
+	def on_submit(self):
+		group_validation(self,"on_submit")
+		date_time_mandatory(self)
+		time_mandatory(self)
+	
+	def calculate_total_hours(self):
+		for d in self.get("scheduling_group_exam"):
+			if d.to_time and d.from_time:
+				d.total_duration_in_hours = datetime.strptime(d.to_time, '%H:%M:%S') - datetime.strptime(d.from_time, '%H:%M:%S') 	
+
+def time_mandatory(self):
+	for t in self.get("scheduling_group_exam"):
+		if not t.from_time:
+			frappe.throw("From Time not maintained in Exam For the Group <b>%s</b>"%(t.group_name))
+		if not (t.from_time and t.to_time):
+			frappe.throw("End Time not maintained in Exam For the Group <b>%s</b>"%(t.group_name))	
+
+
+def validate_time(self):
+	for cr in self.get("scheduling_group_exam"):
+		print("ok1")
+		print(flt(cr.from_time))
+		print(flt(cr.to_time))
+		if flt(cr.from_time)>flt(cr.to_time):
+			print("ok")
+			frappe.throw("Row <b>{0}</b> From Time cannot be greater than To Time".format(cr.idx))
+
+def date_validation(self):
+	for t in self.get('scheduling_group_exam'):
+		if t.examination_date:
+			if self.module_exam_start_date<=t.examination_date and self.module_exam_start_date >= self.module_exam_end_date:
+				pass
+			else:
+				frappe.throw("Date provided in Exam Group:- <b> %s </b> is not in between Module Exam Start Date and Module Exam End Date"%(t.group_name))	
+
+def date_time_mandatory(self):
+	idx=[]
+	for t in self.get('scheduling_group_exam'):
+		if not (t.examination_date or t.from_time or t.to_time):
+			frappe.throw("Date Time Not Mentioned in the Exam Group :- <b>%s</b> "%(t.group_name))
+
+
+def group_validation(self,method):
+	idx=[]
+	for t in self.get("student_list"):
+		if t.examination_qualification_approval==1 and (t.group_name==None or t.group_name==""):
+			idx.append(t.idx)
+	if idx:
+		if method=="validate":
+			frappe.msgprint("Group Name not given for following Line %s"%(idx))
+		if method=="on_submit":
+			frappe.throw("Group Name not given for following Line %s"%(idx))			
+
+def filter_group(self):
+	group_name=[]
+	for t in self.get("student_list"):
+		if t.group_name:
+			group_name.append(t.group_name)
+	group_name=list(set(group_name))
+	group_name.sort()
+
+	present_list=[]
+	for t in self.get("scheduling_group_exam"):
+		a={}
+		a['group_name']=t.group_name
+		a['examination_date']=t.examination_date
+		a['from_time']=t.from_time
+		a['to_time']=t.to_time
+		a['total_duration_in_hours']=t.total_duration_in_hours
+		present_list.append(a)		
+
+	if not present_list:
+		for t in group_name:
+			self.append("scheduling_group_exam",{
+				"group_name":t
+			})
+	else:
+		for t in group_name:
+			flag="No"
+			for j in self.get("scheduling_group_exam"):
+				if j.group_name==t:
+					flag="Yes"
+					break
+			if flag=="No":
+				self.append("scheduling_group_exam",{                                     
+					"group_name":t,                                                                   
+				})
 
 @frappe.whitelist()
 def valid_module_as_exam_declation(doctype, txt, searchfield, start, page_len, filters):
