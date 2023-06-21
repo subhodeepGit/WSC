@@ -50,17 +50,17 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "default": "0",
    "fieldname": "center_allocated_status",
    "fieldtype": "Check",
-   "label": "Center Allocated Status",
-   "read_only": 1
+   "label": "Center Allocated Status"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-05-17 14:58:48.031604",
+ "modified": "2023-06-15 15:11:34.155209",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Applicant List",
