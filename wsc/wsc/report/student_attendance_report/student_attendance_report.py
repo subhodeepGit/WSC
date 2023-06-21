@@ -7,7 +7,6 @@ import frappe
 from frappe import _
 import itertools
 from datetime import datetime
-import copy
 
 def execute(filters=None):
     pe_data , course_schedule_data=get_data(filters)
@@ -21,6 +20,10 @@ def get_data(filters=None):
     academic_term=filters.get('academic_term')
     semester=filters.get('semester')
     course=filters.get('course')
+
+    if from_date > to_date:
+        frappe.throw("From Date cannot be greater than To Date")
+
     filt=[]
     if academic_term:
         filt.append(["academic_term","in",tuple(academic_term)])
@@ -41,25 +44,37 @@ def get_data(filters=None):
     if course:
         filter.append(["course","in",tuple(course)])
 
+    att_filt=[]
+    if from_date and to_date==None:
+        att_filt.append(["date", ">=", from_date])
+    elif to_date and from_date==None:
+        att_filt.append(["date", "<=", to_date])
+    elif from_date and to_date:
+        att_filt.append(["date", "between", [from_date,to_date]])
+
     course_schedule_data = frappe.get_all("Course Schedule", filters=filter, fields=['name','schedule_date','from_time','to_time'])
-    student_attendance_data = frappe.get_all("Student Attendance", ['student','course_schedule','status'])
-    print(course_schedule_data)
-    # print(pe_data)
+    student_attendance_data = frappe.get_all("Student Attendance", filters=att_filt, fields=['student','course_schedule','status','date'])
+
     c_data=[]
     for t in course_schedule_data:
         c_data.append(t['name'])
 
     c_data= list(set(c_data))   
-    # print(c_data)
 
     for t in pe_data:
         for j in c_data:
             t['%s'%(j)]='Attendance not marked'
 
+    
+    for t in pe_data:
+        keys = list(t.keys())
+
     for t in pe_data:
         for d in student_attendance_data:
             if d['student'] in t['student']:
-                t['%s'%(d['course_schedule'])]=d['status']
+                for key in keys[2:]:
+                    if key in d['course_schedule']:
+                        t['%s'%(d['course_schedule'])]=d['status']
 
 
 
@@ -80,10 +95,6 @@ def get_data(filters=None):
                             present_classes[student_id] += 1
                         else:
                             present_classes[student_id] = 1
-    print("\n\n\n\n")
-    print(scheduled_classes)
-    print("\n\n\n\n")
-    print(present_classes)
     
     for record in pe_data:
         student_id = record['student']
@@ -96,10 +107,6 @@ def get_data(filters=None):
         record['total_classes_attended'] = present_classes[student_id]
         record['total_classes_conducted'] = scheduled_classes[student_id]
 
-
-
-    print("\n\n\n\n")
-    print(pe_data)
     return pe_data, course_schedule_data
 
     
