@@ -1,0 +1,182 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-06-16 11:19:27.679074",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "academic_year",
+  "program_grades",
+  "course",
+  "column_break_q6mu0",
+  "academic_term",
+  "programs",
+  "semester",
+  "class",
+  "student_details_section",
+  "get_students",
+  "students_details",
+  "course_manager_details_section",
+  "course_manager_name",
+  "employee",
+  "employee_number",
+  "department",
+  "course_advisor_details_section",
+  "course_advisor_name",
+  "course_advisor_employee_number",
+  "course_advisor_department"
+ ],
+ "fields": [
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Academic Year",
+   "options": "Academic Year",
+   "reqd": 1
+  },
+  {
+   "fieldname": "program_grades",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Program Grades",
+   "options": "Program Grades",
+   "reqd": 1
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Course",
+   "options": "Course",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_q6mu0",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Academic Term",
+   "options": "Academic Term",
+   "reqd": 1
+  },
+  {
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "label": "Programs",
+   "options": "Programs",
+   "reqd": 1
+  },
+  {
+   "fieldname": "semester",
+   "fieldtype": "Link",
+   "label": "Semester",
+   "options": "Program",
+   "reqd": 1
+  },
+  {
+   "fieldname": "class",
+   "fieldtype": "Link",
+   "label": "Class",
+   "options": "School House",
+   "reqd": 1
+  },
+  {
+   "fieldname": "student_details_section",
+   "fieldtype": "Section Break",
+   "label": "Student Details"
+  },
+  {
+   "fieldname": "get_students",
+   "fieldtype": "Button",
+   "label": "Get Students"
+  },
+  {
+   "fieldname": "students_details",
+   "fieldtype": "Table",
+   "label": "Students Details",
+   "options": "Course Manager Assignment Student Details"
+  },
+  {
+   "fieldname": "course_manager_details_section",
+   "fieldtype": "Section Break",
+   "label": "Course Manager Details"
+  },
+  {
+   "fieldname": "course_manager_name",
+   "fieldtype": "Link",
+   "label": "Course Manager Name ",
+   "options": "Instructor"
+  },
+  {
+   "fetch_from": "course_manager_name.employee",
+   "fieldname": "employee",
+   "fieldtype": "Data",
+   "label": "Employee "
+  },
+  {
+   "fetch_from": "course_manager_name.employee_number",
+   "fieldname": "employee_number",
+   "fieldtype": "Data",
+   "label": "Employee Number"
+  },
+  {
+   "fetch_from": "course_manager_name.department",
+   "fieldname": "department",
+   "fieldtype": "Data",
+   "label": "Department"
+  },
+  {
+   "fieldname": "course_advisor_details_section",
+   "fieldtype": "Section Break",
+   "label": "Course Advisor Details"
+  },
+  {
+   "fieldname": "course_advisor_name",
+   "fieldtype": "Link",
+   "label": "Course Advisor Name",
+   "options": "Instructor"
+  },
+  {
+   "fetch_from": "course_manager_name.employee_number",
+   "fieldname": "course_advisor_employee_number",
+   "fieldtype": "Data",
+   "label": "Course Advisor Employee Number"
+  },
+  {
+   "fetch_from": "course_advisor_name.department",
+   "fieldname": "course_advisor_department",
+   "fieldtype": "Data",
+   "label": "Course Advisor Department"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-06-16 15:32:54.189872",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Course Advisor and Manager Assignment",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
