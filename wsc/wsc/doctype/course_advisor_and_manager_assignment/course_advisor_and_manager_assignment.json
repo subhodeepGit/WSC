@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "CAMA-.YYYY.-.####",
  "creation": "2023-06-16 11:19:27.679074",
  "default_view": "List",
  "doctype": "DocType",
@@ -25,6 +26,7 @@
   "department",
   "course_advisor_details_section",
   "course_advisor_name",
+  "employee_1",
   "course_advisor_employee_number",
   "course_advisor_department"
  ],
@@ -117,19 +119,22 @@
    "fetch_from": "course_manager_name.employee",
    "fieldname": "employee",
    "fieldtype": "Data",
-   "label": "Employee "
+   "label": "Employee ",
+   "read_only": 1
   },
   {
    "fetch_from": "course_manager_name.employee_number",
    "fieldname": "employee_number",
    "fieldtype": "Data",
-   "label": "Employee Number"
+   "label": "Employee Number",
+   "read_only": 1
   },
   {
    "fetch_from": "course_manager_name.department",
    "fieldname": "department",
    "fieldtype": "Data",
-   "label": "Department"
+   "label": "Department",
+   "read_only": 1
   },
   {
    "fieldname": "course_advisor_details_section",
@@ -146,21 +151,31 @@
    "fetch_from": "course_manager_name.employee_number",
    "fieldname": "course_advisor_employee_number",
    "fieldtype": "Data",
-   "label": "Course Advisor Employee Number"
+   "label": "Course Advisor Employee Number",
+   "read_only": 1
   },
   {
    "fetch_from": "course_advisor_name.department",
    "fieldname": "course_advisor_department",
    "fieldtype": "Data",
-   "label": "Course Advisor Department"
+   "label": "Course Advisor Department",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "course_advisor_name.employee",
+   "fieldname": "employee_1",
+   "fieldtype": "Data",
+   "label": "Employee",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-06-16 15:32:54.189872",
+ "modified": "2023-06-22 12:10:23.358943",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Course Advisor and Manager Assignment",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
