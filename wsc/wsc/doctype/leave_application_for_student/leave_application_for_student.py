@@ -5,7 +5,7 @@ import frappe
 from frappe.model.document import Document
 import json
 from frappe import msgprint, _
-
+from wsc.wsc.notification.custom_notification import send_email_to_course_advisor,send_email_to_course_manager,send_email_to_student
 
 class LeaveApplicationforStudent(Document):
 	def on_submit(self):
@@ -36,68 +36,16 @@ class LeaveApplicationforStudent(Document):
 
 		if self.workflow_state == "Sent for Approval to Class Advisor":
 			send_email_to_course_advisor(self)
-		if self.workflow_state == "Sent for Approval to Course Manager":
+		elif self.workflow_state == "Sent for Approval to Course Manager":
 			send_email_to_course_manager(self)
+		elif self.workflow_state == "Approved" or "Rejected" or "Rejected by Class Advisor":
+			send_email_to_student(self)
+		else:
+			pass
 
 
 
-def send_email_to_course_advisor(self):
-	flag=0
-	msg="""<p>Leave Application Submitted Sucessfully by <b> {0}</b>""".format(self.get('student_name') or '-')
-	for t in self.get('current_education_details'):
-		programs=t.programs
-		semesters=t.semesters
-		academic_year=t.academic_year
-		academic_term=t.academic_term
 
-	get_ca_cm_assignment = frappe.get_all("Course Advisor and Manager Assignment",filters=[['programs','=',programs],['semester','=',semesters],['academic_year','=',academic_year],['academic_term','=',academic_term]],fields=['name','cm_email','ca_email','course_manager_name','course_advisor_name'])
-
-	if get_ca_cm_assignment:
-		get_students = frappe.get_all("Course Manager Assignment Student Details", {"parent":get_ca_cm_assignment[0]['name']}, ['student','student_name'])
-		if get_students:
-			for t in get_students:
-				if self.student == t['student']:
-					flag=1
-
-	if flag==1:
-		recipients = get_ca_cm_assignment[0]['ca_email']
-		course_advisor_name = get_ca_cm_assignment[0]['course_advisor_name']
-		send_mail(recipients,'Project and Task Report',msg)
-		frappe.msgprint("Email sent to Course Advisor: %s"%(course_advisor_name))
-
-def send_email_to_course_manager(self):
-	flag=0
-	msg="""<p>Leave Application Submitted Sucessfully by <b> {0}</b>""".format(self.get('student_name') or '-')
-	for t in self.get('current_education_details'):
-		programs=t.programs
-		semesters=t.semesters
-		academic_year=t.academic_year
-		academic_term=t.academic_term
-
-	get_ca_cm_assignment = frappe.get_all("Course Advisor and Manager Assignment",filters=[['programs','=',programs],['semester','=',semesters],['academic_year','=',academic_year],['academic_term','=',academic_term]],fields=['name','cm_email','ca_email','course_manager_name','course_advisor_name'])
-
-	if get_ca_cm_assignment:
-		get_students = frappe.get_all("Course Manager Assignment Student Details", {"parent":get_ca_cm_assignment[0]['name']}, ['student','student_name'])
-		if get_students:
-			for t in get_students:
-				if self.student == t['student']:
-					flag=1
-
-	if flag==1:
-		recipients = get_ca_cm_assignment[0]['cm_email']
-		course_manager_name = get_ca_cm_assignment[0]['course_manager_name']
-		send_mail(recipients,'Project and Task Report',msg)
-		frappe.msgprint("Email sent to Course Manager: %s"%(course_manager_name))
-
-
-def send_mail(recipients,subject,message):
-    if has_default_email_acc():
-        frappe.sendmail(recipients=recipients,subject=subject,message = message)
-
-def has_default_email_acc():
-    for d in frappe.get_all("Email Account", {"default_outgoing":1}):
-       return "true"
-    return ""
 	
 def hostel_leave(self):
 	if self.leave_applicability_hostel == "Academics and Hostel":
