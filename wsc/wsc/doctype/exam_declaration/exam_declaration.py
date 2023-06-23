@@ -146,6 +146,9 @@ class ExamDeclaration(Document):
 
     def on_update_after_submit(self):
         self.sort_by_date()
+        self.module_disabled_update("on_update_after_submit") 
+
+
 
     def on_trash(self): 
         self.delete_permission()
@@ -167,6 +170,8 @@ class ExamDeclaration(Document):
         # on_update(self,on_submit=1)
     def on_cancel(doc):
         cancel_fees(doc)
+        doc.module_disabled_update("on_cancel")
+   
 
     
     def validate_assessment_plan(self):
@@ -176,6 +181,15 @@ class ExamDeclaration(Document):
                 semesters.append(d.semester)
             if self.course_assessment_plan not in [d.name for d in frappe.get_all("Course Assessment Plan",{"programs":self.exam_program,"program":["IN",semesters],"academic_year":self.academic_year,"docstatus":1})]:
                 frappe.throw("Please select valid <b>Course Assessment Plan</b>")    
+
+    def module_disabled_update(self,methord):
+        if methord=="on_update_after_submit":
+            disabled=self.disabled
+        else:
+            disabled=1  
+        frappe.db.sql(""" update `tabModule Wise Exam Group` set disabled=%s where exam_declaration_id='%s' """%(disabled,self.name))
+
+
 #     @frappe.whitelist()
 #     def make_exam_assessment_result(self):
 #         self.db_set("certificate_creation_status", "In Process")

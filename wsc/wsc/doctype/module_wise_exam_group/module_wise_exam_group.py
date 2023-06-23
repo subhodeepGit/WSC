@@ -4,16 +4,14 @@
 import frappe
 from frappe.model.document import Document
 from datetime import datetime
-from frappe.utils import flt
 
 
 
 class ModuleWiseExamGroup(Document):
 	def validate(self):
-		print("\n\n\n")
+		duplicate_validation(self)
 		group_validation(self,"validate")	
 		filter_group(self)
-		
 		date_validation(self)
 		validate_time(self)
 		self.calculate_total_hours()
@@ -28,6 +26,12 @@ class ModuleWiseExamGroup(Document):
 			if d.to_time and d.from_time:
 				d.total_duration_in_hours = datetime.strptime(d.to_time, '%H:%M:%S') - datetime.strptime(d.from_time, '%H:%M:%S') 	
 
+def duplicate_validation(self):
+	data=frappe.get_all("Module Wise Exam Group",{"exam_declaration_id":self.exam_declaration_id,"modules_id":self.modules_id,"docstatus":1})
+	if data:
+		frappe.throw("Module Wise Exam Group Has Already Been Declared")
+
+
 def time_mandatory(self):
 	for t in self.get("scheduling_group_exam"):
 		if not t.from_time:
@@ -38,12 +42,11 @@ def time_mandatory(self):
 
 def validate_time(self):
 	for cr in self.get("scheduling_group_exam"):
-		print("ok1")
-		print(flt(cr.from_time))
-		print(flt(cr.to_time))
-		if flt(cr.from_time)>flt(cr.to_time):
-			print("ok")
-			frappe.throw("Row <b>{0}</b> From Time cannot be greater than To Time".format(cr.idx))
+		if cr.to_time and cr.from_time:
+			from_time= datetime.strptime(cr.from_time, '%H:%M:%S').time()
+			to_time= datetime.strptime(cr.to_time, '%H:%M:%S').time()
+			if from_time>to_time:
+				frappe.throw("Row <b>{0}</b> From Time cannot be greater than To Time".format(cr.idx))
 
 def date_validation(self):
 	for t in self.get('scheduling_group_exam'):
