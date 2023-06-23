@@ -135,7 +135,7 @@ def get_course_schedule_events(start, end, filters=None):
 			"""select name, course, course_name, course_code,color,program,instructor,
 				timestamp(schedule_date, from_time) as from_time,
 				timestamp(schedule_date, to_time) as to_time,
-				room,room_name, student_group, 0 as 'allDay'
+				room,room_name,school_house, student_group, 0 as 'allDay'
 			from `tabCourse Schedule`
 			where ( schedule_date between %(start)s and %(end)s )
 			{conditions}""".format(
@@ -150,8 +150,9 @@ def get_course_schedule_events(start, end, filters=None):
 	for d in data:
 		from_time=d["from_time"].strftime("%H:%M:%S")
 		to_time=d["to_time"].strftime("%H:%M:%S")
-		d.update({"course":d.course_name+"\n"+d.course_code+"\n"+d.instructor+"\n"+d.room})
+		d.update({"course":d.course_name+"\n"+d.course_code+"\n"+d.school_house+"\n"+d.instructor+"\n"+d.room_name})
 		# +"\n"+to_time+"\n"+from_time
+		# +d.school_house+"\n"
 		result.append(d)
 	return result
 
