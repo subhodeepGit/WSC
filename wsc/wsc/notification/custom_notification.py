@@ -486,4 +486,31 @@ def send_email_to_student(self):
         frappe.msgprint("Email sent to Course Manager: %s"%(course_manager_name))
 
 def send_email_to_deputy_director(self):
-    pass
+    print ("\n\n\n")
+    print("WORKING")
+    flag=0
+    for t in self.get('current_education_details'):
+        programs=t.programs
+        semesters=t.semesters
+        academic_year=t.academic_year
+        academic_term=t.academic_term
+
+    get_ca_cm_assignment = frappe.get_all("Course Advisor and Manager Assignment",filters=[['programs','=',programs],['semester','=',semesters],['academic_year','=',academic_year],['academic_term','=',academic_term]],fields=['name', 'dd_name', 'dd_email', 'course_manager_name'])
+    dd_name = get_ca_cm_assignment[0]['dd_name']
+    course_manager_name = get_ca_cm_assignment[0]['course_manager_name']
+
+    if self.get('workflow_state') == "Approved":
+        msg="""<p>Leave Application <b>{0}</b> has been approved by <b>{1}</b>""".format(self.get('name') or '-',course_manager_name)
+    else :
+        pass
+
+    if get_ca_cm_assignment:
+        get_students = frappe.get_all("Course Manager Assignment Student Details", {"parent":get_ca_cm_assignment[0]['name']}, ['student','student_name'])
+        if get_students:
+            for t in get_students:
+                if self.student == t['student']:
+                    flag=1
+    if flag==1:
+        recipients = get_ca_cm_assignment[0]['dd_email']
+        send_mail(recipients,'Leave Application Notification',msg)
+        frappe.msgprint("Email sent to Deputy Director: %s"%(course_manager_name))

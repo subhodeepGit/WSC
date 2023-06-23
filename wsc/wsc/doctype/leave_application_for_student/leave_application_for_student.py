@@ -42,9 +42,11 @@ class LeaveApplicationforStudent(Document):
 			send_email_to_course_advisor(self)
 		elif self.workflow_state == "Sent for Approval to Course Manager":
 			send_email_to_course_manager(self)
-		elif self.workflow_state == "Approved" or "Rejected" or "Rejected by Class Advisor":
+		elif self.workflow_state == "Rejected" or "Rejected by Class Advisor":
 			send_email_to_student(self)
-			# send_email_to_deputy_director(self)
+		elif self.workflow_state == "Approved":
+			# send_email_to_student(self)
+			send_email_to_deputy_director(self)
 		else:
 			pass
 

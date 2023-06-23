@@ -33,6 +33,7 @@
   "ca_email",
   "deputy_director_details_section",
   "employee_2",
+  "dd_name",
   "employee_number_2",
   "dd_department",
   "dd_email"
@@ -223,11 +224,17 @@
    "fieldtype": "Data",
    "label": "DD Email",
    "read_only": 1
+  },
+  {
+   "fetch_from": "employee_2.employee_name",
+   "fieldname": "dd_name",
+   "fieldtype": "Data",
+   "label": "DD Name"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-06-23 17:52:31.245361",
+ "modified": "2023-06-23 18:19:01.201343",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Course Advisor and Manager Assignment",
