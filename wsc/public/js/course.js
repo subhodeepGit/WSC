@@ -1,16 +1,14 @@
 frappe.ui.form.on('Course', {
 	refresh: function(frm) {
-		frm.remove_custom_button("Add to Programs","Action");
-		frm.remove_custom_button("Add to Semester","Action");
 		if (frm.doc.is_tot==0){
+			frm.remove_custom_button("Add to Programs","Action");
+			frm.remove_custom_button("Add to Semester","Action");
 			if (!cur_frm.doc.__islocal && (!frappe.user.has_role(["Student","Instructor"]) || frappe.user.has_role(["System Manager"]))) {
 				frm.add_custom_button(__('Add to Semester'), function() {
 					frm.trigger('add_course_to_semester')
 				}, __('Action'));
 			}
 		}
-	},
-	refresh: function(frm) {
 		if (frm.doc.is_tot==1){
 			frm.remove_custom_button("Add to Programs","Action");
 			frm.remove_custom_button("Add to Semester","Action");

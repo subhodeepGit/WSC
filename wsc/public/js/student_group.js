@@ -1,5 +1,15 @@
 frappe.ui.form.on("Student Group", {
     refresh:function(frm){
+		frm.remove_custom_button("Add Guardians to Email Group","Actions");
+		frm.remove_custom_button("Newsletter","View");
+		frm.remove_custom_button("Course Scheduling Tool","Tools");
+		frm.add_custom_button(__('Class Scheduling Tool'), function() {
+			frappe.route_options = {
+				student_group: frm.doc.name
+			}
+			frappe.set_route('Form', 'Class Scheduling Tool', 'Class Scheduling Tool');
+		}, __('Tools'));
+
 		frm.set_df_property('group_based_on', 'options', ['Batch', 'Course', 'Activity', 'Exam Declaration', 'Mentor-Mentee']);
 
 		frm.set_query("programs", function () {
@@ -15,7 +25,7 @@ frappe.ui.form.on("Student Group", {
             frm.remove_custom_button("Newsletter","View");
             frm.remove_custom_button("Add Guardians to Email Group","Actions");
         }
-		if (frm.doc.group_based_on =="Mentor-Mentee"){
+		if (frm.doc.group_based_on == "Mentor-Mentee"){
             
             frm.remove_custom_button("Course Scheduling Tool","Tools");
 
