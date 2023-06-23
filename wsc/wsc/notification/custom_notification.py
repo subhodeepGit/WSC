@@ -472,8 +472,18 @@ def send_email_to_student(self):
             for t in get_students:
                 if self.student == t['student']:
                     flag=1
-
+    recipients=[]
     if flag==1:
-        recipients = get_student_email[0]['student_email_id']
+        recipient1 = get_student_email[0]['student_email_id']
+        recipients.append(recipient1)
+        recipient2 = get_ca_cm_assignment[0]['ca_email']
+        recipients.append(recipient2)
+        recipient3 = get_ca_cm_assignment[0]['cm_email']
+        recipients.append(recipient3)
         send_mail(recipients,'Leave Application Notification',msg)
         frappe.msgprint("Email sent to Student: %s"%(self.get('student_name')))
+        frappe.msgprint("Email sent to Course Advisor: %s"%(course_advisor_name))
+        frappe.msgprint("Email sent to Course Manager: %s"%(course_manager_name))
+
+def send_email_to_deputy_director(self):
+    pass

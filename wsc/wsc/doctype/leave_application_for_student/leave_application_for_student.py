@@ -5,7 +5,7 @@ import frappe
 from frappe.model.document import Document
 import json
 from frappe import msgprint, _
-from wsc.wsc.notification.custom_notification import send_email_to_course_advisor,send_email_to_course_manager,send_email_to_student
+from wsc.wsc.notification.custom_notification import send_email_to_course_advisor,send_email_to_course_manager,send_email_to_student,send_email_to_deputy_director
 
 class LeaveApplicationforStudent(Document):
 	def on_submit(self):
@@ -23,16 +23,20 @@ class LeaveApplicationforStudent(Document):
 		if all_zero_or_none:
 			frappe.throw("You have not selected any class for leave application!!")
 
-		if self.workflow_state == "Sent for Approval to Class Advisor" or "Sent for Approval to Course Manager":
-			pass
-		else:
-			duplicate_application = frappe.db.sql("""SELECT `name`, `from_date`, `to_date` FROM `tabLeave Application for Student` WHERE `student` = '%s' AND ((from_date >= '%s' AND to_date <= '%s') OR (from_date <= '%s' AND to_date >= '%s'))"""%(self.student,self.from_date,self.to_date,self.to_date,self.from_date),as_dict=1)
-			if duplicate_application:
-				for t in duplicate_application:
-					duplicate_from_date = t['from_date']
-					duplicate_to_date = t['to_date']
-					duplicate_application_no = t['name']
-					frappe.throw(_("You have already applied for leave from <b>{0}</b> to <b>{1}</b> and your application number is <b>{2}</b>!!".format(duplicate_from_date.strftime("%d-%m-%Y"),duplicate_to_date.strftime("%d-%m-%Y"),duplicate_application_no)))
+		duplicate_application = frappe.db.sql("""SELECT `name`, `from_date`, `to_date`, `workflow_state` FROM `tabLeave Application for Student` WHERE `student` = '%s' AND ((from_date >= '%s' AND to_date <= '%s') OR (from_date <= '%s' AND to_date >= '%s'))"""%(self.student,self.from_date,self.to_date,self.to_date,self.from_date),as_dict=1)
+		
+		if duplicate_application:
+			for t in duplicate_application:
+				if self.name!=t['name']:
+					if t['workflow_state']=="Rejected by Class Advisor":
+						pass
+					elif t['workflow_state']=="Rejected":
+						pass
+					else:
+						duplicate_from_date = t['from_date']
+						duplicate_to_date = t['to_date']
+						duplicate_application_no = t['name']
+						frappe.throw(_("You have already applied for leave from <b>{0}</b> to <b>{1}</b> and your application number is <b>{2}</b>!!".format(duplicate_from_date.strftime("%d-%m-%Y"),duplicate_to_date.strftime("%d-%m-%Y"),duplicate_application_no)))
 
 		if self.workflow_state == "Sent for Approval to Class Advisor":
 			send_email_to_course_advisor(self)
@@ -40,6 +44,7 @@ class LeaveApplicationforStudent(Document):
 			send_email_to_course_manager(self)
 		elif self.workflow_state == "Approved" or "Rejected" or "Rejected by Class Advisor":
 			send_email_to_student(self)
+			# send_email_to_deputy_director(self)
 		else:
 			pass
 
