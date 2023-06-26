@@ -486,8 +486,6 @@ def send_email_to_student(self):
         frappe.msgprint("Email sent to Course Manager: %s"%(course_manager_name))
 
 def send_email_to_deputy_director(self):
-    print ("\n\n\n")
-    print("WORKING")
     flag=0
     for t in self.get('current_education_details'):
         programs=t.programs
@@ -513,4 +511,4 @@ def send_email_to_deputy_director(self):
     if flag==1:
         recipients = get_ca_cm_assignment[0]['dd_email']
         send_mail(recipients,'Leave Application Notification',msg)
-        frappe.msgprint("Email sent to Deputy Director: %s"%(course_manager_name))
+        frappe.msgprint("Email sent to Deputy Director: %s"%(dd_name))
