@@ -24,6 +24,15 @@ class ExamAssessmentPlan(Document):
         exam_evaluation_plan_for_paper_setter_submit(self)
         exam_evaluation_plan_for_moderator_submit(self)
 
+    def on_update_after_submit(self):
+        self.validate_dates()
+        paper_setting_data=frappe.get_all("Exam Paper Setting",{"assessment_plan":self.name,"workflow_state":"Pending"},['name'])
+        for t in paper_setting_data:
+            frappe.db.sql(""" update `tabExam Paper Setting` SET paper_setting_start_date='%s',paper_setting_end_date='%s' where name='%s' """%
+                          (self.paper_setting_start_date,self.paper_setting_end_date,t['name']))
+
+
+
     @frappe.whitelist()
     def create_exam_paper_setter(self):
         make_exam_paper_setting(self)
@@ -159,6 +168,10 @@ def make_exam_paper_setting(doc):
                 eps.assessment_plan=doc.name
                 eps.programs=doc.programs
                 eps.program=doc.program
+
+                eps.paper_setting_start_date=doc.paper_setting_start_date
+                eps.paper_setting_end_date=doc.paper_setting_end_date
+
                 for moderator in doc.get("moderator_list"):
                     if moderator.course==ex.course:
                         eps.moderator_name=moderator.moderator
