@@ -520,3 +520,4 @@ def send_mail_to_students_mweg(self):
         student_no_list.append(student_no)
     print("\n\n\n")
     print(student_no_list)
+    student_emails = frappe.get_all("Student",{})
