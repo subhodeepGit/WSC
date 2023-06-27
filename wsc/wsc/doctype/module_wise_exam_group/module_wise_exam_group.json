@@ -46,6 +46,8 @@
   "total_enrolled_student",
   "student_list",
   "section_break_37",
+  "invigilator_details_table",
+  "section_break_39",
   "scheduling_group_exam",
   "amended_from"
  ],
@@ -300,12 +302,23 @@
    "fieldtype": "Check",
    "label": "Disabled",
    "read_only": 1
+  },
+  {
+   "fieldname": "section_break_39",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "invigilator_details_table",
+   "fieldtype": "Table",
+   "label": "Invigilator Details Table",
+   "options": "Invigilator Details",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-23 12:46:30.144023",
+ "modified": "2023-06-27 13:07:43.404785",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Module Wise Exam Group",

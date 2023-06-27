@@ -71,6 +71,8 @@ def make_exam_paper_setting_from_sssessment_plan():
                 assigned_to(doc,ap.paper_setting_end_date)
 
 def share_document(doc):
+    print("\n\n\nExaminer")
+    print(doc.examiner)
     doc_share=frappe.new_doc("DocShare")
     doc_share.user= get_userid(doc.examiner).user_id
     doc_share.share_doctype="Exam Paper Setting"

@@ -7,6 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "exam_type",
+  "assessment_criteria",
   "exam_name",
   "disabled",
   "is_application_required",
@@ -273,12 +274,19 @@
    "fieldtype": "Data",
    "label": "Exam Declaration Name",
    "read_only": 1
+  },
+  {
+   "fieldname": "assessment_criteria",
+   "fieldtype": "Link",
+   "label": "Assessment Criteria",
+   "options": "Assessment Criteria",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-14 12:47:29.759271",
+ "modified": "2023-06-27 12:25:01.828478",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Declaration",
