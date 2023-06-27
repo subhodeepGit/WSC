@@ -157,7 +157,10 @@ def get_student(academic_term=None, programs=None,class_data=None,minimum_attend
 								['course','=',modules_id],['program','=',semester],['program','=',semester],
 								['date','between',[start_date_of_attendence_duration,end_date_of_attendence_duration]]])
 			t.update({"total_no_of_class_attended_by_the_studen":class_att_date})
-			t.update({"attendance_percentage":round((t.total_no_of_class_attended_by_the_studen/t.total_no_of_classes_scheduled)*100,2)})
+			if t.total_no_of_class_attended_by_the_studen==0:
+				t.update({"attendance_percentage":0.0})
+			else:
+				t.update({"attendance_percentage":round((t.total_no_of_class_attended_by_the_studen/t.total_no_of_classes_scheduled)*100,2)})
 			if attendance_criteria=="No":
 				t.update({"elegibility_status": "Qualified"})
 				t.update({"examination_qualification_approval":1})
