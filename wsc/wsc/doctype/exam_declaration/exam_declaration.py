@@ -83,21 +83,23 @@ class ExamDeclaration(Document):
             course_list = get_courses_by_semester_academic_year([d.semester for d in self.semesters],year_end_date)
             result = []
             for course in course_list:
-                row = {}
-                course_details = frappe.db.get_all('Course',{'name':course,},['name','course_code','course_name'])
-                # if c.course not in [d.name for d in frappe.get_all("Course", {"disable":0},['name'])]:
-                # ,["academic_year","=","%s"%(academic_year)]]
-                #  {'name':course}, 
-                semester = frappe.db.get_value('Program Course', {'course': course,"parent":["IN",[d.semester for d in self.semesters]]}, 'parent')
-                course_details[0].update({'semester': semester})
-                row.update(course_details[0])
-                result.append(row)
+                # Credit distribution List
+                assessment_criteria_data=frappe.get_all("Credit distribution List",{"parent":course,"assessment_criteria":self.assessment_criteria})
+                if assessment_criteria_data:
+                    row = {}
+                    course_details = frappe.db.get_all('Course',{'name':course,},['name','course_code','course_name'])
+                    # if c.course not in [d.name for d in frappe.get_all("Course", {"disable":0},['name'])]:
+                    # ,["academic_year","=","%s"%(academic_year)]]
+                    #  {'name':course}, 
+                    semester = frappe.db.get_value('Program Course', {'course': course,"parent":["IN",[d.semester for d in self.semesters]]}, 'parent')
+                    course_details[0].update({'semester': semester})
+                    row.update(course_details[0])
+                    result.append(row)
             return result      
             # return get_courses_by_semester_academic_year([d.semester for d in self.semesters])
         else :
             course_list = get_courses_by_semester_academic_year([d.semester for d in self.semesters],year_end_date)
             result = []
-            count = 0
             courses = []
             final_courses = []
             for cour in course_list:
@@ -109,13 +111,15 @@ class ExamDeclaration(Document):
                 frappe.throw("There is No pending Couse to Schedule Back paper Exam")  
             else :
                 for course in result :
-                    row = {}
-                    course_details= frappe.db.get_all('Course',{'name':course,},['name','course_code','course_name'])
-                    
-                    semester = frappe.db.get_value('Program Course', {'course': course,"parent":["IN",[d.semester for d in self.semesters]]}, 'parent')
-                    course_details[0].update({'semester': semester})
-                    row.update(course_details[0])
-                    final_courses.append(row)
+                    assessment_criteria_data=frappe.get_all("Credit distribution List",{"parent":course,"assessment_criteria":self.assessment_criteria})
+                    if assessment_criteria_data:
+                        row = {}
+                        course_details= frappe.db.get_all('Course',{'name':course,},['name','course_code','course_name'])
+                        
+                        semester = frappe.db.get_value('Program Course', {'course': course,"parent":["IN",[d.semester for d in self.semesters]]}, 'parent')
+                        course_details[0].update({'semester': semester})
+                        row.update(course_details[0])
+                        final_courses.append(row)
                 return  final_courses     
                 # return get_courses_by_semester_academic_year([d.semester for d in self.semesters])
        
