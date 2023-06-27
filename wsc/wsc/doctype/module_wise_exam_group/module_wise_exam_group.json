@@ -285,8 +285,7 @@
    "fieldname": "scheduling_group_exam",
    "fieldtype": "Table",
    "label": "Scheduling Group Exam",
-   "options": "Student Group Exam Scheduling",
-   "read_only": 1
+   "options": "Student Group Exam Scheduling"
   },
   {
    "fieldname": "amended_from",
@@ -319,7 +318,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-27 16:30:06.631969",
+ "modified": "2023-06-27 17:03:38.978576",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Module Wise Exam Group",
