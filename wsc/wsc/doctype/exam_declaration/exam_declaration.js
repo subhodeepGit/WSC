@@ -59,7 +59,7 @@ frappe.ui.form.on('Exam Declaration', {
             // }
         }
         frm.set_df_property('semesters', 'cannot_add_rows', true);
-    
+        frm.set_df_property('courses_offered', 'cannot_add_rows', true);
  
 		// if (!frm.doc.__islocal){
 		// 	frm.add_custom_button(__('Create Fees'), function() {
