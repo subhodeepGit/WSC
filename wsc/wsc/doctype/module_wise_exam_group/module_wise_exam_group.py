@@ -52,7 +52,7 @@ def validate_time(self):
 def date_validation(self):
 	for t in self.get('scheduling_group_exam'):
 		if t.examination_date:
-			if self.module_exam_start_date<=t.examination_date and self.module_exam_start_date >= self.module_exam_end_date:
+			if self.module_exam_start_date<=t.examination_date and self.module_exam_end_date >= t.examination_date:
 				pass
 			else:
 				frappe.throw("Date provided in Exam Group:- <b> %s </b> is not in between Module Exam Start Date and Module Exam End Date"%(t.group_name))	
