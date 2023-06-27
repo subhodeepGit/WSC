@@ -512,3 +512,11 @@ def send_email_to_deputy_director(self):
         recipients = get_ca_cm_assignment[0]['dd_email']
         send_mail(recipients,'Leave Application Notification',msg)
         frappe.msgprint("Email sent to Deputy Director: %s"%(dd_name))
+
+def send_mail_to_students_mweg(self):
+    student_no_list = []
+    for t in self.get("student_list"):
+        student_no=t.student_no
+        student_no_list.append(student_no)
+    print("\n\n\n")
+    print(student_no_list)
