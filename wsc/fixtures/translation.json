@@ -284,5 +284,18 @@
   "name": "f9d52c4818",
   "source_text": "Material Request",
   "translated_text": "Purchase Requisition"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-06-27 15:20:00.962853",
+  "name": "39dbd52089",
+  "source_text": "Course Schedule",
+  "translated_text": "Class Schedule"
  }
 ]
