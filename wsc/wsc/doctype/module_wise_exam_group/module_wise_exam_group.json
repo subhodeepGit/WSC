@@ -261,7 +261,6 @@
    "label": "Total Student List"
   },
   {
-   "depends_on": "eval:doc.get_student",
    "fieldname": "student_list",
    "fieldtype": "Table",
    "label": "Student List",
@@ -274,7 +273,6 @@
    "label": "Get Student"
   },
   {
-   "depends_on": "eval:doc.get_student",
    "fieldname": "total_enrolled_student",
    "fieldtype": "Data",
    "label": "Total Enrolled Student",
@@ -322,7 +320,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-27 15:55:36.891257",
+ "modified": "2023-06-27 16:27:27.331576",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Module Wise Exam Group",
