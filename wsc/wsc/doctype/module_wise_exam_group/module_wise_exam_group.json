@@ -264,8 +264,7 @@
    "fieldname": "student_list",
    "fieldtype": "Table",
    "label": "Student List",
-   "options": "Module Wise Exam Student",
-   "read_only": 1
+   "options": "Module Wise Exam Student"
   },
   {
    "fieldname": "get_student",
@@ -320,7 +319,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-27 16:27:27.331576",
+ "modified": "2023-06-27 16:30:06.631969",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Module Wise Exam Group",
