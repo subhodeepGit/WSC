@@ -13,6 +13,7 @@
   {
    "fieldname": "trainer",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Trainer",
    "options": "Instructor"
   },
@@ -20,13 +21,15 @@
    "fetch_from": "trainer.employee",
    "fieldname": "trainer_name",
    "fieldtype": "Data",
-   "label": "Trainer Name"
+   "in_list_view": 1,
+   "label": "Trainer Name",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-06-27 13:05:28.604052",
+ "modified": "2023-06-27 15:52:33.913865",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Invigilator Details",
