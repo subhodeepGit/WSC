@@ -393,7 +393,7 @@ def has_default_email_acc():
 
 def send_mail(recipients=None,subject=None,message=None,attachments=None):
     if has_default_email_acc():
-        frappe.sendmail(recipients=recipients or [],expose_recipients="header",subject=subject,message = message,attachments=attachments,with_container=True)        
+        frappe.sendmail(recipients=recipients or [],expose_recipients="header",subject=subject,message = message,attachments=attachments,with_container=False)        
 
 def send_email_to_course_advisor(self):
     flag=0
@@ -514,10 +514,54 @@ def send_email_to_deputy_director(self):
         frappe.msgprint("Email sent to Deputy Director: %s"%(dd_name))
 
 def send_mail_to_students_mweg(self):
-    student_no_list = []
     for t in self.get("student_list"):
+        student_name=t.student_name
         student_no=t.student_no
-        student_no_list.append(student_no)
-    print("\n\n\n")
-    print(student_no_list)
-    student_emails = frappe.get_all("Student",{})
+        student_emails = frappe.get_all("Student",{'name':student_no},['student_email_id'])
+        mail_id=student_emails[0]['student_email_id']
+        group_name=t.group_name
+
+        for d in self.get("scheduling_group_exam"):
+            if group_name == d.group_name:
+                exam_date=d.examination_date
+                from_date=d.from_time
+                to_time=d.to_time
+                msg="""<p>Dear Student, <br>"""
+                msg+="""<p>This is to inform you that the <b>{0}</b> for the academic year <b>{1}</b> of <b>{2}</b> will be on <b>{3}</b> from <b>{4}</b> to <b>{5}</b>.<br>""".format(self.get('exam_name'),self.get('academic_year'),self.get('modules_name'),exam_date,from_date,to_time)
+                msg+="""<p>The Exam is being conducted for <b>{0}</b> for <b>{1}</b>.""".format(self.get('semester'),self.get('exam_course'))
+        recipients = mail_id
+        send_mail(recipients,'Exam Schedule Notification',msg)
+        frappe.msgprint("Email sent to Student: %s"%(student_name))
+
+def send_mail_to_trainers_mweg(self):
+    msg="""<p>Dear Sir/Madam, <br>"""
+    msg+="""<p>This is to inform you that the <b>{0}</b> for the academic year <b>{1}</b> of <b>{2}</b> will be from <b>{3}</b> to <b>{4}</b>. <br>""".format(self.get('exam_name'),self.get('academic_year'),self.get('modules_name'),self.get('module_exam_start_date'),self.get('module_exam_end_date'))
+    msg+="""<p>The Exam is being conducted for <b>{0}</b> for <b>{1}</b>.""".format(self.get('semester'),self.get('exam_course'))
+    marker_name = self.marker_name
+    course_manager_name = self.course_manager_name
+    checker_name = self.checker
+    recepients_list=[]
+    marker_emp = frappe.get_all("Instructor",{'name':marker_name},['employee'])[0]['employee']
+    marker_email = frappe.get_all("Employee",{'name':marker_emp},['user_id'])[0]['user_id']
+    recepients_list.append(marker_email)
+    course_manager_emp = frappe.get_all("Instructor",{'name':course_manager_name},['employee'])[0]['employee']
+    course_manager_email = frappe.get_all("Employee",{'name':course_manager_emp},['user_id'])[0]['user_id']
+    recepients_list.append(course_manager_email)
+    checker_emp = frappe.get_all("Instructor",{'name':checker_name},['employee'])[0]['employee']
+    checker_email = frappe.get_all("Employee",{'name':checker_emp},['user_id'])[0]['user_id']
+    recepients_list.append(checker_email)
+    for t in self.get("invigilator_details_table"):
+        emp=t.trainer_name
+        emp_email = frappe.get_all("Employee",{'name':emp},['user_id'])[0]['user_id']
+        recepients_list.append(emp_email)
+    
+    recepients_list_rem_dup = list(set(recepients_list))
+    recepients_list_rem_dup_and_none = list(filter(lambda item: item is not None, recepients_list_rem_dup))
+    send_mail(recepients_list_rem_dup_and_none,'Exam Schedule Notification',msg)
+    frappe.msgprint("Email sent to Marker, Course Manager, Checker and Invigilator(s)")
+
+    
+
+
+        
+    

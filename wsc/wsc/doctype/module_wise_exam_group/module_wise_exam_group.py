@@ -4,7 +4,7 @@
 import frappe
 from frappe.model.document import Document
 from datetime import datetime
-from wsc.wsc.notification.custom_notification import send_mail_to_students_mweg
+from wsc.wsc.notification.custom_notification import send_mail_to_students_mweg,send_mail_to_trainers_mweg
 
 
 class ModuleWiseExamGroup(Document):
@@ -15,13 +15,15 @@ class ModuleWiseExamGroup(Document):
 		date_validation(self)
 		validate_time(self)
 		self.calculate_total_hours()
-		send_mail_to_students_mweg(self)
+		
 
 	def on_submit(self):
 		group_validation(self,"on_submit")
 		date_time_mandatory(self)
 		time_mandatory(self)
 		over_lapping_of_scheduling(self) 
+		send_mail_to_students_mweg(self)
+		send_mail_to_trainers_mweg(self)
 	
 	def calculate_total_hours(self):
 		for d in self.get("scheduling_group_exam"):
