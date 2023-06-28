@@ -15,12 +15,13 @@ class ModuleWiseExamGroup(Document):
 		date_validation(self)
 		validate_time(self)
 		self.calculate_total_hours()
-		send_mail_to_students_mweg(self)
+		
 
 	def on_submit(self):
 		group_validation(self,"on_submit")
 		date_time_mandatory(self)
 		time_mandatory(self)
+		send_mail_to_students_mweg(self)
 	
 	def calculate_total_hours(self):
 		for d in self.get("scheduling_group_exam"):

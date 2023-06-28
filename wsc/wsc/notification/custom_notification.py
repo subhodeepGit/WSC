@@ -393,7 +393,7 @@ def has_default_email_acc():
 
 def send_mail(recipients=None,subject=None,message=None,attachments=None):
     if has_default_email_acc():
-        frappe.sendmail(recipients=recipients or [],expose_recipients="header",subject=subject,message = message,attachments=attachments,with_container=True)        
+        frappe.sendmail(recipients=recipients or [],expose_recipients="header",subject=subject,message = message,attachments=attachments,with_container=False)        
 
 def send_email_to_course_advisor(self):
     flag=0
@@ -514,10 +514,27 @@ def send_email_to_deputy_director(self):
         frappe.msgprint("Email sent to Deputy Director: %s"%(dd_name))
 
 def send_mail_to_students_mweg(self):
-    student_no_list = []
+    # print("\n\n\n")
     for t in self.get("student_list"):
+        student_name=t.student_name
         student_no=t.student_no
-        student_no_list.append(student_no)
-    print("\n\n\n")
-    print(student_no_list)
-    student_emails = frappe.get_all("Student",{})
+        # print(student_no)
+        student_emails = frappe.get_all("Student",{'name':student_no},['student_email_id'])
+        mail_id=student_emails[0]['student_email_id']
+        group_name=t.group_name
+
+        for d in self.get("scheduling_group_exam"):
+            if group_name == d.group_name:
+                exam_date=d.examination_date
+                from_date=d.from_time
+                to_time=d.to_time
+                msg="""<p>This is to inform you that the <b>{0}</b> for the academic year <b>{1}</b> of <b>{2}</b> will be on <b>{3}</b> from <b>{4}</b> to <b>{5}</b>.<br>""".format(self.get('exam_name'),self.get('academic_year'),self.get('modules_name'),exam_date,from_date,to_time)
+                msg+="""<p>The Exam is being conducted for <b>{0}</b> for <b>{1}</b>.""".format(self.get('semester'),self.get('exam_course'))
+                # print(msg)
+        recipients = mail_id
+        send_mail(recipients,'Exam Notification',msg)
+        frappe.msgprint("Email sent to Student: %s"%(student_name))
+
+
+        
+    
