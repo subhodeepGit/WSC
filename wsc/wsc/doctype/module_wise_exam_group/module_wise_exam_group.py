@@ -21,11 +21,38 @@ class ModuleWiseExamGroup(Document):
 		group_validation(self,"on_submit")
 		date_time_mandatory(self)
 		time_mandatory(self)
+		over_lapping_of_scheduling(self) 
 	
 	def calculate_total_hours(self):
 		for d in self.get("scheduling_group_exam"):
 			if d.to_time and d.from_time:
 				d.total_duration_in_hours = datetime.strptime(d.to_time, '%H:%M:%S') - datetime.strptime(d.from_time, '%H:%M:%S') 	
+
+def over_lapping_of_scheduling(self):
+	print("\n\n\n")
+	student_list=[]
+	for t in self.get('student_list'):
+		student_list.append(t.student_no)
+	print(student_list)
+	if len(student_list)==1:	
+		student_gr_data=frappe.db.sql(""" select MWEG.name,MWES.student_no,MWES.group_name from `tabModule Wise Exam Group` MWEG
+											Join `tabModule Wise Exam Student` MWES ON MWEG.name=MWES.parent where MWES.student_no ='%s'
+											"""%(student_list[0]),as_dict=True)
+	else:
+		student_gr_data=frappe.db.sql(""" select MWEG.name,MWES.student_no,MWES.group_name from `tabModule Wise Exam Group` MWEG
+											Join `tabModule Wise Exam Student` MWES ON MWEG.name=MWES.parent where MWES.student_no IN %s 
+											"""%(str(tuple(student_list))),as_dict=True)
+	
+
+	# for t in student_gr_data:
+	# 	pass
+
+	print(student_gr_data)
+	# a.s
+	pass
+
+
+
 
 def duplicate_validation(self):
 	data=frappe.get_all("Module Wise Exam Group",{"exam_declaration_id":self.exam_declaration_id,"modules_id":self.modules_id,"docstatus":1})

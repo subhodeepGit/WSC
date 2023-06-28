@@ -17,6 +17,8 @@
   "exam_category",
   "exam_end_date",
   "column_break_8",
+  "assessment_component",
+  "exam_type",
   "course_type",
   "exam_schedule_id",
   "exam_course",
@@ -264,7 +266,8 @@
    "fieldname": "student_list",
    "fieldtype": "Table",
    "label": "Student List",
-   "options": "Module Wise Exam Student"
+   "options": "Module Wise Exam Student",
+   "reqd": 1
   },
   {
    "fieldname": "get_student",
@@ -288,15 +291,6 @@
    "options": "Student Group Exam Scheduling"
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Module Wise Exam Group",
-   "print_hide": 1,
-   "read_only": 1
-  },
-  {
    "default": "0",
    "fieldname": "disabled",
    "fieldtype": "Check",
@@ -313,12 +307,35 @@
    "label": "Invigilator Details Table",
    "options": "Invigilator Details",
    "reqd": 1
+  },
+  {
+   "fetch_from": "exam_declaration_id.assessment_criteria",
+   "fieldname": "assessment_component",
+   "fieldtype": "Data",
+   "label": "Assessment Component",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "exam_declaration_id.exam_type",
+   "fieldname": "exam_type",
+   "fieldtype": "Data",
+   "label": "Exam Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Module Wise Exam Group",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-27 17:03:38.978576",
+ "modified": "2023-06-28 18:22:59.095884",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Module Wise Exam Group",
