@@ -39,6 +39,14 @@ frappe.ui.form.on('Course Schedule', {
                 filters:{"course":frm.doc.course,"student_group":frm.doc.student_group}
             };
         });
+        frm.set_query("academic_term", function() {
+            return {
+                "filters": {
+                    "academic_year": frm.doc.academic_year,
+                }
+            };
+        });
+        
     },
     refresh(frm){
         if (frappe.user.has_role(["Student"]) && !frappe.user.has_role('System Manager')){
