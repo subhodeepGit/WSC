@@ -4,11 +4,17 @@
 
 frappe.ui.form.on('Course Assessment Result Tool', {
 	setup:function(frm){
-		frm.set_query("programs", function () {
+		// frm.set_query("programs", function () {
+		// 	return {
+		// 		filters: [
+		// 			["Programs", "program_grade", "=", frm.doc.program_grade],
+		// 		]
+		// 	}
+		// });
+		frm.set_query("course", function() {
 			return {
-				filters: [
-					["Programs", "program_grade", "=", frm.doc.program_grade],
-				]
+				query:"wsc.wsc.doctype.module_wise_exam_group.module_wise_exam_group.valid_module_as_exam_declation",
+				txt:frm.doc.exam_declaration,
 			}
 		});
 		frm.set_query("academic_term", function() {
@@ -18,16 +24,16 @@ frappe.ui.form.on('Course Assessment Result Tool', {
 				}
 			};
         });
-        frm.set_query("course", function() {
-			return {
-				query:"wsc.wsc.doctype.course_assessment_result_tool.course_assessment_result_tool.get_courses",
-				filters: {
-					"semester":frm.doc.semester
-					// "exam_declaration":frm.doc.exam_declaration
-				}
+        // frm.set_query("course", function() {
+		// 	return {
+		// 		query:"wsc.wsc.doctype.course_assessment_result_tool.course_assessment_result_tool.get_courses",
+		// 		filters: {
+		// 			"semester":frm.doc.semester
+		// 			// "exam_declaration":frm.doc.exam_declaration
+		// 		}
 				
-			};
-        });
+		// 	};
+        // });
         frm.set_query("assessment_criteria", function() {
 			return {
 				query:"wsc.wsc.doctype.course_assessment_result_tool.course_assessment_result_tool.get_assessment_criteria_list",
@@ -39,9 +45,9 @@ frappe.ui.form.on('Course Assessment Result Tool', {
 		frm.set_query("exam_declaration", function() {
 			return {
 				filters: {
-					"semester":frm.doc.semester,
-					"academic_year":frm.doc.academic_year,
-					"academic_term":frm.doc.academic_term,
+					// "semester":frm.doc.semester,
+					// "academic_year":frm.doc.academic_year,
+					// "academic_term":frm.doc.academic_term,
 					"docstatus":1	
 				}
 			};
@@ -49,17 +55,18 @@ frappe.ui.form.on('Course Assessment Result Tool', {
 		frm.set_query("exam_assessment_plan", function() {
 			return {
 				filters: {
-					"exam_declaration":frm.doc.exam_declaration
+					"exam_declaration":frm.doc.exam_declaration,
+					'docstatus':1
 				}
 			};
         });
-		frm.set_query("semester", function() {
-			return {
-				filters: {
-					"programs":frm.doc.programs	
-				}
-			};
-        });
+		// frm.set_query("semester", function() {
+		// 	return {
+		// 		filters: {
+		// 			"programs":frm.doc.programs	
+		// 		}
+		// 	};
+        // });
 	},
 	programs: function(frm) {
 		frm.trigger("get_student_details");
@@ -75,6 +82,21 @@ frappe.ui.form.on('Course Assessment Result Tool', {
 	},
 	academic_term: function(frm) {
 		frm.trigger("get_student_details");
+	},
+	exam_declaration:function(frm){
+		// frm.trigger("get_student_details");
+		frappe.call({
+			method: 'wsc.wsc.doctype.course_assessment_result_tool.course_assessment_result_tool.get_semester_and_exam_assessment_plan',
+			args:{
+				declaration_id:frm.doc.exam_declaration,
+			},
+			callback: function(r) {
+				if (r.message) {
+					var sem=r.message
+					frm.set_value('semester', sem['semester']);
+				}
+			}
+		})
 	},
 	assessment_criteria: function(frm) {
 		frm.disable_save();

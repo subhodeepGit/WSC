@@ -426,14 +426,23 @@ def make_course_assessment(course_assessment):
 
 @frappe.whitelist()
 def get_courses(doctype, txt, searchfield, start, page_len, filters):
-    courses=get_courses_by_semester(filters.get("semester"))
-    if courses:
-        return frappe.db.sql("""select name,course_name,course_code from tabCourse
-			where year_end_date>=now() and name in ({0}) and (name LIKE %s or course_name LIKE %s or course_code LIKE %s)
-			limit %s, %s""".format(", ".join(['%s']*len(courses))),
-			tuple(courses + ["%%%s%%" % txt, "%%%s%%" % txt,"%%%s%%" % txt, start, page_len]))
-    return []
+	courses=get_courses_by_semester(filters.get("semester"))
+	if courses:
+		return frappe.db.sql("""select name,course_name,course_code from tabCourse
+		where year_end_date>=now() and name in ({0}) and (name LIKE %s or course_name LIKE %s or course_code LIKE %s)
+		limit %s, %s""".format(", ".join(['%s']*len(courses))),
+		tuple(courses + ["%%%s%%" % txt, "%%%s%%" % txt,"%%%s%%" % txt, start, page_len]))
+	return []
 		
 @frappe.whitelist()
 def get_assessment_criteria_list(doctype, txt, searchfield, start, page_len, filters):
 	return frappe.get_all("Credit distribution List",{"parent":filters.get("course")},['assessment_criteria'],as_list = 1)
+
+
+@frappe.whitelist()
+def get_semester_and_exam_assessment_plan(declaration_id=None):
+	result={}
+	if declaration_id:
+		sem_date=frappe.get_all("Examination Semester",{"parent":declaration_id},['semester'])
+		result['semester']=sem_date[0]['semester']
+	return result
