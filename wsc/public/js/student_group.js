@@ -174,7 +174,6 @@ frappe.ui.form.on("Student Group", {
 		// alert(frm.doc.group_based_on)
 	},
     get_student: function(frm) {
-		alert(200)
         frm.clear_table('students')
 		if (frm.doc.group_based_on == 'Batch' || frm.doc.group_based_on == 'Course') {
 			var student_list = [];
