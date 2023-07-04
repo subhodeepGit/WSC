@@ -64,6 +64,10 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 					$(html_values).find(`[data-row="${resp.student}"].out_of_marks`).each(function(el, input){
 						row['out_of_marks']=$(input).val();
 					})
+
+					$(html_values).find(`[data-row="${resp.student}"].exam_attendence`).each(function(el, input){
+						row['exam_attendence']=$(input).val();
+					})
 					continuous_evaluation['rows'][resp.student]=row;
 				})
 			}
