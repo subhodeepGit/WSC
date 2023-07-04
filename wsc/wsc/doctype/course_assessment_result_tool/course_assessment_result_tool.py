@@ -428,6 +428,8 @@ def get_total_marks(course,criteria):
 def make_course_assessment(course_assessment):
 	result=json.loads(course_assessment)
 	if result.get('rows'):
+		list_student=[]
+		already_record=[]
 		for d in result.get('rows'):
 			if not frappe.db.count("Course Assessment",{"docstatus":("!=",2),"student":result.get('rows')[d].get("student_no"),"academic_year":result.get("academic_year"),"academic_term":result.get("academic_term"),'course':result.get("course"),"assessment_criteria":result.get("criteria")}):
 				doc=frappe.new_doc("Course Assessment")
@@ -448,7 +450,13 @@ def make_course_assessment(course_assessment):
 				doc.total_marks=result.get('rows')[d].get("total_marks")
 				doc.attendence_status=result.get('rows')[d].get("attendance")
 				doc.save()
-		frappe.msgprint("Records Created")
+				list_student.append(result.get('rows')[d].get("student_no"))
+			else:
+				already_record.append(result.get('rows')[d].get("student_no"))	
+		if 	list_student:	
+			frappe.msgprint("Records Created <b><i>%s</i></b>"%(list_student))
+		if 	already_record:
+			frappe.msgprint("Already Records Created <b><i>%s</i></b>"%(already_record))
 
 @frappe.whitelist()
 def get_courses(doctype, txt, searchfield, start, page_len, filters):
