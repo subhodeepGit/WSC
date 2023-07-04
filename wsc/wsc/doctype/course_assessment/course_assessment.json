@@ -23,6 +23,7 @@
   "section_break_9",
   "assessment_plan",
   "column_break_13",
+  "attendence_status",
   "earned_marks",
   "total_marks",
   "amended_from"
@@ -160,12 +161,18 @@
    "fieldtype": "Link",
    "label": "Program Grade",
    "options": "Program Grades"
+  },
+  {
+   "fieldname": "attendence_status",
+   "fieldtype": "Data",
+   "label": "Attendence Status",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-16 12:51:48.463366",
+ "modified": "2023-07-04 11:55:04.783588",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Course Assessment",
