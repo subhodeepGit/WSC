@@ -429,7 +429,6 @@ def make_course_assessment(course_assessment):
 	result=json.loads(course_assessment)
 	if result.get('rows'):
 		for d in result.get('rows'):
-			print(result.get('rows')[d].get("attendance"))
 			if not frappe.db.count("Course Assessment",{"docstatus":("!=",2),"student":result.get('rows')[d].get("student_no"),"academic_year":result.get("academic_year"),"academic_term":result.get("academic_term"),'course':result.get("course"),"assessment_criteria":result.get("criteria")}):
 				doc=frappe.new_doc("Course Assessment")
 				doc.student=result.get('rows')[d].get("student_no")

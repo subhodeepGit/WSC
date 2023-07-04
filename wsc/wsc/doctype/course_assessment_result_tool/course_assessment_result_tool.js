@@ -124,7 +124,7 @@ frappe.ui.form.on('Course Assessment Result Tool', {
 				if (earned_marks){
 					row=resp;
 					row['earned_marks']=earned_marks;
-					row['attendance']=attendance
+					row['attendance']=attendance;
 					course_assessment['rows'][resp.id]=row;
 				}
 			})
