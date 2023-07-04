@@ -44,11 +44,13 @@
    "reqd": 1
   },
   {
+   "fetch_from": "exam_declaration.exam_type",
    "fieldname": "assessment_criteria",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Assessment Criteria",
    "options": "Assessment Criteria",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -119,12 +121,14 @@
    "label": "Schedule"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "paper_setting_start_date",
    "fieldtype": "Date",
    "label": "Paper Setting Start Date",
    "reqd": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "paper_setting_end_date",
    "fieldtype": "Date",
    "label": "Paper Setting End Date",
@@ -154,7 +158,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-23 15:42:54.257938",
+ "modified": "2023-06-26 17:12:40.905834",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Assessment Plan",

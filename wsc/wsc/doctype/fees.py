@@ -1,5 +1,6 @@
 import frappe
 from frappe.model.mapper import get_mapped_doc
+from frappe.utils.data import nowdate
 from wsc.wsc.utils import duplicate_row_validation
 import frappe
 from frappe import _
@@ -314,3 +315,21 @@ def make_refund_fees(source_name, target_doc=None):
     }, target_doc, set_missing_values)
 
     return doclist
+
+@frappe.whitelist()
+def get_fees_entry(dt,dn):
+	doc = frappe.get_doc(dt, dn)
+	educationdoc =frappe.get_all("Current Educational Details",
+						  {"parent":dn},
+						  ['programs','semesters'])
+	feesEntry = frappe.new_doc("Fees")
+	feesEntry.student=doc.get("student_id")
+	feesEntry.posting_date = nowdate()
+	feesEntry.student_name=doc.get("student_name")
+	feesEntry.student_name=doc.get("student_name")
+	feesEntry.programs=educationdoc[0]['programs']
+	feesEntry.program=educationdoc[0]['semesters']
+	feesEntry.append("components", {
+		"amount":doc.get("total_dues")
+	})
+	return feesEntry

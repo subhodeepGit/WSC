@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "STU-CLL.-.#####",
  "creation": "2023-04-04 12:08:04.750184",
  "default_view": "List",
  "doctype": "DocType",
@@ -8,19 +9,18 @@
  "engine": "InnoDB",
  "field_order": [
   "posting_date",
+  "student_id",
   "column_break_9ecln",
   "user_disable_date",
-  "section_break_gcpf2",
-  "student_id",
   "student_name",
-  "programs",
-  "column_break_7qx3v",
-  "semesters",
-  "academic_year",
-  "academic_term",
-  "section_break_7qjxa",
+  "current_educational_details_section",
+  "current_education",
+  "section_break_gcpf2",
   "departments_clearance_status",
+  "column_break_10",
   "status",
+  "column_break_12",
+  "total_dues",
   "amended_from"
  ],
  "fields": [
@@ -44,31 +44,14 @@
    "fetch_from": "student_id.student_name",
    "fieldname": "student_name",
    "fieldtype": "Data",
-   "label": "Student Name"
-  },
-  {
-   "fieldname": "programs",
-   "fieldtype": "Data",
-   "label": "Programs"
-  },
-  {
-   "fieldname": "semesters",
-   "fieldtype": "Data",
-   "label": "Semesters"
-  },
-  {
-   "fieldname": "academic_year",
-   "fieldtype": "Data",
-   "label": "Academic Year"
-  },
-  {
-   "fieldname": "academic_term",
-   "fieldtype": "Data",
-   "label": "Academic Term"
+   "label": "Student Name",
+   "read_only": 1
   },
   {
    "fieldname": "departments_clearance_status",
    "fieldtype": "Table",
+   "label": "Department Clearance",
+   "no_copy": 1,
    "options": "Departments Clearance Status"
   },
   {
@@ -81,20 +64,13 @@
    "read_only": 1
   },
   {
+   "default": "Clearance Pending",
    "fieldname": "status",
    "fieldtype": "Data",
    "label": "Status"
   },
   {
    "fieldname": "section_break_gcpf2",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "column_break_7qx3v",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "section_break_7qjxa",
    "fieldtype": "Section Break"
   },
   {
@@ -105,15 +81,42 @@
    "fieldname": "user_disable_date",
    "fieldtype": "Data",
    "label": "User Disable Date"
+  },
+  {
+   "fieldname": "current_education",
+   "fieldtype": "Table",
+   "label": "Current Education",
+   "options": "Current Educational Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "current_educational_details_section",
+   "fieldtype": "Section Break",
+   "label": "Current Educational Details "
+  },
+  {
+   "fieldname": "column_break_10",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_dues",
+   "fieldtype": "Currency",
+   "label": "Total Dues"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-04-04 12:20:16.722811",
+ "modified": "2023-06-30 14:26:01.672785",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Clearance Application",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
