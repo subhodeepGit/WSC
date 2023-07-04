@@ -10,7 +10,7 @@ frappe.ui.form.on("Student Group", {
 			frappe.set_route('Form', 'Class Scheduling Tool', 'Class Scheduling Tool');
 		}, __('Tools'));
 
-		frm.set_df_property('group_based_on', 'options', ['Batch', 'Course', 'Activity', 'Exam Declaration', 'Mentor-Mentee']);
+		frm.set_df_property('group_based_on', 'options', ['Batch', 'Course', 'Activity', 'Mentor-Mentee']);
 
 		frm.set_query("programs", function () {
 			return {
