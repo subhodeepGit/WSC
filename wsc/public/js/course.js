@@ -160,3 +160,15 @@ frappe.ui.form.on("Credit distribution List", "weightage", function(frm, cdt, cd
 	d.total_marks=(frm.doc.total_marks*(d.weightage/100))
 	refresh_field("total_marks", d.name, d.parentfield);
 });
+
+frappe.ui.form.on('Credit distribution List', {
+	credit_distribution_add: function(frm){
+		frm.fields_dict['credit_distribution'].grid.get_field('assessment_criteria').get_query = function(doc){
+			var assessment_criteria_list = [];
+			$.each(doc.credit_distribution, function(idx, val){
+				if (val.assessment_criteria) assessment_criteria_list.push(val.assessment_criteria);
+			});
+			return { filters: [['Assessment Criteria', 'name', 'not in', assessment_criteria_list]] };
+		};
+	}
+});
