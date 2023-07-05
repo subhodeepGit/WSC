@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h1\\\">Academics</span>\",\"col\":12}},{\"type\":\"spacer\",\"data\":{\"col\":12}},{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Shortcuts</span>\",\"col\":12}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course Schedule\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Attendance\",\"col\":3}},{\"type\":\"spacer\",\"data\":{\"col\":12}},{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b><span class=\\\"h2\\\">Reports &amp; Masters</span><br></b></span>\",\"col\":12}},{\"type\":\"card\",\"data\":{\"card_name\":\"Groups &amp; Schedules\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Attendance &amp; Leave Application\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Mentor-Mentee\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Placement &amp; Drives\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Tools\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}}]",
+ "content": "[{\"id\":\"BlrylCsK4O\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h1\\\">Academics</span>\",\"col\":12}},{\"id\":\"rHoSFTDqhh\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"-FBrfVl_aW\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Shortcuts</span>\",\"col\":12}},{\"id\":\"sYDUze-v5L\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course Schedule\",\"col\":3}},{\"id\":\"wqntQ6OgA5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Attendance\",\"col\":3}},{\"id\":\"pOmbFxqrnp\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ZcHFqSOXo8\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b><span class=\\\"h2\\\">Reports &amp; Masters</span><br></b></span>\",\"col\":12}},{\"id\":\"nwzxJrLENe\",\"type\":\"card\",\"data\":{\"card_name\":\"Groups &amp; Schedules\",\"col\":4}},{\"id\":\"Gi8iqUuD2x\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance &amp; Leave Application\",\"col\":4}},{\"id\":\"qZZddX7w7A\",\"type\":\"card\",\"data\":{\"card_name\":\"Mentor-Mentee\",\"col\":4}},{\"id\":\"mpvXx9ldmS\",\"type\":\"card\",\"data\":{\"card_name\":\"Placement &amp; Drives\",\"col\":4}},{\"id\":\"mAxyO-fPLp\",\"type\":\"card\",\"data\":{\"card_name\":\"Tools\",\"col\":4}},{\"id\":\"qrCVytNKM_\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}}]",
  "creation": "2023-02-15 15:10:09.602390",
  "docstatus": 0,
  "doctype": "Workspace",
@@ -11,82 +11,6 @@
  "is_hidden": 0,
  "label": "Academics",
  "links": [
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Groups &amp; Schedules",
-   "link_count": 3,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Group",
-   "link_count": 0,
-   "link_to": "Student Group",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Course Schedule",
-   "link_count": 0,
-   "link_to": "Course Schedule",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Log",
-   "link_count": 0,
-   "link_to": "Student Log",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Attendance &amp; Leave Application",
-   "link_count": 3,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Attendance",
-   "link_count": 0,
-   "link_to": "Student Attendance",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Attendance Tool",
-   "link_count": 0,
-   "link_to": "Students Attendance Tool",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Leave Application",
-   "link_count": 0,
-   "link_to": "Leave Application for Student",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
   {
    "hidden": 0,
    "is_query_report": 0,
@@ -131,34 +55,6 @@
    "label": "Placement Drive Application",
    "link_count": 0,
    "link_to": "Placement Drive Application",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Tools",
-   "link_count": 2,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Course Scheduling Tool",
-   "link_count": 0,
-   "link_to": "Course Scheduling Tool",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Attendance Tool",
-   "link_count": 0,
-   "link_to": "Students Attendance Tool",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -218,9 +114,103 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Groups &amp; Schedules",
+   "link_count": 2,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Group",
+   "link_count": 0,
+   "link_to": "Student Group",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Class Schedule",
+   "link_count": 0,
+   "link_to": "Course Schedule",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Attendance &amp; Leave Application",
+   "link_count": 3,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Attendance",
+   "link_count": 0,
+   "link_to": "Student Attendance",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Attendance Tool",
+   "link_count": 0,
+   "link_to": "Students Attendance Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Leave Application",
+   "link_count": 0,
+   "link_to": "Leave Application for Student",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Tools",
+   "link_count": 2,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Class Scheduling Tool",
+   "link_count": 0,
+   "link_to": "Class Scheduling Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Attendance Tool",
+   "link_count": 0,
+   "link_to": "Students Attendance Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-07-04 16:13:42.670395",
+ "modified": "2023-07-05 16:49:36.325647",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Academics",

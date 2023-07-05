@@ -138,7 +138,7 @@
    "fetch_from": "course.course_name",
    "fieldname": "course_name",
    "fieldtype": "Data",
-   "label": "Course Name",
+   "label": "Module Name",
    "read_only": 1
   },
   {
@@ -159,7 +159,7 @@
   {
    "fieldname": "program_grade",
    "fieldtype": "Link",
-   "label": "Program Grade",
+   "label": "Course Type",
    "options": "Program Grades"
   },
   {
@@ -173,7 +173,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-04 11:58:03.570934",
+ "modified": "2023-07-05 17:13:50.535786",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Course Assessment",

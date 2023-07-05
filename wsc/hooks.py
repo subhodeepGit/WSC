@@ -416,18 +416,18 @@ override_doctype_class = {
 # ]
 
 fixtures = [
-	# {"dt": "Custom DocPerm", "filters": [
-	# 	[
-	# 		"parent", "not in", ["DocType"]
-	# 	],
-	# ]},
-    # {"dt": "Role"},
+	{"dt": "Custom DocPerm", "filters": [
+		[
+			"parent", "not in", ["DocType"]
+		],
+	]},
+    {"dt": "Role"},
     # {"dt": "Role Profile"},
     # {"dt": "Module Profile"},
-    # {"dt" : "Workflow"},
-    # {"dt": "Workflow Action Master"},
-    # {"dt" : "Workflow State"}
-    # {"dt" : "Translation"}
+    {"dt" : "Workflow"},
+    {"dt": "Workflow Action Master"},
+    {"dt" : "Workflow State"},
+    {"dt" : "Translation"}
 ]
 website_context = {
     "favicon": "/assets/wsc/images/logo.jpg",
