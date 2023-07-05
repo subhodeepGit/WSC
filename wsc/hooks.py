@@ -58,7 +58,8 @@ doctype_js = {
                 "Item":"public/js/item.js",
                 "Job Applicant":"public/js/job_applicant.js",
                 "Employee":"public/js/employee.js",
-                "Shift Request":"public/js/shift_request.js"
+                "Shift Request":"public/js/shift_request.js",
+                "Leave Application":"public/js/leave_application.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -67,6 +68,7 @@ doctype_list_js = {
     "Student Attendance":"public/js/student_attendance_list.js",
     "Student Applicant" :"public/js/student_applicant_list.js",
     "Asset Maintenance Log":"public/js/asset_maintenance_log_list.js",
+    "Leave Application":"public/js/leave_application_list.js",
 }
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
@@ -366,6 +368,7 @@ override_doctype_class = {
     "Student Attendance": "wsc.wsc.doctype.student_attendance.StudentAttendance",
     "User Permission": "wsc.wsc.doctype.user_permission.UserPermission",
     "Item": "wsc.wsc.validations.item.Item",
+    "Leave Application":"wsc.wsc.doctype.leave_application.LeaveApplication"
     # "Job Applicant": "wsc.wsc.doctype.job_applicant.Job Applicant"
     # "Data Import": "wsc.wsc.doctype.data_import.DataImport"
 }
