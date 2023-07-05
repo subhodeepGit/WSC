@@ -134,7 +134,7 @@
   {
    "fieldname": "exam_program",
    "fieldtype": "Link",
-   "label": "Exam Program",
+   "label": "Course Name",
    "options": "Programs",
    "reqd": 1
   },
@@ -286,7 +286,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-27 12:25:01.828478",
+ "modified": "2023-07-05 17:08:46.782317",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Declaration",

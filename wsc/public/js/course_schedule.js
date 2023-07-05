@@ -39,11 +39,41 @@ frappe.ui.form.on('Course Schedule', {
                 filters:{"course":frm.doc.course,"student_group":frm.doc.student_group}
             };
         });
+        frm.set_query("academic_term", function() {
+            return {
+                "filters": {
+                    "academic_year": frm.doc.academic_year,
+                }
+            };
+        });
+        frm.set_query("student_group", function () {
+			return {
+				filters: {
+					"group_based_on":"Course"
+				}
+			}
+		});
+        
     },
     refresh(frm){
-        if (frappe.user.has_role(["Student"]) && !frappe.user.has_role('System Manager')){
-            frm.remove_custom_button("Mark Attendance");
+
+        if (!frm.doc.__islocal) {
+            frm.add_custom_button(__("Mark Attendances"), function() {
+                frappe.route_options = {
+                    based_on: "Course Schedule",
+                    course_schedule: frm.doc.name
+                }
+                frappe.set_route("Form", "Students Attendance Tool");
+            }).addClass("btn-primary");
         }
+        if (frm.doc.student_group) {
+            frm.events.get_instructors(frm);
+        }
+        
+        if (frappe.user.has_role(["Student"]) && !frappe.user.has_role('System Manager')){
+            frm.remove_custom_button("Mark Attendances");
+        }
+        frm.remove_custom_button("Mark Attendance")
     },
     // student_group(frm){
     //     frm.set_value("instructor",'');

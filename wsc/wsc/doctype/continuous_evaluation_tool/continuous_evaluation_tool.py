@@ -19,10 +19,14 @@ class ContinuousEvaluationTool(Document):
 
 		data_list=[]
 		course_details=get_course_details(self)
-		for student in frappe.get_all("Course Assessment",{"course":self.course,"assessment_criteria":self.assessment_criteria,"semester":self.semester, "docstatus":1},["student","student_name","roll_no","registration_number"],order_by="roll_no asc",group_by="student"):
+		for student in frappe.get_all("Course Assessment",{"course":self.course,"assessment_criteria":self.assessment_criteria,"semester":self.semester, "docstatus":1},
+										["student","student_name","roll_no","registration_number"],order_by="roll_no asc",group_by="student"):
 			total_earned_marks=total_total_marks=weightage_marks=0
 			evaluation=[]
-			for d in frappe.get_all("Course Assessment",{"student":student.student,"course":self.course,"assessment_criteria":self.assessment_criteria, "docstatus":1},["name","earned_marks","total_marks",]):
+			attendence_status=''
+			for d in frappe.get_all("Course Assessment",{"student":student.student,"course":self.course,"assessment_criteria":self.assessment_criteria, "docstatus":1},
+			   						["name","earned_marks","total_marks",'attendence_status']):
+				attendence_status=d['attendence_status']
 				total_earned_marks+=flt(d.earned_marks)
 				total_total_marks+=flt(d.total_marks)
 				for cr in frappe.get_all("Credit distribution List",{"parent":self.course,"assessment_criteria":self.assessment_criteria},['total_marks']):
@@ -33,8 +37,8 @@ class ContinuousEvaluationTool(Document):
 			student["weightage_marks"]=weightage_marks
 			student["out_of_marks"]=course_details.total_marks or 0
 			student["total_credits"]=course_details.credits or 0
-			data_list.append(student)
-
+			student["attendence_status"]=attendence_status
+			data_list.append(student)	
 		return data_list
 		
 @frappe.whitelist()
@@ -46,7 +50,9 @@ def make_continuous_evaluation(continuous_evaluation):
 	else:
 		records=False
 		for d in result.get('rows'):
-			exist_record = [a.get('name') for a in frappe.db.get_list("Assessment Credits Allocation",{"docstatus":("!=",2),"student":result.get('rows')[d].get("student"),"academic_year":result.get("academic_year"),"academic_term":result.get("academic_term"),'course':result.get("course"),"assessment_criteria":result.get("criteria")}, 'name')]
+			exist_record = [a.get('name') for a in frappe.db.get_list("Assessment Credits Allocation",{"docstatus":("!=",2),"student":result.get('rows')[d].get("student"),
+											      						"academic_year":result.get("academic_year"),"academic_term":result.get("academic_term"),
+																		'course':result.get("course"),"assessment_criteria":result.get("criteria")}, 'name')]
 			if len(exist_record) > 0:
 				frappe.msgprint("Record <b>{0}</b> is already exist for student <b>{1}</b>.".format(', '.join(map(str, exist_record)),result.get('rows')[d].get("student")))
 			elif result.get('rows')[d].get("final_marks") and result.get('rows')[d].get("earned_credits") :
@@ -76,7 +82,8 @@ def make_continuous_evaluation(continuous_evaluation):
 				doc.final_marks=flt(result.get('rows')[d].get("final_marks"))
 				doc.earned_credits=flt(result.get('rows')[d].get("earned_credits"))
 				doc.total_credits=flt(result.get('rows')[d].get("total_credits"))
-				doc.out_of_marks=flt(result.get('rows')[d].get("out_of_marks"))			
+				doc.out_of_marks=flt(result.get('rows')[d].get("out_of_marks"))
+				doc.attendence_status=result.get('rows')[d].get("exam_attendence")	
 				doc.save()
 				# doc.submit()
 				records=True

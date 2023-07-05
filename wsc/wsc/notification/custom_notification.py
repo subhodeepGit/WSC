@@ -362,6 +362,24 @@ def payment_entry_submit(doc):
     attachments = [frappe.attach_print(doc.doctype, doc.name, file_name=doc.name, print_format='Payment Entry Money Recipt')]
     send_mail(recipients,'Payment Successful',msg,attachments)
 
+def employee_reporting_aprover(doc):
+    sub="""<p><b>Profile Updation Notification</b></p><br>"""
+    msg="""<b>---------------------Employee Details---------------------</b><br>"""
+    msg+="""<b>Employee Name:</b>  {0}<br>""".format(doc['employee_name'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    emp_profile_updation = get_url_to_form('Employee Profile Updation', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(emp_profile_updation)
+    send_mail(doc['reporting_authority_email'],sub,msg)
+    frappe.msgprint("Email sent to reporting authority",[doc['reporting_authority_email']])
+def employee_hr(doc):
+    sub="""<p><b>Profile Updation Notification</b></p><br>"""
+    msg="""<b>---------------------Employee Details---------------------</b><br>"""
+    msg+="""<b>Employee Name:</b>  {0}<br>""".format(doc['employee_name'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    emp_profile_updation = get_url_to_form('Employee Profile Updation', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(emp_profile_updation)
+    send_mail([doc['hr_email']],sub,msg)
+    frappe.msgprint("Email sent to HR",[doc['hr_email']])
 # def online_payment_submit(doc):
 #     msg="""<p><b>Payment Status</b></p><br>"""
 #     msg+="""<b>---------------------Payment Details---------------------</b><br>"""
@@ -477,38 +495,40 @@ def send_email_to_student(self):
         academic_term=t.academic_term
 
     get_ca_cm_assignment = frappe.get_all("Course Advisor and Manager Assignment",filters=[['programs','=',programs],['semester','=',semesters],['academic_year','=',academic_year],['academic_term','=',academic_term]],fields=['name','cm_email','ca_email','course_manager_name','course_advisor_name'])
-    course_manager_name = get_ca_cm_assignment[0]['course_manager_name']
-    course_advisor_name = get_ca_cm_assignment[0]['course_advisor_name']
-
-    get_student_email = frappe.get_all("Student",{'name':self.student},['student_email_id'])
-
-    if self.get('workflow_state') == "Rejected by Class Advisor":
-        msg="""<p>Leave Application <b>{0}</b> has been rejected by <b>{1}</b>""".format(self.get('name') or '-',course_advisor_name)
-    elif self.get('workflow_state') == "Rejected":
-        msg="""<p>Leave Application <b>{0}</b> has been rejected by <b>{1}</b>""".format(self.get('name') or '-',course_manager_name)
-    elif self.get('workflow_state') == "Approved":
-        msg="""<p>Leave Application <b>{0}</b> has been approved by <b>{1}</b>""".format(self.get('name') or '-',course_manager_name)
-    else :
-        pass
-
+    
     if get_ca_cm_assignment:
-        get_students = frappe.get_all("Course Manager Assignment Student Details", {"parent":get_ca_cm_assignment[0]['name']}, ['student','student_name'])
-        if get_students:
-            for t in get_students:
-                if self.student == t['student']:
-                    flag=1
-    recipients=[]
-    if flag==1:
-        recipient1 = get_student_email[0]['student_email_id']
-        recipients.append(recipient1)
-        recipient2 = get_ca_cm_assignment[0]['ca_email']
-        recipients.append(recipient2)
-        recipient3 = get_ca_cm_assignment[0]['cm_email']
-        recipients.append(recipient3)
-        send_mail(recipients,'Leave Application Notification',msg)
-        frappe.msgprint("Email sent to Student: %s"%(self.get('student_name')))
-        frappe.msgprint("Email sent to Course Advisor: %s"%(course_advisor_name))
-        frappe.msgprint("Email sent to Course Manager: %s"%(course_manager_name))
+        course_manager_name = get_ca_cm_assignment[0]['course_manager_name']
+        course_advisor_name = get_ca_cm_assignment[0]['course_advisor_name']
+
+        get_student_email = frappe.get_all("Student",{'name':self.student},['student_email_id'])
+
+        if self.get('workflow_state') == "Rejected by Class Advisor":
+            msg="""<p>Leave Application <b>{0}</b> has been rejected by <b>{1}</b>""".format(self.get('name') or '-',course_advisor_name)
+        elif self.get('workflow_state') == "Rejected":
+            msg="""<p>Leave Application <b>{0}</b> has been rejected by <b>{1}</b>""".format(self.get('name') or '-',course_manager_name)
+        elif self.get('workflow_state') == "Approved":
+            msg="""<p>Leave Application <b>{0}</b> has been approved by <b>{1}</b>""".format(self.get('name') or '-',course_manager_name)
+        else :
+            pass
+
+        if get_ca_cm_assignment:
+            get_students = frappe.get_all("Course Manager Assignment Student Details", {"parent":get_ca_cm_assignment[0]['name']}, ['student','student_name'])
+            if get_students:
+                for t in get_students:
+                    if self.student == t['student']:
+                        flag=1
+        recipients=[]
+        if flag==1:
+            recipient1 = get_student_email[0]['student_email_id']
+            recipients.append(recipient1)
+            recipient2 = get_ca_cm_assignment[0]['ca_email']
+            recipients.append(recipient2)
+            recipient3 = get_ca_cm_assignment[0]['cm_email']
+            recipients.append(recipient3)
+            send_mail(recipients,'Leave Application Notification',msg)
+            frappe.msgprint("Email sent to Student: %s"%(self.get('student_name')))
+            frappe.msgprint("Email sent to Course Advisor: %s"%(course_advisor_name))
+            frappe.msgprint("Email sent to Course Manager: %s"%(course_manager_name))
 
 def send_email_to_deputy_director(self):
     flag=0
@@ -519,24 +539,26 @@ def send_email_to_deputy_director(self):
         academic_term=t.academic_term
 
     get_ca_cm_assignment = frappe.get_all("Course Advisor and Manager Assignment",filters=[['programs','=',programs],['semester','=',semesters],['academic_year','=',academic_year],['academic_term','=',academic_term]],fields=['name', 'dd_name', 'dd_email', 'course_manager_name'])
-    dd_name = get_ca_cm_assignment[0]['dd_name']
-    course_manager_name = get_ca_cm_assignment[0]['course_manager_name']
-
-    if self.get('workflow_state') == "Approved":
-        msg="""<p>Leave Application <b>{0}</b> has been approved by <b>{1}</b>""".format(self.get('name') or '-',course_manager_name)
-    else :
-        pass
-
+    
     if get_ca_cm_assignment:
-        get_students = frappe.get_all("Course Manager Assignment Student Details", {"parent":get_ca_cm_assignment[0]['name']}, ['student','student_name'])
-        if get_students:
-            for t in get_students:
-                if self.student == t['student']:
-                    flag=1
-    if flag==1:
-        recipients = get_ca_cm_assignment[0]['dd_email']
-        send_mail(recipients,'Leave Application Notification',msg)
-        frappe.msgprint("Email sent to Deputy Director: %s"%(dd_name))
+        dd_name = get_ca_cm_assignment[0]['dd_name']
+        course_manager_name = get_ca_cm_assignment[0]['course_manager_name']
+
+        if self.get('workflow_state') == "Approved":
+            msg="""<p>Leave Application <b>{0}</b> has been approved by <b>{1}</b>""".format(self.get('name') or '-',course_manager_name)
+        else :
+            pass
+
+        if get_ca_cm_assignment:
+            get_students = frappe.get_all("Course Manager Assignment Student Details", {"parent":get_ca_cm_assignment[0]['name']}, ['student','student_name'])
+            if get_students:
+                for t in get_students:
+                    if self.student == t['student']:
+                        flag=1
+        if flag==1:
+            recipients = get_ca_cm_assignment[0]['dd_email']
+            send_mail(recipients,'Leave Application Notification',msg)
+            frappe.msgprint("Email sent to Deputy Director: %s"%(dd_name))
 
 def send_mail_to_students_mweg(self):
     for t in self.get("student_list"):
