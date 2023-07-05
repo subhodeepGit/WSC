@@ -606,7 +606,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Course",
+   "label": "Courses",
    "link_count": 0,
    "link_to": "Programs",
    "link_type": "DocType",
@@ -664,7 +664,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-06-23 16:54:20.631098",
+ "modified": "2023-07-05 11:40:40.574336",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Admission",

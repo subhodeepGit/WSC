@@ -96,6 +96,7 @@ frappe.ui.form.on('Students Attendance Tool', {
 	},
 
 	date: function(frm) {
+		frm.set_value('course_schedule',"");
 		if (frm.doc.date > frappe.datetime.get_today())
 			frappe.throw(__("Cannot mark attendance for future dates."));
 		if (frm.doc.based_on == "Student Group") {
@@ -183,9 +184,9 @@ wsc.StudentsEditor = class StudentsEditor {
 				var students_on_leave = studs.filter(function(stud) {
 					return !stud.disabled && !stud.checked && stud.leave_status=="Approved";
 				});
-				console.log(students_present);
-				console.log(students_absent);
-				console.log(students_on_leave);
+				// console.log(students_present);
+				// console.log(students_absent);
+				// console.log(students_on_leave);
 				frappe.confirm(__("Do you want to update attendance? <br> Present: {0} <br> Absent: {1} <br> On Leave: {2} ",
 					[students_present.length, students_absent.length, students_on_leave.length]),
 					function() {	//ifyes
@@ -208,6 +209,9 @@ wsc.StudentsEditor = class StudentsEditor {
 								callback: function(r) {
 									$(me.wrapper.find(".btn-mark-att")).attr("disabled", false);
 									frm.trigger("student_group");
+									setTimeout(function(){
+										window.location.reload();
+									 }, 5000);
 								}
 							});
 						}
@@ -242,3 +246,4 @@ wsc.StudentsEditor = class StudentsEditor {
 		);
 	}
 };
+
