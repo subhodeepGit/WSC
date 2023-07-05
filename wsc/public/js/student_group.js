@@ -1,5 +1,13 @@
 frappe.ui.form.on("Student Group", {
     refresh:function(frm){
+		frm.remove_custom_button("Student Attendance Tool","Tools");
+		frm.add_custom_button(__('Students\' Attendance Tool'), function() {
+			frappe.route_options = {
+				based_on: 'Student Group',
+				student_group: frm.doc.name
+			}
+			frappe.set_route('Form', 'Students Attendance Tool', 'Students Attendance Tool');
+		}, __('Tools'));
 		frm.remove_custom_button("Add Guardians to Email Group","Actions");
 		frm.remove_custom_button("Newsletter","View");
 		frm.remove_custom_button("Course Scheduling Tool","Tools");
@@ -20,7 +28,7 @@ frappe.ui.form.on("Student Group", {
 			}
 		});
         if (frm.doc.group_based_on=="Exam Declaration"){
-            frm.remove_custom_button("Student Attendance Tool","Tools");
+            frm.remove_custom_button("Students\' Attendance Tool","Tools");
             frm.remove_custom_button("Course Scheduling Tool","Tools");
             frm.remove_custom_button("Newsletter","View");
             frm.remove_custom_button("Add Guardians to Email Group","Actions");
