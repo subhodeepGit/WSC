@@ -20,8 +20,10 @@
   "program_grade",
   "programs",
   "semester",
+  "exam_category",
   "section_break_9",
   "assessment_plan",
+  "qualifying_status_data",
   "column_break_13",
   "attendence_status",
   "earned_marks",
@@ -168,12 +170,24 @@
    "label": "Attendence Status",
    "options": "\nPresent\nAbsent",
    "reqd": 1
+  },
+  {
+   "fieldname": "qualifying_status_data",
+   "fieldtype": "Data",
+   "label": "Qualifying Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "exam_category",
+   "fieldtype": "Data",
+   "label": "Exam Category",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-04 11:58:03.570934",
+ "modified": "2023-07-05 16:13:07.920214",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Course Assessment",
