@@ -13,7 +13,9 @@
   "column_break_3",
   "department",
   "employment_type",
-  "status",
+  "reporting_authority",
+  "reporting_auth_id",
+  "hr_id",
   "section_break_5",
   "educational_qualification_tab",
   "education",
@@ -174,18 +176,29 @@
    "fieldtype": "Column Break"
   },
   {
-   "default": "Open",
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "label": "Status",
-   "options": "\nOpen\nPending",
+   "fetch_from": "employee.reports_to",
+   "fieldname": "reporting_authority",
+   "fieldtype": "Data",
+   "label": "Reporting Authority",
    "read_only": 1
+  },
+  {
+   "fieldname": "reporting_auth_id",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Reporting Auth ID"
+  },
+  {
+   "fieldname": "hr_id",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "HR ID"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-04 13:04:02.829125",
+ "modified": "2023-07-05 12:07:11.580462",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Profile Updation",

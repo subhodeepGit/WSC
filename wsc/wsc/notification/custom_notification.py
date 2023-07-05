@@ -337,6 +337,24 @@ def payment_entry_submit(doc):
     attachments = [frappe.attach_print(doc.doctype, doc.name, file_name=doc.name, print_format='Payment Entry Money Recipt')]
     send_mail(recipients,'Payment Successful',msg,attachments)
 
+def employee_reporting_aprover(doc):
+    sub="""<p><b>Profile Updation Notification</b></p><br>"""
+    msg="""<b>---------------------Employee Details---------------------</b><br>"""
+    msg+="""<b>Employee Name:</b>  {0}<br>""".format(doc['employee_name'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    emp_profile_updation = get_url_to_form('Employee Profile Updation', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(emp_profile_updation)
+    send_mail(doc['reporting_authority_email'],sub,msg)
+    frappe.msgprint("Email sent to reporting authority",[doc['reporting_authority_email']])
+def employee_hr(doc):
+    sub="""<p><b>Profile Updation Notification</b></p><br>"""
+    msg="""<b>---------------------Employee Details---------------------</b><br>"""
+    msg+="""<b>Employee Name:</b>  {0}<br>""".format(doc['employee_name'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    emp_profile_updation = get_url_to_form('Employee Profile Updation', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(emp_profile_updation)
+    send_mail([doc['hr_email']],sub,msg)
+    frappe.msgprint("Email sent to HR",[doc['hr_email']])
 # def online_payment_submit(doc):
 #     msg="""<p><b>Payment Status</b></p><br>"""
 #     msg+="""<b>---------------------Payment Details---------------------</b><br>"""
