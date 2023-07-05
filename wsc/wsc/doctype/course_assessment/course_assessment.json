@@ -20,8 +20,10 @@
   "program_grade",
   "programs",
   "semester",
+  "exam_category",
   "section_break_9",
   "assessment_plan",
+  "qualifying_status_data",
   "column_break_13",
   "attendence_status",
   "earned_marks",
@@ -58,6 +60,7 @@
    "fieldtype": "Link",
    "label": "Academic Year",
    "options": "Academic Year",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -66,6 +69,7 @@
    "fieldtype": "Link",
    "label": "Academic Term",
    "options": "Academic Term",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -76,20 +80,23 @@
    "fieldname": "exam_declaration",
    "fieldtype": "Link",
    "label": "Exam Declaration",
-   "options": "Exam Declaration"
+   "options": "Exam Declaration",
+   "reqd": 1
   },
   {
    "fetch_from": "exam_declaration.exam_program",
    "fieldname": "programs",
    "fieldtype": "Link",
    "label": "Programs",
-   "options": "Programs"
+   "options": "Programs",
+   "read_only": 1
   },
   {
    "fieldname": "semester",
    "fieldtype": "Link",
    "label": "Semester",
-   "options": "Program"
+   "options": "Program",
+   "read_only": 1
   },
   {
    "fieldname": "course",
@@ -114,10 +121,10 @@
    "fieldtype": "Column Break"
   },
   {
-   "allow_on_submit": 1,
    "fieldname": "total_marks",
    "fieldtype": "Float",
-   "label": "Total Marks"
+   "label": "Total Marks",
+   "read_only": 1
   },
   {
    "fieldname": "amended_from",
@@ -157,6 +164,7 @@
    "read_only": 1
   },
   {
+   "fetch_from": "exam_declaration.program_grade",
    "fieldname": "program_grade",
    "fieldtype": "Link",
    "label": "Course Type",
@@ -168,6 +176,18 @@
    "label": "Attendence Status",
    "options": "\nPresent\nAbsent",
    "reqd": 1
+  },
+  {
+   "fieldname": "qualifying_status_data",
+   "fieldtype": "Data",
+   "label": "Qualifying Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "exam_category",
+   "fieldtype": "Data",
+   "label": "Exam Category",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
