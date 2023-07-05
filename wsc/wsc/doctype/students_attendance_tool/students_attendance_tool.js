@@ -96,6 +96,7 @@ frappe.ui.form.on('Students Attendance Tool', {
 	},
 
 	date: function(frm) {
+		frm.set_value('course_schedule',"");
 		if (frm.doc.date > frappe.datetime.get_today())
 			frappe.throw(__("Cannot mark attendance for future dates."));
 		if (frm.doc.based_on == "Student Group") {
@@ -208,6 +209,12 @@ wsc.StudentsEditor = class StudentsEditor {
 								callback: function(r) {
 									$(me.wrapper.find(".btn-mark-att")).attr("disabled", false);
 									frm.trigger("student_group");
+									frm.set_df_property("based_on","read_only",1);
+									frm.set_df_property("date","read_only",1);
+									frm.set_df_property("group_based_on","read_only",1);
+									frm.set_df_property("course_schedule","read_only",1);
+									frm.set_df_property("student_group","read_only",1);
+									
 									setTimeout(function(){
 										window.location.reload();
 									 }, 5000);

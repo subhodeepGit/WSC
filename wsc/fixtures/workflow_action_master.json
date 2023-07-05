@@ -152,5 +152,26 @@
   "modified": "2023-06-06 12:38:23.119249",
   "name": "Cancel",
   "workflow_action_name": "Cancel"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-06-06 12:17:00.897288",
+  "name": "Resolve",
+  "workflow_action_name": "Resolve"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-06-06 12:23:27.041039",
+  "name": "Verify",
+  "workflow_action_name": "Verify"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-06-06 12:38:23.119249",
+  "name": "Cancel",
+  "workflow_action_name": "Cancel"
  }
 ]
