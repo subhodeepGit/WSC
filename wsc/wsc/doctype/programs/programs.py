@@ -56,7 +56,7 @@ class Programs(Document):
 				doc=frappe.new_doc("Program")
 				doc.program_name=program_name
 				doc.programs=self.name
-				doc.is_tot=1
+				# doc.is__tot=1
 				doc.semester_order=c+1
 				doc.save()
 
