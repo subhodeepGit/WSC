@@ -9,10 +9,13 @@
  "engine": "InnoDB",
  "field_order": [
   "posting_date",
+  "clearance_type",
   "student_id",
+  "attrition_id",
   "column_break_9ecln",
   "user_disable_date",
   "student_name",
+  "student_email_address",
   "current_educational_details_section",
   "current_education",
   "section_break_gcpf2",
@@ -37,8 +40,9 @@
    "fieldname": "student_id",
    "fieldtype": "Link",
    "label": "Student ID",
+   "mandatory_depends_on": "eval:doc.clearance_type==\"Normal\"",
    "options": "Student",
-   "reqd": 1
+   "read_only_depends_on": "eval:doc.clearance_type!==\"Normal\""
   },
   {
    "fetch_from": "student_id.student_name",
@@ -79,7 +83,7 @@
   },
   {
    "fieldname": "user_disable_date",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "User Disable Date"
   },
   {
@@ -107,12 +111,32 @@
    "fieldname": "total_dues",
    "fieldtype": "Currency",
    "label": "Total Dues"
+  },
+  {
+   "fetch_from": "student_id.student_email_id",
+   "fieldname": "student_email_address",
+   "fieldtype": "Data",
+   "label": "Student Email Address"
+  },
+  {
+   "fieldname": "clearance_type",
+   "fieldtype": "Select",
+   "label": "Clearance Type",
+   "options": "Normal\nAttrition"
+  },
+  {
+   "fieldname": "attrition_id",
+   "fieldtype": "Link",
+   "label": "Attrition Id",
+   "mandatory_depends_on": "eval:doc.clearance_type == \"Attrition\"",
+   "options": "Student Attrition Form",
+   "read_only_depends_on": "eval:doc.clearance_type == \"Normal\""
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-30 14:26:01.672785",
+ "modified": "2023-07-05 12:33:37.271886",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Clearance Application",
