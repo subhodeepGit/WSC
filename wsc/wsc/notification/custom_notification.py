@@ -20,6 +20,23 @@ def student_applicant_submit(doc):
     msg += "</table>"
     send_mail(frappe.db.get_value("Student Applicant",doc.get('name'),"student_email_id"),'Application status',msg)
 
+
+def employee_reporting_aprover(doc):
+    sub="""<p><b>Leave Approval Notification</b></p><br>"""
+
+    msg="""<b>---------------------Leave Application Details---------------------</b><br>"""
+    msg+="""<b>Employee Name:</b>  {0}<br>""".format(doc['employee_name'])
+    msg+="""<b>Leave Type:</b>  {0}<br>""".format(doc['leave_type'])
+    msg+="""<b>From Date:</b>  {0}<br>""".format(doc['from_date'])
+    msg+="""<b>To Date:</b>  {0}<br>""".format(doc['to_date'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    leave_app_url = get_url_to_form('Leave Application', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(leave_app_url)
+
+    send_mail([doc['reporting_authority_email']],sub,msg)
+    frappe.msgprint("Email sent to reporting authority",[doc['reporting_authority_email']])
+  
+
 def student_applicant_approved(doc):
     sub="""<p><b>Congratulation !! Your Application Form has been Approved</b></p><br>"""
     msg+="""Further Process, we will connect with you soon.</b><br>"""
