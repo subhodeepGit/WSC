@@ -60,6 +60,7 @@
    "fieldtype": "Link",
    "label": "Academic Year",
    "options": "Academic Year",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -68,6 +69,7 @@
    "fieldtype": "Link",
    "label": "Academic Term",
    "options": "Academic Term",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -78,20 +80,23 @@
    "fieldname": "exam_declaration",
    "fieldtype": "Link",
    "label": "Exam Declaration",
-   "options": "Exam Declaration"
+   "options": "Exam Declaration",
+   "reqd": 1
   },
   {
    "fetch_from": "exam_declaration.exam_program",
    "fieldname": "programs",
    "fieldtype": "Link",
    "label": "Programs",
-   "options": "Programs"
+   "options": "Programs",
+   "read_only": 1
   },
   {
    "fieldname": "semester",
    "fieldtype": "Link",
    "label": "Semester",
-   "options": "Program"
+   "options": "Program",
+   "read_only": 1
   },
   {
    "fieldname": "course",
@@ -116,10 +121,10 @@
    "fieldtype": "Column Break"
   },
   {
-   "allow_on_submit": 1,
    "fieldname": "total_marks",
    "fieldtype": "Float",
-   "label": "Total Marks"
+   "label": "Total Marks",
+   "read_only": 1
   },
   {
    "fieldname": "amended_from",
@@ -159,10 +164,12 @@
    "read_only": 1
   },
   {
+   "fetch_from": "exam_declaration.program_grade",
    "fieldname": "program_grade",
    "fieldtype": "Link",
    "label": "Program Grade",
-   "options": "Program Grades"
+   "options": "Program Grades",
+   "read_only": 1
   },
   {
    "fieldname": "attendence_status",
@@ -187,7 +194,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-05 16:13:07.920214",
+ "modified": "2023-07-05 17:02:12.922246",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Course Assessment",

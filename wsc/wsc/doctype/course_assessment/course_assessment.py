@@ -12,6 +12,9 @@ class CourseAssessment(Document):
         self.qualifying_status()
         self.exam_type()
 
+    def on_update_after_submit(self):
+        self.qualifying_status()  
+
     def exam_type(self):
         exam_category=frappe.get_all("Exam Declaration",{"name":self.exam_declaration},['exam_category'])
         self.exam_category=exam_category[0]['exam_category']
@@ -19,7 +22,7 @@ class CourseAssessment(Document):
     def qualifying_status(self):
         passing_marks=frappe.get_all("Credit distribution List", {"parent":self.course,"assessment_criteria":self.assessment_criteria},['passing_marks'])
         passing_marks=passing_marks[0]['passing_marks']
-        earned_marks=self.earned_marks
+        earned_marks=flt(self.earned_marks)
         if passing_marks<=earned_marks:
             self.qualifying_status_data="Pass"
         else:
