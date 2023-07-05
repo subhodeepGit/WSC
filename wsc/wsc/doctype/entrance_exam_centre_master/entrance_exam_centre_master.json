@@ -16,8 +16,7 @@
   "post_office",
   "cityvillage",
   "address",
-  "pincode",
-  "total_seating_capacity"
+  "pincode"
  ],
  "fields": [
   {
@@ -60,7 +59,7 @@
   {
    "fieldname": "cityvillage",
    "fieldtype": "Data",
-   "label": "City/Village",
+   "label": "City/Village/Town",
    "reqd": 1
   },
   {
@@ -76,12 +75,6 @@
    "reqd": 1
   },
   {
-   "fieldname": "total_seating_capacity",
-   "fieldtype": "Int",
-   "label": "Total Seating Capacity",
-   "reqd": 1
-  },
-  {
    "default": "0",
    "fieldname": "current_centers",
    "fieldtype": "Check",
@@ -90,7 +83,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-23 17:54:27.512306",
+ "modified": "2023-06-21 14:52:36.267504",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Centre Master",

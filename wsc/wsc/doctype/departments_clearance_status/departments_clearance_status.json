@@ -3,39 +3,55 @@
  "allow_rename": 1,
  "creation": "2023-04-04 12:07:34.751308",
  "doctype": "DocType",
- "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "department",
-  "cleared",
-  "comment"
+  "clearance_status",
+  "amount",
+  "comment",
+  "fees_id"
  ],
  "fields": [
   {
    "fieldname": "department",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "Department",
    "read_only": 1
   },
   {
-   "default": "0",
-   "fieldname": "cleared",
-   "fieldtype": "Check",
+   "fieldname": "clearance_status",
+   "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "Cleared"
+   "label": "Clearance Status",
+   "options": "Select\nNo-Dues\nDues",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "label": "Amount",
+   "mandatory_depends_on": "eval:doc.clearance_status==\"Dues\"",
+   "read_only_depends_on": "eval:doc.clearance_status!==\"Dues\""
   },
   {
    "fieldname": "comment",
-   "fieldtype": "Small Text",
-   "in_list_view": 1,
-   "label": "Comment"
+   "fieldtype": "Data",
+   "label": "Comment",
+   "mandatory_depends_on": "eval:doc.clearance_status==\"Dues\"",
+   "read_only_depends_on": "eval:doc.clearance_status!==\"Dues\""
+  },
+  {
+   "fieldname": "fees_id",
+   "fieldtype": "Link",
+   "label": "Fees_Id",
+   "options": "Fees"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-04-04 14:16:54.627823",
+ "modified": "2023-06-30 10:32:04.163218",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Departments Clearance Status",

@@ -91,9 +91,9 @@ def student_allotment(body):
 								UPDATE `tabExam Slot Timings` SET seating_capacity = '{current_capacity}' WHERE parent = '{parent}' AND slot_name = '{slot_name}'
 						""".format(current_capacity = k['seating_capacity'] - 1 , parent = exam_center_allocation[0]['name'] , slot_name = k['slot_name']))	
 
-						# frappe.db.sql(""" 
-						# 		UPDATE `tabApplicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}'
-						# 	""".format(applicant_id = i['applicant_id']))   
+						frappe.db.sql(""" 
+								UPDATE `tabApplicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}'
+							""".format(applicant_id = i['applicant_id']))   
 
 						frappe.db.sql("""
 								UPDATE `tabDeAllotted Applicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}'
@@ -183,9 +183,9 @@ def leftovers_allotment(body):
 						UPDATE `tabExam Slot Timings` SET seating_capacity = '{current_capacity}' WHERE parent = '{parent}' AND slot_name = '{slot_name}'
 				""".format(current_capacity = j['seating_capacity'] - 1 , parent = exam_center_allocation[0]['name'] , slot_name = j['slot_name']))	
 
-				# frappe.db.sql(""" 
-				# 		UPDATE `tabApplicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}'
-				# 	""".format(applicant_id = i['applicant_id']))   
+				frappe.db.sql(""" 
+						UPDATE `tabApplicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}'
+					""".format(applicant_id = i['applicant_id']))   
 
 				frappe.db.sql("""
 						UPDATE `tabDeAllotted Applicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}'

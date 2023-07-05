@@ -1,6 +1,24 @@
 frappe.ui.form.on("Student Group", {
     refresh:function(frm){
-		frm.set_df_property('group_based_on', 'options', ['Batch', 'Course', 'Activity', 'Exam Declaration', 'Mentor-Mentee']);
+		frm.remove_custom_button("Student Attendance Tool","Tools");
+		frm.add_custom_button(__('Students\' Attendance Tool'), function() {
+			frappe.route_options = {
+				based_on: 'Student Group',
+				student_group: frm.doc.name
+			}
+			frappe.set_route('Form', 'Students Attendance Tool', 'Students Attendance Tool');
+		}, __('Tools'));
+		frm.remove_custom_button("Add Guardians to Email Group","Actions");
+		frm.remove_custom_button("Newsletter","View");
+		frm.remove_custom_button("Course Scheduling Tool","Tools");
+		frm.add_custom_button(__('Class Scheduling Tool'), function() {
+			frappe.route_options = {
+				student_group: frm.doc.name
+			}
+			frappe.set_route('Form', 'Class Scheduling Tool', 'Class Scheduling Tool');
+		}, __('Tools'));
+
+		frm.set_df_property('group_based_on', 'options', ['Batch', 'Course', 'Activity', 'Mentor-Mentee']);
 
 		frm.set_query("programs", function () {
 			return {
@@ -10,12 +28,12 @@ frappe.ui.form.on("Student Group", {
 			}
 		});
         if (frm.doc.group_based_on=="Exam Declaration"){
-            frm.remove_custom_button("Student Attendance Tool","Tools");
+            frm.remove_custom_button("Students\' Attendance Tool","Tools");
             frm.remove_custom_button("Course Scheduling Tool","Tools");
             frm.remove_custom_button("Newsletter","View");
             frm.remove_custom_button("Add Guardians to Email Group","Actions");
         }
-		if (frm.doc.group_based_on =="Mentor-Mentee"){
+		if (frm.doc.group_based_on == "Mentor-Mentee"){
             
             frm.remove_custom_button("Course Scheduling Tool","Tools");
 
@@ -164,7 +182,6 @@ frappe.ui.form.on("Student Group", {
 		// alert(frm.doc.group_based_on)
 	},
     get_student: function(frm) {
-		alert(200)
         frm.clear_table('students')
 		if (frm.doc.group_based_on == 'Batch' || frm.doc.group_based_on == 'Course') {
 			var student_list = [];

@@ -20,6 +20,7 @@
   "assessment_criteria",
   "academic_year",
   "academic_term",
+  "attendence_status",
   "section_break_5",
   "get_assessments",
   "final_credit_item",
@@ -99,12 +100,14 @@
    "allow_on_submit": 1,
    "fieldname": "earned_credits",
    "fieldtype": "Float",
+   "hidden": 1,
    "label": "Earned Credits"
   },
   {
    "allow_on_submit": 1,
    "fieldname": "total_credits",
    "fieldtype": "Float",
+   "hidden": 1,
    "label": "Total Credits"
   },
   {
@@ -201,12 +204,19 @@
    "fieldtype": "Link",
    "label": "Program Grade",
    "options": "Program Grades"
+  },
+  {
+   "fieldname": "attendence_status",
+   "fieldtype": "Select",
+   "label": "Attendence Status",
+   "options": "\nPresent\nAbsent",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-04-11 12:10:10.149756",
+ "modified": "2023-07-04 18:15:08.886628",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assessment Credits Allocation",

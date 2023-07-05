@@ -1,0 +1,224 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "EMP-PU-.YYYY.-.#####",
+ "creation": "2023-07-04 12:27:53.596721",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "employee_name",
+  "column_break_3",
+  "department",
+  "employment_type",
+  "reporting_authority",
+  "reporting_auth_id",
+  "hr_id",
+  "section_break_5",
+  "educational_qualification_tab",
+  "education",
+  "family_background_tab",
+  "family",
+  "health_update_tab",
+  "health_details",
+  "address_and_contacts_tab",
+  "address_details_section",
+  "current_address",
+  "column_break_14",
+  "permanent_address",
+  "contact_details_section",
+  "mobile",
+  "personal_email",
+  "column_break_19",
+  "emergency_contact",
+  "emergency_contact_name",
+  "relation",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.department",
+   "fieldname": "department",
+   "fieldtype": "Data",
+   "label": "Department",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.employment_type",
+   "fieldname": "employment_type",
+   "fieldtype": "Data",
+   "label": "Employment Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_5",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "educational_qualification_tab",
+   "fieldtype": "Tab Break",
+   "label": "Educational Qualification"
+  },
+  {
+   "fieldname": "family_background_tab",
+   "fieldtype": "Tab Break",
+   "label": "Family Background"
+  },
+  {
+   "fieldname": "family",
+   "fieldtype": "Table",
+   "label": "Family",
+   "options": "Family Background Details"
+  },
+  {
+   "fieldname": "health_update_tab",
+   "fieldtype": "Tab Break",
+   "label": "Health Update"
+  },
+  {
+   "fieldname": "health_details",
+   "fieldtype": "Table",
+   "label": "Health Details",
+   "options": "Health Details"
+  },
+  {
+   "fieldname": "address_and_contacts_tab",
+   "fieldtype": "Tab Break",
+   "label": "Address and Contacts"
+  },
+  {
+   "fieldname": "address_details_section",
+   "fieldtype": "Section Break",
+   "label": "Address Details"
+  },
+  {
+   "fieldname": "current_address",
+   "fieldtype": "Text",
+   "label": "Current Address"
+  },
+  {
+   "fieldname": "column_break_14",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "permanent_address",
+   "fieldtype": "Text",
+   "label": "Permanent Address"
+  },
+  {
+   "fieldname": "contact_details_section",
+   "fieldtype": "Section Break",
+   "label": "Contact Details"
+  },
+  {
+   "fieldname": "mobile",
+   "fieldtype": "Data",
+   "label": "Mobile"
+  },
+  {
+   "fieldname": "personal_email",
+   "fieldtype": "Data",
+   "label": "Personal Email"
+  },
+  {
+   "fieldname": "column_break_19",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "emergency_contact",
+   "fieldtype": "Data",
+   "label": "Emergency Contact"
+  },
+  {
+   "fieldname": "emergency_contact_name",
+   "fieldtype": "Data",
+   "label": "Emergency Contact Name"
+  },
+  {
+   "fieldname": "relation",
+   "fieldtype": "Data",
+   "label": "Relation"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Employee Profile Updation",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "education",
+   "fieldtype": "Table",
+   "label": "Education",
+   "options": "Education Qualifications Details"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "employee.reports_to",
+   "fieldname": "reporting_authority",
+   "fieldtype": "Data",
+   "label": "Reporting Authority",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reporting_auth_id",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Reporting Auth ID"
+  },
+  {
+   "fieldname": "hr_id",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "HR ID"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-07-05 12:07:11.580462",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Employee Profile Updation",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

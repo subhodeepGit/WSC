@@ -21,8 +21,11 @@ def get_data(filters=None):
     semester=filters.get('semester')
     course=filters.get('course')
 
-    if from_date > to_date:
-        frappe.throw("From Date cannot be greater than To Date")
+    try:
+        if from_date > to_date:
+            frappe.throw("From Date cannot be greater than To Date")
+    except TypeError:
+        pass
 
     filt=[]
     if academic_term:
@@ -66,14 +69,14 @@ def get_data(filters=None):
             t['%s'%(j)]='Attendance not marked'
 
     
-    for t in pe_data:
-        keys = list(t.keys())
+    # for t in pe_data:
+    #     keys = list(t.keys())
 
     for t in pe_data:
         for d in student_attendance_data:
             if d['student'] in t['student']:
-                for key in keys[2:]:
-                    if key in d['course_schedule']:
+                # for key in keys[2:]:
+                    # if key in d['course_schedule']:
                         t['%s'%(d['course_schedule'])]=d['status']
 
 

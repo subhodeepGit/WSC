@@ -1,7 +1,7 @@
 {
  "actions": [],
  "autoname": "MNT-COMN.-.####",
- "creation": "2021-10-04 02:13:03.265613",
+ "creation": "2023-07-02 11:53:13.092952",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -16,9 +16,16 @@
   "section_break_7",
   "description",
   "references_section",
-  "student_disciplinary_complain"
+  "student_disciplinary_complain",
+  "comment_message"
  ],
  "fields": [
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
   {
    "fieldname": "student",
    "fieldtype": "Link",
@@ -45,17 +52,6 @@
    "reqd": 1
   },
   {
-   "fieldname": "description",
-   "fieldtype": "Text Editor",
-   "label": "Description"
-  },
-  {
-   "default": "Today",
-   "fieldname": "date",
-   "fieldtype": "Date",
-   "label": "Date"
-  },
-  {
    "fieldname": "column_break_5",
    "fieldtype": "Column Break"
   },
@@ -67,8 +63,22 @@
    "read_only": 1
   },
   {
+   "fetch_from": "mentor.mentor_name",
+   "fieldname": "mentor_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Mentor Name",
+   "read_only": 1
+  },
+  {
    "fieldname": "section_break_7",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description",
+   "set_only_once": 1
   },
   {
    "collapsible": 1,
@@ -84,16 +94,15 @@
    "read_only": 1
   },
   {
-   "fieldname": "mentor_name",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Mentor Name",
+   "fieldname": "comment_message",
+   "fieldtype": "Text",
+   "label": "Comment Message",
    "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-02-17 13:21:12.865474",
+ "modified": "2023-07-02 16:00:29.499609",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Mentor Mentee Communication",

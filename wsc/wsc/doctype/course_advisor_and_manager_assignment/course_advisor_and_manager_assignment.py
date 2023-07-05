@@ -58,4 +58,13 @@ def get_courses(doctype, txt, searchfield, start, page_len, filters):
 			limit %s, %s""".format(", ".join(['%s']*len(courses))),
 			tuple(courses + ["%%%s%%" % txt, "%%%s%%" % txt,"%%%s%%" % txt, start, page_len]))
     return []
-  
+
+@frappe.whitelist()
+def get_cm_email(employee=None):
+     email = frappe.get_all("Employee",{'name':employee},['user_id'])
+     return email[0]['user_id']
+
+@frappe.whitelist()
+def get_ca_email(employee_1=None):
+     email = frappe.get_all("Employee",{'name':employee_1},['user_id'])
+     return email[0]['user_id']

@@ -60,7 +60,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Student Attendace",
+   "label": "Student Attendance",
    "link_count": 0,
    "link_to": "Student Attendance",
    "link_type": "DocType",
@@ -72,7 +72,7 @@
    "is_query_report": 0,
    "label": "Student Attendance Tool",
    "link_count": 0,
-   "link_to": "Student Attendance Tool",
+   "link_to": "Students Attendance Tool",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -82,7 +82,7 @@
    "is_query_report": 0,
    "label": "Student Leave Application",
    "link_count": 0,
-   "link_to": "Student Leave Application",
+   "link_to": "Leave Application for Student",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -158,7 +158,7 @@
    "is_query_report": 0,
    "label": "Student Attendance Tool",
    "link_count": 0,
-   "link_to": "Student Attendance Tool",
+   "link_to": "Students Attendance Tool",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -220,7 +220,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-02-27 17:10:45.788818",
+ "modified": "2023-07-04 16:13:42.670395",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Academics",
@@ -231,6 +231,21 @@
  "roles": [
   {
    "role": "Admin"
+  },
+  {
+   "role": "Education Administrator"
+  },
+  {
+   "role": "Academic Management Group"
+  },
+  {
+   "role": "Education Academic Head"
+  },
+  {
+   "role": "Instructor"
+  },
+  {
+   "role": "Student"
   }
  ],
  "sequence_id": 2.0,

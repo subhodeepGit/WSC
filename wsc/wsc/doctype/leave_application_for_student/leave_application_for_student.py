@@ -5,6 +5,7 @@ import frappe
 from frappe.model.document import Document
 import json
 from frappe import msgprint, _
+from wsc.wsc.notification.custom_notification import send_email_to_course_advisor,send_email_to_course_manager,send_email_to_student,send_email_to_deputy_director
 
 class LeaveApplicationforStudent(Document):
 	def on_submit(self):
@@ -22,34 +23,56 @@ class LeaveApplicationforStudent(Document):
 		if all_zero_or_none:
 			frappe.throw("You have not selected any class for leave application!!")
 
-		duplicate_application = frappe.db.sql("""SELECT `name`, `from_date`, `to_date` FROM `tabLeave Application for Student` WHERE `student` = '%s' AND ((from_date >= '%s' AND to_date <= '%s') OR (from_date <= '%s' AND to_date >= '%s'))"""%(self.student,self.from_date,self.to_date,self.to_date,self.from_date),as_dict=1)
+		duplicate_application = frappe.db.sql("""SELECT `name`, `from_date`, `to_date`, `workflow_state` FROM `tabLeave Application for Student` WHERE `student` = '%s' AND ((from_date >= '%s' AND to_date <= '%s') OR (from_date <= '%s' AND to_date >= '%s'))"""%(self.student,self.from_date,self.to_date,self.to_date,self.from_date),as_dict=1)
+		
 		if duplicate_application:
 			for t in duplicate_application:
-				duplicate_from_date = t['from_date']
-				duplicate_to_date = t['to_date']
-				duplicate_application_no = t['name']
-				frappe.throw(_("You have already applied for leave from <b>{0}</b> to <b>{1}</b> and your application number is <b>{2}</b>!!".format(duplicate_from_date.strftime("%d-%m-%Y"),duplicate_to_date.strftime("%d-%m-%Y"),duplicate_application_no)))
-				
+				if self.name!=t['name']:
+					if t['workflow_state']=="Rejected by Class Advisor":
+						pass
+					elif t['workflow_state']=="Rejected":
+						pass
+					else:
+						duplicate_from_date = t['from_date']
+						duplicate_to_date = t['to_date']
+						duplicate_application_no = t['name']
+						frappe.throw(_("You have already applied for leave from <b>{0}</b> to <b>{1}</b> and your application number is <b>{2}</b>!!".format(duplicate_from_date.strftime("%d-%m-%Y"),duplicate_to_date.strftime("%d-%m-%Y"),duplicate_application_no)))
+
+		if self.workflow_state == "Sent for Approval to Class Advisor":
+			send_email_to_course_advisor(self)
+		elif self.workflow_state == "Sent for Approval to Course Manager":
+			send_email_to_course_manager(self)
+		if self.workflow_state == "Rejected":
+			send_email_to_student(self)
+		elif self.workflow_state == "Rejected by Class Advisor":
+			send_email_to_student(self)
+		elif self.workflow_state == "Approved":
+			send_email_to_student(self)
+			send_email_to_deputy_director(self)
 
 
 
+
+
+	
 def hostel_leave(self):
 	if self.leave_applicability_hostel == "Academics and Hostel":
 		ra_id=frappe.get_all("Room Allotment",filters={"student" : self.student, "docstatus": 1, "allotment_type" : "Allotted"},fields=["name","hostel_id","room_id","room_type"],limit=1)
-		hostel_leave=frappe.new_doc("Student Leave Process")
-		hostel_leave.allotment_number=ra_id[0]["name"]
-		hostel_leave.student=self.student
-		hostel_leave.student_name=self.student_name
-		hostel_leave.roll_no=self.roll_no
-		hostel_leave.registration_number=self.registration_no
-		hostel_leave.start_date=self.from_date
-		hostel_leave.end_date=self.to_date
-		hostel_leave.hostel=ra_id[0]["hostel_id"]
-		hostel_leave.room_number=ra_id[0]["room_id"]
-		hostel_leave.room_type=ra_id[0]["room_type"]
-		hostel_leave.comment=self.reason
-		hostel_leave.save()
-		hostel_leave.submit()
+		if ra_id != []:
+			hostel_leave=frappe.new_doc("Student Leave Process")
+			hostel_leave.allotment_number=ra_id[0]["name"]
+			hostel_leave.student=self.student
+			hostel_leave.student_name=self.student_name
+			hostel_leave.roll_no=self.roll_no
+			hostel_leave.registration_number=self.registration_no
+			hostel_leave.start_date=self.from_date
+			hostel_leave.end_date=self.to_date
+			hostel_leave.hostel=ra_id[0]["hostel_id"]
+			hostel_leave.room_number=ra_id[0]["room_id"]
+			hostel_leave.room_type=ra_id[0]["room_type"]
+			hostel_leave.comment=self.reason
+			hostel_leave.save()
+			hostel_leave.submit()
 
 
 @frappe.whitelist()
@@ -69,5 +92,5 @@ def get_classes(from_date=None,to_date=None,curr=None,leave_criteria=None):
 
 @frappe.whitelist()
 def current_education(student_no):
-    current_education_data=frappe.get_all("Current Educational Details",{"parent":student_no},['programs','semesters','academic_year','academic_term'])
-    return current_education_data
+	current_education_data=frappe.get_all("Current Educational Details",{"parent":student_no},['programs','semesters','academic_year','academic_term'])
+	return current_education_data

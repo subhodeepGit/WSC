@@ -7,11 +7,18 @@ from frappe.utils import flt
 
 class CourseAssessment(Document):
     def validate(self):
+        self.validate_attendance()
         self.validate_marks()
 
     def validate_marks(self):
         if flt(self.earned_marks)>flt(self.total_marks):
             frappe.throw("<b>Earned Marks</b> Cannot be Greater Than <b>Total Marks</b>")
+
+    def validate_attendance(self):
+        if self.attendence_status=="Absent":
+            if flt(self.earned_marks)!=0:
+                frappe.throw("If Attendence Status <b>Absent </b> Then <b>Earned Marks Can't be more the Zero </b>")
+
 
 @frappe.whitelist()
 def get_courses(doctype, txt, searchfield, start, page_len, filters):
