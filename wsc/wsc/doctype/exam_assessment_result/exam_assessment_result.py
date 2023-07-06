@@ -181,12 +181,12 @@ class ExamAssessmentResult(Document):
         for allocation in frappe.get_all("Assessment Credits Allocation",{"docstatus":1,"student":self.student,"academic_year":self.academic_year,"academic_term":self.academic_term},["course","earned_credits","total_credits","final_marks","out_of_marks","assessment_criteria"]):
             allocations += allocation.out_of_marks
         self.percentage_point = allocations
-        for d in  self.get("evaluation_result_item"):
+        for d in self.get("evaluation_result_item"):
             if self.grade and self.grading_scale:
                 if d.earned_marks:
-                    marks_earned += int(d.earned_marks)
-                    total_marks += int(d.total_marks)
-        if marks_earned > 0 and total_marks > 0 :
+                    marks_earned += flt(d.earned_marks)
+                    total_marks += flt(d.total_marks)
+        if total_marks > 0 :
             self.percentage = round((marks_earned/total_marks)*100, 2)
             self.percentage = "{:.2f}".format((marks_earned/total_marks)*100)
     #########################################################################################################################################
@@ -220,10 +220,11 @@ class ExamAssessmentResult(Document):
         for result in frappe.get_all("Exam Assessment Result",{"student":self.student},['sgpa','program','programs','sgpa_in_to_credit_point','credit_point']):        
             allocations+=float(result.sgpa_in_to_credit_point)
             credit_points+=result.credit_point
-            overall_cgpa=(allocations/credit_points)
-            res = "{:.2f}".format(overall_cgpa)
-            self.overall_cgpa=res
-            frappe.db.set_value("Exam Assessment Result",self.name,"overall_cgpa",res)
+            if credit_points > 0:
+                overall_cgpa=(allocations/credit_points)
+                res = "{:.2f}".format(overall_cgpa)
+                self.overall_cgpa=res
+                frappe.db.set_value("Exam Assessment Result",self.name,"overall_cgpa",res)
     def complete_course_enrollment(self):
         for item in self.get("evaluation_result_item"):
             if item.result=="P":
