@@ -16,14 +16,14 @@
   "reporting_authority",
   "reporting_auth_id",
   "hr_id",
-  "section_break_5",
   "educational_qualification_tab",
+  "note1",
   "education",
   "family_background_tab",
+  "note2",
   "family",
-  "health_update_tab",
-  "health_details",
   "address_and_contacts_tab",
+  "note3",
   "address_details_section",
   "current_address",
   "column_break_14",
@@ -68,10 +68,6 @@
    "read_only": 1
   },
   {
-   "fieldname": "section_break_5",
-   "fieldtype": "Section Break"
-  },
-  {
    "fieldname": "educational_qualification_tab",
    "fieldtype": "Tab Break",
    "label": "Educational Qualification"
@@ -86,17 +82,6 @@
    "fieldtype": "Table",
    "label": "Family",
    "options": "Family Background Details"
-  },
-  {
-   "fieldname": "health_update_tab",
-   "fieldtype": "Tab Break",
-   "label": "Health Update"
-  },
-  {
-   "fieldname": "health_details",
-   "fieldtype": "Table",
-   "label": "Health Details",
-   "options": "Health Details"
   },
   {
    "fieldname": "address_and_contacts_tab",
@@ -169,7 +154,7 @@
    "fieldname": "education",
    "fieldtype": "Table",
    "label": "Education",
-   "options": "Education Qualifications Details"
+   "options": "Employee Education"
   },
   {
    "fieldname": "column_break_3",
@@ -193,12 +178,27 @@
    "fieldtype": "Data",
    "hidden": 1,
    "label": "HR ID"
+  },
+  {
+   "fieldname": "note1",
+   "fieldtype": "Heading",
+   "label": "Changes you make  in \" Education \" will be reflected in your profile"
+  },
+  {
+   "fieldname": "note2",
+   "fieldtype": "Heading",
+   "label": "Changes you make in \"Family Background\" will be reflected in your profile"
+  },
+  {
+   "fieldname": "note3",
+   "fieldtype": "Heading",
+   "label": "Changes you make in \" Address and Contacts \"  will be reflected in your profile"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-05 12:07:11.580462",
+ "modified": "2023-07-06 12:27:46.699316",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Profile Updation",
