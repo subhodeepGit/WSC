@@ -163,10 +163,10 @@
   "docstatus": 0,
   "doctype": "Translation",
   "language": "en",
-  "modified": "2022-01-20 15:52:09.427262",
+  "modified": "2023-07-05 17:25:55.956766",
   "name": "1ffffb8850",
   "source_text": "Course Assessment",
-  "translated_text": "Criteria Wise Evaluation "
+  "translated_text": "Component Wise Evaluation "
  },
  {
   "context": null,
@@ -176,10 +176,10 @@
   "docstatus": 0,
   "doctype": "Translation",
   "language": "en",
-  "modified": "2022-01-20 15:51:56.672610",
+  "modified": "2023-07-05 17:26:30.402808",
   "name": "71a7b72c7b",
   "source_text": "Course Assessment Result Tool",
-  "translated_text": "Criteria Wise Evaluation Tool"
+  "translated_text": "Component Wise Evaluation Tool"
  },
  {
   "context": null,
@@ -189,10 +189,10 @@
   "docstatus": 0,
   "doctype": "Translation",
   "language": "en",
-  "modified": "2022-01-20 15:52:42.242714",
+  "modified": "2023-07-05 17:34:13.200477",
   "name": "e8abc5d28e",
   "source_text": "Exam Assessment Result",
-  "translated_text": "Final Exam Result "
+  "translated_text": "Final Semester Result"
  },
  {
   "context": null,
@@ -202,10 +202,10 @@
   "docstatus": 0,
   "doctype": "Translation",
   "language": "en",
-  "modified": "2022-01-20 16:07:20.409463",
+  "modified": "2023-07-05 17:26:19.574686",
   "name": "8dbbdb5aba",
   "source_text": "Assessment Credits Allocation",
-  "translated_text": "Continuous Evaluation"
+  "translated_text": "Component Wise Reevaluation"
  },
  {
   "context": null,
@@ -297,5 +297,44 @@
   "name": "39dbd52089",
   "source_text": "Course Schedule",
   "translated_text": "Class Schedule"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-07-05 17:27:09.211083",
+  "name": "9f488e9042",
+  "source_text": "Continuous Evaluation Tool",
+  "translated_text": "Component Wise Reevaluation Tool"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-07-05 17:27:30.868163",
+  "name": "ea8fd3feac",
+  "source_text": "Assessment Criteria",
+  "translated_text": "Assessment Component"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-07-05 17:35:31.508532",
+  "name": "dd4bbb45ad",
+  "source_text": "Final Result Declaration",
+  "translated_text": "Final Semester Result Tool"
  }
 ]

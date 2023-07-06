@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"I34K0-Span\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h1\\\">Admission</span>\",\"col\":12}},{\"id\":\"Vpzx3gf95K\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"CWLqDt2BnK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":3}},{\"id\":\"qsTiFgwIKa\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Semester\",\"col\":3}},{\"id\":\"4rnD6h2CmZ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course\",\"col\":3}},{\"id\":\"ywzjT_I2WT\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Department\",\"col\":3}},{\"id\":\"PP-iJn_1gz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student\",\"col\":3}},{\"id\":\"UK8H2h-3tS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instructor\",\"col\":3}},{\"id\":\"KyZ0v4Abgw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Fees\",\"col\":3}},{\"id\":\"Dkogm8iLqw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Applicant\",\"col\":3}},{\"id\":\"yp_dEg0btu\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"RrzHInDfHG\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Master &amp; Application</span><span class=\\\"h4\\\"><b><br></b></span>\",\"col\":12}},{\"id\":\"VZ4Vh0w5Ai\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"k_n6UG5naR\",\"type\":\"card\",\"data\":{\"card_name\":\"Student and Instructor\",\"col\":4}},{\"id\":\"ZfB-R1ZaJN\",\"type\":\"card\",\"data\":{\"card_name\":\"Admission Master\",\"col\":4}},{\"id\":\"hS7OiYlYTe\",\"type\":\"card\",\"data\":{\"card_name\":\"Counselling\",\"col\":4}},{\"id\":\"YVUIBqB2oj\",\"type\":\"card\",\"data\":{\"card_name\":\"Entrance Exam\",\"col\":4}},{\"id\":\"tmUKQynhR3\",\"type\":\"card\",\"data\":{\"card_name\":\"Application and Enrollment\",\"col\":4}},{\"id\":\"qWJm0-Z5YX\",\"type\":\"card\",\"data\":{\"card_name\":\"Branch Change &amp; Exchange Application\",\"col\":4}},{\"id\":\"zt0xuVkL7Q\",\"type\":\"card\",\"data\":{\"card_name\":\"Fees\",\"col\":4}},{\"id\":\"IJQWaM-BCi\",\"type\":\"card\",\"data\":{\"card_name\":\"Tools\",\"col\":4}},{\"id\":\"HywAs5f-YK\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"hYuqVMk-2y\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"id\":\"up1jOXozj_\",\"type\":\"card\",\"data\":{\"card_name\":\"Document Management System\",\"col\":4}},{\"id\":\"DN6kBIXvDZ\",\"type\":\"card\",\"data\":{\"card_name\":\"Study Continuation and Discontinuation\",\"col\":4}},{\"id\":\"ZRZh_xsfKN\",\"type\":\"card\",\"data\":{\"card_name\":\"Feedback\",\"col\":4}}]",
+ "content": "[{\"id\":\"I34K0-Span\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h1\\\">Admission</span>\",\"col\":12}},{\"id\":\"Vpzx3gf95K\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"CWLqDt2BnK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":3}},{\"id\":\"qsTiFgwIKa\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Semester\",\"col\":3}},{\"id\":\"4rnD6h2CmZ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course\",\"col\":3}},{\"id\":\"ywzjT_I2WT\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Department\",\"col\":3}},{\"id\":\"PP-iJn_1gz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student\",\"col\":3}},{\"id\":\"UK8H2h-3tS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instructor\",\"col\":3}},{\"id\":\"KyZ0v4Abgw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Fees\",\"col\":3}},{\"id\":\"Dkogm8iLqw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Applicant\",\"col\":3}},{\"id\":\"yp_dEg0btu\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"RrzHInDfHG\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Master &amp; Application</span><span class=\\\"h4\\\"><b><br></b></span>\",\"col\":12}},{\"id\":\"VZ4Vh0w5Ai\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"k_n6UG5naR\",\"type\":\"card\",\"data\":{\"card_name\":\"Student and Instructor\",\"col\":4}},{\"id\":\"ZfB-R1ZaJN\",\"type\":\"card\",\"data\":{\"card_name\":\"Admission Master\",\"col\":4}},{\"id\":\"hS7OiYlYTe\",\"type\":\"card\",\"data\":{\"card_name\":\"Counselling\",\"col\":4}},{\"id\":\"YVUIBqB2oj\",\"type\":\"card\",\"data\":{\"card_name\":\"Entrance Exam\",\"col\":4}},{\"id\":\"tmUKQynhR3\",\"type\":\"card\",\"data\":{\"card_name\":\"Application and Enrollment\",\"col\":4}},{\"id\":\"zt0xuVkL7Q\",\"type\":\"card\",\"data\":{\"card_name\":\"Fees\",\"col\":4}},{\"id\":\"IJQWaM-BCi\",\"type\":\"card\",\"data\":{\"card_name\":\"Tools\",\"col\":4}},{\"id\":\"HywAs5f-YK\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"hYuqVMk-2y\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"id\":\"DN6kBIXvDZ\",\"type\":\"card\",\"data\":{\"card_name\":\"Study Continuation and Discontinuation\",\"col\":4}},{\"id\":\"ZRZh_xsfKN\",\"type\":\"card\",\"data\":{\"card_name\":\"Feedback\",\"col\":4}}]",
  "creation": "2023-02-15 12:40:14.406775",
  "docstatus": 0,
  "doctype": "Workspace",
@@ -11,74 +11,6 @@
  "is_hidden": 0,
  "label": "Admission",
  "links": [
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student and Instructor",
-   "link_count": 6,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student",
-   "link_count": 0,
-   "link_to": "Student",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Instructor",
-   "link_count": 0,
-   "link_to": "Instructor",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Categories",
-   "link_count": 0,
-   "link_to": "Student Category",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Batch",
-   "link_count": 0,
-   "link_to": "Student Batch Name",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Log",
-   "link_count": 0,
-   "link_to": "Student Log",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Group",
-   "link_count": 0,
-   "link_to": "Student Group",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
   {
    "hidden": 0,
    "is_query_report": 0,
@@ -123,54 +55,6 @@
    "label": "Course Enrollment",
    "link_count": 0,
    "link_to": "Course Enrollment",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Branch Change &amp; Exchange Application",
-   "link_count": 4,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Branch Change Declaration",
-   "link_count": 0,
-   "link_to": "Branch sliding Declaration",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Branch Change Application",
-   "link_count": 0,
-   "link_to": "Branch Sliding Application",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Exchange Program Declaration",
-   "link_count": 0,
-   "link_to": "Exchange Program Declaration",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Exchange Applicant",
-   "link_count": 0,
-   "link_to": "Student Exchange Applicant",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -283,34 +167,6 @@
    "label": "Education Configuration",
    "link_count": 0,
    "link_to": "Educations Configurations",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Document Management System",
-   "link_count": 2,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Document Manager",
-   "link_count": 0,
-   "link_to": "Document Manager",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Passport Photo",
-   "link_count": 0,
-   "link_to": "Download Student Passport Photo",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -662,9 +518,57 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student and Instructor",
+   "link_count": 4,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student",
+   "link_count": 0,
+   "link_to": "Student",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Trainer",
+   "link_count": 0,
+   "link_to": "Instructor",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Categories",
+   "link_count": 0,
+   "link_to": "Student Category",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Batch",
+   "link_count": 0,
+   "link_to": "Student Batch Name",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-07-05 11:40:40.574336",
+ "modified": "2023-07-05 16:51:23.003588",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Admission",

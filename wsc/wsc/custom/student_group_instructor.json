@@ -35,7 +35,7 @@
    "insert_after": "instructor_name",
    "is_system_generated": 0,
    "is_virtual": 0,
-   "label": "Module",
+   "label": "Course",
    "length": 0,
    "mandatory_depends_on": null,
    "modified": "2021-09-01 12:37:06.770829",

@@ -325,7 +325,8 @@ scheduler_events = {
     "daily": [
 		"wsc.wsc.validations.student_blocklist_check.student_blocklist_check",
         "wsc.task.warranty_notification",
-        "wsc.task.safety_stock_reach"
+        "wsc.task.safety_stock_reach",
+        "wsc.wsc.doctype.student_clearance_application.student_clearance_application.student_disable_check"
         # "wsc.wsc.validations.exam_assessment_plan.make_exam_paper_setting_by_paper_setting_date"
 	]
 
@@ -416,18 +417,18 @@ override_doctype_class = {
 # ]
 
 fixtures = [
-	# {"dt": "Custom DocPerm", "filters": [
-	# 	[
-	# 		"parent", "not in", ["DocType"]
-	# 	],
-	# ]},
-    # {"dt": "Role"},
+	{"dt": "Custom DocPerm", "filters": [
+		[
+			"parent", "not in", ["DocType"]
+		],
+	]},
+    {"dt": "Role"},
     # {"dt": "Role Profile"},
     # {"dt": "Module Profile"},
-    # {"dt" : "Workflow"},
-    # {"dt": "Workflow Action Master"},
-    # {"dt" : "Workflow State"}
-    # {"dt" : "Translation"}
+    {"dt" : "Workflow"},
+    {"dt": "Workflow Action Master"},
+    {"dt" : "Workflow State"},
+    {"dt" : "Translation"}
 ]
 website_context = {
     "favicon": "/assets/wsc/images/logo.jpg",

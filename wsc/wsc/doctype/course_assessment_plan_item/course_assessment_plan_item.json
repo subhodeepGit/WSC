@@ -17,7 +17,7 @@
    "fieldname": "course",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Module",
+   "label": "Course",
    "options": "Course",
    "reqd": 1
   },
@@ -59,7 +59,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-06-26 11:08:49.655453",
+ "modified": "2023-07-05 17:12:25.154377",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Course Assessment Plan Item",

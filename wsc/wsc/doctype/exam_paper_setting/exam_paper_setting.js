@@ -91,7 +91,9 @@ frappe.ui.form.on('Exam Paper Setting', {
 					"assessment_plan":frm.doc.assessment_plan,
 					// "course":frm.doc.course
 				}
+				
 			};
+			
 		});
 		frm.set_query("moderator_name", function() {
 			return {
@@ -110,6 +112,15 @@ frappe.ui.form.on('Exam Paper Setting', {
 		
 	},
 	refresh(frm){
+		// if (frappe.session.user_fullname==frm.doc.moderator_name){
+		// 	alert(frm.doc.paper_copy)
+		// 	// if (!frm.doc.paper_copy)
+		// 	frm.set_df_property('paper_copy', 'read_only', 1);
+		// }
+		if (frappe.user.has_role(["Moderator"])){
+			frm.set_df_property('paper_copy', 'allow_on_submit', 1)
+			
+		}
 
 		if (frappe.user.has_role(["Education Administrator"]) || frappe.user.has_role(["Moderator"]) || frappe.user.has_role(["Instructor"])){
 			frm.set_df_property('paper_copy', 'hidden', 0);
