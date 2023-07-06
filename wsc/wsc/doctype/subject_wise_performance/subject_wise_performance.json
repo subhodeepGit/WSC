@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:The Subject Wise Performance of {programs} in {academic_term}",
+ "autoname": "format:Module Wise Performance of {programs} in {academic_term}",
  "creation": "2022-11-15 20:59:11.747919",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -66,7 +66,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-05 17:01:54.493524",
+ "modified": "2023-07-06 12:26:05.840997",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Subject Wise Performance",

@@ -17,6 +17,7 @@ class ExamAssessmentResult(Document):
         self.set_grade()
         if len(self.assessment_result_item) > 0:
             self.calculate_sgpa()
+            self.calculate_percentage()
         self.map_fields()
         self.calculate_sgpa_cgpa()
         self.validate_duplicate_for_submit()
@@ -27,11 +28,13 @@ class ExamAssessmentResult(Document):
         self.set_grade()
         if len(self.assessment_result_item) > 0:
             self.calculate_sgpa()
+            self.calculate_percentage()
             self.calculate_sgpa_cgpa()
       
     def on_change(self):
         if len(self.assessment_result_item) > 0:
             self.calculate_sgpa()
+            self.calculate_percentage()
             self.calculate_sgpa_cgpa()
         # self.get_sgpa_into_total_credit()
 
@@ -171,6 +174,21 @@ class ExamAssessmentResult(Document):
             self.sgpa=round((earn_and_garde/earn),2)
             self.sgpa="{:.2f}".format(earn_and_garde/earn)
             self.sgpa_in_to_credit_point= float(self.credit_point) * float(self.sgpa)
+    
+    def calculate_percentage(self):
+        marks_earned = total_marks = 0
+        allocations = 0
+        for allocation in frappe.get_all("Assessment Credits Allocation",{"docstatus":1,"student":self.student,"academic_year":self.academic_year,"academic_term":self.academic_term},["course","earned_credits","total_credits","final_marks","out_of_marks","assessment_criteria"]):
+            allocations += allocation.out_of_marks
+        self.percentage_point = allocations
+        for d in self.get("evaluation_result_item"):
+            if self.grade and self.grading_scale:
+                if d.earned_marks:
+                    marks_earned += flt(d.earned_marks)
+                    total_marks += flt(d.total_marks)
+        if total_marks > 0 :
+            self.percentage = round((marks_earned/total_marks)*100, 2)
+            self.percentage = "{:.2f}".format((marks_earned/total_marks)*100)
     #########################################################################################################################################
     def map_fields(self):
         order_dict={1:"1ST SEM",2:"2ND SEM",3:"3RD SEM",4:"4TH SEM",5:"5TH SEM",6:"6TH SEM",7:"7TH SEM",8:"8TH SEM",9:"9TH SEM",10:"10TH SEM"}
@@ -202,10 +220,11 @@ class ExamAssessmentResult(Document):
         for result in frappe.get_all("Exam Assessment Result",{"student":self.student},['sgpa','program','programs','sgpa_in_to_credit_point','credit_point']):        
             allocations+=float(result.sgpa_in_to_credit_point)
             credit_points+=result.credit_point
-            overall_cgpa=(allocations/credit_points)
-            res = "{:.2f}".format(overall_cgpa)
-            self.overall_cgpa=res
-            frappe.db.set_value("Exam Assessment Result",self.name,"overall_cgpa",res)
+            if credit_points > 0:
+                overall_cgpa=(allocations/credit_points)
+                res = "{:.2f}".format(overall_cgpa)
+                self.overall_cgpa=res
+                frappe.db.set_value("Exam Assessment Result",self.name,"overall_cgpa",res)
     def complete_course_enrollment(self):
         for item in self.get("evaluation_result_item"):
             if item.result=="P":

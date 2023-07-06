@@ -8,6 +8,8 @@
   "course_assessment",
   "earned_marks",
   "grace_marks",
+  "final_earned_marks",
+  "passing_marks",
   "total_marks"
  ],
  "fields": [
@@ -15,7 +17,7 @@
    "fieldname": "earned_marks",
    "fieldtype": "Float",
    "in_list_view": 1,
-   "label": "Earned Marks"
+   "label": "Wightage Marks"
   },
   {
    "fieldname": "total_marks",
@@ -37,12 +39,22 @@
    "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Grace Marks"
+  },
+  {
+   "fieldname": "final_earned_marks",
+   "fieldtype": "Data",
+   "label": "Final Earned Marks"
+  },
+  {
+   "fieldname": "passing_marks",
+   "fieldtype": "Float",
+   "label": "Passing Marks"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-01-19 11:42:31.326706",
+ "modified": "2023-07-06 13:10:07.101548",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Final Credit Item",
