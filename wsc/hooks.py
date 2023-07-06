@@ -58,7 +58,8 @@ doctype_js = {
                 "Item":"public/js/item.js",
                 "Job Applicant":"public/js/job_applicant.js",
                 "Employee":"public/js/employee.js",
-                "Shift Request":"public/js/shift_request.js"
+                "Shift Request":"public/js/shift_request.js",
+                "Leave Policy Assignment":"public/js/leave_policy_assignment.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -301,6 +302,9 @@ doc_events = {
 	},
     "Item Price":{
         "validate":"wsc.wsc.validations.item_price.validate"
+    },
+    "Leave Policy":{
+        "validate":"wsc.wsc.doctype.leave_policy.validate"
     },
     # "User":{
     #     "validate":"wsc.wsc.validations.user.validate",

@@ -21,8 +21,6 @@ class EmployeeProfileUpdation(Document):
 		data["current_status"]=self.workflow_state
 		data["name"]=self.name
 		data["hr_email"]=self.hr_id
-		print("\n\n\n\n\nData")
-		print(data)
 		employee_reporting_aprover(data)
 		
 	def validate(self):
@@ -32,7 +30,7 @@ class EmployeeProfileUpdation(Document):
 			self.approver_mail()
 		if self.workflow_state=="Pending Approval From HR":
 			self.send_to_hr()
-			print("\n\n\n\n\nIf Statement is Working")
+			# print("\n\n\n\n\nIf Statement is Working")
 
 		
 	# def on_update(self):
@@ -50,8 +48,8 @@ class EmployeeProfileUpdation(Document):
 		
 	def on_submit(self):
 		employee = frappe.get_doc("Employee", self.employee)
-		print("\n\n\n\n\nOn Submit")
-		print(employee)
+		# print("\n\n\n\n\nOn Submit")
+		# print(employee)
 		# Clear existing child table entries
 		employee.education = []
 
@@ -114,7 +112,7 @@ def get_hr_mail():
 def get_education(employee):
 	data = frappe.get_all("Employee Education",{"parent":employee},["school_univ","qualification","level","year_of_passing","class_per"])
 	if data :
-		print("\n\n\n\n\n",data)
+		# print("\n\n\n\n\n",data)
 		return data
 
 #populate family details
@@ -123,7 +121,7 @@ def get_family_background(employee):
 
 	data = frappe.get_all("Family Background Details",{"parent":employee},["name1","relation","occupation","gender","contact"])
 	if data :
-		print("\n\n\n\n\n",data)
+		# print("\n\n\n\n\n",data)
 		return data
 	
 #get Address and Contact Details
@@ -131,7 +129,7 @@ def get_family_background(employee):
 def addr_contact(employee):
 	data = frappe.get_all("Employee",{"name":employee},["current_address","permanent_address","cell_number","person_to_be_contacted","emergency_phone_number","relation","personal_email"])
 	if data :
-		print("\n\n\n\n\n",data)
+		# print("\n\n\n\n\n",data)
 		return data[0]
 
 @frappe.whitelist()
