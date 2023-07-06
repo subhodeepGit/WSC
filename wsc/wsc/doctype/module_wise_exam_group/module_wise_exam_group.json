@@ -126,7 +126,7 @@
    "fetch_from": "exam_declaration_id.exam_program",
    "fieldname": "exam_course",
    "fieldtype": "Data",
-   "label": "Exam Progarme",
+   "label": "Course Name",
    "read_only": 1
   },
   {
@@ -335,7 +335,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-28 18:22:59.095884",
+ "modified": "2023-07-05 17:10:39.571639",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Module Wise Exam Group",

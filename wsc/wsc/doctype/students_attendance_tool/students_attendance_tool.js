@@ -160,6 +160,16 @@ wsc.StudentsEditor = class StudentsEditor {
 			.html(__('Mark Attendance'))
 			.on("click", function() {
 				$(me.wrapper.find(".btn-mark-att")).attr("disabled", true);
+				if ($(me.wrapper.find(".btn-mark-att")).attr("disabled", true)){
+					frm.set_df_property("based_on","read_only",1);
+					frm.set_df_property("date","read_only",1);
+					frm.set_df_property("group_based_on","read_only",1);
+					frm.set_df_property("course_schedule","read_only",1);
+					frm.set_df_property("student_group","read_only",1);
+					setTimeout(function(){
+						window.location.reload();
+					 }, 8000);
+				}
 				var studs = [];
 				$(me.wrapper.find('input[type="checkbox"]')).each(function(i, check) {
 					var $check = $(check);
@@ -209,6 +219,12 @@ wsc.StudentsEditor = class StudentsEditor {
 								callback: function(r) {
 									$(me.wrapper.find(".btn-mark-att")).attr("disabled", false);
 									frm.trigger("student_group");
+									frm.set_df_property("based_on","read_only",1);
+									frm.set_df_property("date","read_only",1);
+									frm.set_df_property("group_based_on","read_only",1);
+									frm.set_df_property("course_schedule","read_only",1);
+									frm.set_df_property("student_group","read_only",1);
+
 									setTimeout(function(){
 										window.location.reload();
 									 }, 5000);

@@ -16,29 +16,30 @@ class ContinuousEvaluationTool(Document):
 
 	@frappe.whitelist()
 	def get_student_allocations(self):
-
 		data_list=[]
-		course_details=get_course_details(self)
-		for student in frappe.get_all("Course Assessment",{"course":self.course,"assessment_criteria":self.assessment_criteria,"semester":self.semester, "docstatus":1},
-										["student","student_name","roll_no","registration_number"],order_by="roll_no asc",group_by="student"):
-			total_earned_marks=total_total_marks=weightage_marks=0
-			evaluation=[]
-			attendence_status=''
-			for d in frappe.get_all("Course Assessment",{"student":student.student,"course":self.course,"assessment_criteria":self.assessment_criteria, "docstatus":1},
-			   						["name","earned_marks","total_marks",'attendence_status']):
-				attendence_status=d['attendence_status']
-				total_earned_marks+=flt(d.earned_marks)
-				total_total_marks+=flt(d.total_marks)
-				for cr in frappe.get_all("Credit distribution List",{"parent":self.course,"assessment_criteria":self.assessment_criteria},['total_marks']):
-					weightage_marks=round((total_earned_marks/total_total_marks)*(cr.total_marks))
-				d.update({"total_earned_marks":total_earned_marks,"total_total_marks":total_total_marks,"weightage_marks":weightage_marks})
-				evaluation.append(d)
-			student['rows']=evaluation
-			student["weightage_marks"]=weightage_marks
-			student["out_of_marks"]=course_details.total_marks or 0
-			student["total_credits"]=course_details.credits or 0
-			student["attendence_status"]=attendence_status
-			data_list.append(student)	
+		if self.exam_category=="Regular":
+			course_details=get_course_details(self)
+			for student in frappe.get_all("Course Assessment",{"course":self.course,"assessment_criteria":self.assessment_criteria,
+						      				"semester":self.semester,'exam_category':self.exam_category, "docstatus":1},
+											["student","student_name","roll_no","registration_number"],order_by="roll_no asc",group_by="student"):
+				total_earned_marks=total_total_marks=weightage_marks=0
+				evaluation=[]
+				attendence_status=''
+				for d in frappe.get_all("Course Assessment",{"student":student.student,"course":self.course,"assessment_criteria":self.assessment_criteria, "docstatus":1},
+										["name","earned_marks","total_marks",'attendence_status']):
+					attendence_status=d['attendence_status']
+					total_earned_marks+=flt(d.earned_marks)
+					total_total_marks+=flt(d.total_marks)
+					for cr in frappe.get_all("Credit distribution List",{"parent":self.course,"assessment_criteria":self.assessment_criteria},['total_marks']):
+						weightage_marks=round((total_earned_marks/total_total_marks)*(cr.total_marks))
+					d.update({"total_earned_marks":total_earned_marks,"total_total_marks":total_total_marks,"weightage_marks":weightage_marks})
+					evaluation.append(d)
+				student['rows']=evaluation
+				student["weightage_marks"]=weightage_marks
+				student["out_of_marks"]=course_details.total_marks or 0
+				student["total_credits"]=course_details.credits or 0
+				student["attendence_status"]=attendence_status
+				data_list.append(student)	
 		return data_list
 		
 @frappe.whitelist()

@@ -12,6 +12,7 @@
   "column_break_3",
   "academic_year",
   "academic_term",
+  "school_house",
   "section_break_5",
   "get_students",
   "students",
@@ -23,6 +24,7 @@
   "column_break_12",
   "new_academic_year",
   "new_academic_term",
+  "new_class",
   "section_break_18",
   "courses"
  ],
@@ -146,12 +148,26 @@
    "fieldtype": "Date",
    "label": "Program Enrollment Date",
    "reqd": 1
+  },
+  {
+   "fieldname": "school_house",
+   "fieldtype": "Link",
+   "label": "School House",
+   "options": "School House",
+   "reqd": 1
+  },
+  {
+   "fieldname": "new_class",
+   "fieldtype": "Link",
+   "label": "New Class",
+   "options": "School House",
+   "reqd": 1
   }
  ],
  "hide_toolbar": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-06-05 16:26:19.892615",
+ "modified": "2023-07-06 11:41:04.139327",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Reregistration Tool",
