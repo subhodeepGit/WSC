@@ -3,6 +3,20 @@
 
 frappe.ui.form.on('Assessment Credits Allocation', {
 	setup: function(frm) {
+		frm.set_query("programs", function () {
+			return {
+				filters: [
+					["Programs", "program_grade", "=", frm.doc.program_grade],
+				]
+			}
+		});
+		frm.set_query("semester", function () {
+			return {
+				filters:{
+					"programs":frm.doc.programs
+				} 
+			}
+		});
 		frm.set_query("student", function() {
 			return {
 				filters: {
@@ -68,12 +82,23 @@ frappe.ui.form.on('Assessment Credits Allocation', {
 		}
 		
 	},
+
 	student:function(frm){
 		if (frm.doc.student){
 			frappe.db.get_doc("Student",frm.doc.student).then(( resp ) => {
 				(resp.current_education).forEach((  row ) => {
+					frappe.db.get_value('Programs', {
+						"name": row.programs,
+					  },['program_grade']).then(function(data) {
+						var program_grade= data.message
+						frm.set_value("program_grade",program_grade['program_grade'])
+					  })
 					frm.set_value("academic_year",row.academic_year)
 					frm.set_value("academic_term",row.academic_term)
+					frm.set_value("semester",row.semesters)
+					frm.set_value("programs",row.programs)
+
+
 				})
 			});
 		}

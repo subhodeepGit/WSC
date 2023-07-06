@@ -77,6 +77,7 @@
    "label": "Get Assessments"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "final_credit_item",
    "fieldtype": "Table",
    "label": "Final Marking Item",
@@ -196,13 +197,15 @@
    "fieldname": "programs",
    "fieldtype": "Link",
    "label": "Programs",
-   "options": "Programs"
+   "options": "Programs",
+   "read_only": 1
   },
   {
    "fieldname": "program_grade",
    "fieldtype": "Link",
    "label": "Course Type",
-   "options": "Program Grades"
+   "options": "Program Grades",
+   "read_only": 1
   },
   {
    "fieldname": "attendence_status",
@@ -215,7 +218,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-06 13:21:41.510686",
+ "modified": "2023-07-06 16:51:50.998786",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assessment Credits Allocation",
