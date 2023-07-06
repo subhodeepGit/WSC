@@ -45,6 +45,9 @@ class ContinuousEvaluationTool(Document):
 @frappe.whitelist()
 def make_continuous_evaluation(continuous_evaluation):
 	result=json.loads(continuous_evaluation)
+	# print("\n\n\n")
+	# print(result)
+	# a.s
 	student_data=get_student_allocations_dict(frappe._dict({"course":result.get("course"),"assessment_criteria":result.get("criteria")}))
 	if not student_data:
 		frappe.msgprint("Students are not available for given details")
@@ -76,7 +79,8 @@ def make_continuous_evaluation(continuous_evaluation):
 						"course_assessment":row.get("name"),
 						"earned_marks":flt(row.get("earned_marks")),
 						"total_marks":flt(row.get("total_marks")),
-						"grace_marks":flt(result.get('rows')[d].get("grace_marks"))
+						"grace_marks":flt(result.get('rows')[d].get("grace_marks")),
+						"exam_type":result.get("exam_category")
 					})
 				doc.grace_marks=flt(result.get('rows')[d].get("grace_marks"))
 				doc.weightage_marks=flt(result.get('rows')[d].get("weightage_marks"))
