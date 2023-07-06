@@ -1,0 +1,91 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "MNT-COMN-INIT.-.####",
+ "creation": "2023-07-04 17:19:02.058721",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "date",
+  "mentor",
+  "mentor_name",
+  "mentee_information",
+  "description",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "mentor",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Mentor Allocation",
+   "options": "Mentor Allocation",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "mentor.mentor_name",
+   "fieldname": "mentor_name",
+   "fieldtype": "Data",
+   "label": "Mentor Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Mentor Initiation",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "mentee_information",
+   "fieldtype": "Table",
+   "label": "Mentee Information",
+   "options": "Mentee Information",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-07-05 12:51:34.840327",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Mentor Initiation",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
