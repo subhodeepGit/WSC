@@ -21,7 +21,7 @@ def student_applicant_submit(doc):
     send_mail(frappe.db.get_value("Student Applicant",doc.get('name'),"student_email_id"),'Application status',msg)
 
 
-def employee_reporting_aprover(doc):
+def employee_reporting_aproverr(doc):
     sub="""<p><b>Leave Approval Notification</b></p><br>"""
 
     msg="""<b>---------------------Leave Application Details---------------------</b><br>"""
@@ -29,6 +29,7 @@ def employee_reporting_aprover(doc):
     msg+="""<b>Leave Type:</b>  {0}<br>""".format(doc['leave_type'])
     msg+="""<b>From Date:</b>  {0}<br>""".format(doc['from_date'])
     msg+="""<b>To Date:</b>  {0}<br>""".format(doc['to_date'])
+    
     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
     leave_app_url = get_url_to_form('Leave Application', doc['name'])
     msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(leave_app_url)
