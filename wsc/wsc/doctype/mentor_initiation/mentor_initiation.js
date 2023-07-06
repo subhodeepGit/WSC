@@ -16,6 +16,8 @@ frappe.ui.form.on('Mentor Initiation', {
 						add_mentee.student_name = get_data["student_name"][i];
 						add_mentee.programs = get_data["programs"][i];
 						cur_frm.refresh_field ("mentee_information");
+					frm.set_df_property('mentee_information', 'cannot_add_rows', true);
+					frm.set_df_property('mentee_information', 'cannot_delete_rows', true);
 					}
 				}
 			}
