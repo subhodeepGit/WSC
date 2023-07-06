@@ -20,15 +20,19 @@ class StudentReregistrationTool(Document):
         students = []
         if not self.program:
             frappe.throw(_("Mandatory field - Program"))
+        elif not self.school_house:
+            frappe.throw(_("Mandatory field - Class"))
         elif not self.academic_year:
             frappe.throw(_("Mandatory field - Academic Year"))
         else:
             condition = 'and academic_term=%(academic_term)s' if self.academic_term else " "
+            condition1 = 'and school_house=%(school_house)s' if self.school_house else " "
             self.get_students_from = "Program Enrollment"
             condition2 = 'and student_batch_name=%(student_batch)s' if self.student_batch else " "
             students = frappe.db.sql('''select student, student_name, student_batch_name, roll_no,permanant_registration_number, student_category from `tabProgram Enrollment`   
-                where program=%(program)s and academic_year=%(academic_year)s {0} {1} and docstatus != 2'''
-                .format(condition, condition2), self.as_dict(), as_dict=1)          
+                where program=%(program)s and academic_year=%(academic_year)s and school_house=%(school_house)s {0} {1} {2} and docstatus != 2'''
+                                    #   and school_house=%(school_house)s 
+                .format(condition, condition1, condition2), self.as_dict(), as_dict=1)          
 
             student_list = [d.student for d in students]
             if student_list:
@@ -76,6 +80,7 @@ def enroll_stud(self):
             prog_enrollment.program = self.new_semester
             prog_enrollment.academic_year = self.new_academic_year
             prog_enrollment.academic_term = self.new_academic_term
+            prog_enrollment.school_house = self.new_class
             prog_enrollment.is_provisional_admission="No"
             prog_enrollment.admission_status="Admitted"
             # prog_enrollment.student_batch_name = stud.student_batch_name if stud.student_batch_name else self.new_student_batch
