@@ -117,6 +117,31 @@ def branch_change_application_applied(doc):
     
     send_mail(frappe.db.get_value("Student",doc.get('student'),"student_email_id"),'Application Status',msg)
 
+
+
+def send_clearance_notification_to_department(doc):
+    msg="""<p>Dear Department,please refer to department clearance status table.</p><br>"""
+    msg+="""<b>Student Details</b><br>"""
+    msg+="""<b>Student Id:</b>  {0}<br>""".format(doc.get('student_id'))
+    msg+="""<b>Student Name:</b>  {0}<br>""".format(doc.get('student_name') or '-')
+    recepients_list=[]
+    for row in doc.departments_clearance_status:
+        recepients_list.append(row.department_email_id)
+    send_mail(recepients_list,'Student Clearance Status',msg)
+    frappe.msgprint("Email sent to all mentioned departments")
+
+def send_pendingDues_notification_to_student(doc):
+    msg="""<p>Dear Student,You have Pending dues, please refer to department clearance status table.</p><br>"""
+    student_email=doc.student_email_address
+    send_mail(student_email,'Student Clearance Status',msg)
+    frappe.msgprint("Email sent to %s"%(doc.student_name))
+
+def send_disabled_notification_to_student(doc):
+    msg="""<p>Dear Student,Your Student profile and User profile has been disabled successfully.</p><br>"""
+    student_email=doc.student_email_address
+    send_mail(student_email,'Student Clearance Status',msg)
+    frappe.msgprint("Disabled Email has been sent to %s"%(doc.student_name))
+
 def branch_change_application_approved(doc):
     msg="""<p>Your application <b>{0}</b> for Branch Change is Approved. </p><br>""".format(doc.get('name'))
     msg+="""<b>---------------------Student Details---------------------</b><br>"""

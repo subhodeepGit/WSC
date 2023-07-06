@@ -34,14 +34,14 @@
    "fieldname": "program_grade",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Program Grade",
+   "label": "Cours Type",
    "options": "Program Grades",
    "reqd": 1
   },
   {
    "fieldname": "programs_pass_",
    "fieldtype": "Table",
-   "label": "Programs Pass %",
+   "label": "Course Wise Pass Percentage",
    "options": "Programs Pass Percentage",
    "read_only": 1
   },
@@ -57,10 +57,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-11-18 17:59:00.281154",
+ "modified": "2023-07-05 17:00:46.418918",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Pass Percentage",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
@@ -77,5 +78,6 @@
   }
  ],
  "sort_field": "modified",
- "sort_order": "DESC"
+ "sort_order": "DESC",
+ "states": []
 }

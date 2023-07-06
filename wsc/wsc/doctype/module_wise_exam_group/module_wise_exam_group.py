@@ -79,7 +79,7 @@ def over_lapping_of_scheduling(self):
             dic['group_name']=t.group_name
             dic['name']=t.parent
             for j in self.get('scheduling_group_exam'):
-                if t.group_name==j.group_name:
+                if t.group_name==j.group_name and j.examination_date  and j.from_time:
                     dic['group_name']=j.group_name
                     dic['examination_date']=datetime.strptime(j.examination_date , '%Y-%m-%d').date()
                     from_time=datetime.strptime(j.from_time, '%H:%M:%S').time()

@@ -3,6 +3,69 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
+  "modified": "2023-04-02 22:55:07.472660",
+  "name": "Approved & Sent to Master Manager",
+  "style": "",
+  "workflow_state_name": "Approved & Sent to Master Manager"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-04-02 22:55:22.359193",
+  "name": "Sent to Purchase Manager",
+  "style": "",
+  "workflow_state_name": "Sent to Purchase Manager"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-04-02 22:55:38.677814",
+  "name": "Approved by Master Manager",
+  "style": "",
+  "workflow_state_name": "Approved by Master Manager"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-04-02 22:55:52.759746",
+  "name": "Approved by Purchase User",
+  "style": "",
+  "workflow_state_name": "Approved by Purchase User"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-04-02 22:56:05.721974",
+  "name": "Approved by Purchase Manager",
+  "style": "",
+  "workflow_state_name": "Approved by Purchase Manager"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-04-02 22:56:17.401021",
+  "name": "Rejected by Purchase Manager",
+  "style": "",
+  "workflow_state_name": "Rejected by Purchase Manager"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-04-02 22:56:30.211116",
+  "name": "Rejected by Purchase Master Manager",
+  "style": "",
+  "workflow_state_name": "Rejected by Purchase Master Manager"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
   "modified": "2023-06-07 12:47:03.274468",
   "name": "Sent for Approval to Class Advisor",
   "style": "Info",
