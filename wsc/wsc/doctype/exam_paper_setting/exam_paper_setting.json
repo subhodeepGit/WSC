@@ -27,6 +27,7 @@
   "paper_setting_end_date",
   "section_break_13",
   "paper_copy",
+  "download",
   "assessment_plan_criteria",
   "amended_from"
  ],
@@ -191,12 +192,18 @@
    "fieldtype": "Date",
    "label": "Paper Setting End Date",
    "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.paper_copy;",
+   "fieldname": "download",
+   "fieldtype": "Button",
+   "label": "Download"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-04 15:24:28.313642",
+ "modified": "2023-07-06 17:39:10.563236",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Paper Setting",

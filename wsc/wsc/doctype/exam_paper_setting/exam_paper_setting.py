@@ -20,16 +20,13 @@ class ExamPaperSetting(Document):
             frappe.throw("Attach the Paper Copy")
 
     def after_insert(self):
-        print("\n\n\nAfter Insert")
         self.set_user_permission()
 
         
     def set_user_permission(self):
         if self.examiner:
-            # print("\n\n\nExaminer")
             self.set_instructor_permission(self.examiner)
         if self.moderator_name:
-            # print("\n\n\nModerator")
             self.set_instructor_permission(self.moderator_name)
 
     def on_trash(self): 
@@ -44,8 +41,6 @@ class ExamPaperSetting(Document):
             if i.get('employee'):
                 for emp in frappe.get_all("Employee", {'name':i.get('employee')}, ['user_id']):
                     if emp.get('user_id'):
-                        print("\n\n\nUSER")
-                        print(emp.get('user_id'))
                         add_user_permission("Exam Paper Setting",self.name, emp.get('user_id'), self)
             else:
                 frappe.msgprint("Instructor {0} is not employee".format(instructor))
@@ -55,8 +50,6 @@ class ExamPaperSetting(Document):
             if i.get('employee'):
                 for emp in frappe.get_all("Employee", {'name':i.get('employee')}, ['user_id']):
                     if emp.get('user_id'):
-                        print("\n\n\nUSER")
-                        print(emp.get('user_id'))
                         add_user_permission("Exam Paper Setting",self.name, emp.get('user_id'), self)
             else:
                 frappe.msgprint("Instructor {0} is not employee".format(instructor))
