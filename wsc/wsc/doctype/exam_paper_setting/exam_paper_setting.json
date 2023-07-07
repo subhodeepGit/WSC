@@ -6,7 +6,6 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "posting_date",
   "assessment_plan",
   "programs",
   "program",
@@ -14,8 +13,10 @@
   "course_code",
   "course_name",
   "column_break_6",
+  "posting_date",
   "academic_year",
   "academic_term",
+  "exam_coordinator",
   "examiner",
   "examiner_name",
   "moderator_name",
@@ -53,6 +54,7 @@
    "fetch_from": "examiner.instructor_name",
    "fieldname": "examiner_name",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Examiner Name",
    "read_only": 1
   },
@@ -198,12 +200,18 @@
    "fieldname": "download",
    "fieldtype": "Button",
    "label": "Download"
+  },
+  {
+   "fieldname": "exam_coordinator",
+   "fieldtype": "Link",
+   "label": "Exam Coordinator",
+   "options": "Instructor"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-06 17:39:10.563236",
+ "modified": "2023-07-07 16:11:02.427663",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Paper Setting",

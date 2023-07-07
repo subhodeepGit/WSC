@@ -116,6 +116,10 @@ frappe.ui.form.on('Exam Paper Setting', {
 			// alert(JSON.stringify(frappe.session))
 			frm.set_df_property('paper_copy', 'read_only', 1);
 		}
+		if (frappe.session.user_fullname==frm.doc.exam_coordinator){
+			// alert(JSON.stringify(frappe.session))
+			frm.set_df_property('paper_copy', 'read_only', 1);
+		}
 		if (frappe.session.user_fullname==frm.doc.examiner){
 			frm.set_df_property('download', 'hidden', 1);
 		}

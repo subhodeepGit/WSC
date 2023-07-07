@@ -8,8 +8,10 @@
  "engine": "InnoDB",
  "field_order": [
   "academic_year",
-  "academic_term",
   "program_grade",
+  "column_break_5de8f",
+  "academic_term",
+  "section_break_pxny1",
   "programs_pass_",
   "amended_from"
  ],
@@ -53,11 +55,19 @@
    "options": "Pass Percentage",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_5de8f",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_pxny1",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-05 17:00:46.418918",
+ "modified": "2023-07-06 18:09:43.612204",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Pass Percentage",
