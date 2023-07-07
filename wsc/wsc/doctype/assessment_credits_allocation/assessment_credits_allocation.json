@@ -32,7 +32,8 @@
   "column_break_13",
   "grace_marks",
   "final_marks",
-  "amended_from"
+  "amended_from",
+  "passing_marks"
  ],
  "fields": [
   {
@@ -213,12 +214,17 @@
    "label": "Attendence Status",
    "options": "\nPresent\nAbsent",
    "reqd": 1
+  },
+  {
+   "fieldname": "passing_marks",
+   "fieldtype": "Data",
+   "label": "Passing Marks"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-06 16:51:50.998786",
+ "modified": "2023-07-07 11:36:11.857227",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assessment Credits Allocation",

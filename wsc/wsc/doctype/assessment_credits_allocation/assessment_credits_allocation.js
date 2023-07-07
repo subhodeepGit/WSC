@@ -63,14 +63,13 @@ frappe.ui.form.on('Assessment Credits Allocation', {
 				},
 				callback: function(r) {
 					if (r.message){
-						console.log("wwww r.message",r.message)
 						frm.clear_table("final_credit_item");
 						$.each(r.message || [], function(i, d) {
 							var row=frm.add_child("final_credit_item")
 							row.course_assessment=d.name
 							row.earned_marks=d.earned_marks
 							row.total_marks=d.total_marks
-							frm.set_value("weightage_marks",d.weightage_marks)
+							// frm.set_value("weightage_marks",d.weightage_marks)
 						})
 						frm.refresh_field("final_credit_item")
 					}
@@ -103,12 +102,12 @@ frappe.ui.form.on('Assessment Credits Allocation', {
 			});
 		}
 	},
-	course:function(frm){
-		frm.trigger("get_course_details")
-	},
-	assessment_criteria:function(frm){
-		frm.trigger("get_course_details")
-	},
+	// course:function(frm){
+	// 	frm.trigger("get_course_details")
+	// },
+	// assessment_criteria:function(frm){
+	// 	frm.trigger("get_course_details")
+	// },
 	get_course_details:function(frm){
 		if (frm.doc.course && frm.doc.assessment_criteria){
 			frappe.call({
