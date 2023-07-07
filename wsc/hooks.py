@@ -304,6 +304,10 @@ doc_events = {
     "Item Price":{
         "validate":"wsc.wsc.validations.item_price.validate"
     },
+    "Shift Request":{
+        "after_insert":"wsc.wsc.validations.shift_request.after_insert",
+        "validate":"wsc.wsc.validations.shift_request.validate"
+    }
     # "User":{
     #     "validate":"wsc.wsc.validations.user.validate",
     # }
