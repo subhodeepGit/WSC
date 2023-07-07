@@ -36,7 +36,32 @@ def employee_reporting_aproverr(doc):
 
     send_mail([doc['reporting_authority_email']],sub,msg)
     frappe.msgprint("Email sent to reporting authority",[doc['reporting_authority_email']])
-  
+
+def employee_shift_reporting_aprover(doc):
+    sub="""<p><b>Shift Request Approval Notification</b></p><br>"""
+
+    msg="""<b>---------------------Shift Request Details---------------------</b><br>"""
+    msg+="""<b>Employee ID:</b>  {0}<br>""".format(doc.get('employee'))
+    msg+="""<b>Employee Name:</b>  {0}<br>""".format(doc.get('employee_name'))
+    msg+="""<b>Shift Type:</b>  {0}<br>""".format(doc.get('shift_type'))
+    msg+="""<b>From Date:</b>  {0}<br>""".format(doc.get('from_date'))
+    msg+="""<b>To Date:</b>  {0}<br>""".format(doc.get('to_date'))
+    
+    send_mail(frappe.db.get_value("Shift Request",doc.get('name'),"reporting_authority"),sub,msg)
+    frappe.msgprint("Email sent to reporting authority")  
+
+def employee_shift_approver(doc):
+    sub="""<p><b>Shift Request Approval Notification</b></p><br>"""
+
+    msg="""<b>---------------------Shift Request Details---------------------</b><br>"""
+    msg+="""<b>Employee ID:</b>  {0}<br>""".format(doc.get('employee'))
+    msg+="""<b>Employee Name:</b>  {0}<br>""".format(doc.get('employee_name'))
+    msg+="""<b>Shift Type:</b>  {0}<br>""".format(doc.get('shift_type'))
+    msg+="""<b>From Date:</b>  {0}<br>""".format(doc.get('from_date'))
+    msg+="""<b>To Date:</b>  {0}<br>""".format(doc.get('to_date'))
+    
+    send_mail(frappe.db.get_value("Shift Request",doc.get('name'),"approver"),sub,msg)
+    frappe.msgprint("Email sent to Shift Request Approver")
 
 def student_applicant_approved(doc):
     sub="""<p><b>Congratulation !! Your Application Form has been Approved</b></p><br>"""
