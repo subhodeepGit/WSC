@@ -423,6 +423,24 @@ def employee_hr(doc):
     msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(emp_profile_updation)
     send_mail([doc['hr_email']],sub,msg)
     frappe.msgprint("Email sent to HR",[doc['hr_email']])
+def send_mail_to_director(doc):
+    sub="""<p><b>Leave Policy Request</b></p><br>"""
+    msg="""<b>---------------------Leave Policy Details---------------------</b><br>"""
+    msg+="""<b>Leave polciy:</b>  {0}<br>""".format(doc['leave_policy'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    leave_policy_url = get_url_to_form('Employee Profile Updation', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(leave_policy_url)
+    send_mail([doc['director_mail']],sub,msg)
+    frappe.msgprint("Email sent to Director",[doc['director_mail']])
+def send_mail_to_hr(doc):
+    sub="""<p><b>Leave Policy Request</b></p><br>"""
+    msg="""<b>---------------------Leave Policy Details---------------------</b><br>"""
+    msg+="""<b>Leave polciy:</b>  {0}<br>""".format(doc['leave_policy'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    leave_policy_url = get_url_to_form('Employee Profile Updation', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(leave_policy_url)
+    send_mail([doc['hr_mail']],sub,msg)
+    frappe.msgprint("Email sent to HR",[doc['hr_mail']])
 # def online_payment_submit(doc):
 #     msg="""<p><b>Payment Status</b></p><br>"""
 #     msg+="""<b>---------------------Payment Details---------------------</b><br>"""

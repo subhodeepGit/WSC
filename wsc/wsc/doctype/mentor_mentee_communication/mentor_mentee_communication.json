@@ -7,60 +7,37 @@
  "engine": "InnoDB",
  "field_order": [
   "date",
-  "student",
-  "student_name",
-  "programs",
-  "column_break_5",
+  "column_break_4",
   "mentor",
+  "column_break_5",
   "mentor_name",
   "section_break_7",
+  "student",
+  "column_break_6",
+  "student_name",
+  "column_break_7",
+  "programs",
+  "section_break_10",
   "description",
+  "comment_message",
   "references_section",
-  "student_disciplinary_complain",
-  "comment_message"
+  "student_disciplinary_complain"
  ],
  "fields": [
   {
    "default": "Today",
    "fieldname": "date",
    "fieldtype": "Date",
-   "label": "Date"
-  },
-  {
-   "fieldname": "student",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Student",
-   "options": "Student",
+   "label": "Date",
    "reqd": 1
-  },
-  {
-   "fetch_from": "student.student_name",
-   "fieldname": "student_name",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Student Name",
-   "read_only": 1
-  },
-  {
-   "fieldname": "programs",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Programs",
-   "options": "Programs",
-   "read_only": 1,
-   "reqd": 1
-  },
-  {
-   "fieldname": "column_break_5",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "mentor",
    "fieldtype": "Link",
    "label": "Mentor Allocation",
    "options": "Mentor Allocation",
-   "read_only": 1
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fetch_from": "mentor.mentor_name",
@@ -68,7 +45,12 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Mentor Name",
-   "read_only": 1
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "section_break_7",
@@ -78,7 +60,14 @@
    "fieldname": "description",
    "fieldtype": "Text Editor",
    "label": "Description",
+   "reqd": 1,
    "set_only_once": 1
+  },
+  {
+   "fieldname": "comment_message",
+   "fieldtype": "Text",
+   "label": "Comment Message",
+   "read_only": 1
   },
   {
    "collapsible": 1,
@@ -94,15 +83,46 @@
    "read_only": 1
   },
   {
-   "fieldname": "comment_message",
-   "fieldtype": "Text",
-   "label": "Comment Message",
-   "read_only": 1
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_10",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "student",
+   "fieldtype": "Link",
+   "label": "Student",
+   "options": "Student",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "student.student_name",
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "label": "Student Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "label": "Programs",
+   "options": "Programs",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-02 16:00:29.499609",
+ "modified": "2023-07-05 11:29:02.401315",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Mentor Mentee Communication",

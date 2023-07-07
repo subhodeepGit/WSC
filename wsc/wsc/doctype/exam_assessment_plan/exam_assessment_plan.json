@@ -10,6 +10,7 @@
   "exam_declaration",
   "grading_scale",
   "assessment_criteria",
+  "exam_coordinator",
   "column_break_2",
   "programs",
   "program",
@@ -154,11 +155,17 @@
    "options": "Exam Assessment Plan",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "exam_coordinator",
+   "fieldtype": "Link",
+   "label": "Exam Coordinator",
+   "options": "Instructor"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-26 17:12:40.905834",
+ "modified": "2023-07-07 15:48:02.281100",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Assessment Plan",

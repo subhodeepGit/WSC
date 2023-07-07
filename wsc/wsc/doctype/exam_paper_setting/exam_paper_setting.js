@@ -112,19 +112,36 @@ frappe.ui.form.on('Exam Paper Setting', {
 		
 	},
 	refresh(frm){
-		// if (frappe.session.user_fullname==frm.doc.moderator_name){
-		// 	alert(frm.doc.paper_copy)
-		// 	// if (!frm.doc.paper_copy)
-		// 	frm.set_df_property('paper_copy', 'read_only', 1);
-		// }
+		if (frappe.session.user_fullname==frm.doc.moderator_name){
+			// alert(JSON.stringify(frappe.session))
+			frm.set_df_property('paper_copy', 'read_only', 1);
+		}
+		if (frappe.session.user_fullname==frm.doc.exam_coordinator){
+			// alert(JSON.stringify(frappe.session))
+			frm.set_df_property('paper_copy', 'read_only', 1);
+		}
+		if (frappe.session.user_fullname==frm.doc.examiner){
+			frm.set_df_property('download', 'hidden', 1);
+		}
+	
 		if (frappe.user.has_role(["Moderator"])){
 			frm.set_df_property('paper_copy', 'allow_on_submit', 1)
-			
 		}
-
 		if (frappe.user.has_role(["Education Administrator"]) || frappe.user.has_role(["Moderator"]) || frappe.user.has_role(["Instructor"])){
 			frm.set_df_property('paper_copy', 'hidden', 0);
 		}
 		
-	}
+	},
+	paper_copy(frm){
+		frm.doc.download=frm.doc.paper_copy
+	},
+	download(frm){
+		if (frm.doc.paper_copy){
+			window.location.href=frm.doc.paper_copy
+		}
+	},
+		function(){
+			window.close();
+		},
+	
 });

@@ -174,3 +174,22 @@ frappe.ui.form.on('Credit distribution List', {
 		};
 	}
 });
+// passing_marks
+frappe.ui.form.on('Credit distribution List', {	
+	passing_marks:function(frm, cdt, cdn){
+	var d = locals[cdt][cdn];
+	var total = 0;
+	let a= parseInt(total)
+	frm.doc.credit_distribution.forEach(function(d)  { a = a+ d.passing_marks; });
+	frm.set_value("passing_marks", a);
+	refresh_field("passing_marks");
+  },
+  credit_distribution_remove:function(frm, cdt, cdn){
+	var d = locals[cdt][cdn];
+	var total = 0;
+	let a= parseInt(total)
+	frm.doc.credit_distribution.forEach(function(d) { a += d.passing_marks; });
+	frm.set_value("passing_marks", a);
+	refresh_field("passing_marks");
+	}
+});
