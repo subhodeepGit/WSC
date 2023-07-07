@@ -13,6 +13,7 @@
   "student_category",
   "entrance_exam_declaration",
   "academic_year",
+  "department",
   "posting_date",
   "physically_disabled",
   "total_marks",
@@ -33,23 +34,27 @@
   },
   {
    "fieldname": "gender",
-   "fieldtype": "Data",
-   "label": "Gender"
+   "fieldtype": "Link",
+   "label": "Gender",
+   "options": "Gender"
   },
   {
    "fieldname": "student_category",
-   "fieldtype": "Data",
-   "label": "Student Category"
+   "fieldtype": "Link",
+   "label": "Student Category",
+   "options": "Student Category"
   },
   {
    "fieldname": "entrance_exam_declaration",
-   "fieldtype": "Data",
-   "label": "Entrance Exam Declaration"
+   "fieldtype": "Link",
+   "label": "Entrance Exam Declaration",
+   "options": "Entrance Exam Declaration"
   },
   {
    "fieldname": "academic_year",
-   "fieldtype": "Data",
-   "label": "Academic Year"
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
   },
   {
    "fieldname": "posting_date",
@@ -76,11 +81,17 @@
    "fieldtype": "Table",
    "label": "Student Ranks List",
    "options": "Student Ranks List"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-09 18:17:52.450996",
+ "modified": "2023-07-07 18:04:01.632904",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Rank Card",
