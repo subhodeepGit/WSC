@@ -28,6 +28,8 @@ class ExamPaperSetting(Document):
             self.set_instructor_permission(self.examiner)
         if self.moderator_name:
             self.set_instructor_permission(self.moderator_name)
+        if self.exam_coordinator:
+            self.set_instructor_permission(self.exam_coordinator)
 
     def on_trash(self): 
         self.delete_permission()
@@ -45,14 +47,6 @@ class ExamPaperSetting(Document):
             else:
                 frappe.msgprint("Instructor {0} is not employee".format(instructor))
     
-    def set_instructor_permission_1(self, instructor):
-        for i in frappe.get_all("Instructor",{"name":instructor},['employee']):
-            if i.get('employee'):
-                for emp in frappe.get_all("Employee", {'name':i.get('employee')}, ['user_id']):
-                    if emp.get('user_id'):
-                        add_user_permission("Exam Paper Setting",self.name, emp.get('user_id'), self)
-            else:
-                frappe.msgprint("Instructor {0} is not employee".format(instructor))
 
 # bench execute wsc.wsc.doctype.exam_paper_setting.exam_paper_setting.make_exam_paper_setting_from_sssessment_plan
 # def make_exam_paper_setting_from_sssessment_plan():
