@@ -29,11 +29,12 @@
   "weightage_marks",
   "out_of_marks",
   "total_credits",
+  "qualifying_status",
   "column_break_13",
   "grace_marks",
   "final_marks",
-  "amended_from",
-  "passing_marks"
+  "passing_marks",
+  "amended_from"
  ],
  "fields": [
   {
@@ -121,11 +122,10 @@
    "fieldtype": "Column Break"
   },
   {
-   "allow_on_submit": 1,
    "fieldname": "final_marks",
    "fieldtype": "Float",
    "label": "Final Earned Marks",
-   "reqd": 1
+   "read_only": 1
   },
   {
    "allow_on_submit": 1,
@@ -151,7 +151,8 @@
   {
    "fieldname": "weightage_marks",
    "fieldtype": "Float",
-   "label": "Weightage Marks"
+   "label": "Weightage Marks",
+   "read_only": 1
   },
   {
    "fetch_from": "course.course_name",
@@ -168,10 +169,10 @@
    "read_only": 1
   },
   {
-   "default": "0.0",
    "fieldname": "grace_marks",
    "fieldtype": "Float",
-   "label": "Grace Marks"
+   "label": "Grace Marks",
+   "read_only": 1
   },
   {
    "allow_on_submit": 1,
@@ -218,13 +219,20 @@
   {
    "fieldname": "passing_marks",
    "fieldtype": "Data",
-   "label": "Passing Marks"
+   "label": "Passing Marks",
+   "read_only": 1
+  },
+  {
+   "fieldname": "qualifying_status",
+   "fieldtype": "Data",
+   "label": "Qualifying Status",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-07 11:36:11.857227",
+ "modified": "2023-07-07 15:34:04.665046",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assessment Credits Allocation",
