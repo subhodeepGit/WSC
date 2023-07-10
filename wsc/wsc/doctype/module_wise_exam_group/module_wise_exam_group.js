@@ -72,7 +72,11 @@ frappe.ui.form.on('Module Wise Exam Group', {
 				start_date_of_attendence_duration:frm.doc.start_date_of_attendence_duration,
 				end_date_of_attendence_duration:frm.doc.end_date_of_attendence_duration,
 				modules_id:frm.doc.modules_id,
-				semester:frm.doc.semester
+				semester:frm.doc.semester,
+				exam_category:frm.doc.exam_category,
+				exam_schedule_id:frm.doc.exam_schedule_id,
+				course_type:frm.doc.course_type,
+				assessment_component:frm.doc.assessment_component			
 			},
 			callback: function(r) {
 				(r.message).forEach(element => {

@@ -437,6 +437,11 @@ fixtures = [
     {"dt": "Role"},
     # {"dt": "Role Profile"},
     # {"dt": "Module Profile"},
+    # {"dt" : "Workflow","filters": [
+    #     [
+    #         "name", "in", ["Student Attrition Application"]
+    #     ]
+    # ]},
     {"dt" : "Workflow"},
     {"dt": "Workflow Action Master"},
     {"dt" : "Workflow State"},
