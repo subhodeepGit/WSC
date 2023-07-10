@@ -65,6 +65,7 @@ doctype_js = {
 doctype_list_js = {
     "Branch Sliding Application": "wsc/wsc/doctype/branch_sliding_application/branch_sliding_application_list.js",
     "Fees":"public/js/fees_list.js",
+    "Program Enrollment":"public/js/program_enrollment_list.js",
     "Student Attendance":"public/js/student_attendance_list.js",
     "Student Applicant" :"public/js/student_applicant_list.js",
     "Asset Maintenance Log":"public/js/asset_maintenance_log_list.js",
@@ -376,6 +377,10 @@ override_doctype_class = {
     "Leave Application":"wsc.wsc.doctype.leave_application.LeaveApplication"
     # "Job Applicant": "wsc.wsc.doctype.job_applicant.Job Applicant"
     # "Data Import": "wsc.wsc.doctype.data_import.DataImport"
+}
+override_doctype_dashboards = {
+    "Program Enrollment": "wsc.wsc.dashboard.program_enrollment_dashboard.get_data",
+    "Student": "wsc.wsc.dashboard.student_dashboard.get_data",
 }
 #
 # each overriding function accepts a `data` argument;
