@@ -354,42 +354,126 @@ def exam_declaration_for_instructor_submit(doc):
         send_mail(frappe.db.get_value("User",{'full_name':instructor_name, 'enabled':1},"email"),sub,msg)
 
 def exam_evaluation_plan_for_paper_setter_submit(doc):
-    sub = "You are invited to do paper setting for exam declaration {0}".format(doc.exam_declaration)
-    msg1="""<p>--------Exam Details----------</p>"""
-    msg1+="""<p>Exam Declaration : {0}</p>""".format(doc.exam_declaration)
-    msg1+="""<p>Program : {0}</p>""".format(doc.programs)
-    msg1+="""<p>Semster :  {0}</p>""".format(doc.program)
+    
+    # msg1="""<p>--------Exam Details----------</p>"""
+    # msg1+="""<p>Exam Declaration : {0}</p>""".format(doc.exam_declaration)
+    # msg1+="""<p>Program : {0}</p>""".format(doc.programs)
+    # msg1+="""<p>Semster :  {0}</p>""".format(doc.program)
+    # for e in doc.examiners_list:
+    #     msg = ""
+    #     msg+="""<p>Course : {0}</p><p>Course Name:{1}</p><p>Course Code:{2}</p>""".format(e.course,e.course_name,e.course_code)
+    #     msg+="""<p>Assessment Criteria:{0}</p>""".format(doc.assessment_criteria)
+    #     msg+="""<p>Academic Year :{0}</p>""".format(doc.academic_year)
+    #     msg+="""<p>Academic Term:{0}</p>""".format(doc.academic_term)
+    #     msg+="""<p>Paper Setting Start Date:{0}</p>""".format(doc.paper_setting_start_date)
+    #     msg+="""<p>Paper Setting End Date:{0}</p>""".format(doc.paper_setting_end_date)
+
+
+  
     for e in doc.examiners_list:
-        msg = ""
-        msg+="""<p>Course : {0}</p><p>Course Name:{1}</p><p>Course Code:{2}</p>""".format(e.course,e.course_name,e.course_code)
-        msg+="""<p>Assessment Criteria:{0}</p>""".format(doc.assessment_criteria)
-        msg+="""<p>Academic Year :{0}</p>""".format(doc.academic_year)
-        msg+="""<p>Academic Term:{0}</p>""".format(doc.academic_term)
-        msg+="""<p>Paper Setting Start Date:{0}</p>""".format(doc.paper_setting_start_date)
-        msg+="""<p>Paper Setting End Date:{0}</p>""".format(doc.paper_setting_end_date)
+        sub = "You are invited to set the paper for exam declaration {0}".format(doc.exam_declaration)
+        msg="""
+        <table style="line-height: 1em;width: 100%;" border="1" cellpadding="2" cellspacing="2">
+        <thead>
+            <tr><th colspan="11"><b>Examination Details</b></th></tr>
+            <tr>
+                <th class="text-center" style="width:9%; font-size:14px;">Exam Declaration</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Program</th>
+                <th class="text-center" style="width:10%; font-size:14px;">Semester</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Course</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Course Name</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Course Code</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Assessment Criteria</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Academic Year</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Academic Term</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Paper Setting Start Date</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Paper Setting End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">{0}</td>""".format(doc.exam_declaration)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.programs)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.program)
+        msg+="""<td class="text-center">{0}</td>""".format(e.course)
+        msg+="""<td class="text-center">{0}</td>""".format(e.course_name)
+        msg+="""<td class="text-center">{0}</td>""".format(e.course_code)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.assessment_criteria)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.academic_year)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.academic_term)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.paper_setting_start_date)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.paper_setting_end_date)
+        msg+="""</tr>
+        </tbody>
+        </table>"""
         employee = frappe.db.get_value('Instructor',{'name':e.paper_setter},'employee')
         email = frappe.db.get_value('Employee',{'name':employee},'user_id')
         if frappe.db.get_value("User",{'email':email, 'enabled':1},"email"):
-            send_mail(email,sub,msg1+msg)
+            # send_mail(email,sub,msg1+msg)
+            send_mail(email,sub,msg)
+
 
 def exam_evaluation_plan_for_moderator_submit(doc):
-    sub = "You are invited as moderator for exam declaration {0}".format(doc.exam_declaration)
-    msg1="""<p>--------Exam Details----------</p>"""
-    msg1+="""<p>Exam Declaration : {0}</p>""".format(doc.exam_declaration)
-    msg1+="""<p>Program : {0}</p>""".format(doc.programs)
-    msg1+="""<p>Semster :  {0}</p>""".format(doc.program)
+    
+    # msg1="""<p>--------Exam Details----------</p>"""
+    # msg1+="""<p>Exam Declaration : {0}</p>""".format(doc.exam_declaration)
+    # msg1+="""<p>Program : {0}</p>""".format(doc.programs)
+    # msg1+="""<p>Semster :  {0}</p>""".format(doc.program)
+    # for e in doc.moderator_list:
+    #     msg = ""
+    #     msg+="""<p>Course : {0}</p><p>Course Name:{1}</p><p>Course Code:{2}</p>""".format(e.course,e.course_name,e.course_code)
+    #     msg+="""<p>Assessment Criteria:{0}</p>""".format(doc.assessment_criteria)
+    #     msg+="""<p>Academic Year :{0}</p>""".format(doc.academic_year)
+    #     msg+="""<p>Academic Term:{0}</p>""".format(doc.academic_term)
+    #     msg+="""<p>Paper Setting Start Date:{0}</p>""".format(doc.paper_setting_start_date)
+    #     msg+="""<p>Paper Setting End Date:{0}</p>""".format(doc.paper_setting_end_date)
+    #     employee = frappe.db.get_value('Instructor',{'name':e.moderator},'employee')
+    #     email = frappe.db.get_value('Employee',{'name':employee},'user_id')
+    #     if frappe.db.get_value("User",{'email':email, 'enabled':1},"email"):
+    #         send_mail(email,sub,msg1+msg)
+
+
     for e in doc.moderator_list:
-        msg = ""
-        msg+="""<p>Course : {0}</p><p>Course Name:{1}</p><p>Course Code:{2}</p>""".format(e.course,e.course_name,e.course_code)
-        msg+="""<p>Assessment Criteria:{0}</p>""".format(doc.assessment_criteria)
-        msg+="""<p>Academic Year :{0}</p>""".format(doc.academic_year)
-        msg+="""<p>Academic Term:{0}</p>""".format(doc.academic_term)
-        msg+="""<p>Paper Setting Start Date:{0}</p>""".format(doc.paper_setting_start_date)
-        msg+="""<p>Paper Setting End Date:{0}</p>""".format(doc.paper_setting_end_date)
+        sub = "You are invited as moderator for exam declaration {0}".format(doc.exam_declaration)
+        msg="""
+        <table style="line-height: 1em;width: 100%;" border="1" cellpadding="2" cellspacing="2">
+        <thead>
+            <tr><th colspan="11"><b>Examination Details</b></th></tr>
+            <tr>
+                <th class="text-center" style="width:9%; font-size:14px;">Exam Declaration</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Program</th>
+                <th class="text-center" style="width:10%; font-size:14px;">Semester</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Course</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Course Name</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Course Code</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Assessment Criteria</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Academic Year</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Academic Term</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Paper Setting Start Date</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Paper Setting End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">{0}</td>""".format(doc.exam_declaration)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.programs)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.program)
+        msg+="""<td class="text-center">{0}</td>""".format(e.course)
+        msg+="""<td class="text-center">{0}</td>""".format(e.course_name)
+        msg+="""<td class="text-center">{0}</td>""".format(e.course_code)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.assessment_criteria)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.academic_year)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.academic_term)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.paper_setting_start_date)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.paper_setting_end_date)
+        msg+="""</tr>
+        </tbody>
+        </table>"""
         employee = frappe.db.get_value('Instructor',{'name':e.moderator},'employee')
         email = frappe.db.get_value('Employee',{'name':employee},'user_id')
         if frappe.db.get_value("User",{'email':email, 'enabled':1},"email"):
-            send_mail(email,sub,msg1+msg)
+            # send_mail(email,sub,msg1+msg)
+            send_mail(email,sub,msg)
 
 def payment_entry_submit(doc):
     msg="""<p><b>Payment is Sucessfull</b></p><br>"""
