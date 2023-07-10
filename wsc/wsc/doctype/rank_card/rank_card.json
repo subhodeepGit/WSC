@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{applicant_id}-{academic_term}-{department}",
  "creation": "2023-05-09 18:17:52.450996",
  "default_view": "List",
  "doctype": "DocType",
@@ -11,8 +12,8 @@
   "applicant_name",
   "gender",
   "student_category",
-  "entrance_exam_declaration",
   "academic_year",
+  "academic_term",
   "department",
   "posting_date",
   "physically_disabled",
@@ -45,12 +46,6 @@
    "options": "Student Category"
   },
   {
-   "fieldname": "entrance_exam_declaration",
-   "fieldtype": "Link",
-   "label": "Entrance Exam Declaration",
-   "options": "Entrance Exam Declaration"
-  },
-  {
    "fieldname": "academic_year",
    "fieldtype": "Link",
    "label": "Academic Year",
@@ -62,8 +57,9 @@
    "label": "Posting Date"
   },
   {
+   "default": "0",
    "fieldname": "physically_disabled",
-   "fieldtype": "Data",
+   "fieldtype": "Check",
    "label": "Physically Disabled"
   },
   {
@@ -87,14 +83,21 @@
    "fieldtype": "Link",
    "label": "Department",
    "options": "Department"
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-07 18:04:01.632904",
+ "modified": "2023-07-10 11:57:35.109936",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Rank Card",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

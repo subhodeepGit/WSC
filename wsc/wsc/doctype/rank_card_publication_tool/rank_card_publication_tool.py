@@ -106,12 +106,36 @@ def get_qualified_applicants(rank_card_master , academic_year , academic_term , 
 	return all_round_ranks
 
 @frappe.whitelist()
-def generate_rank_cards(data , posting_date , total_marks , department , academic_year , rank_card_master):
-	data = json.loads(data)
-	rank_data = frappe.new_doc("Entrance Exam Admit Card")
-	for i in data:
+def generate_rank_cards(doc):
+	data = json.loads(doc)
+	print("\n\n\n\n\n")
+	# print(data)
+	for i in data['ranked_students_list']:
+		
+		earned_marks = frappe.get_all("Entrance Exam Result Publication" , {'applicant_id':i['applicant_id']} , ['earned_marks' , 'applicant_id' , 'applicant_name'])
+		
+		rank_data = frappe.new_doc("Rank Card")
+		print(rank_data.student_ranks_list)
 		rank_data.applicant_id = i['applicant_id']
 		rank_data.applicant_name = i['applicant_name']
 		rank_data.gender = i['gender']
 		rank_data.student_category = i['student_category']
-		rank_data.physically_disabled = i['physically_disabled']
+		rank_data.physically_disabled = i['physical_disability']
+		rank_data.academic_year = data['academic_year']
+		rank_data.academic_term = data['academic_term']
+		rank_data.department = data['departments']
+		rank_data.posting_date = data['posting_date']
+		rank_data.total_marks = data['posting_date']
+		rank_data.earned_marks = earned_marks[0]['earned_marks']
+		
+		rank_data.append("student_ranks_list" , {
+			'general_rank' : i['all_student_based_rank'],
+			'category_based_rank' : i['category_based_rank'],
+			'pwd_based_rank' : i['pwd_based_rank']
+		})
+		rank_data.save()
+		
+	# 	rank_data.save()
+
+		
+		
