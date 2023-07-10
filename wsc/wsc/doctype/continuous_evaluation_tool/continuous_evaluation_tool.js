@@ -21,6 +21,8 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 			continuous_evaluation["course"]=frm.doc.course;
 			continuous_evaluation["course_name"]=frm.doc.course_name;
 			continuous_evaluation["course_code"]=frm.doc.course_code;
+			continuous_evaluation["semester"]=frm.doc.semester;
+			continuous_evaluation["exam_category"]=frm.doc.exam_category;
 			if(cur_frm.doc.students){
 				(cur_frm.doc.students).forEach(resp => {
 					var row={};
@@ -124,7 +126,8 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 	assessment_criteria: function(frm) {
 		frm.trigger("get_student_details");
 	},
-	get_student_details:function(frm){
+	// get_student_details:function(frm){
+	exam_category:function(frm){
 		frm.doc.students=[];
 		$(frm.fields_dict.student_inputs.wrapper).empty();
 		if(frm.doc.academic_year && frm.doc.academic_term && frm.doc.course && frm.doc.assessment_criteria && frm.doc.programs && frm.doc.semester) {

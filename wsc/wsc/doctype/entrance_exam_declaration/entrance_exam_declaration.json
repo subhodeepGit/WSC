@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{exam_name}-{academic_year}-{department}",
+ "autoname": "format:{exam_name}-{academic_term}-{department}",
  "creation": "2023-05-17 14:55:40.492603",
  "default_view": "List",
  "doctype": "DocType",
@@ -105,7 +105,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-05-22 12:12:37.729460",
+ "modified": "2023-07-05 11:33:09.632498",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Declaration",

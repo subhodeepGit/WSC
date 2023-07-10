@@ -17,6 +17,7 @@
   "course_name",
   "course_code",
   "assessment_criteria",
+  "exam_category",
   "section_break_10",
   "student_inputs"
  ],
@@ -99,6 +100,13 @@
    "fieldtype": "Link",
    "label": "Course Type",
    "options": "Program Grades",
+   "reqd": 1
+  },
+  {
+   "fieldname": "exam_category",
+   "fieldtype": "Select",
+   "label": "Exam Category",
+   "options": "Regular\nRe-Exam",
    "reqd": 1
   }
  ],

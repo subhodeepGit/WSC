@@ -60,7 +60,7 @@ frappe.ui.form.on('Entrance Exam Admit Card Tool', {
 					}	
 				}) 
 			} else {
-				  console.log("special call");
+				 
 				  const res = frm.doc.deallotted_applicant_list.filter((i) => i.center_allocated_status === 0)
 				  let center_detail = frm.doc.centre.split(" - ")
 				  const body = JSON.stringify({

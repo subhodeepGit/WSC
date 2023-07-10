@@ -25,6 +25,8 @@ def admit_card_generate(alloted_applicant_data):
 			admit_card.department = i['department']
 			admit_card.academic_year = i['academic_year']
 			admit_card.academic_term = i['academic_term']
+			admit_card.student_category = i['student_category']
+			admit_card.physical_disablity = i['physical_disability']
 			admit_card.venue = i['centre_name']
 			admit_card.address = i['address']
 			admit_card.district = i['district']
@@ -123,7 +125,6 @@ def student_allotment(body):
 			FROM `tabExam Slot Timings` slot INNER JOIN `tabEntrance Exam Centre Allocation` alot  WHERE slot.parent = alot.name AND slot.seating_capacity > 0 AND alot.docstatus = 1;
 	""",as_dict=1)	
 
-	print(alloted_applicant_data)
 	admit_card_generate(alloted_applicant_data)
 	
 	return {

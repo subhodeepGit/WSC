@@ -30,6 +30,7 @@
   "section_break_8",
   "sgpa",
   "column_break_17",
+  "percentage",
   "result",
   "column_break_11",
   "grade",
@@ -139,6 +140,7 @@
    "allow_on_submit": 1,
    "fieldname": "sgpa",
    "fieldtype": "Float",
+   "hidden": 1,
    "in_list_view": 1,
    "label": "SGPA",
    "read_only": 1
@@ -243,6 +245,7 @@
    "allow_on_submit": 1,
    "fieldname": "overall_cgpa",
    "fieldtype": "Float",
+   "hidden": 1,
    "label": "Overall CGPA",
    "read_only": 1
   },
@@ -259,11 +262,16 @@
    "fieldtype": "Data",
    "label": "SGPA in to Credit Point",
    "read_only": 1
+  },
+  {
+   "fieldname": "percentage",
+   "fieldtype": "Data",
+   "label": "Percentage"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-17 15:23:38.340587",
+ "modified": "2023-07-06 11:17:04.490651",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Assessment Result",

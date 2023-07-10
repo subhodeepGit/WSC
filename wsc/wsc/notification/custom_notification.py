@@ -20,6 +20,49 @@ def student_applicant_submit(doc):
     msg += "</table>"
     send_mail(frappe.db.get_value("Student Applicant",doc.get('name'),"student_email_id"),'Application status',msg)
 
+
+def employee_reporting_aproverr(doc):
+    sub="""<p><b>Leave Approval Notification</b></p><br>"""
+
+    msg="""<b>---------------------Leave Application Details---------------------</b><br>"""
+    msg+="""<b>Employee Name:</b>  {0}<br>""".format(doc['employee_name'])
+    msg+="""<b>Leave Type:</b>  {0}<br>""".format(doc['leave_type'])
+    msg+="""<b>From Date:</b>  {0}<br>""".format(doc['from_date'])
+    msg+="""<b>To Date:</b>  {0}<br>""".format(doc['to_date'])
+    
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    leave_app_url = get_url_to_form('Leave Application', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(leave_app_url)
+
+    send_mail([doc['reporting_authority_email']],sub,msg)
+    frappe.msgprint("Email sent to reporting authority",[doc['reporting_authority_email']])
+
+def employee_shift_reporting_aprover(doc):
+    sub="""<p><b>Shift Request Approval Notification</b></p><br>"""
+
+    msg="""<b>---------------------Shift Request Details---------------------</b><br>"""
+    msg+="""<b>Employee ID:</b>  {0}<br>""".format(doc.get('employee'))
+    msg+="""<b>Employee Name:</b>  {0}<br>""".format(doc.get('employee_name'))
+    msg+="""<b>Shift Type:</b>  {0}<br>""".format(doc.get('shift_type'))
+    msg+="""<b>From Date:</b>  {0}<br>""".format(doc.get('from_date'))
+    msg+="""<b>To Date:</b>  {0}<br>""".format(doc.get('to_date'))
+    
+    send_mail(frappe.db.get_value("Shift Request",doc.get('name'),"reporting_authority"),sub,msg)
+    frappe.msgprint("Email sent to reporting authority")  
+
+def employee_shift_approver(doc):
+    sub="""<p><b>Shift Request Approval Notification</b></p><br>"""
+
+    msg="""<b>---------------------Shift Request Details---------------------</b><br>"""
+    msg+="""<b>Employee ID:</b>  {0}<br>""".format(doc.get('employee'))
+    msg+="""<b>Employee Name:</b>  {0}<br>""".format(doc.get('employee_name'))
+    msg+="""<b>Shift Type:</b>  {0}<br>""".format(doc.get('shift_type'))
+    msg+="""<b>From Date:</b>  {0}<br>""".format(doc.get('from_date'))
+    msg+="""<b>To Date:</b>  {0}<br>""".format(doc.get('to_date'))
+    
+    send_mail(frappe.db.get_value("Shift Request",doc.get('name'),"approver"),sub,msg)
+    frappe.msgprint("Email sent to Shift Request Approver")
+
 def student_applicant_approved(doc):
     sub="""<p><b>Congratulation !! Your Application Form has been Approved</b></p><br>"""
     msg+="""Further Process, we will connect with you soon.</b><br>"""
@@ -380,6 +423,24 @@ def employee_hr(doc):
     msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(emp_profile_updation)
     send_mail([doc['hr_email']],sub,msg)
     frappe.msgprint("Email sent to HR",[doc['hr_email']])
+def send_mail_to_director(doc):
+    sub="""<p><b>Leave Policy Request</b></p><br>"""
+    msg="""<b>---------------------Leave Policy Details---------------------</b><br>"""
+    msg+="""<b>Leave polciy:</b>  {0}<br>""".format(doc['leave_policy'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    leave_policy_url = get_url_to_form('Employee Profile Updation', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(leave_policy_url)
+    send_mail([doc['director_mail']],sub,msg)
+    frappe.msgprint("Email sent to Director",[doc['director_mail']])
+def send_mail_to_hr(doc):
+    sub="""<p><b>Leave Policy Request</b></p><br>"""
+    msg="""<b>---------------------Leave Policy Details---------------------</b><br>"""
+    msg+="""<b>Leave polciy:</b>  {0}<br>""".format(doc['leave_policy'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    leave_policy_url = get_url_to_form('Employee Profile Updation', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(leave_policy_url)
+    send_mail([doc['hr_mail']],sub,msg)
+    frappe.msgprint("Email sent to HR",[doc['hr_mail']])
 # def online_payment_submit(doc):
 #     msg="""<p><b>Payment Status</b></p><br>"""
 #     msg+="""<b>---------------------Payment Details---------------------</b><br>"""

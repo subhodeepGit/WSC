@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:The Subject Wise Performance of {programs} in {academic_term}",
+ "autoname": "format:Module Wise Performance of {programs} in {academic_term}",
  "creation": "2022-11-15 20:59:11.747919",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -9,8 +9,10 @@
  "field_order": [
   "program_grade",
   "programs",
+  "column_break_qtocp",
   "academic_year",
   "academic_term",
+  "section_break_janjz",
   "course_pass_",
   "amended_from"
  ],
@@ -50,7 +52,7 @@
   {
    "fieldname": "course_pass_",
    "fieldtype": "Table",
-   "label": "Course Pass %",
+   "label": "Module Pass Percentage",
    "options": "Course Pass Percentage",
    "read_only": 1
   },
@@ -62,11 +64,19 @@
    "options": "Subject Wise Performance",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_qtocp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_janjz",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-05 17:01:54.493524",
+ "modified": "2023-07-07 10:46:59.482396",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Subject Wise Performance",
