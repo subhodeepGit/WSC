@@ -82,8 +82,11 @@ def update_student(doc):
     student.set("current_education",[])
     for enroll in frappe.get_all("Program Enrollment",{"docstatus":1,"student":doc.student},["programs","program","academic_year","academic_term"],order_by='creation desc',limit=1):
         student.append("current_education",{
+            "program_grades":enroll.program_grades,
 			"programs":enroll.programs,
             "semesters":enroll.program,
+            "school_house":enroll.school_house,
+            "student_batch_name":enroll.student_batch_name,
             "academic_year":enroll.academic_year,
             "academic_term":enroll.academic_term
         })
