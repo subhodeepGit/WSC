@@ -245,39 +245,63 @@ def module_start_date(modules_id=None,exam_id=None,academic_term=None):
 @frappe.whitelist()
 def get_student(academic_term=None, programs=None,class_data=None,minimum_attendance_criteria=None,attendance_criteria=None,
                 start_date_of_attendence_duration=None,end_date_of_attendence_duration=None,modules_id=None,
-                semester=None):
-    enrolled_students = get_program_enrollment(academic_term,programs,class_data)
+                semester=None,exam_category=None,exam_schedule_id=None,course_type=None,assessment_component=None):
     student_list=[]
-    if enrolled_students:
-        student_list=enrolled_students
-        total_no_class_scheduled=frappe.db.count('Course Schedule', filters=[["course","=",modules_id],['program','=',semester],
-                                     ['schedule_date','between',[start_date_of_attendence_duration,end_date_of_attendence_duration]]])
+    if exam_category=="Regular":
+        enrolled_students = get_program_enrollment(academic_term,programs,class_data)
         
-        for t in student_list:
-            t.update({"total_no_of_classes_scheduled": total_no_class_scheduled})
-            class_att_date=frappe.db.count("Student Attendance",filters=[["student","=",t['student']],
-                                ['course','=',modules_id],['program','=',semester],['program','=',semester],
-                                ['date','between',[start_date_of_attendence_duration,end_date_of_attendence_duration]]])
-            t.update({"total_no_of_class_attended_by_the_studen":class_att_date})
-            if t.total_no_of_class_attended_by_the_studen==0:
-                t.update({"attendance_percentage":0.0})
-            else:
-                t.update({"attendance_percentage":round((t.total_no_of_class_attended_by_the_studen/t.total_no_of_classes_scheduled)*100,2)})
-            if attendance_criteria=="No":
-                t.update({"elegibility_status": "Qualified"})
-                t.update({"examination_qualification_approval":1})
-            if attendance_criteria=="Yes":
-                if t.attendance_percentage>=float(minimum_attendance_criteria):
+        if enrolled_students:
+            student_list=enrolled_students
+            total_no_class_scheduled=frappe.db.count('Course Schedule', filters=[["course","=",modules_id],['program','=',semester],
+                                        ['schedule_date','between',[start_date_of_attendence_duration,end_date_of_attendence_duration]]])
+            
+            for t in student_list:
+                t.update({"total_no_of_classes_scheduled": total_no_class_scheduled})
+                class_att_date=frappe.db.count("Student Attendance",filters=[["student","=",t['student']],
+                                    ['course','=',modules_id],['program','=',semester],['program','=',semester],
+                                    ['date','between',[start_date_of_attendence_duration,end_date_of_attendence_duration]]])
+                t.update({"total_no_of_class_attended_by_the_studen":class_att_date})
+                if t.total_no_of_class_attended_by_the_studen==0:
+                    t.update({"attendance_percentage":0.0})
+                else:
+                    t.update({"attendance_percentage":round((t.total_no_of_class_attended_by_the_studen/t.total_no_of_classes_scheduled)*100,2)})
+                if attendance_criteria=="No":
                     t.update({"elegibility_status": "Qualified"})
                     t.update({"examination_qualification_approval":1})
-                else:
-                    t.update({"elegibility_status": "Not-Qualified"})
-                    t.update({"examination_qualification_approval":0})		
-                
-        return student_list
-    else:
-        frappe.msgprint("No students found")
-        return student_list
+                if attendance_criteria=="Yes":
+                    if t.attendance_percentage>=float(minimum_attendance_criteria):
+                        t.update({"elegibility_status": "Qualified"})
+                        t.update({"examination_qualification_approval":1})
+                    else:
+                        t.update({"elegibility_status": "Not-Qualified"})
+                        t.update({"examination_qualification_approval":0})		
+        else:
+            frappe.msgprint("No students found")
+            return student_list                
+    if exam_category=="Re-Exam":
+        print("\n\n\n\n")
+        # print(exam_schedule_id)
+        # print(course_type)
+        # print(modules_id)
+        # print(programs)
+        # print(semester)
+        # print(assessment_component)
+        get_program_enrollment_fail(course_type,modules_id,assessment_component,semester,class_data,programs)
+        # enrolled_students_failed=frappe.get_all("Assessment Credits Allocation",
+        #                 {"program_grade":course_type,'course':modules_id,"assessment_criteria":assessment_component,
+        #                  'semester':semester,"docstatus":1,"qualifying_status":"Fail"},['name','student'])
+        # total_no_class_scheduled=frappe.db.count('Course Schedule', filters=[["course","=",modules_id],['program','=',semester],
+        #                                 ['schedule_date','between',[start_date_of_attendence_duration,end_date_of_attendence_duration]]])
+        # if enrolled_students_failed:
+        #     t.update({"total_no_of_classes_scheduled": total_no_class_scheduled})
+        #     pass
+        # else:
+        #     frappe.msgprint("No students found")
+        #     return student_list     
+
+    return student_list
+    
+
 
 
 
@@ -303,10 +327,25 @@ def get_program_enrollment(academic_term,programs=None,class_data=None):
         '''.format(condition1=condition1, condition2=condition2),
                 ({"academic_term": academic_term,"programs": programs}), as_dict=1) 
 
+def get_program_enrollment_fail(course_type=None,modules_id=None,assessment_component=None,semester=None,class_data=None,programs=None):
+    enrolled_students_failed=frappe.get_all("Assessment Credits Allocation",
+                    {"program_grade":course_type,'course':modules_id,"assessment_criteria":assessment_component,
+                     'semester':semester,'programs':programs,"docstatus":1,"qualifying_status":"Fail"},['name','student'])
+    
+    stu_list=[]
+    for t in enrolled_students_failed:
+        stu_list.append(t['student'])
+    
+    condition1=[]
+    if len(stu_list)==1:
+        condition1.append(["name",'=','%s'%(stu_list[0])])
+    else:
+        condition1.append(["name",'IN','%s'%(str(tuple(stu_list)))])  
+    
+    condition1.append(['enabled','=',1])
+    stu_data=frappe.get_all("Student",filters=condition1,fields=['name as student ','student_name','roll_no','permanant_registration_number'])
 
-
-
-
+    return stu_data
 
 
 
