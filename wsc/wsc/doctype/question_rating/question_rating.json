@@ -11,21 +11,25 @@
  ],
  "fields": [
   {
+   "columns": 2,
    "fieldname": "questions",
    "fieldtype": "Link",
    "label": "Questions",
-   "options": "Student Feedback Questions"
+   "options": "Student Feedback Questions",
+   "width": "10"
   },
   {
+   "columns": 2,
    "fieldname": "ratings",
    "fieldtype": "Rating",
-   "label": "Ratings"
+   "label": "Ratings",
+   "width": "10"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-01-11 12:00:09.572167",
+ "modified": "2023-07-10 16:44:18.489197",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Question Rating",

@@ -32,7 +32,8 @@
    "fieldname": "entrance_exam_declaration",
    "fieldtype": "Link",
    "label": "Entrance Exam Declaration",
-   "options": "Entrance Exam Declaration"
+   "options": "Entrance Exam Declaration",
+   "reqd": 1
   },
   {
    "fetch_from": "entrance_exam_declaration.academic_year",
@@ -140,7 +141,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-14 11:42:25.514503",
+ "modified": "2023-06-23 16:23:47.404099",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Centre Allocation",

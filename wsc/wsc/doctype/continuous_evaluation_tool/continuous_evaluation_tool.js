@@ -23,6 +23,8 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 			continuous_evaluation["course_code"]=frm.doc.course_code;
 			continuous_evaluation["semester"]=frm.doc.semester;
 			continuous_evaluation["exam_category"]=frm.doc.exam_category;
+			continuous_evaluation["programs"]=frm.doc.programs;
+			continuous_evaluation["program_grade"]=frm.doc.program_grade;
 			if(cur_frm.doc.students){
 				(cur_frm.doc.students).forEach(resp => {
 					var row={};
