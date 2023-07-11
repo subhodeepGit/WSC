@@ -226,6 +226,9 @@ doc_events = {
     "Mentor Allocation": {
         "validate": "wsc.wsc.validations.mentor_allocation.validate"
     },
+    "Mentor Initiation": {
+        "validate" : "wsc.wsc.doctype.mentor_initiation.mentor_initiation.create_mentee_communications"
+    },
     "Photocopy Application":{
         "validate":"wsc.wsc.validations.photocopy_application.validate"
     },

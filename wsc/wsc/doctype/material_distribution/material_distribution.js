@@ -9,7 +9,7 @@ frappe.ui.form.on('Material Distribution', {
 			};
 		});
 	},
-	onload:function fetchMaterial(frm) {
+	allotment_number:function fetchMaterial(frm) {
 		var serverDate = frappe.datetime.nowdate(); 
 	    frappe.call({
 			method: "wsc.wsc.doctype.material_distribution.material_distribution.fetch_material",
@@ -30,5 +30,5 @@ frappe.ui.form.on('Material Distribution', {
 				}
 			}
 		});
-	}
+	},
 });

@@ -6,6 +6,11 @@ from frappe.model.document import Document
 
 class MaterialDistribution(Document):
     # @frappe.whitelist()
+    def on_submit(doc):
+        for row in doc.materials_allotment:
+            if row.mandatory_materials and not row.material_applicability_check:
+                frappe.throw("Please check Material Applicability for Mandatory materials")
+
     def validate(doc):
         allotment_number=doc.allotment_number
         info=frappe.db.sql("""SELECT `name`,`allotment_number`,`docstatus` FROM `tabMaterial Distribution` WHERE `allotment_number`="%s" and `docstatus`!=2"""%\
@@ -16,7 +21,6 @@ class MaterialDistribution(Document):
             pass
         else:
             frappe.throw("Material already provided to the Student")
-
 
 @frappe.whitelist()
 def fetch_material(server_date):
