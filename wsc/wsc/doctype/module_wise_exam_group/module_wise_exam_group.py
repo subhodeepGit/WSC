@@ -102,8 +102,9 @@ def over_lapping_of_scheduling(self):
         exam_over_lapping=[]
         for t in student_gr_data:
             for j in comp_list_stu:
-                if t['student_no']==j['student_no'] and t['examination_date']==j['examination_date'] and (t['from_time']<=j['from_time'] and t['to_time']>=j['to_time']):	
-                    exam_over_lapping.append(t)
+                if t['from_time'] and j['examination_date'] and j['from_time']:
+                    if t['student_no']==j['student_no'] and t['examination_date']==j['examination_date'] and (t['from_time']<=j['from_time'] and t['to_time']>=j['to_time']):	
+                        exam_over_lapping.append(t)
 
 
         final_list=[]
