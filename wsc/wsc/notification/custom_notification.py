@@ -3,6 +3,7 @@ import frappe
 from frappe.utils.data import format_date
 from frappe.utils import get_url_to_form
 from frappe.utils import cint, cstr, parse_addr
+from datetime import date
 
 
 def student_applicant_submit(doc):
@@ -582,8 +583,142 @@ def send_mail_to_trainers_mweg(self):
     send_mail(recepients_list_rem_dup_and_none,'Exam Schedule Notification',msg)
     frappe.msgprint("Email sent to Marker, Course Manager, Checker and Invigilator(s)")
 
-    
 
+def module_exam_group_data():
+    print("\n\n")
+    today = date.today()
+    exam_dic=[]
+    student_data=[]
+    ed = frappe.get_all("Exam Declaration",filters={'group_email':1,"docstatus":1,"to_date":today,"disabled":0},fields=["name","to_date"])
+    if ed:
+        for i in ed:
+            exam_dic.append(i)
 
+        module_exam_dic=[]
+        for j in exam_dic:
+            count_exam_declaration_child_data = frappe.db.sql("""SELECT parent,COUNT(courses) as sum_courses FROM `tabExam Courses` WHERE docstatus=1 and parent = '%s'"""%(j["name"]),as_dict=True)
+            
+            count_module_exam = frappe.db.count('Module Wise Exam Group', {"docstatus":1,"exam_declaration_id":j["name"],"disabled":0})
+
+            if count_exam_declaration_child_data[0]['sum_courses'] == count_module_exam:
+                module_exam = frappe.get_all("Module Wise Exam Group",{'docstatus':1,'exam_declaration_id':j["name"]},
+                                            ['name','modules_id','modules_name','module_code','exam_declaration_id','module_exam_start_date','module_exam_end_date','marker_name','checker','course_manager_name','exam_name','academic_term'])
+                for t in module_exam:
+                    module_exam_dic.append(t)
+        module_exam_student_dic=[]
+        module_exam_scheduling_dic=[]
+        for k in module_exam_dic:
+            module_exam_student=frappe.get_all("Module Wise Exam Student",{'parent':k['name'],'elegibility_status':'Qualified'},
+                                            ['parent','student_no','student_name','group_name'])
+            module_exam_scheduling = frappe.get_all("Student Group Exam Scheduling",{'parent':k['name']},
+                                                        ['parent','group_name','examination_date','from_time','to_time','total_duration_in_hours'])
+            
+            for l in module_exam_student:
+                module_exam_student_dic.append(l)
+            for t in module_exam_scheduling:
+                module_exam_scheduling_dic.append(t)
         
+        for module_exam in module_exam_dic:
+            for student in module_exam_student_dic:
+                for exam_schedule in module_exam_scheduling_dic:
+                    if student['parent'] == module_exam['name'] and exam_schedule['parent'] == module_exam['name'] and student['group_name'] == exam_schedule['group_name']:
+                        student_data.append({
+                            'module_exam_group': student['parent'],
+                            'exam_declaration_id': module_exam['exam_declaration_id'],
+                            'student_no': student['student_no'],
+                            'student_name': student['student_name'],
+                            'group_name': student['group_name'],
+                            'modules_id': module_exam['modules_id'],
+                            'modules_name': module_exam['modules_name'],
+                            'module_code': module_exam['module_code'],
+                            'academic_term': module_exam['academic_term'],
+                            'examination_name': module_exam['exam_name'], 
+                            'examination_date': exam_schedule['examination_date'],
+                            'from_time': exam_schedule['from_time'],
+                            'to_time': exam_schedule['to_time'],
+                            'total_duration_in_hours': exam_schedule['total_duration_in_hours']
+                        })
+
+        student_schedule = {}
+
+        for exam_schedule in student_data:
+            student_no = exam_schedule["student_no"]
+            if student_no not in student_schedule:
+                student_schedule[student_no] = []
+            student_schedule[student_no].append(exam_schedule)
+        # print(student_schedule)
+        html_tables = []
+
+        for student_no, schedules in student_schedule.items():
+            student_name = schedules[0]["student_name"]
+            # roll_no = student_no
+            exam_name = schedules[0]["examination_name"]
+            academic_term = schedules[0]["academic_term"]
+
+            exam_declaration_ids = set()
+
+            sub="Student Exam Schedule"
+            html_table = """
+            <html>
+            <body>
+                <p>Dear <b>{name}</b>,</p>
+                <p>Please find below the schedule for the <b>{exam_name}</b>, for the Academic Term <b>{academic_term}</b>.</p>
+                <table style="line-height: 1em;width: 100%;" border="1">
+                <thead>
+                    <tr style="text-align:center">
+                    <th>Module Code</th>
+                    <th>Module Name</th>
+                    <th>Group Name</th>
+                    <th>Examination Date</th>
+                    <th>From Time</th>
+                    <th>To Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+            """.format(name=student_name, exam_name=exam_name, academic_term=academic_term)
+
+            for exam_schedule in schedules:
+                html_table += """
+                    <tr>
+                    <td>{module_code}</td>
+                    <td>{module_name}</td>
+                    <td>{group_name}</td>
+                    <td>{examination_date}</td>
+                    <td>{from_time}</td>
+                    <td>{to_time}</td>
+                    </tr>
+                """.format(
+                    module_code=exam_schedule["module_code"],
+                    module_name=exam_schedule["modules_name"],
+                    group_name=exam_schedule["group_name"],
+                    # examination_name=exam_schedule["examination_name"],
+                    # academic_term=exam_schedule["academic_term"],
+                    examination_date=exam_schedule["examination_date"].strftime("%d-%m-%Y"),
+                    from_time=exam_schedule["from_time"],
+                    to_time=exam_schedule["to_time"]
+                )
+                exam_declaration_ids.add(exam_schedule["exam_declaration_id"])
+            html_table += """
+                </tbody>
+                </table>
+            </body>
+            </html>
+            """
+            # print("Student Name:", student_no)
+            # print(html_table)
+            stu_email = frappe.db.get_value("Student",{'name':student_no, 'enabled':1},"user")
+            # print(stu_email)
+            # send_mail(frappe.db.get_value("User",{'name':stu_email, 'enabled':1},"email"),sub,html_table)
+            print("Exam Declaration IDs:", ", ".join(exam_declaration_ids))
+
+            # html_tables.append(html_table)
+        # print(html_tables)
+
+        # for student_name,html_table in html_tables:
+        #     send_mail(frappe.db.get_value("User",{'name':t['user'], 'enabled':1},"email"),sub,html_table)
+            # print(student_name)
+            # print(html_table)
+        #     print("\n---\n")
+
+
     

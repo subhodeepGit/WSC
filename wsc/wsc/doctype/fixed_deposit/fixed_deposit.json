@@ -23,10 +23,17 @@
   "maturity_amount",
   "data_12",
   "interest_payable",
-  "fd_tenure",
+  "tenure_days",
+  "tenurein_months",
+  "tenurein_weeks",
+  "tenurein_quarter",
+  "tenuresemi_annually",
+  "tenurein_annually",
   "column_break_17",
   "interest_type",
   "interest_percentage",
+  "section_break_punlb",
+  "get_amount",
   "interest_calculation"
  ],
  "fields": [
@@ -49,12 +56,16 @@
   {
    "fieldname": "fd_start_date",
    "fieldtype": "Date",
-   "label": "FD Start Date"
+   "in_list_view": 1,
+   "label": "FD Start Date",
+   "reqd": 1
   },
   {
    "fieldname": "maturity_date",
    "fieldtype": "Date",
-   "label": "Maturity Date"
+   "in_list_view": 1,
+   "label": "Maturity Date",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_6",
@@ -81,7 +92,9 @@
   {
    "fieldname": "fd_amount",
    "fieldtype": "Currency",
-   "label": "FD Amount"
+   "in_list_view": 1,
+   "label": "FD Amount",
+   "reqd": 1
   },
   {
    "fieldname": "maturity_amount",
@@ -96,7 +109,7 @@
   {
    "fieldname": "fd_details_section",
    "fieldtype": "Section Break",
-   "label": "FD Details"
+   "label": "Fixed Deposit Details"
   },
   {
    "fieldname": "amounts_section",
@@ -111,7 +124,7 @@
    "fieldname": "interest_payable",
    "fieldtype": "Select",
    "label": "Interest Payable",
-   "options": "\nOn Maturity\nQuarterly\nMonthly"
+   "options": "\nDays\nWeeks\nMonths\nQuarterly\nSemi-Annually\nAnnually"
   },
   {
    "fieldname": "column_break_17",
@@ -130,19 +143,59 @@
    "options": "Fixed Deposit Interest"
   },
   {
-   "fieldname": "fd_tenure",
-   "fieldtype": "Data",
-   "label": "FD Tenure"
-  },
-  {
    "fieldname": "interest_percentage",
    "fieldtype": "Float",
    "label": "Interest Percentage"
+  },
+  {
+   "fieldname": "section_break_punlb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "get_amount",
+   "fieldtype": "Button",
+   "label": "Get Amount"
+  },
+  {
+   "fieldname": "tenure_days",
+   "fieldtype": "Data",
+   "label": "Tenure(In Days)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tenurein_months",
+   "fieldtype": "Data",
+   "label": "Tenure(In Months)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tenurein_weeks",
+   "fieldtype": "Data",
+   "label": "Tenure(In Weeks)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tenurein_quarter",
+   "fieldtype": "Data",
+   "label": "Tenure(In Quater)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tenuresemi_annually",
+   "fieldtype": "Data",
+   "label": "Tenure(Semi_Annually)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tenurein_annually",
+   "fieldtype": "Data",
+   "label": "Tenure(In Annually)",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-26 17:58:35.391797",
+ "modified": "2023-06-14 16:20:53.180169",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Fixed Deposit",

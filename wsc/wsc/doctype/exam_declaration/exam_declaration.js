@@ -237,4 +237,22 @@ frappe.ui.form.on("Exam Courses", "fee_structure", function(frm, cdt, cdn) {
 });
 
 
+frappe.ui.form.on('Exam Declaration', {
+    to_date: function(frm) {
+        var selectedDate = frappe.datetime.str_to_obj(frm.doc.to_date);
+        var exam_start_date = frappe.datetime.str_to_obj(frm.doc.exam_start_date);
+    
+        if (selectedDate <= get_today()) {
+        frappe.msgprint('Please select a date after today.');
+        frm.set_value('to_date', '');
+        } else if (selectedDate > exam_start_date) {
+        frappe.msgprint('Please select a date on or before Exam Start Date');
+        frm.set_value('to_date', '');
+        }
+        // if (frm.doc.exam_start_date === null || typeof frm.doc.exam_start_date  === 'undefined'){
+        //     frappe.msgprint('Please select Exam Start Date');
+        //     frm.set_value('to_date', '');
+        // }
+    }
+  });
 

@@ -33,6 +33,11 @@
   "semesters",
   "get_courses",
   "courses_offered",
+  "section_break_hbhdh",
+  "group_email",
+  "to_date",
+  "column_break_v8qdw",
+  "email_status",
   "eligibility_deails_section",
   "minimum_attendance_criteria",
   "certificate_creation_status",
@@ -281,12 +286,45 @@
    "label": "Assessment Criteria",
    "options": "Assessment Criteria",
    "reqd": 1
+  },
+  {
+   "fieldname": "section_break_hbhdh",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.assessment_criteria !== 'undefined'",
+   "fetch_from": "assessment_criteria.is_group_email_",
+   "fieldname": "group_email",
+   "fieldtype": "Check",
+   "label": "Group Email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_v8qdw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "email_status",
+   "fieldtype": "Select",
+   "label": "Email Status",
+   "options": "\nSent\nNot Sent",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.group_email === 1",
+   "description": "Date of sending email notification",
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "label": "Email Date",
+   "mandatory_depends_on": "eval:doc.group_email === 1"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-27 12:25:01.828478",
+ "modified": "2023-07-06 15:04:40.251044",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Declaration",
