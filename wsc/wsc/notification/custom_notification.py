@@ -3,6 +3,7 @@ import frappe
 from frappe.utils.data import format_date
 from frappe.utils import get_url_to_form
 from frappe.utils import cint, cstr, parse_addr
+from datetime import date
 
 
 def student_applicant_submit(doc):
@@ -19,6 +20,49 @@ def student_applicant_submit(doc):
         msg += """<tr><td>{0}</td></tr>""".format(str(d.get('programs'))) 
     msg += "</table>"
     send_mail(frappe.db.get_value("Student Applicant",doc.get('name'),"student_email_id"),'Application status',msg)
+
+
+def employee_reporting_aproverr(doc):
+    sub="""<p><b>Leave Approval Notification</b></p><br>"""
+
+    msg="""<b>---------------------Leave Application Details---------------------</b><br>"""
+    msg+="""<b>Employee Name:</b>  {0}<br>""".format(doc['employee_name'])
+    msg+="""<b>Leave Type:</b>  {0}<br>""".format(doc['leave_type'])
+    msg+="""<b>From Date:</b>  {0}<br>""".format(doc['from_date'])
+    msg+="""<b>To Date:</b>  {0}<br>""".format(doc['to_date'])
+    
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    leave_app_url = get_url_to_form('Leave Application', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(leave_app_url)
+
+    send_mail([doc['reporting_authority_email']],sub,msg)
+    frappe.msgprint("Email sent to reporting authority",[doc['reporting_authority_email']])
+
+def employee_shift_reporting_aprover(doc):
+    sub="""<p><b>Shift Request Approval Notification</b></p><br>"""
+
+    msg="""<b>---------------------Shift Request Details---------------------</b><br>"""
+    msg+="""<b>Employee ID:</b>  {0}<br>""".format(doc.get('employee'))
+    msg+="""<b>Employee Name:</b>  {0}<br>""".format(doc.get('employee_name'))
+    msg+="""<b>Shift Type:</b>  {0}<br>""".format(doc.get('shift_type'))
+    msg+="""<b>From Date:</b>  {0}<br>""".format(doc.get('from_date'))
+    msg+="""<b>To Date:</b>  {0}<br>""".format(doc.get('to_date'))
+    
+    send_mail(frappe.db.get_value("Shift Request",doc.get('name'),"reporting_authority"),sub,msg)
+    frappe.msgprint("Email sent to Shift Reporting Authority")  
+
+def employee_shift_approver(doc):
+    sub="""<p><b>Shift Request Approval Notification</b></p><br>"""
+
+    msg="""<b>---------------------Shift Request Details---------------------</b><br>"""
+    msg+="""<b>Employee ID:</b>  {0}<br>""".format(doc.get('employee'))
+    msg+="""<b>Employee Name:</b>  {0}<br>""".format(doc.get('employee_name'))
+    msg+="""<b>Shift Type:</b>  {0}<br>""".format(doc.get('shift_type'))
+    msg+="""<b>From Date:</b>  {0}<br>""".format(doc.get('from_date'))
+    msg+="""<b>To Date:</b>  {0}<br>""".format(doc.get('to_date'))
+    
+    send_mail(frappe.db.get_value("Shift Request",doc.get('name'),"approver"),sub,msg)
+    frappe.msgprint("Email sent to Shift Request Approving Authority")
 
 def student_applicant_approved(doc):
     sub="""<p><b>Congratulation !! Your Application Form has been Approved</b></p><br>"""
@@ -327,42 +371,126 @@ def exam_declaration_for_instructor_submit(doc):
         send_mail(frappe.db.get_value("User",{'full_name':instructor_name, 'enabled':1},"email"),sub,msg)
 
 def exam_evaluation_plan_for_paper_setter_submit(doc):
-    sub = "You are invited to do paper setting for exam declaration {0}".format(doc.exam_declaration)
-    msg1="""<p>--------Exam Details----------</p>"""
-    msg1+="""<p>Exam Declaration : {0}</p>""".format(doc.exam_declaration)
-    msg1+="""<p>Program : {0}</p>""".format(doc.programs)
-    msg1+="""<p>Semster :  {0}</p>""".format(doc.program)
+    
+    # msg1="""<p>--------Exam Details----------</p>"""
+    # msg1+="""<p>Exam Declaration : {0}</p>""".format(doc.exam_declaration)
+    # msg1+="""<p>Program : {0}</p>""".format(doc.programs)
+    # msg1+="""<p>Semster :  {0}</p>""".format(doc.program)
+    # for e in doc.examiners_list:
+    #     msg = ""
+    #     msg+="""<p>Course : {0}</p><p>Course Name:{1}</p><p>Course Code:{2}</p>""".format(e.course,e.course_name,e.course_code)
+    #     msg+="""<p>Assessment Criteria:{0}</p>""".format(doc.assessment_criteria)
+    #     msg+="""<p>Academic Year :{0}</p>""".format(doc.academic_year)
+    #     msg+="""<p>Academic Term:{0}</p>""".format(doc.academic_term)
+    #     msg+="""<p>Paper Setting Start Date:{0}</p>""".format(doc.paper_setting_start_date)
+    #     msg+="""<p>Paper Setting End Date:{0}</p>""".format(doc.paper_setting_end_date)
+
+
+  
     for e in doc.examiners_list:
-        msg = ""
-        msg+="""<p>Course : {0}</p><p>Course Name:{1}</p><p>Course Code:{2}</p>""".format(e.course,e.course_name,e.course_code)
-        msg+="""<p>Assessment Criteria:{0}</p>""".format(doc.assessment_criteria)
-        msg+="""<p>Academic Year :{0}</p>""".format(doc.academic_year)
-        msg+="""<p>Academic Term:{0}</p>""".format(doc.academic_term)
-        msg+="""<p>Paper Setting Start Date:{0}</p>""".format(doc.paper_setting_start_date)
-        msg+="""<p>Paper Setting End Date:{0}</p>""".format(doc.paper_setting_end_date)
+        sub = "You are invited to set the paper for exam declaration {0}".format(doc.exam_declaration)
+        msg="""
+        <table style="line-height: 1em;width: 100%;" border="1" cellpadding="2" cellspacing="2">
+        <thead>
+            <tr><th colspan="11"><b>Examination Details</b></th></tr>
+            <tr>
+                <th class="text-center" style="width:9%; font-size:14px;">Exam Declaration</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Program</th>
+                <th class="text-center" style="width:10%; font-size:14px;">Semester</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Course</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Course Name</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Course Code</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Assessment Criteria</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Academic Year</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Academic Term</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Paper Setting Start Date</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Paper Setting End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">{0}</td>""".format(doc.exam_declaration)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.programs)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.program)
+        msg+="""<td class="text-center">{0}</td>""".format(e.course)
+        msg+="""<td class="text-center">{0}</td>""".format(e.course_name)
+        msg+="""<td class="text-center">{0}</td>""".format(e.course_code)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.assessment_criteria)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.academic_year)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.academic_term)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.paper_setting_start_date)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.paper_setting_end_date)
+        msg+="""</tr>
+        </tbody>
+        </table>"""
         employee = frappe.db.get_value('Instructor',{'name':e.paper_setter},'employee')
         email = frappe.db.get_value('Employee',{'name':employee},'user_id')
         if frappe.db.get_value("User",{'email':email, 'enabled':1},"email"):
-            send_mail(email,sub,msg1+msg)
+            # send_mail(email,sub,msg1+msg)
+            send_mail(email,sub,msg)
+
 
 def exam_evaluation_plan_for_moderator_submit(doc):
-    sub = "You are invited as moderator for exam declaration {0}".format(doc.exam_declaration)
-    msg1="""<p>--------Exam Details----------</p>"""
-    msg1+="""<p>Exam Declaration : {0}</p>""".format(doc.exam_declaration)
-    msg1+="""<p>Program : {0}</p>""".format(doc.programs)
-    msg1+="""<p>Semster :  {0}</p>""".format(doc.program)
+    
+    # msg1="""<p>--------Exam Details----------</p>"""
+    # msg1+="""<p>Exam Declaration : {0}</p>""".format(doc.exam_declaration)
+    # msg1+="""<p>Program : {0}</p>""".format(doc.programs)
+    # msg1+="""<p>Semster :  {0}</p>""".format(doc.program)
+    # for e in doc.moderator_list:
+    #     msg = ""
+    #     msg+="""<p>Course : {0}</p><p>Course Name:{1}</p><p>Course Code:{2}</p>""".format(e.course,e.course_name,e.course_code)
+    #     msg+="""<p>Assessment Criteria:{0}</p>""".format(doc.assessment_criteria)
+    #     msg+="""<p>Academic Year :{0}</p>""".format(doc.academic_year)
+    #     msg+="""<p>Academic Term:{0}</p>""".format(doc.academic_term)
+    #     msg+="""<p>Paper Setting Start Date:{0}</p>""".format(doc.paper_setting_start_date)
+    #     msg+="""<p>Paper Setting End Date:{0}</p>""".format(doc.paper_setting_end_date)
+    #     employee = frappe.db.get_value('Instructor',{'name':e.moderator},'employee')
+    #     email = frappe.db.get_value('Employee',{'name':employee},'user_id')
+    #     if frappe.db.get_value("User",{'email':email, 'enabled':1},"email"):
+    #         send_mail(email,sub,msg1+msg)
+
+
     for e in doc.moderator_list:
-        msg = ""
-        msg+="""<p>Course : {0}</p><p>Course Name:{1}</p><p>Course Code:{2}</p>""".format(e.course,e.course_name,e.course_code)
-        msg+="""<p>Assessment Criteria:{0}</p>""".format(doc.assessment_criteria)
-        msg+="""<p>Academic Year :{0}</p>""".format(doc.academic_year)
-        msg+="""<p>Academic Term:{0}</p>""".format(doc.academic_term)
-        msg+="""<p>Paper Setting Start Date:{0}</p>""".format(doc.paper_setting_start_date)
-        msg+="""<p>Paper Setting End Date:{0}</p>""".format(doc.paper_setting_end_date)
+        sub = "You are invited as moderator for exam declaration {0}".format(doc.exam_declaration)
+        msg="""
+        <table style="line-height: 1em;width: 100%;" border="1" cellpadding="2" cellspacing="2">
+        <thead>
+            <tr><th colspan="11"><b>Examination Details</b></th></tr>
+            <tr>
+                <th class="text-center" style="width:9%; font-size:14px;">Exam Declaration</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Program</th>
+                <th class="text-center" style="width:10%; font-size:14px;">Semester</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Course</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Course Name</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Course Code</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Assessment Criteria</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Academic Year</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Academic Term</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Paper Setting Start Date</th>
+                <th class="text-center" style="width:9%; font-size:14px;">Paper Setting End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">{0}</td>""".format(doc.exam_declaration)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.programs)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.program)
+        msg+="""<td class="text-center">{0}</td>""".format(e.course)
+        msg+="""<td class="text-center">{0}</td>""".format(e.course_name)
+        msg+="""<td class="text-center">{0}</td>""".format(e.course_code)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.assessment_criteria)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.academic_year)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.academic_term)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.paper_setting_start_date)
+        msg+="""<td class="text-center">{0}</td>""".format(doc.paper_setting_end_date)
+        msg+="""</tr>
+        </tbody>
+        </table>"""
         employee = frappe.db.get_value('Instructor',{'name':e.moderator},'employee')
         email = frappe.db.get_value('Employee',{'name':employee},'user_id')
         if frappe.db.get_value("User",{'email':email, 'enabled':1},"email"):
-            send_mail(email,sub,msg1+msg)
+            # send_mail(email,sub,msg1+msg)
+            send_mail(email,sub,msg)
 
 def payment_entry_submit(doc):
     msg="""<p><b>Payment is Sucessfull</b></p><br>"""
@@ -396,6 +524,38 @@ def employee_hr(doc):
     msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(emp_profile_updation)
     send_mail([doc['hr_email']],sub,msg)
     frappe.msgprint("Email sent to HR",[doc['hr_email']])
+def send_mail_to_director(doc):
+    sub="""<p><b>Leave Policy Request</b></p><br>"""
+    msg="""<b>---------------------Leave Policy Details---------------------</b><br>"""
+    msg+="""<b>Leave polciy:</b>  {0}<br>""".format(doc['leave_policy'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    leave_policy_url = get_url_to_form('Employee Profile Updation', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(leave_policy_url)
+    send_mail([doc['director_mail']],sub,msg)
+    frappe.msgprint("Email sent to Director",[doc['director_mail']])
+def send_mail_to_hr(doc):
+    sub="""<p><b>Leave Policy Request</b></p><br>"""
+    msg="""<b>---------------------Leave Policy Details---------------------</b><br>"""
+    msg+="""<b>Leave polciy:</b>  {0}<br>""".format(doc['leave_policy'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    leave_policy_url = get_url_to_form('Employee Profile Updation', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(leave_policy_url)
+    send_mail([doc['hr_mail']],sub,msg)
+    frappe.msgprint("Email sent to HR",[doc['hr_mail']])
+
+def shift_req_hr(doc):
+    sub="""<p><b>Shift Request Approval Notification</b></p><br>"""
+
+    msg="""<b>---------------------Shift Request Details---------------------</b><br>"""
+    msg+="""<b>Employee ID:</b>  {0}<br>""".format(doc.get('employee'))
+    msg+="""<b>Employee Name:</b>  {0}<br>""".format(doc.get('employee_name'))
+    msg+="""<b>Shift Type:</b>  {0}<br>""".format(doc.get('shift_type'))
+    msg+="""<b>From Date:</b>  {0}<br>""".format(doc.get('from_date'))
+    msg+="""<b>To Date:</b>  {0}<br>""".format(doc.get('to_date'))
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc.get('status'))
+    
+    send_mail(frappe.db.get_value("Shift Request",doc.get('name'),"hr_mail"),sub,msg)
+    frappe.msgprint("Status mail sent to HR")
 # def online_payment_submit(doc):
 #     msg="""<p><b>Payment Status</b></p><br>"""
 #     msg+="""<b>---------------------Payment Details---------------------</b><br>"""
@@ -623,8 +783,142 @@ def send_mail_to_trainers_mweg(self):
     send_mail(recepients_list_rem_dup_and_none,'Exam Schedule Notification',msg)
     frappe.msgprint("Email sent to Marker, Course Manager, Checker and Invigilator(s)")
 
-    
 
+def module_exam_group_data():
+    print("\n\n")
+    today = date.today()
+    exam_dic=[]
+    student_data=[]
+    ed = frappe.get_all("Exam Declaration",filters={'group_email':1,"docstatus":1,"to_date":today,"disabled":0},fields=["name","to_date"])
+    if ed:
+        for i in ed:
+            exam_dic.append(i)
 
+        module_exam_dic=[]
+        for j in exam_dic:
+            count_exam_declaration_child_data = frappe.db.sql("""SELECT parent,COUNT(courses) as sum_courses FROM `tabExam Courses` WHERE docstatus=1 and parent = '%s'"""%(j["name"]),as_dict=True)
+            
+            count_module_exam = frappe.db.count('Module Wise Exam Group', {"docstatus":1,"exam_declaration_id":j["name"],"disabled":0})
+
+            if count_exam_declaration_child_data[0]['sum_courses'] == count_module_exam:
+                module_exam = frappe.get_all("Module Wise Exam Group",{'docstatus':1,'exam_declaration_id':j["name"]},
+                                            ['name','modules_id','modules_name','module_code','exam_declaration_id','module_exam_start_date','module_exam_end_date','marker_name','checker','course_manager_name','exam_name','academic_term'])
+                for t in module_exam:
+                    module_exam_dic.append(t)
+        module_exam_student_dic=[]
+        module_exam_scheduling_dic=[]
+        for k in module_exam_dic:
+            module_exam_student=frappe.get_all("Module Wise Exam Student",{'parent':k['name'],'elegibility_status':'Qualified'},
+                                            ['parent','student_no','student_name','group_name'])
+            module_exam_scheduling = frappe.get_all("Student Group Exam Scheduling",{'parent':k['name']},
+                                                        ['parent','group_name','examination_date','from_time','to_time','total_duration_in_hours'])
+            
+            for l in module_exam_student:
+                module_exam_student_dic.append(l)
+            for t in module_exam_scheduling:
+                module_exam_scheduling_dic.append(t)
         
+        for module_exam in module_exam_dic:
+            for student in module_exam_student_dic:
+                for exam_schedule in module_exam_scheduling_dic:
+                    if student['parent'] == module_exam['name'] and exam_schedule['parent'] == module_exam['name'] and student['group_name'] == exam_schedule['group_name']:
+                        student_data.append({
+                            'module_exam_group': student['parent'],
+                            'exam_declaration_id': module_exam['exam_declaration_id'],
+                            'student_no': student['student_no'],
+                            'student_name': student['student_name'],
+                            'group_name': student['group_name'],
+                            'modules_id': module_exam['modules_id'],
+                            'modules_name': module_exam['modules_name'],
+                            'module_code': module_exam['module_code'],
+                            'academic_term': module_exam['academic_term'],
+                            'examination_name': module_exam['exam_name'], 
+                            'examination_date': exam_schedule['examination_date'],
+                            'from_time': exam_schedule['from_time'],
+                            'to_time': exam_schedule['to_time'],
+                            'total_duration_in_hours': exam_schedule['total_duration_in_hours']
+                        })
+
+        student_schedule = {}
+
+        for exam_schedule in student_data:
+            student_no = exam_schedule["student_no"]
+            if student_no not in student_schedule:
+                student_schedule[student_no] = []
+            student_schedule[student_no].append(exam_schedule)
+        # print(student_schedule)
+        html_tables = []
+
+        for student_no, schedules in student_schedule.items():
+            student_name = schedules[0]["student_name"]
+            # roll_no = student_no
+            exam_name = schedules[0]["examination_name"]
+            academic_term = schedules[0]["academic_term"]
+
+            exam_declaration_ids = set()
+
+            sub="Student Exam Schedule"
+            html_table = """
+            <html>
+            <body>
+                <p>Dear <b>{name}</b>,</p>
+                <p>Please find below the schedule for the <b>{exam_name}</b>, for the Academic Term <b>{academic_term}</b>.</p>
+                <table style="line-height: 1em;width: 100%;" border="1">
+                <thead>
+                    <tr style="text-align:center">
+                    <th>Module Code</th>
+                    <th>Module Name</th>
+                    <th>Group Name</th>
+                    <th>Examination Date</th>
+                    <th>From Time</th>
+                    <th>To Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+            """.format(name=student_name, exam_name=exam_name, academic_term=academic_term)
+
+            for exam_schedule in schedules:
+                html_table += """
+                    <tr>
+                    <td>{module_code}</td>
+                    <td>{module_name}</td>
+                    <td>{group_name}</td>
+                    <td>{examination_date}</td>
+                    <td>{from_time}</td>
+                    <td>{to_time}</td>
+                    </tr>
+                """.format(
+                    module_code=exam_schedule["module_code"],
+                    module_name=exam_schedule["modules_name"],
+                    group_name=exam_schedule["group_name"],
+                    # examination_name=exam_schedule["examination_name"],
+                    # academic_term=exam_schedule["academic_term"],
+                    examination_date=exam_schedule["examination_date"].strftime("%d-%m-%Y"),
+                    from_time=exam_schedule["from_time"],
+                    to_time=exam_schedule["to_time"]
+                )
+                exam_declaration_ids.add(exam_schedule["exam_declaration_id"])
+            html_table += """
+                </tbody>
+                </table>
+            </body>
+            </html>
+            """
+            # print("Student Name:", student_no)
+            # print(html_table)
+            stu_email = frappe.db.get_value("Student",{'name':student_no, 'enabled':1},"user")
+            # print(stu_email)
+            # send_mail(frappe.db.get_value("User",{'name':stu_email, 'enabled':1},"email"),sub,html_table)
+            print("Exam Declaration IDs:", ", ".join(exam_declaration_ids))
+
+            # html_tables.append(html_table)
+        # print(html_tables)
+
+        # for student_name,html_table in html_tables:
+        #     send_mail(frappe.db.get_value("User",{'name':t['user'], 'enabled':1},"email"),sub,html_table)
+            # print(student_name)
+            # print(html_table)
+        #     print("\n---\n")
+
+
     

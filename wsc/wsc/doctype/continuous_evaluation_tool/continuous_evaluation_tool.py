@@ -76,7 +76,9 @@ def make_continuous_evaluation(continuous_evaluation):
 						"course_assessment":row.get("name"),
 						"earned_marks":flt(row.get("earned_marks")),
 						"total_marks":flt(row.get("total_marks")),
-						"grace_marks":flt(result.get('rows')[d].get("grace_marks"))
+						"grace_marks":flt(result.get('rows')[d].get("grace_marks")),
+						"exam_type":result.get("exam_category"),
+						"attendence_status":result.get('rows')[d].get("exam_attendence")	
 					})
 				doc.grace_marks=flt(result.get('rows')[d].get("grace_marks"))
 				doc.weightage_marks=flt(result.get('rows')[d].get("weightage_marks"))
@@ -84,7 +86,8 @@ def make_continuous_evaluation(continuous_evaluation):
 				doc.earned_credits=flt(result.get('rows')[d].get("earned_credits"))
 				doc.total_credits=flt(result.get('rows')[d].get("total_credits"))
 				doc.out_of_marks=flt(result.get('rows')[d].get("out_of_marks"))
-				doc.attendence_status=result.get('rows')[d].get("exam_attendence")	
+				doc.attendence_status=result.get('rows')[d].get("exam_attendence")
+				doc.program_grade=result.get("program_grade")	
 				doc.save()
 				# doc.submit()
 				records=True

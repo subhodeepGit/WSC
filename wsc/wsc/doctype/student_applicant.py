@@ -52,7 +52,7 @@ class StudentApplicant(Document):
         validate_pin_code(doc)
         # update_education_parameters(doc)
         duplicate_row_validation(doc,"program_priority",["programs"])
-        validate_seat_reservation_type(doc)
+        # validate_seat_reservation_type(doc)
         if len(doc.document_list ) == 0:
             add_document_list_rows(doc)
         get_admission_fees(doc)
@@ -342,7 +342,7 @@ def enroll_student(source_name):
         program_enrollment.program_grade = st_applicant.program_grade
         program_enrollment.gender=st_applicant.gender
         program_enrollment.physically_disabled=st_applicant.physically_disabled
-        program_enrollment.award_winner=st_applicant.award_winner
+        program_enrollment.award_winner=st_applicant.award_winner  
         program_enrollment.boarding_student=st_applicant.hostel_required
         
         for d in st_applicant.get("disable_type"):
@@ -459,17 +459,17 @@ def get_sharing_type():
 
     return capacity
 
-def validate_seat_reservation_type(doc):
-    seat_reservation_type_list = [s.seat_reservation_type for s in frappe.get_all("Reservations List",{"parent":["IN",[d.student_admission for d in doc.get("program_priority")]]}, 'seat_reservation_type')]
-    if seat_reservation_type_list:
-        if doc.physically_disabled:
-            physically_disabled_list = [r.name for r in frappe.get_all("Seat Reservation Type",{"name":["IN",seat_reservation_type_list], 'physically_disabled':1}, 'name')]
-            if len(physically_disabled_list) == 0 :
-                frappe.throw("Seat Reservation Type <b>Physically Disabled</b> Not Exists in Student Admissions List")
-        if doc.award_winner:
-            award_winner_list = [r.name for r in frappe.get_all("Seat Reservation Type",{"name":["IN",seat_reservation_type_list], 'award_winner':1}, 'name')]
-            if len(award_winner_list) == 0 :
-                frappe.throw("Seat Reservation Type <b>Award Winner</b> Not Exists in Student Admissions List")
+# def validate_seat_reservation_type(doc):
+#     seat_reservation_type_list = [s.seat_reservation_type for s in frappe.get_all("Reservations List",{"parent":["IN",[d.student_admission for d in doc.get("program_priority")]]}, 'seat_reservation_type')]
+#     if seat_reservation_type_list:
+#         if doc.physically_disabled:
+#             physically_disabled_list = [r.name for r in frappe.get_all("Seat Reservation Type",{"name":["IN",seat_reservation_type_list], 'physically_disabled':1}, 'name')]
+#             if len(physically_disabled_list) == 0 :
+#                 frappe.throw("Seat Reservation Type <b>Physically Disabled</b> Not Exists in Student Admissions List")
+#         if doc.award_winner:
+#             award_winner_list = [r.name for r in frappe.get_all("Seat Reservation Type",{"name":["IN",seat_reservation_type_list], 'award_winner':1}, 'name')]
+#             if len(award_winner_list) == 0 :
+#                 frappe.throw("Seat Reservation Type <b>Award Winner</b> Not Exists in Student Admissions List")
 
 @ frappe.whitelist()
 def get_admission_and_semester_by_program(programs,program_grade,academic_year):

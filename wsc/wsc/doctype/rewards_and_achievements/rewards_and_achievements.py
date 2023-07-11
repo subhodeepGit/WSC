@@ -34,7 +34,7 @@ def get_students(programs,semester,academic_year,academic_term):
 	df = pd.DataFrame.from_records(topper, columns=['student', 'student_name','sgpa'])
 	df['rank']=df['sgpa'].rank(ascending=False, method='dense')
 	df=df[(df['rank'] <= 3)]
-	topperlist=df.to_dict('records')
+	topperlist=df.to_dict('records')   
 	if not topperlist:
 		frappe.msgprint("No Record found")
 	return topperlist

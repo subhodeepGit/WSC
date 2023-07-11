@@ -102,8 +102,9 @@ def over_lapping_of_scheduling(self):
         exam_over_lapping=[]
         for t in student_gr_data:
             for j in comp_list_stu:
-                if t['student_no']==j['student_no'] and t['examination_date']==j['examination_date'] and (t['from_time']<=j['from_time'] and t['to_time']>=j['to_time']):	
-                    exam_over_lapping.append(t)
+                if t['from_time'] and j['examination_date'] and j['from_time']:
+                    if t['student_no']==j['student_no'] and t['examination_date']==j['examination_date'] and (t['from_time']<=j['from_time'] and t['to_time']>=j['to_time']):	
+                        exam_over_lapping.append(t)
 
 
         final_list=[]
@@ -245,39 +246,71 @@ def module_start_date(modules_id=None,exam_id=None,academic_term=None):
 @frappe.whitelist()
 def get_student(academic_term=None, programs=None,class_data=None,minimum_attendance_criteria=None,attendance_criteria=None,
                 start_date_of_attendence_duration=None,end_date_of_attendence_duration=None,modules_id=None,
-                semester=None):
-    enrolled_students = get_program_enrollment(academic_term,programs,class_data)
+                semester=None,exam_category=None,exam_schedule_id=None,course_type=None,assessment_component=None):
     student_list=[]
-    if enrolled_students:
-        student_list=enrolled_students
-        total_no_class_scheduled=frappe.db.count('Course Schedule', filters=[["course","=",modules_id],['program','=',semester],
-                                     ['schedule_date','between',[start_date_of_attendence_duration,end_date_of_attendence_duration]]])
+    if exam_category=="Regular":
+        enrolled_students = get_program_enrollment(academic_term,programs,class_data)
         
-        for t in student_list:
-            t.update({"total_no_of_classes_scheduled": total_no_class_scheduled})
-            class_att_date=frappe.db.count("Student Attendance",filters=[["student","=",t['student']],
-                                ['course','=',modules_id],['program','=',semester],['program','=',semester],
-                                ['date','between',[start_date_of_attendence_duration,end_date_of_attendence_duration]]])
-            t.update({"total_no_of_class_attended_by_the_studen":class_att_date})
-            if t.total_no_of_class_attended_by_the_studen==0:
-                t.update({"attendance_percentage":0.0})
-            else:
-                t.update({"attendance_percentage":round((t.total_no_of_class_attended_by_the_studen/t.total_no_of_classes_scheduled)*100,2)})
-            if attendance_criteria=="No":
-                t.update({"elegibility_status": "Qualified"})
-                t.update({"examination_qualification_approval":1})
-            if attendance_criteria=="Yes":
-                if t.attendance_percentage>=float(minimum_attendance_criteria):
+        if enrolled_students:
+            student_list=enrolled_students
+            total_no_class_scheduled=frappe.db.count('Course Schedule', filters=[["course","=",modules_id],['program','=',semester],
+                                        ['schedule_date','between',[start_date_of_attendence_duration,end_date_of_attendence_duration]]])
+            
+            for t in student_list:
+                t.update({"total_no_of_classes_scheduled": total_no_class_scheduled})
+                class_att_date=frappe.db.count("Student Attendance",filters=[["student","=",t['student']],
+                                    ['course','=',modules_id],['program','=',semester],['program','=',semester],
+                                    ['date','between',[start_date_of_attendence_duration,end_date_of_attendence_duration]]])
+                t.update({"total_no_of_class_attended_by_the_studen":class_att_date})
+                if t.total_no_of_class_attended_by_the_studen==0:
+                    t.update({"attendance_percentage":0.0})
+                else:
+                    t.update({"attendance_percentage":round((t.total_no_of_class_attended_by_the_studen/t.total_no_of_classes_scheduled)*100,2)})
+                if attendance_criteria=="No":
                     t.update({"elegibility_status": "Qualified"})
                     t.update({"examination_qualification_approval":1})
+                if attendance_criteria=="Yes":
+                    if t.attendance_percentage>=float(minimum_attendance_criteria):
+                        t.update({"elegibility_status": "Qualified"})
+                        t.update({"examination_qualification_approval":1})
+                    else:
+                        t.update({"elegibility_status": "Not-Qualified"})
+                        t.update({"examination_qualification_approval":0})		
+        else:
+            frappe.msgprint("No students found")
+            return student_list                
+    if exam_category=="Re-Exam":
+        student_list=get_program_enrollment_fail(course_type,modules_id,assessment_component,semester,class_data,programs)
+        if student_list:
+            total_no_class_scheduled=frappe.db.count('Course Schedule', filters=[["course","=",modules_id],['program','=',semester],
+                                        ['schedule_date','between',[start_date_of_attendence_duration,end_date_of_attendence_duration]]])
+            for t in student_list:
+                t.update({"total_no_of_classes_scheduled": total_no_class_scheduled})
+                class_att_date=frappe.db.count("Student Attendance",filters=[["student","=",t['student']],
+                                    ['course','=',modules_id],['program','=',semester],['program','=',semester],
+                                    ['date','between',[start_date_of_attendence_duration,end_date_of_attendence_duration]]])
+                t.update({"total_no_of_class_attended_by_the_studen":float(class_att_date)})
+                if t.total_no_of_class_attended_by_the_studen==0:
+                    t.update({"attendance_percentage":0.0})
                 else:
-                    t.update({"elegibility_status": "Not-Qualified"})
-                    t.update({"examination_qualification_approval":0})		
-                
-        return student_list
-    else:
-        frappe.msgprint("No students found")
-        return student_list
+                    t.update({"attendance_percentage":round((t.total_no_of_class_attended_by_the_studen/t.total_no_of_classes_scheduled)*100,2)})
+                if attendance_criteria=="No":
+                    t.update({"elegibility_status": "Qualified"})
+                    t.update({"examination_qualification_approval":1})
+                if attendance_criteria=="Yes":
+                    if t.attendance_percentage>=float(minimum_attendance_criteria):
+                        t.update({"elegibility_status": "Qualified"})
+                        t.update({"examination_qualification_approval":1})
+                    else:
+                        t.update({"elegibility_status": "Not-Qualified"})
+                        t.update({"examination_qualification_approval":0})	    
+
+        else:
+            frappe.msgprint("No students found")
+            return student_list
+    return student_list
+    
+
 
 
 
@@ -304,60 +337,20 @@ def get_program_enrollment(academic_term,programs=None,class_data=None):
                 ({"academic_term": academic_term,"programs": programs}), as_dict=1) 
 
 
+def get_program_enrollment_fail(course_type=None,modules_id=None,assessment_component=None,semester=None,class_data=None,programs=None):
+    condition1=" "
+    if class_data:
+        condition1=" and CED.school_house='%s' "%(class_data)
+    stu_data=frappe.db.sql(""" Select S.name as student, S.student_name, S.roll_no,S.permanant_registration_number   
+        from `tabAssessment Credits Allocation` as ACA
+        Join `tabStudent` as S on S.name=ACA.student
+        Join `tabCurrent Educational Details` as CED on CED.parent=S.name                   
+        where ACA.program_grade='%s' and ACA.course='%s' and ACA.assessment_criteria='%s' and 
+              ACA.semester="%s" and ACA.programs='%s' and ACA.docstatus=1 and ACA.qualifying_status="Fail" and 
+              S.enabled =1 %s                    
+    """%(course_type,modules_id,assessment_component,semester,programs,condition1),as_dict=1)
+    return stu_data
 
-
-
-
-
-
-
-
-
-################################################################################
-
-def module_exam_group_data():
-    from datetime import date
-    print("\n\n\n\n")
-    
-    ass_comp_data=frappe.get_all("Assessment Criteria",{"is_group_email_":1},['name'])
-    today = date.today()
-    # for t in ass_comp_data:
-    #     ed = frappe.get_all("Exam Declaration",filters={'assessment_criteria':t["name"],'exam_start_date': ('<=', today),'exam_end_date': ('>=', today),"docstatus":1},
-    #                         fields=["name","exam_start_date","exam_end_date"])
-        # print(ed)
-    # for j in ed:
-    #     j["name"]
-    #     count_exam_declaration_child_data = frappe.db.sql("""SELECT parent,COUNT(courses) as sum_courses FROM `tabExam Courses` WHERE docstatus=1 and parent = '%s'"""%(j["name"]),as_dict=True)
-    #     # print(count_exam_declaration_child_data)
-
-        # module_exam = frappe.get_all("Module Wise Exam Group",{"docstatus":1,"exam_declaration_id":j["name"]},["name","modules_id","modules_name","module_code","exam_declaration_id"])
-        
-        # module_exam = frappe.db.count('Module Wise Exam Group', {"docstatus":1,"exam_declaration_id":j["name"]})
-        
-        # count_module_exam = frappe.db.sql("""SELECT name,modules_id,modules_name,module_code,exam_declaration_id,COUNT(name) FROM `tabModule Wise Exam Group` WHERE docstatus=1 and exam_declaration_id = '%s'"""%(j["name"]),as_dict=True)
-
-        # print(module_exam)
-
-        # if count_exam_declaration_child_data[0]['sum_courses'] == module_exam:
-        #     print(j["name"])
-
-    if ass_comp_data:
-        ass_comp=[]
-        if len(ass_comp_data)==1:
-            ass_comp=['=',"%s"%(ass_comp_data[0]['name'])]
-            print(ass_comp[1])
-        else:
-            a=[]
-            for t in ass_comp_data:
-                a.append(t['name'])     
-            ass_comp=['in',"%s"%(str(tuple(a)))]
-
-        data=frappe.db.sql(""" Select ED.name,ED.exam_start_date,ED.exam_end_date,EC.courses 
-                    from `tabExam Declaration` as ED
-                    FULL JOIN `tabExam Courses` as EC ON ED.name=EC.parent
-                    Where ED.assessment_criteria %s '%s' and ED.exam_start_date <="%s" and ED.exam_end_date >="%s" 
-                    """%(ass_comp[0],ass_comp[1],today,today),as_dict=1)
-        print(data)
 
 
 

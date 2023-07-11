@@ -7,61 +7,69 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "entrance_exam_declaration",
+  "rank_card_masters",
   "academic_year",
+  "academic_term",
   "departments",
-  "cut_off_marks",
   "total_marks",
   "posting_date",
-  "get_students",
+  "get_applicants",
   "ranked_students_list"
  ],
  "fields": [
   {
-   "fieldname": "entrance_exam_declaration",
-   "fieldtype": "Data",
-   "label": "Entrance Exam Declaration"
-  },
-  {
+   "fetch_from": "rank_card_masters.academic_year",
    "fieldname": "academic_year",
-   "fieldtype": "Data",
-   "label": "Academic Year"
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
   },
   {
+   "fetch_from": "rank_card_masters.department",
    "fieldname": "departments",
-   "fieldtype": "Data",
-   "label": "Departments"
+   "fieldtype": "Link",
+   "label": "Departments",
+   "options": "Department"
   },
   {
-   "fieldname": "cut_off_marks",
-   "fieldtype": "Data",
-   "label": "Cut Off Marks"
-  },
-  {
+   "fetch_from": "rank_card_masters.total_marks",
    "fieldname": "total_marks",
-   "fieldtype": "Data",
+   "fieldtype": "Float",
    "label": "Total Marks"
   },
   {
    "fieldname": "posting_date",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "Posting Date"
-  },
-  {
-   "fieldname": "get_students",
-   "fieldtype": "Button",
-   "label": "Get Students"
   },
   {
    "fieldname": "ranked_students_list",
    "fieldtype": "Table",
    "label": "Ranked Students List",
    "options": "Ranked Students List"
+  },
+  {
+   "fetch_from": "rank_card_masters.academic_term",
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
+  },
+  {
+   "fieldname": "rank_card_masters",
+   "fieldtype": "Link",
+   "label": "Rank Card Masters",
+   "options": "Rank Card Master"
+  },
+  {
+   "fieldname": "get_applicants",
+   "fieldtype": "Button",
+   "label": "Get Applicants"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-09 18:23:28.884435",
+ "modified": "2023-07-05 11:57:05.866973",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Rank Card Publication Tool",
