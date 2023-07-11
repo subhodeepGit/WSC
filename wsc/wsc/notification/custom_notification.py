@@ -830,16 +830,13 @@ def module_exam_group_data():
             if student_no not in student_schedule:
                 student_schedule[student_no] = []
             student_schedule[student_no].append(exam_schedule)
-        # print(student_schedule)
-        html_tables = []
+
 
         for student_no, schedules in student_schedule.items():
             student_name = schedules[0]["student_name"]
             # roll_no = student_no
             exam_name = schedules[0]["examination_name"]
             academic_term = schedules[0]["academic_term"]
-
-            exam_declaration_ids = set()
 
             sub="Student Exam Schedule"
             html_table = """
@@ -875,34 +872,23 @@ def module_exam_group_data():
                     module_code=exam_schedule["module_code"],
                     module_name=exam_schedule["modules_name"],
                     group_name=exam_schedule["group_name"],
-                    # examination_name=exam_schedule["examination_name"],
-                    # academic_term=exam_schedule["academic_term"],
                     examination_date=exam_schedule["examination_date"].strftime("%d-%m-%Y"),
                     from_time=exam_schedule["from_time"],
                     to_time=exam_schedule["to_time"]
                 )
-                exam_declaration_ids.add(exam_schedule["exam_declaration_id"])
             html_table += """
                 </tbody>
                 </table>
             </body>
             </html>
             """
-            # print("Student Name:", student_no)
-            # print(html_table)
             stu_email = frappe.db.get_value("Student",{'name':student_no, 'enabled':1},"user")
-            # print(stu_email)
-            # send_mail(frappe.db.get_value("User",{'name':stu_email, 'enabled':1},"email"),sub,html_table)
-            print("Exam Declaration IDs:", ", ".join(exam_declaration_ids))
-
-            # html_tables.append(html_table)
-        # print(html_tables)
-
-        # for student_name,html_table in html_tables:
-        #     send_mail(frappe.db.get_value("User",{'name':t['user'], 'enabled':1},"email"),sub,html_table)
-            # print(student_name)
-            # print(html_table)
-        #     print("\n---\n")
+            send_mail(frappe.db.get_value("User",{'name':stu_email, 'enabled':1},"email"),sub,html_table)
+            # exam_declaration_id=[]
+            # for t in schedules:
+            #     if t['exam_declaration_id'] not in exam_declaration_id:
+            #         exam_declaration_id.append(t['exam_declaration_id'])
+            # print(exam_declaration_id)
 
 
     
