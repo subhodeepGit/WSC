@@ -38,13 +38,13 @@ def set_duration(doc):
     for event in doc.academic_events_table:
         event.duration = date_diff(event.end_date , event.start_date)
 
+def on_update(doc,method):
+    update_student(doc)
 def on_cancel(doc,method):
     delete_permissions(doc)
     # update_reserved_seats(doc)
     # delete_permissions(doc)
-    # enqueue(delete_permissions, queue='default', timeout=6000, event='delete_permissions',program_enrollment=doc.name)
     delete_course_enrollment(doc)
-    # enqueue(delete_course_enrollment, queue='default', timeout=6000, event='delete_course_enrollment',program_enrollment=doc.name)
     update_student(doc)
 
     fee_structure_id = get_fee_structure(doc)
@@ -58,8 +58,8 @@ def on_cancel(doc,method):
         delete_permissions(doc)
         delete_course_enrollment(doc)
         update_student(doc) 
-
 def on_change(doc,method):
+    update_student(doc)
     student=frappe.get_doc("Student",doc.student)
     student.roll_no=doc.roll_no
     student.permanant_registration_number=doc.permanant_registration_number
@@ -80,10 +80,13 @@ def update_student(doc):
     student=frappe.get_doc("Student",doc.student)
     student.roll_no=doc.roll_no
     student.set("current_education",[])
-    for enroll in frappe.get_all("Program Enrollment",{"docstatus":1,"student":doc.student},["programs","program","academic_year","academic_term"],order_by='creation desc',limit=1):
+    for enroll in frappe.get_all("Program Enrollment",{"docstatus":1,"student":doc.student},["program_grade","student_batch_name","school_house","programs","program","academic_year","academic_term"],order_by='creation desc',limit=1):
         student.append("current_education",{
 			"programs":enroll.programs,
             "semesters":enroll.program,
+            "program_grades":enroll.program_grade,
+            "school_house":enroll.school_house,
+            "student_batch_name":enroll.student_batch_name,
             "academic_year":enroll.academic_year,
             "academic_term":enroll.academic_term
         })
@@ -91,12 +94,8 @@ def update_student(doc):
 
 def on_submit(doc,method):
     make_fee_records(doc)
-    # enqueue(create_student, queue='default', timeout=6000, event='create_student',program_enrollment=doc.name)
-    # enqueue(make_fee_records, queue='default', timeout=6000, event='make_fee_records',program_enrollment=doc.name)
     create_student(doc)
-    # update_reserved_seats(doc,on_submit=1)
     update_enrollment_admission_status(doc)
-    # update_student_applicant(doc)
 
     fee_structure_id = get_fee_structure(doc)
     
@@ -276,25 +275,31 @@ def delete_permissions(doc):
 def delete_course_enrollment(doc):
     for ce in frappe.get_all("Course Enrollment",{"program_enrollment":doc.name}):
         frappe.delete_doc("Course Enrollment",ce.name)  
-def update_student(doc):
-    student=frappe.get_doc("Student",doc.student)
-    student.set("current_education",[])
-    for enroll in frappe.get_all("Program Enrollment",{"docstatus":1,"student":doc.student},limit=1):
-        student.append("current_education",{
-            "programs":doc.programs,
-            "semesters":doc.program,
-            "academic_year":doc.academic_year,
-            "academic_term":doc.academic_term
-        })
-    student.save()  
+# def update_student(doc):
+#     student=frappe.get_doc("Student",doc.student)
+#     student.set("current_education",[])
+#     # for enroll in frappe.get_all("Program Enrollment",{"docstatus":1,"student":doc.student},limit=1):
+#     student.append("current_education",{
+#         "programs":doc.programs,
+#         "semesters":doc.program,
+#         "program_grades":doc.program_grade,
+#         "school_house":doc.school_house,
+#         "student_batch_name":doc.student_batch_name,
+#         "academic_year":doc.academic_year,
+#         "academic_term":doc.academic_term
+#     })
+#     student.save()  
 
 def create_student(doc):
     student=frappe.get_doc("Student",doc.student)
-    # student.roll_no = doc.roll_no                               #Rupali:01Apr2022
+    student.roll_no = doc.roll_no                        
     student.set("current_education",[])
     student.append("current_education",{
         "programs":doc.programs,
         "semesters":doc.program,
+        "program_grades":doc.program_grade,
+        "school_house":doc.school_house,
+        "student_batch_name":doc.student_batch_name,
         "academic_year":doc.academic_year,
         "academic_term":doc.academic_term
     })
@@ -719,18 +724,6 @@ def validate_enrollment_admission_status(doc):
     elif (doc.is_provisional_admission=="No" and doc.admission_status and doc.admission_status=="Provisional Admission"):
         frappe.throw("If you select Is Provisional Admission <b>No</b> Then Admission Status should not be <b>Provisional Admission</b>") 
 
-# def update_student(doc):
-#     student=frappe.get_doc("Student",doc.student)
-#     print(student)
-#     student.set("current_education",[])
-#     for enroll in frappe.get_all("Program Enrollment",{"docstatus":1,"student":doc.student},limit=1):
-#         student.append("current_education",{
-# 			"programs":doc.programs,
-#             "semesters":doc.program,
-#             "academic_year":doc.academic_year,
-#             "academic_term":doc.academic_term
-#         })
-#     student.save()
 
 @frappe.whitelist()
 def get_program_enrollment(student):

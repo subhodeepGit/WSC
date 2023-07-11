@@ -10,28 +10,30 @@
   "student_name",
   "roll_no",
   "registration_number",
-  "course",
-  "course_code",
-  "course_name",
+  "academic_year",
+  "academic_term",
+  "attendence_status",
   "column_break_4",
   "program_grade",
   "programs",
   "semester",
+  "course",
+  "course_name",
+  "course_code",
   "assessment_criteria",
-  "academic_year",
-  "academic_term",
-  "attendence_status",
   "section_break_5",
   "get_assessments",
   "final_credit_item",
   "section_break_10",
-  "grace_marks",
   "earned_credits",
-  "total_credits",
-  "column_break_13",
   "weightage_marks",
-  "final_marks",
   "out_of_marks",
+  "total_credits",
+  "qualifying_status",
+  "column_break_13",
+  "grace_marks",
+  "final_marks",
+  "passing_marks",
   "amended_from"
  ],
  "fields": [
@@ -77,9 +79,10 @@
    "label": "Get Assessments"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "final_credit_item",
    "fieldtype": "Table",
-   "label": "Final Credit Item",
+   "label": "Final Marking Item",
    "options": "Final Credit Item",
    "reqd": 1
   },
@@ -119,18 +122,16 @@
    "fieldtype": "Column Break"
   },
   {
-   "allow_on_submit": 1,
    "fieldname": "final_marks",
    "fieldtype": "Float",
-   "label": "Final Marks",
-   "read_only": 1,
-   "reqd": 1
+   "label": "Final Earned Marks",
+   "read_only": 1
   },
   {
    "allow_on_submit": 1,
    "fieldname": "out_of_marks",
    "fieldtype": "Float",
-   "label": "Out of Marks",
+   "label": "Total Marks",
    "read_only": 1
   },
   {
@@ -150,27 +151,28 @@
   {
    "fieldname": "weightage_marks",
    "fieldtype": "Float",
-   "label": "Weightage Marks"
+   "label": "Weightage Marks",
+   "read_only": 1
   },
   {
    "fetch_from": "course.course_name",
    "fieldname": "course_name",
    "fieldtype": "Data",
-   "label": "Course Name",
+   "label": "Module Name",
    "read_only": 1
   },
   {
    "fetch_from": "course.course_code",
    "fieldname": "course_code",
    "fieldtype": "Data",
-   "label": "Course Code",
+   "label": "Module Code",
    "read_only": 1
   },
   {
-   "default": "0.0",
    "fieldname": "grace_marks",
    "fieldtype": "Float",
-   "label": "Grace Marks"
+   "label": "Grace Marks",
+   "read_only": 1
   },
   {
    "allow_on_submit": 1,
@@ -197,13 +199,15 @@
    "fieldname": "programs",
    "fieldtype": "Link",
    "label": "Programs",
-   "options": "Programs"
+   "options": "Programs",
+   "read_only": 1
   },
   {
    "fieldname": "program_grade",
    "fieldtype": "Link",
-   "label": "Program Grade",
-   "options": "Program Grades"
+   "label": "Course Type",
+   "options": "Program Grades",
+   "read_only": 1
   },
   {
    "fieldname": "attendence_status",
@@ -211,12 +215,24 @@
    "label": "Attendence Status",
    "options": "\nPresent\nAbsent",
    "reqd": 1
+  },
+  {
+   "fieldname": "passing_marks",
+   "fieldtype": "Data",
+   "label": "Passing Marks",
+   "read_only": 1
+  },
+  {
+   "fieldname": "qualifying_status",
+   "fieldtype": "Data",
+   "label": "Qualifying Status",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-04 18:15:08.886628",
+ "modified": "2023-07-07 15:34:04.665046",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assessment Credits Allocation",

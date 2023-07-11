@@ -173,7 +173,7 @@ class ExamDeclaration(Document):
         # create_fees(self,fee_structure_id,on_submit=1) 
         # on_update(self,on_submit=1)
     def on_cancel(doc):
-        cancel_fees(doc)
+        # cancel_fees(doc)
         doc.module_disabled_update("on_cancel")
    
 

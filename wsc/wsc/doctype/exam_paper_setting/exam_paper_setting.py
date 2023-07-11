@@ -15,18 +15,21 @@ class ExamPaperSetting(Document):
     def validate(self):
         date_validation(self)
         
-    def on_change(doc):
-        if (doc.paper_copy == None) and (doc.workflow_state == "Approved"):            
+    def on_change(self):
+        if (self.paper_copy == None) and (self.workflow_state == "Approved"):            
             frappe.throw("Attach the Paper Copy")
 
-    def after_save(self):
+    def after_insert(self):
         self.set_user_permission()
+
         
     def set_user_permission(self):
         if self.examiner:
             self.set_instructor_permission(self.examiner)
         if self.moderator_name:
             self.set_instructor_permission(self.moderator_name)
+        if self.exam_coordinator:
+            self.set_instructor_permission(self.exam_coordinator)
 
     def on_trash(self): 
         self.delete_permission()
@@ -43,52 +46,53 @@ class ExamPaperSetting(Document):
                         add_user_permission("Exam Paper Setting",self.name, emp.get('user_id'), self)
             else:
                 frappe.msgprint("Instructor {0} is not employee".format(instructor))
+    
 
 # bench execute wsc.wsc.doctype.exam_paper_setting.exam_paper_setting.make_exam_paper_setting_from_sssessment_plan
-def make_exam_paper_setting_from_sssessment_plan():
-    for ap in frappe.get_all("Exam Assessment Plan",{'docstatus':1,"paper_setting_start_date":getdate(today())}):
-        ap=frappe.get_doc("Exam Assessment Plan",ap.name)
-        for ex in ap.get("examiners_list"):
-            doc=frappe.new_doc("Exam Paper Setting")
-            doc.examiner=ex.paper_setter
-            doc.posting_date=today()
-            doc.program=ap.program
-            doc.course=ap.course
-            doc.assessment_plan=ap.name
-            doc.academic_year=ap.academic_year
-            doc.from_time=ap.from_time
-            doc.to_time=ap.to_time
-            doc.academic_term=ap.academic_term
-            doc.schedule_date=ap.schedule_date
-            for cr in ap.get('assessment_criteria'):
-                doc.append("assessment_plan_criteria",{
-                    'assessment_criteria':cr.assessment_criteria,
-                    'maximum_score':cr.maximum_score
-                })
-            doc.save()
-            if get_userid(doc.examiner):
-                share_document(doc)
-                assigned_to(doc,ap.paper_setting_end_date)
+# def make_exam_paper_setting_from_sssessment_plan():
+#     for ap in frappe.get_all("Exam Assessment Plan",{'docstatus':1,"paper_setting_start_date":getdate(today())}):
+#         ap=frappe.get_doc("Exam Assessment Plan",ap.name)
+#         for ex in ap.get("examiners_list"):
+#             doc=frappe.new_doc("Exam Paper Setting")
+#             doc.examiner=ex.paper_setter
+#             doc.posting_date=today()
+#             doc.program=ap.program
+#             doc.course=ap.course
+#             doc.assessment_plan=ap.name
+#             doc.academic_year=ap.academic_year
+#             doc.from_time=ap.from_time
+#             doc.to_time=ap.to_time
+#             doc.academic_term=ap.academic_term
+#             doc.schedule_date=ap.schedule_date
+#             for cr in ap.get('assessment_criteria'):
+#                 doc.append("assessment_plan_criteria",{
+#                     'assessment_criteria':cr.assessment_criteria,
+#                     'maximum_score':cr.maximum_score
+#                 })
+#             doc.save()
+#             if get_userid(doc.examiner):
+#                 share_document(doc)
+#                 assigned_to(doc,ap.paper_setting_end_date)
 
-def share_document(doc):
-    print("\n\n\nExaminer")
-    print(doc.examiner)
-    doc_share=frappe.new_doc("DocShare")
-    doc_share.user= get_userid(doc.examiner).user_id
-    doc_share.share_doctype="Exam Paper Setting"
-    doc_share.share_name=doc.name
-    doc_share.read=1
-    doc_share.write=1
-    doc_share.insert(ignore_permissions=True)
+# def share_document(doc):
+#     print("\n\n\nExaminer")
+#     print(doc.examiner)
+#     doc_share=frappe.new_doc("DocShare")
+#     doc_share.user= get_userid(doc.examiner).user_id
+#     doc_share.share_doctype="Exam Paper Setting"
+#     doc_share.share_name=doc.name
+#     doc_share.read=1
+#     doc_share.write=1
+#     doc_share.insert(ignore_permissions=True)
 
-def assigned_to(doc,due_date):
-    todo = frappe.new_doc("ToDo")
-    todo.owner = get_userid(doc.examiner).user_id
-    todo.description = "Paper Setting Document Shared With Examiner <b>{0}</b> ".format(doc.examiner)
-    todo.date = due_date
-    todo.reference_type = "Exam Paper Setting"
-    todo.reference_name = doc.name
-    todo.insert(ignore_permissions=True)
+# def assigned_to(doc,due_date):
+#     todo = frappe.new_doc("ToDo")
+#     todo.owner = get_userid(doc.examiner).user_id
+#     todo.description = "Paper Setting Document Shared With Examiner <b>{0}</b> ".format(doc.examiner)
+#     todo.date = due_date
+#     todo.reference_type = "Exam Paper Setting"
+#     todo.reference_name = doc.name
+#     todo.insert(ignore_permissions=True)
 
 def get_userid(examiner):
     data=frappe.db.sql("""Select em.user_id from `tabEmployee` em
@@ -98,11 +102,11 @@ def get_userid(examiner):
         return data[0]
 
 # bench execute wsc.wsc.doctype.exam_paper_setting.exam_paper_setting.delete_share_document
-def delete_share_document():
-    for ap in frappe.get_all("Exam Assessment Plan",{'docstatus':1,"paper_setting_end_date":getdate(today())}):
-        for eps in frappe.get_all("Exam Paper Setting",{"assessment_plan":ap.name}):
-            for ds in frappe.get_all("DocShare",{"share_doctype":"Exam Paper Setting","share_name":eps.name}):
-                frappe.delete_doc("DocShare",ds.name)
+# def delete_share_document():
+#     for ap in frappe.get_all("Exam Assessment Plan",{'docstatus':1,"paper_setting_end_date":getdate(today())}):
+#         for eps in frappe.get_all("Exam Paper Setting",{"assessment_plan":ap.name}):
+#             for ds in frappe.get_all("DocShare",{"share_doctype":"Exam Paper Setting","share_name":eps.name}):
+#                 frappe.delete_doc("DocShare",ds.name)
 
 # @frappe.whitelist()
 # def get_examiner_details(examiner):

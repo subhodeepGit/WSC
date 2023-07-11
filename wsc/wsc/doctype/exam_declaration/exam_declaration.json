@@ -139,7 +139,7 @@
   {
    "fieldname": "exam_program",
    "fieldtype": "Link",
-   "label": "Exam Program",
+   "label": "Course Name",
    "options": "Programs",
    "reqd": 1
   },

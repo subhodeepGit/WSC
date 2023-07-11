@@ -58,15 +58,18 @@ doctype_js = {
                 "Item":"public/js/item.js",
                 "Job Applicant":"public/js/job_applicant.js",
                 "Employee":"public/js/employee.js",
-                "Shift Request":"public/js/shift_request.js"
+                "Shift Request":"public/js/shift_request.js",
+                "Leave Application":"public/js/leave_application.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
     "Branch Sliding Application": "wsc/wsc/doctype/branch_sliding_application/branch_sliding_application_list.js",
     "Fees":"public/js/fees_list.js",
+    "Program Enrollment":"public/js/program_enrollment_list.js",
     "Student Attendance":"public/js/student_attendance_list.js",
     "Student Applicant" :"public/js/student_applicant_list.js",
     "Asset Maintenance Log":"public/js/asset_maintenance_log_list.js",
+    "Leave Application":"public/js/leave_application_list.js",
 }
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
@@ -302,6 +305,10 @@ doc_events = {
     "Item Price":{
         "validate":"wsc.wsc.validations.item_price.validate"
     },
+    "Shift Request":{
+        "after_insert":"wsc.wsc.validations.shift_request.after_insert",
+        "validate":"wsc.wsc.validations.shift_request.validate"
+    }
     # "User":{
     #     "validate":"wsc.wsc.validations.user.validate",
     # }
@@ -325,7 +332,8 @@ scheduler_events = {
     "daily": [
 		"wsc.wsc.validations.student_blocklist_check.student_blocklist_check",
         "wsc.task.warranty_notification",
-        "wsc.task.safety_stock_reach"
+        "wsc.task.safety_stock_reach",
+        "wsc.wsc.doctype.student_clearance_application.student_clearance_application.student_disable_check"
         # "wsc.wsc.validations.exam_assessment_plan.make_exam_paper_setting_by_paper_setting_date"
 	]
 
@@ -366,8 +374,13 @@ override_doctype_class = {
     "Student Attendance": "wsc.wsc.doctype.student_attendance.StudentAttendance",
     "User Permission": "wsc.wsc.doctype.user_permission.UserPermission",
     "Item": "wsc.wsc.validations.item.Item",
+    "Leave Application":"wsc.wsc.doctype.leave_application.LeaveApplication"
     # "Job Applicant": "wsc.wsc.doctype.job_applicant.Job Applicant"
     # "Data Import": "wsc.wsc.doctype.data_import.DataImport"
+}
+override_doctype_dashboards = {
+    "Program Enrollment": "wsc.wsc.dashboard.program_enrollment_dashboard.get_data",
+    "Student": "wsc.wsc.dashboard.student_dashboard.get_data",
 }
 #
 # each overriding function accepts a `data` argument;
@@ -416,18 +429,23 @@ override_doctype_class = {
 # ]
 
 fixtures = [
-	# {"dt": "Custom DocPerm", "filters": [
-	# 	[
-	# 		"parent", "not in", ["DocType"]
-	# 	],
-	# ]},
-    # {"dt": "Role"},
+	{"dt": "Custom DocPerm", "filters": [
+		[
+			"parent", "not in", ["DocType"]
+		],
+	]},
+    {"dt": "Role"},
     # {"dt": "Role Profile"},
     # {"dt": "Module Profile"},
-    # {"dt" : "Workflow"},
-    # {"dt": "Workflow Action Master"},
-    # {"dt" : "Workflow State"}
-    # {"dt" : "Translation"}
+    # {"dt" : "Workflow","filters": [
+    #     [
+    #         "name", "in", ["Student Attrition Application"]
+    #     ]
+    # ]},
+    {"dt" : "Workflow"},
+    {"dt": "Workflow Action Master"},
+    {"dt" : "Workflow State"},
+    {"dt" : "Translation"}
 ]
 website_context = {
     "favicon": "/assets/wsc/images/logo.jpg",

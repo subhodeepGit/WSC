@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{applicant_id}-{academic_year}-{department}",
+ "autoname": "format:{applicant_id}",
  "creation": "2023-05-09 18:04:18.875617",
  "default_view": "List",
  "doctype": "DocType",
@@ -11,9 +11,12 @@
   "applicant_id",
   "department",
   "academic_year",
+  "gender",
   "column_break_2",
   "applicant_name",
   "academic_term",
+  "student_category",
+  "physical_disablity",
   "section_break_4",
   "venue",
   "address",
@@ -130,11 +133,30 @@
    "fieldname": "slot",
    "fieldtype": "Data",
    "label": "Slot "
+  },
+  {
+   "fieldname": "student_category",
+   "fieldtype": "Link",
+   "label": "Student Category",
+   "options": "Student Category"
+  },
+  {
+   "default": "0",
+   "fieldname": "physical_disablity",
+   "fieldtype": "Check",
+   "label": "Physical Disablity"
+  },
+  {
+   "fetch_from": "applicant_id.gender",
+   "fieldname": "gender",
+   "fieldtype": "Link",
+   "label": "Gender",
+   "options": "Gender"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-06-15 09:54:14.948443",
+ "modified": "2023-07-05 15:59:27.622444",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Admit Card",

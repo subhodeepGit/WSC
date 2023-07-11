@@ -3,28 +3,45 @@
 
 import frappe
 from frappe.model.document import Document
-from datetime import date
+from frappe.utils import today, getdate
+from wsc.wsc.notification.custom_notification import send_clearance_notification_to_department,send_pendingDues_notification_to_student,send_disabled_notification_to_student
 
 class StudentClearanceApplication(Document):
+    def on_submit(self):
+        for t in self.get("departments_clearance_status"):
+            if(t.clearance_status == 'Select'):
+                frappe.throw(("Provide action in clearance status"))
+
+        if self.status != "Clearance Approved":
+            frappe.throw(("Document cannot be submitted. Status must be 'Clearance Approved'."))
+    
+    def before_save(self):
+        if self.is_new():
+            self.sendEmailToDepartment()
+        if self.total_dues>0:
+            self.sendDuesEmailToStudent()
+
     def validate(self):
         self.validateApprovedorPending()
         self.validateAmount()
 
+    def sendDuesEmailToStudent(self):
+        send_pendingDues_notification_to_student(self)
+
+    def sendEmailToDepartment(self):
+        send_clearance_notification_to_department(self)
+
     def validateAmount(self):
         for t in self.get("departments_clearance_status"):
-            if(t.clearance_status=='Select'):
-                frappe.throw(("Provide action in clearance status"))
-            if(t.clearance_status=='Dues'):
-                if(t.amount <= 0):
+            if(t.clearance_status == 'Dues' and t.amount <= 0):
                     frappe.throw(("Dues amount should be greater than Zero"))
        
     def validateApprovedorPending(self):
         flag=len(self.get("departments_clearance_status"))
         for t in self.get("departments_clearance_status"):
-            if(t.clearance_status=='No-Dues'):
+            if(t.clearance_status == 'No-Dues'):
                 flag -= 1
-    
-        if flag ==0:
+        if flag == 0:
             self.status = "Clearance Approved"
         else:
             self.status = "Clearance Pending"
@@ -33,8 +50,6 @@ class StudentClearanceApplication(Document):
 def current_student_detail(student_id):
     clearanceDepartment=[]
     current_education_data=frappe.get_all("Current Educational Details",{"parent":student_id},['programs','semesters','academic_year','academic_term'])
-    if not current_education_data:
-        return None
     academicYear = current_education_data[0]['academic_year']
     academicTerm = current_education_data[0]['academic_term']
     userDisableDate = frappe.db.get_value(
@@ -42,6 +57,7 @@ def current_student_detail(student_id):
         filters={"academic_year": academicYear,"academic_term": academicTerm},
         fieldname="user_disable_date"
     )
+
     clearanceData= frappe.db.get_all(
         "Clearance Master",
         filters={"academic_year": academicYear,"academic_term": academicTerm,"user_disable_date":userDisableDate},
@@ -52,10 +68,45 @@ def current_student_detail(student_id):
          clearanceDepartment = frappe.get_all(
             "Clearance Departments",
             filters={"parent":clmFieldName },
-            fields=["department"]
+            fields=['department','department_email_id']
          )
     return {
-        "current_education_data": current_education_data,
+        "current_education_data": current_education_data or None,
         "user_disable_date": userDisableDate or "",
         "department_clearance":clearanceDepartment or None
     }
+
+@frappe.whitelist()
+def get_attrition_student_id(attrition_id):
+    current_student_attrition_data=frappe.db.sql("""Select student_no,student_name,student_email_address from `tabStudent Attrition Form` where name = %s""",attrition_id)
+    if not current_student_attrition_data:
+        return None
+
+    return {
+        "current_student_attrition_data": current_student_attrition_data,
+    }
+
+@frappe.whitelist()
+def is_student(user):
+    roles=frappe.get_roles(user)
+    if 'Student' in roles:
+        return {"is_student": True}
+    else:
+        return {"is_student": False}
+
+@frappe.whitelist()
+def student_disable_check():
+    today_date=getdate(today())
+    student_clearance_list=list(frappe.db.sql("""Select student_id,student_email_address from `tabStudent Clearance Application` where user_disable_date=%s And status= 'Clearance Approved' And docstatus =1""",today_date))
+    print(len(student_clearance_list))
+    if len(student_clearance_list)>0:
+        for t in student_clearance_list:
+            student = frappe.get_doc("Student",t[0])
+            user=frappe.get_doc("User",t[1])
+            student.enabled = 0
+            student.save()
+            user.enabled = 0
+            user.save()
+        send_disabled_notification_to_student()
+
+    

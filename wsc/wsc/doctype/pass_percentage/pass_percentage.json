@@ -8,8 +8,10 @@
  "engine": "InnoDB",
  "field_order": [
   "academic_year",
-  "academic_term",
   "program_grade",
+  "column_break_5de8f",
+  "academic_term",
+  "section_break_pxny1",
   "programs_pass_",
   "amended_from"
  ],
@@ -34,14 +36,14 @@
    "fieldname": "program_grade",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Program Grade",
+   "label": "Cours Type",
    "options": "Program Grades",
    "reqd": 1
   },
   {
    "fieldname": "programs_pass_",
    "fieldtype": "Table",
-   "label": "Programs Pass %",
+   "label": "Course Wise Pass Percentage",
    "options": "Programs Pass Percentage",
    "read_only": 1
   },
@@ -53,14 +55,23 @@
    "options": "Pass Percentage",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_5de8f",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_pxny1",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-11-18 17:59:00.281154",
+ "modified": "2023-07-06 18:09:43.612204",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Pass Percentage",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
@@ -77,5 +88,6 @@
   }
  ],
  "sort_field": "modified",
- "sort_order": "DESC"
+ "sort_order": "DESC",
+ "states": []
 }
