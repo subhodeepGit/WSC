@@ -4,6 +4,8 @@
 import frappe
 from frappe.model.document import Document
 from wsc.wsc.doctype.user_permission import add_user_permission
+from wsc.wsc.notification.custom_notification import mentor_mentee_communication_submit
+
 
 class MentorMenteeCommunication(Document):
     @frappe.whitelist()
@@ -17,6 +19,7 @@ class MentorMenteeCommunication(Document):
     def validate(doc):
         if not doc.get("__islocal"):
             set_user_permission(doc)
+            mentor_mentee_communication_submit(doc)
     
     def on_trash(doc): 
         delete_permission(doc)
