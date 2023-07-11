@@ -48,7 +48,7 @@ def employee_shift_reporting_aprover(doc):
     msg+="""<b>To Date:</b>  {0}<br>""".format(doc.get('to_date'))
     
     send_mail(frappe.db.get_value("Shift Request",doc.get('name'),"reporting_authority"),sub,msg)
-    frappe.msgprint("Email sent to reporting authority")  
+    frappe.msgprint("Email sent to Shift Reporting Authority")  
 
 def employee_shift_approver(doc):
     sub="""<p><b>Shift Request Approval Notification</b></p><br>"""
@@ -61,7 +61,7 @@ def employee_shift_approver(doc):
     msg+="""<b>To Date:</b>  {0}<br>""".format(doc.get('to_date'))
     
     send_mail(frappe.db.get_value("Shift Request",doc.get('name'),"approver"),sub,msg)
-    frappe.msgprint("Email sent to Shift Request Approver")
+    frappe.msgprint("Email sent to Shift Request Approving Authority")
 
 def student_applicant_approved(doc):
     sub="""<p><b>Congratulation !! Your Application Form has been Approved</b></p><br>"""
@@ -441,6 +441,20 @@ def send_mail_to_hr(doc):
     msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(leave_policy_url)
     send_mail([doc['hr_mail']],sub,msg)
     frappe.msgprint("Email sent to HR",[doc['hr_mail']])
+
+def shift_req_hr(doc):
+    sub="""<p><b>Shift Request Approval Notification</b></p><br>"""
+
+    msg="""<b>---------------------Shift Request Details---------------------</b><br>"""
+    msg+="""<b>Employee ID:</b>  {0}<br>""".format(doc.get('employee'))
+    msg+="""<b>Employee Name:</b>  {0}<br>""".format(doc.get('employee_name'))
+    msg+="""<b>Shift Type:</b>  {0}<br>""".format(doc.get('shift_type'))
+    msg+="""<b>From Date:</b>  {0}<br>""".format(doc.get('from_date'))
+    msg+="""<b>To Date:</b>  {0}<br>""".format(doc.get('to_date'))
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc.get('status'))
+    
+    send_mail(frappe.db.get_value("Shift Request",doc.get('name'),"hr_mail"),sub,msg)
+    frappe.msgprint("Status mail sent to HR")
 # def online_payment_submit(doc):
 #     msg="""<p><b>Payment Status</b></p><br>"""
 #     msg+="""<b>---------------------Payment Details---------------------</b><br>"""
