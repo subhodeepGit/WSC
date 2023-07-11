@@ -19,7 +19,7 @@ class MentorMenteeCommunication(Document):
     def validate(doc):
         if not doc.get("__islocal"):
             set_user_permission(doc)
-            mentor_mentee_communication_submit(doc)
+        mentor_mentee_communication_submit(doc)
     
     def on_trash(doc): 
         delete_permission(doc)
