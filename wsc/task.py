@@ -52,3 +52,22 @@ def has_default_email_acc():
 def send_mail(recipients=None,subject=None,message=None,attachments=None):
     if has_default_email_acc():
         frappe.sendmail(recipients=recipients or [],expose_recipients="header",subject=subject,message = message,attachments=attachments,with_container=True)        
+
+
+# Notification to students 7 days prior exam date
+# bench --site erp.soulunileaders.com execute wsc.task.exam_reminder_notification
+def exam_reminder_notification():
+    get_students = frappe.get_all("Module Wise Exam Student", fields=["parent","student_no","student_name","group_name"])
+    get_exam_date_based_group = frappe.get_all("Student Group Exam Scheduling", fields=["parent", "group_name", "examination_date", "from_time", "to_time"])
+    for t in get_students:
+        for d in get_exam_date_based_group:
+            if t["parent"] == d["parent"] and t["group_name"] == d["group_name"]:
+                exam_detail = frappe.get_all("Module Wise Exam Group",filters={"name":t["parent"], "disabled": 0, "docstatus":1}, fields=["name","exam_name","modules_name","module_code"])
+                email=frappe.get_all("Student", filters={"name":t["student_no"]}, fields=["student_email_id"])[0]["student_email_id"]
+                msg="""This is a reminder that your {0} for {1}({2}) will be held on <b>{3}</b> from <b>{4}</b> to <b>{5}</b>.""".format(exam_detail[0]["exam_name"],exam_detail[0]["modules_name"],exam_detail[0]["module_code"],d["examination_date"],d["from_time"],d["to_time"])
+                if date.today() == d["examination_date"] - timedelta(days=7):
+                    send_mail_without_container(email,'Payment Details',msg)
+
+def send_mail_without_container(recipients=None,subject=None,message=None,attachments=None):
+    if has_default_email_acc():
+        frappe.sendmail(recipients=recipients or [],expose_recipients="header",subject=subject,message = message,attachments=attachments,with_container=False)    
