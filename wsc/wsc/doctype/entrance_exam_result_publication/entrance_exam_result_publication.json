@@ -109,6 +109,7 @@
    "fieldtype": "Section Break"
   },
   {
+   "fetch_from": "applicant_id.gender",
    "fieldname": "gender",
    "fieldtype": "Link",
    "label": "Gender",
@@ -117,7 +118,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-10 11:02:23.654610",
+ "modified": "2023-07-11 15:38:08.372504",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Result Publication",
