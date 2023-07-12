@@ -312,7 +312,9 @@ doc_events = {
         "after_insert":"wsc.wsc.validations.shift_request.after_insert",
         "validate":"wsc.wsc.validations.shift_request.validate"
     },
-<<<<<<< HEAD
+    "Employee Grievance":{
+        "validate":"wsc.wsc.validations.employee_grievance.validate",
+    },
     "Attendance Request":{
         "on_submit":"wsc.wsc.doctype.attendance_request.on_submit",
         "validate":"wsc.wsc.doctype.attendance_request.validate",
@@ -324,11 +326,6 @@ doc_events = {
         "validate":"wsc.wsc.doctype.leave_policy.validate"
 
     },
-=======
-    "Employee Grievance":{
-        "validate":"wsc.wsc.validations.employee_grievance.validate",
-    }
->>>>>>> 1f67e74e8ae737c8b36274fedcb0f32cf191ce15
 
     # "User":{
     #     "validate":"wsc.wsc.validations.user.validate",
