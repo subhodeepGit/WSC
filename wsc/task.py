@@ -77,7 +77,6 @@ def exam_reminder_notification():
                 msg="""Dear {0},<br>""".format(j["trainer"])
                 msg+="""This is a reminder that <b>{0}</b> for <b>{1}</b>({2}) will be held on the following date(s):""".format(exam_detail[0]["exam_name"],exam_detail[0]["modules_name"],exam_detail[0]["module_code"])
                 msg_table=frappe.get_all("Student Group Exam Scheduling", filters={"parent":j["parent"]}, fields=["parent", "group_name", "examination_date", "from_time", "to_time","total_duration_in_hours"])
-                print(msg_table)
                 msg+="""
                 <table style="line-height: 1em;width: 100%;" border="1" cellpadding="2" cellspacing="2">
                 <thead>
