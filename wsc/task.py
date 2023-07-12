@@ -66,7 +66,7 @@ def exam_reminder_notification():
                 email=frappe.get_all("Student", filters={"name":t["student_no"]}, fields=["student_email_id"])[0]["student_email_id"]
                 msg="""This is a reminder that your {0} for {1}({2}) will be held on <b>{3}</b> from <b>{4}</b> to <b>{5}</b>.""".format(exam_detail[0]["exam_name"],exam_detail[0]["modules_name"],exam_detail[0]["module_code"],d["examination_date"],d["from_time"],d["to_time"])
                 if date.today() == d["examination_date"] - timedelta(days=7):
-                    send_mail_without_container(email,'Payment Details',msg)
+                    send_mail_without_container(email,'Examination Reminder Notification',msg)
 
 def send_mail_without_container(recipients=None,subject=None,message=None,attachments=None):
     if has_default_email_acc():

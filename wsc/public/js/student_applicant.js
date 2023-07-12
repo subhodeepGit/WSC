@@ -123,12 +123,14 @@ frappe.ui.form.on('Student Applicant', {
       
     },
     refresh(frm){
-        
 
+        frm.set_df_property('student_rank', 'cannot_add_rows', true)
+		frm.set_df_property('student_rank', 'cannot_delete_rows', true) 
         frm.set_df_property('education_qualifications_details', 'cannot_add_rows', true);
         frm.set_df_property('education_qualifications_details', 'cannot_delete_rows', true);
         frm.set_df_property('document_list', 'cannot_add_rows', true);
         frm.set_df_property('document_list', 'cannot_delete_rows', true);
+         
         if (cur_frm.doc.document_list){
             cur_frm.doc.document_list.forEach(data=>{
                 var dn = frappe.meta.get_docfield("Document List", "document_name",data.name);
@@ -200,7 +202,17 @@ frappe.ui.form.on('Student Applicant', {
         // }      
 
     },
+    couselling_start: function(frm){
+        let field = frm.get_field("counselling_based_program_priority")
+        let isHidden = field.df.hidden
 
+        if (isHidden){
+            frm.set_df_property("counselling_based_program_priority" , "hidden" , 0)
+        } else {
+            frm.set_df_property("counselling_based_program_priority" , "hidden" , 1)
+        }
+        
+    },
     counselling_structure: function(frm) {
         frm.trigger("get_education_and_document_list");
         frm.set_value("document_list",[]);
