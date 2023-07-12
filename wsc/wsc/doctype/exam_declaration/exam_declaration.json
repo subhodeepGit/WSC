@@ -35,9 +35,9 @@
   "courses_offered",
   "section_break_hbhdh",
   "group_email",
-  "to_date",
   "column_break_v8qdw",
   "email_status",
+  "to_date",
   "eligibility_deails_section",
   "minimum_attendance_criteria",
   "certificate_creation_status",
@@ -305,14 +305,15 @@
    "fieldtype": "Column Break"
   },
   {
+   "default": "Not Sent",
+   "depends_on": "eval:doc.group_email === 1",
    "fieldname": "email_status",
    "fieldtype": "Select",
    "label": "Email Status",
-   "options": "\nSent\nNot Sent",
+   "options": "Not Sent\nSent",
    "read_only": 1
   },
   {
-   "allow_on_submit": 1,
    "depends_on": "eval:doc.group_email === 1",
    "description": "Date of sending email notification",
    "fieldname": "to_date",
@@ -324,7 +325,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-06 15:04:40.251044",
+ "modified": "2023-07-12 17:57:04.384226",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Declaration",

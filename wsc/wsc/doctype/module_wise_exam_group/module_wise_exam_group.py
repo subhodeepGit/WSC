@@ -154,7 +154,9 @@ def validate_time(self):
 def date_validation(self):
     for t in self.get('scheduling_group_exam'):
         if t.examination_date:
-            if self.module_exam_start_date<=t.examination_date and self.module_exam_end_date >= t.examination_date:
+            examination_date = datetime.strptime(t.examination_date , '%Y-%m-%d').date()
+            module_exam_start_date = datetime.strptime(self.module_exam_start_date , '%Y-%m-%d').date()
+            if module_exam_start_date <= examination_date and module_exam_start_date >= examination_date:
                 pass
             else:
                 frappe.throw("Date provided in Exam Group:- <b> %s </b> is not in between Module Exam Start Date and Module Exam End Date"%(t.group_name))	
@@ -201,16 +203,23 @@ def filter_group(self):
                 "group_name":t
             })
     else:
+        self.scheduling_group_exam=[]
         for t in group_name:
             flag="No"
-            for j in self.get("scheduling_group_exam"):
-                if j.group_name==t:
+            for p in present_list:
+                if t == p['group_name'] :
                     flag="Yes"
-                    break
+                    self.append("scheduling_group_exam",{
+                    "group_name":t,
+                    "examination_date":p['examination_date'],
+                    "from_time":p['from_time'],
+                    "to_time":p['to_time'],
+                    "total_duration_in_hours":p['total_duration_in_hours']
+                    })
             if flag=="No":
                 self.append("scheduling_group_exam",{                                     
-                    "group_name":t,                                                                   
-                })
+                "group_name":t,                                                                   
+            })
 
 @frappe.whitelist()
 def valid_module_as_exam_declation(doctype, txt, searchfield, start, page_len, filters):

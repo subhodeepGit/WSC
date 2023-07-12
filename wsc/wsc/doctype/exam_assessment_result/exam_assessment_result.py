@@ -16,10 +16,10 @@ class ExamAssessmentResult(Document):
         self.set_evaluation_result_item()
         self.set_grade()
         if len(self.assessment_result_item) > 0:
-            self.calculate_sgpa()
+            # self.calculate_sgpa()
             self.calculate_percentage()
         self.map_fields()
-        self.calculate_sgpa_cgpa()
+        # self.calculate_sgpa_cgpa()
         self.validate_duplicate_for_submit()
         self.complete_course_enrollment()
         # self.get_sgpa_into_total_credit()
@@ -27,15 +27,15 @@ class ExamAssessmentResult(Document):
         self.set_evaluation_result_item()
         self.set_grade()
         if len(self.assessment_result_item) > 0:
-            self.calculate_sgpa()
+            # self.calculate_sgpa()
             self.calculate_percentage()
-            self.calculate_sgpa_cgpa()
+            # self.calculate_sgpa_cgpa()
       
     def on_change(self):
         if len(self.assessment_result_item) > 0:
-            self.calculate_sgpa()
+            # self.calculate_sgpa()
             self.calculate_percentage()
-            self.calculate_sgpa_cgpa()
+            # self.calculate_sgpa_cgpa()
         # self.get_sgpa_into_total_credit()
 
 
@@ -43,10 +43,12 @@ class ExamAssessmentResult(Document):
         allocations=0
         self.assessment_result_item = []
         result = []
-        for allocation in frappe.get_all("Assessment Credits Allocation",{"docstatus":1,"student":self.student,"academic_year":self.academic_year,"academic_term":self.academic_term},["course","earned_credits","total_credits","final_marks","out_of_marks","assessment_criteria"]):
+        for allocation in frappe.get_all("Assessment Credits Allocation",{"docstatus":1,"student":self.student,"academic_year":self.academic_year,"academic_term":self.academic_term},["course","course_name","course_code","earned_credits","total_credits","final_marks","out_of_marks","assessment_criteria"]):
             allocations+=allocation.total_credits
             row = {
                 "course":allocation.course,
+                "module_name":allocation.course_name,
+                "module_code":allocation.course_code,
                 "earned_cr":allocation.earned_credits,
                 "total_cr":allocation.total_credits,
                 "earned_marks":allocation.final_marks,
@@ -81,10 +83,12 @@ class ExamAssessmentResult(Document):
         allocations=0
         self.assessment_result_item = []
         result = []
-        for allocation in frappe.get_all("Assessment Credits Allocation",{"docstatus":1,"student":self.student,"academic_year":self.academic_year,"academic_term":self.academic_term},["course","earned_credits","total_credits","final_marks","out_of_marks","assessment_criteria"]):
+        for allocation in frappe.get_all("Assessment Credits Allocation",{"docstatus":1,"student":self.student,"academic_year":self.academic_year,"academic_term":self.academic_term},["course",'course_name',"course_code","earned_credits","total_credits","final_marks","out_of_marks","assessment_criteria"]):
             allocations+=allocation.total_credits
             row = {
                 "course":allocation.course,
+                "module_name":allocation.course_name,
+                "module_code":allocation.course_code,
                 "earned_cr":allocation.earned_credits,
                 "total_cr":allocation.total_credits,
                 "earned_marks":allocation.final_marks,
@@ -187,6 +191,8 @@ class ExamAssessmentResult(Document):
                     marks_earned += flt(d.earned_marks)
                     total_marks += flt(d.total_marks)
         if total_marks > 0 :
+            self.total_marks=total_marks
+            self.secured_marks=marks_earned
             self.percentage = round((marks_earned/total_marks)*100, 2)
             self.percentage = "{:.2f}".format((marks_earned/total_marks)*100)
     #########################################################################################################################################
