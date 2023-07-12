@@ -3,25 +3,7 @@
 
 frappe.ui.form.on('Employee Profile Updation', {
 	refresh: function(frm) {
-		// if (frm.doc.status==="Open") {
-		// 	frm.add_custom_button(__("Forwarded to Reporting Authority"), function() {
-		// 		frm.set_value("current_status", "Forwarded to Reporting Authority")
-		// 		frm.save_or_update();
-		// 	}, 'Actions');
-		// }
-		// if (frm.doc.current_status==="Forwarded to Reporting Authority") {
-		// 	frm.add_custom_button(__("Approve"), function() {
-		// 		frm.set_value("status", "Approved");
-		// 		frm.set_value("current_status","Approved")
-		// 		frm.save_or_update();
-		// 	}, 'Actions');
-		// 	frm.add_custom_button(__("Reject"), function() {
-		// 		frm.set_value("status", "Rejected");
-		// 		frm.set_value("current_status", "Rejected");
-		// 		frm.save_or_update();
-		// 	}, 'Actions');
-		// }
-		// frm.set_df_property('status', 'options', ['Open','Approved','Rejected','Cancelled','Forwarded to Approving Authority']);
+		
 		if(!frm.is_new()){
             frappe.call({
                 // wsc.wsc.doctype.employee_reengagement.employee_reengagement.isrfp

@@ -59,7 +59,8 @@ doctype_js = {
                 "Job Applicant":"public/js/job_applicant.js",
                 "Employee":"public/js/employee.js",
                 "Shift Request":"public/js/shift_request.js",
-                "Leave Application":"public/js/leave_application.js"
+                "Leave Application":"public/js/leave_application.js",
+                "Attendance Request":"public/js/attendance_request.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -307,7 +308,19 @@ doc_events = {
     "Shift Request":{
         "after_insert":"wsc.wsc.validations.shift_request.after_insert",
         "validate":"wsc.wsc.validations.shift_request.validate"
-    }
+    },
+    "Attendance Request":{
+        "on_submit":"wsc.wsc.doctype.attendance_request.on_submit",
+        "validate":"wsc.wsc.doctype.attendance_request.validate",
+        "on_trash":"wsc.wsc.doctype.attendance_request.on_trash",
+        "after_insert":"wsc.wsc.doctype.attendance_request.after_insert"
+
+    },
+    "Leave Policy":{
+        "validate":"wsc.wsc.doctype.leave_policy.validate"
+
+    },
+
     # "User":{
     #     "validate":"wsc.wsc.validations.user.validate",
     # }
