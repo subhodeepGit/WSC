@@ -61,6 +61,8 @@ doctype_js = {
                 "Shift Request":"public/js/shift_request.js",
                 "Leave Application":"public/js/leave_application.js",
                 "Attendance Request":"public/js/attendance_request.js"
+                
+                # "Employee Separation":"public/js/employee_separation.js",
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -227,9 +229,6 @@ doc_events = {
     "Mentor Allocation": {
         "validate": "wsc.wsc.validations.mentor_allocation.validate"
     },
-    "Mentor Initiation": {
-        "validate" : "wsc.wsc.doctype.mentor_initiation.mentor_initiation.create_mentee_communications"
-    },
     "Photocopy Application":{
         "validate":"wsc.wsc.validations.photocopy_application.validate"
     },
@@ -313,6 +312,7 @@ doc_events = {
         "after_insert":"wsc.wsc.validations.shift_request.after_insert",
         "validate":"wsc.wsc.validations.shift_request.validate"
     },
+<<<<<<< HEAD
     "Attendance Request":{
         "on_submit":"wsc.wsc.doctype.attendance_request.on_submit",
         "validate":"wsc.wsc.doctype.attendance_request.validate",
@@ -324,6 +324,11 @@ doc_events = {
         "validate":"wsc.wsc.doctype.leave_policy.validate"
 
     },
+=======
+    "Employee Grievance":{
+        "validate":"wsc.wsc.validations.employee_grievance.validate",
+    }
+>>>>>>> 1f67e74e8ae737c8b36274fedcb0f32cf191ce15
 
     # "User":{
     #     "validate":"wsc.wsc.validations.user.validate",
@@ -445,23 +450,31 @@ override_doctype_dashboards = {
 # ]
 
 fixtures = [
-	{"dt": "Custom DocPerm", "filters": [
-		[
-			"parent", "not in", ["DocType"]
-		],
-	]},
-    {"dt": "Role"},
-    # {"dt": "Role Profile"},
-    # {"dt": "Module Profile"},
-    # {"dt" : "Workflow","filters": [
+	# {"dt": "Custom DocPerm", "filters": [
+	# 	[
+	# 		"parent", "not in", ["DocType"]
+	# 	],
+	# ]},
+    # {"dt": "Role","filters": [
     #     [
-    #         "name", "in", ["Student Attrition Application"]
+    #         "name", "in", ["Shift Approver","Grievance Cell Member"]
     #     ]
     # ]},
-    {"dt" : "Workflow"},
-    {"dt": "Workflow Action Master"},
-    {"dt" : "Workflow State"},
-    {"dt" : "Translation"}
+    # # {"dt": "Role Profile"},
+    # # {"dt": "Module Profile"},
+    # {"dt" : "Workflow","filters": [
+    #     [
+    #         "name", "in", ["Employee Shift Request Workflow","Job Requisition"]
+    #     ]
+    # ]},
+    # # {"dt" : "Workflow"},
+    # # {"dt": "Workflow Action Master"},
+    # {"dt" : "Workflow State","filters": [
+    #     [
+    #         "name", "in", ["Resolved"]
+    #     ]
+    # ]},
+    # # {"dt" : "Translation"}
 ]
 website_context = {
     "favicon": "/assets/wsc/images/logo.jpg",
