@@ -6,7 +6,7 @@ from frappe.utils import add_days, date_diff, getdate
 from erpnext.setup.doctype.employee.employee import is_holiday
 
 from hrms.hr.utils import validate_active_employee, validate_dates
-from wsc.wsc.notification.custom_notification import send_hr,send_to_reporting
+from wsc.wsc.notification.custom_notification import send_mail_to_reporting,send_mail_to_hr_updation
 from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
 
 
@@ -60,7 +60,7 @@ def approver_mail(doc):
 		data["employee_name"]=doc.employee_name
 		data["current_status"]=doc.workflow_state
 		data["name"]=doc.name
-		send_to_reporting(data)
+		send_mail_to_reporting(data)
 	else :
 		frappe.throw("Setup the user id of the reporting authority {}".format(doc.reporting_authority))
 
@@ -81,7 +81,7 @@ def send_mail_to_hr(doc):
 			data["employee_name"]=doc.employee_name
 			data["current_status"]=doc.workflow_state
 			data["name"]=doc.name
-			send_hr(data)
+			send_mail_to_hr_updation(data)
 		else :
 			frappe.throw("Setup HR Admin User ID")
 

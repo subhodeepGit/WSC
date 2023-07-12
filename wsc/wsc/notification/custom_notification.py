@@ -550,6 +550,28 @@ def send_mail_to_hr(doc):
     msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(leave_policy_url)
     send_mail([doc['hr_mail']],sub,msg)
     frappe.msgprint("Email sent to HR",[doc['hr_mail']])
+
+
+#Attendance Request 
+def send_mail_to_reporting(doc):
+    sub="""<p><b>AttendanceRequest</b></p><br>"""
+    msg="""<b>---------------------Attendance Details---------------------</b><br>"""
+    msg+="""<b>Attendance:</b>  {0}<br>""".format(doc['name'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    attendance_request_url = get_url_to_form('Attendance Request', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(attendance_request_url)
+    send_mail([doc['reporting_authority_email']],sub,msg)
+    frappe.msgprint("Email sent to Reporting Authority for Approval",[doc['reporting_authority_email']])
+def send_mail_to_hr_updation(doc):
+    sub="""<p><b>Attendance Request</b></p><br>"""
+    msg="""<b>---------------------Attendance Details---------------------</b><br>"""
+    msg+="""<b>Attendance:</b>  {0}<br>""".format(doc['name'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    attendance_request_url = get_url_to_form('Attendance Request', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(attendance_request_url)
+    send_mail([doc['hr_mail']],sub,msg)
+    frappe.msgprint("Email sent to HR",[doc['hr_mail']])
+
 # def online_payment_submit(doc):
 #     msg="""<p><b>Payment Status</b></p><br>"""
 #     msg+="""<b>---------------------Payment Details---------------------</b><br>"""
