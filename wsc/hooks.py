@@ -66,6 +66,7 @@ doctype_js = {
 doctype_list_js = {
     "Branch Sliding Application": "wsc/wsc/doctype/branch_sliding_application/branch_sliding_application_list.js",
     "Fees":"public/js/fees_list.js",
+    "Program Enrollment":"public/js/program_enrollment_list.js",
     "Student Attendance":"public/js/student_attendance_list.js",
     "Student Applicant" :"public/js/student_applicant_list.js",
     "Asset Maintenance Log":"public/js/asset_maintenance_log_list.js",
@@ -225,6 +226,9 @@ doc_events = {
     },
     "Mentor Allocation": {
         "validate": "wsc.wsc.validations.mentor_allocation.validate"
+    },
+    "Mentor Initiation": {
+        "validate" : "wsc.wsc.doctype.mentor_initiation.mentor_initiation.create_mentee_communications"
     },
     "Photocopy Application":{
         "validate":"wsc.wsc.validations.photocopy_application.validate"
@@ -390,6 +394,10 @@ override_doctype_class = {
     # "Job Applicant": "wsc.wsc.doctype.job_applicant.Job Applicant"
     # "Data Import": "wsc.wsc.doctype.data_import.DataImport"
 }
+override_doctype_dashboards = {
+    "Program Enrollment": "wsc.wsc.dashboard.program_enrollment_dashboard.get_data",
+    "Student": "wsc.wsc.dashboard.student_dashboard.get_data",
+}
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
@@ -445,6 +453,11 @@ fixtures = [
     {"dt": "Role"},
     # {"dt": "Role Profile"},
     # {"dt": "Module Profile"},
+    # {"dt" : "Workflow","filters": [
+    #     [
+    #         "name", "in", ["Student Attrition Application"]
+    #     ]
+    # ]},
     {"dt" : "Workflow"},
     {"dt": "Workflow Action Master"},
     {"dt" : "Workflow State"},

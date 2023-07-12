@@ -31,6 +31,8 @@ class AssessmentCreditsAllocation(Document):
             earned_marks=flt(t.earned_marks)
             grace_marks=flt(t.grace_marks)
             t.final_earned_marks=grace_marks+earned_marks
+            data=frappe.get_all("Course Assessment",{"name":t.course_assessment},['exam_declaration'])
+            t.exam_declaration=data[0]['exam_declaration']
 
     def passing_marks_calculation(self):
         coures_code=self.course

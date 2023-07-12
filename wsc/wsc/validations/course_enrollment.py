@@ -1,7 +1,7 @@
 import frappe
 from wsc.wsc.utils import duplicate_row_validation
 from wsc.wsc.doctype.user_permission import add_user_permission
-
+from wsc.wsc.utils import get_courses_by_semester
 
 def validate(doc,method):
 	if doc.get("__islocal"):
@@ -19,7 +19,25 @@ def after_insert(doc,method):
 
 def on_trash(doc,method):
 	delete_permissions(doc)
-
+@frappe.whitelist()
+def filter_courses(doctype, txt, searchfield, start, page_len, filters):
+    courses=get_courses_by_semester(filters.get("semester"))
+    if courses:
+        return frappe.db.sql("""select name,course_name,course_code from tabCourse
+			where year_end_date>=now() and name in ({0}) and (name LIKE %s or course_name LIKE %s or course_code LIKE %s)
+			limit %s, %s""".format(", ".join(['%s']*len(courses))),
+			tuple(courses + ["%%%s%%" % txt, "%%%s%%" % txt,"%%%s%%" % txt, start, page_len]))
+    return []
+# def get_course(program):
+# 	print("\n\n\nhello")
+# 	'''Return list of courses for a particular program
+# 	:param program: Program
+# 	'''
+# 	courses = frappe.db.sql('''select course from `tabProgram Course` where parent=%s''',
+# 			(program), as_dict=1)
+# 	print("\n\n\n\ncourses")
+# 	print(courses)
+# 	return courses
 def set_permission_to_instructor(doc):
 	for p_enroll in frappe.db.get_all("Program Enrollment", {'name':doc.program_enrollment},['programs','program']):
 		fltr = {'programs':p_enroll.programs, 'program':p_enroll.program}

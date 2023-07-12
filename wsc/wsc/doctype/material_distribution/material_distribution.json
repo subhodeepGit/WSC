@@ -30,6 +30,8 @@
   "blanket",
   "bedsheet_cum_pillow_cover",
   "section_break_11",
+  "materials_allotment",
+  "section_break_25",
   "comment",
   "amended_from"
  ],
@@ -195,15 +197,26 @@
    "fieldtype": "Data",
    "label": "Registration Number",
    "read_only": 1
+  },
+  {
+   "fieldname": "section_break_25",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "materials_allotment",
+   "fieldtype": "Table",
+   "label": "Materials Allotment",
+   "options": "Material Allotment"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-05-16 15:29:58.191126",
+ "modified": "2023-07-10 18:00:06.253957",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Material Distribution",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -221,6 +234,7 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1,
  "track_seen": 1,
  "track_views": 1

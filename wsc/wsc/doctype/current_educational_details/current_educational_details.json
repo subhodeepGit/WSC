@@ -5,8 +5,12 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "program_grades",
   "programs",
   "semesters",
+  "school_house",
+  "column_break_nntk8",
+  "student_batch_name",
   "academic_year",
   "academic_term"
  ],
@@ -38,12 +42,34 @@
    "in_list_view": 1,
    "label": "Academic Term",
    "options": "Academic Term"
+  },
+  {
+   "fieldname": "program_grades",
+   "fieldtype": "Link",
+   "label": "Program Grades",
+   "options": "Program Grades"
+  },
+  {
+   "fieldname": "school_house",
+   "fieldtype": "Link",
+   "label": "School House",
+   "options": "School House"
+  },
+  {
+   "fieldname": "student_batch_name",
+   "fieldtype": "Link",
+   "label": "Student Batch Name",
+   "options": "Student Batch Name"
+  },
+  {
+   "fieldname": "column_break_nntk8",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-05-25 17:34:04.703569",
+ "modified": "2023-07-07 18:06:20.568688",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Current Educational Details",
@@ -51,5 +77,6 @@
  "permissions": [],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }
