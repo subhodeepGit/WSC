@@ -17,7 +17,16 @@ class AssessmentCreditsAllocation(Document):
         self.final_earned_marks_calculation_child()
         self.qualifying_status_child()
         self.validate_marks()
-    
+
+    def on_update_after_submit(self):
+        self.validate_duplicate_record()
+        self.passing_marks_calculation()
+        self.final_earned_marks_calculation_child()
+        self.qualifying_status_child()
+        self.validate_marks()
+
+
+
     def qualifying_status_child(self):
         for t in self.get("final_credit_item"):
             if t.final_earned_marks<=t.passing_marks:
