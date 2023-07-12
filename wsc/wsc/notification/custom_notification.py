@@ -790,11 +790,10 @@ def send_mail_to_trainers_mweg(self):
 
 
 def module_exam_group_data():
-    print("\n\n")
     today = date.today()
     exam_dic=[]
     student_data=[]
-    ed = frappe.get_all("Exam Declaration",filters={'group_email':1,"docstatus":1,"to_date":today,"disabled":0},fields=["name","to_date"])
+    ed = frappe.get_all("Exam Declaration",filters={'group_email':1,"docstatus":1,"email_status":"Not Sent","to_date": ["<=", today],"exam_start_date": [">=", today],"disabled":0},fields=["name","to_date"])
     if ed:
         for i in ed:
             exam_dic.append(i)
@@ -852,13 +851,11 @@ def module_exam_group_data():
                 student_schedule[student_no] = []
             student_schedule[student_no].append(exam_schedule)
 
-
         for student_no, schedules in student_schedule.items():
             student_name = schedules[0]["student_name"]
             # roll_no = student_no
             exam_name = schedules[0]["examination_name"]
             academic_term = schedules[0]["academic_term"]
-
             sub="Student Exam Schedule"
             html_table = """
             <html>
@@ -877,7 +874,7 @@ def module_exam_group_data():
                     </tr>
                 </thead>
                 <tbody>
-            """.format(name=student_name, exam_name=exam_name, academic_term=academic_term)
+            """.format(name=student_name or '-', exam_name=exam_name or '-', academic_term=academic_term or '-')
 
             for exam_schedule in schedules:
                 html_table += """
@@ -890,12 +887,12 @@ def module_exam_group_data():
                     <td>{to_time}</td>
                     </tr>
                 """.format(
-                    module_code=exam_schedule["module_code"],
-                    module_name=exam_schedule["modules_name"],
-                    group_name=exam_schedule["group_name"],
-                    examination_date=exam_schedule["examination_date"].strftime("%d-%m-%Y"),
-                    from_time=exam_schedule["from_time"],
-                    to_time=exam_schedule["to_time"]
+                    module_code=exam_schedule["module_code"] or '-',
+                    module_name=exam_schedule["modules_name"] or '-',
+                    group_name=exam_schedule["group_name"] or '-',
+                    examination_date=exam_schedule["examination_date"].strftime("%d-%m-%Y") or '-',
+                    from_time=exam_schedule["from_time"] or '-',
+                    to_time=exam_schedule["to_time"] or '-'
                 )
             html_table += """
                 </tbody>
@@ -905,6 +902,7 @@ def module_exam_group_data():
             """
             stu_email = frappe.db.get_value("Student",{'name':student_no, 'enabled':1},"user")
             send_mail(frappe.db.get_value("User",{'name':stu_email, 'enabled':1},"email"),sub,html_table)
+            frappe.db.set_value('Exam Declaration', schedules[0]['exam_declaration_id'], 'email_status', 'Sent')
             # exam_declaration_id=[]
             # for t in schedules:
             #     if t['exam_declaration_id'] not in exam_declaration_id:
