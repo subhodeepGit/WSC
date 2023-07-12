@@ -3,7 +3,6 @@ import frappe
 from frappe.utils.data import format_date
 from frappe.utils import get_url_to_form
 from frappe.utils import cint, cstr, parse_addr
-from datetime import date
 
 
 def student_applicant_submit(doc):
@@ -63,6 +62,40 @@ def employee_shift_approver(doc):
     
     send_mail(frappe.db.get_value("Shift Request",doc.get('name'),"approver"),sub,msg)
     frappe.msgprint("Email sent to Shift Request Approving Authority")
+
+def employee_grievance_member(doc):
+    sub = "<p><b>Employee Grievance Notification</b></p><br>"
+
+    msg = "<b>---------------------Employee Grievance Details---------------------</b><br>"
+
+    msg += "<b>Employee Grievance ID:</b> {0}<br>".format(doc.get('name'))
+    msg += "<b>Raised By:</b> {0}<br>".format(doc.get('raise_by'))
+    msg += "<b>Employee Name:</b> {0}<br>".format(doc.get('employee_name'))
+    msg += "<b>Date:</b> {0}<br>".format(doc.get('date'))
+
+    grievance_app_url = get_url_to_form('Employee Grievance', doc.get('name'))
+    msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(grievance_app_url)
+
+    recipients = frappe.get_all("User", filters={'role': 'Grievance Cell Member'}, fields=['email'])
+    recipient_emails = [recipient.get('email') for recipient in recipients]
+
+    send_mail(recipient_emails, sub, msg)
+    frappe.msgprint("Email sent to Grievance Cell Members")
+
+def employee_grievance_employee_mail(doc):
+    sub = "<p><b>Employee Grievance Status</b></p><br>"
+
+    msg = "<b>---------------------Employee Grievance Status Details---------------------</b><br>"
+
+    msg += "<b>Employee Grievance ID:</b> {0}<br>".format(doc.get('name'))
+    msg += "<b>Date:</b> {0}<br>".format(doc.get('date'))
+    msg += "<b>Status:</b> {0}<br>".format(doc.get('status'))
+
+    grievance_app_url = get_url_to_form('Employee Grievance', doc.get('name'))
+    msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(grievance_app_url)
+
+    send_mail(frappe.db.get_value("Employee Grievance",doc.get('name'),"employee_email"),sub,msg)
+    frappe.msgprint("Status details is sent to the Employee")
 
 def student_applicant_approved(doc):
     sub="""<p><b>Congratulation !! Your Application Form has been Approved</b></p><br>"""
@@ -216,27 +249,6 @@ def mentor_allocation_submit(doc):
 
         send_mail(frappe.db.get_value("Student",st.get('student'),"student_email_id"),'Mentor Allocation',msg)
 
-def mentor_mentee_communication_submit(doc):
-    if frappe.session.user == frappe.get_all("Student", {'name':doc.student}, ['user'])[0]["user"]:
-        # For mentor
-        msg='''<p>{0} has sent you a message in mentor mentee communication channel.</p>'''.format(doc.get('student_name'))
-        mentor = frappe.db.get_value("Mentor Allocation", {"name":doc.get("mentor")}, "mentor")
-        print("\n\nHello in mentor_mentee_communication_submit")
-        send_mail(frappe.db.get_value("Employee",mentor,"user_id"),'Mentor Mentee Communication',msg)
-        frappe.msgprint("Email was sent.")
-
-    if frappe.session.user == frappe.get_all("Employee", {'name':doc.mentor}, ['user_id'])[0]['user_id']:
-        # For student
-        msg='''<p>{0} has sent you a message in mentor mentee communication channel.'''.format(doc.get('mentor_name'))
-        send_mail(frappe.db.get_value("Student",doc.get('student'),"user"),'Mentor Mentee Cmmunication',msg)
-        frappe.msgprint("Email was sent.")
-
-def mentor_initiation_submit(doc):
-    # For Student
-    for st in doc.get("mentee_information"):
-        msg='''<p>{0} has sent you a message in mentor mentee communication channel.'''.format(doc.get('mentor_name'))
-        send_mail(frappe.db.get_value("Student",st.get('student'),"user"),'Mentor Mentee Cmmunication',msg)
-        frappe.msgprint("Email was sent.")
 
 def exam_declaration_submit(doc):
     sub = "Exam has been declared for your program {0}".format(doc.exam_program)
@@ -354,6 +366,7 @@ def exam_declaration_for_instructor_submit(doc):
     msg="""<p>The exam has been declared for {0}</p>""".format(doc.exam_program)
     msg+="""<p>Exam Declaration Id : {0}</p>""".format(doc.name)
     msg+="""<p>Exam Program : {0}</p>""".format(doc.exam_program)
+
     msg+="""<p>Exam start date : {0}</p>""".format(doc.exam_start_date)
     msg+="""<p>Exam End Date : {0}</p>""".format(doc.exam_end_date)
     msg+="""<p>Exam Semester:</p>"""
@@ -788,128 +801,8 @@ def send_mail_to_trainers_mweg(self):
     send_mail(recepients_list_rem_dup_and_none,'Exam Schedule Notification',msg)
     frappe.msgprint("Email sent to Marker, Course Manager, Checker and Invigilator(s)")
 
+    
 
-def module_exam_group_data():
-    print("\n\n")
-    today = date.today()
-    exam_dic=[]
-    student_data=[]
-    ed = frappe.get_all("Exam Declaration",filters={'group_email':1,"docstatus":1,"to_date":today,"disabled":0},fields=["name","to_date"])
-    if ed:
-        for i in ed:
-            exam_dic.append(i)
 
-        module_exam_dic=[]
-        for j in exam_dic:
-            count_exam_declaration_child_data = frappe.db.sql("""SELECT parent,COUNT(courses) as sum_courses FROM `tabExam Courses` WHERE docstatus=1 and parent = '%s'"""%(j["name"]),as_dict=True)
-            
-            count_module_exam = frappe.db.count('Module Wise Exam Group', {"docstatus":1,"exam_declaration_id":j["name"],"disabled":0})
-
-            if count_exam_declaration_child_data[0]['sum_courses'] == count_module_exam:
-                module_exam = frappe.get_all("Module Wise Exam Group",{'docstatus':1,'exam_declaration_id':j["name"]},
-                                            ['name','modules_id','modules_name','module_code','exam_declaration_id','module_exam_start_date','module_exam_end_date','marker_name','checker','course_manager_name','exam_name','academic_term'])
-                for t in module_exam:
-                    module_exam_dic.append(t)
-        module_exam_student_dic=[]
-        module_exam_scheduling_dic=[]
-        for k in module_exam_dic:
-            module_exam_student=frappe.get_all("Module Wise Exam Student",{'parent':k['name'],'elegibility_status':'Qualified'},
-                                            ['parent','student_no','student_name','group_name'])
-            module_exam_scheduling = frappe.get_all("Student Group Exam Scheduling",{'parent':k['name']},
-                                                        ['parent','group_name','examination_date','from_time','to_time','total_duration_in_hours'])
-            
-            for l in module_exam_student:
-                module_exam_student_dic.append(l)
-            for t in module_exam_scheduling:
-                module_exam_scheduling_dic.append(t)
         
-        for module_exam in module_exam_dic:
-            for student in module_exam_student_dic:
-                for exam_schedule in module_exam_scheduling_dic:
-                    if student['parent'] == module_exam['name'] and exam_schedule['parent'] == module_exam['name'] and student['group_name'] == exam_schedule['group_name']:
-                        student_data.append({
-                            'module_exam_group': student['parent'],
-                            'exam_declaration_id': module_exam['exam_declaration_id'],
-                            'student_no': student['student_no'],
-                            'student_name': student['student_name'],
-                            'group_name': student['group_name'],
-                            'modules_id': module_exam['modules_id'],
-                            'modules_name': module_exam['modules_name'],
-                            'module_code': module_exam['module_code'],
-                            'academic_term': module_exam['academic_term'],
-                            'examination_name': module_exam['exam_name'], 
-                            'examination_date': exam_schedule['examination_date'],
-                            'from_time': exam_schedule['from_time'],
-                            'to_time': exam_schedule['to_time'],
-                            'total_duration_in_hours': exam_schedule['total_duration_in_hours']
-                        })
-
-        student_schedule = {}
-
-        for exam_schedule in student_data:
-            student_no = exam_schedule["student_no"]
-            if student_no not in student_schedule:
-                student_schedule[student_no] = []
-            student_schedule[student_no].append(exam_schedule)
-
-
-        for student_no, schedules in student_schedule.items():
-            student_name = schedules[0]["student_name"]
-            # roll_no = student_no
-            exam_name = schedules[0]["examination_name"]
-            academic_term = schedules[0]["academic_term"]
-
-            sub="Student Exam Schedule"
-            html_table = """
-            <html>
-            <body>
-                <p>Dear <b>{name}</b>,</p>
-                <p>Please find below the schedule for the <b>{exam_name}</b>, for the Academic Term <b>{academic_term}</b>.</p>
-                <table style="line-height: 1em;width: 100%;" border="1">
-                <thead>
-                    <tr style="text-align:center">
-                    <th>Module Code</th>
-                    <th>Module Name</th>
-                    <th>Group Name</th>
-                    <th>Examination Date</th>
-                    <th>From Time</th>
-                    <th>To Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-            """.format(name=student_name, exam_name=exam_name, academic_term=academic_term)
-
-            for exam_schedule in schedules:
-                html_table += """
-                    <tr>
-                    <td>{module_code}</td>
-                    <td>{module_name}</td>
-                    <td>{group_name}</td>
-                    <td>{examination_date}</td>
-                    <td>{from_time}</td>
-                    <td>{to_time}</td>
-                    </tr>
-                """.format(
-                    module_code=exam_schedule["module_code"],
-                    module_name=exam_schedule["modules_name"],
-                    group_name=exam_schedule["group_name"],
-                    examination_date=exam_schedule["examination_date"].strftime("%d-%m-%Y"),
-                    from_time=exam_schedule["from_time"],
-                    to_time=exam_schedule["to_time"]
-                )
-            html_table += """
-                </tbody>
-                </table>
-            </body>
-            </html>
-            """
-            stu_email = frappe.db.get_value("Student",{'name':student_no, 'enabled':1},"user")
-            send_mail(frappe.db.get_value("User",{'name':stu_email, 'enabled':1},"email"),sub,html_table)
-            # exam_declaration_id=[]
-            # for t in schedules:
-            #     if t['exam_declaration_id'] not in exam_declaration_id:
-            #         exam_declaration_id.append(t['exam_declaration_id'])
-            # print(exam_declaration_id)
-
-
     

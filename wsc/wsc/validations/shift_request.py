@@ -51,3 +51,20 @@ def get_hr_mail():
 		hr_mail = hr_mail[0]
 		print(hr_mail)
 		return hr_mail			
+
+@frappe.whitelist()
+def is_verified_user(docname):
+	doc = frappe.get_doc("Shift Request",docname)
+	reporting_auth_id = doc.reporting_authority
+	shift_approver=doc.approver
+	roles = frappe.get_roles(frappe.session.user)
+	if "HR Manager/CS Officer" in roles or "HR Admin" in roles or "Director" in roles or "Admin" in roles or "Administrator" in roles:
+		return True
+	if doc.workflow_state == "Draft": 
+		return True	
+	if doc.workflow_state == "Pending Approval from Reporting Authority" and frappe.session.user ==reporting_auth_id:
+		return True
+	if doc.workflow_state == "Sent For Approval" and frappe.session.user ==shift_approver:
+		return True	
+	else :
+		return False		
