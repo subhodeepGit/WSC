@@ -336,5 +336,18 @@
   "name": "dd4bbb45ad",
   "source_text": "Final Result Declaration",
   "translated_text": "Final Semester Result Tool"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-07-12 10:15:38.224184",
+  "name": "46bbf8ccba",
+  "source_text": "Death Deallotment",
+  "translated_text": "Student Mortality Record"
  }
 ]
