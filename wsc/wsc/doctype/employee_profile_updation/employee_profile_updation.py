@@ -3,7 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
-from wsc.wsc.notification.custom_notification import employee_reporting_aprover,employee_hr
+from wsc.wsc.notification.custom_notification import employee_reporting_aprover_updation,employee_hr_updation
 import datetime
 from typing import Dict, Optional, Tuple, Union
 
@@ -22,7 +22,7 @@ class EmployeeProfileUpdation(Document):
 		data["current_status"]=self.workflow_state
 		data["name"]=self.name
 		data["hr_email"]=self.hr_id
-		employee_reporting_aprover(data)
+		employee_reporting_aprover_updation(data)
 		
 	def validate(self):
 		
@@ -45,7 +45,7 @@ class EmployeeProfileUpdation(Document):
 		data["employee_name"]=self.employee_name
 		data["current_status"]=self.workflow_state
 		data["name"]=self.name
-		employee_hr(data)
+		employee_hr_updation(data)
 		
 	def on_submit(self):
 		employee = frappe.get_doc("Employee", self.employee)
