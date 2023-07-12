@@ -54,19 +54,55 @@ def send_mail(recipients=None,subject=None,message=None,attachments=None):
         frappe.sendmail(recipients=recipients or [],expose_recipients="header",subject=subject,message = message,attachments=attachments,with_container=True)        
 
 
-# Notification to students 7 days prior exam date
+# Notification to students and invigilators 7 days prior exam date
 # bench --site erp.soulunileaders.com execute wsc.task.exam_reminder_notification
 def exam_reminder_notification():
     get_students = frappe.get_all("Module Wise Exam Student", fields=["parent","student_no","student_name","group_name"])
     get_exam_date_based_group = frappe.get_all("Student Group Exam Scheduling", fields=["parent", "group_name", "examination_date", "from_time", "to_time"])
+    get_invigilators = frappe.get_all("Invigilator Details", fields=["parent","trainer","trainer_name"])
     for t in get_students:
         for d in get_exam_date_based_group:
             if t["parent"] == d["parent"] and t["group_name"] == d["group_name"]:
                 exam_detail = frappe.get_all("Module Wise Exam Group",filters={"name":t["parent"], "disabled": 0, "docstatus":1}, fields=["name","exam_name","modules_name","module_code"])
                 email=frappe.get_all("Student", filters={"name":t["student_no"]}, fields=["student_email_id"])[0]["student_email_id"]
-                msg="""This is a reminder that your {0} for {1}({2}) will be held on <b>{3}</b> from <b>{4}</b> to <b>{5}</b>.""".format(exam_detail[0]["exam_name"],exam_detail[0]["modules_name"],exam_detail[0]["module_code"],d["examination_date"],d["from_time"],d["to_time"])
+                msg="""Dear {0},<br>""".format(t["student_name"])
+                msg+="""This is a reminder that your {0} for {1}({2}) will be held on <b>{3}</b> from <b>{4}</b> to <b>{5}</b>.""".format(exam_detail[0]["exam_name"],exam_detail[0]["modules_name"],exam_detail[0]["module_code"],d["examination_date"].strftime("%d-%m-%Y"),d["from_time"],d["to_time"])
                 if date.today() == d["examination_date"] - timedelta(days=7):
-                    send_mail_without_container(email,'Payment Details',msg)
+                    send_mail_without_container(email,'Examination Reminder Notification',msg)
+    for j in get_invigilators:
+        for k in get_exam_date_based_group:
+            if j["parent"] == k["parent"]:
+                exam_detail = frappe.get_all("Module Wise Exam Group",filters={"name":j["parent"], "disabled": 0, "docstatus":1}, fields=["name","exam_name","modules_name","module_code"])
+                email = frappe.get_all("Employee",filters={"name":j["trainer_name"]}, fields=["user_id"])[0]["user_id"]
+                msg="""Dear {0},<br>""".format(j["trainer"])
+                msg+="""This is a reminder that <b>{0}</b> for <b>{1}</b>({2}) will be held on the following date(s):""".format(exam_detail[0]["exam_name"],exam_detail[0]["modules_name"],exam_detail[0]["module_code"])
+                msg_table=frappe.get_all("Student Group Exam Scheduling", filters={"parent":j["parent"]}, fields=["parent", "group_name", "examination_date", "from_time", "to_time","total_duration_in_hours"])
+                msg+="""
+                <table style="line-height: 1em;width: 100%;" border="1" cellpadding="2" cellspacing="2">
+                <thead>
+                    <tr><th colspan="5"><b>Examination Details</b></th></tr>
+                    <tr>
+                        <th class="text-center" style="width:20%; font-size:14px;">Group Name</th>
+                        <th class="text-center" style="width:20%; font-size:14px;">Examination Date</th>
+                        <th class="text-center" style="width:20%; font-size:14px;">From Time</th>
+                        <th class="text-center" style="width:20%; font-size:14px;">To Time</th>
+                        <th class="text-center" style="width:20%; font-size:14px;">Total Duration (in Hours)</th>
+                    </tr>
+                </thead>
+                <tbody>"""
+                for i in msg_table:
+                    msg+="""<tr><td class="text-center">{0}</td>""".format(i["group_name"])
+                    msg+="""<td class="text-center">{0}</td>""".format(i["examination_date"].strftime("%d-%m-%Y"))
+                    msg+="""<td class="text-center">{0}</td>""".format(i["from_time"])
+                    msg+="""<td class="text-center">{0}</td>""".format(i["to_time"])
+                    msg+="""<td class="text-center">{0}</td>""".format(i["total_duration_in_hours"])
+                    msg+="""</tr>"""
+                msg+="""
+                </tbody>
+                </table>"""
+                if date.today() == k["examination_date"] - timedelta(days=7):
+                    send_mail_without_container(email,'Examination Reminder Notification',msg)
+
 
 def send_mail_without_container(recipients=None,subject=None,message=None,attachments=None):
     if has_default_email_acc():

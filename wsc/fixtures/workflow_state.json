@@ -601,5 +601,14 @@
   "name": "Forwarded to HR",
   "style": "",
   "workflow_state_name": "Forwarded to HR"
+ },
+{
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-07-11 09:52:17.007225",
+  "name": "Resolved",
+  "style": "",
+  "workflow_state_name": "Resolved"
  }
 ]

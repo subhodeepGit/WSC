@@ -12,6 +12,7 @@ from frappe import _
 from frappe.query_builder.functions import Max, Min, Sum
 
 from frappe.model.document import Document
+from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
 
 class EmployeeProfileUpdation(Document):
 	def approver_mail(self):
@@ -86,6 +87,27 @@ class EmployeeProfileUpdation(Document):
 		employee.save()
 		# Print a success message
 		frappe.msgprint("Employee profile updated successfully.")
+		
+	# def after_insert(self):
+	# 	self.set_user_permission()
+
+	# def set_user_permission(self):
+	# 	if self.reporting_authority:
+	# 		self.set_profile_updation_permission_reporting_authority(self.reporting_auth_id)
+	
+	# def on_trash(self):
+	# 	self.delete_permission()
+	# def delete_permission(self):
+	# 	for d in frappe.get_all("User Permission",{"reference_doctype":self.doctype,"reference_docname":self.name}):
+	# 		frappe.delete_doc("User Permission",d.name)
+	# def set_profile_updation_permission_reporting_authority(doc,reporting_authority):
+	# 	for emp in frappe.get_all("Employee", {'reporting_authority_email':reporting_authority}, ['reporting_authority_email']):
+	# 		if emp.get('reporting_authority_email'):
+	# 			print(emp.get('reporting_authority_email'))
+	# 			add_user_permission("Employee Profile Updation",doc.name, emp.get('reporting_authority_email'), doc)
+	# 		else:
+	# 			frappe.msgprint("Reporting Authority Not Found")
+
 
 
 #populate Reporting Authority 
@@ -145,7 +167,7 @@ def is_verified_user(docname):
 
 	if "HR Manager/CS Officer" in roles or "HR Admin" in roles or "Director" in roles or "Admin" in roles or "Administrator" in roles:
 		return True
-	if doc.workflow_state == "Draft" and frappe.session.user ==reporting_auth_id or doc.work:
+	if doc.workflow_state == "Draft" and frappe.session.user ==reporting_auth_id :
 		return True
 	else :
 		return False

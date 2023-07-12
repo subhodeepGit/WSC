@@ -115,10 +115,9 @@ def generate_rank_cards(doc):
 		earned_marks = frappe.get_all("Entrance Exam Result Publication" , {'applicant_id':i['applicant_id']} , ['earned_marks' , 'applicant_id' , 'applicant_name'])
 		
 		rank_data = frappe.new_doc("Rank Card")
-		print(rank_data.student_ranks_list)
 		rank_data.applicant_id = i['applicant_id']
 		rank_data.applicant_name = i['applicant_name']
-		rank_data.gender = i['gender']
+		rank_data.gender = i['gender'] 
 		rank_data.student_category = i['student_category']
 		rank_data.physically_disabled = i['physical_disability']
 		rank_data.academic_year = data['academic_year']
@@ -133,9 +132,18 @@ def generate_rank_cards(doc):
 			'category_based_rank' : i['category_based_rank'],
 			'pwd_based_rank' : i['pwd_based_rank']
 		})
-		rank_data.save()
 		
-	# 	rank_data.save()
+		student_applicant = frappe.get_doc("Student Applicant" , i['applicant_id'])
+		student_applicant.append("student_rank" , {
+			'general_rank' : i['all_student_based_rank'],
+			'category_based_rank' : i['category_based_rank'],
+			'pwd_based_rank' : i['pwd_based_rank']
+		})
+
+		rank_data.save()
+		student_applicant.save()
+		# student_applicant.submit()
+
 
 		
 		

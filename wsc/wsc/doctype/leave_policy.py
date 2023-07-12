@@ -6,7 +6,7 @@ from frappe.model.document import Document
 from wsc.wsc.notification.custom_notification import send_mail_to_director,send_mail_to_hr
 def validate(doc,method):
 		
-		if doc.workflow_state == "Draft":
+		if doc.workflow_state == "Pending Approval":
 			director_mail(doc)
 		if doc.workflow_state == "Approved" or doc.workflow_state=="Rejected":
 			hr_mail(doc)
