@@ -7,20 +7,20 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "student",
+  "student_name",
+  "roll_no",
+  "registration_number",
+  "column_break_3",
   "programs",
   "program",
   "course",
   "academic_year",
   "academic_term",
-  "column_break_3",
+  "grading_scale",
   "status",
-  "student",
-  "student_name",
-  "roll_no",
-  "registration_number",
   "student_group",
   "assessment_group",
-  "grading_scale",
   "assessment_status",
   "section_break_5",
   "get_result",
@@ -28,13 +28,16 @@
   "evaluation_result_item",
   "previous_semesters_sgpa",
   "section_break_8",
+  "secured_marks",
+  "column_break_i9clt",
+  "total_marks",
   "sgpa",
-  "column_break_17",
+  "column_break_27",
   "percentage",
+  "column_break_17",
   "result",
   "column_break_11",
   "grade",
-  "column_break_27",
   "overall_cgpa",
   "section_break_13",
   "comment",
@@ -164,8 +167,8 @@
    "allow_on_submit": 1,
    "fieldname": "grade",
    "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Grade"
+   "label": "Grade",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_13",
@@ -225,6 +228,7 @@
    "allow_on_submit": 1,
    "fieldname": "status",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Status",
    "options": "\nUpdate"
   },
@@ -253,6 +257,7 @@
    "allow_on_submit": 1,
    "fieldname": "credit_point",
    "fieldtype": "Float",
+   "hidden": 1,
    "label": "Credit Point",
    "read_only": 1
   },
@@ -264,14 +269,34 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "percentage",
-   "fieldtype": "Data",
-   "label": "Percentage"
+   "fieldtype": "Percent",
+   "label": "Percentage",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "total_marks",
+   "fieldtype": "Float",
+   "label": "Total Marks",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_i9clt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "secured_marks",
+   "fieldtype": "Float",
+   "label": "Secured Marks",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-06 11:17:04.490651",
+ "modified": "2023-07-12 18:14:05.268098",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Assessment Result",

@@ -6,6 +6,8 @@
  "engine": "InnoDB",
  "field_order": [
   "course",
+  "module_code",
+  "module_name",
   "assessment_criteria",
   "earned_cr",
   "total_cr",
@@ -19,7 +21,7 @@
    "fieldname": "course",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Module",
+   "label": "Course",
    "options": "Course",
    "reqd": 1,
    "width": "10px"
@@ -81,11 +83,25 @@
    "in_list_view": 1,
    "label": "Assessment Criteria",
    "options": "Assessment Criteria"
+  },
+  {
+   "fieldname": "module_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Module Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "module_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Module Name",
+   "read_only": 1
   }
  ],
  "istable": 1,
  "links": [],
- "modified": "2023-07-06 15:51:15.660400",
+ "modified": "2023-07-12 17:53:55.481185",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assessment Result Item",
