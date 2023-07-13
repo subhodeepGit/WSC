@@ -1,0 +1,89 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-07-06 13:05:21.561389",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "participant_id",
+  "participant_name",
+  "course_name",
+  "department",
+  "designation",
+  "name_of_institute",
+  "is_hostel_required",
+  "reported"
+ ],
+ "fields": [
+  {
+   "fieldname": "participant_id",
+   "fieldtype": "Link",
+   "label": "Participant ID",
+   "options": "ToT Participant"
+  },
+  {
+   "fieldname": "participant_name",
+   "fieldtype": "Data",
+   "label": "Participant Name"
+  },
+  {
+   "fieldname": "course_name",
+   "fieldtype": "Link",
+   "label": "Course Name",
+   "options": "Module"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Data",
+   "label": "Department"
+  },
+  {
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "label": "Designation"
+  },
+  {
+   "fieldname": "name_of_institute",
+   "fieldtype": "Data",
+   "label": "Name of Institute"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_hostel_required",
+   "fieldtype": "Check",
+   "label": "Is Hostel Required"
+  },
+  {
+   "default": "0",
+   "fieldname": "reported",
+   "fieldtype": "Check",
+   "label": "Reported"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-07-06 13:05:21.561389",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "ToT Participant Reporting",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,90 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-07-05 14:52:32.011330",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "instructor_name",
+  "participant_group",
+  "programs",
+  "course",
+  "topic",
+  "assignment_name",
+  "assignment_attach_button",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "instructor_name",
+   "fieldtype": "Link",
+   "label": "Instructor Name",
+   "options": "Instructor"
+  },
+  {
+   "fieldname": "participant_group",
+   "fieldtype": "Link",
+   "label": "Participant Group",
+   "options": "Participant Group"
+  },
+  {
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "label": "Programs",
+   "options": "Course"
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "label": "Course",
+   "options": "Module"
+  },
+  {
+   "fieldname": "topic",
+   "fieldtype": "Link",
+   "label": "Topic",
+   "options": "Topic"
+  },
+  {
+   "fieldname": "assignment_name",
+   "fieldtype": "Data",
+   "label": "Assignment Name"
+  },
+  {
+   "fieldname": "assignment_attach_button",
+   "fieldtype": "Attach",
+   "label": "Assignment Attach Button"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Long Text",
+   "label": "Description"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-07-05 14:52:32.011330",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Assignment",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

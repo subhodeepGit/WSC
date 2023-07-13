@@ -1,19 +1,26 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{applicant_name}-{department}-{academic_year}",
  "creation": "2023-05-09 18:07:30.539407",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "academic_year",
+  "column_break_3",
+  "academic_term",
+  "column_break_4",
+  "department",
+  "section_break_6",
   "applicant_id",
   "applicant_name",
-  "academic_year",
-  "result_declaration_date",
-  "department",
+  "column_break_6",
   "student_category",
   "physically_disabled",
+  "section_break_10",
+  "result_declaration_date",
   "total_marks",
   "earned_marks"
  ],
@@ -28,10 +35,10 @@
    "fetch_from": "applicant_id.title",
    "fieldname": "applicant_name",
    "fieldtype": "Data",
-   "label": "Applicant Name",
-   "read_only": 1
+   "label": "Applicant Name"
   },
   {
+   "fetch_from": "applicant_id.academic_year",
    "fieldname": "academic_year",
    "fieldtype": "Link",
    "label": "Academic Year",
@@ -43,6 +50,7 @@
    "label": "Result Declaration Date"
   },
   {
+   "fetch_from": "applicant_id.department",
    "fieldname": "department",
    "fieldtype": "Link",
    "label": "Department",
@@ -51,11 +59,13 @@
   {
    "fetch_from": "applicant_id.student_category",
    "fieldname": "student_category",
-   "fieldtype": "Data",
-   "label": "Student Category"
+   "fieldtype": "Link",
+   "label": "Student Category",
+   "options": "Student Category"
   },
   {
    "default": "0",
+   "fetch_from": "applicant_id.physically_disabled",
    "fieldname": "physically_disabled",
    "fieldtype": "Check",
    "label": "Physically Disabled"
@@ -69,14 +79,42 @@
    "fieldname": "earned_marks",
    "fieldtype": "Float",
    "label": "Earned Marks"
+  },
+  {
+   "fetch_from": "applicant_id.academic_term",
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_10",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_6",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-09 18:09:38.242895",
+ "modified": "2023-07-03 15:04:24.041123",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Result Publication",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

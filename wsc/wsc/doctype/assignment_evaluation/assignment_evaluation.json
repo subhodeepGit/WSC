@@ -1,0 +1,97 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-07-05 16:45:25.570425",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "participant_id",
+  "participant_name",
+  "academic_year",
+  "module",
+  "module_name",
+  "job_sheetassignment",
+  "assignment_declaration",
+  "course",
+  "earned_marks"
+ ],
+ "fields": [
+  {
+   "fieldname": "participant_id",
+   "fieldtype": "Link",
+   "label": "Participant ID",
+   "options": "ToT Participant"
+  },
+  {
+   "fieldname": "participant_name",
+   "fieldtype": "Data",
+   "label": "Participant Name"
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
+  },
+  {
+   "fieldname": "module",
+   "fieldtype": "Link",
+   "label": "Module",
+   "options": "Module"
+  },
+  {
+   "fieldname": "module_name",
+   "fieldtype": "Data",
+   "label": "Module Name"
+  },
+  {
+   "fieldname": "job_sheetassignment",
+   "fieldtype": "Link",
+   "label": "Job Sheet/Assignment",
+   "options": "Job sheet"
+  },
+  {
+   "fieldname": "assignment_declaration",
+   "fieldtype": "Link",
+   "label": "Assignment Declaration",
+   "options": "Assignment Declaration"
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "label": "Course",
+   "options": "Course"
+  },
+  {
+   "fieldname": "earned_marks",
+   "fieldtype": "Float",
+   "label": "Earned Marks"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-07-05 16:45:25.570425",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Assignment Evaluation",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

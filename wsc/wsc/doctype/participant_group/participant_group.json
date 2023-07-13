@@ -1,0 +1,124 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-07-05 12:09:28.353134",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "disabled",
+  "academic_year",
+  "academic_term",
+  "group_based_on",
+  "participant_group",
+  "max_strength",
+  "program",
+  "batch",
+  "participant_category",
+  "course",
+  "get_participants",
+  "participants",
+  "instructor"
+ ],
+ "fields": [
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
+  },
+  {
+   "fieldname": "group_based_on",
+   "fieldtype": "Select",
+   "label": "Group Based On",
+   "options": "Batch\nCourse\nActivity\nMentor Communication"
+  },
+  {
+   "fieldname": "participant_group",
+   "fieldtype": "Data",
+   "label": "Participant Group"
+  },
+  {
+   "fieldname": "max_strength",
+   "fieldtype": "Data",
+   "label": "Max Strength"
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
+  },
+  {
+   "fieldname": "program",
+   "fieldtype": "Link",
+   "label": "Program",
+   "options": "Course"
+  },
+  {
+   "fieldname": "batch",
+   "fieldtype": "Data",
+   "label": "Batch"
+  },
+  {
+   "fieldname": "participant_category",
+   "fieldtype": "Link",
+   "label": "Participant Category",
+   "options": "Student Category"
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "label": "Course",
+   "options": "Module"
+  },
+  {
+   "default": "0",
+   "fieldname": "disabled",
+   "fieldtype": "Check",
+   "label": "Disabled"
+  },
+  {
+   "fieldname": "get_participants",
+   "fieldtype": "Button",
+   "label": "Get Participants"
+  },
+  {
+   "fieldname": "participants",
+   "fieldtype": "Table",
+   "label": "Participants",
+   "options": "Participant Table"
+  },
+  {
+   "fieldname": "instructor",
+   "fieldtype": "Table",
+   "label": "Instructor",
+   "options": "Instructor Table"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-07-06 14:38:08.249255",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Participant Group",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

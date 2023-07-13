@@ -1,0 +1,42 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-07-05 12:45:58.482365",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "instructors",
+  "instructor_name",
+  "course"
+ ],
+ "fields": [
+  {
+   "fieldname": "instructors",
+   "fieldtype": "Data",
+   "label": "Instructors"
+  },
+  {
+   "fieldname": "instructor_name",
+   "fieldtype": "Data",
+   "label": "Instructor Name"
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Data",
+   "label": "Course"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-07-05 12:45:58.482365",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Instructor Table",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
