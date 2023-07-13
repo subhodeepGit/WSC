@@ -234,9 +234,10 @@ def mentor_mentee_communication_submit(doc):
 def mentor_initiation_submit(doc):
     # For Student
     for st in doc.get("mentee_information"):
-        msg='''<p>{0} has sent you a message in mentor mentee communication channel.'''.format(doc.get('mentor_name'))
-        send_mail(frappe.db.get_value("Student",st.get('student'),"user"),'Mentor Mentee Cmmunication',msg)
-        frappe.msgprint("Email was sent.")
+        if (st.check):
+            msg='''<p>{0} has sent you a message in mentor mentee communication channel.'''.format(doc.get('mentor_name'))
+            send_mail(frappe.db.get_value("Student",st.get('student'),"user"),'Mentor Mentee Cmmunication',msg)
+            frappe.msgprint("Email was sent.")
 
 def exam_declaration_submit(doc):
     sub = "Exam has been declared for your program {0}".format(doc.exam_program)
