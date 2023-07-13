@@ -119,42 +119,7 @@ def on_submit(doc,method, on_cancel=0):
         if year_back=="No":
             create_fees(doc,fee_structure_id,on_submit=1)
         else:
-            frappe.msgprint("Student is a Year back so fees is not charged.") 
-
-
-# def update_student_admission_seat_reservations_add(doc):
-#     for i in range(len(frappe.get_all("Student Admission"))):
-#         if (doc.admission_status == "Admitted"):
-#             if doc.program_grade == frappe.get_all("Student Admission", "program_grade")[i]["program_grade"]:
-#                 if doc.programs == frappe.get_all("Student Admission", "admission_program")[i]["admission_program"]:
-#                     if doc.program == frappe.get_all("Student Admission", "semester")[i]["semester"]:
-#                         if doc.academic_year == frappe.get_all("Student Admission", "academic_year")[i]["academic_year"]:
-#                             if doc.academic_term == frappe.get_all("Student Admission", "academic_term")[i]["academic_term"]:
-#                                 for j in range(len(frappe.get_all("Reservations List", {"parent":frappe.get_all("Student Admission", "name")[i]["name"]},"seat_reservation_type"))):
-#                                     if doc.seat_reservation_type == frappe.get_all("Reservations List", {"parent":frappe.get_all("Student Admission", "name")[i]["name"]},"seat_reservation_type")[j]["seat_reservation_type"]:
-#                                         print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n Hello \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-#                                         if frappe.get_all("Reservations List", "seat_balance")[j] > 0:
-#                                             frappe.get_all("Reservations List", "seat_balance")[j] = frappe.get_all("Reservations List", "seat_balance")[j] - 1
-#                                         else:
-#                                             frappe.throw("Error !! Not Sufficient Seat")
-#                                         print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n Hello \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-
-# def update_student_admission_seat_reservations_deduct(doc):
-#     for i in range(len(frappe.get_all("Student Admission"))):
-#         if (doc.admission_status == "Admitted"):
-#             if doc.program_grade == frappe.get_all("Student Admission", "program_grade")[i]["program_grade"]:
-#                 if doc.programs == frappe.get_all("Student Admission", "admission_program")[i]["admission_program"]:
-#                     if doc.program == frappe.get_all("Student Admission", "semester")[i]["semester"]:
-#                         if doc.academic_year == frappe.get_all("Student Admission", "academic_year")[i]["academic_year"]:
-#                             if doc.academic_term == frappe.get_all("Student Admission", "academic_term")[i]["academic_term"]:
-#                                 for j in range(len(frappe.get_all("Reservations List", {"parent":frappe.get_all("Student Admission", "name")[i]["name"]},"seat_reservation_type"))):
-#                                     if doc.seat_reservation_type == frappe.get_all("Reservations List", {"parent":frappe.get_all("Student Admission", "name")[i]["name"]},"seat_reservation_type")[j]["seat_reservation_type"]:
-#                                         print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n Hello \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-#                                         if frappe.get_all("Reservations List", "seat_balance")[j] < frappe.get_all("Reservations List", "allocated_seat")[j]:
-#                                             frappe.get_all("Reservations List", "seat_balance")[j] = frappe.get_all("Reservations List", "seat_balance")[j] + 1
-#                                         else:
-#                                             frappe.throw("Error !! seat balance can't be more than allocated seat")
-#                                         print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n Hello \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+            frappe.msgprint("Student is a Year back so fees is not charged.")
 
 def get_fee_structure(doc):
     existed_fs = frappe.db.get_list("Fee Structure", {'programs':doc.programs, 'program':doc.program, 
