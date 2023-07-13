@@ -34,17 +34,10 @@
   "sgpa",
   "column_break_27",
   "percentage",
-<<<<<<< HEAD
-  "column_break_17",
-  "result",
-  "column_break_11",
-  "grade",
-=======
   "column_break_11",
   "grade",
   "column_break_27",
   "result",
->>>>>>> 46480f0 (Edited by diwakar)
   "overall_cgpa",
   "section_break_13",
   "comment",
@@ -174,12 +167,7 @@
    "allow_on_submit": 1,
    "fieldname": "grade",
    "fieldtype": "Data",
-<<<<<<< HEAD
-   "label": "Grade",
-   "read_only": 1
-=======
    "label": "Grade"
->>>>>>> 46480f0 (Edited by diwakar)
   },
   {
    "fieldname": "section_break_13",
@@ -308,11 +296,7 @@
  ],
  "is_submittable": 1,
  "links": [],
-<<<<<<< HEAD
- "modified": "2023-07-12 18:14:05.268098",
-=======
  "modified": "2023-07-12 12:10:36.775924",
->>>>>>> 46480f0 (Edited by diwakar)
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Assessment Result",
