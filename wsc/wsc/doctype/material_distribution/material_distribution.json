@@ -17,18 +17,6 @@
   "hostel",
   "room_number",
   "room_type",
-  "choose_materials_section",
-  "cot",
-  "matress",
-  "table",
-  "column_break_13",
-  "chair",
-  "bucket",
-  "mug",
-  "column_break_17",
-  "pillow",
-  "blanket",
-  "bedsheet_cum_pillow_cover",
   "section_break_11",
   "materials_allotment",
   "section_break_25",
@@ -109,73 +97,6 @@
    "mandatory_depends_on": "if (frm.doc.application_form === 0);"
   },
   {
-   "fieldname": "choose_materials_section",
-   "fieldtype": "Section Break",
-   "label": "Choose materials"
-  },
-  {
-   "default": "0",
-   "fieldname": "cot",
-   "fieldtype": "Check",
-   "label": "Bed / Cot"
-  },
-  {
-   "default": "0",
-   "fieldname": "matress",
-   "fieldtype": "Check",
-   "label": "Matress"
-  },
-  {
-   "default": "0",
-   "fieldname": "table",
-   "fieldtype": "Check",
-   "label": "Table"
-  },
-  {
-   "default": "0",
-   "fieldname": "chair",
-   "fieldtype": "Check",
-   "label": "Chair"
-  },
-  {
-   "default": "0",
-   "fieldname": "bucket",
-   "fieldtype": "Check",
-   "label": "Bucket"
-  },
-  {
-   "default": "0",
-   "fieldname": "mug",
-   "fieldtype": "Check",
-   "label": "Mug"
-  },
-  {
-   "default": "0",
-   "fieldname": "pillow",
-   "fieldtype": "Check",
-   "label": "Pillow"
-  },
-  {
-   "default": "0",
-   "fieldname": "blanket",
-   "fieldtype": "Check",
-   "label": "Blanket"
-  },
-  {
-   "default": "0",
-   "fieldname": "bedsheet_cum_pillow_cover",
-   "fieldtype": "Check",
-   "label": "Bedsheet cum Pillow cover"
-  },
-  {
-   "fieldname": "column_break_13",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "column_break_17",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
@@ -212,7 +133,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-10 18:00:06.253957",
+ "modified": "2023-07-12 16:48:19.677401",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Material Distribution",
