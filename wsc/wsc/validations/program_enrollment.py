@@ -43,11 +43,9 @@ def on_update(doc,method):
 
 def on_cancel(doc,method):
     delete_permissions(doc)
-    delete_course_enrollment(doc)
-    update_reserved_seats_on_cancel(doc)             
+    delete_course_enrollment(doc)            
     update_student(doc)
-    # update_reserved_seats(doc)
-    # update_student_admission_seat_reservations_deduct(doc)
+    update_reserved_seats(doc)
     # delete_permissions(doc)
     fee_structure_id = get_fee_structure(doc)
     if len(fee_structure_id)!=0:
@@ -90,12 +88,11 @@ def update_student(doc):
         })
     student.save()
 
-def on_submit(doc,method, on_cancel=0):
-    # update_student_admission_seat_reservations_add(doc)
+def on_submit(doc,method):
     make_fee_records(doc)
     create_student(doc)
     update_enrollment_admission_status(doc)
-    update_reserved_seats_on_submit(doc)
+    update_reserved_seats(doc, on_submit)
 
     fee_structure_id = get_fee_structure(doc)
     
@@ -213,101 +210,19 @@ def create_fees(doc,fee_structure_id,on_submit=0):
     if fee_waiver_student:
         frappe.db.set_value("Fees Waiver",fee_waiver_student[0]['name'], "fees",fees.name)
     
-    
-
 def cancel_fees(doc,fee_structure_id):
     # cancel_doc = frappe.get_doc("Fees",voucher_no)
     # cancel_doc.cancel()
     for ce in frappe.get_all("Fees",{"program_enrollment":doc.name,"fee_structure":fee_structure_id}):
         make_reverse_gl_entries(voucher_type="Fees", voucher_no=ce.name)
-    
-      
-def update_reserved_seats_on_submit(doc):
-    if doc.reference_doctype and doc.reference_name and doc.reference_doctype in ["Student Applicant","Branch Sliding Application"]:
 
-        # for applicant
-        if doc.reference_doctype == "Student Applicant":
-            
-            for ad in frappe.get_all("Program Priority",{"parent":doc.reference_name,"programs":doc.programs,"semester":doc.program},["student_admission"]):
-                admission=frappe.get_doc("Student Admission",ad.student_admission)
-
-                # check reservation type exists
-                if len(frappe.get_all("Reservations List",{"seat_reservation_type":doc.seat_reservation_type,"parent":admission.name}))==0:
-                    frappe.throw("Reservation Type <b>{0}</b> Not Exists in Admission <b>{1}</b>".format(doc.seat_reservation_type,admission.name))
-
-                # check checkbox values
-                for reservation_type in frappe.get_all("Seat Reservation Type",{"name":doc.seat_reservation_type},["physically_disabled","award_winner","name"]):
-                    
-                    if doc.physically_disabled != reservation_type.physically_disabled:
-                        frappe.throw("Please Mark Checkbox <b>{0}</b> for Reservation Type <b>{1}</b>".format("Physically Disabled",doc.seat_reservation_type)) 
-
-                    if doc.award_winner != reservation_type.award_winner:
-                        frappe.throw("Please Mark Checkbox <b>{0}</b> for Reservation Type <b>{1}</b>".format("Award Winner",doc.seat_reservation_type))
-
-                    validate_reservation_type_by_criteria(doc,reservation_type.name)
-
-                # update seat 
-                for d in admission.get("reservations_distribution"):
-                    if doc.seat_reservation_type==d.seat_reservation_type:
-                        if int(d.seat_balance) > 0:
-                            d.seat_balance -= 1
-                        else:
-                            frappe.throw("No seat !!")
-                admission.save()
-
-def update_reserved_seats_on_cancel(doc):
-    if doc.reference_doctype and doc.reference_name and doc.reference_doctype in ["Student Applicant","Branch Sliding Application"]:
-
-        # for applicant
-        if doc.reference_doctype == "Student Applicant":
-            
-            for ad in frappe.get_all("Program Priority",{"parent":doc.reference_name,"programs":doc.programs,"semester":doc.program},["student_admission"]):
-                admission=frappe.get_doc("Student Admission",ad.student_admission)
-
-                # check reservation type exists
-                if len(frappe.get_all("Reservations List",{"seat_reservation_type":doc.seat_reservation_type,"parent":admission.name}))==0:
-                    frappe.throw("Reservation Type <b>{0}</b> Not Exists in Admission <b>{1}</b>".format(doc.seat_reservation_type,admission.name))
-
-                # check checkbox values
-                for reservation_type in frappe.get_all("Seat Reservation Type",{"name":doc.seat_reservation_type},["physically_disabled","award_winner","name"]):
-                    
-                    if doc.physically_disabled != reservation_type.physically_disabled:
-                        frappe.throw("Please Mark Checkbox <b>{0}</b> for Reservation Type <b>{1}</b>".format("Physically Disabled",doc.seat_reservation_type)) 
-
-                    if doc.award_winner != reservation_type.award_winner:
-                        frappe.throw("Please Mark Checkbox <b>{0}</b> for Reservation Type <b>{1}</b>".format("Award Winner",doc.seat_reservation_type))
-
-                    validate_reservation_type_by_criteria(doc,reservation_type.name)
-
-                # update seat 
-                for d in admission.get("reservations_distribution"):
-                    if doc.seat_reservation_type==d.seat_reservation_type:
-                        if int(d.allocated_seat) > int(d.seat_balance):
-                            d.seat_balance += 1
-                        else:
-                            frappe.throw("Seat can't be greater than allocated_seat.")
-                admission.save()
-        
-        # branch sliding
-        else:
-            for application in frappe.get_all("Branch Sliding Application",{"name":doc.reference_name},['branch_sliding_declaration','sliding_in_program']):
-                if application.branch_sliding_declaration:
-                    declaration=frappe.get_doc("Branch sliding Declaration",application.branch_sliding_declaration)
-
-                    for criteria in declaration.get("branch_sliding__criteria"):
-                        if criteria.program==application.sliding_in_program:
-                            if on_submit:
-                                criteria.available_seats-=1
-                            else:
-                                criteria.available_seats+=1
-                                
-                    declaration.validate_seats()
-                    declaration.submit()
 def delete_permissions(doc):          
     delete_ref_doctype_permissions(["Programs","Course Enrollment","Course"],doc)
+
 def delete_course_enrollment(doc):
     for ce in frappe.get_all("Course Enrollment",{"program_enrollment":doc.name}):
         frappe.delete_doc("Course Enrollment",ce.name)  
+
 # def update_student(doc):
 #     student=frappe.get_doc("Student",doc.student)
 #     student.set("current_education",[])
@@ -646,9 +561,15 @@ def update_reserved_seats(doc,on_submit=0):
                 for d in admission.get("reservations_distribution"):
                     if doc.seat_reservation_type==d.seat_reservation_type:
                         if on_submit:
-                            d.seat_balance-=1
-                        else:
-                            d.seat_balance+=1
+                            if int(d.seat_balance) > 0:
+                                d.seat_balance-=1
+                            else:
+                                frappe.throw("There is no available seat.")
+                        elif on_cancel:
+                            if int(d.allocated_seat) > int(d.seat_balance):
+                                d.seat_balance+=1
+                            else:
+                                frappe.throw("Error !!")
                 admission.save()
         
         # branch sliding
