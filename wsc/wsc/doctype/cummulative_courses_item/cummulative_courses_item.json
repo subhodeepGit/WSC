@@ -11,6 +11,9 @@
   "course",
   "course_code",
   "course_name",
+  "column_break_sdckw",
+  "total_marks",
+  "earned_marks",
   "cr",
   "gr"
  ],
@@ -25,31 +28,31 @@
   {
    "fieldname": "course",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Course",
    "options": "Course"
   },
   {
    "fieldname": "course_code",
    "fieldtype": "Data",
-   "label": "Course Code"
+   "label": "Module Code"
   },
   {
    "fieldname": "course_name",
    "fieldtype": "Data",
-   "label": "Course Name"
+   "in_list_view": 1,
+   "label": "Module Name"
   },
   {
    "fieldname": "cr",
    "fieldtype": "Data",
-   "in_list_view": 1,
+   "hidden": 1,
    "label": "CR"
   },
   {
    "fieldname": "gr",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "GR"
+   "label": "GRADE"
   },
   {
    "fieldname": "programs",
@@ -57,17 +60,32 @@
    "in_list_view": 1,
    "label": "Programs",
    "options": "Programs"
+  },
+  {
+   "fieldname": "total_marks",
+   "fieldtype": "Float",
+   "label": "Total Marks"
+  },
+  {
+   "fieldname": "earned_marks",
+   "fieldtype": "Float",
+   "label": "Earned Marks"
+  },
+  {
+   "fieldname": "column_break_sdckw",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-01-27 14:15:52.265631",
+ "modified": "2023-07-13 17:57:43.427347",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Cummulative Courses Item",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",
- "sort_order": "DESC"
+ "sort_order": "DESC",
+ "states": []
 }

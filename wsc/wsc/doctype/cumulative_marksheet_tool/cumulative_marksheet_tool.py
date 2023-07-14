@@ -29,7 +29,6 @@ class CumulativeMarksheetTool(Document):
 		else:
 			create_cummulative_marksheet(self.name)
 def create_cummulative_marksheet(cumulative_marksheet_tool):
-	print("cumulative_marksheet_tool",cumulative_marksheet_tool)
 	doc = frappe.get_doc("Cumulative Marksheet Tool", cumulative_marksheet_tool)
 	error = False
 	total_records = len(doc.get("cummulative_marksheet_student"))
@@ -64,7 +63,7 @@ def create_cummulative_marksheet(cumulative_marksheet_tool):
 		result.signature_of_examiner=doc.signature_of_examiner
 		semesters=[]	
 		for results in frappe.get_all("Exam Assessment Result",{"student":d.student,"docstatus":1},['name','programs','program'],order_by="program asc"):
-			for course in frappe.get_all("Evaluation Result Item",{"parent":results.name},['course','earned_cr','grade','course_code','course_name'],order_by="creation asc"):
+			for course in frappe.get_all("Evaluation Result Item",{"parent":results.name},['course','earned_marks','total_marks','earned_cr','grade','course_code','course_name'],order_by="creation asc"):
 				# order_by="course_code asc"
 				result.append("cummulative_courses_item",{
 					"programs":results.programs,
@@ -73,30 +72,53 @@ def create_cummulative_marksheet(cumulative_marksheet_tool):
 					"course_code":course.course_code,
 					"course_name":course.course_name,
 					"cr":course.earned_cr,
-					"gr":course.grade
+					"gr":course.grade,
+					"total_marks":course.total_marks,
+					"earned_marks":course.earned_marks
 				})
 			semesters.append(results.program)
 		total_sgpa=0
+		earned_marks=0
+		percent=0
 		order_dict={1:"1ST SEM",2:"2ND SEM",3:"3RD SEM",4:"4TH SEM",5:"5TH SEM",6:"6TH SEM",7:"7TH SEM",8:"8TH SEM",9:"9TH SEM",10:"10TH SEM"}
 		for sem in frappe.get_all("Program",{"name":["IN",semesters]},['name',"semester_order"],order_by="semester_order"):
-			for results in frappe.get_all("Exam Assessment Result",{"student":d.student,"docstatus":1,'program':sem.name},['sgpa','modified','programs']):
+			for results in frappe.get_all("Exam Assessment Result",{"student":d.student,"docstatus":1,'program':sem.name},['sgpa','grade','percentage','secured_marks','total_marks','modified','programs']):
 				result.append("cumulatice_grades_item",{
 					"semester":sem.name,
 					"semester_order":order_dict.get(sem.semester_order),
-					"sgpa":round(results.sgpa,2)
+					# "sgpa":round(results.sgpa,2)
+					"total_marks":round(results.total_marks,2),
+					"secured_marks":round(results.secured_marks,2),
+					"percentage":results.percentage,
+					"grade":results.grade
 				})
-				round(results.sgpa,2)
+				# round(results.sgpa,2)
 				# res = "{:.2f}".format(results.sgpa)
 				# results.sgpa=res
 				d.programs=results.programs
 				d.completed_on=results.modified
-				total_sgpa+=results.sgpa
+				total_sgpa+=results.total_marks
+				earned_marks+=results.secured_marks
+				percent+=results.percentage
+				# total_sgpa+=results.sgpa
 		# result.department=frappe.db.get_value("Programs",result.programs,'department')
 		if len(result.get("cumulatice_grades_item")):
-			result.cgpa=(total_sgpa/len(result.get("cumulatice_grades_item")))	 
-			round(result.cgpa,2)
-			res = "{:.2f}".format(result.cgpa)
-			result.cgpa=res
+			# results.cgpa=(total_sgpa/len(results.get("cumulatice_grades_item")))	 
+			# round(result.cgpa,2)
+			# res = "{:.2f}".format(result.cgpa)
+			# results.cgpa=res
+			result.percentage=(percent/len(result.get("cumulatice_grades_item")))
+			result.percentage
+			res2 = "{:.2f}".format(result.percentage)
+			result.percentage=res2
+		marks_earned=0
+		total_marks=0
+		for d in result.get("cumulatice_grades_item"):
+				marks_earned += flt(d.secured_marks)
+				total_marks += flt(d.total_marks)
+				if total_marks > 0 :
+					result.total_marks=total_marks
+					result.secured_marks=marks_earned
 			# d.department=frappe.db.get_value("Programs",result.programs,'department')
 			# if len(d.get("cumulatice_grades_item")):
 			# 	d.cgpa=(total_sgpa/len(d.get("cumulatice_grades_item")))

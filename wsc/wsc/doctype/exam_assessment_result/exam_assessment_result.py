@@ -16,27 +16,22 @@ class ExamAssessmentResult(Document):
         self.set_evaluation_result_item()
         self.set_grade()
         if len(self.assessment_result_item) > 0:
-            # self.calculate_sgpa()
             self.calculate_percentage()
         self.map_fields()
-        # self.calculate_sgpa_cgpa()
+        self.validate_duplicate_for_save()
         self.validate_duplicate_for_submit()
         self.complete_course_enrollment()
-        # self.get_sgpa_into_total_credit()
     def validate(self):
+        self.validate_duplicate_for_save()
+        self.validate_duplicate_for_submit()
         self.set_evaluation_result_item()
         self.set_grade()
         if len(self.assessment_result_item) > 0:
-            # self.calculate_sgpa()
             self.calculate_percentage()
-            # self.calculate_sgpa_cgpa()
       
     def on_change(self):
         if len(self.assessment_result_item) > 0:
-            # self.calculate_sgpa()
             self.calculate_percentage()
-            # self.calculate_sgpa_cgpa()
-        # self.get_sgpa_into_total_credit()
 
 
     def set_assessment_result_items(self):
@@ -152,13 +147,18 @@ class ExamAssessmentResult(Document):
                     d.result="P"
                 else:
                     d.result="F"
-
+    def validate_duplicate_for_save(self):
+        assessment_result = frappe.get_list("Exam Assessment Result", filters={"name": ("not in", [self.name,self.student_name]),
+            "student":self.student, "docstatus":0,'programs':self.programs, 'program':self.program})
+            # "docstatus":1,
+        if assessment_result:
+             frappe.throw(_("Exam Assessment Result record <b>'{0}'</b> for <b>'{1}'</b> is already exists.").format(self.student_name,getlink("Exam Assessment Result",assessment_result[0].name),self.student_name))
     def validate_duplicate_for_submit(self):
-        assessment_result = frappe.get_list("Exam Assessment Result", filters={"name": ("not in", [self.name]),
+        assessment_result = frappe.get_list("Exam Assessment Result", filters={"name": ("not in", [self.name,self.student_name]),
             "student":self.student, "docstatus":1,'programs':self.programs, 'program':self.program})
             # "docstatus":1,
         if assessment_result:
-            frappe.throw(_("Exam Assessment Result record {0} already exists.").format(getlink("Exam Assessment Result",assessment_result[0].name)))
+            frappe.throw(_("Exam Assessment Result record <b>'{0}'</b> for <b>'{1}'</b> is already exists.").format(getlink("Exam Assessment Result",assessment_result[0].name),self.student_name))
     ################################################################################################################################
     # IT WILL USE WHEN AFTER SUBMIT THE FINAL EXAM RESULT IF CREDIT POINT OR SGPA INTO CREDIT POINT OR SGPA
     def calculate_sgpa(self):
@@ -289,7 +289,7 @@ def get_student_details(student):
         if len(data)>0:
             return data[0]  
         else:
-            frappe.throw("Program not enrolled by student {0}".format(student))  
+            frappe.throw("Course not enrolled by student {0}".format(student))  
         
 @frappe.whitelist()
 def filter_courses(doctype, txt, searchfield, start, page_len, filters):
