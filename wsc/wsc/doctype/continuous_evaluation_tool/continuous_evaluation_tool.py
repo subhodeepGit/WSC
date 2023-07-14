@@ -143,35 +143,56 @@ def make_continuous_evaluation(continuous_evaluation):
 												Join `tabFinal Credit Item` FCI on FCI.parent=ACA.name
 												Where ACA.academic_year="%s" and ACA.academic_term="%s" and ACA.program_grade="%s" 
 														and ACA.programs="%s" and ACA.semester="%s" and ACA.course="%s" 
-														and ACA.assessment_criteria="%s" and ACA.student="%s" and FCI.exam_declaration="%s and docstatus=1 "
+														and ACA.assessment_criteria="%s" and ACA.student="%s" and FCI.exam_declaration="%s" and ACA.docstatus=1 
 											"""%(academic_year,academic_term,program_grade,programs,semester,course,criteria,
 													student,exam_declaration),as_dict=1)
 				if len(exist_record) > 0:
 					frappe.msgprint("Record <b>{0}</b> is already exist for student <b>{1}</b>.".format(', '.join(map(str, exist_record)),result.get('rows')[d].get("student")))
-				if not exist_record:
+				elif not exist_record:
 					Assessment_data=frappe.db.sql("""Select ACA.name from `tabAssessment Credits Allocation` as ACA
 												Where ACA.academic_year="%s" and ACA.academic_term="%s" and ACA.program_grade="%s" 
 														and ACA.programs="%s" and ACA.semester="%s" and ACA.course="%s" 
-														and ACA.assessment_criteria="%s" and ACA.student="%s" and docstatus=1 
+														and ACA.assessment_criteria="%s" and ACA.student="%s" and ACA.docstatus=1 
 												"""%(academic_year,academic_term,program_grade,programs,semester,course,criteria,
 														student),as_dict=1)
 					name=Assessment_data[0]['name']
 					doc=frappe.get_doc("Assessment Credits Allocation",name)
+					qualifying_status=''
+					final_result=''
+					weightage_marks=''
+					grace_marks=''
+					out_of_marks=''	#	Total Marks	
+					passing_marks=''	
 					for row in student_data.get(result.get('rows')[d].get("student"))['rows']:
+						final_result=flt(result.get('rows')[d].get("grace_marks"))+flt(row.get("earned_marks"))
+						cdl_list=frappe.get_all("Credit distribution List",{"parent":course,"assessment_criteria":criteria},['passing_marks'])
+						if flt(final_result)<=cdl_list[0]['passing_marks']:
+							qualifying_status="Fail"
+						else:
+							qualifying_status="Pass"
+						weightage_marks=flt(row.get("earned_marks"))
+						grace_marks=flt(result.get('rows')[d].get("grace_marks"))
+						out_of_marks=flt(row.get("total_marks"))
+						passing_marks=flt(cdl_list[0]['passing_marks'])
 						doc.append("final_credit_item",{
 								"course_assessment":row.get("name"),
-								"earned_marks":flt(row.get("earned_marks")),
-								"total_marks":flt(row.get("total_marks")),
-								"grace_marks":flt(result.get('rows')[d].get("grace_marks")),
+								"earned_marks":weightage_marks,
+								"total_marks":out_of_marks,
+								"grace_marks":grace_marks,
+								"passing_marks":passing_marks,
+								"final_earned_marks":final_result,
 								"exam_type":result.get("exam_category"),
-								"attendence_status":result.get('rows')[d].get("exam_attendence")	
+								"attendence_status":result.get('rows')[d].get("exam_attendence"),
+								"exam_declaration":result.get("exam_declaration"),
+								"qualifying_status":qualifying_status
 							})
-						print(row.get("name"))
-						print(flt(row.get("earned_marks")))
-						print(flt(row.get("total_marks")))
-						print(flt(result.get('rows')[d].get("grace_marks")))
-						print(result.get("exam_category"))
-						print(result.get('rows')[d].get("exam_attendence"))
+					
+					doc.weightage_marks=weightage_marks
+					doc.out_of_marks=out_of_marks
+					doc.qualifying_status=qualifying_status
+					doc.grace_marks=grace_marks
+					doc.final_marks=final_result
+					doc.passing_marks=passing_marks
 					doc.save()
 					records=True
 				else:
