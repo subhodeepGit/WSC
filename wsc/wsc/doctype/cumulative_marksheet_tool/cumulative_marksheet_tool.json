@@ -10,13 +10,21 @@
   "school_of",
   "specialization",
   "programs",
+  "grading_scale",
   "academic_term",
+  "column_break_fazeh",
+  "posting_date",
   "year_of_admission",
   "year_of_admision",
   "completed_on",
   "year_of_completion",
-  "result_creation_status",
+  "column_break_6c4e8",
+  "employee",
+  "employee_name",
+  "designation",
+  "column_break_o9ls9",
   "get_students",
+  "result_creation_status",
   "total_enrolled_student",
   "cummulative_marksheet_student",
   "signature_of_examiner"
@@ -79,12 +87,14 @@
   {
    "fieldname": "school_of",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "School of"
   },
   {
    "fieldname": "signature_of_examiner",
    "fieldtype": "Attach Image",
-   "label": "Signature of Examiner"
+   "label": "Signature of the Authority",
+   "reqd": 1
   },
   {
    "fieldname": "branch",
@@ -109,11 +119,58 @@
    "fieldtype": "Data",
    "hidden": 1,
    "label": "Year of Admission"
+  },
+  {
+   "fieldname": "grading_scale",
+   "fieldtype": "Link",
+   "label": "Grading Scale",
+   "options": "Grading Scale"
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date"
+  },
+  {
+   "fieldname": "column_break_fazeh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_o9ls9",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Signing Authority",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Signing Authority Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.designation",
+   "fieldname": "designation",
+   "fieldtype": "Link",
+   "label": "Designation",
+   "options": "Designation",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_6c4e8",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-14 10:41:03.330455",
+ "modified": "2023-07-14 17:40:47.282360",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Cumulative Marksheet Tool",
