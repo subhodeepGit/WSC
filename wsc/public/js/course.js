@@ -1,11 +1,22 @@
 frappe.ui.form.on('Course', {
 	refresh: function(frm) {
-        frm.remove_custom_button("Add to Programs","Action");
-		frm.remove_custom_button("Add to Semester","Action");
-		if (!cur_frm.doc.__islocal && (!frappe.user.has_role(["Student","Instructor"]) || frappe.user.has_role(["System Manager"]))) {
-			frm.add_custom_button(__('Add to Semester'), function() {
-				frm.trigger('add_course_to_semester')
-			}, __('Action'));
+		if (frm.doc.is_tot==0){
+			frm.remove_custom_button("Add to Programs","Action");
+			frm.remove_custom_button("Add to Semester","Action");
+			if (!cur_frm.doc.__islocal && (!frappe.user.has_role(["Student","Instructor"]) || frappe.user.has_role(["System Manager"]))) {
+				frm.add_custom_button(__('Add to Semester'), function() {
+					frm.trigger('add_course_to_semester')
+				}, __('Action'));
+			}
+		}
+		if (frm.doc.is_tot==1){
+			frm.remove_custom_button("Add to Programs","Action");
+			frm.remove_custom_button("Add to Semester","Action");
+			if (!cur_frm.doc.__islocal && (!frappe.user.has_role(["Student","Instructor"]) || frappe.user.has_role(["System Manager"]))) {
+				frm.add_custom_button(__('Add to ToT Course'), function() {
+					frm.trigger('add_module_to_tot_course')
+				}, __('Action'));
+			}
 		}
 	},
 	disable:function(frm){
@@ -41,6 +52,7 @@ frappe.ui.form.on('Course', {
 		})
 	},
 	add_course_to_semester: function(frm) {
+		
 		get_semester_without_course(frm.doc.name).then(r => {
 			if (r.message.length) {
 				frappe.prompt([
@@ -55,6 +67,7 @@ frappe.ui.form.on('Course', {
 				],
 				function(data) {
 					frappe.call({
+						
 						method: 'wsc.wsc.validations.course.add_course_to_programs',
 						args: {
 							'course': frm.doc.name,
@@ -73,14 +86,54 @@ frappe.ui.form.on('Course', {
 				frappe.msgprint(__('This course is already added to the existing semester'));
 			}
 		});
+	},
+	add_module_to_tot_course: function(frm) {
+		get_course_without_module(frm.doc.name).then(r => {
+			if (r.message.length) {
+				frappe.prompt([
+					{
+						fieldname: 'programs',
+						label: __('Course'),
+						fieldtype: 'MultiSelectPills',
+						get_data: function() {
+							return r.message;
+						}
+					}
+				],
+				function(data) {
+					frappe.call({
+						method: 'wsc.wsc.validations.course.add_module_to_tot_course',
+						args: {
+							'course': frm.doc.name,
+							'programs': data.programs,
+						},
+						callback: function(r) {
+							if (!r.exc) {
+								frm.reload_doc();
+							}
+						},
+						freeze: true,
+						freeze_message: __('...Adding Module to Tot Course')
+					})
+				}, __('Add Module to Course'), __('Add'));
+			} else {
+				frappe.msgprint(__('This Module is already added to the existing Course'));
+			}
+		});
 	}
 });
-
-
 let get_semester_without_course = function(course) {
 	return frappe.call({
 		args:{"course":course},
 		method: 'wsc.wsc.validations.course.get_semesters_name',
+		// /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/validations/course.py
+	});
+}
+
+let get_course_without_module = function(course) {
+	return frappe.call({
+		args:{"course":course},
+		method: 'wsc.wsc.validations.course.get_course_name',
 		// /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/validations/course.py
 	});
 }
@@ -108,4 +161,35 @@ frappe.ui.form.on("Credit distribution List", "weightage", function(frm, cdt, cd
     var d = locals[cdt][cdn];
 	d.total_marks=(frm.doc.total_marks*(d.weightage/100))
 	refresh_field("total_marks", d.name, d.parentfield);
+});
+
+frappe.ui.form.on('Credit distribution List', {
+	credit_distribution_add: function(frm){
+		frm.fields_dict['credit_distribution'].grid.get_field('assessment_criteria').get_query = function(doc){
+			var assessment_criteria_list = [];
+			$.each(doc.credit_distribution, function(idx, val){
+				if (val.assessment_criteria) assessment_criteria_list.push(val.assessment_criteria);
+			});
+			return { filters: [['Assessment Criteria', 'name', 'not in', assessment_criteria_list]] };
+		};
+	}
+});
+// passing_marks
+frappe.ui.form.on('Credit distribution List', {	
+	passing_marks:function(frm, cdt, cdn){
+	var d = locals[cdt][cdn];
+	var total = 0;
+	let a= parseInt(total)
+	frm.doc.credit_distribution.forEach(function(d)  { a = a+ d.passing_marks; });
+	frm.set_value("passing_marks", a);
+	refresh_field("passing_marks");
+  },
+  credit_distribution_remove:function(frm, cdt, cdn){
+	var d = locals[cdt][cdn];
+	var total = 0;
+	let a= parseInt(total)
+	frm.doc.credit_distribution.forEach(function(d) { a += d.passing_marks; });
+	frm.set_value("passing_marks", a);
+	refresh_field("passing_marks");
+	}
 });

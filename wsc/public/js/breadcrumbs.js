@@ -199,4 +199,3 @@ frappe.breadcrumbs = {
 	}
 
 }
-

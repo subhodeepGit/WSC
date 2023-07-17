@@ -1,0 +1,99 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-30 15:41:42.009834",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "building_name",
+  "floor_number",
+  "floor_size",
+  "number_of_rooms",
+  "floor_plan",
+  "floor_incharge",
+  "floor_assets",
+  "floor_documents",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "building_name",
+   "fieldtype": "Link",
+   "label": "Building Name",
+   "options": "Buildings"
+  },
+  {
+   "fieldname": "floor_size",
+   "fieldtype": "Int",
+   "label": "Floor Size"
+  },
+  {
+   "fieldname": "number_of_rooms",
+   "fieldtype": "Data",
+   "label": "Number of rooms"
+  },
+  {
+   "fieldname": "floor_incharge",
+   "fieldtype": "Data",
+   "label": "Floor Incharge"
+  },
+  {
+   "fieldname": "floor_assets",
+   "fieldtype": "Table",
+   "label": "Floor Assets",
+   "options": "Floor Assets"
+  },
+  {
+   "fieldname": "floor_documents",
+   "fieldtype": "Table",
+   "label": "Floor Documents",
+   "options": "Land Documents"
+  },
+  {
+   "fieldname": "floor_number",
+   "fieldtype": "Data",
+   "label": "Floor Number"
+  },
+  {
+   "fieldname": "floor_plan",
+   "fieldtype": "Attach",
+   "label": "Floor Plan"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Floor",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-05-30 15:41:42.009834",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Floor",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

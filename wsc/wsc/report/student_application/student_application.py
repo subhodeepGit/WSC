@@ -31,8 +31,8 @@ def get_data(filters):
 																									"first_name","middle_name","last_name","gender",
 	                                                                             					"fathers_name","fathers_occupation","qualification","mothers_name","mothers_occupation",
 																									"mothers_qualification","father_annual_income","blood_group","religion",
-                                                                                                     "adhaar_number","states","districts","blocks","city","police_station","pin_code",
-																									 "student_email_id","student_mobile_number", "student_category","tribe_name","sub_tribes","date_of_birth",
+                                                                                                     "states","districts","blocks","city","pin_code",
+																									 "student_email_id","student_mobile_number", "student_category","date_of_birth",
 																								 "program_grade","department"])
 
 	# if student_data_info:

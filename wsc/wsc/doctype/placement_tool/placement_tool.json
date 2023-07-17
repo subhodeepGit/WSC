@@ -13,7 +13,6 @@
   "drive_title",
   "placement_drive_name",
   "get_eligible_students_list",
-  "test_btn",
   "column_break_5",
   "round_status",
   "round_of_placement",
@@ -102,16 +101,11 @@
    "label": "Round Status",
    "options": "\nScheduling Of Round\nRound Result Declaration",
    "reqd": 1
-  },
-  {
-   "fieldname": "test_btn",
-   "fieldtype": "Button",
-   "label": "Test button"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-02-21 16:53:54.651335",
+ "modified": "2023-05-17 15:57:53.525985",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Tool",

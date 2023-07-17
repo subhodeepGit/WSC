@@ -8,6 +8,7 @@ from frappe import _
 from frappe.utils import today,getdate
 from wsc.wsc.utils import duplicate_row_validation,get_courses_by_semester
 from wsc.wsc.notification.custom_notification import exam_evaluation_plan_for_paper_setter_submit,exam_evaluation_plan_for_moderator_submit
+from datetime import datetime
 
 class ExamAssessmentPlan(Document):
     def validate(self):
@@ -22,6 +23,15 @@ class ExamAssessmentPlan(Document):
     def on_submit(self):
         exam_evaluation_plan_for_paper_setter_submit(self)
         exam_evaluation_plan_for_moderator_submit(self)
+
+    def on_update_after_submit(self):
+        self.validate_dates()
+        paper_setting_data=frappe.get_all("Exam Paper Setting",{"assessment_plan":self.name,"workflow_state":"Pending"},['name'])
+        for t in paper_setting_data:
+            frappe.db.sql(""" update `tabExam Paper Setting` SET paper_setting_start_date='%s',paper_setting_end_date='%s' where name='%s' """%
+                          (self.paper_setting_start_date,self.paper_setting_end_date,t['name']))
+
+
 
     @frappe.whitelist()
     def create_exam_paper_setter(self):
@@ -41,8 +51,15 @@ class ExamAssessmentPlan(Document):
             frappe.throw("Please Select Valid <b>Exam Declaration</b>")
 
     def validate_dates(self):
-        if (self.paper_setting_start_date  and self.paper_setting_end_date and self.paper_setting_start_date > self.paper_setting_end_date):
-            frappe.throw("Start Date should be less than End Date")
+        dt_exam_declation=frappe.get_all("Exam Declaration",{"name":self.exam_declaration},['exam_start_date','exam_end_date'])
+        paper_setting_start_date=datetime.strptime(self.paper_setting_start_date, '%Y-%m-%d').date()
+        paper_setting_end_date=datetime.strptime(self.paper_setting_end_date, '%Y-%m-%d').date()
+
+        if dt_exam_declation[0]['exam_start_date']>paper_setting_start_date and dt_exam_declation[0]['exam_start_date']>paper_setting_end_date:
+            if (self.paper_setting_start_date  and self.paper_setting_end_date and self.paper_setting_start_date > self.paper_setting_end_date):
+                frappe.throw("Start Date should be less than End Date")
+        else:
+            frappe.throw("Data at Exam Declation can't be smaller then Paper setting date")        
 
         # if (self.paper_setting_start_date and self.paper_setting_start_date < today()):
         #     frappe.throw("Start Date should be greater than today's date")
@@ -151,6 +168,11 @@ def make_exam_paper_setting(doc):
                 eps.assessment_plan=doc.name
                 eps.programs=doc.programs
                 eps.program=doc.program
+                eps.exam_coordinator=doc.exam_coordinator
+
+                eps.paper_setting_start_date=doc.paper_setting_start_date
+                eps.paper_setting_end_date=doc.paper_setting_end_date
+
                 for moderator in doc.get("moderator_list"):
                     if moderator.course==ex.course:
                         eps.moderator_name=moderator.moderator

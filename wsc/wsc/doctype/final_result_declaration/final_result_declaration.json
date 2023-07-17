@@ -1,6 +1,6 @@
 {
  "actions": [],
- "autoname": "format:result of- {programs}-for {academic_term}",
+ "autoname": "format:Result of- {programs}-for {academic_term}",
  "creation": "2021-10-20 18:27:36.455883",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -27,7 +27,7 @@
    "in_list_view": 1,
    "label": "Programs",
    "options": "Programs",
-   "reqd": 1
+   "reqd": 0
   },
   {
    "fieldname": "semester",
@@ -107,10 +107,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-09-20 15:54:06.476178",
+ "modified": "2023-07-05 17:35:55.196671",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Final Result Declaration",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
@@ -128,5 +129,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

@@ -1,0 +1,75 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-03 15:29:44.202227",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "visa_number",
+  "visa_type",
+  "visa_sub_type",
+  "date_of_issue",
+  "date_of_expiry",
+  "service_number",
+  "number_of_entries"
+ ],
+ "fields": [
+  {
+   "fieldname": "visa_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Visa Number"
+  },
+  {
+   "fieldname": "visa_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Visa Type",
+   "options": "\nTourist Visa(T)\nBusiness Visa(B)\nEmployment Visa(E)\nMedical Visa(Med)\nConference(C)\nEntry Visa(X)"
+  },
+  {
+   "fieldname": "visa_sub_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Visa Sub Type",
+   "options": "\nT-1\nT-2\nT-3\nB-1\nB-2\nB-3\n7.B-4\n8.B-5\nB-6\nB-7\nB-Sports\nB-1X\nB-2X\nB-3X\nB-4X\nE-1\nE-2\nE-3\nE-4\nE-5\nE-1X\nE-2X\nE-3X\nE-4X\nE-5X\nF\nC-1\nC-2\nX-1\nX-2\nX-Misc"
+  },
+  {
+   "fieldname": "date_of_issue",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date of Issue"
+  },
+  {
+   "fieldname": "date_of_expiry",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date of Expiry"
+  },
+  {
+   "fieldname": "service_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Service Number"
+  },
+  {
+   "fieldname": "number_of_entries",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Number of Entries"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-05-03 16:23:23.920719",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Visa Detail",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

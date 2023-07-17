@@ -92,7 +92,17 @@ frappe.ui.form.on('Exam Assessment Plan', {
 			}
 		};
 	},
+    paper_setting_start_date(frm) {
+        frm.fields_dict.paper_setting_end_date.datepicker.update({
+            minDate: frm.doc.paper_setting_start_date ? new Date(frm.doc.paper_setting_start_date) : null
+        });
+    },
 
+    paper_setting_end_date(frm) {
+        frm.fields_dict.paper_setting_start_date.datepicker.update({
+            maxDate: frm.doc.paper_setting_end_date ? new Date(frm.doc.paper_setting_end_date) : null
+        });
+    },
 	refresh: function(frm) {
 		// if (frm.doc.docstatus == 1) {
 		// 	frm.add_custom_button(__('Course Assessment Result Tool'), function() {
@@ -124,6 +134,7 @@ frappe.ui.form.on('Exam Assessment Plan', {
 				});
 			}, __('Create'))
 		}
+		frm.set_df_property('course_assessment_plan_item', 'cannot_add_rows', true);
 	},
 	exam_declaration:function(frm){
         frm.trigger("get_courses");

@@ -165,6 +165,12 @@ nav.navbar{
     padding: 0;
     margin: 2px 0;
 }
+.btn.btn-primary{
+    background: #5c3c92;
+}
+.abc{
+    background-color: #B5AFD2;
+}
 .sidebar-item a{
     padding: 7px 10px;
     color: var(--text-color);

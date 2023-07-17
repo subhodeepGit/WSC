@@ -15,19 +15,43 @@ from wsc.wsc.utils import get_courses_by_semester
 class CourseAssessmentResultTool(Document):
 	pass
 
+# @frappe.whitelist()
+# def get_enroll_students(academic_year,academic_term,programs,semesters,course,criteria):
+# 	student_list=[]
+# 	course_assessment={}
+# 	count=0
+# 	for pr_enroll in frappe.get_all("Program Enrollment",{"academic_year":academic_year,"programs":programs,"program":semesters,"docstatus":1,"academic_term":academic_term},order_by="roll_no asc"):
+# 		for cr_enroll in frappe.get_all("Course Enrollment",{"course":course,"program_enrollment":pr_enroll.name},["student","student_name","roll_no","registration_number","semester","programs"]):
+# 			count+=1
+# 			cr_enroll.update({"id":count})
+# 			for cr_asmt in frappe.get_all("Course Assessment",{"docstatus":("!=",2),"student":cr_enroll.student,"academic_year":academic_year,"academic_term":academic_term,'course':course,'programs':programs,"assessment_criteria":criteria},['earned_marks','total_marks',"name","programs"]):
+# 				course_assessment[cr_enroll.student]={"earned_marks":cr_asmt.earned_marks,"total_marks":cr_asmt.total_marks}
+# 			student_list.append(cr_enroll.update(get_total_marks(course,criteria)))
+# 	return student_list,course_assessment
+
 @frappe.whitelist()
-def get_enroll_students(academic_year,academic_term,programs,semesters,course,criteria):
+def get_enroll_students(course,criteria,exam_declaration):
 	student_list=[]
 	course_assessment={}
-	count=0
-	for pr_enroll in frappe.get_all("Program Enrollment",{"academic_year":academic_year,"programs":programs,"program":semesters,"docstatus":1,"academic_term":academic_term},order_by="roll_no asc"):
-		for cr_enroll in frappe.get_all("Course Enrollment",{"course":course,"program_enrollment":pr_enroll.name},["student","student_name","roll_no","registration_number","semester","programs"]):
-			count+=1
-			cr_enroll.update({"id":count})
-			for cr_asmt in frappe.get_all("Course Assessment",{"docstatus":("!=",2),"student":cr_enroll.student,"academic_year":academic_year,"academic_term":academic_term,'course':course,'programs':programs,"assessment_criteria":criteria},['earned_marks','total_marks',"name","programs"]):
-				course_assessment[cr_enroll.student]={"earned_marks":cr_asmt.earned_marks,"total_marks":cr_asmt.total_marks}
-			student_list.append(cr_enroll.update(get_total_marks(course,criteria)))
+	if exam_declaration and course:
+		count=0
+		exam_group_data=frappe.get_all("Module Wise Exam Group",{"docstatus":1,"exam_declaration_id":exam_declaration,"modules_id":course},['name'])
+		credit_distribution_list=frappe.get_all("Credit distribution List",{"parent":course,"assessment_criteria":criteria},["credits","total_marks"])
+		if credit_distribution_list:
+			for t in exam_group_data:
+				student_list=frappe.db.sql(""" Select MWES.student_no,MWES.student_name,MWES.roll_no,MWES.student_no,MWES.permanent_registration_no,MWEG.semester,MWEG.course_type	
+									from `tabModule Wise Exam Student` MWES
+									JOIN `tabStudent` S ON S.name=MWES.student_no
+									JOIN `tabModule Wise Exam Group` MWEG ON MWEG.name=MWES.parent
+									where MWES.parent='%s' and MWES.examination_qualification_approval=1 and S.enabled=1 
+									ORDER BY MWES.roll_no ASC """%(t['name']),as_dict=1)
+				for t in student_list:
+					count+=1
+					t.update({"id":count,'credits':credit_distribution_list[0]['credits'],'total_marks':credit_distribution_list[0]['total_marks']})
+
 	return student_list,course_assessment
+
+
 
 def get_course(program):
 	'''Return list of courses for a particular program
@@ -403,37 +427,56 @@ def get_total_marks(course,criteria):
 @frappe.whitelist()
 def make_course_assessment(course_assessment):
 	result=json.loads(course_assessment)
-	for d in result.get('rows'):
-		if not frappe.db.count("Course Assessment",{"docstatus":("!=",2),"student":result.get('rows')[d].get("student"),"academic_year":result.get("academic_year"),"academic_term":result.get("academic_term"),'course':result.get("course"),"assessment_criteria":result.get("criteria")}):
-			doc=frappe.new_doc("Course Assessment")
-			doc.student=result.get('rows')[d].get("student")
-			doc.roll_no=result.get('rows')[d].get("roll_no")
-			doc.registration_number=result.get('rows')[d].get("registration_number")
-			doc.student_name=result.get('rows')[d].get("student_name")
-			doc.academic_year=result.get("academic_year")
-			doc.academic_term=result.get("academic_term")
-			doc.program_grade=result.get("program_grade")
-			doc.programs=result.get('rows')[d].get("programs")
-			doc.semester=result.get('rows')[d].get("semester")
-			doc.assessment_criteria=result.get("criteria")
-			doc.course=result.get("course")
-			doc.exam_declaration=result.get("exam_declaration")
-			doc.assessment_plan=result.get("exam_assessment_plan")
-			doc.earned_marks=result.get('rows')[d].get("earned_marks")
-			doc.total_marks=result.get('rows')[d].get("total_marks")
-			doc.save()
-	frappe.msgprint("Records Created")
+	if result.get('rows'):
+		list_student=[]
+		already_record=[]
+		for d in result.get('rows'):
+			if not frappe.db.count("Course Assessment",{"docstatus":("!=",2),"student":result.get('rows')[d].get("student_no"),"academic_year":result.get("academic_year"),"academic_term":result.get("academic_term"),'course':result.get("course"),"assessment_criteria":result.get("criteria")}):
+				doc=frappe.new_doc("Course Assessment")
+				doc.student=result.get('rows')[d].get("student_no")
+				doc.roll_no=result.get('rows')[d].get("roll_no")
+				doc.registration_number=result.get('rows')[d].get("registration_number")
+				doc.student_name=result.get('rows')[d].get("student_name")
+				doc.academic_year=result.get("academic_year")
+				doc.academic_term=result.get("academic_term")
+				doc.program_grade=result.get("program_grade")
+				doc.programs=result.get('rows')[d].get("programs")
+				doc.semester=result.get('rows')[d].get("semester")
+				doc.assessment_criteria=result.get("criteria")
+				doc.course=result.get("course")
+				doc.exam_declaration=result.get("exam_declaration")
+				doc.assessment_plan=result.get("exam_assessment_plan")
+				doc.earned_marks=result.get('rows')[d].get("earned_marks")
+				doc.total_marks=result.get('rows')[d].get("total_marks")
+				doc.attendence_status=result.get('rows')[d].get("attendance")
+				doc.save()
+				list_student.append(result.get('rows')[d].get("student_no"))
+			else:
+				already_record.append(result.get('rows')[d].get("student_no"))	
+		if 	list_student:	
+			frappe.msgprint("Records Created <b><i>%s</i></b>"%(list_student))
+		if 	already_record:
+			frappe.msgprint("Already Records Created <b><i>%s</i></b>"%(already_record))
 
 @frappe.whitelist()
 def get_courses(doctype, txt, searchfield, start, page_len, filters):
-    courses=get_courses_by_semester(filters.get("semester"))
-    if courses:
-        return frappe.db.sql("""select name,course_name,course_code from tabCourse
-			where year_end_date>=now() and name in ({0}) and (name LIKE %s or course_name LIKE %s or course_code LIKE %s)
-			limit %s, %s""".format(", ".join(['%s']*len(courses))),
-			tuple(courses + ["%%%s%%" % txt, "%%%s%%" % txt,"%%%s%%" % txt, start, page_len]))
-    return []
+	courses=get_courses_by_semester(filters.get("semester"))
+	if courses:
+		return frappe.db.sql("""select name,course_name,course_code from tabCourse
+		where year_end_date>=now() and name in ({0}) and (name LIKE %s or course_name LIKE %s or course_code LIKE %s)
+		limit %s, %s""".format(", ".join(['%s']*len(courses))),
+		tuple(courses + ["%%%s%%" % txt, "%%%s%%" % txt,"%%%s%%" % txt, start, page_len]))
+	return []
 		
 @frappe.whitelist()
 def get_assessment_criteria_list(doctype, txt, searchfield, start, page_len, filters):
 	return frappe.get_all("Credit distribution List",{"parent":filters.get("course")},['assessment_criteria'],as_list = 1)
+
+
+@frappe.whitelist()
+def get_semester_and_exam_assessment_plan(declaration_id=None):
+	result={}
+	if declaration_id:
+		sem_date=frappe.get_all("Examination Semester",{"parent":declaration_id},['semester'])
+		result['semester']=sem_date[0]['semester']
+	return result

@@ -11,9 +11,40 @@ class AssessmentCreditsAllocation(Document):
     def validate(self):
         self.validate_student()
         self.validate_assessment_criteria()
-        self.validate_marks()
         self.validate_duplicate_record()
         academic_term(self)
+        self.passing_marks_calculation()
+        self.final_earned_marks_calculation_child()
+        self.qualifying_status_child()
+        self.validate_marks()
+
+
+    def qualifying_status_child(self):
+        for t in self.get("final_credit_item"):
+            if flt(t.final_earned_marks)<=t.passing_marks:
+                t.qualifying_status="Fail"
+            else:
+                t.qualifying_status="Pass"
+
+
+    def final_earned_marks_calculation_child(self):
+        for t in self.get("final_credit_item"):
+            earned_marks=flt(t.earned_marks)
+            grace_marks=flt(t.grace_marks)
+            t.final_earned_marks=grace_marks+earned_marks
+            data=frappe.get_all("Course Assessment",{"name":t.course_assessment},['exam_declaration'])
+            t.exam_declaration=data[0]['exam_declaration']
+
+    def passing_marks_calculation(self):
+        coures_code=self.course
+        assessment_criteria=self.assessment_criteria	
+        cdl_list=frappe.get_all("Credit distribution List",{"parent":coures_code,"assessment_criteria":assessment_criteria},['passing_marks'])
+        if cdl_list:
+            for t in self.get("final_credit_item"):
+                if not t.passing_marks:
+                    t.passing_marks=cdl_list[0]['passing_marks']
+        else:
+            frappe.throw("Passing marks not maintained for Assessment Criteria %s in Module Screen for the Module code %s"%(assessment_criteria,coures_code))
     
     def validate_duplicate_record(self):
         if self.student and self.course and self.assessment_criteria and self.academic_year and self.academic_term:
@@ -32,7 +63,6 @@ class AssessmentCreditsAllocation(Document):
             fltr={"parent":i.get("name")}
             for j in frappe.get_all("Credit distribution List",fltr,["assessment_criteria"]):
                 lst.append(j.assessment_criteria)
-
         if self.assessment_criteria not in lst:
             frappe.throw("Please Select the Assessment Criteria In Course <b>{0}</b>".format(self.get("course")))
 
@@ -40,14 +70,20 @@ class AssessmentCreditsAllocation(Document):
         for cr in self.get("final_credit_item"):
             addition=(flt(cr.earned_marks)+flt(cr.grace_marks))
             self.final_marks=addition
+            self.grace_marks=flt(cr.grace_marks)
+            self.passing_marks=flt(cr.passing_marks)
+            self.weightage_marks=flt(cr.earned_marks)
+            self.out_of_marks=flt(cr.total_marks)
+            self.qualifying_status="%s"%(cr.qualifying_status)
             if addition>flt(cr.total_marks):
                 frappe.throw("Grace Marks Cannot be Greater than <b>{0}</b>".format(flt(cr.total_marks)-flt(cr.earned_marks)))
-       
-        if self.grace_marks > flt(self.out_of_marks):
-            frappe.throw("Grace Marks <b>{0}</b> Cannot be Greater than out of marks <b>{1}</b>".format(self.grace_marks, self.out_of_marks))
-        
-        if flt(self.final_marks)>flt(self.out_of_marks):
-            frappe.throw("<b>Final Marks</b> Cannot be Greater Than <b>Out of Marks</b>")
+
+        if self.out_of_marks:
+            if self.grace_marks > flt(self.out_of_marks):
+                frappe.throw("Grace Marks <b>{0}</b> Cannot be Greater than out of marks <b>{1}</b>".format(self.grace_marks, self.out_of_marks))
+            
+            if flt(self.final_marks)>flt(self.out_of_marks):
+                frappe.throw("<b>Final 33,Marks</b> Cannot be Greater Than <b>Out of Marks</b>")
 
         if flt(self.earned_credits)>flt(self.total_credits):
             frappe.throw("<b>Earned Credits</b> Cannot be Greater Than <b>Total Credits</b>")
@@ -98,6 +134,7 @@ def get_course_assessment(student,course,assessment_criteria):
             data_list.append(d)
         return data_list
     else:
+        frappe.msgprint("No evaluation found for student")
         return data_list
-        frappe.msgprint("No evaluation found for student.")
+        
 

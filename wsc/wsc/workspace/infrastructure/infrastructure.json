@@ -88,8 +88,36 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Residence De-Allotment",
+   "link_count": 2,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Application for Residence De-Allotment",
+   "link_count": 0,
+   "link_to": "Application for Residence De-Allotment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Residence De-Allotment",
+   "link_count": 0,
+   "link_to": "Residence De-Allotment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Masters",
-   "link_count": 4,
+   "link_count": 5,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -136,33 +164,15 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Residence De-Allotment",
-   "link_count": 2,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Application for Residence De-Allotment",
+   "label": "Floor",
    "link_count": 0,
-   "link_to": "Application for Residence De-Allotment",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Residence De-Allotment",
-   "link_count": 0,
-   "link_to": "Residence De-Allotment",
+   "link_to": "Floor",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
   }
  ],
- "modified": "2023-03-03 14:52:27.537188",
+ "modified": "2023-05-30 16:04:56.856430",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Infrastructure",

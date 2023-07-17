@@ -1,0 +1,54 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-30 11:36:49.049216",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "applicant_id",
+  "applicant_name",
+  "applicant_type",
+  "select"
+ ],
+ "fields": [
+  {
+   "fieldname": "applicant_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Applicant ID"
+  },
+  {
+   "fieldname": "applicant_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Applicant Name"
+  },
+  {
+   "fieldname": "applicant_type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Applicant Type"
+  },
+  {
+   "default": "0",
+   "fieldname": "select",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Select"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-06-06 15:22:46.311503",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Internship Select Participants Table",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

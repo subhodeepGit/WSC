@@ -1,0 +1,144 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{applicant_name}-{department}-{academic_year}",
+ "creation": "2023-05-09 18:07:30.539407",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "academic_year",
+  "column_break_3",
+  "academic_term",
+  "column_break_4",
+  "department",
+  "section_break_6",
+  "applicant_id",
+  "applicant_name",
+  "column_break_6",
+  "student_category",
+  "gender",
+  "physically_disabled",
+  "section_break_10",
+  "result_declaration_date",
+  "total_marks",
+  "earned_marks"
+ ],
+ "fields": [
+  {
+   "fieldname": "applicant_id",
+   "fieldtype": "Link",
+   "label": "Applicant ID",
+   "options": "Entrance Exam Admit Card"
+  },
+  {
+   "fetch_from": "applicant_id.applicant_name",
+   "fieldname": "applicant_name",
+   "fieldtype": "Data",
+   "label": "Applicant Name"
+  },
+  {
+   "fetch_from": "applicant_id.academic_year",
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
+  },
+  {
+   "fieldname": "result_declaration_date",
+   "fieldtype": "Date",
+   "label": "Result Declaration Date"
+  },
+  {
+   "fetch_from": "applicant_id.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
+  },
+  {
+   "fetch_from": "applicant_id.student_category",
+   "fieldname": "student_category",
+   "fieldtype": "Link",
+   "label": "Student Category",
+   "options": "Student Category"
+  },
+  {
+   "default": "0",
+   "fetch_from": "applicant_id.physical_disablity",
+   "fieldname": "physically_disabled",
+   "fieldtype": "Check",
+   "label": "Physically Disabled"
+  },
+  {
+   "fieldname": "total_marks",
+   "fieldtype": "Float",
+   "label": "Total Marks"
+  },
+  {
+   "fieldname": "earned_marks",
+   "fieldtype": "Float",
+   "label": "Earned Marks"
+  },
+  {
+   "fetch_from": "applicant_id.academic_term",
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_10",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_6",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "applicant_id.gender",
+   "fieldname": "gender",
+   "fieldtype": "Link",
+   "label": "Gender",
+   "options": "Gender"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-07-11 15:38:08.372504",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Entrance Exam Result Publication",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,165 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "STU-CLL.-.#####",
+ "creation": "2023-04-04 12:08:04.750184",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "posting_date",
+  "clearance_type",
+  "student_id",
+  "attrition_id",
+  "column_break_9ecln",
+  "user_disable_date",
+  "student_name",
+  "student_email_address",
+  "current_educational_details_section",
+  "current_education",
+  "section_break_gcpf2",
+  "departments_clearance_status",
+  "column_break_10",
+  "status",
+  "column_break_12",
+  "total_dues",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Posting Date",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "student_id",
+   "fieldtype": "Link",
+   "label": "Student ID",
+   "mandatory_depends_on": "eval:doc.clearance_type==\"Normal\"",
+   "options": "Student",
+   "read_only_depends_on": "eval:doc.clearance_type!==\"Normal\""
+  },
+  {
+   "fetch_from": "student_id.student_name",
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "label": "Student Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "departments_clearance_status",
+   "fieldtype": "Table",
+   "label": "Department Clearance",
+   "no_copy": 1,
+   "options": "Departments Clearance Status"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Student Clearance Application",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "default": "Clearance Pending",
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status"
+  },
+  {
+   "fieldname": "section_break_gcpf2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_9ecln",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "user_disable_date",
+   "fieldtype": "Date",
+   "label": "User Disable Date"
+  },
+  {
+   "fieldname": "current_education",
+   "fieldtype": "Table",
+   "label": "Current Education",
+   "options": "Current Educational Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "current_educational_details_section",
+   "fieldtype": "Section Break",
+   "label": "Current Educational Details "
+  },
+  {
+   "fieldname": "column_break_10",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_dues",
+   "fieldtype": "Currency",
+   "label": "Total Dues"
+  },
+  {
+   "fetch_from": "student_id.student_email_id",
+   "fieldname": "student_email_address",
+   "fieldtype": "Data",
+   "label": "Student Email Address"
+  },
+  {
+   "fieldname": "clearance_type",
+   "fieldtype": "Select",
+   "label": "Clearance Type",
+   "options": "Normal\nAttrition"
+  },
+  {
+   "fieldname": "attrition_id",
+   "fieldtype": "Link",
+   "label": "Attrition Id",
+   "mandatory_depends_on": "eval:doc.clearance_type == \"Attrition\"",
+   "options": "Student Attrition Form",
+   "read_only_depends_on": "eval:doc.clearance_type == \"Normal\""
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-07-05 16:39:12.769069",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Student Clearance Application",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

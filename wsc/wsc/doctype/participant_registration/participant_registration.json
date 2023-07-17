@@ -1,0 +1,110 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "TPR.-.#####",
+ "creation": "2023-05-29 18:07:30.384808",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "is_in_a_program",
+  "section_break_2jazj",
+  "select_program",
+  "select_event",
+  "event_date",
+  "participant_id",
+  "column_break_id4mt",
+  "program_name",
+  "event_name",
+  "event_time",
+  "participant_type"
+ ],
+ "fields": [
+  {
+   "fieldname": "participant_id",
+   "fieldtype": "Link",
+   "label": "Participant ID",
+   "options": "Student"
+  },
+  {
+   "depends_on": "is_in_a_program",
+   "fieldname": "select_program",
+   "fieldtype": "Link",
+   "label": "Select Program",
+   "options": "TnP Program"
+  },
+  {
+   "fieldname": "select_event",
+   "fieldtype": "Link",
+   "label": "Select Event",
+   "options": "TnP Event"
+  },
+  {
+   "fieldname": "event_date",
+   "fieldtype": "Date",
+   "label": "Event Date"
+  },
+  {
+   "fieldname": "column_break_id4mt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "participant_type",
+   "fieldtype": "Select",
+   "label": "Participant Type",
+   "options": "Student\nStaff"
+  },
+  {
+   "depends_on": "is_in_a_program",
+   "fieldname": "program_name",
+   "fieldtype": "Data",
+   "label": "Program Name"
+  },
+  {
+   "fieldname": "event_name",
+   "fieldtype": "Data",
+   "label": "Event Name"
+  },
+  {
+   "fieldname": "event_time",
+   "fieldtype": "Data",
+   "label": "Event Time"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_in_a_program",
+   "fieldtype": "Check",
+   "label": "Is in a program"
+  },
+  {
+   "fieldname": "section_break_2jazj",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-06-05 16:39:43.510378",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Participant Registration",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

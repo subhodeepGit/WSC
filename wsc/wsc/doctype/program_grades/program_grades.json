@@ -14,7 +14,7 @@
   {
    "fieldname": "grade",
    "fieldtype": "Data",
-   "label": "Grade",
+   "label": "Course Type",
    "unique": 1
   },
   {
@@ -25,10 +25,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-06-27 10:56:41.297407",
+ "modified": "2023-06-23 16:47:19.422116",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Program Grades",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -47,5 +48,6 @@
  "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

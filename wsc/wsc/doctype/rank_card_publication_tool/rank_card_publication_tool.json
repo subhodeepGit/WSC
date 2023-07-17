@@ -1,0 +1,94 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-09 18:23:28.884435",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "rank_card_masters",
+  "academic_year",
+  "academic_term",
+  "departments",
+  "total_marks",
+  "posting_date",
+  "get_applicants",
+  "ranked_students_list"
+ ],
+ "fields": [
+  {
+   "fetch_from": "rank_card_masters.academic_year",
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
+  },
+  {
+   "fetch_from": "rank_card_masters.department",
+   "fieldname": "departments",
+   "fieldtype": "Link",
+   "label": "Departments",
+   "options": "Department"
+  },
+  {
+   "fetch_from": "rank_card_masters.total_marks",
+   "fieldname": "total_marks",
+   "fieldtype": "Float",
+   "label": "Total Marks"
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date"
+  },
+  {
+   "fieldname": "ranked_students_list",
+   "fieldtype": "Table",
+   "label": "Ranked Students List",
+   "options": "Ranked Students List"
+  },
+  {
+   "fetch_from": "rank_card_masters.academic_term",
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
+  },
+  {
+   "fieldname": "rank_card_masters",
+   "fieldtype": "Link",
+   "label": "Rank Card Masters",
+   "options": "Rank Card Master"
+  },
+  {
+   "fieldname": "get_applicants",
+   "fieldtype": "Button",
+   "label": "Get Applicants"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-07-05 11:57:05.866973",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Rank Card Publication Tool",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

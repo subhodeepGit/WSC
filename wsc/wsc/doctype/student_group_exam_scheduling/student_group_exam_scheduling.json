@@ -1,0 +1,71 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-06-16 17:49:43.945576",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "group_name",
+  "exam_group_scheduling_section",
+  "examination_date",
+  "from_time",
+  "column_break_5",
+  "to_time",
+  "total_duration_in_hours"
+ ],
+ "fields": [
+  {
+   "fieldname": "group_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Group Name"
+  },
+  {
+   "fieldname": "examination_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Examination Date"
+  },
+  {
+   "fieldname": "from_time",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "From Time"
+  },
+  {
+   "fieldname": "to_time",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "To Time"
+  },
+  {
+   "fieldname": "total_duration_in_hours",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "Total Duration (in Hours)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "exam_group_scheduling_section",
+   "fieldtype": "Section Break",
+   "label": "Exam Group Scheduling"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-07-14 13:18:06.446011",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Student Group Exam Scheduling",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

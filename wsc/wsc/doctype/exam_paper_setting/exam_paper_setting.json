@@ -6,7 +6,6 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "posting_date",
   "assessment_plan",
   "programs",
   "program",
@@ -14,8 +13,10 @@
   "course_code",
   "course_name",
   "column_break_6",
+  "posting_date",
   "academic_year",
   "academic_term",
+  "exam_coordinator",
   "examiner",
   "examiner_name",
   "moderator_name",
@@ -23,8 +24,11 @@
   "schedule_date",
   "from_time",
   "to_time",
+  "paper_setting_start_date",
+  "paper_setting_end_date",
   "section_break_13",
   "paper_copy",
+  "download",
   "assessment_plan_criteria",
   "amended_from"
  ],
@@ -33,7 +37,8 @@
    "default": "Today",
    "fieldname": "posting_date",
    "fieldtype": "Date",
-   "label": "Posting Date"
+   "label": "Posting Date",
+   "read_only": 1
   },
   {
    "bold": 1,
@@ -42,12 +47,14 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Examiner",
-   "options": "Instructor"
+   "options": "Instructor",
+   "read_only": 1
   },
   {
    "fetch_from": "examiner.instructor_name",
    "fieldname": "examiner_name",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Examiner Name",
    "read_only": 1
   },
@@ -65,6 +72,7 @@
    "fieldtype": "Link",
    "label": "Course",
    "options": "Course",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -76,6 +84,7 @@
    "fieldtype": "Link",
    "label": "Academic Year",
    "options": "Academic Year",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -83,6 +92,7 @@
    "fieldtype": "Link",
    "label": "Academic Term",
    "options": "Academic Term",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -93,16 +103,19 @@
   {
    "fieldname": "schedule_date",
    "fieldtype": "Date",
+   "hidden": 1,
    "label": "Schedule Date"
   },
   {
    "fieldname": "from_time",
    "fieldtype": "Time",
+   "hidden": 1,
    "label": "From Time"
   },
   {
    "fieldname": "to_time",
    "fieldtype": "Time",
+   "hidden": 1,
    "label": "To Time"
   },
   {
@@ -136,6 +149,7 @@
    "fieldtype": "Link",
    "label": "Exam Assessment Plan",
    "options": "Exam Assessment Plan",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -151,13 +165,14 @@
    "fieldname": "moderator_name",
    "fieldtype": "Link",
    "label": "Moderator Name",
-   "options": "Instructor"
+   "options": "Instructor",
+   "read_only": 1
   },
   {
    "fetch_from": "course.course_code",
    "fieldname": "course_code",
    "fieldtype": "Data",
-   "label": "Course Code",
+   "label": "Module Code",
    "read_only": 1
   },
   {
@@ -165,17 +180,42 @@
    "fieldname": "course_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Course Name",
+   "label": "Module Name",
    "read_only": 1
+  },
+  {
+   "fieldname": "paper_setting_start_date",
+   "fieldtype": "Date",
+   "label": "Paper Setting Start Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "paper_setting_end_date",
+   "fieldtype": "Date",
+   "label": "Paper Setting End Date",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.paper_copy;",
+   "fieldname": "download",
+   "fieldtype": "Button",
+   "label": "Download"
+  },
+  {
+   "fieldname": "exam_coordinator",
+   "fieldtype": "Link",
+   "label": "Exam Coordinator",
+   "options": "Instructor"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-09-05 12:05:59.052157",
+ "modified": "2023-07-07 16:11:02.427663",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Paper Setting",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -194,6 +234,7 @@
  "search_fields": "assessment_plan",
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "title_field": "programs",
  "track_changes": 1,
  "track_seen": 1

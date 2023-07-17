@@ -1,0 +1,97 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "TGC.-.#####",
+ "creation": "2023-05-30 11:17:40.930122",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "is_in_a_program",
+  "section_break_pcilw",
+  "select_program",
+  "select_event",
+  "participant_id",
+  "column_break_fldod",
+  "program_name",
+  "event_name",
+  "participant_name"
+ ],
+ "fields": [
+  {
+   "depends_on": "is_in_a_program",
+   "fieldname": "select_program",
+   "fieldtype": "Link",
+   "label": "Select Program",
+   "options": "TnP Program"
+  },
+  {
+   "fieldname": "select_event",
+   "fieldtype": "Link",
+   "label": "Select Event",
+   "options": "TnP Event"
+  },
+  {
+   "fieldname": "participant_id",
+   "fieldtype": "Link",
+   "label": "Participant ID",
+   "options": "Student"
+  },
+  {
+   "fieldname": "column_break_fldod",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "is_in_a_program",
+   "fieldname": "program_name",
+   "fieldtype": "Data",
+   "label": "Program Name"
+  },
+  {
+   "fieldname": "event_name",
+   "fieldtype": "Data",
+   "label": "Event Name"
+  },
+  {
+   "fieldname": "participant_name",
+   "fieldtype": "Data",
+   "label": "Participant Name"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_in_a_program",
+   "fieldtype": "Check",
+   "label": "is in a program"
+  },
+  {
+   "fieldname": "section_break_pcilw",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-06-07 18:12:32.871818",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Generate Certificate",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

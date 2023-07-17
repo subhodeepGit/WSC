@@ -1,0 +1,42 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-03 15:17:58.062898",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "job_applicant",
+  "job_opening",
+  "disqualified_round"
+ ],
+ "fields": [
+  {
+   "fieldname": "job_applicant",
+   "fieldtype": "Read Only",
+   "label": "Job Applicant"
+  },
+  {
+   "fieldname": "job_opening",
+   "fieldtype": "Read Only",
+   "label": "Job Opening"
+  },
+  {
+   "fieldname": "disqualified_round",
+   "fieldtype": "Read Only",
+   "label": "Disqualified Round"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-05-03 15:22:45.185556",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Past Job Application Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

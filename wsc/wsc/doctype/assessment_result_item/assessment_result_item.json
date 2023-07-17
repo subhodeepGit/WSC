@@ -6,6 +6,8 @@
  "engine": "InnoDB",
  "field_order": [
   "course",
+  "module_code",
+  "module_name",
   "assessment_criteria",
   "earned_cr",
   "total_cr",
@@ -19,7 +21,7 @@
    "fieldname": "course",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Course ",
+   "label": "Course",
    "options": "Course",
    "reqd": 1,
    "width": "10px"
@@ -28,6 +30,7 @@
    "columns": 1,
    "fieldname": "earned_cr",
    "fieldtype": "Float",
+   "hidden": 1,
    "in_list_view": 1,
    "label": "Earned CR",
    "width": "10px"
@@ -36,6 +39,7 @@
    "columns": 1,
    "fieldname": "total_cr",
    "fieldtype": "Float",
+   "hidden": 1,
    "in_list_view": 1,
    "label": "Total CR",
    "width": "10px"
@@ -79,11 +83,25 @@
    "in_list_view": 1,
    "label": "Assessment Criteria",
    "options": "Assessment Criteria"
+  },
+  {
+   "fieldname": "module_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Module Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "module_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Module Name",
+   "read_only": 1
   }
  ],
  "istable": 1,
  "links": [],
- "modified": "2023-01-19 11:16:49.644677",
+ "modified": "2023-07-12 17:53:55.481185",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assessment Result Item",

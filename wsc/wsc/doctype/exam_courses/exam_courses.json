@@ -5,52 +5,59 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "module_details_section",
   "courses",
   "course_name",
+  "column_break_4",
   "course_code",
   "semester",
+  "section_break_7",
   "examination_date",
+  "column_break_9",
+  "examination_end_date",
   "from_time",
   "to_time",
-  "total_duration_in_hours"
+  "total_duration_in_hours",
+  "eligibility_details_section",
+  "attendance_criteria",
+  "minimum_attendance_criteria"
  ],
  "fields": [
   {
-   "allow_on_submit": 1,
    "columns": 1,
    "fieldname": "courses",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Courses",
+   "label": "Course",
    "options": "Course",
    "reqd": 1,
    "width": "25px"
   },
   {
-   "allow_on_submit": 1,
    "fetch_from": "courses.course_name",
    "fieldname": "course_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Course Name"
+   "label": "Module Name",
+   "read_only": 1
   },
   {
-   "allow_on_submit": 1,
    "columns": 1,
    "fetch_from": "courses.course_code",
    "fieldname": "course_code",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Course Code",
+   "label": "Module Code",
+   "read_only": 1,
    "width": "10px"
   },
   {
-   "allow_on_submit": 1,
    "fieldname": "semester",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Semester",
-   "options": "Program"
+   "options": "Program",
+   "read_only": 1
   },
   {
    "allow_on_submit": 1,
@@ -58,45 +65,82 @@
    "fieldname": "examination_date",
    "fieldtype": "Date",
    "in_list_view": 1,
-   "label": "Examination Date",
+   "label": "Examination Start Date",
    "reqd": 1,
    "width": "25px"
   },
   {
-   "allow_on_submit": 1,
    "columns": 1,
    "fieldname": "from_time",
    "fieldtype": "Time",
-   "in_list_view": 1,
+   "hidden": 1,
    "label": "From Time",
-   "reqd": 1,
    "width": "25px"
   },
   {
-   "allow_on_submit": 1,
    "columns": 1,
    "fieldname": "to_time",
    "fieldtype": "Time",
-   "in_list_view": 1,
+   "hidden": 1,
    "label": "To Time",
-   "reqd": 1,
    "width": "25px"
   },
   {
-   "allow_on_submit": 1,
    "columns": 1,
    "fieldname": "total_duration_in_hours",
    "fieldtype": "Time",
-   "in_list_view": 1,
+   "hidden": 1,
    "label": "Total Duration (in Hours)",
-   "read_only": 1,
    "width": "25px"
+  },
+  {
+   "fieldname": "examination_end_date",
+   "fieldtype": "Date",
+   "label": "Examination End Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "eligibility_details_section",
+   "fieldtype": "Section Break",
+   "label": "Eligibility Details"
+  },
+  {
+   "default": "No",
+   "fieldname": "attendance_criteria",
+   "fieldtype": "Select",
+   "label": "Attendance Criteria",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval:doc.attendance_criteria==\"Yes\"",
+   "fieldname": "minimum_attendance_criteria",
+   "fieldtype": "Data",
+   "label": "Minimum Attendance Criteria",
+   "mandatory_depends_on": "eval:doc.attendance_criteria==\"Yes\""
+  },
+  {
+   "fieldname": "module_details_section",
+   "fieldtype": "Section Break",
+   "label": "Module Details"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break",
+   "label": "Exam Module Duration"
+  },
+  {
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-11-24 12:37:14.207151",
+ "modified": "2023-07-14 12:59:21.876698",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Courses",
@@ -104,5 +148,6 @@
  "permissions": [],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

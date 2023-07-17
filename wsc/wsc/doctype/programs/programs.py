@@ -45,7 +45,22 @@ class Programs(Document):
 	def validate_abbrevation(self):
 		for programs in frappe.get_all("Programs",{"programs_abbreviation":self.programs_abbreviation,"name":("!=",self.name)}):
 			frappe.throw("Programs Abbreviation already exists in Programs <b>{0}</b>".format(programs.name))
+	@frappe.whitelist()
+	def create_tot_course(self):
+		semesters=[]
+		is_existing=True
+		for c in range(int(self.tot_programme)):
+			program_name=(self.programs_abbreviation)
+			if not frappe.db.exists("Program",program_name):
+				is_existing=False
+				doc=frappe.new_doc("Program")
+				doc.program_name=program_name
+				doc.programs=self.name
+				# doc.is__tot=1
+				doc.semester_order=c+1
+				doc.save()
 
+		return {"semesters":[d.name for d in frappe.get_all("Program",{"programs":self.name},order_by="creation",limit=int(self.tot_programme))],"is_existing":is_existing}
 	@frappe.whitelist()
 	def create_semesters(self):
 		semesters=[]

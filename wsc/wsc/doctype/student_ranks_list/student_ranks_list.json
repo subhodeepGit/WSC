@@ -1,0 +1,42 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-09 18:17:05.831655",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "general_rank",
+  "category_based_rank",
+  "pwd_based_rank"
+ ],
+ "fields": [
+  {
+   "fieldname": "general_rank",
+   "fieldtype": "Data",
+   "label": "General Rank"
+  },
+  {
+   "fieldname": "category_based_rank",
+   "fieldtype": "Data",
+   "label": "Category Based Rank"
+  },
+  {
+   "fieldname": "pwd_based_rank",
+   "fieldtype": "Data",
+   "label": "PWD Based Rank"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-07-10 18:08:59.965571",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Student Ranks List",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

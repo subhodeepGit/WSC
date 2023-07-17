@@ -1,0 +1,182 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{applicant_id}",
+ "creation": "2023-05-09 18:04:18.875617",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "applicant_id",
+  "department",
+  "academic_year",
+  "gender",
+  "column_break_2",
+  "applicant_name",
+  "academic_term",
+  "student_category",
+  "physical_disablity",
+  "section_break_4",
+  "venue",
+  "address",
+  "district",
+  "column_break_7",
+  "pin_code",
+  "section_break_11",
+  "slot",
+  "date_of_exam",
+  "column_break_13",
+  "exam_start_time",
+  "column_break_15",
+  "exam_end_time"
+ ],
+ "fields": [
+  {
+   "fieldname": "applicant_id",
+   "fieldtype": "Link",
+   "label": "Applicant ID",
+   "options": "Student Applicant"
+  },
+  {
+   "fetch_from": "applicant_id.title",
+   "fieldname": "applicant_name",
+   "fieldtype": "Data",
+   "label": "Applicant Name"
+  },
+  {
+   "fetch_from": "venue.center",
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "label": "Address"
+  },
+  {
+   "fieldname": "venue",
+   "fieldtype": "Link",
+   "label": "Venue",
+   "options": "Entrance exam select"
+  },
+  {
+   "fetch_from": "venue.district",
+   "fieldname": "district",
+   "fieldtype": "Data",
+   "label": "District"
+  },
+  {
+   "fetch_from": "venue.pincode",
+   "fieldname": "pin_code",
+   "fieldtype": "Data",
+   "label": "Pin Code"
+  },
+  {
+   "fetch_from": "applicant_id.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
+  },
+  {
+   "fieldname": "date_of_exam",
+   "fieldtype": "Date",
+   "label": "Date of Exam"
+  },
+  {
+   "fieldname": "exam_start_time",
+   "fieldtype": "Time",
+   "label": "Exam Start Time"
+  },
+  {
+   "fieldname": "exam_end_time",
+   "fieldtype": "Time",
+   "label": "Exam End Time"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break",
+   "label": "Exam Center Details"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_11",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_13",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "applicant_id.academic_year",
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
+  },
+  {
+   "fetch_from": "applicant_id.academic_term",
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
+  },
+  {
+   "fieldname": "slot",
+   "fieldtype": "Data",
+   "label": "Slot "
+  },
+  {
+   "fieldname": "student_category",
+   "fieldtype": "Link",
+   "label": "Student Category",
+   "options": "Student Category"
+  },
+  {
+   "default": "0",
+   "fieldname": "physical_disablity",
+   "fieldtype": "Check",
+   "label": "Physical Disablity"
+  },
+  {
+   "fetch_from": "applicant_id.gender",
+   "fieldname": "gender",
+   "fieldtype": "Link",
+   "label": "Gender",
+   "options": "Gender"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-07-05 15:59:27.622444",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Entrance Exam Admit Card",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
