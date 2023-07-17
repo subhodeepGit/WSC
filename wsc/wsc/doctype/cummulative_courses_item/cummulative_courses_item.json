@@ -12,6 +12,7 @@
   "course_code",
   "course_name",
   "column_break_sdckw",
+  "module_type",
   "total_marks",
   "earned_marks",
   "cr",
@@ -74,12 +75,19 @@
   {
    "fieldname": "column_break_sdckw",
    "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "course.module_type",
+   "fieldname": "module_type",
+   "fieldtype": "Data",
+   "label": "Module Type",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-07-13 17:57:43.427347",
+ "modified": "2023-07-14 17:31:08.284830",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Cummulative Courses Item",

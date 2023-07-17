@@ -1,6 +1,7 @@
 # Copyright (c) 2023, SOUL Limited and Contributors
 # For license information, please see license.txt
 
+from education.education.api import get_grade
 import frappe
 from frappe.model.document import Document
 from pytz import all_timezones, country_names
@@ -56,7 +57,12 @@ def create_cummulative_marksheet(cumulative_marksheet_tool):
 			result.year_of_completion=enroll.academic_year
 		result.year_of_admission=doc.year_of_admission
 		result.branch=doc.branch
-		result.school_of=doc.school_of
+		result.employee=doc.employee
+		result.employee_name=doc.employee_name
+		result.designation=doc.designation
+		result.posting_date=doc.posting_date
+		result.school_of=doc.school_of 
+		result.grading_scale=doc.grading_scale
 		result.completed_on=doc.completed_on
 		result.specialization=doc.specialization
 		result.year_of_admision=doc.year_of_admision
@@ -92,21 +98,12 @@ def create_cummulative_marksheet(cumulative_marksheet_tool):
 					"percentage":results.percentage,
 					"grade":results.grade
 				})
-				# round(results.sgpa,2)
-				# res = "{:.2f}".format(results.sgpa)
-				# results.sgpa=res
 				d.programs=results.programs
 				d.completed_on=results.modified
 				total_sgpa+=results.total_marks
 				earned_marks+=results.secured_marks
 				percent+=results.percentage
-				# total_sgpa+=results.sgpa
-		# result.department=frappe.db.get_value("Programs",result.programs,'department')
 		if len(result.get("cumulatice_grades_item")):
-			# results.cgpa=(total_sgpa/len(results.get("cumulatice_grades_item")))	 
-			# round(result.cgpa,2)
-			# res = "{:.2f}".format(result.cgpa)
-			# results.cgpa=res
 			result.percentage=(percent/len(result.get("cumulatice_grades_item")))
 			result.percentage
 			res2 = "{:.2f}".format(result.percentage)
@@ -119,9 +116,8 @@ def create_cummulative_marksheet(cumulative_marksheet_tool):
 				if total_marks > 0 :
 					result.total_marks=total_marks
 					result.secured_marks=marks_earned
-			# d.department=frappe.db.get_value("Programs",result.programs,'department')
-			# if len(d.get("cumulatice_grades_item")):
-			# 	d.cgpa=(total_sgpa/len(d.get("cumulatice_grades_item")))
+					data=(result.secured_marks/result.total_marks)*100
+					result.grade = get_grade(result.grading_scale,data)
 		result.save()
 		created_records += 1
 	frappe.msgprint("Record Created")

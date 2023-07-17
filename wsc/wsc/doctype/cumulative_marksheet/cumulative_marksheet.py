@@ -18,7 +18,7 @@ class CumulativeMarksheet(Document):
 		self.validate_missing_fields()
 		self.set_result()
 		duplicate_row_validation(self,"cumulatice_grades_item",['semester_order'])
-		self.get_grade()
+		# self.get_grade()
 	def on_submit(self):
 		self.validate_duplicate_for_submit()
 		self.validate_duplicate_for_save()
@@ -45,14 +45,12 @@ class CumulativeMarksheet(Document):
 					print(db)
 					d.semester_order=order_dict.get(sem.semester_order)
 	def validate_duplicate_for_save(self):
-		print("\n\nINSAVE")
 		assessment_result = frappe.get_list("Cumulative Marksheet", filters={"name": ("not in", [self.name,self.student_name]),
 			"student":self.student, "docstatus":0,'programs':self.programs, 'year_of_completion':self.year_of_completion})
 		if assessment_result:
 			frappe.throw(_("Marksheet of <b>'{0}'</b> having <b>'{1}'</b> Id is already exists.").format(self.student_name,getlink("Cumulative Marksheet",assessment_result[0].name)))
 	
 	def validate_duplicate_for_submit(self):
-		print("\n\nINSubmit")
 		assessment_result = frappe.get_list("Cumulative Marksheet", filters={"name": ("not in", [self.name,self.student_name]),
 			"student":self.student, "docstatus":1,'programs':self.programs, 'year_of_completion':self.year_of_completion})
 		if assessment_result:
@@ -71,7 +69,6 @@ class CumulativeMarksheet(Document):
 			
 			else:
 				self.result_p_f="FAIL"
-
 	@frappe.whitelist()
 	def get_student_details(self):
 		for enroll in frappe.get_all("Program Enrollment",{"student":self.student,"docstatus":1},['name','academic_year'],order_by="creation asc",limit=1):
@@ -118,8 +115,6 @@ class CumulativeMarksheet(Document):
 				
 			self.result_p_f=frappe.db.get_value("Exam Assessment Result",result.exam_assessment_result,'result')
 			if len(self.get("cumulatice_grades_item")):
-				# self.total_marks=(total_sgpa/len(self.get("cumulatice_grades_item")))
-				# self.secured_marks=(earned_marks/len(self.get("cumulatice_grades_item")))
 				self.percentage=(percent/len(self.get("cumulatice_grades_item")))
 				self.percentage
 				res2 = "{:.2f}".format(self.percentage)
@@ -129,12 +124,16 @@ class CumulativeMarksheet(Document):
 		for d in self.get("cumulatice_grades_item"):
 				marks_earned += flt(d.secured_marks)
 				total_marks += flt(d.total_marks)
-									
-					# if self.grade and self.grading_scale:
-					# if d.secured_marks:
-						
 				if total_marks > 0 :
 					self.total_marks=total_marks
 					self.secured_marks=marks_earned
+				x = frappe.get_all("Exam Assessment Result",{'student':self.student},['grading_scale'])
+				if x:
+					y=x[0]
+					z=y.values()
+					for values in z:
+						data=(self.secured_marks/self.total_marks)*100
+						self.grade = get_grade(values,data)
+					return values
 					# self.percentage = round((marks_earned/total_marks)*100, 2)
 					# self.percentage = "{:.2f}".format((marks_earned/total_marks)*100)

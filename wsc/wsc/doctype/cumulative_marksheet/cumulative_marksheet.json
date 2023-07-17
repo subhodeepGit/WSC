@@ -14,9 +14,11 @@
   "registration_number",
   "completed_on",
   "column_break_5",
+  "posting_date",
   "year_of_admission",
   "year_of_completion",
   "programs",
+  "grading_scale",
   "school_of",
   "specialization",
   "year_of_admision",
@@ -36,7 +38,13 @@
   "column_break_5gray",
   "result_p_f",
   "total_number_of_students",
+  "section_break_jwcav",
+  "employee",
   "column_break_24ajz",
+  "employee_name",
+  "column_break_ilclb",
+  "designation",
+  "column_break_rzuow",
   "signature_of_examiner",
   "amended_from"
  ],
@@ -147,12 +155,14 @@
   {
    "fieldname": "school_of",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "School of"
   },
   {
    "fieldname": "signature_of_examiner",
    "fieldtype": "Attach Image",
-   "label": "Signature of Examiner"
+   "label": "Signature of Authority",
+   "reqd": 1
   },
   {
    "fieldname": "branch",
@@ -224,12 +234,60 @@
   {
    "fieldname": "column_break_24ajz",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "grading_scale",
+   "fieldtype": "Link",
+   "label": "Grading Scale",
+   "options": "Grading Scale"
+  },
+  {
+   "fieldname": "section_break_jwcav",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Signing Authority",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Signing Authority Name",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ilclb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "employee.designation",
+   "fieldname": "designation",
+   "fieldtype": "Link",
+   "label": "Designation",
+   "options": "Designation",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_rzuow",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-13 17:54:43.034018",
+ "modified": "2023-07-14 17:40:31.498594",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Cumulative Marksheet",
