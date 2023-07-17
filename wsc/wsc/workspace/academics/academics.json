@@ -210,7 +210,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-07-05 16:49:36.325647",
+ "modified": "2023-07-17 09:55:53.841120",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Academics",
@@ -221,9 +221,6 @@
  "roles": [
   {
    "role": "Admin"
-  },
-  {
-   "role": "Education Administrator"
   },
   {
    "role": "Academic Management Group"

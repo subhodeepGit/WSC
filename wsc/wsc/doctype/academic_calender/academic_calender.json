@@ -34,7 +34,7 @@
    "fieldname": "program",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "For Program",
+   "label": "Programs",
    "options": "Programs",
    "reqd": 1
   },
@@ -68,10 +68,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-12-14 15:28:20.076134",
+ "modified": "2023-07-17 11:06:13.719511",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Academic Calender",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -89,5 +90,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

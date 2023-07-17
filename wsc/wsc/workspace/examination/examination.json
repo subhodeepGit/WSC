@@ -260,7 +260,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-07-06 12:27:46.890063",
+ "modified": "2023-07-17 09:55:44.167411",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Examination",
@@ -271,9 +271,6 @@
  "roles": [
   {
    "role": "Admin"
-  },
-  {
-   "role": "Education Administrator"
   },
   {
    "role": "Examination Management Group"
