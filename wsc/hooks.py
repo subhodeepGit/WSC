@@ -60,9 +60,7 @@ doctype_js = {
                 "Employee":"public/js/employee.js",
                 "Shift Request":"public/js/shift_request.js",
                 "Leave Application":"public/js/leave_application.js",
-                "Attendance Request":"public/js/attendance_request.js"
-                
-                # "Employee Separation":"public/js/employee_separation.js",
+                "Employee Separation":"public/js/employee_separation.js",
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -315,17 +313,9 @@ doc_events = {
     "Employee Grievance":{
         "validate":"wsc.wsc.validations.employee_grievance.validate",
     },
-    "Attendance Request":{
-        "on_submit":"wsc.wsc.doctype.attendance_request.on_submit",
-        "validate":"wsc.wsc.doctype.attendance_request.validate",
-        "on_trash":"wsc.wsc.doctype.attendance_request.on_trash",
-        "after_insert":"wsc.wsc.doctype.attendance_request.after_insert"
-
-    },
-    "Leave Policy":{
-        "validate":"wsc.wsc.doctype.leave_policy.validate"
-
-    },
+    "Employee Separation":{
+        "validate":"wsc.wsc.validations.employee_separation.validate",
+    }    
 
     # "User":{
     #     "validate":"wsc.wsc.validations.user.validate",
@@ -351,9 +341,7 @@ scheduler_events = {
 		"wsc.wsc.validations.student_blocklist_check.student_blocklist_check",
         "wsc.task.warranty_notification",
         "wsc.task.safety_stock_reach",
-        "wsc.wsc.doctype.student_clearance_application.student_clearance_application.student_disable_check",
-        "wsc.task.exam_reminder_notification",
-        # "wsc.task.def module_exam_group_data", #will be enabled in production
+        "wsc.wsc.doctype.student_clearance_application.student_clearance_application.student_disable_check"
         # "wsc.wsc.validations.exam_assessment_plan.make_exam_paper_setting_by_paper_setting_date"
 	]
 
