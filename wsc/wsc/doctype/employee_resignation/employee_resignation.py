@@ -3,6 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
+from wsc.wsc.notification.custom_notification import sendHR,sendEmployee,sendDh,sendDirector,sendRa
 
 class EmployeeResignation(Document):
 
@@ -37,11 +38,18 @@ class EmployeeResignation(Document):
 	#Send mail to Department Head
 	def send_mail_dh(self):
 		#take the department of the employee , find the user id of that particular department head
-		# department = self.department
-		# department_head = frappe.get_all("Department",filters = {""})
+		department = self.department
+		department_head = frappe.get_all("Department",filters = {"name":department},pluck="department_head")
+		if department_head:
+			dh_id = department_head[0]
+			data = {}
+			data["dp_mail"]=dh_id
+			data["employee_name"]=self.employee_name
+			data["current_status"]=self.workflow_state
+			data["name"]=self.name
+			sendDh(data)
 
 		
-		pass
 
 	#Send Mail to Director
 	def send_mail_director(self):
@@ -68,6 +76,8 @@ class EmployeeResignation(Document):
 			data["current_status"]=self.workflow_state
 			data["name"]=self.name
 			sendRa(data)
+		else :
+			frappe.msgprint("Reporting Authority mail not found")
 
 	#validate
 	def validate(self):
@@ -75,7 +85,7 @@ class EmployeeResignation(Document):
 			self.send_mail_ra()
 		if self.workflow_state == "Pending Approval from Department Head":
 			#code needs to be added 
-			pass
+			self.send_mail_dh()
 		if self.workflow_state == "Pending Approval from Director Admin":
 			self.send_mail_director()
 		if self.workflow_state == "Approved" or self.workflow_state=="Rejected":

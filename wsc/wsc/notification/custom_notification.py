@@ -712,9 +712,13 @@ def changed_impaneled_price(doc):
 	send_mail(recipients,'Payment Details',msg,attachments)
 
 
+# def has_default_email_acc():
+# 	for d in frappe.get_all("Email Account", {"default_outgoing":1}):
+# 	   return "true"
+# 	return ""
 def has_default_email_acc():
-	for d in frappe.get_all("Email Account", {"default_outgoing":1}):
-	   return "true"
+	for d in frappe.get_all('Email Account',{"default_outgoing":1}):
+		return "true"
 	return ""
 
 def send_mail(recipients=None,subject=None,message=None,attachments=None):
@@ -892,6 +896,54 @@ def send_mail_to_trainers_mweg(self):
 
 	
 
+   #################  Notification Coding for Employee Resignation #######################
+
+def sendHR(doc):
+	sub="""<p><b>Employee Resignation</b></p><br>"""
+	msg="""<b>---------------------Resignation Details---------------------</b><br>"""
+	msg+="""<b>Resignation:</b>  {0}<br>""".format(doc['name'])
+	msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+	resignation_url = get_url_to_form('Employee Resignation', doc['name'])
+	msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(resignation_url)
+	msg+="""<p><b>Initiate the Separation Process for the Employee if it is Approved</b></p><br>"""
+	send_mail([doc['hr_mail']],sub,msg)
+	frappe.msgprint("Confirmation mail sent to HR",[doc['hr_mail']])
+def sendEmployee(doc):
+	sub="""<p><b>Employee Resignation</b></p><br>"""
+	msg="""<b>---------------------Resignation Details---------------------</b><br>"""
+	msg+="""<b>Resignation:</b>  {0}<br>""".format(doc['name'])
+	msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+	resignation_url = get_url_to_form('Employee Resignation', doc['name'])
+	msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(resignation_url)
+	send_mail([doc['employee_mail']],sub,msg)
+	frappe.msgprint("Confirmation mail sent to Employee",[doc['employee_mail']])
+def sendRa(doc):
+	sub="""<p><b>Employee Resignation</b></p><br>"""
+	msg="""<b>---------------------Resignation Details---------------------</b><br>"""
+	msg+="""<b>Resignation:</b>  {0}<br>""".format(doc['name'])
+	msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+	resignation_url = get_url_to_form('Employee Resignation', doc['name'])
+	msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(resignation_url)
+	send_mail([doc['ra_mail']],sub,msg)
+	frappe.msgprint("Mail sent to Reporting Authority for Approval",[doc['ra_mail']])
+def sendDh(doc):
+	sub="""<p><b>Employee Resignation</b></p><br>"""
+	msg="""<b>---------------------Resignation Details---------------------</b><br>"""
+	msg+="""<b>Resignation:</b>  {0}<br>""".format(doc['name'])
+	msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+	resignation_url = get_url_to_form('Employee Resignation', doc['name'])
+	msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(resignation_url)
+	send_mail([doc['dh_mail']],sub,msg)
+	frappe.msgprint("Mail sent to Department Head for Approval",[doc['dh_mail']])
+def sendDirector(doc):
+	sub="""<p><b>Employee Resignation</b></p><br>"""
+	msg="""<b>---------------------Resignation Details---------------------</b><br>"""
+	msg+="""<b>Resignation:</b>  {0}<br>""".format(doc['name'])
+	msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+	resignation_url = get_url_to_form('Employee Resignation', doc['name'])
+	msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(resignation_url)
+	send_mail([doc['director_mail']],sub,msg)
+	frappe.msgprint("Mail sent to Director for Approval",[doc['director_mail']])
 
 		
 	
