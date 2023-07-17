@@ -25,6 +25,7 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 			continuous_evaluation["exam_category"]=frm.doc.exam_category;
 			continuous_evaluation["programs"]=frm.doc.programs;
 			continuous_evaluation["program_grade"]=frm.doc.program_grade;
+			continuous_evaluation["exam_declaration"]=frm.doc.exam_declaration;
 			if(cur_frm.doc.students){
 				(cur_frm.doc.students).forEach(resp => {
 					var row={};
@@ -109,6 +110,14 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 				}
 			};
 		});
+		frm.set_query('exam_declaration', function() {
+			return {
+				filters: {
+					"exam_category":"Re-Exam",
+					"docstatus":1
+				}
+			};
+		});
 	},
 	academic_year:function(frm){
 		frm.trigger("get_student_details");
@@ -129,25 +138,52 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 		frm.trigger("get_student_details");
 	},
 	// get_student_details:function(frm){
+		
 	exam_category:function(frm){
-		frm.doc.students=[];
-		$(frm.fields_dict.student_inputs.wrapper).empty();
-		if(frm.doc.academic_year && frm.doc.academic_term && frm.doc.course && frm.doc.assessment_criteria && frm.doc.programs && frm.doc.semester) {
-			frappe.call({
-				method: "get_student_allocations",
-				doc:frm.doc,
-				callback: function(r) {
-					if (r.message) {
-						$(frm.fields_dict.student_inputs.wrapper).empty();
-						frm.doc.students=r.message;
-						var result_table = $(frappe.render_template('continuous_evaluation_tool', {
-							frm: frm,
-							students: r.message,
-						}));
-						result_table.appendTo(frm.fields_dict.student_inputs.wrapper);
+		if(frm.doc.exam_category=="Regular"){
+			frm.doc.students=[];
+			$(frm.fields_dict.student_inputs.wrapper).empty();
+			if(frm.doc.academic_year && frm.doc.academic_term && frm.doc.course && frm.doc.assessment_criteria && frm.doc.programs && frm.doc.semester) {
+				frappe.call({
+					method: "get_student_allocations",
+					doc:frm.doc,
+					callback: function(r) {
+						if (r.message) {
+							$(frm.fields_dict.student_inputs.wrapper).empty();
+							frm.doc.students=r.message;
+							var result_table = $(frappe.render_template('continuous_evaluation_tool', {
+								frm: frm,
+								students: r.message,
+							}));
+							result_table.appendTo(frm.fields_dict.student_inputs.wrapper);
+						}
 					}
-				}
-			});
+				});
+			}
+		}
+	},
+	exam_declaration:function(frm){
+		if(frm.doc.exam_category=="Re-Exam"){
+			frm.doc.students=[];
+			$(frm.fields_dict.student_inputs.wrapper).empty();
+
+			if(frm.doc.academic_year && frm.doc.academic_term && frm.doc.course && frm.doc.assessment_criteria && frm.doc.programs && frm.doc.semester) {
+				frappe.call({
+					method: "get_student_allocations",
+					doc:frm.doc,
+					callback: function(r) {
+						if (r.message) {
+							$(frm.fields_dict.student_inputs.wrapper).empty();
+							frm.doc.students=r.message;
+							var result_table = $(frappe.render_template('continuous_evaluation_tool', {
+								frm: frm,
+								students: r.message,
+							}));
+							result_table.appendTo(frm.fields_dict.student_inputs.wrapper);
+						}
+					}
+				});
+			}
 		}
 	}
 });

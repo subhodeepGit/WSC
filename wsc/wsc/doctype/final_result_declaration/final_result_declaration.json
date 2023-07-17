@@ -27,7 +27,7 @@
    "in_list_view": 1,
    "label": "Programs",
    "options": "Programs",
-   "reqd": 1
+   "reqd": 0
   },
   {
    "fieldname": "semester",

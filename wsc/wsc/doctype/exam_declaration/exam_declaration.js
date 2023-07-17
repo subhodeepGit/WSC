@@ -21,17 +21,26 @@ frappe.ui.form.on('Exam Declaration', {
 				]
 			}
 		});
-        if(frm.doc.docstatus == 1 && frappe.user.has_role(["Education Administrator"]) || frappe.user.has_role(["System Manager"])){
-            frm.add_custom_button("Exam Assessment Plan", () => {
-                let data = {}
-                data.programs = frm.doc.exam_program
-                data.program = frm.doc.program
-                data.academic_year = frm.doc.academic_year
-                data.academic_term = frm.doc.academic_term
-                data.exam_declaration = frm.doc.name
-                frappe.new_doc("Exam Assessment Plan", data)
-            },__('Create'));
-
+        if(frm.doc.docstatus==1){
+            if(frm.doc.docstatus == 1 && frappe.user.has_role(["Education Administrator"]) || frappe.user.has_role(["System Manager"])){
+                frm.add_custom_button("Exam Evaluation Plan", () => {
+                    let data = {}
+                    data.programs = frm.doc.exam_program
+                    data.program = frm.doc.program
+                    data.academic_year = frm.doc.academic_year
+                    data.academic_term = frm.doc.academic_term
+                    data.exam_declaration = frm.doc.name
+                    frappe.new_doc("Exam Assessment Plan", data)
+                },__('Create'));
+            if(frm.doc.docstatus == 1 && frappe.user.has_role(["Education Administrator"]) || frappe.user.has_role(["System Manager"])){
+                frm.add_custom_button("Module Wise Exam Group", () => {
+                    let data = {}
+                    data.exam_declaration_id = frm.doc.name
+                    frappe.new_doc("Module Wise Exam Group", data)
+                },__('Create'));
+            }
+        }
+        
             // frm.add_custom_button("Student Group", () => {
             //     let data = {}
             //     data.group_based_on = frm.doc.doctype

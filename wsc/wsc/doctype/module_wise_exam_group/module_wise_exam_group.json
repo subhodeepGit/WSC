@@ -43,12 +43,12 @@
   "checker",
   "column_break_31",
   "course_manager_name",
+  "section_break_37",
+  "invigilator_details_table",
   "section_break_33",
   "get_student",
   "total_enrolled_student",
   "student_list",
-  "section_break_37",
-  "invigilator_details_table",
   "section_break_39",
   "scheduling_group_exam",
   "amended_from"
@@ -186,19 +186,22 @@
    "fieldname": "marker_name",
    "fieldtype": "Link",
    "label": "Marker Name",
-   "options": "Instructor"
+   "options": "Instructor",
+   "reqd": 1
   },
   {
    "fieldname": "checker",
    "fieldtype": "Link",
    "label": "Checker Name",
-   "options": "Instructor"
+   "options": "Instructor",
+   "reqd": 1
   },
   {
    "fieldname": "course_manager_name",
    "fieldtype": "Link",
    "label": "Course Manager Name",
-   "options": "Instructor"
+   "options": "Instructor",
+   "reqd": 1
   },
   {
    "fieldname": "exam_declaration_information_section",
@@ -335,7 +338,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-05 17:10:39.571639",
+ "modified": "2023-07-12 17:06:02.906485",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Module Wise Exam Group",

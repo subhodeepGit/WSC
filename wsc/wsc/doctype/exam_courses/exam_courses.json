@@ -13,6 +13,7 @@
   "semester",
   "section_break_7",
   "examination_date",
+  "column_break_9",
   "examination_end_date",
   "from_time",
   "to_time",
@@ -128,13 +129,18 @@
   },
   {
    "fieldname": "section_break_7",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Exam Module Duration"
+  },
+  {
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-07-05 17:09:08.437263",
+ "modified": "2023-07-14 12:59:21.876698",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Courses",

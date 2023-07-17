@@ -166,5 +166,33 @@
   "modified": "2023-06-06 12:38:23.119249",
   "name": "Cancel",
   "workflow_action_name": "Cancel"
- }
+ },
+ {
+    "docstatus": 0,
+    "doctype": "Workflow Action Master",
+    "modified": "2023-06-06 12:23:27.041039",
+    "name": "Verify",
+    "workflow_action_name": "Verify"
+   },
+   {
+    "docstatus": 0,
+    "doctype": "Workflow Action Master",
+    "modified": "2023-06-06 12:23:54.677521",
+    "name": "Save",
+    "workflow_action_name": "Save"
+   },
+   {
+    "docstatus": 0,
+    "doctype": "Workflow Action Master",
+    "modified": "2023-06-06 12:25:30.629516",
+    "name": "Sent for Approval to GM-Procurement & Contract Management",
+    "workflow_action_name": "Sent for Approval to GM-Procurement & Contract Management"
+   },
+   {
+    "docstatus": 0,
+    "doctype": "Workflow Action Master",
+    "modified": "2023-06-06 12:38:23.119249",
+    "name": "Cancel",
+    "workflow_action_name": "Cancel"
+   }
 ]

@@ -23,7 +23,7 @@ class ToTParticipantEnrollment(Document):
 				tot_participant_enrollment=self.name)
 
 		else:
-			print("\n\n\make_participant")
+			# print("\n\n\make_participant")
 			make_participant(self.name)
 	
 	@frappe.whitelist()
@@ -43,6 +43,7 @@ class ToTParticipantEnrollment(Document):
 			make_enrollment(self.name)
 
 def make_participant(tot_participant_enrollment):
+	# print("\n\n\nPART")
 	doc = frappe.get_doc("ToT Participant Enrollment", tot_participant_enrollment)
 	error = False
 	total_records = len(doc.get("participant_list"))
@@ -51,7 +52,6 @@ def make_participant(tot_participant_enrollment):
 	if not total_records:
 		frappe.throw(_("Please Create Participant Selection Record First"))
 	for d in doc.get("participant_list",{'is_reported':1}):
-	
 		print("\n\n\n\n\n\n\n\nParticipant",d.is_reported,d.participant)
 		result=frappe.new_doc("Student")
 		result.first_name=d.first_name
@@ -59,7 +59,7 @@ def make_participant(tot_participant_enrollment):
 		result.last_name=d.last_name
 		result.student_email_id=d.email_address
 		check_duplicate_student = frappe.get_all("Student",{'student_email_id':d.email_address},['student_email_id'])
-		print("\n\n\ncheck_duplicate_student",check_duplicate_student)
+		# print("\n\n\ncheck_duplicate_student",check_duplicate_student)
 		if(check_duplicate_student):
 			X=check_duplicate_student
 			print("\n\nX",X)

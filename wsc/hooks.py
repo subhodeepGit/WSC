@@ -351,7 +351,9 @@ scheduler_events = {
 		"wsc.wsc.validations.student_blocklist_check.student_blocklist_check",
         "wsc.task.warranty_notification",
         "wsc.task.safety_stock_reach",
-        "wsc.wsc.doctype.student_clearance_application.student_clearance_application.student_disable_check"
+        "wsc.wsc.doctype.student_clearance_application.student_clearance_application.student_disable_check",
+        "wsc.task.exam_reminder_notification",
+        # "wsc.task.def module_exam_group_data", #will be enabled in production
         # "wsc.wsc.validations.exam_assessment_plan.make_exam_paper_setting_by_paper_setting_date"
 	]
 

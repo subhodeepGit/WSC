@@ -17,10 +17,11 @@ class AssessmentCreditsAllocation(Document):
         self.final_earned_marks_calculation_child()
         self.qualifying_status_child()
         self.validate_marks()
-    
+
+
     def qualifying_status_child(self):
         for t in self.get("final_credit_item"):
-            if t.final_earned_marks<=t.passing_marks:
+            if flt(t.final_earned_marks)<=t.passing_marks:
                 t.qualifying_status="Fail"
             else:
                 t.qualifying_status="Pass"
