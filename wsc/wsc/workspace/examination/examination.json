@@ -260,7 +260,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-07-17 09:55:44.167411",
+ "modified": "2023-07-18 05:46:49.385447",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Examination",
@@ -280,12 +280,6 @@
   },
   {
    "role": "Education Examination Head"
-  },
-  {
-   "role": "Instructor"
-  },
-  {
-   "role": "Student"
   }
  ],
  "sequence_id": 3.0,

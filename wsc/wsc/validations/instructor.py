@@ -5,7 +5,7 @@ from wsc.wsc.utils import semester_belongs_to_programs,academic_term,duplicate_r
 
 def validate(doc,method):
     update_user(doc)
-    # permission(doc)
+    permission(doc)
     # director_permission(doc)
     validate_instructor_log(doc)
     academic_term(doc)
@@ -69,13 +69,13 @@ def create_permissions(doc,user):
         for enroll in frappe.get_all("Program Enrollment",{"programs":log.programs,"program":log.program,"academic_year":log.academic_year,"academic_term":log.academic_term},['student']):
             add_user_permission("Student",enroll.student, user, doc)
 ########################################## - FOR DIRECTOR - #####################################################
-def director_permission(doc):
-    d = doc.get("department")
-    for dean_department in frappe.get_all("Dean",{"department":d},['director_name','employee_id','department']):
-        for instr in frappe.get_all("Instructor",{"department":dean_department.department,"employee":dean_department.employee_id},['department','employee']):
-            for emp in frappe.get_all("Employee",{"department":instr.department,"name":instr.employee},['user_id']):
-                if emp.user_id:
-                    add_user_permission(doc.doctype,doc.name,emp.user_id,doc)   
+# def director_permission(doc):
+#     d = doc.get("department")
+#     for dean_department in frappe.get_all("Dean",{"department":d},['director_name','employee_id','department']):
+#         for instr in frappe.get_all("Instructor",{"department":dean_department.department,"employee":dean_department.employee_id},['department','employee']):
+#             for emp in frappe.get_all("Employee",{"department":instr.department,"name":instr.employee},['user_id']):
+#                 if emp.user_id:
+#                     add_user_permission(doc.doctype,doc.name,emp.user_id,doc)   
 ########################################## - FOR INSTRUCTOR - #####################################################                
 def permission(doc):
         for d in doc.get("instructor_log"):
