@@ -387,6 +387,12 @@ override_doctype_class = {
     # "Data Import": "wsc.wsc.doctype.data_import.DataImport"
 }
 override_doctype_dashboards = {
+    "Program": "wsc.wsc.dashboard.program_dashboard.get_data",
+    "Academic Year": "wsc.wsc.dashboard.academic_year_dashboard.get_data",
+    "Room": "wsc.wsc.dashboard.room_dashboard.get_data",
+    "Instructor": "wsc.wsc.dashboard.instructor_dashboard.get_data",
+    "Academic Term": "wsc.wsc.dashboard.academic_term_dashboard.get_data",
+    "Course": "wsc.wsc.dashboard.course_dashboard.get_data",
     "Program Enrollment": "wsc.wsc.dashboard.program_enrollment_dashboard.get_data",
     "Student": "wsc.wsc.dashboard.student_dashboard.get_data",
 }
@@ -437,11 +443,11 @@ override_doctype_dashboards = {
 # ]
 
 fixtures = [
-	# {"dt": "Custom DocPerm", "filters": [
-	# 	[
-	# 		"parent", "not in", ["DocType"]
-	# 	],
-	# ]},
+	{"dt": "Custom DocPerm", "filters": [
+		[
+			"parent", "not in", ["DocType"]
+		],
+	]},
     # {"dt": "Role","filters": [
     #     [
     #         "name", "in", ["Shift Approver","Grievance Cell Member"]
@@ -461,7 +467,7 @@ fixtures = [
     #         "name", "in", ["Resolved"]
     #     ]
     # ]},
-    # # {"dt" : "Translation"}
+    {"dt" : "Translation"}
 ]
 website_context = {
     "favicon": "/assets/wsc/images/logo.jpg",

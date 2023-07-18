@@ -138,7 +138,7 @@
   {
    "fieldname": "courses",
    "fieldtype": "Table",
-   "label": "Mandatory Courses",
+   "label": "Module List",
    "options": "Program Enrollment Course"
   },
   {
@@ -167,7 +167,7 @@
  "hide_toolbar": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-07-06 11:41:04.139327",
+ "modified": "2023-07-17 11:08:18.016817",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Reregistration Tool",

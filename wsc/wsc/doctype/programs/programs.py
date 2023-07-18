@@ -12,7 +12,7 @@ class Programs(Document):
 	def validate(self):
 		self.validate_abbrevation()
 		self.validate_no_semesters()
-		# self.create_permissions()
+		self.create_permissions()
 		# self.director_permission()
 
 ##################################### - FOR INSTRUCTOR - #################################

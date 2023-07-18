@@ -9,7 +9,11 @@ class StudentFeedbackForm(Document):
 		data=frappe.get_all("Student Feedback Form",{"student":self.student,"course":self.course,"instructor":self.instructor,"docstatus":1})
 		if data:
 			frappe.throw("Your Feedback For This Course and This Instructor Already Exists")
-		
+
+	def on_submit(self):	
+		for t in self.get("questionnarie"):
+			if not t.ratings:
+				frappe.throw("Rating is not Maintained for the line no <b>%s</b>"%(t.idx))
 
 @frappe.whitelist()
 def getvalue():

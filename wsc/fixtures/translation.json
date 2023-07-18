@@ -349,5 +349,31 @@
   "name": "46bbf8ccba",
   "source_text": "Death Deallotment",
   "translated_text": "Student Mortality Record"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-07-17 10:58:38.636244",
+  "name": "f3853ec1a1",
+  "source_text": "Instructor Workload",
+  "translated_text": "Trainer Workload"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-07-17 11:08:33.052001",
+  "name": "2bea1c3614",
+  "source_text": "Student Reregistration Tool",
+  "translated_text": "Course Enrollment Tool"
  }
 ]
