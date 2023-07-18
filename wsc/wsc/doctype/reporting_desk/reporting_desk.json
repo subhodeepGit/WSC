@@ -1,8 +1,8 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{applicant_id}-{applicant_name}-{department}",
- "creation": "2023-05-09 18:17:52.450996",
+ "autoname": "format:{applicant_name}-{academic_term}-{department}",
+ "creation": "2023-07-13 15:37:52.436411",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -12,21 +12,23 @@
   "applicant_name",
   "gender",
   "student_category",
+  "physical_disability",
   "academic_year",
   "academic_term",
   "department",
-  "posting_date",
-  "physically_disabled",
   "total_marks",
   "earned_marks",
-  "student_ranks_list"
+  "applicant_rank",
+  "amended_from"
  ],
  "fields": [
   {
    "fieldname": "applicant_id",
    "fieldtype": "Link",
-   "label": "Applicant ID",
-   "options": "Student Applicant"
+   "in_list_view": 1,
+   "label": "Applicant Id",
+   "options": "Rank Card",
+   "reqd": 1
   },
   {
    "fieldname": "applicant_name",
@@ -46,37 +48,22 @@
    "options": "Student Category"
   },
   {
+   "default": "0",
+   "fieldname": "physical_disability",
+   "fieldtype": "Check",
+   "label": "Physical Disability"
+  },
+  {
    "fieldname": "academic_year",
    "fieldtype": "Link",
    "label": "Academic Year",
    "options": "Academic Year"
   },
   {
-   "fieldname": "posting_date",
-   "fieldtype": "Data",
-   "label": "Posting Date"
-  },
-  {
-   "default": "0",
-   "fieldname": "physically_disabled",
-   "fieldtype": "Check",
-   "label": "Physically Disabled"
-  },
-  {
-   "fieldname": "total_marks",
-   "fieldtype": "Data",
-   "label": "Total Marks"
-  },
-  {
-   "fieldname": "earned_marks",
-   "fieldtype": "Data",
-   "label": "Earned Marks"
-  },
-  {
-   "fieldname": "student_ranks_list",
-   "fieldtype": "Table",
-   "label": "Student Ranks List",
-   "options": "Student Ranks List"
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
   },
   {
    "fieldname": "department",
@@ -85,18 +72,38 @@
    "options": "Department"
   },
   {
-   "fieldname": "academic_term",
+   "fieldname": "total_marks",
+   "fieldtype": "Float",
+   "label": "Total Marks"
+  },
+  {
+   "fieldname": "earned_marks",
+   "fieldtype": "Float",
+   "label": "Earned Marks"
+  },
+  {
+   "fieldname": "applicant_rank",
+   "fieldtype": "Table",
+   "label": "Applicant Rank",
+   "options": "Student Ranks List"
+  },
+  {
+   "fieldname": "amended_from",
    "fieldtype": "Link",
-   "label": "Academic Term",
-   "options": "Academic Term"
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Reporting Desk",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-07-13 15:48:21.709073",
+ "modified": "2023-07-13 16:44:45.244755",
  "modified_by": "Administrator",
  "module": "WSC",
- "name": "Rank Card",
+ "name": "Reporting Desk",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [

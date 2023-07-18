@@ -124,13 +124,23 @@ frappe.ui.form.on('Student Applicant', {
     },
     refresh(frm){
 
+        //For Counselling Based Program Priority
+        let field = frm.get_field("counselling_based_program_priority")
+        let isHidden = field.df.hidden
+
+        if (isHidden){
+            frm.set_df_property("counselling_based_program_priority" , "hidden" , 0)
+        } else {
+            frm.set_df_property("counselling_based_program_priority" , "hidden" , 1)
+        }
+
         frm.set_df_property('student_rank', 'cannot_add_rows', true)
 		frm.set_df_property('student_rank', 'cannot_delete_rows', true) 
         frm.set_df_property('education_qualifications_details', 'cannot_add_rows', true);
         frm.set_df_property('education_qualifications_details', 'cannot_delete_rows', true);
         frm.set_df_property('document_list', 'cannot_add_rows', true);
         frm.set_df_property('document_list', 'cannot_delete_rows', true);
-         
+        
         if (cur_frm.doc.document_list){
             cur_frm.doc.document_list.forEach(data=>{
                 var dn = frappe.meta.get_docfield("Document List", "document_name",data.name);
@@ -141,12 +151,14 @@ frappe.ui.form.on('Student Applicant', {
                 // m.read_only=1;
             })
         }
+
         frm.set_df_property('program', 'hidden', 1);
         frm.set_df_property('program', 'reqd', 0);
         frm.set_df_property('program', 'allow_on_submit', 1);
         frm.set_df_property('programs_', 'hidden', 1);
         frm.set_df_property('student_admission', 'hidden', 1);
         frm.remove_custom_button("Enroll")
+        
         if (!cur_frm.doc.__islocal && frappe.user.has_role(["Student"]) && !frappe.user.has_role(["System Manager"])){
             frm.remove_custom_button("Reject","Actions");
             frm.remove_custom_button("Approve","Actions");
