@@ -3,49 +3,36 @@
 /* eslint-disable */
 
 frappe.query_reports["L1 Vendor Selection"] = {
-	"filters": [
+	filters: [
 		{
-            "fieldname":"supplier",
-            "label": __("Supplier"),
-            "fieldtype": "MultiSelectList",
-            // "options": "Project",
-            // "reqd":1,
+            fieldname:"supplier",
+            label: __("Supplier"),
+            fieldtype: "MultiSelectList",
             get_data: function(txt) {
 				return frappe.db.get_link_options('Supplier', txt)
 			}
         },
 		{
-            "fieldname":"from_date",
-            "label": __("From Date"),
-            "fieldtype": "Date",
-            // "reqd":1,
+            fieldname:"transaction_date",
+            label: __("From Date"),
+            fieldtype: "Date",
         },
         {
-            "fieldname":"to_date",
-            "label": __("To Date"),
-            "fieldtype": "Date",
-            // "reqd":1,
+            fieldname:"valid_till",
+            label: __("To Date"),
+            fieldtype: "Date",
         },
         {
-            "fieldname":"status",
-            "label": __("Status"),
-            "fieldtype": "Select",
-			"options": "\nSubmitted\nExpired",
-            // "options": "Project",
-            // "reqd":1,
-            // get_data: function(txt) {
-			// 	return frappe.db.get_link_options('Program', txt)
-			// }
+            fieldname:"status",
+            label: __("Status"),
+            fieldtype: "Select",
+			options: "\nSubmitted\nExpired",
         },
 		{
-            "fieldname":"item_code",
-            "label": __("Item Code"),
-            "fieldtype": "Link",
-            "options": "Item",
-            // "reqd":1,
-            // get_data: function(txt) {
-			// 	return frappe.db.get_link_options('Item', txt)
-			// }
+            fieldname:"item_code",
+            label: __("Item Code"),
+            fieldtype: "Link",
+            options: "Item",
         },        
 	]
 };
