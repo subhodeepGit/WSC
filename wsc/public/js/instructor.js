@@ -17,7 +17,7 @@ frappe.ui.form.on('Instructor',{
 		// }
         if(frm.doc.docstatus == 0 && frm.doc.employee!=null) {
             // alert("Hello")
-			frm.add_custom_button(__('Instructor Workload'), function() {
+			frm.add_custom_button(__('Trainer Workload'), function() {
 				frappe.route_options = {
 					instructor: frm.doc.name,
                 };

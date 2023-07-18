@@ -260,7 +260,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-07-06 12:27:46.890063",
+ "modified": "2023-07-18 05:46:49.385447",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Examination",
@@ -273,9 +273,6 @@
    "role": "Admin"
   },
   {
-   "role": "Education Administrator"
-  },
-  {
    "role": "Examination Management Group"
   },
   {
@@ -283,12 +280,6 @@
   },
   {
    "role": "Education Examination Head"
-  },
-  {
-   "role": "Instructor"
-  },
-  {
-   "role": "Student"
   }
  ],
  "sequence_id": 3.0,

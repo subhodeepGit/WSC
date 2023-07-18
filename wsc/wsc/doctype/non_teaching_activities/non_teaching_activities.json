@@ -57,13 +57,13 @@
   {
    "fieldname": "instructor_name",
    "fieldtype": "Data",
-   "label": "Instructor Name"
+   "label": "Trainer Name"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-02-08 16:13:23.057545",
+ "modified": "2023-07-17 10:59:32.696552",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Non Teaching Activities",

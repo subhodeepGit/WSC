@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "STU-.YYYY.-.#####",
+ "autoname": "STU-FB-.#####",
  "creation": "2023-01-11 14:57:08.231908",
  "default_view": "List",
  "doctype": "DocType",
@@ -116,7 +116,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-24 15:05:08.275215",
+ "modified": "2023-07-17 12:37:30.197320",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Feedback Form",
