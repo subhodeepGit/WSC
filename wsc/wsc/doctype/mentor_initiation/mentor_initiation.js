@@ -9,6 +9,8 @@ frappe.ui.form.on('Mentor Initiation', {
 			callback: function(r){
 				if(r.message){
 					var get_data = r.message;
+					frm.set_value("mentor", get_data["mentor"])
+					frm.set_value("mentor_name", get_data["mentor_name"])
 					var mentee_info = cur_frm.fields_dict['mentee_information'].grid;
 					for (var i= 0; i < get_data["student"].length; i++) {
 						var add_mentee = mentee_info.add_new_row();
