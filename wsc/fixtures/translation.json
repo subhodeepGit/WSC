@@ -228,32 +228,6 @@
   "docstatus": 0,
   "doctype": "Translation",
   "language": "en",
-  "modified": "2023-06-01 13:09:28.733952",
-  "name": "e332557774",
-  "source_text": "Programs",
-  "translated_text": "Course"
- },
- {
-  "context": null,
-  "contributed": 0,
-  "contribution_docname": null,
-  "contribution_status": "",
-  "docstatus": 0,
-  "doctype": "Translation",
-  "language": "en",
-  "modified": "2023-06-01 13:10:31.125245",
-  "name": "99c769ef08",
-  "source_text": "Course",
-  "translated_text": "Module"
- },
- {
-  "context": null,
-  "contributed": 0,
-  "contribution_docname": null,
-  "contribution_status": "",
-  "docstatus": 0,
-  "doctype": "Translation",
-  "language": "en",
   "modified": "2023-06-01 13:11:37.597102",
   "name": "1547b285ac",
   "source_text": "Program Grades",
@@ -401,5 +375,31 @@
   "name": "e4a034072b",
   "source_text": "Pass Percentage",
   "translated_text": "Course Wise Performance"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-07-19 13:05:26.373460",
+  "name": "96f05b18b1",
+  "source_text": "Programs",
+  "translated_text": "Course"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-07-19 13:05:36.142432",
+  "name": "e313dca9a2",
+  "source_text": "Course",
+  "translated_text": "Module"
  }
 ]
