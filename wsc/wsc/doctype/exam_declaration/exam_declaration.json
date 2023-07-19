@@ -52,7 +52,8 @@
    "fieldname": "exam_type",
    "fieldtype": "Link",
    "label": "Exam Type",
-   "options": "Exam Type"
+   "options": "Exam Type",
+   "reqd": 1
   },
   {
    "depends_on": "is_application_required",
@@ -325,7 +326,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-14 15:56:30.297748",
+ "modified": "2023-07-19 15:45:00.055205",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Declaration",
