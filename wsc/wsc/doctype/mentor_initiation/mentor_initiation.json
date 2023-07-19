@@ -26,10 +26,10 @@
   },
   {
    "fieldname": "mentor",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Mentor Allocation",
-   "options": "Mentor Allocation",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -64,7 +64,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-05 12:51:34.840327",
+ "modified": "2023-07-19 12:52:24.567108",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Mentor Initiation",
