@@ -13,14 +13,16 @@ frappe.query_reports["L1 Vendor Selection"] = {
 			}
         },
 		{
-            fieldname:"transaction_date",
+            fieldname:"from_date",
             label: __("From Date"),
             fieldtype: "Date",
+            reqd:1,
         },
         {
-            fieldname:"valid_till",
+            fieldname:"to_date",
             label: __("To Date"),
             fieldtype: "Date",
+            reqd:1,
         },
         {
             fieldname:"status",
