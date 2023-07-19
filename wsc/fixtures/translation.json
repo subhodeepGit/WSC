@@ -375,5 +375,31 @@
   "name": "2bea1c3614",
   "source_text": "Student Reregistration Tool",
   "translated_text": "Course Enrollment Tool"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-07-19 12:25:23.511939",
+  "name": "f59025e9c7",
+  "source_text": "Subject Wise Performance",
+  "translated_text": "Module Wise Performance"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-07-19 12:25:40.740283",
+  "name": "e4a034072b",
+  "source_text": "Pass Percentage",
+  "translated_text": "Course Wise Performance"
  }
 ]
