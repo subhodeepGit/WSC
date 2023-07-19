@@ -4,12 +4,11 @@
 import frappe
 from datetime import date
 from frappe.model.document import Document
-from wsc.wsc.notification.custom_notification import mentor_initiation_submit
 
 
 class MentorInitiation(Document):
     def validate(doc):
-        mentor_initiation_submit(doc)
+        pass
      
 
 @frappe.whitelist()
