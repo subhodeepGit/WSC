@@ -110,9 +110,14 @@ def get_courses(doctype, txt, searchfield, start, page_len, filters):
 
 @frappe.whitelist()
 def get_assessment_criteria(doctype, txt, searchfield, start, page_len, filters):
+    print("\n\n\nFirst")
     lst = []
-    for i in frappe.get_all("Course Enrollment",{'student':filters.get("student"),"course":filters.get("course"),"status":("!=","Completed")},['name']):
+    # ,"status":("!=","Completed")
+    for i in frappe.get_all("Course Enrollment",{'student':filters.get("student"),"course":filters.get("course")},['name','status']):
+        print("\n\nHELLO FTLT")
+        print(i.status)
         fltr={"parent":i.get("name")}
+        print("\n\nFLTR",fltr)
         if txt:
             fltr.update({'assessment_criteria': ['like', '%{}%'.format(txt)]})
         for j in frappe.get_all("Credit distribution List",fltr,["assessment_criteria"]):

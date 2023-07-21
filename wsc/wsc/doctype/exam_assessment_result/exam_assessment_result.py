@@ -21,6 +21,8 @@ class ExamAssessmentResult(Document):
         self.validate_duplicate_for_save()
         self.validate_duplicate_for_submit()
         self.complete_course_enrollment()
+    def on_cancel(self):
+        self.cancel_complete_course_enrollment()
     def validate(self):
         self.validate_duplicate_for_save()
         self.validate_duplicate_for_submit()
@@ -238,7 +240,13 @@ class ExamAssessmentResult(Document):
                     course_enroll=frappe.get_doc("Course Enrollment",enroll.name)
                     course_enroll.status="Completed"
                     course_enroll.save()
-
+    def cancel_complete_course_enrollment(self):
+            for item in self.get("evaluation_result_item"):
+                if item.result=="P":
+                    for enroll in frappe.get_all("Course Enrollment",{"student":self.student,"course":item.course}):
+                        course_enroll=frappe.get_doc("Course Enrollment",enroll.name)
+                        course_enroll.status="Not Completed"
+                        course_enroll.save()
     def set_evaluation_result_item(self):
         duplicate=[]
         self.set("evaluation_result_item",[])
