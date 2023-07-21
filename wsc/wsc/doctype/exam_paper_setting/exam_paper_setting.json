@@ -44,7 +44,8 @@
    "fieldname": "examiner_name",
    "fieldtype": "Data",
    "label": "Paper Setter Name",
-   "read_only": 1
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "bold": 1,
@@ -182,20 +183,23 @@
    "fetch_from": "exam_coordinator.instructor_name",
    "fieldname": "exam_coordinator_name",
    "fieldtype": "Data",
-   "label": "Exam Coordinator Name"
+   "label": "Exam Coordinator Name",
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fetch_from": "moderator_name.instructor_name",
    "fieldname": "moderator__name",
    "fieldtype": "Data",
    "label": "Moderator Name ",
-   "read_only": 1
+   "read_only": 1,
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-20 16:56:29.447826",
+ "modified": "2023-07-21 16:09:28.481119",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Paper Setting",

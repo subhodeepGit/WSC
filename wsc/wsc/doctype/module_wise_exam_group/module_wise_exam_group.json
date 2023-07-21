@@ -40,9 +40,12 @@
   "end_date_of_attendence_duration",
   "section_break_25",
   "marker_name",
+  "marker",
   "checker",
+  "checker_name",
   "column_break_31",
   "course_manager_name",
+  "course_manager",
   "section_break_37",
   "invigilator_details_table",
   "section_break_33",
@@ -185,21 +188,21 @@
   {
    "fieldname": "marker_name",
    "fieldtype": "Link",
-   "label": "Marker Name",
+   "label": "Marker",
    "options": "Instructor",
    "reqd": 1
   },
   {
    "fieldname": "checker",
    "fieldtype": "Link",
-   "label": "Checker Name",
+   "label": "Checker",
    "options": "Instructor",
    "reqd": 1
   },
   {
    "fieldname": "course_manager_name",
    "fieldtype": "Link",
-   "label": "Course Manager Name",
+   "label": "Course Manager",
    "options": "Instructor",
    "reqd": 1
   },
@@ -333,12 +336,33 @@
    "options": "Module Wise Exam Group",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fetch_from": "marker_name.instructor_name",
+   "fieldname": "marker",
+   "fieldtype": "Data",
+   "label": "Marker Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "checker.instructor_name",
+   "fieldname": "checker_name",
+   "fieldtype": "Data",
+   "label": "Checker Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "course_manager_name.instructor_name",
+   "fieldname": "course_manager",
+   "fieldtype": "Data",
+   "label": "Course Manager Name",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-12 17:06:02.906485",
+ "modified": "2023-07-21 16:01:48.059299",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Module Wise Exam Group",
