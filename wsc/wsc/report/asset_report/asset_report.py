@@ -31,6 +31,8 @@ def get_data(filters=None):
             conditions.append(f" {key} = %s")
         sql_query += " AND ".join(conditions)
         data = frappe.db.sql(sql_query, tuple(filters.values()), as_dict=True)
+    else:
+        data = frappe.db.sql(sql_query,as_dict=True)
 
     return data
 
