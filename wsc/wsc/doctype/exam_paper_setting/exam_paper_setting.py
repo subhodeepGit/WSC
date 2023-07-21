@@ -24,12 +24,12 @@ class ExamPaperSetting(Document):
 
         
     def set_user_permission(self):
-        if self.examiner:
-            self.set_instructor_permission(self.examiner)
-        if self.moderator_name:
-            self.set_instructor_permission(self.moderator_name)
-        if self.exam_coordinator:
-            self.set_instructor_permission(self.exam_coordinator)
+        if self.examiner_name:
+            self.set_instructor_permission(self.examiner_name)
+        if self.moderator__name:
+            self.set_instructor_permission(self.moderator__name)
+        if self.exam_coordinator_name:
+            self.set_instructor_permission(self.exam_coordinator_name)
 
     def on_trash(self): 
         self.delete_permission()
@@ -45,7 +45,7 @@ class ExamPaperSetting(Document):
                     if emp.get('user_id'):
                         add_user_permission("Exam Paper Setting",self.name, emp.get('user_id'), self)
             else:
-                frappe.msgprint("Instructor {0} is not employee".format(instructor))
+                frappe.msgprint("Trainer {0} is not employee".format(instructor))
     
 
 # bench execute wsc.wsc.doctype.exam_paper_setting.exam_paper_setting.make_exam_paper_setting_from_sssessment_plan
@@ -124,7 +124,40 @@ def date_validation(doc):
             validation=False
         if validation:
             frappe.throw("Exam Assessment Plan paper setting dates Not Exists")
-        
+@frappe.whitelist()
+def is_verified_user(docname):
+    doc = frappe.get_doc("Exam Paper Setting",docname)
+    exam_coordinator_name = doc.exam_coordinator_name
+    trainer_name=doc.examiner_name
+    moderator__name=doc.moderator__name
+    roles = frappe.get_roles(frappe.session.user)
+    if "Admin" in roles or "Administrator" in roles:
+        return True
+    x=frappe.get_all("Instructor",{"instructor_name":moderator__name},['email_id'])
+    y=x[0]
+    z=y.values()
+    for values in z:
+        print("")
+    value1=values
+
+    m=frappe.get_all("Instructor",{"instructor_name":exam_coordinator_name},['email_id'])
+    y=m[0]
+    z=y.values()
+    for values in z:
+        print("")
+    value2=values
+    # if "HR Manager/CS Officer" in roles or "HR Admin" in roles or "Director" in roles or "Admin" in roles or "Administrator" in roles:
+    #     return True
+    if doc.workflow_state == "Pending":
+        return True
+    if doc.workflow_state == "Pending" and frappe.session.user == value2:
+        return True
+    if doc.workflow_state == "Sent For Approval" and frappe.session.user == value1:
+        return True
+    # if doc.workflow_state == "Sent For Approval" and frappe.session.user ==shift_approver:
+    #     return True
+    else :
+        return False
 @frappe.whitelist()
 def filter_examiner(doctype, txt, searchfield, start, page_len, filters):
     return frappe.get_all("Paper Setter Item",{'parent':filters.get('assessment_plan'),'paper_setter': ['like', '%{}%'.format(txt)]},['paper_setter','full_name'],as_list=1)

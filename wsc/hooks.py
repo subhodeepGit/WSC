@@ -391,6 +391,7 @@ override_doctype_class = {
 }
 override_doctype_dashboards = {
     "Program": "wsc.wsc.dashboard.program_dashboard.get_data",
+    "Student Group": "wsc.wsc.dashboard.student_group_dashboard.get_data",
     "Academic Year": "wsc.wsc.dashboard.academic_year_dashboard.get_data",
     "Room": "wsc.wsc.dashboard.room_dashboard.get_data",
     "Instructor": "wsc.wsc.dashboard.instructor_dashboard.get_data",

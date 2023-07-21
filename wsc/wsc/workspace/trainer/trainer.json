@@ -1,12 +1,12 @@
 {
  "charts": [],
- "content": "[{\"id\":\"NMPR8Oe-nH\",\"type\":\"header\",\"data\":{\"text\":\"<b>My Shortcuts</b><br>\",\"col\":12}},{\"id\":\"ZJ1uaaqjP2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Profile\",\"col\":3}},{\"id\":\"3W4_nFMhYE\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Department\",\"col\":3}},{\"id\":\"u4zfd0YV3r\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":3}},{\"id\":\"zsKqLReSCr\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Program Enrollment\",\"col\":3}},{\"id\":\"w91UO-bznd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Attendance Tool\",\"col\":3}},{\"id\":\"kzZdSdB99E\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Time Table\",\"col\":3}},{\"id\":\"-e94qIe0Qi\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Group\",\"col\":3}},{\"id\":\"Y467KUPF8F\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Exam Declaration\",\"col\":3}},{\"id\":\"0D1vhtuZv7\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>My Cards <br></b></span>\",\"col\":12}},{\"id\":\"bkW6Q1kEuK\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"vi3zz3EBAm\",\"type\":\"card\",\"data\":{\"card_name\":\"Students & Trainer\",\"col\":4}},{\"id\":\"2TK7Sk3ERb\",\"type\":\"card\",\"data\":{\"card_name\":\"Student Enrollment\",\"col\":4}},{\"id\":\"mDtqic8MTb\",\"type\":\"card\",\"data\":{\"card_name\":\"Schedule\",\"col\":4}},{\"id\":\"mChBjFBxcP\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance \",\"col\":4}},{\"id\":\"ZTpJjSUpka\",\"type\":\"card\",\"data\":{\"card_name\":\"Examination\",\"col\":4}},{\"id\":\"_aV1DzJDsp\",\"type\":\"card\",\"data\":{\"card_name\":\"Exam Evaluation\",\"col\":4}},{\"id\":\"602O0Fo4ON\",\"type\":\"card\",\"data\":{\"card_name\":\"Tool\",\"col\":4}}]",
+ "content": "[{\"id\":\"NMPR8Oe-nH\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h3\\\">My Shortcuts</span><br>\",\"col\":12}},{\"id\":\"ZJ1uaaqjP2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Profile\",\"col\":3}},{\"id\":\"3W4_nFMhYE\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Department\",\"col\":3}},{\"id\":\"u4zfd0YV3r\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":3}},{\"id\":\"zsKqLReSCr\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Program Enrollment\",\"col\":3}},{\"id\":\"w91UO-bznd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Attendance Tool\",\"col\":3}},{\"id\":\"kzZdSdB99E\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Time Table\",\"col\":3}},{\"id\":\"-e94qIe0Qi\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Group\",\"col\":3}},{\"id\":\"Y467KUPF8F\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Exam Declaration\",\"col\":3}},{\"id\":\"0D1vhtuZv7\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>My Cards <br></b></span>\",\"col\":12}},{\"id\":\"bkW6Q1kEuK\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"vi3zz3EBAm\",\"type\":\"card\",\"data\":{\"card_name\":\"Students & Trainer\",\"col\":4}},{\"id\":\"2TK7Sk3ERb\",\"type\":\"card\",\"data\":{\"card_name\":\"Student Enrollment\",\"col\":4}},{\"id\":\"mDtqic8MTb\",\"type\":\"card\",\"data\":{\"card_name\":\"Schedule\",\"col\":4}},{\"id\":\"mChBjFBxcP\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance \",\"col\":4}},{\"id\":\"ZTpJjSUpka\",\"type\":\"card\",\"data\":{\"card_name\":\"Examination\",\"col\":4}},{\"id\":\"_aV1DzJDsp\",\"type\":\"card\",\"data\":{\"card_name\":\"Exam Evaluation\",\"col\":4}},{\"id\":\"602O0Fo4ON\",\"type\":\"card\",\"data\":{\"card_name\":\"Tool\",\"col\":4}}]",
  "creation": "2023-07-17 12:52:17.668640",
  "docstatus": 0,
  "doctype": "Workspace",
  "for_user": "",
  "hide_custom": 0,
- "icon": "Education",
+ "icon": "education",
  "idx": 0,
  "is_hidden": 0,
  "label": "Trainer",
@@ -296,7 +296,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-07-18 15:30:22.050769",
+ "modified": "2023-07-21 10:03:13.863252",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Trainer",
