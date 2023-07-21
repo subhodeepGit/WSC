@@ -32,7 +32,7 @@
   "column_break_i9clt",
   "total_marks",
   "sgpa",
-  "column_break_27",
+  "column_break_277",
   "percentage",
   "column_break_11",
   "grade",
@@ -43,7 +43,8 @@
   "comment",
   "amended_from",
   "credit_point",
-  "sgpa_in_to_credit_point"
+  "sgpa_in_to_credit_point",
+  "column_break_17"
  ],
  "fields": [
   {
@@ -133,7 +134,8 @@
    "fieldname": "assessment_result_item",
    "fieldtype": "Table",
    "label": "Assessment Result Item",
-   "options": "Assessment Result Item"
+   "options": "Assessment Result Item",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_8",
@@ -167,7 +169,8 @@
    "allow_on_submit": 1,
    "fieldname": "grade",
    "fieldtype": "Data",
-   "label": "Grade"
+   "label": "Grade",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_13",
@@ -193,12 +196,14 @@
    "fieldname": "evaluation_result_item",
    "fieldtype": "Table",
    "label": "Evaluation Result Item",
-   "options": "Evaluation Result Item"
+   "options": "Evaluation Result Item",
+   "read_only": 1
   },
   {
    "allow_on_submit": 1,
    "fieldname": "assessment_status",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Assessment Status",
    "read_only": 1
   },
@@ -292,11 +297,15 @@
    "fieldtype": "Float",
    "label": "Secured Marks",
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_277",
+   "fieldtype": "Column Break"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-12 12:10:36.775924",
+ "modified": "2023-07-21 16:55:02.905129",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Assessment Result",
