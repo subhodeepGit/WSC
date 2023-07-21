@@ -34,6 +34,24 @@ frappe.ui.form.on('Instructor',{
                 }
             };
         });
+        frm.set_query("programs","instructor_log", function(_doc, cdt, cdn) {
+            var d = locals[cdt][cdn];
+            return {
+                filters: {
+                    "department":d.department,
+                    "program_grade":d.course_type
+                }
+            };
+        });
+        frm.set_query("student_group","instructor_log", function(_doc, cdt, cdn) {
+            var d = locals[cdt][cdn];
+            return {
+                filters: {
+                    "program":d.program,
+                    "academic_term":d.academic_term
+                }
+            };
+        });
     },
 
     //     if(frm.doc.docstatus > 0) {

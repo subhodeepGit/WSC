@@ -2,6 +2,20 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
+  "modified": "2023-07-20 12:48:07.007849",
+  "name": "Sent to Moderator",
+  "workflow_action_name": "Sent to Moderator"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-06-27 11:29:17.055540",
+  "name": "Send For Approval",
+  "workflow_action_name": "Send For Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
   "modified": "2023-07-03 16:10:06.788095",
   "name": "Send to Moderator",
   "workflow_action_name": "Send to Moderator"
@@ -135,20 +149,6 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2023-06-06 12:23:54.677521",
-  "name": "Save",
-  "workflow_action_name": "Save"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
-  "modified": "2023-06-06 12:25:30.629516",
-  "name": "Sent for Approval to GM-Procurement & Contract Management",
-  "workflow_action_name": "Sent for Approval to GM-Procurement & Contract Management"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
   "modified": "2023-06-06 12:17:00.897288",
   "name": "Resolve",
   "workflow_action_name": "Resolve"
@@ -163,36 +163,22 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
+  "modified": "2023-06-06 12:23:54.677521",
+  "name": "Save",
+  "workflow_action_name": "Save"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-06-06 12:25:30.629516",
+  "name": "Sent for Approval to GM-Procurement & Contract Management",
+  "workflow_action_name": "Sent for Approval to GM-Procurement & Contract Management"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
   "modified": "2023-06-06 12:38:23.119249",
   "name": "Cancel",
   "workflow_action_name": "Cancel"
- },
- {
-    "docstatus": 0,
-    "doctype": "Workflow Action Master",
-    "modified": "2023-06-06 12:23:27.041039",
-    "name": "Verify",
-    "workflow_action_name": "Verify"
-   },
-   {
-    "docstatus": 0,
-    "doctype": "Workflow Action Master",
-    "modified": "2023-06-06 12:23:54.677521",
-    "name": "Save",
-    "workflow_action_name": "Save"
-   },
-   {
-    "docstatus": 0,
-    "doctype": "Workflow Action Master",
-    "modified": "2023-06-06 12:25:30.629516",
-    "name": "Sent for Approval to GM-Procurement & Contract Management",
-    "workflow_action_name": "Sent for Approval to GM-Procurement & Contract Management"
-   },
-   {
-    "docstatus": 0,
-    "doctype": "Workflow Action Master",
-    "modified": "2023-06-06 12:38:23.119249",
-    "name": "Cancel",
-    "workflow_action_name": "Cancel"
-   }
+ }
 ]

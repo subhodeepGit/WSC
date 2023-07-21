@@ -8,10 +8,10 @@ def get_data(data):
 		# "fieldname": "instructor",
 		# "non_standard_fieldnames": {"Assessment Plan": "supervisor"},
 		"transactions": [
-			{
-				"label": _("Time Table"),
-				"items": ["Course Schedule"],
-			},
+			# {
+				# "label": _("Time Table"),
+				# "items": ["Course Schedule"],
+			# },
 			{"label": _("Students"), "items": ["Student Group"]},
 		],
 	}

@@ -8,8 +8,9 @@
  "engine": "InnoDB",
  "field_order": [
   "exam_declaration",
-  "grading_scale",
+  "exam_type",
   "assessment_criteria",
+  "grading_scale",
   "exam_coordinator",
   "column_break_2",
   "programs",
@@ -17,6 +18,7 @@
   "academic_year",
   "academic_term",
   "room",
+  "exam_coordinator_name",
   "section_break_20",
   "course_assessment_plan_item",
   "section_break_5",
@@ -45,7 +47,7 @@
    "reqd": 1
   },
   {
-   "fetch_from": "exam_declaration.exam_type",
+   "fetch_from": "exam_declaration.assessment_criteria",
    "fieldname": "assessment_criteria",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -161,11 +163,26 @@
    "fieldtype": "Link",
    "label": "Exam Coordinator",
    "options": "Instructor"
+  },
+  {
+   "fetch_from": "exam_coordinator.instructor_name",
+   "fieldname": "exam_coordinator_name",
+   "fieldtype": "Data",
+   "label": "Exam Coordinator Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "exam_declaration.exam_type",
+   "fieldname": "exam_type",
+   "fieldtype": "Link",
+   "label": "Exam Type",
+   "options": "Exam Type",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-07 15:48:02.281100",
+ "modified": "2023-07-20 11:41:02.181860",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Assessment Plan",
