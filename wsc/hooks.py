@@ -83,7 +83,8 @@ after_migrate = [
         'wsc.patches.migrate_patch.set_translation',
         'wsc.patches.migrate_patch.add_roles',
         'wsc.patches.migrate_patch.set_custom_role_permission',
-        'wsc.wsc.delete_doc_if_linked.execute'
+        'wsc.wsc.delete_doc_if_linked.execute',
+        'wsc.patches.migrate_patch.set_custom_role_permission_remove_duplicate',
 ]
 
 # application home page (will override Website Settings)
