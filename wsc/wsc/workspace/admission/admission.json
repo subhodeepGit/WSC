@@ -474,7 +474,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-07-19 11:53:14.672132",
+ "modified": "2023-07-19 12:35:08.832103",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Admission",
@@ -488,6 +488,9 @@
   },
   {
    "role": "Education Administrator"
+  },
+  {
+   "role": "Education Admission Head"
   }
  ],
  "sequence_id": 1.0,

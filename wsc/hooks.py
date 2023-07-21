@@ -446,12 +446,11 @@ override_doctype_dashboards = {
 #	"wsc.auth.validate"
 # ]
 
-fixtures = [
-	{"dt": "Custom DocPerm", "filters": [
-		[
-			"parent", "not in", ["DocType"]
-		],
-	]},
+# fixtures = [
+# 	{"dt": "Custom DocPerm", "filters": [
+# 		["parent", "not in", ["DocType"]],
+#         ["role", '=', 'Education Admission Head']
+# 	]},
     # {"dt": "Role","filters": [
     #     [
     #         "name", "in", ["Shift Approver","Grievance Cell Member"]
@@ -471,8 +470,8 @@ fixtures = [
     #         "name", "in", ["Resolved"]
     #     ]
     # ]},
-    {"dt" : "Translation"}
-]
+    # {"dt" : "Translation"}
+# ]
 website_context = {
     "favicon": "/assets/wsc/images/logo.jpg",
     "splash_image": "/assets/wsc/images/logo.jpg"

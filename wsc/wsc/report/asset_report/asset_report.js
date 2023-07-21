@@ -19,7 +19,7 @@ frappe.query_reports["Asset Report"] = {
             fieldname:"asset_owner",
             label: __("Asset Owner"),
             fieldtype: "Select",
-			options: "\nSupplier\nCustomer\nSubmitted",
+			options: "\nSupplier\nCustomer\nCompany",
         },
 		{
             fieldname:"location",
