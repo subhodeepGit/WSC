@@ -13,7 +13,8 @@
   "earned_marks",
   "total_marks",
   "grade",
-  "result"
+  "result",
+  "module_total_mark"
  ],
  "fields": [
   {
@@ -93,11 +94,17 @@
    "in_list_view": 1,
    "label": "Module Name",
    "width": "25px"
+  },
+  {
+   "fetch_from": "course.total_marks",
+   "fieldname": "module_total_mark",
+   "fieldtype": "Data",
+   "label": "Module Total Mark"
   }
  ],
  "istable": 1,
  "links": [],
- "modified": "2023-07-13 10:00:20.599635",
+ "modified": "2023-07-21 16:22:45.141763",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Evaluation Result Item",

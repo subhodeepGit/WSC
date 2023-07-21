@@ -189,7 +189,7 @@ class ExamAssessmentResult(Document):
             if self.grade and self.grading_scale:
                 if d.earned_marks:
                     marks_earned += flt(d.earned_marks)
-                    total_marks += flt(d.total_marks)
+                    total_marks += flt(d.module_total_mark)
         if total_marks > 0 :
             self.total_marks=total_marks
             self.secured_marks=marks_earned
@@ -259,7 +259,8 @@ class ExamAssessmentResult(Document):
                     "earned_cr":earned_cr,
                     "total_cr":total_cr,
                     "earned_marks":earned_marks,
-                    "total_marks":total_marks
+                    "total_marks":total_marks,
+                    "module_total_mark":frappe.db.get_value("Course",row.course,'total_marks'),
                 })
  
 @frappe.whitelist()

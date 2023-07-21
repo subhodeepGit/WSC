@@ -21,6 +21,45 @@ def set_custom_role_permission():
                 role.save()
 
 
+#   bench execute wsc.patches.migrate_patch.set_custom_role_permission_remove_duplicate
+def set_custom_role_permission_remove_duplicate():
+    role_list=[]
+    doctype=[]
+    # perm_level=[0,1,2,3,4,5,6,7,8,9,10]
+    perm_level=[0,1,2,3]
+    custom_docperm_data=frappe.get_all('Custom DocPerm',fields=["amend","cancel","create","delete","docstatus","email","export",
+                                                         "if_owner","import","modified","name","parent","permlevel","print","read",
+                                                         "report","role","select","set_user_permissions","share","submit","write"])   
+    if custom_docperm_data:
+        for t in custom_docperm_data:
+            role_list.append(t['role'])
+            doctype.append(t['parent'])
+
+        role_list=list(set(role_list))
+        doctype=list(set(doctype))
+
+        for i in role_list:
+            for j in doctype:
+                for k in perm_level:
+                    data=[]
+                    data=list(filter(lambda person: person['parent'] == j and person['role'] == i and person['permlevel']==k, custom_docperm_data))
+                    if data:
+                        if len(data)==1:
+                            pass
+                        else:
+                            data.sort(key = lambda x: x['modified'], reverse=True)
+                            for t in data:
+                                index = data.index(t)
+                                if index!=0:
+                                    try:
+                                        frappe.delete_doc("Custom DocPerm", t['name'])
+                                        frappe.db.commit()
+                                    except Exception as e:
+                                        frappe.db.rollback()
+                                        print(f"Error deleting Custom DocPerm: {e}")
+
+
+
 def get_translation(site=None):
     if sys.argv[2]=='--site':
         os.system("bench --site {0} export-fixtures".format(sys.argv[3]))
