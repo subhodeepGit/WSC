@@ -319,7 +319,10 @@ doc_events = {
     },
     "Employee Separation":{
         "validate":"wsc.wsc.validations.employee_separation.validate",
-    }    
+    },
+    "Asset Maintenance" : {
+        "validate" :"wsc.wsc.doctype.asset_maintenance.validate"
+    } 
 
     # "User":{
     #     "validate":"wsc.wsc.validations.user.validate",
