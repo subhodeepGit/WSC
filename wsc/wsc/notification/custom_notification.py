@@ -905,19 +905,61 @@ def send_mail_to_trainers_mweg(self):
     course_manager_name = self.course_manager_name
     checker_name = self.checker
     recepients_list=[]
-    marker_emp = frappe.get_all("Instructor",{'name':marker_name},['employee'])[0]['employee']
-    marker_email = frappe.get_all("Employee",{'name':marker_emp},['user_id'])[0]['user_id']
-    recepients_list.append(marker_email)
-    course_manager_emp = frappe.get_all("Instructor",{'name':course_manager_name},['employee'])[0]['employee']
-    course_manager_email = frappe.get_all("Employee",{'name':course_manager_emp},['user_id'])[0]['user_id']
-    recepients_list.append(course_manager_email)
-    checker_emp = frappe.get_all("Instructor",{'name':checker_name},['employee'])[0]['employee']
-    checker_email = frappe.get_all("Employee",{'name':checker_emp},['user_id'])[0]['user_id']
-    recepients_list.append(checker_email)
+    marker_emp = frappe.get_all("Instructor",{'name':marker_name},['employee'])
+    if marker_emp:
+        marker_idx=marker_emp[0]['employee']
+        marker_email = frappe.get_all("Employee",{'name':marker_idx},['user_id'])
+        if marker_email:
+            marker_email_idx = marker_email[0]['user_id']
+            recepients_list.append(marker_email_idx)
+    
+    gust_emp = frappe.get_all("Instructor",{'name':marker_name},['email_id_for_guest_trainers'])
+    if gust_emp:
+        gust_email=gust_emp[0]['email_id_for_guest_trainers']
+        recepients_list.append(gust_email)
+
+    course_manager_emp = frappe.get_all("Instructor",{'name':course_manager_name},['employee'])
+    if course_manager_emp:
+        cm_idx=course_manager_emp[0]['employee']
+        cm_email = frappe.get_all("Employee",{'name':cm_idx},['user_id'])
+        if cm_email:
+            cm_email_idx = cm_email[0]['user_id']
+            recepients_list.append(cm_email_idx)
+    
+    cm_gust_emp = frappe.get_all("Instructor",{'name':course_manager_name},['email_id_for_guest_trainers'])
+    if cm_gust_emp:
+        cm_gust_email=cm_gust_emp[0]['email_id_for_guest_trainers']
+        recepients_list.append(cm_gust_email)
+    
+    checker_emp = frappe.get_all("Instructor",{'name':checker_name},['employee'])
+    if checker_emp:
+        checker_idx=checker_emp[0]['employee']
+        checker_email = frappe.get_all("Employee",{'name':checker_idx},['user_id'])
+        if checker_email:
+            checker_email_idx = checker_email[0]['user_id']
+            recepients_list.append(checker_email_idx)
+    
+    chk_gust_emp = frappe.get_all("Instructor",{'name':checker_name},['email_id_for_guest_trainers'])
+    if chk_gust_emp:
+        chk_gust_email=gust_emp[0]['email_id_for_guest_trainers']
+        recepients_list.append(chk_gust_email)
+
     for t in self.get("invigilator_details_table"):
-        emp=t.trainer_name
-        emp_email = frappe.get_all("Employee",{'name':emp},['user_id'])[0]['user_id']
-        recepients_list.append(emp_email)
+        emp = t.trainer
+        emp_id_list = frappe.get_all("Instructor", {'name': emp}, ['employee'])
+        if emp_id_list:
+            emp_id = emp_id_list[0]['employee']
+            emp_email_list = frappe.get_all("Employee", {'name': emp_id}, ['user_id'])
+            if emp_email_list:
+                emp_email = emp_email_list[0]['user_id']
+                recepients_list.append(emp_email)
+
+    for t in self.get("invigilator_details_table"):
+        emp = t.trainer
+        guest_emp = frappe.get_all("Instructor", {'name': emp}, ['email_id_for_guest_trainers'])
+        if guest_emp:
+            guest_emp_email = guest_emp[0]['email_id_for_guest_trainers']
+            recepients_list.append(guest_emp_email)
     
     recepients_list_rem_dup = list(set(recepients_list))
     recepients_list_rem_dup_and_none = list(filter(lambda item: item is not None, recepients_list_rem_dup))
