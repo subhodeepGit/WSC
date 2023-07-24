@@ -5,7 +5,6 @@ frappe.ui.form.on('Rank Card Publication Tool', {
 	refresh:function(frm){
 		frm.add_custom_button(__('Generate Ranks') , function(){
 			if(frm.doc.ranked_students_list.length != 0){
-				const data = JSON.stringify(frm.doc.ranked_students_list)
 				const doc = JSON.stringify(frm.doc)
 				frappe.call({
 					method:'wsc.wsc.doctype.rank_card_publication_tool.rank_card_publication_tool.generate_rank_cards',

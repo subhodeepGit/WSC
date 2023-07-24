@@ -60,9 +60,7 @@ def get_qualified_applicants(rank_card_master , academic_year , academic_term , 
 
 	for i in ranking_category_data:
 		list_data = []
-		# filtered_df = df.loc[df['student_category'] == i['student_category']]
-		# ranked_data = filtered_df.to_dict('records')
-		# print(ranked_data)
+		
 		category_based_applicant_data = frappe.db.sql("""
 			SELECT DISTINCT 
 				res.applicant_id ,
@@ -108,8 +106,7 @@ def get_qualified_applicants(rank_card_master , academic_year , academic_term , 
 @frappe.whitelist()
 def generate_rank_cards(doc):
 	data = json.loads(doc)
-	print("\n\n\n\n\n")
-	# print(data)
+	
 	for i in data['ranked_students_list']:
 		
 		earned_marks = frappe.get_all("Entrance Exam Result Publication" , {'applicant_id':i['applicant_id']} , ['earned_marks' , 'applicant_id' , 'applicant_name'])
@@ -134,15 +131,18 @@ def generate_rank_cards(doc):
 		})
 		
 		student_applicant = frappe.get_doc("Student Applicant" , i['applicant_id'])
-		student_applicant.append("student_rank" , {
-			'general_rank' : i['all_student_based_rank'],
-			'category_based_rank' : i['category_based_rank'],
-			'pwd_based_rank' : i['pwd_based_rank']
-		})
+		
+		if(len(student_applicant.student_rank) == 0):
+			student_applicant.append("student_rank" , {
+				'general_rank' : i['all_student_based_rank'],
+				'category_based_rank' : i['category_based_rank'],
+				'pwd_based_rank' : i['pwd_based_rank']
+			})
 
 		rank_data.save()
+		rank_data.submit()
 		student_applicant.save()
-		# student_applicant.submit()
+	
 
 
 		

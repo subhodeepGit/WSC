@@ -1030,3 +1030,19 @@ def mentor_mentee_communication_submit(doc):
         msg='''<p>{0} has sent you a message in mentor mentee communication channel.'''.format(doc.get('mentor_name'))
         send_mail(frappe.db.get_value("Student",doc.get('student'),"user"),'Mentor Mentee Cmmunication',msg)
         frappe.msgprint("Email was sent to {0}".format(doc.get('student_name'))+".")
+
+def send_notification_to_team_members(doc):
+    emails = frappe.get_all(
+                "Maintenance Team Member",
+                filters={"parent": doc.maintenance_team},
+                fields=["team_member"],
+            )
+    email_list = [email["team_member"] for email in emails]
+    tasks =frappe.db.sql("""Select maintenance_task,next_due_date from `tabAsset Maintenance Task` where parent=%s """,doc.name,as_dict=True)
+    msg="""<p>You have been assigned with maintance of:</p><br>"""
+    msg+="""<b>Item Code:</b>  {0}<br>""".format(doc.get('item_code'))
+    msg+="""<b>Item Name:</b>  {0}<br>""".format(doc.get('item_name'))
+    msg+="""<b>Asset Category:</b>  {0}<br>""".format(doc.get('asset_category'))
+    msg+="""<b>Your Task is:</b>  {0} and next Due Date is {1}<br>""".format(tasks[0]['maintenance_task'],tasks[0]['next_due_date'])
+    send_mail(email_list,'Asset Maintenance',msg)
+    frappe.msgprint("Email sent to Maintenance Team")

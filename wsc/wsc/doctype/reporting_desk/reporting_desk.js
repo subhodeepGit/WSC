@@ -12,7 +12,6 @@ frappe.ui.form.on('Reporting Desk', {
 		})
 	},
 	applicant_id: function(frm){
-		console.log(1);
 		frappe.call({
 			method:'wsc.wsc.doctype.reporting_desk.reporting_desk.reporting',
 			args: {
@@ -41,7 +40,7 @@ frappe.ui.form.on('Reporting Desk', {
 				c.pwd_based_rank = pwd_based_rank
 
 				frm.refresh();
-				frm.refresh_field("deallotted_applicant_list")
+				frm.refresh_field("applicant_rank")
 			}
 		})
 	},
