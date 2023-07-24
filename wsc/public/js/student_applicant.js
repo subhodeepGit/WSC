@@ -57,31 +57,6 @@ frappe.ui.form.on('Student Applicant', {
         })
     },
 
-    before_save:function(frm) {
-        frappe.call({
-            method:"wsc.wsc.doctype.student_applicant.dob_check",
-            args:{
-                academic_year:frm.doc.academic_year,
-                academic_term:frm.doc.academic_term,
-                department:frm.doc.department,
-                date_of_birth:frm.doc.date_of_birth
-            },
-            callback(res){
-                // const { application_start_date , maximum_age_limit} = res.message
-                // const MS_PER_YEAR = 1000*60*60*24*365;
-
-                // const date1 = new Date(frm.doc.date_of_birth)
-                // const date2 = new Date(application_start_date)
-                // // console.log(application_start_date , frm.doc.date_of_birth);
-                // const dob = new Date(date1.getFullYear() , date1.getMonth() , date1.getDate())
-                // const app_start_date = new Date(date2.getFullYear() , date2.getMonth() , date2.getDate())
-                
-                // let age_gap = Math.floor((app_start_date - dob)/MS_PER_YEAR);
-                // // console.log("hello");
-                // console.log(dob , app_start_date);
-            }
-        })
-    },
     after_save: function(frm) {
         frm.trigger("hide_n_show_child_table_fields");
     },
