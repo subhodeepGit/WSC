@@ -636,7 +636,7 @@ def send_mail_to_director(doc):
     msg="""<b>---------------------Leave Policy Details---------------------</b><br>"""
     msg+="""<b>Leave polciy:</b>  {0}<br>""".format(doc['leave_policy'])
     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
-    leave_policy_url = get_url_to_form('Employee Profile Updation', doc['name'])
+    leave_policy_url = get_url_to_form('Leave Policy', doc['name'])
     msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(leave_policy_url)
     send_mail([doc['director_mail']],sub,msg)
     frappe.msgprint("Email sent to Director",[doc['director_mail']])
@@ -645,7 +645,7 @@ def send_mail_to_hr(doc):
     msg="""<b>---------------------Leave Policy Details---------------------</b><br>"""
     msg+="""<b>Leave polciy:</b>  {0}<br>""".format(doc['leave_policy'])
     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
-    leave_policy_url = get_url_to_form('Employee Profile Updation', doc['name'])
+    leave_policy_url = get_url_to_form('Leave policy', doc['name'])
     msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(leave_policy_url)
     send_mail([doc['hr_mail']],sub,msg)
     frappe.msgprint("Email sent to HR",[doc['hr_mail']])
@@ -663,6 +663,36 @@ def shift_req_hr(doc):
     
     send_mail(frappe.db.get_value("Shift Request",doc.get('name'),"hr_mail"),sub,msg)
     frappe.msgprint("Status mail sent to HR")
+
+#Notification for Employee Suggestion 
+def notify_hr(doc):
+    sub="""<p><b>Employee Suggestion</b></p><br>"""
+    msg="""<b>---------------------Employee Suggestion Details---------------------</b><br>"""
+    msg+="""<b>Employee Suggestion:</b>  {0}<br>""".format(doc['employee_suggestion'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    employee_suggestion_url = get_url_to_form('Employee Suggestion', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(employee_suggestion_url)
+    send_mail([doc['hr_email']],sub,msg)
+    frappe.msgprint("Email sent to HR",[doc['hr_mail']])
+def notify_director(doc):
+    sub="""<p><b>Employee Suggestion</b></p><br>"""
+    msg="""<b>---------------------Employee Suggestion Details---------------------</b><br>"""
+    msg+="""<b>Employee Suggestion:</b>  {0}<br>""".format(doc['employee_suggestion'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    employee_suggestion_url = get_url_to_form('Employee Suggestion', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(employee_suggestion_url)
+    send_mail([doc['director_email']],sub,msg)
+    frappe.msgprint("Email sent to Director",[doc['director_email']])
+def notify_employee(doc):
+    sub="""<p><b>Employee Suggestion</b></p><br>"""
+    msg="""<b>---------------------Employee Suggestion Details---------------------</b><br>"""
+    msg+="""<b>Employee Suggestion:</b>  {0}<br>""".format(doc['employee_suggestion'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    employee_suggestion_url = get_url_to_form('Employee Suggestion', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(employee_suggestion_url)
+    send_mail([doc['employee_email']],sub,msg)
+    frappe.msgprint("Email sent to Director",[doc['employee_email']])
+
 # def online_payment_submit(doc):
 #     msg="""<p><b>Payment Status</b></p><br>"""
 #     msg+="""<b>---------------------Payment Details---------------------</b><br>"""
