@@ -83,7 +83,8 @@ after_migrate = [
         'wsc.patches.migrate_patch.set_translation',
         'wsc.patches.migrate_patch.add_roles',
         'wsc.patches.migrate_patch.set_custom_role_permission',
-        'wsc.wsc.delete_doc_if_linked.execute'
+        'wsc.wsc.delete_doc_if_linked.execute',
+        'wsc.patches.migrate_patch.set_custom_role_permission_remove_duplicate',
 ]
 
 # application home page (will override Website Settings)
@@ -226,6 +227,9 @@ doc_events = {
     },
     "Mentor Allocation": {
         "validate": "wsc.wsc.validations.mentor_allocation.validate"
+    },
+    "Mentor Initiation": {
+        "validate":"wsc.wsc.doctype.mentor_initiation.mentor_initiation.create_mentee_communications"
     },
     "Photocopy Application":{
         "validate":"wsc.wsc.validations.photocopy_application.validate"
@@ -388,6 +392,7 @@ override_doctype_class = {
 }
 override_doctype_dashboards = {
     "Program": "wsc.wsc.dashboard.program_dashboard.get_data",
+    "Student Group": "wsc.wsc.dashboard.student_group_dashboard.get_data",
     "Academic Year": "wsc.wsc.dashboard.academic_year_dashboard.get_data",
     "Room": "wsc.wsc.dashboard.room_dashboard.get_data",
     "Instructor": "wsc.wsc.dashboard.instructor_dashboard.get_data",
@@ -442,12 +447,11 @@ override_doctype_dashboards = {
 #	"wsc.auth.validate"
 # ]
 
-fixtures = [
-	{"dt": "Custom DocPerm", "filters": [
-		[
-			"parent", "not in", ["DocType"]
-		],
-	]},
+# fixtures = [
+# 	{"dt": "Custom DocPerm", "filters": [
+# 		["parent", "not in", ["DocType"]],
+#         ["role", '=', 'Education Admission Head']
+# 	]},
     # {"dt": "Role","filters": [
     #     [
     #         "name", "in", ["Shift Approver","Grievance Cell Member"]
@@ -467,8 +471,8 @@ fixtures = [
     #         "name", "in", ["Resolved"]
     #     ]
     # ]},
-    {"dt" : "Translation"}
-]
+    # {"dt" : "Translation"}
+# ]
 website_context = {
     "favicon": "/assets/wsc/images/logo.jpg",
     "splash_image": "/assets/wsc/images/logo.jpg"

@@ -1,0 +1,53 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-07-17 11:49:26.348169",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "authority",
+  "to_amount",
+  "from_amount",
+  "full_power"
+ ],
+ "fields": [
+  {
+   "fieldname": "authority",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Authority",
+   "options": "Role"
+  },
+  {
+   "default": "0",
+   "fieldname": "full_power",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Full Power"
+  },
+  {
+   "fieldname": "to_amount",
+   "fieldtype": "Currency",
+   "label": "To Amount"
+  },
+  {
+   "fieldname": "from_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "From Amount"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-07-17 12:26:38.051177",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Authorization Hierarchy",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

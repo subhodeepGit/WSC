@@ -77,7 +77,7 @@ frappe.ui.form.on('Assessment Credits Allocation', {
 		    })
 		}
 		else{
-			frappe.msgprint("Please fill the assessment criteria first.")
+			frappe.msgprint("Please fill the assessment component first.")
 		}
 		
 	},

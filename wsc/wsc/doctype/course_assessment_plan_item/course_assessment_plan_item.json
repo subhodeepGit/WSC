@@ -19,47 +19,50 @@
    "in_list_view": 1,
    "label": "Course",
    "options": "Course",
+   "read_only": 1,
    "reqd": 1
-  },
-  {
-   "fieldname": "total_marks",
-   "fieldtype": "Float",
-   "in_list_view": 1,
-   "label": "Total Marks",
-   "reqd": 1
-  },
-  {
-   "fieldname": "total_credit",
-   "fieldtype": "Float",
-   "in_list_view": 1,
-   "label": "Total Credit",
-   "reqd": 1
-  },
-  {
-   "fieldname": "passing_marks",
-   "fieldtype": "Float",
-   "in_list_view": 1,
-   "label": "Passing Marks"
   },
   {
    "fetch_from": "course.course_name",
    "fieldname": "course_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Module Name"
+   "label": "Module Name",
+   "read_only": 1
   },
   {
    "fetch_from": "course.course_code",
    "fieldname": "course_code",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Module Code"
+   "label": "Module Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "passing_marks",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Passing Marks",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_marks",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Total Marks",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "total_credit",
+   "fieldtype": "Float",
+   "label": "Total Credit"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-07-05 17:12:25.154377",
+ "modified": "2023-07-21 11:37:42.364806",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Course Assessment Plan Item",

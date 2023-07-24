@@ -21,6 +21,8 @@ class ExamAssessmentResult(Document):
         self.validate_duplicate_for_save()
         self.validate_duplicate_for_submit()
         self.complete_course_enrollment()
+    def on_cancel(self):
+        self.cancel_complete_course_enrollment()
     def validate(self):
         self.validate_duplicate_for_save()
         self.validate_duplicate_for_submit()
@@ -189,7 +191,7 @@ class ExamAssessmentResult(Document):
             if self.grade and self.grading_scale:
                 if d.earned_marks:
                     marks_earned += flt(d.earned_marks)
-                    total_marks += flt(d.total_marks)
+                    total_marks += flt(d.module_total_mark)
         if total_marks > 0 :
             self.total_marks=total_marks
             self.secured_marks=marks_earned
@@ -238,7 +240,13 @@ class ExamAssessmentResult(Document):
                     course_enroll=frappe.get_doc("Course Enrollment",enroll.name)
                     course_enroll.status="Completed"
                     course_enroll.save()
-
+    def cancel_complete_course_enrollment(self):
+            for item in self.get("evaluation_result_item"):
+                if item.result=="P":
+                    for enroll in frappe.get_all("Course Enrollment",{"student":self.student,"course":item.course}):
+                        course_enroll=frappe.get_doc("Course Enrollment",enroll.name)
+                        course_enroll.status="Not Completed"
+                        course_enroll.save()
     def set_evaluation_result_item(self):
         duplicate=[]
         self.set("evaluation_result_item",[])
@@ -259,7 +267,8 @@ class ExamAssessmentResult(Document):
                     "earned_cr":earned_cr,
                     "total_cr":total_cr,
                     "earned_marks":earned_marks,
-                    "total_marks":total_marks
+                    "total_marks":total_marks,
+                    "module_total_mark":frappe.db.get_value("Course",row.course,'total_marks'),
                 })
  
 @frappe.whitelist()

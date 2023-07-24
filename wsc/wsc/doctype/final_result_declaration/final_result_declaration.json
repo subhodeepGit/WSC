@@ -26,8 +26,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Programs",
-   "options": "Programs",
-   "reqd": 0
+   "options": "Programs"
   },
   {
    "fieldname": "semester",
@@ -100,14 +99,14 @@
   {
    "fieldname": "program_grade",
    "fieldtype": "Link",
-   "label": "Program Grade",
+   "label": "Program Grades",
    "options": "Program Grades",
    "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-05 17:35:55.196671",
+ "modified": "2023-07-21 16:18:30.334940",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Final Result Declaration",

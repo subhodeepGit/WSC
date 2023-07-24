@@ -62,12 +62,28 @@ def validate_course(doc):
     #         pass
 
 ####################### - FOR Program Enrollment- #############################################################      
-def create_permissions(doc,user):
-    delete_ref_doctype_permissions(["Programs","Student"],doc)
-    for log in doc.get("instructor_log"):
-        add_user_permission("Programs",log.programs, user, doc)
-        for enroll in frappe.get_all("Program Enrollment",{"programs":log.programs,"program":log.program,"academic_year":log.academic_year,"academic_term":log.academic_term},['student']):
-            add_user_permission("Student",enroll.student, user, doc)
+# def create_permissions(doc,user):
+#     print("IN SAVE")
+#     for emp in frappe.get_all("Employee",{"name":doc.employee},['user_id']):
+#         print("\n\nHELLO TO")
+#         duplicateForm=frappe.get_all("User Permission", filters={
+# 			"user":emp.user_id,
+# 			"allow": "Instructor",
+# 			"for_value":("!=",doc.name)
+# 		})
+#         if duplicateForm:
+#             pass
+#         else:
+#             print("\n\n\njhello")
+#             delete_ref_doctype_permissions(["Programs","Student"],doc)
+#             for log in doc.get("instructor_log"):
+#                 add_user_permission("Programs",log.programs, user, doc)
+#                 for enroll in frappe.get_all("Program Enrollment",{"programs":log.programs,"program":log.program,"academic_year":log.academic_year,"academic_term":log.academic_term},['student']):
+#                     add_user_permission("Student",enroll.student, user, doc)
+
+        
+        # for  check_perm in frappe.get_all("User Permission",{"user":emp.user_id,"allow":"Instructor","for_value":doc.name},['user','allow','for_value']):
+		
 ########################################## - FOR DIRECTOR - #####################################################
 # def director_permission(doc):
 #     d = doc.get("department")

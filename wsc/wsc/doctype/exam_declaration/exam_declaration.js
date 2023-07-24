@@ -85,6 +85,7 @@ frappe.ui.form.on('Exam Declaration', {
 		
 	
     },
+   
     setup:function(frm){
         frm.set_query('program', function(doc) {
 			return {
@@ -93,6 +94,13 @@ frappe.ui.form.on('Exam Declaration', {
 				}
 			};
 		});
+        frm.set_query("assessment_criteria", function() {
+            return {
+                filters: {
+                    "component_type_":frm.doc.exam_type
+                }
+            };
+        });
         frm.set_query("academic_term", function() {
             return {
                 filters: {

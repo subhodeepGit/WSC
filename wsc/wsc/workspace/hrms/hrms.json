@@ -612,9 +612,19 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Employee Resignation",
+   "link_count": 0,
+   "link_to": "Employee Resignation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-07-05 11:21:22.504204",
+ "modified": "2023-07-17 17:33:46.444817",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "HRMS",
