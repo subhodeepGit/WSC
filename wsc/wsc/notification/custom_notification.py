@@ -1002,5 +1002,5 @@ def send_notification_to_team_members(doc):
     msg+="""<b>Item Name:</b>  {0}<br>""".format(doc.get('item_name'))
     msg+="""<b>Asset Category:</b>  {0}<br>""".format(doc.get('asset_category'))
     msg+="""<b>Your Task is:</b>  {0} and next Due Date is {1}<br>""".format(tasks[0]['maintenance_task'],tasks[0]['next_due_date'])
-    send_mail(email_list,'maintance',msg)
+    send_mail(email_list,'Asset Maintenance',msg)
     frappe.msgprint("Email sent to Maintenance Team")
