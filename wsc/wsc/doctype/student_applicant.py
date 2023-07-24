@@ -49,6 +49,8 @@ class StudentApplicant(Document):
             frappe.throw(_("Cannot change status as student {0} is linked with student application {1}").format(student[0].name, doc.name))
     def validate(doc):
         # validate_percentage(doc)
+        print("\n\n\n")
+        check_age(doc)
         education_details_validation(doc)
         document_list_checkbox(doc)
         mobile_number_validation(doc)
@@ -100,7 +102,28 @@ def document_list_checkbox(doc):
 
             # frappe.db.set_value("Document List",self.name,'attached',1)
             
+def check_age(doc):
+    
+    applicantation_date = frappe.get_all("Student Admission" ,
+                                        {
+                                            'academic_year':doc.academic_year,
+                                            'academic_term':doc.academic_term,
+                                            'department':doc.department
+                                        },
+                                        ['application_start_date' , 'maximum_age_limit']
+                                    )
+    
+    date_of_birth = datetime.strptime(doc.date_of_birth , '%Y-%m-%d')
+    
+    dob = date_of_birth.date()
+    
+    age_diff = math.floor(((applicantation_date[0]['application_start_date'] - dob).days)/365)
 
+    overage = age_diff - applicantation_date[0]['maximum_age_limit']
+    print(age_diff - applicantation_date[0]['maximum_age_limit'])
+    if age_diff >= applicantation_date[0]['maximum_age_limit']:
+        frappe.throw("Over Age In-eligible for applications by " + str(overage) + "years")
+    
 
 def mobile_number_validation(doc):
     
@@ -594,30 +617,32 @@ def validate_counselling_structure(doc):
         #                             frappe.throw("Score <b>'{0}'</b> of education qualifications details should not be greater than the total score <b>'{1}'</b>".format(e.score, pt.total_score))
 
 
-@frappe.whitelist()
-def dob_check(academic_year , academic_term , department , date_of_birth):
-    print("\n\n\n")
+# @frappe.whitelist()
+# def dob_check(academic_year , academic_term , department , date_of_birth):
+#     print("\n\n\n")
     
-    # if academic_year != 'Post Graduate':
-    #     frappe.throw("Hello There")
-    print(date_of_birth)
-    applicantation_date = frappe.get_all("Student Admission" ,
-                                        {
-                                            'academic_year':academic_year,
-                                            'academic_term':academic_term,
-                                            'department':department
-                                        },
-                                        ['application_start_date' , 'maximum_age_limit']
-                                    )
-    # print(type(date_of_birth))
-    # dob = parser.parse(date_of_birth)
-    date_of_birth = datetime.strptime(date_of_birth , '%Y-%m-%d')
+#     # if academic_year != 'Post Graduate':
+#     #     frappe.throw("Hello There")
+#     print(date_of_birth)
+#     applicantation_date = frappe.get_all("Student Admission" ,
+#                                         {
+#                                             'academic_year':academic_year,
+#                                             'academic_term':academic_term,
+#                                             'department':department
+#                                         },
+#                                         ['application_start_date' , 'maximum_age_limit']
+#                                     )
+#     # print(type(date_of_birth))
+#     # dob = parser.parse(date_of_birth)
+#     date_of_birth = datetime.strptime(date_of_birth , '%Y-%m-%d')
     
-    # application_start_date = parser.parse(applicantation_date[0]['application_start_date'])
-    dob = date_of_birth.date()
-    # print(type(dob) , type(applicantation_date[0]['application_start_date']))
-    age_diff = math.floor(((applicantation_date[0]['application_start_date'] - dob).days)/365)
+#     # application_start_date = parser.parse(applicantation_date[0]['application_start_date'])
+#     dob = date_of_birth.date()
+#     # print(type(dob) , type(applicantation_date[0]['application_start_date']))
+#     age_diff = math.floor(((applicantation_date[0]['application_start_date'] - dob).days)/365)
 
-    if age_diff >= applicantation_date[0]['maximum_age_limit']:
-        frappe.throw("Over Age In-eligible for applications")
+#     print(age_diff)
+#     if age_diff >= applicantation_date[0]['maximum_age_limit']:
+#         # frappe.throw("Over Age In-eligible for applications")
+#         frappe.msgprint("Over Age In-eligible for applications")
     
