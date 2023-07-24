@@ -691,7 +691,7 @@ def notify_employee(doc):
     employee_suggestion_url = get_url_to_form('Employee Suggestion', doc['name'])
     msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(employee_suggestion_url)
     send_mail([doc['employee_email']],sub,msg)
-    frappe.msgprint("Email sent to Director",[doc['employee_email']])
+    frappe.msgprint("Email sent to Employee",[doc['employee_email']])
 
 # def online_payment_submit(doc):
 #     msg="""<p><b>Payment Status</b></p><br>"""
