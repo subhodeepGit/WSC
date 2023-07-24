@@ -1,0 +1,42 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2023-07-21 17:25:06.788741",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": "Journal Entry Latter Head",
+ "modified": "2023-07-21 17:25:06.788741",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Price Impanelement Report",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Item Price",
+ "report_name": "Price Impanelement Report",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "Sales Master Manager"
+  },
+  {
+   "role": "Purchase Master Manager"
+  },
+  {
+   "role": "Admin"
+  },
+  {
+   "role": "Material Management Admin"
+  },
+  {
+   "role": "GM-Procurement & Contract Management"
+  },
+  {
+   "role": "Purchase Manager-MM"
+  }
+ ]
+}

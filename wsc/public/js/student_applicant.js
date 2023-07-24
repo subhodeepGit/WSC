@@ -56,10 +56,21 @@ frappe.ui.form.on('Student Applicant', {
             })
         })
     },
+
     after_save: function(frm) {
         frm.trigger("hide_n_show_child_table_fields");
     },
     setup: function(frm) {
+        //For Counselling Based Program Priority
+        let field = frm.get_field("counselling_based_program_priority")
+        let isHidden = field.df.hidden
+
+        if (!isHidden){
+            frm.set_df_property("counselling_based_program_priority" , "hidden" , 0)
+        } else {
+            frm.set_df_property("counselling_based_program_priority" , "hidden" , 1)
+        }
+        
         frm.set_query("blocks", function() {
             return {
                 filters: {
@@ -120,19 +131,8 @@ frappe.ui.form.on('Student Applicant', {
    
     before_load: function(frm) {
         frm.trigger("hide_n_show_child_table_fields");
-      
     },
     refresh(frm){
-
-        //For Counselling Based Program Priority
-        let field = frm.get_field("counselling_based_program_priority")
-        let isHidden = field.df.hidden
-
-        if (isHidden){
-            frm.set_df_property("counselling_based_program_priority" , "hidden" , 0)
-        } else {
-            frm.set_df_property("counselling_based_program_priority" , "hidden" , 1)
-        }
 
         frm.set_df_property('student_rank', 'cannot_add_rows', true)
 		frm.set_df_property('student_rank', 'cannot_delete_rows', true) 
@@ -393,6 +393,7 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
             },
             callback: function(r) { 
                 if (r.message){
+                    console.log(r.message);
                     if (r.message["no_record_found"]){
                         frappe.msgprint("Admission Not Declared for this program")
                         frappe.model.set_value(cdt, cdn, "programs",'');

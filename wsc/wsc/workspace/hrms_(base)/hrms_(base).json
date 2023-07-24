@@ -390,7 +390,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-07-20 14:32:01.731518",
+ "modified": "2023-07-24 10:13:04.549243",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "HRMS (Base)",
@@ -398,7 +398,20 @@
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
- "roles": [],
+ "roles": [
+  {
+   "role": "HR Admin"
+  },
+  {
+   "role": "HR Manager/CS Officer"
+  },
+  {
+   "role": "HR Assistant"
+  },
+  {
+   "role": "Employee"
+  }
+ ],
  "sequence_id": 48.0,
  "shortcuts": [
   {
