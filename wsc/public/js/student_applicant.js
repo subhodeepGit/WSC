@@ -35,6 +35,15 @@ frappe.ui.form.on('Student Applicant', {
                 }
             }
         }
+        frm.fields_dict['counselling_based_program_priority'].grid.get_field('programs').get_query = function(doc, cdt, cdn) {
+            return {   
+                query: 'wsc.wsc.doctype.student_applicant.filter_programs_by_department', 
+                filters:{
+                    "department":frm.doc.department,
+                    "program_grade":frm.doc.program_grade
+                }
+            }
+        }
         frm.set_query("department", function(){
 	        return{
 	            filters:{
@@ -61,11 +70,12 @@ frappe.ui.form.on('Student Applicant', {
         frm.trigger("hide_n_show_child_table_fields");
     },
     setup: function(frm) {
-        //For Counselling Based Program Priority
-        let field = frm.get_field("counselling_based_program_priority")
-        let isHidden = field.df.hidden
 
-        if (!isHidden){
+        //Hostel Required Checkbox
+        frm.doc.hostel_required = 1;
+        //For Counselling Based Program Priority
+        
+        if (frm.doc.couselling_start === 1){
             frm.set_df_property("counselling_based_program_priority" , "hidden" , 0)
         } else {
             frm.set_df_property("counselling_based_program_priority" , "hidden" , 1)

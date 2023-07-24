@@ -6,13 +6,9 @@ from frappe.model.document import Document
 
 class ReportingDesk(Document):
 	def on_submit(self):
-		print("\n\n")
+	
 		applicant_id = frappe.get_all("Rank Card" , { 'name' : self.applicant_id } , ['applicant_id'])
-		print(applicant_id[0]['applicant_id'])
-		# frappe.db.sql("""
-		# 				UPDATE `tabStudent Applicant` SET couselling_start = 1 FROM  WHERE name = '{id}'
-		# 			""".format(id = applicant_id[0]['applicant_id']))
-# UPDATE `tabStudent Applicant` SET couselling_start = 0 WHERE name = 'EDU-APP-2023-00024'
+		
 		frappe.db.set_value("Student Applicant" , applicant_id[0]['applicant_id'], {
 			'couselling_start':1,
 		})
