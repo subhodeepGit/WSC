@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "FD.-.YYYY.-.MM.-.#####",
  "creation": "2023-05-26 16:44:08.580293",
  "default_view": "List",
  "doctype": "DocType",
@@ -207,11 +208,18 @@
   }
  ],
  "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2023-07-17 18:06:16.491677",
+ "links": [
+  {
+   "group": "Bank Guarantee",
+   "link_doctype": "Bank Guarantee",
+   "link_fieldname": "fixed_deposit"
+  }
+ ],
+ "modified": "2023-07-25 11:38:10.936672",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Fixed Deposit",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
