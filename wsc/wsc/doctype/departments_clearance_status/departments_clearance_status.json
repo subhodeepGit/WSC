@@ -6,6 +6,7 @@
  "engine": "InnoDB",
  "field_order": [
   "department",
+  "department_email_id",
   "clearance_status",
   "amount",
   "comment",
@@ -15,6 +16,7 @@
   {
    "fieldname": "department",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Department",
    "read_only": 1
   },
@@ -23,13 +25,13 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Clearance Status",
-   "options": "Select\nNo-Dues\nDues",
-   "reqd": 1
+   "options": "Select\nNo-Dues\nDues"
   },
   {
    "default": "0",
    "fieldname": "amount",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Amount",
    "mandatory_depends_on": "eval:doc.clearance_status==\"Dues\"",
    "read_only_depends_on": "eval:doc.clearance_status!==\"Dues\""
@@ -37,21 +39,28 @@
   {
    "fieldname": "comment",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Comment",
-   "mandatory_depends_on": "eval:doc.clearance_status==\"Dues\"",
+   "mandatory_depends_on": "eval:doc.amount>0",
    "read_only_depends_on": "eval:doc.clearance_status!==\"Dues\""
   },
   {
    "fieldname": "fees_id",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Fees_Id",
    "options": "Fees"
+  },
+  {
+   "fieldname": "department_email_id",
+   "fieldtype": "Data",
+   "label": "Department Email_Id"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-06-30 10:32:04.163218",
+ "modified": "2023-07-05 11:05:11.288544",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Departments Clearance Status",

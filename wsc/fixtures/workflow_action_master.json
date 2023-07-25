@@ -2,6 +2,27 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
+  "modified": "2023-07-20 12:48:07.007849",
+  "name": "Sent to Moderator",
+  "workflow_action_name": "Sent to Moderator"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-06-27 11:29:17.055540",
+  "name": "Send For Approval",
+  "workflow_action_name": "Send For Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-07-03 16:10:06.788095",
+  "name": "Send to Moderator",
+  "workflow_action_name": "Send to Moderator"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
   "modified": "2021-12-15 11:12:05.184403",
   "name": "Approve",
   "workflow_action_name": "Approve"
@@ -124,6 +145,13 @@
   "modified": "2023-02-17 17:03:48.774355",
   "name": "Submitted",
   "workflow_action_name": "Submitted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-06-06 12:17:00.897288",
+  "name": "Resolve",
+  "workflow_action_name": "Resolve"
  },
  {
   "docstatus": 0,

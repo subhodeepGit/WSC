@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "FD.-.YYYY.-.MM.-.#####",
  "creation": "2023-05-26 16:44:08.580293",
  "default_view": "List",
  "doctype": "DocType",
@@ -23,22 +24,32 @@
   "maturity_amount",
   "data_12",
   "interest_payable",
-  "fd_tenure",
+  "tenure_days",
+  "tenurein_months",
+  "tenurein_weeks",
+  "tenurein_quarter",
+  "tenuresemi_annually",
+  "tenurein_annually",
   "column_break_17",
   "interest_type",
   "interest_percentage",
+  "section_break_punlb",
+  "get_amount",
   "interest_calculation"
  ],
  "fields": [
   {
    "fieldname": "fd_number",
    "fieldtype": "Int",
-   "label": "FD Number"
+   "label": "FD Number",
+   "reqd": 1
   },
   {
+   "default": "Today",
    "fieldname": "posting_date",
    "fieldtype": "Date",
-   "label": "Posting Date"
+   "label": "Posting Date",
+   "reqd": 1
   },
   {
    "fieldname": "fd_account",
@@ -49,12 +60,16 @@
   {
    "fieldname": "fd_start_date",
    "fieldtype": "Date",
-   "label": "FD Start Date"
+   "in_list_view": 1,
+   "label": "FD Start Date",
+   "reqd": 1
   },
   {
    "fieldname": "maturity_date",
    "fieldtype": "Date",
-   "label": "Maturity Date"
+   "in_list_view": 1,
+   "label": "Maturity Date",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_6",
@@ -81,12 +96,15 @@
   {
    "fieldname": "fd_amount",
    "fieldtype": "Currency",
-   "label": "FD Amount"
+   "in_list_view": 1,
+   "label": "FD Amount",
+   "reqd": 1
   },
   {
    "fieldname": "maturity_amount",
    "fieldtype": "Currency",
-   "label": "Maturity Amount"
+   "label": "Maturity Amount",
+   "read_only": 1
   },
   {
    "fieldname": "data_12",
@@ -96,7 +114,7 @@
   {
    "fieldname": "fd_details_section",
    "fieldtype": "Section Break",
-   "label": "FD Details"
+   "label": "Fixed Deposit Details"
   },
   {
    "fieldname": "amounts_section",
@@ -111,7 +129,8 @@
    "fieldname": "interest_payable",
    "fieldtype": "Select",
    "label": "Interest Payable",
-   "options": "\nOn Maturity\nQuarterly\nMonthly"
+   "options": "\nDays\nWeeks\nMonths\nQuarterly\nSemi-Annually\nAnnually",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_17",
@@ -121,7 +140,8 @@
    "fieldname": "interest_type",
    "fieldtype": "Select",
    "label": "Interest Type",
-   "options": "\nSimple\nCompound"
+   "options": "\nSimple\nCompound",
+   "reqd": 1
   },
   {
    "fieldname": "interest_calculation",
@@ -130,22 +150,76 @@
    "options": "Fixed Deposit Interest"
   },
   {
-   "fieldname": "fd_tenure",
-   "fieldtype": "Data",
-   "label": "FD Tenure"
-  },
-  {
    "fieldname": "interest_percentage",
    "fieldtype": "Float",
-   "label": "Interest Percentage"
+   "label": "Interest Percentage",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_punlb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "get_amount",
+   "fieldtype": "Button",
+   "label": "Get Amount"
+  },
+  {
+   "depends_on": "eval:doc.interest_payable==\"Days\"",
+   "fieldname": "tenure_days",
+   "fieldtype": "Data",
+   "label": "Tenure(In Days)",
+   "mandatory_depends_on": "eval:doc.interest_payable==\"Days\""
+  },
+  {
+   "depends_on": "eval:doc.interest_payable==\"Months\"",
+   "fieldname": "tenurein_months",
+   "fieldtype": "Data",
+   "label": "Tenure(In Months)",
+   "mandatory_depends_on": "eval:doc.interest_payable==\"Months\""
+  },
+  {
+   "depends_on": "eval:doc.interest_payable==\"Weeks\"",
+   "fieldname": "tenurein_weeks",
+   "fieldtype": "Data",
+   "label": "Tenure(In Weeks)",
+   "mandatory_depends_on": "eval:doc.interest_payable==\"Weeks\""
+  },
+  {
+   "depends_on": "eval:doc.interest_payable==\"Quarterly\"",
+   "fieldname": "tenurein_quarter",
+   "fieldtype": "Data",
+   "label": "Tenure(In Quater)",
+   "mandatory_depends_on": "eval:doc.interest_payable==\"Quarterly\""
+  },
+  {
+   "depends_on": "eval:doc.interest_payable==\"Semi-Annually\"",
+   "fieldname": "tenuresemi_annually",
+   "fieldtype": "Data",
+   "label": "Tenure(Semi_Annually)",
+   "mandatory_depends_on": "eval:doc.interest_payable==\"Semi-Annually\""
+  },
+  {
+   "depends_on": "eval:doc.interest_payable==\"Annually\"",
+   "fieldname": "tenurein_annually",
+   "fieldtype": "Data",
+   "label": "Tenure(In Annually)",
+   "mandatory_depends_on": "eval:doc.interest_payable==\"Annually\""
   }
  ],
  "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2023-05-26 17:58:35.391797",
+ "links": [
+  {
+   "group": "Bank Guarantee",
+   "link_doctype": "Bank Guarantee",
+   "link_fieldname": "fixed_deposit"
+  }
+ ],
+ "modified": "2023-07-25 11:38:10.936672",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Fixed Deposit",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

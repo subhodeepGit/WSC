@@ -87,3 +87,4 @@ frappe.ui.form.on('Assignment Upload', {
 		})
 	}
 });
+

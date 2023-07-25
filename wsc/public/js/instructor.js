@@ -17,7 +17,7 @@ frappe.ui.form.on('Instructor',{
 		// }
         if(frm.doc.docstatus == 0 && frm.doc.employee!=null) {
             // alert("Hello")
-			frm.add_custom_button(__('Instructor Workload'), function() {
+			frm.add_custom_button(__('Trainer Workload'), function() {
 				frappe.route_options = {
 					instructor: frm.doc.name,
                 };
@@ -34,6 +34,24 @@ frappe.ui.form.on('Instructor',{
                 }
             };
         });
+        frm.set_query("programs","instructor_log", function(_doc, cdt, cdn) {
+            var d = locals[cdt][cdn];
+            return {
+                filters: {
+                    "department":d.department,
+                    "program_grade":d.course_type
+                }
+            };
+        });
+        frm.set_query("student_group","instructor_log", function(_doc, cdt, cdn) {
+            var d = locals[cdt][cdn];
+            return {
+                filters: {
+                    "program":d.program,
+                    "academic_term":d.academic_term
+                }
+            };
+        });
     },
 
     //     if(frm.doc.docstatus > 0) {
@@ -47,12 +65,30 @@ frappe.ui.form.on('Instructor',{
     //     }
     // },  
                 
-     employee:function(frm){
+    employee:function(frm){
         if(!frm.doc.employee){
             frm.set_value('instructor_name', '')
             frm.set_value('department', '')
             frm.set_value('gender', '')
         }
-     }
+     },
+
+    create_user: function(frm) {
+        if (!frm.doc.email_id_for_guest_trainers) {
+			frappe.throw(__("Please enter Email ID for Guest Trainers"));
+		}
+		frappe.call({
+			method: "wsc.wsc.validations.instructor.create_user",
+			args: {
+				trainer: frm.doc.name,
+				email: frm.doc.email_id_for_guest_trainers
+			},
+			callback: function (r) {
+				frm.set_value("email_id_for_guest_trainers", r.message);
+			}
+		});
+	},
+
+
 
 })

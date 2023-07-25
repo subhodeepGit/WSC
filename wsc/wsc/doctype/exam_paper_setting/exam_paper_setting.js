@@ -91,7 +91,9 @@ frappe.ui.form.on('Exam Paper Setting', {
 					"assessment_plan":frm.doc.assessment_plan,
 					// "course":frm.doc.course
 				}
+				
 			};
+			
 		});
 		frm.set_query("moderator_name", function() {
 			return {
@@ -110,10 +112,46 @@ frappe.ui.form.on('Exam Paper Setting', {
 		
 	},
 	refresh(frm){
-
+		if(!frm.is_new()){
+			frappe.call({
+				// wsc.wsc.doctype.employee_reengagement.employee_reengagement.isrfp
+				method: 'wsc.wsc.doctype.exam_paper_setting.exam_paper_setting.is_verified_user',
+				args: {
+					docname: frm.doc.name
+				},
+				callback: function(r) {
+					if (r.message===false) {
+						$('.actions-btn-group').prop('hidden', true);
+					}
+				}
+			});
+		}
+		if (frm.doc.workflow_state=="Pending" && frappe.session.user_fullname==frm.doc.exam_coordinator_name || frappe.session.user_fullname==frm.doc.moderator__name){
+			// alert(JSON.stringify(frappe.session))
+			frm.set_df_property('paper_copy', 'read_only', 1);
+		}
+		if (frm.doc.workflow_state=="Sent For Approval" || frm.doc.workflow_state=="Approved" || frm.doc.workflow_state=="Rejected" && frappe.session.user_fullname==frm.doc.examiner_name || frappe.session.user_fullname==frm.doc.exam_coordinator_name || frappe.session.user_fullname==frm.doc.moderator__name){
+			frm.set_df_property('paper_copy', 'read_only', 1);
+		}
+	
+		// if (frappe.user.has_role(["Moderator"])){
+		// 	frm.set_df_property('paper_copy', 'allow_on_submit', 1)
+		// }
 		if (frappe.user.has_role(["Education Administrator"]) || frappe.user.has_role(["Moderator"]) || frappe.user.has_role(["Instructor"])){
 			frm.set_df_property('paper_copy', 'hidden', 0);
 		}
 		
-	}
+	},
+	paper_copy(frm){
+		frm.doc.download=frm.doc.paper_copy
+	},
+	download(frm){
+		if (frm.doc.paper_copy){
+			window.location.href=frm.doc.paper_copy
+		}
+	},
+		function(){
+			window.close();
+		},
+	
 });

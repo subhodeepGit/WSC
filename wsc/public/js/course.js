@@ -52,6 +52,7 @@ frappe.ui.form.on('Course', {
 		})
 	},
 	add_course_to_semester: function(frm) {
+		
 		get_semester_without_course(frm.doc.name).then(r => {
 			if (r.message.length) {
 				frappe.prompt([
@@ -66,6 +67,7 @@ frappe.ui.form.on('Course', {
 				],
 				function(data) {
 					frappe.call({
+						
 						method: 'wsc.wsc.validations.course.add_course_to_programs',
 						args: {
 							'course': frm.doc.name,
@@ -115,7 +117,7 @@ frappe.ui.form.on('Course', {
 					})
 				}, __('Add Module to Course'), __('Add'));
 			} else {
-				frappe.msgprint(__('This Mdoule is already added to the existing Course'));
+				frappe.msgprint(__('This Module is already added to the existing Course'));
 			}
 		});
 	}
@@ -159,4 +161,35 @@ frappe.ui.form.on("Credit distribution List", "weightage", function(frm, cdt, cd
     var d = locals[cdt][cdn];
 	d.total_marks=(frm.doc.total_marks*(d.weightage/100))
 	refresh_field("total_marks", d.name, d.parentfield);
+});
+
+frappe.ui.form.on('Credit distribution List', {
+	credit_distribution_add: function(frm){
+		frm.fields_dict['credit_distribution'].grid.get_field('assessment_criteria').get_query = function(doc){
+			var assessment_criteria_list = [];
+			$.each(doc.credit_distribution, function(idx, val){
+				if (val.assessment_criteria) assessment_criteria_list.push(val.assessment_criteria);
+			});
+			return { filters: [['Assessment Criteria', 'name', 'not in', assessment_criteria_list]] };
+		};
+	}
+});
+// passing_marks
+frappe.ui.form.on('Credit distribution List', {	
+	passing_marks:function(frm, cdt, cdn){
+	var d = locals[cdt][cdn];
+	var total = 0;
+	let a= parseInt(total)
+	frm.doc.credit_distribution.forEach(function(d)  { a = a+ d.passing_marks; });
+	frm.set_value("passing_marks", a);
+	refresh_field("passing_marks");
+  },
+  credit_distribution_remove:function(frm, cdt, cdn){
+	var d = locals[cdt][cdn];
+	var total = 0;
+	let a= parseInt(total)
+	frm.doc.credit_distribution.forEach(function(d) { a += d.passing_marks; });
+	frm.set_value("passing_marks", a);
+	refresh_field("passing_marks");
+	}
 });

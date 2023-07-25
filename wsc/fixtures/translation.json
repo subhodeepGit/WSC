@@ -7,6 +7,19 @@
   "docstatus": 0,
   "doctype": "Translation",
   "language": "en",
+  "modified": "2023-07-21 11:20:59.081351",
+  "name": "edadd9d188",
+  "source_text": "Program Enrollment",
+  "translated_text": "Course Enrollment"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
   "modified": "2023-06-06 15:22:06.296318",
   "name": "c8f22fd236",
   "source_text": "Warehouse",
@@ -163,10 +176,10 @@
   "docstatus": 0,
   "doctype": "Translation",
   "language": "en",
-  "modified": "2022-01-20 15:52:09.427262",
+  "modified": "2023-07-05 17:25:55.956766",
   "name": "1ffffb8850",
   "source_text": "Course Assessment",
-  "translated_text": "Criteria Wise Evaluation "
+  "translated_text": "Component Wise Evaluation "
  },
  {
   "context": null,
@@ -176,10 +189,10 @@
   "docstatus": 0,
   "doctype": "Translation",
   "language": "en",
-  "modified": "2022-01-20 15:51:56.672610",
+  "modified": "2023-07-05 17:26:30.402808",
   "name": "71a7b72c7b",
   "source_text": "Course Assessment Result Tool",
-  "translated_text": "Criteria Wise Evaluation Tool"
+  "translated_text": "Component Wise Evaluation Tool"
  },
  {
   "context": null,
@@ -189,10 +202,10 @@
   "docstatus": 0,
   "doctype": "Translation",
   "language": "en",
-  "modified": "2022-01-20 15:52:42.242714",
+  "modified": "2023-07-05 17:34:13.200477",
   "name": "e8abc5d28e",
   "source_text": "Exam Assessment Result",
-  "translated_text": "Final Exam Result "
+  "translated_text": "Final Semester Result"
  },
  {
   "context": null,
@@ -202,10 +215,10 @@
   "docstatus": 0,
   "doctype": "Translation",
   "language": "en",
-  "modified": "2022-01-20 16:07:20.409463",
+  "modified": "2023-07-05 17:26:19.574686",
   "name": "8dbbdb5aba",
   "source_text": "Assessment Credits Allocation",
-  "translated_text": "Continuous Evaluation"
+  "translated_text": "Component Wise Reevaluation"
  },
  {
   "context": null,
@@ -219,32 +232,6 @@
   "name": "8dbbdbjhg",
   "source_text": "Alloted Students based on Academic Year",
   "translated_text": "Allotted Students Details"
- },
- {
-  "context": null,
-  "contributed": 0,
-  "contribution_docname": null,
-  "contribution_status": "",
-  "docstatus": 0,
-  "doctype": "Translation",
-  "language": "en",
-  "modified": "2023-06-01 13:09:28.733952",
-  "name": "e332557774",
-  "source_text": "Programs",
-  "translated_text": "Course"
- },
- {
-  "context": null,
-  "contributed": 0,
-  "contribution_docname": null,
-  "contribution_status": "",
-  "docstatus": 0,
-  "doctype": "Translation",
-  "language": "en",
-  "modified": "2023-06-01 13:10:31.125245",
-  "name": "99c769ef08",
-  "source_text": "Course",
-  "translated_text": "Module"
  },
  {
   "context": null,
@@ -297,5 +284,135 @@
   "name": "39dbd52089",
   "source_text": "Course Schedule",
   "translated_text": "Class Schedule"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-07-05 17:27:09.211083",
+  "name": "9f488e9042",
+  "source_text": "Continuous Evaluation Tool",
+  "translated_text": "Component Wise Reevaluation Tool"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-07-05 17:27:30.868163",
+  "name": "ea8fd3feac",
+  "source_text": "Assessment Criteria",
+  "translated_text": "Assessment Component"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-07-05 17:35:31.508532",
+  "name": "dd4bbb45ad",
+  "source_text": "Final Result Declaration",
+  "translated_text": "Final Semester Result Tool"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-07-12 10:15:38.224184",
+  "name": "46bbf8ccba",
+  "source_text": "Death Deallotment",
+  "translated_text": "Student Mortality Record"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-07-17 10:58:38.636244",
+  "name": "f3853ec1a1",
+  "source_text": "Instructor Workload",
+  "translated_text": "Trainer Workload"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-07-17 11:08:33.052001",
+  "name": "2bea1c3614",
+  "source_text": "Student Reregistration Tool",
+  "translated_text": "Course Enrollment Tool"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-07-19 12:25:23.511939",
+  "name": "f59025e9c7",
+  "source_text": "Subject Wise Performance",
+  "translated_text": "Module Wise Performance"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-07-19 12:25:40.740283",
+  "name": "e4a034072b",
+  "source_text": "Pass Percentage",
+  "translated_text": "Course Wise Performance"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-07-19 13:05:26.373460",
+  "name": "96f05b18b1",
+  "source_text": "Programs",
+  "translated_text": "Course"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-07-19 13:05:36.142432",
+  "name": "e313dca9a2",
+  "source_text": "Course",
+  "translated_text": "Module"
  }
 ]

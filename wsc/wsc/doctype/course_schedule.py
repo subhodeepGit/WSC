@@ -36,8 +36,8 @@ class CourseSchedule(Document):
 
 	def validate_date(self):
 		"""Validates if from_time is greater than to_time"""
-		if	parser.parse(str(self.from_time)) > parser.parse(str(self.to_time)):
-			frappe.throw(_("From Time cannot be greater than To Time."))
+		if	parser.parse(str(self.from_time)) >= parser.parse(str(self.to_time)):
+			frappe.throw(_("From Time cannot be greater than or equal to To Time."))
 
 	def validate_overlap(self):
 		"""Validates overlap for Student Group, Instructor, Room"""

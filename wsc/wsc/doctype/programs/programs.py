@@ -12,7 +12,7 @@ class Programs(Document):
 	def validate(self):
 		self.validate_abbrevation()
 		self.validate_no_semesters()
-		# self.create_permissions()
+		self.create_permissions()
 		# self.director_permission()
 
 ##################################### - FOR INSTRUCTOR - #################################
@@ -56,7 +56,7 @@ class Programs(Document):
 				doc=frappe.new_doc("Program")
 				doc.program_name=program_name
 				doc.programs=self.name
-				doc.is_tot=1
+				# doc.is__tot=1
 				doc.semester_order=c+1
 				doc.save()
 

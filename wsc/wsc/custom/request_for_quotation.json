@@ -1,0 +1,32 @@
+{
+ "custom_fields": [],
+ "custom_perms": [],
+ "doctype": "Request for Quotation",
+ "links": [],
+ "property_setters": [
+  {
+   "_assign": null,
+   "_comments": null,
+   "_liked_by": null,
+   "_user_tags": null,
+   "creation": "2023-02-23 15:49:55.644428",
+   "default_value": null,
+   "doc_type": "Request for Quotation",
+   "docstatus": 0,
+   "doctype_or_field": "DocField",
+   "field_name": "naming_series",
+   "idx": 0,
+   "is_system_generated": 0,
+   "modified": "2023-02-23 15:49:55.644428",
+   "modified_by": "Administrator",
+   "module": null,
+   "name": "Request for Quotation-naming_series-options",
+   "owner": null,
+   "property": "options",
+   "property_type": "Text",
+   "row_name": null,
+   "value": "PUR-RFQ-.YYYY.-"
+  }
+ ],
+ "sync_on_migrate": 1
+}

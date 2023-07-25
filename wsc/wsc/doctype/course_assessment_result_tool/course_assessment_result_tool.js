@@ -84,7 +84,6 @@ frappe.ui.form.on('Course Assessment Result Tool', {
 		frm.trigger("get_student_details");
 	},
 	exam_declaration:function(frm){
-		// frm.trigger("get_student_details");
 		frappe.call({
 			method: 'wsc.wsc.doctype.course_assessment_result_tool.course_assessment_result_tool.get_semester_and_exam_assessment_plan',
 			args:{
@@ -118,9 +117,14 @@ frappe.ui.form.on('Course Assessment Result Tool', {
 				$(html_values).find(`[data-row="${resp.id}"].result-earned_marks`).each(function(el, input){
 					earned_marks=$(input).val();
 				})
+				let attendance='';
+				$(html_values).find(`[data-row="${resp.id}"].result-attendence`).each(function(el, input){
+					attendance=$(input).val();
+				})
 				if (earned_marks){
 					row=resp;
 					row['earned_marks']=earned_marks;
+					row['attendance']=attendance;
 					course_assessment['rows'][resp.id]=row;
 				}
 			})
@@ -142,12 +146,13 @@ frappe.ui.form.on('Course Assessment Result Tool', {
 			frappe.call({
 				method: "wsc.wsc.doctype.course_assessment_result_tool.course_assessment_result_tool.get_enroll_students",
 				args: {
-					"academic_year":frm.doc.academic_year,
-					"academic_term":frm.doc.academic_term,
-					"programs":frm.doc.programs,
-					"semesters":frm.doc.semester,
+					// "academic_year":frm.doc.academic_year,
+					// "academic_term":frm.doc.academic_term,
+					// "programs":frm.doc.programs,
+					// "semesters":frm.doc.semester,
 					"course":frm.doc.course,
-					"criteria":frm.doc.assessment_criteria
+					"criteria":frm.doc.assessment_criteria,
+					"exam_declaration":frm.doc.exam_declaration
 				},
 				callback: function(r) {
 					if (r.message) {

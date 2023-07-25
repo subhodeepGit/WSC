@@ -35,6 +35,15 @@ frappe.ui.form.on('Student Applicant', {
                 }
             }
         }
+        frm.fields_dict['counselling_based_program_priority'].grid.get_field('programs').get_query = function(doc, cdt, cdn) {
+            return {   
+                query: 'wsc.wsc.doctype.student_applicant.filter_programs_by_department', 
+                filters:{
+                    "department":frm.doc.department,
+                    "program_grade":frm.doc.program_grade
+                }
+            }
+        }
         frm.set_query("department", function(){
 	        return{
 	            filters:{
@@ -56,10 +65,22 @@ frappe.ui.form.on('Student Applicant', {
             })
         })
     },
+
     after_save: function(frm) {
         frm.trigger("hide_n_show_child_table_fields");
     },
     setup: function(frm) {
+
+        //Hostel Required Checkbox
+        frm.doc.hostel_required = 1;
+        //For Counselling Based Program Priority
+        
+        if (frm.doc.couselling_start === 1){
+            frm.set_df_property("counselling_based_program_priority" , "hidden" , 0)
+        } else {
+            frm.set_df_property("counselling_based_program_priority" , "hidden" , 1)
+        }
+        
         frm.set_query("blocks", function() {
             return {
                 filters: {
@@ -120,15 +141,16 @@ frappe.ui.form.on('Student Applicant', {
    
     before_load: function(frm) {
         frm.trigger("hide_n_show_child_table_fields");
-      
     },
     refresh(frm){
-        
 
+        frm.set_df_property('student_rank', 'cannot_add_rows', true)
+		frm.set_df_property('student_rank', 'cannot_delete_rows', true) 
         frm.set_df_property('education_qualifications_details', 'cannot_add_rows', true);
         frm.set_df_property('education_qualifications_details', 'cannot_delete_rows', true);
         frm.set_df_property('document_list', 'cannot_add_rows', true);
         frm.set_df_property('document_list', 'cannot_delete_rows', true);
+        
         if (cur_frm.doc.document_list){
             cur_frm.doc.document_list.forEach(data=>{
                 var dn = frappe.meta.get_docfield("Document List", "document_name",data.name);
@@ -139,12 +161,14 @@ frappe.ui.form.on('Student Applicant', {
                 // m.read_only=1;
             })
         }
+
         frm.set_df_property('program', 'hidden', 1);
         frm.set_df_property('program', 'reqd', 0);
         frm.set_df_property('program', 'allow_on_submit', 1);
         frm.set_df_property('programs_', 'hidden', 1);
         frm.set_df_property('student_admission', 'hidden', 1);
         frm.remove_custom_button("Enroll")
+        
         if (!cur_frm.doc.__islocal && frappe.user.has_role(["Student"]) && !frappe.user.has_role(["System Manager"])){
             frm.remove_custom_button("Reject","Actions");
             frm.remove_custom_button("Approve","Actions");
@@ -200,7 +224,17 @@ frappe.ui.form.on('Student Applicant', {
         // }      
 
     },
+    couselling_start: function(frm){
+        let field = frm.get_field("counselling_based_program_priority")
+        let isHidden = field.df.hidden
 
+        if (isHidden){
+            frm.set_df_property("counselling_based_program_priority" , "hidden" , 0)
+        } else {
+            frm.set_df_property("counselling_based_program_priority" , "hidden" , 1)
+        }
+        
+    },
     counselling_structure: function(frm) {
         frm.trigger("get_education_and_document_list");
         frm.set_value("document_list",[]);
@@ -369,6 +403,7 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
             },
             callback: function(r) { 
                 if (r.message){
+                    console.log(r.message);
                     if (r.message["no_record_found"]){
                         frappe.msgprint("Admission Not Declared for this program")
                         frappe.model.set_value(cdt, cdn, "programs",'');

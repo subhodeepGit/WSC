@@ -21,17 +21,26 @@ frappe.ui.form.on('Exam Declaration', {
 				]
 			}
 		});
-        if(frm.doc.docstatus == 1 && frappe.user.has_role(["Education Administrator"]) || frappe.user.has_role(["System Manager"])){
-            frm.add_custom_button("Exam Assessment Plan", () => {
-                let data = {}
-                data.programs = frm.doc.exam_program
-                data.program = frm.doc.program
-                data.academic_year = frm.doc.academic_year
-                data.academic_term = frm.doc.academic_term
-                data.exam_declaration = frm.doc.name
-                frappe.new_doc("Exam Assessment Plan", data)
-            },__('Create'));
-
+        if(frm.doc.docstatus==1){
+            if(frm.doc.docstatus == 1 && frappe.user.has_role(["Education Administrator"]) || frappe.user.has_role(["System Manager"])){
+                frm.add_custom_button("Exam Evaluation Plan", () => {
+                    let data = {}
+                    data.programs = frm.doc.exam_program
+                    data.program = frm.doc.program
+                    data.academic_year = frm.doc.academic_year
+                    data.academic_term = frm.doc.academic_term
+                    data.exam_declaration = frm.doc.name
+                    frappe.new_doc("Exam Assessment Plan", data)
+                },__('Create'));
+            if(frm.doc.docstatus == 1 && frappe.user.has_role(["Education Administrator"]) || frappe.user.has_role(["System Manager"])){
+                frm.add_custom_button("Module Wise Exam Group", () => {
+                    let data = {}
+                    data.exam_declaration_id = frm.doc.name
+                    frappe.new_doc("Module Wise Exam Group", data)
+                },__('Create'));
+            }
+        }
+        
             // frm.add_custom_button("Student Group", () => {
             //     let data = {}
             //     data.group_based_on = frm.doc.doctype
@@ -76,6 +85,7 @@ frappe.ui.form.on('Exam Declaration', {
 		
 	
     },
+   
     setup:function(frm){
         frm.set_query('program', function(doc) {
 			return {
@@ -84,6 +94,13 @@ frappe.ui.form.on('Exam Declaration', {
 				}
 			};
 		});
+        frm.set_query("assessment_criteria", function() {
+            return {
+                filters: {
+                    "component_type_":frm.doc.exam_type
+                }
+            };
+        });
         frm.set_query("academic_term", function() {
             return {
                 filters: {
@@ -237,4 +254,22 @@ frappe.ui.form.on("Exam Courses", "fee_structure", function(frm, cdt, cdn) {
 });
 
 
+frappe.ui.form.on('Exam Declaration', {
+    to_date: function(frm) {
+        var selectedDate = frappe.datetime.str_to_obj(frm.doc.to_date);
+        var exam_start_date = frappe.datetime.str_to_obj(frm.doc.exam_start_date);
+    
+        if (selectedDate <= get_today()) {
+        frappe.msgprint('Please select a date after today.');
+        frm.set_value('to_date', '');
+        } else if (selectedDate > exam_start_date) {
+        frappe.msgprint('Please select a date on or before Exam Start Date');
+        frm.set_value('to_date', '');
+        }
+        // if (frm.doc.exam_start_date === null || typeof frm.doc.exam_start_date  === 'undefined'){
+        //     frappe.msgprint('Please select Exam Start Date');
+        //     frm.set_value('to_date', '');
+        // }
+    }
+  });
 

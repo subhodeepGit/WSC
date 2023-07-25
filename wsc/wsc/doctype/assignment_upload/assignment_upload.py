@@ -8,8 +8,6 @@ from frappe.model.mapper import get_mapped_doc
 class AssignmentUpload(Document):
 	pass
 
-# -------------------------------------------------------------------------------------
-
 @frappe.whitelist()
 def get_details(participant_group_id):
 	group_details = frappe.get_all('Participant Group', filters = [['name','=',participant_group_id]], fields = ['program', 'course', 'academic_year', 'academic_term'])

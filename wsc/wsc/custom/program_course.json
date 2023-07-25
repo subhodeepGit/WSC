@@ -95,7 +95,7 @@
    "insert_after": "modes",
    "is_system_generated": 0,
    "is_virtual": 0,
-   "label": "Course Expire Date",
+   "label": "Module Expire Date",
    "length": 0,
    "mandatory_depends_on": null,
    "modified": "2022-06-22 11:28:48.050578",

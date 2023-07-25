@@ -1,0 +1,229 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2022-01-03 15:03:30.756541",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "emp_code",
+  "teacher_name",
+  "student_group",
+  "column_break_7",
+  "todays_date",
+  "academic_year",
+  "class",
+  "batch",
+  "section",
+  "section_break_11",
+  "subject_code",
+  "subject_name",
+  "type_of_assignment",
+  "description_assignment",
+  "column_break_13",
+  "topic_of_assignment",
+  "start_date",
+  "end_date",
+  "attachemnet_of_file_video",
+  "students_section",
+  "receivable_by_students",
+  "amended_from",
+  "data_24"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Series",
+   "options": "EDU-UM-.YYYY.-"
+  },
+  {
+   "fieldname": "emp_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Emp Code",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "emp_code.employee_name",
+   "fieldname": "teacher_name",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Teacher Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student_group.program",
+   "fieldname": "class",
+   "fieldtype": "Data",
+   "label": "Program",
+   "read_only": 1
+  },
+  {
+   "fieldname": "subject_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Subject Code",
+   "options": "Course",
+   "reqd": 1
+  },
+  {
+   "fieldname": "student_group",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Student Group",
+   "options": "Student Group",
+   "reqd": 1
+  },
+  {
+   "fieldname": "topic_of_assignment",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Topic of Assignment",
+   "reqd": 1
+  },
+  {
+   "fieldname": "attachemnet_of_file_video",
+   "fieldtype": "Attach",
+   "label": "Attachemnet of File/ Video",
+   "reqd": 1
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "subject_code.course_name",
+   "fieldname": "subject_name",
+   "fieldtype": "Data",
+   "label": "Subject Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_11",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_13",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "students_section",
+   "fieldtype": "Section Break",
+   "label": "Students"
+  },
+  {
+   "fieldname": "type_of_assignment",
+   "fieldtype": "Link",
+   "label": "Type of Assignment",
+   "options": "Assignment Master",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "student_group.academic_year",
+   "fieldname": "academic_year",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Academic Year",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "type_of_assignment.type_of_study_matrial",
+   "fieldname": "description_assignment",
+   "fieldtype": "Data",
+   "label": "Description of Assignment",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fetch_from": "type_of_assignment.receivables_from_students",
+   "fieldname": "receivable_by_students",
+   "fieldtype": "Check",
+   "label": "Receivable by Students",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Upload Material",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "todays_date",
+   "fieldtype": "Date",
+   "label": "Today's Date"
+  },
+  {
+   "fetch_from": "student_group.school_house",
+   "fieldname": "section",
+   "fieldtype": "Data",
+   "label": "Class",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "student_group.batch",
+   "fieldname": "batch",
+   "fieldtype": "Data",
+   "label": "Batch",
+   "read_only": 1
+  },
+  {
+   "fieldname": "data_24",
+   "fieldtype": "Data"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-07-14 16:19:05.265894",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Upload Material",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "topic_of_assignment, class, description_assignment",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

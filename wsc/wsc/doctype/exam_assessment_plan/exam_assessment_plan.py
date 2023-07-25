@@ -157,24 +157,26 @@ def make_exam_paper_setting_by_paper_setting_date():
 
 def make_exam_paper_setting(doc):
     for ex in doc.get("examiners_list"):
-        existing_record = [i.name for i in frappe.get_all("Exam Paper Setting",{"examiner":ex.paper_setter,"academic_year":doc.academic_year,"academic_term":doc.academic_term,"course":ex.course,"programs":doc.programs,"program":doc.program,"assessment_plan":doc.name},'name')]
+        existing_record = [i.name for i in frappe.get_all("Exam Paper Setting",{"examiner":ex.full_name,"academic_year":doc.academic_year,"academic_term":doc.academic_term,"course":ex.course,"course_code":ex.course_code,"course_name":ex.course_name,"programs":doc.programs,"program":doc.program,"exam_coordinator_name":doc.exam_coordinator_name,"assessment_plan":doc.name},'name')]
         if len(existing_record)==0:
             for i in range(ex.no_of_sets):
                 eps=frappe.new_doc("Exam Paper Setting")
-                eps.examiner=ex.paper_setter
+                eps.examiner_name=ex.full_name
                 eps.academic_year=doc.academic_year
                 eps.academic_term=doc.academic_term
                 eps.course=ex.course
+                eps.course_name=ex.course_name
+                eps.course_code=ex.course_code
                 eps.assessment_plan=doc.name
                 eps.programs=doc.programs
                 eps.program=doc.program
-
+                eps.exam_coordinator_name=doc.exam_coordinator_name
                 eps.paper_setting_start_date=doc.paper_setting_start_date
                 eps.paper_setting_end_date=doc.paper_setting_end_date
 
                 for moderator in doc.get("moderator_list"):
                     if moderator.course==ex.course:
-                        eps.moderator_name=moderator.moderator
+                        eps.moderator__name=moderator.moderator_name
                 eps.save()
                 frappe.msgprint("Exam Paper Setting <b>{0}</b> is created successfully".format(eps.name))
         else :

@@ -360,7 +360,8 @@ def generate_roll_no(selected_naming,name,students):
             new_name=get_name(_autoname,autoname,doc)
             frappe.rename_doc("Student",d.get("student"),new_name)
             frappe.db.set_value("Student",new_name,"renamed",1)
-        show_progress(students,('Renamed: {0}').format(d.get("student_name")), idx, d)
+    frappe.msgprint("Students' Roll Numbers Generated 🙂")
+        # show_progress(students,('Renamed: {0}').format(d.get("student_name")), idx)
 
     return "ok"
 def get_name(_autoname,autoname,doc):
@@ -384,7 +385,7 @@ def set_name_by_naming_series(doc,autoname):
 
 
 
-def show_progress(docnames, message, i, description):
+def show_progress(docnames, message, i, description=None):
     n = len(docnames)
     frappe.publish_progress(
         float(i) * 100 / n,

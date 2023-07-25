@@ -173,7 +173,7 @@ class ExamDeclaration(Document):
         # create_fees(self,fee_structure_id,on_submit=1) 
         # on_update(self,on_submit=1)
     def on_cancel(doc):
-        cancel_fees(doc)
+        # cancel_fees(doc)
         doc.module_disabled_update("on_cancel")
    
 
@@ -438,7 +438,19 @@ def cancel_fees(self):
         cancel_doc.cancel()    
 
 @frappe.whitelist()
+@frappe.validate_and_sanitize_search_inputs
 def valid_exam_declaration_no(doctype, txt, searchfield, start, page_len, filters):
-    fil_data=frappe.db.sql(""" Select name,exam_name from `tabExam Declaration` where docstatus=1 and disabled=0""")
+    searchfields = frappe.get_meta(doctype).get_search_fields()
+    searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)
+    fil_data=frappe.db.sql(""" Select name,exam_name 
+                           from `tabExam Declaration` where ({key} like %(txt)s or {scond}) and
+                           docstatus=1 and disabled=0""".format(
+			**{
+				"key": searchfield,
+                "scond": searchfields,
+			}
+		),
+		{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len},             
+                        )
     return fil_data
 

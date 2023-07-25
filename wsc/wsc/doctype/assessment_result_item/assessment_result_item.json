@@ -7,6 +7,9 @@
  "field_order": [
   "assignment_id",
   "assignment_name",
+  "course",
+  "module_code",
+  "module_name",
   "assessment_criteria",
   "earned_cr",
   "total_cr",
@@ -17,9 +20,19 @@
  ],
  "fields": [
   {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Course",
+   "options": "Course",
+   "reqd": 1,
+   "width": "10px"
+  },
+  {
    "columns": 1,
    "fieldname": "earned_cr",
    "fieldtype": "Float",
+   "hidden": 1,
    "in_list_view": 1,
    "label": "Earned CR",
    "width": "10px"
@@ -28,6 +41,7 @@
    "columns": 1,
    "fieldname": "total_cr",
    "fieldtype": "Float",
+   "hidden": 1,
    "in_list_view": 1,
    "label": "Total CR",
    "width": "10px"
@@ -73,16 +87,18 @@
    "options": "Assessment Criteria"
   },
   {
-   "fieldname": "assignment_id",
+   "fieldname": "module_code",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Assignment ID"
+   "label": "Module Code",
+   "read_only": 1
   },
   {
-   "fieldname": "assignment_name",
+   "fieldname": "module_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Assignment Name"
+   "label": "Module Name",
+   "read_only": 1
   }
  ],
  "istable": 1,

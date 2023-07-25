@@ -3,6 +3,20 @@
 
 frappe.ui.form.on('Assessment Credits Allocation', {
 	setup: function(frm) {
+		frm.set_query("programs", function () {
+			return {
+				filters: [
+					["Programs", "program_grade", "=", frm.doc.program_grade],
+				]
+			}
+		});
+		frm.set_query("semester", function () {
+			return {
+				filters:{
+					"programs":frm.doc.programs
+				} 
+			}
+		});
 		frm.set_query("student", function() {
 			return {
 				filters: {
@@ -49,14 +63,13 @@ frappe.ui.form.on('Assessment Credits Allocation', {
 				},
 				callback: function(r) {
 					if (r.message){
-						console.log("wwww r.message",r.message)
 						frm.clear_table("final_credit_item");
 						$.each(r.message || [], function(i, d) {
 							var row=frm.add_child("final_credit_item")
 							row.course_assessment=d.name
 							row.earned_marks=d.earned_marks
 							row.total_marks=d.total_marks
-							frm.set_value("weightage_marks",d.weightage_marks)
+							// frm.set_value("weightage_marks",d.weightage_marks)
 						})
 						frm.refresh_field("final_credit_item")
 					}
@@ -64,26 +77,37 @@ frappe.ui.form.on('Assessment Credits Allocation', {
 		    })
 		}
 		else{
-			frappe.msgprint("Please fill the assessment criteria first.")
+			frappe.msgprint("Please fill the assessment component first.")
 		}
 		
 	},
+
 	student:function(frm){
 		if (frm.doc.student){
 			frappe.db.get_doc("Student",frm.doc.student).then(( resp ) => {
 				(resp.current_education).forEach((  row ) => {
+					frappe.db.get_value('Programs', {
+						"name": row.programs,
+					  },['program_grade']).then(function(data) {
+						var program_grade= data.message
+						frm.set_value("program_grade",program_grade['program_grade'])
+					  })
 					frm.set_value("academic_year",row.academic_year)
 					frm.set_value("academic_term",row.academic_term)
+					frm.set_value("semester",row.semesters)
+					frm.set_value("programs",row.programs)
+
+
 				})
 			});
 		}
 	},
-	course:function(frm){
-		frm.trigger("get_course_details")
-	},
-	assessment_criteria:function(frm){
-		frm.trigger("get_course_details")
-	},
+	// course:function(frm){
+	// 	frm.trigger("get_course_details")
+	// },
+	// assessment_criteria:function(frm){
+	// 	frm.trigger("get_course_details")
+	// },
 	get_course_details:function(frm){
 		if (frm.doc.course && frm.doc.assessment_criteria){
 			frappe.call({

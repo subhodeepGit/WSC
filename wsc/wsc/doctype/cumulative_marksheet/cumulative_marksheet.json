@@ -14,9 +14,11 @@
   "registration_number",
   "completed_on",
   "column_break_5",
+  "posting_date",
   "year_of_admission",
   "year_of_completion",
   "programs",
+  "grading_scale",
   "school_of",
   "specialization",
   "year_of_admision",
@@ -26,9 +28,25 @@
   "cumulatice_grades_item",
   "result_section",
   "cgpa",
+  "secured_marks",
+  "column_break_fbzy6",
+  "total_marks",
+  "column_break_k9td1",
+  "percentage",
+  "column_break_yej6h",
+  "grade",
+  "column_break_5gray",
   "result_p_f",
   "total_number_of_students",
-  "signature_of_examiner"
+  "section_break_jwcav",
+  "employee",
+  "column_break_24ajz",
+  "employee_name",
+  "column_break_ilclb",
+  "designation",
+  "column_break_rzuow",
+  "signature_of_examiner",
+  "amended_from"
  ],
  "fields": [
   {
@@ -69,11 +87,13 @@
    "fieldname": "cumulatice_grades_item",
    "fieldtype": "Table",
    "label": "Cumulative Grades Item",
-   "options": "Cumulatice Grades Item"
+   "options": "Cumulatice Grades Item",
+   "read_only": 1
   },
   {
    "fieldname": "cgpa",
    "fieldtype": "Float",
+   "hidden": 1,
    "label": "CGPA"
   },
   {
@@ -84,23 +104,26 @@
    "fieldname": "cummulative_courses_item",
    "fieldtype": "Table",
    "label": "Cumulative Courses Item",
-   "options": "Cummulative Courses Item"
+   "options": "Cummulative Courses Item",
+   "read_only": 1
   },
   {
    "fetch_from": "student.permanant_registration_number",
    "fieldname": "registration_number",
    "fieldtype": "Data",
-   "label": "Registration Number"
+   "label": "Registration No"
   },
   {
    "fieldname": "programs",
    "fieldtype": "Link",
-   "label": "PROGRAMME",
-   "options": "Programs"
+   "label": "Programs",
+   "options": "Programs",
+   "read_only": 1
   },
   {
    "fieldname": "completed_on",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "COMPLETED ON"
   },
   {
@@ -118,7 +141,8 @@
   {
    "fieldname": "result_p_f",
    "fieldtype": "Data",
-   "label": "RESULT"
+   "label": "RESULT",
+   "read_only": 1
   },
   {
    "default": "1",
@@ -131,32 +155,139 @@
   {
    "fieldname": "school_of",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "School of"
   },
   {
    "fieldname": "signature_of_examiner",
    "fieldtype": "Attach Image",
-   "label": "Signature of Examiner"
+   "label": "Signature of Authority",
+   "reqd": 1
   },
   {
    "fieldname": "branch",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "BRANCH"
   },
   {
    "fieldname": "specialization",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "SPECIALIZATION"
   },
   {
    "fieldname": "year_of_admision",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Year of Admission"
+  },
+  {
+   "fieldname": "total_marks",
+   "fieldtype": "Float",
+   "label": "Total Marks",
+   "read_only": 1
+  },
+  {
+   "fieldname": "secured_marks",
+   "fieldtype": "Float",
+   "label": "Secured Marks",
+   "read_only": 1
+  },
+  {
+   "fieldname": "percentage",
+   "fieldtype": "Percent",
+   "label": "Percentage",
+   "read_only": 1
+  },
+  {
+   "fieldname": "grade",
+   "fieldtype": "Data",
+   "label": "Grade",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Cumulative Marksheet",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_fbzy6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_k9td1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_yej6h",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_5gray",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_24ajz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "grading_scale",
+   "fieldtype": "Link",
+   "label": "Grading Scale",
+   "options": "Grading Scale"
+  },
+  {
+   "fieldname": "section_break_jwcav",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Signing Authority",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Signing Authority Name",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ilclb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "employee.designation",
+   "fieldname": "designation",
+   "fieldtype": "Link",
+   "label": "Designation",
+   "options": "Designation",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_rzuow",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date"
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-01-17 12:43:05.810047",
+ "modified": "2023-07-14 17:40:31.498594",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Cumulative Marksheet",

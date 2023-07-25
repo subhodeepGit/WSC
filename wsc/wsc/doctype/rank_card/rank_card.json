@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{applicant_id}-{applicant_name}-{department}",
  "creation": "2023-05-09 18:17:52.450996",
  "default_view": "List",
  "doctype": "DocType",
@@ -11,13 +12,15 @@
   "applicant_name",
   "gender",
   "student_category",
-  "entrance_exam_declaration",
   "academic_year",
+  "academic_term",
+  "department",
   "posting_date",
   "physically_disabled",
   "total_marks",
   "earned_marks",
-  "student_ranks_list"
+  "student_ranks_list",
+  "amended_from"
  ],
  "fields": [
   {
@@ -33,23 +36,21 @@
   },
   {
    "fieldname": "gender",
-   "fieldtype": "Data",
-   "label": "Gender"
+   "fieldtype": "Link",
+   "label": "Gender",
+   "options": "Gender"
   },
   {
    "fieldname": "student_category",
-   "fieldtype": "Data",
-   "label": "Student Category"
-  },
-  {
-   "fieldname": "entrance_exam_declaration",
-   "fieldtype": "Data",
-   "label": "Entrance Exam Declaration"
+   "fieldtype": "Link",
+   "label": "Student Category",
+   "options": "Student Category"
   },
   {
    "fieldname": "academic_year",
-   "fieldtype": "Data",
-   "label": "Academic Year"
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
   },
   {
    "fieldname": "posting_date",
@@ -57,8 +58,9 @@
    "label": "Posting Date"
   },
   {
+   "default": "0",
    "fieldname": "physically_disabled",
-   "fieldtype": "Data",
+   "fieldtype": "Check",
    "label": "Physically Disabled"
   },
   {
@@ -76,14 +78,37 @@
    "fieldtype": "Table",
    "label": "Student Ranks List",
    "options": "Student Ranks List"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Rank Card",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-05-09 18:17:52.450996",
+ "modified": "2023-07-24 15:37:06.562744",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Rank Card",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

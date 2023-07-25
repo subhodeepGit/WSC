@@ -18,6 +18,7 @@
 			<th style="width: 170px" rowspan="2">Student Name</th>
 			<th style="width: 170px" rowspan="2">Roll No</th>
 			<th style="width: 170px" rowspan="2">Registration No</th>
+			<th style="width: 170px" rowspan="2">Exam Attendence</th>
 			<th style="width: 170px" rowspan="2">Earned Marks</th>
 			<th style="width: 170px" rowspan="2">Total Marks</th>
 		</tr>
@@ -26,15 +27,23 @@
 		{% for s in students %}
 		<tr>
 			<td>{{ s.id }}</td>
-			<td>{{ s.student }}</td>
+			<td>{{ s.student_no }}</td>
 			<td>{{ s.student_name }}</td>
 			<td>{{ s.roll_no }}</td>
 			<td>{{ s.registration_number }}</td>
 
-			{% if course_assessment[s.student] %}  
-				<td><input type="number" 	 class="result-earned_marks" data-row="{{s.id}}"	style="width:100%;"  value="{{ course_assessment[s.student]['earned_marks'] }}"></td>
+			{% if course_assessment[s.student] %}
+				<td><select class="result-earned_marks" data-row="{{s.id}}" >
+					<option value="Present">Present</option>
+					<option value="Absent">Absent</option>
+				</select></td>  
+				<td><input type="number" 	 class="result-earned_marks" data-row="{{s.id}}"	style="width:100%;"  value="{{ course_assessment[s.student]['earned_marks'] }}" ></td>
 				<td><input type="number" 	 class="result-total_marks"  data-row="{{s.id}}"	style="width:100%;" disabled value="{{ course_assessment[s.student]['total_marks'] }}"></td>
-			{% else %}  
+			{% else %} 
+				<td><select class="result-attendence" data-row="{{s.id}}" style="width:100%;">
+					<option value="Present">Present</option>
+					<option value="Absent">Absent</option>
+			  	</select></td>
 				<td><input type="number" 	 class="result-earned_marks" data-row="{{s.id}}"	style="width:100%;" ></td>
 				<td><input type="number" 	 class="result-total_marks"  data-row="{{s.id}}"	style="width:100%;" disabled value="{{ s.total_marks }}"></td>
 			{% endif %}
