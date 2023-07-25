@@ -7,14 +7,16 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "participant_id",
-  "participant_name",
-  "course_name",
-  "department",
-  "designation",
-  "name_of_institute",
+  "reported",
   "is_hostel_required",
-  "reported"
+  "section_break_3",
+  "participant_id",
+  "course_name",
+  "designation",
+  "column_break_7",
+  "participant_name",
+  "department",
+  "name_of_institute"
  ],
  "fields": [
   {
@@ -32,7 +34,7 @@
    "fieldname": "course_name",
    "fieldtype": "Link",
    "label": "Course Name",
-   "options": "Module"
+   "options": "Course"
   },
   {
    "fieldname": "department",
@@ -60,11 +62,19 @@
    "fieldname": "reported",
    "fieldtype": "Check",
    "label": "Reported"
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-06 13:05:21.561389",
+ "modified": "2023-07-14 16:47:30.469739",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant Reporting",

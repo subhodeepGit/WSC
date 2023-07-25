@@ -7,21 +7,29 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "instructor_name",
   "participant_group",
-  "programs",
   "course",
-  "topic",
+  "academic_year",
+  "instructor_id",
   "assignment_name",
+  "total_marks",
+  "weightage",
+  "column_break_5",
+  "programs",
+  "select_sub_module",
+  "academic_term",
+  "instructor_name",
+  "assessment_criteria",
+  "passing_marks",
+  "section_break_9",
   "assignment_attach_button",
   "description"
  ],
  "fields": [
   {
    "fieldname": "instructor_name",
-   "fieldtype": "Link",
-   "label": "Instructor Name",
-   "options": "Instructor"
+   "fieldtype": "Data",
+   "label": "Instructor Name"
   },
   {
    "fieldname": "participant_group",
@@ -31,21 +39,13 @@
   },
   {
    "fieldname": "programs",
-   "fieldtype": "Link",
-   "label": "Programs",
-   "options": "Course"
+   "fieldtype": "Data",
+   "label": "Select Course"
   },
   {
    "fieldname": "course",
-   "fieldtype": "Link",
-   "label": "Course",
-   "options": "Module"
-  },
-  {
-   "fieldname": "topic",
-   "fieldtype": "Link",
-   "label": "Topic",
-   "options": "Topic"
+   "fieldtype": "Data",
+   "label": "Select Module"
   },
   {
    "fieldname": "assignment_name",
@@ -61,11 +61,59 @@
    "fieldname": "description",
    "fieldtype": "Long Text",
    "label": "Description"
+  },
+  {
+   "fieldname": "select_sub_module",
+   "fieldtype": "Select",
+   "label": "Select Sub Module"
+  },
+  {
+   "fieldname": "instructor_id",
+   "fieldtype": "Select",
+   "label": "Instructor ID"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_9",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Data",
+   "label": "Academic Year"
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Data",
+   "label": "Academic Term"
+  },
+  {
+   "fieldname": "assessment_criteria",
+   "fieldtype": "Select",
+   "label": "Assessment Criteria"
+  },
+  {
+   "fieldname": "total_marks",
+   "fieldtype": "Data",
+   "label": "Total Marks"
+  },
+  {
+   "fieldname": "weightage",
+   "fieldtype": "Percent",
+   "label": "Weightage"
+  },
+  {
+   "fieldname": "passing_marks",
+   "fieldtype": "Data",
+   "label": "Passing Marks"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-05 14:52:32.011330",
+ "modified": "2023-07-25 11:33:12.801899",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment",

@@ -1,50 +1,42 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2023-07-05 16:55:13.047259",
- "default_view": "List",
+ "creation": "2023-07-14 15:37:32.187702",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "participant_id",
-  "participant_name",
-  "earned_marks",
-  "total_marks"
+  "program_id",
+  "program_start_date",
+  "program_end_date"
  ],
  "fields": [
   {
-   "fieldname": "participant_id",
+   "fieldname": "program_id",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Participant ID"
+   "label": "Program ID"
   },
   {
-   "fieldname": "participant_name",
+   "fieldname": "program_start_date",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Participant Name"
+   "label": "Program Start Date"
   },
   {
-   "fieldname": "earned_marks",
+   "fieldname": "program_end_date",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Earned Marks"
-  },
-  {
-   "fieldname": "total_marks",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Total Marks"
+   "label": "Program End Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-07-20 16:35:05.153660",
+ "modified": "2023-07-14 15:47:03.033844",
  "modified_by": "Administrator",
  "module": "WSC",
- "name": "Participant Details Data",
+ "name": "Previous Participation Table",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",

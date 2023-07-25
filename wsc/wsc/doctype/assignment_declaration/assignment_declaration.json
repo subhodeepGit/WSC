@@ -9,16 +9,26 @@
  "field_order": [
   "assignment_name",
   "assignment_start_date",
-  "assignment_end_date",
   "academic_year",
-  "participant_group",
   "course",
+  "select_sub_module",
+  "total_marks",
+  "weightage",
+  "column_break_6",
+  "participant_group",
+  "assignment_end_date",
+  "academic_term",
   "module",
-  "job_sheet",
+  "select_assessment_criteria",
+  "pass_marks",
+  "section_break_11",
   "trainer_id",
+  "column_break_13",
   "trainer_name",
+  "section_break_15",
   "get_participant",
-  "participant_list"
+  "participant_list",
+  "job_sheet"
  ],
  "fields": [
   {
@@ -38,27 +48,24 @@
   },
   {
    "fieldname": "academic_year",
-   "fieldtype": "Link",
-   "label": "Academic Year",
-   "options": "Academic Year"
+   "fieldtype": "Data",
+   "label": "Academic Year"
   },
   {
    "fieldname": "participant_group",
    "fieldtype": "Link",
    "label": "Participant Group",
-   "options": "Academic Term"
+   "options": "Participant Group"
   },
   {
    "fieldname": "course",
-   "fieldtype": "Link",
-   "label": "Course",
-   "options": "Course"
+   "fieldtype": "Data",
+   "label": "Select Course"
   },
   {
    "fieldname": "module",
-   "fieldtype": "Link",
-   "label": "Module",
-   "options": "Module"
+   "fieldtype": "Data",
+   "label": "Select Module"
   },
   {
    "fieldname": "job_sheet",
@@ -68,9 +75,8 @@
   },
   {
    "fieldname": "trainer_id",
-   "fieldtype": "Link",
-   "label": "Trainer ID",
-   "options": "Instructor"
+   "fieldtype": "Select",
+   "label": "Trainer ID"
   },
   {
    "fieldname": "trainer_name",
@@ -80,18 +86,64 @@
   {
    "fieldname": "get_participant",
    "fieldtype": "Button",
-   "label": "Get Participant"
+   "label": "Get Participants"
   },
   {
    "fieldname": "participant_list",
    "fieldtype": "Table",
    "label": "Participant List",
    "options": "Participant List Table"
+  },
+  {
+   "fieldname": "select_sub_module",
+   "fieldtype": "Select",
+   "label": "Select Sub Module"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Data",
+   "label": "Academic Term"
+  },
+  {
+   "fieldname": "section_break_11",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_13",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_15",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "total_marks",
+   "fieldtype": "Data",
+   "label": "Total Marks"
+  },
+  {
+   "fieldname": "weightage",
+   "fieldtype": "Data",
+   "label": "Weightage"
+  },
+  {
+   "fieldname": "pass_marks",
+   "fieldtype": "Data",
+   "label": "Pass Marks"
+  },
+  {
+   "fieldname": "select_assessment_criteria",
+   "fieldtype": "Select",
+   "label": "Select Assessment Criteria"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-05 16:09:53.700586",
+ "modified": "2023-07-25 12:08:19.625743",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Declaration",

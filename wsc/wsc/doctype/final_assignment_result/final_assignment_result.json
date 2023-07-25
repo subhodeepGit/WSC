@@ -7,45 +7,46 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "course",
+  "participant_group",
+  "course_code",
   "module",
+  "column_break_3",
+  "course",
+  "course_name",
+  "section_break_5",
   "academic_year",
-  "participant",
-  "participant_name",
+  "participant_id",
   "grading_scale",
+  "column_break_9",
+  "academic_term",
+  "participant_name",
   "assessment_status",
+  "section_break_13",
   "get_result",
   "assessment_result_item",
-  "evaluation_result_item",
+  "section_break_17",
   "result",
-  "grade",
   "overall_grade",
+  "column_break_20",
+  "grade",
+  "section_break_22",
   "comment"
  ],
  "fields": [
   {
    "fieldname": "course",
-   "fieldtype": "Link",
-   "label": "Course",
-   "options": "Course"
+   "fieldtype": "Data",
+   "label": "Select Course"
   },
   {
    "fieldname": "module",
-   "fieldtype": "Link",
-   "label": "Module",
-   "options": "Module"
+   "fieldtype": "Data",
+   "label": "Select Module"
   },
   {
    "fieldname": "academic_year",
-   "fieldtype": "Link",
-   "label": "Academic Year",
-   "options": "Academic Year"
-  },
-  {
-   "fieldname": "participant",
-   "fieldtype": "Link",
-   "label": "Participant",
-   "options": "ToT Participant"
+   "fieldtype": "Data",
+   "label": "Academic Year"
   },
   {
    "fieldname": "participant_name",
@@ -75,10 +76,40 @@
    "options": "Assessment Result Item"
   },
   {
-   "fieldname": "evaluation_result_item",
-   "fieldtype": "Table",
-   "label": "Evaluation Result Item",
-   "options": "Evaluation Result Item"
+   "fieldname": "participant_group",
+   "fieldtype": "Link",
+   "label": "Participant Group",
+   "options": "Participant Group"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_5",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "participant_id",
+   "fieldtype": "Select",
+   "label": "Participant ID"
+  },
+  {
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Data",
+   "label": "Academic Term"
+  },
+  {
+   "fieldname": "section_break_13",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_17",
+   "fieldtype": "Section Break"
   },
   {
    "fieldname": "result",
@@ -86,24 +117,42 @@
    "label": "Result"
   },
   {
-   "fieldname": "grade",
-   "fieldtype": "Data",
-   "label": "Grade"
-  },
-  {
    "fieldname": "overall_grade",
    "fieldtype": "Data",
    "label": "Overall Grade"
   },
   {
+   "fieldname": "column_break_20",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "grade",
+   "fieldtype": "Data",
+   "label": "Grade"
+  },
+  {
+   "fieldname": "section_break_22",
+   "fieldtype": "Section Break"
+  },
+  {
    "fieldname": "comment",
    "fieldtype": "Small Text",
    "label": "Comment"
+  },
+  {
+   "fieldname": "course_code",
+   "fieldtype": "Data",
+   "label": "Course Code"
+  },
+  {
+   "fieldname": "course_name",
+   "fieldtype": "Data",
+   "label": "Course Name"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-05 17:25:30.939441",
+ "modified": "2023-07-24 17:29:15.471600",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Final Assignment Result",

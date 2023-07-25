@@ -7,60 +7,54 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "participant_group",
   "academic_year",
-  "assignment_declaration",
-  "total_participants",
+  "instructor_id",
   "course",
+  "select_sub_module",
+  "column_break_6",
+  "total_participants",
+  "academic_term",
+  "instructor_name",
   "module",
-  "module_code",
-  "module_name",
+  "section_break_10",
+  "select_job_sheetassessment",
+  "total_marks",
+  "weightage",
   "job_sheetassessment_scheme",
+  "column_break_12",
+  "assignment_name",
+  "passing_marks",
+  "assessment_criteria",
+  "section_break_14",
+  "get_participants",
   "participant_details_data"
  ],
  "fields": [
   {
    "fieldname": "academic_year",
-   "fieldtype": "Link",
-   "label": "Academic Year",
-   "options": "Academic Year"
-  },
-  {
-   "fieldname": "assignment_declaration",
-   "fieldtype": "Link",
-   "label": "Assignment Declaration",
-   "options": "Assignment Declaration"
+   "fieldtype": "Data",
+   "label": "Academic Year"
   },
   {
    "fieldname": "total_participants",
-   "fieldtype": "Int",
+   "fieldtype": "Data",
    "label": "Total Participants"
   },
   {
    "fieldname": "course",
-   "fieldtype": "Link",
-   "label": "Course",
-   "options": "Course"
+   "fieldtype": "Data",
+   "label": "Select Course"
   },
   {
    "fieldname": "module",
-   "fieldtype": "Link",
-   "label": "Module",
-   "options": "Module"
-  },
-  {
-   "fieldname": "module_code",
    "fieldtype": "Data",
-   "label": "Module code"
-  },
-  {
-   "fieldname": "module_name",
-   "fieldtype": "Data",
-   "label": "Module Name"
+   "label": "Select Module"
   },
   {
    "fieldname": "job_sheetassessment_scheme",
    "fieldtype": "Link",
-   "label": "Job Sheet/Assessment Scheme",
+   "label": "Job Sheet / Assessment Scheme",
    "options": "Job sheet"
   },
   {
@@ -68,11 +62,88 @@
    "fieldtype": "Table",
    "label": "Participant Details Data",
    "options": "Participant Details Data"
+  },
+  {
+   "fieldname": "participant_group",
+   "fieldtype": "Link",
+   "label": "Participant Group",
+   "options": "Participant Group"
+  },
+  {
+   "fieldname": "select_sub_module",
+   "fieldtype": "Select",
+   "label": "Select Sub Module"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Data",
+   "label": "Academic Term"
+  },
+  {
+   "fieldname": "section_break_10",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "select_job_sheetassessment",
+   "fieldtype": "Select",
+   "label": "Select Job Sheet / Assessment"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_14",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "get_participants",
+   "fieldtype": "Button",
+   "label": "Get participants"
+  },
+  {
+   "fieldname": "instructor_id",
+   "fieldtype": "Select",
+   "label": "Instructor ID"
+  },
+  {
+   "fieldname": "instructor_name",
+   "fieldtype": "Data",
+   "label": "Instructor Name"
+  },
+  {
+   "fieldname": "total_marks",
+   "fieldtype": "Data",
+   "label": "Total Marks"
+  },
+  {
+   "fieldname": "weightage",
+   "fieldtype": "Data",
+   "label": "Weightage"
+  },
+  {
+   "fieldname": "passing_marks",
+   "fieldtype": "Data",
+   "label": "Passing Marks"
+  },
+  {
+   "fieldname": "assessment_criteria",
+   "fieldtype": "Data",
+   "label": "Assessment Criteria"
+  },
+  {
+   "fieldname": "assignment_name",
+   "fieldtype": "Data",
+   "label": "Assignment Name"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-05 16:57:16.666699",
+ "modified": "2023-07-25 17:30:26.666829",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Evaluation Tool",

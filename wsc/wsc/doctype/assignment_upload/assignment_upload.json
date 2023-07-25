@@ -7,37 +7,41 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "instructor_name",
-  "assignment_number",
-  "participant_id",
-  "participant_name",
-  "programs",
-  "academic_year",
-  "academic_term",
+  "participant_group",
   "course",
+  "academic_year",
+  "participant_id",
+  "instructor_id",
+  "assignment_number",
+  "total_marks",
+  "weightage",
+  "column_break_6",
+  "programs",
   "topic",
-  "assignment_name",
+  "academic_term",
+  "participant_name",
+  "instructor_name",
+  "assessment_component",
+  "passing_marks",
+  "section_break_12",
   "assignment_attach_button",
   "description"
  ],
  "fields": [
   {
    "fieldname": "instructor_name",
-   "fieldtype": "Link",
-   "label": "Instructor Name",
-   "options": "Instructor"
+   "fieldtype": "Data",
+   "label": "Instructor Name"
   },
   {
    "fieldname": "assignment_number",
-   "fieldtype": "Link",
-   "label": "Assignment Number",
-   "options": "Assignment"
+   "fieldtype": "Select",
+   "label": "Assignment Name"
   },
   {
    "fieldname": "participant_id",
-   "fieldtype": "Link",
-   "label": "Participant ID",
-   "options": "ToT Participant"
+   "fieldtype": "Select",
+   "label": "Participant ID"
   },
   {
    "fieldname": "participant_name",
@@ -46,53 +50,82 @@
   },
   {
    "fieldname": "programs",
-   "fieldtype": "Link",
-   "label": "Programs",
-   "options": "Course"
+   "fieldtype": "Data",
+   "label": "Select Course"
   },
   {
    "fieldname": "academic_year",
-   "fieldtype": "Link",
-   "label": "Academic Year",
-   "options": "Academic Year"
+   "fieldtype": "Data",
+   "label": "Academic Year"
   },
   {
    "fieldname": "academic_term",
-   "fieldtype": "Link",
-   "label": "Academic Term",
-   "options": "Academic Term"
+   "fieldtype": "Data",
+   "label": "Academic Term"
   },
   {
    "fieldname": "course",
-   "fieldtype": "Link",
-   "label": "Course",
-   "options": "Module"
+   "fieldtype": "Data",
+   "label": "Select Module"
   },
   {
    "fieldname": "topic",
-   "fieldtype": "Link",
-   "label": "Topic",
-   "options": "Topic"
-  },
-  {
-   "fieldname": "assignment_name",
-   "fieldtype": "Data",
-   "label": "Assignment Name"
+   "fieldtype": "Select",
+   "label": "Select Sub Module"
   },
   {
    "fieldname": "assignment_attach_button",
    "fieldtype": "Attach",
-   "label": "Assignment Attach Button"
+   "label": "Attach Assignment"
   },
   {
    "fieldname": "description",
    "fieldtype": "Long Text",
    "label": "Description"
+  },
+  {
+   "fieldname": "participant_group",
+   "fieldtype": "Link",
+   "label": "Participant Group",
+   "options": "Participant Group"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_12",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "instructor_id",
+   "fieldtype": "Select",
+   "label": "Instructor ID"
+  },
+  {
+   "fieldname": "total_marks",
+   "fieldtype": "Data",
+   "label": "Total Marks"
+  },
+  {
+   "fieldname": "weightage",
+   "fieldtype": "Data",
+   "label": "Weightage"
+  },
+  {
+   "fieldname": "assessment_component",
+   "fieldtype": "Data",
+   "label": "Assessment Component"
+  },
+  {
+   "fieldname": "passing_marks",
+   "fieldtype": "Data",
+   "label": "Passing Marks"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-05 15:01:59.476128",
+ "modified": "2023-07-25 11:44:28.940063",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Upload",
