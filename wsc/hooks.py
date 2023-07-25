@@ -61,6 +61,7 @@ doctype_js = {
                 "Shift Request":"public/js/shift_request.js",
                 "Leave Application":"public/js/leave_application.js",
                 "Employee Separation":"public/js/employee_separation.js",
+                "Bank Guarantee":"public/js/bank_guarantee.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
