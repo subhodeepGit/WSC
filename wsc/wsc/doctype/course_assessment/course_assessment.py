@@ -33,6 +33,7 @@ class CourseAssessment(Document):
     def qualifying_status(self):
         passing_marks=frappe.get_all("Credit distribution List", {"parent":self.course,"assessment_criteria":self.assessment_criteria},['passing_marks'])
         passing_marks=passing_marks[0]['passing_marks']
+        self.passing_marks=flt(passing_marks)
         earned_marks=flt(self.earned_marks)
         if passing_marks<=earned_marks:
             self.qualifying_status_data="Pass"
@@ -69,8 +70,6 @@ def get_assessment_criteria(doctype, txt, searchfield, start, page_len, filters)
     data=frappe.db.sql(""" Select ED.assessment_criteria 
                         from `tabExam Declaration` ED 
                         where ED.name='{0}' and ED.docstatus=1 """.format(filters.get("exam_declaration")))
-    print("\n\n\n\n\n")
-    print(data)
     # lst = []
     # for i in frappe.get_all("Course Enrollment",{'student':filters.get("student"),"course":filters.get("course"),"status":("!=","Completed")},['name']):
     #     fltr={"parent":i.get("name")}
@@ -103,7 +102,7 @@ def get_exam_declaration(doctype, txt, searchfield, start, page_len, filters):
     # else:
     #     return []
 
-    
+
     student=filters.get("student")
     filters.pop("student")
 
@@ -124,7 +123,7 @@ def get_exam_declaration(doctype, txt, searchfield, start, page_len, filters):
 
 @frappe.whitelist()
 def get_assessment_criteria_detail(course,criteria):
-    for data in frappe.get_all("Credit distribution List",{"parent":course,"assessment_criteria":criteria},["credits","total_marks"]):
+    for data in frappe.get_all("Credit distribution List",{"parent":course,"assessment_criteria":criteria},["credits","total_marks",'passing_marks']):
         return data
 
 @frappe.whitelist()
