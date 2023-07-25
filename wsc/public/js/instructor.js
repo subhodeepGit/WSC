@@ -65,12 +65,30 @@ frappe.ui.form.on('Instructor',{
     //     }
     // },  
                 
-     employee:function(frm){
+    employee:function(frm){
         if(!frm.doc.employee){
             frm.set_value('instructor_name', '')
             frm.set_value('department', '')
             frm.set_value('gender', '')
         }
-     }
+     },
+
+    create_user: function(frm) {
+        if (!frm.doc.email_id_for_guest_trainers) {
+			frappe.throw(__("Please enter Email ID for Guest Trainers"));
+		}
+		frappe.call({
+			method: "wsc.wsc.validations.instructor.create_user",
+			args: {
+				trainer: frm.doc.name,
+				email: frm.doc.email_id_for_guest_trainers
+			},
+			callback: function (r) {
+				frm.set_value("email_id_for_guest_trainers", r.message);
+			}
+		});
+	},
+
+
 
 })
