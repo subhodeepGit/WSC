@@ -11,7 +11,18 @@ class CourseAssessment(Document):
         self.validate_marks()
         self.qualifying_status()
         self.exam_type()
+        self.get_module_wise_exam_group()
 
+
+    def get_module_wise_exam_group(self):
+        exam_declaration=self.exam_declaration
+        course=self.course
+        data=frappe.get_all("Module Wise Exam Group",{"exam_declaration_id":exam_declaration,"modules_id":course,"docstatus":1},['name'])
+        if data:
+            self.module_wise_exam_group=data[0]['name']
+        else:
+            frappe.throw("No Module Wise Exam Group Found")
+        
     def on_update_after_submit(self):
         self.qualifying_status()  
 
@@ -40,26 +51,37 @@ class CourseAssessment(Document):
 
 @frappe.whitelist()
 def get_courses(doctype, txt, searchfield, start, page_len, filters):
-    data=frappe.db.sql("""select 
-                                ce.course,ce.course_name,ce.course_code
-                        from 
-                            `tabCourse Enrollment` ce 
-                        where status!="Completed" and student='{0}' and ce.academic_year='{1}' and ce.academic_term='{2}' and (ce.course like '%{3}%' or ce.course_name like '%{3}%' or ce.course_code like '%{3}%') """
-                        .format(filters.get("student"),filters.get("academic_year"),filters.get("academic_term"),txt))
+    data=frappe.db.sql(""" Select EC.courses,EC.course_name,EC.course_code
+                       from `tabExam Courses` EC
+                       Join `tabExam Declaration` ED on ED.name=EC.parent 
+                       where EC.parent='{0}' and ED.docstatus=1 """.format(filters.get("exam_declaration")))
+    # data=frappe.db.sql("""select 
+    #                             ce.course,ce.course_name,ce.course_code
+    #                     from 
+    #                         `tabCourse Enrollment` ce 
+    #                     where status!="Completed" and student='{0}' and ce.academic_year='{1}' and ce.academic_term='{2}' and (ce.course like '%{3}%' 
+    #                     or ce.course_name like '%{3}%' or ce.course_code like '%{3}%') """
+    #                     .format(filters.get("student"),filters.get("academic_year"),filters.get("academic_term"),txt))
     return data if data else []
     
 @frappe.whitelist()
 def get_assessment_criteria(doctype, txt, searchfield, start, page_len, filters):
-    lst = []
-    for i in frappe.get_all("Course Enrollment",{'student':filters.get("student"),"course":filters.get("course"),"status":("!=","Completed")},['name']):
-        fltr={"parent":i.get("name")}
-        if txt:
-            fltr.update({"assessment_criteria":txt})
-        for j in frappe.get_all("Credit distribution List",fltr,["assessment_criteria"]):
-            if j.assessment_criteria not in lst:
-                if j.assessment_criteria:
-                    lst.append(j.assessment_criteria)
-    return [(d,) for d in lst]
+    data=frappe.db.sql(""" Select ED.assessment_criteria 
+                        from `tabExam Declaration` ED 
+                        where ED.name='{0}' and ED.docstatus=1 """.format(filters.get("exam_declaration")))
+    print("\n\n\n\n\n")
+    print(data)
+    # lst = []
+    # for i in frappe.get_all("Course Enrollment",{'student':filters.get("student"),"course":filters.get("course"),"status":("!=","Completed")},['name']):
+    #     fltr={"parent":i.get("name")}
+    #     if txt:
+    #         fltr.update({"assessment_criteria":txt})
+    #     for j in frappe.get_all("Credit distribution List",fltr,["assessment_criteria"]):
+    #         if j.assessment_criteria not in lst:
+    #             if j.assessment_criteria:
+    #                 lst.append(j.assessment_criteria)
+    # return [(d,) for d in lst]
+    return data if data else []
 
 @frappe.whitelist()
 def get_details(student,course):
@@ -68,18 +90,37 @@ def get_details(student,course):
 
 @frappe.whitelist()
 def get_exam_declaration(doctype, txt, searchfield, start, page_len, filters):
+
+
+        # declarations=[]
+    # if len(frappe.get_all("Program Enrollment",{"student":student, "docstatus":1},['programs',"program"]))!=0:
+    #     for d in frappe.get_all("Program Enrollment",{"student":student, "docstatus":1},['programs',"program","name"]):
+    #         filters.update({"exam_program":d.get("programs"),"docstatus":1})
+    #         for ed in frappe.get_all("Exam Declaration",filters,["name","exam_name"],as_list=1):
+    #             # if frappe.db.get_value("Examination Semester",{"parent":ed[0],"semester":d.get("program")}):
+    #             declarations.append(ed)
+    #         return declarations
+    # else:
+    #     return []
+
+    
     student=filters.get("student")
     filters.pop("student")
+
     declarations=[]
-    if len(frappe.get_all("Program Enrollment",{"student":student, "docstatus":1},['programs',"program"]))!=0:
-        for d in frappe.get_all("Program Enrollment",{"student":student, "docstatus":1},['programs',"program","name"]):
-            filters.update({"exam_program":d.get("programs"),"docstatus":1})
-            for ed in frappe.get_all("Exam Declaration",filters,["name","exam_name"],as_list=1):
-                # if frappe.db.get_value("Examination Semester",{"parent":ed[0],"semester":d.get("program")}):
-                declarations.append(ed)
-            return declarations
-    else:
-        return []
+    module_wise_exam_student_data=frappe.get_all("Module Wise Exam Student", {"student_no":student},['name',"parent"])
+    if module_wise_exam_student_data:
+        module_wise_exam_group_data=[]
+        for t in module_wise_exam_student_data:
+            module_wise_exam_group_data.append(t['parent'])
+        module_wise_exam_group_data=list(set(module_wise_exam_group_data))
+        if module_wise_exam_group_data:
+            declarations=frappe.get_all("Module Wise Exam Group",filters=[["name","in",module_wise_exam_group_data],['docstatus','=','1']],fields=['exam_declaration_id'], as_list=True)
+    return declarations if declarations else []
+
+
+
+
 
 @frappe.whitelist()
 def get_assessment_criteria_detail(course,criteria):

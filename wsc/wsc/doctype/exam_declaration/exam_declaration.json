@@ -219,6 +219,7 @@
    "reqd": 1
   },
   {
+   "depends_on": "eval:doc.docstatus==0",
    "fieldname": "get_courses",
    "fieldtype": "Button",
    "label": "Get Module"
@@ -326,7 +327,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-19 15:45:00.055205",
+ "modified": "2023-07-25 12:23:50.928852",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Declaration",
