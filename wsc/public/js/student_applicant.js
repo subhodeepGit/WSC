@@ -11,6 +11,12 @@ frappe.ui.form.on('Student Applicant', {
     },
 
     onload: function(frm) {
+        //For Counselling Based Program Priority
+        
+        if (frm.doc.couselling_start === 1){
+            frm.set_df_property("counselling_based_program_priority" , "hidden" , 0)
+        }
+         
         frm.set_query("counselling_structure", function() {
             return {
                 filters: {
@@ -73,13 +79,6 @@ frappe.ui.form.on('Student Applicant', {
 
         //Hostel Required Checkbox
         frm.doc.hostel_required = 1;
-        //For Counselling Based Program Priority
-        
-        if (frm.doc.couselling_start === 1){
-            frm.set_df_property("counselling_based_program_priority" , "hidden" , 0)
-        } else {
-            frm.set_df_property("counselling_based_program_priority" , "hidden" , 1)
-        }
         
         frm.set_query("blocks", function() {
             return {
@@ -187,9 +186,13 @@ frappe.ui.form.on('Student Applicant', {
                         fields: ["name"]
                     }).then((data) => { 
                         if (data.length==0) 
-                        frm.add_custom_button(__("Enroll"), function() {
+                        console.log("Promise Success");
+                        frm.add_custom_button(__("Enroll"), function()  {
                             frm.trigger("enroll_student")
                         }).addClass("btn-primary");
+                    })
+                    .catch((err) => {
+                        console.log(err);
                     })
                 }
 				
@@ -224,26 +227,37 @@ frappe.ui.form.on('Student Applicant', {
         // }      
 
     },
-    couselling_start: function(frm){
-        let field = frm.get_field("counselling_based_program_priority")
-        let isHidden = field.df.hidden
+    // couselling_start: function(frm){
+    //     let field = frm.get_field("counselling_based_program_priority")
+    //     let isHidden = field.df.hidden
 
-        if (isHidden){
-            frm.set_df_property("counselling_based_program_priority" , "hidden" , 0)
-        } else {
-            frm.set_df_property("counselling_based_program_priority" , "hidden" , 1)
-        }
-        
-    },
+    //     if (isHidden){
+    //         frm.set_df_property("counselling_based_program_priority" , "hidden" , 0)
+    //     } else {
+    //         frm.set_df_property("counselling_based_program_priority" , "hidden" , 1)
+    //     }
+    // },
     counselling_structure: function(frm) {
         frm.trigger("get_education_and_document_list");
         frm.set_value("document_list",[]);
     },
     enroll_student: function(frm) {
+        console.log("ok");
 		frappe.model.open_mapped_doc({
 			method: "wsc.wsc.doctype.student_applicant.enroll_student",
 			frm: frm
 		})
+        // frappe.call({
+        //     method: "wsc.wsc.doctype.student_applicant.enroll_student",
+        //     args: {
+        //         frm:frm
+        //     },
+        //     // callback: function(r) {
+        //     //     console.log(r);
+        //     //     var doc = frappe.model.sync(r.message);
+        //     //     frappe.set_route("Form", doc[0].doctype, doc[0].name);
+        //     // }
+        // });
 	},
     show_fees_button(frm){
         if (frm.doc.name && frm.doc.application_status=="Approved"){

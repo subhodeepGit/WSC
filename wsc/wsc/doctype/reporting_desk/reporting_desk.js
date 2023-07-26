@@ -10,6 +10,13 @@ frappe.ui.form.on('Reporting Desk', {
 				}
 			}
 		})
+		frm.set_query("applicant_id", function(){
+			return {
+				filters:{
+					'docstatus':1
+				}
+			}
+		})
 	},
 	applicant_id: function(frm){
 		frappe.call({
@@ -18,9 +25,10 @@ frappe.ui.form.on('Reporting Desk', {
 				applicant_id:frm.doc.applicant_id
 			},
 			callback: function(result){
+				
 				const { applicant_name , gender , student_category , physically_disabled , academic_year , academic_term , department , total_marks , earned_marks} = result.message[0][0]
 				const { general_rank , category_based_rank , pwd_based_rank } = result.message[1][0]
-				
+				console.log(total_marks);
 				frm.doc.applicant_name = applicant_name
 				frm.doc.gender = gender
 				frm.doc.student_category = student_category

@@ -109,7 +109,7 @@ def generate_rank_cards(doc):
 	
 	for i in data['ranked_students_list']:
 		
-		earned_marks = frappe.get_all("Entrance Exam Result Publication" , {'applicant_id':i['applicant_id']} , ['earned_marks' , 'applicant_id' , 'applicant_name'])
+		earned_marks = frappe.get_all("Entrance Exam Result Publication" , {'applicant_id':i['applicant_id']} , ['earned_marks' , 'applicant_id' , 'applicant_name' , 'total_marks'])
 		
 		rank_data = frappe.new_doc("Rank Card")
 		rank_data.applicant_id = i['applicant_id']
@@ -121,7 +121,7 @@ def generate_rank_cards(doc):
 		rank_data.academic_term = data['academic_term']
 		rank_data.department = data['departments']
 		rank_data.posting_date = data['posting_date']
-		rank_data.total_marks = data['posting_date']
+		rank_data.total_marks = earned_marks[0]['total_marks']
 		rank_data.earned_marks = earned_marks[0]['earned_marks']
 		
 		rank_data.append("student_ranks_list" , {
