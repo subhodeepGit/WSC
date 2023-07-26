@@ -69,6 +69,7 @@ doctype_list_js = {
     "Fees":"public/js/fees_list.js",
     "Program Enrollment":"public/js/program_enrollment_list.js",
     "Student Attendance":"public/js/student_attendance_list.js",
+    "Instructor" :"public/js/instructor_list.js",
     "Student Applicant" :"public/js/student_applicant_list.js",
     "Asset Maintenance Log":"public/js/asset_maintenance_log_list.js",
     "Leave Application":"public/js/leave_application_list.js",
@@ -478,6 +479,6 @@ override_doctype_dashboards = {
     # {"dt" : "Translation"}
 # ]
 website_context = {
-    "favicon": "/assets/wsc/images/logo.jpg",
-    "splash_image": "/assets/wsc/images/logo.jpg"
+    "favicon": "/assets/wsc/images/wsc.png",
+    "splash_image": "/assets/wsc/images/wsc.png"
 }

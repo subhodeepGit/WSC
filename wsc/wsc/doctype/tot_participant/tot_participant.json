@@ -47,7 +47,12 @@
   "address_line_2",
   "pincode",
   "country",
-  "participant_name"
+  "participant_name",
+  "section_break_40",
+  "previous_participations",
+  "participant_education_details",
+  "participant_experience_details",
+  "participant_medical_history"
  ],
  "fields": [
   {
@@ -106,7 +111,8 @@
    "fieldtype": "Data",
    "in_global_search": 1,
    "label": "Participant Email Address",
-   "options": "Email"
+   "options": "Email",
+   "unique": 1
   },
   {
    "fieldname": "participant_mobile_number",
@@ -280,11 +286,39 @@
    "fieldtype": "Link",
    "label": "Country",
    "options": "Country"
+  },
+  {
+   "fieldname": "previous_participations",
+   "fieldtype": "Table",
+   "label": "Previous Participations",
+   "options": "Previous Participation Table"
+  },
+  {
+   "fieldname": "participant_education_details",
+   "fieldtype": "Table",
+   "label": "Participant Education Details",
+   "options": "Participant Education Details Table"
+  },
+  {
+   "fieldname": "participant_experience_details",
+   "fieldtype": "Table",
+   "label": "Participant Experience Details",
+   "options": "Participant Experience Details"
+  },
+  {
+   "fieldname": "participant_medical_history",
+   "fieldtype": "Table",
+   "label": "Participant Medical History",
+   "options": "Participant Medical History Table"
+  },
+  {
+   "fieldname": "section_break_40",
+   "fieldtype": "Section Break"
   }
  ],
  "image_field": "image",
  "links": [],
- "modified": "2023-06-12 16:31:50.553420",
+ "modified": "2023-07-14 15:49:21.577859",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant",

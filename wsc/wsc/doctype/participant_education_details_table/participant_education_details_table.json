@@ -1,0 +1,73 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-07-14 15:42:44.879929",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "qualification",
+  "institute",
+  "board",
+  "total_marks",
+  "earned_marks",
+  "percentage",
+  "year_of_completion"
+ ],
+ "fields": [
+  {
+   "fieldname": "qualification",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Qualification"
+  },
+  {
+   "fieldname": "institute",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Institute"
+  },
+  {
+   "fieldname": "board",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Board"
+  },
+  {
+   "fieldname": "total_marks",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Total Marks"
+  },
+  {
+   "fieldname": "earned_marks",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Earned Marks"
+  },
+  {
+   "fieldname": "percentage",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Percentage"
+  },
+  {
+   "fieldname": "year_of_completion",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Year of Completion"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-07-14 15:47:50.622341",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Participant Education Details Table",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
