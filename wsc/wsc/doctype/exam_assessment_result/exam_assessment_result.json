@@ -146,7 +146,6 @@
    "fieldname": "sgpa",
    "fieldtype": "Float",
    "hidden": 1,
-   "in_list_view": 1,
    "label": "SGPA",
    "read_only": 1
   },
@@ -169,6 +168,7 @@
    "allow_on_submit": 1,
    "fieldname": "grade",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Grade",
    "read_only": 1
   },
@@ -305,7 +305,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-21 16:55:02.905129",
+ "modified": "2023-07-25 15:23:07.447593",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Assessment Result",

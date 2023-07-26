@@ -16,7 +16,7 @@ class ExamAssessmentResult(Document):
         self.set_evaluation_result_item()
         self.set_grade()
         if len(self.assessment_result_item) > 0:
-            self.calculate_percentage()
+            self.calculate_percentage_grade_result()
         self.map_fields()
         self.validate_duplicate_for_save()
         self.validate_duplicate_for_submit()
@@ -27,13 +27,13 @@ class ExamAssessmentResult(Document):
         self.validate_duplicate_for_save()
         self.validate_duplicate_for_submit()
         self.set_evaluation_result_item()
-        self.set_grade()
+        # self.set_grade()
         if len(self.assessment_result_item) > 0:
-            self.calculate_percentage()
+            self.calculate_percentage_grade_result()
       
     def on_change(self):
         if len(self.assessment_result_item) > 0:
-            self.calculate_percentage()
+            self.calculate_percentage_grade_result()
 
 
     def set_assessment_result_items(self):
@@ -130,7 +130,7 @@ class ExamAssessmentResult(Document):
             self.result="Backlog"
 
         if self.maximum_score > 0:
-            self.grade = get_grade(self.grading_scale, (self.total_score/self.maximum_score)*100)
+            self.grade = get_grade(self.grading_scale, (self.secured_marks/self.total_marks)*100)
 
         for d in self.evaluation_result_item:
             if flt(d.total_marks) > 0.0 :
@@ -181,8 +181,10 @@ class ExamAssessmentResult(Document):
             self.sgpa="{:.2f}".format(earn_and_garde/earn)
             self.sgpa_in_to_credit_point= float(self.credit_point) * float(self.sgpa)
     
-    def calculate_percentage(self):
+    def calculate_percentage_grade_result(self):
+        print("\n\n\nHELLO WORKS")
         marks_earned = total_marks = 0
+        module_marks = 0
         allocations = 0
         for allocation in frappe.get_all("Assessment Credits Allocation",{"docstatus":1,"student":self.student,"academic_year":self.academic_year,"academic_term":self.academic_term},["course","earned_credits","total_credits","final_marks","out_of_marks","assessment_criteria"]):
             allocations += allocation.out_of_marks
@@ -191,12 +193,73 @@ class ExamAssessmentResult(Document):
             if self.grade and self.grading_scale:
                 if d.earned_marks:
                     marks_earned += flt(d.earned_marks)
-                    total_marks += flt(d.module_total_mark)
-        if total_marks > 0 :
-            self.total_marks=total_marks
+                    self.secured_marks=marks_earned
+                    # total_marks += flt(d.module_total_mark)
+        for x in frappe.get_all("Course Enrollment",{"student":self.student,"academic_term":self.academic_term},['name','total_course_marks']):
+            module_marks+=flt(x.total_course_marks)
+        if module_marks > 0 :
+            self.total_marks=module_marks
+            print("\n\nMarks",marks_earned)
             self.secured_marks=marks_earned
-            self.percentage = round((marks_earned/total_marks)*100, 2)
-            self.percentage = "{:.2f}".format((marks_earned/total_marks)*100)
+            print("\n\nSecured Marks",self.secured_marks)
+            self.percentage = round((marks_earned/module_marks)*100, 2)
+            self.percentage = "{:.2f}".format((marks_earned/module_marks)*100)
+        self.total_score = 0.0
+        self.maximum_score=0.0
+        total_pass=0
+        for d in self.assessment_result_item:
+            if flt(d.total_marks) > 0.0 :
+                d.grade = get_grade(self.grading_scale, (flt(d.earned_marks)/flt(d.total_marks))*100)
+                self.total_score += flt(d.earned_marks)
+                self.maximum_score +=flt(d.total_marks)
+                
+            for g in frappe.get_all("Grading Scale Interval",{"parent":self.grading_scale,"grade_code":d.grade},['result']):
+                if g.result=="PASS":
+                    d.result="P"
+                else:
+                    d.result="F"
+                    
+            for cr in frappe.get_all("Credit distribution List",{"parent":d.course,"assessment_criteria":d.assessment_criteria},['passing_marks']):
+                if flt(cr.passing_marks) > flt(d.earned_marks):
+                    d.result="F"
+                else:
+                    d.result="P"
+
+            if d.result=="P":
+                total_pass+=1
+        if self.grade=="F":
+            self.result="Backlog"  
+        else:
+            self.result="Pass"
+        # if len(self.assessment_result_item)==total_pass and total_pass > 0:
+        #     self.result="Pass"  
+        
+        # elif total_pass!=0:
+        #     self.result="Backlog"
+
+        if self.maximum_score > 0:
+            print("\n\nEarned Marks",marks_earned)
+            self.secured_marks=marks_earned
+            print("\n\n",self.secured_marks)
+            self.grade = get_grade(self.grading_scale, (self.secured_marks/self.total_marks)*100)
+
+        for d in self.evaluation_result_item:
+            if flt(d.total_marks) > 0.0 :
+                d.grade = get_grade(self.grading_scale, (flt(d.earned_marks)/flt(d.total_marks))*100)
+                self.total_score += flt(d.earned_marks)
+                self.maximum_score +=flt(d.total_marks)
+            assessment_criteria = [a.assessment_criteria for a in self.assessment_result_item if a.course == d.course ]
+            for cr in frappe.get_all("Credit distribution List",{"parent":d.course,"assessment_criteria":assessment_criteria[0]},['passing_marks']):
+                if flt(cr.passing_marks) > flt(d.earned_marks):
+                    d.result="F"
+                else:
+                    d.result="P"
+                
+            for g in frappe.get_all("Grading Scale Interval",{"parent":self.grading_scale,"grade_code":d.grade},['result']):
+                if g.result=="PASS":
+                    d.result="P"
+                else:
+                    d.result="F"
     #########################################################################################################################################
     def map_fields(self):
         order_dict={1:"1ST SEM",2:"2ND SEM",3:"3RD SEM",4:"4TH SEM",5:"5TH SEM",6:"6TH SEM",7:"7TH SEM",8:"8TH SEM",9:"9TH SEM",10:"10TH SEM"}
