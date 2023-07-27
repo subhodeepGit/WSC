@@ -30,6 +30,8 @@ from hrms.hr.utils import (
 	validate_active_employee,
 )
 from wsc.wsc.notification.custom_notification import employee_reporting_aproverr
+from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
+
 
 class LeaveDayBlockedError(frappe.ValidationError):
 	pass
@@ -72,13 +74,19 @@ class LeaveApplication(Document):
 		data["to_date"]=self.to_date
 		data["name"]=self.name
 		employee_reporting_aproverr(data)
-		
+	def after_insert(self):
+		print("\n\n\nHello Workld")
+		self.set_shift_request_permission_reporting_authority()
 	def validate(self):
 		validate_active_employee(self.employee)
 		set_employee_name(self)
+		# set_user_permission(self)
+		
 		# self.validate_dates()
 		# self.validate_balance_leaves()
 		self.validate_leave_overlap()
+		# self.set_shift_request_permission_reporting_authority()
+		self.set_shift_request_permission_approver()
 		if self.current_status == "Open":
 			self.approver_mail()
 		self.show_block_day_warning()
@@ -89,10 +97,14 @@ class LeaveApplication(Document):
 		if frappe.db.get_value("Leave Type", self.leave_type, "is_optional_leave"):
 			self.validate_optional_leave()
 		self.validate_applicable_after()
-
+		# session_user_employee_code = frappe.get_value("Employee", {"user_id": frappe.session.user}, "name")
+		# if session_user_employee_code == self.employee:
+		# 	pass
+		# else:
+		# 	raise frappe.throw("You are not allowed to create leave applications for other employees.")
+		print("\n\n\nCurrent Status",self.current_status)
+	
 	def on_update(self):
-		print("\n\n\n")
-		print("Hello")
 		if self.current_status == "Forwarded to Approving Authority":
 			# notify leave approver about creation
 			if frappe.db.get_single_value("HR Settings", "send_leave_notification"):
@@ -133,6 +145,40 @@ class LeaveApplication(Document):
 		if frappe.db.get_single_value("HR Settings", "send_leave_notification"):
 			self.notify_employee()
 		self.cancel_attendance()
+	
+# def on_trash(self):
+# 	self.delete_permission()
+	
+# def delete_permission(self):
+# 	for d in frappe.get_all("User Permission",{"reference_doctype":self.doctype,"reference_docname":self.name}):
+# 		frappe.delete_doc("User Permission",d.name)
+	
+	def set_shift_request_permission_reporting_authority(doc):
+		data={}
+		# data["reporting_authority_email"]=self.reporting_authority_email
+		if doc.reporting_authority_email:
+			print("\n\n\nEmail")
+			print(doc.reporting_authority_email)
+			for emp in frappe.get_all("Employee", {'reporting_authority_email':doc.reporting_authority_email}, ['reporting_authority_email']):
+				print(emp.reporting_authority_email)
+				if emp.reporting_authority_email:
+					print("\n\n\nIDD")
+					print(emp.reporting_authority_email)
+					data["reporting_authority_email"]=emp.reporting_authority_email
+					add_user_permission(doc.doctype,doc.name,data["reporting_authority_email"],doc)	
+				else:
+					frappe.msgprint("Reporting Authority Not Found")
+
+
+	def set_shift_request_permission_approver(doc):
+		if doc.current_status=="Forwarded to Approving Authority":
+			for emp in frappe.get_all("Employee", {'leave_approver':doc.leave_approver}, ['leave_approver']):
+				if emp.leave_approver:
+					print(emp.leave_approver)
+					add_user_permission(doc.doctype,doc.name,emp.leave_approver,doc)	
+					# add_user_permission("Shift Request",doc.name, emp.get('shift_request_approver'), doc)
+				else:
+					frappe.msgprint("Shift Request Not Found")	
 
 	def validate_applicable_after(self):
 		if self.leave_type:
@@ -143,7 +189,7 @@ class LeaveApplication(Document):
 					self.employee, False, date_of_joining, self.from_date
 				)
 				number_of_days = date_diff(getdate(self.from_date), date_of_joining)
-				if number_of_days >= 0:
+				if nsuku@gmail.comumber_of_days >= 0:
 					holidays = 0
 					if not frappe.db.get_value("Leave Type", self.leave_type, "include_holiday"):
 						holidays = get_holidays(self.employee, date_of_joining, self.from_date)
@@ -727,6 +773,16 @@ class LeaveApplication(Document):
 				args.update(dict(from_date=start_date, to_date=self.to_date, leaves=leaves * -1))
 				create_leave_ledger_entry(self, args, submit)
 
+	# def create_leave_application():
+	# 	print("\n\n\n")
+	# 	print("Hello")
+
+	# 	session_user_employee_code = frappe.get_value("Employee", {"user_id": frappe.session.user}, "name")
+
+	# 	if session_user_employee_code == employee:
+	# 		pass
+	# 	else:
+	# 		raise frappe.ValidationError("You are not allowed to create leave applications for other employees.")
 
 def get_allocation_expiry_for_cf_leaves(
 	employee: str, leave_type: str, to_date: datetime.date, from_date: datetime.date

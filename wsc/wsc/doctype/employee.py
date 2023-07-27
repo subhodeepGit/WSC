@@ -15,6 +15,8 @@ from frappe.utils.nestedset import NestedSet
 
 from erpnext.utilities.transaction_base import delete_events
 
+# from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
+
 
 class EmployeeUserDisabledError(frappe.ValidationError):
 	pass
@@ -42,7 +44,7 @@ class Employee(NestedSet):
 	def validate(self):
 		from erpnext.controllers.status_updater import validate_status
 		validate_status(self.status, ["Active", "Inactive", "Suspended", "Left"])
-
+		self.permission()
 		self.employee = self.name
 		self.set_employee_name()
 		self.validate_date()
@@ -50,6 +52,7 @@ class Employee(NestedSet):
 		self.validate_status()
 		self.validate_reports_to()
 		self.validate_preferred_email()
+		# self.create_user_permission_for_employee()
 		if self.job_applicant:
 			self.validate_onboarding_process()
 
@@ -60,6 +63,39 @@ class Employee(NestedSet):
 			if existing_user_id:
 				remove_user_permission(
 					"Employee", self.name, existing_user_id)
+	# def user_poerm(doc):
+	# 	user = frappe.session.user
+	# 	employee = frappe.get_value("Employee", {"user_id": user}, ["name", "user_id"])
+
+	# 	if employee and employee.get("user_id") == user:
+	# 		print("\n\n\nHELLO WORLD")
+	# 		add_user_permission("Employee", employee.get("name"), employee.get("user_id"))
+	
+	def permission(doc):
+		print("\n\nHEllo")
+		if doc.user_id:
+			print("\n\n")
+			add_user_permission(doc.doctype,doc.name,doc.user_id,doc)
+	# def add_user_permission(doctype, docname, user,ref=None):
+	# 	# Check if the user permission already exists
+	# 	if not frappe.db.exists("User Permission", {"allow": doctype, "for_value": docname, "user": user}):
+	# 		user_permission = frappe.new_doc("User Permission")
+	# 		user_permission.user = user
+	# 		user_permission.allow = doctype
+	# 		user_permission.for_value = docname
+	# 		user_permission.save(ignore_permissions=True)
+	# 		frappe.publish_realtime(event='update_user_permissions')
+	# 		return True
+
+	# 	return False
+
+	# def create_user_permission_for_employee():
+	# 	user = frappe.session.user
+	# 	employee = frappe.get_value("Employee", {"user_id": user}, ["name", "user_id"])
+
+	# 	if employee and employee.get("user_id") == user:
+	# 		add_user_permission("Employee", employee.get("name"), employee.get("user_id"))
+	
 
 	def after_rename(self, old, new, merge):
 		self.db_set("employee", new)
@@ -478,3 +514,5 @@ def check_duplicate_permission(doc):
 			'applicable_for': "Mentor Allocation",
 			'name': ['!=', doc.name]
 		}, limit=1)
+
+	

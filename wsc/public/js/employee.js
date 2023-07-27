@@ -37,4 +37,6 @@ frappe.ui.form.on("Employee", "job_applicant", function (frm) {
 	});
 }
 
+
 });
+
