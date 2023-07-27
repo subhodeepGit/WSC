@@ -37,9 +37,10 @@ frappe.ui.form.on('Fees', {
 		frm.set_value("components" ,"");
 		if (frm.doc.fee_structure) {
 			frappe.call({
-				method: "wsc.wsc.validations.fees.get_fee_components",
+				method: "wsc.wsc.doctype.fees.get_fee_components",
 				args: {
-					"fee_structure": frm.doc.fee_structure
+					"fee_structure": frm.doc.fee_structure,
+                    "student":frm.doc.student
 				},
 				callback: function(r) {
 					if (r.message) {
@@ -168,7 +169,10 @@ frappe.ui.form.on('Fees', {
                 return {
                     query: 'wsc.wsc.doctype.fees.get_fee_structures',
                     filters: {
-                        "student":frm.doc.student
+                        "student":frm.doc.student,
+                        "academic_term":frm.doc.academic_term,
+                        "student_category":frm.doc.student_category,
+                        "academic_year":frm.doc.academic_year
                     }
                 };
             });
@@ -255,7 +259,7 @@ frappe.ui.form.on('Fees', {
 		frm.set_value("components" ,"");
 		if (frm.doc.hostel_fee_structure) {
 			frappe.call({
-				method: "wsc.wsc.validations.fees.get_fee_components",              
+				method: "wsc.wsc.validations.fees.get_fee_components_hostel",              
 				args: {
 					"hostel_fee_structure": frm.doc.hostel_fee_structure
 				},
