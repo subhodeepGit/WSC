@@ -36,6 +36,8 @@ frappe.ui.form.on('Fees', {
     fee_structure: function(frm) {
 		frm.set_value("components" ,"");
 		if (frm.doc.fee_structure) {
+            frm.set_df_property('components', 'cannot_add_rows', true);
+            frm.set_df_property('components', 'cannot_delete_rows', true);
 			frappe.call({
 				method: "wsc.wsc.doctype.fees.get_fee_components",
 				args: {
@@ -337,17 +339,18 @@ frappe.ui.form.on("Fee Component", "waiver_type", function(frm, cdt, cdn){
 });
 
 frappe.ui.form.on('Fees', {
-    onload:function(frm) {
-        setTimeout(() => {
+    refresh:function(frm) {
+        // setTimeout(() => {
 		// if(frm.doc.docstatus===1 && frm.doc.outstanding_amount>0){
   			frm.remove_custom_button('Payment Request','Create');
-            }, 0.1);
-            frm.refresh();
-        }
+            frm.remove_custom_button('Return/Refund');
+        //     }, 0.1);
+        //     frm.refresh();
+        // }
 	}
 
 
-);
+});
 
 frappe.ui.form.on('Fees', {
     onload:function(frm) {

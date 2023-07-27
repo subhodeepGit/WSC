@@ -237,7 +237,8 @@ def get_term(doctype, txt, searchfield, start, page_len, filters):
 	return data
 	
 @frappe.whitelist()
-def get_fee_components(fee_structure,student):
+def get_fee_components(fee_structure=None,student=None):
+	fees=[]
 	if fee_structure and student:
 		fee_waiver=frappe.get_all("Fees Waiver",{"student":student,"fee_structure":fee_structure},['name'])
 		if not fee_waiver:
