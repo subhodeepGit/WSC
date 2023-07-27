@@ -157,6 +157,7 @@ class LeaveApplication(Document):
 		data={}
 		# data["reporting_authority_email"]=self.reporting_authority_email
 		if doc.reporting_authority_email:
+
 			print("\n\n\nEmail")
 			print(doc.reporting_authority_email)
 			for emp in frappe.get_all("Employee", {'reporting_authority_email':doc.reporting_authority_email}, ['reporting_authority_email']):
@@ -189,7 +190,7 @@ class LeaveApplication(Document):
 					self.employee, False, date_of_joining, self.from_date
 				)
 				number_of_days = date_diff(getdate(self.from_date), date_of_joining)
-				if nsuku@gmail.comumber_of_days >= 0:
+				if number_of_days >= 0:
 					holidays = 0
 					if not frappe.db.get_value("Leave Type", self.leave_type, "include_holiday"):
 						holidays = get_holidays(self.employee, date_of_joining, self.from_date)
