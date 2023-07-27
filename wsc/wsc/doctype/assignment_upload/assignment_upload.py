@@ -1,41 +1,40 @@
-# Copyright (c) 2022, SOUL LIMITED and contributors
+# Copyright (c) 2023, SOUL Limited and contributors
 # For license information, please see license.txt
 
-import frappe
+import frappe 
 from frappe.model.document import Document
+from frappe.model.mapper import get_mapped_doc
 
 class AssignmentUpload(Document):
-	def before_save(doc):
-		output=frappe.db.sql("""SELECT * from `tabAssignment Upload` 
-		WHERE `assignment_question`="%s" and `student`="%s" and `docstatus`!=1"""%(doc.assignment_question,doc.student))
-		if len(output)==0:
-			output=frappe.db.sql(""" SELECT `receivable_by_students` from `tabUpload Material` WHERE `name`="%s" """%(doc.assignment_question))
-			if output[0][0]==1:
-				pass
-			else:
-				frappe.throw("Not a uploadable assignment material")	
-		else:
-			frappe.throw("Document Already Uploaded")	
-	def on_submit(doc):
-		output=frappe.db.sql("""SELECT * from `tabAssignment Upload` 
-		WHERE `assignment_question`="%s" and `student`="%s" and `docstatus`!=1"""%(doc.assignment_question,doc.student))
-		if len(output)==0:
-			output=frappe.db.sql(""" SELECT `receivable_by_students` from `tabUpload Material` WHERE `name`="%s" """%(doc.assignment_question))
-			if output[0][0]==1:
-				pass
-			else:
-				frappe.throw("Not a uploadable assignment material")	
-		else:
-			frappe.throw("Document Already Uploaded")	
+	pass
 
 @frappe.whitelist()
-def download_file(doc_id):
-	output=frappe.db.sql(""" SELECT `attach_answers` FROM `tabAssignment Upload` WHERE `name`="%s" """%(doc_id))
-	r=output[0][0]
-	return r
+def get_details(participant_group_id):
+	group_details = frappe.get_all('Participant Group', filters = [['name','=',participant_group_id]], fields = ['program', 'course', 'academic_year', 'academic_term'])
+	sub_modules = frappe.db.sql(""" SELECT topic FROM `tabCourse Topic` Where parent='%s'"""%(group_details[0]['course']))
+	participants = frappe.db.sql(""" SELECT participant FROM `tabParticipant Table` Where parent='%s'"""%(participant_group_id))
+	instructors = frappe.db.sql(""" SELECT instructors FROM `tabInstructor Table` where parent = '%s'"""%(participant_group_id))
+	return [group_details[0]['program'], group_details[0]['course'],sub_modules,group_details[0]['academic_year'],group_details[0]['academic_term'], participants, instructors]
 
 @frappe.whitelist()
-def Question(doc_id):
-	output=frappe.db.sql(""" SELECT `attachment` FROM `tabAssignment Upload` WHERE `name`="%s" """%(doc_id))
-	r=output[0][0]
-	return r
+def get_instructor_name(participant_group_id, instructor_id):
+	instructor_name = frappe.db.sql(""" SELECT instructor_name FROM `tabInstructor Table` WHERE parent = '%s' AND instructors = '%s'"""%(participant_group_id, instructor_id), as_dict=1)
+	return instructor_name[0]['instructor_name']
+
+@frappe.whitelist()
+def get_participant_name(participant_group_id, participant_id):
+	participant_name = frappe.db.sql(""" SELECT participant_name FROM `tabParticipant Table` WHERE parent = '%s' AND participant = '%s'"""%(participant_group_id, participant_id), as_dict=1)
+	print('\n\n\n\n\n')
+	print(participant_name[0]['participant_name'])
+	print('\n\n\n\n')
+	return participant_name[0]['participant_name']
+
+@frappe.whitelist()
+def get_assignment_list(instructor_name, participant_group_id, programs, course, topic):
+	assignments = frappe.db.sql(""" SELECT name FROM `tabAssignment` WHERE participant_group='%s' AND instructor_name='%s' AND programs = '%s' AND course='%s' AND select_sub_module = '%s'"""%(participant_group_id, instructor_name, programs, course,topic))
+	return assignments
+
+@frappe.whitelist()
+def get_assignment_details(assignment_name):
+	criteria_details = frappe.get_all('Assignment', filters = [['name', '=', assignment_name]], fields = ['assessment_criteria', 'total_marks','passing_marks','weightage'])
+	return [criteria_details[0]['assessment_criteria'] ,criteria_details[0]['total_marks'], criteria_details[0]['passing_marks'], criteria_details[0]['weightage']]

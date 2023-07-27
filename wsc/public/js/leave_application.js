@@ -40,5 +40,20 @@ refresh: function(frm) {
 },   
   
 });
+frappe.ui.form.on('Leave Application', {
+    refresh: function(frm) {
+      
+        if (frappe.session.user !== frm.doc.leave_approver) {
+			$('.secondary-action').prop('hidden', true);
+        }
+    },
+    // refresh: function(frm) {
+    //     if (frappe.session.user !== frm.doc.leave_approver) {
+    //         frm.disable_save();
+    //     } else {
+    //         frm.enable_save();
+    //     }
+    // }
+});
 
     

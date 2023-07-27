@@ -118,14 +118,13 @@
   {
    "fieldname": "round_status",
    "fieldtype": "Data",
-   "label": "Round status",
-   "read_only": 1
+   "label": "Round status"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-21 16:12:13.956688",
+ "modified": "2023-07-07 16:34:47.333235",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Selection Round",

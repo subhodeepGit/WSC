@@ -49,8 +49,8 @@ class StudentApplicant(Document):
             frappe.throw(_("Cannot change status as student {0} is linked with student application {1}").format(student[0].name, doc.name))
     def validate(doc):
         # validate_percentage(doc)
-        print("\n\n\n")
         check_age(doc)
+
         education_details_validation(doc)
         document_list_checkbox(doc)
         mobile_number_validation(doc)
@@ -117,12 +117,15 @@ def check_age(doc):
     
     dob = date_of_birth.date()
     
-    age_diff = math.floor(((applicantation_date[0]['application_start_date'] - dob).days)/365)
+    if len(applicantation_date) != 0:
+        age_diff = math.floor(((applicantation_date[0]['application_start_date'] - dob).days)/365)
 
-    overage = age_diff - applicantation_date[0]['maximum_age_limit']
-    print(age_diff - applicantation_date[0]['maximum_age_limit'])
-    if age_diff >= applicantation_date[0]['maximum_age_limit']:
-        frappe.throw("Over Age In-eligible for applications by " + str(overage) + "years")
+        overage = age_diff - applicantation_date[0]['maximum_age_limit']
+        print(age_diff - applicantation_date[0]['maximum_age_limit'])
+        if age_diff >= applicantation_date[0]['maximum_age_limit']:
+            frappe.throw("Over Age In-eligible for applications by " + str(overage) + "years")
+    # else:
+    #     frappe.throw(" No Application Start and maximum age limit found ")
     
 
 def mobile_number_validation(doc):
@@ -348,18 +351,26 @@ def get_document_list_by_category(doc):
     return doc_list if doc_list else []
 def on_submit(self):
         student_applicant_submit(self)
+
 @frappe.whitelist()
 def enroll_student(source_name):
     from wsc.wsc.doctype.student_exchange_applicant.student_exchange_applicant import get_academic_calender_table
     from wsc.wsc.doctype.semesters.semesters import get_courses
+    # print("\n\n\n\n")
+    # args = json.loads(frm)
+    # print(args)
     st_applicant=frappe.get_doc("Student Applicant", source_name)
+    
+    counselling_based_program_priority = frappe.get_all("Counseling Based Program Priority" , {'parent' : st_applicant.name , 'approve' : 1} , ['programs'])
+    print(st_applicant)
     for student in frappe.get_all("Student",{"student_applicant":source_name},['name','student_category','student_name']):
         program_enrollment = frappe.new_doc("Program Enrollment")
         program_enrollment.student = student.name
         program_enrollment.student_category = student.student_category
         program_enrollment.student_name = student.student_name
         program_enrollment.roll_no = student.roll_no
-        program_enrollment.programs = st_applicant.programs_
+        program_enrollment.programs = st_applicant.programs_ 
+        # program_enrollment.programs = counselling_based_program_priority[0]['programs']
         program_enrollment.program = st_applicant.program
         program_enrollment.academic_year=st_applicant.academic_year
         program_enrollment.academic_term=st_applicant.academic_term
@@ -401,6 +412,7 @@ def enroll_student(source_name):
             if st_admission.academic_calendar:
                 for d in get_academic_calender_table(st_admission.academic_calendar):
                     program_enrollment.append("academic_events_table",d)
+        print(program_enrollment.program_grade)
         return program_enrollment
         
 @frappe.whitelist()
@@ -617,32 +629,3 @@ def validate_counselling_structure(doc):
         #                             frappe.throw("Score <b>'{0}'</b> of education qualifications details should not be greater than the total score <b>'{1}'</b>".format(e.score, pt.total_score))
 
 
-# @frappe.whitelist()
-# def dob_check(academic_year , academic_term , department , date_of_birth):
-#     print("\n\n\n")
-    
-#     # if academic_year != 'Post Graduate':
-#     #     frappe.throw("Hello There")
-#     print(date_of_birth)
-#     applicantation_date = frappe.get_all("Student Admission" ,
-#                                         {
-#                                             'academic_year':academic_year,
-#                                             'academic_term':academic_term,
-#                                             'department':department
-#                                         },
-#                                         ['application_start_date' , 'maximum_age_limit']
-#                                     )
-#     # print(type(date_of_birth))
-#     # dob = parser.parse(date_of_birth)
-#     date_of_birth = datetime.strptime(date_of_birth , '%Y-%m-%d')
-    
-#     # application_start_date = parser.parse(applicantation_date[0]['application_start_date'])
-#     dob = date_of_birth.date()
-#     # print(type(dob) , type(applicantation_date[0]['application_start_date']))
-#     age_diff = math.floor(((applicantation_date[0]['application_start_date'] - dob).days)/365)
-
-#     print(age_diff)
-#     if age_diff >= applicantation_date[0]['maximum_age_limit']:
-#         # frappe.throw("Over Age In-eligible for applications")
-#         frappe.msgprint("Over Age In-eligible for applications")
-    

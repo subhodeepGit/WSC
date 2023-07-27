@@ -6,11 +6,11 @@ import datetime
 def validate(self,method):
     if self.party_type=="Student":
         bank_draft_amount(self)
-        recon_rtgs_neft(self)
+        # recon_rtgs_neft(self)
         allocation_amount(self)
-        online_payment(self)
-        if self.mode_of_payment=="Fees Refundable / Adjustable":   
-            refundable_amount(self)
+        # online_payment(self)
+        # if self.mode_of_payment=="Fees Refundable / Adjustable":   
+        #     refundable_amount(self)
         calucate_total(self)
 
 def on_update(self,method):
@@ -18,16 +18,16 @@ def on_update(self,method):
 
 def on_submit(self,method):
     if self.party_type=="Student":
-        recon_rtgs_neft_on_submit(self)
+        # recon_rtgs_neft_on_submit(self)
         online_payment_on_submit(self)    
         child_table_fees_outsatnding(self)
-        refundable_fees_outsatnding(self,cancel=0)   
+        # refundable_fees_outsatnding(self,cancel=0)   
 
 def on_cancel(self,method):
     if self.party_type=="Student":
         child_table_fees_outsatnding(self)
-        refundable_fees_outsatnding(self,cancel=1)
-        recon_rtgs_neft_on_cancel(self)
+        # refundable_fees_outsatnding(self,cancel=1)
+        # recon_rtgs_neft_on_cancel(self)
         online_payment_on_cancel(self)
 
 def online_payment(self):
@@ -270,6 +270,32 @@ def recon_rtgs_neft_on_cancel(self):
             frappe.db.set_value("Payment Details Upload",st_upload_data[0]['name'],"payment_status",0)
             frappe.db.set_value("Payment Details Upload",st_upload_data[0]['name'],"payment_id",'')    
 
+# def child_table_fees_outsatnding(self):
+#     ### payment entry child doc
+#     z=self.get("references")
+#     reference_name=[]
+#     for i in z:
+#         reference_name.append(i.reference_name)
+#     reference_name = list(set(reference_name))   
+
+ 
+#     for v in reference_name:
+#         Outstanding_amount=[]
+#         payment_referance_fees_category=[]
+#         for d in self.get("references"):
+#             if d.allocated_amount:
+#                 payment_referance_fees_category.append(d.fees_category)
+#                 ref_details=frappe.get_all("Fee Component",{"parent":v,"fees_category":d.fees_category},["name","grand_fee_amount","outstanding_fees","fees_category"])
+#                 for t in ref_details:
+#                     if t['fees_category']==d.fees_category:
+#                         Outstanding_amount.append(d.outstanding_amount)
+#                         frappe.db.set_value("Fee Component",t['name'], "outstanding_fees",d.outstanding_amount) 
+#         ref_details=frappe.get_all("Fee Component",filters=[["parent", "=",v], ["fees_category", "NOT IN", tuple(payment_referance_fees_category)]],fields=["name","grand_fee_amount","outstanding_fees","fees_category"])
+#         for t in ref_details:
+#             Outstanding_amount.append(t["outstanding_fees"])             
+#         frappe.db.set_value("Fees",v, "outstanding_amount",sum(Outstanding_amount))
+
+
 def child_table_fees_outsatnding(self):
     ### payment entry child doc
     z=self.get("references")
@@ -284,16 +310,24 @@ def child_table_fees_outsatnding(self):
         payment_referance_fees_category=[]
         for d in self.get("references"):
             if d.allocated_amount:
-                payment_referance_fees_category.append(d.fees_category)
-                ref_details=frappe.get_all("Fee Component",{"parent":v,"fees_category":d.fees_category},["name","grand_fee_amount","outstanding_fees","fees_category"])
+                ref_details=frappe.get_all("Fee Component",{"parent":v,"fees_category":d.fees_category},["name","grand_fee_amount","outstanding_fees","fees_category","parent"])####
                 for t in ref_details:
-                    if t['fees_category']==d.fees_category:
+                    if t['fees_category']==d.fees_category and d.reference_name==t["parent"]:####
+                        payment_referance_fees_category.append(d.fees_category)####
                         Outstanding_amount.append(d.outstanding_amount)
                         frappe.db.set_value("Fee Component",t['name'], "outstanding_fees",d.outstanding_amount) 
-        ref_details=frappe.get_all("Fee Component",filters=[["parent", "=",v], ["fees_category", "NOT IN", tuple(payment_referance_fees_category)]],fields=["name","grand_fee_amount","outstanding_fees","fees_category"])
-        for t in ref_details:
-            Outstanding_amount.append(t["outstanding_fees"])             
-        frappe.db.set_value("Fees",v, "outstanding_amount",sum(Outstanding_amount))
+        # ref_details=frappe.get_all("Fee Component",filters=[["parent", "=",v], ["fees_category", "NOT IN", tuple(payment_referance_fees_category)]],
+        #                            fields=["name","grand_fee_amount","outstanding_fees","fees_category"])
+        # for t in ref_details:
+        #     Outstanding_amount.append(t["outstanding_fees"])             
+        # frappe.db.set_value("Fees",v, "outstanding_amount",sum(Outstanding_amount))
+    for t in reference_name:
+        Outstanding_amount=[]
+        ref_details=frappe.get_all("Fee Component",filters=[["parent", "=",t]],fields=["name","outstanding_fees"])
+        for t1 in ref_details:
+            Outstanding_amount.append(t1["outstanding_fees"])     
+        amount=sum(Outstanding_amount)      
+        frappe.db.set_value("Fees",t, "outstanding_amount",amount)        
 
 def calucate_total(self):
     allocated_amount1=[]

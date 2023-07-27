@@ -97,6 +97,7 @@ def create_exam_assessment_result(final_result_declaration):
 		# 		"total_marks":course_list[d]['total_marks']
 		# 	})
 		result.save()
+		result.save()
 		created_records += 1
 		frappe.publish_realtime("final_result_declaration_progress", {"progress": str(int(created_records * 100/total_records)),"current":str(created_records),"total":str(total_records)}, user=frappe.session.user)
 

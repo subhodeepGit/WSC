@@ -61,6 +61,7 @@ doctype_js = {
                 "Shift Request":"public/js/shift_request.js",
                 "Leave Application":"public/js/leave_application.js",
                 "Employee Separation":"public/js/employee_separation.js",
+                "Bank Guarantee":"public/js/bank_guarantee.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -68,9 +69,11 @@ doctype_list_js = {
     "Fees":"public/js/fees_list.js",
     "Program Enrollment":"public/js/program_enrollment_list.js",
     "Student Attendance":"public/js/student_attendance_list.js",
+    "Instructor" :"public/js/instructor_list.js",
     "Student Applicant" :"public/js/student_applicant_list.js",
     "Asset Maintenance Log":"public/js/asset_maintenance_log_list.js",
     "Leave Application":"public/js/leave_application_list.js",
+    "Employee":"public/js/employee_list.js",
 }
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
@@ -319,7 +322,10 @@ doc_events = {
     },
     "Employee Separation":{
         "validate":"wsc.wsc.validations.employee_separation.validate",
-    }    
+    },
+    "Asset Maintenance" : {
+        "validate" :"wsc.wsc.doctype.asset_maintenance.validate"
+    } 
 
     # "User":{
     #     "validate":"wsc.wsc.validations.user.validate",
@@ -474,6 +480,6 @@ override_doctype_dashboards = {
     # {"dt" : "Translation"}
 # ]
 website_context = {
-    "favicon": "/assets/wsc/images/logo.jpg",
-    "splash_image": "/assets/wsc/images/logo.jpg"
+    "favicon": "/assets/wsc/images/wsc.png",
+    "splash_image": "/assets/wsc/images/wsc.png"
 }

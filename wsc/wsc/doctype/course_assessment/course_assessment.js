@@ -14,9 +14,10 @@ frappe.ui.form.on('Course Assessment', {
 				return {
 					query: 'wsc.wsc.doctype.course_assessment.course_assessment.get_courses',
 					filters: {
-						"student":frm.doc.student,
-						"academic_year":frm.doc.academic_year,
-						"academic_term":frm.doc.academic_term
+						// "student":frm.doc.student,
+						// "academic_year":frm.doc.academic_year,
+						// "academic_term":frm.doc.academic_term,
+						"exam_declaration":frm.doc.exam_declaration
 					}
 				};
 			});
@@ -24,8 +25,9 @@ frappe.ui.form.on('Course Assessment', {
 				return {
 					query: 'wsc.wsc.doctype.course_assessment.course_assessment.get_assessment_criteria',
 					filters: {
-						"student":frm.doc.student,
-						"course":frm.doc.course
+						// "student":frm.doc.student,
+						// "course":frm.doc.course,
+						"exam_declaration":frm.doc.exam_declaration
 					}
 				};
 			});

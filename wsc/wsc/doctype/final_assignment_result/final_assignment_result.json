@@ -1,0 +1,177 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-07-05 17:25:30.939441",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "participant_group",
+  "course_code",
+  "module",
+  "column_break_3",
+  "course",
+  "course_name",
+  "section_break_5",
+  "academic_year",
+  "participant_id",
+  "grading_scale",
+  "column_break_9",
+  "academic_term",
+  "participant_name",
+  "assessment_status",
+  "section_break_13",
+  "get_result",
+  "assessment_result_item",
+  "section_break_17",
+  "result",
+  "overall_grade",
+  "column_break_20",
+  "grade",
+  "section_break_22",
+  "comment"
+ ],
+ "fields": [
+  {
+   "fieldname": "course",
+   "fieldtype": "Data",
+   "label": "Select Course"
+  },
+  {
+   "fieldname": "module",
+   "fieldtype": "Data",
+   "label": "Select Module"
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Data",
+   "label": "Academic Year"
+  },
+  {
+   "fieldname": "participant_name",
+   "fieldtype": "Data",
+   "label": "Participant Name"
+  },
+  {
+   "fieldname": "grading_scale",
+   "fieldtype": "Link",
+   "label": "Grading Scale",
+   "options": "Grading Scale"
+  },
+  {
+   "fieldname": "assessment_status",
+   "fieldtype": "Data",
+   "label": "Assessment Status"
+  },
+  {
+   "fieldname": "get_result",
+   "fieldtype": "Button",
+   "label": "Get Result"
+  },
+  {
+   "fieldname": "assessment_result_item",
+   "fieldtype": "Table",
+   "label": "Assessment Result Item",
+   "options": "Assessment Result Item"
+  },
+  {
+   "fieldname": "participant_group",
+   "fieldtype": "Link",
+   "label": "Participant Group",
+   "options": "Participant Group"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_5",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "participant_id",
+   "fieldtype": "Select",
+   "label": "Participant ID"
+  },
+  {
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Data",
+   "label": "Academic Term"
+  },
+  {
+   "fieldname": "section_break_13",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_17",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "result",
+   "fieldtype": "Data",
+   "label": "Result"
+  },
+  {
+   "fieldname": "overall_grade",
+   "fieldtype": "Data",
+   "label": "Overall Grade"
+  },
+  {
+   "fieldname": "column_break_20",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "grade",
+   "fieldtype": "Data",
+   "label": "Grade"
+  },
+  {
+   "fieldname": "section_break_22",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "comment",
+   "fieldtype": "Small Text",
+   "label": "Comment"
+  },
+  {
+   "fieldname": "course_code",
+   "fieldtype": "Data",
+   "label": "Course Code"
+  },
+  {
+   "fieldname": "course_name",
+   "fieldtype": "Data",
+   "label": "Course Name"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-07-24 17:29:15.471600",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Final Assignment Result",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

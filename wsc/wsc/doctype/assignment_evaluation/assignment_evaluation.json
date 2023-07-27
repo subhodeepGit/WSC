@@ -1,0 +1,155 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-07-05 16:45:25.570425",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "participant_group",
+  "select_module",
+  "academic_year",
+  "participant_id",
+  "instructor_id",
+  "select_assignment",
+  "assessment_criteria",
+  "column_break_7",
+  "select_course",
+  "select_sub_module",
+  "academic_term",
+  "participant_name",
+  "instructor_name",
+  "assignment_name",
+  "section_break_13",
+  "total_marks",
+  "weightage",
+  "column_break_15",
+  "passing_marks",
+  "marks_earned"
+ ],
+ "fields": [
+  {
+   "fieldname": "participant_name",
+   "fieldtype": "Data",
+   "label": "Participant Name"
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Data",
+   "label": "Academic Year"
+  },
+  {
+   "fieldname": "instructor_id",
+   "fieldtype": "Select",
+   "label": "Instructor ID"
+  },
+  {
+   "fieldname": "participant_group",
+   "fieldtype": "Link",
+   "label": "Participant Group",
+   "options": "Participant Group"
+  },
+  {
+   "fieldname": "instructor_name",
+   "fieldtype": "Data",
+   "label": "Instructor Name"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Data",
+   "label": "Academic Term"
+  },
+  {
+   "fieldname": "select_course",
+   "fieldtype": "Data",
+   "label": "Select Course"
+  },
+  {
+   "fieldname": "select_sub_module",
+   "fieldtype": "Select",
+   "label": "Select Sub Module"
+  },
+  {
+   "fieldname": "select_module",
+   "fieldtype": "Data",
+   "label": "Select Module"
+  },
+  {
+   "fieldname": "select_assignment",
+   "fieldtype": "Select",
+   "label": "Select Assignment"
+  },
+  {
+   "fieldname": "marks_earned",
+   "fieldtype": "Int",
+   "label": "Marks Earned"
+  },
+  {
+   "fieldname": "participant_id",
+   "fieldtype": "Select",
+   "label": "Participant ID"
+  },
+  {
+   "fieldname": "section_break_13",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_marks",
+   "fieldtype": "Int",
+   "label": "Total Marks"
+  },
+  {
+   "fieldname": "assessment_criteria",
+   "fieldtype": "Data",
+   "label": "Assessment Criteria"
+  },
+  {
+   "fieldname": "weightage",
+   "fieldtype": "Data",
+   "label": "Weightage"
+  },
+  {
+   "fieldname": "passing_marks",
+   "fieldtype": "Data",
+   "label": "Passing Marks"
+  },
+  {
+   "fieldname": "assignment_name",
+   "fieldtype": "Data",
+   "label": "Assignment Name"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-07-25 17:28:50.644645",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Assignment Evaluation",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

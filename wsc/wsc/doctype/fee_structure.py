@@ -11,6 +11,7 @@ class FeeStructure(Document):
         self.validate_duplicate_programs()
         validate_academic_year(self)
         validate_semester(self)
+    def on_submit(self):    
         duplicate_row_validation(self, "components", ['fees_category', 'amount'])
 
     def calculate_total(self):
