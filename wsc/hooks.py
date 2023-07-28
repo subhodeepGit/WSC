@@ -480,6 +480,6 @@ override_doctype_dashboards = {
     # {"dt" : "Translation"}
 # ]
 website_context = {
-    "favicon": "/assets/wsc/images/wsc_ico.png",
-    "splash_image": "/assets/wsc/images/wsc_ico.png"
+    "favicon": "/assets/wsc/images/wsc.png",
+    "splash_image": "/assets/wsc/images/wsc.png"
 }
