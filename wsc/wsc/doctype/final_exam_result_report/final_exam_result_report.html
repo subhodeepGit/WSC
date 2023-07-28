@@ -33,19 +33,19 @@
             <tr>
                 <td colspan="17"></td>
                 <td colspan="3"><br>
-            <div>
+            <!-- <div>
                 <img src="https://kiss.soulunileaders.com/files/KISS_Logo.jpg" alt="KISS" width="150" height="150">
-            </div>
+            </div> -->
             </td>
             <td colspan="10">
             <div class="bold">
-                <p style="text-align: center; font-size: 1.5em; color:rgb(32, 190, 32);"><b>KALINGA INSTITUTE OF SOCIAL SCIENCES (KISS)</b><br>
+                <p style="text-align: center; font-size: 1.5em; color:rgb(119, 32, 190);"><b>WORLD SKILL CENTER (WSC)</b><br>
             </div>
             <div class="bold">
-                <p style="text-align: center; font-size: 1em; color:rgb(32, 190, 32);"><b>Deemed to be University</b></p>
-                <p style="text-align: center; font-size: 0.8em; color:rgb(32, 190, 32);">
-                <b>(Established U/S 3 of UGC Act, 1956)</b><br>
-                <b>Bhubaneswar, Odisha, Pin-751024</b><br></p>
+                <p style="text-align: center; font-size: 1em; color:rgb(100, 32, 190);"><b>Incorporated U/S 8 of the Indian Companies Act, 2013 by Government of Odisha</b></p>
+                <p style="text-align: center; font-size: 0.8em; color:rgb(106, 32, 190);">
+                <b>Tower 2010, Block B, Sec-A, Mancheswar Industrial Estate</b><br>
+                <b>Bhubaneswar, Khordha, Odisha, India, 751007</b><br></p>
             </div>
             </td></tr>
             <!-- <tr>
@@ -95,10 +95,10 @@
                         {% endif%}
                     {% endfor %}
                 {% endfor %}
-                <th rowspan="2"><p>Credit Point</p></th>
-                <th rowspan="2"><p>Total Credit</p></th>
-                <th rowspan="2"><p>SGPA</p></th>                
-                <th rowspan="2"><p>CGPA</p></th>
+                <!-- <th rowspan="2"><p>Credit Point</p></th>
+                <th rowspan="2"><p>Total Credit</p></th> -->
+                <th rowspan="2"><p>Percentage</p></th>                
+                <!-- <th rowspan="2"><p>CGPA</p></th> -->
 
                 <tr>
                     {% for t in course%}
@@ -133,7 +133,7 @@
                     {%endfor%}
                 {% endfor %}
                 <td></td>
-                <td colspan="3">{{total_credit}}</td>
+                <!-- <td colspan="3">{{total_credit}}</td> -->
             </tr>
             {% for s in students %}
             <tr>
@@ -165,9 +165,9 @@
                         {% if t['name']==z['course']  %}
                             {% if s["name"]==z["parent"] %}
                                 <td>{{z['earned_marks']}}</td>
-                                <td>{{z['Cr_P']}}</td>
+                                <!-- <td>{{z['Cr_P']}}</td> -->
                                 <td>{{z['grade']}}</td>
-                                <td>{{z['total_cr']}}</td>
+                                <!-- <td>{{z['total_cr']}}</td> -->
                             {% endif %}
                         {% endif %}
                     {%endfor%}
@@ -176,10 +176,10 @@
 
 
 
-                <td>{{s.credit_point}}</td>
-                <td>{{s.total_credit}}</td>
-                <td>{{s.sgpa}}</td>
-                <td>{{s.overall_cgpa}}</td>
+                <!-- <td>{{s.credit_point}}</td>
+                <td>{{s.total_credit}}</td> -->
+                <td>{{s.percentage}}</td>
+                <!-- <td>{{s.overall_cgpa}}</td> -->
             </tr>
             {% endfor %}
         <!-- </tbody>
