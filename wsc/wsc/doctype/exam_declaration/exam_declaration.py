@@ -34,9 +34,15 @@ class ExamDeclaration(Document):
             if self.admit_card_issue_date and (self.admit_card_issue_date<self.application_form_end_date or self.exam_start_date<=self.admit_card_issue_date):
                 frappe.throw("<b>Admit Card Issue Date</b> Should be Less than <b>Application End Date</b> and Greater than <b>Exam Start Date</b>")
 
+        # for d in self.get("courses_offered"):
+        #     if d.examination_date and (d.examination_date  < self.exam_start_date or d.examination_date  >  self.exam_end_date):
+        #         frappe.throw("<b>Examination Date</b> Should be Greater than <b>Exam Start Date</b> and Less than <b>Exam End Date</b>")
         for d in self.get("courses_offered"):
-            if d.examination_date and (d.examination_date  < self.exam_start_date or d.examination_date  >  self.exam_end_date):
-                frappe.throw("<b>Examination Date</b> Should be Greater than <b>Exam Start Date</b> and Less than <b>Exam End Date</b>")
+            if d.examination_date  < self.exam_start_date or d.examination_date  >  self.exam_end_date:
+                frappe.throw("<b>Examination Start Date</b> Should be Greater than <b>Exam Start Date</b> and Less than <b>Exam End Date</b>")   
+            if d.examination_end_date  < self.exam_start_date or d.examination_end_date  >  self.exam_end_date:
+                frappe.throw("<b>Examination End Date</b> Should be Greater than <b>Exam Start Date</b> and Less than <b>Exam End Date</b>")   
+       
     def calculate_total_hours(self):
         for d in self.get("courses_offered"):
             if d.to_time and d.from_time:
@@ -67,28 +73,33 @@ class ExamDeclaration(Document):
         self.courses_offered=[]
         for i,d in sorted_by_date:
             row = self.append('courses_offered', {})
-            row.update({'courses':d.courses, 'examination_date':d.examination_date, 'from_time':d.from_time, 'to_time':d.to_time, 'semester':frappe.db.get_value('Program Course', {'course': d.courses,"parent":["IN",[d.semester for d in self.semesters]]}, 'parent'), 'course_name':d.course_name,'course_code':d.course_code, 'total_duration_in_hours':d.total_duration_in_hours})                           #                      
+            row.update({'courses':d.courses, 'examination_date':d.examination_date,'examination_end_date':d.examination_end_date, 'from_time':d.from_time, 'to_time':d.to_time, 
+                        'semester':frappe.db.get_value('Program Course', {'course': d.courses,"parent":["IN",[d.semester for d in self.semesters]]}, 'parent'), 
+                        'course_name':d.course_name,'course_code':d.course_code, 'total_duration_in_hours':d.total_duration_in_hours,
+                        'attendance_criteria':d.attendance_criteria,'minimum_attendance_criteria':d.minimum_attendance_criteria})                                              
     @frappe.whitelist()
     def get_courses(self,year_end_date):
         if self.exam_category=="Regular":
             course_list = get_courses_by_semester_academic_year([d.semester for d in self.semesters],year_end_date)
             result = []
             for course in course_list:
-                row = {}
-                course_details = frappe.db.get_all('Course',{'name':course,},['name','course_code','course_name'])
-                # if c.course not in [d.name for d in frappe.get_all("Course", {"disable":0},['name'])]:
-                # ,["academic_year","=","%s"%(academic_year)]]
-                #  {'name':course}, 
-                semester = frappe.db.get_value('Program Course', {'course': course,"parent":["IN",[d.semester for d in self.semesters]]}, 'parent')
-                course_details[0].update({'semester': semester})
-                row.update(course_details[0])
-                result.append(row)
+                # Credit distribution List
+                assessment_criteria_data=frappe.get_all("Credit distribution List",{"parent":course,"assessment_criteria":self.assessment_criteria})
+                if assessment_criteria_data:
+                    row = {}
+                    course_details = frappe.db.get_all('Course',{'name':course,},['name','course_code','course_name'])
+                    # if c.course not in [d.name for d in frappe.get_all("Course", {"disable":0},['name'])]:
+                    # ,["academic_year","=","%s"%(academic_year)]]
+                    #  {'name':course}, 
+                    semester = frappe.db.get_value('Program Course', {'course': course,"parent":["IN",[d.semester for d in self.semesters]]}, 'parent')
+                    course_details[0].update({'semester': semester})
+                    row.update(course_details[0])
+                    result.append(row)
             return result      
-            return get_courses_by_semester_academic_year([d.semester for d in self.semesters])
+            # return get_courses_by_semester_academic_year([d.semester for d in self.semesters])
         else :
             course_list = get_courses_by_semester_academic_year([d.semester for d in self.semesters],year_end_date)
             result = []
-            count = 0
             courses = []
             final_courses = []
             for cour in course_list:
@@ -100,19 +111,21 @@ class ExamDeclaration(Document):
                 frappe.throw("There is No pending Couse to Schedule Back paper Exam")  
             else :
                 for course in result :
-                    row = {}
-                    course_details= frappe.db.get_all('Course',{'name':course,},['name','course_code','course_name'])
-                    
-                    semester = frappe.db.get_value('Program Course', {'course': course,"parent":["IN",[d.semester for d in self.semesters]]}, 'parent')
-                    course_details[0].update({'semester': semester})
-                    row.update(course_details[0])
-                    final_courses.append(row)
+                    assessment_criteria_data=frappe.get_all("Credit distribution List",{"parent":course,"assessment_criteria":self.assessment_criteria})
+                    if assessment_criteria_data:
+                        row = {}
+                        course_details= frappe.db.get_all('Course',{'name':course,},['name','course_code','course_name'])
+                        
+                        semester = frappe.db.get_value('Program Course', {'course': course,"parent":["IN",[d.semester for d in self.semesters]]}, 'parent')
+                        course_details[0].update({'semester': semester})
+                        row.update(course_details[0])
+                        final_courses.append(row)
                 return  final_courses     
-                return get_courses_by_semester_academic_year([d.semester for d in self.semesters])
+                # return get_courses_by_semester_academic_year([d.semester for d in self.semesters])
        
     def validate(self):
         self.date_validation()
-        self.calculate_total_hours()
+        # self.calculate_total_hours()
         self.validate_courses()
         self.validate_fee_structure()
 #       self.validate_assessment_plan()
@@ -137,6 +150,9 @@ class ExamDeclaration(Document):
 
     def on_update_after_submit(self):
         self.sort_by_date()
+        self.module_disabled_update("on_update_after_submit") 
+
+
 
     def on_trash(self): 
         self.delete_permission()
@@ -151,11 +167,15 @@ class ExamDeclaration(Document):
         exam_declaration_for_instructor_submit(self)
         if self.exam_fees_applicable=="YES":
             make_exam_assessment_result(self)
+        if self.name==self.exam_declaration_no:
+            frappe.throw("Exam Declaration no. can't be same as the Re-Exam no.")    
         # fee_structure_id = fee_structure_validation(self)
         # create_fees(self,fee_structure_id,on_submit=1) 
         # on_update(self,on_submit=1)
     def on_cancel(doc):
-        cancel_fees(doc)
+        # cancel_fees(doc)
+        doc.module_disabled_update("on_cancel")
+   
 
     
     def validate_assessment_plan(self):
@@ -165,6 +185,15 @@ class ExamDeclaration(Document):
                 semesters.append(d.semester)
             if self.course_assessment_plan not in [d.name for d in frappe.get_all("Course Assessment Plan",{"programs":self.exam_program,"program":["IN",semesters],"academic_year":self.academic_year,"docstatus":1})]:
                 frappe.throw("Please select valid <b>Course Assessment Plan</b>")    
+
+    def module_disabled_update(self,methord):
+        if methord=="on_update_after_submit":
+            disabled=self.disabled
+        else:
+            disabled=1  
+        frappe.db.sql(""" update `tabModule Wise Exam Group` set disabled=%s where exam_declaration_id='%s' """%(disabled,self.name))
+
+
 #     @frappe.whitelist()
 #     def make_exam_assessment_result(self):
 #         self.db_set("certificate_creation_status", "In Process")
@@ -231,39 +260,55 @@ class ExamDeclaration(Document):
     def create_student_admit_card(self):
         make_student_admit_card(self)     
 
-@frappe.whitelist()
-def get_students(academic_term=None, programs=None):
-    enrolled_students = get_program_enrollment(academic_term,programs)
-    if enrolled_students:
-        student_list = []
-		
-        for s in enrolled_students:
-            if frappe.db.get_value("Student", s.student, "enabled"):
-                s.update({"active": 1})
-            else:
-                s.update({"active": 0})
-            student_list.append(s)
-        return student_list
-    else:
-		
-        frappe.msgprint("No students found")
-        return []
-def get_program_enrollment(academic_term,programs=None):
-    condition1 = " "
-    condition2 = " "
-    if programs:
-        condition1 += " and pe.programs = %(programs)s"
-    return frappe.db.sql('''
-        select
-            pe.student, pe.student_name,pe.roll_no,pe.permanant_registration_number
-        from
-            `tabProgram Enrollment` pe {condition2}
-        where
-            pe.academic_term = %(academic_term)s  {condition1}
-        order by
-            pe.student_name asc
-        '''.format(condition1=condition1, condition2=condition2),
-                ({"academic_term": academic_term,"programs": programs}), as_dict=1) 
+# @frappe.whitelist()
+# def get_students(academic_term=None, programs=None,class_data=None,minimum_attendance_criteria=None):
+#     enrolled_students = get_program_enrollment(academic_term,programs,class_data)
+#     if enrolled_students:
+#         attendence_validation(enrolled_students,academic_term)
+#         if enrolled_students:
+#             student_list = []
+            
+#             for s in enrolled_students:
+#                 if frappe.db.get_value("Student", s.student, "enabled"):
+#                     s.update({"active": 1})
+#                 else:
+#                     s.update({"active": 0})
+#                 student_list.append(s)
+
+#             return student_list
+#         else:
+            
+#             frappe.msgprint("No students found")
+#             return []
+    
+# def get_program_enrollment(academic_term,programs=None,class_data=None):
+#     condition1 = " "
+#     condition2 = " "
+#     if programs:
+#         condition1 += " and pe.programs = %(programs)s"
+#     if class_data:
+#         condition1 +=" and pe.school_house = '%s' "%(class_data)     
+#     return frappe.db.sql('''
+#         select
+#             pe.student, pe.student_name,pe.roll_no,pe.permanant_registration_number
+#         from
+#             `tabProgram Enrollment` pe {condition2}
+#         where
+#             pe.academic_term = %(academic_term)s  {condition1}
+#         order by
+#             pe.student_name asc
+#         '''.format(condition1=condition1, condition2=condition2),
+#                 ({"academic_term": academic_term,"programs": programs}), as_dict=1) 
+
+# def attendence_validation(student_list,academic_term):
+#     academic_term_data=frappe.get_all("Academic Term",{"name":academic_term},['term_start_date','term_end_date'])
+#     academic_term_start_date=academic_term_data[0]['term_start_date']
+#     academic_term_end_date=academic_term_data[0]['term_end_date']
+#     print("\n\n\n\n")
+    
+
+
+
 @frappe.whitelist()
 def get_fee_structure(doctype, txt, searchfield, start, page_len, filters):
     return frappe.get_all("Fee Structure",{"programs":filters.get("program"), "docstatus":1},['name','programs'],as_list = 1)
@@ -390,5 +435,22 @@ def cancel_fees(self):
             voucher_no.append(fee_id[0]['name'])
     for t in voucher_no:
         cancel_doc = frappe.get_doc("Fees",t)
-        cancel_doc.cancel()      
-    
+        cancel_doc.cancel()    
+
+@frappe.whitelist()
+@frappe.validate_and_sanitize_search_inputs
+def valid_exam_declaration_no(doctype, txt, searchfield, start, page_len, filters):
+    searchfields = frappe.get_meta(doctype).get_search_fields()
+    searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)
+    fil_data=frappe.db.sql(""" Select name,exam_name 
+                           from `tabExam Declaration` where ({key} like %(txt)s or {scond}) and
+                           docstatus=1 and disabled=0""".format(
+			**{
+				"key": searchfield,
+                "scond": searchfields,
+			}
+		),
+		{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len},             
+                        )
+    return fil_data
+

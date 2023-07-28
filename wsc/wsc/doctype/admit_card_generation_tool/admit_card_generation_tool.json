@@ -1,0 +1,97 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-09 17:45:56.004607",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "entrance_exam_allocation",
+  "centre_name",
+  "address",
+  "slot",
+  "exam_date",
+  "exam_start_time",
+  "exam_end_time",
+  "get_applicant_list",
+  "deallotted_applicant_list"
+ ],
+ "fields": [
+  {
+   "fieldname": "entrance_exam_allocation",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Entrance Exam Allocation",
+   "options": "Entrance Exam Centre Allocation",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "entrance_exam_allocation.centre",
+   "fieldname": "centre_name",
+   "fieldtype": "Data",
+   "label": "Centre Name"
+  },
+  {
+   "fetch_from": "entrance_exam_allocation.address",
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "label": "Address"
+  },
+  {
+   "fieldname": "exam_date",
+   "fieldtype": "Date",
+   "label": "Exam Date"
+  },
+  {
+   "fieldname": "slot",
+   "fieldtype": "Select",
+   "label": "Slot"
+  },
+  {
+   "fieldname": "get_applicant_list",
+   "fieldtype": "Button",
+   "label": "Get Applicant List"
+  },
+  {
+   "fieldname": "deallotted_applicant_list",
+   "fieldtype": "Table",
+   "label": "DeAllotted Applicant List",
+   "options": "DeAllotted Applicant List"
+  },
+  {
+   "fieldname": "exam_start_time",
+   "fieldtype": "Time",
+   "label": "Exam Start Time"
+  },
+  {
+   "fieldname": "exam_end_time",
+   "fieldtype": "Time",
+   "label": "Exam End Time"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-06-01 12:30:09.019808",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Admit Card Generation Tool",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

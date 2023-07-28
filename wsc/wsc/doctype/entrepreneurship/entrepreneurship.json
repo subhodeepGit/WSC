@@ -1,0 +1,128 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-29 17:39:31.038155",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "company_details_section",
+  "company_name",
+  "company_registration_year",
+  "state",
+  "full_address",
+  "website_link",
+  "attache_company_image",
+  "column_break_1lhtf",
+  "company_registration_number",
+  "number_of_employees",
+  "city",
+  "student_details_section",
+  "student_details_table",
+  "revenue_details_section",
+  "revenue_details_table"
+ ],
+ "fields": [
+  {
+   "fieldname": "company_details_section",
+   "fieldtype": "Section Break",
+   "label": "Company Details"
+  },
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "label": "Company Name"
+  },
+  {
+   "fieldname": "company_registration_year",
+   "fieldtype": "Data",
+   "label": "Company Registration Year"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State"
+  },
+  {
+   "fieldname": "full_address",
+   "fieldtype": "Data",
+   "label": "Full Address"
+  },
+  {
+   "fieldname": "website_link",
+   "fieldtype": "Data",
+   "label": "Website Link"
+  },
+  {
+   "fieldname": "attache_company_image",
+   "fieldtype": "Attach Image",
+   "label": "Attache company image"
+  },
+  {
+   "fieldname": "column_break_1lhtf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "company_registration_number",
+   "fieldtype": "Data",
+   "label": "Company Registration Number"
+  },
+  {
+   "fieldname": "number_of_employees",
+   "fieldtype": "Data",
+   "label": "Number of employees"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "student_details_section",
+   "fieldtype": "Section Break",
+   "label": "Student Details"
+  },
+  {
+   "fieldname": "student_details_table",
+   "fieldtype": "Table",
+   "label": "Student Details Table",
+   "options": "entrepreneurship student details"
+  },
+  {
+   "fieldname": "revenue_details_section",
+   "fieldtype": "Section Break",
+   "label": "Revenue Details "
+  },
+  {
+   "fieldname": "revenue_details_table",
+   "fieldtype": "Table",
+   "label": "Revenue Details Table",
+   "options": "entrepreneurship revenue details"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-05-29 17:39:31.038155",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Entrepreneurship",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

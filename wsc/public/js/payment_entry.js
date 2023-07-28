@@ -175,23 +175,23 @@ frappe.ui.form.on('Payment Entry', {
 		});
 	},
 
-	mode_of_payment: function(frm) {
-		if(frm.doc.mode_of_payment==("RTGS"||"NEFT"||"IMPS")) {
-			frappe.call({
-				method: "wsc.wsc.doctype.payment_details_upload.payment_details_upload.utr_callback",                
-				args: {
-					"party": frm.doc.party,
-					"mode_of_payment": frm.doc.mode_of_payment
-				},
-				callback: function(r) {
-					if(r.message){
-						var utr=r.message;
-						frm.set_value("reference_no",utr)
-					}
-				}
-			});
-	}
-}
+	// mode_of_payment: function(frm) {
+	// 	if(frm.doc.mode_of_payment==("RTGS"||"NEFT"||"IMPS")) {
+	// 			frappe.call({
+	// 				method: "wsc.wsc.doctype.payment_details_upload.payment_details_upload.utr_callback",                
+	// 				args: {
+	// 					"party": frm.doc.party,
+	// 					"mode_of_payment": frm.doc.mode_of_payment
+	// 				},
+	// 				callback: function(r) {
+	// 					if(r.message){
+	// 						var utr=r.message;
+	// 						frm.set_value("reference_no",utr)
+	// 					}
+	// 				}
+	// 			});
+	// 	}
+	// }
 
 });
 frappe.ui.form.on('Payment Entry', {
@@ -228,22 +228,22 @@ frappe.ui.form.on('Payment Entry', {
 //     };
 // });
 
-frappe.ui.form.on("Payment Entry","reference_no", function(frm){
-	if(frm.doc.mode_of_payment=="IMPS" || frm.doc.mode_of_payment=="RTGS" || frm.doc.mode_of_payment=="NEFT" || frm.doc.mode_of_payment=="Online Payment"){
-		frappe.call({
-			method: "wsc.wsc.validations.online_fees.paid_from_account_type",								
-			args: {
-					reference_no:frm.doc.reference_no,
-					mode_of_payment:frm.doc.mode_of_payment,
-			},
-			callback: function(r) {
-				var res=r.message;
-				frm.set_value("reference_date",res);
-			}
-		});
-	}
+// frappe.ui.form.on("Payment Entry","reference_no", function(frm){
+// 	if(frm.doc.mode_of_payment=="IMPS" || frm.doc.mode_of_payment=="RTGS" || frm.doc.mode_of_payment=="NEFT" || frm.doc.mode_of_payment=="Online Payment"){
+// 		frappe.call({
+// 			method: "wsc.wsc.validations.online_fees.paid_from_account_type",								
+// 			args: {
+// 					reference_no:frm.doc.reference_no,
+// 					mode_of_payment:frm.doc.mode_of_payment,
+// 			},
+// 			callback: function(r) {
+// 				var res=r.message;
+// 				frm.set_value("reference_date",res);
+// 			}
+// 		});
+// 	}
 
-});
+// });
 
 frappe.ui.form.on('Payment Entry', {
 	onload: function(frm) {
@@ -316,7 +316,7 @@ frappe.ui.form.on('Payment Entry', {
 			
 			
 		} else  
-		   frm.set_df_property("paid_amount","read_only",1);
+		   frm.set_df_property("paid_amount","read_only",0);
         // Rupali:Code for Refund amount:End	
 		
 		erpnext.accounts.dimensions.setup_dimension_filters(frm, frm.doctype);
@@ -351,20 +351,21 @@ frappe.ui.form.on('Payment Entry Reference',"allocated_amount",function(frm, cdt
 frappe.ui.form.on("Payment Entry","mode_of_payment", function(frm){
 	
     var mop = frm.doc.mode_of_payment
-    if(mop == "Bank Draft"){
-        frm.doc.reference_no = "Bank Draft"
-        frm.set_value("reference_no",frm.doc.reference_no)
-        frm.set_value("reference_date", frappe.datetime.nowdate());
-        frm.refresh();
-    };
-	if(frm.doc.mode_of_payment == "Cash"){
-		frm.set_df_property('references', 'cannot_add_rows', true);
-		frm.set_df_property('references', 'cannot_delete_rows', true);
-	}	 else if(frm.doc.mode_of_payment !="Cash"){
-		frm.set_df_property('references', 'cannot_add_rows', false);
-		frm.set_df_property('references', 'cannot_delete_rows', false);
+    // if(mop == "Bank Draft"){
+    //     frm.doc.reference_no = "Bank Draft"
+    //     frm.set_value("reference_no",frm.doc.reference_no)
+    //     frm.set_value("reference_date", frappe.datetime.nowdate());
+    //     frm.refresh();
+    // };
+	if (frm.doc.party=="Student"){
+		if(mop == "Cash"){
+			frm.set_df_property('references', 'cannot_add_rows', true);
+			frm.set_df_property('references', 'cannot_delete_rows', true);
+		}	 else if(frm.doc.mode_of_payment !="Cash"){
+			frm.set_df_property('references', 'cannot_add_rows', false);
+			frm.set_df_property('references', 'cannot_delete_rows', false);
+		}
 	}
-
 })
 frappe.ui.form.on('Payment Entry', {
     onload:function(frm) {
@@ -392,3 +393,13 @@ frappe.ui.form.on('Payment Entry', {
 });
 
 
+frappe.ui.form.on('Payment Entry Reference', {	//Child table Name
+	allocated_amount:function(frm, cdt, cdn){	//Child table field Name where you data enter
+	var d = locals[cdt][cdn];
+	var total = 0;
+	let a= parseInt(total)
+	frm.doc.references.forEach(function(d)  { a = a+ d.allocated_amount; }); //Child table name and field name
+	frm.set_value("paid_amount", a);			// Parent field name where calculation going to fetch
+	refresh_field("paid_amount");
+  },
+})

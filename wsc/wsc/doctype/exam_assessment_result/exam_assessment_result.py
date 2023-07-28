@@ -16,34 +16,36 @@ class ExamAssessmentResult(Document):
         self.set_evaluation_result_item()
         self.set_grade()
         if len(self.assessment_result_item) > 0:
-            self.calculate_sgpa()
+            self.calculate_percentage_grade_result()
         self.map_fields()
-        self.calculate_sgpa_cgpa()
+        self.validate_duplicate_for_save()
         self.validate_duplicate_for_submit()
         self.complete_course_enrollment()
-        # self.get_sgpa_into_total_credit()
+    def on_cancel(self):
+        self.cancel_complete_course_enrollment()
     def validate(self):
+        self.validate_duplicate_for_save()
+        self.validate_duplicate_for_submit()
         self.set_evaluation_result_item()
-        self.set_grade()
+        # self.set_grade()
         if len(self.assessment_result_item) > 0:
-            self.calculate_sgpa()
-            self.calculate_sgpa_cgpa()
+            self.calculate_percentage_grade_result()
       
     def on_change(self):
         if len(self.assessment_result_item) > 0:
-            self.calculate_sgpa()
-            self.calculate_sgpa_cgpa()
-        # self.get_sgpa_into_total_credit()
+            self.calculate_percentage_grade_result()
 
 
     def set_assessment_result_items(self):
         allocations=0
         self.assessment_result_item = []
         result = []
-        for allocation in frappe.get_all("Assessment Credits Allocation",{"docstatus":1,"student":self.student,"academic_year":self.academic_year,"academic_term":self.academic_term},["course","earned_credits","total_credits","final_marks","out_of_marks","assessment_criteria"]):
+        for allocation in frappe.get_all("Assessment Credits Allocation",{"docstatus":1,"student":self.student,"academic_year":self.academic_year,"academic_term":self.academic_term},["course","course_name","course_code","earned_credits","total_credits","final_marks","out_of_marks","assessment_criteria"]):
             allocations+=allocation.total_credits
             row = {
                 "course":allocation.course,
+                "module_name":allocation.course_name,
+                "module_code":allocation.course_code,
                 "earned_cr":allocation.earned_credits,
                 "total_cr":allocation.total_credits,
                 "earned_marks":allocation.final_marks,
@@ -78,10 +80,12 @@ class ExamAssessmentResult(Document):
         allocations=0
         self.assessment_result_item = []
         result = []
-        for allocation in frappe.get_all("Assessment Credits Allocation",{"docstatus":1,"student":self.student,"academic_year":self.academic_year,"academic_term":self.academic_term},["course","earned_credits","total_credits","final_marks","out_of_marks","assessment_criteria"]):
+        for allocation in frappe.get_all("Assessment Credits Allocation",{"docstatus":1,"student":self.student,"academic_year":self.academic_year,"academic_term":self.academic_term},["course",'course_name',"course_code","earned_credits","total_credits","final_marks","out_of_marks","assessment_criteria"]):
             allocations+=allocation.total_credits
             row = {
                 "course":allocation.course,
+                "module_name":allocation.course_name,
+                "module_code":allocation.course_code,
                 "earned_cr":allocation.earned_credits,
                 "total_cr":allocation.total_credits,
                 "earned_marks":allocation.final_marks,
@@ -126,7 +130,7 @@ class ExamAssessmentResult(Document):
             self.result="Backlog"
 
         if self.maximum_score > 0:
-            self.grade = get_grade(self.grading_scale, (self.total_score/self.maximum_score)*100)
+            self.grade = get_grade(self.grading_scale, (self.secured_marks/self.total_marks)*100)
 
         for d in self.evaluation_result_item:
             if flt(d.total_marks) > 0.0 :
@@ -145,13 +149,18 @@ class ExamAssessmentResult(Document):
                     d.result="P"
                 else:
                     d.result="F"
-
+    def validate_duplicate_for_save(self):
+        assessment_result = frappe.get_list("Exam Assessment Result", filters={"name": ("not in", [self.name,self.student_name]),
+            "student":self.student, "docstatus":0,'programs':self.programs, 'program':self.program})
+            # "docstatus":1,
+        if assessment_result:
+             frappe.throw(_("Exam Assessment Result record <b>'{0}'</b> for <b>'{1}'</b> is already exists.").format(self.student_name,getlink("Exam Assessment Result",assessment_result[0].name),self.student_name))
     def validate_duplicate_for_submit(self):
-        assessment_result = frappe.get_list("Exam Assessment Result", filters={"name": ("not in", [self.name]),
+        assessment_result = frappe.get_list("Exam Assessment Result", filters={"name": ("not in", [self.name,self.student_name]),
             "student":self.student, "docstatus":1,'programs':self.programs, 'program':self.program})
             # "docstatus":1,
         if assessment_result:
-            frappe.throw(_("Exam Assessment Result record {0} already exists.").format(getlink("Exam Assessment Result",assessment_result[0].name)))
+            frappe.throw(_("Exam Assessment Result record <b>'{0}'</b> for <b>'{1}'</b> is already exists.").format(getlink("Exam Assessment Result",assessment_result[0].name),self.student_name))
     ################################################################################################################################
     # IT WILL USE WHEN AFTER SUBMIT THE FINAL EXAM RESULT IF CREDIT POINT OR SGPA INTO CREDIT POINT OR SGPA
     def calculate_sgpa(self):
@@ -171,6 +180,86 @@ class ExamAssessmentResult(Document):
             self.sgpa=round((earn_and_garde/earn),2)
             self.sgpa="{:.2f}".format(earn_and_garde/earn)
             self.sgpa_in_to_credit_point= float(self.credit_point) * float(self.sgpa)
+    
+    def calculate_percentage_grade_result(self):
+        print("\n\n\nHELLO WORKS")
+        marks_earned = total_marks = 0
+        module_marks = 0
+        allocations = 0
+        for allocation in frappe.get_all("Assessment Credits Allocation",{"docstatus":1,"student":self.student,"academic_year":self.academic_year,"academic_term":self.academic_term},["course","earned_credits","total_credits","final_marks","out_of_marks","assessment_criteria"]):
+            allocations += allocation.out_of_marks
+        self.percentage_point = allocations
+        for d in self.get("evaluation_result_item"):
+            if self.grade and self.grading_scale:
+                if d.earned_marks:
+                    marks_earned += flt(d.earned_marks)
+                    self.secured_marks=marks_earned
+                    # total_marks += flt(d.module_total_mark)
+        for x in frappe.get_all("Course Enrollment",{"student":self.student,"academic_term":self.academic_term},['name','total_course_marks']):
+            module_marks+=flt(x.total_course_marks)
+        if module_marks > 0 :
+            self.total_marks=module_marks
+            print("\n\nMarks",marks_earned)
+            self.secured_marks=marks_earned
+            print("\n\nSecured Marks",self.secured_marks)
+            self.percentage = round((marks_earned/module_marks)*100, 2)
+            self.percentage = "{:.2f}".format((marks_earned/module_marks)*100)
+        self.total_score = 0.0
+        self.maximum_score=0.0
+        total_pass=0
+        for d in self.assessment_result_item:
+            if flt(d.total_marks) > 0.0 :
+                d.grade = get_grade(self.grading_scale, (flt(d.earned_marks)/flt(d.total_marks))*100)
+                self.total_score += flt(d.earned_marks)
+                self.maximum_score +=flt(d.total_marks)
+                
+            for g in frappe.get_all("Grading Scale Interval",{"parent":self.grading_scale,"grade_code":d.grade},['result']):
+                if g.result=="PASS":
+                    d.result="P"
+                else:
+                    d.result="F"
+                    
+            for cr in frappe.get_all("Credit distribution List",{"parent":d.course,"assessment_criteria":d.assessment_criteria},['passing_marks']):
+                if flt(cr.passing_marks) > flt(d.earned_marks):
+                    d.result="F"
+                else:
+                    d.result="P"
+
+            if d.result=="P":
+                total_pass+=1
+        if self.grade=="F":
+            self.result="Backlog"  
+        else:
+            self.result="Pass"
+        # if len(self.assessment_result_item)==total_pass and total_pass > 0:
+        #     self.result="Pass"  
+        
+        # elif total_pass!=0:
+        #     self.result="Backlog"
+
+        if self.maximum_score > 0:
+            print("\n\nEarned Marks",marks_earned)
+            self.secured_marks=marks_earned
+            print("\n\n",self.secured_marks)
+            self.grade = get_grade(self.grading_scale, (self.secured_marks/self.total_marks)*100)
+
+        for d in self.evaluation_result_item:
+            if flt(d.total_marks) > 0.0 :
+                d.grade = get_grade(self.grading_scale, (flt(d.earned_marks)/flt(d.total_marks))*100)
+                self.total_score += flt(d.earned_marks)
+                self.maximum_score +=flt(d.total_marks)
+            assessment_criteria = [a.assessment_criteria for a in self.assessment_result_item if a.course == d.course ]
+            for cr in frappe.get_all("Credit distribution List",{"parent":d.course,"assessment_criteria":assessment_criteria[0]},['passing_marks']):
+                if flt(cr.passing_marks) > flt(d.earned_marks):
+                    d.result="F"
+                else:
+                    d.result="P"
+                
+            for g in frappe.get_all("Grading Scale Interval",{"parent":self.grading_scale,"grade_code":d.grade},['result']):
+                if g.result=="PASS":
+                    d.result="P"
+                else:
+                    d.result="F"
     #########################################################################################################################################
     def map_fields(self):
         order_dict={1:"1ST SEM",2:"2ND SEM",3:"3RD SEM",4:"4TH SEM",5:"5TH SEM",6:"6TH SEM",7:"7TH SEM",8:"8TH SEM",9:"9TH SEM",10:"10TH SEM"}
@@ -202,10 +291,11 @@ class ExamAssessmentResult(Document):
         for result in frappe.get_all("Exam Assessment Result",{"student":self.student},['sgpa','program','programs','sgpa_in_to_credit_point','credit_point']):        
             allocations+=float(result.sgpa_in_to_credit_point)
             credit_points+=result.credit_point
-            overall_cgpa=(allocations/credit_points)
-            res = "{:.2f}".format(overall_cgpa)
-            self.overall_cgpa=res
-            frappe.db.set_value("Exam Assessment Result",self.name,"overall_cgpa",res)
+            if credit_points > 0:
+                overall_cgpa=(allocations/credit_points)
+                res = "{:.2f}".format(overall_cgpa)
+                self.overall_cgpa=res
+                frappe.db.set_value("Exam Assessment Result",self.name,"overall_cgpa",res)
     def complete_course_enrollment(self):
         for item in self.get("evaluation_result_item"):
             if item.result=="P":
@@ -213,7 +303,13 @@ class ExamAssessmentResult(Document):
                     course_enroll=frappe.get_doc("Course Enrollment",enroll.name)
                     course_enroll.status="Completed"
                     course_enroll.save()
-
+    def cancel_complete_course_enrollment(self):
+            for item in self.get("evaluation_result_item"):
+                if item.result=="P":
+                    for enroll in frappe.get_all("Course Enrollment",{"student":self.student,"course":item.course}):
+                        course_enroll=frappe.get_doc("Course Enrollment",enroll.name)
+                        course_enroll.status="Not Completed"
+                        course_enroll.save()
     def set_evaluation_result_item(self):
         duplicate=[]
         self.set("evaluation_result_item",[])
@@ -234,7 +330,8 @@ class ExamAssessmentResult(Document):
                     "earned_cr":earned_cr,
                     "total_cr":total_cr,
                     "earned_marks":earned_marks,
-                    "total_marks":total_marks
+                    "total_marks":total_marks,
+                    "module_total_mark":frappe.db.get_value("Course",row.course,'total_marks'),
                 })
  
 @frappe.whitelist()
@@ -264,7 +361,7 @@ def get_student_details(student):
         if len(data)>0:
             return data[0]  
         else:
-            frappe.throw("Program not enrolled by student {0}".format(student))  
+            frappe.throw("Course not enrolled by student {0}".format(student))  
         
 @frappe.whitelist()
 def filter_courses(doctype, txt, searchfield, start, page_len, filters):

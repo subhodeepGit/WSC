@@ -17,6 +17,13 @@ frappe.ui.form.on('Course Scheduling Tool', {
 				}
 			};
 		});
+		frm.set_query("student_group", function () {
+			return {
+				filters: {
+					"group_based_on":"Course"
+				}
+			}
+		});
     },
 	instructor:function(frm){
 		frappe.confirm(

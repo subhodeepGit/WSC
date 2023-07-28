@@ -7,20 +7,20 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "student",
+  "student_name",
+  "roll_no",
+  "registration_number",
+  "column_break_3",
   "programs",
   "program",
   "course",
   "academic_year",
   "academic_term",
-  "column_break_3",
+  "grading_scale",
   "status",
-  "student",
-  "student_name",
-  "roll_no",
-  "registration_number",
   "student_group",
   "assessment_group",
-  "grading_scale",
   "assessment_status",
   "section_break_5",
   "get_result",
@@ -28,18 +28,23 @@
   "evaluation_result_item",
   "previous_semesters_sgpa",
   "section_break_8",
+  "secured_marks",
+  "column_break_i9clt",
+  "total_marks",
   "sgpa",
-  "column_break_17",
-  "result",
+  "column_break_277",
+  "percentage",
   "column_break_11",
   "grade",
   "column_break_27",
+  "result",
   "overall_cgpa",
   "section_break_13",
   "comment",
   "amended_from",
   "credit_point",
-  "sgpa_in_to_credit_point"
+  "sgpa_in_to_credit_point",
+  "column_break_17"
  ],
  "fields": [
   {
@@ -129,7 +134,8 @@
    "fieldname": "assessment_result_item",
    "fieldtype": "Table",
    "label": "Assessment Result Item",
-   "options": "Assessment Result Item"
+   "options": "Assessment Result Item",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_8",
@@ -139,7 +145,7 @@
    "allow_on_submit": 1,
    "fieldname": "sgpa",
    "fieldtype": "Float",
-   "in_list_view": 1,
+   "hidden": 1,
    "label": "SGPA",
    "read_only": 1
   },
@@ -162,8 +168,9 @@
    "allow_on_submit": 1,
    "fieldname": "grade",
    "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Grade"
+   "in_list_view": 1,
+   "label": "Grade",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_13",
@@ -189,12 +196,14 @@
    "fieldname": "evaluation_result_item",
    "fieldtype": "Table",
    "label": "Evaluation Result Item",
-   "options": "Evaluation Result Item"
+   "options": "Evaluation Result Item",
+   "read_only": 1
   },
   {
    "allow_on_submit": 1,
    "fieldname": "assessment_status",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Assessment Status",
    "read_only": 1
   },
@@ -223,6 +232,7 @@
    "allow_on_submit": 1,
    "fieldname": "status",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Status",
    "options": "\nUpdate"
   },
@@ -243,6 +253,7 @@
    "allow_on_submit": 1,
    "fieldname": "overall_cgpa",
    "fieldtype": "Float",
+   "hidden": 1,
    "label": "Overall CGPA",
    "read_only": 1
   },
@@ -250,6 +261,7 @@
    "allow_on_submit": 1,
    "fieldname": "credit_point",
    "fieldtype": "Float",
+   "hidden": 1,
    "label": "Credit Point",
    "read_only": 1
   },
@@ -257,13 +269,43 @@
    "allow_on_submit": 1,
    "fieldname": "sgpa_in_to_credit_point",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "SGPA in to Credit Point",
    "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "percentage",
+   "fieldtype": "Percent",
+   "label": "Percentage",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "total_marks",
+   "fieldtype": "Float",
+   "label": "Total Marks",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_i9clt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "secured_marks",
+   "fieldtype": "Float",
+   "label": "Secured Marks",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_277",
+   "fieldtype": "Column Break"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-17 15:23:38.340587",
+ "modified": "2023-07-25 15:23:07.447593",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Assessment Result",

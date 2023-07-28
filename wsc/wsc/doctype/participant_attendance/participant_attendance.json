@@ -1,0 +1,103 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "TPA.-.#####",
+ "creation": "2023-05-29 18:17:46.776523",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "is_in_a_program",
+  "section_break_q9ah2",
+  "selected_program",
+  "select_event",
+  "get_participants",
+  "section_break_kouut",
+  "program_name",
+  "event_name",
+  "selected_participants_section",
+  "selected_participants_table"
+ ],
+ "fields": [
+  {
+   "depends_on": "is_in_a_program",
+   "fieldname": "selected_program",
+   "fieldtype": "Link",
+   "label": "Select Program",
+   "options": "TnP Program"
+  },
+  {
+   "fieldname": "select_event",
+   "fieldtype": "Link",
+   "label": "Select Event",
+   "options": "TnP Event"
+  },
+  {
+   "fieldname": "section_break_kouut",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "is_in_a_program",
+   "fieldname": "program_name",
+   "fieldtype": "Data",
+   "label": "Program Name"
+  },
+  {
+   "fieldname": "event_name",
+   "fieldtype": "Data",
+   "label": "Event Name"
+  },
+  {
+   "fieldname": "get_participants",
+   "fieldtype": "Button",
+   "label": "Get Participants"
+  },
+  {
+   "fieldname": "selected_participants_section",
+   "fieldtype": "Section Break",
+   "label": "Selected Participants"
+  },
+  {
+   "fieldname": "selected_participants_table",
+   "fieldtype": "Table",
+   "label": "Selected Participants Table",
+   "options": "Selected participants list"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_in_a_program",
+   "fieldtype": "Check",
+   "label": "is in a program"
+  },
+  {
+   "fieldname": "section_break_q9ah2",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-06-05 16:43:22.823701",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Participant Attendance",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

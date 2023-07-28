@@ -7,6 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "exam_type",
+  "assessment_criteria",
   "exam_name",
   "disabled",
   "is_application_required",
@@ -15,26 +16,31 @@
   "year_end_date",
   "academic_term",
   "exam_category",
+  "exam_declaration_no",
+  "exam_declaration_name",
   "application_form_start_date",
   "application_form_end_date",
   "section_break_4",
   "exam_start_date",
-  "exam_end_date",
   "column_break_8",
+  "exam_end_date",
   "admit_card_issue_date",
   "block_list_display_date",
   "section_break_8",
   "program_grade",
   "exam_program",
+  "class",
   "semesters",
   "get_courses",
   "courses_offered",
+  "section_break_hbhdh",
+  "group_email",
+  "column_break_v8qdw",
+  "email_status",
+  "to_date",
   "eligibility_deails_section",
   "minimum_attendance_criteria",
   "certificate_creation_status",
-  "get_students",
-  "total_enrolled_student",
-  "students",
   "fees_status",
   "exam_fees_section",
   "exam_fees_applicable",
@@ -46,7 +52,8 @@
    "fieldname": "exam_type",
    "fieldtype": "Link",
    "label": "Exam Type",
-   "options": "Exam Type"
+   "options": "Exam Type",
+   "reqd": 1
   },
   {
    "depends_on": "is_application_required",
@@ -85,10 +92,9 @@
    "fieldtype": "Section Break"
   },
   {
-   "allow_on_submit": 1,
    "fieldname": "courses_offered",
    "fieldtype": "Table",
-   "label": "Courses Offered",
+   "label": "Module Offered",
    "options": "Exam Courses",
    "reqd": 1
   },
@@ -102,23 +108,26 @@
   {
    "fieldname": "eligibility_deails_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Eligibility Details"
   },
   {
+   "depends_on": "eval:doc.attendance_criteria_applicable==\"Yes\"",
    "description": "in %",
    "fieldname": "minimum_attendance_criteria",
    "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Minimum Attendance Criteria",
-   "reqd": 1
+   "mandatory_depends_on": "eval:doc.attendance_criteria_applicable==\"Yes\""
   },
   {
+   "default": "Allow all",
    "fieldname": "fees_status",
    "fieldtype": "Select",
+   "hidden": 1,
    "in_list_view": 1,
    "label": "Fees Status",
-   "options": "\nFull Paid\nMore than 50%\nAllow all",
-   "reqd": 1
+   "options": "\nFull Paid\nMore than 50%\nAllow all"
   },
   {
    "fieldname": "column_break_2",
@@ -131,7 +140,7 @@
   {
    "fieldname": "exam_program",
    "fieldtype": "Link",
-   "label": "Exam Program",
+   "label": "Course Name",
    "options": "Programs",
    "reqd": 1
   },
@@ -172,13 +181,14 @@
    "options": "Exam Declaration Fee Item"
   },
   {
+   "default": "NO",
    "fieldname": "exam_fees_applicable",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Exam Fees Applicable",
    "options": "\nYES\nNO"
   },
   {
-   "allow_on_submit": 1,
    "bold": 1,
    "columns": 6,
    "fieldname": "exam_name",
@@ -197,6 +207,7 @@
   {
    "fieldname": "block_list_display_date",
    "fieldtype": "Date",
+   "hidden": 1,
    "label": "Block List Display Date",
    "mandatory_depends_on": "is_application_required"
   },
@@ -208,28 +219,17 @@
    "reqd": 1
   },
   {
+   "depends_on": "eval:doc.docstatus==0",
    "fieldname": "get_courses",
    "fieldtype": "Button",
-   "label": "Get Courses"
+   "label": "Get Module"
   },
   {
-   "allow_on_submit": 1,
    "default": "0",
    "fieldname": "is_application_required",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Is Application Required"
-  },
-  {
-   "allow_on_submit": 1,
-   "fieldname": "students",
-   "fieldtype": "Table",
-   "label": "Students",
-   "options": "Students"
-  },
-  {
-   "fieldname": "get_students",
-   "fieldtype": "Button",
-   "label": "Get Students"
   },
   {
    "fieldname": "certificate_creation_status",
@@ -237,12 +237,6 @@
    "hidden": 1,
    "label": "Certificate Creation Status",
    "options": "\nIn Process\nFailed\nSuccessful"
-  },
-  {
-   "fieldname": "total_enrolled_student",
-   "fieldtype": "Int",
-   "label": "Total Enrolled Student",
-   "permlevel": 1
   },
   {
    "allow_on_submit": 1,
@@ -256,7 +250,7 @@
   {
    "fieldname": "program_grade",
    "fieldtype": "Link",
-   "label": "Program Grade",
+   "label": "Course Type",
    "options": "Program Grades",
    "reqd": 1
   },
@@ -265,12 +259,75 @@
    "fieldtype": "Select",
    "label": "Exam Category",
    "options": "Regular\nRe-Exam"
+  },
+  {
+   "fieldname": "class",
+   "fieldtype": "Link",
+   "label": "Class",
+   "options": "School House"
+  },
+  {
+   "depends_on": "eval:doc.exam_category==\"Re-Exam\"",
+   "description": "Previous Exam Declamation Id ",
+   "fieldname": "exam_declaration_no",
+   "fieldtype": "Link",
+   "label": "Exam Declaration No",
+   "mandatory_depends_on": "eval:doc.exam_category==\"Re-Exam\"",
+   "options": "Exam Declaration"
+  },
+  {
+   "fetch_from": "exam_declaration_no.exam_name",
+   "fieldname": "exam_declaration_name",
+   "fieldtype": "Data",
+   "label": "Exam Declaration Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "assessment_criteria",
+   "fieldtype": "Link",
+   "label": "Assessment Criteria",
+   "options": "Assessment Criteria",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_hbhdh",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.assessment_criteria !== 'undefined'",
+   "fetch_from": "assessment_criteria.is_group_email_",
+   "fieldname": "group_email",
+   "fieldtype": "Check",
+   "label": "Group Email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_v8qdw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Not Sent",
+   "depends_on": "eval:doc.group_email === 1",
+   "fieldname": "email_status",
+   "fieldtype": "Select",
+   "label": "Email Status",
+   "options": "Not Sent\nSent",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.group_email === 1",
+   "description": "Date of sending email notification",
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "label": "Email Date",
+   "mandatory_depends_on": "eval:doc.group_email === 1"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-18 16:08:53.166484",
+ "modified": "2023-07-25 12:23:50.928852",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Declaration",

@@ -1,0 +1,103 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-24 15:21:21.204769",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "date",
+  "task",
+  "column_break_3",
+  "from",
+  "to",
+  "work_order_details_section",
+  "work_order",
+  "allocate_faculty",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "task",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Task ",
+   "options": "\nResearch Projects\nProfessional Development\nTask Rotation\nCommunity Engagement\nOther Scholarly\nMentoring\nCurriculum Development\nPublication Reviewing\nAcademic Writing\nStudent Research Supervision\nProfessional Consultation\nEducational Outreach\nExternal Examiner Roles\nIndustry Guest Lectures\nAcademic Program Development\nTeaching Workshops\nStudent Support and Advising\nExam Paper Evaluation\nExam Proctoring\nConference Presentation\nIndustry Collaboration\nInvigilator\nAccreditation and Quality Assurance\nFaculty Recruitment\nInternational Education Programs",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "from",
+   "fieldtype": "Date",
+   "label": "From"
+  },
+  {
+   "fieldname": "to",
+   "fieldtype": "Date",
+   "label": "To"
+  },
+  {
+   "fieldname": "work_order_details_section",
+   "fieldtype": "Section Break",
+   "label": "Work Order Details"
+  },
+  {
+   "fieldname": "work_order",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "Work Order"
+  },
+  {
+   "fieldname": "allocate_faculty",
+   "fieldtype": "Table",
+   "label": "Allocate Faculty",
+   "options": "Assign Faculty"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Faculty Work Assignment",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-05-24 15:24:10.883323",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Faculty Work Assignment",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -25,6 +25,52 @@ frappe.ui.form.on('Programs', {
 		if (frappe.user.has_role(["Student","Instructor"]) && !frappe.user.has_role('System Manager')){
 			frm.set_df_property('add_semesters', 'hidden', 1);
 		}
+		if(!frm.doc.__unsaved){
+			if(frm.doc.is_tot==1){
+				frm.add_custom_button(__("Submit"), function() {
+					frm.trigger("create_tot_course")
+				})
+			}
+		}
+	},
+	
+	create_tot_course: function(frm) {
+		if(frm.doc.is_tot==1){
+			// if (!frm.doc.__unsaved){
+			if (!frm.doc.programs_abbreviation){
+				frappe.throw("Course Abbrevation Missing for Creating ToT Course")
+			}
+			frm.set_value("semesters",[]);
+			frappe.call({
+				method: "create_tot_course",
+				doc:frm.doc,
+				callback: function(r) { 
+				if (r.message['semesters']){
+					frm.set_value("semesters",[]);
+					(r.message['semesters']).forEach(element => {
+						var row = frm.add_child("semesters")
+						row.semesters=element
+						row.semesters_name=element
+						frm.refresh_field("semesters")
+					});
+					if(r.message['is_existing']){
+						frm.save();
+					}
+					// frm.save();
+					else{
+						frm.reload_doc();
+					}
+					
+					// window.location.reload();
+				}
+				} 
+				
+			});  
+			
+			// else{
+			// 	frappe.throw("Please Save Document First")
+			// }	
+		}		
 	},
 	add_semesters: function(frm) {
 		if (!frm.doc.__unsaved){

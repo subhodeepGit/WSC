@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"49AhcckM7o\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Your Shortcuts</span><br>\",\"col\":12}},{\"id\":\"HgEq9csbTU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee\",\"col\":3}},{\"id\":\"TIihatf2_X\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Application\",\"col\":3}},{\"id\":\"wTzltOB7NU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Attendance\",\"col\":3}},{\"id\":\"aYgVuRDXzF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Job Applicant\",\"col\":3}},{\"id\":\"EwyBi97eqa\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"5idSunWgom\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"5ItTeMi9s4\",\"type\":\"paragraph\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Reports &amp; Masters</span>\",\"col\":12}},{\"id\":\"pY_XapGpSk\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee\",\"col\":3}},{\"id\":\"nSUIUfYy2Q\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee Lifecycle\",\"col\":3}},{\"id\":\"kltSFnGtJR\",\"type\":\"card\",\"data\":{\"card_name\":\"Shift Management\",\"col\":3}},{\"id\":\"MRnGqEF6Wk\",\"type\":\"card\",\"data\":{\"card_name\":\"Leaves\",\"col\":3}},{\"id\":\"MaXp4yaqM_\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance\",\"col\":3}},{\"id\":\"cCRRTHJBK6\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":3}},{\"id\":\"veDMNa42x0\",\"type\":\"card\",\"data\":{\"card_name\":\"Recruitment\",\"col\":3}},{\"id\":\"km6rAvXMC5\",\"type\":\"card\",\"data\":{\"card_name\":\"Performance\",\"col\":3}}]",
+ "content": "[{\"id\":\"bS-9BifiTo\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Your Shortcuts</span><br>\",\"col\":12}},{\"id\":\"nz0VtKfW8k\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee\",\"col\":3}},{\"id\":\"G_RwF5AzYg\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Application\",\"col\":3}},{\"id\":\"N1YF2Ke66G\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Attendance\",\"col\":3}},{\"id\":\"OG5KdF2G92\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Job Applicant\",\"col\":3}},{\"id\":\"n4qx77uypc\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"UFAfSrDs_D\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"U0TsZyuyuR\",\"type\":\"paragraph\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Reports &amp; Masters</span>\",\"col\":12}},{\"id\":\"lAIZzL3tbJ\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee\",\"col\":3}},{\"id\":\"yt_rY7tJr8\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee Lifecycle\",\"col\":3}},{\"id\":\"f5Xv6k832J\",\"type\":\"card\",\"data\":{\"card_name\":\"Shift Management\",\"col\":3}},{\"id\":\"LhtQ1-JPwF\",\"type\":\"card\",\"data\":{\"card_name\":\"Leaves\",\"col\":3}},{\"id\":\"m5Id3g1vxe\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance\",\"col\":3}},{\"id\":\"WtfwQwakFs\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":3}},{\"id\":\"-W4gZ9IU1n\",\"type\":\"card\",\"data\":{\"card_name\":\"Recruitment\",\"col\":3}},{\"id\":\"i7LNGPLg4Z\",\"type\":\"card\",\"data\":{\"card_name\":\"Performance\",\"col\":3}},{\"id\":\"51haoUfu5A\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee Re-engagement \",\"col\":3}}]",
  "creation": "2023-03-02 11:42:46.665842",
  "docstatus": 0,
  "doctype": "Workspace",
@@ -286,124 +286,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Recruitment",
-   "link_count": 11,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Job Opening",
-   "link_count": 0,
-   "link_to": "Job Opening",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Employee Referral",
-   "link_count": 0,
-   "link_to": "Employee Referral",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Job Applicant",
-   "link_count": 0,
-   "link_to": "Job Applicant",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Job Offer",
-   "link_count": 0,
-   "link_to": "Job Offer",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Staffing Plan",
-   "link_count": 0,
-   "link_to": "Staffing Plan",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Appointment Letter",
-   "link_count": 0,
-   "link_to": "Appointment Letter",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Appointment Letter Template",
-   "link_count": 0,
-   "link_to": "Appointment Letter Template",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Interview Type",
-   "link_count": 0,
-   "link_to": "Interview Type",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Interview Round",
-   "link_count": 0,
-   "link_to": "Interview Round",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Interview",
-   "link_count": 0,
-   "link_to": "Interview",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Interview Feedback",
-   "link_count": 0,
-   "link_to": "Interview Feedback",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Performance",
    "link_count": 4,
    "onboard": 0,
@@ -574,9 +456,175 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Recruitment",
+   "link_count": 12,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Job Requisition",
+   "link_count": 0,
+   "link_to": "Job Requisition",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Staffing Plan",
+   "link_count": 0,
+   "link_to": "Staffing Plan",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Job Opening",
+   "link_count": 0,
+   "link_to": "Job Opening",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Recruitment Exam Declaration",
+   "link_count": 0,
+   "link_to": "Recruitment Exam Declaration",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Recruitment Admit Card Generation Tool",
+   "link_count": 0,
+   "link_to": "Recruitment Admit Card Generation Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Recruitment Admit Card Generation",
+   "link_count": 0,
+   "link_to": "Recruitment Admit Card Generation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Recruitment Exam Result Declaration Tool",
+   "link_count": 0,
+   "link_to": "Recruitment Exam Result Declaration Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Recruitment Exam Result Declaration",
+   "link_count": 0,
+   "link_to": "Recruitment Exam Result Declaration",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Job Offer",
+   "link_count": 0,
+   "link_to": "Job Offer",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Appointment Letter Template",
+   "link_count": 0,
+   "link_to": "Appointment Letter Template",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Appointment Letter",
+   "link_count": 0,
+   "link_to": "Appointment Letter",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Job Applicant",
+   "link_count": 0,
+   "link_to": "Job Applicant",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Employee Re-engagement ",
+   "link_count": 1,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Employee Reengagement Form",
+   "link_count": 0,
+   "link_to": "Employee Reengagement",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Employee Profile Updation",
+   "link_count": 0,
+   "link_to": "Employee Profile Updation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Employee Resignation",
+   "link_count": 0,
+   "link_to": "Employee Resignation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-04-26 15:54:21.254613",
+ "modified": "2023-07-17 17:33:46.444817",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "HRMS",

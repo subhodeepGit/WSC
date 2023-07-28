@@ -92,3 +92,76 @@ frappe.ui.form.on('Fee Structure', {
 	}
 }
 );
+// Abhishek Adhikari 26-07-2023
+frappe.ui.form.on("Fee Component", "waiver_amount", function(frm, cdt, cdn) {
+    var d = locals[cdt][cdn];
+    if(d.waiver_amount && d.amount ){
+		
+        d.amount =  d.grand_fee_amount -d.waiver_amount
+        d.total_waiver_amount  = d.waiver_amount
+        refresh_field("amount", d.name, d.parentfield);
+        refresh_field("total_waiver_amount", d.name, d.parentfield);
+		
+    }
+	else{
+		d.amount=d.grand_fee_amount
+		d.total_waiver_amount=null
+		d.outstanding_fees=d.grand_fee_amount
+	}
+    if(!d.amount){
+        frappe.throw("Please add Amount first");
+    }
+
+
+});
+
+frappe.ui.form.on("Fee Component", "percentage", function(frm, cdt, cdn) {
+    var d = locals[cdt][cdn];
+	if(d.percentage && d.amount ){
+		d.total_waiver_amount  = ((d.percentage/100) * d.grand_fee_amount)
+        d.amount =  d.grand_fee_amount - ((d.percentage/100) * d.grand_fee_amount)
+		d.total_waiver_amount  = d.grand_fee_amount-d.amount
+        refresh_field("amount", d.name, d.parentfield);
+        refresh_field("total_waiver_amount", d.name, d.parentfield);
+    }
+	else{
+		d.amount=d.grand_fee_amount
+		d.total_waiver_amount=null
+		d.outstanding_fees=d.grand_fee_amount
+		refresh_field("percentage", d.name, d.parentfield);
+	}
+    if(!d.amount){
+        frappe.throw("Please add Amount first");
+    }
+});
+
+frappe.ui.form.on("Fee Component", "waiver_type", function(frm, cdt, cdn){
+	var d = locals[cdt][cdn];
+	if(d.waiver_type=="Percentage"||"Amount"){
+		d.percentage=null
+		d.waiver_amount=null
+		d.total_waiver_amount=null
+		d.amount=d.grand_fee_amount
+        d.outstanding_fees=d.grand_fee_amount
+		refresh_field("total_waiver_amount", d.name, d.parentfield);
+		refresh_field("percentage", d.name, d.parentfield);
+		refresh_field("waiver_amount", d.name, d.parentfield);
+		refresh_field("amount", d.name, d.parentfield);
+	}
+    frappe.ui.form.on("Fee Component", "waiver_amount", function(frm, cdt, cdn) {
+        var cal=locals[cdt][cdn];
+        if (cal.total_waiver_amount) {
+            cal.outstanding_fees=cal.amount;
+        }	 
+        cur_frm.refresh_field ("components");
+    });
+    frappe.ui.form.on("Fee Component", "percentage", function(frm, cdt, cdn) {
+        var cal=locals[cdt][cdn];
+        if (cal.total_waiver_amount) {
+            cal.outstanding_fees=cal.amount;
+        }	 
+        cur_frm.refresh_field ("components");
+    });
+});
+
+// Abhishek Adhikari 26-07-2023

@@ -1,0 +1,132 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{entrance_exam_declaration}",
+ "creation": "2023-05-09 18:13:55.428621",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "entrance_exam_declaration",
+  "section_break_2",
+  "academic_year",
+  "academic_term",
+  "column_break_5",
+  "department",
+  "section_break_7",
+  "total_marks",
+  "all_round_cutoff",
+  "column_break_9",
+  "maximum_number_of_ranks",
+  "section_break_11",
+  "ranking_category",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "entrance_exam_declaration",
+   "fieldtype": "Link",
+   "label": "Entrance Exam Declaration",
+   "options": "Entrance Exam Declaration"
+  },
+  {
+   "fetch_from": "entrance_exam_declaration.academic_year",
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
+  },
+  {
+   "fetch_from": "entrance_exam_declaration.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
+  },
+  {
+   "fieldname": "total_marks",
+   "fieldtype": "Float",
+   "label": "Total Marks"
+  },
+  {
+   "fieldname": "maximum_number_of_ranks",
+   "fieldtype": "Int",
+   "label": "Maximum Number of Ranks"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "ranking_category",
+   "fieldtype": "Table",
+   "label": "Ranking Category",
+   "options": "Ranking Category"
+  },
+  {
+   "fetch_from": "entrance_exam_declaration.academic_term",
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_11",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Rank Card Master",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "all_round_cutoff",
+   "fieldtype": "Float",
+   "label": "All Round Cutoff "
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-07-06 12:43:02.503468",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Rank Card Master",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

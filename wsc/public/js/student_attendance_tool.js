@@ -101,7 +101,7 @@ frappe.ui.form.on('Student Attendance Tool', {
             frm.trigger("hostel_fields")
         }
     },
-    
+ 
     student_group:function(frm){
         if (frm.doc.based_on=="Student Group" && !frm.doc.date){
             // if (frm.doc.group_based_on == 'Batch' || frm.doc.group_based_on == 'Course'){
@@ -189,21 +189,27 @@ education.StudentsEditor = Class.extend({
 						student_name: $check.data().student_name,
 						roll_no: $check.data().roll_no,
 						group_roll_number: $check.data().group_roll_number,
+						leave_status: $check.data().leave_status,
 						disabled: $check.prop("disabled"),
-						checked: $check.is(":checked")
+						checked: $check.is(":checked"),
 					});
-					
 				});
 				var students_present = studs.filter(function(stud) {
 					return !stud.disabled && stud.checked;
 				});
 
 				var students_absent = studs.filter(function(stud) {
-					return !stud.disabled && !stud.checked;
+					return !stud.disabled && !stud.checked && !stud.leave_status;
 				});
 
-				frappe.confirm(__("Do you want to update attendance? <br> Present: {0} <br> Absent: {1}",
-					[students_present.length, students_absent.length]),
+				var students_on_leave = studs.filter(function(stud) {
+					return !stud.disabled && !stud.checked && stud.leave_status;
+				});
+				console.log(students_present);
+				console.log(students_absent);
+				console.log(students_on_leave);
+				frappe.confirm(__("Do you want to update attendance? <br> Present: {0} <br> Absent: {1} <br> On Leave: {2} ",
+					[students_present.length, students_absent.length, students_on_leave.length]),
 					function() {	//ifyes
 						if(!frappe.request.ajax_count) {
 							frappe.call({
@@ -213,6 +219,7 @@ education.StudentsEditor = Class.extend({
 								args: {
 									"students_present": students_present,
 									"students_absent": students_absent,
+									"students_on_leave": students_on_leave,
 									"student_group": frm.doc.student_group,
 									"course_schedule": frm.doc.course_schedule,
 									"building": frm.doc.hostel,
@@ -232,16 +239,19 @@ education.StudentsEditor = Class.extend({
 					}
 				);
 			});
-
+		$('<div class="col-sm-12"><div class="checkbox"><table class="table table-bordered table-sm"><tr class="abc"><th width="5%" style="text-align: center"></th><th width="10%" style="text-align: center">Group Roll No.</th><th width="10%" style="text-align: center">Roll No.</th><th width="15%" style="text-align: center">Student Name</th><th width="15%" style="text-align: center">Student ID</th><th width="15%" style="text-align: center">Leave Status</th><th width="15%" style="text-align: center">Leave Type</th><th width="15%" style="text-align: center">Leave Application ID</th></tr></table></div></div>').appendTo($(this.wrapper));
 		var htmls = students.map(function(student) {
 			return frappe.render_template("student_button_custom", {
 				student: student.student,
 				roll_no: student.roll_no,
 				student_name: student.student_name,
 				group_roll_number: student.group_roll_number,
-				status: student.status
+				status: student.status,
+				leave_status: student.leave_status,
+				reason_for_leave: student.reason_for_leave,
+				leave_app_id: student.leave_app_id
 			})
-			
+
 		});
 		$(htmls.join("")).appendTo(me.wrapper);
 	},

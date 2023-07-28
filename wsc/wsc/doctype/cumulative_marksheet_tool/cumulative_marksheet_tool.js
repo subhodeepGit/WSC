@@ -14,6 +14,7 @@ frappe.ui.form.on('Cumulative Marksheet Tool', {
 				});
 			}).addClass('btn-primary');;
 		}
+		frm.set_df_property('cummulative_marksheet_student', 'cannot_add_rows', true);
 		
 	},
 	get_students:function(frm){

@@ -72,7 +72,7 @@ body[frappe-session-status='logged-out'] nav.navbar {display: none;}
 .for-forgot .page-card-head,
 .for-signup .page-card-head,
 .for-login .page-card-head {
-    background-image: url('../images/logo.jpg');
+    background-image: url('../images/wsc.png');
     background-color: #fff;
     background-repeat: no-repeat;
     background-position: center;
@@ -131,7 +131,7 @@ nav.navbar{
 .page-head{top: 100px;}
 .navbar-brand.navbar-home, 
 .navbar-brand{
-    background-image: url('../images/logo.jpg');
+    background-image: url('../images/wsc.png');
     background-color: transparent;
     background-repeat: no-repeat;
     background-position: 50% 50%;
@@ -164,6 +164,12 @@ nav.navbar{
 .sidebar-item{
     padding: 0;
     margin: 2px 0;
+}
+.btn.btn-primary{
+    background: #5c3c92;
+}
+.abc{
+    background-color: #B5AFD2;
 }
 .sidebar-item a{
     padding: 7px 10px;

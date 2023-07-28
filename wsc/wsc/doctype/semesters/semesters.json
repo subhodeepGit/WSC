@@ -21,14 +21,14 @@
    "fetch_from": "semesters.program_name",
    "fieldname": "semesters_name",
    "fieldtype": "Data",
-   "in_list_view": 1,
+   "hidden": 1,
    "label": "Semesters ",
    "read_only": 1
   }
  ],
  "istable": 1,
  "links": [],
- "modified": "2023-01-19 11:16:48.819371",
+ "modified": "2023-07-28 10:46:30.458535",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Semesters",

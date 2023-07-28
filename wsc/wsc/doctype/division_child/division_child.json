@@ -1,0 +1,44 @@
+{
+    "actions": [],
+    "allow_rename": 1,
+    "creation": "2022-10-28 17:05:33.120885",
+    "doctype": "DocType",
+    "editable_grid": 1,
+    "engine": "InnoDB",
+    "field_order": [
+     "department",
+     "parent_department"
+    ],
+    "fields": [
+     {
+      "columns": 10,
+      "fieldname": "department",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Department",
+      "options": "Department",
+      "reqd": 1,
+      "width": "10px"
+     },
+     {
+      "fetch_from": "department.parent_department",
+      "fieldname": "parent_department",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Parent Department",
+      "read_only": 1
+     }
+    ],
+    "index_web_pages_for_search": 1,
+    "istable": 1,
+    "links": [],
+    "modified": "2022-10-28 17:16:34.517920",
+    "modified_by": "Administrator",
+    "module": "WSC",
+    "name": "Division Child",
+    "owner": "Administrator",
+    "permissions": [],
+    "sort_field": "modified",
+    "sort_order": "DESC"
+   }
+   

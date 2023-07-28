@@ -1,0 +1,82 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "TIA.-.#####",
+ "creation": "2023-05-30 11:30:26.373618",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "participant_type",
+  "select_internship",
+  "column_break_yfbdt",
+  "participant_id",
+  "internship_name",
+  "column_break_2sdjy",
+  "participant_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "participant_type",
+   "fieldtype": "Select",
+   "label": "Participant Type",
+   "options": "Student\nStaff"
+  },
+  {
+   "fieldname": "select_internship",
+   "fieldtype": "Link",
+   "label": "Select Internship",
+   "options": "Internship Drive"
+  },
+  {
+   "fieldname": "column_break_yfbdt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "participant_id",
+   "fieldtype": "Link",
+   "label": "Participant ID",
+   "options": "Student"
+  },
+  {
+   "fieldname": "internship_name",
+   "fieldtype": "Data",
+   "label": "Internship Name"
+  },
+  {
+   "fieldname": "column_break_2sdjy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "participant_name",
+   "fieldtype": "Data",
+   "label": "Participant Name"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-06-05 17:31:53.922848",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Internship Application",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

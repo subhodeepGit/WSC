@@ -1,0 +1,88 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{exam_declaration}-{exam_date}",
+ "creation": "2023-06-01 16:32:42.686492",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "exam_declaration",
+  "exam_date",
+  "column_break_3",
+  "exam_time",
+  "center",
+  "section_break_6",
+  "get_applicant",
+  "job_applicant_details"
+ ],
+ "fields": [
+  {
+   "fieldname": "exam_declaration",
+   "fieldtype": "Link",
+   "label": "Exam Declaration",
+   "options": "Recruitment Exam Declaration"
+  },
+  {
+   "fetch_from": "exam_declaration.exam_date",
+   "fieldname": "exam_date",
+   "fieldtype": "Data",
+   "label": "Exam Date"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "exam_declaration.exam_time",
+   "fieldname": "exam_time",
+   "fieldtype": "Data",
+   "label": "Exam Time"
+  },
+  {
+   "fetch_from": "exam_declaration.recruitment_exam_center",
+   "fieldname": "center",
+   "fieldtype": "Data",
+   "label": "Center"
+  },
+  {
+   "fieldname": "section_break_6",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "get_applicant",
+   "fieldtype": "Button",
+   "label": "Get Applicant"
+  },
+  {
+   "fieldname": "job_applicant_details",
+   "fieldtype": "Table",
+   "label": "Job Applicant Details",
+   "options": "Job Applicant Details"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-06-01 16:57:52.679803",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Recruitment Admit Card Generation Tool",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

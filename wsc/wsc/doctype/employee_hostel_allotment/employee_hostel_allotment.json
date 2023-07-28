@@ -11,10 +11,12 @@
   "employees",
   "employee",
   "user_name",
+  "designation",
   "column_break_5",
   "start_date",
   "end_date",
   "hostel_masters",
+  "role_selection",
   "amended_from"
  ],
  "fields": [
@@ -65,8 +67,10 @@
   {
    "fieldname": "hostel_masters",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Hostel Masters",
-   "options": "Hostel Masters"
+   "options": "Hostel Masters",
+   "reqd": 1
   },
   {
    "fieldname": "amended_from",
@@ -76,14 +80,28 @@
    "options": "Employee Hostel Allotment",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fetch_from": "employees.designation",
+   "fieldname": "designation",
+   "fieldtype": "Link",
+   "label": "Designation",
+   "options": "Designation"
+  },
+  {
+   "fieldname": "role_selection",
+   "fieldtype": "Select",
+   "label": "Role Selection",
+   "options": "Select\nWarden\nSuperindendent\nDeputy Superindendent"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-19 14:58:34.664360",
+ "modified": "2023-07-10 14:47:59.315593",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Hostel Allotment",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -101,6 +119,7 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1,
  "track_seen": 1,
  "track_views": 1

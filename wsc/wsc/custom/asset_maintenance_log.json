@@ -1,7 +1,6 @@
 {
  "custom_fields": [],
- "custom_perms": [
- ],
+ "custom_perms": [],
  "doctype": "Asset Maintenance Log",
  "links": [],
  "property_setters": [

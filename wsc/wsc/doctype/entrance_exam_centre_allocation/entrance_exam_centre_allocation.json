@@ -1,0 +1,167 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{entrance_exam_declaration}-{centre}",
+ "creation": "2023-05-09 17:28:02.897730",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "entrance_exam_declaration",
+  "academic_year",
+  "academic_term",
+  "department",
+  "exam_start_date",
+  "exam_end_date",
+  "center_selection",
+  "column_break_6",
+  "centre",
+  "centre_name",
+  "address",
+  "district",
+  "state",
+  "pin_code",
+  "section_break_13",
+  "exam_slot_timings",
+  "entrance_exam_invigilator",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "entrance_exam_declaration",
+   "fieldtype": "Link",
+   "label": "Entrance Exam Declaration",
+   "options": "Entrance Exam Declaration",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "entrance_exam_declaration.academic_year",
+   "fieldname": "academic_year",
+   "fieldtype": "Data",
+   "label": "Academic Year",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "entrance_exam_declaration.academic_term",
+   "fieldname": "academic_term",
+   "fieldtype": "Data",
+   "label": "Academic Term",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "entrance_exam_declaration.department",
+   "fieldname": "department",
+   "fieldtype": "Data",
+   "label": "Department",
+   "read_only": 1
+  },
+  {
+   "fieldname": "centre",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Centre",
+   "reqd": 1
+  },
+  {
+   "fieldname": "centre_name",
+   "fieldtype": "Data",
+   "label": "Centre Name"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "label": "Address"
+  },
+  {
+   "fieldname": "district",
+   "fieldtype": "Data",
+   "label": "District"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State"
+  },
+  {
+   "fieldname": "pin_code",
+   "fieldtype": "Data",
+   "label": "Pin Code"
+  },
+  {
+   "fieldname": "exam_slot_timings",
+   "fieldtype": "Table",
+   "label": "Exam Slot Timings",
+   "options": "Exam Slot Timings"
+  },
+  {
+   "fieldname": "entrance_exam_invigilator",
+   "fieldtype": "Table",
+   "label": "Entrance Exam Invigilator",
+   "options": "Entrance Exam Invigilator"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Entrance Exam Centre Allocation",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_13",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "entrance_exam_declaration.exam_start_date",
+   "fieldname": "exam_start_date",
+   "fieldtype": "Data",
+   "label": "Exam Start Date",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "entrance_exam_declaration.exam_end_date",
+   "fieldname": "exam_end_date",
+   "fieldtype": "Data",
+   "label": "Exam End Date",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "entrance_exam_declaration.center_selection",
+   "fieldname": "center_selection",
+   "fieldtype": "Data",
+   "label": "Center Selection"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-06-23 16:23:47.404099",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Entrance Exam Centre Allocation",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

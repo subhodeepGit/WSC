@@ -21,6 +21,7 @@
   "lease",
   "building_details_section",
   "building_type",
+  "building_type_if_any_other",
   "total_rooms",
   "total_floors",
   "facing",
@@ -28,6 +29,7 @@
   "column_break_15",
   "start_date",
   "end_date",
+  "building_documents",
   "amended_from"
  ],
  "fields": [
@@ -159,6 +161,19 @@
    "options": "\nYes\nNo"
   },
   {
+   "fieldname": "building_address",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Building Address",
+   "reqd": 1
+  },
+  {
+   "fieldname": "building_documents",
+   "fieldtype": "Table",
+   "label": "Building Documents",
+   "options": "Land Documents"
+  },
+  {
    "depends_on": "eval:(doc.building_on_lease==\"Yes\")",
    "fieldname": "lease",
    "fieldtype": "Attach",
@@ -166,16 +181,15 @@
    "mandatory_depends_on": "eval:(doc.building_on_lease==\"Yes\")"
   },
   {
-   "fieldname": "building_address",
+   "depends_on": "eval:(doc.building_type==\"Others\")",
+   "fieldname": "building_type_if_any_other",
    "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Building Address",
-   "reqd": 1
+   "label": "Building Type, if any other"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-23 12:30:41.078415",
+ "modified": "2023-05-30 15:30:56.357653",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Buildings",

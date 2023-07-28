@@ -1,0 +1,113 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{center_name}-{state}-{district}",
+ "creation": "2023-05-29 12:46:38.762722",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "is_active",
+  "center_name",
+  "state",
+  "district",
+  "block",
+  "post_office",
+  "cityvillage",
+  "address",
+  "pincode",
+  "total_seating_capacity"
+ ],
+ "fields": [
+  {
+   "fieldname": "center_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Center Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "State",
+   "options": "State",
+   "reqd": 1
+  },
+  {
+   "fieldname": "district",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "District ",
+   "options": "Districts",
+   "reqd": 1
+  },
+  {
+   "fieldname": "block",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Block",
+   "options": "Blocks",
+   "reqd": 1
+  },
+  {
+   "fieldname": "post_office",
+   "fieldtype": "Data",
+   "label": "Post Office"
+  },
+  {
+   "fieldname": "cityvillage",
+   "fieldtype": "Data",
+   "label": "City/Village"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "label": "Address",
+   "reqd": 1
+  },
+  {
+   "fieldname": "pincode",
+   "fieldtype": "Int",
+   "label": "Pincode",
+   "reqd": 1
+  },
+  {
+   "fieldname": "total_seating_capacity",
+   "fieldtype": "Int",
+   "label": "Total Seating Capacity"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-05-29 15:12:49.450925",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Recruitment Exam Center",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

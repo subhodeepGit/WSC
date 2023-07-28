@@ -35,3 +35,28 @@ frappe.ui.form.on('Mentor Mentee Communication', {
 		
 	}
 });
+
+frappe.ui.form.on('Mentor Mentee Communication', {
+	refresh: function(frm) {
+		var text = frm.doc.comment_message;
+		if (!frm.doc.description) {
+			frm.remove_custom_button(__('Comment'));
+		} else if (!frm.doc.comment_button_generated) {
+			frm.add_custom_button(__('Comment'), function() {
+				frappe.prompt({
+					label: __('Enter your comment'),
+					fieldname: 'comment',
+					fieldtype: 'Small Text',
+					reqd: 1
+				}, function(data) {
+					if (text){
+						frm.set_value('comment_message', text + "\n" + frappe.session.user + " : " + data.comment);
+					}
+					else{
+						frm.set_value('comment_message', frappe.session.user + " : " + data.comment);
+					}
+					frm.refresh_field('comment_message');
+					frm.save();
+				}, __('Add Comment'), __('Comment'));
+			});
+		}}});

@@ -1,0 +1,122 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-07-06 14:54:04.995521",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "participant_group",
+  "select_module",
+  "academic_year",
+  "instructor_id",
+  "participant_id",
+  "date",
+  "status",
+  "column_break_7",
+  "select_course",
+  "select_sub_module",
+  "academic_term",
+  "instructor_name",
+  "participant_name",
+  "time"
+ ],
+ "fields": [
+  {
+   "fieldname": "participant_name",
+   "fieldtype": "Data",
+   "label": "Participant Name"
+  },
+  {
+   "fieldname": "participant_group",
+   "fieldtype": "Link",
+   "label": "Participant Group",
+   "options": "Participant Group"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "\nPresent\nAbsent"
+  },
+  {
+   "fieldname": "time",
+   "fieldtype": "Time",
+   "label": "Time"
+  },
+  {
+   "fieldname": "select_module",
+   "fieldtype": "Data",
+   "label": "Select Module"
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Data",
+   "label": "Academic Year"
+  },
+  {
+   "fieldname": "participant_id",
+   "fieldtype": "Select",
+   "label": "Participant ID"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "select_course",
+   "fieldtype": "Data",
+   "label": "Select Course"
+  },
+  {
+   "fieldname": "select_sub_module",
+   "fieldtype": "Select",
+   "label": "Select Sub Module"
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Data",
+   "label": "Academic term"
+  },
+  {
+   "fieldname": "instructor_id",
+   "fieldtype": "Select",
+   "label": "Instructor ID"
+  },
+  {
+   "fieldname": "instructor_name",
+   "fieldtype": "Data",
+   "label": "Instructor Name"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-07-24 13:55:27.025883",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "ToT Participant Attendance",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

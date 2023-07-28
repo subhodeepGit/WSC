@@ -1,0 +1,371 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-06-01 18:09:49.126265",
+ "default_view": "List",
+ "doctype": "DocType",
+ "document_type": "Document",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_1",
+  "enabled",
+  "section_break_3",
+  "first_name",
+  "middle_name",
+  "last_name",
+  "user",
+  "joining_date",
+  "column_break_4",
+  "hrms_id",
+  "participant_id",
+  "designation",
+  "department",
+  "name_of_the_institute",
+  "section_break_7",
+  "naming_series",
+  "participant_email_id",
+  "participant_mobile_number",
+  "adhaar_number",
+  "participant_category",
+  "column_break_3",
+  "image",
+  "date_of_birth",
+  "blood_group",
+  "gender",
+  "nationality",
+  "section_break_22",
+  "state",
+  "district",
+  "block",
+  "police_station",
+  "post_ofiice",
+  "column_break_20",
+  "village",
+  "address_line_1",
+  "address_line_2",
+  "pincode",
+  "country",
+  "participant_name",
+  "section_break_40",
+  "previous_participations",
+  "participant_education_details",
+  "participant_experience_details",
+  "participant_medical_history"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_1",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "label": "First Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "middle_name",
+   "fieldtype": "Data",
+   "label": "Middle Name"
+  },
+  {
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "label": "Last Name"
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "User ID",
+   "options": "User"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Naming Series",
+   "no_copy": 1,
+   "options": "TOT-PART-.YYYY.-",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "participant_email_id",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "label": "Participant Email Address",
+   "options": "Email",
+   "unique": 1
+  },
+  {
+   "fieldname": "participant_mobile_number",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "label": "Participant Mobile Number",
+   "length": 10
+  },
+  {
+   "default": "Today",
+   "fieldname": "joining_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Joining Date"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "hidden": 1,
+   "label": "Image",
+   "width": "10"
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break",
+   "label": "Personal Details"
+  },
+  {
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "Date of Birth"
+  },
+  {
+   "fieldname": "blood_group",
+   "fieldtype": "Select",
+   "label": "Blood Group",
+   "options": "\nA+\nA-\nB+\nB-\nO+\nO-\nAB+\nAB-"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Gender",
+   "options": "Gender"
+  },
+  {
+   "fieldname": "nationality",
+   "fieldtype": "Data",
+   "label": "Nationality"
+  },
+  {
+   "fieldname": "section_break_22",
+   "fieldtype": "Section Break",
+   "label": "Home Address"
+  },
+  {
+   "fieldname": "address_line_1",
+   "fieldtype": "Data",
+   "label": "Address Line 1"
+  },
+  {
+   "fieldname": "address_line_2",
+   "fieldtype": "Data",
+   "label": "Address Line 2"
+  },
+  {
+   "fieldname": "pincode",
+   "fieldtype": "Data",
+   "label": "Pincode",
+   "length": 6
+  },
+  {
+   "fieldname": "column_break_20",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "district",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "District",
+   "options": "Districts",
+   "reqd": 1
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Link",
+   "label": "State",
+   "options": "State",
+   "reqd": 1
+  },
+  {
+   "fieldname": "participant_name",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Participant Name"
+  },
+  {
+   "fieldname": "hrms_id",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "HRMS ID"
+  },
+  {
+   "fieldname": "participant_id",
+   "fieldtype": "Link",
+   "label": "Participant Id",
+   "options": "Student"
+  },
+  {
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Designation"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Data",
+   "label": "Department"
+  },
+  {
+   "fieldname": "name_of_the_institute",
+   "fieldtype": "Data",
+   "label": "Name of the Institute"
+  },
+  {
+   "fieldname": "adhaar_number",
+   "fieldtype": "Data",
+   "label": "Adhaar Number",
+   "length": 12
+  },
+  {
+   "fieldname": "participant_category",
+   "fieldtype": "Link",
+   "label": "Participant Category",
+   "options": "Student Category"
+  },
+  {
+   "fieldname": "block",
+   "fieldtype": "Link",
+   "label": "Block",
+   "options": "Blocks",
+   "reqd": 1
+  },
+  {
+   "fieldname": "police_station",
+   "fieldtype": "Data",
+   "label": "Police Station"
+  },
+  {
+   "fieldname": "post_ofiice",
+   "fieldtype": "Data",
+   "label": "Post Ofiice"
+  },
+  {
+   "fieldname": "village",
+   "fieldtype": "Data",
+   "label": "Village"
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "Country"
+  },
+  {
+   "fieldname": "previous_participations",
+   "fieldtype": "Table",
+   "label": "Previous Participations",
+   "options": "Previous Participation Table"
+  },
+  {
+   "fieldname": "participant_education_details",
+   "fieldtype": "Table",
+   "label": "Participant Education Details",
+   "options": "Participant Education Details Table"
+  },
+  {
+   "fieldname": "participant_experience_details",
+   "fieldtype": "Table",
+   "label": "Participant Experience Details",
+   "options": "Participant Experience Details"
+  },
+  {
+   "fieldname": "participant_medical_history",
+   "fieldtype": "Table",
+   "label": "Participant Medical History",
+   "options": "Participant Medical History Table"
+  },
+  {
+   "fieldname": "section_break_40",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "image_field": "image",
+ "links": [],
+ "modified": "2023-07-14 15:49:21.577859",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "ToT Participant",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "read": 1,
+   "role": "Instructor"
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Academics User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Student",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "LMS User",
+   "share": 1
+  }
+ ],
+ "restrict_to_domain": "Education",
+ "search_fields": "hrms_id",
+ "show_name_in_global_search": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "participant_name"
+}
