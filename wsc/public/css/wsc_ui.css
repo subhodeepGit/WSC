@@ -72,14 +72,14 @@ body[frappe-session-status='logged-out'] nav.navbar {display: none;}
 .for-forgot .page-card-head,
 .for-signup .page-card-head,
 .for-login .page-card-head {
-    background-image: url('../images/wsc.png');
+    background-image: url('../images/wsc_ico.png');
     background-color: #fff;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 90%;
     display: inline-block;
-    width: 200px;
-    height: 200px;
+    width: 110px;
+    height: 110px;
     border-radius: 100%;
 }
 .for-forgot .page-card-head img,
