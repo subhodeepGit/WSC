@@ -8,10 +8,12 @@
  "engine": "InnoDB",
  "field_order": [
   "academic_year",
-  "program_grade",
   "column_break_5de8f",
+  "program_grade",
+  "column_break_hdbgx",
   "academic_term",
   "section_break_pxny1",
+  "remarks",
   "programs_pass_",
   "amended_from"
  ],
@@ -63,11 +65,21 @@
   {
    "fieldname": "section_break_pxny1",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_hdbgx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-06 18:09:43.612204",
+ "modified": "2023-07-27 17:08:36.468999",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Pass Percentage",
