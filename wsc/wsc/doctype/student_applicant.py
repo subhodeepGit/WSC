@@ -122,7 +122,7 @@ def check_age(doc):
 
         overage = age_diff - applicantation_date[0]['maximum_age_limit']
         print(age_diff - applicantation_date[0]['maximum_age_limit'])
-        if age_diff >= applicantation_date[0]['maximum_age_limit']:
+        if age_diff > applicantation_date[0]['maximum_age_limit']:
             frappe.throw("Over Age In-eligible for applications by " + str(overage) + "years")
     else:
         frappe.throw(" No Application Start and maximum age limit found ")
