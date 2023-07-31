@@ -25,10 +25,10 @@
   "get_result",
   "assessment_result_item",
   "section_break_17",
-  "result",
-  "overall_grade",
+  "overall_percentage",
+  "overall_result",
   "column_break_20",
-  "grade",
+  "overall_grade",
   "section_break_22",
   "comment"
  ],
@@ -112,11 +112,6 @@
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "result",
-   "fieldtype": "Data",
-   "label": "Result"
-  },
-  {
    "fieldname": "overall_grade",
    "fieldtype": "Data",
    "label": "Overall Grade"
@@ -124,11 +119,6 @@
   {
    "fieldname": "column_break_20",
    "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "grade",
-   "fieldtype": "Data",
-   "label": "Grade"
   },
   {
    "fieldname": "section_break_22",
@@ -148,11 +138,21 @@
    "fieldname": "course_name",
    "fieldtype": "Data",
    "label": "Course Name"
+  },
+  {
+   "fieldname": "overall_percentage",
+   "fieldtype": "Data",
+   "label": "Overall Percentage"
+  },
+  {
+   "fieldname": "overall_result",
+   "fieldtype": "Data",
+   "label": "Overall Result"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-24 17:29:15.471600",
+ "modified": "2023-07-26 15:14:16.606552",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Final Assignment Result",

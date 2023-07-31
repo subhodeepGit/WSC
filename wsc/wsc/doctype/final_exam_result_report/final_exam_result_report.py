@@ -28,7 +28,7 @@ def get_students(programs=None,semester=None,academic_year=None,academic_term=No
 		frappe.throw("Select Academic Term")
 
 	students = frappe.db.get_list('Exam Assessment Result',filters=[['programs','=',programs],['program','=',semester],['academic_year','=',academic_year],['academic_term','=',academic_term]],
-															fields=['name','student','student_name','roll_no','registration_number',"grading_scale","sgpa","result","overall_cgpa"],order_by="roll_no")
+															fields=['name','student','student_name','roll_no','registration_number',"grading_scale","percentage","result","overall_cgpa"],order_by="roll_no")
 
 	return students
 
@@ -61,7 +61,7 @@ def get_course(student):
 
 	for t in assessment_criteria_head:
 		t['assessment_criteria']=list(set(t['assessment_criteria']))
-		for j in ["Total","Cr P","Grade","Credit"]:
+		for j in ["Total","Grade"]:
 			t['assessment_criteria'].append(j)
 
 	for t in assessment_criteria_head:
@@ -72,7 +72,7 @@ def get_course(student):
 	for t in assessment_criteria_head:
 		t["len_assessment_criteria"]=len(t["assessment_criteria_info"])
 
-	for t in ["Total","Cr P","Grade","Credit"]:
+	for t in ["Total","Grade"]:
 		assessment_criteria.append(t)
 
 	assessment_criteria_info=[]

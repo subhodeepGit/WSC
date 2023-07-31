@@ -46,15 +46,24 @@ frappe.ui.form.on('Final Assignment Result', {
 			callback: function(result){
 				if(result.message){
 					frappe.model.clear_table(frm.doc, 'assessment_result_item')
-					result.message.forEach(element => {
+					result.message[0].forEach(element => {
 						var childTable = frm.add_child('assessment_result_item')
 						childTable.assignment_id = element.select_assignment
 						childTable.assignment_name = element.assignment_name
 						childTable.assessment_criteria = element.assessment_criteria
+						childTable.earned_marks = element.marks_earned
+						childTable.total_marks = element.total_marks
+						childTable.percentage = element.percentage
+						childTable.grade = element.grade_code
+						childTable.result = element.result
 					})
 				}
 				frm.refresh()
 				frm.refresh_field('assessment_result_item')
+
+				frm.set_value("overall_percentage", result.message[1]) //overall grade
+				frm.set_value("overall_grade", result.message[2]) // overall percentage
+				frm.set_value("overall_result", result.message[3]) // overall result
 			}
 		})
 	}

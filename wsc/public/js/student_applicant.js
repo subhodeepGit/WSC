@@ -41,15 +41,15 @@ frappe.ui.form.on('Student Applicant', {
                 }
             }
         }
-        frm.fields_dict['counselling_based_program_priority'].grid.get_field('programs').get_query = function(doc, cdt, cdn) {
-            return {   
-                query: 'wsc.wsc.doctype.student_applicant.filter_programs_by_department', 
-                filters:{
-                    "department":frm.doc.department,
-                    "program_grade":frm.doc.program_grade
-                }
-            }
-        }
+        // frm.fields_dict['counselling_based_program_priority'].grid.get_field('programs').get_query = function(doc, cdt, cdn) {
+        //     return {   
+        //         query: 'wsc.wsc.doctype.student_applicant.filter_programs_by_department', 
+        //         filters:{
+        //             "department":frm.doc.department,
+        //             "program_grade":frm.doc.program_grade
+        //         }
+        //     }
+        // }
         frm.set_query("department", function(){
 	        return{
 	            filters:{
@@ -123,8 +123,8 @@ frappe.ui.form.on('Student Applicant', {
         df.hidden = 1
         var df0 = frappe.meta.get_docfield("Education Qualifications Details","qualification", frm.doc.name);
         df0.hidden = 0
-        var df1 = frappe.meta.get_docfield("Education Qualifications Details","year_of_completion_", frm.doc.name);
-        df1.hidden = 1
+        // var df1 = frappe.meta.get_docfield("Education Qualifications Details","year_of_completion_", frm.doc.name);
+        // df1.hidden = 1
         var df11 = frappe.meta.get_docfield("Education Qualifications Details","year_of_completion", frm.doc.name);
         df11.hidden = 0
         var df2 = frappe.meta.get_docfield("Document List","document_name_", frm.doc.name);

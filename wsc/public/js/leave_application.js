@@ -40,5 +40,14 @@ refresh: function(frm) {
 },   
   
 });
+frappe.ui.form.on('Leave Application', {
+    onload: function(frm) {
+      
+        if (frappe.session.user !== frm.doc.leave_approver) {
+            $('.btn-primary:contains("Submit")').hide();
+        }
+    },
+   
+});
 
     

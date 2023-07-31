@@ -35,7 +35,8 @@
   "interest_percentage",
   "section_break_punlb",
   "get_amount",
-  "interest_calculation"
+  "interest_calculation",
+  "amended_from"
  ],
  "fields": [
   {
@@ -205,9 +206,19 @@
    "fieldtype": "Data",
    "label": "Tenure(In Annually)",
    "mandatory_depends_on": "eval:doc.interest_payable==\"Annually\""
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Fixed Deposit",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [
   {
    "group": "Bank Guarantee",
@@ -215,7 +226,7 @@
    "link_fieldname": "fixed_deposit"
   }
  ],
- "modified": "2023-07-25 11:38:10.936672",
+ "modified": "2023-07-28 13:04:14.159060",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Fixed Deposit",

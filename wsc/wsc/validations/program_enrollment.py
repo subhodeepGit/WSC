@@ -515,19 +515,19 @@ def get_seat_reservation_type(doctype, txt, searchfield, start, page_len, filter
     return reservation_type
 
 @frappe.whitelist()
-##Old One
-# def get_programs_stud_app(doctype, txt, searchfield, start, page_len, filters):
-#     fltr = {"parent":filters.get("student_applicant")}
-#     if txt:
-#         fltr.update({'semester': ['like', '%{}%'.format(txt)]})
-#     return frappe.get_all("Program Priority",fltr,['programs'], as_list=1)
-
-##New One
+#Old One
 def get_programs_stud_app(doctype, txt, searchfield, start, page_len, filters):
-    fltr = {"parent":filters.get("student_applicant") , "approve" : 1}
+    fltr = {"parent":filters.get("student_applicant")}
     if txt:
         fltr.update({'semester': ['like', '%{}%'.format(txt)]})
-    return frappe.get_all("Counseling Based Program Priority",fltr,['programs'], as_list=1)
+    return frappe.get_all("Program Priority",fltr,['programs'], as_list=1)
+
+##New One
+# def get_programs_stud_app(doctype, txt, searchfield, start, page_len, filters):
+#     fltr = {"parent":filters.get("student_applicant") , "approve" : 1}
+#     if txt:
+#         fltr.update({'semester': ['like', '%{}%'.format(txt)]})
+#     return frappe.get_all("Counseling Based Program Priority",fltr,['programs'], as_list=1)
 
 
 @frappe.whitelist()

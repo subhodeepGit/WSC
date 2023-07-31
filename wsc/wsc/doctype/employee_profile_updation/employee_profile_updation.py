@@ -24,21 +24,18 @@ class EmployeeProfileUpdation(Document):
 		data["hr_email"]=self.hr_id
 		employee_reporting_aprover(data)
 		
+	def after_insert(self):
+		print("\n\n\n")
+		print("Hello Profile")
+		self.set_shift_request_permission_reporting_authority()	
+		
 	def validate(self):
 		
-		# print(self.workflow_state)
 		if self.workflow_state == "Draft":
 			self.approver_mail()
 		if self.workflow_state=="Pending Approval From HR":
 			self.send_to_hr()
-			# print("\n\n\n\n\nIf Statement is Working")
-
-		
-	# def on_update(self):
-	# 	print("\n\n\n\n\nHEeeeeeeeee")
-	# 	if self.current_status == "Forwarded to HR":
-	# 		self.send_to_hr()
-	# 		# notify leave approver about creation
+	
 	def send_to_hr(self):
 		data = {}
 		data["hr_email"] = self.hr_id
@@ -48,13 +45,10 @@ class EmployeeProfileUpdation(Document):
 		employee_hr(data)
 		
 	def on_submit(self):
+		print("\n\n\n")
+		print("Profile Updation")
 		employee = frappe.get_doc("Employee", self.employee)
-		# print("\n\n\n\n\nOn Submit")
-		# print(employee)
-		# Clear existing child table entries
 		employee.education = []
-
-		# Update child table with form data
 		for row in self.education:
 			child_row = employee.append("education", {})
 			child_row.school_univ = row.school_univ
@@ -63,10 +57,7 @@ class EmployeeProfileUpdation(Document):
 			child_row.year_of_passing=row.year_of_passing
 			child_row.class_per= row.class_per
 		
-		#clear existing family details table
 		employee.family_background_details = []
-
-		# Update child table with form data
 		for row in self.family:
 			child_row = employee.append("family_background_details", {})
 			child_row.name1 = row.name1
@@ -74,7 +65,6 @@ class EmployeeProfileUpdation(Document):
 			child_row.occupation=row.gender
 			child_row.contact=row.contact
 			
-		# Save the changes to the employee document
 		employee.current_address=self.current_address
 		employee.permanent_address=self.permanent_address
 		employee.cell_number=self.mobile
@@ -82,34 +72,20 @@ class EmployeeProfileUpdation(Document):
 		employee.emergency_phone_number=self.emergency_contact
 		employee.relation=self.relation
 		employee.personal_email=self.personal_email
-
-		#save the changes
 		employee.save()
-		# Print a success message
 		frappe.msgprint("Employee profile updated successfully.")
+
+
+	def set_shift_request_permission_reporting_authority(doc):
+		for emp in frappe.get_all("Employee", {'reporting_authority_email':doc.reporting_auth_id}, ['reporting_authority_email']):
+			if emp.get('reporting_authority_email'):
+				print(emp.get('reporting_authority_email'))
+				add_user_permission("Employee Profile Updation",doc.name, emp.get('reporting_authority_email'), doc)
+			else:
+				frappe.msgprint("Reporting Authority Not Found")	
 		
-	# def after_insert(self):
-	# 	self.set_user_permission()
 
-	# def set_user_permission(self):
-	# 	if self.reporting_authority:
-	# 		self.set_profile_updation_permission_reporting_authority(self.reporting_auth_id)
-	
-	# def on_trash(self):
-	# 	self.delete_permission()
-	# def delete_permission(self):
-	# 	for d in frappe.get_all("User Permission",{"reference_doctype":self.doctype,"reference_docname":self.name}):
-	# 		frappe.delete_doc("User Permission",d.name)
-	# def set_profile_updation_permission_reporting_authority(doc,reporting_authority):
-	# 	for emp in frappe.get_all("Employee", {'reporting_authority_email':reporting_authority}, ['reporting_authority_email']):
-	# 		if emp.get('reporting_authority_email'):
-	# 			print(emp.get('reporting_authority_email'))
-	# 			add_user_permission("Employee Profile Updation",doc.name, emp.get('reporting_authority_email'), doc)
-	# 		else:
-	# 			frappe.msgprint("Reporting Authority Not Found")
-
-
-
+		
 #populate Reporting Authority 
 @frappe.whitelist()
 def isrfp(reporting_auth):

@@ -124,8 +124,8 @@ def check_age(doc):
         print(age_diff - applicantation_date[0]['maximum_age_limit'])
         if age_diff > applicantation_date[0]['maximum_age_limit']:
             frappe.throw("Over Age In-eligible for applications by " + str(overage) + "years")
-    else:
-        frappe.throw(" No Application Start and maximum age limit found ")
+    # else:
+    #     frappe.throw(" No Application Start and maximum age limit found ")
     
 
 def mobile_number_validation(doc):
@@ -369,8 +369,8 @@ def enroll_student(source_name):
         program_enrollment.student_category = student.student_category
         program_enrollment.student_name = student.student_name
         program_enrollment.roll_no = student.roll_no
-        # program_enrollment.programs = st_applicant.programs_ 
-        program_enrollment.programs = counselling_based_program_priority[0]['programs']
+        program_enrollment.programs = st_applicant.programs_ 
+        # program_enrollment.programs = counselling_based_program_priority[0]['programs']
         program_enrollment.program = st_applicant.program
         program_enrollment.academic_year=st_applicant.academic_year
         program_enrollment.academic_term=st_applicant.academic_term

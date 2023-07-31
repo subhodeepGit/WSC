@@ -111,7 +111,7 @@ frappe.ui.form.on("Student Group", {
 			    }
 			};
 		});
-		frm.set_df_property("student_category","hidden",1)
+		// frm.set_df_property("student_category","hidden",1)
 		if(frm.doc.group_based_on == "Mentor-Mentee"){
 			frm.set_df_property("academic_year","reqd",0)
 			frm.set_df_property("academic_term","reqd",0)

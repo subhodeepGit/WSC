@@ -7,52 +7,85 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "course",
+  "participant_group",
+  "course_code",
+  "select_module",
   "academic_year",
-  "result_creation_status",
-  "get_participants",
-  "total_enrolled_participant",
-  "result_declaration_participant"
+  "grading_scale",
+  "column_break_5",
+  "select_course",
+  "course_name",
+  "no_of_participants",
+  "academic_term",
+  "section_break_10",
+  "participants"
  ],
  "fields": [
   {
-   "fieldname": "course",
-   "fieldtype": "Link",
-   "label": "Course",
-   "options": "Course"
-  },
-  {
    "fieldname": "academic_year",
+   "fieldtype": "Data",
+   "label": "Academic Year"
+  },
+  {
+   "fieldname": "participant_group",
    "fieldtype": "Link",
-   "label": "Academic Year",
-   "options": "Academic Year"
+   "label": "Participant Group",
+   "options": "Participant Group"
   },
   {
-   "fieldname": "result_creation_status",
-   "fieldtype": "Select",
-   "label": "Result Creation Status",
-   "options": "In Process\nFailed\nSuccessful"
+   "fieldname": "course_code",
+   "fieldtype": "Data",
+   "label": "Course Code"
   },
   {
-   "fieldname": "get_participants",
-   "fieldtype": "Button",
-   "label": "Get Participants"
+   "fieldname": "select_module",
+   "fieldtype": "Data",
+   "label": "Select Module"
   },
   {
-   "fieldname": "total_enrolled_participant",
-   "fieldtype": "Int",
-   "label": "Total Enrolled Participant"
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
   },
   {
-   "fieldname": "result_declaration_participant",
+   "fieldname": "select_course",
+   "fieldtype": "Data",
+   "label": "Select Course"
+  },
+  {
+   "fieldname": "course_name",
+   "fieldtype": "Data",
+   "label": "Course Name"
+  },
+  {
+   "fieldname": "no_of_participants",
+   "fieldtype": "Data",
+   "label": "No of Participants"
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Data",
+   "label": "Academic Term"
+  },
+  {
+   "fieldname": "section_break_10",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "participants",
    "fieldtype": "Table",
-   "label": "Result Declaration Participant",
+   "label": "Participants",
    "options": "Result Declaration Participant"
+  },
+  {
+   "fieldname": "grading_scale",
+   "fieldtype": "Link",
+   "label": "Grading Scale",
+   "options": "Grading Scale"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-05 17:33:49.543079",
+ "modified": "2023-07-26 15:35:42.288827",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Final Result Declaration Tool",

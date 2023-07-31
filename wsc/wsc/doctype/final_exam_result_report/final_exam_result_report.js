@@ -79,7 +79,7 @@ frappe.ui.form.on('Final Exam Result Report', {
 								students: r.message["studnet"],
 								course:r.message["course"],
 								assessment_criteria:r.message["assessment_criteria"],
-								total_credit:r.message["total_credit"],
+								// total_credit:r.message["total_credit"],
 								assessment_result:r.message["assessment_result"],
 								evaluation_result:r.message["evaluation_result"],
 								assessment_criteria_head:r.message["assessment_criteria_head"],

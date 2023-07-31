@@ -179,8 +179,31 @@ def validate_amount(doc):
 def get_fee_structures(doctype, txt, searchfield, start, page_len, filters):
 	program=""
 	for d in frappe.get_all("Current Educational Details",{"parent":filters.get("student")},['semesters']):
-		program+=d.semesters
-	return frappe.db.sql("""select name,program,student_category,academic_year from `tabFee Structure` where program IN ('{0}') and (name like '%{1}%' or program like '%{1}%' or student_category like '%{1}%' or academic_year like '%{1}%')""".format(program,txt))
+		program=d.semesters
+	############################## Search Field Code################# 	
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)
+
+	student_category=''
+	if filters.get("student_category"):
+		student_category=" or student_category =%s "%(filters.get("student_category"))
+
+
+	data=frappe.db.sql("""select name,program,student_category,academic_year from `tabFee Structure` where ({key} like %(txt)s or {scond}) 
+	 					 and docstatus=1 and (program = '{program}' or academic_year = '{academic_year}' or  academic_term='{academic_term}' {student_category})
+						 """.format(
+					**{
+						"key": searchfield,
+						"scond": searchfields,
+						"program":program,
+						"academic_year":filters.get("academic_year"),
+						"academic_term":filters.get("academic_term"),
+						"student_category":student_category
+					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	############################ End Search Field Code ###############
+	# return frappe.db.sql("""select name,program,student_category,academic_year from `tabFee Structure` where program IN ('{0}') and docstatus=1 and 
+	# 						(name like '%{1}%' or program like '%{1}%' or student_category like '%{1}%' or academic_year like '%{1}%')""".format(program,txt))
+	return data
 
 @frappe.whitelist()
 def get_progarms(doctype, txt, searchfield, start, page_len, filters):
@@ -214,13 +237,21 @@ def get_term(doctype, txt, searchfield, start, page_len, filters):
 	return data
 	
 @frappe.whitelist()
-def get_fee_components(fee_structure):
-    if fee_structure:
-        fees = frappe.get_all("Fee Component", fields=["fees_category", "description", "amount","receivable_account",
-                                                    "income_account","grand_fee_amount","outstanding_fees","waiver_type","percentage","waiver_amount",
-                                                    "total_waiver_amount"] , 
-                                                filters={"parent": fee_structure}, order_by= "idx asc")
-        return fees
+def get_fee_components(fee_structure=None,student=None):
+	fees=[]
+	if fee_structure and student:
+		fee_waiver=frappe.get_all("Fees Waiver",{"student":student,"fee_structure":fee_structure},['name'])
+		if not fee_waiver:
+			fees = frappe.get_all("Fee Component", fields=["fees_category", "description", "amount","receivable_account",
+												"income_account","grand_fee_amount","outstanding_fees","waiver_type","percentage","waiver_amount",
+												"total_waiver_amount"] , 
+											filters={"parent": fee_structure}, order_by= "idx asc")
+		else:
+			fees = frappe.get_all("Fee Component", fields=["fees_category", "description", "amount","receivable_account",
+												"income_account","grand_fee_amount","outstanding_fees","waiver_type","percentage","waiver_amount",
+												"total_waiver_amount"] , 
+											filters={"parent": fee_waiver[0]['name']}, order_by= "idx asc")	
+	return fees
 
 @frappe.whitelist()
 def get_year(doctype, txt, searchfield, start, page_len, filters):
