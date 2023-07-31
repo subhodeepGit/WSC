@@ -390,7 +390,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-07-24 10:13:04.549243",
+ "modified": "2023-07-28 12:44:54.415002",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "HRMS (Base)",
@@ -410,6 +410,9 @@
   },
   {
    "role": "Employee"
+  },
+  {
+   "role": "Grievance Cell Member"
   }
  ],
  "sequence_id": 48.0,
