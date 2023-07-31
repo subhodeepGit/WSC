@@ -75,7 +75,6 @@ class LeaveApplication(Document):
 		data["name"]=self.name
 		employee_reporting_aproverr(data)
 	def after_insert(self):
-		print("\n\n\nHello Workld")
 		self.set_shift_request_permission_reporting_authority()
 	def validate(self):
 		validate_active_employee(self.employee)
@@ -102,7 +101,7 @@ class LeaveApplication(Document):
 		# 	pass
 		# else:
 		# 	raise frappe.throw("You are not allowed to create leave applications for other employees.")
-		print("\n\n\nCurrent Status",self.current_status)
+		# print("\n\n\nCurrent Status",self.current_status)
 	
 	def on_update(self):
 		if self.current_status == "Forwarded to Approving Authority":
@@ -155,7 +154,6 @@ class LeaveApplication(Document):
 	
 	def set_shift_request_permission_reporting_authority(doc):
 		data={}
-		# data["reporting_authority_email"]=self.reporting_authority_email
 		if doc.reporting_authority_email:
 
 			print("\n\n\nEmail")
@@ -172,12 +170,15 @@ class LeaveApplication(Document):
 
 
 	def set_shift_request_permission_approver(doc):
+		print("\n\n\nFirst")
 		if doc.current_status=="Forwarded to Approving Authority":
+			print("\n\n\nSecond")
 			for emp in frappe.get_all("Employee", {'leave_approver':doc.leave_approver}, ['leave_approver']):
+				print("\n\n\nThird")
 				if emp.leave_approver:
+					print("\n\n\nFouth")
 					print(emp.leave_approver)
 					add_user_permission(doc.doctype,doc.name,emp.leave_approver,doc)	
-					# add_user_permission("Shift Request",doc.name, emp.get('shift_request_approver'), doc)
 				else:
 					frappe.msgprint("Shift Request Not Found")	
 

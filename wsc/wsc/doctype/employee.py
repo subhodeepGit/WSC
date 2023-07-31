@@ -44,7 +44,10 @@ class Employee(NestedSet):
 	def validate(self):
 		from erpnext.controllers.status_updater import validate_status
 		validate_status(self.status, ["Active", "Inactive", "Suspended", "Left"])
-		self.permission()
+		# if self.user_id:
+		# 	print("NAAA")
+		# 	print(self.user_id)
+		# 	self.permissions()
 		self.employee = self.name
 		self.set_employee_name()
 		self.validate_date()
@@ -63,39 +66,23 @@ class Employee(NestedSet):
 			if existing_user_id:
 				remove_user_permission(
 					"Employee", self.name, existing_user_id)
-	# def user_poerm(doc):
-	# 	user = frappe.session.user
-	# 	employee = frappe.get_value("Employee", {"user_id": user}, ["name", "user_id"])
-
-	# 	if employee and employee.get("user_id") == user:
-	# 		print("\n\n\nHELLO WORLD")
-	# 		add_user_permission("Employee", employee.get("name"), employee.get("user_id"))
-	
-	def permission(doc):
+	def on_change(self):
+		self.permissions()
+	def after_insert(self):
+		print("\n\nAfter ")
+		self.permissions()
+		
+	def permissions(doc):
 		print("\n\nHEllo")
 		if doc.user_id:
 			print("\n\n")
 			add_user_permission(doc.doctype,doc.name,doc.user_id,doc)
-	# def add_user_permission(doctype, docname, user,ref=None):
-	# 	# Check if the user permission already exists
-	# 	if not frappe.db.exists("User Permission", {"allow": doctype, "for_value": docname, "user": user}):
-	# 		user_permission = frappe.new_doc("User Permission")
-	# 		user_permission.user = user
-	# 		user_permission.allow = doctype
-	# 		user_permission.for_value = docname
-	# 		user_permission.save(ignore_permissions=True)
-	# 		frappe.publish_realtime(event='update_user_permissions')
-	# 		return True
-
-	# 	return False
-
-	# def create_user_permission_for_employee():
-	# 	user = frappe.session.user
-	# 	employee = frappe.get_value("Employee", {"user_id": user}, ["name", "user_id"])
-
-	# 	if employee and employee.get("user_id") == user:
-	# 		add_user_permission("Employee", employee.get("name"), employee.get("user_id"))
-	
+		if doc.leave_approver:
+			print("\n\nHULK")
+			add_user_permission(doc.doctype,doc.name,doc.leave_approver,doc)
+		if doc.reporting_authority_email:
+			print("\n\nSAKTIMAN")
+			add_user_permission(doc.doctype,doc.name,doc.reporting_authority_email,doc)
 
 	def after_rename(self, old, new, merge):
 		self.db_set("employee", new)
