@@ -4,11 +4,11 @@ from frappe import _
 from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
 from wsc.wsc.notification.custom_notification import employee_shift_reporting_aprover,employee_shift_approver,shift_req_hr
 def validate(self,method):
-	session_user_employee_code = frappe.get_value("Employee", {"user_id": frappe.session.user}, "name")
-	if session_user_employee_code == self.employee:
-		pass
-	else:
-		raise frappe.throw("You are not allowed to create shift request for other employees.")
+	# session_user_employee_code = frappe.get_value("Employee", {"user_id": frappe.session.user}, "name")
+	# if session_user_employee_code == self.employee:
+	# 	pass
+	# else:
+	# 	raise frappe.throw("You are not allowed to create shift request for other employees.")
 		
 	if self.workflow_state=="Pending Approval from Reporting Authority":
 		employee_shift_reporting_aprover(self)
