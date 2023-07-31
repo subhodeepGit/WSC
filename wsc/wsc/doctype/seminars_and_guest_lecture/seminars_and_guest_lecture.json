@@ -53,7 +53,8 @@
   {
    "fieldname": "duration",
    "fieldtype": "Float",
-   "label": "Duration"
+   "label": "Duration",
+   "non_negative": 1
   },
   {
    "fieldname": "student_id",
@@ -64,7 +65,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-02-08 16:11:47.990220",
+ "modified": "2023-07-28 16:53:03.084663",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Seminars And Guest Lecture",
