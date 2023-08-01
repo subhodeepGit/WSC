@@ -1,5 +1,156 @@
 [   
     {
+  "docstatus": 0,
+  "doctype": "Workflow",
+  "document_type": "Attendance Request",
+  "is_active": 1,
+  "modified": "2023-07-31 12:16:28.635683",
+  "name": "Employee Attendance Request Workflow",
+  "override_status": 0,
+  "send_email_alert": 1,
+  "states": [
+   {
+    "allow_edit": "Employee",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Employee Attendance Request Workflow",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Draft",
+    "update_field": null,
+    "update_value": null
+   },
+   {
+    "allow_edit": "Employee",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Employee Attendance Request Workflow",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Pending",
+    "update_field": null,
+    "update_value": null
+   },
+   {
+    "allow_edit": "Employee",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Employee Attendance Request Workflow",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Submit",
+    "update_field": null,
+    "update_value": null
+   },
+   {
+    "allow_edit": "Employee",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Employee Attendance Request Workflow",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Rejected",
+    "update_field": "",
+    "update_value": "Rejected"
+   },
+   {
+    "allow_edit": "Employee",
+    "doc_status": "1",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Employee Attendance Request Workflow",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Approved",
+    "update_field": "",
+    "update_value": "Approved"
+   },
+   {
+    "allow_edit": "HR Admin",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Employee Attendance Request Workflow",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Forwarded to HR",
+    "update_field": null,
+    "update_value": null
+   },
+   {
+    "allow_edit": "Employee",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Employee Attendance Request Workflow",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Pending Approval",
+    "update_field": null,
+    "update_value": null
+   }
+  ],
+  "transitions": [
+   {
+    "action": "Submit",
+    "allow_self_approval": 1,
+    "allowed": "Employee",
+    "condition": null,
+    "next_state": "Forwarded to HR",
+    "parent": "Employee Attendance Request Workflow",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Draft"
+   },
+   {
+    "action": "Submit",
+    "allow_self_approval": 1,
+    "allowed": "HR Admin",
+    "condition": null,
+    "next_state": "Pending Approval",
+    "parent": "Employee Attendance Request Workflow",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Forwarded to HR"
+   },
+   {
+    "action": "Approve",
+    "allow_self_approval": 1,
+    "allowed": "Employee",
+    "condition": null,
+    "next_state": "Approved",
+    "parent": "Employee Attendance Request Workflow",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Pending Approval"
+   },
+   {
+    "action": "Reject",
+    "allow_self_approval": 1,
+    "allowed": "Employee",
+    "condition": null,
+    "next_state": "Rejected",
+    "parent": "Employee Attendance Request Workflow",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Pending Approval"
+   }
+  ],
+  "workflow_name": "Employee Attendance Request Workflow",
+  "workflow_state_field": "workflow_state"
+ },
+    {
      "docstatus": 0,
      "doctype": "Workflow",
      "document_type": "Material Request",
