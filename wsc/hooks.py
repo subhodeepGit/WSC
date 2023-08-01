@@ -322,10 +322,17 @@ doc_events = {
     },
     "Employee Separation":{
         "validate":"wsc.wsc.validations.employee_separation.validate",
+        "after_insert":"wsc.wsc.validations.employee_separation.after_insert"
     },
     "Asset Maintenance" : {
         "validate" :"wsc.wsc.doctype.asset_maintenance.validate"
-    } 
+    },
+    "Attendance Request" :{
+        "validate":"wsc.wsc.doctype.attendance_request.validate",
+        "on_submit":"wsc.wsc.doctype.attendance_request.on_submit",
+        "after_insert":"wsc.wsc.doctype.attendance_request.after_insert"
+    }
+    
 
     # "User":{
     #     "validate":"wsc.wsc.validations.user.validate",
@@ -454,23 +461,23 @@ override_doctype_dashboards = {
 # ]
 
 # fixtures = [
-# 	{"dt": "Custom DocPerm", "filters": [
-# 		["parent", "not in", ["DocType"]],
-#         ["role", '=', 'Education Admission Head']
-# 	]},
-    # {"dt": "Role","filters": [
-    #     [
-    #         "name", "in", ["Shift Approver","Grievance Cell Member"]
-    #     ]
-    # ]},
-    # # {"dt": "Role Profile"},
-    # # {"dt": "Module Profile"},
-    # {"dt" : "Workflow","filters": [
-    #     [
-    #         "name", "in", ["Employee Shift Request Workflow","Job Requisition"]
-    #     ]
-    # ]},
-    # # {"dt" : "Workflow"},
+# # 	{"dt": "Custom DocPerm", "filters": [
+# # 		["parent", "not in", ["DocType"]],
+# #         ["role", '=', 'Education Admission Head']
+# # 	]},
+#     # {"dt": "Role","filters": [
+#     #     [
+#     #         "name", "in", ["Shift Approver","Grievance Cell Member"]
+#     #     ]
+#     # ]},
+#     # # {"dt": "Role Profile"},
+#     # # {"dt": "Module Profile"},
+#     {"dt" : "Workflow","filters": [
+#         [
+#             "name", "in", ["Employee Profile Updation Workflow"]
+#         ]
+#     ]},
+    # {"dt" : "Workflow"},
     # # {"dt": "Workflow Action Master"},
     # {"dt" : "Workflow State","filters": [
     #     [
@@ -478,7 +485,7 @@ override_doctype_dashboards = {
     #     ]
     # ]},
     # {"dt" : "Translation"}
-# ]
+ ]
 website_context = {
     "favicon": "/assets/wsc/images/wsc.png",
     "splash_image": "/assets/wsc/images/wsc.png"

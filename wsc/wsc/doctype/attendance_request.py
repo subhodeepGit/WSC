@@ -6,7 +6,7 @@ from frappe.utils import add_days, date_diff, getdate
 from erpnext.setup.doctype.employee.employee import is_holiday
 
 from hrms.hr.utils import validate_active_employee, validate_dates
-from wsc.wsc.notification.custom_notification import send_mail_to_reporting,send_mail_to_hr_updation
+# from wsc.wsc.notification.custom_notification import send_mail_to_reporting,send_mail_to_hr_updation
 from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
 
 
@@ -52,8 +52,8 @@ def create_new_attendance(doc):
 
 
 def approver_mail(doc):
-	reporting_auth_id = doc.reporting_auth_id
-	# print("reporting_auth_id",reporting_auth_id)
+	reporting_auth_id = doc.reporting_authority_id
+	print("reporting_auth_id",reporting_authority_id)
 	if reporting_auth_id:
 		data={}
 		data["reporting_authority_email"]=reporting_auth_id
@@ -62,15 +62,16 @@ def approver_mail(doc):
 		data["name"]=doc.name
 		send_mail_to_reporting(data)
 	else :
-		frappe.throw("Setup the user id of the reporting authority {}".format(doc.reporting_authority))
+		frappe.throw("Setup the user id of the reporting authority {}".format(doc.reporting_authority_id))
 
 def validate(doc,method):
+	pass
 		
 		# print(self.workflow_state)
-		if doc.workflow_state == "Pending Approval":
-			approver_mail(doc)
-		if doc.workflow_state=="Forwarded to HR":
-			send_mail_to_hr(doc)
+		# if doc.workflow_state =="Pending Approval":
+		# 	approver_mail(doc)
+		# if doc.workflow_state=="Forwarded to HR":
+		# 	send_mail_to_hr(doc)
 
 def send_mail_to_hr(doc):
 		hr_mail = frappe.get_all("User",filters={'role':"HR Admin"},pluck='name')
@@ -82,29 +83,31 @@ def send_mail_to_hr(doc):
 			data["current_status"]=doc.workflow_state
 			data["name"]=doc.name
 			send_mail_to_hr_updation(data)
+			
 		else :
 			frappe.throw("Setup HR Admin User ID")
 
 #Code for user restrictions for reporting authority.
 
 def after_insert(doc,method):
-    set_user_permission(doc)
+	print("\n\n\nUser Permission")
+	set_user_permission(doc)
 def set_user_permission(doc):
-    if doc.reporting_authority:
-        set_attendance_request_permission_reporting_authority(doc, doc.reporting_auth_id)
+	if doc.reporting_authority_id:
+		set_attendance_request_permission_reporting_authority(doc)
 	
 def on_trash(doc):
-    delete_permission(doc)
+	delete_permission(doc)
 def delete_permission(doc):
-    for d in frappe.get_all("User Permission",{"reference_doctype":doc.doctype,"reference_docname":doc.name}):
-        frappe.delete_doc("User Permission",d.name)
-def set_attendance_request_permission_reporting_authority(doc,reporting_authority):
-    for emp in frappe.get_all("Employee", {'reporting_authority_email':reporting_authority}, ['reporting_authority_email']):
-        if emp.get('reporting_authority_email'):
-            print(emp.get('reporting_authority_email'))
-            add_user_permission("Attendance Request",doc.name, emp.get('reporting_authority_email'), doc)
-        else:
-            frappe.msgprint("Reporting Authority Not Found")
+	for d in frappe.get_all("User Permission",{"reference_doctype":doc.doctype,"reference_docname":doc.name}):
+		frappe.delete_doc("User Permission",d.name)
+def set_attendance_request_permission_reporting_authority(doc):
+	for emp in frappe.get_all("Employee", {'reporting_authority_email':doc.reporting_authority_id}, ['reporting_authority_email']):
+		if emp.get('reporting_authority_email'):
+			print(emp.get('reporting_authority_email'))
+			add_user_permission("Attendance Request",doc.name, emp.get('reporting_authority_email'), doc)
+		else:
+			frappe.msgprint("Reporting Authority Not Found")
 
 #code to hide the action button
 
@@ -121,7 +124,7 @@ def is_verified_user(docname):
 
 	if "HR Manager/CS Officer" in roles or "HR Admin" in roles or "Director" in roles or "Admin" in roles or "Administrator" in roles:
 		return True
-	if doc.workflow_state == "Pending Approval" and frappe.session.user ==reporting_auth_id:
+	if doc.workflow_state == "Pending Approval" and frappe.session.user ==reporting_authority_id:
 		return True
 	else :
 		return False
