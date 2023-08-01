@@ -36,25 +36,27 @@ frappe.ui.form.on('Entrance Exam Centre Allocation', {
 	entrance_exam_declaration:function(frm){
 		let arr = [" "]
 		// frm.set_df_property('centre', 'options', arr)
-		frappe.call({
-			method:'wsc.wsc.doctype.entrance_exam_centre_allocation.entrance_exam_centre_allocation.get_centers',
-			args:{
-				center_selection:frm.doc.center_selection
-			},
-			callback: function(result){
-				
-				const res = result.message
-				
-				res.map((r) => {
-					const { center } = r
-					arr.push(center)
-					// frm.set_df_property('centre', 'options', arr)
+		if(frm.doc.center_selection){
+			frappe.call({
+				method:'wsc.wsc.doctype.entrance_exam_centre_allocation.entrance_exam_centre_allocation.get_centers',
+				args:{
+					center_selection:frm.doc.center_selection
+				},
+				callback: function(result){
 					
-				})
-				// console.log(arr);
-				set_field_options("centre" , arr)
-			}
-		})
+					const res = result.message
+					
+					res.map((r) => {
+						const { center } = r
+						arr.push(center)
+						// frm.set_df_property('centre', 'options', arr)
+						
+					})
+					// console.log(arr);
+					set_field_options("centre" , arr)
+				}
+			})
+		}
 	},
 	centre:function(frm){
 		console.log(1);

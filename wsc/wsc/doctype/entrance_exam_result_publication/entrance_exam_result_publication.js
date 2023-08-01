@@ -10,6 +10,14 @@ frappe.ui.form.on('Entrance Exam Result Publication', {
 				}
 			}
 		})
+		frm.set_query("department", function(){
+	        return{
+	            filters:{
+	                "is_group":1,
+	                "is_stream": 1
+	            }
+	        }
+	    });
 
 		frm.set_query("applicant_id" , function() {
 			return {
