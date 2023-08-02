@@ -24,6 +24,7 @@ class ExamAssessmentResult(Document):
     def on_cancel(self):
         self.cancel_complete_course_enrollment()
     def validate(self):
+        self.validate_provisional_admission()
         self.validate_duplicate_for_save()
         self.validate_duplicate_for_submit()
         self.set_evaluation_result_item()
@@ -35,6 +36,10 @@ class ExamAssessmentResult(Document):
         if len(self.assessment_result_item) > 0:
             self.calculate_percentage_grade_result()
 
+    def validate_provisional_admission(self):
+        for i in frappe.get_all("Program Enrollment",{"student":self.student,"academic_term":self.academic_term,"program":self.program,},['is_provisional_admission','name']):
+            if i.is_provisional_admission=="Yes":
+                frappe.throw(_("Student having ID No. <b>'{0}'</b> is currently provisionally Admitted in Course Enrollment <b>'{1}'</b>, Kindly change the status to Admitted.").format(self.student,getlink("Program Enrollment",i.name),self.student))
 
     def set_assessment_result_items(self):
         allocations=0
@@ -182,7 +187,6 @@ class ExamAssessmentResult(Document):
             self.sgpa_in_to_credit_point= float(self.credit_point) * float(self.sgpa)
     
     def calculate_percentage_grade_result(self):
-        print("\n\n\nHELLO WORKS")
         marks_earned = total_marks = 0
         module_marks = 0
         allocations = 0
@@ -199,9 +203,7 @@ class ExamAssessmentResult(Document):
             module_marks+=flt(x.total_course_marks)
         if module_marks > 0 :
             self.total_marks=module_marks
-            print("\n\nMarks",marks_earned)
             self.secured_marks=marks_earned
-            print("\n\nSecured Marks",self.secured_marks)
             self.percentage = round((marks_earned/module_marks)*100, 2)
             self.percentage = "{:.2f}".format((marks_earned/module_marks)*100)
         self.total_score = 0.0
@@ -238,9 +240,7 @@ class ExamAssessmentResult(Document):
         #     self.result="Backlog"
 
         if self.maximum_score > 0:
-            print("\n\nEarned Marks",marks_earned)
             self.secured_marks=marks_earned
-            print("\n\n",self.secured_marks)
             self.grade = get_grade(self.grading_scale, (self.secured_marks/self.total_marks)*100)
 
         for d in self.evaluation_result_item:

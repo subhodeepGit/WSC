@@ -57,14 +57,40 @@ def on_change(self,method):
 		user.email=self.student_email_id
 		user.save()
 def validate(doc,method):
+	validate_pin_code(doc)
+	validate_job_date(doc)
 	# attachImage(doc)s
 	check_unique(doc)
 	duplicate_row_validation(doc, "education_details", ['qualification','percentage'])
 	duplicate_row_validation(doc, "siblings", ['full_name', 'gender'])
 	duplicate_row_validation(doc, "disable_type", ['disability_type', 'percentage_of_disability'])
 	records = frappe.get_all("Program Intermit Form",{"form_status":"Approve"},["student","student_name"])
+def validate_job_date(doc):
+	for d in doc.get("experience_detail"):
+			if d.job_start_date  > d.job_end_date:
+				frappe.throw("<b>Job Start Date</b> Should be Greater than <b>Job End Date</b>")  
+def validate_pin_code(doc):
+	
+	if doc.pin_code:
+		if len(doc.pin_code)<6:
+			frappe.throw("<b>Pincode</b> must be 6 Digits")
+		if len(doc.pin_code)>6:
+			frappe.throw("<b>Pincode</b> must be 6 Digits")
+	if doc.student_mobile_number:
+		if len(doc.student_mobile_number)<10:
+			frappe.throw("<b>Mobile Number</b> must be 10 Digits")
+		if len(doc.student_mobile_number)>10:
+			frappe.throw("<b>Mobile Number</b> must be 10 Digits")
 
 
+		if not check_int(doc.pin_code):
+			frappe.throw("Pincode must be the integer.")
+		if not check_int(doc.student_mobile_number):
+			 frappe.throw("Mobile Number must be the integer.")
+
+def check_int(pincode_1):
+	import re
+	return re.match(r"[-+]?\d+(\.0*)?$", pincode_1) is not None
 		# frappe.throw(data)
 		# return data
 # def attachImage(self):

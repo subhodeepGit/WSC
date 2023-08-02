@@ -14,6 +14,26 @@ def validate(self,method):
 	if self.workflow_state=="Sent For Approval":
 		employee_separation_director_mail(self)
 
+def after_insert(doc,method):
+	print("\n\n\nUser Permission")
+	set_user_permission(doc)
+def set_user_permission(doc):
+	if doc.reporting_authority:
+		set_attendance_request_permission_reporting_authority(doc)
+	
+def on_trash(doc):
+	delete_permission(doc)
+def delete_permission(doc):
+	for d in frappe.get_all("User Permission",{"reference_doctype":doc.doctype,"reference_docname":doc.name}):
+		frappe.delete_doc("User Permission",d.name)
+def set_attendance_request_permission_reporting_authority(doc):
+	for emp in frappe.get_all("Employee", {'reporting_authority_email':doc.reporting_authority}, ['reporting_authority_email']):
+		if emp.get('reporting_authority_email'):
+			print(emp.get('reporting_authority_email'))
+			add_user_permission("Employee Separation",doc.name, emp.get('reporting_authority_email'), doc)
+		else:
+			frappe.msgprint("Reporting Authority Not Found")
+
 @frappe.whitelist()
 def is_verified_user(docname):
 	doc = frappe.get_doc("Employee Separation",docname)
