@@ -14,7 +14,7 @@ def get_centers(center_selection):
 
 	current_centers = frappe.get_all('Current Centers' ,{'parent':center_selection }, ['center'])
 	print("\n\n\n")
-	print(current_centers)
+	print(center_selection)
 	
 	return current_centers
 

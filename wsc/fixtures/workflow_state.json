@@ -610,5 +610,104 @@
   "name": "Approved by Purchase Manager-MM",
   "style": "",
   "workflow_state_name": "Approved by Purchase Manager-MM"
- }
+ },
+ {
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-07-26 17:43:43.703065",
+    "name": "Approved by Board of Directors",
+    "style": "",
+    "workflow_state_name": "Approved by Board of Directors"
+},
+{
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-07-26 17:43:58.318376",
+    "name": "Rejected by Board of Directors",
+    "style": "",
+    "workflow_state_name": "Rejected by Board of Directors"
+},
+{
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-07-26 17:58:47.962636",
+    "name": "Approved by Dy, Principal",
+    "style": "",
+    "workflow_state_name": "Approved by Dy, Principal"
+},
+{
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-07-26 17:59:07.315149",
+    "name": "Rejected by Dy, Principal",
+    "style": "",
+    "workflow_state_name": "Rejected by Dy, Principal"
+},
+{
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-07-26 17:59:57.236052",
+    "name": "Approved by Dy. Principal",
+    "style": "",
+    "workflow_state_name": "Approved by Dy. Principal"
+},
+{
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-07-26 18:00:07.087191",
+    "name": "Rejected by Dy. Principal",
+    "style": "",
+    "workflow_state_name": "Rejected by Dy. Principal"
+},
+{
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-07-14 12:26:13.029187",
+    "name": "Approved by Director",
+    "style": "",
+    "workflow_state_name": "Approved by Director"
+},
+{
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-07-14 12:26:28.030213",
+    "name": "Rejected by Director",
+    "style": "",
+    "workflow_state_name": "Rejected by Director"
+},
+{
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-07-14 14:59:10.369313",
+    "name": "Approved by CEO",
+    "style": "",
+    "workflow_state_name": "Approved by CEO"
+},
+{
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-07-14 14:59:33.031305",
+    "name": "Rejected by CEO",
+    "style": "",
+    "workflow_state_name": "Rejected by CEO"
+},
+{
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-07-14 12:26:54.422965",
+    "name": "Approved by Course Manager",
+    "style": "",
+    "workflow_state_name": "Approved by Course Manager"
+}
 ]

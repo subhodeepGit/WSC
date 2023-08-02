@@ -105,6 +105,7 @@ def get_qualified_applicants(rank_card_master , academic_year , academic_term , 
 
 @frappe.whitelist()
 def generate_rank_cards(doc):
+	print("\n\n\n")
 	data = json.loads(doc)
 	
 	for i in data['ranked_students_list']:
@@ -129,7 +130,11 @@ def generate_rank_cards(doc):
 			'category_based_rank' : i['category_based_rank'],
 			'pwd_based_rank' : i['pwd_based_rank']
 		})
+		rank_data.save()
+		rank_data.submit()
 		
+		print("\n\n\n\n")
+		print(i['applicant_id'])
 		student_applicant = frappe.get_doc("Student Applicant" , i['applicant_id'])
 		
 		if(len(student_applicant.student_rank) == 0):
@@ -139,9 +144,9 @@ def generate_rank_cards(doc):
 				'pwd_based_rank' : i['pwd_based_rank']
 			})
 
-		rank_data.save()
-		rank_data.submit()
 		student_applicant.save()
+		# student_applicant.update()
+		# student_applicant.submit()
 	
 
 

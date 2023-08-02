@@ -62,10 +62,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-11-29 12:55:44.956859",
+ "modified": "2023-07-31 11:14:31.964734",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Documents Template",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -83,5 +84,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

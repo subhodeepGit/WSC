@@ -29,7 +29,7 @@ class StudentReregistrationTool(Document):
             condition1 = 'and school_house=%(school_house)s' if self.school_house else " "
             self.get_students_from = "Program Enrollment"
             condition2 = 'and student_batch_name=%(student_batch)s' if self.student_batch else " "
-            students = frappe.db.sql('''select student, student_name, student_batch_name, roll_no,permanant_registration_number, student_category from `tabProgram Enrollment`   
+            students = frappe.db.sql('''select student, student_name, student_batch_name, roll_no,permanant_registration_number, student_category, admission_status, is_provisional_admission from `tabProgram Enrollment`   
                 where program=%(program)s and academic_year=%(academic_year)s and school_house=%(school_house)s {0} {1} {2} and docstatus != 2'''
                                     #   and school_house=%(school_house)s 
                 .format(condition, condition1, condition2), self.as_dict(), as_dict=1)          
@@ -81,8 +81,8 @@ def enroll_stud(self):
             prog_enrollment.academic_year = self.new_academic_year
             prog_enrollment.academic_term = self.new_academic_term
             prog_enrollment.school_house = self.new_class
-            prog_enrollment.is_provisional_admission="No"
-            prog_enrollment.admission_status="Admitted"
+            prog_enrollment.is_provisional_admission=stud.is_provisional_admission
+            prog_enrollment.admission_status=stud.admission_status
             # prog_enrollment.student_batch_name = stud.student_batch_name if stud.student_batch_name else self.new_student_batch
             if self.new_student_batch:
                 prog_enrollment.student_batch_name = self.new_student_batch

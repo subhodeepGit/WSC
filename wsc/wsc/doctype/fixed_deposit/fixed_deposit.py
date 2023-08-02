@@ -10,8 +10,21 @@ class FixedDeposit(Document):
     def validate(self):
         self.maturity_date_calculate()
 
-    # def on_submit(self):
-    #     je_pay(self)    
+    def on_submit(self):
+        je_pay(self)  
+
+    def on_cancel(self):
+        if self.matured==0 and self.matured_posting_journal_entry:
+            cancel_doc = frappe.get_doc("Journal Entry",self.posting_journal_entry)
+            cancel_doc.cancel()
+        else:
+            frappe.throw("Already Maturity Posting Is Completed")
+
+    def on_update_after_submit(self):
+        if not self.matured_posting_journal_entry:
+            matured_je_pay(self)
+        else:
+            frappe.throw("Already Posting Is Completed")                
 
     def maturity_date_calculate(self):
         interest_payable=self.interest_payable
@@ -39,37 +52,42 @@ class FixedDeposit(Document):
             fd_start_date=datetime.strptime(self.fd_start_date, '%Y-%m-%d').date()
             tenurein_months=int(self.tenurein_annually)*12
             self.maturity_date=fd_start_date + relativedelta(months=tenurein_months)
-        
 
-def je_pay(self):
-    for d in self.get("references"):
-        t=d.total_amount
-        acc=d.account_paid_from
+
+def matured_je_pay(self):
     je = frappe.new_doc("Journal Entry")
     je.posting_date = self.posting_date
     je.append("accounts",{
-    'account' : self.paid_to,
-    'party_type' : self.party_type,
-    'party' : self.party,
-    'credit_in_account_currency' : t,
-    'cost_center' : self.cost_center,
-    'account_currency': self.paid_to_account_currency,
-    'balance': get_balance_on(self.paid_to, self.posting_date, cost_center=self.cost_center)
+    'account' : self.bank_account,
+    'debit_in_account_currency' :self.final_maturity_amount,
     })
-    
     je.append("accounts",{
-    'account' : acc,
-    'party_type' : self.party_type,
-    'party' : self.party,
-    'debit_in_account_currency' : t,
-    'cost_center' : self.cost_center,
-    'account_currency': self.paid_to_account_currency,
-    'balance': get_balance_on(acc, self.posting_date, cost_center=self.cost_center)
+    'account' : self.fd_account,
+    'credit_in_account_currency' : self.fd_amount,
+    })
+    je.append("accounts",{
+    'account' : self.interest_account,
+    'credit_in_account_currency' : self.final_maturity_interest_amount,
     })
     je.save()
     je.submit()
-    self.jv_entry_voucher_no=je.name
-    frappe.db.set_value("Payment Refund",self.name,"jv_entry_voucher_no",je.name)
+    frappe.db.set_value("Fixed Deposit",self.name,"matured_posting_journal_entry",je.name)
+
+def je_pay(self):
+    je = frappe.new_doc("Journal Entry")
+    je.posting_date = self.posting_date
+    je.append("accounts",{
+    'account' : self.bank_account,
+    'credit_in_account_currency' : self.fd_amount,
+    })
+    je.append("accounts",{
+    'account' : self.fd_account,
+    'debit_in_account_currency' :self.fd_amount,
+    })
+    je.save()
+    je.submit()
+    # self.posting_journal_entry=je.name
+    frappe.db.set_value("Fixed Deposit",self.name,"posting_journal_entry",je.name)
 
 @frappe.whitelist()
 def calculate_fd(fd_amount=None, interest_rate=None, interest_payable=None,interest_type=None,days=None,
