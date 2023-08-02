@@ -186,6 +186,75 @@ def employee_separation_hr_mail(doc):
     send_mail(recipient_emails, sub, msg)
     frappe.msgprint("Employee Separation Details status is sent to the HR")
 
+    ######################################################################################################Attendance Request#############
+
+def send_mail_to_hr_updation(doc):
+    sub="""Attendance Request Approval Notification"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Attendance Request Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+    msg +="""<b>---------------------Attendance Request Details---------------------</b><br>"""
+    msg+="""<b>Employee ID:</b>  {0}<br>""".format(doc.get('employee'))
+    msg+="""<b>Employee Name:</b>  {0}<br>""".format(doc.get('employee_name'))
+    msg+="""<b>From Date:</b>  {0}<br>""".format(doc['from_date'])
+    msg+="""<b>To Date:</b>  {0}<br>""".format(doc['to_date'])
+    shift_app_url = get_url_to_form('Attendance Request', doc.get('name'))
+    msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(shift_app_url)
+
+    recipients = frappe.get_all("User", filters={'role':'HR Admin'}, fields=['email'])
+    recipient_emails = [recipient.get('email') for recipient in recipients]
+
+    send_mail(recipient_emails,sub,msg)
+    frappe.msgprint("Email sent to HR")  
+
+def send_mail_to_reporting(doc):
+    sub="""Attendance Request Approval Notification"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Attendance Request Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+    msg +="""<b>---------------------Attendance Request Details---------------------</b><br>"""
+    msg+="""<b>Employee ID:</b>  {0}<br>""".format(doc.get('employee'))
+    msg+="""<b>Employee Name:</b>  {0}<br>""".format(doc.get('employee_name'))
+    msg+="""<b>From Date:</b>  {0}<br>""".format(doc['from_date'])
+    msg+="""<b>To Date:</b>  {0}<br>""".format(doc['to_date'])
+    shift_app_url = get_url_to_form('Attendance Request', doc.get('name'))
+    msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(shift_app_url)
+    send_mail(frappe.db.get_value("Attendance Request",doc.get('name'),"reporting_authority_id"),sub,msg)
+    frappe.msgprint("Email sent to Reporting Authority") 
+
+def attendance_update_mail(doc):
+    sub="""Attendance Request Status Notification"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Attendance Request Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+    msg +="""<b>---------------------Attendance Request Details---------------------</b><br>"""
+    msg+="""<b>Employee ID:</b>  {0}<br>""".format(doc.get('employee'))
+    msg+="""<b>Employee Name:</b>  {0}<br>""".format(doc.get('employee_name'))
+    msg+="""<b>From Date:</b>  {0}<br>""".format(doc.get('from_date'))
+    msg+="""<b>To Date:</b>  {0}<br>""".format(doc.get('to_date'))
+    msg+="""<b>Status:</b> {0}<br>""".format(doc.get('worklow_state'))
+    shift_app_url = get_url_to_form('Attendance Request', doc.get('name'))
+    msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(shift_app_url)
+
+    recipients = frappe.get_all("User", filters={'role':'HR Admin'}, fields=['email'])
+    recipient_emails = [recipient.get('email') for recipient in recipients]
+
+    send_mail(recipient_emails,sub,msg)
+    frappe.msgprint("Status Notification sent to HR and Employee")
+
+def attendance_update_mail_employee(doc):
+    sub="""Attendance Request Status Notification"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Attendance Request Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+    msg +="""<b>---------------------Attendance Request Details---------------------</b><br>"""
+    msg+="""<b>Employee ID:</b>  {0}<br>""".format(doc.get('employee'))
+    msg+="""<b>Employee Name:</b>  {0}<br>""".format(doc.get('employee_name'))
+    msg+="""<b>From Date:</b>  {0}<br>""".format(doc.get('from_date'))
+    msg+="""<b>To Date:</b>  {0}<br>""".format(doc.get('to_date'))
+    msg+="""<b>Status:</b> {0}<br>""".format(doc.get('worklow_state'))
+    shift_app_url = get_url_to_form('Attendance Request', doc.get('name'))
+    msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(shift_app_url)
+
+    send_mail(frappe.db.get_value("Attendance Request",doc.get('name'),"employee_email"),sub,msg)
+    frappe.msgprint("Status Notification sent to HR and Employee")
+###############################################################################################################################################################
 def student_applicant_approved(doc):
     sub="""<p><b>Congratulation !! Your Application Form has been Approved</b></p><br>"""
     msg+="""Further Process, we will connect with you soon.</b><br>"""
