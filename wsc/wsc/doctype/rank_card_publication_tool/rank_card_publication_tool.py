@@ -130,11 +130,11 @@ def generate_rank_cards(doc):
 			'category_based_rank' : i['category_based_rank'],
 			'pwd_based_rank' : i['pwd_based_rank']
 		})
+
+		print(rank_data)
 		rank_data.save()
 		rank_data.submit()
 		
-		print("\n\n\n\n")
-		print(i['applicant_id'])
 		student_applicant = frappe.get_doc("Student Applicant" , i['applicant_id'])
 		
 		if(len(student_applicant.student_rank) == 0):

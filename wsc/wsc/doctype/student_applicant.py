@@ -28,6 +28,10 @@ class StudentApplicant(Document):
                 "Education Qualifications Details": {
                     "doctype": "Educational Details"
                 },
+                # "Education Qualifications Details": {
+                #     "doctype": "Education Qualifications Details"
+                # },
+                # Education Qualifications Details
                 "Document List": {
                     "doctype": "Document List"
                 }
@@ -58,8 +62,11 @@ class StudentApplicant(Document):
         # update_education_parameters(doc)
         duplicate_row_validation(doc,"program_priority",["programs"])
         # validate_seat_reservation_type(doc)
+        
         if len(doc.document_list ) == 0:
+            print("\n\n\nDOc Trigger")
             add_document_list_rows(doc)
+
         get_admission_fees(doc)
         mobile_number_validation(doc)
         email_validation(doc)
@@ -204,6 +211,11 @@ def validate_pin_code(doc):
 
 def on_update(doc,method):
     if doc.docstatus==1:
+        print("\n\n\nOn update")
+
+        ## if Approve is selected multiple times
+        for d in doc.counselling_based_program_priority:
+            print(d.approve)
         validate_attachment(doc)
         student = frappe.get_list("Student",  filters= {"student_applicant": doc.name})
         # if len(last_result)==0:
@@ -260,10 +272,13 @@ def add_document_list_rows(doc):
     if doc.student_category and doc.academic_year:
         doc.set("document_list",[])
         for d in get_document_list_by_category(doc):
+            print("\n\n\n")
+            print(d)
             doc.append("document_list",{
                 "document_name":d.document_name,
                 "mandatory":d.mandatory,
-                "is_available" :d.is_available
+                "is_available" :d.is_available,
+                "mandatory_during_counselling":d.mandatory_during_counselling
             })
 
 def status_validation(doc):
@@ -346,9 +361,11 @@ def get_document_list_by_category(doc):
     else:
         filters.update({"parent":["IN",[d.student_admission for d in doc.get('program_priority')]],"parenttype":"Student Admission"})
         group_by="document_name"
-    doc_list  = frappe.db.sql("""SELECT DL.document_name, DL.mandatory, DL.is_available from `tabDocuments Template List` as DL 
+
+    doc_list  = frappe.db.sql("""SELECT DL.document_name, DL.mandatory, DL.is_available, DL.mandatory_during_counselling from `tabDocuments Template List` as DL 
     inner join `tabDocuments Template` as D on DL.parent= D.name where D.student_category='{0}' and D.academic_year = '{1}' ORDER BY document_name ASC""".format(doc.student_category,doc.academic_year) ,as_dict=1)
     return doc_list if doc_list else []
+
 def on_submit(self):
         student_applicant_submit(self)
 
@@ -356,12 +373,12 @@ def on_submit(self):
 def enroll_student(source_name):
     from wsc.wsc.doctype.student_exchange_applicant.student_exchange_applicant import get_academic_calender_table
     from wsc.wsc.doctype.semesters.semesters import get_courses
-    # print("\n\n\n\n")
-    # args = json.loads(frm)
-    # print(args)
+    
+    print("\n\n\n\n")
+    print(source_name)
     st_applicant=frappe.get_doc("Student Applicant", source_name)
     
-    counselling_based_program_priority = frappe.get_all("Counseling Based Program Priority" , {'parent' : st_applicant.name , 'approve' : 1} , ['programs'])
+    # counselling_based_program_priority = frappe.get_all("Counseling Based Program Priority" , {'parent' : st_applicant.name , 'approve' : 1} , ['programs'])
     print(st_applicant)
     for student in frappe.get_all("Student",{"student_applicant":source_name},['name','student_category','student_name']):
         program_enrollment = frappe.new_doc("Program Enrollment")
@@ -369,9 +386,9 @@ def enroll_student(source_name):
         program_enrollment.student_category = student.student_category
         program_enrollment.student_name = student.student_name
         program_enrollment.roll_no = student.roll_no
-        program_enrollment.programs = st_applicant.programs_ 
+        program_enrollment.programs = st_applicant.counselling_course 
         # program_enrollment.programs = counselling_based_program_priority[0]['programs']
-        program_enrollment.program = st_applicant.program
+        program_enrollment.program = st_applicant.counselling_semester
         program_enrollment.academic_year=st_applicant.academic_year
         program_enrollment.academic_term=st_applicant.academic_term
         program_enrollment.reference_doctype="Student Applicant"
@@ -529,10 +546,14 @@ def get_education_qualifications_details_by_admissions(student_category,admissio
     #     print(t.institute)
     return frappe.get_all("Eligibility Parameter List",{"parent":["IN",[d.get("student_admission") for d in json.loads(admission)]],"parenttype":"Student Admission"},["parameter","percentagecgpa"] , order_by="parameter",group_by="parameter")
 
+# @frappe.whitelist()
+# def filter_programs_by_department(doctype, txt, searchfield, start, page_len, filters):
+#     return frappe.get_all("Programs",{"name":['like', '%{}%'.format(txt)],"department":["IN",[d.name for d in frappe.get_all("Department",{"parent_department":filters.get("department")})]],"program_grade":["IN",[d.name for d in frappe.get_all("Program Grades",{"grade":filters.get("program_grade")})]]},order_by="name asc",as_list=1)
+##NEW Code by Tousiff##
 @frappe.whitelist()
-def filter_programs_by_department(doctype, txt, searchfield, start, page_len, filters):
+def filter_programs_by_department_counselling(doctype, txt, searchfield, start, page_len, filters):
     return frappe.get_all("Programs",{"name":['like', '%{}%'.format(txt)],"department":["IN",[d.name for d in frappe.get_all("Department",{"parent_department":filters.get("department")})]],"program_grade":["IN",[d.name for d in frappe.get_all("Program Grades",{"grade":filters.get("program_grade")})]]},order_by="name asc",as_list=1)
-
+#End
 @frappe.whitelist()
 def get_qualification_list():
     quali_list =  [q.name for q in frappe.db.get_list("Eligibility Parameters", "name", order_by="parameter_name asc")]
