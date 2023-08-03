@@ -689,7 +689,9 @@ def employee_reporting_aprover(doc):
     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
     emp_profile_updation = get_url_to_form('Employee Profile Updation', doc['name'])
     msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(emp_profile_updation)
-    send_mail(frappe.db.get_value("Employee Profile Updation",doc.get('name'),"reporting_auth_id"),sub,msg)
+
+    send_mail([doc['reporting_authority_email']],sub,msg)
+
     frappe.msgprint("Email sent to reporting authority")
 def employee_hr(doc):
     sub="""<p><b>Profile Updation Notification</b></p><br>"""
