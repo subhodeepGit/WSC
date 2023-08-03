@@ -20,6 +20,7 @@ class ExamPaperSetting(Document):
             frappe.throw("Attach the Paper Copy")
 
     def after_insert(self):
+        print("\n\n\nhello world")
         self.set_user_permission()
 
         
@@ -39,10 +40,12 @@ class ExamPaperSetting(Document):
             frappe.delete_doc("User Permission",d.name)
 
     def set_instructor_permission(self, instructor):
-        for i in frappe.get_all("Instructor",{"name":instructor},['employee']):
+        for i in frappe.get_all("Instructor",{"instructor_name":instructor},['employee']):
+            print("\n\nIN FIRST FOR")
             if i.get('employee'):
                 for emp in frappe.get_all("Employee", {'name':i.get('employee')}, ['user_id']):
                     if emp.get('user_id'):
+                        print("\n\n\nuser")
                         add_user_permission("Exam Paper Setting",self.name, emp.get('user_id'), self)
             else:
                 frappe.msgprint("Trainer {0} is not employee".format(instructor))

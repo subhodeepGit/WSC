@@ -2,6 +2,12 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Course Advisor and Manager Assignment', {
+	refresh: function(frm){
+		if (frm.is_new()){
+			frm.set_intro('This form assigns eligible Advisor, Manager, and Deputy Director to receive notifications for the Leave Application process and take necessary actions for specified students.', 'blue');
+		}
+	},
+	
 	get_students: function(frm){
 		frm.clear_table("students_details");
 		frappe.call({
