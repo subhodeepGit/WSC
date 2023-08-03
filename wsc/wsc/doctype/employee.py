@@ -15,6 +15,8 @@ from frappe.utils.nestedset import NestedSet
 
 from erpnext.utilities.transaction_base import delete_events
 
+# from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
+
 
 class EmployeeUserDisabledError(frappe.ValidationError):
 	pass
@@ -42,7 +44,10 @@ class Employee(NestedSet):
 	def validate(self):
 		from erpnext.controllers.status_updater import validate_status
 		validate_status(self.status, ["Active", "Inactive", "Suspended", "Left"])
-
+		# if self.user_id:
+		# 	print("NAAA")
+		# 	print(self.user_id)
+		# 	self.permissions()
 		self.employee = self.name
 		self.set_employee_name()
 		self.validate_date()
@@ -50,6 +55,7 @@ class Employee(NestedSet):
 		self.validate_status()
 		self.validate_reports_to()
 		self.validate_preferred_email()
+		# self.create_user_permission_for_employee()
 		if self.job_applicant:
 			self.validate_onboarding_process()
 
@@ -60,6 +66,23 @@ class Employee(NestedSet):
 			if existing_user_id:
 				remove_user_permission(
 					"Employee", self.name, existing_user_id)
+	def on_change(self):
+		self.permissions()
+	def after_insert(self):
+		print("\n\nAfter ")
+		self.permissions()
+		
+	def permissions(doc):
+		print("\n\nHEllo")
+		if doc.user_id:
+			print("\n\n")
+			add_user_permission(doc.doctype,doc.name,doc.user_id,doc)
+		if doc.leave_approver:
+			print("\n\nHULK")
+			add_user_permission(doc.doctype,doc.name,doc.leave_approver,doc)
+		if doc.reporting_authority_email:
+			print("\n\nSAKTIMAN")
+			add_user_permission(doc.doctype,doc.name,doc.reporting_authority_email,doc)
 
 	def after_rename(self, old, new, merge):
 		self.db_set("employee", new)
@@ -478,3 +501,5 @@ def check_duplicate_permission(doc):
 			'applicable_for': "Mentor Allocation",
 			'name': ['!=', doc.name]
 		}, limit=1)
+
+	

@@ -40,6 +40,10 @@ frappe.ui.form.on('Exam Assessment Result', {
 		});
 	
 	},
+	refresh: function(frm){
+		frm.set_df_property('result_declaration_student', 'cannot_add_rows', true)
+	},
+
 	setup:function(frm){
 		// frm.set_query("student", function() {
 		// 	return {
@@ -95,9 +99,9 @@ frappe.ui.form.on('Exam Assessment Result', {
 	    else{
 	    	frm.set_value("student_name",'')
 	    	frm.set_value("programs",'')
-			frm.set_value("program",'')
+			// frm.set_value("program",'')
 			frm.set_value("academic_year",'')
-			frm.set_value("academic_term",'')
+			// frm.set_value("academic_term",'')
 			frm.set_value("assessment_status",'')
 	    }
     },
@@ -133,10 +137,10 @@ frappe.ui.form.on('Exam Assessment Result', {
 			frappe.msgprint("Please select student")
 		}
 		else if(!frm.doc.academic_year){
-			frappe.msgprint("Academic year missing in course enrollment of student")
+			frappe.msgprint("Academic year missing in Module enrollment of student")
 		}
 		else if(!frm.doc.academic_term){
-			frappe.msgprint("Academic term missing in course enrollment of student")
+			frappe.msgprint("Academic term missing in Module enrollment of student")
 		}
 	},
 	setup_chart: function(frm) {

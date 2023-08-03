@@ -17,13 +17,15 @@
  "fields": [
   {
    "fieldname": "select_internship",
-   "fieldtype": "Data",
-   "label": "Select Internship"
+   "fieldtype": "Link",
+   "label": "Select Internship",
+   "options": "Internship Drive"
   },
   {
    "fieldname": "select_participant",
-   "fieldtype": "Data",
-   "label": "Select Participant"
+   "fieldtype": "Link",
+   "label": "Select Participant",
+   "options": "Student"
   },
   {
    "fieldname": "completion_status",
@@ -47,7 +49,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-30 11:46:39.006297",
+ "modified": "2023-07-17 17:28:13.993068",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Completion status",

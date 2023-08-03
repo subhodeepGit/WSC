@@ -19,10 +19,13 @@ frappe.ui.form.on('Program Enrollment', {
         }
     },
     refresh(frm){
+        frm.set_df_property('courses', 'cannot_add_rows', true)
          if(frm.doc.reference_doctype== "Student Applicant" && frm.doc.reference_name){
             if (frm.doc.__islocal){
+                
                 frm.set_value('program','')
-                frm.set_value('programs','')
+                // frm.set_value('programs','')
+                console.log(frm.doc.programs);
             }
             frm.set_query('programs', function() {
                 return{

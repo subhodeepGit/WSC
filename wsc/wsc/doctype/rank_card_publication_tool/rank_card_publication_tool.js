@@ -4,19 +4,12 @@
 frappe.ui.form.on('Rank Card Publication Tool', {
 	refresh:function(frm){
 		frm.add_custom_button(__('Generate Ranks') , function(){
-			// console.log(frm.doc.ranked_students_list)
 			if(frm.doc.ranked_students_list.length != 0){
-				const data = JSON.stringify(frm.doc.ranked_students_list)
-				
+				const doc = JSON.stringify(frm.doc)
 				frappe.call({
 					method:'wsc.wsc.doctype.rank_card_publication_tool.rank_card_publication_tool.generate_rank_cards',
 					args:{
-						data:data,
-						posting_date:frm.doc.posting_date,
-						total_marks:frm.doc.total_marks,
-						department:frm.doc.department,
-						academic_year:frm.doc.academic_year,
-						rank_card_master:frm.doc.rank_card_master
+						doc:doc
 					}
 				})
 			}

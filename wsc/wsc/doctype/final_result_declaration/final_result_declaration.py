@@ -11,7 +11,7 @@ from wsc.wsc.utils import duplicate_row_validation
 class FinalResultDeclaration(Document):
 	def validate(self):
 		validate_semester(self)
-		duplicate_row_validation(self,'result_declaration_student',['student'])
+		# duplicate_row_validation(self,'result_declaration_student',['student'])
 	
 	@frappe.whitelist()
 	def make_exam_assessment_result(self):
@@ -32,7 +32,7 @@ class FinalResultDeclaration(Document):
 @frappe.whitelist()
 def validate_semester(doc):
 	if doc.semester not in [d.semesters for d in frappe.get_all("Semesters", {'parent':doc.get('programs')},['semesters'])]:
-		frappe.throw("Semester <b>'{0}'</b> not belongs to programs <b>'{1}'</b>".format(doc.get('semester'), doc.get('programs')))
+		frappe.throw("Semester <b>'{0}'</b> not belongs to Course <b>'{1}'</b>".format(doc.get('semester'), doc.get('programs')))
 
 def create_exam_assessment_result(final_result_declaration):
 	doc = frappe.get_doc("Final Result Declaration", final_result_declaration)
@@ -58,9 +58,11 @@ def create_exam_assessment_result(final_result_declaration):
 			result.academic_year=enroll.academic_year
 			result.academic_term=enroll.academic_term
 
-		for allocation in frappe.get_all("Assessment Credits Allocation",{"docstatus":1,"student":d.student,"academic_year":doc.academic_year,"academic_term":doc.academic_term},["course","earned_credits","total_credits","final_marks","out_of_marks","assessment_criteria"]):
+		for allocation in frappe.get_all("Assessment Credits Allocation",{"docstatus":1,"student":d.student,"academic_year":doc.academic_year,"academic_term":doc.academic_term},["course_code","course_name","course","earned_credits","total_credits","final_marks","out_of_marks","assessment_criteria"]):
 			result.append("assessment_result_item",{
 				"course":allocation.course,
+				"module_code":allocation.course_code,
+				"module_name":allocation.course_name,
 				"earned_cr":allocation.earned_credits,
 				"total_cr":allocation.total_credits,
 				"earned_marks":allocation.final_marks,
@@ -75,6 +77,8 @@ def create_exam_assessment_result(final_result_declaration):
 			if assessment_item.course not in duplicate:
 				for d in result.get("assessment_result_item"):
 					if assessment_item.course==d.course:
+						assessment_item.module_code==d.module_code
+						assessment_item.module_name==d.module_name
 						earned_cr+=d.earned_cr
 						earned_marks+=d.earned_marks
 						total_cr+=d.total_cr
@@ -93,9 +97,10 @@ def create_exam_assessment_result(final_result_declaration):
 		# 		"total_marks":course_list[d]['total_marks']
 		# 	})
 		result.save()
+		result.save()
 		created_records += 1
 		frappe.publish_realtime("final_result_declaration_progress", {"progress": str(int(created_records * 100/total_records)),"current":str(created_records),"total":str(total_records)}, user=frappe.session.user)
-
+	frappe.msgprint("Your records has been created")
 		# except Exception as e:
 		# 	error = True
 		# 	err_msg = frappe.local.message_log and "\n\n".join(frappe.local.message_log) or cstr(e)

@@ -2,48 +2,91 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Fixed Deposit', {
-	maturity_date: function(frm) {
-		// alert(frm.doc.fd_start_date)
-		// alert(frm.doc.maturity_date)
+	refresh: function(frm){
+		frm.set_df_property('interest_calculation', 'cannot_add_rows', true);
+		frm.set_df_property('interest_calculation', 'cannot_delete_rows', true);
 
-		var startDateObj = new Date(frm.doc.fd_start_date);
-  		var endDateObj = new Date(frm.doc.maturity_date);
-
-		var dateDifference = endDateObj - startDateObj;
-
-		var days = Math.floor(dateDifference / (1000 * 60 * 60 * 24));
-
-		var years = Math.floor(days / 365);
-		var months = Math.floor((days % 365) / 30);
-		days = days % 30;
-		var tenure = years + " years " + months + " months " + days + " days"
-
-		// alert(tenure) 
-		frm.set_value('fd_tenure', tenure)
-		
-	},
-	fd_start_date: function(frm) {
-		// alert(frm.doc.fd_start_date)
-		// alert(frm.doc.maturity_date)
-
-		var startDateObj = new Date(frm.doc.fd_start_date);
-  		var endDateObj = new Date(frm.doc.maturity_date);
-
-		var dateDifference = endDateObj - startDateObj;
-
-		var days = Math.floor(dateDifference / (1000 * 60 * 60 * 24));
-
-		// var years = Math.floor(days / 365);
-		// var months = Math.floor((days % 365) / 30);
-		var months = Math.floor(days / 30); // Assuming each month has 30 days
-		var years = Math.floor(months / 12);
-		days %= 30;
-		months %= 12;
-		var tenure = years + " years " + months + " months " + days + " days"
-
-		// alert(tenure) 
-		if (tenure != "NaN years NaN months NaN days"){
-		frm.set_value('fd_tenure', tenure)
+		if (frm.doc.matured_posting_journal_entry){
+			frm.set_df_property('final_maturity_amount', 'read_only', 1);
+			frm.set_df_property('matured', 'read_only', 1);
+			frm.set_df_property('final_maturity_date', 'read_only', 1);
 		}
+		
+
+		frm.set_query("fd_account", function () {
+			return {
+				filters:{
+					"is_group":0,
+					"company":frm.doc.company,
+					"account_type":"Fixed Asset"
+				}
+			};
+		}),
+		frm.set_query("bank_account", function () {
+			return {
+				filters:{
+					"is_group":0,
+					"company":frm.doc.company,
+					"account_type":"Bank"
+				}
+			};
+		}),
+		frm.set_query("interest_account", function () {
+			return {
+				filters:{
+					"is_group":0,
+					"company":frm.doc.company,
+					"account_type":"Fixed Asset"
+				}
+			};
+		})
+	},
+	get_amount:function(frm) {
+		frappe.call({
+			"method": "wsc.wsc.doctype.fixed_deposit.fixed_deposit.calculate_fd",
+			args:{
+				fd_amount:frm.doc.fd_amount,
+				interest_payable:frm.doc.interest_payable,
+				interest_type:frm.doc.interest_type,
+				interest_rate:frm.doc.interest_percentage,
+				days:frm.doc.tenure_days,
+				weeks:frm.doc.tenurein_weeks,
+				months:frm.doc.tenurein_months,
+				quarterly:frm.doc.tenurein_quarter,
+				semi_annually:frm.doc.tenuresemi_annually,
+				annually:frm.doc.tenurein_annually
+
+			},
+			callback: function(r) {
+				if (r.message){
+					frm.refresh_field("maturity_amount")
+					frm.set_value("maturity_amount",r.message['grand_maturity_amount'])
+					frappe.model.clear_table(frm.doc, 'interest_calculation');
+					(r.message['maturity_amount']).forEach(element => {
+						var c = frm.add_child("interest_calculation")
+						c.term=element.term
+						c.principal_amount=element.principal_amount
+						c.interest=element.interest
+						c.total=element.total
+					});
+					frm.refresh_field("interest_calculation");
+					frm.save();
+				}
+			}
+		})
+	},
+	matured:function(frm){
+		if(frm.doc.matured==1){
+			frm.set_value("final_maturity_amount",frm.doc.maturity_amount)
+			var intr=frm.doc.maturity_amount-frm.doc.fd_amount 
+			frm.set_value("final_maturity_interest_amount",intr)
+			frm.set_value("final_maturity_date",frm.doc.maturity_date)
+		}
+	},
+	final_maturity_amount:function(frm){
+		var intr=frm.doc.final_maturity_amount-frm.doc.fd_amount
+		frm.set_value("final_maturity_interest_amount",intr)
 	}
 });
+
+

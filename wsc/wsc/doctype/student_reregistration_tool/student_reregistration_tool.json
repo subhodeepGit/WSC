@@ -82,7 +82,8 @@
    "fieldname": "students",
    "fieldtype": "Table",
    "label": "Students",
-   "options": "Student Reregistration Item"
+   "options": "Student Reregistration Item",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_7",
@@ -138,7 +139,7 @@
   {
    "fieldname": "courses",
    "fieldtype": "Table",
-   "label": "Mandatory Courses",
+   "label": "Module List",
    "options": "Program Enrollment Course"
   },
   {
@@ -167,7 +168,7 @@
  "hide_toolbar": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-07-06 11:41:04.139327",
+ "modified": "2023-07-20 17:45:54.913497",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Reregistration Tool",

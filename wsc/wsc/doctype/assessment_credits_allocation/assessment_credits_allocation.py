@@ -17,10 +17,11 @@ class AssessmentCreditsAllocation(Document):
         self.final_earned_marks_calculation_child()
         self.qualifying_status_child()
         self.validate_marks()
-    
+
+
     def qualifying_status_child(self):
         for t in self.get("final_credit_item"):
-            if t.final_earned_marks<=t.passing_marks:
+            if flt(t.final_earned_marks)<=t.passing_marks:
                 t.qualifying_status="Fail"
             else:
                 t.qualifying_status="Pass"
@@ -31,6 +32,8 @@ class AssessmentCreditsAllocation(Document):
             earned_marks=flt(t.earned_marks)
             grace_marks=flt(t.grace_marks)
             t.final_earned_marks=grace_marks+earned_marks
+            data=frappe.get_all("Course Assessment",{"name":t.course_assessment},['exam_declaration'])
+            t.exam_declaration=data[0]['exam_declaration']
 
     def passing_marks_calculation(self):
         coures_code=self.course
@@ -107,9 +110,14 @@ def get_courses(doctype, txt, searchfield, start, page_len, filters):
 
 @frappe.whitelist()
 def get_assessment_criteria(doctype, txt, searchfield, start, page_len, filters):
+    print("\n\n\nFirst")
     lst = []
-    for i in frappe.get_all("Course Enrollment",{'student':filters.get("student"),"course":filters.get("course"),"status":("!=","Completed")},['name']):
+    # ,"status":("!=","Completed")
+    for i in frappe.get_all("Course Enrollment",{'student':filters.get("student"),"course":filters.get("course")},['name','status']):
+        print("\n\nHELLO FTLT")
+        print(i.status)
         fltr={"parent":i.get("name")}
+        print("\n\nFLTR",fltr)
         if txt:
             fltr.update({'assessment_criteria': ['like', '%{}%'.format(txt)]})
         for j in frappe.get_all("Credit distribution List",fltr,["assessment_criteria"]):

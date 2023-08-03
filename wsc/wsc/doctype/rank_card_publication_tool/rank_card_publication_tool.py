@@ -60,9 +60,7 @@ def get_qualified_applicants(rank_card_master , academic_year , academic_term , 
 
 	for i in ranking_category_data:
 		list_data = []
-		# filtered_df = df.loc[df['student_category'] == i['student_category']]
-		# ranked_data = filtered_df.to_dict('records')
-		# print(ranked_data)
+		
 		category_based_applicant_data = frappe.db.sql("""
 			SELECT DISTINCT 
 				res.applicant_id ,
@@ -106,12 +104,51 @@ def get_qualified_applicants(rank_card_master , academic_year , academic_term , 
 	return all_round_ranks
 
 @frappe.whitelist()
-def generate_rank_cards(data , posting_date , total_marks , department , academic_year , rank_card_master):
-	data = json.loads(data)
-	rank_data = frappe.new_doc("Entrance Exam Admit Card")
-	for i in data:
+def generate_rank_cards(doc):
+	print("\n\n\n")
+	data = json.loads(doc)
+	
+	for i in data['ranked_students_list']:
+		
+		earned_marks = frappe.get_all("Entrance Exam Result Publication" , {'applicant_id':i['applicant_id']} , ['earned_marks' , 'applicant_id' , 'applicant_name' , 'total_marks'])
+		
+		rank_data = frappe.new_doc("Rank Card")
 		rank_data.applicant_id = i['applicant_id']
 		rank_data.applicant_name = i['applicant_name']
-		rank_data.gender = i['gender']
+		rank_data.gender = i['gender'] 
 		rank_data.student_category = i['student_category']
-		rank_data.physically_disabled = i['physically_disabled']
+		rank_data.physically_disabled = i['physical_disability']
+		rank_data.academic_year = data['academic_year']
+		rank_data.academic_term = data['academic_term']
+		rank_data.department = data['departments']
+		rank_data.posting_date = data['posting_date']
+		rank_data.total_marks = earned_marks[0]['total_marks']
+		rank_data.earned_marks = earned_marks[0]['earned_marks']
+		
+		rank_data.append("student_ranks_list" , {
+			'general_rank' : i['all_student_based_rank'],
+			'category_based_rank' : i['category_based_rank'],
+			'pwd_based_rank' : i['pwd_based_rank']
+		})
+
+		print(rank_data)
+		rank_data.save()
+		rank_data.submit()
+		
+		student_applicant = frappe.get_doc("Student Applicant" , i['applicant_id'])
+		
+		if(len(student_applicant.student_rank) == 0):
+			student_applicant.append("student_rank" , {
+				'general_rank' : i['all_student_based_rank'],
+				'category_based_rank' : i['category_based_rank'],
+				'pwd_based_rank' : i['pwd_based_rank']
+			})
+
+		student_applicant.save()
+		# student_applicant.update()
+		# student_applicant.submit()
+	
+
+
+		
+		

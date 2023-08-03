@@ -1,0 +1,74 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-07-14 15:34:28.704282",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "company_name",
+  "job_profile",
+  "job_type",
+  "job_start_date",
+  "job_end_date",
+  "job_duration"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Company Name",
+   "width": "10"
+  },
+  {
+   "columns": 2,
+   "fieldname": "job_profile",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Job Profile",
+   "width": "10"
+  },
+  {
+   "fieldname": "job_type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Job Type"
+  },
+  {
+   "columns": 2,
+   "fieldname": "job_start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Job Start Date",
+   "width": "10"
+  },
+  {
+   "columns": 2,
+   "fieldname": "job_end_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Job End Date",
+   "width": "10"
+  },
+  {
+   "fieldname": "job_duration",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Job Duration"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-07-28 16:56:40.403418",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Participant Experience Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

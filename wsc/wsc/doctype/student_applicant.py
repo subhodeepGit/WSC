@@ -5,6 +5,9 @@ from frappe import msgprint, _
 from wsc.wsc.utils import duplicate_row_validation
 from wsc.wsc.validations.student_admission import validate_academic_year
 from wsc.wsc.notification.custom_notification import student_applicant_submit,student_applicant_rejected,student_applicant_approved,student_applicant_onhold
+import math
+from datetime import datetime
+
 
 class StudentApplicant(Document):
     def on_update_after_submit(doc):
@@ -25,6 +28,10 @@ class StudentApplicant(Document):
                 "Education Qualifications Details": {
                     "doctype": "Educational Details"
                 },
+                # "Education Qualifications Details": {
+                #     "doctype": "Education Qualifications Details"
+                # },
+                # Education Qualifications Details
                 "Document List": {
                     "doctype": "Document List"
                 }
@@ -46,15 +53,20 @@ class StudentApplicant(Document):
             frappe.throw(_("Cannot change status as student {0} is linked with student application {1}").format(student[0].name, doc.name))
     def validate(doc):
         # validate_percentage(doc)
+        check_age(doc)
+
         education_details_validation(doc)
         document_list_checkbox(doc)
         mobile_number_validation(doc)
         validate_pin_code(doc)
         # update_education_parameters(doc)
         duplicate_row_validation(doc,"program_priority",["programs"])
-        validate_seat_reservation_type(doc)
+        # validate_seat_reservation_type(doc)
+        
         if len(doc.document_list ) == 0:
+            print("\n\n\nDOc Trigger")
             add_document_list_rows(doc)
+
         get_admission_fees(doc)
         mobile_number_validation(doc)
         email_validation(doc)
@@ -97,7 +109,31 @@ def document_list_checkbox(doc):
 
             # frappe.db.set_value("Document List",self.name,'attached',1)
             
+def check_age(doc):
+    
+    applicantation_date = frappe.get_all("Student Admission" ,
+                                        {
+                                            'academic_year':doc.academic_year,
+                                            'academic_term':doc.academic_term,
+                                            'department':doc.department
+                                        },
+                                        ['application_start_date' , 'maximum_age_limit']
+                                    )
+    
+    date_of_birth = datetime.strptime(doc.date_of_birth , '%Y-%m-%d')
+    
+    dob = date_of_birth.date()
+    
+    if len(applicantation_date) != 0:
+        age_diff = math.floor(((applicantation_date[0]['application_start_date'] - dob).days)/365)
 
+        overage = age_diff - applicantation_date[0]['maximum_age_limit']
+        print(age_diff - applicantation_date[0]['maximum_age_limit'])
+        if age_diff > applicantation_date[0]['maximum_age_limit']:
+            frappe.throw("Over Age In-eligible for applications by " + str(overage) + "years")
+    # else:
+    #     frappe.throw(" No Application Start and maximum age limit found ")
+    
 
 def mobile_number_validation(doc):
     
@@ -175,6 +211,11 @@ def validate_pin_code(doc):
 
 def on_update(doc,method):
     if doc.docstatus==1:
+        print("\n\n\nOn update")
+
+        ## if Approve is selected multiple times
+        for d in doc.counselling_based_program_priority:
+            print(d.approve)
         validate_attachment(doc)
         student = frappe.get_list("Student",  filters= {"student_applicant": doc.name})
         # if len(last_result)==0:
@@ -231,10 +272,13 @@ def add_document_list_rows(doc):
     if doc.student_category and doc.academic_year:
         doc.set("document_list",[])
         for d in get_document_list_by_category(doc):
+            print("\n\n\n")
+            print(d)
             doc.append("document_list",{
                 "document_name":d.document_name,
                 "mandatory":d.mandatory,
-                "is_available" :d.is_available
+                "is_available" :d.is_available,
+                "mandatory_during_counselling":d.mandatory_during_counselling
             })
 
 def status_validation(doc):
@@ -317,24 +361,34 @@ def get_document_list_by_category(doc):
     else:
         filters.update({"parent":["IN",[d.student_admission for d in doc.get('program_priority')]],"parenttype":"Student Admission"})
         group_by="document_name"
-    doc_list  = frappe.db.sql("""SELECT DL.document_name, DL.mandatory, DL.is_available from `tabDocuments Template List` as DL 
+
+    doc_list  = frappe.db.sql("""SELECT DL.document_name, DL.mandatory, DL.is_available, DL.mandatory_during_counselling from `tabDocuments Template List` as DL 
     inner join `tabDocuments Template` as D on DL.parent= D.name where D.student_category='{0}' and D.academic_year = '{1}' ORDER BY document_name ASC""".format(doc.student_category,doc.academic_year) ,as_dict=1)
     return doc_list if doc_list else []
+
 def on_submit(self):
         student_applicant_submit(self)
+
 @frappe.whitelist()
 def enroll_student(source_name):
     from wsc.wsc.doctype.student_exchange_applicant.student_exchange_applicant import get_academic_calender_table
     from wsc.wsc.doctype.semesters.semesters import get_courses
+    
+    print("\n\n\n\n")
+    print(source_name)
     st_applicant=frappe.get_doc("Student Applicant", source_name)
+    
+    # counselling_based_program_priority = frappe.get_all("Counseling Based Program Priority" , {'parent' : st_applicant.name , 'approve' : 1} , ['programs'])
+    print(st_applicant)
     for student in frappe.get_all("Student",{"student_applicant":source_name},['name','student_category','student_name']):
         program_enrollment = frappe.new_doc("Program Enrollment")
         program_enrollment.student = student.name
         program_enrollment.student_category = student.student_category
         program_enrollment.student_name = student.student_name
         program_enrollment.roll_no = student.roll_no
-        program_enrollment.programs = st_applicant.programs_
-        program_enrollment.program = st_applicant.program
+        program_enrollment.programs = st_applicant.counselling_course 
+        # program_enrollment.programs = counselling_based_program_priority[0]['programs']
+        program_enrollment.program = st_applicant.counselling_semester
         program_enrollment.academic_year=st_applicant.academic_year
         program_enrollment.academic_term=st_applicant.academic_term
         program_enrollment.reference_doctype="Student Applicant"
@@ -342,7 +396,7 @@ def enroll_student(source_name):
         program_enrollment.program_grade = st_applicant.program_grade
         program_enrollment.gender=st_applicant.gender
         program_enrollment.physically_disabled=st_applicant.physically_disabled
-        program_enrollment.award_winner=st_applicant.award_winner
+        program_enrollment.award_winner=st_applicant.award_winner  
         program_enrollment.boarding_student=st_applicant.hostel_required
         
         for d in st_applicant.get("disable_type"):
@@ -375,6 +429,7 @@ def enroll_student(source_name):
             if st_admission.academic_calendar:
                 for d in get_academic_calender_table(st_admission.academic_calendar):
                     program_enrollment.append("academic_events_table",d)
+        print(program_enrollment.program_grade)
         return program_enrollment
         
 @frappe.whitelist()
@@ -459,17 +514,17 @@ def get_sharing_type():
 
     return capacity
 
-def validate_seat_reservation_type(doc):
-    seat_reservation_type_list = [s.seat_reservation_type for s in frappe.get_all("Reservations List",{"parent":["IN",[d.student_admission for d in doc.get("program_priority")]]}, 'seat_reservation_type')]
-    if seat_reservation_type_list:
-        if doc.physically_disabled:
-            physically_disabled_list = [r.name for r in frappe.get_all("Seat Reservation Type",{"name":["IN",seat_reservation_type_list], 'physically_disabled':1}, 'name')]
-            if len(physically_disabled_list) == 0 :
-                frappe.throw("Seat Reservation Type <b>Physically Disabled</b> Not Exists in Student Admissions List")
-        if doc.award_winner:
-            award_winner_list = [r.name for r in frappe.get_all("Seat Reservation Type",{"name":["IN",seat_reservation_type_list], 'award_winner':1}, 'name')]
-            if len(award_winner_list) == 0 :
-                frappe.throw("Seat Reservation Type <b>Award Winner</b> Not Exists in Student Admissions List")
+# def validate_seat_reservation_type(doc):
+#     seat_reservation_type_list = [s.seat_reservation_type for s in frappe.get_all("Reservations List",{"parent":["IN",[d.student_admission for d in doc.get("program_priority")]]}, 'seat_reservation_type')]
+#     if seat_reservation_type_list:
+#         if doc.physically_disabled:
+#             physically_disabled_list = [r.name for r in frappe.get_all("Seat Reservation Type",{"name":["IN",seat_reservation_type_list], 'physically_disabled':1}, 'name')]
+#             if len(physically_disabled_list) == 0 :
+#                 frappe.throw("Seat Reservation Type <b>Physically Disabled</b> Not Exists in Student Admissions List")
+#         if doc.award_winner:
+#             award_winner_list = [r.name for r in frappe.get_all("Seat Reservation Type",{"name":["IN",seat_reservation_type_list], 'award_winner':1}, 'name')]
+#             if len(award_winner_list) == 0 :
+#                 frappe.throw("Seat Reservation Type <b>Award Winner</b> Not Exists in Student Admissions List")
 
 @ frappe.whitelist()
 def get_admission_and_semester_by_program(programs,program_grade,academic_year):
@@ -491,10 +546,14 @@ def get_education_qualifications_details_by_admissions(student_category,admissio
     #     print(t.institute)
     return frappe.get_all("Eligibility Parameter List",{"parent":["IN",[d.get("student_admission") for d in json.loads(admission)]],"parenttype":"Student Admission"},["parameter","percentagecgpa"] , order_by="parameter",group_by="parameter")
 
+# @frappe.whitelist()
+# def filter_programs_by_department(doctype, txt, searchfield, start, page_len, filters):
+#     return frappe.get_all("Programs",{"name":['like', '%{}%'.format(txt)],"department":["IN",[d.name for d in frappe.get_all("Department",{"parent_department":filters.get("department")})]],"program_grade":["IN",[d.name for d in frappe.get_all("Program Grades",{"grade":filters.get("program_grade")})]]},order_by="name asc",as_list=1)
+##NEW Code by Tousiff##
 @frappe.whitelist()
-def filter_programs_by_department(doctype, txt, searchfield, start, page_len, filters):
+def filter_programs_by_department_counselling(doctype, txt, searchfield, start, page_len, filters):
     return frappe.get_all("Programs",{"name":['like', '%{}%'.format(txt)],"department":["IN",[d.name for d in frappe.get_all("Department",{"parent_department":filters.get("department")})]],"program_grade":["IN",[d.name for d in frappe.get_all("Program Grades",{"grade":filters.get("program_grade")})]]},order_by="name asc",as_list=1)
-
+#End
 @frappe.whitelist()
 def get_qualification_list():
     quali_list =  [q.name for q in frappe.db.get_list("Eligibility Parameters", "name", order_by="parameter_name asc")]
@@ -591,15 +650,3 @@ def validate_counselling_structure(doc):
         #                             frappe.throw("Score <b>'{0}'</b> of education qualifications details should not be greater than the total score <b>'{1}'</b>".format(e.score, pt.total_score))
 
 
-@frappe.whitelist()
-# def center_selection(academic_year , academic_term):
-def custom_query(doctype, txt, searchfield, start, page_len, filters):
-
-
-    # center_selection = frappe.get_all("Entrance Exam Centre Selection" , {'academic_year':academic_year , 'academic_term':academic_term} , ['name'])
-    
-    # center = frappe.get_all("Current Centers" , {'parent':center_selection[0]['name']} , ['center' , 'center_name' , 'citytownvillage' , 'state' , 'district'])
-
-    print("\n\n\n")
-    print(doctype)
-    

@@ -170,7 +170,6 @@
   {
    "fieldname": "reporting_auth_id",
    "fieldtype": "Data",
-   "hidden": 1,
    "label": "Reporting Auth ID"
   },
   {
@@ -198,7 +197,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-06 12:27:46.699316",
+ "modified": "2023-07-12 09:57:22.435644",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Profile Updation",

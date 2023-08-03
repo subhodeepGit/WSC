@@ -14,7 +14,13 @@ refresh: function(frm) {
 		}, 'Actions');
         
 	}
-	if (frm.doc.current_status==="Forwarded to Approving Authority") {
+	var leave_approver = ""; 
+
+    
+        if (frm.doc.leave_approver) {
+            leave_approver = frm.doc.leave_approver;
+        }
+	if (frm.doc.current_status==="Forwarded to Approving Authority" && frappe.session.user===leave_approver) {
 		frm.add_custom_button(__("Approve"), function() {
 			frm.set_value("status", "Approved");
             frm.set_value("current_status","Approved")
@@ -33,6 +39,15 @@ refresh: function(frm) {
     
 },   
   
+});
+frappe.ui.form.on('Leave Application', {
+    onload: function(frm) {
+      
+        if (frappe.session.user !== frm.doc.leave_approver) {
+            $('.btn-primary:contains("Submit")').hide();
+        }
+    },
+   
 });
 
     

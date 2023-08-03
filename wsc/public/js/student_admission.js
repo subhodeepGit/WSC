@@ -13,6 +13,14 @@ frappe.ui.form.on('Student Admission', {
     },
     setup(frm) {
         frm.set_df_property('program_grade', 'reqd', 1);
+        frm.set_query("department" , function(){
+            return {
+                filters: {
+                    "is_group":1,
+	                "is_stream": 1
+                }
+            }
+        })
         frm.set_query("academic_calendar", function() {
             return {
                 filters: {

@@ -1,0 +1,87 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"Kbl7GG7iks\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Admin Workspace</span>\",\"col\":12}},{\"id\":\"8TZtZwe0e0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"User\",\"col\":3}},{\"id\":\"qUPZpR4o4I\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Department\",\"col\":3}},{\"id\":\"rLP8pPgggq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Academic Year\",\"col\":3}},{\"id\":\"oUh3gQUx-q\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Academic Term\",\"col\":3}},{\"id\":\"kc-WAzB8AD\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Role permission\",\"col\":3}},{\"id\":\"M2xZ7FDBST\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Workflow\",\"col\":3}},{\"id\":\"QDpRNQcbO5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Workflow State\",\"col\":3}},{\"id\":\"S44tDfVmCq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Workflow Action Master\",\"col\":3}}]",
+ "creation": "2023-07-18 05:25:03.595973",
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "unhide",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Admin Workspace",
+ "links": [],
+ "modified": "2023-07-18 05:34:51.197859",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Admin Workspace",
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "Admin"
+  }
+ ],
+ "sequence_id": 47.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "User",
+   "link_to": "User",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Department",
+   "link_to": "Department",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Academic Year",
+   "link_to": "Academic Year",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Academic Term",
+   "link_to": "Academic Term",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Role permission",
+   "link_to": "Custom DocPerm",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Workflow",
+   "link_to": "Workflow",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Workflow State",
+   "link_to": "Workflow State",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Workflow Action Master",
+   "link_to": "Workflow Action Master",
+   "type": "DocType"
+  }
+ ],
+ "title": "Admin Workspace"
+}

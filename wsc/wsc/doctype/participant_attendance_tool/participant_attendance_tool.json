@@ -1,0 +1,137 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-07-05 14:36:07.326515",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "based_on",
+  "academic_year",
+  "select_course",
+  "select_sub_module",
+  "column_break_4",
+  "participant_group",
+  "academic_term",
+  "select_module",
+  "section_break_9",
+  "instructor_id",
+  "date",
+  "column_break_12",
+  "instructor_name",
+  "term",
+  "section_break_8",
+  "get_participants",
+  "participants"
+ ],
+ "fields": [
+  {
+   "fieldname": "based_on",
+   "fieldtype": "Select",
+   "label": "Based On",
+   "options": "\nParticipant Group"
+  },
+  {
+   "fieldname": "participant_group",
+   "fieldtype": "Select",
+   "label": "Participant Group"
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Data",
+   "label": "Academic Year"
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Data",
+   "label": "Academic Term"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fieldname": "term",
+   "fieldtype": "Time",
+   "label": "Time"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_8",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "participants",
+   "fieldtype": "Table",
+   "label": "Participants",
+   "options": "Participant Attendance Table"
+  },
+  {
+   "fieldname": "instructor_id",
+   "fieldtype": "Select",
+   "label": "Instructor ID"
+  },
+  {
+   "fieldname": "instructor_name",
+   "fieldtype": "Data",
+   "label": "Instructor Name"
+  },
+  {
+   "fieldname": "select_course",
+   "fieldtype": "Data",
+   "label": "Select Course"
+  },
+  {
+   "fieldname": "select_sub_module",
+   "fieldtype": "Select",
+   "label": "Select Sub Module"
+  },
+  {
+   "fieldname": "select_module",
+   "fieldtype": "Data",
+   "label": "Select Module"
+  },
+  {
+   "fieldname": "section_break_9",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "get_participants",
+   "fieldtype": "Button",
+   "label": "Get Participants"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-07-21 16:00:15.266372",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Participant Attendance Tool",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -612,9 +612,19 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Employee Resignation",
+   "link_count": 0,
+   "link_to": "Employee Resignation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-07-05 11:21:22.504204",
+ "modified": "2023-08-02 09:56:58.440375",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "HRMS",
@@ -624,16 +634,7 @@
  "quick_lists": [],
  "roles": [
   {
-   "role": "HR"
-  },
-  {
-   "role": "HR Assistant"
-  },
-  {
-   "role": "Employee"
-  },
-  {
-   "role": "HR Manager/CS Officer"
+   "role": "System Administrator"
   }
  ],
  "sequence_id": 11.0,

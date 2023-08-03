@@ -33,6 +33,11 @@
   "semesters",
   "get_courses",
   "courses_offered",
+  "section_break_hbhdh",
+  "group_email",
+  "column_break_v8qdw",
+  "email_status",
+  "to_date",
   "eligibility_deails_section",
   "minimum_attendance_criteria",
   "certificate_creation_status",
@@ -47,7 +52,8 @@
    "fieldname": "exam_type",
    "fieldtype": "Link",
    "label": "Exam Type",
-   "options": "Exam Type"
+   "options": "Exam Type",
+   "reqd": 1
   },
   {
    "depends_on": "is_application_required",
@@ -213,6 +219,7 @@
    "reqd": 1
   },
   {
+   "depends_on": "eval:doc.docstatus==0",
    "fieldname": "get_courses",
    "fieldtype": "Button",
    "label": "Get Module"
@@ -281,12 +288,46 @@
    "label": "Assessment Criteria",
    "options": "Assessment Criteria",
    "reqd": 1
+  },
+  {
+   "fieldname": "section_break_hbhdh",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.assessment_criteria !== 'undefined'",
+   "fetch_from": "assessment_criteria.is_group_email_",
+   "fieldname": "group_email",
+   "fieldtype": "Check",
+   "label": "Group Email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_v8qdw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Not Sent",
+   "depends_on": "eval:doc.group_email === 1",
+   "fieldname": "email_status",
+   "fieldtype": "Select",
+   "label": "Email Status",
+   "options": "Not Sent\nSent",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.group_email === 1",
+   "description": "Date of sending email notification",
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "label": "Email Date",
+   "mandatory_depends_on": "eval:doc.group_email === 1"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-05 17:08:46.782317",
+ "modified": "2023-07-25 12:23:50.928852",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Declaration",

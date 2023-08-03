@@ -17,18 +17,35 @@ frappe.ui.form.on('Fees Waiver', {
                 },
             }
         });
-		frm.set_query("fee_structure",function(){
-            return{
-                filters:{
-                    "programs":frm.doc.programs,
-					"program":frm.doc.semester,
-					"academic_year":frm.doc.academic_year,
-					"academic_term":frm.doc.academic_term,
-					"student_category":frm.doc.student_category,
-					"fee_type":frm.doc.fee_type
-                }
-            }
-        });
+		if (frm.doc.student_category){
+			frm.set_query("fee_structure",function(){
+				return{
+					filters:{
+						"programs":frm.doc.programs,
+						"program":frm.doc.semester,
+						"academic_year":frm.doc.academic_year,
+						"academic_term":frm.doc.academic_term,
+						"student_category":frm.doc.student_category,
+						"fee_type":frm.doc.fee_type,
+						"docstatus":1
+					}
+				}
+			});
+		}else{
+			frm.set_query("fee_structure",function(){
+				return{
+					filters:{
+						"programs":frm.doc.programs,
+						"program":frm.doc.semester,
+						"academic_year":frm.doc.academic_year,
+						"academic_term":frm.doc.academic_term,
+						// "student_category":frm.doc.student_category,
+						"fee_type":frm.doc.fee_type,
+						"docstatus":1
+					}
+				}
+			});
+		}
 
 		frm.set_query("receivable_account","components", function(_doc, cdt, cdn) {
 			var d = locals[cdt][cdn];

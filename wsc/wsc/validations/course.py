@@ -110,7 +110,8 @@ def get_semesters_name(course):
 @frappe.whitelist()
 def get_course_name(course):
 	data = []
-	for entry in frappe.db.get_all('Program',{'is__tot':0}):
+	for entry in frappe.db.get_all('Program'):
+		# ,{'is__tot':0}
 		print("\n\nENTRU",entry)
 		program = frappe.get_doc('Program', entry.name)
 		courses = [c.course for c in program.courses]

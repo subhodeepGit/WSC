@@ -59,16 +59,21 @@ doctype_js = {
                 "Job Applicant":"public/js/job_applicant.js",
                 "Employee":"public/js/employee.js",
                 "Shift Request":"public/js/shift_request.js",
-                "Leave Application":"public/js/leave_application.js"
+                "Leave Application":"public/js/leave_application.js",
+                "Employee Separation":"public/js/employee_separation.js",
+                "Bank Guarantee":"public/js/bank_guarantee.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
     "Branch Sliding Application": "wsc/wsc/doctype/branch_sliding_application/branch_sliding_application_list.js",
     "Fees":"public/js/fees_list.js",
+    "Program Enrollment":"public/js/program_enrollment_list.js",
     "Student Attendance":"public/js/student_attendance_list.js",
+    "Instructor" :"public/js/instructor_list.js",
     "Student Applicant" :"public/js/student_applicant_list.js",
     "Asset Maintenance Log":"public/js/asset_maintenance_log_list.js",
     "Leave Application":"public/js/leave_application_list.js",
+    "Employee":"public/js/employee_list.js",
 }
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
@@ -81,7 +86,8 @@ after_migrate = [
         'wsc.patches.migrate_patch.set_translation',
         'wsc.patches.migrate_patch.add_roles',
         'wsc.patches.migrate_patch.set_custom_role_permission',
-        'wsc.wsc.delete_doc_if_linked.execute'
+        'wsc.wsc.delete_doc_if_linked.execute',
+        'wsc.patches.migrate_patch.set_custom_role_permission_remove_duplicate',
 ]
 
 # application home page (will override Website Settings)
@@ -225,6 +231,9 @@ doc_events = {
     "Mentor Allocation": {
         "validate": "wsc.wsc.validations.mentor_allocation.validate"
     },
+    "Mentor Initiation": {
+        "validate":"wsc.wsc.doctype.mentor_initiation.mentor_initiation.create_mentee_communications"
+    },
     "Photocopy Application":{
         "validate":"wsc.wsc.validations.photocopy_application.validate"
     },
@@ -307,7 +316,24 @@ doc_events = {
     "Shift Request":{
         "after_insert":"wsc.wsc.validations.shift_request.after_insert",
         "validate":"wsc.wsc.validations.shift_request.validate"
+    },
+    "Employee Grievance":{
+        "validate":"wsc.wsc.validations.employee_grievance.validate",
+    },
+    "Employee Separation":{
+        "validate":"wsc.wsc.validations.employee_separation.validate",
+        "after_insert":"wsc.wsc.validations.employee_separation.after_insert"
+    },
+    "Asset Maintenance" : {
+        "validate" :"wsc.wsc.doctype.asset_maintenance.validate"
+    },
+    "Attendance Request" :{
+        "validate":"wsc.wsc.doctype.attendance_request.validate",
+        "on_submit":"wsc.wsc.doctype.attendance_request.on_submit",
+        "after_insert":"wsc.wsc.doctype.attendance_request.after_insert"
     }
+    
+
     # "User":{
     #     "validate":"wsc.wsc.validations.user.validate",
     # }
@@ -377,6 +403,17 @@ override_doctype_class = {
     # "Job Applicant": "wsc.wsc.doctype.job_applicant.Job Applicant"
     # "Data Import": "wsc.wsc.doctype.data_import.DataImport"
 }
+override_doctype_dashboards = {
+    "Program": "wsc.wsc.dashboard.program_dashboard.get_data",
+    "Student Group": "wsc.wsc.dashboard.student_group_dashboard.get_data",
+    "Academic Year": "wsc.wsc.dashboard.academic_year_dashboard.get_data",
+    "Room": "wsc.wsc.dashboard.room_dashboard.get_data",
+    "Instructor": "wsc.wsc.dashboard.instructor_dashboard.get_data",
+    "Academic Term": "wsc.wsc.dashboard.academic_term_dashboard.get_data",
+    "Course": "wsc.wsc.dashboard.course_dashboard.get_data",
+    "Program Enrollment": "wsc.wsc.dashboard.program_enrollment_dashboard.get_data",
+    "Student": "wsc.wsc.dashboard.student_dashboard.get_data",
+}
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
@@ -424,20 +461,32 @@ override_doctype_class = {
 # ]
 
 fixtures = [
-	{"dt": "Custom DocPerm", "filters": [
-		[
-			"parent", "not in", ["DocType"]
-		],
-	]},
-    {"dt": "Role"},
-    # {"dt": "Role Profile"},
-    # {"dt": "Module Profile"},
-    {"dt" : "Workflow"},
-    {"dt": "Workflow Action Master"},
-    {"dt" : "Workflow State"},
-    {"dt" : "Translation"}
-]
+# # 	{"dt": "Custom DocPerm", "filters": [
+# # 		["parent", "not in", ["DocType"]],
+# #         ["role", '=', 'Education Admission Head']
+# # 	]},
+#     # {"dt": "Role","filters": [
+#     #     [
+#     #         "name", "in", ["Shift Approver","Grievance Cell Member"]
+#     #     ]
+#     # ]},
+#     # # {"dt": "Role Profile"},
+#     # # {"dt": "Module Profile"},
+    {"dt" : "Workflow","filters": [
+        [
+            "name", "in", ["Employee Attendance Request Workflow"]
+        ]
+    ]},
+    # {"dt" : "Workflow"},
+    # # {"dt": "Workflow Action Master"},
+    # {"dt" : "Workflow State","filters": [
+    #     [
+    #         "name", "in", ["Resolved"]
+    #     ]
+    # ]},
+    # {"dt" : "Translation"}
+ ]
 website_context = {
-    "favicon": "/assets/wsc/images/logo.jpg",
-    "splash_image": "/assets/wsc/images/logo.jpg"
+    "favicon": "/assets/wsc/images/wsc.png",
+    "splash_image": "/assets/wsc/images/wsc.png"
 }

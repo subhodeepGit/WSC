@@ -20,10 +20,12 @@
   "program_grade",
   "programs",
   "semester",
+  "module_wise_exam_group",
   "exam_category",
   "section_break_9",
   "assessment_plan",
   "qualifying_status_data",
+  "passing_marks",
   "column_break_13",
   "attendence_status",
   "earned_marks",
@@ -188,12 +190,24 @@
    "fieldtype": "Data",
    "label": "Exam Category",
    "read_only": 1
+  },
+  {
+   "fieldname": "module_wise_exam_group",
+   "fieldtype": "Link",
+   "label": "Module Wise Exam Group",
+   "options": "Module Wise Exam Group",
+   "read_only": 1
+  },
+  {
+   "fieldname": "passing_marks",
+   "fieldtype": "Data",
+   "label": "Passing Marks"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-05 17:13:50.535786",
+ "modified": "2023-07-25 16:43:45.523341",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Course Assessment",

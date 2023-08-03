@@ -5,6 +5,7 @@ import frappe
 from datetime import date
 from frappe.model.document import Document
 
+
 class MentorInitiation(Document):
     def validate(doc):
         pass

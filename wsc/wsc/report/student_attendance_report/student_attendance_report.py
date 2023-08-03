@@ -107,8 +107,10 @@ def get_data(filters=None):
         else:
             percentage = 0.0
         record['percentage'] = percentage
-        record['total_classes_attended'] = present_classes[student_id]
-        record['total_classes_conducted'] = scheduled_classes[student_id]
+        # record['total_classes_attended'] = present_classes[student_id]
+        # record['total_classes_conducted'] = scheduled_classes[student_id]
+        record['total_classes_attended'] = present_classes.get(student_id, 0)
+        record['total_classes_conducted'] = scheduled_classes.get(student_id, 0)
 
     return pe_data, course_schedule_data
 
