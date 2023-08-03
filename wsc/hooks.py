@@ -61,7 +61,8 @@ doctype_js = {
                 "Shift Request":"public/js/shift_request.js",
                 "Leave Application":"public/js/leave_application.js",
                 "Employee Separation":"public/js/employee_separation.js",
-                "Bank Guarantee":"public/js/bank_guarantee.js"
+                "Bank Guarantee":"public/js/bank_guarantee.js",
+                "Material Request":"public/js/material_request.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -329,7 +330,6 @@ doc_events = {
     },
     "Attendance Request" :{
         "validate":"wsc.wsc.doctype.attendance_request.validate",
-        "on_submit":"wsc.wsc.doctype.attendance_request.on_submit",
         "after_insert":"wsc.wsc.doctype.attendance_request.after_insert"
     }
     
