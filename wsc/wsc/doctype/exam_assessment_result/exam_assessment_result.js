@@ -40,6 +40,10 @@ frappe.ui.form.on('Exam Assessment Result', {
 		});
 	
 	},
+	refresh: function(frm){
+		frm.set_df_property('result_declaration_student', 'cannot_add_rows', true)
+	},
+
 	setup:function(frm){
 		// frm.set_query("student", function() {
 		// 	return {

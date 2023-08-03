@@ -624,7 +624,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-07-17 17:33:46.444817",
+ "modified": "2023-08-02 09:56:58.440375",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "HRMS",
@@ -634,16 +634,7 @@
  "quick_lists": [],
  "roles": [
   {
-   "role": "HR"
-  },
-  {
-   "role": "HR Assistant"
-  },
-  {
-   "role": "Employee"
-  },
-  {
-   "role": "HR Manager/CS Officer"
+   "role": "System Administrator"
   }
  ],
  "sequence_id": 11.0,
