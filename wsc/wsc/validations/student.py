@@ -82,11 +82,19 @@ def validate_pin_code(doc):
 		if len(doc.student_mobile_number)>10:
 			frappe.throw("<b>Mobile Number</b> must be 10 Digits")
 
-
-		if not check_int(doc.pin_code):
-			frappe.throw("Pincode must be the integer.")
-		if not check_int(doc.student_mobile_number):
-			 frappe.throw("Mobile Number must be the integer.")
+	if not check_int(doc.pin_code):
+		frappe.throw("Pincode must be the Integer.")
+	if not check_int(doc.student_mobile_number):
+		frappe.throw("Mobile Number must be the Integer.")
+	if doc.mothers_contact_number:
+		if not check_int(doc.mothers_contact_number):
+			frappe.throw("Mother's Contact Number must be the Integer.")
+	if doc.fathers_contact_number:
+		if not check_int(doc.fathers_contact_number):
+			frappe.throw("Father's Contact Number must be the Integer.")
+	if doc.local_guardian_contact_no:
+		if not check_int(doc.local_guardian_contact_no):
+			frappe.throw("Local Guardians Contact Number must be the Integer.")
 
 def check_int(pincode_1):
 	import re

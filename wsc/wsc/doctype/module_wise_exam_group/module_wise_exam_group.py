@@ -267,7 +267,7 @@ def get_student(academic_term=None, programs=None,class_data=None,minimum_attend
             
             for t in student_list:
                 t.update({"total_no_of_classes_scheduled": total_no_class_scheduled})
-                class_att_date=frappe.db.count("Student Attendance",filters=[["student","=",t['student'],['status','=','Present']],
+                class_att_date=frappe.db.count("Student Attendance",filters=[["student","=",t['student']],['status','=','Present'],
                                     ['course','=',modules_id],['program','=',semester],['program','=',semester],
                                     ['date','between',[start_date_of_attendence_duration,end_date_of_attendence_duration]]])
                 t.update({"total_no_of_class_attended_by_the_studen":class_att_date})

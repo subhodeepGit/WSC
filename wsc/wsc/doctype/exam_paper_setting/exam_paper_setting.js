@@ -112,9 +112,12 @@ frappe.ui.form.on('Exam Paper Setting', {
 		
 	},
 	refresh(frm){
+		if (frm.doc.paper_copy==undefined && frm.doc.workflow_state){
+			$('.actions-btn-group').hide();
+		}
+
 		if(!frm.is_new()){
 			frappe.call({
-				// wsc.wsc.doctype.employee_reengagement.employee_reengagement.isrfp
 				method: 'wsc.wsc.doctype.exam_paper_setting.exam_paper_setting.is_verified_user',
 				args: {
 					docname: frm.doc.name

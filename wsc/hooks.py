@@ -330,7 +330,6 @@ doc_events = {
     },
     "Attendance Request" :{
         "validate":"wsc.wsc.doctype.attendance_request.validate",
-        "on_submit":"wsc.wsc.doctype.attendance_request.on_submit",
         "after_insert":"wsc.wsc.doctype.attendance_request.after_insert"
     }
     
