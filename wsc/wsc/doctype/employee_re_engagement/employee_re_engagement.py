@@ -5,10 +5,12 @@ import frappe
 from frappe.model.document import Document
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+from frappe import utils
 
 class EmployeeReengagement(Document):
 	def validate(self):
 		self.date_validation()
+		self.elegibilty()
 
 	def on_submit(self):
 		if self.new_contract_start_date and self.new_contract_end_date:
@@ -46,7 +48,21 @@ class EmployeeReengagement(Document):
 			frappe.throw("Contract Can't Be Less Then 12 Months")
 
 
-
+	def elegibilty(self):
+		if self.present_contract_start_date and self.present_contract_end_date:
+			start_date=self.present_contract_end_date
+			end_date=utils.today()
+			no_months=calculate_months_between_dates(start_date,end_date)
+		else:
+			start_date=self.date_of_joining 
+			end_date=utils.today()
+			if not isinstance(start_date, str):
+				start_date=str(start_date)
+			no_months=calculate_months_between_dates(start_date,end_date)
+		if no_months>=9:
+			pass
+		else:
+			frappe.throw("Currently Not Entitled For Submission Of Form")
 
 	def date_validation(self):
 		if self.present_contract_start_date and self.present_contract_end_date:
