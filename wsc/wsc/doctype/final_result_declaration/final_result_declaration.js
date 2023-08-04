@@ -110,7 +110,7 @@ frappe.call({
 		(r.message).forEach(element => {
 			var row = frm.add_child("result_declaration_student")
 			row.student=element.name
-			row.student_name=element.title
+			row.student_name=element.student_name
 			row.completion_status=element.completion_status
 		});
 		frm.refresh_field("result_declaration_student")
