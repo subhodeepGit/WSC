@@ -56,6 +56,7 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
+   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -116,6 +117,7 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
+   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -176,6 +178,7 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
+   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -236,6 +239,7 @@
    "report_hide": 0,
    "reqd": 1,
    "search_index": 0,
+   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -287,29 +291,6 @@
    "name": "Assessment Criteria-assessment_criteria-unique",
    "owner": "Administrator",
    "property": "unique",
-   "property_type": "Check",
-   "row_name": null,
-   "value": "1"
-  },
-  {
-   "_assign": null,
-   "_comments": null,
-   "_liked_by": null,
-   "_user_tags": null,
-   "creation": "2021-08-31 11:14:10.223208",
-   "default_value": null,
-   "doc_type": "Assessment Criteria",
-   "docstatus": 0,
-   "doctype_or_field": "DocField",
-   "field_name": "assessment_criteria_group",
-   "idx": 0,
-   "is_system_generated": 0,
-   "modified": "2021-08-31 11:14:10.223208",
-   "modified_by": "Administrator",
-   "module": null,
-   "name": "Assessment Criteria-assessment_criteria_group-in_list_view",
-   "owner": "Administrator",
-   "property": "in_list_view",
    "property_type": "Check",
    "row_name": null,
    "value": "1"
