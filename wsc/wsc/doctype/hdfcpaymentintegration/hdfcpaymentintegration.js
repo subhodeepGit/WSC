@@ -5,7 +5,7 @@
 frappe.ui.form.on("HdfcPaymentIntegration", {
 	refresh: function (frm) {
 		var hdfcButton = frm.add_custom_button("By HDFC", function () {
-			// alert("1")
+			
 			frappe.call({
 				
 				method: "wsc.wsc.doctype.hdfcpaymentintegration.hdfcpaymentintegration.login",
@@ -17,14 +17,12 @@ frappe.ui.form.on("HdfcPaymentIntegration", {
 					url: window.location.href
 				},
 				callback: function (r) {
-					// alert("2")
-					var encRequest = r.message["encRequest"];
-					var access_code = r.message["accessCode"];
-					var baseUrl = r.message["baseUrl"];
-					alert(baseUrl)
+					
+					var encRequest = r.message["encRequest"];					
+					var access_code = r.message["accessCode"];					
+					var baseUrl = r.message["baseUrl"];				
 
-					var isLocalhost = baseUrl.includes("erp.soulunileaders.com");
-					// alert(isLocalhost)
+					var isLocalhost = baseUrl.includes("erp.soulunileaders.com");					
                     var isProd = baseUrl.includes("wscdemo.eduleadonline.com");
 				
 

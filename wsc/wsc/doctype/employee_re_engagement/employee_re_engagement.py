@@ -9,8 +9,10 @@ from frappe import utils
 
 class EmployeeReengagement(Document):
 	def validate(self):
-		self.date_validation()
-		self.elegibilty()
+		if self.new_contract_start_date and self.new_contract_end_date:
+			self.date_validation()
+			self.elegibilty()
+			self.contract_validation()
 
 	def on_submit(self):
 		if self.new_contract_start_date and self.new_contract_end_date:
@@ -66,7 +68,6 @@ class EmployeeReengagement(Document):
 
 	def date_validation(self):
 		if self.present_contract_start_date and self.present_contract_end_date:
-
 			if isinstance(self.present_contract_end_date, str):
 				present_contract_end_date=datetime.strptime(self.present_contract_end_date, '%Y-%m-%d').date()
 			else:
@@ -96,18 +97,26 @@ class EmployeeReengagement(Document):
 
 
 def calculate_months_between_dates(start_date, end_date):
-    # Convert strings to datetime objects
-    start_date = datetime.strptime(start_date, "%Y-%m-%d")
-    end_date = datetime.strptime(end_date, "%Y-%m-%d")
+	if isinstance(start_date, str):
+		pass
+	else:
+		start_date=str(start_date)
+	if isinstance(end_date, str):
+		pass
+	else:
+		end_date=str(end_date)	
+	# Convert strings to datetime objects
+	start_date = datetime.strptime(start_date, "%Y-%m-%d")
+	end_date = datetime.strptime(end_date, "%Y-%m-%d")
 
-    # Calculate the difference between the dates using relativedelta
-    delta = relativedelta(end_date, start_date)
+	# Calculate the difference between the dates using relativedelta
+	delta = relativedelta(end_date, start_date)
 
-    # Calculate the total number of months with calendar days
-    total_months = delta.years * 12 + delta.months
+	# Calculate the total number of months with calendar days
+	total_months = delta.years * 12 + delta.months
 
-    # Adjust for any remaining days within the last month
-    if end_date.day >= start_date.day:
-        total_months += 1
+	# Adjust for any remaining days within the last month
+	if end_date.day >= start_date.day:
+		total_months += 1
 
-    return total_months		
+	return total_months		

@@ -1,5 +1,6 @@
 #!/usr/bin/python
 #Created By :Rupali_Bhatta : 17-07-2023
+#/home/wsc/frappe-bench/apps/wsc/wsc/wsc/doctype/hdfcpaymentintegration/cchdfcpaymentintegration.py
 from ccavutil import encrypt, decrypt
 from string import Template
 from urllib.parse import parse_qs
@@ -12,14 +13,12 @@ import os
 
 def res(encResp,url):
       
-    try:
-        
-        print("\n\n\n\n ccResponse  res  url",url)
-        # ccResponse  res  url http://127.0.0.1:8080/ccavResponseHandler
+    try:        
+       
         username = os.getenv('USER')
         file_path = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "hdfcpaymentintegration", "db_name.txt")
 
-    # Read the value from the file
+    
         with open(file_path, "r") as file:
             db_name = file.read().strip()
 
@@ -30,44 +29,32 @@ def res(encResp,url):
 
         conn = pymysql.connect(
             host="localhost",
-            user="hdfctest",
-            password="India@1234",
+            user="integration",
+            password="erp@123",
             database=db_name)
         c = conn.cursor()
 
-        integration_dbvalue = "SELECT  working_key,redirect_url,cancel_url, site_name FROM `hdfc_test`"
+        integration_dbvalue = "SELECT  working_key,redirect_url,cancel_url, site_name FROM `payment_integration`"
         c.execute(integration_dbvalue)
         integration_value = c.fetchall()
-        # print("\n\n\n\n")
-        # print("ccResponse DB data-----", integration_value)
         c.close()
 
         for row in integration_value:
-            db_working_key = row[0]
+            db_working_key = row[0]          
             db_redirect_url = row[1]
-            print("\n\n\n\n")
-            print("ccResponse db_redirect_url-----", db_redirect_url)
             cancel_url = row[2]
             db_base_redirect_url = row[3]
-            print("\n\n\n\n")
-            print("ccResponse db_base_redirect_url-----", db_base_redirect_url)
-
             passed_url = urlparse(url)
-            print("\n\n\n\n")
-            print("ccResponse passed_url-----", passed_url)
             db_url_name = urlparse(db_redirect_url)
-            print("\n\n\n\n")
-            print("ccResponse db_url_name-----", db_url_name)
 
             if passed_url.netloc == db_url_name.netloc:
                 
     
                 decResp = decrypt(encResp, db_working_key)
                 parsed_data = parse_qs(decResp)
-                # print("ccResponse parsed_data:::::::::", parsed_data)
-                cleaned_data = {key.strip("b'"): value[0] if value else None for key, value in parsed_data.items()}
-
-                order_id = cleaned_data.get('order_id', None)
+               
+                cleaned_data = {key.strip("b'"): value[0] if value else None for key, value in parsed_data.items()}               
+                order_id = cleaned_data.get('order_id', None)             
                 tracking_id = cleaned_data.get('tracking_id', None)
                 order_status = cleaned_data.get('order_status', None)
                 amount = cleaned_data.get('amount', None)
@@ -77,11 +64,11 @@ def res(encResp,url):
                 # base_redirect_url = 'http://localhost:8000/app/hdfcpaymentintegration/'
                                         
                 redirect_url = "{}{}".format(db_base_redirect_url, order_id)
-                print("\n\n\n\n\n ccResponse redirect_url",redirect_url)
+               
                 #  ccResponse redirect_url http://erp.soulunileaders.com:8000/app/PAY-2023-0122
 
                 base_url = urlparse(db_base_redirect_url).scheme + "://" + urlparse(db_base_redirect_url).netloc
-                print("\n\n\n\n\n ccResponse base_url",base_url)
+               
                 # ccResponse base_url http://erp.soulunileaders.com:8000
 
                 api_endpoint_get_token = '/api/method/wsc.wsc.doctype.hdfcpaymentintegration.hdfcpaymentintegration.get_token'
@@ -102,8 +89,7 @@ def res(encResp,url):
                         transaction_data = {
                             'response_data': cleaned_data
                         }
-                        # print("\n\n\n\n\n")
-                        # print("ccResponse data sending---",transaction_data)
+                       
 
                         headers = {
                         'Authorization': f'Bearer {token}'  
@@ -111,7 +97,6 @@ def res(encResp,url):
 
 
                         m_base_url = urlparse(db_base_redirect_url).scheme + "://" + urlparse(db_base_redirect_url).netloc
-                        print("\n\n\n\n\n m_base_url",m_base_url)
                         api_endpoint_get_order_status = '/api/method/wsc.wsc.doctype.hdfcpaymentintegration.hdfcpaymentintegration.get_order_status'
                         frappe_api_endpoint = m_base_url + api_endpoint_get_order_status
 
@@ -139,6 +124,8 @@ def res(encResp,url):
                         print("Token not found in the response.", response.status_code)
                 else:
                     print("Failed to get the token. Status code:", response.status_code)
+
+                break
 
     except Exception as e:       
 
