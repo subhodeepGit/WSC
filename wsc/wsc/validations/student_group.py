@@ -288,14 +288,14 @@ def get_program_enrollment(academic_year, academic_term=None, program=None, batc
     if course:
         condition1 += " and pe.name = pec.parent and pec.course = %(course)s"
         condition2 = ", `tabProgram Enrollment Course` pec"
-    
+    # (pe.is_provisional_admission IS NULL or pe.is_provisional_admission="No") and
     testVar = frappe.db.sql('''
         select
             pe.student, pe.student_name
         from
             `tabProgram Enrollment` pe {condition2}
         where
-            (pe.is_provisional_admission IS NULL or pe.is_provisional_admission="No") and
+            
             pe.academic_year = %(academic_year)s  {condition1}
         order by
             pe.student_name asc

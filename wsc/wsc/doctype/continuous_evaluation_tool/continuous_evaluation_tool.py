@@ -80,6 +80,7 @@ def make_continuous_evaluation(continuous_evaluation):
 			records=False
 			for d in result.get('rows'):
 				exist_record = [a.get('name') for a in frappe.db.get_list("Assessment Credits Allocation",{"docstatus":("!=",2),"student":result.get('rows')[d].get("student"),
+											       "roll_no":result.get('rows')[d].get("roll_no"),"registration_number":result.get('rows')[d].get("registration_number"),
 																			"academic_year":result.get("academic_year"),"academic_term":result.get("academic_term"),
 																			'course':result.get("course"),"assessment_criteria":result.get("criteria")}, 'name')]
 				if len(exist_record) > 0:

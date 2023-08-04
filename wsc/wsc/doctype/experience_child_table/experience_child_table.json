@@ -15,14 +15,20 @@
  ],
  "fields": [
   {
+   "columns": 2,
    "fieldname": "company_name",
    "fieldtype": "Data",
-   "label": "Company name"
+   "in_list_view": 1,
+   "label": "Company name",
+   "width": "10"
   },
   {
+   "columns": 2,
    "fieldname": "job_profile",
    "fieldtype": "Data",
-   "label": "Job profile"
+   "in_list_view": 1,
+   "label": "Job profile",
+   "width": "10"
   },
   {
    "fieldname": "job_type",
@@ -31,25 +37,33 @@
    "options": "Permanent\nInternship\nContractual\nNon-contractual"
   },
   {
+   "columns": 2,
    "fieldname": "job_start_date",
    "fieldtype": "Date",
-   "label": "Job start date"
+   "in_list_view": 1,
+   "label": "Job start date",
+   "width": "10"
   },
   {
+   "columns": 2,
    "fieldname": "job_end_date",
    "fieldtype": "Date",
-   "label": "Job end date"
+   "in_list_view": 1,
+   "label": "Job end date",
+   "width": "10"
   },
   {
+   "description": "In Year",
    "fieldname": "job_duration",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Job duration"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-07-17 10:56:32.761692",
+ "modified": "2023-08-04 12:17:36.965818",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Experience child table",

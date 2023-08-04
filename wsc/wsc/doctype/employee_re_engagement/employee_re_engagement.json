@@ -1,0 +1,222 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "ERE.-.YYYY.-.#####",
+ "creation": "2023-08-01 11:22:18.227850",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee_information_section",
+  "employee",
+  "employee_name",
+  "gender",
+  "designation",
+  "employee_number",
+  "branch",
+  "column_break_l2gfl",
+  "company",
+  "date_of_joining",
+  "department",
+  "cost_to_company_ctc",
+  "employment_type",
+  "contract_status_section_section",
+  "present_contract_start_date",
+  "column_break_emcrd",
+  "present_contract_end_date",
+  "employee_re_engagement_section_section",
+  "status",
+  "new_contract_start_date",
+  "column_break_ktslj",
+  "revised_ctc",
+  "new_contract_end_date",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.gender",
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "label": "Gender",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.date_of_joining",
+   "fieldname": "date_of_joining",
+   "fieldtype": "Date",
+   "label": "Date of Joining",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.company",
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_l2gfl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "employee.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.ctc",
+   "fieldname": "cost_to_company_ctc",
+   "fieldtype": "Currency",
+   "label": "Cost to Company (CTC)",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.designation",
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "label": "Designation",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.employment_type",
+   "fieldname": "employment_type",
+   "fieldtype": "Data",
+   "label": " Employment Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.employee_number",
+   "fieldname": "employee_number",
+   "fieldtype": "Data",
+   "label": "Employee Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employee_information_section",
+   "fieldtype": "Section Break",
+   "label": "Employee Information"
+  },
+  {
+   "fieldname": "employee_re_engagement_section_section",
+   "fieldtype": "Section Break",
+   "label": "Employee Re Engagement Section"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_ktslj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:(doc.status!=\"Pending\" && doc.status!=\"Pending\")",
+   "fieldname": "revised_ctc",
+   "fieldtype": "Currency",
+   "label": "Revised CTC"
+  },
+  {
+   "fieldname": "contract_status_section_section",
+   "fieldtype": "Section Break",
+   "label": "Contract Status Section"
+  },
+  {
+   "fetch_from": "employee.present_contract_start_date",
+   "fieldname": "present_contract_start_date",
+   "fieldtype": "Data",
+   "label": "Present Contract Start Date",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.present_contract_end_date",
+   "fieldname": "present_contract_end_date",
+   "fieldtype": "Date",
+   "label": "Present Contract End Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_emcrd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:(doc.status!=\"Pending\" && doc.status!=\"Pending\")",
+   "fieldname": "new_contract_start_date",
+   "fieldtype": "Date",
+   "label": "New Contract Start Date",
+   "mandatory_depends_on": "eval:(doc.status!=\"Pending\" && doc.status!=\"Pending\")"
+  },
+  {
+   "depends_on": "eval:(doc.status!=\"Pending\" && doc.status!=\"Pending\")",
+   "fieldname": "new_contract_end_date",
+   "fieldtype": "Date",
+   "label": "New Contract End Date",
+   "mandatory_depends_on": "eval:(doc.status!=\"Pending\" && doc.status!=\"Pending\")"
+  },
+  {
+   "fetch_from": "employee.branch",
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "Branch",
+   "options": "Branch",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Employee Re-engagement",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-08-03 17:17:47.266755",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Employee Re-engagement",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

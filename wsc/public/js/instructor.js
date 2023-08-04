@@ -48,7 +48,9 @@ frappe.ui.form.on('Instructor',{
             return {
                 filters: {
                     "program":d.program,
-                    "academic_term":d.academic_term
+                    "academic_term":d.academic_term,
+                    "course_name":d.course_name,
+                    "school_house":d.school_house
                 }
             };
         });

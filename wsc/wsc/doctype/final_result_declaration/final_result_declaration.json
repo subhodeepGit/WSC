@@ -73,6 +73,7 @@
   {
    "fieldname": "total_enrolled_student",
    "fieldtype": "Int",
+   "hidden": 1,
    "label": "Total Enrolled Student",
    "read_only": 1
   },
@@ -106,7 +107,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-21 16:18:30.334940",
+ "modified": "2023-07-31 10:16:20.988003",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Final Result Declaration",

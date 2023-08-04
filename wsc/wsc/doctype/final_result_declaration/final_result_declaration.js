@@ -73,17 +73,19 @@ frm.set_query("academic_term", function() {
 });
 },
 refresh:function(frm){
-if (!frm.doc.__islocal){
-	frm.add_custom_button(__('Create Exam Assessment Result'), function() {
-		frappe.call({
-			method: 'make_exam_assessment_result',
-			doc: frm.doc,
-			callback: function() {
-				frm.refresh();
-			}
-		});
-	}).addClass('btn-primary');;
-}
+	frm.set_df_property('result_declaration_student', 'cannot_add_rows', true)
+
+	if (!frm.doc.__islocal){
+		frm.add_custom_button(__('Create Exam Assessment Result'), function() {
+			frappe.call({
+				method: 'make_exam_assessment_result',
+				doc: frm.doc,
+				callback: function() {
+					frm.refresh();
+				}
+			});
+		}).addClass('btn-primary');;
+	}
 
 },
 onload:function(frm){
@@ -110,7 +112,7 @@ frappe.call({
 		(r.message).forEach(element => {
 			var row = frm.add_child("result_declaration_student")
 			row.student=element.name
-			row.student_name=element.title
+			row.student_name=element.student_name
 			row.completion_status=element.completion_status
 		});
 		frm.refresh_field("result_declaration_student")
