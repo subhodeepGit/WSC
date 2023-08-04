@@ -126,14 +126,16 @@ def update_user(doc):
             user.module_profile="Instructor"
             user.role_profile_name="Employee Role"
             user.save()
-
             for ur_pr in frappe.get_all("User Permission",{'user':user_id,'allow':"Employee",'for_value':doc.employee,"applicable_for":("!=","Employee")}):
+                print("\n\n\nURSE",ur_pr)
                 user_permission=frappe.get_doc("User Permission",ur_pr.name)
                 user_permission.applicable_for="Employee"
                 user_permission.apply_to_all_doctypes=0
                 user_permission.applicable_for="Employee"
-                user_permission.reference_doctype=doc.doctype
-                user_permission.reference_docname=doc.name
+                # user_permission.reference_doctype=doc.doctype
+                # user_permission.reference_docname=doc.name
+                print("\n\n\nUSER DOC NAME",doc.name)
+                print("\n\n\nUSER DOC NAME2",user_permission.reference_docname)
                 if len(frappe.get_all("User Permission",{'user':user_id,'allow':"Employee",'for_value':doc.employee,"applicable_for":"Employee"}))==0:
                     user_permission.save()
 

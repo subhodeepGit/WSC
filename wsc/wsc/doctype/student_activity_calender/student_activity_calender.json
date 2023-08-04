@@ -38,7 +38,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-27 13:19:56.219992",
+ "modified": "2023-07-27 13:39:30.114019",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Activity Calender",
@@ -60,5 +60,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1
 }

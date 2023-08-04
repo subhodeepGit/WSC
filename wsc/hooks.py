@@ -61,7 +61,8 @@ doctype_js = {
                 "Shift Request":"public/js/shift_request.js",
                 "Leave Application":"public/js/leave_application.js",
                 "Employee Separation":"public/js/employee_separation.js",
-                "Bank Guarantee":"public/js/bank_guarantee.js"
+                "Bank Guarantee":"public/js/bank_guarantee.js",
+                "Material Request":"public/js/material_request.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -88,6 +89,7 @@ after_migrate = [
         'wsc.patches.migrate_patch.set_custom_role_permission',
         'wsc.wsc.delete_doc_if_linked.execute',
         'wsc.patches.migrate_patch.set_custom_role_permission_remove_duplicate',
+        'wsc.security.execute'
 ]
 
 # application home page (will override Website Settings)
@@ -322,10 +324,16 @@ doc_events = {
     },
     "Employee Separation":{
         "validate":"wsc.wsc.validations.employee_separation.validate",
+        "after_insert":"wsc.wsc.validations.employee_separation.after_insert"
     },
     "Asset Maintenance" : {
         "validate" :"wsc.wsc.doctype.asset_maintenance.validate"
-    } 
+    },
+    "Attendance Request" :{
+        "validate":"wsc.wsc.doctype.attendance_request.validate",
+        "after_insert":"wsc.wsc.doctype.attendance_request.after_insert"
+    }
+    
 
     # "User":{
     #     "validate":"wsc.wsc.validations.user.validate",
@@ -453,24 +461,24 @@ override_doctype_dashboards = {
 #	"wsc.auth.validate"
 # ]
 
-# fixtures = [
-# 	{"dt": "Custom DocPerm", "filters": [
-# 		["parent", "not in", ["DocType"]],
-#         ["role", '=', 'Education Admission Head']
-# 	]},
-    # {"dt": "Role","filters": [
-    #     [
-    #         "name", "in", ["Shift Approver","Grievance Cell Member"]
-    #     ]
-    # ]},
-    # # {"dt": "Role Profile"},
-    # # {"dt": "Module Profile"},
-    # {"dt" : "Workflow","filters": [
-    #     [
-    #         "name", "in", ["Employee Shift Request Workflow","Job Requisition"]
-    #     ]
-    # ]},
-    # # {"dt" : "Workflow"},
+fixtures = [
+# # 	{"dt": "Custom DocPerm", "filters": [
+# # 		["parent", "not in", ["DocType"]],
+# #         ["role", '=', 'Education Admission Head']
+# # 	]},
+#     # {"dt": "Role","filters": [
+#     #     [
+#     #         "name", "in", ["Shift Approver","Grievance Cell Member"]
+#     #     ]
+#     # ]},
+#     # # {"dt": "Role Profile"},
+#     # # {"dt": "Module Profile"},
+    {"dt" : "Workflow","filters": [
+        [
+            "name", "in", ["Employee Attendance Request Workflow"]
+        ]
+    ]},
+    # {"dt" : "Workflow"},
     # # {"dt": "Workflow Action Master"},
     # {"dt" : "Workflow State","filters": [
     #     [
@@ -478,7 +486,7 @@ override_doctype_dashboards = {
     #     ]
     # ]},
     # {"dt" : "Translation"}
-# ]
+ ]
 website_context = {
     "favicon": "/assets/wsc/images/wsc.png",
     "splash_image": "/assets/wsc/images/wsc.png"

@@ -11,7 +11,7 @@ from wsc.wsc.utils import duplicate_row_validation
 class FinalResultDeclaration(Document):
 	def validate(self):
 		validate_semester(self)
-		duplicate_row_validation(self,'result_declaration_student',['student'])
+		# duplicate_row_validation(self,'result_declaration_student',['student'])
 	
 	@frappe.whitelist()
 	def make_exam_assessment_result(self):
@@ -100,7 +100,7 @@ def create_exam_assessment_result(final_result_declaration):
 		result.save()
 		created_records += 1
 		frappe.publish_realtime("final_result_declaration_progress", {"progress": str(int(created_records * 100/total_records)),"current":str(created_records),"total":str(total_records)}, user=frappe.session.user)
-
+	frappe.msgprint("Your records has been created")
 		# except Exception as e:
 		# 	error = True
 		# 	err_msg = frappe.local.message_log and "\n\n".join(frappe.local.message_log) or cstr(e)

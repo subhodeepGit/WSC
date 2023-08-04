@@ -33,14 +33,24 @@
   "column_break_17",
   "interest_type",
   "interest_percentage",
+  "posting_journal_entry",
   "section_break_punlb",
   "get_amount",
-  "interest_calculation"
+  "interest_calculation",
+  "section_break_ojewa",
+  "matured",
+  "final_maturity_amount",
+  "matured_posting_journal_entry",
+  "column_break_ofopr",
+  "final_maturity_interest_amount",
+  "final_maturity_date",
+  "section_break_jojgj",
+  "amended_from"
  ],
  "fields": [
   {
    "fieldname": "fd_number",
-   "fieldtype": "Int",
+   "fieldtype": "Data",
    "label": "FD Number",
    "reqd": 1
   },
@@ -55,7 +65,8 @@
    "fieldname": "fd_account",
    "fieldtype": "Link",
    "label": "FD Account",
-   "options": "Account"
+   "options": "Account",
+   "reqd": 1
   },
   {
    "fieldname": "fd_start_date",
@@ -79,19 +90,22 @@
    "fieldname": "company",
    "fieldtype": "Link",
    "label": "Company",
-   "options": "Company"
+   "options": "Company",
+   "read_only": 1
   },
   {
    "fieldname": "bank_account",
    "fieldtype": "Link",
    "label": "Bank Account",
-   "options": "Account"
+   "options": "Account",
+   "reqd": 1
   },
   {
    "fieldname": "interest_account",
    "fieldtype": "Link",
    "label": "Interest Account",
-   "options": "Account"
+   "options": "Account",
+   "reqd": 1
   },
   {
    "fieldname": "fd_amount",
@@ -160,6 +174,7 @@
    "fieldtype": "Section Break"
   },
   {
+   "depends_on": "eval:doc.docstatus==0",
    "fieldname": "get_amount",
    "fieldtype": "Button",
    "label": "Get Amount"
@@ -205,9 +220,77 @@
    "fieldtype": "Data",
    "label": "Tenure(In Annually)",
    "mandatory_depends_on": "eval:doc.interest_payable==\"Annually\""
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Fixed Deposit",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "posting_journal_entry",
+   "fieldtype": "Data",
+   "label": "Posting Journal Entry",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "depends_on": "eval:doc.docstatus==1",
+   "fieldname": "matured",
+   "fieldtype": "Check",
+   "label": "Matured"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.matured==1",
+   "fieldname": "final_maturity_amount",
+   "fieldtype": "Currency",
+   "label": "Final Maturity Amount",
+   "mandatory_depends_on": "eval:doc.matured==1"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.matured==1",
+   "fieldname": "final_maturity_date",
+   "fieldtype": "Date",
+   "label": "Final Maturity Date",
+   "mandatory_depends_on": "eval:doc.matured==1"
+  },
+  {
+   "fieldname": "section_break_ojewa",
+   "fieldtype": "Section Break",
+   "label": "Maturity Section"
+  },
+  {
+   "fieldname": "section_break_jojgj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_ofopr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.matured==1",
+   "fieldname": "final_maturity_interest_amount",
+   "fieldtype": "Currency",
+   "label": "Final Maturity interest Amount",
+   "mandatory_depends_on": "eval:doc.matured==1",
+   "read_only_depends_on": "eval:doc.matured==1"
+  },
+  {
+   "fieldname": "matured_posting_journal_entry",
+   "fieldtype": "Data",
+   "label": "Matured posting Journal Entry",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [
   {
    "group": "Bank Guarantee",
@@ -215,7 +298,7 @@
    "link_fieldname": "fixed_deposit"
   }
  ],
- "modified": "2023-07-25 11:38:10.936672",
+ "modified": "2023-07-31 15:43:16.273707",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Fixed Deposit",

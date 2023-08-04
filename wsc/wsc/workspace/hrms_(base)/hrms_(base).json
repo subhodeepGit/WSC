@@ -390,7 +390,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-07-24 10:13:04.549243",
+ "modified": "2023-08-02 09:59:09.815701",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "HRMS (Base)",
@@ -410,6 +410,24 @@
   },
   {
    "role": "Employee"
+  },
+  {
+   "role": "Grievance Cell Member"
+  },
+  {
+   "role": "Leave Approver"
+  },
+  {
+   "role": "Shift Approver"
+  },
+  {
+   "role": "Department Head"
+  },
+  {
+   "role": "Director"
+  },
+  {
+   "role": "Instructor"
   }
  ],
  "sequence_id": 48.0,

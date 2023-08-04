@@ -517,10 +517,13 @@ def get_seat_reservation_type(doctype, txt, searchfield, start, page_len, filter
 @frappe.whitelist()
 #Old One
 def get_programs_stud_app(doctype, txt, searchfield, start, page_len, filters):
-    fltr = {"parent":filters.get("student_applicant")}
-    if txt:
-        fltr.update({'semester': ['like', '%{}%'.format(txt)]})
-    return frappe.get_all("Program Priority",fltr,['programs'], as_list=1)
+    fltr = {"parent":filters.get("student_applicant"),"approve":1}
+    print("\n\n\nTXt",txt)
+    print("\n\n\nFilter1",fltr)
+    # if txt:
+    #     fltr.update({'semester': ['like', '%{}%'.format(txt)]})
+    #     print("\n\n\nFilter")
+    return frappe.get_all("Counseling Based Program Priority",fltr,['programs'], as_list=1)
 
 ##New One
 # def get_programs_stud_app(doctype, txt, searchfield, start, page_len, filters):
@@ -535,11 +538,11 @@ def get_program_stud_app(doctype, txt, searchfield, start, page_len, filters):
     fltr = {"programs":filters.get("programs"),"parent":filters.get("student_applicant")}
     if txt:
         fltr.update({'semester': ['like', '%{}%'.format(txt)]})
-    return frappe.get_all("Program Priority",fltr,['semester'], as_list=1)
+    return frappe.get_all("Counseling Based Program Priority",fltr,['semester'], as_list=1)
 
 @frappe.whitelist()
 def get_data_stud_app(student_applicant):
-    return frappe.get_all("Program Priority",{"parent":student_applicant},['programs', 'semester'])
+    return frappe.get_all("Counseling Based Program Priority",{"parent":student_applicant},['programs', 'semester'])
 
 
 def update_reserved_seats(doc,on_submit=0):
@@ -556,30 +559,30 @@ def update_reserved_seats(doc,on_submit=0):
                     frappe.throw("Reservation Type <b>{0}</b> Not Exists in Admission <b>{1}</b>".format(doc.seat_reservation_type,admission.name))
 
                 # check checkbox values
-                for reservation_type in frappe.get_all("Seat Reservation Type",{"name":doc.seat_reservation_type},["physically_disabled","award_winner","name"]):
+                # for reservation_type in frappe.get_all("Seat Reservation Type",{"name":doc.seat_reservation_type},["physically_disabled","award_winner","name"]):
                     
-                    if doc.physically_disabled != reservation_type.physically_disabled:
-                        frappe.throw("Please Mark Checkbox <b>{0}</b> for Reservation Type <b>{1}</b>".format("Physically Disabled",doc.seat_reservation_type)) 
+                #     if doc.physically_disabled != reservation_type.physically_disabled:
+                #         frappe.throw("Please Mark Checkbox <b>{0}</b> for Reservation Type <b>{1}</b>".format("Physically Disabled",doc.seat_reservation_type)) 
 
-                    if doc.award_winner != reservation_type.award_winner:
-                        frappe.throw("Please Mark Checkbox <b>{0}</b> for Reservation Type <b>{1}</b>".format("Award Winner",doc.seat_reservation_type))
+                #     if doc.award_winner != reservation_type.award_winner:
+                #         frappe.throw("Please Mark Checkbox <b>{0}</b> for Reservation Type <b>{1}</b>".format("Award Winner",doc.seat_reservation_type))
 
-                    validate_reservation_type_by_criteria(doc,reservation_type.name)
+                    # validate_reservation_type_by_criteria(doc,reservation_type.name)
 
                 # update seat 
-                for d in admission.get("reservations_distribution"):
-                    if doc.seat_reservation_type==d.seat_reservation_type:
-                        if on_submit:
-                            if int(d.seat_balance) > 0:
-                                d.seat_balance-=1
-                            else:
-                                frappe.throw("There is no available seat.")
-                        elif on_cancel:
-                            if int(d.allocated_seat) > int(d.seat_balance):
-                                d.seat_balance+=1
-                            else:
-                                frappe.throw("Error !!")
-                admission.save()
+                # for d in admission.get("reservations_distribution"):
+                #     if doc.seat_reservation_type==d.seat_reservation_type:
+                #         if on_submit:
+                #             if int(d.seat_balance) > 0:
+                #                 d.seat_balance-=1
+                #             else:
+                #                 frappe.throw("There is no available seat.")
+                #         elif on_cancel:
+                #             if int(d.allocated_seat) > int(d.seat_balance):
+                #                 d.seat_balance+=1
+                #             else:
+                #                 frappe.throw("Error !!")
+                # admission.save()
         
         # branch sliding
         else:

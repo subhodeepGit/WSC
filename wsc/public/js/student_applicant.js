@@ -32,15 +32,26 @@ frappe.ui.form.on('Student Applicant', {
                 }
             };
         });
-        frm.fields_dict['program_priority'].grid.get_field('programs').get_query = function(doc, cdt, cdn) {
+        // frm.fields_dict['program_priority'].grid.get_field('programs').get_query = function(doc, cdt, cdn) {
+        //     return {   
+        //         query: 'wsc.wsc.doctype.student_applicant.filter_programs_by_department', 
+        //         filters:{
+        //             "department":frm.doc.department,
+        //             "program_grade":frm.doc.program_grade
+        //         }
+        //     }
+        // }
+        //New Code by Tousiff//
+        frm.fields_dict['counselling_based_program_priority'].grid.get_field('programs').get_query = function(doc, cdt, cdn) {
             return {   
-                query: 'wsc.wsc.doctype.student_applicant.filter_programs_by_department', 
+                query: 'wsc.wsc.doctype.student_applicant.filter_programs_by_department_counselling', 
                 filters:{
                     "department":frm.doc.department,
                     "program_grade":frm.doc.program_grade
                 }
             }
         }
+        //End
         // frm.fields_dict['counselling_based_program_priority'].grid.get_field('programs').get_query = function(doc, cdt, cdn) {
         //     return {   
         //         query: 'wsc.wsc.doctype.student_applicant.filter_programs_by_department', 
@@ -104,19 +115,6 @@ frappe.ui.form.on('Student Applicant', {
                 }
             }
         })      
-        frm.set_query("center_name" , "exam_center_locations" , function(_doc , cdt , cdn){
-            var d = locals[cdt][cdn]
-            return {
-                filters: {
-                    'docstatus':1,
-                    "academic_year":frm.doc.academic_year,
-                    'academic_term':frm.doc.academic_term,
-                    "state":d.state,
-                    "district":d.districts,
-                    "available_center":1 
-                }
-            }
-        })
     },
     hide_n_show_child_table_fields(frm){
         var df = frappe.meta.get_docfield("Education Qualifications Details","qualification_", frm.doc.name);
@@ -143,8 +141,8 @@ frappe.ui.form.on('Student Applicant', {
     },
     refresh(frm){
 
-        frm.set_df_property('student_rank', 'cannot_add_rows', true)
-		frm.set_df_property('student_rank', 'cannot_delete_rows', true) 
+        // frm.set_df_property('student_rank', 'cannot_add_rows', true)
+		// frm.set_df_property('student_rank', 'cannot_delete_rows', true) 
         frm.set_df_property('education_qualifications_details', 'cannot_add_rows', true);
         frm.set_df_property('education_qualifications_details', 'cannot_delete_rows', true);
         frm.set_df_property('document_list', 'cannot_add_rows', true);
@@ -153,6 +151,7 @@ frappe.ui.form.on('Student Applicant', {
         if (cur_frm.doc.document_list){
             cur_frm.doc.document_list.forEach(data=>{
                 var dn = frappe.meta.get_docfield("Document List", "document_name",data.name);
+                // console.log(dn);
                 dn.read_only=1;
                 // var m = frappe.meta.get_docfield("Document List", "mandatory",data.name);
                 // m.read_only=1;
@@ -195,9 +194,7 @@ frappe.ui.form.on('Student Applicant', {
                         console.log(err);
                     })
                 }
-				
 			});
-			
         }
         // frappe.call({
         //     method: "wsc.wsc.doctype.student_applicant.get_qualification_list",
@@ -312,6 +309,7 @@ frappe.ui.form.on('Student Applicant', {
     get_education_and_document_list(frm){
         frm.set_value("education_qualifications_details",[]);
         if (frm.doc.counselling_structure && frm.doc.student_category){
+            frappe.model.clear_table(frm.doc, 'counselling_based_program_priority');
             frappe.model.with_doc("Counselling Structure", frm.doc.counselling_structure, function() {
                 var tabletransfer= frappe.model.get_doc("Counselling Structure", frm.doc.counselling_structure)
                 $.each(tabletransfer.eligibility_parameter_list, function(index, row){
@@ -387,7 +385,90 @@ frappe.ui.form.on("Education Qualifications Details", "earned_marks", function(f
     
     cur_frm.refresh_field ("education_qualifications_details");
  
- });       
+ });      
+
+ //             "academic_year":frm.doc.academic_year,
+ //             'academic_term':frm.doc.academic_term,
+ //             "state":d.state,
+ //             "district":d.districts,
+ //             "available_center":1 
+ frappe.ui.form.on("Exam Centre Preference" , {
+    exam_center_locations_add:function(frm){
+        frm.fields_dict['exam_center_locations'].grid.get_field('center_name').get_query = function(doc){
+            var exam_center_list = [];
+            // if(!doc.__islocal) exam_center_list.push(doc.name)
+            $.each(doc.exam_center_locations , function(idx , val){
+                if (val.center_name) exam_center_list.push(val.center_name)
+            })
+            console.log(doc.exam_center_locations[0].state);
+            return { filters:[
+                        ['Entrance exam select' , 'name' , 'not in' , exam_center_list] , 
+                        ['docstatus','=',1] , 
+                        ['academic_year' , '=' , frm.doc.academic_year] , 
+                        ['academic_term' , '=' , frm.doc.academic_term] ,
+                        ['state' , '=' , doc.exam_center_locations[0].state] , 
+                        ['district' , '=' , doc.exam_center_locations[0].districts] , 
+                        ['available_center' , '=' , 1]
+                    ]}
+        }
+    }
+ })
+
+ frappe.ui.form.on("Counseling Based Program Priority","programs", function(frm, cdt, cdn) {
+    var d = locals[cdt][cdn];
+   
+    frappe.model.set_value(cdt, cdn, "student_admission",'');
+    frappe.model.set_value(cdt, cdn, "semester", '');
+    if (d.programs){
+        frappe.call({
+            method: "wsc.wsc.doctype.student_applicant.get_admission_and_semester_by_program",
+            args: {
+               programs:d.programs,
+               program_grade:frm.doc.program_grade,
+               academic_year:frm.doc.academic_year
+            },
+            callback: function(r) { 
+                if (r.message){
+                    // console.log(r.message);
+                    // if (r.message["no_record_found"]){
+                    //     frappe.msgprint("Admission Not Declared for this program")
+                    //     frappe.model.set_value(cdt, cdn, "programs",'');
+                    // }
+                    // var a=0
+                    // a=frm.doc.program_priority.length;
+                    // frm.set_value("count_programs", a);
+                    // if(a<=1){
+                        frm.set_value("counselling_semester",r.message['semester'])
+                        frm.set_value("counselling_course",r.message['admission_program'])
+                    // }
+                    // frm.set_value("program",r.message['semester'])
+                    // frm.set_value("programs_",r.message['admission_program'])
+                    frappe.model.set_value(cdt, cdn, "student_admission", r.message['name']);
+                    frappe.model.set_value(cdt, cdn, "semester", r.message['semester']);
+                }
+            }
+        })
+    }
+
+ }) 
+
+ frappe.ui.form.on("Counseling Based Program Priority" , {
+    counselling_based_program_priority_add:function(frm){
+        console.log(1);
+        // frm.fields_dict['counselling_based_program_priority'].grid.get_field('approve').get_query = function(doc){
+        frm.fields_dict['counselling_based_program_priority'].grid.get_field('approve').get_query = function(doc){
+            console.log(10);
+            var programs_list = [];
+            // $.each(doc.counselling_based_program_priority , function(idx , val){
+            //     if(val.programs) programs_list.push(val.programs)
+            // })
+            // console.log(programs_list);
+            // return { filters:[['Programs' , 'name' , 'not in' , programs_list]]}
+            // return { filters : [['approve' , '=' , 1]]}
+        }
+    }
+})
+
 frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
     var d = locals[cdt][cdn];
    
