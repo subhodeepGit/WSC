@@ -4551,5 +4551,235 @@
         ],
         "workflow_name": "Purchase Requisition Workflow",
         "workflow_state_field": "workflow_state"
-       }
+       },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow",
+  "document_type": "Employee Resignation",
+  "is_active": 1,
+  "modified": "2023-08-04 15:41:31.309975",
+  "name": "Employee Resignation",
+  "override_status": 0,
+  "send_email_alert": 1,
+  "states": [
+   {
+    "allow_edit": "Employee",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Employee Resignation",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Draft",
+    "update_field": "status",
+    "update_value": "Draft"
+   },
+   {
+    "allow_edit": "HR Admin",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Employee Resignation",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Forwarded to HR",
+    "update_field": "status",
+    "update_value": "Pending"
+   },
+   {
+    "allow_edit": "Employee",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Employee Resignation",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Pending Approval from Reporting Authority",
+    "update_field": "status",
+    "update_value": "Pending"
+   },
+   {
+    "allow_edit": "Department Head",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Employee Resignation",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Pending Approval from Department Head",
+    "update_field": "status",
+    "update_value": "Pending"
+   },
+   {
+    "allow_edit": "Director",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Employee Resignation",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Pending Approval from Director Admin",
+    "update_field": "final_date_of_resignation",
+    "update_value": ""
+   },
+   {
+    "allow_edit": "Director",
+    "doc_status": "1",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Employee Resignation",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Approved",
+    "update_field": "status",
+    "update_value": "Approved"
+   },
+   {
+    "allow_edit": "Director",
+    "doc_status": "1",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Employee Resignation",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Rejected",
+    "update_field": "status",
+    "update_value": "Rejected"
+   },
+   {
+    "allow_edit": "Employee",
+    "doc_status": "1",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Employee Resignation",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Withdrawl of Application",
+    "update_field": "status",
+    "update_value": "Withdrawal"
+   }
+  ],
+  "transitions": [
+   {
+    "action": "Submit",
+    "allow_self_approval": 1,
+    "allowed": "Employee",
+    "condition": null,
+    "next_state": "Forwarded to HR",
+    "parent": "Employee Resignation",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Draft"
+   },
+   {
+    "action": "Send For Approval",
+    "allow_self_approval": 1,
+    "allowed": "HR Admin",
+    "condition": null,
+    "next_state": "Pending Approval from Reporting Authority",
+    "parent": "Employee Resignation",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Forwarded to HR"
+   },
+   {
+    "action": "Withdrawl",
+    "allow_self_approval": 1,
+    "allowed": "Employee",
+    "condition": "doc.owner==frappe.session.user",
+    "next_state": "Withdrawl of Application",
+    "parent": "Employee Resignation",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Forwarded to HR"
+   },
+   {
+    "action": "Send For Approval",
+    "allow_self_approval": 1,
+    "allowed": "Employee",
+    "condition": "doc.reporting_authority==frappe.session.user",
+    "next_state": "Pending Approval from Department Head",
+    "parent": "Employee Resignation",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Pending Approval from Reporting Authority"
+   },
+   {
+    "action": "Withdrawl",
+    "allow_self_approval": 1,
+    "allowed": "Employee",
+    "condition": "doc.owner==frappe.session.user",
+    "next_state": "Withdrawl of Application",
+    "parent": "Employee Resignation",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Pending Approval from Reporting Authority"
+   },
+   {
+    "action": "Send For Approval",
+    "allow_self_approval": 1,
+    "allowed": "Department Head",
+    "condition": null,
+    "next_state": "Pending Approval from Director Admin",
+    "parent": "Employee Resignation",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Pending Approval from Department Head"
+   },
+   {
+    "action": "Withdrawl",
+    "allow_self_approval": 1,
+    "allowed": "Employee",
+    "condition": "doc.owner==frappe.session.user",
+    "next_state": "Withdrawl of Application",
+    "parent": "Employee Resignation",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Pending Approval from Department Head"
+   },
+   {
+    "action": "Reject",
+    "allow_self_approval": 1,
+    "allowed": "Department Head",
+    "condition": null,
+    "next_state": "Rejected",
+    "parent": "Employee Resignation",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Pending Approval from Department Head"
+   },
+   {
+    "action": "Approve",
+    "allow_self_approval": 1,
+    "allowed": "Director",
+    "condition": null,
+    "next_state": "Approved",
+    "parent": "Employee Resignation",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Pending Approval from Director Admin"
+   },
+   {
+    "action": "Reject",
+    "allow_self_approval": 1,
+    "allowed": "Director",
+    "condition": null,
+    "next_state": "Rejected",
+    "parent": "Employee Resignation",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Pending Approval from Director Admin"
+   }
+  ],
+  "workflow_name": "Employee Resignation",
+  "workflow_state_field": "workflow_state"
+ }
 ]

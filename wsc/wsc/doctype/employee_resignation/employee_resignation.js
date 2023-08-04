@@ -3,7 +3,11 @@
 
 frappe.ui.form.on('Employee Resignation', {
 	refresh: function(frm) {
-		
+        if(frm.doc.workflow_state !== "Pending Approval from Director Admin"){
+            frm.set_df_property("final_date_of_resignation", "read_only", 1);
+        }
+        
+
 		if(!frm.is_new()){
             frappe.call({
                 // wsc.wsc.doctype.employee_reengagement.employee_reengagement.isrfp
@@ -17,7 +21,7 @@ frappe.ui.form.on('Employee Resignation', {
                     if (r.message===false) {
                         // alert(r.message)
                         // $('.page-header-actions-block .btn btn-primary btn-sm, .page-header-actions-block .btn-default').addClass('hidden');
-                        $('.actions-btn-group').prop('hidden', true);
+                        // $('.actions-btn-group').prop('hidden', true);
 
                     }
                 }
