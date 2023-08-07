@@ -6,6 +6,8 @@ from frappe.model.document import Document
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from frappe import utils
+from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
+
 
 class EmployeeReengagement(Document):
 	def validate(self):
@@ -13,6 +15,10 @@ class EmployeeReengagement(Document):
 			self.date_validation()
 			self.elegibilty()
 			self.contract_validation()
+
+	def after_insert(self):
+		user_perimssion_report_manager(self)
+		pass		
 
 	def on_submit(self):
 		if self.new_contract_start_date and self.new_contract_end_date:
@@ -120,3 +126,13 @@ def calculate_months_between_dates(start_date, end_date):
 		total_months += 1
 
 	return total_months		
+
+
+
+def user_perimssion_report_manager(self):
+	department_head=frappe.get_all("Department",{"name":self.department},['department_head'])
+	if department_head:
+		if not frappe.get_all("User Permission",{"reference_docType":"Employee Re-engagement","reference_docname":department_head[0]['department_head']}):
+			add_user_permission("Employee Re-engagement",self.name, department_head[0]['department_head'], self)
+	else:
+		frappe.throw("Department Head not found")
