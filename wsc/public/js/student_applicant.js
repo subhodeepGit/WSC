@@ -9,7 +9,7 @@ frappe.ui.form.on('Student Applicant', {
         let lname=frm.doc.last_name;        
         frm.set_value("title",fname+" "+lname)
     },
-
+    
     onload: function(frm) {
         //For Counselling Based Program Priority
         
@@ -140,9 +140,8 @@ frappe.ui.form.on('Student Applicant', {
         frm.trigger("hide_n_show_child_table_fields");
     },
     refresh(frm){
-
-        // frm.set_df_property('student_rank', 'cannot_add_rows', true)
-		// frm.set_df_property('student_rank', 'cannot_delete_rows', true) 
+        frm.set_df_property('student_rank', 'cannot_add_rows', true)
+		frm.set_df_property('student_rank', 'cannot_delete_rows', true) 
         frm.set_df_property('education_qualifications_details', 'cannot_add_rows', true);
         frm.set_df_property('education_qualifications_details', 'cannot_delete_rows', true);
         frm.set_df_property('document_list', 'cannot_add_rows', true);

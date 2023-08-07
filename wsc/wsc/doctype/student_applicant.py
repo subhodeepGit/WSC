@@ -212,10 +212,35 @@ def validate_pin_code(doc):
 def on_update(doc,method):
     if doc.docstatus==1:
         print("\n\n\nOn update")
-
+        count = 0
+        # print(type(doc.counselling_based_program_priority))
         ## if Approve is selected multiple times
+        
+        programs = []
+        for i in doc.counselling_based_program_priority:
+            programs.append(i.programs)
+
+        print(programs)
+
+        programs_set = set(programs)
+
+        if(len(programs) != len(programs_set)):
+            frappe.throw("Duplicate Courses in counselling based program priority")
+
         for d in doc.counselling_based_program_priority:
-            print(d.approve)
+             
+            ## For programs field
+            ## For Approve checkbox
+            if d.approve == 1: 
+                # print(d.approve , count , d.programs)
+                count = count + 1
+
+            if d.programs in doc.counselling_based_program_priority:
+                print(d.programs)
+        
+        if count > 1:
+            frappe.throw("Please Approve only single course in counselling based program priority")
+
         validate_attachment(doc)
         student = frappe.get_list("Student",  filters= {"student_applicant": doc.name})
         # if len(last_result)==0:
