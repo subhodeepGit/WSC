@@ -92,6 +92,8 @@ def validate_credit_distribution(doc):
 		if cr.total_marks < cr.passing_marks:
 			frappe.throw("#Row <b>{0}</b> Total Marks should be greater than or equal to Passing Marks".format(cr.idx))
 
+		if cr.weightage<0:
+			frappe.throw("#Row <b>{0}</b> Weightage should not be negative value".format(cr.idx))
 
 def calculate_credit_distribution(doc):
 	passing_marks=total_credit=passing_credit=weightage_per=0
@@ -136,3 +138,20 @@ def validate_course_enrollment(doc):
 		for e in existed_enrollment:
 			if e:
 				frappe.throw("Student <b>'{0}'</b> had Course enrollment <b>'{1}'</b> already".format(doc.student,e))
+			
+
+@frappe.whitelist()
+def get_academic_calender_table(course):
+    for d in frappe.get_all("Course",{"name":course}):
+        doc=frappe.get_doc("Course",d.name)
+        table=[]
+        for d in doc.get("credit_distribution"):
+            table.append({
+                "assessment_criteria":d.assessment_criteria,
+                "weightage":d.weightage,
+                "credits":d.credits,
+                "passing_credits":d.passing_credits,
+		  		"total_marks":d.total_marks,
+                "passing_marks":d.passing_marks,
+            })
+        return table

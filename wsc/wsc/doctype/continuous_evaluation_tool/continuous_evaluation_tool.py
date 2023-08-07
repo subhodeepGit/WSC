@@ -17,10 +17,10 @@ class ContinuousEvaluationTool(Document):
 	@frappe.whitelist()
 	def get_student_allocations(self):
 		data_list=[]
-		if self.exam_category=="Regular":
+		if self.exam_cate=="Regular":
 			course_details=get_course_details(self)
 			for student in frappe.get_all("Course Assessment",{"course":self.course,"assessment_criteria":self.assessment_criteria,
-						      				"semester":self.semester,'exam_category':self.exam_category, "docstatus":1},
+						      				"semester":self.semester,'exam_category':self.exam_cate, "docstatus":1},
 											["student","student_name","roll_no","registration_number"],order_by="roll_no asc",group_by="student"):
 				total_earned_marks=total_total_marks=weightage_marks=0
 				evaluation=[]
@@ -40,7 +40,7 @@ class ContinuousEvaluationTool(Document):
 				student["total_credits"]=course_details.credits or 0
 				student["attendence_status"]=attendence_status
 				data_list.append(student)
-		if self.exam_category=="Re-Exam":
+		if self.exam_cate=="Re-Exam":
 			course_details=get_course_details(self)
 			exam_declaration=self.exam_declaration
 			student_data=frappe.get_all("Course Assessment",{"exam_declaration":exam_declaration,"docstatus":1},
@@ -72,7 +72,7 @@ class ContinuousEvaluationTool(Document):
 @frappe.whitelist()
 def make_continuous_evaluation(continuous_evaluation):
 	result=json.loads(continuous_evaluation)
-	if result.get("exam_category")=="Regular":
+	if result.get("exam_cate")=="Regular":
 		student_data=get_student_allocations_dict(frappe._dict({"course":result.get("course"),"assessment_criteria":result.get("criteria")}))
 		if not student_data:
 			frappe.msgprint("Students are not available for given details")
@@ -106,7 +106,7 @@ def make_continuous_evaluation(continuous_evaluation):
 							"earned_marks":flt(row.get("earned_marks")),
 							"total_marks":flt(row.get("total_marks")),
 							"grace_marks":flt(result.get('rows')[d].get("grace_marks")),
-							"exam_type":result.get("exam_category"),
+							"exam_type":result.get("exam_cate"),
 							"attendence_status":result.get('rows')[d].get("exam_attendence")	
 						})
 					doc.grace_marks=flt(result.get('rows')[d].get("grace_marks"))
@@ -124,7 +124,7 @@ def make_continuous_evaluation(continuous_evaluation):
 					frappe.msgprint("Please add final marks and earned credits for student <b>{0}</b>".format(result.get('rows')[d].get("student")))
 			if records:
 				frappe.msgprint("Records Created")
-	if 	result.get("exam_category")=="Re-Exam":
+	if 	result.get("exam_cate")=="Re-Exam":
 		criteria=result.get("criteria")
 		academic_year=result.get("academic_year")
 		academic_term=result.get("academic_term")
@@ -182,7 +182,7 @@ def make_continuous_evaluation(continuous_evaluation):
 								"grace_marks":grace_marks,
 								"passing_marks":passing_marks,
 								"final_earned_marks":final_result,
-								"exam_type":result.get("exam_category"),
+								"exam_type":result.get("exam_cate"),
 								"attendence_status":result.get('rows')[d].get("exam_attendence"),
 								"exam_declaration":result.get("exam_declaration"),
 								"qualifying_status":qualifying_status
