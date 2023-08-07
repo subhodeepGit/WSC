@@ -462,7 +462,7 @@ override_doctype_dashboards = {
 #	"wsc.auth.validate"
 # ]
 
-fixtures = [
+# fixtures = [
 # # 	{"dt": "Custom DocPerm", "filters": [
 # # 		["parent", "not in", ["DocType"]],
 # #         ["role", '=', 'Education Admission Head']
@@ -474,11 +474,11 @@ fixtures = [
 #     # ]},
 #     # # {"dt": "Role Profile"},
 #     # # {"dt": "Module Profile"},
-    {"dt" : "Workflow","filters": [
-        [
-            "name", "in", ["Employee Attendance Request Workflow"]
-        ]
-    ]},
+    # {"dt" : "Workflow","filters": [
+    #     [
+    #         "name", "in", ["Employee Attendance Request Workflow"]
+    #     ]
+    # ]},
     # {"dt" : "Workflow"},
     # # {"dt": "Workflow Action Master"},
     # {"dt" : "Workflow State","filters": [
@@ -487,7 +487,7 @@ fixtures = [
     #     ]
     # ]},
     # {"dt" : "Translation"}
- ]
+#  ]
 website_context = {
     "favicon": "/assets/wsc/images/wsc.png",
     "splash_image": "/assets/wsc/images/wsc.png"
