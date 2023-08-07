@@ -18,7 +18,8 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Template Name"
+   "label": "Template Name",
+   "reqd": 1
   },
   {
    "fieldname": "academic_year",
@@ -41,7 +42,8 @@
    "fieldname": "academic_events_table",
    "fieldtype": "Table",
    "label": "Academic Events table",
-   "options": "Academic Events Table"
+   "options": "Academic Events Table",
+   "reqd": 1
   },
   {
    "fieldname": "programs",
@@ -55,10 +57,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-01-27 17:04:36.474838",
+ "modified": "2023-08-07 12:37:28.877116",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Academic Calendar Template",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -77,5 +80,6 @@
  "search_fields": "template_name",
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

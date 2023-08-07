@@ -20,7 +20,31 @@ frappe.ui.form.on('Course Enrollment', {
         
 
     },
-
+    course(frm){
+        if (frm.doc.course){
+            frappe.call({
+                method: "wsc.wsc.validations.course_enrollment.get_academic_calender_table",
+                args: {
+                    course:frm.doc.course,
+                },
+                callback: function(r) { 
+                    if(r.message){
+                        frappe.model.clear_table(frm.doc, 'credit_distribution');
+                        (r.message).forEach(d => {
+                            var c = frm.add_child("credit_distribution")
+                            c.assessment_criteria=d.assessment_criteria,
+                            c.weightage=d.weightage,
+                            c.credits=d.credits,
+                            c.passing_credits=d.passing_credits
+                            c.total_marks=d.total_marks
+                            c.passing_marks=d.passing_marks
+                        });
+                    }
+                    frm.refresh_field("credit_distribution")
+                } 
+            });   
+        }
+    },
     // frm.set_query("course", function() {
     //     return {
     //         query:"ed_tec.ed_tec.doctype.course_assessment_result_tool.course_assessment_result_tool.get_courses",
