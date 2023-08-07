@@ -231,7 +231,6 @@ def module_exam_group_data():
             #         exam_declaration_id.append(t['exam_declaration_id'])
             # print(exam_declaration_id)
 
-@frappe.whitelist()
 def student_disable_check():
     today_date=getdate(today())
     student_clearance_list=list(frappe.db.sql("""Select student_id,student_email_address from `tabStudent Clearance Application` where user_disable_date=%s And status= 'Clearance Approved' And docstatus =1""",today_date))
