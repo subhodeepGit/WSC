@@ -3,6 +3,8 @@ import datetime
 from datetime import datetime
 from datetime import date, timedelta
 from wsc.wsc.notification.custom_notification import item_expiry
+from frappe.utils import today, getdate
+from wsc.wsc.notification.custom_notification import send_clearance_notification_to_department,send_pendingDues_notification_to_student,send_disabled_notification_to_student
 
 
 #Notification for 30 days to Warranty period
@@ -228,3 +230,17 @@ def module_exam_group_data():
             #     if t['exam_declaration_id'] not in exam_declaration_id:
             #         exam_declaration_id.append(t['exam_declaration_id'])
             # print(exam_declaration_id)
+
+@frappe.whitelist()
+def student_disable_check():
+    today_date=getdate(today())
+    student_clearance_list=list(frappe.db.sql("""Select student_id,student_email_address from `tabStudent Clearance Application` where user_disable_date=%s And status= 'Clearance Approved' And docstatus =1""",today_date))
+    if len(student_clearance_list)>0:
+        for t in student_clearance_list:
+            student = frappe.get_doc("Student",t[0])
+            user=frappe.get_doc("User",t[1])
+            student.enabled = 0
+            student.save()
+            user.enabled = 0
+            user.save()
+        send_disabled_notification_to_student()
