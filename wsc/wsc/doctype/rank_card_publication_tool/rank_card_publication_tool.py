@@ -14,7 +14,7 @@ class RankCardPublicationTool(Document):
 def ranking(list , col , rank_name):
 	
 	ranked_data = pd.DataFrame.from_records(list , columns=col)
-	ranked_data[rank_name] = ranked_data['earned_marks'].rank(ascending=True, method='dense')
+	ranked_data[rank_name] = ranked_data['earned_marks'].rank(ascending=False, method='dense')
 	ranked_data = ranked_data.to_dict('records')
 
 	return ranked_data

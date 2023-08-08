@@ -517,13 +517,23 @@ def get_seat_reservation_type(doctype, txt, searchfield, start, page_len, filter
 @frappe.whitelist()
 #Old One
 def get_programs_stud_app(doctype, txt, searchfield, start, page_len, filters):
+    
     fltr = {"parent":filters.get("student_applicant"),"approve":1}
-    print("\n\n\nTXt",txt)
-    print("\n\n\nFilter1",fltr)
-    # if txt:
-    #     fltr.update({'semester': ['like', '%{}%'.format(txt)]})
-    #     print("\n\n\nFilter")
-    return frappe.get_all("Counseling Based Program Priority",fltr,['programs'], as_list=1)
+    
+    counselling_start = frappe.get_all("Student Applicant" , { 'name' : filters['student_applicant'] } , ['couselling_start'])
+
+    if txt:
+        fltr.update({'semester': ['like', '%{}%'.format(txt)]})
+
+    if(counselling_start[0]['couselling_start'] == 0):
+        return frappe.get_all("Program Priority",fltr,['programs'], as_list=1)
+    else:
+        return frappe.get_all("Counseling Based Program Priority",fltr,['programs'], as_list=1)
+#     # if txt:
+#     #     fltr.update({'semester': ['like', '%{}%'.format(txt)]})
+#     #     print("\n\n\nFilter")
+    
+    # return frappe.get_all("Program Priority",fltr,['programs'], as_list=1)
 
 ##New One
 # def get_programs_stud_app(doctype, txt, searchfield, start, page_len, filters):
@@ -536,9 +546,17 @@ def get_programs_stud_app(doctype, txt, searchfield, start, page_len, filters):
 @frappe.whitelist()
 def get_program_stud_app(doctype, txt, searchfield, start, page_len, filters):
     fltr = {"programs":filters.get("programs"),"parent":filters.get("student_applicant")}
+
+    counselling_start = frappe.get_all("Student Applicant" , { 'name' : filters['student_applicant'] } , ['couselling_start'])
+
     if txt:
         fltr.update({'semester': ['like', '%{}%'.format(txt)]})
-    return frappe.get_all("Counseling Based Program Priority",fltr,['semester'], as_list=1)
+    
+    if(counselling_start[0]['couselling_start'] == 0):
+        return frappe.get_all("Program Priority",fltr,['semester'], as_list=1)
+    else:
+        return frappe.get_all("Counseling Based Program Priority",fltr,['semester'], as_list=1)
+    # return frappe.get_all("Counseling Based Program Priority",fltr,['semester'], as_list=1)
 
 @frappe.whitelist()
 def get_data_stud_app(student_applicant):
@@ -570,19 +588,19 @@ def update_reserved_seats(doc,on_submit=0):
                     # validate_reservation_type_by_criteria(doc,reservation_type.name)
 
                 # update seat 
-                # for d in admission.get("reservations_distribution"):
-                #     if doc.seat_reservation_type==d.seat_reservation_type:
-                #         if on_submit:
-                #             if int(d.seat_balance) > 0:
-                #                 d.seat_balance-=1
-                #             else:
-                #                 frappe.throw("There is no available seat.")
-                #         elif on_cancel:
-                #             if int(d.allocated_seat) > int(d.seat_balance):
-                #                 d.seat_balance+=1
-                #             else:
-                #                 frappe.throw("Error !!")
-                # admission.save()
+                for d in admission.get("reservations_distribution"):
+                    if doc.seat_reservation_type==d.seat_reservation_type:
+                        if on_submit:
+                            if int(d.seat_balance) > 0:
+                                d.seat_balance-=1
+                            else:
+                                frappe.throw("There is no available seat.")
+                        elif on_cancel:
+                            if int(d.allocated_seat) > int(d.seat_balance):
+                                d.seat_balance+=1
+                            else:
+                                frappe.throw("Error !!")
+                admission.save()
         
         # branch sliding
         else:

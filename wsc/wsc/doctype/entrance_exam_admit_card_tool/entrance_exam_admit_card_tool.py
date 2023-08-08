@@ -15,6 +15,7 @@ def get_applicants(declaration):
 	student_list = frappe.get_all("Applicant List" , {'parent':declaration , 'center_allocated_status' : 0} , [ 'applicant_id' , 'applicant_name' , 'gender' , 'student_category' , 'physical_disability' , 'center_allocated_status'])
 	
 	return student_list
+
 def admit_card_generate(alloted_applicant_data):
 	print("\n\n\n")
 	for i in alloted_applicant_data:
