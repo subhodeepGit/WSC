@@ -333,6 +333,9 @@ doc_events = {
     "Attendance Request" :{
         "validate":"wsc.wsc.doctype.attendance_request.validate",
         "after_insert":"wsc.wsc.doctype.attendance_request.after_insert"
+    },
+    "Purchase Order": {
+        "validate":"wsc.wsc.doctype.purchase_order.validate"
     }
     
 

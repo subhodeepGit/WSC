@@ -798,13 +798,19 @@ def item_expiry(doc):
     recipients_list = list(frappe.db.sql("select department_email_id from `tabDepartment Email ID`"))
     recipients = recipients_list[0]
     attachments = None
-    send_mail(recipients,'Payment Details',msg,attachments)
+    send_mail(recipients,'Item',msg,attachments)
 
 def changed_impaneled_price(doc):
     msg="""<b>---------------------Impanelement Price Changed for Item {0}---------------------</b><br>""".format(doc.get('item_name'))
     recipients = doc.supllier_email
     attachments = None
-    send_mail(recipients,'Payment Details',msg,attachments)
+    send_mail(recipients,'Item Price',msg,attachments)
+
+def all_items_received(doc):
+    msg="""---------------------All Item for PO <b>{0}</b> have been received""".format(doc.get('name'))
+    recipients = doc.supplier_email
+    attachments = None
+    send_mail(recipients,'Purchase Order',msg,attachments)
 
 
 # def has_default_email_acc():
