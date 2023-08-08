@@ -16,6 +16,15 @@
   "reporting_authority",
   "reporting_auth_id",
   "hr_id",
+  "section_break_w0smd",
+  "gender",
+  "date_of_birth",
+  "user_id",
+  "column_break_fddci",
+  "designation",
+  "employee_number",
+  "branch",
+  "blood_group",
   "educational_qualification_tab",
   "note1",
   "education",
@@ -31,6 +40,7 @@
   "contact_details_section",
   "mobile",
   "personal_email",
+  "company_email",
   "column_break_19",
   "emergency_contact",
   "emergency_contact_name",
@@ -47,25 +57,21 @@
    "reqd": 1
   },
   {
-   "fetch_from": "employee.employee_name",
    "fieldname": "employee_name",
    "fieldtype": "Data",
-   "label": "Employee Name",
-   "read_only": 1
+   "label": "Employee Name"
   },
   {
-   "fetch_from": "employee.department",
    "fieldname": "department",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Department",
-   "read_only": 1
+   "options": "Department"
   },
   {
-   "fetch_from": "employee.employment_type",
    "fieldname": "employment_type",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Employment Type",
-   "read_only": 1
+   "options": "Employment Type"
   },
   {
    "fieldname": "educational_qualification_tab",
@@ -161,16 +167,16 @@
    "fieldtype": "Column Break"
   },
   {
-   "fetch_from": "employee.reports_to",
    "fieldname": "reporting_authority",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Reporting Authority",
-   "read_only": 1
+   "options": "Employee"
   },
   {
    "fieldname": "reporting_auth_id",
-   "fieldtype": "Data",
-   "label": "Reporting Auth ID"
+   "fieldtype": "Link",
+   "label": "Reporting Auth ID",
+   "options": "User"
   },
   {
    "fieldname": "hr_id",
@@ -192,12 +198,66 @@
    "fieldname": "note3",
    "fieldtype": "Heading",
    "label": "Changes you make in \" Address and Contacts \"  will be reflected in your profile"
+  },
+  {
+   "fieldname": "section_break_w0smd",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Link",
+   "label": "Gender",
+   "options": "Gender"
+  },
+  {
+   "fieldname": "date_of_birth",
+   "fieldtype": "Data",
+   "label": "Date of Birth"
+  },
+  {
+   "fieldname": "user_id",
+   "fieldtype": "Data",
+   "label": "User ID"
+  },
+  {
+   "fieldname": "column_break_fddci",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "designation",
+   "fieldtype": "Link",
+   "label": "Designation",
+   "options": "Designation"
+  },
+  {
+   "fetch_from": "employee.employee_number",
+   "fieldname": "employee_number",
+   "fieldtype": "Data",
+   "label": "Employee Number"
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "Branch",
+   "options": "Branch"
+  },
+  {
+   "fetch_from": "employee.blood_group",
+   "fieldname": "blood_group",
+   "fieldtype": "Data",
+   "label": "Blood Group"
+  },
+  {
+   "fetch_from": "employee.company_email",
+   "fieldname": "company_email",
+   "fieldtype": "Data",
+   "label": "Company Email"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-12 09:57:22.435644",
+ "modified": "2023-08-08 12:03:48.593178",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Profile Updation",
