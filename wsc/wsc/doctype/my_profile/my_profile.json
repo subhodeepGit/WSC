@@ -1,0 +1,197 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:employee",
+ "creation": "2023-08-07 14:15:48.194302",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee_details",
+  "employee",
+  "employee_name",
+  "department",
+  "designation",
+  "branch",
+  "employment_type",
+  "column_break_whbnm",
+  "employee_number",
+  "user_id",
+  "gender",
+  "date_of_birth",
+  "blood_group",
+  "contact_details_section",
+  "mobile",
+  "emergency_contact_name",
+  "emergency_contact",
+  "column_break_10neu",
+  "personal_email",
+  "company_email",
+  "address_details_section",
+  "current_address",
+  "permananet_address"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name"
+  },
+  {
+   "fetch_from": "employee.department",
+   "fieldname": "department",
+   "fieldtype": "Data",
+   "label": "Department"
+  },
+  {
+   "fetch_from": "employee.designation",
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "label": "Designation"
+  },
+  {
+   "fetch_from": "employee.branch",
+   "fieldname": "branch",
+   "fieldtype": "Data",
+   "label": "Branch"
+  },
+  {
+   "fieldname": "column_break_whbnm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "employee.gender",
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "label": "Gender"
+  },
+  {
+   "fetch_from": "employee.date_of_birth",
+   "fieldname": "date_of_birth",
+   "fieldtype": "Read Only",
+   "label": "Date of Birth"
+  },
+  {
+   "fieldname": "blood_group",
+   "fieldtype": "Data",
+   "label": "Blood Group"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "contact_details_section",
+   "fieldtype": "Section Break",
+   "label": "Contact Details"
+  },
+  {
+   "fetch_from": "employee.cell_number",
+   "fieldname": "mobile",
+   "fieldtype": "Data",
+   "label": "Mobile"
+  },
+  {
+   "fetch_from": "employee.person_to_be_contacted",
+   "fieldname": "emergency_contact_name",
+   "fieldtype": "Data",
+   "label": "Emergency Contact Name"
+  },
+  {
+   "fetch_from": "employee.emergency_phone_number",
+   "fieldname": "emergency_contact",
+   "fieldtype": "Data",
+   "label": "Emergency Contact"
+  },
+  {
+   "fieldname": "column_break_10neu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "employee.personal_email",
+   "fieldname": "personal_email",
+   "fieldtype": "Data",
+   "label": "Personal Email"
+  },
+  {
+   "fetch_from": "employee.company_email",
+   "fieldname": "company_email",
+   "fieldtype": "Data",
+   "label": "Company Email"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "address_details_section",
+   "fieldtype": "Section Break",
+   "label": "Address Details"
+  },
+  {
+   "fetch_from": "employee.current_address",
+   "fieldname": "current_address",
+   "fieldtype": "Data",
+   "label": "Current Address"
+  },
+  {
+   "fetch_from": "employee.permanent_address",
+   "fieldname": "permananet_address",
+   "fieldtype": "Data",
+   "label": "Permananet Address"
+  },
+  {
+   "fetch_from": "employee.employment_type",
+   "fieldname": "employment_type",
+   "fieldtype": "Data",
+   "label": "Employment Type"
+  },
+  {
+   "fetch_from": "employee.employee_number",
+   "fieldname": "employee_number",
+   "fieldtype": "Data",
+   "label": "Employee Number"
+  },
+  {
+   "fieldname": "employee_details",
+   "fieldtype": "Heading",
+   "label": "Employee Details"
+  },
+  {
+   "fetch_from": "employee.user_id",
+   "fieldname": "user_id",
+   "fieldtype": "Data",
+   "label": "User ID"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-08-07 14:29:49.827542",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "My Profile",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

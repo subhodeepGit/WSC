@@ -1,12 +1,9 @@
 import frappe
-import datetime
 from datetime import datetime, timedelta
 from datetime import date, timedelta
 from dateutil.relativedelta import relativedelta
 from wsc.wsc.notification.custom_notification import item_expiry
 from frappe.utils import today, getdate
-from wsc.wsc.notification.custom_notification import send_clearance_notification_to_department,send_pendingDues_notification_to_student,send_disabled_notification_to_student
-
 
 #Notification for 30 days to Warranty period
 def warranty_notification():
@@ -233,17 +230,27 @@ def module_exam_group_data():
             # print(exam_declaration_id)
 
 def student_disable_check():
-    today_date=getdate(today())
-    student_clearance_list=list(frappe.db.sql("""Select student_id,student_email_address from `tabStudent Clearance Application` where user_disable_date=%s And status= 'Clearance Approved' And docstatus =1""",today_date))
-    if len(student_clearance_list)>0:
-        for t in student_clearance_list:
-            student = frappe.get_doc("Student",t[0])
-            user=frappe.get_doc("User",t[1])
-            student.enabled = 0
-            student.save()
-            user.enabled = 0
-            user.save()
-        send_disabled_notification_to_student()
+	today_date=getdate(today())
+	student_clearance_list=list(frappe.db.sql("""Select student_id,student_email_address from `tabStudent Clearance Application` where user_disable_date=%s And status= 'Clearance Approved' And docstatus =1""",today_date))
+	if len(student_clearance_list)>0:
+		for t in student_clearance_list:
+			student_id, student_email_address = t[0], t[1]
+			frappe.db.sql("""UPDATE `tabStudent` SET `enabled` = 0 WHERE `name` = %s""", student_id)
+			frappe.db.sql("""UPDATE `tabUser` SET `enabled` = 0 WHERE `name` = %s""", student_email_address)
+			frappe.db.commit()
+			delete_user_permission(student_email_address)	
+			send_disabled_notification_to_student(student_email_address)
+
+def send_disabled_notification_to_student(student_email_address):
+    msg="""<p>Dear Student,Your Student profile and User profile has been disabled successfully.</p><br>"""
+    send_mail(student_email_address,'Student Clearance Status',msg)
+
+def delete_user_permission(student_email_address):
+	user_permission_list=frappe.db.get_all("User Permission",filters={"user": student_email_address},fields="name",limit=1)
+	if len(user_permission_list)>0:
+		for up in user_permission_list:
+			frappe.db.delete("User Permission",up)
+	frappe.db.commit()
 
 
 

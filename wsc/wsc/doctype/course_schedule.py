@@ -175,4 +175,10 @@ def get_instructor_by_student_group(doctype, txt, searchfield, start, page_len, 
 	if student_group.group_based_on=="Exam Declaration":
 		return [(d.instructor,) for d in student_group.get("invigilator_list")]
 	else:
-		return frappe.get_all("Student Group Instructor",{"parent":filters.get("student_group"),"instructor": ["like", "%{0}%".format(txt)]},['instructor'],as_list=1)
+		return frappe.get_all("Student Group Instructor",{"course":filters.get("course"),"parent":filters.get("student_group"),"instructor": ["like", "%{0}%".format(txt)]},['instructor'],as_list=1)
+
+@ frappe.whitelist()
+def get_admission_and_semester_by_program(instructor):
+    for d in frappe.get_all("Instructor",{"name":instructor},['name','instructor_name']):
+        return d
+    return {"no_record_found":1}

@@ -72,7 +72,37 @@ class EmployeeProfileUpdation(Document):
 		employee.emergency_phone_number=self.emergency_contact
 		employee.relation=self.relation
 		employee.personal_email=self.personal_email
+		employee.employee_name = self.employee_name
+		employee.gender = self.gender
+		employee.date_of_birth = self.date_of_birth
+		employee.user_id = self.user_id
+		employee.department = self.department
+		employee.employee_number = self.employee_number
+		employee.designation = self.designation
+		employee.branch = self.branch
+		employee.employment_type = self.employment_type
+		employee.blood_group = self.blood_group
 		employee.save()
+
+		my_profile = frappe.get_doc("My Profile",self.employee)
+		my_profile.employee_name = self.employee_name
+		my_profile.gender = self.gender
+		my_profile.date_of_birth = self.date_of_birth
+		my_profile.user_id = self.user_id
+		my_profile.department = self.department
+		my_profile.employee_number = self.employee_number
+		my_profile.designation = self.designation
+		my_profile.branch = self.branch
+		my_profile.mobile = self.mobile
+		my_profile.personal_email = self.personal_email
+		my_profile.company_email = self.company_email
+		my_profile.current_address = self.current_address
+		my_profile.permanent_address = self.permanent_address
+		my_profile.emergency_contact_name = self.emergency_contact_name
+		my_profile.emergency_contact = self.emergency_contact
+		my_profile.blood_group = self.blood_group
+		my_profile.employment_type  = self.employment_type
+		my_profile.save()
 		frappe.msgprint("Employee profile updated successfully.")
 
 
@@ -88,13 +118,12 @@ class EmployeeProfileUpdation(Document):
 		
 #populate Reporting Authority 
 @frappe.whitelist()
-def isrfp(reporting_auth):
-	# if frappe.db.exists(docname):
-	reporting_auth_id = frappe.get_all("Employee",{"name":reporting_auth},["user_id"])
-	# print("reporting_auth_id",reporting_auth_id)
-	if reporting_auth_id:
-		reporting_auth_id=reporting_auth_id[0]["user_id"]
-	return reporting_auth_id
+def get_employee_details(employee):
+	data =frappe.get_all("Employee",{'name':employee},["employee_name","department","branch","designation","employee_number","reports_to","reporting_authority_email","gender","date_of_birth","user_id","blood_group","employment_type"])
+	if data != None :
+		print(data[0])
+		return data[0]
+
 
 #Populate HR Admin
 @frappe.whitelist()
@@ -147,3 +176,4 @@ def is_verified_user(docname):
 		return True
 	else :
 		return False
+

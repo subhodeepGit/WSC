@@ -2,16 +2,19 @@ frappe.ui.form.on('Student',{
     refresh: function(frm) {
         if (frappe.user.has_role(["Student","Instructor"]) && !frappe.user.has_role('System Manager')){
             frm.remove_custom_button("Accounting Ledger");
+            frm.remove_custom_button("Enroll");
+            $(".menu-btn-group").hide();
         } 
-            
-        frm.add_custom_button("Enroll", () => {
-            let data = {}
-            data.student = frm.doc.name
-            data.student_name = frm.doc.student_name
-            data.roll_no = frm.doc.roll_no
-            data.permanant_registration_number = frm.doc.permanant_registration_number
-            frappe.new_doc("Program Enrollment", data)
-        });
+        if (!frm.doc.__islocal){
+            frm.add_custom_button("Enroll", () => {
+                let data = {}
+                data.student = frm.doc.name
+                data.student_name = frm.doc.student_name
+                data.roll_no = frm.doc.roll_no
+                data.permanant_registration_number = frm.doc.permanant_registration_number
+                frappe.new_doc("Program Enrollment", data)
+            });    
+        }   
     }
 })
 

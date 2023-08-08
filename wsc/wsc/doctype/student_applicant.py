@@ -57,7 +57,7 @@ class StudentApplicant(Document):
 
         education_details_validation(doc)
         document_list_checkbox(doc)
-        mobile_number_validation(doc)
+        # mobile_number_validation(doc)
         validate_pin_code(doc)
         # update_education_parameters(doc)
         duplicate_row_validation(doc,"program_priority",["programs"])
@@ -98,7 +98,7 @@ def on_change(doc,method):
             student_applicant_onhold(doc)
         else:
             pass
-    #     update_enrollment_admission_status(doc)
+        # update_enrollment_admission_status(doc)
 def document_list_checkbox(doc):
     for d in doc.get("document_list"):
         if d.attach!=None:
@@ -212,10 +212,35 @@ def validate_pin_code(doc):
 def on_update(doc,method):
     if doc.docstatus==1:
         print("\n\n\nOn update")
-
+        count = 0
+        # print(type(doc.counselling_based_program_priority))
         ## if Approve is selected multiple times
+        
+        programs = []
+        for i in doc.counselling_based_program_priority:
+            programs.append(i.programs)
+
+        print(programs)
+
+        programs_set = set(programs)
+
+        if(len(programs) != len(programs_set)):
+            frappe.throw("Duplicate Courses in counselling based program priority")
+
         for d in doc.counselling_based_program_priority:
-            print(d.approve)
+             
+            ## For programs field
+            ## For Approve checkbox
+            if d.approve == 1: 
+                # print(d.approve , count , d.programs)
+                count = count + 1
+
+            if d.programs in doc.counselling_based_program_priority:
+                print(d.programs)
+        
+        if count > 1:
+            frappe.throw("Please Approve only single course in counselling based program priority")
+
         validate_attachment(doc)
         student = frappe.get_list("Student",  filters= {"student_applicant": doc.name})
         # if len(last_result)==0:
@@ -236,7 +261,7 @@ def on_update(doc,method):
                     "doctype": "Document List"
                 }
             }, ignore_permissions=True)
-            student.save()
+            # student.save()
         if doc.account_name and doc.bank and doc.account_type and doc.branch_code and doc.bank_account_no:
             acc_doc = frappe.new_doc('Bank Account')
             acc_doc.account_name = doc.account_name
@@ -546,9 +571,9 @@ def get_education_qualifications_details_by_admissions(student_category,admissio
     #     print(t.institute)
     return frappe.get_all("Eligibility Parameter List",{"parent":["IN",[d.get("student_admission") for d in json.loads(admission)]],"parenttype":"Student Admission"},["parameter","percentagecgpa"] , order_by="parameter",group_by="parameter")
 
-# @frappe.whitelist()
-# def filter_programs_by_department(doctype, txt, searchfield, start, page_len, filters):
-#     return frappe.get_all("Programs",{"name":['like', '%{}%'.format(txt)],"department":["IN",[d.name for d in frappe.get_all("Department",{"parent_department":filters.get("department")})]],"program_grade":["IN",[d.name for d in frappe.get_all("Program Grades",{"grade":filters.get("program_grade")})]]},order_by="name asc",as_list=1)
+@frappe.whitelist()
+def filter_programs_by_department(doctype, txt, searchfield, start, page_len, filters):
+    return frappe.get_all("Programs",{"name":['like', '%{}%'.format(txt)],"department":["IN",[d.name for d in frappe.get_all("Department",{"parent_department":filters.get("department")})]],"program_grade":["IN",[d.name for d in frappe.get_all("Program Grades",{"grade":filters.get("program_grade")})]]},order_by="name asc",as_list=1)
 ##NEW Code by Tousiff##
 @frappe.whitelist()
 def filter_programs_by_department_counselling(doctype, txt, searchfield, start, page_len, filters):
@@ -614,12 +639,12 @@ def validate_counselling_structure(doc):
         if doc.counselling_structure not in [d['name'] for d in frappe.get_all("Counselling Structure",{"program_grade":doc.program_grade,"department":doc.department,"academic_year":doc.academic_year},['name'])]:
             frappe.throw("Counselling structure <b>'{0}'</b> not belongs to program grade,academic year and department".format(doc.counselling_structure))
             
-        program_list = [d.programs for d in frappe.get_all("Counselling Programs",{"parent":doc.counselling_structure},"programs")]
-        for p in doc.program_priority:
-            if program_list and p.programs:
-                if p.programs not in program_list:
-                    frappe.throw("Programs <b>'{0}'</b> not belongs to Counselling Structure <b>'{1}'</b>".format(p.programs, doc.counselling_structure))
-        # parameter_list = frappe.db.get_value("Eligibility Parameter List",{"parent":doc.counselling_structure, 'student_category':doc.student_category},"parameter")
+        # program_list = [d.programs for d in frappe.get_all("Counselling Programs",{"parent":doc.counselling_structure},"programs")]
+        # for p in doc.program_priority:
+        #     if program_list and p.programs:
+        #         if p.programs not in program_list:
+        #             frappe.throw("Programs <b>'{0}'</b> not belongs to Counselling Structure <b>'{1}'</b>".format(p.programs, doc.counselling_structure))
+        # # parameter_list = frappe.db.get_value("Eligibility Parameter List",{"parent":doc.counselling_structure, 'student_category':doc.student_category},"parameter")
         # parameter_total_list = frappe.db.get_all("Eligibility Parameter List",{"parent":doc.counselling_structure, 'student_category':doc.student_category},["parameter", "total_score"])
         # for p in doc.education_qualifications_details:
         #     if p.qualification:

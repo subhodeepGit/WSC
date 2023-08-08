@@ -26,7 +26,7 @@ frappe.ui.form.on('Programs', {
 			frm.set_df_property('add_semesters', 'hidden', 1);
 		}
 		if(!frm.doc.__unsaved){
-			if(frm.doc.is_tot==1){
+			if(frm.doc.is_short_term_course=="Yes"){
 				frm.add_custom_button(__("Submit"), function() {
 					frm.trigger("create_tot_course")
 				})
@@ -35,10 +35,10 @@ frappe.ui.form.on('Programs', {
 	},
 	
 	create_tot_course: function(frm) {
-		if(frm.doc.is_tot==1){
+		if(frm.doc.is_short_term_course=="Yes"){
 			// if (!frm.doc.__unsaved){
 			if (!frm.doc.programs_abbreviation){
-				frappe.throw("Course Abbrevation Missing for Creating ToT Course")
+				frappe.throw("Course Abbrevation Missing for Creating Short-Term Course")
 			}
 			frm.set_value("semesters",[]);
 			frappe.call({
