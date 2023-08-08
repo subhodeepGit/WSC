@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{applicant_name}-{academic_term}-{department}",
+ "autoname": "format:{applicant_id}-{academic_term}-{department}",
  "creation": "2023-07-13 15:37:52.436411",
  "default_view": "List",
  "doctype": "DocType",
@@ -100,7 +100,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-13 16:44:45.244755",
+ "modified": "2023-08-08 17:54:07.491409",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Reporting Desk",
