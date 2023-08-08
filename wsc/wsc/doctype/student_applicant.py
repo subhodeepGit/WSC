@@ -25,16 +25,16 @@ class StudentApplicant(Document):
                         "name": "student_applicant"
                     }
                 },
-                # "Education Qualifications Details": {
-                #     "doctype": "Educational Details"
-                # },
+                "Education Qualifications Details": {
+                    "doctype": "Educational Details"
+                },
                 # "Education Qualifications Details": {
                 #     "doctype": "Education Qualifications Details"
                 # },
                 # Education Qualifications Details
-                # "Document List": {
-                #     "doctype": "Document List"
-                # }
+                "Document List": {
+                    "doctype": "Document List"
+                }
             }, ignore_permissions=True)
             student.save()
         if doc.account_name and doc.bank and doc.account_type and doc.branch_code and doc.bank_account_no:
