@@ -1,7 +1,8 @@
 import frappe
 import datetime
-from datetime import datetime
+from datetime import datetime, timedelta
 from datetime import date, timedelta
+from dateutil.relativedelta import relativedelta
 from wsc.wsc.notification.custom_notification import item_expiry
 from frappe.utils import today, getdate
 from wsc.wsc.notification.custom_notification import send_clearance_notification_to_department,send_pendingDues_notification_to_student,send_disabled_notification_to_student
@@ -243,3 +244,27 @@ def student_disable_check():
             user.enabled = 0
             user.save()
         send_disabled_notification_to_student()
+
+
+
+def employee_re_engagement_workFlow():
+    # bench --site erp.soulunileaders.com execute wsc.task.employee_re_engagement_workFlow
+    today_date=getdate(today())
+    base_date = str(today_date)
+    months_to_subtract = 9
+    days_to_subtract = 0
+
+    previous_date = get_previous_date(base_date, months_to_subtract, days_to_subtract)
+    print(type(previous_date.strftime("%Y-%m-%d")))
+    # employee_data=frappe.get_all("Employee",{""})      
+
+
+
+def get_previous_date(base_date, months_to_subtract, days_to_subtract):
+    # Convert the base date to a datetime object
+    base_date = datetime.strptime(base_date, "%Y-%m-%d")
+
+    # Calculate the start date by subtracting months and days
+    start_date = base_date - relativedelta(months=months_to_subtract) - timedelta(days=days_to_subtract)
+
+    return start_date
