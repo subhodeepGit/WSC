@@ -9,14 +9,15 @@ frappe.ui.form.on('Course Schedule', {
                 }
             };
         });
-        frm.set_query("instructor", function() {
-            return {
-                query: 'wsc.wsc.doctype.course_schedule.get_instructor_by_student_group',
-                filters: {
-                    "student_group":frm.doc.student_group
-                }
-            };
-        });
+        // frm.set_query("instructor", function() {
+        //     return {
+        //         query: 'wsc.wsc.doctype.course_schedule.get_instructor_by_student_group',
+        //         filters: {
+        //             "student_group":frm.doc.student_group,
+        //             "course":frm.doc.course,
+        //         }
+        //     };
+        // });
         frm.set_query("exam_declaration", function() {
             return {
                 query: 'wsc.wsc.doctype.course_schedule.get_exam_declaration_by_course',
@@ -56,7 +57,8 @@ frappe.ui.form.on('Course Schedule', {
         
     },
     refresh(frm){
-
+        frm.set_df_property('instructor', 'hidden', 1);
+        frm.set_df_property('instructor_name', 'hidden', 1);
         if (!frm.doc.__islocal) {
             frm.add_custom_button(__("Mark Attendances"), function() {
                 frappe.route_options = {
@@ -108,3 +110,33 @@ frappe.ui.form.on('Course Schedule', {
         }
     }
 })
+frappe.ui.form.on("Additional Instructor", "instructor", function(frm, cdt, cdn) {
+    var d = locals[cdt][cdn];
+   
+    frappe.model.set_value(cdt, cdn, "instructor_name",'');
+    if (!frm.doc.student_group){
+        frappe.msgprint("Please Fill Student Group First")
+        d.instructor=''
+    }
+
+    if (d.instructor){
+        frappe.call({
+            method: "wsc.wsc.doctype.course_schedule.get_admission_and_semester_by_program",
+            args: {
+                instructor:d.instructor,
+            },
+            callback: function(r) { 
+                if (r.message){
+                    console.log(r.message);
+                        frm.set_value("instructor",r.message['name'])
+                        frm.set_value("instructor_name",r.message['instructor_name'])
+                    // }
+                    // frm.set_value("program",r.message['semester'])
+                    // frm.set_value("programs_",r.message['admission_program'])
+                    frappe.model.set_value(cdt, cdn, "instructor", r.message['name']);
+                    frappe.model.set_value(cdt, cdn, "instructor_name", r.message['instructor_name']);
+                }
+            } 
+        }); 
+    }
+});

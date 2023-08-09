@@ -124,15 +124,16 @@
   {
    "default": "Pending",
    "fieldname": "status",
-   "fieldtype": "Select",
+   "fieldtype": "Data",
    "label": "Status",
-   "options": "\nPending\nForwarded to Reporting Authority\nForwarded to Department Head\nApproved"
+   "read_only": 1
   },
   {
    "fieldname": "column_break_ktslj",
    "fieldtype": "Column Break"
   },
   {
+   "depends_on": "eval:(doc.status!=\"Pending\" && doc.status!=\"Pending\")",
    "fieldname": "revised_ctc",
    "fieldtype": "Currency",
    "label": "Revised CTC"
@@ -161,14 +162,18 @@
    "fieldtype": "Column Break"
   },
   {
+   "depends_on": "eval:(doc.status!=\"Pending\" && doc.status!=\"Pending\")",
    "fieldname": "new_contract_start_date",
    "fieldtype": "Date",
-   "label": "New Contract Start Date"
+   "label": "New Contract Start Date",
+   "mandatory_depends_on": "eval:(doc.status!=\"Pending\" && doc.status!=\"Pending\")"
   },
   {
+   "depends_on": "eval:(doc.status!=\"Pending\" && doc.status!=\"Pending\")",
    "fieldname": "new_contract_end_date",
    "fieldtype": "Date",
-   "label": "New Contract End Date"
+   "label": "New Contract End Date",
+   "mandatory_depends_on": "eval:(doc.status!=\"Pending\" && doc.status!=\"Pending\")"
   },
   {
    "fetch_from": "employee.branch",
@@ -191,7 +196,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-02 11:56:30.253251",
+ "modified": "2023-08-03 17:17:47.266755",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Re-engagement",

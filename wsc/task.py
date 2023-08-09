@@ -1,9 +1,9 @@
 import frappe
-import datetime
-from datetime import datetime
+from datetime import datetime, timedelta
 from datetime import date, timedelta
+from dateutil.relativedelta import relativedelta
 from wsc.wsc.notification.custom_notification import item_expiry
-
+from frappe.utils import today, getdate
 
 #Notification for 30 days to Warranty period
 def warranty_notification():
@@ -228,3 +228,68 @@ def module_exam_group_data():
             #     if t['exam_declaration_id'] not in exam_declaration_id:
             #         exam_declaration_id.append(t['exam_declaration_id'])
             # print(exam_declaration_id)
+
+def student_disable_check():
+	today_date=getdate(today())
+	student_clearance_list=list(frappe.db.sql("""Select student_id,student_email_address from `tabStudent Clearance Application` where user_disable_date=%s And status= 'Clearance Approved' And docstatus =1""",today_date))
+	if len(student_clearance_list)>0:
+		for t in student_clearance_list:
+			student_id, student_email_address = t[0], t[1]
+			frappe.db.sql("""UPDATE `tabStudent` SET `enabled` = 0 WHERE `name` = %s""", student_id)
+			frappe.db.sql("""UPDATE `tabUser` SET `enabled` = 0 WHERE `name` = %s""", student_email_address)
+			frappe.db.commit()
+			delete_user_permission(student_email_address)	
+			send_disabled_notification_to_student(student_email_address)
+
+def send_disabled_notification_to_student(student_email_address):
+    msg="""<p>Dear Student,Your Student profile and User profile has been disabled successfully.</p><br>"""
+    send_mail(student_email_address,'Student Clearance Status',msg)
+
+def delete_user_permission(student_email_address):
+	user_permission_list=frappe.db.get_all("User Permission",filters={"user": student_email_address},fields="name",limit=1)
+	if len(user_permission_list)>0:
+		for up in user_permission_list:
+			frappe.db.delete("User Permission",up)
+	frappe.db.commit()
+
+
+
+def employee_re_engagement_workFlow():
+    # bench --site erp.soulunileaders.com execute wsc.task.employee_re_engagement_workFlow
+    today_date=getdate(today())
+    base_date = str(today_date)
+    months_to_subtract = 9
+    days_to_subtract = 0
+
+    previous_date = get_previous_date(base_date, months_to_subtract, days_to_subtract)
+    previous_date=previous_date.strftime("%Y-%m-%d")
+    previous_date=datetime.strptime(previous_date, '%Y-%m-%d').date()
+    employee_data=frappe.get_all("Employee",['name','present_contract_start_date','date_of_joining','user_id','employee_name'])
+    present_contract_data_emp=[]
+    date_of_joining_data_emp=[]
+    for t in employee_data:
+        if t['present_contract_start_date'] and t['present_contract_start_date']==previous_date:
+            present_contract_data_emp.append({"name":t['name'],'user_id':t['user_id'],'full_name':['employee_name']})
+        elif t['date_of_joining'] and t['date_of_joining']==previous_date:
+            date_of_joining_data_emp.append({"name":t['name'],'user_id':t['user_id'],'full_name':['employee_name']})
+
+    for t in  present_contract_data_emp:
+        if t['user_id']:
+            msg="""<p>Dear %s ,Your Employee Re-engagement form is ready. Kindly fill up the form</p><br>"""%(t['full_name'])
+            send_mail(t['user_id'],'Student Clearance Status',msg)
+
+    for t in  date_of_joining_data_emp:
+        if t['user_id']:
+            msg="""<p>Dear %s ,Your Employee Re-engagement form is ready. Kindly fill up the form</p><br>"""%(t['full_name'])
+            send_mail(t['user_id'],'Employee Re-engagement',msg)    
+
+
+
+def get_previous_date(base_date, months_to_subtract, days_to_subtract):
+    # Convert the base date to a datetime object
+    base_date = datetime.strptime(base_date, "%Y-%m-%d")
+
+    # Calculate the start date by subtracting months and days
+    start_date = base_date - relativedelta(months=months_to_subtract) - timedelta(days=days_to_subtract)
+
+    return start_date

@@ -4,8 +4,29 @@
 import frappe
 from frappe.model.document import Document
 from wsc.wsc.notification.custom_notification import sendHR,sendEmployee,sendDh,sendDirector,sendRa
+from wsc.wsc.doctype.user_permission import add_user_permission
 
 class EmployeeResignation(Document):
+
+	def set_user_permission(self):
+		if self.workflow_state == "Pending Approval from Department Head":
+			if self.department:
+				department = self.department
+				department_head = frappe.get_all("Department",filters = {"name":department},pluck="department_head")
+				if department_head[0] != None:
+					dh_id = department_head[0]
+					add_user_permission("Employee Resignation",self.name,dh_id,self)
+				else:
+					frappe.throw("Department Head Not found")
+
+		
+		
+	def on_trash(self):
+		self.delete_permission()
+		
+	def delete_permission(self):
+		for d in frappe.get_all("User Permission",{"reference_doctype":self.doctype,"reference_docname":self.name}):
+			frappe.delete_doc("User Permission",d.name)
 
 ############ Notification Coding Started ############################
 
@@ -86,12 +107,13 @@ class EmployeeResignation(Document):
 
 	#validate
 	def validate(self):
+		self.set_user_permission()
 		if self.workflow_state == "Pending Approval from Reporting Authority":
 			self.send_mail_ra()
 		if self.workflow_state == "Pending Approval from Department Head":
 			#code needs to be added 
 			self.send_mail_dh()
-		if self.workflow_state == "Pending Approval from Director Admin":
+		if self.workflow_state == "Pending Approval from Director Admin" and self.final_date_of_resignation == None or self.final_date_of_resignation=="":
 			self.send_mail_director()
 		if self.workflow_state == "Approved" or self.workflow_state=="Rejected":
 			self.send_employee()

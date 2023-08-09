@@ -75,6 +75,8 @@ doctype_list_js = {
     "Asset Maintenance Log":"public/js/asset_maintenance_log_list.js",
     "Leave Application":"public/js/leave_application_list.js",
     "Employee":"public/js/employee_list.js",
+    "Student":"public/js/student_list.js",
+    "Student Group":"public/js/student_group_list.js"
 }
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
@@ -89,6 +91,7 @@ after_migrate = [
         'wsc.patches.migrate_patch.set_custom_role_permission',
         'wsc.wsc.delete_doc_if_linked.execute',
         'wsc.patches.migrate_patch.set_custom_role_permission_remove_duplicate',
+        'wsc.security.execute'
 ]
 
 # application home page (will override Website Settings)
@@ -331,6 +334,9 @@ doc_events = {
     "Attendance Request" :{
         "validate":"wsc.wsc.doctype.attendance_request.validate",
         "after_insert":"wsc.wsc.doctype.attendance_request.after_insert"
+    },
+    "Purchase Order": {
+        "validate":"wsc.wsc.doctype.purchase_order.validate"
     }
     
 
@@ -358,10 +364,10 @@ scheduler_events = {
 		"wsc.wsc.validations.student_blocklist_check.student_blocklist_check",
         "wsc.task.warranty_notification",
         "wsc.task.safety_stock_reach",
-        "wsc.wsc.doctype.student_clearance_application.student_clearance_application.student_disable_check"
+        "wsc.task.student_disable_check",
+        "wsc.task.employee_re_engagement_workFlow"
         # "wsc.wsc.validations.exam_assessment_plan.make_exam_paper_setting_by_paper_setting_date"
 	]
-
 }
 
 # Testing
@@ -460,7 +466,7 @@ override_doctype_dashboards = {
 #	"wsc.auth.validate"
 # ]
 
-fixtures = [
+# fixtures = [
 # # 	{"dt": "Custom DocPerm", "filters": [
 # # 		["parent", "not in", ["DocType"]],
 # #         ["role", '=', 'Education Admission Head']
@@ -472,11 +478,11 @@ fixtures = [
 #     # ]},
 #     # # {"dt": "Role Profile"},
 #     # # {"dt": "Module Profile"},
-    {"dt" : "Workflow","filters": [
-        [
-            "name", "in", ["Employee Attendance Request Workflow"]
-        ]
-    ]},
+    # {"dt" : "Workflow","filters": [
+    #     [
+    #         "name", "in", ["Employee Attendance Request Workflow"]
+    #     ]
+    # ]},
     # {"dt" : "Workflow"},
     # # {"dt": "Workflow Action Master"},
     # {"dt" : "Workflow State","filters": [
@@ -485,7 +491,7 @@ fixtures = [
     #     ]
     # ]},
     # {"dt" : "Translation"}
- ]
+#  ]
 website_context = {
     "favicon": "/assets/wsc/images/wsc.png",
     "splash_image": "/assets/wsc/images/wsc.png"

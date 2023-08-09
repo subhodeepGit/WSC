@@ -709,5 +709,41 @@
     "name": "Approved by Course Manager",
     "style": "",
     "workflow_state_name": "Approved by Course Manager"
-}
+},
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-08-03 12:20:44.892670",
+  "name": "HR Approval",
+  "style": "",
+  "workflow_state_name": "HR Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-08-03 12:24:40.362311",
+  "name": "Reporting Authority Approval",
+  "style": "",
+  "workflow_state_name": "Reporting Authority Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-08-03 12:25:59.840282",
+  "name": "Department Head Approval",
+  "style": "",
+  "workflow_state_name": "Department Head Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-08-03 12:28:04.536093",
+  "name": "Director Admin Approval",
+  "style": "",
+  "workflow_state_name": "Director Admin Approval"
+ }
 ]

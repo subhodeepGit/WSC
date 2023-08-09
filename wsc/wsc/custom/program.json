@@ -35,7 +35,7 @@
    "insert_after": "column_break_3",
    "is_system_generated": 0,
    "is_virtual": 0,
-   "label": "Course",
+   "label": "Programs",
    "length": 0,
    "mandatory_depends_on": null,
    "modified": "2021-04-14 23:45:34.787964",
@@ -56,6 +56,7 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
+   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -116,6 +117,7 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
+   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -176,6 +178,7 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
+   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null

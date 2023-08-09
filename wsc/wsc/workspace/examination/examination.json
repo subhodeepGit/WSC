@@ -2,6 +2,7 @@
  "charts": [],
  "content": "[{\"id\":\"0UfhW4OCZQ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h1\\\">Examination</span>\",\"col\":12}},{\"id\":\"qdOy52DziF\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"4WROMKsuFB\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Shortcuts</span>\",\"col\":12}},{\"id\":\"96IDWkDYb8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Exam Declaration\",\"col\":3}},{\"id\":\"kHktCLbrfe\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Exam Evaluation Plan\",\"col\":3}},{\"id\":\"IbBGdkQUy7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Final Semester Result\",\"col\":3}},{\"id\":\"QMBx2CpzAv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Final Semester Result Report\",\"col\":3}},{\"id\":\"Np17eC-waw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course Wise Performance\",\"col\":3}},{\"id\":\"LvVxLgPI6C\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Module Wise Performance\",\"col\":3}},{\"id\":\"8ZmpJo2xQb\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"EYXWx8Wt7Y\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Reports &amp; Master</span><span class=\\\"h4\\\"><b><br></b></span>\",\"col\":12}},{\"id\":\"jVumty_i1X\",\"type\":\"card\",\"data\":{\"card_name\":\"Examination Master\",\"col\":4}},{\"id\":\"zFsPaAoqWs\",\"type\":\"card\",\"data\":{\"card_name\":\"Examination\",\"col\":4}},{\"id\":\"v9LRi03hih\",\"type\":\"card\",\"data\":{\"card_name\":\"Evaluation\",\"col\":4}},{\"id\":\"zeVRl9oUu7\",\"type\":\"card\",\"data\":{\"card_name\":\"Tools\",\"col\":4}},{\"id\":\"alFUYT_90c\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"et7DdPmLGV\",\"type\":\"card\",\"data\":{\"card_name\":\"Transcripts\",\"col\":4}}]",
  "creation": "2023-02-15 15:34:12.842177",
+ "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
  "for_user": "",
@@ -128,6 +129,44 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Reports",
+   "link_count": 3,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Final Semester Result Report",
+   "link_count": 0,
+   "link_to": "Final Exam Result Report",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Course Wise Performance",
+   "link_count": 0,
+   "link_to": "Pass Percentage",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Module Wise Performance",
+   "link_count": 0,
+   "link_to": "Subject Wise Performance",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Evaluation",
    "link_count": 3,
    "onboard": 0,
@@ -146,7 +185,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Component Wise Reevaluation",
+   "label": "Component Wise Re-Evaluation",
    "link_count": 0,
    "link_to": "Assessment Credits Allocation",
    "link_type": "DocType",
@@ -184,7 +223,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Component Wise Reevaluation Tool",
+   "label": "Component Wise Re-Evaluation Tool",
    "link_count": 0,
    "link_to": "Continuous Evaluation Tool",
    "link_type": "DocType",
@@ -210,50 +249,13 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Reports",
-   "link_count": 3,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Final Semester Result Report",
-   "link_count": 0,
-   "link_to": "Final Exam Result Report",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Course Wise Performance",
-   "link_count": 0,
-   "link_to": "Pass Percentage",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Module Wise Performance",
-   "link_count": 0,
-   "link_to": "Subject Wise Performance",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
   }
  ],
- "modified": "2023-07-19 12:41:55.090304",
+ "modified": "2023-08-04 12:27:37.469187",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Examination",
+ "number_cards": [],
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,
