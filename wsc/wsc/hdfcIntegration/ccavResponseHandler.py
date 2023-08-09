@@ -9,23 +9,32 @@ import json
 import pymysql
 from urllib.parse import urlparse
 import os
+from flask import flash
+
+
+
+def check_url(p_url):
+    parsed_url = urlparse(p_url)
+
+    if parsed_url.scheme == "http":
+        return "test"
+    else:
+        return "production"
 
 
 def res(encResp, url):
-  
     try:
-
+        processed_url = check_url(url)
         username = os.getenv('USER')
-       
+        # username ='erpnext'
         file_path = os.path.join("/home", username, "frappe-bench", "apps", "wsc",
                                  "wsc", "wsc", "doctype", "hdfcpaymentintegration", "db_name.txt")
-       
+
         with open(file_path, "r") as file:
             db_name = file.read().strip()
-           
 
         if db_name:
-           db_name = db_name
+            db_name = db_name
         else:
             print("db_name not found.")
 
@@ -36,7 +45,15 @@ def res(encResp, url):
             database=db_name)
         c = conn.cursor()
 
-        integration_dbvalue = "SELECT  working_key,redirect_url,cancel_url, site_name FROM `payment_integration`"
+        # integration_dbvalue = "SELECT  working_key,redirect_url,cancel_url, site_name FROM `payment_integration`"
+        if processed_url == "test":
+            integration_dbvalue = "SELECT  working_key,  redirect_url, cancel_url, site_name FROM `payment_integration` where dev_type='test'"
+
+        elif processed_url == "production":
+            integration_dbvalue = "SELECT  working_key,  redirect_url, cancel_url , site_name FROM `payment_integration` where dev_type='production'"
+        else:
+            flash("Please contact Administrator.", "error")
+            return
         c.execute(integration_dbvalue)
         integration_value = c.fetchall()
         c.close()
@@ -46,10 +63,9 @@ def res(encResp, url):
             db_redirect_url = row[1]
             cancel_url = row[2]
             db_base_redirect_url = row[3]
+
             passed_url = urlparse(url)
-            
             db_url_name = urlparse(db_redirect_url)
-            
 
             if passed_url.netloc == db_url_name.netloc:
                 decResp = decrypt(encResp, db_working_key)
@@ -62,14 +78,10 @@ def res(encResp, url):
                 amount = cleaned_data.get('amount', None)
                 trans_date = cleaned_data.get('trans_date', None)
                 redirect_url = "{}{}".format(db_base_redirect_url, order_id)
-                base_url = urlparse(db_base_redirect_url).scheme + \
-                    "://" + urlparse(db_base_redirect_url).netloc
-               
-               
-
+                base_url = urlparse(db_base_redirect_url).scheme +"://" + urlparse(db_base_redirect_url).netloc
                 api_endpoint_get_token = '/api/method/wsc.wsc.doctype.hdfcpaymentintegration.hdfcpaymentintegration.get_token'
                 api_getToken = base_url + api_endpoint_get_token
-               
+
                 user = 'hdfc'
                 response = requests.post(api_getToken, json={'user': user})
                 if response.status_code == 200:
@@ -89,12 +101,10 @@ def res(encResp, url):
                             'Authorization': f'Bearer {token}'
                         }
 
-                        m_base_url = urlparse(
-                            db_base_redirect_url).scheme + "://" + urlparse(db_base_redirect_url).netloc
-                       
+                        m_base_url = urlparse(db_base_redirect_url).scheme + "://" + urlparse(db_base_redirect_url).netloc
+
                         api_endpoint_get_order_status = '/api/method/wsc.wsc.doctype.hdfcpaymentintegration.hdfcpaymentintegration.get_order_status'
-                        frappe_api_endpoint = m_base_url + api_endpoint_get_order_status                      
-                      
+                        frappe_api_endpoint = m_base_url + api_endpoint_get_order_status
 
                         params = {
                             'transaction_data': json.dumps(transaction_data)

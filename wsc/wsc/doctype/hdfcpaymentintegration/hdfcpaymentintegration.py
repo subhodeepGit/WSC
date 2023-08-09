@@ -15,6 +15,7 @@ import os
 import sys
 import logging
 username = os.getenv('USER')
+# username ='erpnext'
 module_path = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "hdfcpaymentintegration")
 sys.path.append(module_path)
 from .database_operations import fetch_and_process_data
@@ -97,12 +98,10 @@ def login(party_name, roll_no, amount, order_id, url):
                     p_customer_identifier = roll_no
                     p_amount = amount
                     p_order_id = order_id
-
-                    p_redirect_url = redirect_url
-                    p_cancel_url = cancel_url
+                   
 
                     merchant_data = 'merchant_id=' + p_merchant_id + '&' + 'order_id=' + p_order_id + '&' + "currency=" + currency + '&' + 'amount=' + p_amount + '&' + 'redirect_url=' + \
-                        p_redirect_url + '&' + 'cancel_url=' + p_cancel_url + '&' + 'language=' + language + '&' + \
+                        redirect_url + '&' + 'cancel_url=' + cancel_url + '&' + 'language=' + language + '&' + \
                         'billing_name=' + p_billing_name + '&' + \
                         'customer_identifier=' + p_customer_identifier
 
