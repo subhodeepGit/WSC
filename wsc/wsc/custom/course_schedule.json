@@ -56,6 +56,7 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
+   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -116,6 +117,7 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
+   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -176,6 +178,7 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
+   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -236,6 +239,7 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
+   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -275,7 +279,7 @@
    "insert_after": "instructor_name",
    "is_system_generated": 0,
    "is_virtual": 0,
-   "label": "Additional Trainer",
+   "label": "Trainers",
    "length": 0,
    "mandatory_depends_on": null,
    "modified": "2021-08-24 21:46:02.062406",
@@ -286,7 +290,7 @@
    "non_negative": 0,
    "options": "Additional Instructor",
    "owner": "Administrator",
-   "permlevel": 0,
+   "permlevel": 3,
    "precision": "",
    "print_hide": 0,
    "print_hide_if_no_value": 0,
@@ -296,6 +300,7 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
+   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -356,6 +361,7 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
+   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -416,6 +422,7 @@
    "report_hide": 0,
    "reqd": 1,
    "search_index": 0,
+   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -476,6 +483,7 @@
    "report_hide": 0,
    "reqd": 1,
    "search_index": 0,
+   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -536,6 +544,7 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
+   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -596,6 +605,7 @@
    "report_hide": 0,
    "reqd": 1,
    "search_index": 0,
+   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -656,6 +666,7 @@
    "report_hide": 0,
    "reqd": 1,
    "search_index": 0,
+   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -716,6 +727,7 @@
    "report_hide": 0,
    "reqd": 1,
    "search_index": 0,
+   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -725,6 +737,29 @@
  "doctype": "Course Schedule",
  "links": [],
  "property_setters": [
+  {
+   "_assign": null,
+   "_comments": null,
+   "_liked_by": null,
+   "_user_tags": null,
+   "creation": "2023-08-09 11:31:11.087540",
+   "default_value": null,
+   "doc_type": "Course Schedule",
+   "docstatus": 0,
+   "doctype_or_field": "DocField",
+   "field_name": "course",
+   "idx": 0,
+   "is_system_generated": 0,
+   "modified": "2023-08-09 11:31:11.087540",
+   "modified_by": "Administrator",
+   "module": null,
+   "name": "Course Schedule-course-read_only",
+   "owner": "Administrator",
+   "property": "read_only",
+   "property_type": "Check",
+   "row_name": null,
+   "value": "1"
+  },
   {
    "_assign": null,
    "_comments": null,

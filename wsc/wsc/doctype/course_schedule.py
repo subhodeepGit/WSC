@@ -132,7 +132,7 @@ def get_course_schedule_events(start, end, filters=None):
 					custom_conditions=" and `tabStudent Group Instructor`.instructor='{0}'".format(inst.name)
 
 	data = frappe.db.sql(
-			"""select name, course, course_name, course_code,color,program,instructor,
+			"""select name, course, course_name, course_code,color,program,instructor,instructor_name,
 				timestamp(schedule_date, from_time) as from_time,
 				timestamp(schedule_date, to_time) as to_time,
 				room,room_name,school_house, student_group, 0 as 'allDay'
@@ -150,7 +150,7 @@ def get_course_schedule_events(start, end, filters=None):
 	for d in data:
 		from_time=d["from_time"].strftime("%H:%M:%S")
 		to_time=d["to_time"].strftime("%H:%M:%S")
-		d.update({"course":d.course_name+"\n"+d.course_code+"\n"+d.school_house+"\n"+d.instructor+"\n"+d.room_name})
+		d.update({"course":d.course_name+"\n"+d.school_house+"\n"+d.instructor_name+"\n"+d.room_name})
 		# +"\n"+to_time+"\n"+from_time
 		# +d.school_house+"\n"
 		result.append(d)

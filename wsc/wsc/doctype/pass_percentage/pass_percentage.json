@@ -13,8 +13,8 @@
   "column_break_hdbgx",
   "academic_term",
   "section_break_pxny1",
+  "get_result",
   "remarks",
-  "programs_pass_",
   "amended_from"
  ],
  "fields": [
@@ -38,16 +38,9 @@
    "fieldname": "program_grade",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Cours Type",
+   "label": "Program Grades",
    "options": "Program Grades",
    "reqd": 1
-  },
-  {
-   "fieldname": "programs_pass_",
-   "fieldtype": "Table",
-   "label": "Course Wise Pass Percentage",
-   "options": "Programs Pass Percentage",
-   "read_only": 1
   },
   {
    "fieldname": "amended_from",
@@ -75,11 +68,16 @@
    "fieldtype": "Small Text",
    "label": "Remarks",
    "read_only": 1
+  },
+  {
+   "fieldname": "get_result",
+   "fieldtype": "Button",
+   "label": "Get Result"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-27 17:08:36.468999",
+ "modified": "2023-08-09 12:33:18.432666",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Pass Percentage",

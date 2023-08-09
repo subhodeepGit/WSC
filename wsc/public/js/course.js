@@ -9,6 +9,12 @@ frappe.ui.form.on('Course', {
 				}, __('Action'));
 			}
 		}
+		// if (frappe.user.has_role(["Student","Instructor"]) && !frappe.user.has_role('System Manager')){
+		if ((frappe.user.has_role("Student")) || (frappe.user.has_role("Instructor"))){
+			frm.remove_custom_button("Add to Programs","Action");
+			frm.remove_custom_button("Add to Semester","Action");
+			frm.remove_custom_button("Add to ToT Course","Action");
+		}
 		if (frm.doc.is_tot==1){
 			frm.remove_custom_button("Add to Programs","Action");
 			frm.remove_custom_button("Add to Semester","Action");
