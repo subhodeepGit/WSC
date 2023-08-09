@@ -337,6 +337,9 @@ doc_events = {
     },
     "Purchase Order": {
         "validate":"wsc.wsc.doctype.purchase_order.validate"
+    },
+    "Material Request": {
+        "validate":"wsc.wsc.doctype.material_request.validate"
     }
     
 
@@ -364,7 +367,8 @@ scheduler_events = {
 		"wsc.wsc.validations.student_blocklist_check.student_blocklist_check",
         "wsc.task.warranty_notification",
         "wsc.task.safety_stock_reach",
-        "wsc.task.student_disable_check"
+        "wsc.task.student_disable_check",
+        "wsc.task.employee_re_engagement_workFlow"
         # "wsc.wsc.validations.exam_assessment_plan.make_exam_paper_setting_by_paper_setting_date"
 	]
 }
@@ -470,11 +474,11 @@ override_doctype_dashboards = {
 # # 		["parent", "not in", ["DocType"]],
 # #         ["role", '=', 'Education Admission Head']
 # # 	]},
-#     # {"dt": "Role","filters": [
-#     #     [
-#     #         "name", "in", ["Shift Approver","Grievance Cell Member"]
-#     #     ]
-#     # ]},
+    # {"dt": "Role","filters": [
+    #     [
+    #         "name", "in", ["Shift Approver","Grievance Cell Member"]
+    #     ]
+    # ]},
 #     # # {"dt": "Role Profile"},
 #     # # {"dt": "Module Profile"},
     # {"dt" : "Workflow","filters": [
@@ -489,7 +493,11 @@ override_doctype_dashboards = {
     #         "name", "in", ["Resolved"]
     #     ]
     # ]},
-    # {"dt" : "Translation"}
+#     {"dt" : "Translation","filters": [
+#         [
+#             "source_text", "in", ["Department Email ID"]
+#         ]
+#     ]}
 #  ]
 website_context = {
     "favicon": "/assets/wsc/images/wsc.png",

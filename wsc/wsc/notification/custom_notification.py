@@ -792,6 +792,8 @@ def online_payment_submit(doc):
     attachments = None
     send_mail(recipients,'Payment Details',msg,attachments)
 
+##### Notification for Procurement and Inventory Management #####
+#####   START   #####
 def item_expiry(doc):
     msg="""<b>---------------------Item Warranty Expiry Remainder---------------------</b><br>"""
     msg+="""<b>Warranty for {0} will be expiring in 30 days""".format(doc.get('item_name'))
@@ -812,6 +814,31 @@ def all_items_received(doc):
     attachments = None
     send_mail(recipients,'Purchase Order',msg,attachments)
 
+def purchase_requisition_raised(doc):
+    msg="""<b>---------------------Purchase Requisition raised by {0} department---------------------</b><br>""".format(doc.get('department'))
+    msg+="""Please login to the Application to see details regarding the requisition raised"""
+    recipients_list = list(frappe.db.sql("select department_email_id from `tabDepartment Email ID`"))
+    recipients = recipients_list[0]
+    attachments = None
+    send_mail(recipients,'Item',msg,attachments)
+
+def received_in_inventory(doc):
+    msg="""<b>---------------------Purchase Requisition: {0} received in Store---------------------</b><br>""".format(doc.get('name'))
+    msg+="""Please completed the Issue of requested material to {0} department""".format(doc.get('department'))
+    recipients_list = list(frappe.db.sql("select department_email_id from `tabDepartment Email ID`"))
+    recipients = recipients_list[0]
+    attachments = None
+    send_mail(recipients,'Item',msg,attachments)
+
+def received_by_department(doc):
+    msg="""<b>---------------------Purchase Requisition: {0} received---------------------</b><br>"""
+    msg+="""Items received on dated: {0}""".format(doc.get('transaction_date'))
+    msg+="""For Purchase requisition number: {0}""".format(doc.get('name'))
+    recipients = doc.department_email
+    attachments = None
+    send_mail(recipients,'Item',msg,attachments)
+
+#####   END   #####
 
 # def has_default_email_acc():
 # 	for d in frappe.get_all("Email Account", {"default_outgoing":1}):

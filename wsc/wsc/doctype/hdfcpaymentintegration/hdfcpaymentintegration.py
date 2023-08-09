@@ -1,6 +1,5 @@
 # Copyright (c) 2023, SOUL Limited and contributors
 # For license information, please see license.txt
-# /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/doctype/hdfcpaymentintegration/hdfcpaymentintegration.py
 #Created By :Rupali_Bhatta : 17-07-2023
 import frappe
 from frappe.model.document import Document
@@ -12,15 +11,24 @@ from frappe import _
 import secrets
 import pymysql
 from urllib.parse import urlparse
-import logging
 import os
 import sys
 import logging
 username = os.getenv('USER')
+# username ='erpnext'
 module_path = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "hdfcpaymentintegration")
 sys.path.append(module_path)
 from .database_operations import fetch_and_process_data
 
+# Configure logging for getTransactionDetails()
+logfile_transaction_name = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "hdfcpaymentintegration", "transaction_log.log")
+logging.basicConfig(filename=logfile_transaction_name, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger_transaction = logging.getLogger(__name__)
+
+# Configure logging for login()
+logfile_login_name = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "hdfcpaymentintegration", "login_log.log")
+logging.basicConfig(filename=logfile_login_name, level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+logger_login = logging.getLogger(__name__)
 
 
 class HdfcPaymentIntegration(Document):
@@ -28,25 +36,48 @@ class HdfcPaymentIntegration(Document):
         frappe.throw("Once form is submitted it can't be cancelled")
 
     def on_submit(doc):
-        getTransactionDetails(
-            doc, 'http://erp.soulunileaders.com:8000/app/hdfcpaymentintegration')
+        get_url= frappe.utils.get_url()       
+        # getTransactionDetails(doc, 'http://erp.soulunileaders.com:8000/app/hdfcpaymentintegration')
+        getTransactionDetails(doc, get_url)
         frappe.msgprint("Your Transaction is completed. Your Transaction Id is " +
                         doc.transaction_id + "."  " Status is " + frappe.bold(doc.transaction_status))
 
 currency = 'INR'
 language = 'EN'
 
+def check_url(p_url):
+    parsed_url = urlparse(p_url)
+    
+    if parsed_url.scheme == "http":
+        return "test"
+    else:
+        return "production"
+    
 
 @frappe.whitelist()
-def login(party_name, roll_no, amount, order_id, url):
+def login(party_name, roll_no, amount, order_id, url): 
+    processed_url = check_url(url)
+    logger_login.info("Login request received with party_name: %s, roll_no: %s, amount: %s, order_id: %s, url: %s", party_name, roll_no, amount, order_id, url)
+  
+    
     try:
         site_name = frappe.local.site 
-        print("\n\n\n\n\n",site_name)  
         c = fetch_and_process_data(site_name)
-        integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name, dev_type, redirect_url, cancel_url FROM `payment_integration`"
+
+        # integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name,redirect_url, cancel_url FROM `payment_integration`"
+        if processed_url == "test":
+            integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name,redirect_url, cancel_url FROM `payment_integration` where dev_type='test'"
+            
+        elif processed_url == "production":
+            integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name,redirect_url, cancel_url FROM `payment_integration` where dev_type='production'"
+        else:
+            frappe.msgprint("Please contact Administrator.")
+            return
+
         c.execute(integration_dbvalue)
         integration_value = c.fetchall()
         c.close()
+        
 
         if integration_value:  
             for row in integration_value:
@@ -54,9 +85,8 @@ def login(party_name, roll_no, amount, order_id, url):
                 working_key = row[1]
                 merchant_id = row[2]
                 site_name = row[3]
-                dev_type = row[4]
-                redirect_url = row[5]
-                cancel_url = row[6]
+                redirect_url = row[4]
+                cancel_url = row[5]
 
                 passed_url = urlparse(url)
                 db_url_name = urlparse(site_name)
@@ -68,62 +98,67 @@ def login(party_name, roll_no, amount, order_id, url):
                     p_customer_identifier = roll_no
                     p_amount = amount
                     p_order_id = order_id
-
-                    p_redirect_url = redirect_url
-                    p_cancel_url = cancel_url
+                   
 
                     merchant_data = 'merchant_id=' + p_merchant_id + '&' + 'order_id=' + p_order_id + '&' + "currency=" + currency + '&' + 'amount=' + p_amount + '&' + 'redirect_url=' + \
-                        p_redirect_url + '&' + 'cancel_url=' + p_cancel_url + '&' + 'language=' + language + '&' + \
+                        redirect_url + '&' + 'cancel_url=' + cancel_url + '&' + 'language=' + language + '&' + \
                         'billing_name=' + p_billing_name + '&' + \
                         'customer_identifier=' + p_customer_identifier
 
-                   
+                    logger_login.info("Merchant_data: %s", merchant_data)
                     encryption = encrypt(merchant_data, working_key)
+                    logger_login.info("Encryption_data: %s", encryption)
 
                     return {"encRequest": str(encryption), "accessCode": access_code, "baseUrl": url}
 
                 else:
                     raise ValueError("Invalid URL")
         else:
-            frappe.msgprint("Please contact with Administrator.")
+            logging.warning("Please contact Administrator.")
+            frappe.msgprint("Please contact Administrator.")
 
     except Exception as e:
-        print("CONNECTION ERROR--", str(e))
+        logger_login.error("Login Error: %s", str(e))
         return str(e)
 
 
 
 @frappe.whitelist(allow_guest=True)
 def get_order_status():
-    transaction_data = frappe.request.args.get('transaction_data')
-    if transaction_data:
-        try:
-            transaction_data = json.loads(transaction_data)
-            response_data = (transaction_data['response_data'])
-            doc_name = response_data.get('order_id')
-            order_id = response_data.get('order_id')
-            transaction_id = response_data.get('tracking_id')
-            order_status = response_data.get('order_status')
-            amount_paid = response_data.get('mer_amount')
-            billing_name = response_data.get('illing_name')
-            time_of_transaction = response_data.get('trans_date')
-            transaction_info = f"Order ID: {order_id}\nTransaction ID: {transaction_id}\nAmount Paid: {amount_paid}\nBilling Name: {billing_name}\nTime of Transaction: {time_of_transaction}"
-          
+    try:
+        transaction_data = frappe.request.args.get('transaction_data')
+        if not transaction_data:
+            return "Invalid transaction_data in the request."
 
-            if order_id and transaction_id:
-                doc = frappe.get_doc("HdfcPaymentIntegration", doc_name)
-                doc.transaction_id = transaction_id
-                doc.transaction_status = order_status
-                doc.transaction_info = transaction_info
-                doc.save(ignore_permissions=True)
-                doc.run_method('submit')
-                return "Order status and tracking ID updated successfully in Frappe."
-            else:
-                return "Invalid 'order_id' or 'tracking_id' in the received data."
-        except Exception as e:
-            return f"Error processing the data: {str(e)}"
-    else:
-        return "Invalid transaction_data in the request."
+        transaction_data = json.loads(transaction_data)
+        response_data = transaction_data.get('response_data')
+
+        if not response_data:
+            return "Invalid response_data in the received data."
+
+        order_id = response_data.get('order_id')
+        transaction_id = response_data.get('tracking_id')
+        order_status = response_data.get('order_status')
+        amount_paid = response_data.get('mer_amount')
+        billing_name = response_data.get('illing_name')
+        time_of_transaction = response_data.get('trans_date')
+        transaction_info = f"Order ID: {order_id}\nTransaction ID: {transaction_id}\nAmount Paid: {amount_paid}\nBilling Name: {billing_name}\nTime of Transaction: {time_of_transaction}"
+
+        if order_id and transaction_id:
+            doc = frappe.get_doc("HdfcPaymentIntegration", order_id)  # Assuming 'order_id' is the doc_name
+            doc.transaction_id = transaction_id
+            doc.transaction_status = order_status
+            doc.transaction_info = transaction_info
+            doc.save(ignore_permissions=True)
+            doc.run_method('submit')
+
+           
+            return "Order status and tracking ID updated successfully in Frappe."
+        else:
+            return "Invalid 'order_id' or 'tracking_id' in the received data."
+
+    except Exception as e:
+        return f"Error processing the data: {str(e)}"
 
 
 @frappe.whitelist(allow_guest=True)
@@ -136,8 +171,7 @@ def get_token(user):
     else:
         return _('Invalid credentials.')
     
-logfile_name=os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "hdfcpaymentintegration", "transaction_log.log")  
-logging.basicConfig(filename=logfile_name, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 
 def getTransactionDetails(doc, url):
     try:
@@ -200,14 +234,14 @@ def getTransactionDetails(doc, url):
                 final_status_info = f"Order ID: {order_no}\nTransaction ID: {reference_no}\nGross Amount : {order_gross_amt}\nOrder Amount : {order_amt}\nOrder Status: {order_status}\nTime of Transaction: {order_date_time}\nBank Ref No.: {order_bank_ref_no}"
 
                 doc.status = final_status_info
-
                 # Logging the final_status_info
-                logging.info(data_dict)
+                logger_transaction.info("Status API Result:%s", data_dict)
+               
                 break
 
     except Exception as e:
         # Logging the error message
-        logging.error(f"An error occurred: {str(e)}")
+        logger_transaction.error(f"An error occurred: {str(e)}")
         return str(e)
 
 
