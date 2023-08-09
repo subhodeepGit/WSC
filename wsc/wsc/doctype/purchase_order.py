@@ -4,5 +4,5 @@ from frappe.model.document import Document
 from wsc.wsc.notification.custom_notification import all_items_received
 
 def validate(self,method):
-	if self.qty == self.received_qty:
+	if self.status == "To Bill" or self.status == "Completed":
 		all_items_received(self)
