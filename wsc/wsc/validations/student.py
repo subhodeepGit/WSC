@@ -72,33 +72,39 @@ def validate_job_date(doc):
 def validate_pin_code(doc):
 	
 	if doc.pin_code:
-		if len(doc.pin_code)<6:
-			frappe.throw("<b>Pincode</b> must be 6 Digits")
-		if len(doc.pin_code)>6:
+		if len(doc.pin_code)<6 or len(doc.pin_code)>6 :
 			frappe.throw("<b>Pincode</b> must be 6 Digits")
 	if doc.student_mobile_number:
-		if len(doc.student_mobile_number)<10:
+		if len(doc.student_mobile_number)<10 or len(doc.student_mobile_number)>10:
 			frappe.throw("<b>Mobile Number</b> must be 10 Digits")
-		if len(doc.student_mobile_number)>10:
-			frappe.throw("<b>Mobile Number</b> must be 10 Digits")
+	if doc.fathers_contact_number:
+		if len(doc.fathers_contact_number)<10 or len(doc.fathers_contact_number)>10:
+			frappe.throw("<b>Father's Contact Number</b> must be 10 Digits")
+	if doc.mothers_contact_number:
+		if len(doc.fathers_contact_number)<10 or len(doc.fathers_contact_number)>10:
+			frappe.throw("<b>Mother's Contact Number</b> must be 10 Digits")
+	if doc.local_guardian_contact_no:
+		if len(doc.local_guardian_contact_no)<10 or len(doc.local_guardian_contact_no)>10:
+			frappe.throw("<b>Local Guardians Contact Number</b> must be 10 Digits")
 
 	if not check_int(doc.pin_code):
 		frappe.throw("Pincode must be the Integer.")
-	if not check_int(doc.student_mobile_number):
-		frappe.throw("Mobile Number must be the Integer.")
-	if doc.mothers_contact_number:
-		if not check_int(doc.mothers_contact_number):
-			frappe.throw("Mother's Contact Number must be the Integer.")
+	if doc.student_mobile_number:
+		if not check_int(doc.student_mobile_number):
+			frappe.throw("Mobile Number must be the Integer.")
 	if doc.fathers_contact_number:
 		if not check_int(doc.fathers_contact_number):
 			frappe.throw("Father's Contact Number must be the Integer.")
+	if doc.mothers_contact_number:
+		if not check_int(doc.mothers_contact_number):
+			frappe.throw("Mother's Contact Number must be the Integer.")
 	if doc.local_guardian_contact_no:
 		if not check_int(doc.local_guardian_contact_no):
 			frappe.throw("Local Guardians Contact Number must be the Integer.")
 
-def check_int(pincode_1):
+def check_int(pin_code):
 	import re
-	return re.match(r"[-+]?\d+(\.0*)?$", pincode_1) is not None
+	return re.match(r"[-+]?\d+(\.0*)?$", pin_code) is not None
 		# frappe.throw(data)
 		# return data
 # def attachImage(self):

@@ -22,7 +22,7 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 			continuous_evaluation["course_name"]=frm.doc.course_name;
 			continuous_evaluation["course_code"]=frm.doc.course_code;
 			continuous_evaluation["semester"]=frm.doc.semester;
-			continuous_evaluation["exam_category"]=frm.doc.exam_category;
+			continuous_evaluation["exam_cate"]=frm.doc.exam_cate;
 			continuous_evaluation["programs"]=frm.doc.programs;
 			continuous_evaluation["program_grade"]=frm.doc.program_grade;
 			continuous_evaluation["exam_declaration"]=frm.doc.exam_declaration;
@@ -113,7 +113,7 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 		frm.set_query('exam_declaration', function() {
 			return {
 				filters: {
-					"exam_category":"Re-Exam",
+					"exam_cate":"Re-Exam",
 					"docstatus":1
 				}
 			};
@@ -139,8 +139,8 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 	},
 	// get_student_details:function(frm){
 		
-	exam_category:function(frm){
-		if(frm.doc.exam_category=="Regular"){
+	exam_cate:function(frm){
+		if(frm.doc.exam_cate=="Regular"){
 			frm.doc.students=[];
 			$(frm.fields_dict.student_inputs.wrapper).empty();
 			if(frm.doc.academic_year && frm.doc.academic_term && frm.doc.course && frm.doc.assessment_criteria && frm.doc.programs && frm.doc.semester) {
@@ -163,7 +163,7 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 		}
 	},
 	exam_declaration:function(frm){
-		if(frm.doc.exam_category=="Re-Exam"){
+		if(frm.doc.exam_cate=="Re-Exam"){
 			frm.doc.students=[];
 			$(frm.fields_dict.student_inputs.wrapper).empty();
 

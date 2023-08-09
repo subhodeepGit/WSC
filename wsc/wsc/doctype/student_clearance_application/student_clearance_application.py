@@ -29,7 +29,8 @@ class StudentClearanceApplication(Document):
         send_pendingDues_notification_to_student(self)
 
     def sendEmailToDepartment(self):
-        send_clearance_notification_to_department(self)
+        if len(self.departments_clearance_status)>0:
+            send_clearance_notification_to_department(self)
 
     def validateAmount(self):
         for t in self.get("departments_clearance_status"):
@@ -70,6 +71,8 @@ def current_student_detail(student_id):
             filters={"parent":clmFieldName },
             fields=['department','department_email_id']
          )
+    if len(clearanceDepartment)==0:
+        frappe.throw("Clearance Master is not created for this Academic Term or Academic Year")
     return {
         "current_education_data": current_education_data or None,
         "user_disable_date": userDisableDate or "",
@@ -94,19 +97,5 @@ def is_student(user):
     else:
         return {"is_student": False}
 
-@frappe.whitelist()
-def student_disable_check():
-    today_date=getdate(today())
-    student_clearance_list=list(frappe.db.sql("""Select student_id,student_email_address from `tabStudent Clearance Application` where user_disable_date=%s And status= 'Clearance Approved' And docstatus =1""",today_date))
-    print(len(student_clearance_list))
-    if len(student_clearance_list)>0:
-        for t in student_clearance_list:
-            student = frappe.get_doc("Student",t[0])
-            user=frappe.get_doc("User",t[1])
-            student.enabled = 0
-            student.save()
-            user.enabled = 0
-            user.save()
-        send_disabled_notification_to_student()
 
     

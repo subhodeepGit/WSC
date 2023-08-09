@@ -9,6 +9,7 @@
  "field_order": [
   "is_tot",
   "program_grade",
+  "is_short_term_course",
   "programs_name",
   "department",
   "discription",
@@ -16,6 +17,7 @@
   "programs_abbreviation",
   "creation_date",
   "programs_duration",
+  "course_duration",
   "no_of_semesters",
   "tot_programme",
   "section_break_semester",
@@ -68,15 +70,15 @@
    "label": "Creation Date"
   },
   {
-   "depends_on": "eval:doc.is_tot==0",
+   "depends_on": "eval:doc.is_short_term_course==\"No\"",
    "fieldname": "programs_duration",
    "fieldtype": "Select",
    "label": "Course Duration ",
-   "mandatory_depends_on": "eval:doc.is_tot==0",
+   "mandatory_depends_on": "eval:doc.is_short_term_course==\"No\"",
    "options": "\n1 Year\n2 Years\n3 Years\n4 Years\n5 Years\n6 Years\n7 Years\n8 Years\n9 Years\n10 Years"
   },
   {
-   "depends_on": "eval:doc.is_tot==0",
+   "depends_on": "eval:doc.is_short_term_course==\"No\"",
    "fieldname": "section_break_semester",
    "fieldtype": "Section Break",
    "label": "Semesters"
@@ -148,11 +150,11 @@
    "label": "Description"
   },
   {
-   "depends_on": "eval:doc.is_tot==0",
+   "depends_on": "eval:doc.is_short_term_course==\"No\"",
    "fieldname": "no_of_semesters",
    "fieldtype": "Int",
    "label": "No. of Semesters",
-   "mandatory_depends_on": "eval:doc.is_tot==0"
+   "mandatory_depends_on": "eval:doc.is_short_term_course==\"No\""
   },
   {
    "fieldname": "program_grade",
@@ -165,18 +167,19 @@
    "default": "0",
    "fieldname": "is_tot",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Is ToT"
   },
   {
    "default": "1",
-   "depends_on": "eval:doc.is_tot==1",
+   "depends_on": "eval:doc.is_short_term_course==\"Yes\"",
    "fieldname": "tot_programme",
    "fieldtype": "Int",
    "hidden": 1,
    "label": "ToT Programme"
   },
   {
-   "depends_on": "eval:doc.is_tot==1",
+   "depends_on": "eval:doc.is_short_term_course==\"Yes\"",
    "fieldname": "modules_list_section",
    "fieldtype": "Section Break",
    "label": "Modules List"
@@ -186,11 +189,27 @@
    "fieldtype": "Table",
    "label": "Modules",
    "options": "Program Course"
+  },
+  {
+   "depends_on": "eval:doc.is_short_term_course==\"Yes\"",
+   "description": "In Days",
+   "fieldname": "course_duration",
+   "fieldtype": "Float",
+   "label": "Course Duration",
+   "mandatory_depends_on": "eval:doc.is_short_term_course==\"Yes\"",
+   "non_negative": 1
+  },
+  {
+   "fetch_from": "program_grade.is_short_term_course",
+   "fieldname": "is_short_term_course",
+   "fieldtype": "Select",
+   "label": "Is Short Term Course",
+   "options": "\nYes\nNo"
   }
  ],
  "image_field": "hero_image",
  "links": [],
- "modified": "2023-07-05 12:35:50.826087",
+ "modified": "2023-08-08 11:39:53.160281",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Programs",
