@@ -1,4 +1,4 @@
-frappe.ui.form.on("Material Request Item", "item_code", function(frm, cdt, cdn) {
+frappe.ui.form.on("Material Request Item", "qty", function(frm, cdt, cdn) {
     var d = locals[cdt][cdn];
         d.total_amount = d.price * d.qty
         refresh_field("total_amount", d.total_amount);
@@ -6,7 +6,7 @@ frappe.ui.form.on("Material Request Item", "item_code", function(frm, cdt, cdn) 
 
 // Child table Calculation
 frappe.ui.form.on('Material Request Item', {	//Child table Name
-	item_code:function(frm, cdt, cdn){	//Child table field Name where you data enter
+	qty:function(frm, cdt, cdn){	//Child table field Name where you data enter
 	var d = locals[cdt][cdn];
 	var total = 0;
 	let a= parseInt(total)
