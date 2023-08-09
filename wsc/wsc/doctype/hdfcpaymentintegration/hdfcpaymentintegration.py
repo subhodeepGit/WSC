@@ -44,16 +44,35 @@ class HdfcPaymentIntegration(Document):
 currency = 'INR'
 language = 'EN'
 
+def check_url(p_url):
+    parsed_url = urlparse(p_url)
+    
+    if parsed_url.scheme == "http":
+        return "test"
+    else:
+        return "production"
+    
 
 @frappe.whitelist()
-def login(party_name, roll_no, amount, order_id, url):
+def login(party_name, roll_no, amount, order_id, url): 
+    processed_url = check_url(url)
     logger_login.info("Login request received with party_name: %s, roll_no: %s, amount: %s, order_id: %s, url: %s", party_name, roll_no, amount, order_id, url)
   
     
     try:
         site_name = frappe.local.site 
         c = fetch_and_process_data(site_name)
-        integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name,redirect_url, cancel_url FROM `payment_integration`"
+
+        # integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name,redirect_url, cancel_url FROM `payment_integration`"
+        if processed_url == "test":
+            integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name,redirect_url, cancel_url FROM `payment_integration` where dev_type='test'"
+            
+        elif processed_url == "production":
+            integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name,redirect_url, cancel_url FROM `payment_integration` where dev_type='production'"
+        else:
+            frappe.msgprint("Please contact Administrator.")
+            return
+
         c.execute(integration_dbvalue)
         integration_value = c.fetchall()
         c.close()
@@ -102,6 +121,7 @@ def login(party_name, roll_no, amount, order_id, url):
     except Exception as e:
         logger_login.error("Login Error: %s", str(e))
         return str(e)
+
 
 
 @frappe.whitelist(allow_guest=True)
