@@ -4,6 +4,8 @@ from flask import request, redirect, Flask, render_template
 from ccavutil import encrypt,decrypt
 from ccavResponseHandler import res
 from string import Template
+from waitress import serve
+
 app = Flask('ccavRequestHandler') 
 
 
@@ -52,7 +54,8 @@ def ccavResponseHandler():
 
 
 if __name__ == '__main__':
-	app.run(host = '127.0.0.1', port = 8080)
+	# app.run(host = '127.0.0.1', port = 8080)
+	serve(app, host='0.0.0.0', port=5000, url_scheme='https')
 
 
 
