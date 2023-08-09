@@ -20,13 +20,15 @@ frappe.ui.form.on("HdfcPaymentIntegration", {
 					
 					var encRequest = r.message["encRequest"];					
 					var access_code = r.message["accessCode"];					
-					var baseUrl = r.message["baseUrl"];				
+					var baseUrl = r.message["baseUrl"];	
+					// alert(baseUrl)			
 
 					var isLocalhost = baseUrl.includes("erp.soulunileaders.com");					
                     var isProd = baseUrl.includes("wscdemo.eduleadonline.com");
 				
 
-				if (isLocalhost) {                   
+				if (isLocalhost) {  
+
 					window.open("https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest);
                 } else if (isProd) {
                     
@@ -37,10 +39,7 @@ frappe.ui.form.on("HdfcPaymentIntegration", {
                 }
 
 				
-				// window.open("https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest);
-				// window.open("https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction&access_code=AVYA87KG31AX44AYXA&encRequest=Ye21ICfBuKVwypJGwRRVn5qnPcYuFkVD0+quldlcyMYK1BV5ffqQtA4vh8h3EGOgFL9wGe/ZJpQBaVEG4ZCgMtQZYWVQQJO93Dg507JxRilLnSU+bjmwffCSsBmzXvAUMSProhr4VWb8Zrj9hxkUaEjXCkIDTDpSvqxxAPY9Xl9XmAkBLQRF38PvSUTQJNscAbtZoMFToDaKU5xSGhbTYWM2PEviLSN/1cr98yDN9wEEVY3SsPbtNahF32w22xCi1lyLWeL1NF7PNyNyYwLkuq1VIt2IQ3UBdI/iVgMJvsw=")
-				// window.open("https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction&merchant_id=$mid&encRequest=$encReq&access_code=$xscode")
-
+				
 				}
 			});
 		}, "Online Payment");

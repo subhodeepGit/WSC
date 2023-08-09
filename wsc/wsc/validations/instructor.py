@@ -9,6 +9,7 @@ def validate(doc,method):
     # director_permission(doc)
     validate_instructor_log(doc)
     academic_term(doc)
+    validate_float(doc)
     # classes_scheduled = doc.get("total_scheduled_classes")
     # classes_taken = doc.get("total_classes_taken")
 
@@ -27,8 +28,21 @@ def validate(doc,method):
         sum = sum+(t.duration)
     doc.number_of_other_activities = count
     # doc.total_work_load = "%.2f" % sum
-    
 
+def validate_float(doc):
+    for d in doc.get("other_activities"):
+        value = float(d.duration)
+        min_value =0.0
+        max_value = 1000.0
+        if min_value <= value <= max_value:
+                return True
+        else:
+            frappe.throw("Duration in other activity table is not a valid input.")
+#     for d in doc.get("other_activities"):
+#          if d.duration:
+#             if len(d.duration)<6:
+#                     print("\n\n\nHELLO")
+#                     frappe.throw("<b>Duration</b> should not be too longer")   
 def validate_instructor_log(doc):
     for d in doc.get("instructor_log"):
         # validate_academic_year(d)
@@ -103,7 +117,6 @@ def permission(doc):
                         programs.save()
 
    
-
 def on_trash(doc,method):
     if doc.employee:
         user_id=frappe.db.get_value("Employee",doc.employee,'user_id')
@@ -127,15 +140,12 @@ def update_user(doc):
             user.role_profile_name="Employee Role"
             user.save()
             for ur_pr in frappe.get_all("User Permission",{'user':user_id,'allow':"Employee",'for_value':doc.employee,"applicable_for":("!=","Employee")}):
-                print("\n\n\nURSE",ur_pr)
                 user_permission=frappe.get_doc("User Permission",ur_pr.name)
                 user_permission.applicable_for="Employee"
                 user_permission.apply_to_all_doctypes=0
                 user_permission.applicable_for="Employee"
                 # user_permission.reference_doctype=doc.doctype
                 # user_permission.reference_docname=doc.name
-                print("\n\n\nUSER DOC NAME",doc.name)
-                print("\n\n\nUSER DOC NAME2",user_permission.reference_docname)
                 if len(frappe.get_all("User Permission",{'user':user_id,'allow':"Employee",'for_value':doc.employee,"applicable_for":"Employee"}))==0:
                     user_permission.save()
 

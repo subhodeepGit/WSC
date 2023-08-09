@@ -28,15 +28,28 @@ frappe.ui.form.on('Employee Profile Updation', {
 	employee: function(frm) {
         // Get the selected employee
 
-        // Fetch the reporting authority ID based on the selected employee
+        // Fetch the employees details based on the selected employee
         frappe.call({
-            method: 'wsc.wsc.doctype.employee_profile_updation.employee_profile_updation.isrfp',
+            method: 'wsc.wsc.doctype.employee_profile_updation.employee_profile_updation.get_employee_details',
             args: {
-                reporting_auth: frm.doc.reporting_authority
+                employee: frm.doc.employee
             },
-            callback: function(response) {
-                if (response.message) {
-                    frm.set_value('reporting_auth_id', response.message);
+            callback: function(r) {
+                if (r.message) {
+                    // alert(r.message)
+                    frm.set_value("employee_name",r.message['employee_name']);
+                    frm.set_value("department",r.message['department']);
+                    frm.set_value("designation",r.message['designation']);
+                    frm.set_value("branch",r.message['branch']);
+                    frm.set_value("employment_type",r.message['employment_type']);
+                    frm.set_value("date_of_birth",r.message['date_of_birth']);
+                    frm.set_value("employee_number",r.message['employee_number']);
+                    frm.set_value("user_id",r.message['user_id']);
+                    frm.set_value("reporting_authority",r.message['reports_to']);
+                    frm.set_value("reporting_auth_id",r.message['reporting_authority_email']);
+                    frm.set_value("blood_group",r.message['blood_group']);
+                    frm.set_value("gender",r.message['gender']);
+                    
                 }
 				
             }
