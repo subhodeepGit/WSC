@@ -262,8 +262,26 @@ def employee_re_engagement_workFlow():
     days_to_subtract = 0
 
     previous_date = get_previous_date(base_date, months_to_subtract, days_to_subtract)
-    print(type(previous_date.strftime("%Y-%m-%d")))
-    # employee_data=frappe.get_all("Employee",{""})      
+    previous_date=previous_date.strftime("%Y-%m-%d")
+    previous_date=datetime.strptime(previous_date, '%Y-%m-%d').date()
+    employee_data=frappe.get_all("Employee",['name','present_contract_start_date','date_of_joining','user_id','employee_name'])
+    present_contract_data_emp=[]
+    date_of_joining_data_emp=[]
+    for t in employee_data:
+        if t['present_contract_start_date'] and t['present_contract_start_date']==previous_date:
+            present_contract_data_emp.append({"name":t['name'],'user_id':t['user_id'],'full_name':['employee_name']})
+        elif t['date_of_joining'] and t['date_of_joining']==previous_date:
+            date_of_joining_data_emp.append({"name":t['name'],'user_id':t['user_id'],'full_name':['employee_name']})
+
+    for t in  present_contract_data_emp:
+        if t['user_id']:
+            msg="""<p>Dear %s ,Your Employee Re-engagement form is ready. Kindly fill up the form</p><br>"""%(t['full_name'])
+            send_mail(t['user_id'],'Student Clearance Status',msg)
+
+    for t in  date_of_joining_data_emp:
+        if t['user_id']:
+            msg="""<p>Dear %s ,Your Employee Re-engagement form is ready. Kindly fill up the form</p><br>"""%(t['full_name'])
+            send_mail(t['user_id'],'Employee Re-engagement',msg)    
 
 
 
