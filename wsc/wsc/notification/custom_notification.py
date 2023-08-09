@@ -812,6 +812,14 @@ def all_items_received(doc):
     attachments = None
     send_mail(recipients,'Purchase Order',msg,attachments)
 
+def purchase_requisition_raised(doc):
+    msg="""<b>---------------------Purchase Requisition raised by {0} department---------------------</b><br>""".format(doc.get('department'))
+    msg+="""Please login to the Application to see details regarding the requisition raised"""
+    recipients_list = list(frappe.db.sql("select department_email_id from `tabDepartment Email ID`"))
+    recipients = recipients_list[0]
+    attachments = None
+    send_mail(recipients,'Item',msg,attachments)
+
 
 # def has_default_email_acc():
 # 	for d in frappe.get_all("Email Account", {"default_outgoing":1}):

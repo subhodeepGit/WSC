@@ -337,6 +337,9 @@ doc_events = {
     },
     "Purchase Order": {
         "validate":"wsc.wsc.doctype.purchase_order.validate"
+    },
+    "Material Request": {
+        "validate":"wsc.wsc.doctype.material_request.validate"
     }
     
 
