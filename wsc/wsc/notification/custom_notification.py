@@ -792,6 +792,8 @@ def online_payment_submit(doc):
     attachments = None
     send_mail(recipients,'Payment Details',msg,attachments)
 
+##### Notification for Procurement and Inventory Management #####
+#####   START   #####
 def item_expiry(doc):
     msg="""<b>---------------------Item Warranty Expiry Remainder---------------------</b><br>"""
     msg+="""<b>Warranty for {0} will be expiring in 30 days""".format(doc.get('item_name'))
@@ -820,6 +822,9 @@ def purchase_requisition_raised(doc):
     attachments = None
     send_mail(recipients,'Item',msg,attachments)
 
+
+
+#####   END   #####
 
 # def has_default_email_acc():
 # 	for d in frappe.get_all("Email Account", {"default_outgoing":1}):
