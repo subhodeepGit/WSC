@@ -1,6 +1,6 @@
 # Copyright (c) 2023, SOUL Limited and contributors
 # For license information, please see license.txt
-#Created By :Rupali_Bhatta : 17-07-2023
+
 import frappe
 from frappe.model.document import Document
 import requests
@@ -14,33 +14,35 @@ from urllib.parse import urlparse
 import os
 import sys
 import logging
-username = os.getenv('USER')
-# username ='erpnext'
-module_path = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "hdfcpaymentintegration")
-sys.path.append(module_path)
 from .database_operations import fetch_and_process_data
 
+username = os.getenv('USER')
+# username ='erpnext'
+module_path = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "onlinePayment")
+sys.path.append(module_path)
+
+
 # Configure logging for getTransactionDetails()
-logfile_transaction_name = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "hdfcpaymentintegration", "transaction_log.log")
+logfile_transaction_name = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "onlinePayment", "transaction_log.log")
 logging.basicConfig(filename=logfile_transaction_name, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger_transaction = logging.getLogger(__name__)
 
 # Configure logging for login()
-logfile_login_name = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "hdfcpaymentintegration", "login_log.log")
+logfile_login_name = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "onlinePayment", "login_log.log")
 logging.basicConfig(filename=logfile_login_name, level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 logger_login = logging.getLogger(__name__)
+class OnlinePayment(Document):
+	def on_cancel(doc):
+		frappe.throw("Once form is submitted it can't be cancelled")
+
+	def on_submit(doc):
+		get_url= frappe.utils.get_url()       
+		# getTransactionDetails(doc, 'http://erp.soulunileaders.com:8000/app/hdfcpaymentintegration')
+		getTransactionDetails(doc, get_url)
+		frappe.msgprint("Your Transaction is completed. Your Transaction Id is " +
+						doc.transaction_id + "."  " Status is " + frappe.bold(doc.transaction_status))
 
 
-class HdfcPaymentIntegration(Document):
-    def on_cancel(doc):
-        frappe.throw("Once form is submitted it can't be cancelled")
-
-    def on_submit(doc):
-        get_url= frappe.utils.get_url()       
-        # getTransactionDetails(doc, 'http://erp.soulunileaders.com:8000/app/hdfcpaymentintegration')
-        getTransactionDetails(doc, get_url)
-        frappe.msgprint("Your Transaction is completed. Your Transaction Id is " +
-                        doc.transaction_id + "."  " Status is " + frappe.bold(doc.transaction_status))
 
 currency = 'INR'
 language = 'EN'
@@ -53,6 +55,17 @@ def check_url(p_url):
     else:
         return "production"
     
+
+@frappe.whitelist()
+def get_outstanding_amount(student):
+	fee_voucher_list=frappe.get_all("Fees",filters=[["student","=",student],["outstanding_amount","!=",0],["docstatus","=",1]],
+															fields=['outstanding_amount'],
+															order_by="due_date asc")
+	outstanding_amount=0
+	for t in fee_voucher_list:
+		outstanding_amount=t['outstanding_amount']+outstanding_amount
+		# print("outstanding_amount",outstanding_amount)
+	return outstanding_amount
 
 @frappe.whitelist()
 def login(party_name, roll_no, amount, order_id, url): 

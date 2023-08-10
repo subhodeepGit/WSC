@@ -12,7 +12,6 @@ import os
 from flask import flash
 
 
-
 def check_url(p_url):
     parsed_url = urlparse(p_url)
 
@@ -28,7 +27,7 @@ def res(encResp, url):
         username = os.getenv('USER')
         # username ='erpnext'
         file_path = os.path.join("/home", username, "frappe-bench", "apps", "wsc",
-                                 "wsc", "wsc", "doctype", "hdfcpaymentintegration", "db_name.txt")
+                                 "wsc", "wsc", "doctype", "onlinePayment", "db_name.txt")
 
         with open(file_path, "r") as file:
             db_name = file.read().strip()
@@ -79,7 +78,7 @@ def res(encResp, url):
                 trans_date = cleaned_data.get('trans_date', None)
                 redirect_url = "{}{}".format(db_base_redirect_url, order_id)
                 base_url = urlparse(db_base_redirect_url).scheme +"://" + urlparse(db_base_redirect_url).netloc
-                api_endpoint_get_token = '/api/method/wsc.wsc.doctype.hdfcpaymentintegration.hdfcpaymentintegration.get_token'
+                api_endpoint_get_token = '/api/method/wsc.wsc.doctype.onlinePayment.onlinePayment.get_token'
                 api_getToken = base_url + api_endpoint_get_token
 
                 user = 'hdfc'
@@ -96,14 +95,14 @@ def res(encResp, url):
                         transaction_data = {
                             'response_data': cleaned_data
                         }
-
+                        print("Transaction data: %s", json.dumps(transaction_data, indent=4))
                         headers = {
                             'Authorization': f'Bearer {token}'
                         }
 
                         m_base_url = urlparse(db_base_redirect_url).scheme + "://" + urlparse(db_base_redirect_url).netloc
 
-                        api_endpoint_get_order_status = '/api/method/wsc.wsc.doctype.hdfcpaymentintegration.hdfcpaymentintegration.get_order_status'
+                        api_endpoint_get_order_status = '/api/method/wsc.wsc.doctype.onlinePayment.onlinePayment.get_order_status'
                         frappe_api_endpoint = m_base_url + api_endpoint_get_order_status
 
                         params = {
@@ -115,15 +114,13 @@ def res(encResp, url):
                         try:
 
                             if transaction_data['response_data']["order_status"]:
-                                print(
-                                    "Order status updated successfully in Frappe.")
+                               print("Order status updated successfully in Frappe.")
                             else:
                                 print("Failed to update order status in Frappe:")
                         except json.JSONDecodeError:
                             print("Invalid JSON response from the Frappe API.")
                         except Exception as e:
-                            print(
-                                "Error while communicating with Frappe API:", str(e))
+                            print("Error while communicating with Frappe API:", str(e))
 
                     else:
                         print("Token not found in the response.",
@@ -135,15 +132,12 @@ def res(encResp, url):
                 break
 
     except Exception as e:
-
-        return str(e)
+        print(str(e))
 
     html = '''\
     <html>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <style>
-
-
 
 .center-screen {
 
