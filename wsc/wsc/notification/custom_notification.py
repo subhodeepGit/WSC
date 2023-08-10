@@ -822,7 +822,21 @@ def purchase_requisition_raised(doc):
     attachments = None
     send_mail(recipients,'Item',msg,attachments)
 
+def received_in_inventory(doc):
+    msg="""<b>---------------------Purchase Requisition: {0} received in Store---------------------</b><br>""".format(doc.get('name'))
+    msg+="""Please completed the Issue of requested material to {0} department""".format(doc.get('department'))
+    recipients_list = list(frappe.db.sql("select department_email_id from `tabDepartment Email ID`"))
+    recipients = recipients_list[0]
+    attachments = None
+    send_mail(recipients,'Item',msg,attachments)
 
+def received_by_department(doc):
+    msg="""<b>---------------------Purchase Requisition: {0} received---------------------</b><br>"""
+    msg+="""Items received on dated: {0}""".format(doc.get('transaction_date'))
+    msg+="""For Purchase requisition number: {0}""".format(doc.get('name'))
+    recipients = doc.department_email
+    attachments = None
+    send_mail(recipients,'Item',msg,attachments)
 
 #####   END   #####
 

@@ -13,8 +13,9 @@
   "academic_year",
   "academic_term",
   "section_break_janjz",
-  "remarks",
+  "get_result",
   "course_pass_",
+  "status",
   "amended_from"
  ],
  "fields": [
@@ -75,15 +76,20 @@
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "remarks",
-   "fieldtype": "Small Text",
-   "label": "Remarks",
+   "fieldname": "get_result",
+   "fieldtype": "Button",
+   "label": "Get Result"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status",
    "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-27 17:20:04.536715",
+ "modified": "2023-08-09 12:46:51.274699",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Subject Wise Performance",

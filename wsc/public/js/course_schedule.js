@@ -57,8 +57,8 @@ frappe.ui.form.on('Course Schedule', {
         
     },
     refresh(frm){
-        frm.set_df_property('instructor', 'hidden', 1);
-        frm.set_df_property('instructor_name', 'hidden', 1);
+        // frm.set_df_property('instructor', 'hidden', 1);
+        // frm.set_df_property('instructor_name', 'hidden', 1);
         if (!frm.doc.__islocal) {
             frm.add_custom_button(__("Mark Attendances"), function() {
                 frappe.route_options = {

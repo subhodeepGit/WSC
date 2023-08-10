@@ -59,6 +59,18 @@ frappe.ui.form.on('Course Advisor and Manager Assignment', {
 			}
 		})
 	},
+
+	academic_year: function(frm){
+		frm.set_value("academic_term","")
+	},
+
+	program_grades: function(frm){
+		frm.set_value("programs","")
+	},
+
+	programs: function(frm){
+		frm.set_value("semester","")
+	},
 	});
 
 	frappe.ui.form.on('Course Advisor and Manager Assignment', 'onload', function(frm) {

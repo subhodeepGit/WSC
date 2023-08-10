@@ -474,11 +474,11 @@ override_doctype_dashboards = {
 # # 		["parent", "not in", ["DocType"]],
 # #         ["role", '=', 'Education Admission Head']
 # # 	]},
-#     # {"dt": "Role","filters": [
-#     #     [
-#     #         "name", "in", ["Shift Approver","Grievance Cell Member"]
-#     #     ]
-#     # ]},
+    # {"dt": "Role","filters": [
+    #     [
+    #         "name", "in", ["Shift Approver","Grievance Cell Member"]
+    #     ]
+    # ]},
 #     # # {"dt": "Role Profile"},
 #     # # {"dt": "Module Profile"},
     # {"dt" : "Workflow","filters": [
@@ -493,7 +493,11 @@ override_doctype_dashboards = {
     #         "name", "in", ["Resolved"]
     #     ]
     # ]},
-    # {"dt" : "Translation"}
+#     {"dt" : "Translation","filters": [
+#         [
+#             "source_text", "in", ["Department Email ID"]
+#         ]
+#     ]}
 #  ]
 website_context = {
     "favicon": "/assets/wsc/images/wsc.png",
