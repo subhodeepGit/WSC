@@ -26,7 +26,7 @@ def permission_given(self):
 	is_default=0
 	hide_descendants=0
 	apply_to_all_doctypes=1
-	for t in self.get("employee_list"):
+	for t in self.get("employees"):
 		name=t.employee
 		frappe.get_doc(dict(
 			doctype='User Permission',
@@ -53,6 +53,6 @@ def deletion_permission(self):
 
 def validation_child(self):
 	emp=self.employee
-	for t in self.get("employee_list"):
+	for t in self.get("employees"):
 		if t.employee==emp:
 			frappe.throw("Repoting Employee Can't be Assigning Employee")			
