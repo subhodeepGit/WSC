@@ -6,6 +6,10 @@ from frappe.model.document import Document
 
 class UserPermissionformultipleEmployee(Document):
 	def validate(self):
+		data=frappe.get_all("User Permission for multiple Employee",{"employee":self.employee})
+		if data:
+			frappe.throw("Already Record is Present For The Employee")
+
 		validation_child(self)
 
 		if self.disable==0:
