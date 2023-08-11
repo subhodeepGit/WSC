@@ -6,8 +6,8 @@ import pymysql
 import frappe
 
 def fetch_and_process_data(site_name):
-    username = os.getenv('USER')
-    # username ='erpnext'
+    # username = os.getenv('USER')
+    username ='erpnext'
     # Construct the file paths
     site_config_file_path = os.path.join("/home", username, "frappe-bench", "sites", site_name, "site_config.json")
    
