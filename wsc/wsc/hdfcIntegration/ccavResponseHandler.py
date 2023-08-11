@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # Created By :Rupali_Bhatta : 17-07-2023
-# /home/wsc/frappe-bench/apps/wsc/wsc/wsc/doctype/hdfcpaymentintegration/cchdfcpaymentintegration.py
+# /home/wsc/frappe-bench/apps/wsc/wsc/wsc/doctype/onlinepayment/cconlinepayment.py
 from ccavutil import encrypt, decrypt
 from string import Template
 from urllib.parse import parse_qs
@@ -22,12 +22,14 @@ def check_url(p_url):
 
 
 def res(encResp, url):
+    print("\n\n\n ccavResponse url",url)
     try:
         processed_url = check_url(url)
+        print("\n\n\n ccavResponse processed_url",processed_url)
         username = os.getenv('USER')
         # username ='erpnext'
         file_path = os.path.join("/home", username, "frappe-bench", "apps", "wsc",
-                                 "wsc", "wsc", "doctype", "onlinePayment", "db_name.txt")
+                                 "wsc", "wsc", "doctype", "onlinepayment", "db_name.txt")
 
         with open(file_path, "r") as file:
             db_name = file.read().strip()
@@ -43,43 +45,56 @@ def res(encResp, url):
             password="erp@123",
             database=db_name)
         c = conn.cursor()
+        try:
+            # integration_dbvalue = "SELECT  working_key,redirect_url,cancel_url, site_name FROM `payment_integration`"
+            if processed_url == "test":
+                integration_dbvalue = "SELECT  working_key,  redirect_url, cancel_url, site_name FROM `payment_integration` where dev_type='test'"
 
-        # integration_dbvalue = "SELECT  working_key,redirect_url,cancel_url, site_name FROM `payment_integration`"
-        if processed_url == "test":
-            integration_dbvalue = "SELECT  working_key,  redirect_url, cancel_url, site_name FROM `payment_integration` where dev_type='test'"
-
-        elif processed_url == "production":
-            integration_dbvalue = "SELECT  working_key,  redirect_url, cancel_url , site_name FROM `payment_integration` where dev_type='production'"
-        else:
-            flash("Please contact Administrator.", "error")
-            return
-        c.execute(integration_dbvalue)
-        integration_value = c.fetchall()
-        c.close()
+            elif processed_url == "production":
+                integration_dbvalue = "SELECT  working_key,  redirect_url, cancel_url , site_name FROM `payment_integration` where dev_type='production'"
+            else:
+                flash("Please contact Administrator.", "error")
+                return
+            c.execute(integration_dbvalue)
+            integration_value = c.fetchall()
+            print("\n\n\n ccavResponse db valu",integration_value)
+        except pymysql.Error as table_error:
+            print(f"Table not found : {table_error}")
+            return None
+        finally:          
+            c.close()
 
         for row in integration_value:
             db_working_key = row[0]
             db_redirect_url = row[1]
             cancel_url = row[2]
             db_base_redirect_url = row[3]
+            print("\n\n\n ccavResponse db_base_redirect_url",db_base_redirect_url)
 
             passed_url = urlparse(url)
+            print("\n\n\n ccavResponse passed_url",passed_url)
             db_url_name = urlparse(db_redirect_url)
+            print("\n\n\n ccavResponse db_url_name",db_url_name)
 
             if passed_url.netloc == db_url_name.netloc:
                 decResp = decrypt(encResp, db_working_key)
                 parsed_data = parse_qs(decResp)
                 cleaned_data = {key.strip(
                     "b'"): value[0] if value else None for key, value in parsed_data.items()}
+                print("\n\n\n ccavResponse cleaned_data",cleaned_data)
+
                 order_id = cleaned_data.get('order_id', None)
                 tracking_id = cleaned_data.get('tracking_id', None)
                 order_status = cleaned_data.get('order_status', None)
                 amount = cleaned_data.get('amount', None)
                 trans_date = cleaned_data.get('trans_date', None)
                 redirect_url = "{}{}".format(db_base_redirect_url, order_id)
-                base_url = urlparse(db_base_redirect_url).scheme +"://" + urlparse(db_base_redirect_url).netloc
-                api_endpoint_get_token = '/api/method/wsc.wsc.doctype.onlinePayment.onlinePayment.get_token'
+                print("\n\n\n ccavResponse redirect_url",redirect_url)
+                base_url = urlparse(db_base_redirect_url).scheme + "://" + urlparse(db_base_redirect_url).netloc
+                print("\n\n\n ccavResponse base_url",base_url)
+                api_endpoint_get_token = '/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_token'
                 api_getToken = base_url + api_endpoint_get_token
+                print("\n\n\n ccavResponse api_getToken",api_getToken)
 
                 user = 'hdfc'
                 response = requests.post(api_getToken, json={'user': user})
@@ -95,14 +110,16 @@ def res(encResp, url):
                         transaction_data = {
                             'response_data': cleaned_data
                         }
-                        print("Transaction data: %s", json.dumps(transaction_data, indent=4))
+                        # print("Transaction data: %s", json.dumps(
+                        #     transaction_data, indent=4))
                         headers = {
                             'Authorization': f'Bearer {token}'
                         }
 
                         m_base_url = urlparse(db_base_redirect_url).scheme + "://" + urlparse(db_base_redirect_url).netloc
+                        print("\n\n\n ccavResponse m_base_url",m_base_url)
 
-                        api_endpoint_get_order_status = '/api/method/wsc.wsc.doctype.onlinePayment.onlinePayment.get_order_status'
+                        api_endpoint_get_order_status = '/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_order_status'
                         frappe_api_endpoint = m_base_url + api_endpoint_get_order_status
 
                         params = {
@@ -114,13 +131,15 @@ def res(encResp, url):
                         try:
 
                             if transaction_data['response_data']["order_status"]:
-                               print("Order status updated successfully in Frappe.")
+                                print(
+                                    "Order status updated successfully in Frappe.")
                             else:
                                 print("Failed to update order status in Frappe:")
                         except json.JSONDecodeError:
                             print("Invalid JSON response from the Frappe API.")
                         except Exception as e:
-                            print("Error while communicating with Frappe API:", str(e))
+                            print(
+                                "Error while communicating with Frappe API:", str(e))
 
                     else:
                         print("Token not found in the response.",
@@ -195,13 +214,6 @@ display: block;
                     },1000);
             </script>
 
-
-        <!-- <div class="center-screen">
-
-            <p>Do not <b>Refresh</b> this Page!!!</p>
-
-        </div>     -->
-
     </body>
 
 </html>
@@ -259,5 +271,6 @@ display: block;
     }
 
     html_content = Template(html).safe_substitute(data_to_substitute)
+    
     # fin = Template(html).safe_substitute(response=data)
     return html_content

@@ -1,17 +1,33 @@
 // Copyright (c) 2023, SOUL Limited and contributors
 // For license information, please see license.txt
-
+frappe.ui.form.on('OnlinePayment', {
+	party: function(frm) {
+		frappe.call({
+			method:"wsc.wsc.doctype.onlinepayment.onlinepayment.get_outstanding_amount",
+			args: {
+				student: frm.doc.party
+			},
+			callback: function(r){
+				// if(r.message){
+					var result = r.message;
+					frm.set_value("total_outstanding_amout",result);
+					frm.set_value("paying_amount",result);
+				// }
+			}
+		})
+	}
+});
 frappe.ui.form.on('OnlinePayment', {
 	refresh: function (frm) {
 		var hdfcButton = frm.add_custom_button("By HDFC", function () {
-			
+			// alert(window.location.href)	
 			frappe.call({
 				
-				method: "wsc.wsc.doctype.onlinePayment.onlinePayment.login",
+				method: "wsc.wsc.doctype.onlinepayment.onlinepayment.login",
 				args: {
-					party_name: frm.doc.name1,
+					party_name: frm.doc.party,
 					roll_no: frm.doc.roll_no,
-					amount: frm.doc.amount,
+					amount: frm.doc.paying_amount,
 					order_id: frm.doc.name,
 					url: window.location.href
 					
@@ -29,10 +45,10 @@ frappe.ui.form.on('OnlinePayment', {
 
 				if (isLocalhost) {  
 
-					window.open("https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest);
+					window.location.href="https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
                 } else if (isProd) {
                     
-					window.open("https://ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest);
+					window.location.href="https://ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
                 } else {
                     
                     // window.open("https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest);

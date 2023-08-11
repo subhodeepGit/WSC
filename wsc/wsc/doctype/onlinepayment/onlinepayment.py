@@ -16,19 +16,22 @@ import sys
 import logging
 from .database_operations import fetch_and_process_data
 
+
+
 username = os.getenv('USER')
 # username ='erpnext'
-module_path = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "onlinePayment")
+
+module_path = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "onlinepayment")
 sys.path.append(module_path)
 
 
 # Configure logging for getTransactionDetails()
-logfile_transaction_name = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "onlinePayment", "transaction_log.log")
+logfile_transaction_name = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "onlinepayment", "transaction_log.log")
 logging.basicConfig(filename=logfile_transaction_name, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger_transaction = logging.getLogger(__name__)
 
 # Configure logging for login()
-logfile_login_name = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "onlinePayment", "login_log.log")
+logfile_login_name = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "onlinepayment", "login_log.log")
 logging.basicConfig(filename=logfile_login_name, level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 logger_login = logging.getLogger(__name__)
 class OnlinePayment(Document):
@@ -37,7 +40,7 @@ class OnlinePayment(Document):
 
 	def on_submit(doc):
 		get_url= frappe.utils.get_url()       
-		# getTransactionDetails(doc, 'http://erp.soulunileaders.com:8000/app/hdfcpaymentintegration')
+		# getTransactionDetails(doc, 'http://erp.soulunileaders.com:8000/app/onlinepayment')
 		getTransactionDetails(doc, get_url)
 		frappe.msgprint("Your Transaction is completed. Your Transaction Id is " +
 						doc.transaction_id + "."  " Status is " + frappe.bold(doc.transaction_status))
@@ -69,27 +72,34 @@ def get_outstanding_amount(student):
 
 @frappe.whitelist()
 def login(party_name, roll_no, amount, order_id, url): 
+    print("\n\n\n\n url",url)
     processed_url = check_url(url)
     logger_login.info("Login request received with party_name: %s, roll_no: %s, amount: %s, order_id: %s, url: %s", party_name, roll_no, amount, order_id, url)
   
     
     try:
         site_name = frappe.local.site 
-        c = fetch_and_process_data(site_name)
+        try:
+            c = fetch_and_process_data(site_name)
 
-        # integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name,redirect_url, cancel_url FROM `payment_integration`"
-        if processed_url == "test":
-            integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name,redirect_url, cancel_url FROM `payment_integration` where dev_type='test'"
-            
-        elif processed_url == "production":
-            integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name,redirect_url, cancel_url FROM `payment_integration` where dev_type='production'"
-        else:
-            frappe.msgprint("Please contact Administrator.")
-            return
+            # integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name,redirect_url, cancel_url FROM `payment_integration`"
+            if processed_url == "test":
+                integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name,redirect_url, cancel_url FROM `payment_integration` where dev_type='test'"
+                
+            elif processed_url == "production":
+                integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name,redirect_url, cancel_url FROM `payment_integration` where dev_type='production'"
+            else:
+                frappe.msgprint("Please contact Administrator.")
+                return
 
-        c.execute(integration_dbvalue)
-        integration_value = c.fetchall()
-        c.close()
+            c.execute(integration_dbvalue)
+            integration_value = c.fetchall()
+        except pymysql.Error as table_error:
+            print(f"Table not found : {table_error}")
+            return None
+        finally:
+          
+            c.close()
         
 
         if integration_value:  
@@ -158,10 +168,10 @@ def get_order_status():
         transaction_info = f"Order ID: {order_id}\nTransaction ID: {transaction_id}\nAmount Paid: {amount_paid}\nBilling Name: {billing_name}\nTime of Transaction: {time_of_transaction}"
         logger_transaction.info("cc Response:%s", response_data)
         if order_id and transaction_id:
-            doc = frappe.get_doc("HdfcPaymentIntegration", order_id)  # Assuming 'order_id' is the doc_name
+            doc = frappe.get_doc("OnlinePayment", order_id)  # Assuming 'order_id' is the doc_name
             doc.transaction_id = transaction_id
             doc.transaction_status = order_status
-            doc.transaction_info = transaction_info
+            doc.transaction_status_description = transaction_info
             doc.save(ignore_permissions=True)
             doc.run_method('submit')
 
@@ -342,10 +352,10 @@ def create_or_update_table_with_data(data):
 
 
 data_to_insert = [
-    {'name': 1, 'access_code': 'AVYA87KG31AX44AYXA', 'working_key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'merchant_id': '2649161', 'site_name': 'http://localhost:8000/app/hdfcpaymentintegration/', 'gateway_name': 'hdfc', 
+    {'name': 1, 'access_code': 'AVYA87KG31AX44AYXA', 'working_key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'merchant_id': '2649161', 'site_name': 'http://localhost:8000/app/onlinepayment/', 'gateway_name': 'hdfc', 
      'status': 1, 'event_date': '2023-08-02', 'user_name': 'rupali bhatta', 'dev_type': 'test', 'redirect_url': 'http://127.0.0.1:8080/ccavResponseHandler', 'cancel_url': 'http://127.0.0.1:8080/ccavResponseHandler'},
 
-    {'name': 2, 'access_code': 'AVYA87KG31AX44AYXA', 'working_key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'merchant_id': '2649161', 'site_name': 'https://wscdemo.eduleadonline.com/app/hdfcpaymentintegration/', 'gateway_name': 'hdfc', 
+    {'name': 2, 'access_code': 'AVYA87KG31AX44AYXA', 'working_key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'merchant_id': '2649161', 'site_name': 'https://wscdemo.eduleadonline.com/app/onlinepayment/', 'gateway_name': 'hdfc', 
      'status': 1, 'event_date': '2023-08-02', 'user_name': 'rupali bhatta', 'dev_type': 'production', 'redirect_url': 'http://127.0.0.1:8080/ccavResponseHandler', 'cancel_url': 'http://127.0.0.1:8080/ccavResponseHandler'},
 
    

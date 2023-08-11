@@ -11,7 +11,7 @@ def fetch_and_process_data(site_name):
     # Construct the file paths
     site_config_file_path = os.path.join("/home", username, "frappe-bench", "sites", site_name, "site_config.json")
    
-    db_name_file_path = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "hdfcpaymentintegration", "db_name.txt")
+    db_name_file_path = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "onlinepayment", "db_name.txt")
   
     try:
         # Read the site configuration
