@@ -27,7 +27,7 @@ def res(encResp, url):
         username = os.getenv('USER')
         # username ='erpnext'
         file_path = os.path.join("/home", username, "frappe-bench", "apps", "wsc",
-                                 "wsc", "wsc", "doctype", "onlinePayment", "db_name.txt")
+                                 "wsc", "wsc", "doctype", "hdfcpaymentintegration", "db_name.txt")
 
         with open(file_path, "r") as file:
             db_name = file.read().strip()
@@ -78,7 +78,7 @@ def res(encResp, url):
                 trans_date = cleaned_data.get('trans_date', None)
                 redirect_url = "{}{}".format(db_base_redirect_url, order_id)
                 base_url = urlparse(db_base_redirect_url).scheme +"://" + urlparse(db_base_redirect_url).netloc
-                api_endpoint_get_token = '/api/method/wsc.wsc.doctype.onlinePayment.onlinePayment.get_token'
+                api_endpoint_get_token = '/api/method/wsc.wsc.doctype.hdfcpaymentintegration.hdfcpaymentintegration.get_token'
                 api_getToken = base_url + api_endpoint_get_token
 
                 user = 'hdfc'
@@ -102,7 +102,7 @@ def res(encResp, url):
 
                         m_base_url = urlparse(db_base_redirect_url).scheme + "://" + urlparse(db_base_redirect_url).netloc
 
-                        api_endpoint_get_order_status = '/api/method/wsc.wsc.doctype.onlinePayment.onlinePayment.get_order_status'
+                        api_endpoint_get_order_status = '/api/method/wsc.wsc.doctype.hdfcpaymentintegration.hdfcpaymentintegration.get_order_status'
                         frappe_api_endpoint = m_base_url + api_endpoint_get_order_status
 
                         params = {

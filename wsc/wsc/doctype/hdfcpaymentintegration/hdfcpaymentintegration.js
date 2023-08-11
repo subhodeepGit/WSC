@@ -30,10 +30,10 @@ frappe.ui.form.on("HdfcPaymentIntegration", {
 
 				if (isLocalhost) {  
 
-					window.open("https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest);
+					window.location.href="https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
                 } else if (isProd) {
                     
-					window.open("https://ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest);
+					window.location.href="https://ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
                 } else {
                     
                     // window.open("https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest);
