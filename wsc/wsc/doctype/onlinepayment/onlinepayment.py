@@ -18,8 +18,8 @@ from .database_operations import fetch_and_process_data
 
 
 
-username = os.getenv('USER')
-# username ='erpnext'
+# username = os.getenv('USER')
+username ='erpnext'
 
 module_path = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "onlinepayment")
 sys.path.append(module_path)

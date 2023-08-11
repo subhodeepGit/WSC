@@ -26,8 +26,8 @@ def res(encResp, url):
     try:
         processed_url = check_url(url)
         print("\n\n\n ccavResponse processed_url",processed_url)
-        username = os.getenv('USER')
-        # username ='erpnext'
+        # username = os.getenv('USER')
+        username ='erpnext'
         file_path = os.path.join("/home", username, "frappe-bench", "apps", "wsc",
                                  "wsc", "wsc", "doctype", "onlinepayment", "db_name.txt")
 
