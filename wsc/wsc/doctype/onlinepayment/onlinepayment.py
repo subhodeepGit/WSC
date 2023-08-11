@@ -18,17 +18,17 @@ from .database_operations import fetch_and_process_data
 
 username = os.getenv('USER')
 # username ='erpnext'
-module_path = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "onlinePayment")
+module_path = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "onlinepayment")
 sys.path.append(module_path)
 
 
 # Configure logging for getTransactionDetails()
-logfile_transaction_name = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "onlinePayment", "transaction_log.log")
+logfile_transaction_name = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "onlinepayment", "transaction_log.log")
 logging.basicConfig(filename=logfile_transaction_name, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger_transaction = logging.getLogger(__name__)
 
 # Configure logging for login()
-logfile_login_name = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "onlinePayment", "login_log.log")
+logfile_login_name = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "onlinepayment", "login_log.log")
 logging.basicConfig(filename=logfile_login_name, level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 logger_login = logging.getLogger(__name__)
 class OnlinePayment(Document):
