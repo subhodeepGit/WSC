@@ -207,11 +207,11 @@ display: block;
           <script>
                     
                     var redirect_url = '$redirect_url';
-                    
+                    console.log(redirect_url)
                     // Delay the redirection by 5 seconds (5000 milliseconds)
                     setTimeout(function() {
                         window.location.href = redirect_url;
-                    },1000);
+                    },5000);
             </script>
 
     </body>
