@@ -16,7 +16,6 @@ class UserPermissionformultipleEmployee(Document):
 		deletion_permission(self)
 
 def permission_given(self):
-	print("\n\n\n\n")
 	############ del of user permission
 	deletion_permission(self)
 	################
