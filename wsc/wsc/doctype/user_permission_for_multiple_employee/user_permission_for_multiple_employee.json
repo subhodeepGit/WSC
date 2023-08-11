@@ -113,13 +113,12 @@
    "fieldname": "employees",
    "fieldtype": "Table",
    "label": "Employee List",
-   "options": "User Permission for multiple Employee Child",
-   "reqd": 1
+   "options": "User Permission for multiple Employee Child"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-11 11:46:10.244169",
+ "modified": "2023-08-11 12:44:33.051580",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "User Permission for multiple Employee",
