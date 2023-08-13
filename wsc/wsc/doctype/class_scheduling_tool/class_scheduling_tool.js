@@ -5,6 +5,7 @@
 frappe.ui.form.on('Class Scheduling Tool', {
 	setup(frm) {
 		frm.add_fetch('student_group', 'program', 'program');
+		frm.set_df_property('instructor', 'hidden', 1);
 		frm.add_fetch('student_group', 'course', 'course');
 		frm.add_fetch('student_group', 'academic_year', 'academic_year');
 		frm.add_fetch('student_group', 'academic_term', 'academic_term');
@@ -12,10 +13,44 @@ frappe.ui.form.on('Class Scheduling Tool', {
 			return {
 				query: 'wsc.wsc.doctype.class_scheduling_tool.class_scheduling_tool.get_instructor',
 				filters: {
-					"course":frm.doc.course
+					"course":frm.doc.course,
+					"academic_term":frm.doc.academic_term,
+					"school_house":frm.doc.school_house
 				}
 			};
 		});
+	
+		// frm.fields_dict['additional_trainer'].grid.get_field('instructor').get_query = function(doc){
+		// 	var courses_list = [];
+		// 	$.each(doc.additional_trainer, function(idx, val){
+		// 		if (val.instructor) courses_list.push(val.instructor);
+		// 	});
+		// 	return { filters: [['Instructor', 'name', 'not in', courses_list]] };
+		// };
+		// frm.set_query("instructor", "additional_trainer", function() {
+		frm.fields_dict['additional_trainer'].grid.get_field('instructor').get_query = function(doc){
+		var courses_list = [];
+		$.each(doc.additional_trainer, function(idx, val){
+			if (val.instructor) courses_list.push(val.instructor);
+		});
+		// alert(courses_list)
+        return {
+			query: 'wsc.wsc.doctype.class_scheduling_tool.class_scheduling_tool.get_instructor',
+			filters:{
+					"course":frm.doc.course,
+					"student_group":frm.doc.student_group,
+			}
+		};
+	};
+		// courses_add: function(frm){
+		// 	frm.fields_dict['additional_trainer'].grid.get_field('instructor').get_query = function(doc){
+		// 		var courses_list = [];
+		// 		$.each(doc.additional_trainer, function(idx, val){
+		// 			if (val.instructor) courses_list.push(val.instructor);
+		// 		});
+		// 		return { filters: [['Instructor', 'name', 'not in', courses_list]] };
+		// 	};
+		// }
 		frm.set_query("course", function() {
 			return {
 				query: 'wsc.wsc.doctype.class_scheduling_tool.class_scheduling_tool.get_course',
@@ -64,60 +99,62 @@ frappe.ui.form.on('Class Scheduling Tool', {
 				});
 		});
 	},
-	instructor:function(frm){
-		frappe.confirm(
-			'Do You Want To Add <b>Additional Trainers</b>?',
-			function(){
-				frm.trigger("additional_instructor")
-			},
-			function(){
-				// window.close();
-			}
-		)
-	},
-	additional_instructor:function(frm){
-		var d = new frappe.ui.Dialog({
-			title: __('Additional Trainers'),
-			fields:[{fieldtype:'Table', fieldname: 'instructor_list',label:"Trainer List",
-			fields: [
-				{
-					"label" : "Trainer",
-					"fieldname": "instructor",
-					"fieldtype": "Link",
-					"options":"Instructor",
-					"in_list_view":1,
-					get_query: function () {
-						return {
-							query: 'wsc.wsc.doctype.course_schedule.get_instructor',
-                			filters:{"course":frm.doc.course,"student_group":frm.doc.student_group}
-						}
-					},
-					onchange: function() {
-						Object.values(d.get_value('instructor_list')).forEach(i=>{
-							frappe.db.get_value('Instructor', {name: i.instructor}, ['instructor_name'], (r) => {
-								i['instructor_name']=r.instructor_name
-								d.fields_dict.instructor_list.grid.refresh();
-							})
-							})
-							d.fields_dict.instructor_list.grid.refresh();
-					}
-				},
-				{
-					"label" : "Trainer Name",
-					"fieldname": "instructor_name",
-					"fieldtype": "Data",
-					"in_list_view":1
-				}
-			]
-			}],
-			primary_action: function() {
-				(frm.doc)["additional_instructors"]=d.get_values();
-				d.hide();
-			},
-			primary_action_label: __('Add')
-		});
-		d.show();
-	},
+	//Code for Additional instructor dialogue box popup
+	// instructor:function(frm){
+	// 	frappe.confirm(
+	// 		'Do You Want To Add <b>Additional Trainers</b>?',
+	// 		function(){
+	// 			frm.trigger("additional_instructor")
+	// 		},
+	// 		function(){
+	// 			// window.close();
+	// 		}
+	// 	)
+	// },
+	// additional_instructor:function(frm){
+	// 	var d = new frappe.ui.Dialog({
+	// 		title: __('Additional Trainers'),
+	// 		fields:[{fieldtype:'Table', fieldname: 'instructor_list',label:"Trainer List",
+	// 		fields: [
+	// 			{
+	// 				"label" : "Trainer",
+	// 				"fieldname": "instructor",
+	// 				"fieldtype": "Link",
+	// 				"options":"Instructor",
+	// 				"in_list_view":1,
+	// 				get_query: function () {
+	// 					return {
+	// 						query: 'wsc.wsc.doctype.course_schedule.get_instructor',
+    //             			filters:{"course":frm.doc.course,"student_group":frm.doc.student_group}
+	// 					}
+	// 				},
+	// 				onchange: function() {
+	// 					Object.values(d.get_value('instructor_list')).forEach(i=>{
+	// 						frappe.db.get_value('Instructor', {name: i.instructor}, ['instructor_name'], (r) => {
+	// 							i['instructor_name']=r.instructor_name
+	// 							d.fields_dict.instructor_list.grid.refresh();
+	// 						})
+	// 						})
+	// 						d.fields_dict.instructor_list.grid.refresh();
+	// 				}
+	// 			},
+	// 			{
+	// 				"label" : "Trainer Name",
+	// 				"fieldname": "instructor_name",
+	// 				"fieldtype": "Data",
+	// 				"in_list_view":1
+	// 			}
+	// 		]
+	// 		}],
+	// 		primary_action: function() {
+	// 			(frm.doc)["additional_instructors"]=d.get_values();
+	// 			d.hide();
+	// 		},
+	// 		primary_action_label: __('Add')
+	// 	});
+	// 	d.show();
+	// },
+	//end//
 
 	render_days: function(frm) {
 		const days_html = $('<div class="days-editor">').appendTo(
@@ -174,6 +211,52 @@ frappe.ui.form.on('Class Scheduling Tool', {
 			});
 		}
 	}
+});
+// frappe.ui.form.on("Exam Centre Preference" , "center_name" , function(frm , cdt , cdn){
+// 	var d = locals[cdt][cdn];
+// 	var a = 0;
+// 	// if (d.programs && frappe.user.has_role(["Student Applicant"])){
+// 	if (d.center_name){
+// 		a=frm.doc.exam_center_locations.length;
+// 		// frm.set_value("count_programs", a);
+// 		if(a>=3){
+// 			frm.set_df_property('exam_center_locations', 'cannot_add_rows', true);
+// 			frm.set_df_property('exam_center_locations', 'cannot_delete_rows', true);
+// 			// frm.set_df_property('program_priority', 'cannot_insert_below', true);
+// 		}
+// 	}
+// })
+frappe.ui.form.on("Additional Instructor", "instructor", function(frm, cdt, cdn) {
+    var d = locals[cdt][cdn];
+   
+    frappe.model.set_value(cdt, cdn, "instructor_name",'');
+    if (!frm.doc.student_group){
+        frappe.msgprint("Please Fill Student Group First")
+        d.instructor=''
+    }
+
+    if (d.instructor){
+        frappe.call({
+            method: "wsc.wsc.doctype.class_scheduling_tool.class_scheduling_tool.get_trainer_list",
+            args: {
+                instructor:d.instructor,
+            },
+            callback: function(r) { 
+                if (r.message && frm.doc.instructor==undefined){
+                    console.log(r.message);
+                        frm.set_value("instructor",r.message['name'])
+                        frm.set_value("instructor_name",r.message['instructor_name'])
+                    frappe.model.set_value(cdt, cdn, "instructor", r.message['name']);
+                    frappe.model.set_value(cdt, cdn, "instructor_name", r.message['instructor_name']);
+                }
+                if (r.message && frm.doc.instructor){
+                    console.log(r.message);
+                    frappe.model.set_value(cdt, cdn, "instructor", r.message['name']);
+                    frappe.model.set_value(cdt, cdn, "instructor_name", r.message['instructor_name']);
+                }
+            } 
+        }); 
+    }
 });
 cur_frm.add_fetch('student_group','class_room','room');
 	
