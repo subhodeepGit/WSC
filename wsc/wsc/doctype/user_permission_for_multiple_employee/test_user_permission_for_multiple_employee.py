@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestAdmitCardGenerationTool(FrappeTestCase):
+class TestUserPermissionformultipleEmployee(FrappeTestCase):
 	pass

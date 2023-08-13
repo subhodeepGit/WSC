@@ -1,18 +1,33 @@
 // Copyright (c) 2023, SOUL Limited and contributors
 // For license information, please see license.txt
-
-//Created By :Rupali_Bhatta : 17-07-2023
-frappe.ui.form.on("HdfcPaymentIntegration", {
+frappe.ui.form.on('OnlinePayment', {
+	party: function(frm) {
+		frappe.call({
+			method:"wsc.wsc.doctype.onlinepayment.onlinepayment.get_outstanding_amount",
+			args: {
+				student: frm.doc.party
+			},
+			callback: function(r){
+				// if(r.message){
+					var result = r.message;
+					frm.set_value("total_outstanding_amout",result);
+					frm.set_value("paying_amount",result);
+				// }
+			}
+		})
+	}
+});
+frappe.ui.form.on('OnlinePayment', {
 	refresh: function (frm) {
 		var hdfcButton = frm.add_custom_button("By HDFC", function () {
-			
+			// alert(window.location.href)	
 			frappe.call({
 				
-				method: "wsc.wsc.doctype.hdfcpaymentintegration.hdfcpaymentintegration.login",
+				method: "wsc.wsc.doctype.onlinepayment.onlinepayment.login",
 				args: {
-					party_name: frm.doc.name1,
+					party_name: frm.doc.party,
 					roll_no: frm.doc.roll_no,
-					amount: frm.doc.amount,
+					amount: frm.doc.paying_amount,
 					order_id: frm.doc.name,
 					url: window.location.href
 					
@@ -60,7 +75,7 @@ frappe.ui.form.on("HdfcPaymentIntegration", {
 
 
 
-frappe.ui.form.on('HdfcPaymentIntegration', {
+frappe.ui.form.on('OnlinePayment', {
 	refresh(frm) {
 
 		if (frm.is_new() && frm.doc.docstatus === 0) {
@@ -94,7 +109,7 @@ frappe.ui.form.on('HdfcPaymentIntegration', {
 
 	}
 });
-frappe.ui.form.on("HdfcPaymentIntegration", "refresh", function (frm) {
+frappe.ui.form.on("OnlinePayment", "refresh", function (frm) {
 	frm.set_df_property("amount", "read_only", frm.is_new() ? 0 : 1);
 	frm.set_df_property("name1", "read_only", frm.is_new() ? 0 : 1);
 	frm.set_df_property("roll_no", "read_only", frm.is_new() ? 0 : 1);
