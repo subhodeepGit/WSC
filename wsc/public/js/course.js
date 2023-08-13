@@ -1,3 +1,4 @@
+
 frappe.ui.form.on('Course', {
 	refresh: function(frm) {
 		if (frm.doc.is_tot==0){
