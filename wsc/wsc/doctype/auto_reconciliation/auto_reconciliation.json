@@ -42,10 +42,11 @@
    "fieldtype": "Section Break"
   },
   {
+   "default": "Online Payment",
    "fieldname": "type_of_transaction",
    "fieldtype": "Select",
    "label": "Type of Transaction",
-   "options": "\nRTGS\nNEFT\nIMPS\nOnline Payment",
+   "options": "Online Payment",
    "reqd": 1
   },
   {
@@ -84,10 +85,11 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-09-05 17:22:09.522493",
+ "modified": "2023-08-14 16:28:56.183074",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Auto Reconciliation",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -104,5 +106,6 @@
   }
  ],
  "sort_field": "modified",
- "sort_order": "DESC"
+ "sort_order": "DESC",
+ "states": []
 }
