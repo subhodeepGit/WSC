@@ -56,6 +56,7 @@ def res(encResp, url):
                 flash("Please contact Administrator.", "error")
                 return
             c.execute(integration_dbvalue)
+
             integration_value = c.fetchall()
             print("\n\n\n ccavResponse db valu",integration_value)
         except pymysql.Error as table_error:
@@ -76,25 +77,39 @@ def res(encResp, url):
             db_url_name = urlparse(db_redirect_url)
             print("\n\n\n ccavResponse db_url_name",db_url_name)
 
-            if passed_url.netloc == db_url_name.netloc:
+            # if passed_url.netloc == db_url_name.netloc:
+            if 1==1:    
                 decResp = decrypt(encResp, db_working_key)
+                print("\n\n\n ccavResponse decResp",decResp)
                 parsed_data = parse_qs(decResp)
-                cleaned_data = {key.strip(
-                    "b'"): value[0] if value else None for key, value in parsed_data.items()}
+                print("\n\n\n ccavResponse parsed_data",parsed_data)
+                cleaned_data = {key.strip("b'"): value[0] if value else None for key, value in parsed_data.items()}
                 print("\n\n\n ccavResponse cleaned_data",cleaned_data)
 
-                order_id = cleaned_data.get('order_id', None)
-                tracking_id = cleaned_data.get('tracking_id', None)
-                order_status = cleaned_data.get('order_status', None)
-                amount = cleaned_data.get('amount', None)
-                trans_date = cleaned_data.get('trans_date', None)
+                # order_id = cleaned_data.get('order_id', None)                
+                # tracking_id = cleaned_data.get('tracking_id', None)
+                # order_status = cleaned_data.get('order_status', None)
+                # amount = cleaned_data.get('amount', None)
+                # trans_date = cleaned_data.get('trans_date', None)
+
+                order_id = parsed_data.get("b'order_id", [None])[0]
+                print("\n\n\n ccavResponse order_id",order_id)
+                tracking_id = parsed_data.get('tracking_id', [None])[0]
+                amount = parsed_data.get('amount', [None])[0]
+                order_status = parsed_data.get('order_status', [None])[0]
+                trans_date = parsed_data.get('trans_date', [None])[0]
+
                 redirect_url = "{}{}".format(db_base_redirect_url, order_id)
                 print("\n\n\n ccavResponse redirect_url",redirect_url)
+
                 base_url = urlparse(db_base_redirect_url).scheme + "://" + urlparse(db_base_redirect_url).netloc
                 print("\n\n\n ccavResponse base_url",base_url)
+                #http://erp.soulunileaders.com:8000
+
                 api_endpoint_get_token = '/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_token'
                 api_getToken = base_url + api_endpoint_get_token
                 print("\n\n\n ccavResponse api_getToken",api_getToken)
+                # 'http://erp.soulunileaders.com:8000/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_token'
 
                 user = 'hdfc'
                 response = requests.post(api_getToken, json={'user': user})
@@ -108,7 +123,7 @@ def res(encResp, url):
                     if token:
 
                         transaction_data = {
-                            'response_data': cleaned_data
+                            'response_data': parsed_data
                         }
                         # print("Transaction data: %s", json.dumps(
                         #     transaction_data, indent=4))
@@ -153,7 +168,7 @@ def res(encResp, url):
     except Exception as e:
         print(str(e))
 
-    html = '''\
+    html = '''
     <html>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <style>
@@ -216,58 +231,15 @@ display: block;
 
     </body>
 
-</html>
+</html>'''
 
-
-    # <!DOCTYPE html>
-    #     <html lang="en">
-    #     <head>
-    #         <meta charset="UTF-8">
-    #         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    #         <title>Transaction Status</title>
-    #         <style>
-
-    #     body {
-    #         background: #ffffff; 
-    #     }
-
-    #     .center-screen {
-    #     margin-top: 300px;
-    #     display: block;
-    #     justify-content: center;
-    #     align-items: center;
-    #     text-align: center;
-    #     }
-    #         </style>
-
-    #         <body>
-    #             <pre class="center-screen">
-    #             <h2 style="font-size:24px;">Processing...</h2>
-                
-    #             </pre>
-    #         <script>
-                    
-    #                 var redirect_url = '$redirect_url';
-                    
-    #                 // Delay the redirection by 5 seconds (5000 milliseconds)
-    #                 setTimeout(function() {
-    #                     window.location.href = redirect_url;
-    #                 },1000);
-    #         </script>
-                
-    #         </body>
-    #     </head>
-
-    #     </html>
-
-    '''
     data_to_substitute = {
         'order_id': order_id,
         'order_status': order_status,
         'tracking_id': tracking_id,
         'amount': amount,
         'trans_date': trans_date,
-        'redirect_url': redirect_url
+        'redirect_url': redirect_url,
     }
 
     html_content = Template(html).safe_substitute(data_to_substitute)

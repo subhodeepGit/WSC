@@ -94,7 +94,8 @@ frappe.ui.form.on('Entrance Exam Centre Allocation', {
 				console.log("its within range of center booking timings");
 
 			} else {
-				alert("its out of range of center booking timings")
+				// alert("its out of range of center booking timings")
+				frappe.throw("its out of range of center booking timings")
 			}
 		})
 		
