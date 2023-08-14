@@ -27,9 +27,12 @@
   "admit_card_issue_date",
   "block_list_display_date",
   "section_break_8",
+  "department",
   "program_grade",
+  "column_break_jgwq6",
   "exam_program",
   "class",
+  "section_break_cp4q2",
   "semesters",
   "get_courses",
   "courses_offered",
@@ -322,12 +325,28 @@
    "fieldtype": "Date",
    "label": "Email Date",
    "mandatory_depends_on": "eval:doc.group_email === 1"
+  },
+  {
+   "fetch_from": "exam_program.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_jgwq6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_cp4q2",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-25 12:23:50.928852",
+ "modified": "2023-08-14 10:56:06.388373",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Declaration",

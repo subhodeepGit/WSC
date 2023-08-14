@@ -58,6 +58,7 @@ def on_change(doc,method):
     update_student(doc)
     student=frappe.get_doc("Student",doc.student)
     student.roll_no=doc.roll_no
+    student.department=doc.department
     student.permanant_registration_number=doc.permanant_registration_number
     student.save()
     for course in doc.get("courses"):
