@@ -19,7 +19,7 @@ from .database_operations import fetch_and_process_data
 
 
 # username = os.getenv('USER')
-username ='erpnext'
+username ='wsc'
 
 module_path = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "onlinepayment")
 sys.path.append(module_path)
@@ -172,6 +172,7 @@ def get_order_status():
             doc.transaction_id = transaction_id
             doc.transaction_status = order_status
             doc.transaction_status_description = transaction_info
+            doc.date_time_of_transaction=time_of_transaction
             doc.save(ignore_permissions=True)
             doc.run_method('submit')
 
