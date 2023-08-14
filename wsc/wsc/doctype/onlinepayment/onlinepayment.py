@@ -40,6 +40,8 @@ class OnlinePayment(Document):
     def validate(self):
         if self.paying_amount>self.total_outstanding_amout:
             frappe.throw("Paying Amount can't be more then Total Outstanding Amount")
+        if self.total_outstanding_amout==0:
+            frappe.throw("Outstanding Amount can't be Rs.0 ")   
 
     def on_cancel(doc):
         frappe.throw("Once form is submitted it can't be cancelled")
