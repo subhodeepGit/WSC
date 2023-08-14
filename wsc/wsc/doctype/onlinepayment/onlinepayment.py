@@ -34,16 +34,22 @@ logger_transaction = logging.getLogger(__name__)
 logfile_login_name = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "onlinepayment", "login_log.log")
 logging.basicConfig(filename=logfile_login_name, level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 logger_login = logging.getLogger(__name__)
-class OnlinePayment(Document):
-	def on_cancel(doc):
-		frappe.throw("Once form is submitted it can't be cancelled")
 
-	def on_submit(doc):
-		get_url= frappe.utils.get_url()       
-		# getTransactionDetails(doc, 'http://erp.soulunileaders.com:8000/app/onlinepayment')
-		getTransactionDetails(doc, get_url)
-		frappe.msgprint("Your Transaction is completed. Your Transaction Id is " +
-						doc.transaction_id + "."  " Status is " + frappe.bold(doc.transaction_status))
+
+class OnlinePayment(Document):
+    def validate(self):
+        if self.paying_amount>self.total_outstanding_amout:
+            frappe.throw("Paying Amount can't be more then Total Outstanding Amount")
+
+    def on_cancel(doc):
+        frappe.throw("Once form is submitted it can't be cancelled")
+
+    def on_submit(doc):
+        get_url= frappe.utils.get_url()       
+        # getTransactionDetails(doc, 'http://erp.soulunileaders.com:8000/app/onlinepayment')
+        getTransactionDetails(doc, get_url)
+        frappe.msgprint("Your Transaction is completed. Your Transaction Id is " +
+                doc.transaction_id + "."  " Status is " + frappe.bold(doc.transaction_status))
 
 
 
