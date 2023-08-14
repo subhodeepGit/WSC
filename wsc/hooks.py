@@ -288,6 +288,9 @@ doc_events = {
     "Student Exchange Applicant":{
         "validate":"wsc.wsc.validations.student_exchange_applicant.validate"
     },
+    "Room":{
+        "validate":"wsc.wsc.validations.room.validate"
+    },
     "Student Exam Block List":{
         "validate":"wsc.wsc.validations.student_exam_block_list.validate"
     },

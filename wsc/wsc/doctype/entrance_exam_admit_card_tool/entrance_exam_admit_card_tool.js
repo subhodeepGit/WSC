@@ -56,6 +56,7 @@ frappe.ui.form.on('Entrance Exam Admit Card Tool', {
 						}
 						else {
 							alert("All Students Alloted")
+							frm.remove_custom_button('Admit Card Generation ')
 						}
 					}	
 				}) 

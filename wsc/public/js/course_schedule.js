@@ -57,6 +57,7 @@ frappe.ui.form.on('Course Schedule', {
         
     },
     refresh(frm){
+        // alert(frm.doc.instructor)
         // frm.set_df_property('instructor', 'hidden', 1);
         // frm.set_df_property('instructor_name', 'hidden', 1);
         if (!frm.doc.__islocal) {
@@ -121,18 +122,20 @@ frappe.ui.form.on("Additional Instructor", "instructor", function(frm, cdt, cdn)
 
     if (d.instructor){
         frappe.call({
-            method: "wsc.wsc.doctype.course_schedule.get_admission_and_semester_by_program",
+            method: "wsc.wsc.doctype.course_schedule.get_trainer_list",
             args: {
                 instructor:d.instructor,
             },
             callback: function(r) { 
-                if (r.message){
+                if (r.message && frm.doc.instructor==undefined){
                     console.log(r.message);
                         frm.set_value("instructor",r.message['name'])
                         frm.set_value("instructor_name",r.message['instructor_name'])
-                    // }
-                    // frm.set_value("program",r.message['semester'])
-                    // frm.set_value("programs_",r.message['admission_program'])
+                    frappe.model.set_value(cdt, cdn, "instructor", r.message['name']);
+                    frappe.model.set_value(cdt, cdn, "instructor_name", r.message['instructor_name']);
+                }
+                if (r.message && frm.doc.instructor){
+                    console.log(r.message);
                     frappe.model.set_value(cdt, cdn, "instructor", r.message['name']);
                     frappe.model.set_value(cdt, cdn, "instructor_name", r.message['instructor_name']);
                 }

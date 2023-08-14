@@ -245,6 +245,27 @@ frappe.ui.form.on('Payment Entry', {
 
 // });
 
+frappe.ui.form.on("Payment Entry","reference_no", function(frm){
+	if (frm.doc.party_type=="Student"){
+		if(frm.doc.mode_of_payment=="Online Payment"){
+			frappe.call({
+				method: "wsc.wsc.validations.online_fees.paid_from_account_type",								
+				args: {
+						reference_no:frm.doc.reference_no,
+						mode_of_payment:frm.doc.mode_of_payment,
+				},
+				callback: function(r) {
+					var res=r.message;
+					frm.set_value("reference_date",res);
+				}
+			});
+		}
+	}	
+
+});
+
+
+
 frappe.ui.form.on('Payment Entry', {
 	onload: function(frm) {
 		frm.set_query("account_paid_from","references", function(_doc, cdt, cdn) {

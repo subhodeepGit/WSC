@@ -17,11 +17,11 @@ class CourseSchedule(Document):
 		self.validate_date()
 		self.validate_overlap()
 		duplicate_row_validation(self, "student_paper_code", ['student','student_name',])
+		duplicate_row_validation(self, "additional_instructor", ['instructor'])
 		validate_course(self)
 		validate_instructor(self)
 		validate_exam_declaration(self)
 		validate_student_for_student_group(self)
-		validate_instructor_for_course(self)
 		# class_scheduled = frappe.db.sql("""Select count(*) from `tabCourse Schedule` where instructor = %s""",self.instructor_name)
 		# frappe.db.set_value("Instructor",self.instructor_name,"total_scheduled_classes",class_scheduled[0][0]+1)
 
@@ -69,7 +69,7 @@ def validate_course(doc):
 
 def validate_instructor(doc):
     if not doc.is_exam_schedule and doc.instructor not in [d.instructor for d in frappe.get_all("Student Group Instructor",{"parent":doc.get("student_group")},['instructor'])]:
-        frappe.throw("Instructor <b>'{0}'</b> not belongs to student group <b>'{1}'</b> ".format(doc.get('instructor'), doc.get('student_group')))
+        frappe.throw("Trainer <b>'{0}'</b> not belongs to student group <b>'{1}'</b> ".format(doc.get('instructor'), doc.get('student_group')))
 
 def validate_exam_declaration(doc):
     ed_list = frappe.db.sql("""SELECT distinct(ed.name) as name from `tabExam Declaration` ed 
@@ -178,7 +178,7 @@ def get_instructor_by_student_group(doctype, txt, searchfield, start, page_len, 
 		return frappe.get_all("Student Group Instructor",{"course":filters.get("course"),"parent":filters.get("student_group"),"instructor": ["like", "%{0}%".format(txt)]},['instructor'],as_list=1)
 
 @ frappe.whitelist()
-def get_admission_and_semester_by_program(instructor):
+def get_trainer_list(instructor):
     for d in frappe.get_all("Instructor",{"name":instructor},['name','instructor_name']):
         return d
     return {"no_record_found":1}

@@ -178,7 +178,6 @@
   },
   {
    "allow_on_submit": 1,
-   "description": "ICICI Getaway Details ",
    "fieldname": "transaction_id",
    "fieldtype": "Data",
    "label": "Transaction ID",
@@ -186,7 +185,6 @@
   },
   {
    "allow_on_submit": 1,
-   "description": "ICICI Getaway Details ",
    "fieldname": "transaction_status",
    "fieldtype": "Data",
    "label": "Transaction Status",
@@ -198,7 +196,6 @@
   },
   {
    "allow_on_submit": 1,
-   "description": "ICICI Getaway Details ",
    "fieldname": "transaction_status_description",
    "fieldtype": "Data",
    "label": "Transaction Status Description",
@@ -206,7 +203,6 @@
   },
   {
    "allow_on_submit": 1,
-   "description": "ICICI Getaway Details ",
    "fieldname": "date_time_of_transaction",
    "fieldtype": "Data",
    "label": "Date Time of Transaction",
