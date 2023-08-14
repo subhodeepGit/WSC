@@ -115,7 +115,11 @@ body[frappe-session-status='logged-out'] nav.navbar {display: none;}
     padding: 10px 20px;
     font-size: 15px;
     border-radius: 10px;
-}.btn.btn-default.icon-btn{
+}
+/* .btn.btn-default.icon-btn{
+    visibility: hidden;
+} */
+.menu-btn-group{
     visibility: hidden;
 }
 .btn.btn-default.btn-sm.ellipsis{
