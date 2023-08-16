@@ -190,7 +190,7 @@ def is_verified_user(docname):
     reporting_auth_id = doc.reporting_auth_id
     roles = frappe.get_roles(frappe.session.user)
 
-    if "HR Manager/CS Officer" in roles or "HR Admin" in roles or "Director" in roles or "Admin" in roles or "Administrator" in roles:
+    if "HR Admin" in roles:
         return True
     if doc.workflow_state == "Draft" and frappe.session.user ==reporting_auth_id :
         return True
