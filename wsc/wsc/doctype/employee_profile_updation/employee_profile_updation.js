@@ -37,6 +37,7 @@ frappe.ui.form.on('Employee Profile Updation', {
             callback: function(r) {
                 if (r.message) {
                     // alert(r.message)
+                    // alert(r.message["blood_group"])
                     frm.set_value("employee_name",r.message['employee_name']);
                     frm.set_value("department",r.message['department']);
                     frm.set_value("designation",r.message['designation']);
