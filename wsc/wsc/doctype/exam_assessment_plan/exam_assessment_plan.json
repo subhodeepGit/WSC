@@ -13,6 +13,7 @@
   "grading_scale",
   "exam_coordinator",
   "column_break_2",
+  "department",
   "programs",
   "program",
   "academic_year",
@@ -180,11 +181,19 @@
    "label": "Exam Type",
    "options": "Exam Type",
    "read_only": 1
+  },
+  {
+   "fetch_from": "programs.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-21 16:13:10.477235",
+ "modified": "2023-08-14 10:59:06.379814",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Assessment Plan",

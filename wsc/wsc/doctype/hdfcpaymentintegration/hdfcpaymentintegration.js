@@ -15,6 +15,7 @@ frappe.ui.form.on("HdfcPaymentIntegration", {
 					amount: frm.doc.amount,
 					order_id: frm.doc.name,
 					url: window.location.href
+					
 				},
 				callback: function (r) {
 					
@@ -23,19 +24,20 @@ frappe.ui.form.on("HdfcPaymentIntegration", {
 					var baseUrl = r.message["baseUrl"];	
 					// alert(baseUrl)			
 
-					var isLocalhost = baseUrl.includes("erp.soulunileaders.com");					
-                    var isProd = baseUrl.includes("wscdemo.eduleadonline.com");
+					var isLocalhost = baseUrl.includes("http");					
+                    var isProd = baseUrl.includes("https");
 				
 
 				if (isLocalhost) {  
 
-					window.open("https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest);
+					window.location.href="https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
                 } else if (isProd) {
                     
-					window.open("https://ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest);
+					window.location.href="https://ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
                 } else {
                     
-                    window.open("https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest);
+                    // window.open("https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest);
+					alert("Invalid Request. Please contact administrator.");
                 }
 
 				

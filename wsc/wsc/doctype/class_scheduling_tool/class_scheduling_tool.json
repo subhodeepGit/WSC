@@ -17,10 +17,13 @@
   "academic_term",
   "school_house",
   "room",
+  "department",
   "section_break_6",
   "instructor",
   "column_break_9",
   "instructor_name",
+  "section_break_ffsyx",
+  "additional_trainer",
   "section_break_7",
   "course_start_date",
   "from_time",
@@ -82,7 +85,7 @@
    "fieldname": "instructor",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Instructor",
+   "label": "Head Trainer",
    "options": "Instructor",
    "reqd": 1
   },
@@ -90,6 +93,7 @@
    "fetch_from": "instructor.instructor_name",
    "fieldname": "instructor_name",
    "fieldtype": "Read Only",
+   "hidden": 1,
    "label": "Trainer Name",
    "read_only": 1
   },
@@ -173,12 +177,30 @@
    "fieldtype": "Data",
    "label": "Module Name",
    "read_only": 1
+  },
+  {
+   "fieldname": "additional_trainer",
+   "fieldtype": "Table",
+   "label": "Trainer List",
+   "options": "Additional Instructor"
+  },
+  {
+   "fieldname": "section_break_ffsyx",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "student_group.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department",
+   "read_only": 1
   }
  ],
  "hide_toolbar": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-06-23 16:18:24.339893",
+ "modified": "2023-08-14 10:29:56.142878",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Class Scheduling Tool",

@@ -11,19 +11,23 @@ frappe.ui.form.on('Pass Percentage', {
             };
         });
 	},
-    get__details(frm){
+    get_result:function(frm){
+        frm.clear_table("programs_pass_");
         if (frm.doc.academic_year && frm.doc.academic_term && frm.doc.program_grade) {
             frappe.call({
                 method: 'get_details',
                 doc:frm.doc,
                 callback: function(r) {
-                    if (r.message) {
-                        frm.set_value("remarks",r.message)
-                    }
+                    // if (r.message) {
+                    //     frm.set_value("remarks",r.message)
+                    // }
                     frm.refresh();
                     refresh_field('programs_pass_');
                 }
             });
+        }
+        else{
+            frappe.throw("Please Enter the Mandatory Field First")
         }
     },
     academic_term: function(frm) {

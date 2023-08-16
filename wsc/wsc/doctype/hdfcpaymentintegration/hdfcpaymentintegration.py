@@ -15,6 +15,7 @@ import os
 import sys
 import logging
 username = os.getenv('USER')
+# username ='erpnext'
 module_path = os.path.join("/home", username, "frappe-bench", "apps", "wsc", "wsc", "wsc", "doctype", "hdfcpaymentintegration")
 sys.path.append(module_path)
 from .database_operations import fetch_and_process_data
@@ -44,16 +45,35 @@ class HdfcPaymentIntegration(Document):
 currency = 'INR'
 language = 'EN'
 
+def check_url(p_url):
+    parsed_url = urlparse(p_url)
+    
+    if parsed_url.scheme == "http":
+        return "test"
+    else:
+        return "production"
+    
 
 @frappe.whitelist()
-def login(party_name, roll_no, amount, order_id, url):
+def login(party_name, roll_no, amount, order_id, url): 
+    processed_url = check_url(url)
     logger_login.info("Login request received with party_name: %s, roll_no: %s, amount: %s, order_id: %s, url: %s", party_name, roll_no, amount, order_id, url)
   
     
     try:
         site_name = frappe.local.site 
         c = fetch_and_process_data(site_name)
-        integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name,redirect_url, cancel_url FROM `payment_integration`"
+
+        # integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name,redirect_url, cancel_url FROM `payment_integration`"
+        if processed_url == "test":
+            integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name,redirect_url, cancel_url FROM `payment_integration` where dev_type='test'"
+            
+        elif processed_url == "production":
+            integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name,redirect_url, cancel_url FROM `payment_integration` where dev_type='production'"
+        else:
+            frappe.msgprint("Please contact Administrator.")
+            return
+
         c.execute(integration_dbvalue)
         integration_value = c.fetchall()
         c.close()
@@ -78,12 +98,10 @@ def login(party_name, roll_no, amount, order_id, url):
                     p_customer_identifier = roll_no
                     p_amount = amount
                     p_order_id = order_id
-
-                    p_redirect_url = redirect_url
-                    p_cancel_url = cancel_url
+                   
 
                     merchant_data = 'merchant_id=' + p_merchant_id + '&' + 'order_id=' + p_order_id + '&' + "currency=" + currency + '&' + 'amount=' + p_amount + '&' + 'redirect_url=' + \
-                        p_redirect_url + '&' + 'cancel_url=' + p_cancel_url + '&' + 'language=' + language + '&' + \
+                        redirect_url + '&' + 'cancel_url=' + cancel_url + '&' + 'language=' + language + '&' + \
                         'billing_name=' + p_billing_name + '&' + \
                         'customer_identifier=' + p_customer_identifier
 
@@ -102,6 +120,7 @@ def login(party_name, roll_no, amount, order_id, url):
     except Exception as e:
         logger_login.error("Login Error: %s", str(e))
         return str(e)
+
 
 
 @frappe.whitelist(allow_guest=True)
@@ -124,7 +143,7 @@ def get_order_status():
         billing_name = response_data.get('illing_name')
         time_of_transaction = response_data.get('trans_date')
         transaction_info = f"Order ID: {order_id}\nTransaction ID: {transaction_id}\nAmount Paid: {amount_paid}\nBilling Name: {billing_name}\nTime of Transaction: {time_of_transaction}"
-
+        logger_transaction.info("cc Response:%s", response_data)
         if order_id and transaction_id:
             doc = frappe.get_doc("HdfcPaymentIntegration", order_id)  # Assuming 'order_id' is the doc_name
             doc.transaction_id = transaction_id
@@ -155,12 +174,22 @@ def get_token(user):
 
 
 def getTransactionDetails(doc, url):
+    processed_url = check_url(url)
     try:
         response = requests.get(url)
         current_url = response.url
         site_name = frappe.local.site 
         c = fetch_and_process_data(site_name)  # Assuming this function is defined elsewhere
-        integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name, dev_type,redirect_url ,cancel_url FROM `payment_integration`"
+        # integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name, dev_type,redirect_url ,cancel_url FROM `payment_integration`"
+         
+        if processed_url == "test":
+            integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name,dev_type,redirect_url, cancel_url FROM `payment_integration` where dev_type='test'"
+            
+        elif processed_url == "production":
+            integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name,dev_type,redirect_url, cancel_url FROM `payment_integration` where dev_type='production'"
+        else:
+            frappe.msgprint("Please contact Administrator.")
+            return
         c.execute(integration_dbvalue)
         integration_value = c.fetchall()
         c.close()
