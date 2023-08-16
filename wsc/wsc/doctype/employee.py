@@ -286,6 +286,12 @@ class Employee(NestedSet):
 				frappe.throw("Offer date should not be after the Date of Joining")
 			else :
 				pass
+		if self.scheduled_confirmation_date and self.final_confirmation_date :
+			if self.scheduled_confirmation_date < self.final_confirmation_date :
+				frappe.throw("Confirmation date should not be after the Offer Date")
+			
+			else :
+				pass
 
 def get_timeline_data(doctype, name):
 	'''Return timeline for attendance'''
