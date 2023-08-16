@@ -72,19 +72,19 @@ def validate_job_date(doc):
 def validate_pin_code(doc):
 	
 	if doc.pin_code:
-		if len(doc.pin_code)<6 or len(doc.pin_code)>6 :
+		if len(doc.pin_code)<6:
 			frappe.throw("<b>Pincode</b> must be 6 Digits")
 	if doc.student_mobile_number:
-		if len(doc.student_mobile_number)<10 or len(doc.student_mobile_number)>10:
+		if len(doc.student_mobile_number)<10:
 			frappe.throw("<b>Mobile Number</b> must be 10 Digits")
 	if doc.fathers_contact_number:
-		if len(doc.fathers_contact_number)<10 or len(doc.fathers_contact_number)>10:
+		if len(doc.fathers_contact_number)<10:
 			frappe.throw("<b>Father's Contact Number</b> must be 10 Digits")
 	if doc.mothers_contact_number:
-		if len(doc.fathers_contact_number)<10 or len(doc.fathers_contact_number)>10:
+		if len(doc.mothers_contact_number)<10:
 			frappe.throw("<b>Mother's Contact Number</b> must be 10 Digits")
 	if doc.local_guardian_contact_no:
-		if len(doc.local_guardian_contact_no)<10 or len(doc.local_guardian_contact_no)>10:
+		if len(doc.local_guardian_contact_no)<10:
 			frappe.throw("<b>Local Guardians Contact Number</b> must be 10 Digits")
 
 	if not check_int(doc.pin_code):
