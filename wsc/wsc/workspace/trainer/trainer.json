@@ -2,6 +2,7 @@
  "charts": [],
  "content": "[{\"id\":\"NMPR8Oe-nH\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h3\\\">My Daily Activities</span><br>\",\"col\":12}},{\"id\":\"ZJ1uaaqjP2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Profile\",\"col\":3}},{\"id\":\"kzZdSdB99E\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Time Table\",\"col\":3}},{\"id\":\"w91UO-bznd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Attendance Tool\",\"col\":3}},{\"id\":\"u4zfd0YV3r\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":3}},{\"id\":\"zsKqLReSCr\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Program Enrollment\",\"col\":3}},{\"id\":\"Y467KUPF8F\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Exam Declaration\",\"col\":3}},{\"id\":\"-e94qIe0Qi\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Group\",\"col\":3}},{\"id\":\"3W4_nFMhYE\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course Assessment Result Tool\",\"col\":3}},{\"id\":\"0D1vhtuZv7\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>My Cards <br></b></span>\",\"col\":12}},{\"id\":\"bkW6Q1kEuK\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"vi3zz3EBAm\",\"type\":\"card\",\"data\":{\"card_name\":\"Students & Trainer\",\"col\":4}},{\"id\":\"2TK7Sk3ERb\",\"type\":\"card\",\"data\":{\"card_name\":\"Student Enrollment\",\"col\":4}},{\"id\":\"mDtqic8MTb\",\"type\":\"card\",\"data\":{\"card_name\":\"Schedule\",\"col\":4}},{\"id\":\"mChBjFBxcP\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance \",\"col\":4}},{\"id\":\"ZTpJjSUpka\",\"type\":\"card\",\"data\":{\"card_name\":\"Examination\",\"col\":4}},{\"id\":\"_aV1DzJDsp\",\"type\":\"card\",\"data\":{\"card_name\":\"Exam Evaluation\",\"col\":4}},{\"id\":\"602O0Fo4ON\",\"type\":\"card\",\"data\":{\"card_name\":\"Tool\",\"col\":4}}]",
  "creation": "2023-07-17 12:52:17.668640",
+ "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
  "for_user": "",
@@ -94,16 +95,6 @@
    "link_count": 2,
    "onboard": 0,
    "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Course Schedule",
-   "link_count": 0,
-   "link_to": "Course Schedule",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
   },
   {
    "hidden": 0,
@@ -296,10 +287,11 @@
    "type": "Link"
   }
  ],
- "modified": "2023-07-26 12:23:26.852062",
+ "modified": "2023-08-16 05:08:40.492538",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Trainer",
+ "number_cards": [],
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,
@@ -321,15 +313,15 @@
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "Programs",
-   "link_to": "Programs",
+   "label": "My Profile",
+   "link_to": "My Profile",
    "type": "DocType"
   },
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "My Profile",
-   "link_to": "Instructor",
+   "label": "Programs",
+   "link_to": "Programs",
    "type": "DocType"
   },
   {
