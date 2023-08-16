@@ -42,6 +42,7 @@ class Employee(NestedSet):
 		self.employee = self.name
 
 	def validate(self):
+		
 		from erpnext.controllers.status_updater import validate_status
 		validate_status(self.status, ["Active", "Inactive", "Suspended", "Left"])
 		# if self.user_id:
@@ -66,6 +67,8 @@ class Employee(NestedSet):
 			if existing_user_id:
 				remove_user_permission(
 					"Employee", self.name, existing_user_id)
+		self.validate_joining_date()
+		self.validate_offer_date()
 	def on_change(self):
 		self.permissions()
 	def after_insert(self):
@@ -268,6 +271,27 @@ class Employee(NestedSet):
 			self.get('user_id') != prev_doc.get('user_id')):
 			frappe.cache().hdel('employees_with_number', cell_number)
 			frappe.cache().hdel('employees_with_number', prev_number)
+	
+	def validate_joining_date(self):
+		if self.date_of_joining and self.final_confirmation_date:
+			if self.final_confirmation_date>self.date_of_joining:
+				frappe.throw("Confirmation Date Should not be after the date of Joining")
+			else :
+				pass
+		else :
+			pass
+	def validate_offer_date(self):
+		if self.scheduled_confirmation_date and self.date_of_joining:
+			if self.scheduled_confirmation_date > self.date_of_joining:
+				frappe.throw("Offer date should not be after the Date of Joining")
+			else :
+				pass
+		if self.scheduled_confirmation_date and self.final_confirmation_date :
+			if self.scheduled_confirmation_date < self.final_confirmation_date :
+				frappe.throw("Confirmation date should not be after the Offer Date")
+			
+			else :
+				pass
 
 def get_timeline_data(doctype, name):
 	'''Return timeline for attendance'''
