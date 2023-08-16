@@ -68,6 +68,7 @@ class Employee(NestedSet):
 				remove_user_permission(
 					"Employee", self.name, existing_user_id)
 		self.validate_joining_date()
+		self.validate_offer_date()
 	def on_change(self):
 		self.permissions()
 	def after_insert(self):
@@ -276,6 +277,9 @@ class Employee(NestedSet):
 			frappe.throw("Confirmation Date Should not be after the date of Joining")
 		else :
 			pass
+	def validate_offer_date(self):
+		if self.scheduled_confirmation_date > self.date_of_joining:
+			frappe.throw("Offer date should not be after the Date of Joining")
 
 def get_timeline_data(doctype, name):
 	'''Return timeline for attendance'''
