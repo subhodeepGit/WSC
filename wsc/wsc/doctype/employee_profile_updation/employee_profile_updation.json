@@ -211,7 +211,7 @@
   },
   {
    "fieldname": "date_of_birth",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "Date of Birth"
   },
   {
@@ -233,7 +233,8 @@
    "fetch_from": "employee.employee_number",
    "fieldname": "employee_number",
    "fieldtype": "Data",
-   "label": "Employee Number"
+   "label": "Employee Number",
+   "read_only": 1
   },
   {
    "fieldname": "branch",
@@ -244,8 +245,9 @@
   {
    "fetch_from": "employee.blood_group",
    "fieldname": "blood_group",
-   "fieldtype": "Data",
-   "label": "Blood Group"
+   "fieldtype": "Select",
+   "label": "Blood Group",
+   "options": "\nA+\nA-\nO+\nO-\nB+\nB-\nAB+\nAB-"
   },
   {
    "fetch_from": "employee.company_email",
@@ -257,7 +259,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-08 12:03:48.593178",
+ "modified": "2023-08-16 12:12:19.293697",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Profile Updation",

@@ -11,10 +11,11 @@
   "student",
   "student_name",
   "roll_no",
+  "registration_no",
   "column_break_4",
+  "department",
   "from_date",
   "to_date",
-  "registration_no",
   "section_break_8",
   "current_education_details",
   "section_break_7",
@@ -152,12 +153,19 @@
    "fieldtype": "Data",
    "label": "Registration No",
    "read_only": 1
+  },
+  {
+   "fetch_from": "student.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-08 15:20:09.518084",
+ "modified": "2023-08-14 10:48:12.573857",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Leave Application for Student",

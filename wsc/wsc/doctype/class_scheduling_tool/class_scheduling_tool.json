@@ -17,6 +17,7 @@
   "academic_term",
   "school_house",
   "room",
+  "department",
   "section_break_6",
   "instructor",
   "column_break_9",
@@ -186,12 +187,20 @@
   {
    "fieldname": "section_break_ffsyx",
    "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "student_group.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department",
+   "read_only": 1
   }
  ],
  "hide_toolbar": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-08-11 11:27:15.317100",
+ "modified": "2023-08-14 10:29:56.142878",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Class Scheduling Tool",

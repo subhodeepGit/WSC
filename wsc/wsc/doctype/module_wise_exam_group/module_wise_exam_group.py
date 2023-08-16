@@ -9,9 +9,10 @@ from wsc.wsc.notification.custom_notification import send_mail_to_students_mweg,
 
 class ModuleWiseExamGroup(Document):
     def validate(self):
+        print("\n\n\n")
         duplicate_validation(self)
         over_lapping_of_scheduling(self)
-        group_validation(self,"validate")	
+        group_validation(self,"validate")
         filter_group(self)
         date_validation(self)
         validate_time(self)
