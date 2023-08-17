@@ -14,7 +14,7 @@ from frappe.utils import add_years, cstr, getdate, today, validate_email_address
 from frappe.utils.nestedset import NestedSet
 
 from erpnext.utilities.transaction_base import delete_events
-
+import re
 # from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
 
 
@@ -70,7 +70,18 @@ class Employee(NestedSet):
         self.validate_joining_date()
         self.validate_offer_date()
         self.validate_passport_date()
-        
+        self.validate_notice_days()
+        self.validate_mobile_number() 
+    def validate_notice_days(self):
+        if self.notice_number_of_days<0 :
+            frappe.throw("Notice Days should not be -ve")
+    def validate_mobile_number(self):
+        if self.cell_number:
+            pattern = r"^\d{10}$"
+
+        if not re.match(pattern, self.cell_number):
+            frappe.throw("Invalid mobile number format")
+    
 
     def on_change(self):
         self.permissions()
