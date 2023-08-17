@@ -820,7 +820,7 @@ def purchase_requisition_raised(doc):
     recipients_list = list(frappe.db.sql("select department_email_id from `tabDepartment Email ID`"))
     recipients = recipients_list[0]
     attachments = None
-    send_mail(recipients,'Item',msg,attachments)
+    send_mail(recipients,'Material Request',msg,attachments)
 
 def received_in_inventory(doc):
     msg="""<b>---------------------Purchase Requisition: {0} received in Store---------------------</b><br>""".format(doc.get('name'))
@@ -828,7 +828,7 @@ def received_in_inventory(doc):
     recipients_list = list(frappe.db.sql("select department_email_id from `tabDepartment Email ID`"))
     recipients = recipients_list[0]
     attachments = None
-    send_mail(recipients,'Item',msg,attachments)
+    send_mail(recipients,'Material Request',msg,attachments)
 
 def received_by_department(doc):
     msg="""<b>---------------------Purchase Requisition: {0} received---------------------</b><br>"""
@@ -836,7 +836,14 @@ def received_by_department(doc):
     msg+="""For Purchase requisition number: {0}""".format(doc.get('name'))
     recipients = doc.department_email
     attachments = None
-    send_mail(recipients,'Item',msg,attachments)
+    send_mail(recipients,'Material Request',msg,attachments)
+
+def workflow_wating_approval(doc, receipient):
+    msg="""<b>---------------------Workflow awaiting response---------------------</b><br>"""
+    msg+="""You have received a workflow waiting for your review and approval"""
+    recipients = receipient
+    attachments = None
+    send_mail(recipients,'Material Request',msg,attachments)
 
 #####   END   #####
 
