@@ -1,22 +1,22 @@
 // Copyright (c) 2023, SOUL Limited and contributors
 // For license information, please see license.txt
-frappe.ui.form.on('OnlinePayment', {
-	party: function(frm) {
-		frappe.call({
-			method:"wsc.wsc.doctype.onlinepayment.onlinepayment.get_outstanding_amount",
-			args: {
-				student: frm.doc.party
-			},
-			callback: function(r){
-				// if(r.message){
-					var result = r.message;
-					frm.set_value("total_outstanding_amout",result);
-					frm.set_value("paying_amount",result);
-				// }
-			}
-		})
-	}
-});
+// frappe.ui.form.on('OnlinePayment', {
+// 	party: function(frm) {
+// 		frappe.call({
+// 			method:"wsc.wsc.doctype.onlinepayment.onlinepayment.get_outstanding_amount",
+// 			args: {
+// 				student: frm.doc.party
+// 			},
+// 			callback: function(r){
+// 				// if(r.message){
+// 					var result = r.message;
+// 					frm.set_value("total_outstanding_amout",result);
+// 					frm.set_value("paying_amount",result);
+// 				// }
+// 			}
+// 		})
+// 	}
+// });
 frappe.ui.form.on('OnlinePayment', {
 	refresh: function (frm) {
 		var hdfcButton = frm.add_custom_button("By HDFC", function () {
