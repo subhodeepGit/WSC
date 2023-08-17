@@ -2,11 +2,11 @@
     "Merchant ID": "2649161",
     "Access Code": "AVYA87KG31AX44AYXA",
     "Working Key": "F5D6C4A01508C64EEF91EBDB72336ECB",
-    "Redirect URL": "http://10.0.139.144:8080/ccavResponseHandler",
-    "Cancel URL": "http://10.0.139.144:8080/ccavResponseHandler",
-    "Site Name": "http://10.0.136.246:8000/app/onlinepayment/ ",
+    "Redirect URL": "https://pi.eduleadonline.com/ccavResponseHandler",
+    "Cancel URL": "https://pi.eduleadonline.com/ccavResponseHandler",
+    "Site Name": " https://soulwsc.eduleadonline.com/app/onlinepayment/",
     "Gateway Name": "HDFC",
-    "Dev Type": "Test"
+    "Dev Type": "Production"
 }
 
 
