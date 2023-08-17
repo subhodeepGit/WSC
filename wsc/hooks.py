@@ -349,7 +349,10 @@ doc_events = {
     },
     "Shift Assignment": {
         "on_change":"wsc.wsc.validations.shift_assignment.on_change"
-    }
+    },
+    "Leave Type": {
+        "validate":"wsc.wsc.validations.leave_type.validate"
+    },
     
 
     # "User":{
