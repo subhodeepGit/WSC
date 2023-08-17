@@ -38,6 +38,8 @@ class OnlinePayment(Document):
 		getTransactionDetails(doc, get_url)
 		frappe.msgprint("Your Transaction is completed. Your Transaction Id is " +
 				doc.transaction_id + "."  " Status is " + frappe.bold(doc.transaction_status))
+logging.basicConfig(filename='/home/erpnext/frappe-bench/apps/wsc/wsc/wsc/doctype/onlinepayment/transaction_log.log', level=logging.INFO,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 currency = 'INR'
 language = 'EN'
@@ -63,22 +65,24 @@ def check_url(p_url):
 
 @frappe.whitelist()
 def login(party_name, roll_no, amount, order_id, url): 
-	print("\n\n\n\n url",url)
+	logging.info("Processing login function...")
+
+	logging.info("Input URL: %s", url)
 	processed_url = check_url(url)
-	print("\n\n\n\n processed_url",processed_url)	
+	logging.info("Processed URL: %s", processed_url)
 	
 	try:
 		site_name = frappe.local.site 
-		print("\n\n\n\n site_name",site_name)	
-		config_file_path = "/home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json"
-		print("\n\n\n\n config_file_path",config_file_path)		
+		logging.info("site_name: %s", site_name)	
+		config_file_path = "/home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json"
+		logging.info("config_file_path: %s", config_file_path)		
 		config_data = fetch_config_data(config_file_path) 
-		print("\n\n\n\n config_data",config_data)
+		
 		
 
 		if processed_url == "test":
 			if config_data:
-					print("\n\n\n\n config_data", config_data)
+					logging.info("config_data: %s", config_data)
 					merchant_id = config_data.get("Merchant ID")
 					access_code = config_data.get("Access Code")
 					working_key = config_data.get("Working Key")
@@ -89,6 +93,7 @@ def login(party_name, roll_no, amount, order_id, url):
 					dev_type = config_data.get("Dev Type")
 			elif processed_url == "production":				
 				if config_data:
+					logging.info("config_data: %s", config_data)
 					merchant_id = config_data.get("Merchant ID")
 					access_code = config_data.get("Access Code")
 					working_key = config_data.get("Working Key")
@@ -102,11 +107,14 @@ def login(party_name, roll_no, amount, order_id, url):
 				print("Please contact Administrator.")				
 
 			passed_url = urlparse(url)
-			print("\n\n\n\n passed_url",passed_url)
+			logging.info("passed_url: %s", passed_url)
 			config_sitename = urlparse(site_name)
-			print("\n\n\n\n config_sitename",config_sitename)
-			print("\n\n\n\n passed_url.netloc",passed_url.netloc)
-			print("\n\n\n\n config_sitename.netloc",config_sitename.netloc)
+			logging.info("config_sitename: %s", config_sitename)
+
+			logging.info("passed_url.netloc: %s", passed_url.netloc)
+			logging.info("config_sitename.netloc: %s", config_sitename.netloc)
+
+			
 
 			if passed_url.netloc == config_sitename.netloc:
 				p_merchant_id = merchant_id
@@ -123,7 +131,9 @@ def login(party_name, roll_no, amount, order_id, url):
 			
 				encryption = encrypt(merchant_data, working_key)
 				
-
+				logging.info("encryption: %s", encryption)
+				logging.info("accessCode: %s", access_code)
+				logging.info("baseUrl: %s", url)
 				return {"encRequest": str(encryption), "accessCode": access_code, "baseUrl": url}
 
 			else:
