@@ -91,6 +91,7 @@ frappe.ui.form.on('OnlinePayment', {
                         var encRequest = r.message["encRequest"];
                         var access_code = r.message["accessCode"];
                         var baseUrl = r.message["baseUrl"];
+						alert(baseUrl)
 
                         if (encRequest && access_code && baseUrl) {
                             var isLocalhost = baseUrl.includes("http");
