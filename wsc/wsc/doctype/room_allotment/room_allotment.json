@@ -409,7 +409,7 @@
    "link_fieldname": "room_allotment_no"
   }
  ],
- "modified": "2023-03-25 15:02:46.794041",
+ "modified": "2023-08-18 11:35:55.205446",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Room Allotment",
@@ -429,6 +429,7 @@
    "write": 1
   }
  ],
+ "search_fields": "student,roll_no,student_name,registration_number,hostel_registration_no",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],

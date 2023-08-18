@@ -3,6 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
+from frappe import _
 
 class ToTParticipantEnrollment(Document):
 	# def validate(self):
@@ -43,7 +44,6 @@ class ToTParticipantEnrollment(Document):
 			make_enrollment(self.name)
 
 def make_participant(tot_participant_enrollment):
-	# print("\n\n\nPART")
 	doc = frappe.get_doc("ToT Participant Enrollment", tot_participant_enrollment)
 	error = False
 	total_records = len(doc.get("participant_list"))
@@ -58,6 +58,9 @@ def make_participant(tot_participant_enrollment):
 		result.middle_name=d.middle_name
 		result.last_name=d.last_name
 		result.student_email_id=d.email_address
+		result.district=d.district
+		result.state=d.odisha
+		result.pin_code=d.pincode
 		check_duplicate_student = frappe.get_all("Student",{'student_email_id':d.email_address},['student_email_id'])
 		# print("\n\n\ncheck_duplicate_student",check_duplicate_student)
 		if(check_duplicate_student):
@@ -99,7 +102,16 @@ def make_enrollment(tot_participant_enrollment):
 				result.academic_term=doc.academic_term
 				result.enrollment_date=data.participant_selection_date
 				result.student_batch_name=doc.tot_participant_batch
+				# for enroll in result.get("courses"):
+				# 	# if moderator.course==ex.course:
+				# 	enroll.moderator__name=moderator.moderator_name
+				# 	eps.save()
 				result.is_tot=1
+				for get_course in frappe.get_all("Program Course",{'parent':result.program},['course','course_name']):
+					result.append("courses",{
+					"course":get_course.course,
+					"course_name":get_course.course_name,
+					})
 				result.save()
 				result.submit()
 				created_records += 1
@@ -114,5 +126,6 @@ def make_enrollment(tot_participant_enrollment):
 
 @frappe.whitelist()
 def get_participants(participant_selection_id):
-    participant_list=frappe.get_all("Selected Participant",{'parent':participant_selection_id},['participant_id','participant_name','hrms_id','district','mobile_number','email_address'])
+    participant_list=frappe.get_all("Selected Participant",{'parent':participant_selection_id},['participant_id','participant_name','hrms_id','district','mobile_number','email_address','odisha','pincode'])
     return participant_list
+

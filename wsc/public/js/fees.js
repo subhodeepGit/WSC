@@ -253,6 +253,7 @@ frappe.ui.form.on('Fees', {
 				filters: [
 					["Fee Structure Hostel", "programs", "=", frm.doc.programs],
 					["Fee Structure Hostel", "academic_year", "=", frm.doc.academic_year],
+                    ["Fee Structure Hostel", "program", "=", frm.doc.program]
 				]
 			}
 		});
