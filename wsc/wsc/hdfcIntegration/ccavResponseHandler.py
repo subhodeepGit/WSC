@@ -10,8 +10,13 @@ import pymysql
 from urllib.parse import urlparse
 import os
 from flask import flash
+import logging
 
 
+# logging.basicConfig(filename='/home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/response_log.log', level=logging.INFO,
+#                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename='/home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/response_log.log', level=logging.INFO,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 def check_url(p_url):
     parsed_url = urlparse(p_url)
     if parsed_url.scheme == "http":
@@ -19,93 +24,108 @@ def check_url(p_url):
     else:
         return "production"
 def fetch_config_data(file_path):
+    logging.info("config file path: %s", file_path)
     try:
         with open(file_path, "r") as json_file:
             config_data = json.load(json_file)
+            logging.info("config_data: %s", config_data)
             return config_data
     except FileNotFoundError:
-        return None 
+        logging.error("File not found: %s", file_path)
+        return None
+    except Exception as e:
+        logging.error("An error occurred: %s", str(e))
+        return None
 
 def res(encResp, url):
-    print("\n\n\n ccavResponse url",url)
+    # print(" ccavResponse url",url)
+    logging.info("Processing res function...")
+    logging.info("ccResponse URL: %s", url)
+   
     try:
         processed_url = check_url(url)
-        print("ccavResponse processed_url: %s", processed_url)
-        config_file_path = "hdfc_test_server_config.json"
-        print("ccavResponse config_file_path: %s", config_file_path)
+        logging.info("ccavResponse processed_url: %s", processed_url)
+        config_file_path = "/home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json"
+        # config_file_path = "/home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json"
+        logging.info("ccavResponse config_file_path: %s", config_file_path)
         config_data = fetch_config_data(config_file_path) 
-        print("ccavResponse config_data: %s", config_data)
-        try:
+        logging.info("ccavResponse config_dataaa: %s", config_data)
+        # try:
             # integration_dbvalue = "SELECT  working_key,redirect_url,cancel_url, site_name FROM `payment_integration`"
-            if processed_url == "test":
-                if config_data:
-                    print("\n\n\n\n if config_data", config_data)
-                    merchant_id = config_data.get("Merchant ID")
-                    access_code = config_data.get("Access Code")
-                    working_key = config_data.get("Working Key")
-                    redirect_url = config_data.get("Redirect URL")
-                    cancel_url = config_data.get("Cancel URL")
-                    site_name = config_data.get("Site Name")
-                    gateway_name = config_data.get("Gateway Name")
-                    dev_type = config_data.get("Dev Type")
-                # integration_dbvalue = "SELECT  working_key,  redirect_url, cancel_url, site_name FROM `payment_integration` where dev_type='test'"
+        logging.info("inside try: %s", processed_url)
+        if processed_url == "test":
+            logging.info(" processed_url: %s", processed_url)
+            if config_data :
+                logging.info(" if config_data test: %s", config_data)
+                merchant_id = config_data.get("Merchant ID")
+                access_code = config_data.get("Access Code")
+                working_key = config_data.get("Working Key")
+                redirect_url = config_data.get("Redirect URL")
+                cancel_url = config_data.get("Cancel URL")
+                site_name = config_data.get("Site Name")
+                gateway_name = config_data.get("Gateway Name")
+                dev_type = config_data.get("Dev Type")
+            # integration_dbvalue = "SELECT  working_key,  redirect_url, cancel_url, site_name FROM `payment_integration` where dev_type='test'"
 
-            elif processed_url == "production":
-                if config_data:
-                    merchant_id = config_data.get("Merchant ID")
-                    access_code = config_data.get("Access Code")
-                    working_key = config_data.get("Working Key")
-                    redirect_url = config_data.get("Redirect URL")
-                    cancel_url = config_data.get("Cancel URL")
-                    site_name = config_data.get("Site Name")
-                    gateway_name = config_data.get("Gateway Name")
-                    dev_type = config_data.get("Dev Type")
-                # integration_dbvalue = "SELECT  working_key,  redirect_url, cancel_url , site_name FROM `payment_integration` where dev_type='production'"
-            else:
-                flash("Please contact Administrator.", "error")
-                return
+        # elif processed_url == "production":
+        #     if config_data:
+        #         logging.info("\n if config_data prod", config_data)
+        #         merchant_id = config_data.get("Merchant ID")
+        #         access_code = config_data.get("Access Code")
+        #         working_key = config_data.get("Working Key")
+        #         redirect_url = config_data.get("Redirect URL")
+        #         cancel_url = config_data.get("Cancel URL")
+        #         site_name = config_data.get("Site Name")
+        #         gateway_name = config_data.get("Gateway Name")
+        #         dev_type = config_data.get("Dev Type")
+            # integration_dbvalue = "SELECT  working_key,  redirect_url, cancel_url , site_name FROM `payment_integration` where dev_type='production'"
+        # else:
+        #     flash("Please contact Administrator.", "error")
             
-           
-            passed_url = urlparse(url)
-            print("\n\n\n\n passed_url",passed_url)
-            config_redirect_url = urlparse(redirect_url)
-            print("\n\n\n\n config_sitename",config_redirect_url)
+        
+        
+        # passed_url = urlparse(url)
+        # print("\n passed_url",passed_url)
+        # config_redirect_url = urlparse(redirect_url)
+        # print("\n config_sitename",config_redirect_url)
 
-            print("\n\n\n\n passed_url.netloc",passed_url.netloc)
-            print("\n\n\n\n config_sitename.netloc",config_redirect_url.netloc)
+        # print("\n passed_url.netloc",passed_url.netloc)
+        # print("\n config_sitename.netloc",config_redirect_url.netloc)
 
-            # if passed_url.netloc == config_sitename.netloc:
+        # if passed_url.netloc == config_sitename.netloc:
             if 1==1:
-             
+            
                 decResp = decrypt(encResp, working_key)
-                print("\n\n\n ccavResponse decResp",decResp)
+                logging.info(" ccavResponse decResp: %s",decResp)
                 parsed_data = parse_qs(decResp)
-                print("\n\n\n ccavResponse parsed_data",parsed_data)
+                logging.info(" ccavResponse parsed_data: %s",parsed_data)
                 cleaned_data = {key.strip("b'"): value[0] if value else None for key, value in parsed_data.items()}
-                print("\n\n\n ccavResponse cleaned_data",cleaned_data)
+                logging.info(" ccavResponse cleaned_data:%s",cleaned_data)
 
                 order_id = parsed_data.get("b'order_id", [None])[0]
-                print("\n\n\n ccavResponse order_id",order_id)
+                logging.info(" ccavResponse order_id %s",order_id)
                 tracking_id = parsed_data.get('tracking_id', [None])[0]
-                print("\n\n\n ccavResponse tracking_id",tracking_id)
+                logging.info(" ccavResponse tracking_id %s",tracking_id)
                 amount = parsed_data.get('amount', [None])[0]
-                print("\n\n\n ccavResponse amount",amount)
+                logging.info(" ccavResponse amount %s",amount)
                 order_status = parsed_data.get('order_status', [None])[0]
-                print("\n\n\n ccavResponse order_status",order_status)
+                logging.info(" ccavResponse order_status %s",order_status)
                 trans_date = parsed_data.get('trans_date', [None])[0]
-                print("\n\n\n ccavResponse trans_date",trans_date)
+                logging.info(" ccavResponse trans_date %s",trans_date)
 
                 redirect_url = "{}{}".format(site_name, order_id)
-                print("\n\n\n ccavResponse redirect_url",redirect_url)
+                logging.info(" ccavResponse redirect_url %s",redirect_url)
 
                 # base_url = urlparse(site_name).scheme + "://" + urlparse(site_name).netloc
-                base_url="http://10.0.136.246:8000"
-                print("\n\n\n ccavResponse base_url",base_url)
-                #http://erp.soulunileaders.com:8000
+                # base_url= "http://erp.soulunileaders.com:8000"
+                base_url="https://soulwsc.eduleadonline.com"
+                #base_url="http://10.0.136.246:8000" 
+                logging.info("ccavResponse base_url %s",base_url)
+               
 
                 api_endpoint_get_token = '/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_token'
                 api_getToken = base_url + api_endpoint_get_token
-                print("\n\n\n ccavResponse api_getToken",api_getToken)
+                logging.info("ccavResponse api_getToken %s",api_getToken)
                 # 'http://erp.soulunileaders.com:8000/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_token'
 
                 user = 'hdfc'
@@ -129,8 +149,10 @@ def res(encResp, url):
                         }
 
                         # m_base_url = urlparse(site_name).scheme + "://" + urlparse(site_name).netloc
-                        m_base_url="http://10.0.136.246:8000"
-                        print("\n\n\n ccavResponse m_base_url",m_base_url)
+                        # m_base_url= "http://erp.soulunileaders.com:8000"
+                        m_base_url="https://soulwsc.eduleadonline.com"
+                        # m_base_url="http://10.0.136.246:8000"
+                        logging.info("ccavResponse m_base_url %s",m_base_url)
 
                         api_endpoint_get_order_status = '/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_order_status'
                         frappe_api_endpoint = m_base_url + api_endpoint_get_order_status
@@ -156,12 +178,12 @@ def res(encResp, url):
 
                     else:
                         print("Token not found in the response.",
-                              response.status_code)
+                            response.status_code)
                 else:
                     print("Failed to get the token. Status code:",
-                          response.status_code)
-        except Exception as e:
-                print(str(e))
+                        response.status_code)
+        # except Exception as e:
+        #         logging(str(e))
               
 
     except Exception as e:
@@ -225,7 +247,7 @@ display: block;
                     // Delay the redirection by 5 seconds (5000 milliseconds)
                     setTimeout(function() {
                         window.location.href = redirect_url;
-                    },5000);
+                    },2000);
             </script>
 
     </body>

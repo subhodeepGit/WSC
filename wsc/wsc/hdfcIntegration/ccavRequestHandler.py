@@ -4,11 +4,13 @@ from flask import request, redirect, Flask, render_template
 from ccavutil import encrypt,decrypt
 from ccavResponseHandler import res
 from string import Template
-# from waitress import serve
+from waitress import serve
+import logging
 
 app = Flask('ccavRequestHandler') 
 
-
+logging.basicConfig(filename='/home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/response_log.log', level=logging.INFO,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 @app.route('/')
 def webprint():
 	return render_template('dataForm.html')
@@ -16,8 +18,9 @@ def webprint():
 @app.route('/ccavResponseHandler', methods=['GET', 'POST'])
 def ccavResponseHandler():
 	url = request.url
+	logging.info("********request url: %s", url)
 	plainText = res(request.form['encResp'],url)
-	print(plainText)	
+	# print(plainText)	
 	return plainText
 
 
@@ -55,8 +58,8 @@ def ccavResponseHandler():
 
 
 if __name__ == '__main__':
-	app.run(host = '127.0.0.1', debug = True, port = 8080)
-	# serve(app, host='0.0.0.0', port=5000, debug = True, url_scheme='https')
+	# app.run(host = '127.0.0.1', debug = True, port = 8080)
+	serve(app, host='0.0.0.0', port=5000, debug = True, url_scheme='https')
 
 
 
