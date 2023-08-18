@@ -202,7 +202,7 @@
   },
   {
    "hidden": 0,
-   "is_query_report": 0,
+   "is_query_report": 1,
    "label": "Student Attendance Report",
    "link_count": 0,
    "link_to": "Student Attendance Report",
@@ -211,7 +211,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-08-18 16:29:01.448504",
+ "modified": "2023-08-18 16:31:57.468558",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Academics",
