@@ -12,7 +12,9 @@
   "participant",
   "participant_name",
   "hrms_id",
+  "odisha",
   "district",
+  "pincode",
   "mobile_number",
   "email_address",
   "is_reported"
@@ -89,12 +91,26 @@
    "in_list_view": 1,
    "label": "Participant Name",
    "read_only": 1
+  },
+  {
+   "fetch_from": "participant.state",
+   "fieldname": "odisha",
+   "fieldtype": "Data",
+   "label": "Odisha",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "participant.pincode",
+   "fieldname": "pincode",
+   "fieldtype": "Data",
+   "label": "Pincode",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-06-15 09:53:47.727993",
+ "modified": "2023-08-18 04:57:02.974173",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Reported Participant",
