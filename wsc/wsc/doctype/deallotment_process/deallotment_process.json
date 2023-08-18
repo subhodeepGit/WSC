@@ -30,7 +30,8 @@
   "column_break_21",
   "hostel_fee_structure",
   "section_break_23",
-  "components"
+  "components",
+  "amended_from"
  ],
  "fields": [
   {
@@ -190,14 +191,25 @@
    "depends_on": "eval:doc.hostel_fees != null",
    "fieldname": "section_break_23",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Deallotment Process",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2022-06-06 11:58:09.731125",
+ "modified": "2023-08-18 11:32:22.120472",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Deallotment Process",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -215,5 +227,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

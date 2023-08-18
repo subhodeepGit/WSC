@@ -18,6 +18,7 @@
   "no_of_participants",
   "academic_term",
   "section_break_10",
+  "get_participants",
   "participants"
  ],
  "fields": [
@@ -81,11 +82,16 @@
    "fieldtype": "Link",
    "label": "Grading Scale",
    "options": "Grading Scale"
+  },
+  {
+   "fieldname": "get_participants",
+   "fieldtype": "Button",
+   "label": "Get Participants"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-26 15:35:42.288827",
+ "modified": "2023-08-03 16:56:40.409808",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Final Result Declaration Tool",

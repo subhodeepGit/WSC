@@ -37,6 +37,7 @@ frappe.ui.form.on('Employee Profile Updation', {
             callback: function(r) {
                 if (r.message) {
                     // alert(r.message)
+                    // alert(r.message["blood_group"])
                     frm.set_value("employee_name",r.message['employee_name']);
                     frm.set_value("department",r.message['department']);
                     frm.set_value("designation",r.message['designation']);
@@ -49,6 +50,8 @@ frappe.ui.form.on('Employee Profile Updation', {
                     frm.set_value("reporting_auth_id",r.message['reporting_authority_email']);
                     frm.set_value("blood_group",r.message['blood_group']);
                     frm.set_value("gender",r.message['gender']);
+                   
+
                     
                 }
 				
@@ -129,6 +132,7 @@ frappe.ui.form.on('Employee Profile Updation', {
             },
             callback: function(response) {
                 if (response.message) {
+                    // alert(response.message["cell_number"])
                     frm.set_value('current_address', response.message["current_address"]);
 					frm.set_value('permanent_address', response.message["permanent_address"]);
 					frm.set_value('mobile', response.message["cell_number"]);
