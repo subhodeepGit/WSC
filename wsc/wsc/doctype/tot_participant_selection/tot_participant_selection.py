@@ -23,6 +23,7 @@ class ToTParticipantSelection(Document):
 def get_semester(course):
 	for sem in frappe.get_all("Program",{'programs':course},['name']):
 		semester=sem.name
+		print("\n\n\n",semester)
 	return semester
 @frappe.whitelist()
 def get_academic_term(academic_year):
