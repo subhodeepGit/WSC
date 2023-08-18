@@ -40,16 +40,16 @@ class ICICIOnlinePayment(Document):
 		# 	# frappe.msgprint("Your Transaction is completed. Your Transaction Id is " + doc.transaction_id)
 			
 
-@frappe.whitelist()
-def get_outstanding_amount(student):
-	fee_voucher_list=frappe.get_all("Fees",filters=[["student","=",student],["outstanding_amount","!=",0],["docstatus","=",1]],
-															fields=['outstanding_amount'],
-															order_by="due_date asc")
-	outstanding_amount=0
-	for t in fee_voucher_list:
-		outstanding_amount=t['outstanding_amount']+outstanding_amount
-		# print("outstanding_amount",outstanding_amount)
-	return outstanding_amount
+# @frappe.whitelist()
+# def get_outstanding_amount(student):
+# 	fee_voucher_list=frappe.get_all("Fees",filters=[["student","=",student],["outstanding_amount","!=",0],["docstatus","=",1]],
+# 															fields=['outstanding_amount'],
+# 															order_by="due_date asc")
+# 	outstanding_amount=0
+# 	for t in fee_voucher_list:
+# 		outstanding_amount=t['outstanding_amount']+outstanding_amount
+# 		# print("outstanding_amount",outstanding_amount)
+# 	return outstanding_amount
 
 
 
