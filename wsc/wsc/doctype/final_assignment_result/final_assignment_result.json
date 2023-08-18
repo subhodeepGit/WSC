@@ -73,7 +73,7 @@
    "fieldname": "assessment_result_item",
    "fieldtype": "Table",
    "label": "Assessment Result Item",
-   "options": "Assessment Result Item"
+   "options": "ToT Assessment Result Item"
   },
   {
    "fieldname": "participant_group",
@@ -152,7 +152,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-26 15:14:16.606552",
+ "modified": "2023-08-03 12:14:33.772812",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Final Assignment Result",
