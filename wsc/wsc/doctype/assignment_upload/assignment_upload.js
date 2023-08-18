@@ -69,14 +69,12 @@ frappe.ui.form.on('Assignment Upload', {
 		})
 	},
 	assignment_number: function(frm){
-		alert(500)
 		frappe.call({
 			method: 'wsc.wsc.doctype.assignment_upload.assignment_upload.get_assignment_details',
 			args:{
 				assignment_name : frm.doc.assignment_number
 			},
 			callback: function(result){
-				alert(600)
 				if(result.message){
 					frm.set_value("assessment_component", result.message[0])
 					frm.set_value("total_marks", result.message[1])

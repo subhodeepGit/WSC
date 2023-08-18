@@ -7,10 +7,38 @@ frappe.ui.form.on('ToT Participant Selection', {
 			return{
 				filters:{
 					'program_grade' : frm.doc.course_type,
-					'is_tot' : 1
+					// 'is_tot' : 1
 				}
 			}
 		})
+	},
+	course: function(frm){
+		if(frm.doc.course){
+			frappe.call({
+				method: 'wsc.wsc.doctype.tot_participant_selection.tot_participant_selection.get_semester',
+				args:{
+					course: frm.doc.course,
+				},
+				callback: function(r) {
+					frm.set_value('semester', r.message);
+					// frm.refresh_field("student_list")
+				}		
+			})
+		}
+	},
+	academic_year: function(frm){
+		if(frm.doc.academic_year){
+			frappe.call({
+				method: 'wsc.wsc.doctype.tot_participant_selection.tot_participant_selection.get_academic_term',
+				args:{
+					academic_year: frm.doc.academic_year,
+				},
+				callback: function(r) {
+					frm.set_value('academic_term', r.message);
+					// frm.refresh_field("student_list")
+				}		
+			})
+		}
 	},
 	start_date : function(frm){
 		if(frm.doc.start_date && frm.doc.end_date){

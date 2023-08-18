@@ -13,6 +13,9 @@ def validate(self,method):
 		employee_separation_hr_mail(self)
 	if self.workflow_state=="Sent For Approval":
 		employee_separation_director_mail(self)
+	if self.boarding_begins_on and self.final_working_date:
+		if self.boarding_begins_on>self.final_working_date:
+			frappe.throw("Separation Begin date should not be after the Final Working Date")
 
 def after_insert(doc,method):
 	print("\n\n\nUser Permission")
