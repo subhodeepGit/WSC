@@ -78,7 +78,7 @@ frappe.ui.form.on('OnlinePayment', {
     refresh: function (frm) {
         var hdfcButton = frm.add_custom_button("By HDFC", function () {
             frappe.call({
-                method: "wsc.wsc.doctype.onlinepayment.onlinepayment.login",
+                method: "wsc.wsc.doctype.onlinepayment.onlinepayment.open_gateway",
                 args: {
                     party_name: frm.doc.party,
                     roll_no: frm.doc.roll_no,
@@ -91,7 +91,7 @@ frappe.ui.form.on('OnlinePayment', {
                         var encRequest = r.message["encRequest"];
                         var access_code = r.message["accessCode"];
                         var baseUrl = r.message["baseUrl"];
-						alert(baseUrl)
+						// alert(baseUrl)
 
                         if (encRequest && access_code && baseUrl) {
                             var isLocalhost = baseUrl.includes("http");
@@ -108,7 +108,7 @@ frappe.ui.form.on('OnlinePayment', {
                             alert("Required data missing in response.");
                         }
                     } else {
-                        alert("No response data received.");
+                        alert("No Call Back information received.");
                     }
                 }
             });

@@ -9,7 +9,7 @@ frappe.query_reports["Student Attendance Report"] = {
             "label": __("Academic Term"),
             "fieldtype": "MultiSelectList",
             // "options": "Project",
-            // "reqd":1,
+            "reqd":1,
             get_data: function(txt) {
 				return frappe.db.get_link_options('Academic Term', txt)
 			}
@@ -19,7 +19,7 @@ frappe.query_reports["Student Attendance Report"] = {
             "label": __("Semester"),
             "fieldtype": "MultiSelectList",
             // "options": "Project",
-            // "reqd":1,
+            "reqd":1,
             get_data: function(txt) {
 				return frappe.db.get_link_options('Program', txt)
 			}
@@ -29,7 +29,7 @@ frappe.query_reports["Student Attendance Report"] = {
             "label": __("Module"),
             "fieldtype": "MultiSelectList",
             // "options": "Project",
-            // "reqd":1,
+            "reqd":1,
             get_data: function(txt) {
 				return frappe.db.get_link_options('Course', txt)
 			}
@@ -38,13 +38,13 @@ frappe.query_reports["Student Attendance Report"] = {
             "fieldname":"from_date",
             "label": __("From Date"),
             "fieldtype": "Date",
-            // "reqd":1,
+            "reqd":1,
         },
         {
             "fieldname":"to_date",
             "label": __("To Date"),
             "fieldtype": "Date",
-            // "reqd":1,
+            "reqd":1,
         },
 	]
 };

@@ -4,7 +4,7 @@
     "Working Key": "F5D6C4A01508C64EEF91EBDB72336ECB",
     "Redirect URL": "https://pi.eduleadonline.com/ccavResponseHandler",
     "Cancel URL": "https://pi.eduleadonline.com/ccavResponseHandler",
-    "Site Name": " https://soulwsc.eduleadonline.com/app/onlinepayment/",
+    "Site Name": "https://soulwsc.eduleadonline.com/app/onlinepayment/",
     "Gateway Name": "HDFC",
     "Dev Type": "Production"
 }
