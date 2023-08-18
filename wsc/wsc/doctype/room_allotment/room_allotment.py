@@ -160,9 +160,24 @@ def hostel_req_query(doctype, txt, searchfield, start, page_len, filters):
 	# 						from `tabStudent Applicant` as SA
 	# 						JOIN `tabStudent` S on S.student_applicant=SA.name 
 	# 						where SA.hostel_required=1""") ##### Student Applicant
-	return frappe.db.sql(""" SELECT S.name,SHA.name,S.student_name from `tabStudent Hostel Admission` as SHA 
+	############################## Search Field Code################# 
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join("S."+field + " like %(txt)s" for field in searchfields)
+
+	data=frappe.db.sql(""" SELECT S.name,SHA.name,S.title from `tabStudent Hostel Admission` as SHA 
 							JOIN `tabStudent` S on S.name=SHA.student 
-							where SHA.allotment_status="Not Reported" and SHA.docstatus=1 """)
+							where (SHA.{key} like %(txt)s or {scond})  and 
+	       					SHA.allotment_status="Not Reported" and SHA.docstatus=1 """.format(
+								**{
+									"key": searchfield,
+									"scond": searchfields,
+								}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+
+
+	# return frappe.db.sql(""" SELECT S.name,SHA.name,S.title from `tabStudent Hostel Admission` as SHA 
+	# 						JOIN `tabStudent` S on S.name=SHA.student 
+	# 						where SHA.allotment_status="Not Reported" and SHA.docstatus=1 """)
+	return data
 						
 
 @frappe.whitelist()
