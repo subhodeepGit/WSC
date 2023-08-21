@@ -6,7 +6,9 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "student_category"
+  "student_category",
+  "gender",
+  "pwd"
  ],
  "fields": [
   {
@@ -14,12 +16,24 @@
    "fieldtype": "Link",
    "label": "Student Category",
    "options": "Student Category"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Link",
+   "label": "Gender",
+   "options": "Gender"
+  },
+  {
+   "default": "0",
+   "fieldname": "pwd",
+   "fieldtype": "Check",
+   "label": "PWD"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-07-07 11:05:20.922935",
+ "modified": "2023-08-21 11:29:32.124419",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Ranking Category",
