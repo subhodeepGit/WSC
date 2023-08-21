@@ -57,6 +57,14 @@ frappe.ui.form.on('Material Request Item', {	//Child table Name
 	refresh_field("grand_total");
 	},
 	item_code: function(frm, cdt, cdn) {
+		// updated the grand total whenever new item is added
+		var grandTotal = 0;
+    	frm.doc.items.forEach(function(item) {
+        	grandTotal += (item.qty || 0) * (item.rate || 0);
+    	});
+    	frm.set_value('grand_total', grandTotal);
+
+		// filtered the rest row on the basis of first row item group
         var child = locals[cdt][cdn];
         if (child.idx === 1) {
             var product_item_group = child.item_group;
