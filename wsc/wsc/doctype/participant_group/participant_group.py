@@ -15,7 +15,7 @@ class ParticipantGroup(Document):
 			parent_doc.course_name = self.program
 			parent_doc.module_id = self.course
 			parent_doc.module_name = self.module_name
-			parent_doc.scehduled_date = d.scheduled_date
+			parent_doc.scheduled_date = d.scheduled_date
 			parent_doc.scheduled_time = d.scheduled_time
 			parent_doc.room_number = d.room_number
 			parent_doc.room_name = d.room_name

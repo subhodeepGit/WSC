@@ -17,6 +17,7 @@ frappe.ui.form.on('ToT Participant Attendance', {
 				frm.set_df_property('select_sub_module', 'options', result.message[4]) // sub module
 				frm.set_df_property('instructor_id', 'options', result.message[5]) // instructors
 				frm.set_df_property('participant_id', 'options', result.message[6]) // participants
+				frm.set_df_property('date', 'options', result.message[7]) //date
 			}
 		})
 	},

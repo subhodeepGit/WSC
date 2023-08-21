@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "PTG.-.#####",
  "creation": "2023-07-05 12:09:28.353134",
  "default_view": "List",
  "doctype": "DocType",
@@ -138,10 +139,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-21 08:49:30.095882",
+ "modified": "2023-08-21 15:41:49.849420",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Group",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "ASE.-.#####",
  "creation": "2023-07-05 16:45:25.570425",
  "default_view": "List",
  "doctype": "DocType",
@@ -130,10 +131,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-25 17:28:50.644645",
+ "modified": "2023-08-21 15:47:32.234160",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Evaluation",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

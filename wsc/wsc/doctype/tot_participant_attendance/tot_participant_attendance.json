@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "PA.-.#####",
  "creation": "2023-07-06 14:54:04.995521",
  "default_view": "List",
  "doctype": "DocType",
@@ -36,7 +37,7 @@
   },
   {
    "fieldname": "date",
-   "fieldtype": "Date",
+   "fieldtype": "Select",
    "label": "Date"
   },
   {
@@ -97,10 +98,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-24 13:55:27.025883",
+ "modified": "2023-08-21 15:42:26.033609",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant Attendance",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
