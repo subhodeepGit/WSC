@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "TCS.-.#####",
  "creation": "2023-08-18 17:38:17.834329",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -13,7 +14,7 @@
   "section_break_low7n",
   "course_id",
   "module_id",
-  "scehduled_date",
+  "scheduled_date",
   "room_number",
   "from_time",
   "duration",
@@ -63,11 +64,6 @@
    "fieldname": "module_name",
    "fieldtype": "Data",
    "label": "Module Name"
-  },
-  {
-   "fieldname": "scehduled_date",
-   "fieldtype": "Data",
-   "label": "Scehduled Date"
   },
   {
    "fieldname": "scheduled_time",
@@ -132,14 +128,20 @@
   {
    "fieldname": "section_break_low7n",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "scheduled_date",
+   "fieldtype": "Data",
+   "label": "Scheduled Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-18 17:43:26.654437",
+ "modified": "2023-08-21 15:43:33.241345",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Class Schedule",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

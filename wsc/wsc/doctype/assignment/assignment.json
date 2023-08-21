@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "ASG.-.#####",
  "creation": "2023-07-05 14:52:32.011330",
  "default_view": "List",
  "doctype": "DocType",
@@ -113,10 +114,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-25 11:33:12.801899",
+ "modified": "2023-08-21 15:46:06.888797",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
