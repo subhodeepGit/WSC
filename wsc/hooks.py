@@ -343,7 +343,16 @@ doc_events = {
     },
     "Material Request": {
         "validate":"wsc.wsc.doctype.material_request.validate"
-    }
+    },
+    "Shift Type": {
+        "validate":"wsc.wsc.validations.shift_type.validate"
+    },
+    "Shift Assignment": {
+        "on_change":"wsc.wsc.validations.shift_assignment.on_change"
+    },
+    "Leave Type": {
+        "validate":"wsc.wsc.validations.leave_type.validate"
+    },
     
 
     # "User":{

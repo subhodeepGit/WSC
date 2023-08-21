@@ -1,5 +1,6 @@
 import frappe
 from frappe import _
+import json
 from frappe.model.document import Document
 from wsc.wsc.notification.custom_notification import purchase_requisition_raised, received_in_inventory, received_by_department, workflow_wating_approval
 
@@ -94,3 +95,41 @@ def validate(self,method):
         receipient_name = frappe.db.get_list('User',{'name':('in', user_ids),'role_profile_name':'CEO'},['name'])
         workflow_wating_approval(self, receipient_name)
     # Workflow Notification code Ends
+
+@frappe.whitelist()
+def get_next_state(doc):
+        doc = json.loads(doc)
+        authorisation_workflow = {}
+
+        full_power_authority=frappe.get_all("Authorization Hierarchy", {"parent" : frappe.db.get_value('Material Request Item', {'parent': doc["name"]},['item_group']), "full_power" : 1}, ["authority", "full_power", "from_amount", "to_amount"])
+
+        authority_amount_range = frappe.get_all("Authorization Hierarchy", {"parent" : frappe.db.get_value('Material Request Item', {'parent': doc["name"]},['item_group']), "from_amount" : ("<=", doc["grand_total"]), "to_amount" : (">=", doc["grand_total"])}, ["authority", "full_power", "from_amount", "to_amount"])
+
+        if authority_amount_range:
+            authority_greater_amount_range = frappe.get_all("Authorization Hierarchy", {"parent" : frappe.db.get_value('Material Request Item', {'parent': doc["name"]},['item_group']), "from_amount" : (">=", authority_amount_range[0]["to_amount"])}, ["authority", "full_power", "from_amount", "to_amount"])
+            if authority_greater_amount_range:
+                authorisation_workflow=authority_amount_range
+            else:
+                authorisation_workflow=authority_amount_range+full_power_authority
+        else:
+            authorisation_workflow=full_power_authority
+        
+        next_state_workflow = frappe.get_all("Workflow Transition", {"parent" : "Purchase Requisition Workflow","state":doc["workflow_state"]}, ["state", "next_state", "allowed"])
+        
+        all_allowed = set()
+        if next_state_workflow:
+            for i in range(len(next_state_workflow)):
+                all_allowed.add(next_state_workflow[i]["allowed"])
+            all_allowed = list(all_allowed)
+        if all_allowed:
+            count = 0
+            for entry in authorisation_workflow:
+                if entry['authority'] in all_allowed:
+                    count += 1
+                if count >= 1:
+                    return False
+            if count == 0:
+                return True
+            return True
+        else:
+            return True

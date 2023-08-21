@@ -6,10 +6,30 @@ from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 
 class ParticipantAttendanceTool(Document):
-	pass
+	def validate(self):
+		
 
-
-
+		for d in self.get('participants'):
+			new_doc = frappe.new_doc("ToT Participant Attendance")
+			new_doc.participant_group = self.participant_group
+			new_doc.select_course = self.select_course
+			new_doc.select_module = self.select_module
+			new_doc.select_sub_module = self.select_sub_module
+			new_doc.academic_year = self.academic_year
+			new_doc.academic_term = self.academic_term
+			new_doc.instructor_id = self.instructor_id
+			new_doc.instructor_name = self.instructor_name
+			new_doc.participant_id = d.participant_id
+			new_doc.participant_name = d.participant_name
+			new_doc.date = self.date
+			new_doc.time = self.term
+			
+			if(d.present == 1):
+				new_doc.status = "Present"
+			else:
+				new_doc.status = "Absent"
+			new_doc.save()		
+			
 @frappe.whitelist()
 def get_participant_group(based_on):
 	data = frappe.db.sql(""" SELECT name FROM `tabParticipant Group`""")
