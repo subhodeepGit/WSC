@@ -7,9 +7,10 @@ from frappe.model.mapper import get_mapped_doc
 
 class ParticipantAttendanceTool(Document):
 	def validate(self):
-		new_doc = frappe.new_doc("ToT Participant Attendance")
+		
 
 		for d in self.get('participants'):
+			new_doc = frappe.new_doc("ToT Participant Attendance")
 			new_doc.participant_group = self.participant_group
 			new_doc.select_course = self.select_course
 			new_doc.select_module = self.select_module
@@ -27,13 +28,8 @@ class ParticipantAttendanceTool(Document):
 				new_doc.status = "Present"
 			else:
 				new_doc.status = "Absent"
-			
 			new_doc.save()		
-		pass
-	pass
-
-
-
+			
 @frappe.whitelist()
 def get_participant_group(based_on):
 	data = frappe.db.sql(""" SELECT name FROM `tabParticipant Group`""")
