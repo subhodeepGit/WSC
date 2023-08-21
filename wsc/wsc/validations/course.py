@@ -65,12 +65,19 @@ def calculate_total(doc):
 def add_module_to_tot_course(course, programs):
 	semesters = json.loads(programs)
 	for entry in semesters:
-		programs = frappe.get_doc('Programs',{'is_tot':1}, entry)
-		print("\n\nPrograms:",programs)
+		programs = frappe.get_doc('Programs',{'is_short_term_course':"Yes"}, entry)
 		programs.append('courses', {
 			'course': course,
 			'course_name': frappe.db.get_value("Course",{'name':course,'is_tot':1},"course_name"),
 		})
+		
+		program = frappe.get_doc('Program', entry)
+		program.append('courses', {
+			'course': course,
+			'course_name': frappe.db.get_value("Course",{'name':course,'is_tot':1},"course_name"),
+		})
+		program.flags.ignore_mandatory = True
+		program.save()
 		programs.flags.ignore_mandatory = True
 		programs.save()
 	frappe.db.commit()
@@ -110,9 +117,8 @@ def get_semesters_name(course):
 @frappe.whitelist()
 def get_course_name(course):
 	data = []
-	for entry in frappe.db.get_all('Program'):
+	for entry in frappe.db.get_all('Program',{'is__tot':1}):
 		# ,{'is__tot':0}
-		print("\n\nENTRU",entry)
 		program = frappe.get_doc('Program', entry.name)
 		courses = [c.course for c in program.courses]
 		if not courses or course not in courses:
