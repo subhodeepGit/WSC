@@ -1,3 +1,35 @@
+frappe.ui.form.on('Material Request', {
+	refresh: function(frm) {
+		if (!frm.is_new() && frm.doc.material_request_type === 'Purchase') {
+            frappe.call({
+				method: 'wsc.wsc.doctype.material_request.get_next_state',
+				args: {
+					grand_total: frm.doc.grand_total,
+					current_state: frm.doc.workflow_state,
+					item_code: frm.doc.items[0].item_code,
+					doc:frm.doc
+				},
+				callback: function(response) {
+					var nextWorkflowState = response.message;
+					if(!nextWorkflowState){
+						frm.remove_custom_button("Purchase Order", "Create");
+						frm.remove_custom_button("Request for Quotation", "Create");
+						frm.remove_custom_button("Supplier Quotation", "Create");
+					}
+				}
+			});
+        }
+		if (frm.doc.material_request_type ==='Material Transfer' && frm.doc.workflow_state !== 'Approved by GM-Procurement & Contract Management'){
+            frm.remove_custom_button("Material Transfer","Create");
+			frm.remove_custom_button("Material Transfer (In Transit)","Create");
+			frm.remove_custom_button("Pick List","Create");
+        }
+		if (frm.doc.material_request_type ==="Material Issue" && frm.doc.workflow_state !== 'Approved by GM-Procurement & Contract Management'){
+            frm.remove_custom_button("Issue Material","Create");
+        }
+    }
+});
+
 frappe.ui.form.on("Material Request Item", "qty", function(frm, cdt, cdn) {
     var d = locals[cdt][cdn];
         d.total_amount = d.price * d.qty
