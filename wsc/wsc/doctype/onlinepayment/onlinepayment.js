@@ -78,7 +78,7 @@ frappe.ui.form.on('OnlinePayment', {
     refresh: function (frm) {
         var hdfcButton = frm.add_custom_button("By HDFC", function () {
             frappe.call({
-                method: "wsc.wsc.doctype.onlinepayment.onlinepayment.open_gateway",
+                method: "wsc.wsc.doctype.onlinepayment.onlinepayment.login",
                 args: {
                     party_name: frm.doc.party,
                     roll_no: frm.doc.roll_no,
@@ -108,7 +108,7 @@ frappe.ui.form.on('OnlinePayment', {
                             alert("Required data missing in response.");
                         }
                     } else {
-                        alert("No Call Back information received.");
+                        alert("No response data received.");
                     }
                 }
             });
