@@ -77,10 +77,12 @@ frappe.ui.form.on("Student Hostel Admission", "student", function (frm) {
 		cur_frm.refresh_field("current_education");
 		$.each(tabletransfer.current_education, function (index, row) {
 			var d = frappe.model.add_child(cur_frm.doc, "Current Educational Details", "current_education_fetch");
+			d.program_grade=row.program_grade;
 			d.programs = row.programs;
 			d.semesters = row.semesters;
 			d.academic_year = row.academic_year;
 			d.academic_term = row.academic_term;
+			d.student_batch_name = row.student_batch_name;
 			cur_frm.refresh_field("current_education_fetch");
 		});
 	});

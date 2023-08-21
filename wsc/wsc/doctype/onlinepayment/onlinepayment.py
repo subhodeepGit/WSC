@@ -46,7 +46,7 @@ language = 'EN'
 
 def check_url(p_url):
 	parsed_url = urlparse(p_url)
-	
+	logging.info("parsed_url: %s", parsed_url)
 	if parsed_url.scheme == "http":
 		return "test"
 	else:
@@ -91,32 +91,36 @@ def login(party_name, roll_no, amount, order_id, url):
 					site_name = config_data.get("Site Name")
 					gateway_name = config_data.get("Gateway Name")
 					dev_type = config_data.get("Dev Type")
-			elif processed_url == "production":				
-				if config_data:
-					logging.info("config_data: %s", config_data)
-					merchant_id = config_data.get("Merchant ID")
-					access_code = config_data.get("Access Code")
-					working_key = config_data.get("Working Key")
-					redirect_url = config_data.get("Redirect URL")
-					cancel_url = config_data.get("Cancel URL")
-					site_name = config_data.get("Site Name")
-					gateway_name = config_data.get("Gateway Name")
-					dev_type = config_data.get("Dev Type")
-			else:
-				# Print a message or log an error
-				print("Please contact Administrator.")				
+		elif processed_url == "production":				
+			if config_data:
+				logging.info("config_data production: %s", config_data)
+				merchant_id = config_data.get("Merchant ID")
+				access_code = config_data.get("Access Code")
+				working_key = config_data.get("Working Key")
+				redirect_url = config_data.get("Redirect URL")
+				cancel_url = config_data.get("Cancel URL")
+				site_name = config_data.get("Site Name")
+				gateway_name = config_data.get("Gateway Name")
+				dev_type = config_data.get("Dev Type")
 
-			passed_url = urlparse(url)
-			logging.info("passed_url: %s", passed_url)
-			config_sitename = urlparse(site_name)
-			logging.info("config_sitename: %s", config_sitename)
+				# passed_url = urlparse(url)
+				# logging.info("passed_url: %s", passed_url)
 
-			logging.info("passed_url.netloc: %s", passed_url.netloc)
-			logging.info("config_sitename.netloc: %s", config_sitename.netloc)
+				# config_sitename = urlparse(site_name)
+				# logging.info("config_sitename: %s", config_sitename)
 
-			
+				# logging.info("passed_url.netloc: %s", passed_url.netloc)
+				# logging.info("config_sitename.netloc: %s", config_sitename.netloc)
 
-			if passed_url.netloc == config_sitename.netloc:
+		# else:
+		# 	# Print a message or log an error
+		# 	print("Please contact Administrator.")				
+
+				
+		
+
+			# if passed_url.netloc == config_sitename.netloc:
+			if 1==1:
 				p_merchant_id = merchant_id
 				p_billing_name = party_name
 				p_customer_identifier = roll_no

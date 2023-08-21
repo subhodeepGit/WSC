@@ -1,0 +1,320 @@
+2023-08-17 14:45:18,980 - root - INFO - Processing login function...
+2023-08-17 14:45:18,981 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 14:45:18,982 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0010', params='', query='', fragment='')
+2023-08-17 14:45:18,983 - root - INFO - Processed URL: production
+2023-08-17 14:45:18,983 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 14:45:18,984 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 14:45:18,985 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': ' https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 14:45:18,985 - root - INFO - passed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0010', params='', query='', fragment='')
+2023-08-17 14:45:18,986 - root - INFO - config_sitename: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/', params='', query='', fragment='')
+2023-08-17 14:45:18,986 - root - INFO - passed_url.netloc: soulwsc.eduleadonline.com
+2023-08-17 14:45:18,986 - root - INFO - config_sitename.netloc: soulwsc.eduleadonline.com
+2023-08-17 14:45:18,989 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae5857770802d18ce2c99768a24e759c72b5c3f189d1c90ad623952b2550056afb736b98663a565d90a4bbba12e6434c1a7c43228441ce4895952844f46d71ac5d063b2953a0006702f3a1ca78406e6947e26529da89d8b380b5d2d79d6afe908461d7c3ee331b25355d83800af11a2ce50b9d2d102793670c0a440a04d2f8afdfccf8f377be72f0c9ecea9b24e489a6dcd2e7c5374a157100d2b3477b4ce7a66032f46e4257031e6704932a0a0fbcd6bf06bca8fd67912e491fb7c8b63c6c698e4ace20c807a45cd28f5e68b17dd1c8130f5f18d8080b29e402485cb87230306d8d9f981aba9696a6538db87d92225d0b1447ecdb1
+2023-08-17 14:45:18,990 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 14:45:18,990 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 14:51:25,887 - root - INFO - Processing login function...
+2023-08-17 14:51:25,887 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 14:51:25,888 - root - INFO - Processed URL: production
+2023-08-17 14:51:25,888 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 14:51:25,888 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 14:51:25,889 - root - INFO - config_data: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': ' https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 14:51:46,213 - root - INFO - Processing login function...
+2023-08-17 14:51:46,214 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 14:51:46,214 - root - INFO - Processed URL: production
+2023-08-17 14:51:46,215 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 14:51:46,215 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 14:52:29,551 - root - INFO - Processing login function...
+2023-08-17 14:52:29,552 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0009
+2023-08-17 14:52:29,552 - root - INFO - Processed URL: production
+2023-08-17 14:52:29,552 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 14:52:29,552 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 14:53:29,780 - root - INFO - Processing login function...
+2023-08-17 14:53:29,781 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0009
+2023-08-17 14:53:29,781 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0009', params='', query='', fragment='')
+2023-08-17 14:53:29,782 - root - INFO - Processed URL: production
+2023-08-17 14:53:29,782 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 14:53:29,782 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 14:53:29,783 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': ' https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 14:53:29,783 - root - INFO - passed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0009', params='', query='', fragment='')
+2023-08-17 14:53:29,783 - root - INFO - config_sitename: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/', params='', query='', fragment='')
+2023-08-17 14:53:29,784 - root - INFO - passed_url.netloc: soulwsc.eduleadonline.com
+2023-08-17 14:53:29,784 - root - INFO - config_sitename.netloc: soulwsc.eduleadonline.com
+2023-08-17 14:53:29,784 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae585777080319cc9447654918ce2f4f45edbf5f5e081766e4f8c09f1a2ab594fb4a04609da6d63562b9bc141865bc9fe87cf4c7eedf5d1c5d24d207d1f16f1ac2aaf9034c3b7b143fe40be0d12d53d70180e36473f6238627e06f4406466f94e5f5d0d4c802336f835d0653753cbe0bde09f5e1e5382c678f39093b2744ac18dc302a17eba53579bca07df66afee710a8b9bc47d640c7c8bc6b6773df638d94a340d67d57967b9e5b17e1cdf7e075923a1eba3fcf7ea798a2c073e6c6f0d25567b1a449a5b447a8c917c8467988805682cfe0e7e3d4eaf3a37b14073c09e61c32c706e0590c5a3afd8ff114beb3a54213d0bcd52ac
+2023-08-17 14:53:29,784 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 14:53:29,785 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0009
+2023-08-17 15:02:42,856 - root - INFO - Processing login function...
+2023-08-17 15:02:42,857 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0009
+2023-08-17 15:02:42,857 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0009', params='', query='', fragment='')
+2023-08-17 15:02:42,858 - root - INFO - Processed URL: production
+2023-08-17 15:02:42,858 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 15:02:42,858 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 15:02:42,859 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': ' https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 15:02:42,859 - root - INFO - passed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0009', params='', query='', fragment='')
+2023-08-17 15:02:42,860 - root - INFO - config_sitename: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/', params='', query='', fragment='')
+2023-08-17 15:02:42,860 - root - INFO - passed_url.netloc: soulwsc.eduleadonline.com
+2023-08-17 15:02:42,860 - root - INFO - config_sitename.netloc: soulwsc.eduleadonline.com
+2023-08-17 15:02:42,861 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae585777080319cc9447654918ce2f4f45edbf5f5e081766e4f8c09f1a2ab594fb4a04609da6d63562b9bc141865bc9fe87cf4c7eedf5d1c5d24d207d1f16f1ac2aaf9034c3b7b143fe40be0d12d53d70180e36473f6238627e06f4406466f94e5f5d0d4c802336f835d0653753cbe0bde09f5e1e5382c678f39093b2744ac18dc302a17eba53579bca07df66afee710a8b9bc47d640c7c8bc6b6773df638d94a340d67d57967b9e5b17e1cdf7e075923a1eba3fcf7ea798a2c073e6c6f0d25567b1a449a5b447a8c917c8467988805682cfe0e7e3d4eaf3a37b14073c09e61c32c706e0590c5a3afd8ff114beb3a54213d0bcd52ac
+2023-08-17 15:02:42,861 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 15:02:42,862 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0009
+2023-08-17 15:08:08,497 - root - INFO - Processing login function...
+2023-08-17 15:08:08,498 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 15:08:08,498 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0010', params='', query='', fragment='')
+2023-08-17 15:08:08,498 - root - INFO - Processed URL: production
+2023-08-17 15:08:08,498 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 15:08:08,498 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 15:08:08,499 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': ' https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 15:08:08,502 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae5857770802d18ce2c99768a24e759c72b5c3f189d1c90ad623952b2550056afb736b98663a565d90a4bbba12e6434c1a7c43228441ce4895952844f46d71ac5d063b2953a0006702f3a1ca78406e6947e26529da89d8b380b5d2d79d6afe908461d7c3ee331b25355d83800af11a2ce50b9d2d102793670c0a440a04d2f8afdfccf8f377be72f0c9ecea9b24e489a6dcd2e7c5374a157100d2b3477b4ce7a66032f46e4257031e6704932a0a0fbcd6bf06bca8fd67912e491fb7c8b63c6c698e4ace20c807a45cd28f5e68b17dd1c8130f5f18d8080b29e402485cb87230306d8d9f981aba9696a6538db87d92225d0b1447ecdb1
+2023-08-17 15:08:08,502 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 15:08:08,502 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 15:11:22,898 - root - INFO - Processing login function...
+2023-08-17 15:11:22,898 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 15:11:22,899 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0010', params='', query='', fragment='')
+2023-08-17 15:11:22,899 - root - INFO - Processed URL: production
+2023-08-17 15:11:22,899 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 15:11:22,899 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 15:11:22,899 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': ' https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 15:11:22,904 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae5857770802d18ce2c99768a24e759c72b5c3f189d1c90ad623952b2550056afb736b98663a565d90a4bbba12e6434c1a7c43228441ce4895952844f46d71ac5d063b2953a0006702f3a1ca78406e6947e26529da89d8b380b5d2d79d6afe908461d7c3ee331b25355d83800af11a2ce50b9d2d102793670c0a440a04d2f8afdfccf8f377be72f0c9ecea9b24e489a6dcd2e7c5374a157100d2b3477b4ce7a66032f46e4257031e6704932a0a0fbcd6bf06bca8fd67912e491fb7c8b63c6c698e4ace20c807a45cd28f5e68b17dd1c8130f5f18d8080b29e402485cb87230306d8d9f981aba9696a6538db87d92225d0b1447ecdb1
+2023-08-17 15:11:22,904 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 15:11:22,904 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 15:12:20,013 - root - INFO - Processing login function...
+2023-08-17 15:12:20,013 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 15:12:20,013 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0010', params='', query='', fragment='')
+2023-08-17 15:12:20,013 - root - INFO - Processed URL: production
+2023-08-17 15:12:20,013 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 15:12:20,013 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 15:12:20,014 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': ' https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 15:12:20,014 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae5857770802d18ce2c99768a24e759c72b5c3f189d1c90ad623952b2550056afb736b98663a565d90a4bbba12e6434c1a7c43228441ce4895952844f46d71ac5d063b2953a0006702f3a1ca78406e6947e26529da89d8b380b5d2d79d6afe908461d7c3ee331b25355d83800af11a2ce50b9d2d102793670c0a440a04d2f8afdfccf8f377be72f0c9ecea9b24e489a6dcd2e7c5374a157100d2b3477b4ce7a66032f46e4257031e6704932a0a0fbcd6bf06bca8fd67912e491fb7c8b63c6c698e4ace20c807a45cd28f5e68b17dd1c8130f5f18d8080b29e402485cb87230306d8d9f981aba9696a6538db87d92225d0b1447ecdb1
+2023-08-17 15:12:20,014 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 15:12:20,014 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 15:16:30,193 - root - INFO - Processing login function...
+2023-08-17 15:16:30,194 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 15:16:30,195 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0010', params='', query='', fragment='')
+2023-08-17 15:16:30,195 - root - INFO - Processed URL: production
+2023-08-17 15:16:30,195 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 15:16:30,196 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 15:16:30,196 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': ' https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 15:16:30,201 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae5857770802d18ce2c99768a24e759c72b5c3f189d1c90ad623952b2550056afb736b98663a565d90a4bbba12e6434c1a7c43228441ce4895952844f46d71ac5d063b2953a0006702f3a1ca78406e6947e26529da89d8b380b5d2d79d6afe908461d7c3ee331b25355d83800af11a2ce50b9d2d102793670c0a440a04d2f8afdfccf8f377be72f0c9ecea9b24e489a6dcd2e7c5374a157100d2b3477b4ce7a66032f46e4257031e6704932a0a0fbcd6bf06bca8fd67912e491fb7c8b63c6c698e4ace20c807a45cd28f5e68b17dd1c8130f5f18d8080b29e402485cb87230306d8d9f981aba9696a6538db87d92225d0b1447ecdb1
+2023-08-17 15:16:30,201 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 15:16:30,202 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 15:19:17,299 - root - INFO - Processing login function...
+2023-08-17 15:19:17,299 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0009
+2023-08-17 15:19:17,299 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0009', params='', query='', fragment='')
+2023-08-17 15:19:17,300 - root - INFO - Processed URL: production
+2023-08-17 15:19:17,300 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 15:19:17,300 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 15:19:17,300 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': ' https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 15:19:17,305 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae585777080319cc9447654918ce2f4f45edbf5f5e081766e4f8c09f1a2ab594fb4a04609da6d63562b9bc141865bc9fe87cf4c7eedf5d1c5d24d207d1f16f1ac2aaf9034c3b7b143fe40be0d12d53d70180e36473f6238627e06f4406466f94e5f5d0d4c802336f835d0653753cbe0bde09f5e1e5382c678f39093b2744ac18dc302a17eba53579bca07df66afee710a8b9bc47d640c7c8bc6b6773df638d94a340d67d57967b9e5b17e1cdf7e075923a1eba3fcf7ea798a2c073e6c6f0d25567b1a449a5b447a8c917c8467988805682cfe0e7e3d4eaf3a37b14073c09e61c32c706e0590c5a3afd8ff114beb3a54213d0bcd52ac
+2023-08-17 15:19:17,305 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 15:19:17,305 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0009
+2023-08-17 15:26:59,671 - root - INFO - Processing login function...
+2023-08-17 15:26:59,672 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0006
+2023-08-17 15:26:59,672 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0006', params='', query='', fragment='')
+2023-08-17 15:26:59,672 - root - INFO - Processed URL: production
+2023-08-17 15:26:59,673 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 15:26:59,673 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 15:26:59,674 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': ' https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 15:26:59,674 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae585777080e36e2f6322591df7c554ce0481fb45a5aa347ad5c51f8580ec28bf5b719505a6a9e414e82d4cb6e2520e030077bc28552f597b4aeae094d88d8c31e2479f5cb789cc5ba44de8cd6a35f5146b6f95c6e8993fcb7f92024599a9c041135cb2f8136e055189150aece716a62cbcd4c87efa828349b7fc616cfe7d6616ea332c458125691e8b7f671145c231b54fa8917a02caaab55cf27363a0b3f5d0d5c1d52fc8b4c997f1ecff61be2ae759854ddc3deeec3f1f34fc5f01a92b45fa1917af0c484018c964b991cfe45ecb13f8b2b2128e5830cc19ba01be43bf89237863ac5b571787239231bad862f2bacb247eb06f2a
+2023-08-17 15:26:59,674 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 15:26:59,675 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0006
+2023-08-17 15:30:35,329 - root - INFO - Processing login function...
+2023-08-17 15:30:35,329 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0006
+2023-08-17 15:30:35,330 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0006', params='', query='', fragment='')
+2023-08-17 15:30:35,330 - root - INFO - Processed URL: production
+2023-08-17 15:30:35,330 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 15:30:35,330 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 15:30:35,331 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': ' https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 15:30:35,335 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae585777080e36e2f6322591df7c554ce0481fb45a5aa347ad5c51f8580ec28bf5b719505a6a9e414e82d4cb6e2520e030077bc28552f597b4aeae094d88d8c31e2479f5cb789cc5ba44de8cd6a35f5146b6f95c6e8993fcb7f92024599a9c041135cb2f8136e055189150aece716a62cbcd4c87efa828349b7fc616cfe7d6616ea332c458125691e8b7f671145c231b54fa8917a02caaab55cf27363a0b3f5d0d5c1d52fc8b4c997f1ecff61be2ae759854ddc3deeec3f1f34fc5f01a92b45fa1917af0c484018c964b991cfe45ecb13f8b2b2128e5830cc19ba01be43bf89237863ac5b571787239231bad862f2bacb247eb06f2a
+2023-08-17 15:30:35,335 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 15:30:35,335 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0006
+2023-08-17 15:33:50,931 - root - INFO - Processing login function...
+2023-08-17 15:33:50,931 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0006
+2023-08-17 15:33:50,931 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0006', params='', query='', fragment='')
+2023-08-17 15:33:50,931 - root - INFO - Processed URL: production
+2023-08-17 15:33:50,931 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 15:33:50,931 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 15:33:50,931 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': ' https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 15:33:50,932 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae585777080e36e2f6322591df7c554ce0481fb45a5aa347ad5c51f8580ec28bf5b719505a6a9e414e82d4cb6e2520e030077bc28552f597b4aeae094d88d8c31e2479f5cb789cc5ba44de8cd6a35f5146b6f95c6e8993fcb7f92024599a9c041135cb2f8136e055189150aece716a62cbcd4c87efa828349b7fc616cfe7d6616ea332c458125691e8b7f671145c231b54fa8917a02caaab55cf27363a0b3f5d0d5c1d52fc8b4c997f1ecff61be2ae759854ddc3deeec3f1f34fc5f01a92b45fa1917af0c484018c964b991cfe45ecb13f8b2b2128e5830cc19ba01be43bf89237863ac5b571787239231bad862f2bacb247eb06f2a
+2023-08-17 15:33:50,932 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 15:33:50,932 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0006
+2023-08-17 15:38:30,844 - root - INFO - Processing login function...
+2023-08-17 15:38:30,845 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0006
+2023-08-17 15:38:30,845 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0006', params='', query='', fragment='')
+2023-08-17 15:38:30,845 - root - INFO - Processed URL: production
+2023-08-17 15:38:30,845 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 15:38:30,846 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 15:38:30,846 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': ' https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 15:38:30,846 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae585777080e36e2f6322591df7c554ce0481fb45a5aa347ad5c51f8580ec28bf5b719505a6a9e414e82d4cb6e2520e030077bc28552f597b4aeae094d88d8c31e2479f5cb789cc5ba44de8cd6a35f5146b6f95c6e8993fcb7f92024599a9c041135cb2f8136e055189150aece716a62cbcd4c87efa828349b7fc616cfe7d6616ea332c458125691e8b7f671145c231b54fa8917a02caaab55cf27363a0b3f5d0d5c1d52fc8b4c997f1ecff61be2ae759854ddc3deeec3f1f34fc5f01a92b45fa1917af0c484018c964b991cfe45ecb13f8b2b2128e5830cc19ba01be43bf89237863ac5b571787239231bad862f2bacb247eb06f2a
+2023-08-17 15:38:30,847 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 15:38:30,847 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0006
+2023-08-17 15:39:52,583 - root - INFO - Processing login function...
+2023-08-17 15:39:52,583 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0006
+2023-08-17 15:39:52,584 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0006', params='', query='', fragment='')
+2023-08-17 15:39:52,584 - root - INFO - Processed URL: production
+2023-08-17 15:39:52,584 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 15:39:52,584 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 15:39:52,585 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': ' https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 15:39:52,588 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae585777080e36e2f6322591df7c554ce0481fb45a5aa347ad5c51f8580ec28bf5b719505a6a9e414e82d4cb6e2520e030077bc28552f597b4aeae094d88d8c31e2479f5cb789cc5ba44de8cd6a35f5146b6f95c6e8993fcb7f92024599a9c041135cb2f8136e055189150aece716a62cbcd4c87efa828349b7fc616cfe7d6616ea332c458125691e8b7f671145c231b54fa8917a02caaab55cf27363a0b3f5d0d5c1d52fc8b4c997f1ecff61be2ae759854ddc3deeec3f1f34fc5f01a92b45fa1917af0c484018c964b991cfe45ecb13f8b2b2128e5830cc19ba01be43bf89237863ac5b571787239231bad862f2bacb247eb06f2a
+2023-08-17 15:39:52,588 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 15:39:52,589 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0006
+2023-08-17 15:42:38,735 - root - INFO - Processing login function...
+2023-08-17 15:42:38,736 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0006
+2023-08-17 15:42:38,736 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0006', params='', query='', fragment='')
+2023-08-17 15:42:38,736 - root - INFO - Processed URL: production
+2023-08-17 15:42:38,736 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 15:42:38,736 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 15:42:38,736 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': ' https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 15:42:38,737 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae585777080e36e2f6322591df7c554ce0481fb45a5aa347ad5c51f8580ec28bf5b719505a6a9e414e82d4cb6e2520e030077bc28552f597b4aeae094d88d8c31e2479f5cb789cc5ba44de8cd6a35f5146b6f95c6e8993fcb7f92024599a9c041135cb2f8136e055189150aece716a62cbcd4c87efa828349b7fc616cfe7d6616ea332c458125691e8b7f671145c231b54fa8917a02caaab55cf27363a0b3f5d0d5c1d52fc8b4c997f1ecff61be2ae759854ddc3deeec3f1f34fc5f01a92b45fa1917af0c484018c964b991cfe45ecb13f8b2b2128e5830cc19ba01be43bf89237863ac5b571787239231bad862f2bacb247eb06f2a
+2023-08-17 15:42:38,737 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 15:42:38,737 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0006
+2023-08-17 15:44:14,722 - root - INFO - Processing login function...
+2023-08-17 15:44:14,723 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0003
+2023-08-17 15:44:14,723 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0003', params='', query='', fragment='')
+2023-08-17 15:44:14,723 - root - INFO - Processed URL: production
+2023-08-17 15:44:14,723 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 15:44:14,723 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 15:44:14,724 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': ' https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 15:44:14,724 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae58577708022fd4d60772d1634e3abc9f48c4a93d54e62fd0d336de1b7be2b1789e0512b62939c904b24c592745501519c2b5198a87290da405461b60598168658eea5a14bfc568bcfb84d80b361577c482c313a19c9a42fc3a60c848c0127d989980d4d505affcbe741d4b412afd40b803f7fc27ae694fc452de511e4a4dd8a0917df8410a414099fc95001535815c602df33dca0aaf0326cca0f3866ca2f063394edbd81b42b992ddba1f2462095f40c90da989e713cbf211fb59cd95d16973488972c4dd6f2892a34f74a0f25eeeced2303db215282825aa00f1cad5e803d10a5075967c68fa7b676dd8c42cb5353114faaebf7
+2023-08-17 15:44:14,724 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 15:44:14,725 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0003
+2023-08-17 15:46:16,027 - root - INFO - Processing login function...
+2023-08-17 15:46:16,028 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0006
+2023-08-17 15:46:16,028 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0006', params='', query='', fragment='')
+2023-08-17 15:46:16,028 - root - INFO - Processed URL: production
+2023-08-17 15:46:16,028 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 15:46:16,028 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 15:46:16,029 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': ' https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 15:46:16,033 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae585777080e36e2f6322591df7c554ce0481fb45a5aa347ad5c51f8580ec28bf5b719505a6a9e414e82d4cb6e2520e030077bc28552f597b4aeae094d88d8c31e2479f5cb789cc5ba44de8cd6a35f5146b6f95c6e8993fcb7f92024599a9c041135cb2f8136e055189150aece716a62cbcd4c87efa828349b7fc616cfe7d6616ea332c458125691e8b7f671145c231b54fa8917a02caaab55cf27363a0b3f5d0d5c1d52fc8b4c997f1ecff61be2ae759854ddc3deeec3f1f34fc5f01a92b45fa1917af0c484018c964b991cfe45ecb13f8b2b2128e5830cc19ba01be43bf89237863ac5b571787239231bad862f2bacb247eb06f2a
+2023-08-17 15:46:16,033 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 15:46:16,033 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0006
+2023-08-17 15:48:48,146 - root - INFO - Processing login function...
+2023-08-17 15:48:48,147 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0006
+2023-08-17 15:48:48,147 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0006', params='', query='', fragment='')
+2023-08-17 15:48:48,147 - root - INFO - Processed URL: production
+2023-08-17 15:48:48,147 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 15:48:48,148 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 15:48:48,148 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': ' https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 15:48:48,148 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae585777080e36e2f6322591df7c554ce0481fb45a5aa347ad5c51f8580ec28bf5b719505a6a9e414e82d4cb6e2520e030077bc28552f597b4aeae094d88d8c31e2479f5cb789cc5ba44de8cd6a35f5146b6f95c6e8993fcb7f92024599a9c041135cb2f8136e055189150aece716a62cbcd4c87efa828349b7fc616cfe7d6616ea332c458125691e8b7f671145c231b54fa8917a02caaab55cf27363a0b3f5d0d5c1d52fc8b4c997f1ecff61be2ae759854ddc3deeec3f1f34fc5f01a92b45fa1917af0c484018c964b991cfe45ecb13f8b2b2128e5830cc19ba01be43bf89237863ac5b571787239231bad862f2bacb247eb06f2a
+2023-08-17 15:48:48,149 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 15:48:48,149 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0006
+2023-08-17 15:51:44,107 - root - INFO - Processing login function...
+2023-08-17 15:51:44,107 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0006
+2023-08-17 15:51:44,107 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0006', params='', query='', fragment='')
+2023-08-17 15:51:44,108 - root - INFO - Processed URL: production
+2023-08-17 15:51:44,108 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 15:51:44,108 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 15:51:44,108 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 15:51:44,109 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae585777080e36e2f6322591df7c554ce0481fb45a5aa347ad5c51f8580ec28bf5b719505a6a9e414e82d4cb6e2520e030077bc28552f597b4aeae094d88d8c31e2479f5cb789cc5ba44de8cd6a35f5146b6f95c6e8993fcb7f92024599a9c041135cb2f8136e055189150aece716a62cbcd4c87efa828349b7fc616cfe7d6616ea332c458125691e8b7f671145c231b54fa8917a02caaab55cf27363a0b3f5d0d5c1d52fc8b4c997f1ecff61be2ae759854ddc3deeec3f1f34fc5f01a92b45fa1917af0c484018c964b991cfe45ecb13f8b2b2128e5830cc19ba01be43bf89237863ac5b571787239231bad862f2bacb247eb06f2a
+2023-08-17 15:51:44,109 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 15:51:44,109 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0006
+2023-08-17 15:53:12,871 - root - INFO - Processing login function...
+2023-08-17 15:53:12,871 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0006
+2023-08-17 15:53:12,871 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0006', params='', query='', fragment='')
+2023-08-17 15:53:12,871 - root - INFO - Processed URL: production
+2023-08-17 15:53:12,871 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 15:53:12,871 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 15:53:12,872 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 15:53:12,872 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae585777080e36e2f6322591df7c554ce0481fb45a5aa347ad5c51f8580ec28bf5b719505a6a9e414e82d4cb6e2520e030077bc28552f597b4aeae094d88d8c31e2479f5cb789cc5ba44de8cd6a35f5146b6f95c6e8993fcb7f92024599a9c041135cb2f8136e055189150aece716a62cbcd4c87efa828349b7fc616cfe7d6616ea332c458125691e8b7f671145c231b54fa8917a02caaab55cf27363a0b3f5d0d5c1d52fc8b4c997f1ecff61be2ae759854ddc3deeec3f1f34fc5f01a92b45fa1917af0c484018c964b991cfe45ecb13f8b2b2128e5830cc19ba01be43bf89237863ac5b571787239231bad862f2bacb247eb06f2a
+2023-08-17 15:53:12,872 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 15:53:12,872 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0006
+2023-08-17 15:57:25,864 - root - INFO - Processing login function...
+2023-08-17 15:57:25,864 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0001
+2023-08-17 15:57:25,865 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0001', params='', query='', fragment='')
+2023-08-17 15:57:25,865 - root - INFO - Processed URL: production
+2023-08-17 15:57:25,865 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 15:57:25,865 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 15:57:25,866 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 15:57:25,866 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae58577708059c9281b750639513219637cbf00fa8f1d8dfc478cd304f913dcefe673cd6c14f684d5ab2ed68074c8016b376dbc4e1bb322c3cf500e5498f52f34364cf5cf27896ac57064195cf261ce91f9e08cfa99d3c635c48a73ea5ec83df855a25222669f2b10ddb3933323a48869e9cf11f32a60c969ffea18e6bf9bfc918677ba25d7038bd7e770701fbb89a4327312f0e484f5b9bfd8dd2a72fb11058f8a5810bfb1d41a1e9b556780beb0ffb80fca4bae4d23de06cacbde5a54e3cc34cb886326ec9919870621733060a04bb7964e0b66631c9ac88e9434c0fb75683ebba74bfa82e90a431f5bf64a0a9e1a5fccb68c8dcf
+2023-08-17 15:57:25,866 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 15:57:25,866 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0001
+2023-08-17 16:01:56,768 - root - INFO - Processing login function...
+2023-08-17 16:01:56,769 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 16:01:56,769 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0010', params='', query='', fragment='')
+2023-08-17 16:01:56,769 - root - INFO - Processed URL: production
+2023-08-17 16:01:56,769 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 16:01:56,770 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 16:01:56,770 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 16:01:56,773 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae5857770802d18ce2c99768a24e759c72b5c3f189d1c90ad623952b2550056afb736b98663a565d90a4bbba12e6434c1a7c43228441ce4895952844f46d71ac5d063b2953a0006702f3a1ca78406e6947e26529da89d8b380b5d2d79d6afe908461d7c3ee331b25355d83800af11a2ce50b9d2d102793670c0a440a04d2f8afdfccf8f377be72f0c9ecea9b24e489a6dcd2e7c5374a157100d2b3477b4ce7a66032f46e4257031e6704932a0a0fbcd6bf06bca8fd67912e491fb7c8b63c6c698e4ace20c807a45cd28f5e68b17dd1c8130f5f18d8080b29e402485cb87230306d8d9f981aba9696a6538db87d92225d0b1447ecdb1
+2023-08-17 16:01:56,773 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 16:01:56,773 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 16:03:57,133 - root - INFO - Processing login function...
+2023-08-17 16:03:57,133 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 16:03:57,134 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0010', params='', query='', fragment='')
+2023-08-17 16:03:57,134 - root - INFO - Processed URL: production
+2023-08-17 16:03:57,134 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 16:03:57,135 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 16:03:57,135 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 16:03:57,136 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae5857770802d18ce2c99768a24e759c72b5c3f189d1c90ad623952b2550056afb736b98663a565d90a4bbba12e6434c1a7c43228441ce4895952844f46d71ac5d063b2953a0006702f3a1ca78406e6947e26529da89d8b380b5d2d79d6afe908461d7c3ee331b25355d83800af11a2ce50b9d2d102793670c0a440a04d2f8afdfccf8f377be72f0c9ecea9b24e489a6dcd2e7c5374a157100d2b3477b4ce7a66032f46e4257031e6704932a0a0fbcd6bf06bca8fd67912e491fb7c8b63c6c698e4ace20c807a45cd28f5e68b17dd1c8130f5f18d8080b29e402485cb87230306d8d9f981aba9696a6538db87d92225d0b1447ecdb1
+2023-08-17 16:03:57,136 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 16:03:57,136 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 16:10:12,488 - root - INFO - Processing login function...
+2023-08-17 16:10:12,488 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 16:10:12,489 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0010', params='', query='', fragment='')
+2023-08-17 16:10:12,489 - root - INFO - Processed URL: production
+2023-08-17 16:10:12,489 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 16:10:12,489 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 16:10:12,490 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 16:10:12,490 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae5857770802d18ce2c99768a24e759c72b5c3f189d1c90ad623952b2550056afb736b98663a565d90a4bbba12e6434c1a7c43228441ce4895952844f46d71ac5d063b2953a0006702f3a1ca78406e6947e26529da89d8b380b5d2d79d6afe908461d7c3ee331b25355d83800af11a2ce50b9d2d102793670c0a440a04d2f8afdfccf8f377be72f0c9ecea9b24e489a6dcd2e7c5374a157100d2b3477b4ce7a66032f46e4257031e6704932a0a0fbcd6bf06bca8fd67912e491fb7c8b63c6c698e4ace20c807a45cd28f5e68b17dd1c8130f5f18d8080b29e402485cb87230306d8d9f981aba9696a6538db87d92225d0b1447ecdb1
+2023-08-17 16:10:12,490 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 16:10:12,491 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 16:11:21,941 - root - INFO - Processing login function...
+2023-08-17 16:11:21,942 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 16:11:21,942 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0010', params='', query='', fragment='')
+2023-08-17 16:11:21,943 - root - INFO - Processed URL: production
+2023-08-17 16:11:21,943 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 16:11:21,943 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 16:11:21,944 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 16:11:21,944 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae5857770802d18ce2c99768a24e759c72b5c3f189d1c90ad623952b2550056afb736b98663a565d90a4bbba12e6434c1a7c43228441ce4895952844f46d71ac5d063b2953a0006702f3a1ca78406e6947e26529da89d8b380b5d2d79d6afe908461d7c3ee331b25355d83800af11a2ce50b9d2d102793670c0a440a04d2f8afdfccf8f377be72f0c9ecea9b24e489a6dcd2e7c5374a157100d2b3477b4ce7a66032f46e4257031e6704932a0a0fbcd6bf06bca8fd67912e491fb7c8b63c6c698e4ace20c807a45cd28f5e68b17dd1c8130f5f18d8080b29e402485cb87230306d8d9f981aba9696a6538db87d92225d0b1447ecdb1
+2023-08-17 16:11:21,945 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 16:11:21,945 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 16:13:54,178 - root - INFO - Processing login function...
+2023-08-17 16:13:54,178 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 16:13:54,179 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0010', params='', query='', fragment='')
+2023-08-17 16:13:54,179 - root - INFO - Processed URL: production
+2023-08-17 16:13:54,179 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 16:13:54,179 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 16:13:54,180 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 16:13:54,181 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae5857770802d18ce2c99768a24e759c72b5c3f189d1c90ad623952b2550056afb736b98663a565d90a4bbba12e6434c1a7c43228441ce4895952844f46d71ac5d063b2953a0006702f3a1ca78406e6947e26529da89d8b380b5d2d79d6afe908461d7c3ee331b25355d83800af11a2ce50b9d2d102793670c0a440a04d2f8afdfccf8f377be72f0c9ecea9b24e489a6dcd2e7c5374a157100d2b3477b4ce7a66032f46e4257031e6704932a0a0fbcd6bf06bca8fd67912e491fb7c8b63c6c698e4ace20c807a45cd28f5e68b17dd1c8130f5f18d8080b29e402485cb87230306d8d9f981aba9696a6538db87d92225d0b1447ecdb1
+2023-08-17 16:13:54,181 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 16:13:54,181 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 16:14:39,279 - root - INFO - Processing login function...
+2023-08-17 16:14:39,280 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 16:14:39,280 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0010', params='', query='', fragment='')
+2023-08-17 16:14:39,280 - root - INFO - Processed URL: production
+2023-08-17 16:14:39,280 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 16:14:39,280 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 16:14:39,280 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 16:14:39,281 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae5857770802d18ce2c99768a24e759c72b5c3f189d1c90ad623952b2550056afb736b98663a565d90a4bbba12e6434c1a7c43228441ce4895952844f46d71ac5d063b2953a0006702f3a1ca78406e6947e26529da89d8b380b5d2d79d6afe908461d7c3ee331b25355d83800af11a2ce50b9d2d102793670c0a440a04d2f8afdfccf8f377be72f0c9ecea9b24e489a6dcd2e7c5374a157100d2b3477b4ce7a66032f46e4257031e6704932a0a0fbcd6bf06bca8fd67912e491fb7c8b63c6c698e4ace20c807a45cd28f5e68b17dd1c8130f5f18d8080b29e402485cb87230306d8d9f981aba9696a6538db87d92225d0b1447ecdb1
+2023-08-17 16:14:39,281 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 16:14:39,281 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 16:17:17,980 - root - INFO - Processing login function...
+2023-08-17 16:17:17,980 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 16:17:17,981 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0010', params='', query='', fragment='')
+2023-08-17 16:17:17,981 - root - INFO - Processed URL: production
+2023-08-17 16:17:17,982 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 16:17:17,982 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 16:17:17,983 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 16:17:17,983 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae5857770802d18ce2c99768a24e759c72b5c3f189d1c90ad623952b2550056afb736b98663a565d90a4bbba12e6434c1a7c43228441ce4895952844f46d71ac5d063b2953a0006702f3a1ca78406e6947e26529da89d8b380b5d2d79d6afe908461d7c3ee331b25355d83800af11a2ce50b9d2d102793670c0a440a04d2f8afdfccf8f377be72f0c9ecea9b24e489a6dcd2e7c5374a157100d2b3477b4ce7a66032f46e4257031e6704932a0a0fbcd6bf06bca8fd67912e491fb7c8b63c6c698e4ace20c807a45cd28f5e68b17dd1c8130f5f18d8080b29e402485cb87230306d8d9f981aba9696a6538db87d92225d0b1447ecdb1
+2023-08-17 16:17:17,983 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 16:17:17,984 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 16:19:47,557 - root - INFO - Processing login function...
+2023-08-17 16:19:47,557 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 16:19:47,558 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0010', params='', query='', fragment='')
+2023-08-17 16:19:47,558 - root - INFO - Processed URL: production
+2023-08-17 16:19:47,558 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 16:19:47,558 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 16:19:47,559 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 16:19:47,559 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae5857770802d18ce2c99768a24e759c72b5c3f189d1c90ad623952b2550056afb736b98663a565d90a4bbba12e6434c1a7c43228441ce4895952844f46d71ac5d063b2953a0006702f3a1ca78406e6947e26529da89d8b380b5d2d79d6afe908461d7c3ee331b25355d83800af11a2ce50b9d2d102793670c0a440a04d2f8afdfccf8f377be72f0c9ecea9b24e489a6dcd2e7c5374a157100d2b3477b4ce7a66032f46e4257031e6704932a0a0fbcd6bf06bca8fd67912e491fb7c8b63c6c698e4ace20c807a45cd28f5e68b17dd1c8130f5f18d8080b29e402485cb87230306d8d9f981aba9696a6538db87d92225d0b1447ecdb1
+2023-08-17 16:19:47,559 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 16:19:47,560 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0010
+2023-08-17 16:19:55,669 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='', params='', query='', fragment='')
+2023-08-17 16:36:41,846 - root - INFO - Processing login function...
+2023-08-17 16:36:41,847 - root - INFO - Input URL: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0009
+2023-08-17 16:36:41,847 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='/app/onlinepayment/PAYM-2023-0009', params='', query='', fragment='')
+2023-08-17 16:36:41,848 - root - INFO - Processed URL: production
+2023-08-17 16:36:41,848 - root - INFO - site_name: soulwsc.eduleadonline.com
+2023-08-17 16:36:41,848 - root - INFO - config_file_path: /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
+2023-08-17 16:36:41,849 - root - INFO - config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-17 16:36:41,849 - root - INFO - encryption: 098d740ea00bc982cfe6784a34d1c407c711acb5660b74dbd09edae585777080319cc9447654918ce2f4f45edbf5f5e081766e4f8c09f1a2ab594fb4a04609da6d63562b9bc141865bc9fe87cf4c7eedf5d1c5d24d207d1f16f1ac2aaf9034c3b7b143fe40be0d12d53d70180e36473f6238627e06f4406466f94e5f5d0d4c802336f835d0653753cbe0bde09f5e1e5382c678f39093b2744ac18dc302a17eba53579bca07df66afee710a8b9bc47d640c7c8bc6b6773df638d94a340d67d57967b9e5b17e1cdf7e075923a1eba3fcf7ea798a2c073e6c6f0d25567b1a449a5b447a8c917c8467988805682cfe0e7e3d4eaf3a37b14073c09e61c32c706e0590c5a3afd8ff114beb3a54213d0bcd52ac
+2023-08-17 16:36:41,849 - root - INFO - accessCode: AVYA87KG31AX44AYXA
+2023-08-17 16:36:41,850 - root - INFO - baseUrl: https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0009
+2023-08-17 16:38:16,462 - root - INFO - parsed_url: ParseResult(scheme='https', netloc='soulwsc.eduleadonline.com', path='', params='', query='', fragment='')

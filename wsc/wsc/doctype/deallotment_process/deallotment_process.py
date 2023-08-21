@@ -18,6 +18,8 @@ def deallotment(self):
 	Al_no=self.allotment_number
 	workflow_state=self.workflow_state
 	End_date=self.end_date
+	if isinstance(End_date, str):
+		End_date=datetime.strptime(End_date, '%Y-%m-%d').date()
 	De_allotment_info=frappe.db.sql("""select `name`,`allotment_number`,`student`,`student_name`,`hostel`,`room_number`,
 	`room_no`,`workflow_state`,`room_type`,`application_status` FROM `tabDeallotment Process` WHERE `allotment_number`= "%s" """%(Al_no))
 	De_allotment_df=pd.DataFrame({
