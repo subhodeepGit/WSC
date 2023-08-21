@@ -1,0 +1,136 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "ARNG-.YYYY.-.####",
+ "creation": "2023-08-18 17:10:44.924841",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "course_type",
+  "programs",
+  "semester",
+  "column_break_pywex",
+  "academic_year",
+  "academic_term",
+  "section_break_n2wjf",
+  "course_code",
+  "year_code",
+  "column_break_gj6p9",
+  "branch_code",
+  "section_break_yrzhb",
+  "get_student",
+  "student_list"
+ ],
+ "fields": [
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Academic Year",
+   "options": "Academic Year",
+   "reqd": 1
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Academic Term",
+   "options": "Academic Term",
+   "reqd": 1
+  },
+  {
+   "fieldname": "course_type",
+   "fieldtype": "Link",
+   "label": "Course Type",
+   "options": "Program Grades",
+   "reqd": 1
+  },
+  {
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "label": "Programs",
+   "options": "Programs",
+   "reqd": 1
+  },
+  {
+   "fieldname": "semester",
+   "fieldtype": "Link",
+   "label": "Semester",
+   "options": "Program",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_pywex",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_n2wjf",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "course_code",
+   "fieldtype": "Data",
+   "label": "Course Code",
+   "reqd": 1
+  },
+  {
+   "fieldname": "year_code",
+   "fieldtype": "Data",
+   "label": "Year Code",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_gj6p9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "branch_code",
+   "fieldtype": "Data",
+   "label": "Batch Code",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_yrzhb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "get_student",
+   "fieldtype": "Button",
+   "label": "Get Student"
+  },
+  {
+   "fieldname": "student_list",
+   "fieldtype": "Table",
+   "label": "Student List",
+   "options": "Auto Roll No Generator student"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-08-21 12:25:59.706489",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Auto Roll No Generator",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

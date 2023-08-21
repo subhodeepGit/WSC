@@ -30,6 +30,7 @@ frappe.ui.form.on('Material Request', {
     }
 });
 
+
 frappe.ui.form.on("Material Request Item", "qty", function(frm, cdt, cdn) {
     var d = locals[cdt][cdn];
         d.total_amount = d.price * d.qty
@@ -54,5 +55,19 @@ frappe.ui.form.on('Material Request Item', {	//Child table Name
 	frm.doc.items.forEach(function(d) { a += d.total_amount; });
 	frm.set_value("grand_total", a);
 	refresh_field("grand_total");
-	}
+	},
+	item_code: function(frm, cdt, cdn) {
+        var child = locals[cdt][cdn];
+        if (child.idx === 1) {
+            var product_item_group = child.item_group;
+            frm.fields_dict['items'].grid.get_field('item_code').get_query = function() {
+                return {
+                    filters: {
+                        item_group: product_item_group
+                    }
+                };
+            };
+            frm.fields_dict['items'].grid.refresh();
+        }
+    }
 });
