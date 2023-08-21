@@ -7,9 +7,10 @@ from frappe.model.mapper import get_mapped_doc
 
 class ParticipantAttendanceTool(Document):
 	def validate(self):
-		new_doc = frappe.new_doc("ToT Participant Attendance")
+		
 
 		for d in self.get('participants'):
+			new_doc = frappe.new_doc("ToT Participant Attendance")
 			new_doc.participant_group = self.participant_group
 			new_doc.select_course = self.select_course
 			new_doc.select_module = self.select_module
@@ -27,13 +28,8 @@ class ParticipantAttendanceTool(Document):
 				new_doc.status = "Present"
 			else:
 				new_doc.status = "Absent"
-			
 			new_doc.save()		
-		pass
-	pass
-
-
-
+			
 @frappe.whitelist()
 def get_participant_group(based_on):
 	data = frappe.db.sql(""" SELECT name FROM `tabParticipant Group`""")
@@ -41,13 +37,11 @@ def get_participant_group(based_on):
 
 @frappe.whitelist()
 def get_details(participant_group_id):
-	print('\n\n\n\n')
-	print(participant_group_id)
-	print('\n\n\n\n')
+	dates = frappe.db.sql(""" SELECT scheduled_date FROM `tabToT Class Schedule` WHERE participant_group_id = '%s'"""%(participant_group_id))
 	group_details = frappe.get_all('Participant Group', filters = [['name', '=', participant_group_id]], fields = ['academic_year', 'academic_term', 'program', 'course'])
 	instructor_details = frappe.db.sql(""" SELECT instructors FROM `tabInstructor Table` where parent = '%s'"""%(participant_group_id))
 	sub_modules = frappe.db.sql(""" SELECT topic FROM `tabCourse Topic` WHERE parent = '%s'"""%(group_details[0]['course']))
-	return [group_details[0]['academic_year'], group_details[0]['academic_term'], group_details[0]['program'], group_details[0]['course'], instructor_details, sub_modules]
+	return [group_details[0]['academic_year'], group_details[0]['academic_term'], group_details[0]['program'], group_details[0]['course'], instructor_details, sub_modules, dates]
 
 @frappe.whitelist()
 def get_instructor_name(participant_group_id, instructor_id):

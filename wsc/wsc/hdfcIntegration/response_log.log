@@ -1,142 +1,371 @@
-2023-08-18 11:36:35,487 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-2023-08-18 11:36:35,488 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2023-08-18 11:36:35,489 - werkzeug - INFO -  * Restarting with stat
-2023-08-18 11:36:35,836 - werkzeug - WARNING -  * Debugger is active!
-2023-08-18 11:36:35,837 - werkzeug - INFO -  * Debugger PIN: 116-797-175
-2023-08-18 11:37:32,151 - root - INFO - Processing res function...
-2023-08-18 11:37:32,151 - root - INFO - ccResponse URL: http://127.0.0.1:8080/ccavResponseHandler
-2023-08-18 11:37:32,151 - root - INFO - ccavResponse processed_url: test
-2023-08-18 11:37:32,151 - root - INFO - ccavResponse config_file_path: /home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
-2023-08-18 11:37:32,151 - root - INFO - config file path: /home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
-2023-08-18 11:37:32,151 - root - INFO - config_data: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Cancel URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Site Name': 'http://erp.soulunileaders.com:8000/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Test'}
-2023-08-18 11:37:32,152 - root - INFO - ccavResponse config_dataaa: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Cancel URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Site Name': 'http://erp.soulunileaders.com:8000/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Test'}
-2023-08-18 11:37:32,152 - root - INFO - inside try: test
-2023-08-18 11:37:32,152 - root - INFO -  processed_url: test
-2023-08-18 11:37:32,152 - root - INFO -  if config_data test: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Cancel URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Site Name': 'http://erp.soulunileaders.com:8000/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Test'}
-2023-08-18 11:37:32,152 - root - INFO -  ccavResponse decResp: b'order_id=PAYM-2023-0046&tracking_id=312010186602&bank_ref_no=null&order_status=Aborted&failure_message=&payment_mode=null&card_name=&status_code=&status_message=Cancel reason is not specified by the customer.&currency=INR&amount=21.00&billing_name=EDUSTU&billing_address=&billing_city=&billing_state=&billing_zip=&billing_country=&billing_tel=&billing_email=&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=&merchant_param2=&merchant_param3=&merchant_param4=&merchant_param5=&vault=N&offer_type=null&offer_code=null&discount_value=0.0&mer_amount=21.00&eci_value=&retry=N&response_code=&billing_notes=&trans_date=null&bin_country=\r\r\r\r\r\r\r\r\r\r\r\r\r'
-2023-08-18 11:37:32,152 - root - INFO -  ccavResponse parsed_data: {"b'order_id": ['PAYM-2023-0046'], 'tracking_id': ['312010186602'], 'bank_ref_no': ['null'], 'order_status': ['Aborted'], 'payment_mode': ['null'], 'status_message': ['Cancel reason is not specified by the customer.'], 'currency': ['INR'], 'amount': ['21.00'], 'billing_name': ['EDUSTU'], 'vault': ['N'], 'offer_type': ['null'], 'offer_code': ['null'], 'discount_value': ['0.0'], 'mer_amount': ['21.00'], 'retry': ['N'], 'trans_date': ['null'], 'bin_country': ["\\r\\r\\r\\r\\r\\r\\r\\r\\r\\r\\r\\r\\r'"]}
-2023-08-18 11:37:32,152 - root - INFO -  ccavResponse cleaned_data:{'order_id': 'PAYM-2023-0046', 'tracking_id': '312010186602', 'ank_ref_no': 'null', 'order_status': 'Aborted', 'payment_mode': 'null', 'status_message': 'Cancel reason is not specified by the customer.', 'currency': 'INR', 'amount': '21.00', 'illing_name': 'EDUSTU', 'vault': 'N', 'offer_type': 'null', 'offer_code': 'null', 'discount_value': '0.0', 'mer_amount': '21.00', 'retry': 'N', 'trans_date': 'null', 'in_country': "\\r\\r\\r\\r\\r\\r\\r\\r\\r\\r\\r\\r\\r'"}
-2023-08-18 11:37:32,152 - root - INFO -  ccavResponse order_id PAYM-2023-0046
-2023-08-18 11:37:32,152 - root - INFO -  ccavResponse tracking_id 312010186602
-2023-08-18 11:37:32,152 - root - INFO -  ccavResponse amount 21.00
-2023-08-18 11:37:32,152 - root - INFO -  ccavResponse order_status Aborted
-2023-08-18 11:37:32,152 - root - INFO -  ccavResponse trans_date null
-2023-08-18 11:37:32,153 - root - INFO -  ccavResponse redirect_url http://erp.soulunileaders.com:8000/app/onlinepayment/PAYM-2023-0046
-2023-08-18 11:37:32,153 - root - INFO - ccavResponse base_url http://erp.soulunileaders.com:8000
-2023-08-18 11:37:32,153 - root - INFO - ccavResponse api_getToken http://erp.soulunileaders.com:8000/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_token
-2023-08-18 11:37:32,235 - root - INFO - ccavResponse m_base_url http://erp.soulunileaders.com:8000
-2023-08-18 11:37:34,221 - werkzeug - INFO - 127.0.0.1 - - [18/Aug/2023 11:37:34] "POST /ccavResponseHandler HTTP/1.1" 200 -
-2023-08-18 11:38:11,675 - root - INFO - Processing res function...
-2023-08-18 11:38:11,675 - root - INFO - ccResponse URL: http://127.0.0.1:8080/ccavResponseHandler
-2023-08-18 11:38:11,675 - root - INFO - ccavResponse processed_url: test
-2023-08-18 11:38:11,675 - root - INFO - ccavResponse config_file_path: /home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
-2023-08-18 11:38:11,675 - root - INFO - config file path: /home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
-2023-08-18 11:38:11,675 - root - INFO - config_data: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Cancel URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Site Name': 'http://erp.soulunileaders.com:8000/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Test'}
-2023-08-18 11:38:11,675 - root - INFO - ccavResponse config_dataaa: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Cancel URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Site Name': 'http://erp.soulunileaders.com:8000/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Test'}
-2023-08-18 11:38:11,675 - root - INFO - inside try: test
-2023-08-18 11:38:11,675 - root - INFO -  processed_url: test
-2023-08-18 11:38:11,675 - root - INFO -  if config_data test: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Cancel URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Site Name': 'http://erp.soulunileaders.com:8000/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Test'}
-2023-08-18 11:38:11,675 - root - INFO -  ccavResponse decResp: b'order_id=PAYM-2023-0047&tracking_id=312010186607&bank_ref_no=1692338640156&order_status=Success&failure_message=&payment_mode=Credit Card&card_name=Visa&status_code=null&status_message=Y&currency=INR&amount=32.00&billing_name=EDUSTU&billing_address=&billing_city=&billing_state=&billing_zip=&billing_country=&billing_tel=&billing_email=&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=&merchant_param2=&merchant_param3=&merchant_param4=&merchant_param5=&vault=N&offer_type=null&offer_code=null&discount_value=0.0&mer_amount=32.00&eci_value=null&retry=N&response_code=0&billing_notes=&trans_date=18/08/2023 11:38:07&bin_country=INDIA\n\n\n\n\n\n\n\n\n\n'
-2023-08-18 11:38:11,676 - root - INFO -  ccavResponse parsed_data: {"b'order_id": ['PAYM-2023-0047'], 'tracking_id': ['312010186607'], 'bank_ref_no': ['1692338640156'], 'order_status': ['Success'], 'payment_mode': ['Credit Card'], 'card_name': ['Visa'], 'status_code': ['null'], 'status_message': ['Y'], 'currency': ['INR'], 'amount': ['32.00'], 'billing_name': ['EDUSTU'], 'vault': ['N'], 'offer_type': ['null'], 'offer_code': ['null'], 'discount_value': ['0.0'], 'mer_amount': ['32.00'], 'eci_value': ['null'], 'retry': ['N'], 'response_code': ['0'], 'trans_date': ['18/08/2023 11:38:07'], 'bin_country': ["INDIA\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n'"]}
-2023-08-18 11:38:11,676 - root - INFO -  ccavResponse cleaned_data:{'order_id': 'PAYM-2023-0047', 'tracking_id': '312010186607', 'ank_ref_no': '1692338640156', 'order_status': 'Success', 'payment_mode': 'Credit Card', 'card_name': 'Visa', 'status_code': 'null', 'status_message': 'Y', 'currency': 'INR', 'amount': '32.00', 'illing_name': 'EDUSTU', 'vault': 'N', 'offer_type': 'null', 'offer_code': 'null', 'discount_value': '0.0', 'mer_amount': '32.00', 'eci_value': 'null', 'retry': 'N', 'response_code': '0', 'trans_date': '18/08/2023 11:38:07', 'in_country': "INDIA\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n'"}
-2023-08-18 11:38:11,676 - root - INFO -  ccavResponse order_id PAYM-2023-0047
-2023-08-18 11:38:11,676 - root - INFO -  ccavResponse tracking_id 312010186607
-2023-08-18 11:38:11,676 - root - INFO -  ccavResponse amount 32.00
-2023-08-18 11:38:11,676 - root - INFO -  ccavResponse order_status Success
-2023-08-18 11:38:11,676 - root - INFO -  ccavResponse trans_date 18/08/2023 11:38:07
-2023-08-18 11:38:11,676 - root - INFO -  ccavResponse redirect_url http://erp.soulunileaders.com:8000/app/onlinepayment/PAYM-2023-0047
-2023-08-18 11:38:11,676 - root - INFO - ccavResponse base_url http://erp.soulunileaders.com:8000
-2023-08-18 11:38:11,676 - root - INFO - ccavResponse api_getToken http://erp.soulunileaders.com:8000/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_token
-2023-08-18 11:38:11,691 - root - INFO - ccavResponse m_base_url http://erp.soulunileaders.com:8000
-2023-08-18 11:38:12,486 - werkzeug - INFO - 127.0.0.1 - - [18/Aug/2023 11:38:12] "POST /ccavResponseHandler HTTP/1.1" 200 -
-2023-08-18 11:48:40,489 - werkzeug - INFO -  * Detected change in '/home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/ccavRequestHandler.py', reloading
-2023-08-18 11:48:40,535 - werkzeug - INFO -  * Restarting with stat
-2023-08-18 11:48:40,913 - werkzeug - WARNING -  * Debugger is active!
-2023-08-18 11:48:40,914 - werkzeug - INFO -  * Debugger PIN: 116-797-175
-2023-08-18 11:48:41,936 - werkzeug - INFO -  * Detected change in '/home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/ccavRequestHandler.py', reloading
-2023-08-18 11:48:42,045 - werkzeug - INFO -  * Restarting with stat
-2023-08-18 11:48:42,402 - werkzeug - WARNING -  * Debugger is active!
-2023-08-18 11:48:42,403 - werkzeug - INFO -  * Debugger PIN: 116-797-175
-2023-08-18 11:49:11,690 - werkzeug - INFO -  * Detected change in '/home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/ccavRequestHandler.py', reloading
-2023-08-18 11:49:11,768 - werkzeug - INFO -  * Restarting with stat
-2023-08-18 11:49:12,104 - werkzeug - WARNING -  * Debugger is active!
-2023-08-18 11:49:12,105 - werkzeug - INFO -  * Debugger PIN: 116-797-175
-2023-08-18 11:49:26,255 - werkzeug - INFO -  * Detected change in '/home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/ccavRequestHandler.py', reloading
-2023-08-18 11:49:26,314 - werkzeug - INFO -  * Restarting with stat
-2023-08-18 11:49:26,672 - werkzeug - WARNING -  * Debugger is active!
-2023-08-18 11:49:26,672 - werkzeug - INFO -  * Debugger PIN: 116-797-175
-2023-08-18 11:49:27,701 - werkzeug - INFO -  * Detected change in '/home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/ccavRequestHandler.py', reloading
-2023-08-18 11:49:27,753 - werkzeug - INFO -  * Restarting with stat
-2023-08-18 11:49:28,087 - werkzeug - WARNING -  * Debugger is active!
-2023-08-18 11:49:28,087 - werkzeug - INFO -  * Debugger PIN: 116-797-175
-2023-08-18 11:50:09,526 - werkzeug - INFO -  * Detected change in '/home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/ccavRequestHandler.py', reloading
-2023-08-18 11:50:09,587 - werkzeug - INFO -  * Restarting with stat
-2023-08-18 11:52:00,743 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-2023-08-18 11:52:00,743 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2023-08-18 11:52:00,744 - werkzeug - INFO -  * Restarting with stat
-2023-08-18 11:52:01,054 - werkzeug - WARNING -  * Debugger is active!
-2023-08-18 11:52:01,055 - werkzeug - INFO -  * Debugger PIN: 116-797-175
-2023-08-18 11:52:32,787 - root - INFO - request url: http://127.0.0.1:8080/ccavResponseHandler
-2023-08-18 11:52:32,787 - root - INFO - Processing res function...
-2023-08-18 11:52:32,787 - root - INFO - ccResponse URL: http://127.0.0.1:8080/ccavResponseHandler
-2023-08-18 11:52:32,788 - root - INFO - ccavResponse processed_url: test
-2023-08-18 11:52:32,788 - root - INFO - ccavResponse config_file_path: /home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
-2023-08-18 11:52:32,788 - root - INFO - config file path: /home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
-2023-08-18 11:52:32,788 - root - INFO - config_data: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Cancel URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Site Name': 'http://erp.soulunileaders.com:8000/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Test'}
-2023-08-18 11:52:32,788 - root - INFO - ccavResponse config_dataaa: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Cancel URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Site Name': 'http://erp.soulunileaders.com:8000/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Test'}
-2023-08-18 11:52:32,788 - root - INFO - inside try: test
-2023-08-18 11:52:32,788 - root - INFO -  processed_url: test
-2023-08-18 11:52:32,788 - root - INFO -  if config_data test: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Cancel URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Site Name': 'http://erp.soulunileaders.com:8000/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Test'}
-2023-08-18 11:52:32,788 - root - INFO -  ccavResponse decResp: b'order_id=PAYM-2023-0048&tracking_id=312010186736&bank_ref_no=null&order_status=Aborted&failure_message=&payment_mode=null&card_name=&status_code=&status_message=Cancel reason is not specified by the customer.&currency=INR&amount=423.00&billing_name=EDUSTU&billing_address=&billing_city=&billing_state=&billing_zip=&billing_country=&billing_tel=&billing_email=&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=&merchant_param2=&merchant_param3=&merchant_param4=&merchant_param5=&vault=N&offer_type=null&offer_code=null&discount_value=0.0&mer_amount=423.00&eci_value=&retry=N&response_code=&billing_notes=&trans_date=null&bin_country=\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b'
-2023-08-18 11:52:32,788 - root - INFO -  ccavResponse parsed_data: {"b'order_id": ['PAYM-2023-0048'], 'tracking_id': ['312010186736'], 'bank_ref_no': ['null'], 'order_status': ['Aborted'], 'payment_mode': ['null'], 'status_message': ['Cancel reason is not specified by the customer.'], 'currency': ['INR'], 'amount': ['423.00'], 'billing_name': ['EDUSTU'], 'vault': ['N'], 'offer_type': ['null'], 'offer_code': ['null'], 'discount_value': ['0.0'], 'mer_amount': ['423.00'], 'retry': ['N'], 'trans_date': ['null'], 'bin_country': ["\\x0b\\x0b\\x0b\\x0b\\x0b\\x0b\\x0b\\x0b\\x0b\\x0b\\x0b'"]}
-2023-08-18 11:52:32,788 - root - INFO -  ccavResponse cleaned_data:{'order_id': 'PAYM-2023-0048', 'tracking_id': '312010186736', 'ank_ref_no': 'null', 'order_status': 'Aborted', 'payment_mode': 'null', 'status_message': 'Cancel reason is not specified by the customer.', 'currency': 'INR', 'amount': '423.00', 'illing_name': 'EDUSTU', 'vault': 'N', 'offer_type': 'null', 'offer_code': 'null', 'discount_value': '0.0', 'mer_amount': '423.00', 'retry': 'N', 'trans_date': 'null', 'in_country': "\\x0b\\x0b\\x0b\\x0b\\x0b\\x0b\\x0b\\x0b\\x0b\\x0b\\x0b'"}
-2023-08-18 11:52:32,788 - root - INFO -  ccavResponse order_id PAYM-2023-0048
-2023-08-18 11:52:32,788 - root - INFO -  ccavResponse tracking_id 312010186736
-2023-08-18 11:52:32,789 - root - INFO -  ccavResponse amount 423.00
-2023-08-18 11:52:32,789 - root - INFO -  ccavResponse order_status Aborted
-2023-08-18 11:52:32,789 - root - INFO -  ccavResponse trans_date null
-2023-08-18 11:52:32,789 - root - INFO -  ccavResponse redirect_url http://erp.soulunileaders.com:8000/app/onlinepayment/PAYM-2023-0048
-2023-08-18 11:52:32,789 - root - INFO - ccavResponse base_url http://erp.soulunileaders.com:8000
-2023-08-18 11:52:32,789 - root - INFO - ccavResponse api_getToken http://erp.soulunileaders.com:8000/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_token
-2023-08-18 11:52:32,816 - root - INFO - ccavResponse m_base_url http://erp.soulunileaders.com:8000
-2023-08-18 11:52:33,747 - werkzeug - INFO - 127.0.0.1 - - [18/Aug/2023 11:52:33] "POST /ccavResponseHandler HTTP/1.1" 200 -
-2023-08-18 11:53:25,906 - werkzeug - INFO -  * Detected change in '/home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/ccavRequestHandler.py', reloading
-2023-08-18 11:53:25,955 - werkzeug - INFO -  * Restarting with stat
-2023-08-18 11:53:26,296 - werkzeug - WARNING -  * Debugger is active!
-2023-08-18 11:53:26,296 - werkzeug - INFO -  * Debugger PIN: 116-797-175
-2023-08-18 11:53:33,387 - werkzeug - INFO -  * Detected change in '/home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/ccavRequestHandler.py', reloading
-2023-08-18 11:53:33,434 - werkzeug - INFO -  * Restarting with stat
-2023-08-18 11:54:14,817 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-2023-08-18 11:54:14,817 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2023-08-18 11:54:14,818 - werkzeug - INFO -  * Restarting with stat
-2023-08-18 11:54:15,156 - werkzeug - WARNING -  * Debugger is active!
-2023-08-18 11:54:15,156 - werkzeug - INFO -  * Debugger PIN: 116-797-175
-2023-08-18 11:54:38,171 - root - INFO - ********request url: http://127.0.0.1:8080/ccavResponseHandler
-2023-08-18 11:54:38,172 - root - INFO - Processing res function...
-2023-08-18 11:54:38,172 - root - INFO - ccResponse URL: http://127.0.0.1:8080/ccavResponseHandler
-2023-08-18 11:54:38,172 - root - INFO - ccavResponse processed_url: test
-2023-08-18 11:54:38,172 - root - INFO - ccavResponse config_file_path: /home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
-2023-08-18 11:54:38,172 - root - INFO - config file path: /home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json
-2023-08-18 11:54:38,172 - root - INFO - config_data: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Cancel URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Site Name': 'http://erp.soulunileaders.com:8000/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Test'}
-2023-08-18 11:54:38,173 - root - INFO - ccavResponse config_dataaa: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Cancel URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Site Name': 'http://erp.soulunileaders.com:8000/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Test'}
-2023-08-18 11:54:38,173 - root - INFO - inside try: test
-2023-08-18 11:54:38,173 - root - INFO -  processed_url: test
-2023-08-18 11:54:38,173 - root - INFO -  if config_data test: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Cancel URL': 'http://127.0.0.1:8080/ccavResponseHandler', 'Site Name': 'http://erp.soulunileaders.com:8000/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Test'}
-2023-08-18 11:54:38,173 - root - INFO -  ccavResponse decResp: b'order_id=PAYM-2023-0049&tracking_id=312010186751&bank_ref_no=null&order_status=Aborted&failure_message=&payment_mode=null&card_name=&status_code=&status_message=Cancel reason is not specified by the customer.&currency=INR&amount=3.00&billing_name=EDUSTU&billing_address=&billing_city=&billing_state=&billing_zip=&billing_country=&billing_tel=&billing_email=&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=&merchant_param2=&merchant_param3=&merchant_param4=&merchant_param5=&vault=N&offer_type=null&offer_code=null&discount_value=0.0&mer_amount=3.00&eci_value=&retry=N&response_code=&billing_notes=&trans_date=null&bin_country=\x0f\x0f\x0f\x0f\x0f\x0f\x0f\x0f\x0f\x0f\x0f\x0f\x0f\x0f\x0f'
-2023-08-18 11:54:38,173 - root - INFO -  ccavResponse parsed_data: {"b'order_id": ['PAYM-2023-0049'], 'tracking_id': ['312010186751'], 'bank_ref_no': ['null'], 'order_status': ['Aborted'], 'payment_mode': ['null'], 'status_message': ['Cancel reason is not specified by the customer.'], 'currency': ['INR'], 'amount': ['3.00'], 'billing_name': ['EDUSTU'], 'vault': ['N'], 'offer_type': ['null'], 'offer_code': ['null'], 'discount_value': ['0.0'], 'mer_amount': ['3.00'], 'retry': ['N'], 'trans_date': ['null'], 'bin_country': ["\\x0f\\x0f\\x0f\\x0f\\x0f\\x0f\\x0f\\x0f\\x0f\\x0f\\x0f\\x0f\\x0f\\x0f\\x0f'"]}
-2023-08-18 11:54:38,173 - root - INFO -  ccavResponse cleaned_data:{'order_id': 'PAYM-2023-0049', 'tracking_id': '312010186751', 'ank_ref_no': 'null', 'order_status': 'Aborted', 'payment_mode': 'null', 'status_message': 'Cancel reason is not specified by the customer.', 'currency': 'INR', 'amount': '3.00', 'illing_name': 'EDUSTU', 'vault': 'N', 'offer_type': 'null', 'offer_code': 'null', 'discount_value': '0.0', 'mer_amount': '3.00', 'retry': 'N', 'trans_date': 'null', 'in_country': "\\x0f\\x0f\\x0f\\x0f\\x0f\\x0f\\x0f\\x0f\\x0f\\x0f\\x0f\\x0f\\x0f\\x0f\\x0f'"}
-2023-08-18 11:54:38,173 - root - INFO -  ccavResponse order_id PAYM-2023-0049
-2023-08-18 11:54:38,173 - root - INFO -  ccavResponse tracking_id 312010186751
-2023-08-18 11:54:38,173 - root - INFO -  ccavResponse amount 3.00
-2023-08-18 11:54:38,174 - root - INFO -  ccavResponse order_status Aborted
-2023-08-18 11:54:38,174 - root - INFO -  ccavResponse trans_date null
-2023-08-18 11:54:38,174 - root - INFO -  ccavResponse redirect_url http://erp.soulunileaders.com:8000/app/onlinepayment/PAYM-2023-0049
-2023-08-18 11:54:38,174 - root - INFO - ccavResponse base_url http://erp.soulunileaders.com:8000
-2023-08-18 11:54:38,174 - root - INFO - ccavResponse api_getToken http://erp.soulunileaders.com:8000/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_token
-2023-08-18 11:54:38,185 - root - INFO - ccavResponse m_base_url http://erp.soulunileaders.com:8000
-2023-08-18 11:54:44,275 - werkzeug - INFO - 127.0.0.1 - - [18/Aug/2023 11:54:44] "POST /ccavResponseHandler HTTP/1.1" 200 -
-2023-08-18 11:56:05,338 - werkzeug - INFO -  * Detected change in '/home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/ccavRequestHandler.py', reloading
-2023-08-18 11:56:05,401 - werkzeug - INFO -  * Restarting with stat
+2023-08-21 13:22:06,502 - root - INFO - Processing res function...
+2023-08-21 13:22:06,502 - root - INFO - hdfc:
+2023-08-21 13:22:06,502 - root - INFO - ccResponse URL: https://pi.eduleadonline.com/ccavResponseHandler
+2023-08-21 13:22:06,502 - root - INFO - ccavResponse processed_url: production
+2023-08-21 13:22:06,502 - root - INFO - ccavResponse config_file_path: hdfc_test_server_config.json
+2023-08-21 13:22:06,503 - root - INFO - ccavResponse config_dataaa: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-21 13:22:06,503 - root - INFO - inside try: production
+2023-08-21 13:22:06,503 - root - INFO -  processed_url: production
+2023-08-21 13:22:06,503 - root - INFO -  if config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-21 13:22:06,503 - root - INFO - 
+
+
+ ccavResponse decResp: b'order_id=PAYM-2023-0027&tracking_id=312010207084&bank_ref_no=1692604300513&order_status=Success&failure_message=&payment_mode=Credit Card&card_name=Visa&status_code=null&status_message=Y&currency=INR&amount=676.00&billing_name=EDUSTU&billing_address=&billing_city=&billing_state=&billing_zip=&billing_country=&billing_tel=&billing_email=&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=&merchant_param2=&merchant_param3=&merchant_param4=&merchant_param5=&vault=N&offer_type=null&offer_code=null&discount_value=0.0&mer_amount=676.00&eci_value=null&retry=N&response_code=0&billing_notes=&trans_date=21/08/2023 13:21:40&bin_country=INDIA\x08\x08\x08\x08\x08\x08\x08\x08'
+2023-08-21 13:22:06,503 - root - INFO - 
+
+
+ ccavResponse parsed_data: {"b'order_id": ['PAYM-2023-0027'], 'tracking_id': ['312010207084'], 'bank_ref_no': ['1692604300513'], 'order_status': ['Success'], 'payment_mode': ['Credit Card'], 'card_name': ['Visa'], 'status_code': ['null'], 'status_message': ['Y'], 'currency': ['INR'], 'amount': ['676.00'], 'billing_name': ['EDUSTU'], 'vault': ['N'], 'offer_type': ['null'], 'offer_code': ['null'], 'discount_value': ['0.0'], 'mer_amount': ['676.00'], 'eci_value': ['null'], 'retry': ['N'], 'response_code': ['0'], 'trans_date': ['21/08/2023 13:21:40'], 'bin_country': ["INDIA\\x08\\x08\\x08\\x08\\x08\\x08\\x08\\x08'"]}
+2023-08-21 13:22:06,503 - root - INFO - 
+
+
+ ccavResponse cleaned_data:{'order_id': 'PAYM-2023-0027', 'tracking_id': '312010207084', 'ank_ref_no': '1692604300513', 'order_status': 'Success', 'payment_mode': 'Credit Card', 'card_name': 'Visa', 'status_code': 'null', 'status_message': 'Y', 'currency': 'INR', 'amount': '676.00', 'illing_name': 'EDUSTU', 'vault': 'N', 'offer_type': 'null', 'offer_code': 'null', 'discount_value': '0.0', 'mer_amount': '676.00', 'eci_value': 'null', 'retry': 'N', 'response_code': '0', 'trans_date': '21/08/2023 13:21:40', 'in_country': "INDIA\\x08\\x08\\x08\\x08\\x08\\x08\\x08\\x08'"}
+2023-08-21 13:22:06,504 - root - INFO - 
+
+
+ ccavResponse order_id PAYM-2023-0027
+2023-08-21 13:22:06,504 - root - INFO - 
+
+
+ ccavResponse tracking_id 312010207084
+2023-08-21 13:22:06,504 - root - INFO - 
+
+
+ ccavResponse amount 676.00
+2023-08-21 13:22:06,504 - root - INFO - 
+
+
+ ccavResponse order_status Success
+2023-08-21 13:22:06,504 - root - INFO - 
+
+
+ ccavResponse trans_date 21/08/2023 13:21:40
+2023-08-21 13:22:06,504 - root - INFO - 
+
+
+ ccavResponse redirect_url https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0027
+2023-08-21 13:22:06,504 - root - INFO - 
+
+
+ ccavResponse base_url https://soulwsc.eduleadonline.com
+2023-08-21 13:22:06,504 - root - INFO - 
+
+
+ ccavResponse api_getToken https://soulwsc.eduleadonline.com/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_token
+2023-08-21 14:47:05,070 - root - INFO - Processing res function...
+2023-08-21 14:47:05,071 - root - INFO - hdfc:
+2023-08-21 14:47:05,071 - root - INFO - ccResponse URL: https://pi.eduleadonline.com/ccavResponseHandler
+2023-08-21 14:47:05,071 - root - INFO - ccavResponse processed_url: production
+2023-08-21 14:47:05,071 - root - INFO - ccavResponse config_file_path: hdfc_test_server_config.json
+2023-08-21 14:47:05,071 - root - INFO - ccavResponse config_dataaa: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-21 14:47:05,072 - root - INFO - inside try: production
+2023-08-21 14:47:05,072 - root - INFO -  processed_url: production
+2023-08-21 14:47:05,072 - root - INFO -  if config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-21 14:47:05,072 - root - INFO - 
+
+
+ ccavResponse decResp: b'order_id=PAYM-2023-0028&tracking_id=312010208232&bank_ref_no=null&order_status=Aborted&failure_message=&payment_mode=null&card_name=null&status_code=&status_message=Cancel reason is not specified by the customer.&currency=INR&amount=756.00&billing_name=EDUSTU&billing_address=&billing_city=&billing_state=&billing_zip=&billing_country=&billing_tel=&billing_email=&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=&merchant_param2=&merchant_param3=&merchant_param4=&merchant_param5=&vault=N&offer_type=null&offer_code=null&discount_value=0.0&mer_amount=756.00&eci_value=&retry=null&response_code=&billing_notes=&trans_date=null&bin_country=\x04\x04\x04\x04'
+2023-08-21 14:47:05,072 - root - INFO - 
+
+
+ ccavResponse parsed_data: {"b'order_id": ['PAYM-2023-0028'], 'tracking_id': ['312010208232'], 'bank_ref_no': ['null'], 'order_status': ['Aborted'], 'payment_mode': ['null'], 'card_name': ['null'], 'status_message': ['Cancel reason is not specified by the customer.'], 'currency': ['INR'], 'amount': ['756.00'], 'billing_name': ['EDUSTU'], 'vault': ['N'], 'offer_type': ['null'], 'offer_code': ['null'], 'discount_value': ['0.0'], 'mer_amount': ['756.00'], 'retry': ['null'], 'trans_date': ['null'], 'bin_country': ["\\x04\\x04\\x04\\x04'"]}
+2023-08-21 14:47:05,073 - root - INFO - 
+
+
+ ccavResponse cleaned_data:{'order_id': 'PAYM-2023-0028', 'tracking_id': '312010208232', 'ank_ref_no': 'null', 'order_status': 'Aborted', 'payment_mode': 'null', 'card_name': 'null', 'status_message': 'Cancel reason is not specified by the customer.', 'currency': 'INR', 'amount': '756.00', 'illing_name': 'EDUSTU', 'vault': 'N', 'offer_type': 'null', 'offer_code': 'null', 'discount_value': '0.0', 'mer_amount': '756.00', 'retry': 'null', 'trans_date': 'null', 'in_country': "\\x04\\x04\\x04\\x04'"}
+2023-08-21 14:47:05,073 - root - INFO - 
+
+
+ ccavResponse order_id PAYM-2023-0028
+2023-08-21 14:47:05,073 - root - INFO - 
+
+
+ ccavResponse tracking_id 312010208232
+2023-08-21 14:47:05,073 - root - INFO - 
+
+
+ ccavResponse amount 756.00
+2023-08-21 14:47:05,073 - root - INFO - 
+
+
+ ccavResponse order_status Aborted
+2023-08-21 14:47:05,074 - root - INFO - 
+
+
+ ccavResponse trans_date null
+2023-08-21 14:47:05,074 - root - INFO - 
+
+
+ ccavResponse redirect_url https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0028
+2023-08-21 14:47:05,074 - root - INFO - 
+
+
+ ccavResponse base_url https://soulwsc.eduleadonline.com
+2023-08-21 14:47:05,074 - root - INFO - 
+
+
+ ccavResponse api_getToken https://soulwsc.eduleadonline.com/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_token
+2023-08-21 14:48:19,069 - root - INFO - Processing res function...
+2023-08-21 14:48:19,069 - root - INFO - hdfc:
+2023-08-21 14:48:19,069 - root - INFO - ccResponse URL: https://pi.eduleadonline.com/ccavResponseHandler
+2023-08-21 14:48:19,069 - root - INFO - ccavResponse processed_url: production
+2023-08-21 14:48:19,069 - root - INFO - ccavResponse config_file_path: hdfc_test_server_config.json
+2023-08-21 14:48:19,070 - root - INFO - ccavResponse config_dataaa: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-21 14:48:19,070 - root - INFO - inside try: production
+2023-08-21 14:48:19,070 - root - INFO -  processed_url: production
+2023-08-21 14:48:19,070 - root - INFO -  if config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-21 14:48:19,070 - root - INFO - 
+
+
+ ccavResponse decResp: b'order_id=PAYM-2023-0029&tracking_id=312010208255&bank_ref_no=null&order_status=Aborted&failure_message=&payment_mode=null&card_name=null&status_code=&status_message=Cancel reason is not specified by the customer.&currency=INR&amount=200.00&billing_name=EDUSTU&billing_address=&billing_city=&billing_state=&billing_zip=&billing_country=&billing_tel=&billing_email=&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=&merchant_param2=&merchant_param3=&merchant_param4=&merchant_param5=&vault=N&offer_type=null&offer_code=null&discount_value=0.0&mer_amount=200.00&eci_value=&retry=null&response_code=&billing_notes=&trans_date=null&bin_country=\x04\x04\x04\x04'
+2023-08-21 14:48:19,070 - root - INFO - 
+
+
+ ccavResponse parsed_data: {"b'order_id": ['PAYM-2023-0029'], 'tracking_id': ['312010208255'], 'bank_ref_no': ['null'], 'order_status': ['Aborted'], 'payment_mode': ['null'], 'card_name': ['null'], 'status_message': ['Cancel reason is not specified by the customer.'], 'currency': ['INR'], 'amount': ['200.00'], 'billing_name': ['EDUSTU'], 'vault': ['N'], 'offer_type': ['null'], 'offer_code': ['null'], 'discount_value': ['0.0'], 'mer_amount': ['200.00'], 'retry': ['null'], 'trans_date': ['null'], 'bin_country': ["\\x04\\x04\\x04\\x04'"]}
+2023-08-21 14:48:19,070 - root - INFO - 
+
+
+ ccavResponse cleaned_data:{'order_id': 'PAYM-2023-0029', 'tracking_id': '312010208255', 'ank_ref_no': 'null', 'order_status': 'Aborted', 'payment_mode': 'null', 'card_name': 'null', 'status_message': 'Cancel reason is not specified by the customer.', 'currency': 'INR', 'amount': '200.00', 'illing_name': 'EDUSTU', 'vault': 'N', 'offer_type': 'null', 'offer_code': 'null', 'discount_value': '0.0', 'mer_amount': '200.00', 'retry': 'null', 'trans_date': 'null', 'in_country': "\\x04\\x04\\x04\\x04'"}
+2023-08-21 14:48:19,070 - root - INFO - 
+
+
+ ccavResponse order_id PAYM-2023-0029
+2023-08-21 14:48:19,071 - root - INFO - 
+
+
+ ccavResponse tracking_id 312010208255
+2023-08-21 14:48:19,071 - root - INFO - 
+
+
+ ccavResponse amount 200.00
+2023-08-21 14:48:19,071 - root - INFO - 
+
+
+ ccavResponse order_status Aborted
+2023-08-21 14:48:19,071 - root - INFO - 
+
+
+ ccavResponse trans_date null
+2023-08-21 14:48:19,071 - root - INFO - 
+
+
+ ccavResponse redirect_url https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0029
+2023-08-21 14:48:19,071 - root - INFO - 
+
+
+ ccavResponse base_url https://soulwsc.eduleadonline.com
+2023-08-21 14:48:19,071 - root - INFO - 
+
+
+ ccavResponse api_getToken https://soulwsc.eduleadonline.com/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_token
+2023-08-21 14:51:08,897 - root - INFO - Processing res function...
+2023-08-21 14:51:08,897 - root - INFO - hdfc:
+2023-08-21 14:51:08,898 - root - INFO - ccResponse URL: https://pi.eduleadonline.com/ccavResponseHandler
+2023-08-21 14:51:08,898 - root - INFO - ccavResponse processed_url: production
+2023-08-21 14:51:08,898 - root - INFO - ccavResponse config_file_path: hdfc_test_server_config.json
+2023-08-21 14:51:08,899 - root - INFO - ccavResponse config_dataaa: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-21 14:51:08,899 - root - INFO - inside try: production
+2023-08-21 14:51:08,899 - root - INFO -  processed_url: production
+2023-08-21 14:51:08,900 - root - INFO -  if config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-21 14:51:08,900 - root - INFO - 
+
+
+ ccavResponse decResp: b'order_id=PAYM-2023-0028&tracking_id=312010208298&bank_ref_no=null&order_status=Aborted&failure_message=&payment_mode=null&card_name=null&status_code=&status_message=Cancel reason is not specified by the customer.&currency=INR&amount=100.00&billing_name=EDUSTU&billing_address=&billing_city=&billing_state=&billing_zip=&billing_country=&billing_tel=&billing_email=&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=&merchant_param2=&merchant_param3=&merchant_param4=&merchant_param5=&vault=N&offer_type=null&offer_code=null&discount_value=0.0&mer_amount=100.00&eci_value=&retry=null&response_code=&billing_notes=&trans_date=null&bin_country=\x04\x04\x04\x04'
+2023-08-21 14:51:08,900 - root - INFO - 
+
+
+ ccavResponse parsed_data: {"b'order_id": ['PAYM-2023-0028'], 'tracking_id': ['312010208298'], 'bank_ref_no': ['null'], 'order_status': ['Aborted'], 'payment_mode': ['null'], 'card_name': ['null'], 'status_message': ['Cancel reason is not specified by the customer.'], 'currency': ['INR'], 'amount': ['100.00'], 'billing_name': ['EDUSTU'], 'vault': ['N'], 'offer_type': ['null'], 'offer_code': ['null'], 'discount_value': ['0.0'], 'mer_amount': ['100.00'], 'retry': ['null'], 'trans_date': ['null'], 'bin_country': ["\\x04\\x04\\x04\\x04'"]}
+2023-08-21 14:51:08,901 - root - INFO - 
+
+
+ ccavResponse cleaned_data:{'order_id': 'PAYM-2023-0028', 'tracking_id': '312010208298', 'ank_ref_no': 'null', 'order_status': 'Aborted', 'payment_mode': 'null', 'card_name': 'null', 'status_message': 'Cancel reason is not specified by the customer.', 'currency': 'INR', 'amount': '100.00', 'illing_name': 'EDUSTU', 'vault': 'N', 'offer_type': 'null', 'offer_code': 'null', 'discount_value': '0.0', 'mer_amount': '100.00', 'retry': 'null', 'trans_date': 'null', 'in_country': "\\x04\\x04\\x04\\x04'"}
+2023-08-21 14:51:08,901 - root - INFO - 
+
+
+ ccavResponse order_id PAYM-2023-0028
+2023-08-21 14:51:08,901 - root - INFO - 
+
+
+ ccavResponse tracking_id 312010208298
+2023-08-21 14:51:08,901 - root - INFO - 
+
+
+ ccavResponse amount 100.00
+2023-08-21 14:51:08,902 - root - INFO - 
+
+
+ ccavResponse order_status Aborted
+2023-08-21 14:51:08,902 - root - INFO - 
+
+
+ ccavResponse trans_date null
+2023-08-21 14:51:08,902 - root - INFO - 
+
+
+ ccavResponse redirect_url https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0028
+2023-08-21 14:51:08,903 - root - INFO - 
+
+
+ ccavResponse base_url https://soulwsc.eduleadonline.com
+2023-08-21 14:51:08,903 - root - INFO - 
+
+
+ ccavResponse api_getToken https://soulwsc.eduleadonline.com/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_token
+2023-08-21 15:02:17,349 - root - INFO - Processing res function...
+2023-08-21 15:02:17,350 - root - INFO - hdfc:
+2023-08-21 15:02:17,350 - root - INFO - ccResponse URL: https://pi.eduleadonline.com/ccavResponseHandler
+2023-08-21 15:02:17,350 - root - INFO - ccavResponse processed_url: production
+2023-08-21 15:02:17,351 - root - INFO - ccavResponse config_file_path: hdfc_test_server_config.json
+2023-08-21 15:02:17,351 - root - INFO - ccavResponse config_dataaa: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-21 15:02:17,351 - root - INFO - inside try: production
+2023-08-21 15:02:17,351 - root - INFO -  processed_url: production
+2023-08-21 15:02:17,351 - root - INFO -  if config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-21 15:02:17,352 - root - INFO - 
+
+
+ ccavResponse decResp: b'order_id=PAYM-2023-0031&tracking_id=312010208458&bank_ref_no=null&order_status=Aborted&failure_message=&payment_mode=null&card_name=null&status_code=&status_message=Cancel reason is not specified by the customer.&currency=INR&amount=200.00&billing_name=EDUSTU&billing_address=&billing_city=&billing_state=&billing_zip=&billing_country=&billing_tel=&billing_email=&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=&merchant_param2=&merchant_param3=&merchant_param4=&merchant_param5=&vault=N&offer_type=null&offer_code=null&discount_value=0.0&mer_amount=200.00&eci_value=&retry=null&response_code=&billing_notes=&trans_date=null&bin_country=\x04\x04\x04\x04'
+2023-08-21 15:02:17,352 - root - INFO - 
+
+
+ ccavResponse parsed_data: {"b'order_id": ['PAYM-2023-0031'], 'tracking_id': ['312010208458'], 'bank_ref_no': ['null'], 'order_status': ['Aborted'], 'payment_mode': ['null'], 'card_name': ['null'], 'status_message': ['Cancel reason is not specified by the customer.'], 'currency': ['INR'], 'amount': ['200.00'], 'billing_name': ['EDUSTU'], 'vault': ['N'], 'offer_type': ['null'], 'offer_code': ['null'], 'discount_value': ['0.0'], 'mer_amount': ['200.00'], 'retry': ['null'], 'trans_date': ['null'], 'bin_country': ["\\x04\\x04\\x04\\x04'"]}
+2023-08-21 15:02:17,352 - root - INFO - 
+
+
+ ccavResponse cleaned_data:{'order_id': 'PAYM-2023-0031', 'tracking_id': '312010208458', 'ank_ref_no': 'null', 'order_status': 'Aborted', 'payment_mode': 'null', 'card_name': 'null', 'status_message': 'Cancel reason is not specified by the customer.', 'currency': 'INR', 'amount': '200.00', 'illing_name': 'EDUSTU', 'vault': 'N', 'offer_type': 'null', 'offer_code': 'null', 'discount_value': '0.0', 'mer_amount': '200.00', 'retry': 'null', 'trans_date': 'null', 'in_country': "\\x04\\x04\\x04\\x04'"}
+2023-08-21 15:02:17,352 - root - INFO - 
+
+
+ ccavResponse order_id PAYM-2023-0031
+2023-08-21 15:02:17,353 - root - INFO - 
+
+
+ ccavResponse tracking_id 312010208458
+2023-08-21 15:02:17,353 - root - INFO - 
+
+
+ ccavResponse amount 200.00
+2023-08-21 15:02:17,353 - root - INFO - 
+
+
+ ccavResponse order_status Aborted
+2023-08-21 15:02:17,353 - root - INFO - 
+
+
+ ccavResponse trans_date null
+2023-08-21 15:02:17,353 - root - INFO - 
+
+
+ ccavResponse redirect_url https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0031
+2023-08-21 15:02:17,354 - root - INFO - 
+
+
+ ccavResponse base_url https://soulwsc.eduleadonline.com
+2023-08-21 15:02:17,354 - root - INFO - 
+
+
+ ccavResponse api_getToken https://soulwsc.eduleadonline.com/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_token
+2023-08-21 15:10:40,499 - root - INFO - Processing res function...
+2023-08-21 15:10:40,499 - root - INFO - hdfc:
+2023-08-21 15:10:40,499 - root - INFO - ccResponse URL: https://pi.eduleadonline.com/ccavResponseHandler
+2023-08-21 15:10:40,499 - root - INFO - ccavResponse processed_url: production
+2023-08-21 15:10:40,499 - root - INFO - ccavResponse config_file_path: hdfc_test_server_config.json
+2023-08-21 15:10:40,500 - root - INFO - ccavResponse config_dataaa: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-21 15:10:40,500 - root - INFO - inside try: production
+2023-08-21 15:10:40,500 - root - INFO -  processed_url: production
+2023-08-21 15:10:40,500 - root - INFO -  if config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-21 15:10:40,500 - root - INFO - 
+
+
+ ccavResponse decResp: b'order_id=PAYM-2023-0032&tracking_id=312010208579&bank_ref_no=null&order_status=Aborted&failure_message=&payment_mode=null&card_name=null&status_code=&status_message=Cancel reason is not specified by the customer.&currency=INR&amount=50.00&billing_name=EDUSTU&billing_address=&billing_city=&billing_state=&billing_zip=&billing_country=&billing_tel=&billing_email=&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=&merchant_param2=&merchant_param3=&merchant_param4=&merchant_param5=&vault=N&offer_type=null&offer_code=null&discount_value=0.0&mer_amount=50.00&eci_value=&retry=null&response_code=&billing_notes=&trans_date=null&bin_country=\x06\x06\x06\x06\x06\x06'
+2023-08-21 15:10:40,501 - root - INFO - 
+
+
+ ccavResponse parsed_data: {"b'order_id": ['PAYM-2023-0032'], 'tracking_id': ['312010208579'], 'bank_ref_no': ['null'], 'order_status': ['Aborted'], 'payment_mode': ['null'], 'card_name': ['null'], 'status_message': ['Cancel reason is not specified by the customer.'], 'currency': ['INR'], 'amount': ['50.00'], 'billing_name': ['EDUSTU'], 'vault': ['N'], 'offer_type': ['null'], 'offer_code': ['null'], 'discount_value': ['0.0'], 'mer_amount': ['50.00'], 'retry': ['null'], 'trans_date': ['null'], 'bin_country': ["\\x06\\x06\\x06\\x06\\x06\\x06'"]}
+2023-08-21 15:10:40,501 - root - INFO - 
+
+
+ ccavResponse cleaned_data:{'order_id': 'PAYM-2023-0032', 'tracking_id': '312010208579', 'ank_ref_no': 'null', 'order_status': 'Aborted', 'payment_mode': 'null', 'card_name': 'null', 'status_message': 'Cancel reason is not specified by the customer.', 'currency': 'INR', 'amount': '50.00', 'illing_name': 'EDUSTU', 'vault': 'N', 'offer_type': 'null', 'offer_code': 'null', 'discount_value': '0.0', 'mer_amount': '50.00', 'retry': 'null', 'trans_date': 'null', 'in_country': "\\x06\\x06\\x06\\x06\\x06\\x06'"}
+2023-08-21 15:10:40,501 - root - INFO - 
+
+
+ ccavResponse order_id PAYM-2023-0032
+2023-08-21 15:10:40,502 - root - INFO - 
+
+
+ ccavResponse tracking_id 312010208579
+2023-08-21 15:10:40,502 - root - INFO - 
+
+
+ ccavResponse amount 50.00
+2023-08-21 15:10:40,502 - root - INFO - 
+
+
+ ccavResponse order_status Aborted
+2023-08-21 15:10:40,502 - root - INFO - 
+
+
+ ccavResponse trans_date null
+2023-08-21 15:10:40,503 - root - INFO - 
+
+
+ ccavResponse redirect_url https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0032
+2023-08-21 15:10:40,503 - root - INFO - 
+
+
+ ccavResponse base_url https://soulwsc.eduleadonline.com
+2023-08-21 15:10:40,503 - root - INFO - 
+
+
+ ccavResponse api_getToken https://soulwsc.eduleadonline.com/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_token
+2023-08-21 15:20:45,316 - root - INFO - Processing res function...
+2023-08-21 15:20:45,316 - root - INFO - hdfc:
+2023-08-21 15:20:45,316 - root - INFO - ccResponse URL: https://pi.eduleadonline.com/ccavResponseHandler
+2023-08-21 15:20:45,317 - root - INFO - ccavResponse processed_url: production
+2023-08-21 15:20:45,317 - root - INFO - ccavResponse config_file_path: hdfc_test_server_config.json
+2023-08-21 15:20:45,317 - root - INFO - ccavResponse config_dataaa: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-21 15:20:45,317 - root - INFO - inside try: production
+2023-08-21 15:20:45,317 - root - INFO -  processed_url: production
+2023-08-21 15:20:45,317 - root - INFO -  if config_data production: {'Merchant ID': '2649161', 'Access Code': 'AVYA87KG31AX44AYXA', 'Working Key': 'F5D6C4A01508C64EEF91EBDB72336ECB', 'Redirect URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Cancel URL': 'https://pi.eduleadonline.com/ccavResponseHandler', 'Site Name': 'https://soulwsc.eduleadonline.com/app/onlinepayment/', 'Gateway Name': 'HDFC', 'Dev Type': 'Production'}
+2023-08-21 15:20:45,317 - root - INFO - 
+
+
+ ccavResponse decResp: b'order_id=PAYM-2023-0034&tracking_id=312010208738&bank_ref_no=1692611402259&order_status=Success&failure_message=&payment_mode=Credit Card&card_name=Visa&status_code=null&status_message=Y&currency=INR&amount=100.00&billing_name=EDUSTU&billing_address=&billing_city=&billing_state=&billing_zip=&billing_country=&billing_tel=&billing_email=&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=&merchant_param2=&merchant_param3=&merchant_param4=&merchant_param5=&vault=N&offer_type=null&offer_code=null&discount_value=0.0&mer_amount=100.00&eci_value=null&retry=N&response_code=0&billing_notes=&trans_date=21/08/2023 15:20:01&bin_country=INDIA\x08\x08\x08\x08\x08\x08\x08\x08'
+2023-08-21 15:20:45,318 - root - INFO - 
+
+
+ ccavResponse parsed_data: {"b'order_id": ['PAYM-2023-0034'], 'tracking_id': ['312010208738'], 'bank_ref_no': ['1692611402259'], 'order_status': ['Success'], 'payment_mode': ['Credit Card'], 'card_name': ['Visa'], 'status_code': ['null'], 'status_message': ['Y'], 'currency': ['INR'], 'amount': ['100.00'], 'billing_name': ['EDUSTU'], 'vault': ['N'], 'offer_type': ['null'], 'offer_code': ['null'], 'discount_value': ['0.0'], 'mer_amount': ['100.00'], 'eci_value': ['null'], 'retry': ['N'], 'response_code': ['0'], 'trans_date': ['21/08/2023 15:20:01'], 'bin_country': ["INDIA\\x08\\x08\\x08\\x08\\x08\\x08\\x08\\x08'"]}
+2023-08-21 15:20:45,318 - root - INFO - 
+
+
+ ccavResponse cleaned_data:{'order_id': 'PAYM-2023-0034', 'tracking_id': '312010208738', 'ank_ref_no': '1692611402259', 'order_status': 'Success', 'payment_mode': 'Credit Card', 'card_name': 'Visa', 'status_code': 'null', 'status_message': 'Y', 'currency': 'INR', 'amount': '100.00', 'illing_name': 'EDUSTU', 'vault': 'N', 'offer_type': 'null', 'offer_code': 'null', 'discount_value': '0.0', 'mer_amount': '100.00', 'eci_value': 'null', 'retry': 'N', 'response_code': '0', 'trans_date': '21/08/2023 15:20:01', 'in_country': "INDIA\\x08\\x08\\x08\\x08\\x08\\x08\\x08\\x08'"}
+2023-08-21 15:20:45,318 - root - INFO - 
+
+
+ ccavResponse order_id PAYM-2023-0034
+2023-08-21 15:20:45,318 - root - INFO - 
+
+
+ ccavResponse tracking_id 312010208738
+2023-08-21 15:20:45,318 - root - INFO - 
+
+
+ ccavResponse amount 100.00
+2023-08-21 15:20:45,318 - root - INFO - 
+
+
+ ccavResponse order_status Success
+2023-08-21 15:20:45,318 - root - INFO - 
+
+
+ ccavResponse trans_date 21/08/2023 15:20:01
+2023-08-21 15:20:45,318 - root - INFO - 
+
+
+ ccavResponse redirect_url https://soulwsc.eduleadonline.com/app/onlinepayment/PAYM-2023-0034
+2023-08-21 15:20:45,318 - root - INFO - 
+
+
+ ccavResponse base_url https://soulwsc.eduleadonline.com
+2023-08-21 15:20:45,319 - root - INFO - 
+
+
+ ccavResponse api_getToken https://soulwsc.eduleadonline.com/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_token

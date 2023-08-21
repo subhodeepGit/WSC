@@ -1,0 +1,251 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"Bv10RpKbf7\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Training of Trainers</span>\",\"col\":12}},{\"id\":\"5e-aRSPal2\",\"type\":\"card\",\"data\":{\"card_name\":\"Classes and Groups\",\"col\":4}},{\"id\":\"dmUB-8rdSN\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance\",\"col\":4}},{\"id\":\"upN74jY0y0\",\"type\":\"card\",\"data\":{\"card_name\":\"Assignment and Exams\",\"col\":4}},{\"id\":\"nSyO0Rv954\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}}]",
+ "creation": "2023-08-21 11:22:34.462854",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "share-people",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Training of Trainers",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Classes and Groups",
+   "link_count": 2,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Participant Group",
+   "link_count": 0,
+   "link_to": "Participant Group",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "ToT Class Schedule",
+   "link_count": 0,
+   "link_to": "ToT Class Schedule",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Attendance",
+   "link_count": 2,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "ToT Participant Attendance",
+   "link_count": 0,
+   "link_to": "ToT Participant Attendance",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Participant Attendance Tool",
+   "link_count": 0,
+   "link_to": "Participant Attendance Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Assignment and Exams",
+   "link_count": 7,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Assignment",
+   "link_count": 0,
+   "link_to": "Assignment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Assignment Upload",
+   "link_count": 0,
+   "link_to": "Assignment Upload",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Assignment Declaration",
+   "link_count": 0,
+   "link_to": "Assignment Declaration",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Assignment Evaluation",
+   "link_count": 0,
+   "link_to": "Assignment Evaluation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Assignment Evaluation Tool",
+   "link_count": 0,
+   "link_to": "Assignment Evaluation Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Final Assignment Result",
+   "link_count": 0,
+   "link_to": "Final Assignment Result",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Final Result Declaration Tool",
+   "link_count": 0,
+   "link_to": "Final Result Declaration Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Masters",
+   "link_count": 8,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Department",
+   "link_count": 0,
+   "link_to": "Department",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Programs",
+   "link_count": 0,
+   "link_to": "Programs",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Course",
+   "link_count": 0,
+   "link_to": "Course",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Topic",
+   "link_count": 0,
+   "link_to": "Topic",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "ToT Participant",
+   "link_count": 0,
+   "link_to": "ToT Participant",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "ToT Participant Selection",
+   "link_count": 0,
+   "link_to": "ToT Participant Selection",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "ToT Participant Enrollment",
+   "link_count": 0,
+   "link_to": "ToT Participant Enrollment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Trainer",
+   "link_count": 0,
+   "link_to": "Instructor",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2023-08-21 15:09:59.920242",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Training of Trainers",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 49.0,
+ "shortcuts": [],
+ "title": "Training of Trainers"
+}
