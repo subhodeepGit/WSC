@@ -58,14 +58,26 @@ frappe.ui.form.on('Material Request Item', {	//Child table Name
         var child = locals[cdt][cdn];
         if (child.idx === 1) {
             var product_item_group = child.item_group;
-            frm.fields_dict['items'].grid.get_field('item_code').get_query = function() {
+            frm.fields_dict['items'].grid.get_field('item_code').get_query = function(doc, cdt, cdn) {
+                var row = locals[cdt][cdn];
+                var existing_items = [];
+                frm.doc.items.forEach(function(item) {
+                    if (item.item_code && item.item_code !== row.item_code) {
+                        existing_items.push(item.item_code);
+                    }
+                });
+                
                 return {
                     filters: {
-                        item_group: product_item_group
+                        item_group: product_item_group,
+                        name: ['not in', existing_items]
                     }
                 };
             };
+            
             frm.fields_dict['items'].grid.refresh();
         }
     }
+	
+	
 });
