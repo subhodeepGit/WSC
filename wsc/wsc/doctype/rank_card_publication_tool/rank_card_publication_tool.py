@@ -37,7 +37,8 @@ def get_qualified_applicants(rank_card_master , academic_year , academic_term , 
 												{
 													'parent':rank_card_master
 												},
-												["student_category" , 'parent']
+												["student_category" , 'gender' , 'pwd']
+
 											)
 	
 	all_round_applicant_data = frappe.db.sql("""
@@ -57,10 +58,160 @@ def get_qualified_applicants(rank_card_master , academic_year , academic_term , 
 	category_based_ranks = {}
 	
 	## category based
-
 	for i in ranking_category_data:
 		list_data = []
+
+		if i['student_category'] != None and i['gender'] != None:
+			if i['pwd'] == 1:
+				category_gender_pwd_data = frappe.db.sql("""
+					SELECT DISTINCT 
+					    res.applicant_id ,
+					    res.earned_marks ,
+					    res.student_category , res.gender , res.physically_disabled 
+					FROM `tabEntrance Exam Result Publication` res
+					INNER JOIN `tabRank Card Master` rank_master
+					WHERE
+					     res.earned_marks >= rank_master.all_round_cutoff AND
+					     res.student_category = '{category}' AND 
+					     res.gender = '{gender}' AND
+					     res.physically_disabled = 1
+					ORDER BY res.earned_marks
+					LIMIT {max_rank}
+				""".format( max_rank = rank_card_master_data[0]['maximum_number_of_ranks'] ,
+							category = i['student_category'] , 
+							gender = i['gender']
+							) ,
+							as_dict=1)
+				# print(category_gender_pwd_rank)
+			else:
+				category_gender_data = frappe.db.sql("""
+					SELECT DISTINCT 
+					    res.applicant_id ,
+					    res.earned_marks ,
+					    res.student_category , res.gender , res.physically_disabled 
+					FROM `tabEntrance Exam Result Publication` res
+					INNER JOIN `tabRank Card Master` rank_master
+					WHERE
+					     res.earned_marks >= rank_master.all_round_cutoff AND
+					     res.student_category = '{category}' AND 
+					     res.gender = '{gender}'
+					ORDER BY res.earned_marks
+					LIMIT {max_rank}
+				""".format( max_rank = rank_card_master_data[0]['maximum_number_of_ranks'] ,
+							category = i['student_category'] , 
+							gender = i['gender']
+							) ,
+							as_dict=1)
+				# print(category_gender_data)
+			### 2 queries 111 & 110
+
+		elif i['gender'] == None:
+			# print("\n\n\ncon2")
+			### 3 queries  100 , 101 , 001
+			
+			if i['student_category'] != None:
+				# print(i)
+				category_data = frappe.db.sql("""
+					SELECT DISTINCT 
+					    res.applicant_id ,
+					    res.earned_marks ,
+					    res.student_category , res.gender , res.physically_disabled 
+					FROM `tabEntrance Exam Result Publication` res
+					INNER JOIN `tabRank Card Master` rank_master
+					WHERE
+					     res.earned_marks >= rank_master.all_round_cutoff AND
+					     res.student_category = '{category}'
+					ORDER BY res.earned_marks
+					LIMIT {max_rank}
+				""".format( max_rank = rank_card_master_data[0]['maximum_number_of_ranks'] ,
+							category = i['student_category'] 
+							) ,
+							as_dict=1)
+				### query is running thrice due to because in 'i' there is 101 and 100 is considered same in this condition
+				# print(category_data)
 		
+			else:
+				pwd_data = frappe.db.sql("""
+					SELECT DISTINCT 
+					    res.applicant_id ,
+					    res.earned_marks ,
+					    res.student_category , res.gender , res.physically_disabled 
+					FROM `tabEntrance Exam Result Publication` res
+					INNER JOIN `tabRank Card Master` rank_master
+					WHERE
+					     res.earned_marks >= rank_master.all_round_cutoff AND
+					     res.physically_disabled = 1
+					ORDER BY res.earned_marks
+					LIMIT {max_rank}
+				""".format( max_rank = rank_card_master_data[0]['maximum_number_of_ranks'] ) ,
+							as_dict=1)
+
+				# print(pwd_data)
+
+			if i['student_category'] != None and i['pwd'] == 1:
+				print(i)
+				category_pwd_data = frappe.db.sql("""
+					SELECT DISTINCT 
+					    res.applicant_id ,
+					    res.earned_marks ,
+					    res.student_category , res.gender , res.physically_disabled 
+					FROM `tabEntrance Exam Result Publication` res
+					INNER JOIN `tabRank Card Master` rank_master
+					WHERE
+					     res.earned_marks >= rank_master.all_round_cutoff AND
+					     res.student_category = '{category}' AND
+				      	 res.physically_disabled = 1
+					ORDER BY res.earned_marks
+					LIMIT {max_rank}
+				""".format( max_rank = rank_card_master_data[0]['maximum_number_of_ranks'] ,
+							category = i['student_category'] 
+							) ,
+							as_dict=1)
+				print(category_pwd_data)			
+
+		elif i['student_category'] == None:
+			# pass
+			### 2 queries 011 & 010 
+			# print("\n\ncon 3")
+			if i['pwd'] == 1:
+				gender_pwd_data = frappe.db.sql("""
+					SELECT DISTINCT 
+					    res.applicant_id ,
+					    res.earned_marks ,
+					    res.student_category , res.gender , res.physically_disabled 
+					FROM `tabEntrance Exam Result Publication` res
+					INNER JOIN `tabRank Card Master` rank_master
+					WHERE
+					     res.earned_marks >= rank_master.all_round_cutoff AND
+					     res.gender = '{gender}' AND
+				    	 res.physically_disabled = 1
+					ORDER BY res.earned_marks
+					LIMIT {max_rank}
+				""".format( max_rank = rank_card_master_data[0]['maximum_number_of_ranks'] ,
+							gender = i['gender']
+							) ,
+							as_dict=1)
+				# print(gender_pwd_data)
+			else:
+				gender_data = frappe.db.sql("""
+					SELECT DISTINCT 
+					    res.applicant_id ,
+					    res.earned_marks ,
+					    res.student_category , res.gender , res.physically_disabled 
+					FROM `tabEntrance Exam Result Publication` res
+					INNER JOIN `tabRank Card Master` rank_master
+					WHERE
+					     res.earned_marks >= rank_master.all_round_cutoff AND
+					     res.gender = '{gender}' 
+					ORDER BY res.earned_marks
+					LIMIT {max_rank}
+				""".format( max_rank = rank_card_master_data[0]['maximum_number_of_ranks'] ,
+							gender = i['gender']
+							) ,
+							as_dict=1)
+				# print(gender_data)
+			# print(i)
+
 		category_based_applicant_data = frappe.db.sql("""
 			SELECT DISTINCT 
 				res.applicant_id ,
