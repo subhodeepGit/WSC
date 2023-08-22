@@ -96,13 +96,15 @@
    "fieldname": "preferred_hostel",
    "fieldtype": "Link",
    "label": "Preferred Hostel",
-   "options": "Hostel Masters"
+   "options": "Hostel Masters",
+   "reqd": 1
   },
   {
    "fieldname": "preferred_room",
    "fieldtype": "Link",
    "label": "Preferred Room",
-   "options": "Room Masters"
+   "options": "Room Masters",
+   "reqd": 1
   },
   {
    "fetch_from": "preferred_room.actual_room_type",
@@ -130,7 +132,6 @@
   {
    "fieldname": "application_status",
    "fieldtype": "Data",
-   "hidden": 1,
    "label": "Application Status",
    "read_only": 1
   },
@@ -173,9 +174,8 @@
   }
  ],
  "index_web_pages_for_search": 1,
- "is_submittable": 1,
  "links": [],
- "modified": "2023-08-18 11:36:16.614210",
+ "modified": "2023-08-21 16:36:59.728805",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Room Change",
@@ -198,7 +198,5 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "track_changes": 1,
- "track_seen": 1,
- "track_views": 1
+ "track_changes": 1
 }
