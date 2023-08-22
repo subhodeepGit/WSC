@@ -16,9 +16,12 @@ def get_details(participant_group_id):
 	return [group_details[0]['academic_year'], group_details[0]['academic_term'], group_details[0]['program'], group_details[0]['course'], participants, course_details[0]['course_name'], course_details[0]['course_code']]
 
 @frappe.whitelist()
-def get_participant_name(participant_group_id, participant_id):
+def get_participant_details(participant_group_id, participant_id):
 	participant_name = frappe.db.sql(""" SELECT participant_name FROM `tabParticipant Table` WHERE parent = '%s' AND participant = '%s'"""%(participant_group_id, participant_id), as_dict=1)
-	return participant_name[0]['participant_name']
+	participant_classes = frappe.db.sql(""" SELECT COUNT(*) FROM `tabToT Class Table` WHERE parent = '%s'"""%(participant_group_id))
+	participant_present_for = frappe.db.sql(""" SELECT COUNT(*) FROM `tabToT Participant Attendance` WHERE participant_id = '%s' AND participant_group = '%s'"""%(participant_id, participant_group_id))
+	final_attendance = (participant_present_for[0][0]/participant_classes[0][0])*100
+	return [participant_name[0]['participant_name'], final_attendance]
 
 @frappe.whitelist()
 def get_assignments(participant_group_id, participant_id, grading_scale):
