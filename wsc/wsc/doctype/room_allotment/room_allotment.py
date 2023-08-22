@@ -79,6 +79,7 @@ class RoomAllotment(Document):
 		room_id=doc.room_id
 		frappe.db.sql("""UPDATE `tabRoom Masters` SET `vacancy`=`vacancy`+1 WHERE `name`="%s" """%(room_id))
 		frappe.db.set_value("Student Hostel Admission",doc.hostel_registration_no, "allotment_status", "Cancelled") 
+		cancel_hostel_admission(doc)
 	
 
 
@@ -94,7 +95,12 @@ def test_query(doctype, txt, searchfield, start, page_len, filters):
 		return frappe.db.sql("""
 				SELECT `hostel_name` from `tabHostel Masters` WHERE `start_date`<=now() and `end_date`>=now()""")			
 			
-	
+def cancel_hostel_admission(doc):
+	if doc.hostel_registration_no:
+		hostel_admission_object= frappe.get_doc("Student Hostel Admission",doc.hostel_registration_no)
+		if hostel_admission_object.docstatus!=2 and hostel_admission_object.docstatus!=0:
+			hostel_admission_object.cancel()
+		frappe.msgprint("Hostel admission is also cancelled")
 
 
 
