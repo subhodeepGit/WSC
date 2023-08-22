@@ -47,18 +47,23 @@ class Programs(Document):
 			frappe.throw("Programs Abbreviation already exists in Programs <b>{0}</b>".format(programs.name))
 	@frappe.whitelist()
 	def create_tot_course(self):
-		semesters=[]
 		is_existing=True
 		for c in range(int(self.tot_programme)):
+			is_short_term_course=frappe.get_all("Program Grades",{"name":self.program_grade},['is_short_term_course'])
 			program_name=(self.programs_abbreviation)
 			if not frappe.db.exists("Program",program_name):
 				is_existing=False
 				doc=frappe.new_doc("Program")
 				doc.program_name=program_name
 				doc.programs=self.name
-				doc.is__tot=1
+				doc.is__tot=self.is_tot
+				doc.is_short_term_course=is_short_term_course[0]['is_short_term_course']
 				doc.semester_order=c+1
 				doc.save()
+			else:
+				doc=frappe.get_doc("Program",self.name)
+				doc.is__tot=self.is_tot
+				doc.save()	
 
 		return {"semesters":[d.name for d in frappe.get_all("Program",{"programs":self.name},order_by="creation",limit=int(self.tot_programme))],"is_existing":is_existing}
 	@frappe.whitelist()

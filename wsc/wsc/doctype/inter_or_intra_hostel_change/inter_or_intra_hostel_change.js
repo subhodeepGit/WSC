@@ -13,5 +13,19 @@ frappe.ui.form.on('Inter or Intra Hostel Change', {
 				query: "wsc.wsc.doctype.room_change.room_change.ra_query"
 			};
 		});
+		frm.set_query("second_allotment_no", function () {
+			return {
+				filters: [
+					["Room Allotment", "name", "!=", frm.doc.allotment_no]
+				]
+			}
+		});
+		frm.set_query("allotment_no", function () {
+			return {
+				filters: [
+					["Room Allotment", "name", "!=", frm.doc.second_allotment_no]
+				]
+			}
+		});
 	}
 });

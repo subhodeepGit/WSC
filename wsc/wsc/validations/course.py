@@ -62,24 +62,24 @@ def calculate_total(doc):
 	doc.passing_credit=passing_credit
 
 @frappe.whitelist()
-def add_module_to_tot_course(course, programs):
+def add_module_to_tot_course(course, programs,is_tot,is_short_term_course):
 	semesters = json.loads(programs)
 	for entry in semesters:
-		programs = frappe.get_doc('Programs',{'is_short_term_course':"Yes"}, entry)
+		programs = frappe.get_doc('Programs',{'is_short_term_course':"Yes",'is_tot':is_tot}, entry)
 		programs.append('courses', {
 			'course': course,
-			'course_name': frappe.db.get_value("Course",{'name':course,'is_tot':1},"course_name"),
+			'course_name': frappe.db.get_value("Course",{'name':course,'is_short_term_course':"Yes",'is_tot':is_tot},"course_name"),
 		})
-		
 		program = frappe.get_doc('Program', entry)
 		program.append('courses', {
 			'course': course,
-			'course_name': frappe.db.get_value("Course",{'name':course,'is_tot':1},"course_name"),
+			'course_name': frappe.db.get_value("Course",{'name':course,'is_tot':is_tot},"course_name"),
 		})
 		program.flags.ignore_mandatory = True
 		program.save()
 		programs.flags.ignore_mandatory = True
 		programs.save()
+
 	frappe.db.commit()
 	frappe.msgprint(frappe._('Module {0} has been added to the selected Course successfully.').format(frappe.bold(course)),
 		title=frappe._('Course updated'), indicator='green')
@@ -114,10 +114,22 @@ def get_semesters_name(course):
 		if not courses or course not in courses:
 			data.append(program.name)
 	return data
+
 @frappe.whitelist()
 def get_course_name(course):
 	data = []
 	for entry in frappe.db.get_all('Program',{'is__tot':1}):
+		# ,{'is__tot':0}
+		program = frappe.get_doc('Program', entry.name)
+		courses = [c.course for c in program.courses]
+		if not courses or course not in courses:
+			data.append(program.name)
+	return data
+
+@frappe.whitelist()
+def get_short_term_name(course):
+	data = []
+	for entry in frappe.db.get_all('Program',{'is__tot':0,'is_short_term_course':"Yes"}):
 		# ,{'is__tot':0}
 		program = frappe.get_doc('Program', entry.name)
 		courses = [c.course for c in program.courses]

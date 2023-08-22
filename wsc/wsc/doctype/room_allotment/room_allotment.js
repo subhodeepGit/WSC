@@ -48,7 +48,7 @@ frappe.ui.form.on('Room Allotment', {
             callback: function(r) { 
                 if (r.message){
                     frm.set_value("hostel_registration_no",r.message['name'])
-					frm.set_value("hostel_id",r.message['hostel'])
+					// frm.set_value("hostel_id",r.message['hostel'])
                 }
             } 
             
