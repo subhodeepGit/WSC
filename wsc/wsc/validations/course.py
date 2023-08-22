@@ -64,12 +64,8 @@ def calculate_total(doc):
 @frappe.whitelist()
 def add_module_to_tot_course(course, programs,is_tot,is_short_term_course):
 	semesters = json.loads(programs)
-	print("\n\n\nis short")
-	print(is_short_term_course)
-	print(is_tot)
 	for entry in semesters:
 		programs = frappe.get_doc('Programs',{'is_short_term_course':"Yes",'is_tot':is_tot}, entry)
-		print(programs)
 		programs.append('courses', {
 			'course': course,
 			'course_name': frappe.db.get_value("Course",{'name':course,'is_short_term_course':"Yes",'is_tot':is_tot},"course_name"),
@@ -82,7 +78,6 @@ def add_module_to_tot_course(course, programs,is_tot,is_short_term_course):
 		program.flags.ignore_mandatory = True
 		program.save()
 		programs.flags.ignore_mandatory = True
-		print("\n\n\nTOT SAVING")
 		programs.save()
 
 	frappe.db.commit()
