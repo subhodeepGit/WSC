@@ -5,11 +5,14 @@ from frappe.model.document import Document
 
 from wsc.wsc.notification.custom_notification import send_mail_to_director,send_mail_to_hr
 def validate(doc,method):
-		
-		if doc.workflow_state == "Pending Approval":
-			director_mail(doc)
-		if doc.workflow_state == "Approved" or doc.workflow_state=="Rejected":
-			hr_mail(doc)
+        
+        if doc.workflow_state == "Pending Approval":
+            director_mail(doc)
+        if doc.workflow_state == "Approved" or doc.workflow_state=="Rejected":
+            hr_mail(doc)
+        for detail in doc.get("leave_policy_details"):
+            if detail.annual_allocation < 0:
+                frappe.throw(_("Annual allocation cannot be negative"))
 def director_mail(doc):
     director_mail = frappe.get_all("User",filters={'role':"Director"},pluck='name')
     if director_mail:

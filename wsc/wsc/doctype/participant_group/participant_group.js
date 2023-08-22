@@ -75,3 +75,15 @@ frappe.ui.form.on('Participant Group', {
 
 	
 });
+
+frappe.ui.form.on('Instructor Table', {
+	instructor_add: function(frm){
+		frm.fields_dict['instructor'].grid.get_field('instructors').get_query = function(doc){
+			var trainers = [];
+			$.each(doc.instructor, function(idx, val){
+				if (val.instructors) trainers.push(val.instructors);
+			});
+			return { filters: [['Instructor', 'name', 'not in', trainers]] };
+		};
+	}
+});

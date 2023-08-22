@@ -193,6 +193,7 @@ def allotment(student):
 # @frappe.validate_and_sanitize_search_inputs
 def employee():
 	user=frappe.session.user
+	name=""
 	if user == "Administrator":
 		pass
 	else:
@@ -200,7 +201,8 @@ def employee():
 	if user == "Administrator":
 		name=""
 	else:
-		name=employee_name[0]['name']
+		if employee_name:
+			name=employee_name[0]['name']
 	if len(name)>0:
 		return name
 	

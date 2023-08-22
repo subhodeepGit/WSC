@@ -37,8 +37,8 @@ class StudentHostelAdmission(Document):
 	# 		frappe.throw("Student Applicant not maintained")##### Student Applicant
 
 
-	def after_insert(doc):
-		frappe.db.set_value("Student Hostel Admission",doc.name, "allotment_status", "Not Reported") 
+	# def after_insert(doc):
+	# 	frappe.db.set_value("Student Hostel Admission",doc.name, "allotment_status", "Not Reported") 
 
 
 

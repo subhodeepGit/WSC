@@ -25,13 +25,14 @@ frappe.ui.form.on('Final Assignment Result', {
 	},
 	participant_id: function(frm){
 		frappe.call({
-			method: 'wsc.wsc.doctype.final_assignment_result.final_assignment_result.get_participant_name',
+			method: 'wsc.wsc.doctype.final_assignment_result.final_assignment_result.get_participant_details',
 			args:{
 				participant_group_id: frm.doc.participant_group,
 				participant_id: frm.doc.participant_id
 			},
 			callback: function(result){
-				frm.set_value("participant_name", result.message)
+				frm.set_value("participant_name", result.message[0])
+				frm.set_value("attendance_percentage", result.message[1])
 			}
 		})
 	},

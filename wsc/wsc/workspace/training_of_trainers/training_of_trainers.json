@@ -167,7 +167,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Programs",
+   "label": "Course",
    "link_count": 0,
    "link_to": "Programs",
    "link_type": "DocType",
@@ -177,7 +177,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Course",
+   "label": "Module",
    "link_count": 0,
    "link_to": "Course",
    "link_type": "DocType",
@@ -227,7 +227,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Trainer",
+   "label": "Instructor",
    "link_count": 0,
    "link_to": "Instructor",
    "link_type": "DocType",
@@ -235,7 +235,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-08-21 15:09:59.920242",
+ "modified": "2023-08-21 15:57:25.500104",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Training of Trainers",

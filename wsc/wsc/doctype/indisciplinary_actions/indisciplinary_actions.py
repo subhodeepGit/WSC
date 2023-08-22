@@ -9,7 +9,7 @@ import pandas as pd
 
 class IndisciplinaryActions(Document):
 	# @frappe.whitelist()
-	def on_update(doc):
+	def on_submit(doc):
 		#doc status-0
 		type_of_decision=doc.type_of_decision
 		if type_of_decision=="Warning Letter":
