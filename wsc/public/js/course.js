@@ -16,12 +16,21 @@ frappe.ui.form.on('Course', {
 			frm.remove_custom_button("Add to Semester","Action");
 			frm.remove_custom_button("Add to ToT Course","Action");
 		}
-		if (frm.doc.is_tot==1){
+		if (frm.doc.is_tot==1 && frm.doc.is_short_term_course=="Yes"){
 			frm.remove_custom_button("Add to Programs","Action");
 			frm.remove_custom_button("Add to Semester","Action");
 			if (!cur_frm.doc.__islocal && (!frappe.user.has_role(["Student","Instructor"]) || frappe.user.has_role(["System Manager"]))) {
 				frm.add_custom_button(__('Add to ToT Course'), function() {
 					frm.trigger('add_module_to_tot_course')
+				}, __('Action'));
+			}
+		}
+		if(frm.doc.is_tot==0 && frm.doc.is_short_term_course=="Yes"){
+			frm.remove_custom_button("Add to Programs","Action");
+			frm.remove_custom_button("Add to Semester","Action");
+			if (!cur_frm.doc.__islocal && (!frappe.user.has_role(["Student","Instructor"]) || frappe.user.has_role(["System Manager"]))) {
+				frm.add_custom_button(__('Add to Short Term Course'), function(){
+					frm.trigger('add_to_short_term_course')
 				}, __('Action'));
 			}
 		}
@@ -113,6 +122,8 @@ frappe.ui.form.on('Course', {
 						args: {
 							'course': frm.doc.name,
 							'programs': data.programs,
+							'is_short_term_course':frm.doc.is_short_term_course,
+							'is_tot':frm.doc.is_tot
 						},
 						callback: function(r) {
 							if (!r.exc) {
@@ -127,6 +138,43 @@ frappe.ui.form.on('Course', {
 				frappe.msgprint(__('This Module is already added to the existing Course'));
 			}
 		});
+	},
+	add_to_short_term_course:function(frm){
+		get_course_short_term(frm.doc.name).then(r=>{
+			if (r.message.length) {
+				frappe.prompt([
+					{
+						fieldname: 'programs',
+						label: __('Course'),
+						fieldtype: 'MultiSelectPills',
+						get_data: function() {
+							return r.message;
+						}
+					}
+				],
+				function(data) {
+					frappe.call({
+						method: 'wsc.wsc.validations.course.add_module_to_tot_course',
+						args: {
+							'course': frm.doc.name,
+							'programs': data.programs,
+							'is_short_term_course':frm.doc.is_short_term_course,
+							'is_tot':frm.doc.is_tot
+						},
+						callback: function(r) {
+							if (!r.exc) {
+								frm.reload_doc();
+							}
+						},
+						freeze: true,
+						freeze_message: __('...Adding Module to Tot Course')
+					})
+				}, __('Add Module to Course'), __('Add'));
+			} else {
+				frappe.msgprint(__('This Module is already added to the existing Course'));
+			}
+		})
+
 	}
 });
 let get_semester_without_course = function(course) {
@@ -144,6 +192,15 @@ let get_course_without_module = function(course) {
 		// /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/validations/course.py
 	});
 }
+
+let get_course_short_term = function(course) {
+	return frappe.call({
+		args:{"course":course},
+		method: 'wsc.wsc.validations.course.get_short_term_name',
+		// /home/erpnext/frappe-bench/apps/wsc/wsc/wsc/validations/course.py
+	});
+}
+
 // frappe.ui.form.on("Course Credit", "lectures", function(frm, cdt, cdn) {
 //     var d = locals[cdt][cdn];
 // 	d.total=((d.lectures||0)+(d.tutorials||0)+(d.practicals||0))
