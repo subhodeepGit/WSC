@@ -14,6 +14,7 @@ class FinalResultDeclarationTool(Document):
 		for d in participant_list:
 			participant_id = d.participant_id
 			participant_name = d.participant_name
+
 			assignments = frappe.get_all('Assignment Evaluation', filters = [['participant_group','=', participant_group_id],['participant_id','=', participant_id]], fields = ['select_assignment', 'assessment_criteria', 'marks_earned', 'total_marks', 'assignment_name'])
 
 			parent_doc = frappe.new_doc("Final Assignment Result")
@@ -65,7 +66,12 @@ class FinalResultDeclarationTool(Document):
 
 			final_result = final_grade_components[0]
 			final_grade = final_grade_components[2]
-			# return([assignments, over_all_percentage, final_grade, final_result])
+
+
+			# Calculating attendance
+			participant_classes = frappe.db.sql(""" SELECT COUNT(*) FROM `tabToT Class Table` WHERE parent = '%s'"""%(participant_group_id))
+			participant_present_for = frappe.db.sql(""" SELECT COUNT(*) FROM `tabToT Participant Attendance` WHERE participant_id = '%s' AND participant_group = '%s'"""%(participant_id, participant_group_id))
+			final_attendance = (participant_present_for[0][0]/participant_classes[0][0])*100
 			
 
 			parent_doc.participant_group = self.participant_group
@@ -82,7 +88,7 @@ class FinalResultDeclarationTool(Document):
 			parent_doc.overall_percentage = over_all_percentage
 			parent_doc.overall_grade = final_grade
 			parent_doc.overall_result= final_result
-
+			parent_doc.attendance_percentage= final_attendance
 			parent_doc.save()
 
 @frappe.whitelist()
