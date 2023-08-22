@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "PAT.-.#####",
  "creation": "2023-07-05 14:36:07.326515",
  "default_view": "List",
  "doctype": "DocType",
@@ -49,7 +50,7 @@
   },
   {
    "fieldname": "date",
-   "fieldtype": "Date",
+   "fieldtype": "Select",
    "label": "Date"
   },
   {
@@ -112,10 +113,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-21 16:00:15.266372",
+ "modified": "2023-08-21 15:43:02.622326",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Attendance Tool",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

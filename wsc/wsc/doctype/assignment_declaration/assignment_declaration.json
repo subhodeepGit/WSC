@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "ASD.-.#####",
  "creation": "2023-07-05 16:07:20.839630",
  "default_view": "List",
  "doctype": "DocType",
@@ -143,10 +144,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-25 12:08:19.625743",
+ "modified": "2023-08-21 15:46:58.375236",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Declaration",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

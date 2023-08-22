@@ -11,10 +11,17 @@ frappe.ui.form.on('Participant Group', {
 			}
 		})
 		
-		// frm.set_query('program', function(){
+		frm.set_query('program', function(){
+			return{
+				filters:{
+					'is_tot': 1
+				}
+			}
+		})
+		// frm.set_query('course', function(){
 		// 	return{
 		// 		filters:{
-		// 			'is_tot': 1
+		// 			'name': frm.doc.program
 		// 		}
 		// 	}
 		// })
@@ -26,6 +33,20 @@ frappe.ui.form.on('Participant Group', {
 		// 		}
 		// 	}
 		// })
+	},
+
+	course: function(frm){
+		frappe.call({
+			method: 'wsc.wsc.doctype.participant_group.participant_group.get_module_name',
+			args:{
+				module_id : frm.doc.course
+			},
+			callback: function(result){
+				if(result.message){
+					frm.set_value("module_name", result.message)
+				}
+			}
+		})
 	},
 	get_participants : function(frm){
 		frappe.call({
@@ -53,4 +74,16 @@ frappe.ui.form.on('Participant Group', {
 	},
 
 	
+});
+
+frappe.ui.form.on('Instructor Table', {
+	instructor_add: function(frm){
+		frm.fields_dict['instructor'].grid.get_field('instructors').get_query = function(doc){
+			var trainers = [];
+			$.each(doc.instructor, function(idx, val){
+				if (val.instructors) trainers.push(val.instructors);
+			});
+			return { filters: [['Instructor', 'name', 'not in', trainers]] };
+		};
+	}
 });

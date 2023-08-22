@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "PTG.-.#####",
  "creation": "2023-07-05 12:09:28.353134",
  "default_view": "List",
  "doctype": "DocType",
@@ -13,16 +14,20 @@
   "group_based_on",
   "participant_category",
   "program",
-  "batch",
-  "get_participants",
-  "column_break_6",
+  "column_break_fpmn1",
   "academic_term",
   "participant_group",
   "max_strength",
+  "section_break_lnrxr",
   "course",
+  "batch",
+  "column_break_b1nvb",
+  "module_name",
   "section_break_13",
+  "get_participants",
   "participants",
-  "instructor"
+  "instructor",
+  "classes"
  ],
  "fields": [
   {
@@ -56,7 +61,7 @@
   {
    "fieldname": "program",
    "fieldtype": "Link",
-   "label": "Select Program",
+   "label": "Programs",
    "options": "Programs"
   },
   {
@@ -74,7 +79,7 @@
   {
    "fieldname": "course",
    "fieldtype": "Link",
-   "label": "Course",
+   "label": "Module ID",
    "options": "Course"
   },
   {
@@ -101,24 +106,44 @@
    "options": "Instructor Table"
   },
   {
-   "fieldname": "column_break_6",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "section_break_13",
    "fieldtype": "Section Break"
   },
   {
    "fieldname": "section_break_2",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "classes",
+   "fieldtype": "Table",
+   "label": "Classes",
+   "options": "ToT Class Table"
+  },
+  {
+   "fieldname": "column_break_fpmn1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_lnrxr",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_b1nvb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "module_name",
+   "fieldtype": "Data",
+   "label": "Module Name"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-17 13:11:05.015143",
+ "modified": "2023-08-21 15:41:49.849420",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Group",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
