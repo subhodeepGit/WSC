@@ -8,6 +8,8 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "evaluate",
+  "section_break_up0pn",
   "participant_group",
   "course",
   "academic_year",
@@ -110,11 +112,21 @@
    "fieldname": "passing_marks",
    "fieldtype": "Data",
    "label": "Passing Marks"
+  },
+  {
+   "default": "0",
+   "fieldname": "evaluate",
+   "fieldtype": "Check",
+   "label": "Evaluate"
+  },
+  {
+   "fieldname": "section_break_up0pn",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-21 15:46:06.888797",
+ "modified": "2023-08-22 16:34:23.798624",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment",

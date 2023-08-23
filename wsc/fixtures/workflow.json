@@ -1777,13 +1777,13 @@
      "doctype": "Workflow",
      "document_type": "Deallotment Process",
      "is_active": 1,
-     "modified": "2023-02-21 11:04:15.783702",
+     "modified": "2023-08-22 11:04:15.783702",
      "name": "De-allotment",
      "override_status": 0,
      "send_email_alert": 1,
      "states": [
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -1796,7 +1796,7 @@
        "update_value": "Open"
       },
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -1809,7 +1809,7 @@
        "update_value": "Open"
       },
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -1822,7 +1822,7 @@
        "update_value": "Open"
       },
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -1835,7 +1835,7 @@
        "update_value": "Close"
       },
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -1848,7 +1848,7 @@
        "update_value": "Close"
       },
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -1865,7 +1865,7 @@
       {
        "action": "Approve",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Approved",
        "parent": "De-allotment",
@@ -1876,7 +1876,7 @@
       {
        "action": "Review",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Pending",
        "parent": "De-allotment",
@@ -1887,7 +1887,7 @@
       {
        "action": "Reject",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Rejected",
        "parent": "De-allotment",
@@ -1898,7 +1898,7 @@
       {
        "action": "Withdrawl",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Withdrawl of Application",
        "parent": "De-allotment",
@@ -1909,7 +1909,7 @@
       {
        "action": "Review",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Approved",
        "parent": "De-allotment",
@@ -1920,7 +1920,7 @@
       {
        "action": "Reject",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Rejected",
        "parent": "De-allotment",
@@ -1931,7 +1931,7 @@
       {
        "action": "Clearence From Hostel",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Clearence From Hostel",
        "parent": "De-allotment",
