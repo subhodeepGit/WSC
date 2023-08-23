@@ -1,0 +1,30 @@
+{
+ "attach_print": 1,
+ "channel": "Email",
+ "creation": "2023-08-21 12:36:39.613601",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Recruitment Admit Card Generation",
+ "enabled": 0,
+ "event": "Submit",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "",
+ "modified": "2023-08-23 12:29:30.159586",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Your Admit Card",
+ "owner": "Administrator",
+ "print_format": "Recruitment Admit Card",
+ "recipients": [
+  {
+   "receiver_by_document_field": "applicant_mail"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "sender": "No-Reply",
+ "sender_email": "education4dmin@yandex.com",
+ "subject": "WSC Admit Card Notification"
+}

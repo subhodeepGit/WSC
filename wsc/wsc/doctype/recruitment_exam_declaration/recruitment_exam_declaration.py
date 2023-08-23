@@ -3,11 +3,12 @@
 
 import frappe
 from frappe.model.document import Document
+from wsc.wsc.notification.custom_notification import send_mail_to_jobapplicants_redn
 
 class RecruitmentExamDeclaration(Document):
     def validate(doc):
         update_job_opening(doc)
-
+        send_mail_to_jobapplicants_redn(doc)
 def update_job_opening(doc):
     print("Hello")
     job_opening = frappe.get_doc("Job Opening", doc.job_opening)
