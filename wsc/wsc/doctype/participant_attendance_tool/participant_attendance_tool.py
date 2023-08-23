@@ -14,7 +14,6 @@ class ParticipantAttendanceTool(Document):
 			new_doc.participant_group = self.participant_group
 			new_doc.select_course = self.select_course
 			new_doc.select_module = self.select_module
-			new_doc.select_sub_module = self.select_sub_module
 			new_doc.academic_year = self.academic_year
 			new_doc.academic_term = self.academic_term
 			new_doc.instructor_id = self.instructor_id
@@ -45,8 +44,7 @@ def get_details(participant_group_id):
 	dates = frappe.db.sql(""" SELECT scheduled_date FROM `tabToT Class Schedule` WHERE participant_group_id = '%s'"""%(participant_group_id))
 	group_details = frappe.get_all('Participant Group', filters = [['name', '=', participant_group_id]], fields = ['academic_year', 'academic_term', 'program', 'course'])
 	instructor_details = frappe.db.sql(""" SELECT instructors FROM `tabInstructor Table` where parent = '%s'"""%(participant_group_id))
-	sub_modules = frappe.db.sql(""" SELECT topic FROM `tabCourse Topic` WHERE parent = '%s'"""%(group_details[0]['course']))
-	return [group_details[0]['academic_year'], group_details[0]['academic_term'], group_details[0]['program'], group_details[0]['course'], instructor_details, sub_modules, dates]
+	return [group_details[0]['academic_year'], group_details[0]['academic_term'], group_details[0]['program'], group_details[0]['course'], instructor_details, dates]
 
 @frappe.whitelist()
 def get_instructor_name(participant_group_id, instructor_id):
