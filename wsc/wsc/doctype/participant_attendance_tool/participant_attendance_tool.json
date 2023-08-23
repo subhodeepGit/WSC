@@ -11,7 +11,6 @@
   "based_on",
   "academic_year",
   "select_course",
-  "select_sub_module",
   "column_break_4",
   "participant_group",
   "academic_term",
@@ -88,11 +87,6 @@
    "label": "Select Course"
   },
   {
-   "fieldname": "select_sub_module",
-   "fieldtype": "Select",
-   "label": "Select Sub Module"
-  },
-  {
    "fieldname": "select_module",
    "fieldtype": "Data",
    "label": "Select Module"
@@ -113,7 +107,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-21 15:43:02.622326",
+ "modified": "2023-08-23 12:10:44.747369",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Attendance Tool",

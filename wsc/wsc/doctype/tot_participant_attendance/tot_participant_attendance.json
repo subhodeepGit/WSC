@@ -10,14 +10,15 @@
  "field_order": [
   "participant_group",
   "select_module",
+  "section_break_guaiv",
+  "select_course",
+  "section_break_v1qy4",
   "academic_year",
   "instructor_id",
   "participant_id",
   "date",
   "status",
   "column_break_7",
-  "select_course",
-  "select_sub_module",
   "academic_term",
   "instructor_name",
   "participant_name",
@@ -76,11 +77,6 @@
    "label": "Select Course"
   },
   {
-   "fieldname": "select_sub_module",
-   "fieldtype": "Select",
-   "label": "Select Sub Module"
-  },
-  {
    "fieldname": "academic_term",
    "fieldtype": "Data",
    "label": "Academic term"
@@ -94,11 +90,19 @@
    "fieldname": "instructor_name",
    "fieldtype": "Data",
    "label": "Instructor Name"
+  },
+  {
+   "fieldname": "section_break_guaiv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_v1qy4",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-21 15:42:26.033609",
+ "modified": "2023-08-23 12:19:37.895107",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant Attendance",
