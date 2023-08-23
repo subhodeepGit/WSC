@@ -52,8 +52,7 @@ class LongLeave(Document):
 
 			status=frappe.get_all("Room Allotment",{"name":doc.allotment_number},['hostel_registration_no','room_id'])
 			frappe.db.sql("""UPDATE `tabRoom Masters` SET `vacancy`=`vacancy`+1 WHERE `name`="%s" """%(status[0]['room_id']))
-			frappe.db.set_value("Student Hostel Admission",status[0]['hostel_registration_no'], "allotment_status", "De-allotted") 
-			pass	
+			frappe.db.set_value("Student Hostel Admission",status[0]['hostel_registration_no'], "allotment_status", "De-allotted") 	
 											
 
 def Long_leave_def(info):
