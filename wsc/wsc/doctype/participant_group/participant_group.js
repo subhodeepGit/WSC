@@ -34,7 +34,17 @@ frappe.ui.form.on('Participant Group', {
 		// 	}
 		// })
 	},
-
+	program:function(frm){
+		frappe.call({
+			method: 'wsc.wsc.doctype.participant_group.participant_group.get_courses',
+			args: {
+				program_name : frm.doc.program
+			},
+			callback: function(result){
+				frm.set_df_property('course', 'options', result.message) // courses in the program
+			}
+		})
+	},
 	course: function(frm){
 		frappe.call({
 			method: 'wsc.wsc.doctype.participant_group.participant_group.get_module_name',

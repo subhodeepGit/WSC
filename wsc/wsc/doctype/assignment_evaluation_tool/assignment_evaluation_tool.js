@@ -16,12 +16,11 @@ frappe.ui.form.on('Assignment Evaluation Tool', {
 				if(result.message){
 					frm.set_value("course", result.message[2])
 					frm.set_value("module", result.message[3])
-					frm.set_df_property('select_sub_module', 'options', result.message[5])
 					frm.set_value("academic_year", result.message[0])
 					frm.set_value("academic_term", result.message[1])
 					frm.set_df_property('instructor_id', 'options', result.message[4])
-					frm.set_df_property('participant_id', 'options', result.message[6])
-					frm.set_value("total_participants", result.message[7])
+					frm.set_df_property('participant_id', 'options', result.message[5])
+					frm.set_value("total_participants", result.message[6])
 				}
 			}
 		})

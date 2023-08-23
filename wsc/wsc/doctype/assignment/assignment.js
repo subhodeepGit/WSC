@@ -2,6 +2,9 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Assignment', {
+	refresh: function(frm){
+		frm.set_value('evaluate', 1)
+	},
 	participant_group: function(frm){
 		frappe.call({
 			method: 'wsc.wsc.doctype.assignment.assignment.get_details',
@@ -14,8 +17,7 @@ frappe.ui.form.on('Assignment', {
 				frm.set_value("programs", result.message[2]) // course
 				frm.set_value("course", result.message[3]) // module
 				frm.set_df_property('instructor_id', 'options', result.message[4]) // instructor_id
-				frm.set_df_property('select_sub_module', 'options', result.message[5]) // sub module
-				frm.set_df_property('assessment_criteria', 'options', result.message[6]) // sub module
+				frm.set_df_property('assessment_criteria', 'options', result.message[5]) // assessment criteria
 			}
 		})
 	},
