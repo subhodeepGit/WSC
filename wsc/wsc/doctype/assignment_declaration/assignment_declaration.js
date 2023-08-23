@@ -60,7 +60,9 @@ frappe.ui.form.on('Assignment Declaration', {
 		frappe.call({
 			method:'wsc.wsc.doctype.assignment_declaration.assignment_declaration.get_participants',
 			args: {
-				participant_group_id: frm.doc.participant_group
+				participant_group_id: frm.doc.participant_group,
+				attendance_applicable: frm.doc.attendance_applicable,
+				attendance_percentage : frm.doc.attendance_percentage,
 			},
 			callback: function(result){
 				alert(200)
@@ -70,6 +72,7 @@ frappe.ui.form.on('Assignment Declaration', {
 						var childTable = frm.add_child('participant_list')
 						childTable.participant_id = element.participant
 						childTable.participant_name = element.participant_name
+						childTable.participant_attendance = element.attendance
 					})
 				}
 				frm.refresh()
