@@ -3,8 +3,11 @@
 
 import frappe
 from frappe.model.document import Document
+from wsc.wsc.notification.custom_notification import send_mail_to_jobapplicants_rerd
 
 class RecruitmentExamResultDeclarationTool(Document):
+    def validate(doc):
+        send_mail_to_jobapplicants_rerd(doc)
     @frappe.whitelist()
     def create_result(self):
         for d in self.get('applicant_details'):
