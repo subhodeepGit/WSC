@@ -21,3 +21,8 @@ class EmployeeHostelAllotment(Document):
 		else:
 			frappe.throw("Hostel is closed. Please contact to the Admin.")										
 
+	@frappe.whitelist()
+	def get_emp_data(self):
+		if self.employees:
+			data=frappe.db.get_all("Employee",{"name":self.employees},["employee_name","user_id","designation"])
+			return data[0]

@@ -90,5 +90,9 @@ frappe.ui.form.on('Assignment Declaration', {
 				frm.set_value("weightage", result.message[2])
 			}
 		})
-	}
+	},
 });
+
+// frappe.ui.form.on("Job Sheet", "assessment_criteria", function(frm, cdt, cdn) {
+//     alert(500)
+// });

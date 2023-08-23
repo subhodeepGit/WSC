@@ -2,6 +2,7 @@
  "charts": [],
  "content": "[{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Room Allotment\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Room De-Allotment\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Hostel Info\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Room Info\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Room change\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Hostel Clearance\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Hostel Leave\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Indisciplinary Complaint Registration\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Hostel Attendance\",\"col\":3}},{\"type\":\"spacer\",\"data\":{\"col\":12}},{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters<br></b></span>\",\"col\":12}},{\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Hostel Fees\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Student Admission &amp; Essentials\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Allotment &amp; De-Allotment\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Disciplinary Committee Processes\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Inward Suspension Letters\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Attendance\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Hostel Clearance\",\"col\":4}}]",
  "creation": "2023-02-15 15:05:09.810519",
+ "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
  "for_user": "",
@@ -178,7 +179,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Death De-Allotment",
+   "label": "Student Mortality Record",
    "link_count": 0,
    "link_to": "Death Deallotment",
    "link_type": "DocType",
@@ -376,10 +377,11 @@
    "type": "Link"
   }
  ],
- "modified": "2023-07-11 17:15:33.741714",
+ "modified": "2023-08-21 15:41:17.244413",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Hostel",
+ "number_cards": [],
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,
@@ -396,6 +398,9 @@
   },
   {
    "role": "Hostel Warden"
+  },
+  {
+   "role": "Student"
   }
  ],
  "sequence_id": 14.0,
