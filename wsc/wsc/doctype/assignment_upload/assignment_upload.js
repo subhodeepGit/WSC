@@ -15,11 +15,10 @@ frappe.ui.form.on('Assignment Upload', {
 				if(result.message){
 					frm.set_value("programs", result.message[0])
 					frm.set_value("course", result.message[1])
-					frm.set_df_property('topic', 'options', result.message[2])
-					frm.set_value("academic_year", result.message[3])
-					frm.set_value("academic_term", result.message[4])
-					frm.set_df_property('participant_id', 'options', result.message[5])
-					frm.set_df_property('instructor_id', 'options', result.message[6])
+					frm.set_value("academic_year", result.message[2])
+					frm.set_value("academic_term", result.message[3])
+					frm.set_df_property('participant_id', 'options', result.message[4])
+					frm.set_df_property('instructor_id', 'options', result.message[5])
 				}
 			}
 		})
@@ -58,8 +57,7 @@ frappe.ui.form.on('Assignment Upload', {
 				instructor_name: frm.doc.instructor_name,
 				participant_group_id : frm.doc.participant_group,
 				programs : frm.doc.programs,
-				course: frm.doc.course,
-				topic : frm.doc.topic
+				course: frm.doc.course
 			},
 			callback: function(result){
 				if(result.message){

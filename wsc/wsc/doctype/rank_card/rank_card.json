@@ -15,7 +15,6 @@
   "academic_year",
   "academic_term",
   "department",
-  "posting_date",
   "physically_disabled",
   "total_marks",
   "earned_marks",
@@ -51,11 +50,6 @@
    "fieldtype": "Link",
    "label": "Academic Year",
    "options": "Academic Year"
-  },
-  {
-   "fieldname": "posting_date",
-   "fieldtype": "Data",
-   "label": "Posting Date"
   },
   {
    "default": "0",
@@ -104,7 +98,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-24 15:37:06.562744",
+ "modified": "2023-08-22 16:00:37.117144",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Rank Card",

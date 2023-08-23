@@ -33,9 +33,8 @@ def get_details(participant_group_id):
 	total_participants = frappe.db.sql(""" SELECT COUNT(*) FROM `tabParticipant Table` WHERE parent = '%s'"""%(participant_group_id), as_dict=1)
 	group_details = frappe.get_all('Participant Group', filters = [['name', '=', participant_group_id]], fields = ['academic_year', 'academic_term', 'program', 'course'])
 	instructor_details = frappe.db.sql(""" SELECT instructors FROM `tabInstructor Table` where parent = '%s'"""%(participant_group_id))
-	sub_modules = frappe.db.sql(""" SELECT topic FROM `tabCourse Topic` WHERE parent = '%s'"""%(group_details[0]['course']))
 	participants = frappe.db.sql(""" SELECT participant FROM `tabParticipant Table` Where parent='%s'"""%(participant_group_id))
-	return [group_details[0]['academic_year'], group_details[0]['academic_term'], group_details[0]['program'], group_details[0]['course'], instructor_details, sub_modules, participants, total_participants[0]['COUNT(*)']]
+	return [group_details[0]['academic_year'], group_details[0]['academic_term'], group_details[0]['program'], group_details[0]['course'], instructor_details, participants, total_participants[0]['COUNT(*)']]
 
 @frappe.whitelist()
 def get_instructor_name(participant_group_id, instructor_id):
@@ -44,8 +43,8 @@ def get_instructor_name(participant_group_id, instructor_id):
 
 @frappe.whitelist()
 def get_assignment_list(instructor_id, participant_group_id, programs, course, topic):
-	assignments = frappe.db.sql(""" SELECT name FROM `tabAssignment` WHERE participant_group='%s' AND instructor_id='%s' AND programs = '%s' AND course='%s' AND select_sub_module = '%s'"""%(participant_group_id, instructor_id, programs, course,topic))
-	exam_assignments = frappe.db.sql(""" SELECT name FROM `tabAssignment Declaration` WHERE participant_group = '%s' AND trainer_id = '%s' AND course = '%s' AND module = '%s' AND select_sub_module = '%s' """%(participant_group_id, instructor_id, programs, course, topic))
+	assignments = frappe.db.sql(""" SELECT name FROM `tabAssignment` WHERE participant_group='%s' AND instructor_id='%s' AND programs = '%s' AND course='%s'"""%(participant_group_id, instructor_id, programs, course))
+	exam_assignments = frappe.db.sql(""" SELECT name FROM `tabAssignment Declaration` WHERE participant_group = '%s' AND trainer_id = '%s' AND course = '%s' AND module = '%s'"""%(participant_group_id, instructor_id, programs, course))
 	return (assignments + exam_assignments)
 
 @frappe.whitelist()

@@ -12,9 +12,8 @@ class AssignmentDeclaration(Document):
 def get_details(participant_group_id):
 	group_details = frappe.get_all('Participant Group', filters = [['name', '=', participant_group_id]], fields = ['academic_year', 'academic_term', 'program', 'course'])
 	instructor_details = frappe.db.sql(""" SELECT instructors FROM `tabInstructor Table` where parent = '%s'"""%(participant_group_id))
-	sub_modules = frappe.db.sql(""" SELECT topic FROM `tabCourse Topic` WHERE parent = '%s'"""%(group_details[0]['course']))
 	assessment_criteria = frappe.db.sql(""" SELECT assessment_criteria FROM `tabCredit distribution List` where parent = '%s'"""%(group_details[0]['course']))
-	return [group_details[0]['academic_year'], group_details[0]['academic_term'], group_details[0]['program'], group_details[0]['course'], instructor_details, sub_modules, assessment_criteria]
+	return [group_details[0]['academic_year'], group_details[0]['academic_term'], group_details[0]['program'], group_details[0]['course'], instructor_details, assessment_criteria]
 
 
 @frappe.whitelist()
