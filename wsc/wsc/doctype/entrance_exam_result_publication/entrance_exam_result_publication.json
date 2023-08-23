@@ -8,6 +8,8 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "entrance_exam_declaration",
+  "section_break_vr0ay",
   "academic_year",
   "column_break_3",
   "academic_term",
@@ -114,11 +116,23 @@
    "fieldtype": "Link",
    "label": "Gender",
    "options": "Gender"
+  },
+  {
+   "fieldname": "entrance_exam_declaration",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Entrance Exam Declaration",
+   "options": "Entrance Exam Declaration",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_vr0ay",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-08 16:54:48.663700",
+ "modified": "2023-08-22 17:48:55.062570",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Result Publication",

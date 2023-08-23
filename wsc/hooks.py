@@ -62,7 +62,9 @@ doctype_js = {
                 "Leave Application":"public/js/leave_application.js",
                 "Employee Separation":"public/js/employee_separation.js",
                 "Bank Guarantee":"public/js/bank_guarantee.js",
-                "Material Request":"public/js/material_request.js"
+                "Material Request":"public/js/material_request.js",
+                "Attendance":"public/js/attendance.js",
+                "Tax Category":"public/js/tax_category.js",
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -78,6 +80,9 @@ doctype_list_js = {
     "Student":"public/js/student_list.js",
     "Student Group":"public/js/student_group_list.js"
 }
+
+doctype_tree_js = {"doctype" : "public/js/tax_category_tree.js"}
+
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -353,6 +358,17 @@ doc_events = {
     "Leave Type": {
         "validate":"wsc.wsc.validations.leave_type.validate"
     },
+    "Leave Policy": {
+        "validate":"wsc.wsc.doctype.leave_policy.validate"
+    },
+    "Leave Policy Assignment": {
+        "validate":"wsc.wsc.validations.leave_policy_assignment.validate"
+    },
+    "Leave Allocation": {
+        "validate":"wsc.wsc.doctype.leave_allocation.validate"
+    },
+    
+    
     
 
     # "User":{
@@ -495,7 +511,7 @@ override_doctype_dashboards = {
 #     # # {"dt": "Module Profile"},
     # {"dt" : "Workflow","filters": [
     #     [
-    #         "name", "in", ["Employee Attendance Request Workflow"]
+    #         "name", "in", ["Workflow for Leave Policy"]
     #     ]
     # ]},
     # {"dt" : "Workflow"},
