@@ -25,6 +25,5 @@ def ra_query(doctype, txt, searchfield, start, page_len, filters):
             "scond": searchfields,
             # "info":info
         }),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
-    print("\n\n\n")
-    print(data)
+
     return data
