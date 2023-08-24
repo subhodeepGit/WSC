@@ -230,27 +230,27 @@ def module_exam_group_data():
             # print(exam_declaration_id)
 
 def student_disable_check():
-	today_date=getdate(today())
-	student_clearance_list=list(frappe.db.sql("""Select student_id,student_email_address from `tabStudent Clearance Application` where user_disable_date=%s And status= 'Clearance Approved' And docstatus =1""",today_date))
-	if len(student_clearance_list)>0:
-		for t in student_clearance_list:
-			student_id, student_email_address = t[0], t[1]
-			frappe.db.sql("""UPDATE `tabStudent` SET `enabled` = 0 WHERE `name` = %s""", student_id)
-			frappe.db.sql("""UPDATE `tabUser` SET `enabled` = 0 WHERE `name` = %s""", student_email_address)
-			frappe.db.commit()
-			delete_user_permission(student_email_address)	
-			send_disabled_notification_to_student(student_email_address)
+    today_date=getdate(today())
+    student_clearance_list=list(frappe.db.sql("""Select student_id,student_email_address from `tabStudent Clearance Application` where user_disable_date=%s And status= 'Clearance Approved' And docstatus =1""",today_date))
+    if len(student_clearance_list)>0:
+        for t in student_clearance_list:
+            student_id, student_email_address = t[0], t[1]
+            frappe.db.sql("""UPDATE `tabStudent` SET `enabled` = 0 WHERE `name` = %s""", student_id)
+            frappe.db.sql("""UPDATE `tabUser` SET `enabled` = 0 WHERE `name` = %s""", student_email_address)
+            frappe.db.commit()
+            delete_user_permission(student_email_address)	
+            send_disabled_notification_to_student(student_email_address)
 
 def send_disabled_notification_to_student(student_email_address):
     msg="""<p>Dear Student,Your Student profile and User profile has been disabled successfully.</p><br>"""
     send_mail(student_email_address,'Student Clearance Status',msg)
 
 def delete_user_permission(student_email_address):
-	user_permission_list=frappe.db.get_all("User Permission",filters={"user": student_email_address},fields="name",limit=1)
-	if len(user_permission_list)>0:
-		for up in user_permission_list:
-			frappe.db.delete("User Permission",up)
-	frappe.db.commit()
+    user_permission_list=frappe.db.get_all("User Permission",filters={"user": student_email_address},fields="name",limit=1)
+    if len(user_permission_list)>0:
+        for up in user_permission_list:
+            frappe.db.delete("User Permission",up)
+    frappe.db.commit()
 
 
 
@@ -293,3 +293,30 @@ def get_previous_date(base_date, months_to_subtract, days_to_subtract):
     start_date = base_date - relativedelta(months=months_to_subtract) - timedelta(days=days_to_subtract)
 
     return start_date
+
+def update_onboarding_status(doc):
+    
+    onboarding_name = frappe.db.get_value("Employee Onboarding", {"project": doc.project}, "name")
+    if onboarding_name:
+        activity_records = frappe.get_all("Employee Boarding Activity", filters={"parent": onboarding_name}, fields=["name","activity_name"])
+        
+        for activity_record in activity_records:
+            # Step v: Update status field to the new status value
+            if activity_record.activity_name in doc.subject:
+                print(activity_record.activity_name)
+                print("\n\n\n")
+                frappe.db.set_value("Employee Boarding Activity", activity_record.name, "status", doc.status)
+
+                
+                # Step vi: Save changes to each On-boarding Activity document
+                frappe.db.commit()
+                # frappe.msgprint("Status updated in Employee Onboarding Activities")
+            else :
+                pass
+            
+    else:
+        return "No employee on-boarding record found for the provided project."
+
+
+def validate(doc,method):
+    update_onboarding_status(doc)
