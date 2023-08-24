@@ -20,48 +20,21 @@ def ranking(list , col , rank_name):
 	return ranked_data
 
 @frappe.whitelist()
-def get_qualified_applicants(rank_card_master , academic_year , academic_term , department):
+def get_qualified_applicants(declaration , academic_year , academic_term , department):
 	print("\n\n\n\n")
 
-	## need to add program grades for result obtaining
-	applicant_results = frappe.get_all("Entrance Exam Result Publication" , 
-				    						{
-												'academic_year':academic_year , 
-												'academic_term':academic_term,
-												'department':department
-											} , 
-											['applicant_id' , 'applicant_name' , 'student_category' , 'gender' , 'physically_disabled']
-										)
-	
-	print(applicant_results)
-	# category_based_applicants_lists = []
-	
-	return applicant_results
 
-@frappe.whitelist()
-def generate_rank_cards(rank_card_master , academic_year , academic_term , department ):
-	print("\n\n\n")
-	
-	##all of ranking
 	rank_card_master_data = frappe.get_all("Rank Card Master" , 
 											{
-												'name':rank_card_master , 
+												'entrance_exam_declaration':declaration , 
 												'academic_year':academic_year , 
 												'academic_term':academic_term,
 												'department':department
 											},
-											['entrance_exam_declaration' , 'maximum_number_of_ranks' , 'all_round_cutoff' , 'no_category_rank_name']
-										)
+											['maximum_number_of_ranks' , 'all_round_cutoff' , 'no_category_rank_name']
+										)	## need to add program grades for result obtaining
 	
-	ranking_category_data = frappe.get_all("Ranking Category" , 
-												{
-													'parent':rank_card_master
-												},
-												["student_category" , 'gender' , 'pwd' , 'category_name']
-
-											)
 	
-	## need to update queries as per department and course type
 	all_round_applicant_data = frappe.db.sql("""
 		SELECT DISTINCT 
 			res.applicant_id , 
@@ -71,13 +44,66 @@ def generate_rank_cards(rank_card_master , academic_year , academic_term , depar
 			res.total_marks ,
 			res.earned_marks ,
 			res.gender
-		FROM `tabEntrance Exam Result Publication` res INNER JOIN `tabRank Card Master` rank_master 
+		FROM `tabEntrance Exam Result Publication` res INNER JOIN `tabRank Card Master` rank_master
+		ON res.entrance_exam_declaration = rank_master.entrance_exam_declaration 
 		WHERE res.earned_marks >= rank_master.all_round_cutoff ORDER BY res.earned_marks LIMIT {max_rank}
 	""".format(max_rank = rank_card_master_data[0]['maximum_number_of_ranks']), as_dict=1)
 	
-	##no categories considered rank 
-	all_round_ranks = ranking(all_round_applicant_data , ['applicant_id' , 'applicant_name' , 'gender' , 'student_category' , 'physically_disabled' , 'total_marks' , 'earned_marks'] , f"{rank_card_master_data[0]['no_category_rank_name']} Rank")
+	all_round_ranks = ranking(all_round_applicant_data , ['applicant_id' , 'applicant_name' , 'gender' , 'student_category' , 'physically_disabled' , 'total_marks' , 'earned_marks' ] , "Rank")
 	
+	for i in all_round_ranks:
+		i['rank_type'] = rank_card_master_data[0]['no_category_rank_name']
+
+	# print(all_round_ranks)
+	return all_round_ranks
+
+@frappe.whitelist()
+def generate_rank_cards(doc):
+	print("\n\n\n")
+	data = json.loads(doc)
+
+	declaration = data['entrance_exam_declaration']
+	academic_year = data['academic_year']
+	academic_term = data['academic_term']
+	department =data['departments']
+	total_marks = data['total_marks']
+	all_round_ranks = data['ranked_students_list']
+
+	
+	final_applicant_list = []
+	for i in all_round_ranks:
+		dict_data = {}
+		dict_data['applicant_id'] = i['applicant_id']
+		dict_data['applicant_name'] = i['applicant_name']
+		dict_data['gender'] = i['gender']
+		dict_data['student_category'] = i['student_category']
+		dict_data['physical_disability'] = i['physical_disability']
+		dict_data['total_marks'] = total_marks
+		dict_data['earned_marks'] = i['earned_marks']
+		dict_data['rank'] = i['rank']
+		final_applicant_list.append(dict_data)
+
+	##all of ranking
+	rank_card_master_data = frappe.get_all("Rank Card Master" , 
+											{
+												'entrance_exam_declaration':declaration , 
+												'academic_year':academic_year , 
+												'academic_term':academic_term,
+												'department':department
+											},
+											['name' , 'maximum_number_of_ranks' , 'all_round_cutoff' , 'no_category_rank_name']
+										)	## need to add program grades for result obtaining
+	
+	
+	
+	ranking_category_data = frappe.get_all("Ranking Category" , 
+												{
+													'parent':rank_card_master_data[0]['name']
+												},
+												["student_category" , 'gender' , 'pwd' , 'category_name']
+
+											)
+
 	category_based_ranks = {} ### not necessary
 	
 	## category based
@@ -87,7 +113,7 @@ def generate_rank_cards(rank_card_master , academic_year , academic_term , depar
 		category_name = ""
 		if i['student_category'] != None and i['gender'] != None:
 			if i['pwd'] == 1:
-				# print(i['category_name'] , i)
+				
 				category_gender_pwd_data = frappe.db.sql("""
 					SELECT DISTINCT 
 					    res.applicant_id ,
@@ -108,8 +134,6 @@ def generate_rank_cards(rank_card_master , academic_year , academic_term , depar
 							) ,
 							as_dict=1)
 				
-				category_name = i['student_category'] + '-' + i['gender'] + '-' + 'PWD'
-
 				category_based_ranks[i['category_name']] = ranking(category_gender_pwd_data , ['applicant_id' , 'student_category' , 'gender' , 'physically_disabled' , 'earned_marks'] , i['category_name'])
 
 				# print(category_name)
@@ -134,8 +158,6 @@ def generate_rank_cards(rank_card_master , academic_year , academic_term , depar
 							gender = i['gender']
 							) ,
 							as_dict=1)
-				
-				category_name = i['student_category'] + '-' + i['gender'] 
 
 				category_based_ranks[i['category_name']] = ranking(category_gender_data , ['applicant_id' , 'student_category' , 'gender' , 'physically_disabled' , 'earned_marks'] , i['category_name'])
 
@@ -271,71 +293,68 @@ def generate_rank_cards(rank_card_master , academic_year , academic_term , depar
 
 				category_based_ranks[i['category_name']] = ranking(gender_data , ['applicant_id' , 'student_category' , 'gender' , 'physically_disabled' , 'earned_marks'] , i['category_name'])
 
-	## inseting all types of category based ranks in all_round_rank
-	for j in all_round_ranks:
+	# inseting all types of category based ranks in all_round_rank
+	for j in final_applicant_list:
 		for k in category_based_ranks:
 			for l in category_based_ranks[k]:
 				if j['applicant_id'] == l['applicant_id']:
 					j[k] = l[k]
 	
-	final_student_list=[]
-	for a in category_based_ranks:
-    # print(a)
-    # print(data[a])
-		for j in category_based_ranks[a]:
-        # print(j)
-			j.update({"rank_type":a})
-        # print(j)
-			final_student_list.append(j)
+	# print(final_applicant_list)
+
+	# for i in final_applicant_list:
+	# 	for j in ranking_category_data:
+	# 		# print(j)
+	# 		rank_type = j['category_name']
+	# 		# print(rank_type)
+	# 		if j['category_name'] in i:
+	# 			print(i)
+	# 	print("\n")	
+	print(final_applicant_list)
+	for m in final_applicant_list:
+
+		rank_data = frappe.new_doc("Rank Card")
+		rank_data.applicant_id = m['applicant_id']
+		rank_data.applicant_name = m['applicant_name']
+		rank_data.gender = m['gender'] 
+		rank_data.student_category = m['student_category']
+		rank_data.physically_disabled = m['physical_disability']
+		rank_data.academic_year = academic_year
+		rank_data.academic_term = academic_term
+		rank_data.department = department
+		rank_data.no_category_rank = m['rank']
+		rank_data.total_marks = m['total_marks']
+		rank_data.earned_marks = m['earned_marks']
+		
+		# for  n in ranking_category_data:
+		# 	if n['category_name'] in m:
+		rank_dict = {}
+		
+		for l in m:
+			for n in ranking_category_data:
+				if n['category_name'] == l:
+					# print(m[l] , l , m['applicant_id'])
+					# rank_list[l] = m[l]
+					rank_dict[f"{l}"] = m[f"{l}"]
+					# rank_list.append(m[l])
+			# print(rank_dict)		
+		student_applicant = frappe.get_doc("Student Applicant" , m['applicant_id'])
+
+		for t in rank_dict:
+
+			rank_data.append("student_ranks_list" , {
+				'rank_type': t,
+				'rank_obtained' : rank_dict[t]
+			})
 	
-	for t in all_round_ranks:
-		print("t",t)
-		for j in final_student_list:
-			if j['applicant_id']==t['applicant_id']:
-				print("j",j)
-				print(j['%s'%(j['rank_type'])])
-		print("\n\n\n")   
-
-	
-	# for m in ranking_category_data:
-	# 	for n in all_round_ranks:
-	# 		print(m , n)
-			# if m['category_name'] == n[]
-		# rank_data = frappe.new_doc("Rank Card")
-		# rank_data.applicant_id = i['applicant_id']
-		# rank_data.applicant_name = i['applicant_name']
-		# rank_data.gender = i['gender'] 
-		# rank_data.student_category = i['student_category']
-		# rank_data.physically_disabled = i['physical_disability']
-		# rank_data.academic_year = academic_year
-		# rank_data.academic_term = academic_term
-		# rank_data.department = department
-
-		# rank_data.total_marks = m['total_marks']
-		# rank_data.earned_marks = m['earned_marks']
+			student_applicant.append("student_rank" , {
+				'rank_type': t,
+				'rank_obtained' : rank_dict[t]
+			})
 		
-	# 	rank_data.append("student_ranks_list" , {
-	# 		'general_rank' : i['all_student_based_rank'],
-	# 		'category_based_rank' : i['category_based_rank'],
-	# 		'pwd_based_rank' : i['pwd_based_rank']
-	# 	})
-
-	# 	# print(rank_data)
-	# 	rank_data.save()
-	# 	rank_data.submit()
+		rank_data.save()
+		rank_data.submit()
+		student_applicant.save()
 		
-	# 	student_applicant = frappe.get_doc("Student Applicant" , i['applicant_id'])
-		
-	# 	if(len(student_applicant.student_rank) == 0):
-	# 		student_applicant.append("student_rank" , {
-	# 			'general_rank' : i['all_student_based_rank'],
-	# 			'category_based_rank' : i['category_based_rank'],
-	# 			'pwd_based_rank' : i['pwd_based_rank']
-	# 		})
-
-	# 	student_applicant.save()
-		# student_applicant.update()
-		# student_applicant.submit()
-
 
 		

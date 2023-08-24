@@ -20,6 +20,8 @@ frappe.ui.form.on('ToT Participant Enrollment', {
 							c.district=element.district
 							c.mobile_number=element.mobile_number
 							c.email_address=element.email_address
+							c.is_hostel_required=element.is_hostel_required
+							c.hostel_type=element.room_type
 						});
 					}
 					frm.refresh_field("participant_list")

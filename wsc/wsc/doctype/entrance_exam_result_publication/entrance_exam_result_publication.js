@@ -5,7 +5,6 @@ frappe.ui.form.on('Entrance Exam Result Publication', {
 	setup:function(frm){
 		frm.set_query("entrance_exam_declaration", function() {
             return {
-				
                 query: "wsc.wsc.doctype.entrance_exam_result_publication.entrance_exam_result_publication.ra_query"
             }
         })
@@ -28,12 +27,20 @@ frappe.ui.form.on('Entrance Exam Result Publication', {
 
 		frm.set_query("applicant_id" , function() {
 			return {
-				filters: {
-					"academic_year":frm.doc.academic_year,
-					"academic_term":frm.doc.academic_term,
-					"department":frm.doc.department
+				filters:{
+					"entrance_exam":frm.doc.entrance_exam_declaration
 				}
 			}
 		})
+
+		// frm.set_query("applicant_id" , function() {
+		// 	return {
+		// 		filters: {
+		// 			"academic_year":frm.doc.academic_year,
+		// 			"academic_term":frm.doc.academic_term,
+		// 			"department":frm.doc.department
+		// 		}
+		// 	}
+		// })
 	}
 });

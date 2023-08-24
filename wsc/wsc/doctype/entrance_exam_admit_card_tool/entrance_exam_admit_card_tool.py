@@ -10,6 +10,27 @@ class EntranceExamAdmitCardTool(Document):
 	pass
 
 @frappe.whitelist()
+@frappe.validate_and_sanitize_search_inputs
+def ra_query(doctype, txt, searchfield, start, page_len, filters):
+    
+    ############################## Search Field Code#################
+    searchfields = frappe.get_meta(doctype).get_search_fields()
+    searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)    
+    
+    data=frappe.db.sql("""
+        SELECT `name` FROM `tabEntrance Exam Declaration` WHERE ({key} like %(txt)s or {scond})  and
+            (`exam_start_date` <= now() AND `exam_end_date` >= now())
+             and `docstatus`=1 
+    """.format(
+        **{
+            "key": searchfield,
+            "scond": searchfields,
+            # "info":info
+        }),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+
+    return data
+
+@frappe.whitelist()
 def get_applicants(declaration):
 	
 	student_list = frappe.get_all("Applicant List" , {'parent':declaration , 'center_allocated_status' : 0} , [ 'applicant_id' , 'applicant_name' , 'gender' , 'student_category' , 'physical_disability' , 'center_allocated_status'])
@@ -20,7 +41,9 @@ def admit_card_generate(alloted_applicant_data):
 	print("\n\n\n")
 	for i in alloted_applicant_data:
 		if len(i) != 0:
+			print(i)
 			admit_card = frappe.new_doc("Entrance Exam Admit Card")
+			admit_card.entrance_exam = i['entrance_exam']
 			admit_card.applicant_id = i['applicant_id']
 			admit_card.applicant_name = i['applicant_name']
 			admit_card.department = i['department']
@@ -38,6 +61,8 @@ def admit_card_generate(alloted_applicant_data):
 			admit_card.exam_end_time = i['ending_time'].time()
 			
 			admit_card.save()
+			admit_card.submit()
+
 
 
 @frappe.whitelist()
@@ -48,6 +73,8 @@ def student_allotment(body):
 	
 	declaration = body['declaration']
 	de_alloted_student = body['de_allocated_student'] #### input List
+	
+	print(declaration)
 
 	alloted_applicant_data = []
 	unalloted_students_after_center_allotment = []
@@ -71,6 +98,7 @@ def student_allotment(body):
 				if k['seating_capacity'] > 0 and i['center_allocated_status'] == 0:
 				# if k['seating_capacity'] > 0:
 						# print("if is true")
+						data['entrance_exam'] = declaration
 						data['applicant_id'] = i['applicant_id']
 						data['applicant_name'] = i['applicant_name']
 						data['gender'] = i['gender']
@@ -96,12 +124,12 @@ def student_allotment(body):
 						""".format(current_capacity = k['seating_capacity'] - 1 , parent = exam_center_allocation[0]['name'] , slot_name = k['slot_name']))	
 
 						frappe.db.sql(""" 
-								UPDATE `tabApplicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}'
-							""".format(applicant_id = i['applicant_id']))   
+								UPDATE `tabApplicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}' AND parent = '{declaration}' 
+							""".format(applicant_id = i['applicant_id'] , declaration = declaration))   
 
 						frappe.db.sql("""
-								UPDATE `tabDeAllotted Applicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}'
-							""".format(applicant_id = i['applicant_id']))
+								UPDATE `tabDeAllotted Applicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}' AND parent = '{declaration}'
+							""".format(applicant_id = i['applicant_id'] , declaration = declaration))
 
 		
 		data2 = {}
@@ -127,6 +155,7 @@ def student_allotment(body):
 			FROM `tabExam Slot Timings` slot INNER JOIN `tabEntrance Exam Centre Allocation` alot  WHERE slot.parent = alot.name AND slot.seating_capacity > 0 AND alot.docstatus = 1;
 	""",as_dict=1)	
 
+	# print(alloted_applicant_data)
 	admit_card_generate(alloted_applicant_data)
 	
 	return {
