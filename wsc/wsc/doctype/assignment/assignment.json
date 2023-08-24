@@ -12,14 +12,15 @@
   "section_break_up0pn",
   "participant_group",
   "course",
+  "column_break_hbdkn",
+  "programs",
+  "section_break_kyqjw",
   "academic_year",
   "instructor_id",
   "assignment_name",
   "total_marks",
   "weightage",
   "column_break_5",
-  "programs",
-  "select_sub_module",
   "academic_term",
   "instructor_name",
   "assessment_criteria",
@@ -64,11 +65,6 @@
    "fieldname": "description",
    "fieldtype": "Long Text",
    "label": "Description"
-  },
-  {
-   "fieldname": "select_sub_module",
-   "fieldtype": "Select",
-   "label": "Select Sub Module"
   },
   {
    "fieldname": "instructor_id",
@@ -122,11 +118,19 @@
   {
    "fieldname": "section_break_up0pn",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_hbdkn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_kyqjw",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-22 16:34:23.798624",
+ "modified": "2023-08-23 12:55:24.858421",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment",

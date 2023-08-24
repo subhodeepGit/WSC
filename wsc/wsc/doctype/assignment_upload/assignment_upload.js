@@ -19,6 +19,7 @@ frappe.ui.form.on('Assignment Upload', {
 					frm.set_value("academic_term", result.message[3])
 					frm.set_df_property('participant_id', 'options', result.message[4])
 					frm.set_df_property('instructor_id', 'options', result.message[5])
+					frm.set_df_property('assignment_number', 'options', result.message[6])
 				}
 			}
 		})
@@ -31,41 +32,40 @@ frappe.ui.form.on('Assignment Upload', {
 				participant_id : frm.doc.participant_id
 			},
 			callback: function(result){
-				// alert(JSON.stringify(result))
 				if(result.message){
 					frm.set_value("participant_name",result.message)
 				}
 			}
 		})
 	},
-	instructor_id: function(frm){
-		frappe.call({
-			method: 'wsc.wsc.doctype.assignment_upload.assignment_upload.get_instructor_name',
-			args: {
-				participant_group_id: frm.doc.participant_group,
-				instructor_id: frm.doc.instructor_id
-			},
-			callback: function(result){
-				frm.set_value("instructor_name", result.message)
-			}
-		})
-	},	
-	instructor_name: function(frm){
-		frappe.call({
-			method: 'wsc.wsc.doctype.assignment_upload.assignment_upload.get_assignment_list',
-			args: {
-				instructor_name: frm.doc.instructor_name,
-				participant_group_id : frm.doc.participant_group,
-				programs : frm.doc.programs,
-				course: frm.doc.course
-			},
-			callback: function(result){
-				if(result.message){
-					frm.set_df_property('assignment_number', 'options', result.message)
-				}
-			}
-		})
-	},
+	// instructor_id: function(frm){
+	// 	frappe.call({
+	// 		method: 'wsc.wsc.doctype.assignment_upload.assignment_upload.get_instructor_name',
+	// 		args: {
+	// 			participant_group_id: frm.doc.participant_group,
+	// 			instructor_id: frm.doc.instructor_id
+	// 		},
+	// 		callback: function(result){
+	// 			frm.set_value("instructor_name", result.message)
+	// 		}
+	// 	})
+	// },	
+	// instructor_name: function(frm){
+	// 	frappe.call({
+	// 		method: 'wsc.wsc.doctype.assignment_upload.assignment_upload.get_assignment_list',
+	// 		args: {
+	// 			instructor_name: frm.doc.instructor_name,
+	// 			participant_group_id : frm.doc.participant_group,
+	// 			programs : frm.doc.programs,
+	// 			course: frm.doc.course
+	// 		},
+	// 		callback: function(result){
+	// 			if(result.message){
+	// 				frm.set_df_property('assignment_number', 'options', result.message)
+	// 			}
+	// 		}
+	// 	})
+	// },
 	assignment_number: function(frm){
 		frappe.call({
 			method: 'wsc.wsc.doctype.assignment_upload.assignment_upload.get_assignment_details',

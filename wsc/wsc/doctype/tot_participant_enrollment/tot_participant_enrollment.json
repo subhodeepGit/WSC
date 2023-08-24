@@ -96,14 +96,14 @@
    "fetch_from": "tot_participant_selection_id.start_date",
    "fieldname": "start_date",
    "fieldtype": "Date",
-   "label": "Start Date",
+   "label": "TOT Start Date",
    "read_only": 1
   },
   {
    "fetch_from": "tot_participant_selection_id.end_date",
    "fieldname": "end_date",
    "fieldtype": "Date",
-   "label": "End Date",
+   "label": "TOT End Date",
    "read_only": 1
   },
   {
@@ -141,7 +141,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-12 11:55:07.925989",
+ "modified": "2023-08-23 15:46:00.924700",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant Enrollment",

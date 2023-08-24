@@ -3,19 +3,12 @@
 let flag = 0
 frappe.ui.form.on('Entrance Exam Admit Card Tool', {
 	setup:function(frm){
-		// var childTableRecords = frm.doc.deallotted_applicant_list || []
 
-		// var filterValues = childTableRecords.map(function(record){
-		// 	return record.center_allocated_status
-		// })
-
-		frm.set_query("entrance_exam_declaration" , function(){
-			return {
-				filters: {
-					docstatus:1
-				} 
-			}
-		})
+		frm.set_query("entrance_exam_declaration", function() {
+            return {
+                query: "wsc.wsc.doctype.entrance_exam_admit_card_tool.entrance_exam_admit_card_tool.ra_query"
+            }
+        })	
 	},
 	refresh:function(frm){
 		// frm.disable_save()

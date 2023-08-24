@@ -12,6 +12,15 @@ frappe.ui.form.on('ToT Participant Selection', {
 			}
 		})
 	},
+	setup:function(frm){
+        frm.set_query("course_type", function() {
+            return {
+                filters: {
+                    "is_short_term_course":"Yes"
+                }
+            };
+        });
+	},
 	course: function(frm){
 		if(frm.doc.course){
 			frappe.call({
