@@ -40,9 +40,18 @@ class IndisciplinaryComplaintRegistration(Document):
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
 def ra_query(doctype, txt, searchfield, start, page_len, filters):
-    return frappe.db.sql("""
-		SELECT `name`,`student`,`student_name`,`hostel_id` FROM `tabRoom Allotment` WHERE (`start_date` <= now() AND `end_date` >= now()) 
+	############################## Search Field Code################# 	
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)	
+
+	data=frappe.db.sql("""
+		SELECT `name`,`student`,`student_name`,`hostel_id` FROM `tabRoom Allotment` WHERE ({key} like %(txt)s or {scond})  and
+		    (`start_date` <= now() AND `end_date` >= now()) 
 		and (`allotment_type`!="Hostel suspension" and `allotment_type`!="Suspension" and `allotment_type`!="Debar" and 
-		`allotment_type`!="University Suspension" and `allotment_type`!="School Suspension" and `allotment_type`!="University Debar") and `docstatus`=1
-    """
-    )   
+		`allotment_type`!="University Suspension" and `allotment_type`!="School Suspension" and `allotment_type`!="Death" and `allotment_type`!="De-Allotted") and `docstatus`=1
+	""".format(
+		**{
+			"key": searchfield,
+			"scond": searchfields,
+		}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	return data	  

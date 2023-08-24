@@ -6,6 +6,23 @@ frappe.ui.form.on('ToT Participant', {
 		frm.set_df_property('previous_participations', 'cannot_add_rows', true)
 		frm.set_df_property('previous_participations', 'cannot_delete_rows', true)
 	},
+	setup:function(frm){
+		frm.set_query("block", function() {
+            return {
+                filters: {
+                    "districts":frm.doc.district
+                }
+            }; 
+        });
+
+        frm.set_query("district", function() {
+            return {
+                filters: {
+                    "state":frm.doc.state
+                }
+            };
+        });
+	}
 	// developers notes
 	
 	// the data for the previous participation selection will be filled from the ToT Participant reporting screen as that marks the participant as physically 

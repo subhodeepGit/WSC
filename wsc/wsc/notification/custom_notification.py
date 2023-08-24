@@ -1151,3 +1151,38 @@ def send_notification_to_team_members(doc):
     msg+="""<b>Your Task is:</b>  {0} and next Due Date is {1}<br>""".format(tasks[0]['maintenance_task'],tasks[0]['next_due_date'])
     send_mail(email_list,'Asset Maintenance',msg)
     frappe.msgprint("Email sent to Maintenance Team")
+####################################Recruitment Exam Declaration Notification#####################################################################################
+def send_mail_to_jobapplicants_redn(self):
+    for t in self.get("applicant_details"):
+        applicant_name=t.applicant_name
+        applicant_email=t.applicant_mail_id
+
+        msg="""<p>Dear Applicant, <br>"""
+        msg+="""<p>This is to inform you that the for Job Opnening <b>{0}</b> exam for the round<b>{1}</b>  is declared. The examination will be held on <b>{2}</b> The admit card for the same will be shared soon.""".format(self.get('job_opening'),self.get('selection_round'),self.get('exam_date'))
+        recipients = applicant_email
+        send_mail(recipients,'WSC Job Opening Notification',msg)
+        frappe.msgprint("Email sent to Job Applicants")
+
+################################################################################################################################################################  
+#####################################Recruitment Exam Result Declaration#################################################################################      
+def send_mail_to_jobapplicants_rerd(self):
+    for t in self.get("applicant_details"):
+        applicant_name=t.applicant_name
+        applicant_email=t.applicant_mail_id
+        result_status=t.result_status
+        if result_status == "Qualified":
+            msg="""<p>Dear Applicant,<br>"""
+            msg+="""<p>Congratualtions!!!<br>"""
+            msg+="""<p>This is to inform you that the for Job Opnening <b>{0}</b> and exam round <b>{1}</b> ,you have been SELECTED.""".format(self.get('job_opening'),self.get('job_selection_round'))
+            msg+="""<p>Further Process will be informed soon</p>"""
+            recipients = applicant_email
+            send_mail(recipients,'WSC Exam Result Notification',msg)
+            frappe.msgprint("Email sent to Job Applicants")
+        if result_status == "Disqualified":
+            msg="""<p>Dear Applicant,<br>"""
+            msg+="""<p>Greetings!!!<br>"""
+            msg+="""<p>This is to inform you that the for Job Opnening <b>{0}</b> and exam round <b>{1}</b> ,you have been not been selected.""".format(self.get('job_opening'),self.get('job_selection_round'))
+            msg+="""<p>All the Best for your future.</p>"""
+            recipients = applicant_email
+            send_mail(recipients,'WSC Exam Result Notification',msg)
+            frappe.msgprint("Email sent to Job Applicants")

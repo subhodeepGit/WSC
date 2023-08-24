@@ -33,11 +33,11 @@ frappe.ui.form.on('Assignment Declaration', {
 				if(result.message){
 					frm.set_value("course", result.message[2])
 					frm.set_value("module", result.message[3])
-					frm.set_df_property('select_sub_module', 'options', result.message[5])
+					// frm.set_df_property('select_sub_module', 'options', result.message[5])
 					frm.set_value("academic_year", result.message[0])
 					frm.set_value("academic_term", result.message[1])
 					frm.set_df_property('trainer_id', 'options', result.message[4])
-					frm.set_df_property('select_assessment_criteria', 'options', result.message[6])
+					frm.set_df_property('select_assessment_criteria', 'options', result.message[5])
 				}
 			}
 		})
@@ -60,7 +60,9 @@ frappe.ui.form.on('Assignment Declaration', {
 		frappe.call({
 			method:'wsc.wsc.doctype.assignment_declaration.assignment_declaration.get_participants',
 			args: {
-				participant_group_id: frm.doc.participant_group
+				participant_group_id: frm.doc.participant_group,
+				attendance_applicable: frm.doc.attendance_applicable,
+				attendance_percentage : frm.doc.attendance_percentage,
 			},
 			callback: function(result){
 				alert(200)
@@ -70,6 +72,7 @@ frappe.ui.form.on('Assignment Declaration', {
 						var childTable = frm.add_child('participant_list')
 						childTable.participant_id = element.participant
 						childTable.participant_name = element.participant_name
+						childTable.participant_attendance = element.attendance
 					})
 				}
 				frm.refresh()

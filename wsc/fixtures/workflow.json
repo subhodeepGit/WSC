@@ -1363,13 +1363,13 @@
      "doctype": "Workflow",
      "document_type": "Long Leave",
      "is_active": 1,
-     "modified": "2023-02-21 12:41:25.232925",
+     "modified": "2023-08-23 12:41:25.232925",
      "name": "Long Leave",
      "override_status": 0,
      "send_email_alert": 1,
      "states": [
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -1382,7 +1382,7 @@
        "update_value": "Submit"
       },
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -1395,7 +1395,7 @@
        "update_value": "Notification To Administration"
       },
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -1408,7 +1408,7 @@
        "update_value": "Communication to the Student"
       },
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -1421,7 +1421,7 @@
        "update_value": "No Response form student"
       },
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -1434,7 +1434,7 @@
        "update_value": "Willing to Report"
       },
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -1447,7 +1447,7 @@
        "update_value": "Not Going to Report"
       },
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -1460,7 +1460,7 @@
        "update_value": "Proceed for De-allotment"
       },
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -1477,7 +1477,7 @@
       {
        "action": "Submitted",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Notification To Administration",
        "parent": "Long Leave",
@@ -1488,7 +1488,7 @@
       {
        "action": "Submitted",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Communication to the Student",
        "parent": "Long Leave",
@@ -1499,7 +1499,7 @@
       {
        "action": "Reject",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Close Application",
        "parent": "Long Leave",
@@ -1510,7 +1510,7 @@
       {
        "action": "Submitted",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "No Response form student",
        "parent": "Long Leave",
@@ -1521,7 +1521,7 @@
       {
        "action": "Approve",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Willing to Report",
        "parent": "Long Leave",
@@ -1532,7 +1532,7 @@
       {
        "action": "Not Going to Report",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Not Going to Report",
        "parent": "Long Leave",
@@ -1543,7 +1543,7 @@
       {
        "action": "Approve",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Proceed for De-allotment",
        "parent": "Long Leave",
@@ -1554,7 +1554,7 @@
       {
        "action": "Approve",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Proceed for De-allotment",
        "parent": "Long Leave",
@@ -1565,7 +1565,7 @@
       {
        "action": "Approve",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Close Application",
        "parent": "Long Leave",
@@ -1580,210 +1580,15 @@
     {
      "docstatus": 0,
      "doctype": "Workflow",
-     "document_type": "Student Leave Process",
-     "is_active": 1,
-     "modified": "2023-02-21 11:12:04.952509",
-     "name": "Hostel Leave",
-     "override_status": 0,
-     "send_email_alert": 1,
-     "states": [
-      {
-       "allow_edit": "Administrator",
-       "doc_status": "0",
-       "is_optional_state": 0,
-       "message": null,
-       "next_action_email_template": null,
-       "parent": "Hostel Leave",
-       "parentfield": "states",
-       "parenttype": "Workflow",
-       "state": "Submit",
-       "update_field": "status",
-       "update_value": "Open"
-      },
-      {
-       "allow_edit": "Administrator",
-       "doc_status": "0",
-       "is_optional_state": 0,
-       "message": null,
-       "next_action_email_template": null,
-       "parent": "Hostel Leave",
-       "parentfield": "states",
-       "parenttype": "Workflow",
-       "state": "Approve By Mentor",
-       "update_field": "status",
-       "update_value": "Open"
-      },
-      {
-       "allow_edit": "Administrator",
-       "doc_status": "0",
-       "is_optional_state": 0,
-       "message": null,
-       "next_action_email_template": null,
-       "parent": "Hostel Leave",
-       "parentfield": "states",
-       "parenttype": "Workflow",
-       "state": "Approve By Dean",
-       "update_field": "status",
-       "update_value": "Open"
-      },
-      {
-       "allow_edit": "Administrator",
-       "doc_status": "0",
-       "is_optional_state": 0,
-       "message": null,
-       "next_action_email_template": null,
-       "parent": "Hostel Leave",
-       "parentfield": "states",
-       "parenttype": "Workflow",
-       "state": "Approve By Hostel Warden",
-       "update_field": "status",
-       "update_value": "Close"
-      },
-      {
-       "allow_edit": "Administrator",
-       "doc_status": "0",
-       "is_optional_state": 0,
-       "message": null,
-       "next_action_email_template": null,
-       "parent": "Hostel Leave",
-       "parentfield": "states",
-       "parenttype": "Workflow",
-       "state": "Rejected",
-       "update_field": "status",
-       "update_value": "Close"
-      },
-      {
-       "allow_edit": "Administrator",
-       "doc_status": "0",
-       "is_optional_state": 0,
-       "message": null,
-       "next_action_email_template": null,
-       "parent": "Hostel Leave",
-       "parentfield": "states",
-       "parenttype": "Workflow",
-       "state": "Withdrawl of Application",
-       "update_field": "status",
-       "update_value": "Close"
-      },
-      {
-       "allow_edit": "Administrator",
-       "doc_status": "0",
-       "is_optional_state": 0,
-       "message": null,
-       "next_action_email_template": null,
-       "parent": "Hostel Leave",
-       "parentfield": "states",
-       "parenttype": "Workflow",
-       "state": "Approved",
-       "update_field": "status",
-       "update_value": "Close"
-      }
-     ],
-     "transitions": [
-      {
-       "action": "Submitted",
-       "allow_self_approval": 1,
-       "allowed": "Administrator",
-       "condition": null,
-       "next_state": "Approve By Mentor",
-       "parent": "Hostel Leave",
-       "parentfield": "transitions",
-       "parenttype": "Workflow",
-       "state": "Submit"
-      },
-      {
-       "action": "Reject",
-       "allow_self_approval": 1,
-       "allowed": "Administrator",
-       "condition": null,
-       "next_state": "Withdrawl of Application",
-       "parent": "Hostel Leave",
-       "parentfield": "transitions",
-       "parenttype": "Workflow",
-       "state": "Submit"
-      },
-      {
-       "action": "Approve",
-       "allow_self_approval": 1,
-       "allowed": "Administrator",
-       "condition": null,
-       "next_state": "Approve By Dean",
-       "parent": "Hostel Leave",
-       "parentfield": "transitions",
-       "parenttype": "Workflow",
-       "state": "Approve By Mentor"
-      },
-      {
-       "action": "Reject",
-       "allow_self_approval": 1,
-       "allowed": "Administrator",
-       "condition": null,
-       "next_state": "Rejected",
-       "parent": "Hostel Leave",
-       "parentfield": "transitions",
-       "parenttype": "Workflow",
-       "state": "Approve By Mentor"
-      },
-      {
-       "action": "Approve",
-       "allow_self_approval": 1,
-       "allowed": "Administrator",
-       "condition": null,
-       "next_state": "Approve By Hostel Warden",
-       "parent": "Hostel Leave",
-       "parentfield": "transitions",
-       "parenttype": "Workflow",
-       "state": "Approve By Dean"
-      },
-      {
-       "action": "Reject",
-       "allow_self_approval": 1,
-       "allowed": "Administrator",
-       "condition": null,
-       "next_state": "Rejected",
-       "parent": "Hostel Leave",
-       "parentfield": "transitions",
-       "parenttype": "Workflow",
-       "state": "Approve By Dean"
-      },
-      {
-       "action": "Approve",
-       "allow_self_approval": 1,
-       "allowed": "Administrator",
-       "condition": null,
-       "next_state": "Approved",
-       "parent": "Hostel Leave",
-       "parentfield": "transitions",
-       "parenttype": "Workflow",
-       "state": "Approve By Hostel Warden"
-      },
-      {
-       "action": "Reject",
-       "allow_self_approval": 1,
-       "allowed": "Administrator",
-       "condition": null,
-       "next_state": "Rejected",
-       "parent": "Hostel Leave",
-       "parentfield": "transitions",
-       "parenttype": "Workflow",
-       "state": "Approve By Hostel Warden"
-      }
-     ],
-     "workflow_name": "Hostel Leave",
-     "workflow_state_field": "workflow_state"
-    },
-    {
-     "docstatus": 0,
-     "doctype": "Workflow",
      "document_type": "Deallotment Process",
      "is_active": 1,
-     "modified": "2023-02-21 11:04:15.783702",
+     "modified": "2023-08-22 11:04:15.783702",
      "name": "De-allotment",
      "override_status": 0,
      "send_email_alert": 1,
      "states": [
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -1796,7 +1601,7 @@
        "update_value": "Open"
       },
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -1809,7 +1614,7 @@
        "update_value": "Open"
       },
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -1822,7 +1627,7 @@
        "update_value": "Open"
       },
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -1835,7 +1640,7 @@
        "update_value": "Close"
       },
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -1848,7 +1653,7 @@
        "update_value": "Close"
       },
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -1865,7 +1670,7 @@
       {
        "action": "Approve",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Approved",
        "parent": "De-allotment",
@@ -1876,7 +1681,7 @@
       {
        "action": "Review",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Pending",
        "parent": "De-allotment",
@@ -1887,7 +1692,7 @@
       {
        "action": "Reject",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Rejected",
        "parent": "De-allotment",
@@ -1898,7 +1703,7 @@
       {
        "action": "Withdrawl",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Withdrawl of Application",
        "parent": "De-allotment",
@@ -1909,7 +1714,7 @@
       {
        "action": "Review",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Approved",
        "parent": "De-allotment",
@@ -1920,7 +1725,7 @@
       {
        "action": "Reject",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Rejected",
        "parent": "De-allotment",
@@ -1931,7 +1736,7 @@
       {
        "action": "Clearence From Hostel",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Clearence From Hostel",
        "parent": "De-allotment",
@@ -1948,13 +1753,13 @@
      "doctype": "Workflow",
      "document_type": "Room Change",
      "is_active": 1,
-     "modified": "2023-02-21 12:41:46.244337",
+     "modified": "2023-08-23 12:41:46.244337",
      "name": "Room Change Workflow",
      "override_status": 0,
      "send_email_alert": 1,
      "states": [
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -1967,7 +1772,7 @@
        "update_value": "Open"
       },
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -1980,7 +1785,7 @@
        "update_value": "Open"
       },
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -1993,7 +1798,7 @@
        "update_value": "Open"
       },
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -2006,7 +1811,7 @@
        "update_value": "Close"
       },
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -2019,7 +1824,7 @@
        "update_value": "Open"
       },
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -2032,7 +1837,7 @@
        "update_value": "Close"
       },
       {
-       "allow_edit": "Administrator",
+       "allow_edit": "Hostel Warden",
        "doc_status": "0",
        "is_optional_state": 0,
        "message": null,
@@ -2049,7 +1854,7 @@
       {
        "action": "Review",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Pending",
        "parent": "Room Change Workflow",
@@ -2060,7 +1865,7 @@
       {
        "action": "Approve",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Approved",
        "parent": "Room Change Workflow",
@@ -2071,7 +1876,7 @@
       {
        "action": "Withdrawl",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Withdrawl of Application",
        "parent": "Room Change Workflow",
@@ -2082,7 +1887,7 @@
       {
        "action": "Approve",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Approved",
        "parent": "Room Change Workflow",
@@ -2093,7 +1898,7 @@
       {
        "action": "Reject",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Rejected",
        "parent": "Room Change Workflow",
@@ -2104,7 +1909,7 @@
       {
        "action": "Reporting",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Reported",
        "parent": "Room Change Workflow",
@@ -2115,7 +1920,7 @@
       {
        "action": "Not Reported",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Not Reported",
        "parent": "Room Change Workflow",
@@ -2126,7 +1931,7 @@
       {
        "action": "Reporting",
        "allow_self_approval": 1,
-       "allowed": "Administrator",
+       "allowed": "Hostel Warden",
        "condition": null,
        "next_state": "Reported",
        "parent": "Room Change Workflow",
@@ -5258,6 +5063,144 @@
    }
   ],
   "workflow_name": "Employee Re-engagement WorkFlow",
+  "workflow_state_field": "workflow_state"
+ },
+{
+  "docstatus": 0,
+  "doctype": "Workflow",
+  "document_type": "Student Leave Process",
+  "is_active": 1,
+  "modified": "2023-08-22 18:46:12.212138",
+  "name": "Hostel Leave",
+  "override_status": 0,
+  "send_email_alert": 0,
+  "states": [
+   {
+    "allow_edit": "Student",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Hostel Leave",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Submit",
+    "update_field": "status",
+    "update_value": "Open"
+   },
+   {
+    "allow_edit": "Course Manager",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Hostel Leave",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Submit",
+    "update_field": "status",
+    "update_value": "Open"
+   },
+   {
+    "allow_edit": "Hostel Warden",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Hostel Leave",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Approve By Hostel Warden",
+    "update_field": "status",
+    "update_value": "Close"
+   },
+   {
+    "allow_edit": "Hostel Warden",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Hostel Leave",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Rejected",
+    "update_field": "status",
+    "update_value": "Close"
+   },
+   {
+    "allow_edit": "Hostel Warden",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Hostel Leave",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Withdrawl of Application",
+    "update_field": "status",
+    "update_value": "Close"
+   },
+   {
+    "allow_edit": "Hostel Warden",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Hostel Leave",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Approved",
+    "update_field": "status",
+    "update_value": "Close"
+   }
+  ],
+  "transitions": [
+   {
+    "action": "Submitted",
+    "allow_self_approval": 1,
+    "allowed": "Student",
+    "condition": null,
+    "next_state": "Approve By Hostel Warden",
+    "parent": "Hostel Leave",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Submit"
+   },
+   {
+    "action": "Submitted",
+    "allow_self_approval": 1,
+    "allowed": "Course Manager",
+    "condition": null,
+    "next_state": "Approve By Hostel Warden",
+    "parent": "Hostel Leave",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Submit"
+   },
+   {
+    "action": "Approve",
+    "allow_self_approval": 1,
+    "allowed": "Hostel Warden",
+    "condition": null,
+    "next_state": "Approved",
+    "parent": "Hostel Leave",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Approve By Hostel Warden"
+   },
+   {
+    "action": "Reject",
+    "allow_self_approval": 1,
+    "allowed": "Hostel Warden",
+    "condition": null,
+    "next_state": "Rejected",
+    "parent": "Hostel Leave",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Approve By Hostel Warden"
+   }
+  ],
+  "workflow_name": "Hostel Leave",
   "workflow_state_field": "workflow_state"
  }
 ]

@@ -3,6 +3,13 @@
 
 frappe.ui.form.on('Entrance Exam Result Publication', {
 	setup:function(frm){
+		frm.set_query("entrance_exam_declaration", function() {
+            return {
+				
+                query: "wsc.wsc.doctype.entrance_exam_result_publication.entrance_exam_result_publication.ra_query"
+            }
+        })
+
 		frm.set_query("academic_term", function() {
 			return {
 				filters:{

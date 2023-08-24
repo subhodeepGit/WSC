@@ -40,13 +40,15 @@ class ParticipantGroup(Document):
 				})
 			parent_doc.save()
 
+@frappe.whitelist()
+def get_courses(program_name):
+	data = frappe.db.sql(""" SELECT course FROM `tabProgram Course` WHERE parent = '%s' """%(program_name))
+	return data
+	
 
 @frappe.whitelist()
 def get_module_name(module_id):
 	data = frappe.db.sql(""" SELECT course_name FROM `tabCourse` WHERE name = '%s'"""%(module_id), as_dict =1)
-	print('\n\n\n\n')
-	print(data)
-	print('\n\n\n\n')
 	return data[0]['course_name']
 	pass
 

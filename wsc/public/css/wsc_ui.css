@@ -122,7 +122,10 @@ body[frappe-session-status='logged-out'] nav.navbar {display: none;}
 .menu-btn-group{
     visibility: hidden;
 }
-.btn.btn-default.btn-sm.ellipsis{
+/* .btn.btn-default.btn-sm.ellipsis{
+    visibility: hidden;
+} */
+.inner-page-message.text-muted.small{
     visibility: hidden;
 }
 .grid-footer-toolbar.hidden-xs.flex.justify-between{
@@ -135,9 +138,6 @@ body[frappe-session-status='logged-out'] nav.navbar {display: none;}
     visibility: hidden; 
 }
 
-/* .btn.btn-secondary.btn-sm.pull-right.grid-insert-row-below.hidden-xs{
-    visibility: hidden; 
-} */
 .grid-shortcuts{
     visibility: hidden;
 }

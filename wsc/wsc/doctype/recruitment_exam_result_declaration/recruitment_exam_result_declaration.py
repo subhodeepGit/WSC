@@ -12,7 +12,9 @@ class RecruitmentExamResultDeclaration(Document):
 
 		for round in job_applicant.result_status:
 			if round.name_of_the_round == doc.job_selection_round:
-				round.status = doc.result_status	
+				round.status = doc.result_status
+				print("\n\n Hello")
+				print(round.status)	
 		job_applicant.save()
 		job_applicant.current_status = doc.result_status
 		job_applicant.save()
