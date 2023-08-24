@@ -8,6 +8,7 @@
  "engine": "InnoDB",
  "field_order": [
   "rank_card_masters",
+  "entrance_exam_declaration",
   "academic_year",
   "academic_term",
   "departments",
@@ -65,11 +66,18 @@
    "fieldname": "get_applicants",
    "fieldtype": "Button",
    "label": "Get Applicants"
+  },
+  {
+   "fetch_from": "rank_card_masters.entrance_exam_declaration",
+   "fieldname": "entrance_exam_declaration",
+   "fieldtype": "Link",
+   "label": "Entrance Exam Declaration",
+   "options": "Entrance Exam Declaration"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-05 11:57:05.866973",
+ "modified": "2023-08-23 14:43:32.036894",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Rank Card Publication Tool",

@@ -6,6 +6,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "student_details_section",
   "first_name",
   "middle_name",
   "last_name",
@@ -13,11 +14,15 @@
   "participant_name",
   "hrms_id",
   "odisha",
+  "column_break_v8ob7",
   "district",
   "pincode",
   "mobile_number",
   "email_address",
-  "is_reported"
+  "is_reported",
+  "hostel_details_section",
+  "is_hostel_required",
+  "hostel_type"
  ],
  "fields": [
   {
@@ -46,7 +51,7 @@
   {
    "columns": 2,
    "fieldname": "mobile_number",
-   "fieldtype": "Data",
+   "fieldtype": "Phone",
    "in_list_view": 1,
    "label": "Mobile Number"
   },
@@ -60,6 +65,7 @@
    "default": "0",
    "fieldname": "is_reported",
    "fieldtype": "Check",
+   "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Reported"
   },
@@ -105,12 +111,38 @@
    "fieldtype": "Data",
    "label": "Pincode",
    "read_only": 1
+  },
+  {
+   "fieldname": "student_details_section",
+   "fieldtype": "Section Break",
+   "label": "Student Details"
+  },
+  {
+   "fieldname": "column_break_v8ob7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hostel_details_section",
+   "fieldtype": "Section Break",
+   "label": "Hostel Details"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_hostel_required",
+   "fieldtype": "Check",
+   "label": "Is Hostel Required"
+  },
+  {
+   "fieldname": "hostel_type",
+   "fieldtype": "Link",
+   "label": "Room Type",
+   "options": "Room Type"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-08-18 04:57:02.974173",
+ "modified": "2023-08-23 16:08:57.551970",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Reported Participant",

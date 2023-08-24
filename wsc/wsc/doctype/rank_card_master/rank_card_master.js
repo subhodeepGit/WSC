@@ -3,13 +3,11 @@
 
 frappe.ui.form.on('Rank Card Master', {
 	setup:function(frm){
-		frm.set_query("entrance_exam_declaration" , function(){
-			return {
-				filters:{
-					"docstatus":1,
-				}
-			}
-		})
+		frm.set_query("entrance_exam_declaration", function() {
+            return {
+                query: "wsc.wsc.doctype.rank_card_master.rank_card_master.ra_query"
+            }
+        })
 		frm.set_query("academic_term", function() {
 			return {
 				filters:{

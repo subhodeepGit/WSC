@@ -26,12 +26,10 @@ frappe.ui.form.on('Entrance Exam Centre Allocation', {
 	},
 	setup:function(frm){
 		frm.set_query("entrance_exam_declaration", function() {
-			return{
-				filters:{
-					"docstatus":1
-				}
-			}
-		})
+            return {
+                query: "wsc.wsc.doctype.entrance_exam_centre_allocation.entrance_exam_centre_allocation.ra_query"
+            }
+        })
 	},
 	entrance_exam_declaration:function(frm){
 		let arr = [" "]

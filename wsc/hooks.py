@@ -367,6 +367,11 @@ doc_events = {
     "Leave Allocation": {
         "validate":"wsc.wsc.doctype.leave_allocation.validate"
     },
+    "Task": {
+        "validate":"wsc.task.validate"
+    }
+    
+    
     
     
     
