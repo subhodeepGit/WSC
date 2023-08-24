@@ -10,7 +10,10 @@ class ToTParticipant(Document):
         self.participant_name = " ".join(
         filter(None, [self.first_name, self.middle_name, self.last_name])
         )
-        
+        if self.pincode:
+            if len(self.pincode)<6:
+                frappe.throw("<b>Pincode</b> must be 6 Digits")
+            
         
 def phone_no_vlaidation(self):
     if self.participant_mobile_number:
