@@ -715,6 +715,28 @@ def send_mail_to_hr(doc):
     send_mail([doc['hr_mail']],sub,msg)
     frappe.msgprint("Email sent to HR",[doc['hr_mail']])
 
+#Notification for Employee onboarding :
+def maildirector(doc):
+    sub="""<p><b>Employee Onboarding Request</b></p><br>"""
+    msg="""<b>---------------------Employee Onboarding Details---------------------</b><br>"""
+    msg+="""<b>Employee Onboarding:</b>  {0}<br>""".format(doc['employee_onboarding'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    emp_onboarding_url = get_url_to_form('Employee Onboarding', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(emp_onboarding_url)
+    send_mail([doc['director_mail']],sub,msg)
+    frappe.msgprint("Email sent to Director",[doc['director_mail']])
+def mailhr(doc):
+    sub="""<p><b>Employee Onboarding Request</b></p><br>"""
+    msg="""<b>---------------------Employee Onboarding Details---------------------</b><br>"""
+    msg+="""<b>Employee Onboarding:</b>  {0}<br>""".format(doc['employee_onboarding'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    emp_onboarding_url = get_url_to_form('Employee Onboarding', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(emp_onboarding_url)
+    send_mail([doc['hr_mail']],sub,msg)
+    frappe.msgprint("Email sent to HR",[doc['hr_mail']])
+
+###########################################################################
+
 def shift_req_hr(doc):
     sub="""<p><b>Shift Request Approval Notification</b></p><br>"""
 
@@ -820,7 +842,7 @@ def purchase_requisition_raised(doc):
     recipients_list = list(frappe.db.sql("select department_email_id from `tabDepartment Email ID`"))
     recipients = recipients_list[0]
     attachments = None
-    send_mail(recipients,'Item',msg,attachments)
+    send_mail(recipients,'Material Request',msg,attachments)
 
 def received_in_inventory(doc):
     msg="""<b>---------------------Purchase Requisition: {0} received in Store---------------------</b><br>""".format(doc.get('name'))
@@ -828,7 +850,7 @@ def received_in_inventory(doc):
     recipients_list = list(frappe.db.sql("select department_email_id from `tabDepartment Email ID`"))
     recipients = recipients_list[0]
     attachments = None
-    send_mail(recipients,'Item',msg,attachments)
+    send_mail(recipients,'Material Request',msg,attachments)
 
 def received_by_department(doc):
     msg="""<b>---------------------Purchase Requisition: {0} received---------------------</b><br>"""
@@ -836,7 +858,14 @@ def received_by_department(doc):
     msg+="""For Purchase requisition number: {0}""".format(doc.get('name'))
     recipients = doc.department_email
     attachments = None
-    send_mail(recipients,'Item',msg,attachments)
+    send_mail(recipients,'Material Request',msg,attachments)
+
+def workflow_wating_approval(doc, receipient):
+    msg="""<b>---------------------Workflow awaiting response---------------------</b><br>"""
+    msg+="""You have received a workflow waiting for your review and approval"""
+    recipients = receipient
+    attachments = None
+    send_mail(recipients,'Material Request',msg,attachments)
 
 #####   END   #####
 
@@ -1144,3 +1173,38 @@ def send_notification_to_team_members(doc):
     msg+="""<b>Your Task is:</b>  {0} and next Due Date is {1}<br>""".format(tasks[0]['maintenance_task'],tasks[0]['next_due_date'])
     send_mail(email_list,'Asset Maintenance',msg)
     frappe.msgprint("Email sent to Maintenance Team")
+####################################Recruitment Exam Declaration Notification#####################################################################################
+def send_mail_to_jobapplicants_redn(self):
+    for t in self.get("applicant_details"):
+        applicant_name=t.applicant_name
+        applicant_email=t.applicant_mail_id
+
+        msg="""<p>Dear Applicant, <br>"""
+        msg+="""<p>This is to inform you that the for Job Opnening <b>{0}</b> exam for the round<b>{1}</b>  is declared. The examination will be held on <b>{2}</b> The admit card for the same will be shared soon.""".format(self.get('job_opening'),self.get('selection_round'),self.get('exam_date'))
+        recipients = applicant_email
+        send_mail(recipients,'WSC Job Opening Notification',msg)
+        frappe.msgprint("Email sent to Job Applicants")
+
+################################################################################################################################################################  
+#####################################Recruitment Exam Result Declaration#################################################################################      
+def send_mail_to_jobapplicants_rerd(self):
+    for t in self.get("applicant_details"):
+        applicant_name=t.applicant_name
+        applicant_email=t.applicant_mail_id
+        result_status=t.result_status
+        if result_status == "Qualified":
+            msg="""<p>Dear Applicant,<br>"""
+            msg+="""<p>Congratualtions!!!<br>"""
+            msg+="""<p>This is to inform you that the for Job Opnening <b>{0}</b> and exam round <b>{1}</b> ,you have been SELECTED.""".format(self.get('job_opening'),self.get('job_selection_round'))
+            msg+="""<p>Further Process will be informed soon</p>"""
+            recipients = applicant_email
+            send_mail(recipients,'WSC Exam Result Notification',msg)
+            frappe.msgprint("Email sent to Job Applicants")
+        if result_status == "Disqualified":
+            msg="""<p>Dear Applicant,<br>"""
+            msg+="""<p>Greetings!!!<br>"""
+            msg+="""<p>This is to inform you that the for Job Opnening <b>{0}</b> and exam round <b>{1}</b> ,you have been not been selected.""".format(self.get('job_opening'),self.get('job_selection_round'))
+            msg+="""<p>All the Best for your future.</p>"""
+            recipients = applicant_email
+            send_mail(recipients,'WSC Exam Result Notification',msg)
+            frappe.msgprint("Email sent to Job Applicants")

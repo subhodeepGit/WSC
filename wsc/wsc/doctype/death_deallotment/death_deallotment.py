@@ -26,7 +26,7 @@ class DeathDeallotment(Document):
 @frappe.validate_and_sanitize_search_inputs
 def ra_query(doctype, txt, searchfield, start, page_len, filters):
 	return frappe.db.sql("""
-		SELECT `name`,`student`,`student_name`,`hostel_id` FROM `tabRoom Allotment` WHERE (`start_date` <= now() AND `end_date` >= now()) 
+		SELECT `name`,`student`,`student_name`,`hostel_id` FROM `tabRoom Allotment` WHERE (`start_date` <= now() AND `end_date` >= now()) AND docstatus=1 
 	"""
 	)	
 	

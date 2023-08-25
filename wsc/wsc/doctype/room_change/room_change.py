@@ -57,19 +57,20 @@ class RoomChange(Document):
 					frappe.throw("Preferred room number and Present room number are same")
 
 
-
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
 def ra_query(doctype, txt, searchfield, start, page_len, filters):
+	Emp_al=""
 	if frappe.session.user == "Administrator":
 		info=""
 	else:
 		User=frappe.session.user
 		emp_id=frappe.get_all("Employee",{"user_id":User},["name"])
-		Emp_al=frappe.db.sql("""
-				SELECT `hostel_masters` from `tabEmployee Hostel Allotment` WHERE employees="%s" and
-				(`start_date`<=now() and `end_date`>=now())"""%(emp_id[0]['name']))
-		if 	Emp_al:	
+		if emp_id:
+			Emp_al=frappe.db.sql("""
+					SELECT `hostel_masters` from `tabEmployee Hostel Allotment` WHERE employees="%s" and
+					(`start_date`<=now() and `end_date`>=now())"""%(emp_id[0]['name']))
+		if Emp_al:	
 			if len(Emp_al)==1:			
 				info="""and hostel_id="%s" """%(Emp_al[0][0])
 			else:
@@ -81,9 +82,19 @@ def ra_query(doctype, txt, searchfield, start, page_len, filters):
 				info="""and hostel_id in """+hostel
 		else:
 			frappe.throw("No Employee is allotted to the hostel")				
-	return frappe.db.sql("""
-		SELECT `name`,`student`,`student_name`,`hostel_id` FROM `tabRoom Allotment` WHERE (`start_date` <= now() AND `end_date` >= now()) 
+	############################## Search Field Code################# 	
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)	
+
+	data=frappe.db.sql("""
+		SELECT `name`,`student`,`student_name`,`hostel_id` FROM `tabRoom Allotment` WHERE ({key} like %(txt)s or {scond})  and
+		    (`start_date` <= now() AND `end_date` >= now()) 
 		and (`allotment_type`!="Hostel suspension" and `allotment_type`!="Suspension" and `allotment_type`!="Debar" and 
-		`allotment_type`!="University Suspension" and `allotment_type`!="School Suspension") and `docstatus`=1 
-	"""+info
-	)	
+		`allotment_type`!="University Suspension" and `allotment_type`!="School Suspension" and `allotment_type`!="Death" and `allotment_type`!="De-Allotted") and `docstatus`=1 {info}
+	""".format(
+		**{
+			"key": searchfield,
+			"scond": searchfields,
+			"info":info
+		}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	return data	

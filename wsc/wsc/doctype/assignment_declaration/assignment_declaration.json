@@ -1,17 +1,19 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "ASD.-.#####",
  "creation": "2023-07-05 16:07:20.839630",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "attendance_applicable",
+  "section_break_p7et4",
   "assignment_name",
   "assignment_start_date",
   "academic_year",
   "course",
-  "select_sub_module",
   "total_marks",
   "weightage",
   "column_break_6",
@@ -23,6 +25,7 @@
   "pass_marks",
   "section_break_11",
   "trainer_id",
+  "attendance_percentage",
   "column_break_13",
   "trainer_name",
   "section_break_15",
@@ -95,11 +98,6 @@
    "options": "Participant List Table"
   },
   {
-   "fieldname": "select_sub_module",
-   "fieldtype": "Select",
-   "label": "Select Sub Module"
-  },
-  {
    "fieldname": "column_break_6",
    "fieldtype": "Column Break"
   },
@@ -139,14 +137,31 @@
    "fieldname": "select_assessment_criteria",
    "fieldtype": "Select",
    "label": "Select Assessment Criteria"
+  },
+  {
+   "default": "0",
+   "fieldname": "attendance_applicable",
+   "fieldtype": "Check",
+   "label": "Attendance Applicable"
+  },
+  {
+   "fieldname": "section_break_p7et4",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "attendance_applicable",
+   "fieldname": "attendance_percentage",
+   "fieldtype": "Percent",
+   "label": "Attendance Percentage"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-25 12:08:19.625743",
+ "modified": "2023-08-23 15:04:06.788559",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Declaration",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

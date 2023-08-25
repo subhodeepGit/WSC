@@ -20,7 +20,7 @@ class EmployeeSuggestion(Document):
 
 			notify_hr(data)
 		else :
-			frappe.msgprint("HR Admin Email ID  Not Found")
+			frappe.throw("HR Admin Email ID  Not Found")
 	def notification_to_director(self):
 		data = {}
 		director = get_director_mail()
@@ -35,7 +35,7 @@ class EmployeeSuggestion(Document):
 
 			notify_director(data)
 		else :
-			frappe.msgprint("Director Email ID  Not Found")
+			frappe.throw("Director Email ID  Not Found")
 	def notification_to_employee(self):
 		data = {}
 		employee_mail = self.user_id
@@ -50,7 +50,7 @@ class EmployeeSuggestion(Document):
 
 			notify_employee(data)
 		else :
-			frappe.msgprint("Employee Email ID  Not Found")
+			frappe.throw("Employee Email ID  Not Found")
 	def validate(self):
 		if self.user_id == None :
 			frappe.msgprint("Employee User ID not found")

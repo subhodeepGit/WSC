@@ -9,7 +9,12 @@ frappe.ui.form.on('Rank Card Publication Tool', {
 				frappe.call({
 					method:'wsc.wsc.doctype.rank_card_publication_tool.rank_card_publication_tool.generate_rank_cards',
 					args:{
-						doc:doc
+						// //add course type and filter as such
+						// 'declaration':frm.doc.entrance_exam_declaration,
+				 		// 'academic_year':frm.doc.academic_year,
+				 		// 'academic_term':frm.doc.academic_term,
+				 		// 'department':frm.doc.departments,
+						'doc':frm.doc
 					}
 				})
 			}
@@ -42,7 +47,8 @@ frappe.ui.form.on('Rank Card Publication Tool', {
 		frappe.call({
 			method:'wsc.wsc.doctype.rank_card_publication_tool.rank_card_publication_tool.get_qualified_applicants',
 			args:{
-				 'rank_card_master':frm.doc.rank_card_masters,
+				//add course type and filter as such
+				 'declaration':frm.doc.entrance_exam_declaration,
 				 'academic_year':frm.doc.academic_year,
 				 'academic_term':frm.doc.academic_term,
 				 'department':frm.doc.departments
@@ -50,27 +56,16 @@ frappe.ui.form.on('Rank Card Publication Tool', {
 			callback:function(result){
 				frappe.model.clear_table(frm.doc, 'ranked_students_list');
 				result.message.map((i) => {
-
+					
 					let c =frm.add_child('ranked_students_list')
 					c.applicant_id = i.applicant_id
 					c.applicant_name = i.applicant_name
 					c.gender = i.gender
 					c.student_category = i.student_category
 					c.physical_disability = i.physically_disabled
-					c.all_student_based_rank = i.Rank
-					
-					if (!i.Category_Rank){
-						c.category_based_rank = "--"
-					}
-					else {
-						c.category_based_rank = i.Category_Rank
-					}
-
-					if (!i.PWD_Rank){
-						c.pwd_based_rank = "--"
-					} else {
-						c.pwd_based_rank = i.PWD_Rank
-					}
+					c.earned_marks = i.earned_marks
+					c.rank_type = i.rank_type
+					c.rank = i.Rank
 				})
 				frm.refresh();
 				frm.refresh_field("ranked_students_list")

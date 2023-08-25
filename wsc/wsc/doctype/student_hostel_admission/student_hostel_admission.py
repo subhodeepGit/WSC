@@ -3,14 +3,13 @@
 
 import frappe
 from frappe.model.document import Document
-from erpnext.accounts.general_ledger import make_reverse_gl_entries
 import json
 
 class StudentHostelAdmission(Document):
 	def validate(doc):
-		# doc.allotment_status = "Not Reported"
-		data=frappe.get_all("Student Hostel Admission",fields=[["student","=",doc.student],["allotment_status","!=","Allotted"],
-					["allotment_status","!=","De-Allotted"],["docstatus","=",1]])		
+		doc.allotment_status = "Not Reported"
+		data=frappe.db.sql("""SELECT name from `tabStudent Hostel Admission` where student = "%s" and 
+		    					(allotment_status != 'Allotted' or allotment_status != 'De-Allotted') and docstatus=1 """%(doc.student))		
 		if len(data)!=0:
 			frappe.throw("Student record already present")
 
@@ -38,8 +37,8 @@ class StudentHostelAdmission(Document):
 	# 		frappe.throw("Student Applicant not maintained")##### Student Applicant
 
 
-	def after_insert(doc):
-		frappe.db.set_value("Student Hostel Admission",doc.name, "allotment_status", "Not Reported") 
+	# def after_insert(doc):
+	# 	frappe.db.set_value("Student Hostel Admission",doc.name, "allotment_status", "Not Reported") 
 
 
 
@@ -67,17 +66,20 @@ def fee_structure_validation(doc):
 
 def create_fees(doc,fee_structure_id,cost_center=None,on_submit=0):
 	data = frappe.get_all("Student Hostel Admission",{'student':doc.student,'docstatus':1},['name','first_name','roll_no','registration_number','email_address','due_date'],limit=1)
+	pe = frappe.get_all("Program Enrollment",{'student':doc.student,'docstatus':1},['name','program','programs','student_batch_name'],limit=1)
 	fees = frappe.new_doc("Hostel Fees")
 	fees.student = doc.student
 	fees.student_name = doc.first_name    
 	fees.due_date = doc.due_date
 	fees.student_email=doc.email_address
 	fees.hostel_admission = data[0]['name']
+	fees.program_enrollment = pe[0]['name']
 	for t in doc.get("current_education_fetch"):
 		fees.programs=t.programs
 		fees.program=t.semesters
 		fees.academic_year=t.academic_year
 		fees.academic_term=t.academic_term
+		fees.student_batch=t.student_batch_name
 		t.term_date = frappe.get_all("Academic Term",{'name': t.academic_term},['term_start_date','term_end_date'])
 		fees.valid_from=t.term_date[0]['term_start_date']
 		fees.valid_to =t.term_date[0]['term_end_date']             
@@ -104,8 +106,8 @@ def create_fees(doc,fee_structure_id,cost_center=None,on_submit=0):
 def cancel_fees(doc):
 	if doc.hostel_fees_id:
 		hostel_fee_object= frappe.get_doc("Hostel Fees",doc.hostel_fees_id)
-		# if hostel_fee_object:
-		hostel_fee_object.cancel()
+		if hostel_fee_object.docstatus!=2 and hostel_fee_object.docstatus!=0:
+			hostel_fee_object.cancel()
 		frappe.msgprint("Hostel Fees is also cancelled")
 
 

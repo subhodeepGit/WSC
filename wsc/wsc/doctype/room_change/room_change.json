@@ -25,7 +25,8 @@
   "application_form",
   "application_status",
   "section_break_11",
-  "comment"
+  "comment",
+  "amended_from"
  ],
  "fields": [
   {
@@ -95,13 +96,15 @@
    "fieldname": "preferred_hostel",
    "fieldtype": "Link",
    "label": "Preferred Hostel",
-   "options": "Hostel Masters"
+   "options": "Hostel Masters",
+   "reqd": 1
   },
   {
    "fieldname": "preferred_room",
    "fieldtype": "Link",
    "label": "Preferred Room",
-   "options": "Room Masters"
+   "options": "Room Masters",
+   "reqd": 1
   },
   {
    "fetch_from": "preferred_room.actual_room_type",
@@ -129,7 +132,6 @@
   {
    "fieldname": "application_status",
    "fieldtype": "Data",
-   "hidden": 1,
    "label": "Application Status",
    "read_only": 1
   },
@@ -160,14 +162,24 @@
    "fieldtype": "Data",
    "label": "Registration Number",
    "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Room Change",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-16 16:56:45.425708",
+ "modified": "2023-08-21 16:36:59.728805",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Room Change",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -185,7 +197,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "track_changes": 1,
- "track_seen": 1,
- "track_views": 1
+ "states": [],
+ "track_changes": 1
 }

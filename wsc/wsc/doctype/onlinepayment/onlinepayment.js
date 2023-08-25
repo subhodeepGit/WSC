@@ -1,65 +1,118 @@
 // Copyright (c) 2023, SOUL Limited and contributors
 // For license information, please see license.txt
-frappe.ui.form.on('OnlinePayment', {
-	party: function(frm) {
-		frappe.call({
-			method:"wsc.wsc.doctype.onlinepayment.onlinepayment.get_outstanding_amount",
-			args: {
-				student: frm.doc.party
-			},
-			callback: function(r){
-				// if(r.message){
-					var result = r.message;
-					frm.set_value("total_outstanding_amout",result);
-					frm.set_value("paying_amount",result);
-				// }
-			}
-		})
-	}
-});
-frappe.ui.form.on('OnlinePayment', {
-	refresh: function (frm) {
-		var hdfcButton = frm.add_custom_button("By HDFC", function () {
-			// alert(window.location.href)	
-			frappe.call({
+// frappe.ui.form.on('OnlinePayment', {
+// 	party: function(frm) {
+// 		frappe.call({
+// 			method:"wsc.wsc.doctype.onlinepayment.onlinepayment.get_outstanding_amount",
+// 			args: {
+// 				student: frm.doc.party
+// 			},
+// 			callback: function(r){
+// 				// if(r.message){
+// 					var result = r.message;
+// 					frm.set_value("total_outstanding_amout",result);
+// 					frm.set_value("paying_amount",result);
+// 				// }
+// 			}
+// 		})
+// 	}
+// });
+// frappe.ui.form.on('OnlinePayment', {
+// 	refresh: function (frm) {
+// 		var hdfcButton = frm.add_custom_button("By HDFC", function () {
+// 			// alert(window.location.href)	
+// 			frappe.call({
 				
-				method: "wsc.wsc.doctype.onlinepayment.onlinepayment.login",
-				args: {
-					party_name: frm.doc.party,
-					roll_no: frm.doc.roll_no,
-					amount: frm.doc.paying_amount,
-					order_id: frm.doc.name,
-					url: window.location.href
+// 				method: "wsc.wsc.doctype.onlinepayment.onlinepayment.login",
+// 				args: {
+// 					party_name: frm.doc.party,
+// 					roll_no: frm.doc.roll_no,
+// 					amount: frm.doc.paying_amount,
+// 					order_id: frm.doc.name,
+// 					url: window.location.href
 					
-				},
-				callback: function (r) {
+// 				},
+// 				callback: function (r) {
 					
-					var encRequest = r.message["encRequest"];					
-					var access_code = r.message["accessCode"];					
-					var baseUrl = r.message["baseUrl"];	
-					// alert(baseUrl)			
+// 					var encRequest = r.message["encRequest"];					
+// 					var access_code = r.message["accessCode"];					
+// 					var baseUrl = r.message["baseUrl"];	
+// 					alert(r.message)
+// 					alert(baseUrl)			
 
-					var isLocalhost = baseUrl.includes("http");					
-                    var isProd = baseUrl.includes("https");
+// 					var isLocalhost = baseUrl.includes("http");					
+//                     var isProd = baseUrl.includes("https");
 				
 
-				if (isLocalhost) {  
+// 				if (isLocalhost) {  
 
-					window.location.href="https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
-                } else if (isProd) {
+// 					window.location.href="https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
+//                 } else if (isProd) {
                     
-					window.location.href="https://ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
-                } else {
+// 					window.location.href="https://ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
+//                 } else {
                     
-                    // window.open("https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest);
-					alert("Invalid Request. Please contact administrator.");
+//                     // window.open("https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest);
+// 					alert("Invalid Request. Please contact administrator.");
+//                 }
+
+				
+				
+// 				}
+// 			});
+// 		}, "Online Payment");
+
+// 		hdfcButton.css({ 'color': 'black', 'background-color': 'white', 'font-weight': 'normal' });
+
+// 		var axisButton = frm.add_custom_button("By Axis", function () {
+// 			// HAve to add the logic for Axis payment here
+			
+// 			alert("axisButton clicked")
+// 		}, "Online Payment");
+
+// 		axisButton.css({ 'color': 'black', 'background-color': 'white', 'font-weight': 'normal' });
+// 	}
+// });
+
+frappe.ui.form.on('OnlinePayment', {
+    refresh: function (frm) {
+        var hdfcButton = frm.add_custom_button("By HDFC", function () {
+            frappe.call({
+                method: "wsc.wsc.doctype.onlinepayment.onlinepayment.login",
+                args: {
+                    party_name: frm.doc.party,
+                    roll_no: frm.doc.roll_no,
+                    amount: frm.doc.paying_amount,
+                    order_id: frm.doc.name,
+                    url: window.location.href
+                },
+                callback: function (r) {
+                    if (r.message) {
+                        var encRequest = r.message["encRequest"];
+                        var access_code = r.message["accessCode"];
+                        var baseUrl = r.message["baseUrl"];
+						// alert(baseUrl)
+
+                        if (encRequest && access_code && baseUrl) {
+                            var isLocalhost = baseUrl.includes("http");
+                            var isProd = baseUrl.includes("https");
+
+                            if (isLocalhost) {
+                                window.location.href = "https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
+                            } else if (isProd) {
+                                window.location.href = "https://ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
+                            } else {
+                                alert("Invalid Request. Please contact administrator.");
+                            }
+                        } else {
+                            alert("Required data missing in response.");
+                        }
+                    } else {
+                        alert("No response data received.");
+                    }
                 }
-
-				
-				
-				}
-			});
-		}, "Online Payment");
+            });
+        }, "Online Payment");
 
 		hdfcButton.css({ 'color': 'black', 'background-color': 'white', 'font-weight': 'normal' });
 
@@ -70,10 +123,8 @@ frappe.ui.form.on('OnlinePayment', {
 		}, "Online Payment");
 
 		axisButton.css({ 'color': 'black', 'background-color': 'white', 'font-weight': 'normal' });
-	}
+    }
 });
-
-
 
 frappe.ui.form.on('OnlinePayment', {
 	refresh(frm) {

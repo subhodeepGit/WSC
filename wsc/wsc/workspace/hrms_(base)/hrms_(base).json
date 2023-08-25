@@ -201,8 +201,74 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Shift Management",
+   "link_count": 3,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Shift Type",
+   "link_count": 0,
+   "link_to": "Shift Type",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Shift Assignment",
+   "link_count": 0,
+   "link_to": "Shift Assignment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Shift Request",
+   "link_count": 0,
+   "link_to": "Shift Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Settings",
+   "link_count": 2,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "HR Settings",
+   "link_count": 0,
+   "link_to": "HR Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Daily Work Summary Group",
+   "link_count": 0,
+   "link_to": "Daily Work Summary Group",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Leave Management",
-   "link_count": 6,
+   "link_count": 7,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -269,37 +335,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Shift Management",
-   "link_count": 3,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Shift Type",
+   "label": "Leave Policy",
    "link_count": 0,
-   "link_to": "Shift Type",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Shift Assignment",
-   "link_count": 0,
-   "link_to": "Shift Assignment",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Shift Request",
-   "link_count": 0,
-   "link_to": "Shift Request",
+   "link_to": "Leave Policy",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -308,7 +346,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Attendance Management",
-   "link_count": 5,
+   "link_count": 4,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -345,53 +383,15 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Upload Attendance",
-   "link_count": 0,
-   "link_to": "Upload Attendance",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Employee Checkin",
    "link_count": 0,
    "link_to": "Employee Checkin",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Settings",
-   "link_count": 2,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "HR Settings",
-   "link_count": 0,
-   "link_to": "HR Settings",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Daily Work Summary Group",
-   "link_count": 0,
-   "link_to": "Daily Work Summary Group",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
   }
  ],
- "modified": "2023-08-07 14:51:32.223077",
+ "modified": "2023-08-21 16:24:47.493666",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "HRMS (Base)",

@@ -1,22 +1,26 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "ASG.-.#####",
  "creation": "2023-07-05 14:52:32.011330",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "evaluate",
+  "section_break_up0pn",
   "participant_group",
   "course",
+  "column_break_hbdkn",
+  "programs",
+  "section_break_kyqjw",
   "academic_year",
   "instructor_id",
   "assignment_name",
   "total_marks",
   "weightage",
   "column_break_5",
-  "programs",
-  "select_sub_module",
   "academic_term",
   "instructor_name",
   "assessment_criteria",
@@ -63,11 +67,6 @@
    "label": "Description"
   },
   {
-   "fieldname": "select_sub_module",
-   "fieldtype": "Select",
-   "label": "Select Sub Module"
-  },
-  {
    "fieldname": "instructor_id",
    "fieldtype": "Select",
    "label": "Instructor ID"
@@ -109,14 +108,33 @@
    "fieldname": "passing_marks",
    "fieldtype": "Data",
    "label": "Passing Marks"
+  },
+  {
+   "default": "0",
+   "fieldname": "evaluate",
+   "fieldtype": "Check",
+   "label": "Evaluate"
+  },
+  {
+   "fieldname": "section_break_up0pn",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_hbdkn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_kyqjw",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-25 11:33:12.801899",
+ "modified": "2023-08-23 12:55:24.858421",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

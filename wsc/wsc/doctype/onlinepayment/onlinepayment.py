@@ -14,17 +14,17 @@ from urllib.parse import urlparse
 import os
 import sys
 import logging
-from .database_operations import fetch_and_process_data
+# from .database_operations import fetch_and_process_data
 from .database_operations import fetch_config_data
 
 from frappe import db
 
 class OnlinePayment(Document):
-	def validate(self):
-		if self.paying_amount>self.total_outstanding_amout:
-			frappe.throw("Paying Amount can't be more then Total Outstanding Amount")
-		if self.total_outstanding_amout==0:
-			frappe.throw("Outstanding Amount can't be Rs.0 ")  
+	# def validate(self):
+	# 	if self.paying_amount>self.total_outstanding_amout:
+	# 		frappe.throw("Paying Amount can't be more then Total Outstanding Amount")
+	# 	if self.total_outstanding_amout==0:
+	# 		frappe.throw("Outstanding Amount can't be Rs.0 ")  
 
 	def on_cancel(doc):
 		frappe.throw("Once form is submitted it can't be cancelled")
@@ -33,52 +33,56 @@ class OnlinePayment(Document):
 	
 	def on_submit(doc):
 		get_url= frappe.utils.get_url()  
-		print("\n\n\n\n get_url",get_url)     
+		logging.info(" get_url----->%s",get_url)     
 		# getTransactionDetails(doc, 'http://erp.soulunileaders.com:8000/app/onlinepayment')
 		getTransactionDetails(doc, get_url)
 		frappe.msgprint("Your Transaction is completed. Your Transaction Id is " +
 				doc.transaction_id + "."  " Status is " + frappe.bold(doc.transaction_status))
+logging.basicConfig(filename='/home/erpnext/frappe-bench/apps/wsc/wsc/wsc/doctype/onlinepayment/transaction_log.log', level=logging.INFO,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 currency = 'INR'
 language = 'EN'
 
 def check_url(p_url):
 	parsed_url = urlparse(p_url)
-	
+	# logging.info("parsed_url: %s", parsed_url)
 	if parsed_url.scheme == "http":
 		return "test"
 	else:
 		return "production"
 	
 
-@frappe.whitelist()
-def get_outstanding_amount(student):
-	fee_voucher_list=frappe.get_all("Fees",filters=[["student","=",student],["outstanding_amount","!=",0],["docstatus","=",1]],
-															fields=['outstanding_amount'],
-															order_by="due_date asc")
-	outstanding_amount=0
-	for t in fee_voucher_list:
-		outstanding_amount=t['outstanding_amount']+outstanding_amount
-	return outstanding_amount
+# @frappe.whitelist()
+# def get_outstanding_amount(student):
+# 	fee_voucher_list=frappe.get_all("Fees",filters=[["student","=",student],["outstanding_amount","!=",0],["docstatus","=",1]],
+# 															fields=['outstanding_amount'],
+# 															order_by="due_date asc")
+# 	outstanding_amount=0
+# 	for t in fee_voucher_list:
+# 		outstanding_amount=t['outstanding_amount']+outstanding_amount
+# 	return outstanding_amount
 
 @frappe.whitelist()
 def login(party_name, roll_no, amount, order_id, url): 
-	print("\n\n\n\n url",url)
+	logging.info("Processing login function...")
+
+	logging.info("Input URL: %s", url)
 	processed_url = check_url(url)
-	print("\n\n\n\n processed_url",processed_url)	
+	logging.info("Processed URL: %s", processed_url)
 	
 	try:
 		site_name = frappe.local.site 
-		print("\n\n\n\n site_name",site_name)	
-		config_file_path = "/home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json"
-		print("\n\n\n\n config_file_path",config_file_path)		
+		logging.info("site_name: %s", site_name)	
+		config_file_path = "/home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json"
+		logging.info("config_file_path: %s", config_file_path)		
 		config_data = fetch_config_data(config_file_path) 
-		print("\n\n\n\n config_data",config_data)
+		
 		
 
 		if processed_url == "test":
 			if config_data:
-					print("\n\n\n\n config_data", config_data)
+					logging.info("config_data: %s", config_data)
 					merchant_id = config_data.get("Merchant ID")
 					access_code = config_data.get("Access Code")
 					working_key = config_data.get("Working Key")
@@ -87,28 +91,36 @@ def login(party_name, roll_no, amount, order_id, url):
 					site_name = config_data.get("Site Name")
 					gateway_name = config_data.get("Gateway Name")
 					dev_type = config_data.get("Dev Type")
-			elif processed_url == "production":				
-				if config_data:
-					merchant_id = config_data.get("Merchant ID")
-					access_code = config_data.get("Access Code")
-					working_key = config_data.get("Working Key")
-					redirect_url = config_data.get("Redirect URL")
-					cancel_url = config_data.get("Cancel URL")
-					site_name = config_data.get("Site Name")
-					gateway_name = config_data.get("Gateway Name")
-					dev_type = config_data.get("Dev Type")
-			else:
-				# Print a message or log an error
-				print("Please contact Administrator.")				
+		elif processed_url == "production":				
+			if config_data:
+				logging.info("config_data production: %s", config_data)
+				merchant_id = config_data.get("Merchant ID")
+				access_code = config_data.get("Access Code")
+				working_key = config_data.get("Working Key")
+				redirect_url = config_data.get("Redirect URL")
+				cancel_url = config_data.get("Cancel URL")
+				site_name = config_data.get("Site Name")
+				gateway_name = config_data.get("Gateway Name")
+				dev_type = config_data.get("Dev Type")
 
-			passed_url = urlparse(url)
-			print("\n\n\n\n passed_url",passed_url)
-			config_sitename = urlparse(site_name)
-			print("\n\n\n\n config_sitename",config_sitename)
-			print("\n\n\n\n passed_url.netloc",passed_url.netloc)
-			print("\n\n\n\n config_sitename.netloc",config_sitename.netloc)
+				# passed_url = urlparse(url)
+				# logging.info("passed_url: %s", passed_url)
 
-			if passed_url.netloc == config_sitename.netloc:
+				# config_sitename = urlparse(site_name)
+				# logging.info("config_sitename: %s", config_sitename)
+
+				# logging.info("passed_url.netloc: %s", passed_url.netloc)
+				# logging.info("config_sitename.netloc: %s", config_sitename.netloc)
+
+		# else:
+		# 	# Print a message or log an error
+		# 	print("Please contact Administrator.")				
+
+				
+		
+
+			# if passed_url.netloc == config_sitename.netloc:
+			if 1==1:
 				p_merchant_id = merchant_id
 				p_billing_name = party_name
 				p_customer_identifier = roll_no
@@ -123,7 +135,9 @@ def login(party_name, roll_no, amount, order_id, url):
 			
 				encryption = encrypt(merchant_data, working_key)
 				
-
+				logging.info("encryption: %s", encryption)
+				logging.info("accessCode: %s", access_code)
+				logging.info("baseUrl: %s", url)
 				return {"encRequest": str(encryption), "accessCode": access_code, "baseUrl": url}
 
 			else:
@@ -179,6 +193,8 @@ def get_order_status():
 				doc.save(ignore_permissions=True)
 				print("\n\n\n\n\n\n   inside save.....................")
 				doc.run_method('submit')
+				frappe.msgprint("Your Transaction is completed. Your Transaction Id is " +
+				doc.transaction_id + "."  " Status is " + frappe.bold(doc.transaction_status))
 				return "Order status and tracking ID updated successfully in Frappe."
 			except Exception as save_exception:
 				return f"Error saving document: {repr(save_exception)}"
@@ -213,47 +229,47 @@ def getTransactionDetails(doc, url):
 		site_name = frappe.local.site 
 		# c = fetch_and_process_data(site_name)  # Assuming this function is defined elsewhere
 		# integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name, dev_type,redirect_url ,cancel_url FROM `payment_integration`"
-		config_file_path = "/home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json"
-		print("\n\n\n\n config_file_path",config_file_path)		
+		config_file_path = "/home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json"
+		logging.info("FSA config_file_path: %s", config_file_path)	
 		config_data = fetch_config_data(config_file_path) 
-		print("\n\n\n\n config_data",config_data)
+		logging.info("FSA config_data: %s", config_data)
 
-		if processed_url == "test":
-			if config_data:
-					print("\n\n\n\n config_data", config_data)
-					merchant_id = config_data.get("Merchant ID")
-					access_code = config_data.get("Access Code")
-					working_key = config_data.get("Working Key")
-					redirect_url = config_data.get("Redirect URL")
-					cancel_url = config_data.get("Cancel URL")
-					site_name = config_data.get("Site Name")
-					gateway_name = config_data.get("Gateway Name")
-					dev_type = config_data.get("Dev Type")
+		# if processed_url == "test":
+		if config_data:
+				logging.info("FSA config_data Inside IF: %s", config_data)
+				merchant_id = config_data.get("Merchant ID")
+				access_code = config_data.get("Access Code")
+				working_key = config_data.get("Working Key")
+				redirect_url = config_data.get("Redirect URL")
+				cancel_url = config_data.get("Cancel URL")
+				site_name = config_data.get("Site Name")
+				gateway_name = config_data.get("Gateway Name")
+				dev_type = config_data.get("Dev Type")
 			# integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name,dev_type,redirect_url, cancel_url FROM `payment_integration` where dev_type='test'"
 			
-		elif processed_url == "production":
-			if config_data:
-					print("\n\n\n\n config_data", config_data)
-					merchant_id = config_data.get("Merchant ID")
-					access_code = config_data.get("Access Code")
-					working_key = config_data.get("Working Key")
-					redirect_url = config_data.get("Redirect URL")
-					cancel_url = config_data.get("Cancel URL")
-					site_name = config_data.get("Site Name")
-					gateway_name = config_data.get("Gateway Name")
-					dev_type = config_data.get("Dev Type")
+		# elif processed_url == "production":
+		# 	if config_data:
+		# 			print("\n\n\n\n config_data", config_data)
+		# 			merchant_id = config_data.get("Merchant ID")
+		# 			access_code = config_data.get("Access Code")
+		# 			working_key = config_data.get("Working Key")
+		# 			redirect_url = config_data.get("Redirect URL")
+		# 			cancel_url = config_data.get("Cancel URL")
+		# 			site_name = config_data.get("Site Name")
+		# 			gateway_name = config_data.get("Gateway Name")
+		# 			dev_type = config_data.get("Dev Type")
 			# integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name,dev_type,redirect_url, cancel_url FROM `payment_integration` where dev_type='production'"
-		else:
-			frappe.msgprint("Please contact Administrator.")
+		# else:
+		# 	frappe.msgprint("Please contact Administrator.")
 			
 		# c.execute(integration_dbvalue)
 		# integration_value = c.fetchall()
 		# c.close()
 		
-			passed_url = urlparse(current_url)
-			config_sitename = urlparse(site_name)
+			# passed_url = urlparse(current_url)
+			# config_sitename = urlparse(site_name)
 
-			if passed_url.netloc == config_sitename.netloc:
+			# if passed_url.netloc == config_sitename.netloc:
 				orderNo = doc.name
 				referenceNo = doc.transaction_id
 
@@ -266,21 +282,25 @@ def getTransactionDetails(doc, url):
 				encrypted_data = encrypt(merchant_data, working_key)
 
 				final_data = 'enc_request='+encrypted_data+'&'+'access_code='+access_code + \
-							 '&'+'command=orderStatusTracker&request_type=JSON&response_type=JSON'
-
+								'&'+'command=orderStatusTracker&request_type=JSON&response_type=JSON'
+				logging.info("Final API final_data: %s", final_data)
 				r = requests.post(
 					'https://apitest.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)
+				
 				t = r.text
+				logging.info("Final API Req: %s", r)
 				key_value_pairs = t.split("&")
+				logging.info("Final API key_value_pairs: %s", key_value_pairs)
 
 				enc_response_value = None
 				for pair in key_value_pairs:
 					if pair.startswith("enc_response="):
 						enc_response_value = pair[len("enc_response="):]
+						logging.info("Final API enc_response_value: %s", enc_response_value)
 						break
 
 				decryptData = decrypt(enc_response_value, working_key)
-
+				logging.info(" final_status_info decryptData: %s",decryptData)
 				start_idx = decryptData.find('{')
 				end_idx = decryptData.rfind('}}') + 2
 				json_string = decryptData[start_idx:end_idx]
@@ -293,10 +313,10 @@ def getTransactionDetails(doc, url):
 				reference_no = data_dict["Order_Status_Result"]["reference_no"]
 				order_date_time = data_dict["Order_Status_Result"]["order_status_date_time"]
 				final_status_info = f"Order ID: {order_no}\nTransaction ID: {reference_no}\nGross Amount : {order_gross_amt}\nOrder Amount : {order_amt}\nOrder Status: {order_status}\nTime of Transaction: {order_date_time}\nBank Ref No.: {order_bank_ref_no}"
-				print("\n\n\n\n\n    final_status_info",final_status_info)
+				logging.info(" final_status_info : %s",data_dict)
 				doc.status = final_status_info
 				# logger_login the final_status_info
-				
+					
 			   
 				
 
