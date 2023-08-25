@@ -28,9 +28,9 @@ def get_participant_name(participant_group_id, participant_id):
 	return participant_name[0]['participant_name']
 
 @frappe.whitelist()
-def get_assignment_list(instructor_id, participant_group_id, programs, course, topic):
-	assignments = frappe.db.sql(""" SELECT name FROM `tabAssignment` WHERE participant_group='%s' AND instructor_id='%s' AND programs = '%s' AND course='%s' AND select_sub_module = '%s' AND evaluate = 1 """%(participant_group_id, instructor_id, programs, course,topic))
-	exam_assignments = frappe.db.sql(""" SELECT name FROM `tabAssignment Declaration` WHERE participant_group = '%s' AND trainer_id = '%s' AND course = '%s' AND module = '%s' AND select_sub_module = '%s' """%(participant_group_id, instructor_id, programs, course, topic))
+def get_assignment_list(instructor_id, participant_group_id, programs, course):
+	assignments = frappe.db.sql(""" SELECT name FROM `tabAssignment` WHERE participant_group='%s' AND instructor_id='%s' AND programs = '%s' AND course='%s' AND evaluate = 1 """%(participant_group_id, instructor_id, programs, course))
+	exam_assignments = frappe.db.sql(""" SELECT name FROM `tabAssignment Declaration` WHERE participant_group = '%s' AND evaluator_id = '%s' AND course = '%s' AND module = '%s'"""%(participant_group_id, instructor_id, programs, course))
 	return (assignments + exam_assignments)
 
 @frappe.whitelist()

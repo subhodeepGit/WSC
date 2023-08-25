@@ -715,6 +715,28 @@ def send_mail_to_hr(doc):
     send_mail([doc['hr_mail']],sub,msg)
     frappe.msgprint("Email sent to HR",[doc['hr_mail']])
 
+#Notification for Employee onboarding :
+def maildirector(doc):
+    sub="""<p><b>Employee Onboarding Request</b></p><br>"""
+    msg="""<b>---------------------Employee Onboarding Details---------------------</b><br>"""
+    msg+="""<b>Employee Onboarding:</b>  {0}<br>""".format(doc['employee_onboarding'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    emp_onboarding_url = get_url_to_form('Employee Onboarding', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(emp_onboarding_url)
+    send_mail([doc['director_mail']],sub,msg)
+    frappe.msgprint("Email sent to Director",[doc['director_mail']])
+def mailhr(doc):
+    sub="""<p><b>Employee Onboarding Request</b></p><br>"""
+    msg="""<b>---------------------Employee Onboarding Details---------------------</b><br>"""
+    msg+="""<b>Employee Onboarding:</b>  {0}<br>""".format(doc['employee_onboarding'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    emp_onboarding_url = get_url_to_form('Employee Onboarding', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(emp_onboarding_url)
+    send_mail([doc['hr_mail']],sub,msg)
+    frappe.msgprint("Email sent to HR",[doc['hr_mail']])
+
+###########################################################################
+
 def shift_req_hr(doc):
     sub="""<p><b>Shift Request Approval Notification</b></p><br>"""
 

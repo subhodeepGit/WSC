@@ -25,7 +25,8 @@
   "section_break_10",
   "result_declaration_date",
   "total_marks",
-  "earned_marks"
+  "earned_marks",
+  "amended_from"
  ],
  "fields": [
   {
@@ -41,7 +42,7 @@
    "label": "Applicant Name"
   },
   {
-   "fetch_from": "applicant_id.academic_year",
+   "fetch_from": "entrance_exam_declaration.academic_year",
    "fieldname": "academic_year",
    "fieldtype": "Link",
    "label": "Academic Year",
@@ -53,7 +54,7 @@
    "label": "Result Declaration Date"
   },
   {
-   "fetch_from": "applicant_id.department",
+   "fetch_from": "entrance_exam_declaration.department",
    "fieldname": "department",
    "fieldtype": "Link",
    "label": "Department",
@@ -84,7 +85,7 @@
    "label": "Earned Marks"
   },
   {
-   "fetch_from": "applicant_id.academic_term",
+   "fetch_from": "entrance_exam_declaration.academic_term",
    "fieldname": "academic_term",
    "fieldtype": "Link",
    "label": "Academic Term",
@@ -128,11 +129,21 @@
   {
    "fieldname": "section_break_vr0ay",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Entrance Exam Result Publication",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-08-22 17:48:55.062570",
+ "modified": "2023-08-23 12:53:51.515043",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Result Publication",
