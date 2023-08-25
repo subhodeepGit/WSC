@@ -3,11 +3,12 @@
 
 import frappe
 from frappe.model.document import Document
-from frappe.utils import today, getdate
-from wsc.wsc.notification.custom_notification import send_clearance_notification_to_department,send_pendingDues_notification_to_student,send_disabled_notification_to_student
-
+from wsc.wsc.notification.custom_notification import send_clearance_notification_to_department,send_pendingDues_notification_to_student
 class StudentClearanceApplication(Document):
     def on_submit(self):
+        if not self.get("departments_clearance_status"):
+            frappe.throw("Department Clearance is not present")
+
         for t in self.get("departments_clearance_status"):
             if(t.clearance_status == 'Select'):
                 frappe.throw(("Provide action in clearance status"))
@@ -51,6 +52,8 @@ class StudentClearanceApplication(Document):
 def current_student_detail(student_id):
     clearanceDepartment=[]
     current_education_data=frappe.get_all("Current Educational Details",{"parent":student_id},['programs','semesters','academic_year','academic_term'])
+    if not current_education_data:
+        frappe.throw("Education Details not found")
     academicYear = current_education_data[0]['academic_year']
     academicTerm = current_education_data[0]['academic_term']
     userDisableDate = frappe.db.get_value(

@@ -26,10 +26,10 @@ def get_participant_name(participant_group_id, participant_id):
 	participant_name = frappe.db.sql(""" SELECT participant_name FROM `tabParticipant Table` WHERE parent = '%s' AND participant = '%s'"""%(participant_group_id, participant_id), as_dict=1)
 	return participant_name[0]['participant_name']
 
-# @frappe.whitelist()
-# def get_assignment_list(instructor_name, participant_group_id, programs, course):
-# 	assignments = frappe.db.sql(""" SELECT name FROM `tabAssignment` WHERE participant_group='%s' AND programs = '%s' AND course='%s'"""%(participant_group_id, programs, course))
-# 	return assignments
+@frappe.whitelist()
+def get_assignment_name(participant_group_id, participant_id):
+	participant_name = frappe.db.sql(""" SELECT participant_name FROM `tabParticipant Table` WHERE parent = '%s' AND participant = '%s'"""%(participant_group_id, participant_id), as_dict=1)
+	return participant_name[0]['participant_name']
 
 @frappe.whitelist()
 def get_assignment_details(assignment_name):

@@ -14,20 +14,20 @@
   "assignment_start_date",
   "academic_year",
   "course",
-  "total_marks",
+  "select_assessment_criteria",
   "weightage",
   "column_break_6",
   "participant_group",
   "assignment_end_date",
   "academic_term",
   "module",
-  "select_assessment_criteria",
+  "total_marks",
   "pass_marks",
   "section_break_11",
-  "trainer_id",
+  "evaluator_id",
   "attendance_percentage",
   "column_break_13",
-  "trainer_name",
+  "evaluator_name",
   "section_break_15",
   "get_participant",
   "participant_list",
@@ -75,16 +75,6 @@
    "fieldtype": "Table",
    "label": "Job Sheet",
    "options": "Job sheet"
-  },
-  {
-   "fieldname": "trainer_id",
-   "fieldtype": "Select",
-   "label": "Trainer ID"
-  },
-  {
-   "fieldname": "trainer_name",
-   "fieldtype": "Data",
-   "label": "Trainer Name"
   },
   {
    "fieldname": "get_participant",
@@ -153,11 +143,21 @@
    "fieldname": "attendance_percentage",
    "fieldtype": "Percent",
    "label": "Attendance Percentage"
+  },
+  {
+   "fieldname": "evaluator_id",
+   "fieldtype": "Select",
+   "label": "Evaluator ID"
+  },
+  {
+   "fieldname": "evaluator_name",
+   "fieldtype": "Data",
+   "label": "Evaluator Name"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-23 15:04:06.788559",
+ "modified": "2023-08-24 12:25:07.465899",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Declaration",
