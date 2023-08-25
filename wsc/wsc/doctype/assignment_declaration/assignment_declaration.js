@@ -2,27 +2,6 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Assignment Declaration', {
-	// refresh: function(frm) {
-
-	// }
-	// participant_group: function(frm){
-	// 	frappe.call({
-	// 		method : 'wsc.wsc.doctype.assignment_declaration.assignment_declaration.get_details',
-	// 		args: {
-	// 			participant_group_id: frm.doc.participant_group
-	// 		},
-	// 		callback: function(result){
-	// 			if(result.message){
-	// 				frm.set_value("course", result.message[2])
-	// 				frm.set_value("module", result.message[3])
-	// 				frm.set_df_property('select_sub_module', 'options', result.message[5])
-	// 				frm.set_value("academic_year", result.message[0])
-	// 				frm.set_value("academic_term", result.message[1])
-	// 				frm.set_df_property('trainer_id', 'options', result.message[4])
-	// 			}
-	// 		}
-	// 	})
-	// },
 	participant_group: function(frm){
 		frappe.call({
 			method : 'wsc.wsc.doctype.assignment_declaration.assignment_declaration.get_details',
@@ -33,25 +12,24 @@ frappe.ui.form.on('Assignment Declaration', {
 				if(result.message){
 					frm.set_value("course", result.message[2])
 					frm.set_value("module", result.message[3])
-					// frm.set_df_property('select_sub_module', 'options', result.message[5])
 					frm.set_value("academic_year", result.message[0])
 					frm.set_value("academic_term", result.message[1])
-					frm.set_df_property('trainer_id', 'options', result.message[4])
+					frm.set_df_property('evaluator_id', 'options', result.message[4])
 					frm.set_df_property('select_assessment_criteria', 'options', result.message[5])
 				}
 			}
 		})
 	},
-	trainer_id: function(frm){
+	evaluator_id: function(frm){
 		frappe.call({
 			method: 'wsc.wsc.doctype.assignment_declaration.assignment_declaration.get_instructor_name',
 			args:{
 				participant_group_id : frm.doc.participant_group,
-				instructor_id: frm.doc.trainer_id
+				instructor_id: frm.doc.evaluator_id
 			},
 			callback: function(result){
 				if(result.message){
-					frm.set_value("trainer_name", result.message)
+					frm.set_value("evaluator_name", result.message)
 				}
 			}
 		})

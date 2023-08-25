@@ -17,11 +17,14 @@ import re
 class EmployeeProfileUpdation(Document):
     def approver_mail(self):
         data={}
-        data["reporting_authority_email"]=self.reporting_auth_id
+        if self.reporting_auth_id:
+            data["reporting_authority_email"]=self.reporting_auth_id
+        else :
+            frappe.throw("Reporting Authority Not Found")
         data["employee_name"]=self.employee_name
         data["current_status"]=self.workflow_state
         data["name"]=self.name
-        data["hr_email"]=self.hr_id
+        
         employee_reporting_aprover(data)
         
     def after_insert(self):
@@ -39,7 +42,11 @@ class EmployeeProfileUpdation(Document):
     
     def send_to_hr(self):
         data = {}
-        data["hr_email"] = self.hr_id
+        if self.hr_id:
+
+            data["hr_email"] = self.hr_id
+        else :
+            frappe.throw("Set HR Admin ID")
         data["employee_name"]=self.employee_name
         data["current_status"]=self.workflow_state
         data["name"]=self.name
@@ -120,11 +127,18 @@ class EmployeeProfileUpdation(Document):
         company_email = self.company_email
         personal_email = self.personal_email
 
-    
-        if re.match(email_pattern, company_email) and re.match(email_pattern,personal_email):
-            pass
-        else:
-            frappe.throw("Invalid Email format")
+        if company_email :
+            if re.match(email_pattern, company_email) :
+                pass
+            else:
+                frappe.throw("Invalid Email format")
+        if personal_email:
+            if re.match(email_pattern,personal_email):
+                pass
+            else :
+                frappe.throw("Invalid Email format")
+
+
     def validate_mobile_number(self):
         mobile_number = self.mobile
         if mobile_number:
@@ -152,6 +166,8 @@ def get_hr_mail():
     if hr_mail:
         hr_mail_id = hr_mail[0]
         return hr_mail_id
+    else :
+        frappe.throw("Set HR Mail ID")
 
 
 #popuate Education Details 
