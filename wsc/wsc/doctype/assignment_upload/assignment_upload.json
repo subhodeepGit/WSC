@@ -15,13 +15,14 @@
   "section_break_zaymx",
   "academic_year",
   "participant_id",
-  "assignment_number",
-  "total_marks",
+  "assignment_id",
+  "assessment_component",
   "weightage",
   "column_break_6",
   "academic_term",
   "participant_name",
-  "assessment_component",
+  "assignment_number",
+  "total_marks",
   "passing_marks",
   "section_break_12",
   "assignment_attach_button",
@@ -114,11 +115,16 @@
   {
    "fieldname": "section_break_zaymx",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "assignment_id",
+   "fieldtype": "Select",
+   "label": "Assignment ID"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-23 14:02:13.969925",
+ "modified": "2023-08-24 18:00:51.622946",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Upload",
