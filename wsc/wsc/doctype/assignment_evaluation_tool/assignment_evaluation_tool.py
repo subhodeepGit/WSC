@@ -12,7 +12,6 @@ class AssignmentEvaluationTool(Document):
 			result.participant_group = self.participant_group
 			result.select_course = self.course
 			result.select_module = self.module
-			result.select_sub_module = self.select_sub_module
 			result.academic_year = self.academic_term
 			result.academic_term = self.academic_year
 			result.participant_id = d.participant_id
@@ -42,9 +41,9 @@ def get_instructor_name(participant_group_id, instructor_id):
 	return instructor_name[0]['instructor_name']
 
 @frappe.whitelist()
-def get_assignment_list(instructor_id, participant_group_id, programs, course, topic):
+def get_assignment_list(instructor_id, participant_group_id, programs, course):
 	assignments = frappe.db.sql(""" SELECT name FROM `tabAssignment` WHERE participant_group='%s' AND instructor_id='%s' AND programs = '%s' AND course='%s'"""%(participant_group_id, instructor_id, programs, course))
-	exam_assignments = frappe.db.sql(""" SELECT name FROM `tabAssignment Declaration` WHERE participant_group = '%s' AND trainer_id = '%s' AND course = '%s' AND module = '%s'"""%(participant_group_id, instructor_id, programs, course))
+	exam_assignments = frappe.db.sql(""" SELECT name FROM `tabAssignment Declaration` WHERE participant_group = '%s' AND evaluator_id = '%s' AND course = '%s' AND module = '%s'"""%(participant_group_id, instructor_id, programs, course))
 	return (assignments + exam_assignments)
 
 @frappe.whitelist()

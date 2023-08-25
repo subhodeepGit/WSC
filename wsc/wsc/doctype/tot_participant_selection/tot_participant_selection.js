@@ -7,7 +7,7 @@ frappe.ui.form.on('ToT Participant Selection', {
 			return{
 				filters:{
 					'program_grade' : frm.doc.course_type,
-					// 'is_tot' : 1
+					'is_tot' : 1
 				}
 			}
 		})
