@@ -65,6 +65,7 @@ doctype_js = {
                 "Material Request":"public/js/material_request.js",
                 "Attendance":"public/js/attendance.js",
                 "Tax Category":"public/js/tax_category.js",
+                "Employee Grievance":"public/js/employee_grievance.js",
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
