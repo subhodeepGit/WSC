@@ -96,7 +96,8 @@ after_migrate = [
         'wsc.patches.migrate_patch.set_custom_role_permission',
         'wsc.wsc.delete_doc_if_linked.execute',
         'wsc.patches.migrate_patch.set_custom_role_permission_remove_duplicate',
-        'wsc.security.execute'
+        'wsc.security.execute',
+        'wsc.patches.create_all_tax_category.execute'
 ]
 
 # application home page (will override Website Settings)
