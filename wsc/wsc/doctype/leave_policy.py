@@ -24,7 +24,7 @@ def director_mail(doc):
         data["name"]=doc.name
         send_mail_to_director(data)
     else :
-        frappe.msgprint("Setup Director User ID")
+        frappe.throw("Setup Director User ID")
 def hr_mail(doc):
     hr_mail=frappe.get_all("User",filters={'role':"HR Admin"},pluck='name')
     if hr_mail:
@@ -36,4 +36,4 @@ def hr_mail(doc):
         data["name"]=doc.name
         send_mail_to_hr(data)
     else :
-        frappe.msgprint("Setup HR Admin User ID")
+        frappe.throw("Setup HR Admin User ID")

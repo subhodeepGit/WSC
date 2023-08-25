@@ -369,6 +369,9 @@ doc_events = {
     },
     "Task": {
         "validate":"wsc.task.validate"
+    },
+    "Employee Onboarding": {
+        "validate":"wsc.wsc.doctype.employee_onboarding.validate"
     }
     
     
