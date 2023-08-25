@@ -235,7 +235,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-08-22 12:59:19.684182",
+ "modified": "2023-08-25 14:28:50.707046",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Training of Trainers",
@@ -244,7 +244,20 @@
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
- "roles": [],
+ "roles": [
+  {
+   "role": "TOT Administrator"
+  },
+  {
+   "role": "TOT Candidate"
+  },
+  {
+   "role": "TOT Director"
+  },
+  {
+   "role": "TOT Trainer"
+  }
+ ],
  "sequence_id": 49.0,
  "shortcuts": [],
  "title": "Training of Trainers"

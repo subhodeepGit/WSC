@@ -515,14 +515,13 @@ override_doctype_dashboards = {
 # ]
 
 # fixtures = [
-# # 	{"dt": "Custom DocPerm", "filters": [
-# # 		["parent", "not in", ["DocType"]],
-# #         ["role", '=', 'Education Admission Head']
-# # 	]},
+	# {"dt": "Custom DocPerm", "filters": [
+	# 	["parent", "not in", ["DocType"]],
+    #     ["parent", "in", ["Assignment","Assignment Upload"]],
+    #     ["role", "in", ["TOT Director", "TOT Administrator", "TOT Trainer", "TOT Candidate"]]
+	# ]},
     # {"dt": "Role","filters": [
-    #     [
-    #         "name", "in", ["Shift Approver","Grievance Cell Member"]
-    #     ]
+    #     ["name", "in", ["TOT Director", "TOT Administrator", "TOT Trainer"]]
     # ]},
 #     # # {"dt": "Role Profile"},
 #     # # {"dt": "Module Profile"},
