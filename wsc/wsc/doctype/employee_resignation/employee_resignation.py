@@ -119,10 +119,17 @@ class EmployeeResignation(Document):
 			self.send_employee()
 			self.send_mail_hr
 		if self.resignation_applied_date :
-			date_object = datetime.strptime(self.resignation_applied_date, "%Y-%m-%d").date()
-			if date_object>datetime.now().date():
+			print("\n\n\n\n")
+			print(type(self.resignation_applied_date))
+			if isinstance(self.resignation_applied_date,str):
+
+				date_object = datetime.strptime(self.resignation_applied_date, "%Y-%m-%d").date()
 				
-				frappe.throw("Resignation Applied date should not be a future date.") 
+				if date_object>datetime.now().date():
+					
+					frappe.throw("Resignation Applied date should not be a future date.") 
+			else :
+				pass
 
 ################### Notification coding Ended ##################################
 	
