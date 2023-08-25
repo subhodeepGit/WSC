@@ -65,6 +65,7 @@ doctype_js = {
                 "Material Request":"public/js/material_request.js",
                 "Attendance":"public/js/attendance.js",
                 "Tax Category":"public/js/tax_category.js",
+                "Employee Grievance":"public/js/employee_grievance.js",
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -96,7 +97,8 @@ after_migrate = [
         'wsc.patches.migrate_patch.set_custom_role_permission',
         'wsc.wsc.delete_doc_if_linked.execute',
         'wsc.patches.migrate_patch.set_custom_role_permission_remove_duplicate',
-        'wsc.security.execute'
+        'wsc.security.execute',
+        'wsc.patches.create_all_tax_category.execute'
 ]
 
 # application home page (will override Website Settings)
@@ -367,6 +369,14 @@ doc_events = {
     "Leave Allocation": {
         "validate":"wsc.wsc.doctype.leave_allocation.validate"
     },
+    "Job Applicant": {
+        "validate":"wsc.wsc.doctype.job_applicant.validate",
+        "on_change":"wsc.wsc.doctype.job_applicant.on_change",
+        "on_update":"wsc.wsc.doctype.job_applicant.on_update",
+        "on_update_after_submit":"wsc.wsc.doctype.job_applicant.on_update_after_submit"
+
+    },
+    
     "Task": {
         "validate":"wsc.task.validate"
     },
@@ -506,14 +516,13 @@ override_doctype_dashboards = {
 # ]
 
 # fixtures = [
-# # 	{"dt": "Custom DocPerm", "filters": [
-# # 		["parent", "not in", ["DocType"]],
-# #         ["role", '=', 'Education Admission Head']
-# # 	]},
+	# {"dt": "Custom DocPerm", "filters": [
+	# 	["parent", "not in", ["DocType"]],
+    #     ["parent", "in", ["Assignment","Assignment Upload"]],
+    #     ["role", "in", ["TOT Director", "TOT Administrator", "TOT Trainer", "TOT Candidate"]]
+	# ]},
     # {"dt": "Role","filters": [
-    #     [
-    #         "name", "in", ["Shift Approver","Grievance Cell Member"]
-    #     ]
+    #     ["name", "in", ["TOT Director", "TOT Administrator", "TOT Trainer"]]
     # ]},
 #     # # {"dt": "Role Profile"},
 #     # # {"dt": "Module Profile"},

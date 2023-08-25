@@ -246,7 +246,7 @@ def send_disabled_notification_to_student(student_email_address):
     send_mail(student_email_address,'Student Clearance Status',msg)
 
 def delete_user_permission(student_email_address):
-    user_permission_list=frappe.db.get_all("User Permission",filters={"user": student_email_address},fields="name",limit=1)
+    user_permission_list=frappe.db.get_all("User Permission",filters={"user": student_email_address},fields="name")
     if len(user_permission_list)>0:
         for up in user_permission_list:
             frappe.db.delete("User Permission",up)

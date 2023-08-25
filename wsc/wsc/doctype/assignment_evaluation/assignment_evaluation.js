@@ -49,21 +49,20 @@ frappe.ui.form.on('Assignment Evaluation', {
 			}
 		})
 	},
-	// select_sub_module: function(frm){
-	// 	frappe.call({
-	// 		method: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_assignment_list',
-	// 		args: {
-	// 			instructor_id: frm.doc.instructor_id,
-	// 			participant_group_id : frm.doc.participant_group,
-	// 			programs : frm.doc.select_course,
-	// 			course: frm.doc.select_module,
-	// 			topic : frm.doc.select_sub_module
-	// 		},
-	// 		callback: function(result){
-	// 			frm.set_df_property('select_assignment', 'options', result.message) // assignment
-	// 		}
-	// 	})
-	// },
+	instructor_name: function(frm){
+		frappe.call({
+			method: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_assignment_list',
+			args: {
+				instructor_id: frm.doc.instructor_id,
+				participant_group_id: frm.doc.participant_group,
+				programs : frm.doc.select_course,
+				course: frm.doc.select_module,
+			},
+			callback: function(result){
+				frm.set_df_property('select_assignment', 'options', result.message) // assignment
+			}
+		})
+	},
 	select_assignment: function(frm){
 		alert(500)
 		frappe.call({

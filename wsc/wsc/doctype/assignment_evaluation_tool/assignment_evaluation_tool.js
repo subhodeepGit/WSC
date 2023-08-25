@@ -37,15 +37,14 @@ frappe.ui.form.on('Assignment Evaluation Tool', {
 			}
 		})
 	},
-	select_sub_module: function(frm){
+	instructor_name: function(frm){
 		frappe.call({
 			method: 'wsc.wsc.doctype.assignment_evaluation_tool.assignment_evaluation_tool.get_assignment_list',
 			args:{
 				instructor_id: frm.doc.instructor_id,
 				participant_group_id : frm.doc.participant_group,
 				programs : frm.doc.course,
-				course: frm.doc.module,
-				topic : frm.doc.select_sub_module
+				course: frm.doc.module
 			},
 			callback: function(result){
 				frm.set_df_property('select_job_sheetassessment', 'options', result.message)  // select assignment
