@@ -367,6 +367,14 @@ doc_events = {
     "Leave Allocation": {
         "validate":"wsc.wsc.doctype.leave_allocation.validate"
     },
+    "Job Applicant": {
+        "validate":"wsc.wsc.doctype.job_applicant.validate",
+        "on_change":"wsc.wsc.doctype.job_applicant.on_change",
+        "on_update":"wsc.wsc.doctype.job_applicant.on_update",
+        "on_update_after_submit":"wsc.wsc.doctype.job_applicant.on_update_after_submit"
+
+    }
+    
     
     
     
