@@ -181,8 +181,26 @@ def make_enrollment(tot_participant_enrollment):
 
 @frappe.whitelist()
 def get_participants(participant_selection_id):
-    participant_list=frappe.get_all("Selected Participant",{'parent':participant_selection_id,'reporing_status':"Not Reported"},
+    participant_list=frappe.get_all("Selected Participant",{'parent':participant_selection_id,'reporing_status':"Not Reported","docstatus":1},
 				    ['participant_id','participant_name','hrms_id','district','mobile_number','email_address','odisha','pincode','is_hostel_required','room_type'],
 					order_by="idx asc")
     return participant_list
 
+@frappe.whitelist()
+@frappe.validate_and_sanitize_search_inputs
+def tot_participant_selection_id(doctype, txt, searchfield, start, page_len, filters):
+
+	data=[]
+	
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)	
+
+	data=frappe.db.sql("""
+		SELECT `name`,`tot_participant_batch` FROM `tabToT Participant Selection` WHERE ({key} like %(txt)s or {scond})  and
+		    (`start_date` <= now() AND `end_date` >= now()) 
+	""".format(
+		**{
+			"key": searchfield,
+			"scond": searchfields,
+		}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	return data

@@ -47,7 +47,16 @@ frappe.ui.form.on('ToT Participant Enrollment', {
 					// }
 				});
 			}).addClass('btn-primary');
-		}
+		};
+		frm.set_query("tot_participant_selection_id", function () {
+			return {
+				
+				query: 'wsc.wsc.doctype.tot_participant_enrollment.tot_participant_enrollment.tot_participant_selection_id',
+				filters: {
+                    "docstatus":1
+                }
+			}
+		});
 	},
 	
 });
