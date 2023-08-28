@@ -65,6 +65,7 @@ doctype_js = {
                 "Material Request":"public/js/material_request.js",
                 "Attendance":"public/js/attendance.js",
                 "Tax Category":"public/js/tax_category.js",
+                "Employee Grievance":"public/js/employee_grievance.js",
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -513,14 +514,13 @@ override_doctype_dashboards = {
 # ]
 
 # fixtures = [
-# # 	{"dt": "Custom DocPerm", "filters": [
-# # 		["parent", "not in", ["DocType"]],
-# #         ["role", '=', 'Education Admission Head']
-# # 	]},
+	# {"dt": "Custom DocPerm", "filters": [
+	# 	["parent", "not in", ["DocType"]],
+    #     ["parent", "in", ["Assignment","Assignment Upload"]],
+    #     ["role", "in", ["TOT Director", "TOT Administrator", "TOT Trainer", "TOT Candidate"]]
+	# ]},
     # {"dt": "Role","filters": [
-    #     [
-    #         "name", "in", ["Shift Approver","Grievance Cell Member"]
-    #     ]
+    #     ["name", "in", ["TOT Director", "TOT Administrator", "TOT Trainer"]]
     # ]},
 #     # # {"dt": "Role Profile"},
 #     # # {"dt": "Module Profile"},

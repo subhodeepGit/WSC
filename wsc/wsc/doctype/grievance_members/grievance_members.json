@@ -20,21 +20,25 @@
    "options": "Employee"
   },
   {
+   "fetch_from": "employee.employee_name",
    "fieldname": "employee_name",
    "fieldtype": "Data",
    "label": "Employee Name"
   },
   {
+   "fetch_from": "employee.user_id",
    "fieldname": "user_id",
    "fieldtype": "Data",
    "label": "User ID"
   },
   {
+   "fetch_from": "employee.designation",
    "fieldname": "designation",
    "fieldtype": "Data",
    "label": "Designation"
   },
   {
+   "fetch_from": "employee.department",
    "fieldname": "department",
    "fieldtype": "Data",
    "label": "Department"
@@ -43,7 +47,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-08-11 11:46:48.446332",
+ "modified": "2023-08-25 12:45:52.285688",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Grievance Members",

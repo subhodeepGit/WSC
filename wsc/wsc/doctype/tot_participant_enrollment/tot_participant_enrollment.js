@@ -35,7 +35,7 @@ frappe.ui.form.on('ToT Participant Enrollment', {
         frm.set_df_property('participant_list', 'cannot_add_rows', true);
         frm.set_df_property('participant_list', 'cannot_delete_rows', true);
 
-		if (frm.doc.docstatus===1){
+		if (frm.doc.docstatus===1 && frm.doc.status==="Not Completed "){
 			frm.add_custom_button(__('Enroll Participant'), function() {
 				frappe.call({
 					// wsc.wsc.doctype.tot_participant_enrollment.tot_participant_enrollment.
@@ -47,7 +47,16 @@ frappe.ui.form.on('ToT Participant Enrollment', {
 					// }
 				});
 			}).addClass('btn-primary');
-		}
+		};
+		frm.set_query("tot_participant_selection_id", function () {
+			return {
+				
+				query: 'wsc.wsc.doctype.tot_participant_enrollment.tot_participant_enrollment.tot_participant_selection_id',
+				filters: {
+                    "docstatus":1
+                }
+			}
+		});
 	},
 	
 });
