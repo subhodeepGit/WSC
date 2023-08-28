@@ -54,7 +54,7 @@ class StudentApplicant(Document):
     def validate(doc):
         # validate_percentage(doc)
         check_age(doc)
-
+        validate_duplicate_record(doc)
         education_details_validation(doc)
         document_list_checkbox(doc)
         # mobile_number_validation(doc)
@@ -89,6 +89,7 @@ class StudentApplicant(Document):
             else:
                 docmnt.is_available = 0
 def on_change(doc,method):
+    delete_user_permission(doc)
     if doc.docstatus==1:
         if doc.application_status=="Approved":
             student_applicant_approved(doc)
@@ -99,6 +100,16 @@ def on_change(doc,method):
         else:
             pass
         # update_enrollment_admission_status(doc)
+
+def validate_duplicate_record(self):
+		duplicateForm=frappe.get_all("Student Applicant", filters={
+			"academic_term":self.academic_term,
+			"program_grade": self.program_grade,
+			"department": self.department
+		})
+		if duplicateForm:
+			frappe.throw(("Student Applicant is already Filled the form for this Academic Term."))
+
 def document_list_checkbox(doc):
     for d in doc.get("document_list"):
         if d.attach!=None:
@@ -108,7 +119,21 @@ def document_list_checkbox(doc):
             d.attached=0
 
             # frappe.db.set_value("Document List",self.name,'attached',1)
-            
+
+def delete_user_permission(doc):
+    if doc.application_status=="Rejected":
+        delete_permissions(doc)
+        delete_route_history(doc)
+        for user_del in frappe.get_all("User",{"name":doc.student_email_id}):
+            frappe.delete_doc("User",user_del.name)
+def delete_route_history(doc):
+    for route in frappe.get_all("Route History",{"user":doc.student_email_id}):
+        frappe.delete_doc("Route History",route.name)
+def delete_permissions(doc):
+    for usr in frappe.get_all("User Permission",{"allow":doc.doctype,"for_value":doc.name}):
+        frappe.delete_doc("User Permission",usr.name)
+    for usr in frappe.get_all("User Permission",{"reference_doctype":"Student Applicant","reference_docname":doc.name}):
+        frappe.delete_doc("User Permission",usr.name)
 def check_age(doc):
     
     applicantation_date = frappe.get_all("Student Admission" ,
@@ -210,8 +235,8 @@ def validate_pin_code(doc):
 #                     frappe.throw("Please correct option for Percentage/CGPA for row no .<b>{0}</b> in Education Qualifications Details.".format(eqd.idx))
 
 def on_update(doc,method):
+    delete_user_permission(doc)
     if doc.docstatus==1:
-        print("\n\n\nOn update")
         count = 0
         # print(type(doc.counselling_based_program_priority))
         ## if Approve is selected multiple times

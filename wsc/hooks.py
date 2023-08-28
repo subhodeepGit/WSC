@@ -373,9 +373,7 @@ doc_events = {
         "on_change":"wsc.wsc.doctype.job_applicant.on_change",
         "on_update":"wsc.wsc.doctype.job_applicant.on_update",
         "on_update_after_submit":"wsc.wsc.doctype.job_applicant.on_update_after_submit"
-
     },
-    
     "Task": {
         "validate":"wsc.task.validate"
     },

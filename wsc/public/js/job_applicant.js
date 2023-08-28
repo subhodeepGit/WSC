@@ -36,5 +36,66 @@ frappe.ui.form.on("Job Applicant", "aadhar_card_number", function (frm) {
 		}
 	});
 });
+frappe.ui.form.on('Job Applicant', {
+	refresh(frm){
+		if(frappe.user.has_role(["Applicant"]) && !frappe.user.has_role(["System Manager"])){
+			frm.set_value("email_id", frappe.session.user)
+			frm.set_df_property('email_id', 'read_only', 1);
+		}
+		frm.set_value("current_status", "CV Selected");
+		if (frm.doc.docstatus===1) {
+			frm.add_custom_button(__("CV Selected"), function() {
+				frm.set_value("current_status", "CV Selected");
+				frm.save_or_update();
+				frappe.msgprint("Please Click on the Confirm button")
+			}, 'Actions');
 
+			frm.add_custom_button(__("Qualified"), function() {
+				frm.set_value("current_status", "Qualified");
+				frm.save_or_update();
+				frappe.msgprint("Please Click on the Confirm button")
+			}, 'Actions');
+			frm.add_custom_button(__("Disqualified"), function() {
+				frm.set_value("current_status", "Disqualified");
+				frm.save_or_update();
+				frappe.msgprint("Please Click on the Confirm button")
+			}, 'Actions');
 
+			frm.add_custom_button(__("Selected"), function() {
+				frm.set_value("current_status", "Selected");
+				frm.save_or_update();
+				frappe.msgprint("Please Click on the Confirm button")
+			}, 'Actions');
+			frm.add_custom_button(__("On Hold"), function() {
+				frm.set_value("current_status", "On Hold");
+				frm.save_or_update();
+				frappe.msgprint("Please Click on the Confirm button")
+			}, 'Actions');
+
+			frm.add_custom_button(__("Waiting"), function() {
+				frm.set_value("current_status", "Waiting");
+				frm.save_or_update();
+				frappe.msgprint("Please Click on the Confirm button")
+			}, 'Actions');
+		}
+		if(frm.doc.docstatus===1){
+		frm.add_custom_button(__("Confirm"), function() {
+			frm.set_value("current_status", frm.doc.current_status);
+			frm.save_or_update();
+
+		});
+	}
+	
+		if (!cur_frm.doc.__islocal && frappe.user.has_role(["Applicant"]) && !frappe.user.has_role(["System Manager"])){
+			frm.remove_custom_button("Waiting","Actions");
+			frm.remove_custom_button("Selected","Actions");
+			frm.remove_custom_button("Confirm");
+			frm.remove_custom_button("Interview","Create");
+			frm.remove_custom_button("On Hold","Actions");
+			frm.remove_custom_button("Disqualified","Actions");
+			frm.remove_custom_button("Qualified","Actions");
+			frm.remove_custom_button("CV Selected","Actions");
+		}
+	}
+		
+})

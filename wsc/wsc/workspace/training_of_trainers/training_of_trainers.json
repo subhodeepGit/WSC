@@ -235,7 +235,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-08-22 12:59:19.684182",
+ "modified": "2023-08-24 05:13:24.351894",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Training of Trainers",
@@ -244,7 +244,11 @@
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
- "roles": [],
+ "roles": [
+  {
+   "role": "Education Administrator"
+  }
+ ],
  "sequence_id": 49.0,
  "shortcuts": [],
  "title": "Training of Trainers"
