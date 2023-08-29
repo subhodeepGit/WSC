@@ -102,6 +102,19 @@ def validate_pin_code(doc):
 		if not check_int(doc.local_guardian_contact_no):
 			frappe.throw("Local Guardians Contact Number must be the Integer.")
 
+	if doc.first_name:
+		if not contains_only_characters(doc.first_name):
+			frappe.throw("First Name should be only characters")
+	if doc.middle_name:
+		if not contains_only_characters(doc.middle_name):
+			frappe.throw("Middle Name should be only characters")
+	if doc.last_name:
+		if not contains_only_characters(doc.last_name):
+			frappe.throw("Last Name should be only characters")
+def contains_only_characters(first_name):
+    return all(char.isalpha() or char.isspace() for char in first_name)
+    # return all(char.isalpha() for char in first_name)
+
 def check_int(pin_code):
 	import re
 	return re.match(r"[-+]?\d+(\.0*)?$", pin_code) is not None
