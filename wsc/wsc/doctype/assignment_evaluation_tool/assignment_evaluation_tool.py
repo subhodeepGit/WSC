@@ -89,15 +89,11 @@ def get_participants(assignment_name, participant_group_id):
 	count2 = frappe.db.sql(""" SELECT COUNT(*) FROM `tabAssignment Declaration` WHERE name = '%s'"""%(assignment_name))
 	if(count1[0][0] > 0):
 		submitted = frappe.get_all('Assignment Upload', filters = [['assignment_id', '=', assignment_name]], fields = ['participant_id', 'participant_name'])
-		not_submitted = frappe.get_all('Participant Table', filters = [['parent', '=', participant_group_id]], fields = ['participant', 'participant_name'])
-		print('\n\n\n')
-		print(submitted)
-		print('\n\n\n')
-		result_list = [item for item in not_submitted if item not in submitted]
-		print(result_list)
-		print('\n\n\n\n')
-		# participants who have not submitted their assignments are not qualified
-		pass
+		all_students = frappe.get_all('Participant Table', filters = [['parent', '=', participant_group_id]], fields = ['participant', 'participant_name'])
+		key_mapping = {'participant': 'participant_id'}
+		mod_allstudents = [{key_mapping.get(old_key, old_key): value for old_key, value in dictionary.items()} for dictionary in all_students]
+		not_submitted = [item for item in mod_allstudents if item not in submitted]
+		return [submitted, not_submitted]
 	elif(count2[0][0] > 0):
 		# divide participants into two different categories : qualified and not qualified based on the status field in the assignment declaration child table
 		qualified_data = frappe.get_all('Participant List Table', filters = [['parent','=',assignment_name],['status','=', 'Qualified']], fields = ['participant_id', 'participant_name'])
