@@ -55,8 +55,13 @@ def get_data(filters=None):
     elif from_date and to_date:
         att_filt.append(["date", "between", [from_date,to_date]])
 
-    course_schedule_data = frappe.get_all("Course Schedule", filters=filter, fields=['name','schedule_date','from_time','to_time'])
+    leave_flt=[]
+    leave_flt.append(["docstatus","=", 1])
+    leave_flt.append(["workflow_state","=", "Approved"])
+
+    course_schedule_data = frappe.get_all("Course Schedule", filters=filter, fields=['name','schedule_date','from_time','to_time','course_name'])
     student_attendance_data = frappe.get_all("Student Attendance", filters=att_filt, fields=['student','course_schedule','status','date'])
+    leave_application_data = frappe.get_all("Leave Application for Student", filters=leave_flt, fields=['name','student','reason_for_leave','from_date','to_date','workflow_state'])
 
     c_data=[]
     for t in course_schedule_data:
@@ -72,12 +77,26 @@ def get_data(filters=None):
     # for t in pe_data:
     #     keys = list(t.keys())
 
+    # for t in pe_data:
+    #     for d in student_attendance_data:
+    #         if d['student'] in t['student']:
+    #             # for key in keys[2:]:
+    #                 # if key in d['course_schedule']:
+    #                     t['%s'%(d['course_schedule'])]=d['status']
+
     for t in pe_data:
         for d in student_attendance_data:
-            if d['student'] in t['student']:
-                # for key in keys[2:]:
-                    # if key in d['course_schedule']:
-                        t['%s'%(d['course_schedule'])]=d['status']
+            if d['student'] == t['student']:
+                course_schedule_field = '%s' % d['course_schedule']
+                t[course_schedule_field] = d['status']
+                leave_record = next(
+                    (leave for leave in leave_application_data if leave['student'] == d['student'] and leave['from_date'] <= d['date'] <= leave['to_date']),
+                    None
+                )
+                if leave_record and (d['status'] != "Present"):
+                    t[course_schedule_field] += f" (Reason: {leave_record['reason_for_leave']})"
+
+
 
 
 
@@ -106,7 +125,7 @@ def get_data(filters=None):
             percentage = round((present_classes[student_id] / num_classes) * 100, 2)
         else:
             percentage = 0.0
-        record['percentage'] = percentage
+        record['percentage'] = f"{percentage}%"
         # record['total_classes_attended'] = present_classes[student_id]
         # record['total_classes_conducted'] = scheduled_classes[student_id]
         record['total_classes_attended'] = present_classes.get(student_id, 0)
@@ -147,12 +166,12 @@ def get_columns(head_name=None):
                 to_time_object = datetime.strptime(to_time_string, '%H:%M:%S')
             rounded_from_time = from_time_object.strftime("%H:%M")
             rounded_to_time = to_time_object.strftime("%H:%M")
-            label='%s(%s to %s)'%(t['schedule_date'].strftime("%d-%m-%Y"),rounded_from_time,rounded_to_time)
+            label='%s[%s(%s to %s)]'%(t['course_name'],t['schedule_date'].strftime("%d-%m-%Y"),rounded_from_time,rounded_to_time)
             columns_add={
                 "label": _("%s"%(label)),
                 "fieldname": "%s"%(field_name),
                 "fieldtype": "Data",
-                "width":250
+                "width":290
             }
             columns.append(columns_add)
 
