@@ -38,7 +38,7 @@ class OnlinePayment(Document):
 		getTransactionDetails(doc, get_url)
 		frappe.msgprint("Your Transaction is completed. Your Transaction Id is " +
 				doc.transaction_id + "."  " Status is " + frappe.bold(doc.transaction_status))
-logging.basicConfig(filename='/home/erpnext/frappe-bench/apps/wsc/wsc/wsc/doctype/onlinepayment/transaction_log.log', level=logging.INFO,
+logging.basicConfig(filename='/home/wsc/frappe-bench/apps/wsc/wsc/wsc/doctype/onlinepayment/transaction_log.log', level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 currency = 'INR'
@@ -74,7 +74,7 @@ def login(party_name, roll_no, amount, order_id, url):
 	try:
 		site_name = frappe.local.site 
 		logging.info("site_name: %s", site_name)	
-		config_file_path = "/home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json"
+		config_file_path = "/home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json"
 		logging.info("config_file_path: %s", config_file_path)		
 		config_data = fetch_config_data(config_file_path) 
 		
@@ -229,7 +229,7 @@ def getTransactionDetails(doc, url):
 		site_name = frappe.local.site 
 		# c = fetch_and_process_data(site_name)  # Assuming this function is defined elsewhere
 		# integration_dbvalue = "SELECT access_code, working_key, merchant_id, site_name, dev_type,redirect_url ,cancel_url FROM `payment_integration`"
-		config_file_path = "/home/erpnext/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json"
+		config_file_path = "/home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/hdfc_test_server_config.json"
 		logging.info("FSA config_file_path: %s", config_file_path)	
 		config_data = fetch_config_data(config_file_path) 
 		logging.info("FSA config_data: %s", config_data)

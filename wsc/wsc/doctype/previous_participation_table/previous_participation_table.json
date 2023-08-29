@@ -7,15 +7,22 @@
  "engine": "InnoDB",
  "field_order": [
   "program_id",
+  "programs",
+  "academic_year",
+  "participant_enrollment",
   "program_start_date",
-  "program_end_date"
+  "program_end_date",
+  "semester",
+  "academic_term"
  ],
  "fields": [
   {
    "fieldname": "program_id",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Program ID"
+   "label": "Participant Enrollment",
+   "options": "ToT Participant Enrollment",
+   "read_only": 1
   },
   {
    "fieldname": "program_start_date",
@@ -28,12 +35,48 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Program End Date"
+  },
+  {
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Programs",
+   "options": "Programs",
+   "read_only": 1
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": " Academic Year ",
+   "options": "Academic Year",
+   "read_only": 1
+  },
+  {
+   "fieldname": "participant_enrollment",
+   "fieldtype": "Link",
+   "label": "Participant Enrollment",
+   "options": "ToT Participant Enrollment"
+  },
+  {
+   "fieldname": "semester",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Semester",
+   "options": "Program"
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Academic Term",
+   "options": "Academic Term"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-07-14 15:47:03.033844",
+ "modified": "2023-08-27 22:48:04.241150",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Previous Participation Table",

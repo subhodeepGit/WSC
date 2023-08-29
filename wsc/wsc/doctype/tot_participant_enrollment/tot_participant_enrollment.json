@@ -23,6 +23,7 @@
   "participant_enrollment_status",
   "get_participants",
   "participant_list",
+  "status",
   "amended_from"
  ],
  "fields": [
@@ -129,6 +130,14 @@
    "options": "Academic Term"
   },
   {
+   "allow_on_submit": 1,
+   "default": "Not Completed ",
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status",
+   "read_only": 1
+  },
+  {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
@@ -141,7 +150,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-23 15:46:00.924700",
+ "modified": "2023-08-25 15:59:16.395893",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant Enrollment",

@@ -9,16 +9,23 @@
  "engine": "InnoDB",
  "field_order": [
   "applicant_id",
+  "column_break_06u78",
   "applicant_name",
+  "section_break_juxwk",
   "gender",
-  "student_category",
-  "academic_year",
-  "academic_term",
-  "department",
   "physically_disabled",
+  "column_break_yhanb",
+  "student_category",
+  "section_break_gpjx3",
+  "academic_year",
+  "department",
+  "column_break_mqzxi",
+  "academic_term",
+  "section_break_dqqqr",
   "total_marks",
-  "no_category_rank",
+  "column_break_ktrc0",
   "earned_marks",
+  "section_break_gyx4b",
   "student_ranks_list",
   "amended_from"
  ],
@@ -96,15 +103,42 @@
    "read_only": 1
   },
   {
-   "fieldname": "no_category_rank",
-   "fieldtype": "Data",
-   "label": "No Category Rank"
+   "fieldname": "column_break_06u78",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_juxwk",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_yhanb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_gpjx3",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_mqzxi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_dqqqr",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_ktrc0",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_gyx4b",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-24 10:37:50.353199",
+ "modified": "2023-08-25 16:20:11.133452",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Rank Card",
