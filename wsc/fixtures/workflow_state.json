@@ -9,6 +9,15 @@
   "workflow_state_name": "Approved & Sent to Master Manager"
  },
  {
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-08-29 14:16:14.113172",
+    "name": "Forwarded to Grievance Cell",
+    "style": "",
+    "workflow_state_name": "Forwarded to Grievance Cell"
+   },
+ {
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
