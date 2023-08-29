@@ -3,9 +3,747 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2023-08-24 11:11:53.568345",
-  "name": "Submitted",
+  "modified": "2023-04-02 22:55:07.472660",
+  "name": "Approved & Sent to Master Manager",
   "style": "",
-  "workflow_state_name": "Submitted"
+  "workflow_state_name": "Approved & Sent to Master Manager"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-04-02 22:55:22.359193",
+  "name": "Sent to Purchase Manager",
+  "style": "",
+  "workflow_state_name": "Sent to Purchase Manager"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-04-02 22:55:38.677814",
+  "name": "Approved by Master Manager",
+  "style": "",
+  "workflow_state_name": "Approved by Master Manager"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-04-02 22:55:52.759746",
+  "name": "Approved by Purchase User",
+  "style": "",
+  "workflow_state_name": "Approved by Purchase User"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-04-02 22:56:05.721974",
+  "name": "Approved by Purchase Manager",
+  "style": "",
+  "workflow_state_name": "Approved by Purchase Manager"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-04-02 22:56:17.401021",
+  "name": "Rejected by Purchase Manager",
+  "style": "",
+  "workflow_state_name": "Rejected by Purchase Manager"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-04-02 22:56:30.211116",
+  "name": "Rejected by Purchase Master Manager",
+  "style": "",
+  "workflow_state_name": "Rejected by Purchase Master Manager"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-07 12:47:03.274468",
+  "name": "Sent for Approval to Class Advisor",
+  "style": "Info",
+  "workflow_state_name": "Sent for Approval to Class Advisor"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-07 12:46:52.487125",
+  "name": "Sent for Approval to Course Manager",
+  "style": "Info",
+  "workflow_state_name": "Sent for Approval to Course Manager"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-07 12:46:44.537535",
+  "name": "Rejected by Class Advisor",
+  "style": "Danger",
+  "workflow_state_name": "Rejected by Class Advisor"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-07 12:46:35.162193",
+  "name": "Rejected by Course Manager",
+  "style": "Danger",
+  "workflow_state_name": "Rejected by Course Manager"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-01-13 13:34:36.308396",
+  "name": "Pending Approval",
+  "style": "",
+  "workflow_state_name": "Pending Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-01-13 13:35:18.245047",
+  "name": "Cancelled",
+  "style": "",
+  "workflow_state_name": "Cancelled"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "question-sign",
+  "modified": "2021-12-15 11:12:05.156592",
+  "name": "Pending",
+  "style": "",
+  "workflow_state_name": "Pending"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "ok-sign",
+  "modified": "2021-12-15 11:12:05.160346",
+  "name": "Approved",
+  "style": "Success",
+  "workflow_state_name": "Approved"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "remove",
+  "modified": "2021-12-15 11:12:05.163930",
+  "name": "Rejected",
+  "style": "Danger",
+  "workflow_state_name": "Rejected"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2022-12-05 12:32:12.344704",
+  "name": "Draft",
+  "style": "",
+  "workflow_state_name": "Draft"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2022-12-05 12:32:49.122162",
+  "name": "Approved by Registrar",
+  "style": "",
+  "workflow_state_name": "Approved by Registrar"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2022-12-05 12:33:51.038660",
+  "name": "Rejected by Registrar",
+  "style": "",
+  "workflow_state_name": "Rejected by Registrar"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2022-12-05 12:34:13.214910",
+  "name": "Approved by VC",
+  "style": "",
+  "workflow_state_name": "Approved by VC"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2022-12-05 12:34:31.292154",
+  "name": "Rejected by VC",
+  "style": "",
+  "workflow_state_name": "Rejected by VC"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2022-12-05 15:34:54.693216",
+  "name": "Approved by COE",
+  "style": "",
+  "workflow_state_name": "Approved by COE"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.699585",
+  "name": "Close Application",
+  "style": "",
+  "workflow_state_name": "Close Application"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.789238",
+  "name": "Proceed for De-allotment",
+  "style": "",
+  "workflow_state_name": "Proceed for De-allotment"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.813740",
+  "name": "Not Going to Report",
+  "style": "",
+  "workflow_state_name": "Not Going to Report"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.834548",
+  "name": "Willing to Report",
+  "style": "",
+  "workflow_state_name": "Willing to Report"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.850057",
+  "name": "No Response form student",
+  "style": "",
+  "workflow_state_name": "No Response form student"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.870957",
+  "name": "Communication to the Student",
+  "style": "",
+  "workflow_state_name": "Communication to the Student"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.888028",
+  "name": "Notification To Administration",
+  "style": "",
+  "workflow_state_name": "Notification To Administration"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.912116",
+  "name": "Closing of Application",
+  "style": "",
+  "workflow_state_name": "Closing of Application"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.944858",
+  "name": "Remove Allotment",
+  "style": "",
+  "workflow_state_name": "Remove Allotment"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.955731",
+  "name": "No Response from the Student",
+  "style": "",
+  "workflow_state_name": "No Response from the Student"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.968294",
+  "name": "Response from the Student",
+  "style": "",
+  "workflow_state_name": "Response from the Student"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.978677",
+  "name": "contact to student",
+  "style": "",
+  "workflow_state_name": "contact to student"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:46.990057",
+  "name": "Long Reporting",
+  "style": "",
+  "workflow_state_name": "Long Reporting"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:47.002679",
+  "name": "Approve By Hostel Warden",
+  "style": "",
+  "workflow_state_name": "Approve By Hostel Warden"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:47.015087",
+  "name": "Approve By Dean",
+  "style": "",
+  "workflow_state_name": "Approve By Dean"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:47.026198",
+  "name": "Approve By Mentor",
+  "style": "",
+  "workflow_state_name": "Approve By Mentor"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:47.037021",
+  "name": "Clearence From Hostel",
+  "style": "",
+  "workflow_state_name": "Clearence From Hostel"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:47.048311",
+  "name": "clearence",
+  "style": "",
+  "workflow_state_name": "clearence"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:47.059420",
+  "name": "Reported",
+  "style": "",
+  "workflow_state_name": "Reported"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:47.079172",
+  "name": "Save",
+  "style": "",
+  "workflow_state_name": "Save"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:47.090047",
+  "name": "Not Reported",
+  "style": "",
+  "workflow_state_name": "Not Reported"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:47.101897",
+  "name": "Reporting",
+  "style": "",
+  "workflow_state_name": "Reporting"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:47.112763",
+  "name": "Withdrawl of Application",
+  "style": "",
+  "workflow_state_name": "Withdrawl of Application"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-02-17 17:00:47.123474",
+  "name": "Submit",
+  "style": "",
+  "workflow_state_name": "Submit"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-02 12:34:26.749538",
+  "name": "Sent For Approval",
+  "style": "",
+  "workflow_state_name": "Sent For Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-08 12:20:38.547334",
+  "name": "Pending Approval From HR",
+  "style": "",
+  "workflow_state_name": "Pending Approval From HR"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-12 10:55:47.138875",
+  "name": "Pending Approval from Reporting Authority",
+  "style": "",
+  "workflow_state_name": "Pending Approval from Reporting Authority"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-12 10:56:04.131024",
+  "name": "Pending Approval from Director Admin",
+  "style": "",
+  "workflow_state_name": "Pending Approval from Director Admin"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-12 10:56:49.382405",
+  "name": "Pending Approval from Department Head",
+  "style": "",
+  "workflow_state_name": "Pending Approval from Department Head"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-19 15:51:17.854832",
+  "name": "Under Review",
+  "style": "",
+  "workflow_state_name": "Under Review"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-19 15:53:59.880137",
+  "name": "Closed",
+  "style": "",
+  "workflow_state_name": "Closed"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-07-04 12:50:12.579313",
+  "name": "Forwarded to HR",
+  "style": "",
+  "workflow_state_name": "Forwarded to HR"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-07-11 09:52:17.007225",
+  "name": "Resolved",
+  "style": "",
+  "workflow_state_name": "Resolved"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 11:50:03.902692",
+  "name": "Sent for Approval to GM-Procurement & Contract Management",
+  "style": "",
+  "workflow_state_name": "Sent for Approval to GM-Procurement & Contract Management"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 11:50:28.146669",
+  "name": "Rejected by GM-Procurement & Contract Management",
+  "style": "",
+  "workflow_state_name": "Rejected by GM-Procurement & Contract Management"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 11:50:59.316615",
+  "name": "Approved by GM-Procurement & Contract Management",
+  "style": "",
+  "workflow_state_name": "Approved by GM-Procurement & Contract Management"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 12:17:00.516038",
+  "name": "Sent For Approval to Dy, Director",
+  "style": "",
+  "workflow_state_name": "Sent For Approval to Dy, Director"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 12:17:13.057555",
+  "name": "Approved by Dy, Director",
+  "style": "",
+  "workflow_state_name": "Approved by Dy, Director"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 12:17:22.776845",
+  "name": "Rejected by Dy, Director",
+  "style": "",
+  "workflow_state_name": "Rejected by Dy, Director"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 12:18:05.402048",
+  "name": "Sent for Approval to Principal",
+  "style": "",
+  "workflow_state_name": "Sent for Approval to Principal"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 12:18:16.497195",
+  "name": "Approved by Principal",
+  "style": "",
+  "workflow_state_name": "Approved by Principal"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 12:18:26.780996",
+  "name": "Rejected by Principal",
+  "style": "",
+  "workflow_state_name": "Rejected by Principal"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 12:18:56.298069",
+  "name": "Sent for Approval to CFO",
+  "style": "",
+  "workflow_state_name": "Sent for Approval to CFO"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 12:19:07.334064",
+  "name": "Approved by CFO",
+  "style": "",
+  "workflow_state_name": "Approved by CFO"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 12:19:15.055869",
+  "name": "Rejected by CFO",
+  "style": "",
+  "workflow_state_name": "Rejected by CFO"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-06-06 13:07:09.587217",
+  "name": "Approved by Purchase Manager-MM",
+  "style": "",
+  "workflow_state_name": "Approved by Purchase Manager-MM"
+ },
+ {
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-07-26 17:43:43.703065",
+    "name": "Approved by Board of Directors",
+    "style": "",
+    "workflow_state_name": "Approved by Board of Directors"
+},
+{
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-07-26 17:43:58.318376",
+    "name": "Rejected by Board of Directors",
+    "style": "",
+    "workflow_state_name": "Rejected by Board of Directors"
+},
+{
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-07-26 17:58:47.962636",
+    "name": "Approved by Dy, Principal",
+    "style": "",
+    "workflow_state_name": "Approved by Dy, Principal"
+},
+{
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-07-26 17:59:07.315149",
+    "name": "Rejected by Dy, Principal",
+    "style": "",
+    "workflow_state_name": "Rejected by Dy, Principal"
+},
+{
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-07-26 17:59:57.236052",
+    "name": "Approved by Dy. Principal",
+    "style": "",
+    "workflow_state_name": "Approved by Dy. Principal"
+},
+{
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-07-26 18:00:07.087191",
+    "name": "Rejected by Dy. Principal",
+    "style": "",
+    "workflow_state_name": "Rejected by Dy. Principal"
+},
+{
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-07-14 12:26:13.029187",
+    "name": "Approved by Director",
+    "style": "",
+    "workflow_state_name": "Approved by Director"
+},
+{
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-07-14 12:26:28.030213",
+    "name": "Rejected by Director",
+    "style": "",
+    "workflow_state_name": "Rejected by Director"
+},
+{
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-07-14 14:59:10.369313",
+    "name": "Approved by CEO",
+    "style": "",
+    "workflow_state_name": "Approved by CEO"
+},
+{
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-07-14 14:59:33.031305",
+    "name": "Rejected by CEO",
+    "style": "",
+    "workflow_state_name": "Rejected by CEO"
+},
+{
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-07-14 12:26:54.422965",
+    "name": "Approved by Course Manager",
+    "style": "",
+    "workflow_state_name": "Approved by Course Manager"
+},
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-08-03 12:20:44.892670",
+  "name": "HR Approval",
+  "style": "",
+  "workflow_state_name": "HR Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-08-03 12:24:40.362311",
+  "name": "Reporting Authority Approval",
+  "style": "",
+  "workflow_state_name": "Reporting Authority Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-08-03 12:25:59.840282",
+  "name": "Department Head Approval",
+  "style": "",
+  "workflow_state_name": "Department Head Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-08-03 12:28:04.536093",
+  "name": "Director Admin Approval",
+  "style": "",
+  "workflow_state_name": "Director Admin Approval"
  }
 ]
