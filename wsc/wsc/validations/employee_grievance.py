@@ -21,14 +21,17 @@ def validate(self,method):
 
 #     return member_names
 
-# @frappe.whitelist()
-# def get_cell_members(doctype, txt, searchfield, start, page_len, filters):
-#     investigation_cell_members = frappe.get_all(
-#         "Grievance Members",
-#         {"parent":filters.get("investigation_cell")},
-#         ["employee","employee_name"],as_list=1
-#     )
-#     return investigation_cell_members
+@frappe.whitelist()
+def get_cell_members(investigation_cell):
+    investigation_cell_members = frappe.get_all(
+        "Grievance Members",
+        {"parent":investigation_cell},
+        ["employee","employee_name","user_id","designation","department"]
+    )
+    print("\n\n\n\n")
+    print(investigation_cell_members)
+    print("\n\n\n")
+    return investigation_cell_members
 
 # @frappe.whitelist()
 # def get_cell_member_details(investigating_authority):
