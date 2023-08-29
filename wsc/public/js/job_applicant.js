@@ -42,7 +42,6 @@ frappe.ui.form.on('Job Applicant', {
 			frm.set_value("email_id", frappe.session.user)
 			frm.set_df_property('email_id', 'read_only', 1);
 		}
-		frm.set_value("current_status", "CV Selected");
 		if (frm.doc.docstatus===1) {
 			frm.add_custom_button(__("CV Selected"), function() {
 				frm.set_value("current_status", "CV Selected");
