@@ -141,6 +141,8 @@ def make_enrollment(tot_participant_enrollment):
 				result.academic_term=doc.academic_term
 				result.enrollment_date=data.participant_selection_date
 				result.student_batch_name=doc.tot_participant_batch
+				result.admission_status="Admitted"
+				result.is_provisional_admission="No" 
 				result.is_tot=1
 				for get_course in frappe.get_all("Program Course",{'parent':result.program,'parenttype':'Program'},['course','course_name']):
 					result.append("courses",{
