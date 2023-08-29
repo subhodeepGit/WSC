@@ -70,6 +70,9 @@ def add_module_to_tot_course(course, programs,is_tot,is_short_term_course):
 			'course': course,
 			'course_name': frappe.db.get_value("Course",{'name':course,'is_short_term_course':"Yes",'is_tot':is_tot},"course_name"),
 		})
+		programs.flags.ignore_mandatory = True
+		programs.save()
+		
 		program = frappe.get_doc('Program', entry)
 		program.append('courses', {
 			'course': course,
@@ -77,8 +80,7 @@ def add_module_to_tot_course(course, programs,is_tot,is_short_term_course):
 		})
 		program.flags.ignore_mandatory = True
 		program.save()
-		programs.flags.ignore_mandatory = True
-		programs.save()
+
 
 	frappe.db.commit()
 	frappe.msgprint(frappe._('Module {0} has been added to the selected Course successfully.').format(frappe.bold(course)),
