@@ -517,8 +517,46 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Report",
+   "link_count": 3,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Price Impanelement Report",
+   "link_count": 0,
+   "link_to": "Price Impanelement Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Asset Summary Report",
+   "link_count": 0,
+   "link_to": "Asset Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "L1 Vendor Selection Report",
+   "link_count": 0,
+   "link_to": "L1 Vendor Selection",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Settings",
-   "link_count": 7,
+   "link_count": 8,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -595,6 +633,16 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Procurement & Inventory Management Department Email",
+   "link_count": 0,
+   "link_to": "Department Email ID",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Contract",
    "link_count": 4,
    "onboard": 0,
@@ -633,53 +681,15 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Payment Term",
+   "label": "Payment Term Template",
    "link_count": 0,
    "link_to": "Payment Terms Template",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Report",
-   "link_count": 3,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 1,
-   "label": "Price Impanelement Report",
-   "link_count": 0,
-   "link_to": "Price Impanelement Report",
-   "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 1,
-   "label": "Asset Summary Report",
-   "link_count": 0,
-   "link_to": "Asset Report",
-   "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 1,
-   "label": "L1 Vendor Selection Report",
-   "link_count": 0,
-   "link_to": "L1 Vendor Selection",
-   "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
   }
  ],
- "modified": "2023-08-21 13:01:57.373991",
+ "modified": "2023-08-28 17:28:52.200057",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Material Management",

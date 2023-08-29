@@ -51,6 +51,7 @@ frappe.ui.form.on('Assignment Declaration', {
 						childTable.participant_id = element.participant
 						childTable.participant_name = element.participant_name
 						childTable.participant_attendance = element.attendance
+						childTable.status = element.status
 					})
 				}
 				frm.refresh()

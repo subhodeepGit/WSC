@@ -48,18 +48,20 @@ def get_criteria_details(course, assessment_criteria):
 
 @frappe.whitelist()
 def get_participants(participant_group_id, attendance_applicable, attendance_percentage = 0):
-	eligible_participants = []
 	participants = frappe.get_all('Participant Table', filters = [['parent', '=', participant_group_id]], fields = ['participant', 'participant_name'])
 	for d in participants:
 		participant_classes = frappe.db.sql(""" SELECT COUNT(*) FROM `tabToT Class Table` WHERE parent = '%s'"""%(participant_group_id))
 		participant_present_for = frappe.db.sql(""" SELECT COUNT(*) FROM `tabToT Participant Attendance` WHERE participant_id = '%s' AND participant_group = '%s'"""%(d.participant, participant_group_id))
 		final_attendance = (participant_present_for[0][0]/participant_classes[0][0])*100
 		d['attendance'] = "{:.2f}".format(final_attendance)	
-		
-		if(attendance_applicable == '1' and final_attendance >= int(attendance_percentage)):
-			eligible_participants.append(d)
-			
-	if(attendance_applicable == '1'):
-		return eligible_participants
-	else:
-		return participants
+				
+		if(attendance_applicable == '1'):
+			if(final_attendance >= int(attendance_percentage)):
+				d['status'] = 'Qualified'
+				pass
+			else:
+				d['status'] = 'Not Qualified'
+		else:
+			d['status'] = 'Qualified'
+
+	return participants

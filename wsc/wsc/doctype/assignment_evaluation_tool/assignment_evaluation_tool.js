@@ -56,19 +56,30 @@ frappe.ui.form.on('Assignment Evaluation Tool', {
 			
 			method: 'wsc.wsc.doctype.assignment_evaluation_tool.assignment_evaluation_tool.get_participants',
 			args: {
-				participant_group_id: frm.doc.participant_group
+				assignment_name: frm.doc.select_job_sheetassessment,
+				participant_group_id : frm.doc.participant_group
 			},
 			callback: function(result){
 				if(result.message){
+					// Qualified participants
 					frappe.model.clear_table(frm.doc, 'participant_details_data')
-					result.message.forEach(element => {
+					result.message[0].forEach(element => {
 						var childTable = frm.add_child('participant_details_data')
-						childTable.participant_id = element.participant
+						childTable.participant_id = element.participant_id
 						childTable.participant_name = element.participant_name
+					})
+					// Not qualified participants
+					frappe.model.clear_table(frm.doc, 'disqualified_participants')
+					result.message[1].forEach(element => {
+						var childTable = frm.add_child('disqualified_participants')
+						childTable.participant_id = element.participant_id
+						childTable.participant_name = element.participant_name
+						childTable.earned_marks = '0'
 					})
 				}
 				frm.refresh()
 				frm.refresh_field('participant_details_data')
+				frm.refresh_field('disqualified_participants')
 			}
 		})
 	},

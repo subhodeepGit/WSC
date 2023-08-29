@@ -31,7 +31,7 @@
  "fields": [
   {
    "fieldname": "assignment_number",
-   "fieldtype": "Select",
+   "fieldtype": "Data",
    "label": "Assignment Name"
   },
   {
@@ -124,7 +124,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-24 18:00:51.622946",
+ "modified": "2023-08-28 18:12:03.628397",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Upload",
