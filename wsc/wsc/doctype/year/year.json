@@ -1,43 +1,32 @@
 {
  "actions": [],
- "allow_rename": 1,
- "autoname": "field:grievance_cell_name",
- "creation": "2023-08-11 11:48:01.067574",
+ "autoname": "field:year",
+ "creation": "2023-08-25 15:33:45.962793",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "grievance_cell_name",
-  "section_break_dnywp",
-  "grievance_committee"
+  "year"
  ],
  "fields": [
   {
-   "fieldname": "section_break_dnywp",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "grievance_committee",
-   "fieldtype": "Table",
-   "label": "Grievance Committee",
-   "options": "Grievance Members"
-  },
-  {
-   "fieldname": "grievance_cell_name",
+   "fieldname": "year",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Grievance Cell Name",
+   "label": "Year",
+   "length": 4,
+   "non_negative": 1,
    "reqd": 1,
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-29 13:02:16.828559",
+ "modified": "2023-08-25 15:44:12.205602",
  "modified_by": "Administrator",
  "module": "WSC",
- "name": "Employee Grievance Cell",
+ "name": "Year",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [

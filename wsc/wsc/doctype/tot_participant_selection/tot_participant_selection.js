@@ -7,7 +7,7 @@ frappe.ui.form.on('ToT Participant Selection', {
 			return{
 				filters:{
 					'program_grade' : frm.doc.course_type,
-					// 'is_tot' : 1
+					'is_tot' : 1
 				}
 			}
 		})
@@ -72,7 +72,9 @@ frappe.ui.form.on('Selected Participant', {
 			$.each(doc.participants, function(idx, val){
 				if (val.participant_id) participants.push(val.participant_id);
 			});
-			return { filters: [['ToT Participant', 'name', 'not in', participants]] };
+			return { filters: [['ToT Participant', 'name', 'not in', participants],
+								['ToT Participant','enabled','=',1]
+							] };
 		};
 	}
 });

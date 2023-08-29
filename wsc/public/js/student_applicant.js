@@ -139,9 +139,13 @@ frappe.ui.form.on('Student Applicant', {
         frm.trigger("hide_n_show_child_table_fields");
     },
     refresh(frm){
+        if(frappe.user.has_role(["Applicant"]) && !frappe.user.has_role(["System Manager"])){
+			frm.set_value("student_email_id", frappe.session.user)
+			frm.set_df_property('student_email_id', 'read_only', 1);
+		}
         console.log(frm.doc);
         frm.set_df_property('student_rank', 'cannot_add_rows', true)
-		frm.set_df_property('student_rank', 'cannot_delete_rows', true) 
+		// frm.set_df_property('student_rank', 'cannot_delete_rows', true) 
         frm.set_df_property('education_qualifications_details', 'cannot_add_rows', true);
         frm.set_df_property('education_qualifications_details', 'cannot_delete_rows', true);
         frm.set_df_property('document_list', 'cannot_add_rows', true);
@@ -167,6 +171,11 @@ frappe.ui.form.on('Student Applicant', {
         frm.remove_custom_button("Enroll")
         
         if (!cur_frm.doc.__islocal && frappe.user.has_role(["Student"]) && !frappe.user.has_role(["System Manager"])){
+            frm.remove_custom_button("Reject","Actions");
+            frm.remove_custom_button("Approve","Actions");
+            
+        }
+        if (!cur_frm.doc.__islocal && frappe.user.has_role(["Applicant"]) && !frappe.user.has_role(["System Manager"])){
             frm.remove_custom_button("Reject","Actions");
             frm.remove_custom_button("Approve","Actions");
             

@@ -26,6 +26,25 @@ class AssignmentEvaluationTool(Document):
 			result.weightage = self.weightage
 			result.marks_earned = d.earned_marks
 			result.save()
+		for d in self.get('disqualified_participants'):
+			result = frappe.new_doc('Assignment Evaluation')
+			result.participant_group = self.participant_group
+			result.select_course = self.course
+			result.select_module = self.module
+			result.academic_year = self.academic_term
+			result.academic_term = self.academic_year
+			result.participant_id = d.participant_id
+			result.participant_name = d.participant_name
+			result.instructor_id = self.instructor_id
+			result.instructor_name = self.instructor_name
+			result.select_assignment = self.select_job_sheetassessment
+			result.assignment_name = self.assignment_name
+			result.assessment_criteria = self.assessment_criteria
+			result.total_marks = self.total_marks
+			result.passing_marks = self.passing_marks
+			result.weightage = self.weightage
+			result.marks_earned = d.earned_marks
+			result.save()
 
 @frappe.whitelist()
 def get_details(participant_group_id):
@@ -47,11 +66,6 @@ def get_assignment_list(instructor_id, participant_group_id, programs, course):
 	return (assignments + exam_assignments)
 
 @frappe.whitelist()
-def get_participants(participant_group_id):
-	participants = frappe.get_all('Participant Table', filters = [['parent', '=', participant_group_id]], fields = ['participant', 'participant_name'])
-	return participants
-
-@frappe.whitelist()
 def get_assignment_details(assignment_name):
 	assignment_count = frappe.db.sql(""" SELECT COUNT(*) FROM `tabAssignment` WHERE name = '%s' """%(assignment_name), as_dict=1)
 	exam_count = frappe.db.sql(""" SELECT COUNT(*) FROM `tabAssignment Declaration` WHERE name = '%s' """%(assignment_name), as_dict=1)
@@ -62,3 +76,27 @@ def get_assignment_details(assignment_name):
 		criteria_details = frappe.get_all('Assignment Declaration', filters = [['name', '=', assignment_name]], fields = ['assignment_name', 'select_assessment_criteria', 'total_marks','pass_marks','weightage'])
 		return [criteria_details[0]['select_assessment_criteria'] ,criteria_details[0]['total_marks'], criteria_details[0]['pass_marks'], criteria_details[0]['weightage'], criteria_details[0]['assignment_name']]
 		
+
+@frappe.whitelist()
+def get_participants1(participant_group_id):
+	participants = frappe.get_all('Participant Table', filters = [['parent', '=', participant_group_id]], fields = ['participant', 'participant_name'])
+	return participants
+
+
+@frappe.whitelist()
+def get_participants(assignment_name, participant_group_id):
+	count1 = frappe.db.sql(""" SELECT COUNT(*) FROM `tabAssignment` WHERE name = '%s'"""%(assignment_name))
+	count2 = frappe.db.sql(""" SELECT COUNT(*) FROM `tabAssignment Declaration` WHERE name = '%s'"""%(assignment_name))
+	if(count1[0][0] > 0):
+		submitted = frappe.get_all('Assignment Upload', filters = [['assignment_id', '=', assignment_name]], fields = ['participant_id', 'participant_name'])
+		all_students = frappe.get_all('Participant Table', filters = [['parent', '=', participant_group_id]], fields = ['participant', 'participant_name'])
+		key_mapping = {'participant': 'participant_id'}
+		mod_allstudents = [{key_mapping.get(old_key, old_key): value for old_key, value in dictionary.items()} for dictionary in all_students]
+		not_submitted = [item for item in mod_allstudents if item not in submitted]
+		return [submitted, not_submitted]
+	elif(count2[0][0] > 0):
+		# divide participants into two different categories : qualified and not qualified based on the status field in the assignment declaration child table
+		qualified_data = frappe.get_all('Participant List Table', filters = [['parent','=',assignment_name],['status','=', 'Qualified']], fields = ['participant_id', 'participant_name'])
+		not_qualified_data = frappe.get_all('Participant List Table', filters = [['parent','=',assignment_name],['status','=', 'Not Qualified']], fields = ['participant_id', 'participant_name'])
+
+		return [qualified_data, not_qualified_data]

@@ -27,7 +27,14 @@ def get_participant_details(participant_group_id, participant_id):
 def get_assignments(participant_group_id, participant_id, grading_scale):
 	assignments = frappe.get_all('Assignment Evaluation', filters = [['participant_group','=', participant_group_id],['participant_id','=', participant_id]], fields = ['select_assignment', 'assessment_criteria', 'marks_earned', 'total_marks', 'assignment_name'])
 	for d in assignments:
-		percentage = (d['marks_earned'] / d['total_marks']) * 100 #based on the 
+		percentage = (d['marks_earned'] / d['total_marks']) * 100 
+		print('\n\n\n')
+		print(d['marks_earned'])
+		print('\n\n\n')
+		print(d['total_marks'])
+		print('\n\n\n')
+		print(percentage)
+		print('\n\n\n')
 		assignment_data_new = frappe.db.sql("""SELECT result, threshold, grade_code FROM `tabGrading Scale Interval` WHERE parent = '%s' """%(grading_scale))
 		list = []
 		grade = []
@@ -38,7 +45,7 @@ def get_assignments(participant_group_id, participant_id, grading_scale):
 			if(percentage >= i[1]):
 				grade = i
 		d['result'] = grade[0]
-		d['percentage'] = grade[1]
+		d['percentage'] = percentage
 		d['grade_code'] = grade[2]
 
 	total_percentage = 0
@@ -60,5 +67,7 @@ def get_assignments(participant_group_id, participant_id, grading_scale):
 
 	final_result = final_grade_components[0]
 	final_grade = final_grade_components[2]
-	
+	print('\n\n\n')
+	print(assignments)
+	print('\n\n\n')
 	return([assignments, over_all_percentage, final_grade, final_result])

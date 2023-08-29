@@ -35,5 +35,30 @@ def get_assignment_list(instructor_id, participant_group_id, programs, course):
 
 @frappe.whitelist()
 def get_assignment_details(assignment_name):
-	criteria_details = frappe.get_all('Assignment', filters = [['name', '=', assignment_name]], fields = ['assignment_name', 'assessment_criteria', 'total_marks','passing_marks','weightage'])
-	return [criteria_details[0]['assessment_criteria'] ,criteria_details[0]['total_marks'], criteria_details[0]['passing_marks'], criteria_details[0]['weightage'], criteria_details[0]['assignment_name']]
+	count1 = frappe.db.sql(""" SELECT COUNT(*) FROM `tabAssignment` WHERE name = '%s'"""%(assignment_name))
+	count2 = frappe.db.sql(""" SELECT COUNT(*) FROM `tabAssignment Declaration` WHERE name = '%s'"""%(assignment_name))
+	if(count1[0][0] > 0):
+		criteria_details = frappe.get_all('Assignment', filters = [['name','=',assignment_name]], fields = ['assignment_name','assessment_criteria','total_marks', 'passing_marks', 'weightage'])
+		return [criteria_details[0]['assessment_criteria'], criteria_details[0]['total_marks'],criteria_details[0]['passing_marks'],criteria_details[0]['weightage'],criteria_details[0]['assignment_name']]
+	elif(count2[0][0] > 0):
+		criteria_details = frappe.get_all('Assignment Declaration', filters = [['name','=',assignment_name]], fields = ['assignment_name','select_assessment_criteria','total_marks','pass_marks','weightage'])
+		return [criteria_details[0]['select_assessment_criteria'], criteria_details[0]['total_marks'],criteria_details[0]['pass_marks'],criteria_details[0]['weightage'],criteria_details[0]['assignment_name']]
+
+@frappe.whitelist()
+def set_marks1(participant_id, assignment_name):
+	data = frappe.db.sql(""" SELECT status FROM `tabParticipant List Table` WHERE parent = '%s' AND participant_id = '%s'"""%(assignment_name, participant_id), as_dict =1)
+	if(data[0]['status'] == 'Not Qualified'):
+		return 0
+	
+@frappe.whitelist()
+def set_marks(participant_id, assignment_name):
+	count1 = frappe.db.sql(""" SELECT COUNT(*) FROM `tabAssignment` WHERE name = '%s'"""%(assignment_name))
+	count2 = frappe.db.sql(""" SELECT COUNT(*) FROM `tabAssignment Declaration` WHERE name = '%s'"""%(assignment_name))
+	if(count1[0][0] > 0):
+		data1 = frappe.db.sql(""" SELECT COUNT(*) FROM `tabAssignment Upload` WHERE assignment_id = '%s' AND participant_id ='%s'"""%(assignment_name, participant_id))
+		if(data1[0][0] == 0):
+			return 0
+	elif(count2[0][0] > 0):
+		data2 = frappe.db.sql(""" SELECT status FROM `tabParticipant List Table` WHERE parent = '%s' AND participant_id = '%s'"""%(assignment_name, participant_id), as_dict =1)
+		if(data2[0]['status'] == 'Not Qualified'):
+			return 0
