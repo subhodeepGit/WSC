@@ -16,6 +16,7 @@ class ReportingDesk(Document):
 @frappe.whitelist()
 def reporting(applicant_id):
 
+	print("\n\n")
 	data_basic = frappe.get_all("Rank Card" , 
 		       				{'name':applicant_id} ,
 							['applicant_name' ,
@@ -24,12 +25,14 @@ def reporting(applicant_id):
 							 'total_marks' , 'earned_marks'
 							])
 	
+	
 	data_rank = frappe.get_all("Student Ranks List" ,
 			    			 {'parent': applicant_id} ,
-							 ['general_rank' ,
-	 						  'category_based_rank' ,
-							  'pwd_based_rank'
+							 ['rank_type',
+	 						   'rank_obtained'
 	 						])
+	
+	print(data_rank)
 	data = []
 	data.append(data_basic)
 	data.append(data_rank)

@@ -8,7 +8,6 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "current_centers",
   "center_name",
   "state",
   "district",
@@ -73,17 +72,11 @@
    "fieldtype": "Int",
    "label": "Pincode",
    "reqd": 1
-  },
-  {
-   "default": "0",
-   "fieldname": "current_centers",
-   "fieldtype": "Check",
-   "label": "Current Centers"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-06-21 14:52:36.267504",
+ "modified": "2023-08-30 17:37:54.096592",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Centre Master",
