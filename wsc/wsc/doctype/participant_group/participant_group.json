@@ -10,12 +10,14 @@
  "field_order": [
   "disabled",
   "section_break_2",
+  "participant_enrollment_id",
   "academic_year",
-  "group_based_on",
   "program",
   "column_break_fpmn1",
-  "academic_term",
   "participant_group",
+  "group_based_on",
+  "academic_term",
+  "semester",
   "section_break_lnrxr",
   "course",
   "batch",
@@ -43,11 +45,12 @@
   {
    "fieldname": "participant_group",
    "fieldtype": "Data",
-   "label": "Participant Group"
+   "label": "Participant Group Name"
   },
   {
    "fieldname": "academic_term",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Academic Term",
    "options": "Academic Term"
   },
@@ -65,8 +68,9 @@
   },
   {
    "fieldname": "course",
-   "fieldtype": "Select",
-   "label": "Module ID"
+   "fieldtype": "Link",
+   "label": "Module ID",
+   "options": "Course"
   },
   {
    "default": "0",
@@ -121,11 +125,23 @@
    "fieldname": "module_name",
    "fieldtype": "Data",
    "label": "Module Name"
+  },
+  {
+   "fieldname": "participant_enrollment_id",
+   "fieldtype": "Link",
+   "label": "Participant Enrollment ID",
+   "options": "ToT Participant Enrollment"
+  },
+  {
+   "fieldname": "semester",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Semester"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-25 15:28:33.211521",
+ "modified": "2023-08-30 16:02:01.256855",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Group",
