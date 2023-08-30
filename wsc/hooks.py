@@ -350,7 +350,9 @@ doc_events = {
         "validate":"wsc.wsc.doctype.purchase_order.validate"
     },
     "Material Request": {
-        "validate":"wsc.wsc.doctype.material_request.validate"
+        "validate":"wsc.wsc.doctype.material_request.validate",
+        "on_submit":"wsc.wsc.doctype.material_request.workflow_notification",
+        "on_update_after_submit":"wsc.wsc.doctype.material_request.workflow_notification"
     },
     "Shift Type": {
         "validate":"wsc.wsc.validations.shift_type.validate"

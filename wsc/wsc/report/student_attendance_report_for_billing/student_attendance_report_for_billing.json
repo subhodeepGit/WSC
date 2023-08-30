@@ -10,7 +10,7 @@
  "idx": 0,
  "is_standard": "Yes",
  "letter_head": "",
- "modified": "2023-08-29 16:11:05.712823",
+ "modified": "2023-08-30 11:25:18.343885",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Attendance Report for Billing",
@@ -21,22 +21,10 @@
  "report_type": "Script Report",
  "roles": [
   {
-   "role": "Academics User"
-  },
-  {
-   "role": "Student"
-  },
-  {
-   "role": "Education Administrator"
-  },
-  {
    "role": "Education Administrator"
   },
   {
    "role": "Instructor"
-  },
-  {
-   "role": "Hostel Admin"
   },
   {
    "role": "Admin"
@@ -70,6 +58,9 @@
   },
   {
    "role": "Assistant Coordinator / Trainer"
+  },
+  {
+   "role": "Course Manager"
   }
  ]
 }

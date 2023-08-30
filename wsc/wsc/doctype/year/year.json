@@ -23,7 +23,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-25 15:44:12.205602",
+ "modified": "2023-08-29 11:54:59.605397",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Year",
@@ -39,6 +39,20 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Administrator",
+   "select": 1,
    "share": 1,
    "write": 1
   }

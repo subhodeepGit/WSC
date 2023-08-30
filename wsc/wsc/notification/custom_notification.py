@@ -894,9 +894,9 @@ def received_by_department(doc):
 def workflow_wating_approval(doc, receipient):
     msg="""<b>---------------------Workflow awaiting response---------------------</b><br>"""
     msg+="""You have received a workflow waiting for your review and approval"""
-    recipients = receipient
+    receipients = [item['name'] for item in receipient]
     attachments = None
-    send_mail(recipients,'Material Request',msg,attachments)
+    send_mail(receipients,'Material Request',msg,attachments)
 
 #####   END   #####
 

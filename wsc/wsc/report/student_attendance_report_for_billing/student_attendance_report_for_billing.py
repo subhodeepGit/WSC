@@ -19,7 +19,6 @@ def get_data(filters=None):
     from_date=filters.get('from_date')
     academic_term=filters.get('academic_term')
     semester=filters.get('semester')
-    course=filters.get('course')
 
     try:
         if from_date > to_date:
@@ -35,7 +34,6 @@ def get_data(filters=None):
     filt.append(["docstatus","=", 1])
 
     pe_data = frappe.get_all("Program Enrollment", filters=filt,fields = ["student", "student_name"])
-    print("\n\n\n", pe_data)
 
     def generate_date_range(from_date, to_date):
         date_range = []
@@ -49,7 +47,6 @@ def get_data(filters=None):
         return date_range
 
     date_list = generate_date_range(from_date, to_date)
-    print("\n\n\n\n",date_list)
 
     att_filt=[]
     if from_date and to_date==None:
@@ -60,33 +57,30 @@ def get_data(filters=None):
         att_filt.append(["date", "between", [from_date,to_date]])
 
     student_attendance_data = frappe.get_all("Student Attendance", filters=att_filt, fields=['student','course_schedule','status','date'])
-    print("\n\n\n", student_attendance_data)
 
     c_data=[]
     for t in date_list:
         c_data.append(t)
 
     c_data= list(set(c_data))   
+    
+    for data in student_attendance_data:
+        data['date'] = data['date'].strftime('%Y-%m-%d')
+
 
     for t in pe_data:
         for j in c_data:
-            t['%s'%(j)]='Attendance not marked'
-
-    # for j in c_data:
-    #     for t in pe_data:
-    #         for i in student_attendance_data:
-    #             if (t['student'] == i['student']) and (i['date'] == j):
-    #                  t[j]='Present'
-
-    
-
-    
-
-
-
-
-
-
+            attendance_marked = False  # Flag to track if attendance is marked for this date
+            
+            for att_data in student_attendance_data:
+                if att_data['student'] == t['student'] and att_data['date'] == j and att_data['status'] == 'Present':
+                    attendance_marked = True
+                    break
+            
+            if attendance_marked:
+                t[j] = 'Present'
+            else:
+                t[j] = 'Attendance not marked'
 
     return pe_data, date_list
 
@@ -98,13 +92,13 @@ def get_columns(head_name=None):
             "fieldname": "student",
             "fieldtype": "Link",
             "options": "Student",
-            "width":180
+            "width":170
         },
         {
             "label": _("Student Name"),
             "fieldname": "student_name",
             "fieldtype": "Data",
-            "width":160
+            "width":170
         },
     ]
 
@@ -115,7 +109,7 @@ def get_columns(head_name=None):
                 "label": _("%s"%(datetime.strptime(field_name, '%Y-%m-%d').strftime('%d-%m-%Y'))),
                 "fieldname": "%s"%(field_name),
                 "fieldtype": "Data",
-                "width":290
+                "width":190
             }
             columns.append(columns_add)
 
