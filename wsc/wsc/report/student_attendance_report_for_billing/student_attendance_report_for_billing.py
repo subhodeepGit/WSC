@@ -74,7 +74,6 @@ def get_data(filters=None):
             
             for att_data in student_attendance_data:
                 if att_data['student'] == t['student'] and att_data['date'] == j and att_data['status'] == 'Present':
-                    print("ok")
                     attendance_marked = True
                     break
             
@@ -83,12 +82,6 @@ def get_data(filters=None):
             else:
                 t[j] = 'Attendance not marked'
 
-
-
-
-
-
-    print(pe_data)
     return pe_data, date_list
 
     
