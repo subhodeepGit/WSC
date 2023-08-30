@@ -978,18 +978,19 @@ class PaymentEntry(AccountsController):
 									})
 
 									gl_entries.append(gle)					
-				if self.unallocated_amount:
-					exchange_rate = self.get_exchange_rate()
-					base_unallocated_amount = (self.unallocated_amount * exchange_rate)
+					if self.unallocated_amount:
+						exchange_rate = self.get_exchange_rate()
+						base_unallocated_amount = (self.unallocated_amount * exchange_rate)
 
-					gle = party_gl_dict.copy()
+						# gle = party_gl_dict.copy()
+						gle = t.copy()
 
-					gle.update({
-						dr_or_cr + "_in_account_currency": self.unallocated_amount,
-						dr_or_cr: base_unallocated_amount
-					})
+						gle.update({
+							dr_or_cr + "_in_account_currency": self.unallocated_amount,
+							dr_or_cr: base_unallocated_amount
+						})
 
-					gl_entries.append(gle)
+						gl_entries.append(gle)
 			else:
 				if self.payment_type == "Receive":
 					against_account = self.paid_to
