@@ -79,7 +79,8 @@ doctype_list_js = {
     "Leave Application":"public/js/leave_application_list.js",
     "Employee":"public/js/employee_list.js",
     "Student":"public/js/student_list.js",
-    "Student Group":"public/js/student_group_list.js"
+    "Student Group":"public/js/student_group_list.js",
+    "Employee Grievance":"public/js/employee_grievance_list.js",
 }
 
 doctype_tree_js = {"doctype" : "public/js/tax_category_tree.js"}

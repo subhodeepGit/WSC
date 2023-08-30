@@ -66,7 +66,7 @@ def employee_shift_approver(doc):
     msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(shift_app_url)
     send_mail(frappe.db.get_value("Shift Request",doc.get('name'),"approver"),sub,msg)
     frappe.msgprint("Email sent to Shift Request Approving Authority")
-
+##################################################################################
 def employee_grievance_member(doc):
     sub = "Reg:Employee Grievance Details</b></p><br>"
 
@@ -82,9 +82,13 @@ def employee_grievance_member(doc):
 
     recipients = frappe.get_all("User", filters={'role': 'Grievance Cell Member'}, fields=['email'])
     recipient_emails = [recipient.get('email') for recipient in recipients]
+    if len(recipient_emails)!=0 :
 
-    send_mail(recipient_emails, sub, msg)
-    frappe.msgprint("Email sent to Grievance Cell Members")
+
+        send_mail(recipient_emails, sub, msg)
+        frappe.msgprint("Email sent to Grievance Cell Members")
+    else :
+        frappe.throw("Grievance Cell Members has not assigned the role Grievance Cell Member !")
 
 def employee_grievance_employee_mail(doc):
     sub = "Reg:Employee Grievance Status"
@@ -98,9 +102,36 @@ def employee_grievance_employee_mail(doc):
     grievance_app_url = get_url_to_form('Employee Grievance', doc.get('name'))
     msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(grievance_app_url)
 
-    send_mail(frappe.db.get_value("Employee Grievance",doc.get('name'),"employee_email"),sub,msg)
-    frappe.msgprint("Status details is sent to the Employee")
+    if doc.employee_email :
 
+        send_mail(frappe.db.get_value("Employee Grievance",doc.get('name'),"employee_email"),sub,msg)
+        frappe.msgprint("Status details is sent to the Employee")
+    else :
+        frappe.msgprint("User ID of Employee Not found")
+
+def employee_grievance_hr_mail(doc):
+    sub = "Reg:Employee Grievance Status"
+
+    msg = "<b>---------------------Employee Grievance Status Details---------------------</b><br>"
+
+    msg += "<b>Employee Grievance ID:</b> {0}<br>".format(doc.get('name'))
+    msg += "<b>Date:</b> {0}<br>".format(doc.get('date'))
+    msg += "<b>Status:</b> {0}<br>".format(doc.get('status'))
+
+    grievance_app_url = get_url_to_form('Employee Grievance', doc.get('name'))
+    msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(grievance_app_url)
+
+    recipients = frappe.get_all("User", filters={'role': 'HR Admin'}, fields=['email'])
+    recipient_emails = [recipient.get('email') for recipient in recipients]
+    print("\n\n\n\n")
+    print(recipient_emails)
+    if len(recipient_emails)!= 0:
+
+        send_mail(recipient_emails, sub, msg)
+        frappe.msgprint("Email sent to HR Admin")
+    else :
+        frappe.throw("HR Admin email id not found !")
+########################################################################
 def employee_separation_reporting_authority_mail(doc):
     sub = "Reg:Employee Separation Details"
     

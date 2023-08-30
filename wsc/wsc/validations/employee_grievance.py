@@ -1,13 +1,38 @@
 import frappe
 from frappe import _
 from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
-from wsc.wsc.notification.custom_notification import employee_grievance_member,employee_grievance_employee_mail
+from wsc.wsc.notification.custom_notification import employee_grievance_member,employee_grievance_employee_mail,employee_grievance_hr_mail
 def validate(self,method):
-    if self.workflow_state=="Under Review":
+    # set_user_permission(self)
+    if self.workflow_state == "Forwarded to HR":
+        employee_grievance_hr_mail(self)
+    if self.workflow_state=="Forwarded to Grievance Cell":
         employee_grievance_member(self)
     if self.workflow_state=="Resolved" or self.workflow_state=="Rejected":
         employee_grievance_employee_mail(self)    
 
+
+# def set_user_permission(self):
+#     user = frappe.session.user
+#     if len(frappe.get_roles(user)) == 1 and "Employee" in frappe.get_roles(user):
+#         # Implement logic to add user permission for the session user
+#         # ...
+#         add_user_permission(self.doctype,self.name,self.employee_email,self)
+#         print("\n\n\n")
+#         print("user permission set sucessfully")
+
+#     # Check if the user has any of the specified roles
+#     elif any(role in frappe.get_roles(user) for role in ["HR Admin", "Director", "Grievance Cell Member"]):
+#         print("No user permission.....")
+#         pass
+		
+		
+# def on_trash(self):
+#     self.delete_permission()
+    
+# def delete_permission(self):
+#     for d in frappe.get_all("User Permission",{"reference_doctype":self.doctype,"reference_docname":self.name}):
+#         frappe.delete_doc("User Permission",d.name)
 
 # @frappe.whitelist()
 # def get_cell(doctype, txt, searchfield, start, page_len, filters):
