@@ -92,13 +92,13 @@ def get_columns(head_name=None):
             "fieldname": "student",
             "fieldtype": "Link",
             "options": "Student",
-            "width":180
+            "width":170
         },
         {
             "label": _("Student Name"),
             "fieldname": "student_name",
             "fieldtype": "Data",
-            "width":160
+            "width":170
         },
     ]
 
@@ -109,7 +109,7 @@ def get_columns(head_name=None):
                 "label": _("%s"%(datetime.strptime(field_name, '%Y-%m-%d').strftime('%d-%m-%Y'))),
                 "fieldname": "%s"%(field_name),
                 "fieldtype": "Data",
-                "width":290
+                "width":190
             }
             columns.append(columns_add)
 
