@@ -37,6 +37,20 @@ frappe.ui.form.on('Assignment Evaluation', {
 			}
 		})
 	},
+	participant_name: function(frm){
+		frappe.call({
+			method: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.set_marks',
+			args:{
+				participant_id : frm.doc.participant_id,
+				assignment_name : frm.doc.select_assignment
+			},
+			callback: function(result){
+				if(result.message){
+					frm.set_value("marks_earned", '0')
+				}
+			}
+		})
+	},
 	instructor_id: function(frm){
 		frappe.call({
 			method: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_instructor_name',
@@ -64,16 +78,14 @@ frappe.ui.form.on('Assignment Evaluation', {
 		})
 	},
 	select_assignment: function(frm){
-		alert(500)
 		frappe.call({
 			method: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_assignment_details',
 			args:{
 				assignment_name : frm.doc.select_assignment
 			},
 			callback: function(result){
-				alert(600)
 				if(result.message){
-					frm.set_value("assessment_criteria", result.message[0])
+					frm.set_value("assessment_component", result.message[0])
 					frm.set_value("total_marks", result.message[1])
 					frm.set_value("passing_marks", result.message[2])
 					frm.set_value("weightage", result.message[3])

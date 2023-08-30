@@ -17,7 +17,7 @@
   "instructor_id",
   "select_assignment",
   "participant_id",
-  "assessment_criteria",
+  "assessment_component",
   "column_break_7",
   "academic_term",
   "instructor_name",
@@ -105,11 +105,6 @@
    "label": "Total Marks"
   },
   {
-   "fieldname": "assessment_criteria",
-   "fieldtype": "Data",
-   "label": "Assessment Criteria"
-  },
-  {
    "fieldname": "weightage",
    "fieldtype": "Data",
    "label": "Weightage"
@@ -131,11 +126,17 @@
   {
    "fieldname": "section_break_xwr9u",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "assessment_component",
+   "fieldtype": "Link",
+   "label": "Assessment Component",
+   "options": "Assessment Criteria"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-24 13:52:23.840326",
+ "modified": "2023-08-28 12:16:38.970306",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Evaluation",

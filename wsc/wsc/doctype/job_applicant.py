@@ -72,7 +72,8 @@ def validate_duplicate_record(self):
 			"application_year":self.application_year,
 			"job_title": self.job_title,
 			"designation":self.designation,
-            "current_status":self.current_status
+            "current_status":self.current_status,
+            "email_id":self.email_id
 		})
         if duplicateForm:
             frappe.throw(("Job Applicant is already Filled the form for this Year."))

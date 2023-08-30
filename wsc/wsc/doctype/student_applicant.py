@@ -59,6 +59,7 @@ class StudentApplicant(Document):
         document_list_checkbox(doc)
         # mobile_number_validation(doc)
         validate_pin_code(doc)
+        validate_applicant_name(doc)
         # update_education_parameters(doc)
         duplicate_row_validation(doc,"program_priority",["programs"])
         # validate_seat_reservation_type(doc)
@@ -121,7 +122,18 @@ def document_list_checkbox(doc):
             d.attached=0
 
             # frappe.db.set_value("Document List",self.name,'attached',1)
-
+def validate_applicant_name(doc):
+    if doc.first_name:  
+        if not contains_only_characters(doc.first_name):
+            frappe.throw("First Name should be only characters")
+    if doc.middle_name:
+        if not contains_only_characters(doc.middle_name):
+            frappe.throw("Middle Name should be only characters")
+    if doc.last_name:
+        if not contains_only_characters(doc.last_name):
+            frappe.throw("Last Name should be only characters")
+def contains_only_characters(first_name):
+    return all(char.isalpha() or char.isspace() for char in first_name)
 def delete_user_permission(doc):
     if doc.application_status=="Rejected":
         delete_permissions(doc)
@@ -426,9 +438,6 @@ def on_submit(self):
 def enroll_student(source_name):
     from wsc.wsc.doctype.student_exchange_applicant.student_exchange_applicant import get_academic_calender_table
     from wsc.wsc.doctype.semesters.semesters import get_courses
-    
-    print("\n\n\n\n")
-    print(source_name)
     st_applicant=frappe.get_doc("Student Applicant", source_name)
     
     # counselling_based_program_priority = frappe.get_all("Counseling Based Program Priority" , {'parent' : st_applicant.name , 'approve' : 1} , ['programs'])

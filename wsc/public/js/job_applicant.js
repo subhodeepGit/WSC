@@ -38,11 +38,11 @@ frappe.ui.form.on("Job Applicant", "aadhar_card_number", function (frm) {
 });
 frappe.ui.form.on('Job Applicant', {
 	refresh(frm){
+		$(".indicator-pill").hide();
 		if(frappe.user.has_role(["Applicant"]) && !frappe.user.has_role(["System Manager"])){
 			frm.set_value("email_id", frappe.session.user)
 			frm.set_df_property('email_id', 'read_only', 1);
 		}
-		frm.set_value("current_status", "CV Selected");
 		if (frm.doc.docstatus===1) {
 			frm.add_custom_button(__("CV Selected"), function() {
 				frm.set_value("current_status", "CV Selected");
@@ -91,6 +91,7 @@ frappe.ui.form.on('Job Applicant', {
 			frm.remove_custom_button("Selected","Actions");
 			frm.remove_custom_button("Confirm");
 			frm.remove_custom_button("Interview","Create");
+			frm.remove_custom_button("Job Offer","Create");
 			frm.remove_custom_button("On Hold","Actions");
 			frm.remove_custom_button("Disqualified","Actions");
 			frm.remove_custom_button("Qualified","Actions");

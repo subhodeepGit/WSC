@@ -28,7 +28,8 @@
   "assessment_criteria",
   "section_break_14",
   "get_participants",
-  "participant_details_data"
+  "participant_details_data",
+  "disqualified_participants"
  ],
  "fields": [
   {
@@ -60,7 +61,7 @@
   {
    "fieldname": "participant_details_data",
    "fieldtype": "Table",
-   "label": "Participant Details Data",
+   "label": "Qualified Participants",
    "options": "Participant Details Data"
   },
   {
@@ -134,11 +135,17 @@
    "fieldname": "assignment_name",
    "fieldtype": "Data",
    "label": "Assignment Name"
+  },
+  {
+   "fieldname": "disqualified_participants",
+   "fieldtype": "Table",
+   "label": "Disqualified Participants",
+   "options": "disqualified tot participants"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-24 14:50:40.224532",
+ "modified": "2023-08-28 13:16:57.468919",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Evaluation Tool",

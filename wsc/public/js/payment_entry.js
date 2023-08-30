@@ -413,14 +413,15 @@ frappe.ui.form.on('Payment Entry', {
 	}
 });
 
+// comment for write_off
 
-frappe.ui.form.on('Payment Entry Reference', {	//Child table Name
-	allocated_amount:function(frm, cdt, cdn){	//Child table field Name where you data enter
-	var d = locals[cdt][cdn];
-	var total = 0;
-	let a= parseInt(total)
-	frm.doc.references.forEach(function(d)  { a = a+ d.allocated_amount; }); //Child table name and field name
-	frm.set_value("paid_amount", a);			// Parent field name where calculation going to fetch
-	refresh_field("paid_amount");
-  },
-})
+// frappe.ui.form.on('Payment Entry Reference', {	//Child table Name
+// 	allocated_amount:function(frm, cdt, cdn){	//Child table field Name where you data enter
+// 	var d = locals[cdt][cdn];
+// 	var total = 0;
+// 	let a= parseInt(total)
+// 	frm.doc.references.forEach(function(d)  { a = a+ d.allocated_amount; }); //Child table name and field name
+// 	frm.set_value("paid_amount", a);			// Parent field name where calculation going to fetch
+// 	refresh_field("paid_amount");
+//   },
+// })
