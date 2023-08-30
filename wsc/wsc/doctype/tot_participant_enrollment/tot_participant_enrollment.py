@@ -6,9 +6,11 @@ from frappe.model.document import Document
 from frappe import _
 
 class ToTParticipantEnrollment(Document):
-	# def validate(self):
-		# self.create_participant()
-		# self.make_participant()
+	def validate(self):
+		data=frappe.get_all("ToT Participant Enrollment",{"tot_participant_selection_id":self.tot_participant_selection_id,"docstatus":1})
+		if data:
+			frappe.throw("Participant Selection Id is already submitted")
+			
 	def on_submit(self):
 		participant_count_validation(self)	
 		self.create_participant()
