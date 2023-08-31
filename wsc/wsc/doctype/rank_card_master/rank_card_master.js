@@ -15,5 +15,13 @@ frappe.ui.form.on('Rank Card Master', {
 				}
 			}
 		})
+		frm.set_query("department", function(){
+	        return{
+	            filters:{
+	                "is_group":1,
+	                "is_stream": 1
+	            }
+	        }
+	    })
 	}
 });

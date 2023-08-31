@@ -1,13 +1,15 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{applicant_id}-{applicant_name}-{department}",
+ "autoname": "EDU-RANK-.YYYY.-.####",
  "creation": "2023-05-09 18:17:52.450996",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "exam",
+  "section_break_1xr69",
   "applicant_id",
   "column_break_06u78",
   "applicant_name",
@@ -133,16 +135,26 @@
   {
    "fieldname": "section_break_gyx4b",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "exam",
+   "fieldtype": "Link",
+   "label": "Exam ",
+   "options": "Entrance Exam Declaration"
+  },
+  {
+   "fieldname": "section_break_1xr69",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-25 16:20:11.133452",
+ "modified": "2023-08-29 15:55:22.804457",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Rank Card",
- "naming_rule": "Expression",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
