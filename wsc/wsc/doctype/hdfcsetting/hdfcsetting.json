@@ -1,0 +1,91 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-08-18 15:05:51.371407",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "merchant_id",
+  "access_code",
+  "working_key",
+  "redirect_url",
+  "cancel_url",
+  "site_name",
+  "gateway_name",
+  "dev_type",
+  "is_production"
+ ],
+ "fields": [
+  {
+   "fieldname": "merchant_id",
+   "fieldtype": "Data",
+   "label": "Merchant ID"
+  },
+  {
+   "fieldname": "access_code",
+   "fieldtype": "Data",
+   "label": "Access Code"
+  },
+  {
+   "fieldname": "working_key",
+   "fieldtype": "Data",
+   "label": "Working Key"
+  },
+  {
+   "fieldname": "redirect_url",
+   "fieldtype": "Data",
+   "label": "Redirect URL"
+  },
+  {
+   "fieldname": "cancel_url",
+   "fieldtype": "Data",
+   "label": "Cancel URL"
+  },
+  {
+   "fieldname": "site_name",
+   "fieldtype": "Data",
+   "label": "Site Name"
+  },
+  {
+   "fieldname": "gateway_name",
+   "fieldtype": "Data",
+   "label": "Gateway Name"
+  },
+  {
+   "fieldname": "dev_type",
+   "fieldtype": "Data",
+   "label": "Dev Type"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_production",
+   "fieldtype": "Check",
+   "label": "is Production"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2023-08-31 11:28:01.468423",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "HDFCSetting",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
