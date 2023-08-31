@@ -137,6 +137,7 @@ def make_enrollment(tot_participant_enrollment):
 			for data in frappe.get_all("ToT Participant Selection",{"name":doc.tot_participant_selection_id},['participant_selection_date']):
 				result=frappe.new_doc("Program Enrollment")
 				result.student=stud.name
+				result.participant=d.participant
 				result.programs=doc.programs
 				result.program=doc.semester
 				result.academic_year=doc.academic_year
