@@ -65,18 +65,18 @@ language = 'EN'
 @frappe.whitelist()
 def open_gateway(party_name, roll_no, amount, order_id,url,gw_provider): 
     logging.info("Processing open_gateway function...1")
-    logging.info("url passed %s",url)
-    logging.info("gw_provider %s", gw_provider)
+    logging.info("op url passed 2 %s",url)
+    logging.info("op gw_provider 3%s", gw_provider)
 
     try:       
         getDoc = frappe.get_doc("HDFCSetting")
-        logging.info("getDoc 2: %s", getDoc)
+        logging.info("op getDoc 4: %s", getDoc)
         is_prod = getDoc.get("is_production")
         # is_prod = frappe.get_value("HDFCSetting", None, "is_prod")
-        logging.info("is_prod 3: %s", is_prod)
+        logging.info("is_prod 5: %s", is_prod)
         
         if is_prod is 0:
-            logging.info("if is_prod is 0: 4: %s", is_prod)
+            logging.info("if is_prod is 0: %s", is_prod)
             merchant_id = getDoc.get("merchant_id")
             access_code = getDoc.get("access_code")
             working_key = getDoc.get("working_key")
@@ -95,8 +95,7 @@ def open_gateway(party_name, roll_no, amount, order_id,url,gw_provider):
             p_merchant_url = url
             logging.info("p_merchant_url : %s", p_merchant_url)
 
-            merchant_data = 'merchant_id=' + p_merchant_id + '&' + 'order_id=' + p_order_id + '&' + "currency=" + currency + '&' + 'amount=' + p_amount + '&' + 'redirect_url=' + \
-            redirect_url + '&' + 'cancel_url=' + cancel_url + '&' + 'language=' + language + '&' + 'billing_name=' + p_billing_name + '&' + 'customer_identifier=' + p_customer_identifier + '&' + 'merchant_param1='+ p_merchant_url + 'delivery_name=' + gateway_name
+            merchant_data = 'merchant_id=' + p_merchant_id + '&' + 'order_id=' + p_order_id + '&' + "currency=" + currency + '&' + 'amount=' + p_amount + '&' + 'redirect_url=' + redirect_url + '&' + 'cancel_url=' + cancel_url + '&' + 'language=' + language + '&' + 'billing_name=' + p_billing_name + '&' + 'customer_identifier=' + p_customer_identifier + '&' + 'merchant_param1='+ p_merchant_url + '&' + 'delivery_name=' + gateway_name
             
             logging.info("merchant_data : %s", merchant_data)
             encryption = encrypt(merchant_data, working_key)
@@ -109,7 +108,7 @@ def open_gateway(party_name, roll_no, amount, order_id,url,gw_provider):
             
         elif is_prod is 1:
             logging.info("is_prod is 1: %s", is_prod)
-            myDoc = frappe.get_doc("HDFCSetting")
+            myDoc = frappe.get_doc("HDFCSettingProd")
             merchant_id = myDoc.get("merchant_id")
             access_code = myDoc.get("access_code")
             working_key = myDoc.get("working_key")
@@ -128,8 +127,7 @@ def open_gateway(party_name, roll_no, amount, order_id,url,gw_provider):
             p_merchant_url = url
             logging.info("p_merchant_url : %s", p_merchant_url)
 
-            merchant_data = 'merchant_id=' + p_merchant_id + '&' + 'order_id=' + p_order_id + '&' + "currency=" + currency + '&' + 'amount=' + p_amount + '&' + 'redirect_url=' + \
-            redirect_url + '&' + 'cancel_url=' + cancel_url + '&' + 'language=' + language + '&' + 'billing_name=' + p_billing_name + '&' + 'customer_identifier=' + p_customer_identifier + '&' + 'merchant_param1='+ p_merchant_url + 'delivery_name=' + gateway_name
+            merchant_data = 'merchant_id=' + p_merchant_id + '&' + 'order_id=' + p_order_id + '&' + "currency=" + currency + '&' + 'amount=' + p_amount + '&' + 'redirect_url=' + redirect_url + '&' + 'cancel_url=' + cancel_url + '&' + 'language=' + language + '&' + 'billing_name=' + p_billing_name + '&' + 'customer_identifier=' + p_customer_identifier + '&' + 'merchant_param1='+ p_merchant_url + '&' + 'delivery_name=' + gateway_name
             
             logging.info("merchant_data : %s", merchant_data)
             encryption = encrypt(merchant_data, working_key)
@@ -179,8 +177,7 @@ def get_order_status():
         gateway_name = response_data.get('delivery_name')[0]
         logging.info(" gateway_name %s", gateway_name)
         transaction_info = f"Order ID: {order_id}\nTransaction ID: {transaction_id}\nAmount Paid: {amount_paid}\nBilling Name: {billing_name}\nTime of Transaction: {time_of_transaction}\nGateway:{gateway_name}"
-
-        
+       
         
         if order_id and transaction_id:
             logging.info("inside if.....................")
@@ -195,19 +192,15 @@ def get_order_status():
             doc.date_time_of_transaction=time_of_transaction
             try:
                 logging.info("inside try.....................")
+
                 doc.save(ignore_permissions=True)
                 logging.info("inside save.....................")
                 doc.run_method('submit')
                 frappe.msgprint("Your Transaction is completed. Your Transaction Id is " +doc.transaction_id + "."  " Status is " + frappe.bold(doc.transaction_status))
                 return "Order status and tracking ID updated successfully in Frappe."
             except Exception as save_exception:
-                return f"Error saving document: {repr(save_exception)}"
-
-
-           
-        # 	return "Order status and tracking ID updated successfully in Frappe."
-        # else:
-        # 	return "Invalid 'order_id' or 'tracking_id' in the received data."
+                # return f"Error saving document: {repr(save_exception)}"
+                logging.info(f"Error saving document: {repr(save_exception)}")
 
     except Exception as e:
         return f"Error processing the data: {str(e)}"
@@ -226,12 +219,13 @@ def get_token(user):
 def getTransactionDetails(doc):    
     try:                                
         getDoc = frappe.get_doc("HDFCSetting")
-        logging.info("getDoc 2: %s", getDoc)
-        is_prod = frappe.get_value("HDFCSetting", None, "is_prod")
-        logging.info("is_prod 3: %s", is_prod)
+        logging.info("gt getDoc: %s", getDoc)
+        is_prod = getDoc.get("is_production")
+        # is_prod = frappe.get_value("HDFCSetting", None, "is_prod")
+        logging.info("gt is_prod: %s", is_prod)
         
         if is_prod is 0:
-            logging.info("is_prod is None inside If 4: %s", is_prod)           
+            logging.info("is_prod is 0: %s", is_prod)           
             access_code = getDoc.get("access_code")
             working_key = getDoc.get("working_key")
            
@@ -284,7 +278,7 @@ def getTransactionDetails(doc):
 
         elif is_prod is 1:
             logging.info("is_prod is : %s", is_prod)
-            myDoc = frappe.get_doc("HDFCSetting")
+            myDoc = frappe.get_doc("HDFCSettingProd")
             logging.info("is_prod is None inside If 4: %s", is_prod)           
             access_code = myDoc.get("access_code")
             working_key = myDoc.get("working_key")
