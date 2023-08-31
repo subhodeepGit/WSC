@@ -107,7 +107,7 @@
   {
    "fieldname": "number_of_reporting_staff_section",
    "fieldtype": "Section Break",
-   "label": "Number of Reporting Staff"
+   "label": "Staff Details"
   },
   {
    "fieldname": "total_number_of_staff",
@@ -120,7 +120,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-31 12:46:59.703764",
+ "modified": "2023-08-31 13:09:57.215169",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Third Party Attendance Contract",
