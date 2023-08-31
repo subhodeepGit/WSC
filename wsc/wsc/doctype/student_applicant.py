@@ -54,11 +54,12 @@ class StudentApplicant(Document):
     def validate(doc):
         # validate_percentage(doc)
         check_age(doc)
-
+        validate_duplicate_record(doc)
         education_details_validation(doc)
         document_list_checkbox(doc)
         # mobile_number_validation(doc)
         validate_pin_code(doc)
+        validate_applicant_name(doc)
         # update_education_parameters(doc)
         duplicate_row_validation(doc,"program_priority",["programs"])
         # validate_seat_reservation_type(doc)
@@ -89,6 +90,7 @@ class StudentApplicant(Document):
             else:
                 docmnt.is_available = 0
 def on_change(doc,method):
+    delete_user_permission(doc)
     if doc.docstatus==1:
         if doc.application_status=="Approved":
             student_applicant_approved(doc)
@@ -99,6 +101,18 @@ def on_change(doc,method):
         else:
             pass
         # update_enrollment_admission_status(doc)
+
+def validate_duplicate_record(self):
+		duplicateForm=frappe.get_all("Student Applicant", filters={
+			"academic_term":self.academic_term,
+			"program_grade": self.program_grade,
+			"department": self.department,
+            "student_email_id":self.student_email_id,
+            "name":("!=",self.name)
+		})
+		if duplicateForm:
+			frappe.throw(("Student Applicant is already Filled the form for this Academic Term."))
+
 def document_list_checkbox(doc):
     for d in doc.get("document_list"):
         if d.attach!=None:
@@ -108,7 +122,33 @@ def document_list_checkbox(doc):
             d.attached=0
 
             # frappe.db.set_value("Document List",self.name,'attached',1)
-            
+def validate_applicant_name(doc):
+    if doc.first_name:  
+        if not contains_only_characters(doc.first_name):
+            frappe.throw("First Name should be only characters")
+    if doc.middle_name:
+        if not contains_only_characters(doc.middle_name):
+            frappe.throw("Middle Name should be only characters")
+    if doc.last_name:
+        if not contains_only_characters(doc.last_name):
+            frappe.throw("Last Name should be only characters")
+def contains_only_characters(first_name):
+    return all(char.isalpha() or char.isspace() for char in first_name)
+def delete_user_permission(doc):
+    if doc.application_status=="Rejected":
+        delete_permissions(doc)
+        delete_route_history(doc)
+        for user_del in frappe.get_all("User",{"name":doc.student_email_id}):
+            frappe.delete_doc("User",user_del.name)
+def delete_route_history(doc):
+    for route in frappe.get_all("Route History",{"user":doc.student_email_id}):
+        frappe.delete_doc("Route History",route.name)
+def delete_permissions(doc):
+    for usr in frappe.get_all("User Permission",{"allow":doc.doctype,"for_value":doc.name}):
+        frappe.delete_doc("User Permission",usr.name)
+    for usr in frappe.get_all("User Permission",{"reference_doctype":"Student Applicant","reference_docname":doc.name}):
+        frappe.delete_doc("User Permission",usr.name)
+
 def check_age(doc):
     
     applicantation_date = frappe.get_all("Student Admission" ,
@@ -210,8 +250,8 @@ def validate_pin_code(doc):
 #                     frappe.throw("Please correct option for Percentage/CGPA for row no .<b>{0}</b> in Education Qualifications Details.".format(eqd.idx))
 
 def on_update(doc,method):
+    delete_user_permission(doc)
     if doc.docstatus==1:
-        print("\n\n\nOn update")
         count = 0
         # print(type(doc.counselling_based_program_priority))
         ## if Approve is selected multiple times
@@ -398,9 +438,6 @@ def on_submit(self):
 def enroll_student(source_name):
     from wsc.wsc.doctype.student_exchange_applicant.student_exchange_applicant import get_academic_calender_table
     from wsc.wsc.doctype.semesters.semesters import get_courses
-    
-    print("\n\n\n\n")
-    print(source_name)
     st_applicant=frappe.get_doc("Student Applicant", source_name)
     
     # counselling_based_program_priority = frappe.get_all("Counseling Based Program Priority" , {'parent' : st_applicant.name , 'approve' : 1} , ['programs'])

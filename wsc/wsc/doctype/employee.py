@@ -73,14 +73,15 @@ class Employee(NestedSet):
         self.validate_notice_days()
         self.validate_mobile_number() 
     def validate_notice_days(self):
-        if self.notice_number_of_days<0 :
-            frappe.throw("Notice Days should not be -ve")
+        if self.notice_number_of_days:
+            if self.notice_number_of_days<0 :
+                frappe.throw("Notice Days should not be -ve")
     def validate_mobile_number(self):
         if self.cell_number:
             pattern = r"^\d{10}$"
 
-        if not re.match(pattern, self.cell_number):
-            frappe.throw("Invalid mobile number format")
+            if not re.match(pattern, self.cell_number):
+                frappe.throw("Invalid mobile number format")
     
 
     def on_change(self):

@@ -16,6 +16,7 @@
   "exam_start_date",
   "exam_end_date",
   "department",
+  "total_marks",
   "section_break_8",
   "get_applicants",
   "applicant_list",
@@ -100,12 +101,18 @@
    "label": "Center Selection",
    "options": "Entrance Exam Centre Selection",
    "reqd": 1
+  },
+  {
+   "fieldname": "total_marks",
+   "fieldtype": "Float",
+   "label": "Total Marks",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-05 11:33:09.632498",
+ "modified": "2023-08-24 10:49:11.767634",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Declaration",

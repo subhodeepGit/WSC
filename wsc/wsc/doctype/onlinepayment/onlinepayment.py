@@ -26,9 +26,7 @@ class OnlinePayment(Document):
     # 		frappe.throw("Outstanding Amount can't be Rs.0 ")  
 
     def on_cancel(doc):
-        frappe.throw("Once form is submitted it can't be cancelled")
-
-    
+        frappe.throw("Once form is submitted it can't be cancelled")    
     
     def on_submit(doc):
         getTransactionDetails(doc)
@@ -229,8 +227,8 @@ def getTransactionDetails(doc):
     try:                                
         getDoc = frappe.get_doc("HDFCSetting")
         logging.info("getDoc 2: %s", getDoc)
-        is_prod = frappe.get_value("HDFCSetting", "is_prod")
-        logging.info("is_prod value 3: %s", is_prod)
+        is_prod = frappe.get_value("HDFCSetting", None, "is_prod")
+        logging.info("is_prod 3: %s", is_prod)
         
         if is_prod is 0:
             logging.info("is_prod is None inside If 4: %s", is_prod)           
@@ -285,7 +283,8 @@ def getTransactionDetails(doc):
 
         elif is_prod is 1:
             logging.info("is_prod is 1: %s", is_prod)
-            myDoc = frappe.get_doc("HDFCSetting")                
+            myDoc = frappe.get_doc("HDFCSetting")
+            logging.info("is_prod is None inside If 4: %s", is_prod)           
             access_code = myDoc.get("access_code")
             working_key = myDoc.get("working_key")
            
@@ -333,7 +332,6 @@ def getTransactionDetails(doc):
             order_date_time = data_dict["Order_Status_Result"]["order_status_date_time"]
             final_status_info = f"Order ID: {order_no}\nTransaction ID: {reference_no}\nGross Amount : {order_gross_amt}\nOrder Amount : {order_amt}\nOrder Status: {order_status}\nTime of Transaction: {order_date_time}\nBank Ref No.: {order_bank_ref_no}"
             logging.info(" final_status_info : %s",data_dict)
-            logging.info("SUCCESSDULLY COMPLETED")
             doc.status = final_status_info
             
         else:
@@ -368,7 +366,6 @@ def decrypt(cipherText, workingKey):
     dec_cipher = AES.new(decDigest.digest(), AES.MODE_CBC, iv)
     decryptedText = dec_cipher.decrypt(encryptedText)
     return str(decryptedText)
-
 
 
 

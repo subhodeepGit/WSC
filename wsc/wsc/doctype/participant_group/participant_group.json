@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "PTG.-.#####",
  "creation": "2023-07-05 12:09:28.353134",
  "default_view": "List",
  "doctype": "DocType",
@@ -9,20 +10,24 @@
  "field_order": [
   "disabled",
   "section_break_2",
+  "participant_enrollment_id",
   "academic_year",
-  "group_based_on",
-  "participant_category",
   "program",
-  "batch",
-  "get_participants",
-  "column_break_6",
-  "academic_term",
+  "column_break_fpmn1",
   "participant_group",
-  "max_strength",
+  "group_based_on",
+  "academic_term",
+  "semester",
+  "section_break_lnrxr",
   "course",
+  "batch",
+  "column_break_b1nvb",
+  "module_name",
   "section_break_13",
+  "get_participants",
   "participants",
-  "instructor"
+  "instructor",
+  "classes"
  ],
  "fields": [
   {
@@ -35,28 +40,24 @@
    "fieldname": "group_based_on",
    "fieldtype": "Select",
    "label": "Group Based On",
-   "options": "Batch\nCourse\nActivity\nMentor\nCommunication"
+   "options": "Course"
   },
   {
    "fieldname": "participant_group",
    "fieldtype": "Data",
-   "label": "Participant Group"
-  },
-  {
-   "fieldname": "max_strength",
-   "fieldtype": "Int",
-   "label": "Max Strength"
+   "label": "Participant Group Name"
   },
   {
    "fieldname": "academic_term",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Academic Term",
    "options": "Academic Term"
   },
   {
    "fieldname": "program",
    "fieldtype": "Link",
-   "label": "Select Program",
+   "label": "Programs",
    "options": "Programs"
   },
   {
@@ -66,15 +67,9 @@
    "label": "Batch"
   },
   {
-   "fieldname": "participant_category",
-   "fieldtype": "Link",
-   "label": "Participant Category",
-   "options": "Student Category"
-  },
-  {
    "fieldname": "course",
    "fieldtype": "Link",
-   "label": "Course",
+   "label": "Module ID",
    "options": "Course"
   },
   {
@@ -101,24 +96,56 @@
    "options": "Instructor Table"
   },
   {
-   "fieldname": "column_break_6",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "section_break_13",
    "fieldtype": "Section Break"
   },
   {
    "fieldname": "section_break_2",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "classes",
+   "fieldtype": "Table",
+   "label": "Classes",
+   "options": "ToT Class Table"
+  },
+  {
+   "fieldname": "column_break_fpmn1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_lnrxr",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_b1nvb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "module_name",
+   "fieldtype": "Data",
+   "label": "Module Name"
+  },
+  {
+   "fieldname": "participant_enrollment_id",
+   "fieldtype": "Link",
+   "label": "Participant Enrollment ID",
+   "options": "ToT Participant Enrollment"
+  },
+  {
+   "fieldname": "semester",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Semester"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-17 13:11:05.015143",
+ "modified": "2023-08-30 16:02:01.256855",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Group",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

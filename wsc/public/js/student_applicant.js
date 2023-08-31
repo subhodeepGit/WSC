@@ -139,9 +139,13 @@ frappe.ui.form.on('Student Applicant', {
         frm.trigger("hide_n_show_child_table_fields");
     },
     refresh(frm){
-        console.log(frm.doc);
+        if(frappe.user.has_role(["Applicant"]) && !frappe.user.has_role(["System Manager"])){
+			frm.set_value("student_email_id", frappe.session.user)
+			frm.set_df_property('student_email_id', 'read_only', 1);
+		}
+
         frm.set_df_property('student_rank', 'cannot_add_rows', true)
-		frm.set_df_property('student_rank', 'cannot_delete_rows', true) 
+		// frm.set_df_property('student_rank', 'cannot_delete_rows', true) 
         frm.set_df_property('education_qualifications_details', 'cannot_add_rows', true);
         frm.set_df_property('education_qualifications_details', 'cannot_delete_rows', true);
         frm.set_df_property('document_list', 'cannot_add_rows', true);
@@ -167,6 +171,11 @@ frappe.ui.form.on('Student Applicant', {
         frm.remove_custom_button("Enroll")
         
         if (!cur_frm.doc.__islocal && frappe.user.has_role(["Student"]) && !frappe.user.has_role(["System Manager"])){
+            frm.remove_custom_button("Reject","Actions");
+            frm.remove_custom_button("Approve","Actions");
+            
+        }
+        if (!cur_frm.doc.__islocal && frappe.user.has_role(["Applicant"]) && !frappe.user.has_role(["System Manager"])){
             frm.remove_custom_button("Reject","Actions");
             frm.remove_custom_button("Approve","Actions");
             
@@ -306,11 +315,14 @@ frappe.ui.form.on('Student Applicant', {
     // },
     get_education_and_document_list(frm){
         frm.set_value("education_qualifications_details",[]);
+        
         if (frm.doc.counselling_structure && frm.doc.student_category){
-            frappe.model.clear_table(frm.doc, 'counselling_based_program_priority');
+            
             frappe.model.with_doc("Counselling Structure", frm.doc.counselling_structure, function() {
                 var tabletransfer= frappe.model.get_doc("Counselling Structure", frm.doc.counselling_structure)
+                // frappe.model.clear_table(frm.doc, 'education_qualifications_details');  //Sukalyan Code
                 $.each(tabletransfer.eligibility_parameter_list, function(index, row){
+                    
                     if(frm.doc.student_category == row.student_category){
                         var d = frm.add_child("education_qualifications_details");
                         d.qualification = row.parameter;
@@ -479,7 +491,11 @@ frappe.ui.form.on("Counseling Based Program Priority","programs", function(frm, 
 
 frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
     var d = locals[cdt][cdn];
-   
+    
+    if(d.programs.length === 0){
+        console.log(d);
+    }
+
     frappe.model.set_value(cdt, cdn, "student_admission",'');
     frappe.model.set_value(cdt, cdn, "semester", '');
     frm.set_value("counselling_structure",'')
@@ -506,7 +522,7 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
             },
             callback: function(r) { 
                 if (r.message){
-                    console.log(r.message);
+                    
                     if (r.message["no_record_found"]){
                         frappe.msgprint("Admission Not Declared for this program")
                         frappe.model.set_value(cdt, cdn, "programs",'');
@@ -525,8 +541,9 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
                     if (r.message['counselling_required']){
                         frm.set_value("counselling_structure",r.message['counselling_structure'])
                     }
-                    if (!frm.doc.counselling_structure && frm.doc.student_category && (frm.doc.program_priority).length==1){
-                        // frm.set_value("education_qualifications_details",[]);
+                    // !frm.doc.counselling_structure && frm.doc.student_category && 
+                    if ((frm.doc.program_priority).length==1){
+                        frm.set_value("education_qualifications_details",[]);
                         frappe.call({
                             method: "wsc.wsc.doctype.student_applicant.get_education_qualifications_details_by_admissions",
                             args:{
@@ -536,6 +553,8 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
                             },
                             callback: function(resp) { 
                                 if (resp.message){
+                                    frappe.model.clear_table(frm.doc, 'education_qualifications_details');  //Sukalyan Code
+                                    // console.log("edu qualify");
                                     $.each(resp.message, function(index, row){
                                             var edu_row = frm.add_child("education_qualifications_details");
                                             edu_row.qualification = row.parameter;
@@ -544,9 +563,14 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
                                     });
                                     frm.refresh_field("education_qualifications_details");
                                 }
+                                else{
+                                    frappe.model.clear_table(frm.doc, 'education_qualifications_details');  //Sukalyan Code
+                                    frm.refresh_field("education_qualifications_details");
+                                }
                             } 
                         });
                     }
+                    
                 }
             } 
         }); 

@@ -1,30 +1,33 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "ASD.-.#####",
  "creation": "2023-07-05 16:07:20.839630",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "assignment_name",
+  "attendance_applicable",
+  "section_break_p7et4",
+  "participant_group",
   "assignment_start_date",
   "academic_year",
   "course",
-  "select_sub_module",
-  "total_marks",
+  "select_assessment_criteria",
   "weightage",
   "column_break_6",
-  "participant_group",
+  "assignment_name",
   "assignment_end_date",
   "academic_term",
   "module",
-  "select_assessment_criteria",
+  "total_marks",
   "pass_marks",
   "section_break_11",
-  "trainer_id",
+  "evaluator_id",
+  "attendance_percentage",
   "column_break_13",
-  "trainer_name",
+  "evaluator_name",
   "section_break_15",
   "get_participant",
   "participant_list",
@@ -74,16 +77,6 @@
    "options": "Job sheet"
   },
   {
-   "fieldname": "trainer_id",
-   "fieldtype": "Select",
-   "label": "Trainer ID"
-  },
-  {
-   "fieldname": "trainer_name",
-   "fieldtype": "Data",
-   "label": "Trainer Name"
-  },
-  {
    "fieldname": "get_participant",
    "fieldtype": "Button",
    "label": "Get Participants"
@@ -93,11 +86,6 @@
    "fieldtype": "Table",
    "label": "Participant List",
    "options": "Participant List Table"
-  },
-  {
-   "fieldname": "select_sub_module",
-   "fieldtype": "Select",
-   "label": "Select Sub Module"
   },
   {
    "fieldname": "column_break_6",
@@ -139,14 +127,41 @@
    "fieldname": "select_assessment_criteria",
    "fieldtype": "Select",
    "label": "Select Assessment Criteria"
+  },
+  {
+   "default": "0",
+   "fieldname": "attendance_applicable",
+   "fieldtype": "Check",
+   "label": "Attendance Applicable"
+  },
+  {
+   "fieldname": "section_break_p7et4",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "attendance_applicable",
+   "fieldname": "attendance_percentage",
+   "fieldtype": "Percent",
+   "label": "Attendance Percentage"
+  },
+  {
+   "fieldname": "evaluator_id",
+   "fieldtype": "Select",
+   "label": "Evaluator ID"
+  },
+  {
+   "fieldname": "evaluator_name",
+   "fieldtype": "Data",
+   "label": "Evaluator Name"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-25 12:08:19.625743",
+ "modified": "2023-08-25 18:09:54.395489",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Declaration",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

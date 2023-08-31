@@ -8,7 +8,8 @@ from frappe.model.document import Document
 
 class EducationsConfigurations(Document):
 	def validate(self):
-		self.naming_validation()
+		pass
+		# self.naming_validation()
 
 	def naming_validation(self):
 		if self.student_registration_naming and "#" not in self.student_registration_naming:

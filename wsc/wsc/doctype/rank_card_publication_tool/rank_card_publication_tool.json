@@ -1,38 +1,42 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "EDU-RKT-.YYYY.-.####",
  "creation": "2023-05-09 18:23:28.884435",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "rank_card_masters",
+  "entrance_exam_declaration",
   "academic_year",
   "academic_term",
   "departments",
   "total_marks",
+  "rank_card_masters",
   "posting_date",
   "get_applicants",
-  "ranked_students_list"
+  "ranked_students_list",
+  "status",
+  "amended_from"
  ],
  "fields": [
   {
-   "fetch_from": "rank_card_masters.academic_year",
+   "fetch_from": "entrance_exam_declaration.academic_year",
    "fieldname": "academic_year",
    "fieldtype": "Link",
    "label": "Academic Year",
    "options": "Academic Year"
   },
   {
-   "fetch_from": "rank_card_masters.department",
+   "fetch_from": "entrance_exam_declaration.department",
    "fieldname": "departments",
    "fieldtype": "Link",
    "label": "Departments",
    "options": "Department"
   },
   {
-   "fetch_from": "rank_card_masters.total_marks",
+   "fetch_from": "entrance_exam_declaration.total_marks",
    "fieldname": "total_marks",
    "fieldtype": "Float",
    "label": "Total Marks"
@@ -49,7 +53,7 @@
    "options": "Ranked Students List"
   },
   {
-   "fetch_from": "rank_card_masters.academic_term",
+   "fetch_from": "entrance_exam_declaration.academic_term",
    "fieldname": "academic_term",
    "fieldtype": "Link",
    "label": "Academic Term",
@@ -65,14 +69,39 @@
    "fieldname": "get_applicants",
    "fieldtype": "Button",
    "label": "Get Applicants"
+  },
+  {
+   "fieldname": "entrance_exam_declaration",
+   "fieldtype": "Link",
+   "label": "Entrance Exam Declaration",
+   "options": "Entrance Exam Declaration"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Rank Card Publication Tool",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "Incomplete",
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-07-05 11:57:05.866973",
+ "modified": "2023-08-29 15:20:54.312032",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Rank Card Publication Tool",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

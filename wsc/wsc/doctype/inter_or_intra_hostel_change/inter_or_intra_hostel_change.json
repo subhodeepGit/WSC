@@ -27,7 +27,8 @@
   "second_allotment_type",
   "second_student_application",
   "first_rid",
-  "second_rid"
+  "second_rid",
+  "amended_from"
  ],
  "fields": [
   {
@@ -166,11 +167,21 @@
    "fieldtype": "Data",
    "hidden": 1,
    "label": "2nd stud room id"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Inter or Intra Hostel Change",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2021-10-27 17:22:55.468891",
+ "modified": "2023-08-21 18:10:46.788629",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Inter or Intra Hostel Change",
@@ -192,5 +203,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

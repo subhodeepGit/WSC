@@ -5,7 +5,6 @@ from ccavutil import encrypt,decrypt
 from ccavResponseHandler import res
 from string import Template
 from waitress import serve
-import logging
 
 app = Flask('ccavRequestHandler') 
 

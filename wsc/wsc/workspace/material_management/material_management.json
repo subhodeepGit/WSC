@@ -2,6 +2,7 @@
  "charts": [],
  "content": "[{\"id\":\"I94ohjhFyv\",\"type\":\"paragraph\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Your Shortcuts</span><br>\",\"col\":12}},{\"id\":\"uuWOTpBaAB\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"z_IGlpcpmq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Material Request\",\"col\":3}},{\"id\":\"7tiNz-k7L1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Order\",\"col\":3}},{\"id\":\"Z2DRTnIF9P\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Receipt\",\"col\":3}},{\"id\":\"UrMkTeD9HM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Entry\",\"col\":3}},{\"id\":\"DKcH_B5bpd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Summary\",\"col\":3}},{\"id\":\"OKP6cWlbo2\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"_XaiFfIDzm\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Masters &amp; Reports</span>\",\"col\":12}},{\"id\":\"s_BPdGl1xr\",\"type\":\"card\",\"data\":{\"card_name\":\"Items & Pricing\",\"col\":3}},{\"id\":\"ZBBW9_DXB2\",\"type\":\"card\",\"data\":{\"card_name\":\"Supplier\",\"col\":3}},{\"id\":\"RU0yDcoVOU\",\"type\":\"card\",\"data\":{\"card_name\":\"Quality Inspection\",\"col\":3}},{\"id\":\"y7OzlykFRl\",\"type\":\"card\",\"data\":{\"card_name\":\"Buying\",\"col\":3}},{\"id\":\"8SX6aekWn_\",\"type\":\"card\",\"data\":{\"card_name\":\"Stock Transactions\",\"col\":3}},{\"id\":\"E7hnKY9j4S\",\"type\":\"card\",\"data\":{\"card_name\":\"Assets\",\"col\":3}},{\"id\":\"tAezQMBgBA\",\"type\":\"card\",\"data\":{\"card_name\":\"Maintenance\",\"col\":3}},{\"id\":\"R9mu4m0WfX\",\"type\":\"card\",\"data\":{\"card_name\":\"Serial No and Batch\",\"col\":3}},{\"id\":\"_A6HTNxBkl\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":3}},{\"id\":\"BKOwWdUENB\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":3}},{\"id\":\"HB106MQIz2\",\"type\":\"card\",\"data\":{\"card_name\":\"Contract\",\"col\":3}},{\"id\":\"K-AlOfpaMT\",\"type\":\"card\",\"data\":{\"card_name\":\"Report\",\"col\":3}}]",
  "creation": "2023-03-02 12:27:36.612927",
+ "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
  "for_user": "",
@@ -516,8 +517,46 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Report",
+   "link_count": 3,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Price Impanelement Report",
+   "link_count": 0,
+   "link_to": "Price Impanelement Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Asset Summary Report",
+   "link_count": 0,
+   "link_to": "Asset Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "L1 Vendor Selection Report",
+   "link_count": 0,
+   "link_to": "L1 Vendor Selection",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Settings",
-   "link_count": 7,
+   "link_count": 8,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -594,6 +633,16 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Procurement & Inventory Management Department Email",
+   "link_count": 0,
+   "link_to": "Department Email ID",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Contract",
    "link_count": 4,
    "onboard": 0,
@@ -632,56 +681,19 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Payment Term",
+   "label": "Payment Term Template",
    "link_count": 0,
    "link_to": "Payment Terms Template",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Report",
-   "link_count": 3,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Price Impanelement Report",
-   "link_count": 0,
-   "link_to": "Price Impanelement Report",
-   "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Asset Summary Report",
-   "link_count": 0,
-   "link_to": "Asset Report",
-   "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "L1 Vendor Selection Report",
-   "link_count": 0,
-   "link_to": "L1 Vendor Selection",
-   "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
   }
  ],
- "modified": "2023-07-24 17:47:11.164478",
+ "modified": "2023-08-28 17:28:52.200057",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Material Management",
+ "number_cards": [],
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,
@@ -698,6 +710,36 @@
   },
   {
    "role": "Purchase Manager-MM"
+  },
+  {
+   "role": "Instructor"
+  },
+  {
+   "role": "Course Manager"
+  },
+  {
+   "role": "Dy. Director"
+  },
+  {
+   "role": "Director"
+  },
+  {
+   "role": "Stock Manager- MM"
+  },
+  {
+   "role": "Board of Directors"
+  },
+  {
+   "role": "Dy. Principal"
+  },
+  {
+   "role": "Principal"
+  },
+  {
+   "role": "CEO"
+  },
+  {
+   "role": "CFO"
   }
  ],
  "sequence_id": 12.0,

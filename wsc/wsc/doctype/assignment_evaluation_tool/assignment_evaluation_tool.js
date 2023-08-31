@@ -16,12 +16,11 @@ frappe.ui.form.on('Assignment Evaluation Tool', {
 				if(result.message){
 					frm.set_value("course", result.message[2])
 					frm.set_value("module", result.message[3])
-					frm.set_df_property('select_sub_module', 'options', result.message[5])
 					frm.set_value("academic_year", result.message[0])
 					frm.set_value("academic_term", result.message[1])
 					frm.set_df_property('instructor_id', 'options', result.message[4])
-					frm.set_df_property('participant_id', 'options', result.message[6])
-					frm.set_value("total_participants", result.message[7])
+					frm.set_df_property('participant_id', 'options', result.message[5])
+					frm.set_value("total_participants", result.message[6])
 				}
 			}
 		})
@@ -38,15 +37,14 @@ frappe.ui.form.on('Assignment Evaluation Tool', {
 			}
 		})
 	},
-	select_sub_module: function(frm){
+	instructor_name: function(frm){
 		frappe.call({
 			method: 'wsc.wsc.doctype.assignment_evaluation_tool.assignment_evaluation_tool.get_assignment_list',
 			args:{
 				instructor_id: frm.doc.instructor_id,
 				participant_group_id : frm.doc.participant_group,
 				programs : frm.doc.course,
-				course: frm.doc.module,
-				topic : frm.doc.select_sub_module
+				course: frm.doc.module
 			},
 			callback: function(result){
 				frm.set_df_property('select_job_sheetassessment', 'options', result.message)  // select assignment
@@ -58,19 +56,30 @@ frappe.ui.form.on('Assignment Evaluation Tool', {
 			
 			method: 'wsc.wsc.doctype.assignment_evaluation_tool.assignment_evaluation_tool.get_participants',
 			args: {
-				participant_group_id: frm.doc.participant_group
+				assignment_name: frm.doc.select_job_sheetassessment,
+				participant_group_id : frm.doc.participant_group
 			},
 			callback: function(result){
 				if(result.message){
+					// Qualified participants
 					frappe.model.clear_table(frm.doc, 'participant_details_data')
-					result.message.forEach(element => {
+					result.message[0].forEach(element => {
 						var childTable = frm.add_child('participant_details_data')
-						childTable.participant_id = element.participant
+						childTable.participant_id = element.participant_id
 						childTable.participant_name = element.participant_name
+					})
+					// Not qualified participants
+					frappe.model.clear_table(frm.doc, 'disqualified_participants')
+					result.message[1].forEach(element => {
+						var childTable = frm.add_child('disqualified_participants')
+						childTable.participant_id = element.participant_id
+						childTable.participant_name = element.participant_name
+						childTable.earned_marks = '0'
 					})
 				}
 				frm.refresh()
 				frm.refresh_field('participant_details_data')
+				frm.refresh_field('disqualified_participants')
 			}
 		})
 	},

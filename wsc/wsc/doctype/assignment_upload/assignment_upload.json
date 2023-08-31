@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "ASU.-.#####",
  "creation": "2023-07-05 15:01:59.476128",
  "default_view": "List",
  "doctype": "DocType",
@@ -9,19 +10,19 @@
  "field_order": [
   "participant_group",
   "course",
+  "column_break_oapsg",
+  "programs",
+  "section_break_zaymx",
   "academic_year",
   "participant_id",
-  "instructor_id",
-  "assignment_number",
-  "total_marks",
+  "assignment_id",
+  "assessment_component",
   "weightage",
   "column_break_6",
-  "programs",
-  "topic",
   "academic_term",
   "participant_name",
-  "instructor_name",
-  "assessment_component",
+  "assignment_number",
+  "total_marks",
   "passing_marks",
   "section_break_12",
   "assignment_attach_button",
@@ -29,13 +30,8 @@
  ],
  "fields": [
   {
-   "fieldname": "instructor_name",
-   "fieldtype": "Data",
-   "label": "Instructor Name"
-  },
-  {
    "fieldname": "assignment_number",
-   "fieldtype": "Select",
+   "fieldtype": "Data",
    "label": "Assignment Name"
   },
   {
@@ -69,11 +65,6 @@
    "label": "Select Module"
   },
   {
-   "fieldname": "topic",
-   "fieldtype": "Select",
-   "label": "Select Sub Module"
-  },
-  {
    "fieldname": "assignment_attach_button",
    "fieldtype": "Attach",
    "label": "Attach Assignment"
@@ -98,11 +89,6 @@
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "instructor_id",
-   "fieldtype": "Select",
-   "label": "Instructor ID"
-  },
-  {
    "fieldname": "total_marks",
    "fieldtype": "Data",
    "label": "Total Marks"
@@ -121,14 +107,28 @@
    "fieldname": "passing_marks",
    "fieldtype": "Data",
    "label": "Passing Marks"
+  },
+  {
+   "fieldname": "column_break_oapsg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_zaymx",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "assignment_id",
+   "fieldtype": "Select",
+   "label": "Assignment ID"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-25 11:44:28.940063",
+ "modified": "2023-08-28 18:12:03.628397",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Upload",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

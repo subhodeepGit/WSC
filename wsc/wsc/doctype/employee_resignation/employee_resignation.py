@@ -5,7 +5,7 @@ import frappe
 from frappe.model.document import Document
 from wsc.wsc.notification.custom_notification import sendHR,sendEmployee,sendDh,sendDirector,sendRa
 from wsc.wsc.doctype.user_permission import add_user_permission
-
+from datetime import datetime
 class EmployeeResignation(Document):
 
 	def set_user_permission(self):
@@ -118,7 +118,18 @@ class EmployeeResignation(Document):
 		if self.workflow_state == "Approved" or self.workflow_state=="Rejected":
 			self.send_employee()
 			self.send_mail_hr
+		if self.resignation_applied_date :
+			print("\n\n\n\n")
+			print(type(self.resignation_applied_date))
+			if isinstance(self.resignation_applied_date,str):
 
+				date_object = datetime.strptime(self.resignation_applied_date, "%Y-%m-%d").date()
+				
+				if date_object>datetime.now().date():
+					
+					frappe.throw("Resignation Applied date should not be a future date.") 
+			else :
+				pass
 
 ################### Notification coding Ended ##################################
 	

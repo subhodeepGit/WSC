@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "ASE.-.#####",
  "creation": "2023-07-05 16:45:25.570425",
  "default_view": "List",
  "doctype": "DocType",
@@ -9,18 +10,19 @@
  "field_order": [
   "participant_group",
   "select_module",
+  "column_break_vjh6g",
+  "select_course",
+  "section_break_xwr9u",
   "academic_year",
-  "participant_id",
   "instructor_id",
   "select_assignment",
-  "assessment_criteria",
+  "participant_id",
+  "assessment_component",
   "column_break_7",
-  "select_course",
-  "select_sub_module",
   "academic_term",
-  "participant_name",
   "instructor_name",
   "assignment_name",
+  "participant_name",
   "section_break_13",
   "total_marks",
   "weightage",
@@ -42,7 +44,7 @@
   {
    "fieldname": "instructor_id",
    "fieldtype": "Select",
-   "label": "Instructor ID"
+   "label": "Evaluator ID"
   },
   {
    "fieldname": "participant_group",
@@ -53,7 +55,7 @@
   {
    "fieldname": "instructor_name",
    "fieldtype": "Data",
-   "label": "Instructor Name"
+   "label": "Evaluator Name"
   },
   {
    "fieldname": "column_break_7",
@@ -68,11 +70,6 @@
    "fieldname": "select_course",
    "fieldtype": "Data",
    "label": "Select Course"
-  },
-  {
-   "fieldname": "select_sub_module",
-   "fieldtype": "Select",
-   "label": "Select Sub Module"
   },
   {
    "fieldname": "select_module",
@@ -108,11 +105,6 @@
    "label": "Total Marks"
   },
   {
-   "fieldname": "assessment_criteria",
-   "fieldtype": "Data",
-   "label": "Assessment Criteria"
-  },
-  {
    "fieldname": "weightage",
    "fieldtype": "Data",
    "label": "Weightage"
@@ -126,14 +118,29 @@
    "fieldname": "assignment_name",
    "fieldtype": "Data",
    "label": "Assignment Name"
+  },
+  {
+   "fieldname": "column_break_vjh6g",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_xwr9u",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "assessment_component",
+   "fieldtype": "Link",
+   "label": "Assessment Component",
+   "options": "Assessment Criteria"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-25 17:28:50.644645",
+ "modified": "2023-08-28 12:16:38.970306",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Evaluation",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

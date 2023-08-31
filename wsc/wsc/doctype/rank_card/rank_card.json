@@ -1,24 +1,33 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{applicant_id}-{applicant_name}-{department}",
+ "autoname": "EDU-RANK-.YYYY.-.####",
  "creation": "2023-05-09 18:17:52.450996",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "exam",
+  "section_break_1xr69",
   "applicant_id",
+  "column_break_06u78",
   "applicant_name",
+  "section_break_juxwk",
   "gender",
-  "student_category",
-  "academic_year",
-  "academic_term",
-  "department",
-  "posting_date",
   "physically_disabled",
+  "column_break_yhanb",
+  "student_category",
+  "section_break_gpjx3",
+  "academic_year",
+  "department",
+  "column_break_mqzxi",
+  "academic_term",
+  "section_break_dqqqr",
   "total_marks",
+  "column_break_ktrc0",
   "earned_marks",
+  "section_break_gyx4b",
   "student_ranks_list",
   "amended_from"
  ],
@@ -51,11 +60,6 @@
    "fieldtype": "Link",
    "label": "Academic Year",
    "options": "Academic Year"
-  },
-  {
-   "fieldname": "posting_date",
-   "fieldtype": "Data",
-   "label": "Posting Date"
   },
   {
    "default": "0",
@@ -99,16 +103,58 @@
    "options": "Rank Card",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_06u78",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_juxwk",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_yhanb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_gpjx3",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_mqzxi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_dqqqr",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_ktrc0",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_gyx4b",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "exam",
+   "fieldtype": "Link",
+   "label": "Exam ",
+   "options": "Entrance Exam Declaration"
+  },
+  {
+   "fieldname": "section_break_1xr69",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-24 15:37:06.562744",
+ "modified": "2023-08-29 15:55:22.804457",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Rank Card",
- "naming_rule": "Expression",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

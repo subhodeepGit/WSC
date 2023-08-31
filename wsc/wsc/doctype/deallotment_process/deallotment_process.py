@@ -48,7 +48,8 @@ def deallotment(self):
 			al_st_date=Al_data[0][0]
 			al_end_date=Al_data[0][1]
 			room_id=Al_data[0][2]
-			End_date =  datetime.strptime(End_date, '%Y-%m-%d').date()
+			if isinstance(End_date, str):
+				End_date =  datetime.strptime(End_date, '%Y-%m-%d').date()
 			if al_st_date<=End_date and al_end_date>=End_date:
 				frappe.db.sql("""UPDATE `tabRoom Allotment` SET `end_date`="%s",`allotment_type`="De-Allotted" WHERE `name`="%s" """%(End_date,Al_no))
 				frappe.db.sql("""UPDATE `tabRoom Masters` SET `vacancy`=`vacancy`+1 WHERE `name`="%s" """%(room_id))

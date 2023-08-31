@@ -62,7 +62,10 @@ doctype_js = {
                 "Leave Application":"public/js/leave_application.js",
                 "Employee Separation":"public/js/employee_separation.js",
                 "Bank Guarantee":"public/js/bank_guarantee.js",
-                "Material Request":"public/js/material_request.js"
+                "Material Request":"public/js/material_request.js",
+                "Attendance":"public/js/attendance.js",
+                "Tax Category":"public/js/tax_category.js",
+                "Employee Grievance":"public/js/employee_grievance.js",
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -76,8 +79,12 @@ doctype_list_js = {
     "Leave Application":"public/js/leave_application_list.js",
     "Employee":"public/js/employee_list.js",
     "Student":"public/js/student_list.js",
-    "Student Group":"public/js/student_group_list.js"
+    "Student Group":"public/js/student_group_list.js",
+    "Employee Grievance":"public/js/employee_grievance_list.js",
 }
+
+doctype_tree_js = {"doctype" : "public/js/tax_category_tree.js"}
+
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -91,7 +98,8 @@ after_migrate = [
         'wsc.patches.migrate_patch.set_custom_role_permission',
         'wsc.wsc.delete_doc_if_linked.execute',
         'wsc.patches.migrate_patch.set_custom_role_permission_remove_duplicate',
-        'wsc.security.execute'
+        'wsc.security.execute',
+        'wsc.patches.create_all_tax_category.execute'
 ]
 
 # application home page (will override Website Settings)
@@ -342,7 +350,9 @@ doc_events = {
         "validate":"wsc.wsc.doctype.purchase_order.validate"
     },
     "Material Request": {
-        "validate":"wsc.wsc.doctype.material_request.validate"
+        "validate":"wsc.wsc.doctype.material_request.validate",
+        "on_submit":"wsc.wsc.doctype.material_request.workflow_notification",
+        "on_update_after_submit":"wsc.wsc.doctype.material_request.workflow_notification"
     },
     "Shift Type": {
         "validate":"wsc.wsc.validations.shift_type.validate"
@@ -353,6 +363,31 @@ doc_events = {
     "Leave Type": {
         "validate":"wsc.wsc.validations.leave_type.validate"
     },
+    "Leave Policy": {
+        "validate":"wsc.wsc.doctype.leave_policy.validate"
+    },
+    "Leave Policy Assignment": {
+        "validate":"wsc.wsc.validations.leave_policy_assignment.validate"
+    },
+    "Leave Allocation": {
+        "validate":"wsc.wsc.doctype.leave_allocation.validate"
+    },
+    "Job Applicant": {
+        "validate":"wsc.wsc.doctype.job_applicant.validate",
+        "on_change":"wsc.wsc.doctype.job_applicant.on_change",
+        "on_update":"wsc.wsc.doctype.job_applicant.on_update",
+        "on_update_after_submit":"wsc.wsc.doctype.job_applicant.on_update_after_submit"
+    },
+    "Task": {
+        "validate":"wsc.task.validate"
+    },
+    "Employee Onboarding": {
+        "validate":"wsc.wsc.doctype.employee_onboarding.validate"
+    }
+    
+    
+    
+    
     
 
     # "User":{
@@ -482,20 +517,19 @@ override_doctype_dashboards = {
 # ]
 
 # fixtures = [
-# # 	{"dt": "Custom DocPerm", "filters": [
-# # 		["parent", "not in", ["DocType"]],
-# #         ["role", '=', 'Education Admission Head']
-# # 	]},
+	# {"dt": "Custom DocPerm", "filters": [
+	# 	["parent", "not in", ["DocType"]],
+    #     ["parent", "in", ["Assignment","Assignment Upload"]],
+    #     ["role", "in", ["TOT Director", "TOT Administrator", "TOT Trainer", "TOT Candidate"]]
+	# ]},
     # {"dt": "Role","filters": [
-    #     [
-    #         "name", "in", ["Shift Approver","Grievance Cell Member"]
-    #     ]
+    #     ["name", "in", ["TOT Director", "TOT Administrator", "TOT Trainer"]]
     # ]},
 #     # # {"dt": "Role Profile"},
 #     # # {"dt": "Module Profile"},
     # {"dt" : "Workflow","filters": [
     #     [
-    #         "name", "in", ["Employee Attendance Request Workflow"]
+    #         "name", "in", ["Workflow for Leave Policy"]
     #     ]
     # ]},
     # {"dt" : "Workflow"},

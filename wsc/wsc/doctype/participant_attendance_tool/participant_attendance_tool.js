@@ -28,7 +28,7 @@ frappe.ui.form.on('Participant Attendance Tool', {
 				frm.set_value("select_course", result.message[2]) // course
 				frm.set_value("select_module", result.message[3]) // module
 				frm.set_df_property('instructor_id', 'options', result.message[4]) // instructor_id
-				frm.set_df_property('select_sub_module', 'options', result.message[5]) // sub module
+				frm.set_df_property('date', 'options', result.message[5]) // date
 			}
 		})
 	},

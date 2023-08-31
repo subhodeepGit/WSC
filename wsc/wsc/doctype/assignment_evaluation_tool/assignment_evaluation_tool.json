@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "AET.-.#####",
  "creation": "2023-07-05 16:57:16.666699",
  "default_view": "List",
  "doctype": "DocType",
@@ -11,7 +12,6 @@
   "academic_year",
   "instructor_id",
   "course",
-  "select_sub_module",
   "column_break_6",
   "total_participants",
   "academic_term",
@@ -28,7 +28,8 @@
   "assessment_criteria",
   "section_break_14",
   "get_participants",
-  "participant_details_data"
+  "participant_details_data",
+  "disqualified_participants"
  ],
  "fields": [
   {
@@ -60,7 +61,7 @@
   {
    "fieldname": "participant_details_data",
    "fieldtype": "Table",
-   "label": "Participant Details Data",
+   "label": "Qualified Participants",
    "options": "Participant Details Data"
   },
   {
@@ -68,11 +69,6 @@
    "fieldtype": "Link",
    "label": "Participant Group",
    "options": "Participant Group"
-  },
-  {
-   "fieldname": "select_sub_module",
-   "fieldtype": "Select",
-   "label": "Select Sub Module"
   },
   {
    "fieldname": "column_break_6",
@@ -108,12 +104,12 @@
   {
    "fieldname": "instructor_id",
    "fieldtype": "Select",
-   "label": "Instructor ID"
+   "label": "Evaluator ID"
   },
   {
    "fieldname": "instructor_name",
    "fieldtype": "Data",
-   "label": "Instructor Name"
+   "label": "Evaluator Name"
   },
   {
    "fieldname": "total_marks",
@@ -139,14 +135,21 @@
    "fieldname": "assignment_name",
    "fieldtype": "Data",
    "label": "Assignment Name"
+  },
+  {
+   "fieldname": "disqualified_participants",
+   "fieldtype": "Table",
+   "label": "Disqualified Participants",
+   "options": "disqualified tot participants"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-25 17:30:26.666829",
+ "modified": "2023-08-28 13:16:57.468919",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Evaluation Tool",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
