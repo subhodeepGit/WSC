@@ -66,6 +66,7 @@ doctype_js = {
                 "Attendance":"public/js/attendance.js",
                 "Tax Category":"public/js/tax_category.js",
                 "Employee Grievance":"public/js/employee_grievance.js",
+                "Employee Onboarding":"public/js/employee_onboarding.js",
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -382,7 +383,10 @@ doc_events = {
         "validate":"wsc.task.validate"
     },
     "Employee Onboarding": {
-        "validate":"wsc.wsc.doctype.employee_onboarding.validate"
+        "validate":"wsc.wsc.doctype.employee_onboarding.validate",
+        "on_cancel" : "wsc.wsc.doctype.employee_onboarding.on_cancel",
+        # "on_change" : "wsc.wsc.doctype.employee_onboarding.on_change",
+
     }
     
     
