@@ -7,6 +7,13 @@ frappe.ui.form.on('Fee Schedule',{
                 }
             };
         });
+        frm.set_query("fee_structure", function() {
+            return {
+                filters: {
+                    "docstatus":1
+                }
+            };
+        });
         frm.set_query("program", function() {
             return {
                 filters: {
@@ -72,7 +79,7 @@ frappe.ui.form.on('Fee Schedule',{
 
 frappe.ui.form.on('Fee Schedule', {
     refresh:function(frm) {
-		if(frappe.user.has_role(["Accounts User","Student","Education Administrator"]) && !frappe.user.has_role(["Administrator"])){
+		if(frappe.user.has_role(["Accounts User","Student"]) && !frappe.user.has_role(["Administrator"])){
   			frm.remove_custom_button('Create Fees');
         }
 	}
