@@ -78,7 +78,7 @@ frappe.ui.form.on('OnlinePayment', {
     refresh: function (frm) {
         var hdfcButton = frm.add_custom_button("By HDFC", function () {
             frappe.call({
-                method: "wsc.wsc.doctype.onlinepayment.onlinepayment.login",
+                method: "wsc.wsc.doctype.onlinepayment.onlinepayment.open_gateway",
                 args: {
                     party_name: frm.doc.party,
                     roll_no: frm.doc.roll_no,
@@ -98,13 +98,13 @@ frappe.ui.form.on('OnlinePayment', {
 
 
                         if (is_prod == 1) {
-                            alert("1")
+                            // alert("1")
                             window.location.href = "https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
 
                             // window.location.href = "https://ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
 
                         } else {
-                            alert("2")
+                            // alert("2")
 
                             window.location.href = "https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
 

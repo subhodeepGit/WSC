@@ -82,6 +82,7 @@ class PaymentEntry(AccountsController):
 		self.validate_paid_invoices()
 		self.ensure_supplier_is_not_blocked()
 		self.set_status()
+		# validate_writeoff_outstanding(self)	#write-off
 
 		if self.party_type=="Student":
 			student_info=frappe.db.get_list("Student",filters={"name":self.party},fields=["roll_no"])
@@ -1568,7 +1569,8 @@ def get_outstanding_fees(args):
 	fee_component_info=[]
 
 	for t in fees_info:
-		if (t['fee_structure']!=None or t['fee_structure']!="") and (t['hostel_fee_structure']==None or t['hostel_fee_structure']==""):
+		# if (t['fee_structure']!=None or t['fee_structure']!="") and (t['hostel_fee_structure']==None or t['hostel_fee_structure']==""):
+		if t['fee_structure']!=None and t['hostel_fee_structure']==None:
 			fee_component=frappe.db.get_all("Fee Component", {"parent":t['name']},
 									["name","fees_category","outstanding_fees","receivable_account","income_account","outstanding_fees","amount","idx"],order_by="idx asc")					
 			for j in fee_component:
@@ -1580,7 +1582,8 @@ def get_outstanding_fees(args):
 					fee_component_info.append(j)
 
 	for t in fees_info:
-		if (t['fee_structure']==None or t['fee_structure']=="") and (t['hostel_fee_structure']!=None or t['hostel_fee_structure']!=""):
+		# if (t['fee_structure']==None or t['fee_structure']=="") and (t['hostel_fee_structure']!=None or t['hostel_fee_structure']!=""):
+		if t['fee_structure']==None and t['hostel_fee_structure']!=None:
 			fee_component=frappe.db.get_all("Fee Component", {"parent":t['name']},
 									["name","fees_category","outstanding_fees","receivable_account","income_account","outstanding_fees","amount","idx"],order_by="idx asc")
 			for j in fee_component:
@@ -1591,7 +1594,8 @@ def get_outstanding_fees(args):
 					j['reference_name']=t['name']
 					fee_component_info.append(j)
 	for t in fees_info:
-		if (t['fee_structure']==None or t['fee_structure']=="") and (t['hostel_fee_structure']==None or t['hostel_fee_structure']==""):
+		# if (t['fee_structure']==None or t['fee_structure']=="") and (t['hostel_fee_structure']==None or t['hostel_fee_structure']==""):
+		if t['fee_structure']==None and t['hostel_fee_structure']==None:
 			fee_component=frappe.db.get_all("Fee Component", {"parent":t['name']},
 									["name","fees_category","outstanding_fees","receivable_account","income_account","outstanding_fees","amount","idx"],order_by="idx asc")
 			for j in fee_component:
@@ -2372,6 +2376,17 @@ def get_paid_amount(dt, dn, party_type, party, account, due_date):
 	""".format(dr_or_cr=dr_or_cr), (dt, dn, party_type, party, account, due_date))
 
 	return paid_amount[0][0] if paid_amount else 0
+
+def validate_writeoff_outstanding(self):
+	print('\n\n\n')
+	if self.party_type=="Student":
+		fees_name=[]
+		for d in self.get("references"):
+			fees_name.append(d.reference_name)
+		unique_fees=list(set(fees_name))
+		print(unique_fees)
+		for t in unique_fees:
+			outstanding_amount=0
 
 @frappe.whitelist()
 def get_party_and_account_balance(company, date, paid_from=None, paid_to=None, ptype=None, pty=None, cost_center=None):
