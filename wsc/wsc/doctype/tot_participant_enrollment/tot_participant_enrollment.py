@@ -10,7 +10,7 @@ class ToTParticipantEnrollment(Document):
 		data=frappe.get_all("ToT Participant Enrollment",{"tot_participant_selection_id":self.tot_participant_selection_id,"docstatus":1})
 		if data:
 			frappe.throw("Participant Selection Id is already submitted")
-			
+
 	def on_submit(self):
 		participant_count_validation(self)	
 		self.create_participant()
@@ -47,9 +47,7 @@ class ToTParticipantEnrollment(Document):
 									"reporing_status":"Not Reported",
 									"participant_enrollment_no":""
 								})	
-		# frappe.set_value("ToT Participant Enrollment",self.name,"status","cancelled")	
-		frappe.db.sql(""" UPDATE `tabToT Participant Enrollment` SET status="cancelled" where name="%s" """%(self.name))
-		# self.status="cancelled"		
+		frappe.db.sql(""" UPDATE `tabToT Participant Enrollment` SET status="Cancelled" where name="%s" """%(self.name))	
 
 
 
@@ -137,6 +135,7 @@ def make_enrollment(tot_participant_enrollment):
 			for data in frappe.get_all("ToT Participant Selection",{"name":doc.tot_participant_selection_id},['participant_selection_date']):
 				result=frappe.new_doc("Program Enrollment")
 				result.student=stud.name
+				result.participant=d.participant
 				result.programs=doc.programs
 				result.program=doc.semester
 				result.academic_year=doc.academic_year
