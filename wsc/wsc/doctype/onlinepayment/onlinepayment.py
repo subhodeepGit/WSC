@@ -143,7 +143,9 @@ def open_gateway(party_name, roll_no, amount, order_id,url,gw_provider):
             frappe.throw("Error: is_prod value is None")
 
     except Exception as e:
-        return str(e)
+        # return str(e)
+        logging.info("Error saving document:", str(e))
+
 
 
 
@@ -176,7 +178,7 @@ def get_order_status():
         logging.info(" time_of_transaction %s",time_of_transaction)
         gateway_name = response_data.get('delivery_name')[0]
         logging.info(" gateway_name %s", gateway_name)
-        transaction_info = f"Order ID: {order_id}\nTransaction ID: {transaction_id}\nAmount Paid: {amount_paid}\nBilling Name: {billing_name}\nTime of Transaction: {time_of_transaction}\nGateway:{gateway_name}"
+        transaction_info = f"Order ID: {order_id}\nTransaction ID: {transaction_id}\nAmount Paid: {amount_paid}\nBilling Name: {billing_name}\nTime of Transaction: {time_of_transaction}"
        
         
         if order_id and transaction_id:
@@ -197,13 +199,15 @@ def get_order_status():
                 logging.info("inside save.....................")
                 doc.run_method('submit')
                 frappe.msgprint("Your Transaction is completed. Your Transaction Id is " +doc.transaction_id + "."  " Status is " + frappe.bold(doc.transaction_status))
-                return "Order status and tracking ID updated successfully in Frappe."
+                # return "Order status and tracking ID updated successfully in Frappe."
+                logging.info("Order status and tracking ID updated successfully in Frappe.")
             except Exception as save_exception:
                 # return f"Error saving document: {repr(save_exception)}"
                 logging.info(f"Error saving document: {repr(save_exception)}")
 
     except Exception as e:
-        return f"Error processing the data: {str(e)}"
+        # return f"Error processing the data: {str(e)}"
+        logging.info(f"Error processing the data: {str(e)}")
 
 
 @frappe.whitelist(allow_guest=True)
