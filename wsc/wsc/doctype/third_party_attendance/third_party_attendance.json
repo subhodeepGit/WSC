@@ -15,6 +15,10 @@
   "column_break_shsrn",
   "party_name",
   "party_user",
+  "section_break_kmvek",
+  "contract_start_date",
+  "column_break_bxi7e",
+  "contract_end_date",
   "contract_period_section",
   "date",
   "number_of_reporting_staff_section",
@@ -116,12 +120,34 @@
    "options": "Third Party Attendance",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "section_break_kmvek",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "third_party_attendance_contract.start_date",
+   "fieldname": "contract_start_date",
+   "fieldtype": "Date",
+   "label": "Contract Start Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_bxi7e",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "third_party_attendance_contract.end_date",
+   "fieldname": "contract_end_date",
+   "fieldtype": "Date",
+   "label": "Contract End Date",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-31 13:09:10.751837",
+ "modified": "2023-08-31 15:08:33.276047",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Third Party Attendance",
