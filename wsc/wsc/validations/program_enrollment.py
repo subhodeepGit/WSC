@@ -92,6 +92,7 @@ def update_student(doc):
 def on_submit(doc,method):
     make_fee_records(doc)
     create_student(doc)
+    create_participant(doc)
     update_enrollment_admission_status(doc)
     update_reserved_seats(doc, on_submit)
 
@@ -238,6 +239,25 @@ def delete_course_enrollment(doc):
 #         "academic_term":doc.academic_term
 #     })
 #     student.save()  
+def create_participant(doc):
+    if doc.is_tot==1:
+        participant=frappe.get_doc("ToT Participant",doc.participant)
+        if participant.participant_email_id:
+            if not frappe.db.exists("User",participant.participant_email_id):
+                user=frappe.new_doc("User")
+                
+            else:
+                user=frappe.get_doc("User",participant.participant_email_id)
+            user.email=participant.participant_email_id
+            user.first_name=participant.first_name
+            user.last_name=participant.last_name       
+            user.module_profile="ToT Participant"
+            user.role_profile_name="ToT Participant"
+            user.enabled=1
+            participant.user=participant.participant_email_id
+            user.save()
+            set_permission_to_participant(user.name,doc)
+            participant.save()
 
 def create_student(doc):
     student=frappe.get_doc("Student",doc.student)
@@ -320,6 +340,10 @@ def make_fee_records(doc):
             fee_list = ["""<a href="/app/Form/Fees/%s" target="_blank">%s</a>""" % \
                 (fee, fee) for fee in fee_list]
             msgprint(_("Fee Records Created - {0}").format(comma_and(fee_list)))
+
+def set_permission_to_participant(user,program_enroll):
+    add_user_permission("ToT Participant",program_enroll.participant, user,program_enroll)
+
 def set_permission_to_student(user,program_enroll):
     add_user_permission("Student",program_enroll.student, user,program_enroll)
     add_user_permission("Programs",program_enroll.programs, user,program_enroll)
