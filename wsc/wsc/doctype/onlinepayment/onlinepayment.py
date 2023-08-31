@@ -279,10 +279,11 @@ def getTransactionDetails(doc):
             order_date_time = data_dict["Order_Status_Result"]["order_status_date_time"]
             final_status_info = f"Order ID: {order_no}\nTransaction ID: {reference_no}\nGross Amount : {order_gross_amt}\nOrder Amount : {order_amt}\nOrder Status: {order_status}\nTime of Transaction: {order_date_time}\nBank Ref No.: {order_bank_ref_no}"
             logging.info(" final_status_info : %s",data_dict)
+            logging.info(" SUCESSFULLY COMPLETED")
             doc.status = final_status_info
 
         elif is_prod is 1:
-            logging.info("is_prod is 1: %s", is_prod)
+            logging.info("is_prod is : %s", is_prod)
             myDoc = frappe.get_doc("HDFCSetting")
             logging.info("is_prod is None inside If 4: %s", is_prod)           
             access_code = myDoc.get("access_code")
@@ -332,6 +333,7 @@ def getTransactionDetails(doc):
             order_date_time = data_dict["Order_Status_Result"]["order_status_date_time"]
             final_status_info = f"Order ID: {order_no}\nTransaction ID: {reference_no}\nGross Amount : {order_gross_amt}\nOrder Amount : {order_amt}\nOrder Status: {order_status}\nTime of Transaction: {order_date_time}\nBank Ref No.: {order_bank_ref_no}"
             logging.info(" final_status_info : %s",data_dict)
+            logging.info(" SUCESSFULLY COMPLETED")
             doc.status = final_status_info
             
         else:
