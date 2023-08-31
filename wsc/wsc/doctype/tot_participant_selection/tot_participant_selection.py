@@ -42,7 +42,7 @@ def check_program_enrolement(self):
 	error_data_list=[]
 	if participants_list:
 		for t in participants_list:
-			participant_data=frappe.get_all("ToT Participant",[['name','=',t]],['name','student_no'])
+			participant_data=frappe.get_all("ToT Participant",[['name','=',t]],['name','student_no','participant_name'])
 			if participant_data:
 				participant_data=participant_data[0]
 				if participant_data['student_no']!=None:
@@ -56,11 +56,15 @@ def check_program_enrolement(self):
 															},
 															['name'])
 					if enrollment_data:
-						error_data_list.append({"participant":participant_data['name'],
+						error_data_list.append({"Participant ID":participant_data['name'],
+			      								"Participant Name":participant_data['participant_name'],
 												'Courese Enrollment':enrollment_data[0]['name'],
-												'student':participant_data['student_no']})
+												'Student ID':participant_data['student_no'],
+												})
 	if 	error_data_list:
-		frappe.throw("Following Participant already enroll for Course for this Academic Year and Academic Term %s"%(error_data_list))	
+		frappe.throw("""Following Participant already enroll for Course <b>%s</b> for 
+	       the Academic Year <b>%s</b> and Academic Term %s <b>%s</b> """%(self.course,self.academic_year,
+									       self.academic_term,error_data_list))	
 					
 				
 
