@@ -4,9 +4,13 @@
 import frappe 
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
+from datetime import datetime, timedelta
+from wsc.wsc.utils import get_courses_by_semester
 
 class ParticipantGroup(Document):
 	def validate(self):
+		
+		self.calculate_total_hours()
 		for d in self.get("classes"):
 			parent_doc = frappe.new_doc("ToT Class Schedule")
 			parent_doc.participant_group_id = self.name
@@ -24,9 +28,6 @@ class ParticipantGroup(Document):
 			parent_doc.duration = d.duration
 
 			for td1 in self.get('participants'):
-				# print('\n\n')
-				# print(td1.participant)
-				# print('\n\n')
 				parent_doc.append('participants', {
 					'participant_id' : td1.participant,
 					'participant_name' : td1.participant_name,
@@ -38,22 +39,25 @@ class ParticipantGroup(Document):
 					'trainer_id' : td2.instructors,
 					'trainer_name' : td2.instructor_name	
 				})
-			parent_doc.save()
+			parent_doc.save()	
+	def calculate_total_hours(self):
+		for d in self.get("classes"):
+			if d.to_time and d.from_time:
+				d.duration = datetime.strptime(d.to_time, '%H:%M:%S') - datetime.strptime(d.from_time, '%H:%M:%S') 
+		
 
 @frappe.whitelist()
-def get_courses(program_name):
-	data = frappe.db.sql(""" SELECT course FROM `tabProgram Course` WHERE parent = '%s' """%(program_name))
-	return data
-	
+def get_enrollment_details(enrollment_id):
+	enrollment_details = frappe.db.sql(""" SELECT  academic_year, academic_term, programs, semester FROM `tabToT Participant Enrollment` WHERE name = '%s'"""%(enrollment_id), as_dict=1)
+	# modules = frappe.db.sql(""" SELECT course FROM `tabProgram Course` WHERE parent = '%s'"""%(enrollment_details[0]['programs']))
+	return [enrollment_details[0]['academic_year'], enrollment_details[0]['academic_term'], enrollment_details[0]['programs'], enrollment_details[0]['semester']]
 
 @frappe.whitelist()
 def get_module_name(module_id):
 	data = frappe.db.sql(""" SELECT course_name FROM `tabCourse` WHERE name = '%s'"""%(module_id), as_dict =1)
 	return data[0]['course_name']
-	pass
 
 @frappe.whitelist()
-def get_participants(academic_year, academic_term, participant_category, program, course):
-	data = frappe.get_all("Program Enrollment", filters = [['academic_year', '=', academic_year], ['academic_term', '=', academic_term], ['programs','=',program]], fields =['student', 'student_name'])
+def get_participants(enrollment_id):
+	data = frappe.get_all("Reported Participant", filters = [['parent', '=', enrollment_id], ['is_reported', '=', 1]], fields =['participant', 'participant_name'])
 	return data
-	

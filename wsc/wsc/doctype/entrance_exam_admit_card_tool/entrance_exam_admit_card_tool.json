@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{entrance_exam_declaration}",
+ "autoname": "EDU-ADMT-.YYYY.-.####",
  "creation": "2023-06-02 17:28:13.459835",
  "default_view": "List",
  "description": "For Applicants who did not get their prefered centers",
@@ -13,7 +13,8 @@
   "get_applicants",
   "deallotted_applicant_list",
   "use_in_case_there_are_unalloted_students_section",
-  "centre"
+  "centre",
+  "amended_from"
  ],
  "fields": [
   {
@@ -36,6 +37,7 @@
    "options": "DeAllotted Applicant List"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "centre",
    "fieldtype": "Select",
    "label": "Centre"
@@ -44,15 +46,25 @@
    "fieldname": "use_in_case_there_are_unalloted_students_section",
    "fieldtype": "Section Break",
    "label": "Use in case there are unalloted students"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Entrance Exam Admit Card Tool",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-08-23 12:12:13.323725",
+ "modified": "2023-08-30 15:23:37.887491",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Admit Card Tool",
- "naming_rule": "Expression",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

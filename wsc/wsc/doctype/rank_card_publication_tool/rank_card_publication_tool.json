@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{entrance_exam_declaration}",
+ "autoname": "EDU-RKT-.YYYY.-.####",
  "creation": "2023-05-09 18:23:28.884435",
  "default_view": "List",
  "doctype": "DocType",
@@ -17,6 +17,7 @@
   "posting_date",
   "get_applicants",
   "ranked_students_list",
+  "status",
   "amended_from"
  ],
  "fields": [
@@ -83,16 +84,24 @@
    "options": "Rank Card Publication Tool",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "Incomplete",
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-25 16:27:55.980379",
+ "modified": "2023-08-29 15:20:54.312032",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Rank Card Publication Tool",
- "naming_rule": "Expression",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

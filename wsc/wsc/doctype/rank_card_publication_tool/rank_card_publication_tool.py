@@ -8,7 +8,18 @@ from pandas import DataFrame
 from frappe.model.document import Document
 
 class RankCardPublicationTool(Document):
-	pass
+	def validate(self):
+		if frappe.get_all("Rank Card Publication Tool",{"entrance_exam_declaration":self.entrance_exam_declaration,"docstatus":1}):
+			frappe.throw("Rank Card Tool is Already Published")
+
+	def on_cancel(self):
+		
+		for i in self.ranked_students_list:
+
+			student_applicant = frappe.get_doc("Student Applicant" , i.applicant_id)
+			student_applicant.student_rank.clear()
+			student_applicant.save()	
+
 
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
@@ -19,7 +30,7 @@ def ra_query(doctype, txt, searchfield, start, page_len, filters):
     searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)    
     
     data=frappe.db.sql("""
-        SELECT `name` FROM `tabEntrance Exam Declaration` WHERE ({key} like %(txt)s or {scond})  and
+        SELECT `name` FROM `tabEntrance Exam Declaration` WHERE ({key} like %(txt)s or {scond})  AND
             (`exam_start_date` <= now() AND `exam_end_date` >= now())
              and `docstatus`=1 
     """.format(
@@ -41,7 +52,7 @@ def ranking(list_data , col , rank_name):
 
 @frappe.whitelist()
 def get_qualified_applicants(declaration , academic_year , academic_term , department,rank_card_masters):
-	print("\n\n\n\n")
+	print("\n\n\n\nrank tool")
 
 	rank_card_master_data = frappe.get_all("Rank Card Master" , 
 											{
@@ -61,7 +72,7 @@ def get_qualified_applicants(declaration , academic_year , academic_term , depar
 			res.gender
 		FROM `tabEntrance Exam Result Publication` res 
 		WHERE res.entrance_exam_declaration="%s" AND res.earned_marks >= %s
-		ORDER BY res.earned_marks LIMIT %s
+		ORDER BY res.earned_marks DESC LIMIT %s
 	"""%(declaration,int(rank_card_master_data[0]['all_round_cutoff']),int(rank_card_master_data[0]['maximum_number_of_ranks'])), as_dict=1)
 	
 	all_round_ranks = ranking(all_round_applicant_data , ['applicant_id' , 'applicant_name' , 'gender' , 'student_category' , 'physically_disabled' , 'total_marks' , 'earned_marks' ] , "Rank")
@@ -136,58 +147,63 @@ def generate_rank_cards(doc):
 					j[k] = l[k]
 	count = 0
 	for m in all_round_ranks:
-		print(m)
-		rank_data = frappe.new_doc("Rank Card")
-		rank_data.applicant_id = m['applicant_id']
-		rank_data.applicant_name = m['applicant_name']
-		rank_data.gender = m['gender'] 
-		rank_data.student_category = m['student_category']
-		rank_data.physically_disabled = m['physical_disability']
-		rank_data.academic_year = academic_year
-		rank_data.academic_term = academic_term
-		rank_data.department = department
-		# rank_data.no_category_rank = m['rank']
-		rank_data.total_marks = total_marks
-		rank_data.earned_marks = m['earned_marks']
-		
-		rank_dict = {}
-		
-		for l in m:
-			for n in ranking_category_data:
-				if n['category_name'] == l:
-					rank_dict[f"{l}"] = m[f"{l}"]
-		student_applicant = frappe.get_doc("Student Applicant" , m['applicant_id'])
-
-		rank_data.append("student_ranks_list" , {
-				'rank_type': m['rank_type'],
-				'rank_obtained' : m['rank']
-		})
-
-		student_applicant.append("student_rank" , {
-				'rank_type': m['rank_type'],
-				'rank_obtained' : m['rank']	
-		})
-
-		for t in rank_dict:
+		### to check duplicate rank cards
+		rank_card_data = frappe.get_all("Rank Card",{"exam":declaration ,"applicant_id":m['applicant_id'] } , ['docstatus'])
+		for i in rank_card_data:
+			if i['docstatus'] == 0 or i['docstatus'] == 1:
+				frappe.throw("Rank Card is Already Published")
+		else:		
+			rank_data = frappe.new_doc("Rank Card")
+			rank_data.exam = declaration
+			rank_data.applicant_id = m['applicant_id']
+			rank_data.applicant_name = m['applicant_name']
+			rank_data.gender = m['gender'] 
+			rank_data.student_category = m['student_category']
+			rank_data.physically_disabled = m['physical_disability']
+			rank_data.academic_year = academic_year
+			rank_data.academic_term = academic_term
+			rank_data.department = department
+			rank_data.total_marks = total_marks
+			rank_data.earned_marks = m['earned_marks']
+			
+			rank_dict = {}
+			
+			for l in m:
+				for n in ranking_category_data:
+					if n['category_name'] == l:
+						rank_dict[f"{l}"] = m[f"{l}"]
+			student_applicant = frappe.get_doc("Student Applicant" , m['applicant_id'])
 
 			rank_data.append("student_ranks_list" , {
-				'rank_type': t,
-				'rank_obtained' : rank_dict[t]
-			})
-	
-			student_applicant.append("student_rank" , {
-				'rank_type': t,
-				'rank_obtained' : rank_dict[t]
+					'rank_type': m['rank_type'],
+					'rank_obtained' : m['rank']
 			})
 
-		count = count + 1;		
-		rank_data.save()
-		rank_data.submit()
-		student_applicant.save()
-	
+			student_applicant.append("student_rank" , {
+					'rank_type': m['rank_type'],
+					'rank_obtained' : m['rank']	
+			})
+
+			for t in rank_dict:
+
+				rank_data.append("student_ranks_list" , {
+					'rank_type': t,
+					'rank_obtained' : rank_dict[t]
+				})
+		
+				student_applicant.append("student_rank" , {
+					'rank_type': t,
+					'rank_obtained' : rank_dict[t]
+				})
+
+			count = count + 1
+			rank_data.save()
+			# rank_data.submit()
+			student_applicant.save()
+		
 	if count == len(all_round_ranks):
-		pass
-	# print(count , len(all_round_ranks))
-	
+		return 200
+	else: 
+		return 400
 
 		

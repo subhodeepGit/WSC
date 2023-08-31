@@ -27,7 +27,6 @@ frappe.ui.form.on('Reporting Desk', {
 			callback: function(result){
 				
 				const { applicant_name , gender , student_category , physically_disabled , academic_year , academic_term , department , total_marks , earned_marks} = result.message[0][0]
-				const { general_rank , category_based_rank , pwd_based_rank } = result.message[1][0]
 				
 				frappe.model.clear_table(frm.doc, 'applicant_rank');
 
@@ -40,13 +39,16 @@ frappe.ui.form.on('Reporting Desk', {
 				frm.doc.department = department
 				frm.doc.total_marks = total_marks
 				frm.doc.earned_marks = earned_marks
+				
+				result.message[1].forEach((i) => {
+					
+					let c = frm.add_child('applicant_rank')
+					const { rank_type , rank_obtained } = i
+					c.rank_type = rank_type
+					c.rank_obtained = rank_obtained
 
-				let c = frm.add_child('applicant_rank')
-
-				c.general_rank = general_rank
-				c.category_based_rank = category_based_rank
-				c.pwd_based_rank = pwd_based_rank
-
+				})
+				
 				frm.refresh();
 				frm.refresh_field("applicant_rank")
 

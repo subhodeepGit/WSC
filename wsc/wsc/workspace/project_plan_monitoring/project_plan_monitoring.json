@@ -91,7 +91,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Issues",
-   "link_count": 2,
+   "link_count": 3,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -108,6 +108,16 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Issue Priority",
+   "link_count": 0,
+   "link_to": "Issue Priority",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Issue",
    "link_count": 0,
    "link_to": "Issue",
@@ -116,7 +126,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-08-29 12:40:13.955825",
+ "modified": "2023-08-31 11:45:34.051709",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Project Plan Monitoring",
@@ -125,7 +135,14 @@
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
- "roles": [],
+ "roles": [
+  {
+   "role": "Project Manager"
+  },
+  {
+   "role": "Employee"
+  }
+ ],
  "sequence_id": 50.0,
  "shortcuts": [],
  "title": "Project Plan Monitoring"
