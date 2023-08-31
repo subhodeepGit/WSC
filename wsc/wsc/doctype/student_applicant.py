@@ -106,7 +106,9 @@ def validate_duplicate_record(self):
 		duplicateForm=frappe.get_all("Student Applicant", filters={
 			"academic_term":self.academic_term,
 			"program_grade": self.program_grade,
-			"department": self.department
+			"department": self.department,
+            "student_email_id":self.student_email_id,
+            "name":("!=",self.name)
 		})
 		if duplicateForm:
 			frappe.throw(("Student Applicant is already Filled the form for this Academic Term."))
@@ -146,6 +148,7 @@ def delete_permissions(doc):
         frappe.delete_doc("User Permission",usr.name)
     for usr in frappe.get_all("User Permission",{"reference_doctype":"Student Applicant","reference_docname":doc.name}):
         frappe.delete_doc("User Permission",usr.name)
+
 def check_age(doc):
     
     applicantation_date = frappe.get_all("Student Admission" ,

@@ -83,8 +83,9 @@
   },
   {
    "fieldname": "instructor_id",
-   "fieldtype": "Select",
-   "label": "Instructor ID"
+   "fieldtype": "Link",
+   "label": "Instructor ID",
+   "options": "Instructor"
   },
   {
    "fieldname": "instructor_name",
@@ -102,7 +103,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-23 12:19:37.895107",
+ "modified": "2023-08-30 17:53:46.509352",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant Attendance",

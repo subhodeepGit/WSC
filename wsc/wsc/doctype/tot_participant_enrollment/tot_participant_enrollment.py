@@ -6,9 +6,11 @@ from frappe.model.document import Document
 from frappe import _
 
 class ToTParticipantEnrollment(Document):
-	# def validate(self):
-		# self.create_participant()
-		# self.make_participant()
+	def validate(self):
+		data=frappe.get_all("ToT Participant Enrollment",{"tot_participant_selection_id":self.tot_participant_selection_id,"docstatus":1})
+		if data:
+			frappe.throw("Participant Selection Id is already submitted")
+
 	def on_submit(self):
 		participant_count_validation(self)	
 		self.create_participant()
@@ -45,9 +47,7 @@ class ToTParticipantEnrollment(Document):
 									"reporing_status":"Not Reported",
 									"participant_enrollment_no":""
 								})	
-		# frappe.set_value("ToT Participant Enrollment",self.name,"status","cancelled")	
-		frappe.db.sql(""" UPDATE `tabToT Participant Enrollment` SET status="cancelled" where name="%s" """%(self.name))
-		# self.status="cancelled"		
+		frappe.db.sql(""" UPDATE `tabToT Participant Enrollment` SET status="Cancelled" where name="%s" """%(self.name))	
 
 
 
@@ -132,21 +132,20 @@ def make_enrollment(tot_participant_enrollment):
 	for d in doc.get("participant_list",{'is_reported':1}):
 		for stud in frappe.get_all("Student",{"student_email_id":d.email_address},['name']):
 			participant_list.append(d.participant)
-			result=frappe.new_doc("Program Enrollment")
-			result.student=stud.name
 			for data in frappe.get_all("ToT Participant Selection",{"name":doc.tot_participant_selection_id},['participant_selection_date']):
+				result=frappe.new_doc("Program Enrollment")
+				result.student=stud.name
+				result.participant=d.participant
 				result.programs=doc.programs
 				result.program=doc.semester
 				result.academic_year=doc.academic_year
 				result.academic_term=doc.academic_term
 				result.enrollment_date=data.participant_selection_date
 				result.student_batch_name=doc.tot_participant_batch
-				# for enroll in result.get("courses"):
-				# 	# if moderator.course==ex.course:
-				# 	enroll.moderator__name=moderator.moderator_name
-				# 	eps.save()
+				result.admission_status="Admitted"
+				result.is_provisional_admission="No" 
 				result.is_tot=1
-				for get_course in frappe.get_all("Program Course",{'parent':result.program},['course','course_name']):
+				for get_course in frappe.get_all("Program Course",{'parent':result.program,'parenttype':'Program'},['course','course_name']):
 					result.append("courses",{
 					"course":get_course.course,
 					"course_name":get_course.course_name,
@@ -172,7 +171,12 @@ def make_enrollment(tot_participant_enrollment):
 				frappe.set_value('Selected Participant',t.name, {
 								"reporing_status":"Repoted",
 								"participant_enrollment_no":doc.name
-							})	
+							})
+
+	for t in participant_list:
+		data=frappe.get_all("Previous Participation Table",{"parent":t,"participant_selection":doc.tot_participant_selection_id},['name'])
+		frappe.set_value("Previous Participation Table",data[0]['name'],'participant_enrollment',doc.name)
+
 	frappe.set_value("ToT Participant Enrollment",tot_participant_enrollment,"status","Completed")	
 	frappe.msgprint("Record Created")				
 

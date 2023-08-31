@@ -2,6 +2,7 @@
  "charts": [],
  "content": "[{\"id\":\"azJrlaeHO5\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Infrastructure Management &amp; Maintenance</span>\",\"col\":12}},{\"id\":\"94JdVYcqVo\",\"type\":\"card\",\"data\":{\"card_name\":\"Infrastructure Management\",\"col\":3}},{\"id\":\"NfJnRVy0N3\",\"type\":\"spacer\",\"data\":{\"col\":9}},{\"id\":\"DwgKnyGhUs\",\"type\":\"card\",\"data\":{\"card_name\":\"Infrastructure Maintenance\",\"col\":3}}]",
  "creation": "2023-02-15 12:28:13.024508",
+ "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
  "for_user": "",
@@ -128,10 +129,11 @@
    "type": "Link"
   }
  ],
- "modified": "2023-05-12 16:19:32.507362",
+ "modified": "2023-08-31 11:46:43.917845",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Infrastructure Management & Maintenance",
+ "number_cards": [],
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,
@@ -139,6 +141,18 @@
  "roles": [
   {
    "role": "System Manager"
+  },
+  {
+   "role": "Building Administrator"
+  },
+  {
+   "role": "Floor Supervisor"
+  },
+  {
+   "role": "Maintenance Department"
+  },
+  {
+   "role": "Employee"
   }
  ],
  "sequence_id": 29.0,

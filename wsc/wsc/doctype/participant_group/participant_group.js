@@ -34,14 +34,19 @@ frappe.ui.form.on('Participant Group', {
 		// 	}
 		// })
 	},
-	program:function(frm){
+
+	participant_enrollment_id: function(frm){
 		frappe.call({
-			method: 'wsc.wsc.doctype.participant_group.participant_group.get_courses',
+			method : 'wsc.wsc.doctype.participant_group.participant_group.get_enrollment_details',
 			args: {
-				program_name : frm.doc.program
+				enrollment_id : frm.doc.participant_enrollment_id
 			},
 			callback: function(result){
-				frm.set_df_property('course', 'options', result.message) // courses in the program
+				frm.set_value("academic_year", result.message[0])
+				frm.set_value("academic_term", result.message[1])
+				frm.set_value("program", result.message[2])
+				frm.set_value("semester", result.message[3])
+				// frm.set_df_property('course', 'options', result.message[3])
 			}
 		})
 	},
@@ -58,23 +63,28 @@ frappe.ui.form.on('Participant Group', {
 			}
 		})
 	},
+	semester: function(frm){
+		frm.set_query("course", function() {
+			return {
+				query: 'wsc.wsc.validations.student_group.filter_courses',
+				filters:{"semester":frm.doc.semester,"disable":0}
+				
+			};
+		});
+	},
 	get_participants : function(frm){
 		frappe.call({
 			method: 'wsc.wsc.doctype.participant_group.participant_group.get_participants',
 			args:{
-				academic_year : frm.doc.academic_year,
-				academic_term : frm.doc.academic_term,
-				participant_category : frm.doc.participant_category,
-				program: frm.doc.program,
-				course: frm.doc.course
+				enrollment_id : frm.doc.participant_enrollment_id
 			},
 			callback: function(result){
 				if(result.message){
 					frappe.model.clear_table(frm.doc, 'participants')
 					result.message.forEach(element => {
 						var childTable = frm.add_child('participants')
-						childTable.participant = element.student
-						childTable.participant_name = element.student_name
+						childTable.participant = element.participant
+						childTable.participant_name = element.participant_name
 					})
 				}
 				frm.refresh()
@@ -82,8 +92,6 @@ frappe.ui.form.on('Participant Group', {
 			}
 		})
 	},
-
-	
 });
 
 frappe.ui.form.on('Instructor Table', {

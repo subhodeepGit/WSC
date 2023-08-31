@@ -38,52 +38,62 @@ def get_applicants(declaration):
 	return student_list
 
 def admit_card_generate(alloted_applicant_data):
-	print("\n\n\n")
+	print("\n\n")
+	
 	for i in alloted_applicant_data:
+	
 		if len(i) != 0:
-			print(i)
-			admit_card = frappe.new_doc("Entrance Exam Admit Card")
-			admit_card.entrance_exam = i['entrance_exam']
-			admit_card.applicant_id = i['applicant_id']
-			admit_card.applicant_name = i['applicant_name']
-			admit_card.department = i['department']
-			admit_card.academic_year = i['academic_year']
-			admit_card.academic_term = i['academic_term']
-			admit_card.student_category = i['student_category']
-			admit_card.physical_disablity = i['physical_disability']
-			admit_card.venue = i['centre_name']
-			admit_card.address = i['address']
-			admit_card.district = i['district']
-			admit_card.pin_code = i['pincode']
-			admit_card.slot = i['slot_name']
-			admit_card.date_of_exam = i['starting_time'].date()
-			admit_card.exam_start_time = i['starting_time'].time()
-			admit_card.exam_end_time = i['ending_time'].time()
 			
-			admit_card.save()
-			admit_card.submit()
-
-
+			admit_card_data = frappe.get_all("Entrance Exam Admit Card",{"entrance_exam":i['entrance_exam'] ,"applicant_id":i['applicant_id'] } , ['docstatus'])
+			
+			for j in admit_card_data:
+				if j['docstatus'] == 0 or j['docstatus'] == 1:
+					frappe.throw("Admit Card is Already Published")
+			else:	
+				print("\n\n\n")
+				print("published")
+				admit_card = frappe.new_doc("Entrance Exam Admit Card")
+				admit_card.entrance_exam = i['entrance_exam']
+				admit_card.applicant_id = i['applicant_id']
+				admit_card.applicant_name = i['applicant_name']
+				admit_card.department = i['department']
+				admit_card.academic_year = i['academic_year']
+				admit_card.academic_term = i['academic_term']
+				admit_card.student_category = i['student_category']
+				admit_card.physical_disablity = i['physical_disability']
+				admit_card.venue = i['centre']
+				admit_card.address = i['address']
+				admit_card.district = i['district']
+				admit_card.pin_code = i['pincode']
+				admit_card.slot = i['slot_name']
+				admit_card.date_of_exam = i['slot_date']
+				# admit_card.date_of_exam = i['starting_time'].date()
+				admit_card.exam_start_time = i['starting_time']
+				admit_card.exam_end_time = i['ending_time']
+				
+				admit_card.save()
+				# admit_card.submit()
 
 @frappe.whitelist()
 def student_allotment(body):
 	
-	print("\n\n\n\n\n")
+	print("\n\n\n\n\nnormal call")
 	body = json.loads(body)
-	
+
+	name = body['name']
 	declaration = body['declaration']
 	de_alloted_student = body['de_allocated_student'] #### input List
 	
-	print(declaration)
-
 	alloted_applicant_data = []
 	unalloted_students_after_center_allotment = []
+
 	for i in de_alloted_student:
-		prefered_center = frappe.get_all("Exam Centre Preference" , {'parent' : i['applicant_id']} , ['center_name' , 'parent' , 'center'])
+		prefered_center = frappe.get_all("Exam Centre Preference" , {'parent' : i['applicant_id']} , ['center_name' , 'parent' , 'center'] , order_by = "idx asc")
 		data = {}
 		for j in prefered_center:
+			
 			exam_center_allocation = frappe.get_all("Entrance Exam Centre Allocation" , 
-					   {'entrance_exam_declaration' : declaration , 'centre': j['center']} , 
+					   {'entrance_exam_declaration' : declaration , 'centre': j['center_name']} , 
 					 	['name' ,
 						'academic_year' , 'academic_term' ,
 						'department' ,
@@ -91,9 +101,11 @@ def student_allotment(body):
 						'district' , 'state' , 'pin_code'] ,
 						order_by = "idx asc")
 			
-			slots = frappe.get_all("Exam Slot Timings" , {'parent': exam_center_allocation[0]['name']} , 
-			  ['slot_name' , 'slot_starting_time' , 'slot_ending_time' , 'seating_capacity' , 'parent'])
 			
+			slots = frappe.get_all("Exam Slot Timings" , {'parent': exam_center_allocation[0]['name']} , 
+			  ['slot_name' , 'slot_starting_time' , 'slot_ending_time' , 'slot_date' , 'seating_capacity' , 'parent'])
+			
+			# print(slots)
 			for k in slots:
 				if k['seating_capacity'] > 0 and i['center_allocated_status'] == 0:
 				# if k['seating_capacity'] > 0:
@@ -116,6 +128,7 @@ def student_allotment(body):
 						data['slot_name'] = k['slot_name']
 						data['starting_time'] = k['slot_starting_time']
 						data['ending_time'] = k['slot_ending_time']
+						data['slot_date'] = k['slot_date']
 						data['seating_capacity'] = k['seating_capacity']
 						
 						i['center_allocated_status'] = 1				
@@ -128,8 +141,8 @@ def student_allotment(body):
 							""".format(applicant_id = i['applicant_id'] , declaration = declaration))   
 
 						frappe.db.sql("""
-								UPDATE `tabDeAllotted Applicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}' AND parent = '{declaration}'
-							""".format(applicant_id = i['applicant_id'] , declaration = declaration))
+								UPDATE `tabDeAllotted Applicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}' AND parent = '{name}'
+							""".format(applicant_id = i['applicant_id'] , name = name))
 
 		
 		data2 = {}
@@ -143,19 +156,27 @@ def student_allotment(body):
 			data2['physical_disability'] = i['physical_disability']
 			unalloted_students_after_center_allotment.append(data2)
 			
-
+	print("\nnormal call" , alloted_applicant_data)
 	available_center_with_slots = frappe.db.sql("""
 		SELECT 
 			slot.slot_name , 
 			slot.seating_capacity , 
 			slot.slot_starting_time ,
+			slot.slot_date ,
 			alot.name , 
+			alot.centre ,
 			alot.centre_name , 
 			alot.district
-			FROM `tabExam Slot Timings` slot INNER JOIN `tabEntrance Exam Centre Allocation` alot  WHERE slot.parent = alot.name AND slot.seating_capacity > 0 AND alot.docstatus = 1;
+			FROM 
+				`tabExam Slot Timings` slot
+			INNER JOIN 
+				`tabEntrance Exam Centre Allocation` alot
+			WHERE 
+				slot.parent = alot.name AND
+				slot.seating_capacity > 0 AND
+				alot.docstatus = 1;
 	""",as_dict=1)	
 
-	# print(alloted_applicant_data)
 	admit_card_generate(alloted_applicant_data)
 	
 	return {
@@ -166,31 +187,36 @@ def student_allotment(body):
 @frappe.whitelist()
 def leftovers_allotment(body):
 	body = json.loads(body)
-	print("\n\n\n")
+	print("\n\n\nspecial call")
 	
+	name = body['name']
 	declaration = body['declaration']
 	leftover_applicant = body['leftovers']
 	center = body['center']
-	print(leftover_applicant)
-	slot_date = datetime.strptime(center[3], '%Y-%m-%d').date()
+	print(center)
+	slot_date = center[3]
+	
 	alloted_applicant_data= []
 	unalloted_applicants = []
+
 	for i in leftover_applicant:
 		data = {}
 		exam_center_allocation = frappe.get_all("Entrance Exam Centre Allocation" , 
-					   				{'entrance_exam_declaration' : declaration , 'centre_name':center[0] , 'district' : center[2]} , 
+					   				{'entrance_exam_declaration' : declaration , 'centre':center[0] , 'district' : center[2]} , 
 					 					['name' ,
 										'academic_year' , 'academic_term' ,
 										'department' ,
 										'centre' , 'centre_name' , 'address' ,
 										'district' , 'state' , 'pin_code'
 										])
+		
+		print(exam_center_allocation)
 		slots = frappe.get_all("Exam Slot Timings" , {'parent': exam_center_allocation[0]['name']} ,  
-			  ['slot_name' , 'slot_starting_time' , 'slot_ending_time' , 'seating_capacity' , 'parent'])
+			  ['slot_name' , 'slot_starting_time' , 'slot_ending_time' , 'slot_date' , 'seating_capacity' , 'parent'])
 		
 		for j in slots:
 		
-			if j['slot_name'] == center[1] and slot_date == j['slot_starting_time'].date():
+			if j['slot_name'] == center[1] and slot_date == j['slot_date'] and i['center_allocated_status'] == 0:
 				data['applicant_id'] = i['applicant_id']
 				data['applicant_name'] = i['applicant_name']
 				data['gender'] = i['gender']
@@ -208,6 +234,7 @@ def leftovers_allotment(body):
 				data['slot_name'] = j['slot_name']
 				data['starting_time'] = j['slot_starting_time']
 				data['ending_time'] = j['slot_ending_time']
+				data['slot_date'] = j['slot_date']
 				data['seating_capacity'] = j['seating_capacity']
 
 				i['center_allocated_status'] = 1				
@@ -216,13 +243,13 @@ def leftovers_allotment(body):
 				""".format(current_capacity = j['seating_capacity'] - 1 , parent = exam_center_allocation[0]['name'] , slot_name = j['slot_name']))	
 
 				frappe.db.sql(""" 
-						UPDATE `tabApplicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}'
-					""".format(applicant_id = i['applicant_id']))   
+					UPDATE `tabApplicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}' AND parent = '{declaration}' 
+				""".format(applicant_id = i['applicant_id'] , declaration = declaration))   
 
 				frappe.db.sql("""
-						UPDATE `tabDeAllotted Applicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}'
-					""".format(applicant_id = i['applicant_id']))
-				
+					UPDATE `tabDeAllotted Applicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}' AND parent = '{name}'
+				""".format(applicant_id = i['applicant_id'] , name = name))
+
 		data2 = {}
 		if i['center_allocated_status'] == 1:
 			alloted_applicant_data.append(data) #### output list 
@@ -239,13 +266,22 @@ def leftovers_allotment(body):
 			slot.slot_name , 
 			slot.seating_capacity , 
 			slot.slot_starting_time ,
+			slot.slot_date ,
 			alot.name , 
+			alot.centre ,
 			alot.centre_name , 
 			alot.district
-			FROM `tabExam Slot Timings` slot INNER JOIN `tabEntrance Exam Centre Allocation` alot  WHERE slot.parent = alot.name AND slot.seating_capacity > 0 AND alot.docstatus = 1;
+			FROM 
+				`tabExam Slot Timings` slot 
+			INNER JOIN 
+				`tabEntrance Exam Centre Allocation` alot
+			WHERE 
+				slot.parent = alot.name AND
+				slot.seating_capacity > 0 AND
+				alot.docstatus = 1;
 	""",as_dict=1)	
-
-	print(alloted_applicant_data)
+	
+	print("\nspecial call" , alloted_applicant_data)
 	admit_card_generate(alloted_applicant_data)
 	
 	return {
