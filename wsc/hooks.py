@@ -388,6 +388,10 @@ doc_events = {
         "on_cancel" : "wsc.wsc.doctype.employee_onboarding.on_cancel",
         # "on_change" : "wsc.wsc.doctype.employee_onboarding.on_change",
 
+    },
+    "Task":
+    {
+        "validate":"wsc.wsc.doctype.task.validate"
     }
     
     
