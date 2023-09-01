@@ -2,12 +2,22 @@ import json
 import frappe
 import json
 from frappe import _
+from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
+
 
 def validate(doc, method):
     validate_semester(doc)
     validate_max_credit(doc)
     calculate_total(doc)
+    # create_permissions(doc)s
     validate_weightage_percentage(doc)
+
+def create_permissions(doc):
+	for instuctor_log in frappe.get_all("Instructor Log",{"course":doc.name},['course','parent']):
+		for instr in frappe.get_all("Instructor",{"name":instuctor_log.parent},['department','name','employee']):
+			for emp in frappe.get_all("Employee",{"name":instr.employee},['user_id','department']):
+				if emp.user_id:
+					add_user_permission(doc.doctype,doc.name,emp.user_id,doc)	
 
 def validate_semester(doc):
     if  doc.program and doc.programs:
@@ -70,9 +80,6 @@ def add_module_to_tot_course(course, programs,is_tot,is_short_term_course):
 			'course': course,
 			'course_name': frappe.db.get_value("Course",{'name':course,'is_short_term_course':"Yes",'is_tot':is_tot},"course_name"),
 		})
-		programs.flags.ignore_mandatory = True
-		programs.save()
-		
 		program = frappe.get_doc('Program', entry)
 		program.append('courses', {
 			'course': course,
@@ -80,7 +87,8 @@ def add_module_to_tot_course(course, programs,is_tot,is_short_term_course):
 		})
 		program.flags.ignore_mandatory = True
 		program.save()
-
+		programs.flags.ignore_mandatory = True
+		programs.save()
 
 	frappe.db.commit()
 	frappe.msgprint(frappe._('Module {0} has been added to the selected Course successfully.').format(frappe.bold(course)),

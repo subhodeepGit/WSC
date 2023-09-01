@@ -423,15 +423,31 @@ def get_total_marks(course,criteria):
 	for data in frappe.get_all("Credit distribution List",{"parent":course,"assessment_criteria":criteria},["credits","total_marks"]):
 		return data
 
+# @frappe.whitelist()
+# def get_trainer(user,trainer):
+	# print("\n\n\nTest Trainer")
+	# print(trainer)
+	# for id in frappe.get_all("Instructor",{"email_id":user},['name','email_id']):
+	# 	print("\n\n\nID",id.name)
+	# if id.name==trainer:
+	# 	return id.name
+	# else:
+	# 	frappe.throw("You have not the permission to give marks to the students for this module!!!")
+
 
 @frappe.whitelist()
-def make_course_assessment(course_assessment):
+def get_module_details(module,assessment_component):
+	for result in frappe.get_all("Module Wise Exam Group",{"modules_id":module,"assessment_component":assessment_component},['name','marker_name','checker']):
+		return result
+
+@frappe.whitelist()
+def make_course_assessment(course_assessment,trainer_id,checker):
 	result=json.loads(course_assessment)
 	if result.get('rows'):
 		list_student=[]
 		already_record=[]
 		for d in result.get('rows'):
-			if not frappe.db.count("Course Assessment",{"docstatus":("!=",2),"student":result.get('rows')[d].get("student_no"),"academic_year":result.get("academic_year"),"academic_term":result.get("academic_term"),'course':result.get("course"),"assessment_criteria":result.get("criteria")}):
+			if not frappe.db.count("Course Assessment",{"docstatus":("!=",2),"student":result.get('rows')[d].get("student_no"),"academic_year":result.get("academic_year"),"academic_term":result.get("academic_term"),'course':result.get("course"),"assessment_criteria":result.get("criteria"),'trainer_id':result.get("trainer_id"),'trainer_name':result.get("trainer_name")}):
 				doc=frappe.new_doc("Course Assessment")
 				doc.student=result.get('rows')[d].get("student_no")
 				doc.roll_no=result.get('rows')[d].get("roll_no")
@@ -444,12 +460,15 @@ def make_course_assessment(course_assessment):
 				doc.semester=result.get('rows')[d].get("semester")
 				doc.assessment_criteria=result.get("criteria")
 				doc.course=result.get("course")
+				doc.trainer_id=trainer_id
+				doc.checker_id=checker
 				doc.exam_declaration=result.get("exam_declaration")
-				doc.assessment_plan=result.get("exam_assessment_plan")
+				doc.assessment_plan=result.get('rows')[d].get("exam_assessment_plan")
 				doc.earned_marks=result.get('rows')[d].get("earned_marks")
 				doc.total_marks=result.get('rows')[d].get("total_marks")
 				doc.attendence_status=result.get('rows')[d].get("attendance")
 				doc.save()
+				# doc.submit()
 				list_student.append(result.get('rows')[d].get("student_no"))
 			else:
 				already_record.append(result.get('rows')[d].get("student_no"))	
@@ -457,6 +476,12 @@ def make_course_assessment(course_assessment):
 			frappe.msgprint("Records Created <b><i>%s</i></b>"%(list_student))
 		if 	already_record:
 			frappe.msgprint("Already Records Created <b><i>%s</i></b>"%(already_record))
+	for id in frappe.get_all("Instructor",{"email_id":frappe.session.user},['name','email_id']):
+		if id.name==trainer_id:
+			pass
+		else:
+			frappe.throw("You do not have the permission to give marks to the students for this module!!!")
+		
 
 @frappe.whitelist()
 def get_courses(doctype, txt, searchfield, start, page_len, filters):
