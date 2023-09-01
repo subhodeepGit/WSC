@@ -303,8 +303,8 @@ def update_onboarding_status(doc):
         for activity_record in activity_records:
             # Step v: Update status field to the new status value
             if activity_record.activity_name in doc.subject:
-                print(activity_record.activity_name)
-                print("\n\n\n")
+                # print(activity_record.activity_name)
+                # print("\n\n\n")
                 frappe.db.set_value("Employee Boarding Activity", activity_record.name, "status", doc.status)
 
                 
@@ -313,9 +313,13 @@ def update_onboarding_status(doc):
                 # frappe.msgprint("Status updated in Employee Onboarding Activities")
             else :
                 pass
+        # print("\n\n\n\n")
+        # print(onboarding_name.onboarding_status)
             
     else:
         return "No employee on-boarding record found for the provided project."
+    
+
 
 
 def validate(doc,method):

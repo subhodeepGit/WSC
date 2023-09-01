@@ -151,6 +151,7 @@ frappe.ui.form.on('Payment Entry', {
 					// alert(r.message)
 					var total_positive_outstanding = 0;
 					var total_negative_outstanding = 0;
+					var amount=0;
 
 					// $.each(r.message, function(i, d) {
 					// 	alert(JSON.stringify(d))
@@ -164,10 +165,12 @@ frappe.ui.form.on('Payment Entry', {
 						c.reference_name=element.reference_name
 						c.due_date=element.posting_date
 						c.allocated_amount=element.outstanding_fees
+						amount=amount+c.allocated_amount
 						c.total_amount=element.outstanding_fees
 						c.outstanding_amount=element.outstanding_fees
 						c.account_paid_from=element.receivable_account
                     });
+					frm.set_value("total_allocated_amount",amount)
                     frm.refresh_field("references")
 				}
 
@@ -415,13 +418,13 @@ frappe.ui.form.on('Payment Entry', {
 
 // comment for write_off
 
-// frappe.ui.form.on('Payment Entry Reference', {	//Child table Name
-// 	allocated_amount:function(frm, cdt, cdn){	//Child table field Name where you data enter
-// 	var d = locals[cdt][cdn];
-// 	var total = 0;
-// 	let a= parseInt(total)
-// 	frm.doc.references.forEach(function(d)  { a = a+ d.allocated_amount; }); //Child table name and field name
-// 	frm.set_value("paid_amount", a);			// Parent field name where calculation going to fetch
-// 	refresh_field("paid_amount");
-//   },
-// })
+frappe.ui.form.on('Payment Entry Reference', {	//Child table Name
+	allocated_amount:function(frm, cdt, cdn){	//Child table field Name where you data enter
+	var d = locals[cdt][cdn];
+	var total = 0;
+	let a= parseInt(total)
+	frm.doc.references.forEach(function(d)  { a = a+ d.allocated_amount; }); //Child table name and field name
+	frm.set_value("paid_amount", a);			// Parent field name where calculation going to fetch
+	refresh_field("paid_amount");
+  },
+})

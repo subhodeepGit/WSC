@@ -66,6 +66,8 @@ doctype_js = {
                 "Attendance":"public/js/attendance.js",
                 "Tax Category":"public/js/tax_category.js",
                 "Employee Grievance":"public/js/employee_grievance.js",
+                "Employee Onboarding":"public/js/employee_onboarding.js",
+                "Job Offer":"public/js/job_offer.js",
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -382,7 +384,14 @@ doc_events = {
         "validate":"wsc.task.validate"
     },
     "Employee Onboarding": {
-        "validate":"wsc.wsc.doctype.employee_onboarding.validate"
+        "validate":"wsc.wsc.doctype.employee_onboarding.validate",
+        "on_cancel" : "wsc.wsc.doctype.employee_onboarding.on_cancel",
+        # "on_change" : "wsc.wsc.doctype.employee_onboarding.on_change",
+
+    },
+    "Task":
+    {
+        "validate":"wsc.wsc.doctype.task.validate"
     }
     
     
@@ -455,7 +464,8 @@ override_doctype_class = {
     "Student Attendance": "wsc.wsc.doctype.student_attendance.StudentAttendance",
     "User Permission": "wsc.wsc.doctype.user_permission.UserPermission",
     "Item": "wsc.wsc.validations.item.Item",
-    "Leave Application":"wsc.wsc.doctype.leave_application.LeaveApplication"
+    "Leave Application":"wsc.wsc.doctype.leave_application.LeaveApplication",
+    "Job Offer":"wsc.wsc.doctype.job_offer.JobOffer",
     # "Job Applicant": "wsc.wsc.doctype.job_applicant.Job Applicant"
     # "Data Import": "wsc.wsc.doctype.data_import.DataImport"
 }

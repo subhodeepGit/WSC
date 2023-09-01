@@ -430,6 +430,14 @@ frappe.ui.form.on("Education Qualifications Details", "earned_marks", function(f
     }
  })
 
+frappe.ui.form.on("Program Priority" , {
+    program_priority_remove: function(frm , cdt , cdn) {
+        frappe.model.clear_table(frm.doc, 'education_qualifications_details');  
+        frm.refresh();
+        frm.refresh_field("education_qualifications_details")
+    }
+})
+
 frappe.ui.form.on("Exam Centre Preference" , "center_name" , function(frm , cdt , cdn){
     var d = locals[cdt][cdn];
     var a = 0;
@@ -553,8 +561,8 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
                             },
                             callback: function(resp) { 
                                 if (resp.message){
-                                    frappe.model.clear_table(frm.doc, 'education_qualifications_details');  //Sukalyan Code
-                                    // console.log("edu qualify");
+                                    console.log("edu qualify");
+                                    console.log(resp.message);
                                     $.each(resp.message, function(index, row){
                                             var edu_row = frm.add_child("education_qualifications_details");
                                             edu_row.qualification = row.parameter;
@@ -564,7 +572,7 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
                                     frm.refresh_field("education_qualifications_details");
                                 }
                                 else{
-                                    frappe.model.clear_table(frm.doc, 'education_qualifications_details');  //Sukalyan Code
+                                    // frappe.model.clear_table(frm.doc, 'education_qualifications_details');  //Sukalyan Code
                                     frm.refresh_field("education_qualifications_details");
                                 }
                             } 
