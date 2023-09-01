@@ -1,0 +1,1 @@
+<h2><left>Dear {{doc.applicant_name}}</left><br>\n<p> Congratulations!! We are pleased to extend an offer of employment for the position of {{doc.designation}} at {{doc.company}}.If you accept this offer, kindly sign and return a copy of this letter as a symbol of your acceptance.Kindly find your job offer in the attachment for the same</p></h2>\n\n\n",

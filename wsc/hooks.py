@@ -67,6 +67,7 @@ doctype_js = {
                 "Tax Category":"public/js/tax_category.js",
                 "Employee Grievance":"public/js/employee_grievance.js",
                 "Employee Onboarding":"public/js/employee_onboarding.js",
+                "Job Offer":"public/js/job_offer.js",
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -459,7 +460,8 @@ override_doctype_class = {
     "Student Attendance": "wsc.wsc.doctype.student_attendance.StudentAttendance",
     "User Permission": "wsc.wsc.doctype.user_permission.UserPermission",
     "Item": "wsc.wsc.validations.item.Item",
-    "Leave Application":"wsc.wsc.doctype.leave_application.LeaveApplication"
+    "Leave Application":"wsc.wsc.doctype.leave_application.LeaveApplication",
+    "Job Offer":"wsc.wsc.doctype.job_offer.JobOffer",
     # "Job Applicant": "wsc.wsc.doctype.job_applicant.Job Applicant"
     # "Data Import": "wsc.wsc.doctype.data_import.DataImport"
 }
