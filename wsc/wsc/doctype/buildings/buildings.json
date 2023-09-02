@@ -111,7 +111,7 @@
    "fieldname": "building_type",
    "fieldtype": "Select",
    "label": "Building Type",
-   "options": "\nAcademic\nNon-Academic\nResidential\nOthers",
+   "options": "\nAcademic\nNon-Academic\nOthers",
    "reqd": 1
   },
   {
@@ -189,7 +189,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-30 15:30:56.357653",
+ "modified": "2023-09-01 15:30:55.093852",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Buildings",
@@ -210,6 +210,7 @@
    "write": 1
   }
  ],
+ "search_fields": "building_address",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

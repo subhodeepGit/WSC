@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "FLR.-.#####",
  "creation": "2023-05-30 15:41:42.009834",
  "default_view": "List",
  "doctype": "DocType",
@@ -21,13 +22,14 @@
   {
    "fieldname": "building_name",
    "fieldtype": "Link",
+   "in_preview": 1,
    "label": "Building Name",
    "options": "Buildings"
   },
   {
    "fieldname": "floor_size",
-   "fieldtype": "Int",
-   "label": "Floor Size"
+   "fieldtype": "Float",
+   "label": "Floor Size (In Sq. Ft)"
   },
   {
    "fieldname": "number_of_rooms",
@@ -36,8 +38,9 @@
   },
   {
    "fieldname": "floor_incharge",
-   "fieldtype": "Data",
-   "label": "Floor Incharge"
+   "fieldtype": "Link",
+   "label": "Floor Incharge",
+   "options": "Employee"
   },
   {
    "fieldname": "floor_assets",
@@ -54,6 +57,7 @@
   {
    "fieldname": "floor_number",
    "fieldtype": "Data",
+   "in_preview": 1,
    "label": "Floor Number"
   },
   {
@@ -74,10 +78,11 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-05-30 15:41:42.009834",
+ "modified": "2023-09-01 15:30:12.019947",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Floor",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -93,6 +98,7 @@
    "write": 1
   }
  ],
+ "search_fields": "building_name, floor_number",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

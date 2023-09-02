@@ -550,8 +550,8 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
                         frm.set_value("counselling_structure",r.message['counselling_structure'])
                     }
                     // !frm.doc.counselling_structure && frm.doc.student_category && 
-                    if ((frm.doc.program_priority).length==1){
-                        frm.set_value("education_qualifications_details",[]);
+                    if (frm.doc.program_priority){
+                        // frm.set_value("education_qualifications_details",[]);
                         frappe.call({
                             method: "wsc.wsc.doctype.student_applicant.get_education_qualifications_details_by_admissions",
                             args:{

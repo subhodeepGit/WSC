@@ -3,6 +3,49 @@
 
 
 frappe.ui.form.on('Course Assessment Result Tool', {
+	course:function(frm){
+		frm.trigger("get_student_details");
+		// if (frm.doc.assessment_component && frm.doc.course){
+		frappe.call({
+			method: "wsc.wsc.doctype.course_assessment_result_tool.course_assessment_result_tool.get_module_details",
+			args: {
+				"assessment_component":frm.doc.assessment_criteria,
+				"module":frm.doc.course
+				},
+			callback: function(r) {
+				frm.set_value("trainer_id",r.message['marker_name'])
+				frm.set_value("module_exam_group",r.message['name'])
+				frm.set_value("checker_id",(r.message)['checker'])
+			}
+		})
+		// frappe.call({
+		// 	method:"wsc.wsc.doctype.course_assessment_result_tool.course_assessment_result_tool.get_trainer",
+		// 	args:{
+		// 		"user":frappe.session.user,
+		// 		"trainer":frm.doc.trainer_id
+		// 	},
+		
+		// 	callback: function(r) {
+		// 		if ((JSON.stringify(r.message))==("\""+ frm.doc.trainer_id +"\"")){
+		// 			alert(frappe.session.user)
+		// 			alert(JSON.stringify(r.message))					
+		// 		}
+		// 		else
+		// 		{
+		// 			frappe.throw("You have not the permission to give marks to the students for this module")
+		// 		}
+		// 		// if r.message
+		// 		frm.set_value("trainer_id",r.message['marker_name'])
+		// 		frm.set_value("module_exam_group",r.message['name'])
+		// 		frm.set_value("checker_id",(r.message)['checker'])
+		// 	}
+		// })
+		// }
+		// else{
+		// 	frappe.msgprint("Kindly Fill the Assessment Component and Module")
+		// }
+		
+	},
 	setup:function(frm){
 		// frm.set_query("programs", function () {
 		// 	return {
@@ -74,9 +117,9 @@ frappe.ui.form.on('Course Assessment Result Tool', {
 	semester: function(frm) {
 		frm.trigger("get_student_details");
 	},
-	course: function(frm) {
-		frm.trigger("get_student_details");
-	},
+	// course: function(frm) {
+	// 	frm.trigger("get_student_details");
+	// },
 	academic_year: function(frm) {
 		frm.trigger("get_student_details");
 	},
@@ -110,6 +153,8 @@ frappe.ui.form.on('Course Assessment Result Tool', {
 			course_assessment["programs"]=frm.doc.programs;
 			course_assessment["program_grade"]=frm.doc.program_grade;
 			course_assessment["exam_declaration"]=frm.doc.exam_declaration;
+			course_assessment["trainer_id"]=frm.doc.trainer_id;
+			course_assessment["trainer_name"]=frm.doc.trainer_name;
 			course_assessment["exam_assessment_plan"]=frm.doc.exam_assessment_plan;
 			(cur_frm.doc.students).forEach(resp => {
 				var row={};
@@ -132,6 +177,8 @@ frappe.ui.form.on('Course Assessment Result Tool', {
 				method: "wsc.wsc.doctype.course_assessment_result_tool.course_assessment_result_tool.make_course_assessment",
 				args: {
 					"course_assessment":course_assessment,
+					"trainer_id":frm.doc.trainer_id,
+					"checker":frm.doc.checker_id
 					},
 				callback: function(r) {
 					console.log("######################################")

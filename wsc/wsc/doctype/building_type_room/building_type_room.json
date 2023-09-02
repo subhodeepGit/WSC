@@ -22,15 +22,15 @@
   {
    "fieldname": "allotment_status",
    "fieldtype": "Select",
+   "hidden": 1,
    "in_list_view": 1,
    "label": "Allotment Status",
-   "options": "Non Allottable\nAllottable",
-   "reqd": 1
+   "options": "Non Allottable\nAllottable"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-30 15:47:34.463040",
+ "modified": "2023-09-01 13:10:48.090379",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Building type Room",
