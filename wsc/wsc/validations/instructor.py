@@ -115,6 +115,8 @@ def permission(doc):
                     #     add_user_permission(doc.doctype,doc.name,emp.user_id,doc)
                         programs=frappe.get_doc("Programs",d.programs)
                         programs.save()
+                        module=frappe.get_doc("Course",d.course)
+                        module.save()
 
    
 def on_trash(doc,method):

@@ -12,16 +12,25 @@
   "registration_number",
   "academic_year",
   "academic_term",
+  "exam_declaration",
   "attendence_status",
+  "module_exam_group",
   "column_break_4",
   "department",
   "program_grade",
   "programs",
   "semester",
+  "school_house",
   "course",
   "course_name",
   "course_code",
   "assessment_criteria",
+  "section_break_am0kh",
+  "marker",
+  "checker",
+  "column_break_8chtf",
+  "marker_name",
+  "checker_name",
   "section_break_5",
   "get_assessments",
   "final_credit_item",
@@ -62,6 +71,7 @@
    "reqd": 1
   },
   {
+   "fetch_from": "exam_declaration.assessment_criteria",
    "fieldname": "assessment_criteria",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -241,12 +251,70 @@
    "label": "Department",
    "options": "Department",
    "read_only": 1
+  },
+  {
+   "fieldname": "exam_declaration",
+   "fieldtype": "Link",
+   "label": "Exam Declaration",
+   "options": "Exam Declaration"
+  },
+  {
+   "fieldname": "module_exam_group",
+   "fieldtype": "Link",
+   "label": "Module Exam Group",
+   "options": "Module Wise Exam Group"
+  },
+  {
+   "fieldname": "section_break_am0kh",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "module_exam_group.marker_name",
+   "fieldname": "marker",
+   "fieldtype": "Link",
+   "label": "Marker",
+   "options": "Instructor",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "module_exam_group.checker",
+   "fieldname": "checker",
+   "fieldtype": "Link",
+   "label": "Checker",
+   "options": "Instructor",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_8chtf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "module_exam_group.marker",
+   "fieldname": "marker_name",
+   "fieldtype": "Data",
+   "label": "Marker Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "module_exam_group.checker_name",
+   "fieldname": "checker_name",
+   "fieldtype": "Data",
+   "label": "Checker Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "exam_declaration.class",
+   "fieldname": "school_house",
+   "fieldtype": "Link",
+   "label": "School House",
+   "options": "School House",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-14 11:06:26.410465",
+ "modified": "2023-09-01 16:24:06.080011",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assessment Credits Allocation",
