@@ -9,7 +9,7 @@ from wsc.wsc.utils import get_courses_by_semester
 
 class ParticipantGroup(Document):
 	def validate(self):
-		
+		dupicate_student_group_chk(self)
 		self.calculate_total_hours()
 		for d in self.get("classes"):
 			parent_doc = frappe.new_doc("ToT Class Schedule")
@@ -40,11 +40,45 @@ class ParticipantGroup(Document):
 					'trainer_name' : td2.instructor_name	
 				})
 			parent_doc.save()	
+
+		dulicate_trainer_chk(self)
+		class_scheduling_ovelaping_chk(self)
+
 	def calculate_total_hours(self):
 		for d in self.get("classes"):
 			if d.to_time and d.from_time:
 				d.duration = datetime.strptime(d.to_time, '%H:%M:%S') - datetime.strptime(d.from_time, '%H:%M:%S') 
-		
+
+def class_scheduling_ovelaping_chk(self):
+	pass
+
+
+
+def dupicate_student_group_chk(self):
+	data=frappe.get_all("Participant Group",{"participant_enrollment_id":self.participant_enrollment_id,
+				     "course":self.course,"disabled":0,"docstatus":0},['name'])
+	flag="No"
+	for t in data:
+		if t['name']==self.name:
+			flag="Yes"
+	if flag=="No":
+		if data:
+			frappe.throw("Participant Group Already Present")
+
+
+def dulicate_trainer_chk(self):
+	trainer_list=[]
+	for t in self.get('instructor'):
+		trainer_list.append(t.instructors)
+
+	mylist =trainer_list
+	myset = set(mylist)
+	if len(mylist) != len(myset):
+		frappe.throw("Duplicates Record found in the Trainer List")
+
+
+
+
 
 @frappe.whitelist()
 def get_enrollment_details(enrollment_id):

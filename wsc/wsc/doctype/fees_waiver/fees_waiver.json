@@ -21,6 +21,8 @@
   "academic_term",
   "approval_letter",
   "section_break_ehvcz",
+  "comments",
+  "section_break_qlxcj",
   "fee_structure",
   "column_break_cn9tz",
   "fees",
@@ -146,12 +148,21 @@
    "label": "Fee Type",
    "options": "Fee Type",
    "reqd": 1
+  },
+  {
+   "fieldname": "comments",
+   "fieldtype": "Long Text",
+   "label": "Comments"
+  },
+  {
+   "fieldname": "section_break_qlxcj",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-05 16:36:24.016888",
+ "modified": "2023-09-01 14:47:42.944426",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Fees Waiver",

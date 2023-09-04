@@ -51,20 +51,20 @@
   },
   {
    "fieldname": "land_size",
-   "fieldtype": "Data",
-   "label": "Land Size",
+   "fieldtype": "Float",
+   "label": "Land Size (In Sq. ft)",
    "reqd": 1
   },
   {
    "fieldname": "land_valuation",
    "fieldtype": "Currency",
-   "label": "Land Valuation"
+   "label": "Land Valuation (In Rs.)"
   },
   {
    "fieldname": "land_use",
    "fieldtype": "Select",
    "label": "Land Use",
-   "options": "Academic\nResidential\nOthers",
+   "options": "\nAcademic\nOthers",
    "reqd": 1
   },
   {
@@ -170,7 +170,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-30 15:21:38.753031",
+ "modified": "2023-09-01 15:29:54.731831",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Land",
@@ -191,6 +191,7 @@
    "write": 1
   }
  ],
+ "search_fields": "name1",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],

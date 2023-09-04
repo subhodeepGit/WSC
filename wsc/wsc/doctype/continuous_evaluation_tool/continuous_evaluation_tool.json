@@ -7,44 +7,63 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "academic_year",
-  "academic_term",
+  "exam_declaration_id",
   "program_grade",
-  "programs",
-  "semester",
-  "column_break_5",
   "course",
-  "course_name",
-  "course_code",
+  "column_break_vdq62",
   "assessment_criteria",
-  "exam_cate",
-  "exam_declaration",
+  "programs",
+  "course_code",
+  "column_break_meotd",
+  "academic_year",
+  "semester",
+  "course_name",
+  "column_break_6dtgd",
+  "academic_term",
+  "school_house",
+  "module_exam_group",
+  "section_break_vibcb",
+  "marker",
+  "checker",
+  "column_break_krmpz",
+  "marker_name",
+  "checker_name",
   "section_break_10",
+  "exam_cate",
+  "column_break_5",
+  "exam_declaration",
+  "section_break_hrb1i",
   "student_inputs"
  ],
  "fields": [
   {
+   "fetch_from": "exam_declaration_id.academic_year",
    "fieldname": "academic_year",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Academic Year",
    "options": "Academic Year",
+   "read_only": 1,
    "reqd": 1
   },
   {
+   "fetch_from": "exam_declaration_id.academic_term",
    "fieldname": "academic_term",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Academic Term",
    "options": "Academic Term",
+   "read_only": 1,
    "reqd": 1
   },
   {
+   "fetch_from": "exam_declaration_id.exam_program",
    "fieldname": "programs",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Programs",
    "options": "Programs",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -53,6 +72,7 @@
    "in_list_view": 1,
    "label": "Semester",
    "options": "Program",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -60,13 +80,16 @@
    "fieldtype": "Column Break"
   },
   {
+   "depends_on": "eval:doc.exam_declaration_id",
    "fieldname": "course",
    "fieldtype": "Link",
    "label": "Course",
+   "mandatory_depends_on": "eval:doc.exam_declaration_id",
    "options": "Course",
    "reqd": 1
   },
   {
+   "depends_on": "eval:doc.exam_declaration_id",
    "fetch_from": "course.course_name",
    "fieldname": "course_name",
    "fieldtype": "Data",
@@ -74,6 +97,7 @@
    "read_only": 1
   },
   {
+   "depends_on": "eval:doc.exam_declaration_id",
    "fetch_from": "course.course_code",
    "fieldname": "course_code",
    "fieldtype": "Data",
@@ -81,10 +105,12 @@
    "read_only": 1
   },
   {
+   "fetch_from": "exam_declaration_id.assessment_criteria",
    "fieldname": "assessment_criteria",
    "fieldtype": "Link",
    "label": "Assessment Component",
    "options": "Assessment Criteria",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -97,10 +123,12 @@
    "label": "Student Inputs"
   },
   {
+   "fetch_from": "exam_declaration_id.program_grade",
    "fieldname": "program_grade",
    "fieldtype": "Link",
    "label": "Course Type",
    "options": "Program Grades",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -109,21 +137,105 @@
    "fieldtype": "Link",
    "label": "Re-Exam Exam Declaration",
    "mandatory_depends_on": "eval:doc.exam_cate==\"Re-Exam\"",
-   "options": "Exam Declaration"
+   "options": "Exam Declaration",
+   "read_only": 1
   },
   {
+   "fetch_from": "exam_declaration_id.exam_category",
    "fieldname": "exam_cate",
    "fieldtype": "Select",
    "label": "Exam Category",
    "options": "\nRegular\nRe-Exam",
+   "read_only": 1,
    "reqd": 1
+  },
+  {
+   "fieldname": "exam_declaration_id",
+   "fieldtype": "Link",
+   "label": "Exam Declaration Id",
+   "options": "Exam Declaration"
+  },
+  {
+   "depends_on": "eval:doc.course",
+   "fieldname": "module_exam_group",
+   "fieldtype": "Link",
+   "label": "Module Exam Group",
+   "mandatory_depends_on": "eval:doc.course",
+   "options": "Module Wise Exam Group"
+  },
+  {
+   "fetch_from": "exam_declaration_id.class",
+   "fieldname": "school_house",
+   "fieldtype": "Link",
+   "label": "School House",
+   "options": "School House",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.exam_declaration_id",
+   "fetch_from": "module_exam_group.marker_name",
+   "fieldname": "marker",
+   "fieldtype": "Link",
+   "label": "Marker",
+   "options": "Instructor",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.exam_declaration_id",
+   "fetch_from": "module_exam_group.checker",
+   "fieldname": "checker",
+   "fieldtype": "Link",
+   "label": "Checker",
+   "options": "Instructor",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_krmpz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.exam_declaration_id",
+   "fetch_from": "marker.instructor_name",
+   "fieldname": "marker_name",
+   "fieldtype": "Data",
+   "label": "Marker Name",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.exam_declaration_id",
+   "fetch_from": "checker.instructor_name",
+   "fieldname": "checker_name",
+   "fieldtype": "Data",
+   "label": "Checker Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_hrb1i",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_vdq62",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_meotd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_6dtgd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_vibcb",
+   "fieldtype": "Section Break"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-08-07 15:50:08.793085",
+ "modified": "2023-09-04 13:06:43.636488",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Continuous Evaluation Tool",

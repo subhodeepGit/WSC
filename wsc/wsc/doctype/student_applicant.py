@@ -601,11 +601,6 @@ def get_counselling_structure(program_grade,department,academic_year):
 
 @frappe.whitelist()
 def get_education_qualifications_details_by_admissions(student_category,admission):
-    # args = json.loads(self)
-    # print("\n\n\n\n\n\n")
-    # print(args)
-    # for t in args.get("education_qualifications_details"):
-    #     print(t.institute)
     return frappe.get_all("Eligibility Parameter List",{"parent":["IN",[d.get("student_admission") for d in json.loads(admission)]],"parenttype":"Student Admission"},["parameter","percentagecgpa"] , order_by="parameter",group_by="parameter")
 
 @frappe.whitelist()

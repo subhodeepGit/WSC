@@ -1,0 +1,31 @@
+{
+ "attach_print": 1,
+ "channel": "Email",
+ "condition": "doc.is_new_job_applicant==1",
+ "creation": "2023-08-31 16:17:12.273731",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Job Offer",
+ "enabled": 1,
+ "event": "Submit",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<h2><left>Dear {{doc.applicant_name}}</left><br>\\n<p> Congratulations!! We are pleased to extend an offer of employment for the position of {{doc.designation}} at {{doc.company}}.If you accept this offer, kindly sign and return a copy of this letter as a symbol of your acceptance.Kindly find your job offer in the attachment for the same</p></h2>\\n\\n\\n\",",
+ "modified": "2023-08-31 16:17:22.400165",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Job Applicant Job Offer",
+ "owner": "Administrator",
+ "print_format": "WSC Job Offer",
+ "recipients": [
+  {
+   "receiver_by_document_field": "applicant_email"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "sender": "No-Reply",
+ "sender_email": "education4dmin@yandex.com",
+ "subject": " Job Offer for the Position of {{doc.designation}}"
+}
