@@ -111,10 +111,12 @@ def make_continuous_evaluation(continuous_evaluation,exam_declaration_id):
 					doc.course=result.get("course")
 					doc.course_name=result.get("course_name")
 					doc.course_code=result.get("course_code")
-					# doc.module_exam_group=module_exam_group
 					doc.exam_declaration=exam_declaration_id
+					doc.module_exam_group=result.get("module_exam_group")
 					doc.marker=result.get("marker")
 					doc.checker=result.get("checker")
+					doc.marker_name=result.get("marker_name")
+					doc.checker_name=result.get("checker_name")
 					for row in student_data.get(result.get('rows')[d].get("student"))['rows']:
 						doc.append("final_credit_item",{
 							"course_assessment":row.get("name"),
@@ -133,7 +135,7 @@ def make_continuous_evaluation(continuous_evaluation,exam_declaration_id):
 					doc.attendence_status=result.get('rows')[d].get("exam_attendence")
 					doc.program_grade=result.get("program_grade")	
 					doc.save()
-					# doc.submit()
+					doc.submit()
 					records=True
 				else:
 					frappe.msgprint("Please add final marks and earned credits for student <b>{0}</b>".format(result.get('rows')[d].get("student")))

@@ -11,7 +11,7 @@
   "program_grade",
   "course",
   "column_break_vdq62",
-  "module_exam_group",
+  "assessment_criteria",
   "programs",
   "course_code",
   "column_break_meotd",
@@ -21,7 +21,7 @@
   "column_break_6dtgd",
   "academic_term",
   "school_house",
-  "assessment_criteria",
+  "module_exam_group",
   "section_break_vibcb",
   "marker",
   "checker",
@@ -156,11 +156,12 @@
    "options": "Exam Declaration"
   },
   {
+   "depends_on": "eval:doc.course",
    "fieldname": "module_exam_group",
    "fieldtype": "Link",
    "label": "Module Exam Group",
-   "options": "Module Wise Exam Group",
-   "read_only": 1
+   "mandatory_depends_on": "eval:doc.course",
+   "options": "Module Wise Exam Group"
   },
   {
    "fetch_from": "exam_declaration_id.class",
@@ -234,7 +235,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-09-01 17:21:27.195964",
+ "modified": "2023-09-04 13:06:43.636488",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Continuous Evaluation Tool",
