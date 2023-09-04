@@ -16,6 +16,8 @@
   "tot_participant_batch",
   "column_break_fpmn1",
   "participant_group",
+  "tot_start_date",
+  "tot_end_date",
   "group_based_on",
   "academic_term",
   "semester",
@@ -30,7 +32,8 @@
   "get_participants",
   "participants",
   "instructor",
-  "classes"
+  "classes",
+  "amended_from"
  ],
  "fields": [
   {
@@ -51,7 +54,8 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Participant Group Name",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "fieldname": "academic_term",
@@ -170,11 +174,34 @@
    "fieldtype": "Data",
    "label": "Module Code",
    "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Participant Group",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fetch_from": "participant_enrollment_id.start_date",
+   "fieldname": "tot_start_date",
+   "fieldtype": "Date",
+   "label": "TOT Start Date",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "participant_enrollment_id.end_date",
+   "fieldname": "tot_end_date",
+   "fieldtype": "Date",
+   "label": "TOT End Date ",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-31 12:27:57.595853",
+ "modified": "2023-09-04 17:24:14.498525",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Group",
