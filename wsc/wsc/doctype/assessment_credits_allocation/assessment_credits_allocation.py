@@ -59,7 +59,8 @@ class AssessmentCreditsAllocation(Document):
 
     def validate_assessment_criteria(self):
         lst = []
-        for i in frappe.get_all("Course Enrollment",{'student':self.get("student"),"course":self.get("course"),"status":("!=","Completed")},['name']):
+        # ,"status":("!=","Completed")
+        for i in frappe.get_all("Course Enrollment",{'student':self.get("student"),"course":self.get("course")},['name']):
             fltr={"parent":i.get("name")}
             for j in frappe.get_all("Credit distribution List",fltr,["assessment_criteria"]):
                 lst.append(j.assessment_criteria)

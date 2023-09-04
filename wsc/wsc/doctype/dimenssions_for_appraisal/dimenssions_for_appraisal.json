@@ -1,40 +1,34 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:type_of_room",
- "creation": "2023-01-04 09:53:03.058408",
+ "creation": "2023-09-01 15:14:28.457391",
+ "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "type_of_room",
-  "allotment_status"
+  "is_active",
+  "dimenssion_title"
  ],
  "fields": [
   {
-   "fieldname": "type_of_room",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Type of room",
-   "reqd": 1,
-   "unique": 1
+   "default": "0",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
   },
   {
-   "fieldname": "allotment_status",
-   "fieldtype": "Select",
-   "hidden": 1,
-   "in_list_view": 1,
-   "label": "Allotment Status",
-   "options": "Non Allottable\nAllottable"
+   "fieldname": "dimenssion_title",
+   "fieldtype": "Data",
+   "label": "Dimenssion Title"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-01 13:10:48.090379",
+ "modified": "2023-09-01 15:14:28.457391",
  "modified_by": "Administrator",
  "module": "WSC",
- "name": "Building type Room",
- "naming_rule": "By fieldname",
+ "name": "Dimenssions for Appraisal",
  "owner": "Administrator",
  "permissions": [
   {

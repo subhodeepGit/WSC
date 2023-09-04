@@ -12,25 +12,34 @@
   "registration_number",
   "academic_year",
   "academic_term",
-  "course",
-  "course_name",
   "assessment_criteria",
+  "course",
   "column_break_5",
   "exam_declaration",
+  "module_wise_exam_group",
   "department",
   "program_grade",
   "programs",
   "semester",
-  "module_wise_exam_group",
+  "course_name",
+  "module_code",
   "exam_category",
   "section_break_9",
   "assessment_plan",
   "qualifying_status_data",
+  "total_marks",
   "passing_marks",
   "column_break_13",
   "attendence_status",
   "earned_marks",
-  "total_marks",
+  "section_break_ovltc",
+  "trainer_id",
+  "checker_id",
+  "column_break_ag23i",
+  "trainer_name",
+  "checker_name",
+  "trainer_email",
+  "checker_email",
   "amended_from"
  ],
  "fields": [
@@ -49,12 +58,13 @@
    "label": "Student Name"
   },
   {
-   "fetch_from": "course_assessment_plan.assessment_criteria",
+   "fetch_from": "exam_declaration.assessment_criteria",
    "fieldname": "assessment_criteria",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Assessment Criteria",
    "options": "Assessment Criteria",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -139,7 +149,6 @@
    "read_only": 1
   },
   {
-   "allow_on_submit": 1,
    "fieldname": "earned_marks",
    "fieldtype": "Float",
    "label": "Earned Marks"
@@ -171,7 +180,8 @@
    "fieldname": "program_grade",
    "fieldtype": "Link",
    "label": "Course Type",
-   "options": "Program Grades"
+   "options": "Program Grades",
+   "read_only": 1
   },
   {
    "fieldname": "attendence_status",
@@ -200,9 +210,11 @@
    "read_only": 1
   },
   {
+   "fetch_from": "course.passing_marks",
    "fieldname": "passing_marks",
-   "fieldtype": "Data",
-   "label": "Passing Marks"
+   "fieldtype": "Float",
+   "label": "Passing Marks",
+   "read_only": 1
   },
   {
    "fetch_from": "semester.department",
@@ -211,12 +223,72 @@
    "label": "Department",
    "options": "Department",
    "read_only": 1
+  },
+  {
+   "fieldname": "trainer_id",
+   "fieldtype": "Link",
+   "label": "Marker Id",
+   "options": "Instructor",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ag23i",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "trainer_id.instructor_name",
+   "fieldname": "trainer_name",
+   "fieldtype": "Data",
+   "label": "Marker Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "trainer_id.email_id",
+   "fieldname": "trainer_email",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Trainer Email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_ovltc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "checker_id",
+   "fieldtype": "Link",
+   "label": "Checker Id",
+   "options": "Instructor",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "checker_id.instructor_name",
+   "fieldname": "checker_name",
+   "fieldtype": "Data",
+   "label": "Checker Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "course.course_code",
+   "fieldname": "module_code",
+   "fieldtype": "Data",
+   "label": "Module Code",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "checker_id.email_id",
+   "fieldname": "checker_email",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "checker_email",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-14 11:05:42.684211",
+ "modified": "2023-08-31 18:24:20.306627",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Course Assessment",

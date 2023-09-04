@@ -51,8 +51,7 @@
   "parking_vehicle",
   "parking_area_sq_m",
   "section_break_gphos",
-  "room_assets",
-  "column_break_bjk09"
+  "room_assets"
  ],
  "fields": [
   {
@@ -342,10 +341,6 @@
    "options": "Room Assets"
   },
   {
-   "fieldname": "column_break_bjk09",
-   "fieldtype": "Column Break"
-  },
-  {
    "default": "0",
    "fieldname": "is_temporary",
    "fieldtype": "Check",
@@ -390,7 +385,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-17 14:29:41.924759",
+ "modified": "2023-09-01 15:55:20.145539",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Building Room",

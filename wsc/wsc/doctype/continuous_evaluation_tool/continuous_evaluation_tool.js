@@ -2,8 +2,42 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Continuous Evaluation Tool', {
+	exam_declaration_id:function(frm){
+		if (frm.doc.exam_cate=="Re-Exam"){
+			let fname=frm.doc.exam_declaration_id;    
+        	frm.set_value("exam_declaration",fname);
+		}
+		frappe.call({
+			method: "wsc.wsc.doctype.continuous_evaluation_tool.continuous_evaluation_tool.get_semester_and_exam_assessment_plan",
+			args:{
+				declaration_id:frm.doc.exam_declaration_id,
+			},
+			callback: function(r) {
+				if (r.message) {
+					var sem=r.message
+					frm.set_value('semester', sem['semester']);
+				}
+			}
+		})
+		frm.trigger("get_student_details");
+	},
+	course:function(frm){
+		// window.location.reload();
+		frappe.call({
+			method: "wsc.wsc.doctype.continuous_evaluation_tool.continuous_evaluation_tool.get_module_details",
+			args: {
+				"assessment_component":frm.doc.assessment_criteria,
+				"module":frm.doc.course
+				},
+			callback: function(r) {
+				frm.set_value("module_exam_group",r.message['name'])
+			}
+		})	
+		frm.trigger("get_student_details");	
+	},
 	refresh:function(frm){
-		frm.disable_save();
+		// frm.doc=null
+		// frm.disable_save();
 		frm.set_query("programs", function () {
 			return {
 				filters: [
@@ -24,8 +58,12 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 			continuous_evaluation["semester"]=frm.doc.semester;
 			continuous_evaluation["exam_cate"]=frm.doc.exam_cate;
 			continuous_evaluation["programs"]=frm.doc.programs;
+			continuous_evaluation["marker"]=frm.doc.marker;
+			continuous_evaluation["checker"]=frm.doc.checker;
+			continuous_evaluation["module_exam_group"]=frm.doc.module_exam_group;
 			continuous_evaluation["program_grade"]=frm.doc.program_grade;
 			continuous_evaluation["exam_declaration"]=frm.doc.exam_declaration;
+			// alert(continuous_evaluation["module_exam_group"])
 			if(cur_frm.doc.students){
 				(cur_frm.doc.students).forEach(resp => {
 					var row={};
@@ -77,10 +115,14 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 				})
 			}
 			frappe.call({
+				
 				method: "wsc.wsc.doctype.continuous_evaluation_tool.continuous_evaluation_tool.make_continuous_evaluation",
+				
 				args: {
 					"continuous_evaluation":continuous_evaluation,
-					}
+					"exam_declaration_id":frm.doc.exam_declaration_id,
+					// "module_exam_group":frm.doc.module_exam_group,
+				}
 			});
 		});
 	},
@@ -113,7 +155,7 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 		frm.set_query('exam_declaration', function() {
 			return {
 				filters: {
-					"exam_cate":"Re-Exam",
+					"exam_category":"Re-Exam",
 					"docstatus":1
 				}
 			};
@@ -131,15 +173,13 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 	semester:function(frm){
 		frm.trigger("get_student_details");
 	},
-	course:function(frm){
-		frm.trigger("get_student_details");
-	},
 	assessment_criteria: function(frm) {
 		frm.trigger("get_student_details");
 	},
+	
 	// get_student_details:function(frm){
 		
-	exam_cate:function(frm){
+	get_student_details:function(frm){
 		if(frm.doc.exam_cate=="Regular"){
 			frm.doc.students=[];
 			$(frm.fields_dict.student_inputs.wrapper).empty();
