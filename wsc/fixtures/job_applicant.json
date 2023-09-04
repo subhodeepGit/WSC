@@ -21,9 +21,17 @@
   "name": "toshiff@gmail.com",
   "naming_series": "HR-APP-.YYYY.-.#####",
   "notes": null,
-  "phone_number": "8974566479",
+  "phone_number": "9087654321",
   "previous_application_details": [],
-  "result_status": [],
+  "result_status": [
+   {
+    "name_of_the_round": "Written",
+    "parent": "toshiff@gmail.com",
+    "parentfield": "result_status",
+    "parenttype": "Job Applicant",
+    "status": ""
+   }
+  ],
   "resume_attachment": null,
   "resume_link": null,
   "source": null,
@@ -31,6 +39,6 @@
   "status": "Open",
   "upper_range": 0.0,
   "work_history": [],
-  "workflow_state": "Submitted"
+  "workflow_state": "Draft"
  }
 ]
