@@ -1,11 +1,13 @@
 # Copyright (c) 2023, SOUL Limited and contributors
 # For license information, please see license.txt
-
+from wsc.wsc.notification.custom_notification import admit_card_submit
 import frappe
 from frappe.model.document import Document
 
 class EntranceExamAdmitCard(Document):
-	pass
+	# pass
+	def on_submit(self):
+		admit_card_submit(self)
 
 @frappe.whitelist()
 def center_option(applicant_id , academic_year , academic_term , department):

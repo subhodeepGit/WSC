@@ -139,6 +139,7 @@ frappe.ui.form.on('Student Applicant', {
         frm.trigger("hide_n_show_child_table_fields");
     },
     refresh(frm){
+        // console.log(frm.doc.image);
         if(frappe.user.has_role(["Applicant"]) && !frappe.user.has_role(["System Manager"])){
 			frm.set_value("student_email_id", frappe.session.user)
 			frm.set_df_property('student_email_id', 'read_only', 1);
