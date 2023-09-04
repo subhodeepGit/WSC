@@ -9,7 +9,7 @@ frappe.ui.form.on('Participant Group', {
 					'academic_year' : frm.doc.academic_year
 				}
 			}
-		})
+		}),
 		
 		frm.set_query('program', function(){
 			return{
@@ -17,7 +17,17 @@ frappe.ui.form.on('Participant Group', {
 					'is_tot': 1
 				}
 			}
-		})
+		}),
+		frm.set_query('participant_enrollment_id', function(){
+			return{
+				filters:{
+					'docstatus': 1
+				}
+			}
+		}),
+		frm.set_df_property('participants', 'cannot_add_rows', true);
+		frm.set_df_property('participants', 'cannot_delete_rows', true);
+
 		// frm.set_query('course', function(){
 		// 	return{
 		// 		filters:{
@@ -89,6 +99,7 @@ frappe.ui.form.on('Participant Group', {
 				}
 				frm.refresh()
 				frm.refresh_field('participants')
+				frm.save();
 			}
 		})
 	},
