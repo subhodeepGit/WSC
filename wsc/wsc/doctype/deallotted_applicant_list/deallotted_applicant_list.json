@@ -3,7 +3,6 @@
  "allow_rename": 1,
  "creation": "2023-05-09 17:47:24.103813",
  "doctype": "DocType",
- "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "applicant_id",
@@ -46,6 +45,7 @@
    "label": "Physical Disability"
   },
   {
+   "allow_on_submit": 1,
    "default": "0",
    "fieldname": "center_allocated_status",
    "fieldtype": "Check",
@@ -55,7 +55,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-06-14 15:37:05.484602",
+ "modified": "2023-09-04 11:56:34.794950",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "DeAllotted Applicant List",
