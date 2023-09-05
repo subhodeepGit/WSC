@@ -80,8 +80,6 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 				"module":frm.doc.course
 				},
 			callback: function(r) {
-				// frm.set_value("module_exam_group",r.message['name'])
-				// alert(frm.doc.module_exam_group)
 				frm.page.set_primary_action(("Submit"), function() {
 					let html_values=cur_frm.fields_dict.student_inputs.wrapper;
 					var continuous_evaluation={};
@@ -304,6 +302,7 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 	// get_student_details:function(frm){
 		
 	get_student_details:function(frm){
+		// alert("hey")
 		if(frm.doc.exam_cate=="Regular"){
 			frm.doc.students=[];
 			$(frm.fields_dict.student_inputs.wrapper).empty();
@@ -312,6 +311,7 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 					method: "get_student_allocations",
 					doc:frm.doc,
 					callback: function(r) {
+						alert(JSON.stringify(r.message))
 						if (r.message) {
 							$(frm.fields_dict.student_inputs.wrapper).empty();
 							frm.doc.students=r.message;
