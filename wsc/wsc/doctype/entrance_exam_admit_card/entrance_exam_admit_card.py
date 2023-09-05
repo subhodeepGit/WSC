@@ -7,6 +7,7 @@ from frappe.model.document import Document
 class EntranceExamAdmitCard(Document):
 	# pass
 	def on_submit(self):
+		print("\n\nsubmit")
 		admit_card_submit(self)
 
 @frappe.whitelist()
