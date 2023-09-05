@@ -42,18 +42,66 @@ class ParticipantGroup(Document):
 			parent_doc.save()	
 
 		dulicate_trainer_chk(self)
+		class_scheduling_date_validation(self)
 		class_scheduling_ovelaping_chk(self)
+
 
 	def calculate_total_hours(self):
 		for d in self.get("classes"):
 			if d.to_time and d.from_time:
-				d.duration = datetime.strptime(d.to_time, '%H:%M:%S') - datetime.strptime(d.from_time, '%H:%M:%S') 
+				t1 =datetime.strptime(d.from_time, "%H:%M:%S")
+				t2 = datetime.strptime(d.to_time, "%H:%M:%S")
+				delta = t2 - t1
+				ms = delta.total_seconds()/60
+				d.duration=round(ms,2)
+				if d.duration<=0:
+					idx=d.idx
+					frappe.throw(f"Time Duration can't be <b>Negative or Zero</b> for the line no <b><i>{idx}</i></b>")
+
 
 def class_scheduling_ovelaping_chk(self):
+	tot_start_date=self.tot_start_date
+	tot_end_date=self.tot_end_date 
+	error_list=[]
+	for t in self.get('classes'):
+		date_string = t.scheduled_date # Replace with your date string
+		date_format = "%Y-%m-%d"
+		parsed_date = datetime.strptime(date_string, date_format).date()
+		if tot_start_date<=parsed_date <=tot_end_date:
+			pass
+		else:
+			error_list.append(t.idx)
+	if error_list:
+		frappe.throw("<b>Class Schedule is beyond TOT period</b>")
+
+
+def class_scheduling_date_validation(self):
+	print("\n\n\n\n")
+
 	
-	pass
 
 
+
+
+
+
+
+
+	student_with_class_sed=[]
+	for t in self.get("participants"):
+		for j in self.get("classes"):
+			a={}
+			if t.active==1:
+				a['participant']=t.participant
+				a['scheduled_date']=j.scheduled_date
+				a['room_name']=j.room_name
+				a['from_time']=j.from_time
+				a['to_time']=j.to_time
+				a['parent']=self.name
+				student_with_class_sed.append(a)
+				
+	if student_with_class_sed:
+		print(student_with_class_sed)
 
 def dupicate_student_group_chk(self):
 	data=frappe.get_all("Participant Group",{"participant_enrollment_id":self.participant_enrollment_id,

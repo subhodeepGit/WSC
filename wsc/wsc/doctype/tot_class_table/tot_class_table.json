@@ -25,9 +25,8 @@
   {
    "fieldname": "scheduled_time",
    "fieldtype": "Time",
-   "in_list_view": 1,
-   "label": "Scheduled Time",
-   "reqd": 1
+   "hidden": 1,
+   "label": "Scheduled Time"
   },
   {
    "fetch_from": "room_name.room_number",
@@ -60,6 +59,7 @@
    "reqd": 1
   },
   {
+   "description": "--(In Minute)",
    "fieldname": "duration",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -70,7 +70,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-04 17:47:57.045361",
+ "modified": "2023-09-05 15:43:42.933443",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Class Table",
