@@ -50,6 +50,7 @@ class ParticipantGroup(Document):
 				d.duration = datetime.strptime(d.to_time, '%H:%M:%S') - datetime.strptime(d.from_time, '%H:%M:%S') 
 
 def class_scheduling_ovelaping_chk(self):
+	
 	pass
 
 
