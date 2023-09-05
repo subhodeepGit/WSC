@@ -38,6 +38,7 @@
    "fieldtype": "Link",
    "label": "Employee",
    "options": "Employee",
+   "read_only": 1,
    "reqd": 1,
    "unique": 1
   },
@@ -47,27 +48,31 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Employee Name"
+   "label": "Employee Name",
+   "read_only": 1
   },
   {
    "fetch_from": "employee.department",
    "fieldname": "department",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Department"
+   "label": "Department",
+   "read_only": 1
   },
   {
    "fetch_from": "employee.designation",
    "fieldname": "designation",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Designation"
+   "label": "Designation",
+   "read_only": 1
   },
   {
    "fetch_from": "employee.branch",
    "fieldname": "branch",
    "fieldtype": "Data",
-   "label": "Branch"
+   "label": "Branch",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_whbnm",
@@ -77,18 +82,21 @@
    "fetch_from": "employee.gender",
    "fieldname": "gender",
    "fieldtype": "Data",
-   "label": "Gender"
+   "label": "Gender",
+   "read_only": 1
   },
   {
    "fetch_from": "employee.date_of_birth",
    "fieldname": "date_of_birth",
    "fieldtype": "Read Only",
-   "label": "Date of Birth"
+   "label": "Date of Birth",
+   "read_only": 1
   },
   {
    "fieldname": "blood_group",
    "fieldtype": "Data",
-   "label": "Blood Group"
+   "label": "Blood Group",
+   "read_only": 1
   },
   {
    "collapsible": 1,
@@ -100,19 +108,22 @@
    "fetch_from": "employee.cell_number",
    "fieldname": "mobile",
    "fieldtype": "Data",
-   "label": "Mobile"
+   "label": "Mobile",
+   "read_only": 1
   },
   {
    "fetch_from": "employee.person_to_be_contacted",
    "fieldname": "emergency_contact_name",
    "fieldtype": "Data",
-   "label": "Emergency Contact Name"
+   "label": "Emergency Contact Name",
+   "read_only": 1
   },
   {
    "fetch_from": "employee.emergency_phone_number",
    "fieldname": "emergency_contact",
    "fieldtype": "Data",
-   "label": "Emergency Contact"
+   "label": "Emergency Contact",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_10neu",
@@ -122,13 +133,15 @@
    "fetch_from": "employee.personal_email",
    "fieldname": "personal_email",
    "fieldtype": "Data",
-   "label": "Personal Email"
+   "label": "Personal Email",
+   "read_only": 1
   },
   {
    "fetch_from": "employee.company_email",
    "fieldname": "company_email",
    "fieldtype": "Data",
-   "label": "Company Email"
+   "label": "Company Email",
+   "read_only": 1
   },
   {
    "collapsible": 1,
@@ -140,25 +153,29 @@
    "fetch_from": "employee.current_address",
    "fieldname": "current_address",
    "fieldtype": "Data",
-   "label": "Current Address"
+   "label": "Current Address",
+   "read_only": 1
   },
   {
    "fetch_from": "employee.permanent_address",
    "fieldname": "permananet_address",
    "fieldtype": "Data",
-   "label": "Permananet Address"
+   "label": "Permananet Address",
+   "read_only": 1
   },
   {
    "fetch_from": "employee.employment_type",
    "fieldname": "employment_type",
    "fieldtype": "Data",
-   "label": "Employment Type"
+   "label": "Employment Type",
+   "read_only": 1
   },
   {
    "fetch_from": "employee.employee_number",
    "fieldname": "employee_number",
    "fieldtype": "Data",
-   "label": "Employee Number"
+   "label": "Employee Number",
+   "read_only": 1
   },
   {
    "fieldname": "employee_details",
@@ -169,12 +186,13 @@
    "fetch_from": "employee.user_id",
    "fieldname": "user_id",
    "fieldtype": "Data",
-   "label": "User ID"
+   "label": "User ID",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-16 05:16:41.254026",
+ "modified": "2023-09-05 12:55:18.396386",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "My Profile",
