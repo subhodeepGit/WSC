@@ -44,6 +44,7 @@ class ParticipantGroup(Document):
 		dulicate_trainer_chk(self)
 		class_scheduling_date_validation(self)
 		class_scheduling_ovelaping_chk(self)
+		class_scheduling_ovelaping_other_scheduling(self)
 
 
 	def calculate_total_hours(self):
@@ -76,17 +77,27 @@ def class_scheduling_ovelaping_chk(self):
 
 
 def class_scheduling_date_validation(self):
+	####################### data time validation of the scheduling
+	classes=[]
+	for t in self.get('classes'):
+		for j in self.get('classes'):
+			if t.scheduled_date==j.scheduled_date and t.name!=j.name and t.room_name!=j.room_name:
+				t_from_time=datetime.strptime(t.from_time, "%H:%M:%S")
+				t_to_time=datetime.strptime(t.to_time, "%H:%M:%S") 
+				j_from_time=datetime.strptime(j.from_time,"%H:%M:%S")
+				j_to_time=datetime.strptime(j.to_time, "%H:%M:%S")
+				#### from time check
+				if j_from_time<=t_from_time<=j_to_time:
+					frappe.throw("class schedule Overlapping in line No %s and %s "%(t.idx,j.idx))
+				##### to Time check
+				if j_from_time<=t_to_time<=j_to_time:
+					frappe.throw("class schedule Overlapping in line No %s and %s "%(t.idx,j.idx))
+	######################### End of data time validation of the scheduling
+				
+
+
+def class_scheduling_ovelaping_other_scheduling(self):
 	print("\n\n\n\n")
-
-	
-
-
-
-
-
-
-
-
 	student_with_class_sed=[]
 	for t in self.get("participants"):
 		for j in self.get("classes"):
@@ -102,6 +113,32 @@ def class_scheduling_date_validation(self):
 				
 	if student_with_class_sed:
 		print(student_with_class_sed)
+		for t in student_with_class_sed:
+			from_time=datetime.strptime(t['from_time'], "%H:%M:%S").time()
+			to_time=datetime.strptime(t['to_time'], "%H:%M:%S").time()
+			date_format = "%Y-%m-%d"
+			parsed_date = datetime.strptime(t['scheduled_date'], date_format).date()
+			data=frappe.db.sql("""select PG.name 
+				from `tabParticipant Group` as PG
+				Join `tabToT Class Table` CT on CT.parent=PG.name
+				Join `tabParticipant Table` P on PG.name=P.parent 
+				where PG.name!='{name}' and P.participant='{participant}' and CT.scheduled_date ='{parsed_date}' and
+				(CT.from_time > '{from_time}' and CT.from_time < '{to_time}' or
+				(CT.to_time > '{from_time}' and CT.to_time < '{to_time}') or
+				('{from_time}' > CT.from_time and '{from_time}' < CT.to_time) or
+				('{from_time}' = CT.from_time and '{to_time}' = CT.to_time))
+				""".format(
+					**{
+						"name":t['parent'],
+						"participant":t['participant'],
+						"from_time":from_time,
+						"to_time":to_time,
+						'parsed_date':parsed_date
+					}
+				)
+				,as_dict=True
+				)
+			print(data)
 
 def dupicate_student_group_chk(self):
 	data=frappe.get_all("Participant Group",{"participant_enrollment_id":self.participant_enrollment_id,
