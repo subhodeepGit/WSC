@@ -134,6 +134,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "course.course_name",
    "fieldname": "module_name",
    "fieldtype": "Data",
    "label": "Module Name",

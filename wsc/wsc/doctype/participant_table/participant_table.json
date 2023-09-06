@@ -8,7 +8,6 @@
  "field_order": [
   "participant",
   "participant_name",
-  "group_roll_number",
   "active"
  ],
  "fields": [
@@ -21,6 +20,7 @@
    "read_only": 1
   },
   {
+   "fetch_from": "participant.participant_name",
    "fieldname": "participant_name",
    "fieldtype": "Data",
    "in_list_view": 1,
