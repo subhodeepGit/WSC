@@ -16,7 +16,7 @@
 			<th style="width: 10%">Roll Number</th>
 			<th style="width: 10%">Registration Number</th>
 			<th style="width: 10%">Course Wise Evaluation</th>
-			<th style="width: 10%">Grace Marks</th>
+			<!-- <th style="width: 10%">Grace Marks</th> -->
 			<th style="width: 10%">Weightage Marks</th>
 			<th style="width: 10%">Final Marks</th>
 			<th hidden style="width: 0%">Earned Credits</th>
@@ -55,9 +55,9 @@
 				</table>
 			</td>
 			{% if s.attendence_status=="Present" %}
-			<td style="width: 10%" ><input type="number" 	 class="grace_marks"  data-row="{{s.student}}"></td>
-			{% else %}
-			<td style="width: 10%"><input type="number" 	 class="grace_marks"  data-row="{{s.student}}" disabled value></td>
+			<!-- <td style="width: 10%" ><input type="number" 	 class="grace_marks"  data-row="{{s.student}}"></td>
+			{% else %} -->
+			<!-- <td style="width: 10%"><input type="number" 	 class="grace_marks"  data-row="{{s.student}}" disabled value></td> -->
 			{% endif %}
 			<td style="width: 10%"><input type="number" 	 class="weightage_marks"  data-row="{{s.student}}" disabled value="{{s.weightage_marks}}"></td>
 			<td style="width: 10%"><input type="number" 	 class="final_marks"  data-row="{{s.student}}" disabled value="{{s.weightage_marks}}"></td>

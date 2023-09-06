@@ -61,10 +61,7 @@ class StudentReregistrationTool(Document):
             enroll_stud(self)
 def enroll_stud(self):
     total = len(self.students)
-    # print("\n\ntotal",total)
     existed_enrollment = [p.get('student') for p in frappe.db.get_list("Program Enrollment", {'student':['in', [s.student for s in self.students]],'programs':self.programs, 'program': self.new_semester,'academic_year':self.new_academic_year, 'academic_term':self.new_academic_term,'docstatus':1 }, 'student')]
-    # print("\n\nexisted_enrollment",existed_enrollment)
-    # print(len(existed_enrollment))
     if len(existed_enrollment) > 0:
         frappe.msgprint(_("{0} Students already enrolled").format( ', '.join(map(str, existed_enrollment))))
     enrolled_students = []

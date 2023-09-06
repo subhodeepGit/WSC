@@ -18,7 +18,7 @@ frappe.ui.form.on('Participant Group', {
 					'academic_year' : frm.doc.academic_year
 				}
 			}
-		})
+		}),
 		
 		frm.set_query('program', function(){
 			return{
@@ -26,7 +26,32 @@ frappe.ui.form.on('Participant Group', {
 					'is_tot': 1
 				}
 			}
-		})
+		}),
+		frm.set_query('participant_enrollment_id', function(){
+			return{
+				filters:{
+					'docstatus': 1
+				}
+			}
+		}),
+		frm.set_df_property('participants', 'cannot_add_rows', true);
+		frm.set_df_property('participants', 'cannot_delete_rows', true);
+
+		// frm.set_query('course', function(){
+		// 	return{
+		// 		filters:{
+		// 			'name': frm.doc.program
+		// 		}
+		// 	}
+		// })
+
+		// frm.set_query('course', function(){
+		// 	return{
+		// 		filters:{
+		// 			'is_tot': 1
+		// 		}
+		// 	}
+		// })
 	},
 
 	participant_enrollment_id: function(frm){
@@ -83,19 +108,90 @@ frappe.ui.form.on('Participant Group', {
 				}
 				frm.refresh()
 				frm.refresh_field('participants')
+				frm.save();
 			}
 		})
 	},
 });
 
+// frappe.ui.form.on('Instructor Table', {
+// 	instructor_add: function(frm){
+// 		frm.fields_dict['instructor'].grid.get_field('instructors').get_query = function(doc){
+// 			var trainers = [];
+// 			$.each(doc.instructor, function(idx, val){
+// 				if (val.instructors) trainers.push(val.instructors);
+// 			});
+// 			return { filters: [['Instructor', 'name', 'not in', trainers]] };
+// 		};
+// 	}
+// });
+
 frappe.ui.form.on('Instructor Table', {
-	instructor_add: function(frm){
-		frm.fields_dict['instructor'].grid.get_field('instructors').get_query = function(doc){
-			var trainers = [];
-			$.each(doc.instructor, function(idx, val){
-				if (val.instructors) trainers.push(val.instructors);
-			});
-			return { filters: [['Instructor', 'name', 'not in', trainers]] };
-		};
+	instructor_add: function(frm, cdt, cdn){
+		var course_options="\n"
+		var instructor_options=''
+		var semesters=[]
+		if (frm.doc.group_based_on == 'Course'){
+			course_options=frm.doc.course
+			semesters.push(frm.doc.program)
+		}
+		var d = new frappe.ui.Dialog({
+			title: __('Add Trainer'),
+			fields: [
+				{
+					"label" : "Course",
+					"fieldname": "course",
+					"fieldtype": "Select",
+					"reqd":1,
+					"options": course_options,
+					onchange: function() {
+						var course=d.get_value('course');
+						d.set_value("instructor","");
+						if (course){
+							frappe.call({
+								method: 'wsc.wsc.validations.student_group.get_instructor',
+								args: {
+									filters:
+										{
+											academic_year: frm.doc.academic_year,
+											course:course,
+											semesters:semesters,
+											apply_semester_filter:frm.doc.group_based_on=="Combined Course"?0:1
+										}
+								},
+								callback: function(resp){
+									if(resp.message){
+										instructor_options=resp.message
+										d.set_df_property('instructor', 'options', instructor_options);
+									}
+								}
+							})
+						}
+					}
+				},
+				{
+					"label" : "Trainer",
+					"fieldname": "instructor",
+					"fieldtype": "Select",
+					"reqd":1,
+					"options": instructor_options
+				}
+			],
+			primary_action: function() {
+				var values = d.get_values();
+				console.log(cdt, cdn)
+				var row = frappe.get_doc(cdt, cdn);
+				console.log(row)
+				row.instructors=values.instructor
+				frappe.db.get_value("Instructor",{"name":values.instructor},['instructor_name'], resp =>{
+					row.instructor_name=resp.instructor_name
+					frm.refresh_field('instructor')
+				})
+				frm.refresh_field('instructor')
+				d.hide();
+			},
+			primary_action_label: __('Add Values')
+		});
+		d.show();
 	}
 });

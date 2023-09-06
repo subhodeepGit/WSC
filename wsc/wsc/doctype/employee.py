@@ -1,7 +1,7 @@
 # Copyright (c) 2015, Frappe Technologies Pvt. Ltd. and Contributors
 # License: GNU General Public License v3. See license.txt
 import frappe
-from frappe import _, scrub, throw
+from frappe import _, enqueue, scrub, throw
 from frappe.model.naming import set_name_by_naming_series
 from frappe.permissions import (
     add_user_permission,
@@ -45,10 +45,6 @@ class Employee(NestedSet):
         
         from erpnext.controllers.status_updater import validate_status
         validate_status(self.status, ["Active", "Inactive", "Suspended", "Left"])
-        # if self.user_id:
-        # 	print("NAAA")
-        # 	print(self.user_id)
-        # 	self.permissions()
         self.employee = self.name
         self.set_employee_name()
         self.validate_date()
@@ -56,6 +52,7 @@ class Employee(NestedSet):
         self.validate_status()
         self.validate_reports_to()
         self.validate_preferred_email()
+        self.create_profile()
         # self.create_user_permission_for_employee()
         if self.job_applicant:
             self.validate_onboarding_process()
@@ -72,6 +69,51 @@ class Employee(NestedSet):
         self.validate_passport_date()
         self.validate_notice_days()
         self.validate_mobile_number() 
+
+    def create_profile(self):
+        check_profile = frappe.get_all("My Profile", {'name':self.name},['name'])
+        if len(check_profile) == 0:
+            my_profile = frappe.new_doc("My Profile")
+            my_profile.employee = self.name
+            my_profile.employee_name=self.employee_name
+            my_profile.department = self.department
+            my_profile.designation=self.designation
+            my_profile.branch = self.branch
+            my_profile.employment_type = self.employment_type
+            my_profile.employee_number = self.employee_number
+            my_profile.user_id = self.user_id
+            my_profile.gender = self.gender
+            my_profile.date_of_birth=self.date_of_birth
+            my_profile.blood_group=self.blood_group
+            my_profile.mobile = self.cell_number
+            my_profile.emergency_contact_name = self.person_to_be_contacted
+            my_profile.emergency_contact = self.emergency_phone_number
+            my_profile.personal_email = self.personal_email
+            my_profile.company_email = self.company_email
+            my_profile.current_address=self.current_address
+            my_profile.permananet_address=self.permanent_address
+            my_profile.save()
+        elif len(check_profile) > 0:
+            old_profile= frappe.get_doc("My Profile", self.name)
+            old_profile.employee_name=self.employee_name
+            old_profile.department = self.department
+            old_profile.designation=self.designation
+            old_profile.branch = self.branch
+            old_profile.employment_type = self.employment_type
+            old_profile.employee_number = self.employee_number
+            old_profile.user_id = self.user_id
+            old_profile.gender = self.gender
+            old_profile.date_of_birth=self.date_of_birth
+            old_profile.blood_group=self.blood_group
+            old_profile.mobile = self.cell_number
+            old_profile.emergency_contact_name = self.person_to_be_contacted
+            old_profile.emergency_contact = self.emergency_phone_number
+            old_profile.personal_email = self.personal_email
+            old_profile.company_email = self.company_email
+            old_profile.current_address=self.current_address
+            old_profile.permananet_address=self.permanent_address
+            old_profile.save()
+            
     def validate_notice_days(self):
         if self.notice_number_of_days:
             if self.notice_number_of_days<0 :
@@ -87,19 +129,14 @@ class Employee(NestedSet):
     def on_change(self):
         self.permissions()
     def after_insert(self):
-        print("\n\nAfter ")
         self.permissions()
         
     def permissions(doc):
-        print("\n\nHEllo")
         if doc.user_id:
-            print("\n\n")
             add_user_permission(doc.doctype,doc.name,doc.user_id,doc)
         if doc.leave_approver:
-            print("\n\nHULK")
             add_user_permission(doc.doctype,doc.name,doc.leave_approver,doc)
         if doc.reporting_authority_email:
-            print("\n\nSAKTIMAN")
             add_user_permission(doc.doctype,doc.name,doc.reporting_authority_email,doc)
 
     def after_rename(self, old, new, merge):
