@@ -8,114 +8,130 @@
  "engine": "InnoDB",
  "field_order": [
   "participant_group_id",
-  "academic_term",
   "column_break_ojus4",
-  "academic_year",
+  "participant_group_name",
   "section_break_low7n",
+  "academic_term",
+  "academic_year",
+  "section_break_1wsjd",
   "course_id",
+  "course_name",
+  "column_break_vfjgx",
+  "course_type",
+  "section_break_2xqxh",
   "module_id",
+  "column_break_uqb7l",
+  "module_name",
+  "section_break_rapdv",
+  "semester",
   "scheduled_date",
   "room_number",
   "from_time",
   "duration",
   "column_break_llk2o",
-  "course_name",
-  "module_name",
   "scheduled_time",
   "room_name",
   "to_time",
-  "participants_section",
-  "participants",
-  "trainers_section",
-  "trainers"
+  "trainers",
+  "trainers_name"
  ],
  "fields": [
   {
    "fieldname": "participant_group_id",
-   "fieldtype": "Data",
-   "label": "Participant Group ID"
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Participant Group ID",
+   "options": "Participant Group",
+   "reqd": 1
   },
   {
    "fieldname": "academic_year",
-   "fieldtype": "Data",
-   "label": "Academic Year"
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Academic Year",
+   "options": "Academic Year",
+   "reqd": 1
   },
   {
    "fieldname": "academic_term",
-   "fieldtype": "Data",
-   "label": "Academic Term"
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Academic Term",
+   "options": "Academic Term",
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fieldname": "course_id",
-   "fieldtype": "Data",
-   "label": "Course ID"
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Programs",
+   "options": "Programs",
+   "reqd": 1
   },
   {
+   "fetch_from": "course_id.programs_name",
    "fieldname": "course_name",
    "fieldtype": "Data",
-   "label": "Course Name"
+   "label": "Course Name",
+   "read_only": 1
   },
   {
    "fieldname": "module_id",
-   "fieldtype": "Data",
-   "label": "Module ID"
+   "fieldtype": "Link",
+   "label": "Module ID",
+   "options": "Course",
+   "reqd": 1
   },
   {
+   "fetch_from": "module_id.course_name",
    "fieldname": "module_name",
    "fieldtype": "Data",
-   "label": "Module Name"
+   "label": "Module Name",
+   "read_only": 1
   },
   {
    "fieldname": "scheduled_time",
    "fieldtype": "Data",
-   "label": "Scheduled Time"
+   "label": "Scheduled Time",
+   "read_only": 1
   },
   {
    "fieldname": "room_number",
-   "fieldtype": "Data",
-   "label": "Room Number"
+   "fieldtype": "Link",
+   "label": "Room Number",
+   "options": "Room",
+   "reqd": 1
   },
   {
    "fieldname": "room_name",
    "fieldtype": "Data",
-   "label": "Room Name"
+   "label": "Room Name",
+   "read_only": 1
   },
   {
    "fieldname": "from_time",
-   "fieldtype": "Data",
+   "fieldtype": "Time",
    "label": "From Time"
   },
   {
    "fieldname": "to_time",
    "fieldtype": "Data",
-   "label": "To Time"
+   "label": "To Time",
+   "read_only": 1
   },
   {
    "fieldname": "duration",
    "fieldtype": "Data",
-   "label": "Duration"
-  },
-  {
-   "fieldname": "participants",
-   "fieldtype": "Table",
-   "label": "Participants",
-   "options": "ToT Class Participants"
+   "label": "Duration",
+   "read_only": 1
   },
   {
    "fieldname": "trainers",
-   "fieldtype": "Table",
+   "fieldtype": "Link",
    "label": "Trainers",
-   "options": "ToT Class Trainers"
-  },
-  {
-   "fieldname": "participants_section",
-   "fieldtype": "Section Break",
-   "label": "Participants"
-  },
-  {
-   "fieldname": "trainers_section",
-   "fieldtype": "Section Break",
-   "label": "Trainers"
+   "options": "Instructor",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_ojus4",
@@ -133,11 +149,59 @@
    "fieldname": "scheduled_date",
    "fieldtype": "Data",
    "label": "Scheduled Date"
+  },
+  {
+   "fieldname": "semester",
+   "fieldtype": "Link",
+   "label": "Semester",
+   "options": "Program",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "trainers.instructor_name",
+   "fieldname": "trainers_name",
+   "fieldtype": "Data",
+   "label": "Trainers Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "participant_group_id.participant_group",
+   "fieldname": "participant_group_name",
+   "fieldtype": "Data",
+   "label": "Participant Group Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "course_id.program_grade",
+   "fieldname": "course_type",
+   "fieldtype": "Data",
+   "label": "Course Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_1wsjd",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_2xqxh",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_vfjgx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_rapdv",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_uqb7l",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-21 15:43:33.241345",
+ "modified": "2023-09-06 21:19:39.441272",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Class Schedule",
