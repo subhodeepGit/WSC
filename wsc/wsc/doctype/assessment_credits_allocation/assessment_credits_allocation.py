@@ -6,6 +6,8 @@ from frappe.model.document import Document
 from frappe.utils import flt
 from wsc.wsc.utils import academic_term
 from frappe.utils.csvutils import getlink
+from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
+
 
 class AssessmentCreditsAllocation(Document):
     def validate(self):
@@ -17,7 +19,35 @@ class AssessmentCreditsAllocation(Document):
         self.final_earned_marks_calculation_child()
         self.qualifying_status_child()
         self.validate_marks()
+        self.validate_checker()
 
+    def on_submit(self):
+        self.create_permissions()
+
+    def on_cancel(self):
+        self.delete_permissions()
+
+    def create_permissions(doc):
+        for instr in frappe.get_all("Instructor",{"name":doc.checker},['department','name','employee']):
+            for emp in frappe.get_all("Employee",{"name":instr.employee},['user_id','department']):
+                if emp.user_id:
+                    add_user_permission(doc.doctype,doc.name,emp.user_id,doc)	
+    
+    def delete_permissions(doc):
+        for usr in frappe.get_all("User Permission",{"allow":doc.doctype,"for_value":doc.name}):
+            frappe.delete_doc("User Permission",usr.name)
+        for usr in frappe.get_all("User Permission",{"reference_doctype":"Course Assessment","reference_docname":doc.name}):
+            frappe.delete_doc("User Permission",usr.name)
+
+    def validate_checker(self):
+        for id in frappe.get_all("Instructor",{"email_id":frappe.session.user},['name','email_id']):
+            if id.name==self.checker:
+                pass
+            else:
+                if not self.module_exam_group:
+                    frappe.throw("Enter the Module Exam Group Id")
+                else:
+                    frappe.throw("You do not have the permission to check the marks of the students for this module!!!")
 
     def qualifying_status_child(self):
         for t in self.get("final_credit_item"):
@@ -111,14 +141,11 @@ def get_courses(doctype, txt, searchfield, start, page_len, filters):
 
 @frappe.whitelist()
 def get_assessment_criteria(doctype, txt, searchfield, start, page_len, filters):
-    print("\n\n\nFirst")
     lst = []
     # ,"status":("!=","Completed")
     for i in frappe.get_all("Course Enrollment",{'student':filters.get("student"),"course":filters.get("course")},['name','status']):
-        print("\n\nHELLO FTLT")
         print(i.status)
         fltr={"parent":i.get("name")}
-        print("\n\nFLTR",fltr)
         if txt:
             fltr.update({'assessment_criteria': ['like', '%{}%'.format(txt)]})
         for j in frappe.get_all("Credit distribution List",fltr,["assessment_criteria"]):

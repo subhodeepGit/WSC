@@ -4,6 +4,47 @@ from frappe.utils.data import format_date
 from frappe.utils import get_url_to_form
 from frappe.utils import cint, cstr, parse_addr
 
+####### Notification for admit card###
+def admit_card_submit(doc):
+    print("\n\nadmit card notifications")
+    print(doc.applicant_id)
+    sub = """<p><b>Admit Card for Upcoming Entrance Exam</b></p><br>"""
+    msg = """---------------------Admit Card---------------------"""
+    msg+= """<b>Entrance Exam:</b>  {0}<br>""".format(doc.get('entrance_exam'))
+    msg+= """<b>Applicant Id:</b>  {0}<br>""".format(doc.get('applicant_id'))
+    msg+= """<b>Applicant Name:</b>  {0}<br>""".format(doc.get('applicant_name'))
+    msg+="""<b>Department:</b>  {0}<br>""".format(doc.get('department'))
+    msg+="""<b>Academic Year:</b>  {0}<br>""".format(doc.get('academic_year'))
+    msg+="""<b>Academic Term:</b>  {0}<br>""".format(doc.get('academic_term'))
+    msg+="""<b>Venue:</b>  {0}<br>""".format(doc.get('venue'))
+    msg+="""<b>Address:</b>  {0}<br>""".format(doc.get('address'))
+    msg+="""<b>District:</b>  {0}<br>""".format(doc.get('district'))
+    msg+="""<b>PinCode:</b>  {0}<br>""".format(doc.get('pin_code'))
+    msg+="""<b>Slot:</b>  {0}<br>""".format(doc.get('slot'))
+    msg+="""<b>Date of Exam:</b>  {0}<br>""".format(doc.get('date_of_exam'))
+    msg+="""<b>Exam Start Time:</b>  {0}<br>""".format(doc.get('exam_start_time'))
+    msg+="""<b>Exam End Time:</b>  {0}<br>""".format(doc.get('exam_end_time'))
+    print(frappe.db.get_value("Student Applicant" , {"name":doc.applicant_id} , ["student_email_id"]))
+    send_mail(frappe.db.get_value("Student Applicant" , {"name":doc.applicant_id} , ["student_email_id"]), sub , msg)
+
+############ Notification For Rank Card####
+def rank_card_submit(doc):
+    sub = """<p><b>Rank Card for Upcoming Entrance Exam</b></p><br>"""
+    msg = """---------------------Admit Card---------------------"""
+    msg+= """<b>Entrance Exam:</b>  {0}<br>""".format(doc.get('exam'))
+    msg+= """<b>Applicant Id:</b>  {0}<br>""".format(doc.get('applicant_id'))
+    msg+= """<b>Applicant Name:</b>  {0}<br>""".format(doc.get('applicant_name'))
+    msg+="""<b>Department:</b>  {0}<br>""".format(doc.get('department'))
+    msg+="""<b>Academic Year:</b>  {0}<br>""".format(doc.get('academic_year'))
+    msg+="""<b>Academic Term:</b>  {0}<br>""".format(doc.get('academic_term'))
+    msg+="""<b>Total Marks:</b>  {0}<br>""".format(doc.get('total_marks'))
+    msg+="""<b>Earned Marks:</b>  {0}<br>""".format(doc.get('earned_marks'))
+    msg += """</u></b></p><table class='table table-bordered'><tr>
+        <th>Ranks</th>"""
+    for  d in doc.get("student_ranks_list"):
+        msg += """<tr><td>{0} - {1}</td></tr>""".format(d.get('rank_type') , d.get('rank_obtained'))
+    msg += "</table>"
+    send_mail(frappe.db.get_value("Student Applicant" , {"name":doc.applicant_id} , ["student_email_id"]), sub , msg)
 
 def student_applicant_submit(doc):
     sub="""<p><b>Application Form is Sucessfully Submitted</b></p><br>"""
@@ -909,6 +950,7 @@ def workflow_wating_approval(doc, receipient):
 
 #####   END   #####
 
+
 # def has_default_email_acc():
 # 	for d in frappe.get_all("Email Account", {"default_outgoing":1}):
 # 	   return "true"
@@ -919,6 +961,7 @@ def has_default_email_acc():
     return ""
 
 def send_mail(recipients=None,subject=None,message=None,attachments=None):
+    # print(recipients , subject , message)
     if has_default_email_acc():
         frappe.sendmail(recipients=recipients or [],expose_recipients="header",subject=subject,message = message,attachments=attachments,with_container=False)        
 

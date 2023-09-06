@@ -29,12 +29,11 @@
   "cumulatice_grades_item",
   "result_section",
   "cgpa",
-  "secured_marks",
-  "column_break_fbzy6",
   "total_marks",
+  "column_break_fbzy6",
+  "secured_marks",
   "column_break_k9td1",
   "percentage",
-  "column_break_yej6h",
   "grade",
   "column_break_5gray",
   "result_p_f",
@@ -204,6 +203,7 @@
   {
    "fieldname": "grade",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Grade",
    "read_only": 1
   },
@@ -222,10 +222,6 @@
   },
   {
    "fieldname": "column_break_k9td1",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "column_break_yej6h",
    "fieldtype": "Column Break"
   },
   {
@@ -296,7 +292,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-14 12:38:45.293846",
+ "modified": "2023-09-05 11:07:38.062470",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Cumulative Marksheet",

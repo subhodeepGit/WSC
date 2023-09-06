@@ -43,13 +43,15 @@
   },
   {
    "fieldname": "programs",
-   "fieldtype": "Data",
-   "label": "Select Course"
+   "fieldtype": "Link",
+   "label": "Select Course",
+   "options": "Programs"
   },
   {
    "fieldname": "course",
-   "fieldtype": "Data",
-   "label": "Select Module"
+   "fieldtype": "Link",
+   "label": "Select Module",
+   "options": "Course"
   },
   {
    "fieldname": "assignment_name",
@@ -68,8 +70,9 @@
   },
   {
    "fieldname": "instructor_id",
-   "fieldtype": "Select",
-   "label": "Instructor ID"
+   "fieldtype": "Link",
+   "label": "Instructor ID",
+   "options": "Instructor"
   },
   {
    "fieldname": "column_break_5",
@@ -81,13 +84,15 @@
   },
   {
    "fieldname": "academic_year",
-   "fieldtype": "Data",
-   "label": "Academic Year"
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
   },
   {
    "fieldname": "academic_term",
-   "fieldtype": "Data",
-   "label": "Academic Term"
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
   },
   {
    "fieldname": "assessment_criteria",
@@ -130,7 +135,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-25 18:10:10.278876",
+ "modified": "2023-09-04 17:47:52.424341",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment",
