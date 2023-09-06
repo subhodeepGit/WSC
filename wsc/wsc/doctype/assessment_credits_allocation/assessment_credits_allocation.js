@@ -17,6 +17,24 @@ frappe.ui.form.on('Assessment Credits Allocation', {
 				} 
 			}
 		});
+		frm.set_query("exam_declaration", function () {
+			return {
+				filters:{
+					"exam_program":frm.doc.programs,
+					"academic_term":frm.doc.academic_term,
+					"class":frm.doc.school_house,
+				} 
+			}
+		});
+		frm.set_query("module_exam_group", function () {
+			return {
+				filters:{
+					"modules_id":frm.doc.course,
+					"assessment_component":frm.doc.assessment_criteria,
+					"class":frm.doc.school_house,
+				} 
+			}
+		});
 		frm.set_query("student", function() {
 			return {
 				filters: {

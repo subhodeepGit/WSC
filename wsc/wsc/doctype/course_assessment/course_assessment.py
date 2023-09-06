@@ -17,11 +17,22 @@ class CourseAssessment(Document):
         self.validate_marker()
     def on_submit(self):
         self.create_permissions()
+
+    
+    def on_cancel(self):
+        self.delete_permissions()
+
     def create_permissions(doc):
         for instr in frappe.get_all("Instructor",{"name":doc.trainer_id},['department','name','employee']):
             for emp in frappe.get_all("Employee",{"name":instr.employee},['user_id','department']):
                 if emp.user_id:
                     add_user_permission(doc.doctype,doc.name,emp.user_id,doc)	
+
+    def delete_permissions(doc):
+        for usr in frappe.get_all("User Permission",{"allow":doc.doctype,"for_value":doc.name}):
+            frappe.delete_doc("User Permission",usr.name)
+        for usr in frappe.get_all("User Permission",{"reference_doctype":"Course Assessment","reference_docname":doc.name}):
+            frappe.delete_doc("User Permission",usr.name)
 
     def validate_marker(self):
         for id in frappe.get_all("Instructor",{"email_id":frappe.session.user},['name','email_id']):

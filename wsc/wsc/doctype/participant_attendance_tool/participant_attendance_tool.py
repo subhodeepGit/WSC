@@ -55,3 +55,23 @@ def get_instructor_name(participant_group_id, instructor_id):
 def get_participants(participant_group_id):
 	participants = frappe.get_all('Participant Table', filters = [['parent', '=', participant_group_id]], fields = ['participant', 'participant_name'])
 	return participants
+
+# --------------------------------------------------------------------------------
+@frappe.whitelist()
+def instructor(doctype, txt, searchfield, start, page_len, filters):
+	print('\n\n\n')
+	print(filters.get('participant_group_id'))
+	print('\n\n\n')
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)
+
+	participant_group_id=filters.get('participant_group_id')
+	instructor_details = frappe.db.sql(""" SELECT instructors FROM `tabInstructor Table` where ({key} like %(txt)s or {scond}) and
+				    parent = '{participant_group_id}'
+				    """.format(
+						**{
+						"key": searchfield,
+						"scond": searchfields,
+						"participant_group_id":participant_group_id
+					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	return instructor_details

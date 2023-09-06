@@ -18,7 +18,6 @@ class EntranceExamCentreAllocation(Document):
         for i in self.get('exam_slot_timings'):
 
             slot_date = datetime.strptime(i.slot_date, date_format).date()
-            print(type(slot_date))
 
             if isinstance(self.exam_start_date , str) and isinstance(self.exam_end_date , str):
                 exam_start_date = datetime.strptime(self.exam_start_date, date_format).date()
@@ -28,8 +27,6 @@ class EntranceExamCentreAllocation(Document):
             else:
                 if self.exam_start_date >= slot_date or self.exam_end_date <= slot_date:
                     frappe.throw("Slot Date out of Scope")
-            print("\n\n2")
-            print(type(self.exam_start_date) , type(self.exam_end_date))
 
 # @frappe.whitelist()
 # def get_centers(center_selection):

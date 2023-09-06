@@ -88,19 +88,19 @@ def validate_pin_code(doc):
 			frappe.throw("<b>Local Guardians Contact Number</b> must be 10 Digits")
 
 	if not check_int(doc.pin_code):
-		frappe.throw("Pincode must be the Integer.")
+		frappe.throw("Pincode must be a valid number.")
 	if doc.student_mobile_number:
 		if not check_int(doc.student_mobile_number):
-			frappe.throw("Mobile Number must be the Integer.")
+			frappe.throw("Mobile Number must be a valid number.")
 	if doc.fathers_contact_number:
 		if not check_int(doc.fathers_contact_number):
-			frappe.throw("Father's Contact Number must be the Integer.")
+			frappe.throw("Father's Contact Number must be a valid number.")
 	if doc.mothers_contact_number:
 		if not check_int(doc.mothers_contact_number):
-			frappe.throw("Mother's Contact Number must be the Integer.")
+			frappe.throw("Mother's Contact Number must be a valid number.")
 	if doc.local_guardian_contact_no:
 		if not check_int(doc.local_guardian_contact_no):
-			frappe.throw("Local Guardians Contact Number must be the Integer.")
+			frappe.throw("Local Guardians Contact Number must be a valid number.")
 
 	if doc.first_name:
 		if not contains_only_characters(doc.first_name):
