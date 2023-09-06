@@ -122,6 +122,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "course.course_name",
    "fieldname": "module_name",
    "fieldtype": "Data",
    "label": "Module Name"
@@ -141,7 +142,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-30 16:02:01.256855",
+ "modified": "2023-09-05 17:02:53.191188",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Group",

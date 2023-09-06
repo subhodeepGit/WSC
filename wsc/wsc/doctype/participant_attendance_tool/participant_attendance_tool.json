@@ -34,18 +34,21 @@
   },
   {
    "fieldname": "participant_group",
-   "fieldtype": "Select",
-   "label": "Participant Group"
+   "fieldtype": "Link",
+   "label": "Participant Group",
+   "options": "Participant Group"
   },
   {
    "fieldname": "academic_year",
-   "fieldtype": "Data",
-   "label": "Academic Year"
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
   },
   {
    "fieldname": "academic_term",
-   "fieldtype": "Data",
-   "label": "Academic Term"
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
   },
   {
    "fieldname": "date",
@@ -73,23 +76,27 @@
   },
   {
    "fieldname": "instructor_id",
-   "fieldtype": "Select",
-   "label": "Instructor ID"
+   "fieldtype": "Link",
+   "label": "Instructor ID",
+   "options": "Instructor"
   },
   {
+   "fetch_from": "instructor_id.instructor_name",
    "fieldname": "instructor_name",
    "fieldtype": "Data",
    "label": "Instructor Name"
   },
   {
    "fieldname": "select_course",
-   "fieldtype": "Data",
-   "label": "Select Course"
+   "fieldtype": "Link",
+   "label": "Select Course",
+   "options": "Programs"
   },
   {
    "fieldname": "select_module",
-   "fieldtype": "Data",
-   "label": "Select Module"
+   "fieldtype": "Link",
+   "label": "Select Module",
+   "options": "Course"
   },
   {
    "fieldname": "section_break_9",
@@ -107,7 +114,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-23 12:10:44.747369",
+ "modified": "2023-09-05 17:35:13.257652",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Attendance Tool",
