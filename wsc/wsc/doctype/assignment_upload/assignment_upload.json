@@ -30,39 +30,46 @@
  ],
  "fields": [
   {
+   "fetch_from": "assignment_id.assignment_name",
    "fieldname": "assignment_number",
    "fieldtype": "Data",
    "label": "Assignment Name"
   },
   {
    "fieldname": "participant_id",
-   "fieldtype": "Select",
-   "label": "Participant ID"
+   "fieldtype": "Link",
+   "label": "Participant ID",
+   "options": "ToT Participant"
   },
   {
+   "fetch_from": "participant_id.participant_name",
    "fieldname": "participant_name",
    "fieldtype": "Data",
    "label": "Participant Name"
   },
   {
    "fieldname": "programs",
-   "fieldtype": "Data",
-   "label": "Select Course"
+   "fieldtype": "Link",
+   "label": "Select Course",
+   "options": "Programs"
   },
   {
    "fieldname": "academic_year",
-   "fieldtype": "Data",
-   "label": "Academic Year"
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
   },
   {
    "fieldname": "academic_term",
-   "fieldtype": "Data",
-   "label": "Academic Term"
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
   },
   {
    "fieldname": "course",
-   "fieldtype": "Data",
-   "label": "Select Module"
+   "fieldtype": "Link",
+   "label": "Select Module",
+   "options": "Course"
   },
   {
    "fieldname": "assignment_attach_button",
@@ -118,13 +125,14 @@
   },
   {
    "fieldname": "assignment_id",
-   "fieldtype": "Select",
-   "label": "Assignment ID"
+   "fieldtype": "Link",
+   "label": "Assignment ID",
+   "options": "Assignment"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-28 18:12:03.628397",
+ "modified": "2023-09-05 15:05:08.416189",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Upload",

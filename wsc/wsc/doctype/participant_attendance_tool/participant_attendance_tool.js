@@ -5,16 +5,14 @@ frappe.ui.form.on('Participant Attendance Tool', {
 	refresh: function(frm) {
 
 	},
-	based_on: function(frm){
-		frappe.call({
-			method: 'wsc.wsc.doctype.participant_attendance_tool.participant_attendance_tool.get_participant_group',
-			args:{
-				based_on : frm.doc.based_on
-			},
-			callback: function(result){
-				frm.set_df_property('participant_group', 'options', result.message) // participant_group
-			}
-		})
+	setup: function(frm){
+		frm.set_query("instructor_id", function() {
+			return {
+				query: 'wsc.wsc.doctype.participant_attendance_tool.participant_attendance_tool.instructor',
+				filters:{"participant_group_id":frm.doc.participant_group}
+				
+			};
+		});
 	},
 	participant_group: function(frm){
 		frappe.call({
@@ -27,20 +25,8 @@ frappe.ui.form.on('Participant Attendance Tool', {
 				frm.set_value("academic_term", result.message[1]) // acadmic term
 				frm.set_value("select_course", result.message[2]) // course
 				frm.set_value("select_module", result.message[3]) // module
-				frm.set_df_property('instructor_id', 'options', result.message[4]) // instructor_id
+				// frm.set_df_property('instructor_id', 'options', result.message[4]) // instructor_id
 				frm.set_df_property('date', 'options', result.message[5]) // date
-			}
-		})
-	},
-	instructor_id: function(frm){
-		frappe.call({
-			method: 'wsc.wsc.doctype.participant_attendance_tool.participant_attendance_tool.get_instructor_name',
-			args: {
-				participant_group_id: frm.doc.participant_group,
-				instructor_id: frm.doc.instructor_id
-			},
-			callback: function(result){
-				frm.set_value("instructor_name", result.message)
 			}
 		})
 	},

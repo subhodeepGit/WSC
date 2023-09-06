@@ -2,6 +2,15 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Participant Group', {
+	setup: function(frm){
+		frm.set_query("participant_id", function() {
+			return {
+				query: 'wsc.wsc.doctype.participant_group.participant_group.participant',
+				filters:{"participant_enrollment_id":frm.doc.participant_enrollment_id}
+				
+			};
+		});
+	},
 	refresh: function(frm) {
 		frm.set_query('academic_term', function(){
 			return{

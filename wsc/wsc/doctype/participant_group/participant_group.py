@@ -20,7 +20,7 @@ class ParticipantGroup(Document):
 			parent_doc.module_id = self.course
 			parent_doc.module_name = self.module_name
 			parent_doc.scheduled_date = d.scheduled_date
-			parent_doc.scheduled_time = d.scheduled_time
+			# parent_doc.scheduled_time = d.scheduled_time
 			parent_doc.room_number = d.room_number
 			parent_doc.room_name = d.room_name
 			parent_doc.from_time = d.from_time
@@ -31,7 +31,7 @@ class ParticipantGroup(Document):
 				parent_doc.append('participants', {
 					'participant_id' : td1.participant,
 					'participant_name' : td1.participant_name,
-					'group_roll_number' : td1.group_roll_number,
+					# 'group_roll_number' : td1.group_roll_number,
 					'active' : td1.active,	
 				})
 			for td2 in self.get('instructor'):
@@ -49,14 +49,33 @@ class ParticipantGroup(Document):
 	def calculate_total_hours(self):
 		for d in self.get("classes"):
 			if d.to_time and d.from_time:
-				t1 =datetime.strptime(d.from_time, "%H:%M:%S")
-				t2 = datetime.strptime(d.to_time, "%H:%M:%S")
-				delta = t2 - t1
-				ms = delta.total_seconds()/60
-				d.duration=round(ms,2)
-				if d.duration<=0:
-					idx=d.idx
-					frappe.throw(f"Time Duration can't be <b>Negative or Zero</b> for the line no <b><i>{idx}</i></b>")
+				d.duration = datetime.strptime(d.to_time, '%H:%M:%S') - datetime.strptime(d.from_time, '%H:%M:%S') 
+
+@frappe.whitelist()
+def participant(doctype, txt, searchfield, start, page_len, filters):
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join("TP."+field + " like %(txt)s" for field in searchfields)
+	participant_group_id=filters.get('participant_group_id')
+	participant_details = frappe.db.sql(""" SELECT TP.name 
+											FROM `tabParticipant Table` as PT
+											JOIN `tabToT Participant` as TP on TP.name=PT.participant
+											where (TP.{key} like %(txt)s or {scond}) and
+													PT.parent = '{participant_group_id}'
+											""".format(
+												**{
+												"key": searchfield,
+												"scond": searchfields,
+												"participant_group_id":participant_group_id
+											}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	return participant_details
+				# t1 =datetime.strptime(d.from_time, "%H:%M:%S")
+				# t2 = datetime.strptime(d.to_time, "%H:%M:%S")
+				# delta = t2 - t1
+				# ms = delta.total_seconds()/60
+				# d.duration=round(ms,2)
+				# if d.duration<=0:
+				# 	idx=d.idx
+				# 	frappe.throw(f"Time Duration can't be <b>Negative or Zero</b> for the line no <b><i>{idx}</i></b>")
 
 
 def class_scheduling_ovelaping_chk(self):
