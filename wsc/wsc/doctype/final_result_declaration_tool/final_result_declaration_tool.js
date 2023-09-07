@@ -5,6 +5,23 @@ frappe.ui.form.on('Final Result Declaration Tool', {
 	// refresh: function(frm) {
 
 	// },
+	setup: function(frm){
+		frm.set_query("instructor_id", function() {
+			return {
+				query: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.instructor',
+				filters:{"participant_group_id":frm.doc.participant_group}
+				
+			};
+		});
+
+		frm.set_query("participant_id", function() {
+			return {
+				query: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.participant',
+				filters:{"participant_group_id":frm.doc.participant_group}
+				
+			};
+		});
+	},
 	participant_group: function(frm){
 		// based on the participant group, set the course, module, sub-module list, assignment_list, participant list
 		frappe.call({
@@ -17,7 +34,7 @@ frappe.ui.form.on('Final Result Declaration Tool', {
 				frm.set_value("academic_term", result.message[1]) // academic_term
 				frm.set_value("select_module", result.message[2]) // course
 				frm.set_value("select_course", result.message[3]) // module
-				frm.set_df_property('participant_id', 'options', result.message[4]) // participants
+				// frm.set_df_property('participant_id', 'options', result.message[4]) // participants
 				frm.set_value("course_name", result.message[5]) // course name
 				frm.set_value("course_code", result.message[6]) // course code
 				frm.set_value("no_of_participants", result.message[7]) // course code

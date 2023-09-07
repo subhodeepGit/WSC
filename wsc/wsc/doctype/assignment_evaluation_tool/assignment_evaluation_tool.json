@@ -89,9 +89,8 @@
   },
   {
    "fieldname": "select_job_sheetassessment",
-   "fieldtype": "Link",
-   "label": "Select Job Sheet / Assessment",
-   "options": "Assignment"
+   "fieldtype": "Select",
+   "label": "Select Job Sheet / Assessment"
   },
   {
    "fieldname": "column_break_12",
@@ -153,7 +152,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-05 15:36:06.445857",
+ "modified": "2023-09-06 17:16:03.179083",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Evaluation Tool",
