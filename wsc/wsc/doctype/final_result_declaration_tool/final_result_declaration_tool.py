@@ -16,15 +16,13 @@ class FinalResultDeclarationTool(Document):
 			participant_name = d.participant_name
 
 			assignments = frappe.get_all('Assignment Evaluation', filters = [['participant_group','=', participant_group_id],['participant_id','=', participant_id]], fields = ['select_assignment', 'assessment_criteria', 'marks_earned', 'total_marks', 'assignment_name'])
-
+			assignment_data_new = ''
 			parent_doc = frappe.new_doc("Final Assignment Result")
+			list = []
 			for d in assignments:
-				print('\n\n\n\n')
-				print(d)
-				print('\n\n\n\n')
 				percentage = (d['marks_earned'] / d['total_marks']) * 100
 				assignment_data_new = frappe.db.sql("""SELECT result, threshold, grade_code FROM `tabGrading Scale Interval` WHERE parent = '%s' """%(grading_scale))
-				list = []
+				
 				grade = []
 				for i in assignment_data_new:
 					list.append(i)
@@ -49,21 +47,27 @@ class FinalResultDeclarationTool(Document):
 
 			total_percentage = 0
 			count = 0
+			over_all_percentage = 0
 
 			for i in assignments:
 				count += 1
 				total_percentage += i['percentage']
-			over_all_percentage = (total_percentage / count)
+
+			if(count == 0 and total_percentage == 0):
+				over_all_percentage = 0
+			else:
+				over_all_percentage = (total_percentage / count)
 			
 			final_list = []
 			final_grade_components = []
+
 			for i in assignment_data_new:
 				final_list.append(i)
 			final_list.sort(key = lambda x:x[1])
 			for i in list:
 				if(over_all_percentage >= i[1]):
 					final_grade_components = i
-
+			print('')
 			final_result = final_grade_components[0]
 			final_grade = final_grade_components[2]
 

@@ -12,8 +12,8 @@ class AssignmentEvaluationTool(Document):
 			result.participant_group = self.participant_group
 			result.select_course = self.course
 			result.select_module = self.module
-			result.academic_year = self.academic_term
-			result.academic_term = self.academic_year
+			result.academic_year = self.academic_year
+			result.academic_term = self.academic_term
 			result.participant_id = d.participant_id
 			result.participant_name = d.participant_name
 			result.instructor_id = self.instructor_id
