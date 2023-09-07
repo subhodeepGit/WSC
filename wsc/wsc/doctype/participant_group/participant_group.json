@@ -203,7 +203,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-06 20:48:54.481459",
+ "modified": "2023-09-07 11:37:29.953328",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Group",
@@ -223,6 +223,7 @@
    "write": 1
   }
  ],
+ "search_fields": "participant_enrollment_id,participant_group,program",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
