@@ -114,14 +114,12 @@
   {
    "fieldname": "from_time",
    "fieldtype": "Time",
-   "label": "From Time",
-   "read_only": 1
+   "label": "From Time"
   },
   {
    "fieldname": "to_time",
    "fieldtype": "Time",
-   "label": "To Time",
-   "read_only": 1
+   "label": "To Time"
   },
   {
    "fieldname": "duration",
@@ -146,13 +144,13 @@
   },
   {
    "fieldname": "section_break_low7n",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Academic Info"
   },
   {
    "fieldname": "scheduled_date",
    "fieldtype": "Date",
-   "label": "Scheduled Date",
-   "read_only": 1
+   "label": "Scheduled Date"
   },
   {
    "fetch_from": "participant_group_id.semester",
@@ -185,11 +183,13 @@
   },
   {
    "fieldname": "section_break_1wsjd",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Course Details"
   },
   {
    "fieldname": "section_break_2xqxh",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Module"
   },
   {
    "fieldname": "column_break_vfjgx",
@@ -197,7 +197,8 @@
   },
   {
    "fieldname": "section_break_rapdv",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Room Details"
   },
   {
    "fieldname": "column_break_uqb7l",
@@ -205,20 +206,23 @@
   },
   {
    "fieldname": "column_break_f7bkx",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Class Scheduling"
   },
   {
    "fieldname": "section_break_uvolg",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Trainers"
   },
   {
    "fieldname": "section_break_ehyhd",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Participant Group"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-07 12:55:19.949565",
+ "modified": "2023-09-07 20:18:25.127207",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Class Schedule",
