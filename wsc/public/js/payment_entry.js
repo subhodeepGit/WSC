@@ -169,8 +169,10 @@ frappe.ui.form.on('Payment Entry', {
 						c.total_amount=element.outstanding_fees
 						c.outstanding_amount=element.outstanding_fees
 						c.account_paid_from=element.receivable_account
+						c.exchange_rate=element.exchange_rate
                     });
 					frm.set_value("total_allocated_amount",amount)
+					frm.set_value("paid_amount",amount)						
                     frm.refresh_field("references")
 				}
 
