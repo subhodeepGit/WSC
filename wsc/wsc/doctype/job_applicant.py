@@ -67,16 +67,16 @@ def validate(doc,method):
 
     
 # Adding Data in Previous Application Details Table
-def validate_duplicate_record(self):
-        duplicateForm=frappe.get_all("Job Applicant", filters={
-			"application_year":self.application_year,
-			"job_title": self.job_title,
-			"designation":self.designation,
-            "current_status":self.current_status,
-            "email_id":self.email_id
-		})
-        if duplicateForm:
-            frappe.throw(("Job Applicant is already Filled the form for this Year."))
+# def validate_duplicate_record(self):
+#         duplicateForm=frappe.get_all("Job Applicant", filters={
+# 			"application_year":self.application_year,
+# 			"job_title": self.job_title,
+# 			"designation":self.designation,
+#             "current_status":self.current_status,
+#             "email_id":self.email_id
+# 		})
+#         if duplicateForm:
+#             frappe.throw(("Job Applicant is already Filled the form for this Year."))
 @frappe.whitelist()
 def previous_applied(aadhar_number):
     job_applicant = frappe.get_all('Job Applicant',{'aadhar_card_number':aadhar_number},['name','applicant_name','aadhar_card_number','job_title'])
