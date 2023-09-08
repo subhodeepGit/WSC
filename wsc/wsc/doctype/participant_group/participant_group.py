@@ -11,46 +11,45 @@ class ParticipantGroup(Document):
 	def validate(self):
 		dupicate_student_group_chk(self)
 		self.calculate_total_hours()
-		# for d in self.get("classes"):
-		# 	parent_doc = frappe.new_doc("ToT Class Schedule")
-		# 	parent_doc.participant_group_id = self.name
-		# 	parent_doc.academic_year = self.academic_year
-		# 	parent_doc.academic_term = self.academic_term
-		# 	parent_doc.course_name = self.program
-		# 	parent_doc.module_id = self.course
-		# 	parent_doc.module_name = self.module_name
-		# 	parent_doc.scheduled_date = d.scheduled_date
-		# 	# parent_doc.scheduled_time = d.scheduled_time
-		# 	parent_doc.room_number = d.room_number
-		# 	parent_doc.room_name = d.room_name
-		# 	parent_doc.from_time = d.from_time
-		# 	parent_doc.to_time = d.to_time
-		# 	parent_doc.duration = d.duration
+		# self.trainer_ck()
 
-		# 	for td1 in self.get('participants'):
-		# 		parent_doc.append('participants', {
-		# 			'participant_id' : td1.participant,
-		# 			'participant_name' : td1.participant_name,
-		# 			# 'group_roll_number' : td1.group_roll_number,
-		# 			'active' : td1.active,	
-		# 		})
-		# 	for td2 in self.get('instructor'):
-		# 		parent_doc.append('trainers', {
-		# 			'trainer_id' : td2.instructors,
-		# 			'trainer_name' : td2.instructor_name	
-		# 		})
-		# 	# parent_doc.save()	
 
 		dulicate_trainer_chk(self)
 		class_scheduling_date_validation(self)
 		class_scheduling_ovelaping_chk(self)
 		class_scheduling_ovelaping_other_scheduling(self)
+		# tot_class_schedule(self)
 
 
 	def calculate_total_hours(self):
 		for d in self.get("classes"):
 			if d.to_time and d.from_time:
 				d.duration = datetime.strptime(d.to_time, '%H:%M:%S') - datetime.strptime(d.from_time, '%H:%M:%S') 
+	def trainer_ck(self):
+		flag="No"
+		for t in self.get("instructor"):
+			flag="Yes"
+		if flag=="No":
+			frappe.throw("Please Provide Trainers Details")				
+
+
+def tot_class_schedule(self):
+	for d in self.get("classes"):
+		parent_doc = frappe.new_doc("ToT Class Schedule")
+		parent_doc.participant_group_id = self.name
+		parent_doc.academic_year = self.academic_year
+		parent_doc.academic_term = self.academic_term
+		parent_doc.course_name = self.program
+		parent_doc.module_id = self.course
+		parent_doc.module_name = self.module_name
+		parent_doc.scheduled_date = d.scheduled_date
+		# parent_doc.scheduled_time = d.scheduled_time
+		parent_doc.room_number = d.room_number
+		parent_doc.room_name = d.room_name
+		parent_doc.from_time = d.from_time
+		parent_doc.to_time = d.to_time
+		parent_doc.duration = d.duration
+		parent_doc.save()
 
 @frappe.whitelist()
 def participant(doctype, txt, searchfield, start, page_len, filters):
