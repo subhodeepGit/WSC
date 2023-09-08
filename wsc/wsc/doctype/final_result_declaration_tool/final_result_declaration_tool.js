@@ -32,9 +32,8 @@ frappe.ui.form.on('Final Result Declaration Tool', {
 			callback: function(result){
 				frm.set_value("academic_year", result.message[0]) // academic_year
 				frm.set_value("academic_term", result.message[1]) // academic_term
-				frm.set_value("select_module", result.message[2]) // course
-				frm.set_value("select_course", result.message[3]) // module
-				// frm.set_df_property('participant_id', 'options', result.message[4]) // participants
+				frm.set_value("select_module", result.message[3]) // course
+				frm.set_value("select_course", result.message[2]) // module
 				frm.set_value("course_name", result.message[5]) // course name
 				frm.set_value("course_code", result.message[6]) // course code
 				frm.set_value("no_of_participants", result.message[7]) // course code
