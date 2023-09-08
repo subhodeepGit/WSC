@@ -66,7 +66,7 @@ def validate(doc,method):
         setup_workflow(doc)
 
     
-Adding Data in Previous Application Details Table
+# Adding Data in Previous Application Details Table
 def validate_duplicate_record(self):
         duplicateForm=frappe.get_all("Job Applicant", filters={
 			"application_year":self.application_year,
