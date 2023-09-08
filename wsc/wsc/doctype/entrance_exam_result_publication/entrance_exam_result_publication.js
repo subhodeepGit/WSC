@@ -25,12 +25,21 @@ frappe.ui.form.on('Entrance Exam Result Publication', {
 	        }
 	    });
 
-		frm.set_query("applicant_id" , function() {
+		// frm.set_query("applicant_id" , function() {
+		// 	return {
+		// 		filters:{
+		// 			"entrance_exam":frm.doc.entrance_exam_declaration
+		// 		}
+		// 	}
+		// })
+		
+		frm.set_query("applicant_id" , function(){
 			return {
+                query: "wsc.wsc.doctype.entrance_exam_result_publication.entrance_exam_result_publication.ra_query3",
 				filters:{
-					"entrance_exam":frm.doc.entrance_exam_declaration
+					'entrance_exam_declaration':frm.doc.entrance_exam_declaration
 				}
-			}
+            }
 		})
 
 		// frm.set_query("applicant_id" , function() {
