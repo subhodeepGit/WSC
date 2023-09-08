@@ -12,6 +12,7 @@
   "employee",
   "employee_name",
   "user_id",
+  "reporting_authority",
   "column_break_zwty9",
   "department",
   "designation",
@@ -103,7 +104,6 @@
    "label": "Employee Details"
   },
   {
-   "collapsible": 1,
    "fieldname": "section_break_8afkq",
    "fieldtype": "Section Break",
    "label": "Appraisal Period"
@@ -251,12 +251,19 @@
    "fieldname": "mid_year_grade",
    "fieldtype": "Read Only",
    "label": "Mid Year Grade"
+  },
+  {
+   "fetch_from": "employee.reporting_authority_email",
+   "fieldname": "reporting_authority",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Reporting Authority"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-07 15:26:30.850452",
+ "modified": "2023-09-08 10:49:09.525354",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Appraisal Portal",
