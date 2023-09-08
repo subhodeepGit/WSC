@@ -154,7 +154,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-08 16:06:25.965244",
+ "modified": "2023-09-08 16:14:42.517460",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment",
@@ -174,6 +174,7 @@
    "write": 1
   }
  ],
+ "search_fields": "assignment_name,participant_group",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
