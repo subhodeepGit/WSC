@@ -35,6 +35,9 @@ frappe.ui.form.on('Employee Appraisal Portal', {
                         c.category=element.category
                         c.due_date=element.due_date
                         c.status=element.status
+                        // c.goal.$input.prop('readonly', true);
+                        // c.category.$input.prop('readonly', true);
+                        // c.due_date.$input.prop('readonly', true);
                     });
                 }
                 frm.refresh();

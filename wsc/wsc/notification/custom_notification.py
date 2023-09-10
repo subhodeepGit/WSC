@@ -1227,6 +1227,63 @@ def sendDirector(doc):
     send_mail([doc['director_mail']],sub,msg)
     frappe.msgprint("Mail sent to Director for Approval",[doc['director_mail']])
 
+
+################################ Notification for Appraisal ######################################################################
+
+def sendHR_appraisal(doc):
+    sub="""<p><b>Employee Appraisal</b></p><br>"""
+    msg="""<b>---------------------Appraisal Details---------------------</b><br>"""
+    msg+="""<b>Appraisal:</b>  {0}<br>""".format(doc['name'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    msg+="""<b>Appraisal Cycle:</b>  {0}<br>""".format(doc['appraisal_cycle'])
+    appraisal_url = get_url_to_form('Employee Appraisal Portal', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(appraisal_url)
+    msg+="""<p><b>Initiate the Separation Process for the Employee if it is Approved</b></p><br>"""
+    send_mail([doc['hr_mail']],sub,msg)
+    frappe.msgprint("Confirmation mail sent to HR",[doc['hr_mail']])
+# def sendEmployee(doc):
+#     sub="""<p><b>Employee Resignation</b></p><br>"""
+#     msg="""<b>---------------------Resignation Details---------------------</b><br>"""
+#     msg+="""<b>Resignation:</b>  {0}<br>""".format(doc['name'])
+#     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+#     resignation_url = get_url_to_form('Employee Resignation', doc['name'])
+#     msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(resignation_url)
+#     send_mail([doc['employee_mail']],sub,msg)
+#     frappe.msgprint("Confirmation mail sent to Employee",[doc['employee_mail']])
+
+def sendRa_appraisal(doc):
+    sub="""<p><b>Employee Appraisal</b></p><br>"""
+    msg="""<b>---------------------Appraisal Details---------------------</b><br>"""
+    msg+="""<b>Appraisal:</b>  {0}<br>""".format(doc['name'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    msg+="""<b>Appraisal Cycle:</b>  {0}<br>""".format(doc['appraisal_cycle'])
+    appraisal_url = get_url_to_form('Employee Appraisal Portal', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(appraisal_url)
+    send_mail([doc['ra_mail']],sub,msg)
+    frappe.msgprint("Mail sent to Reporting Authority for Approval",[doc['ra_mail']])
+
+def sendDh_appraisal(doc):
+    sub="""<p><b>Employee Appraisal</b></p><br>"""
+    msg="""<b>---------------------Appraisal Details---------------------</b><br>"""
+    msg+="""<b>Appraisal:</b>  {0}<br>""".format(doc['name'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    msg+="""<b>Appraisal Cycle:</b>  {0}<br>""".format(doc['appraisal_cycle'])
+    appraisal_url = get_url_to_form('Employee Appraisal Portal', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(appraisal_url)
+    send_mail([doc['dh_mail']],sub,msg)
+    frappe.msgprint("Mail sent to Department Head for Approval",[doc['dh_mail']])
+def sendDirector_appraisal(doc):
+    sub="""<p><b>Employee Appraisal</b></p><br>"""
+    msg="""<b>---------------------Appraisal Details---------------------</b><br>"""
+    msg+="""<b>Appraisal:</b>  {0}<br>""".format(doc['name'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    msg+="""<b>Appraisal Cycle:</b>  {0}<br>""".format(doc['appraisal_cycle'])
+    appraisal_url = get_url_to_form('Employee Appraisal Portal', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(appraisal_url)
+    send_mail([doc['director_mail']],sub,msg)
+    frappe.msgprint("Mail sent to Director for Approval",[doc['director_mail']])
+
+
 def mentor_mentee_communication_submit(doc):
     mentor = frappe.db.get_value("Mentor Allocation", {"name":doc.get("mentor")}, "mentor")
     if frappe.session.user == frappe.get_all("Student", {'name':doc.student}, ['user'])[0]["user"]:

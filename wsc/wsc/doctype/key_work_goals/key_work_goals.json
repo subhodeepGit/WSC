@@ -18,18 +18,21 @@
    "fieldname": "goal",
    "fieldtype": "Link",
    "label": "Goal",
-   "options": "KRA"
+   "options": "KRA",
+   "permlevel": 1
   },
   {
    "fieldname": "category",
    "fieldtype": "Select",
    "label": "Category",
-   "options": "\nIndividual Goal\nEstablishment Goal"
+   "options": "\nIndividual Goal\nEstablishment Goal",
+   "permlevel": 1
   },
   {
    "fieldname": "due_date",
    "fieldtype": "Date",
-   "label": "Due date"
+   "label": "Due date",
+   "permlevel": 1
   },
   {
    "fieldname": "status",
@@ -52,7 +55,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-05 15:56:11.526267",
+ "modified": "2023-09-07 17:06:56.407990",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Key Work Goals",

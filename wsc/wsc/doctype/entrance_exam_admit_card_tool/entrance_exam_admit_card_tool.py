@@ -40,7 +40,7 @@ def ra_query2(doctype, txt, searchfield, start, page_len, filters):
 
     data = frappe.db.sql("""
         SELECT 
-			alot.name , slot.seating_capacity
+			alot.name , slot.slot_name , slot.seating_capacity
 		FROM 
 			`tabEntrance Exam Centre Allocation` alot 
 		INNER JOIN 
@@ -110,7 +110,7 @@ def admit_card_generate(alloted_applicant_data):
 @frappe.whitelist()
 def student_allotment(body):
 	
-	# print("\n\n\n\n\nnormal call")
+	print("\n\n\n\n\nnormal call")
 	body = json.loads(body)
 
 	name = body['name']
@@ -121,11 +121,12 @@ def student_allotment(body):
 	unalloted_students_after_center_allotment = []
 
 	for i in de_alloted_student:
-		print(i)
+		
 		prefered_center = frappe.get_all("Exam Centre Preference" , {'parent' : i['applicant_id']} , ['center_name' , 'parent' , 'center'] , order_by = "idx asc")
 		data = {}
 		for j in prefered_center:
-			
+			print("\n\n\n")	
+			print()
 			exam_center_allocation = frappe.get_all("Entrance Exam Centre Allocation" , 
 					   {'entrance_exam_declaration' : declaration , 'centre': j['center_name']} , 
 					 	['name' ,
