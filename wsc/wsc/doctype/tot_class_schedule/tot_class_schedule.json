@@ -7,6 +7,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "re_scheduled",
   "section_break_ehyhd",
   "participant_group_id",
   "column_break_ojus4",
@@ -221,11 +222,17 @@
    "fieldname": "section_break_ehyhd",
    "fieldtype": "Section Break",
    "label": "Participant Group"
+  },
+  {
+   "default": "0",
+   "fieldname": "re_scheduled",
+   "fieldtype": "Check",
+   "label": "Re Scheduled"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-07 20:26:00.233429",
+ "modified": "2023-09-08 15:55:16.566533",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Class Schedule",
