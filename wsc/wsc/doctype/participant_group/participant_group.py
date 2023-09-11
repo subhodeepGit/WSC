@@ -16,6 +16,7 @@ class ParticipantGroup(Document):
 
 		dulicate_trainer_chk(self)
 		class_scheduling_date_validation(self)
+		re_scheduling_chk(self)
 		class_scheduling_ovelaping_chk(self)
 		tot_class_schedule(self)
 		class_scheduling_ovelaping_other_scheduling(self)
@@ -32,6 +33,15 @@ class ParticipantGroup(Document):
 		if flag=="No":
 			frappe.throw("Please Provide Trainers Details")				
 
+def re_scheduling_chk(self):
+	present_object=self.get("classes")
+	old_object=self.get("classes")
+	for p in present_object:
+		if p.re_scheduled==1:
+			for o in old_object:
+				if p.name==o.name:
+					if p.scheduled_date==o.scheduled_date and p.room_name==o.room_name and p.from_time==o.from_time and p.to_time==p.to_time:  
+						frappe.throw("<b>No change found in the the Class Rescheduling for line no:- %s </b>"%(p.idx))
 
 def tot_class_schedule(self):
 	for d in self.get("classes"):
