@@ -29,7 +29,7 @@ class EntranceExamCentreSelection(Document):
 
 	def on_cancel(self):
 		frappe.db.sql("""
-			UPDATE `tabEntrance exam select` SET available_center = 0 WHERE academic_year = '{academic_year }' AND academic_term = '{academic_term}'
+			UPDATE `tabEntrance exam select` SET available_center = 0 WHERE academic_year = '{academic_year}' AND academic_term = '{academic_term}'
 		""".format(academic_year = self.academic_year , academic_term = self.academic_term))
 		
 

@@ -36,17 +36,6 @@ def ra_query3(doctype, txt, searchfield, start, page_len, filters):
     searchfields = frappe.get_meta(doctype).get_search_fields()
     searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)    
     
-    # SELECT DISTINCT 
-    #     adm.applicant_id 
-    # FROM 
-    #     `tabEntrance Exam Admit Card` adm
-    # INNER JOIN 
-    #     `tabApplicant List` app_list
-    # ON adm.applicant_id = app_list.applicant_id 
-    # WHERE 
-    #     adm.docstatus = 1 AND
-    #     adm.entrance_exam = app_list.parent;
-    
     data=frappe.db.sql("""
         SELECT DISTINCT 
             adm.applicant_id 

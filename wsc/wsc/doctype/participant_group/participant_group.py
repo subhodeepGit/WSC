@@ -11,7 +11,7 @@ class ParticipantGroup(Document):
 	def validate(self):
 		dupicate_student_group_chk(self)
 		self.calculate_total_hours()
-		# self.trainer_ck()
+		self.trainer_ck()
 
 
 		dulicate_trainer_chk(self)
@@ -34,22 +34,54 @@ class ParticipantGroup(Document):
 
 
 def tot_class_schedule(self):
+	print("\n\n\n\n")
 	for d in self.get("classes"):
-		parent_doc = frappe.new_doc("ToT Class Schedule")
-		parent_doc.participant_group_id = self.name
-		parent_doc.academic_year = self.academic_year
-		parent_doc.academic_term = self.academic_term
-		parent_doc.course_name = self.program
-		parent_doc.module_id = self.course
-		parent_doc.module_name = self.module_name
-		parent_doc.scheduled_date = d.scheduled_date
-		# parent_doc.scheduled_time = d.scheduled_time
-		parent_doc.room_number = d.room_number
-		parent_doc.room_name = d.room_name
-		parent_doc.from_time = d.from_time
-		parent_doc.to_time = d.to_time
-		parent_doc.duration = d.duration
-		parent_doc.save()
+		if d.is_scheduled!=1:
+			if d.re_scheduled!=1:
+				for t in self.get('instructor'):
+					parent_doc = frappe.new_doc("ToT Class Schedule")
+					parent_doc.participant_group_id = self.name
+					parent_doc.academic_year = self.academic_year
+					parent_doc.academic_term = self.academic_term
+					parent_doc.course_name = self.program
+					parent_doc.module_id = self.course
+					parent_doc.module_name = self.module_name
+					parent_doc.scheduled_date = d.scheduled_date
+					parent_doc.room_number = d.room_number
+					parent_doc.room_name = d.room_name
+					parent_doc.from_time = d.from_time
+					parent_doc.to_time = d.to_time
+					parent_doc.duration = d.duration
+					parent_doc.trainers=t.instructors
+					parent_doc.save()
+				d.is_scheduled=1
+		if d.re_scheduled==1 and d.is_scheduled==1:
+			participant_group_id=self.name
+			module_name=self.course
+			old_data=[]
+			doc_before_save = self.get_doc_before_save()
+			for t in doc_before_save.get('classes'):
+				if t.idx==d.idx:
+					a={}
+					a['scheduled_date']=t.scheduled_date
+					a['room_name']=t.room_name
+					a['from_time']=t.from_time
+					a['to_time']=t.to_time
+					old_data.append(a)
+
+			for t in self.get('instructor'):
+				frappe.get_all('ToT Class Schedule',{
+													'participant_group_id':participant_group_id,
+													'module_id':module_name,
+													'scheduled_date':old_data[0]['scheduled_date'],
+													'from_time':old_data[0]['from_time'],
+													"to_time":old_data[0]['to_time'],
+													'room_number':old_data[0]['room_name'],
+													'trainers':t.instructors 
+													})
+				pass
+			d.re_scheduled=0
+
 
 @frappe.whitelist()
 def participant(doctype, txt, searchfield, start, page_len, filters):
