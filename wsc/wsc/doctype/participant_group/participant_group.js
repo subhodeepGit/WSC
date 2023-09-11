@@ -108,7 +108,7 @@ frappe.ui.form.on('Participant Group', {
 				}
 				frm.refresh()
 				frm.refresh_field('participants')
-				frm.save();
+				// frm.save();
 			}
 		})
 	},

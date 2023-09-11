@@ -64,8 +64,8 @@ frappe.ui.form.on('Student Applicant', {
         frm.set_query("department", function(){
 	        return{
 	            filters:{
-	                "is_group":1,
-	                "is_stream": 1
+	                "is_group":0,
+	                // "is_stream": 0
 	            }
 	        }
 	    });
@@ -138,7 +138,11 @@ frappe.ui.form.on('Student Applicant', {
     before_load: function(frm) {
         frm.trigger("hide_n_show_child_table_fields");
     },
+    after_save:function(frm){
+        frm.set_df_property('image', 'reqd', 1);
+    },
     refresh(frm){
+        
         // console.log(frm.doc.image);
         if(frappe.user.has_role(["Applicant"]) && !frappe.user.has_role(["System Manager"])){
 			frm.set_value("student_email_id", frappe.session.user)
@@ -155,15 +159,10 @@ frappe.ui.form.on('Student Applicant', {
         if (cur_frm.doc.document_list){
             cur_frm.doc.document_list.forEach(data=>{
                 var dn = frappe.meta.get_docfield("Document List", "document_name",data.name);
-                // console.log(dn);
                 dn.read_only=1;
-                // var m = frappe.meta.get_docfield("Document List", "mandatory",data.name);
-                // m.read_only=1;
-                // var ms = frappe.meta.get_docfield("Document List", "is_available",data.name);
-                // m.read_only=1;
             })
         }
-
+        frm.set_df_property('image', 'hidden', 1);
         frm.set_df_property('program', 'hidden', 1);
         frm.set_df_property('program', 'reqd', 0);
         frm.set_df_property('program', 'allow_on_submit', 1);
@@ -328,6 +327,8 @@ frappe.ui.form.on('Student Applicant', {
                         var d = frm.add_child("education_qualifications_details");
                         d.qualification = row.parameter;
                         d.percentage_cgpa = row.percentagecgpa
+                        d.mandatory = row.is_mandatory;
+                        d.admission_percentage = row.eligible_score;
                     }
                     // frm.refresh_field("education_qualifications_details");
                 });
@@ -378,9 +379,10 @@ frappe.ui.form.on("Education Qualifications Details", "earned_marks", function(f
         frappe.throw("Please Enter Valid Data..")
     }       
     cur_frm.refresh_field ("education_qualifications_details");
- 
+    if (data.score < data.admission_percentage){
+        frappe.throw("You are not eligible to apply for these course.")
+    }
  });	
-
  frappe.ui.form.on("Education Qualifications Details", "cgpa", function(frm, cdt, cdn) {
   
     var data = locals[cdt][cdn];
@@ -394,7 +396,11 @@ frappe.ui.form.on("Education Qualifications Details", "earned_marks", function(f
         frappe.throw("Wrong Entry")
     }
     
+    
     cur_frm.refresh_field ("education_qualifications_details");
+    if (data.score < data.admission_percentage){
+        frappe.throw("You are not eligible to apply for these course.")
+    }
  
  });      
 
@@ -552,7 +558,7 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
                     }
                     // !frm.doc.counselling_structure && frm.doc.student_category && 
                     if (frm.doc.program_priority){
-                        // frm.set_value("education_qualifications_details",[]);
+                        frm.set_value("education_qualifications_details",[]);
                         frappe.call({
                             method: "wsc.wsc.doctype.student_applicant.get_education_qualifications_details_by_admissions",
                             args:{
@@ -567,7 +573,9 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
                                     $.each(resp.message, function(index, row){
                                             var edu_row = frm.add_child("education_qualifications_details");
                                             edu_row.qualification = row.parameter;
-                                            edu_row.percentage_cgpa = row.percentagecgpa
+                                            edu_row.percentage_cgpa = row.percentagecgpa;
+                                            edu_row.mandatory = row.is_mandatory;
+                                            edu_row.admission_percentage = row.eligible_score;
                                         frm.refresh_field("education_qualifications_details");
                                     });
                                     frm.refresh_field("education_qualifications_details");

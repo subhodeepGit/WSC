@@ -3,9 +3,12 @@
 
 import frappe
 from frappe.model.document import Document
+from datetime import datetime, timedelta
 
 class ToTClassSchedule(Document):
-	pass
+	def validate(self):
+		if self.re_scheduled==1:
+			frappe.msgprint("Class:-%s is Re Scheduled "%(self.name))
 
 
 @frappe.whitelist()
@@ -20,6 +23,5 @@ def get_instructor(doctype, txt, searchfield, start, page_len, filters):
 		a=tuple(a)
 		lst.append(a)
 	lst=tuple(lst)
-	print(lst)
 	instructor=lst
 	return instructor

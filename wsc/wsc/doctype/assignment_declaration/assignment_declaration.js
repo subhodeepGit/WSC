@@ -3,6 +3,8 @@
 
 frappe.ui.form.on('Assignment Declaration', {
 	setup: function(frm){
+		frm.set_df_property('participant_list', 'cannot_add_rows', true);
+		frm.set_df_property('participant_list', 'cannot_delete_rows', true);
 		frm.set_query("evaluator_id", function() {
 			return {
 				query: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.instructor',
@@ -89,6 +91,19 @@ frappe.ui.form.on('Assignment Declaration', {
 			}
 		})
 	},
+	assignment_start_date: function(frm) {
+        // set minimum To Date equal to From Date
+        frm.fields_dict.assignment_end_date.datepicker.update({
+            minDate: frm.doc.assignment_start_date ? new Date(frm.doc.assignment_start_date) : null
+        });
+    },
+
+    assignment_end_date: function(frm) {
+        // set maximum From Date equal to To Date
+        frm.fields_dict.assignment_start_date.datepicker.update({
+            maxDate: frm.doc.assignment_end_date ? new Date(frm.doc.assignment_end_date) : null
+        });
+    },
 });
 
 // frappe.ui.form.on("Job Sheet", "assessment_criteria", function(frm, cdt, cdn) {

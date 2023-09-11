@@ -9,7 +9,7 @@ frappe.ui.form.on('Programs', {
 			return {
 				filters: {
 					"is_group":0,
-					"is_stream":0
+					// "is_stream":0
 				}
 			};
 		});
