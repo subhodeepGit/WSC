@@ -25,8 +25,9 @@
  "fields": [
   {
    "fieldname": "academic_year",
-   "fieldtype": "Data",
-   "label": "Academic Year"
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
   },
   {
    "fieldname": "participant_group",
@@ -41,8 +42,9 @@
   },
   {
    "fieldname": "select_module",
-   "fieldtype": "Data",
-   "label": "Select Module"
+   "fieldtype": "Link",
+   "label": "Select Module",
+   "options": "Course"
   },
   {
    "fieldname": "column_break_5",
@@ -50,8 +52,9 @@
   },
   {
    "fieldname": "select_course",
-   "fieldtype": "Data",
-   "label": "Select Course"
+   "fieldtype": "Link",
+   "label": "Select Course",
+   "options": "Programs"
   },
   {
    "fieldname": "course_name",
@@ -65,8 +68,9 @@
   },
   {
    "fieldname": "academic_term",
-   "fieldtype": "Data",
-   "label": "Academic Term"
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
   },
   {
    "fieldname": "section_break_10",
@@ -92,7 +96,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-21 15:48:47.218560",
+ "modified": "2023-09-06 14:58:47.490197",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Final Result Declaration Tool",

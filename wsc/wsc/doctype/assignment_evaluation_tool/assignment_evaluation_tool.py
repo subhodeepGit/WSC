@@ -12,8 +12,8 @@ class AssignmentEvaluationTool(Document):
 			result.participant_group = self.participant_group
 			result.select_course = self.course
 			result.select_module = self.module
-			result.academic_year = self.academic_term
-			result.academic_term = self.academic_year
+			result.academic_year = self.academic_year
+			result.academic_term = self.academic_term
 			result.participant_id = d.participant_id
 			result.participant_name = d.participant_name
 			result.instructor_id = self.instructor_id
@@ -100,3 +100,40 @@ def get_participants(assignment_name, participant_group_id):
 		not_qualified_data = frappe.get_all('Participant List Table', filters = [['parent','=',assignment_name],['status','=', 'Not Qualified']], fields = ['participant_id', 'participant_name'])
 
 		return [qualified_data, not_qualified_data]
+
+
+# ---------------------------------------------------------------------------------------------
+@frappe.whitelist()
+def instructor(doctype, txt, searchfield, start, page_len, filters):
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)
+
+	participant_group_id=filters.get('participant_group_id')
+	instructor_details = frappe.db.sql(""" SELECT instructors FROM `tabInstructor Table` where ({key} like %(txt)s or {scond}) and
+				    parent = '{participant_group_id}'
+				    """.format(
+						**{
+						"key": searchfield,
+						"scond": searchfields,
+						"participant_group_id":participant_group_id
+					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	return instructor_details
+
+@frappe.whitelist()
+def participant(doctype, txt, searchfield, start, page_len, filters):
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join("TP."+field + " like %(txt)s" for field in searchfields)
+	participant_group_id=filters.get('participant_group_id')
+	participant_details = frappe.db.sql(""" SELECT TP.name 
+											FROM `tabParticipant Table` as PT
+											JOIN `tabToT Participant` as TP on TP.name=PT.participant
+											where (TP.{key} like %(txt)s or {scond}) and
+													PT.parent = '{participant_group_id}'
+											""".format(
+												**{
+												"key": searchfield,
+												"scond": searchfields,
+												"participant_group_id":participant_group_id
+											}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	return participant_details
+# -----------------------------------------------------------------------------------------------------------------------------

@@ -32,8 +32,7 @@
   "get_participants",
   "participants",
   "instructor",
-  "classes",
-  "amended_from"
+  "classes"
  ],
  "fields": [
   {
@@ -151,9 +150,10 @@
   },
   {
    "fieldname": "semester",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "hidden": 1,
-   "label": "Semester"
+   "label": "Semester",
+   "options": "Program"
   },
   {
    "fetch_from": "participant_enrollment_id.tot_participant_batch",
@@ -177,15 +177,6 @@
    "read_only": 1
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Participant Group",
-   "print_hide": 1,
-   "read_only": 1
-  },
-  {
    "fetch_from": "participant_enrollment_id.start_date",
    "fieldname": "tot_start_date",
    "fieldtype": "Date",
@@ -202,7 +193,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-04 17:24:14.498525",
+ "modified": "2023-09-08 15:21:06.994709",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Group",
@@ -222,6 +213,7 @@
    "write": 1
   }
  ],
+ "search_fields": "participant_enrollment_id,participant_group,program",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

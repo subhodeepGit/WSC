@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:dimenssion_title",
  "creation": "2023-09-01 15:14:28.457391",
  "default_view": "List",
  "doctype": "DocType",
@@ -8,27 +9,39 @@
  "engine": "InnoDB",
  "field_order": [
   "is_active",
-  "dimenssion_title"
+  "dimenssion_title",
+  "description"
  ],
  "fields": [
   {
    "default": "0",
    "fieldname": "is_active",
    "fieldtype": "Check",
-   "label": "Is Active"
+   "in_list_view": 1,
+   "label": "Is Active",
+   "reqd": 1
   },
   {
    "fieldname": "dimenssion_title",
    "fieldtype": "Data",
-   "label": "Dimenssion Title"
+   "in_list_view": 1,
+   "label": "Dimenssion Title",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-01 15:14:28.457391",
+ "modified": "2023-09-07 15:24:40.004875",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Dimenssions for Appraisal",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

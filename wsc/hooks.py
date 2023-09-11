@@ -68,6 +68,7 @@ doctype_js = {
                 "Employee Grievance":"public/js/employee_grievance.js",
                 "Employee Onboarding":"public/js/employee_onboarding.js",
                 "Job Offer":"public/js/job_offer.js",
+                "Compensatory Leave Request":"public/js/compensatory_leave_request.js",
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -388,6 +389,10 @@ doc_events = {
         "on_cancel" : "wsc.wsc.doctype.employee_onboarding.on_cancel",
         # "on_change" : "wsc.wsc.doctype.employee_onboarding.on_change",
 
+    },
+    "Compensatory Leave Request":{
+        "validate":"wsc.wsc.doctype.compensatory_leave_request.validate",
+        "on_change":"wsc.wsc.doctype.compensatory_leave_request.on_change",
     },
     "Task":
     {

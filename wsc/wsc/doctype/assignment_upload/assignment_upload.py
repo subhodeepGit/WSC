@@ -34,3 +34,40 @@ def get_assignment_details(assignment_name):
 	print('\n\n\n\n')
 	criteria_details = frappe.get_all('Assignment', filters = [['name', '=', assignment_name]], fields = ['assessment_criteria', 'total_marks','passing_marks','weightage', 'assignment_name'])
 	return [criteria_details[0]['assessment_criteria'] ,criteria_details[0]['total_marks'], criteria_details[0]['passing_marks'], criteria_details[0]['weightage'], criteria_details[0]['assignment_name']]
+
+
+# ---------------------------------------------------------------------------------------------
+@frappe.whitelist()
+def instructor(doctype, txt, searchfield, start, page_len, filters):
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)
+
+	participant_group_id=filters.get('participant_group_id')
+	instructor_details = frappe.db.sql(""" SELECT instructors FROM `tabInstructor Table` where ({key} like %(txt)s or {scond}) and
+				    parent = '{participant_group_id}'
+				    """.format(
+						**{
+						"key": searchfield,
+						"scond": searchfields,
+						"participant_group_id":participant_group_id
+					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	return instructor_details
+
+@frappe.whitelist()
+def participant(doctype, txt, searchfield, start, page_len, filters):
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join("TP."+field + " like %(txt)s" for field in searchfields)
+	participant_group_id=filters.get('participant_group_id')
+	participant_details = frappe.db.sql(""" SELECT TP.name 
+											FROM `tabParticipant Table` as PT
+											JOIN `tabToT Participant` as TP on TP.name=PT.participant
+											where (TP.{key} like %(txt)s or {scond}) and
+													PT.parent = '{participant_group_id}'
+											""".format(
+												**{
+												"key": searchfield,
+												"scond": searchfields,
+												"participant_group_id":participant_group_id
+											}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	return participant_details
+# -----------------------------------------------------------------------------------------------------------------------------
