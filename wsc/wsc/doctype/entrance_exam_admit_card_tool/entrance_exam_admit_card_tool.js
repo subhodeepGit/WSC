@@ -57,19 +57,10 @@ frappe.ui.form.on('Entrance Exam Admit Card Tool', {
 							const { leftovers , available_centers } = result.message
 							
 							if (leftovers.length !== 0) {
-								console.log(leftovers);
-								// available_centers.map((i) => {
-									
-								// 	// const date = i.slot_starting_time.split(" ")
-								// 	options.push(`${i.centre} - ${i.slot_name} - ${i.district} - ${i.slot_date}`)
-								// })
-		
-								// set_field_options("centre" , options)
 								alert(`Number of Unalloted Students is ${leftovers.length}`)
 								flag = 1
 							}
 							else {
-								console.log("complete");
 								alert("All Students Alloted")
 								frm.remove_custom_button('Admit Card Generation')
 								flag = 2

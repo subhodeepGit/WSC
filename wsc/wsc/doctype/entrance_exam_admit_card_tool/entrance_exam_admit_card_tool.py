@@ -110,7 +110,6 @@ def admit_card_generate(alloted_applicant_data):
 @frappe.whitelist()
 def student_allotment(body):
 	
-	print("\n\n\n\n\nnormal call")
 	body = json.loads(body)
 
 	name = body['name']
@@ -125,7 +124,7 @@ def student_allotment(body):
 		prefered_center = frappe.get_all("Exam Centre Preference" , {'parent' : i['applicant_id']} , ['center_name' , 'parent' , 'center'] , order_by = "idx asc")
 		data = {}
 		for j in prefered_center:
-			print("\n\n\n")	
+		
 			print()
 			exam_center_allocation = frappe.get_all("Entrance Exam Centre Allocation" , 
 					   {'entrance_exam_declaration' : declaration , 'centre': j['center_name']} , 
@@ -143,8 +142,7 @@ def student_allotment(body):
 			# print(slots)
 			for k in slots:
 				if k['seating_capacity'] > 0 and i['center_allocated_status'] == 0:
-				# if k['seating_capacity'] > 0:
-						# print("if is true")
+				
 						data['entrance_exam'] = declaration
 						data['applicant_id'] = i['applicant_id']
 						data['applicant_name'] = i['applicant_name']
@@ -191,33 +189,10 @@ def student_allotment(body):
 			data2['physical_disability'] = i['physical_disability']
 			unalloted_students_after_center_allotment.append(data2)
 			
-	print("\nnormal call" , alloted_applicant_data)
-	# available_center_with_slots = frappe.db.sql("""
-	# 	SELECT 
-	# 		slot.slot_name , 
-	# 		slot.seating_capacity , 
-	# 		slot.slot_starting_time ,
-	# 		slot.slot_date ,
-	# 		alot.name , 
-	# 		alot.centre ,
-	# 		alot.centre_name , 
-	# 		alot.district
-	# 		FROM 
-	# 			`tabExam Slot Timings` slot
-	# 		INNER JOIN 
-	# 			`tabEntrance Exam Centre Allocation` alot
-	# 		WHERE 
-	# 			slot.parent = alot.name AND
-	# 			slot.seating_capacity > 0 AND
-	# 			alot.docstatus = 1;
-	# """,as_dict=1)	
-
-	print("\n\nnormal" , alloted_applicant_data)
 	admit_card_generate(alloted_applicant_data)
 	
 	return {
 		'leftovers':unalloted_students_after_center_allotment,
-		# 'available_centers':available_center_with_slots
 	}
 
 @frappe.whitelist()
@@ -232,15 +207,13 @@ def leftovers_allotment(body):
 	print(center)
 
 	date_format = "%Y-%m-%d"
-	# slot_date = slot_date = datetime.strptime(center[3], date_format).date()
-	
+		
 	alloted_applicant_data= []
 	unalloted_applicants = []
 
 	for i in leftover_applicant:
 		data = {}
-		exam_center_allocation = frappe.get_all("Entrance Exam Centre Allocation" , 
-					   				# {'entrance_exam_declaration' : declaration , 'centre':center[0] , 'district' : center[2]} ,
+		exam_center_allocation = frappe.get_all("Entrance Exam Centre Allocation" , 					   				
 									  {'name':center} ,
 					 					['name' ,
 										'academic_year' , 'academic_term' ,
@@ -248,16 +221,14 @@ def leftovers_allotment(body):
 										'centre' , 'centre_name' , 'address' ,
 										'district' , 'state' , 'pin_code'
 										])
-		print(exam_center_allocation)
-		print("\n")
+		
 		slots = frappe.get_all("Exam Slot Timings" , {'parent': center} ,  
 			  ['slot_name' , 'slot_starting_time' , 'slot_ending_time' , 'slot_date' , 'seating_capacity' , 'parent'])
-		print(slots)
-		print("\n")
+		
 		for j in slots:
 
 			if i['center_allocated_status'] == 0 and j['seating_capacity'] > 0:
-				print("\nin if" , i)
+				
 				data['entrance_exam'] = declaration
 				data['applicant_id'] = i['applicant_id']
 				data['applicant_name'] = i['applicant_name']
@@ -303,27 +274,6 @@ def leftovers_allotment(body):
 			data2['physical_disability'] = i['physical_disability']
 			unalloted_applicants.append(data2)
 	
-	# available_center_with_slots = frappe.db.sql("""
-	# 	SELECT 
-	# 		slot.slot_name , 
-	# 		slot.seating_capacity , 
-	# 		slot.slot_starting_time ,
-	# 		slot.slot_date ,
-	# 		alot.name , 
-	# 		alot.centre ,
-	# 		alot.centre_name , 
-	# 		alot.district
-	# 		FROM 
-	# 			`tabExam Slot Timings` slot 
-	# 		INNER JOIN 
-	# 			`tabEntrance Exam Centre Allocation` alot
-	# 		WHERE 
-	# 			slot.parent = alot.name AND
-	# 			slot.seating_capacity > 0 AND
-	# 			alot.docstatus = 1;
-	# """,as_dict=1)	
-	
-	print("\nspecial call" , alloted_applicant_data)
 	admit_card_generate(alloted_applicant_data)
 	
 	return {
