@@ -7,12 +7,13 @@
  "engine": "InnoDB",
  "field_order": [
   "scheduled_date",
-  "scheduled_time",
   "room_name",
   "room_number",
   "from_time",
   "to_time",
-  "duration"
+  "duration",
+  "re_scheduled",
+  "is_scheduled"
  ],
  "fields": [
   {
@@ -20,13 +21,6 @@
    "fieldtype": "Date",
    "in_list_view": 1,
    "label": "Scheduled Date",
-   "reqd": 1
-  },
-  {
-   "fieldname": "scheduled_time",
-   "fieldtype": "Time",
-   "in_list_view": 1,
-   "label": "Scheduled Time",
    "reqd": 1
   },
   {
@@ -60,17 +54,35 @@
    "reqd": 1
   },
   {
+   "description": "--(In Minute)",
    "fieldname": "duration",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Duration",
    "read_only": 1
+  },
+  {
+   "columns": 1,
+   "default": "0",
+   "fieldname": "is_scheduled",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "is Scheduled",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "default": "0",
+   "fieldname": "re_scheduled",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Re Scheduled"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-04 17:47:57.045361",
+ "modified": "2023-09-08 15:42:21.681753",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Class Table",

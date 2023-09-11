@@ -8,28 +8,32 @@
  "field_order": [
   "participant",
   "participant_name",
-  "group_roll_number",
   "active"
  ],
  "fields": [
   {
    "fieldname": "participant",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Participant"
+   "label": "Participant",
+   "options": "ToT Participant",
+   "read_only": 1
   },
   {
+   "fetch_from": "participant.participant_name",
    "fieldname": "participant_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Participant Name"
+   "label": "Participant Name",
+   "read_only": 1
   },
   {
    "fieldname": "group_roll_number",
    "fieldtype": "Data",
    "hidden": 1,
    "in_list_view": 1,
-   "label": "Group Roll Number"
+   "label": "Group Roll Number",
+   "read_only": 1
   },
   {
    "default": "1",
@@ -42,7 +46,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-04 16:53:17.646305",
+ "modified": "2023-09-05 16:33:59.782984",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Table",

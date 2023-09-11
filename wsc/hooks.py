@@ -68,6 +68,7 @@ doctype_js = {
                 "Employee Grievance":"public/js/employee_grievance.js",
                 "Employee Onboarding":"public/js/employee_onboarding.js",
                 "Job Offer":"public/js/job_offer.js",
+                "Compensatory Leave Request":"public/js/compensatory_leave_request.js",
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -389,6 +390,10 @@ doc_events = {
         # "on_change" : "wsc.wsc.doctype.employee_onboarding.on_change",
 
     },
+    "Compensatory Leave Request":{
+        "validate":"wsc.wsc.doctype.compensatory_leave_request.validate",
+        "on_change":"wsc.wsc.doctype.compensatory_leave_request.on_change",
+    },
     "Task":
     {
         "validate":"wsc.wsc.doctype.task.validate"
@@ -412,12 +417,13 @@ doc_events = {
 
 scheduler_events = {
 
-    # "cron":{
-    #     "0 10 * * *" : [
-    #         "wsc.task.warranty_notification",
-    #         "wsc.task.safety_stock_reach"
-    #     ]
-    # },
+    "cron":{
+        "0 10 * * *" : [
+            # "wsc.task.warranty_notification",
+            # "wsc.task.safety_stock_reach",
+            # "wsc.task.appraisal_reminder"
+        ]
+    },
 
     "daily": [
 		"wsc.wsc.validations.student_blocklist_check.student_blocklist_check",

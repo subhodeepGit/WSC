@@ -17,7 +17,9 @@
   {
    "fieldname": "template_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Template Name",
+   "reqd": 1,
    "unique": 1
   },
   {
@@ -33,12 +35,13 @@
    "fieldname": "key_work_goals",
    "fieldtype": "Table",
    "label": "Key Work Goals",
-   "options": "Key Work Goals"
+   "options": "Key Work Goals",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-01 13:03:15.136859",
+ "modified": "2023-09-07 15:24:04.212293",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Appraisal Evaluation Template",

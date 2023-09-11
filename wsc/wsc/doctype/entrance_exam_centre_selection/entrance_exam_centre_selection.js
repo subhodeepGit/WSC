@@ -19,7 +19,7 @@ frappe.ui.form.on('Entrance Exam Centre Selection', {
 		// });
 	},
 	refresh:function(frm){
-		if(!frm.is_new()){
+		if(!frm.is_new() && frm.doc.docstatus === 1){
 			frm.add_custom_button(__('Center Select'), function(){
 				frappe.call({
 					method: 'selected_centers',

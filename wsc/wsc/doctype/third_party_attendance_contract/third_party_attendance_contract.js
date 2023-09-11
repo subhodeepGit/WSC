@@ -2,6 +2,16 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Third Party Attendance Contract', {
+	setup: function (frm) {
+		frm.set_query("contract", function () {
+			return {
+				filters: [
+					["Contract", "docstatus", "=", 1],
+					["Contract", "is_signed", "=", 1],
+				]
+			}
+		});
+	},
 	end_date: function(frm) {
 
 		const startDate = new Date(frm.doc.start_date);

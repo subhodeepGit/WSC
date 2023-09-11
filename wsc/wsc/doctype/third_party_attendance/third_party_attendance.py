@@ -26,3 +26,8 @@ class ThirdPartyAttendance(Document):
 				),
 				title=_("Duplicate Entry"),
 			)
+		self.validate_date()
+
+	def validate_date(self):
+		if getdate(self.date) > getdate():
+			frappe.throw(_("Attendance cannot be marked for future dates."))

@@ -126,7 +126,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-09-06 16:25:16.511961",
+ "modified": "2023-09-08 15:47:30.334395",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Project Plan Monitoring",
@@ -138,6 +138,9 @@
  "roles": [
   {
    "role": "Project Manager"
+  },
+  {
+   "role": "Employee- Project Management"
   }
  ],
  "sequence_id": 50.0,

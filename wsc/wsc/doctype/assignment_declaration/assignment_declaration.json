@@ -10,17 +10,23 @@
  "field_order": [
   "attendance_applicable",
   "section_break_p7et4",
-  "participant_group",
+  "assignment_name",
+  "section_break_qtmfc",
   "assignment_start_date",
-  "academic_year",
+  "column_break_6",
+  "assignment_end_date",
+  "section_break_5a0vb",
+  "participant_group",
+  "section_break_sorcl",
   "course",
+  "academic_year",
+  "column_break_e1v79",
+  "module",
+  "academic_term",
+  "section_break_g5ozq",
   "select_assessment_criteria",
   "weightage",
-  "column_break_6",
-  "assignment_name",
-  "assignment_end_date",
-  "academic_term",
-  "module",
+  "column_break_nowzp",
   "total_marks",
   "pass_marks",
   "section_break_11",
@@ -37,38 +43,49 @@
   {
    "fieldname": "assignment_name",
    "fieldtype": "Data",
-   "label": "Assignment Name"
+   "label": "Assignment Name",
+   "reqd": 1
   },
   {
    "fieldname": "assignment_start_date",
    "fieldtype": "Date",
-   "label": "Assignment Start Date"
+   "label": "Assignment Start Date",
+   "reqd": 1
   },
   {
    "fieldname": "assignment_end_date",
    "fieldtype": "Date",
-   "label": "Assignment End Date"
+   "label": "Assignment End Date",
+   "reqd": 1
   },
   {
    "fieldname": "academic_year",
-   "fieldtype": "Data",
-   "label": "Academic Year"
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year",
+   "read_only": 1
   },
   {
    "fieldname": "participant_group",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Participant Group",
-   "options": "Participant Group"
+   "options": "Participant Group",
+   "reqd": 1
   },
   {
    "fieldname": "course",
-   "fieldtype": "Data",
-   "label": "Select Course"
+   "fieldtype": "Link",
+   "label": "Select Course",
+   "options": "Programs",
+   "read_only": 1
   },
   {
    "fieldname": "module",
-   "fieldtype": "Data",
-   "label": "Select Module"
+   "fieldtype": "Link",
+   "label": "Select Module",
+   "options": "Course",
+   "read_only": 1
   },
   {
    "fieldname": "job_sheet",
@@ -93,8 +110,10 @@
   },
   {
    "fieldname": "academic_term",
-   "fieldtype": "Data",
-   "label": "Academic Term"
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_11",
@@ -111,22 +130,26 @@
   {
    "fieldname": "total_marks",
    "fieldtype": "Data",
-   "label": "Total Marks"
+   "label": "Total Marks",
+   "read_only": 1
   },
   {
    "fieldname": "weightage",
    "fieldtype": "Data",
-   "label": "Weightage"
+   "label": "Weightage",
+   "read_only": 1
   },
   {
    "fieldname": "pass_marks",
    "fieldtype": "Data",
-   "label": "Pass Marks"
+   "label": "Pass Marks",
+   "read_only": 1
   },
   {
    "fieldname": "select_assessment_criteria",
    "fieldtype": "Select",
-   "label": "Select Assessment Criteria"
+   "label": "Select Assessment Criteria",
+   "reqd": 1
   },
   {
    "default": "0",
@@ -139,25 +162,54 @@
    "fieldtype": "Section Break"
   },
   {
-   "depends_on": "attendance_applicable",
+   "depends_on": "eval:doc.attendance_applicable == 1",
    "fieldname": "attendance_percentage",
    "fieldtype": "Percent",
-   "label": "Attendance Percentage"
+   "label": "Attendance Percentage",
+   "mandatory_depends_on": "eval:doc.attendance_applicable == 1"
   },
   {
    "fieldname": "evaluator_id",
-   "fieldtype": "Select",
-   "label": "Evaluator ID"
+   "fieldtype": "Link",
+   "label": "Evaluator ID",
+   "options": "Instructor",
+   "reqd": 1
   },
   {
+   "fetch_from": "evaluator_id.instructor_name",
    "fieldname": "evaluator_name",
    "fieldtype": "Data",
-   "label": "Evaluator Name"
+   "label": "Evaluator Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_qtmfc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_5a0vb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_e1v79",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_sorcl",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_g5ozq",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_nowzp",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-25 18:09:54.395489",
+ "modified": "2023-09-11 15:57:45.588475",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Declaration",

@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "EAP-.####",
  "creation": "2023-09-01 12:49:21.140805",
  "default_view": "List",
  "doctype": "DocType",
@@ -11,13 +12,17 @@
   "employee",
   "employee_name",
   "user_id",
-  "appraisal_year",
+  "reporting_authority",
   "column_break_zwty9",
   "department",
   "designation",
   "employment_type",
   "section_break_8afkq",
+  "appraisal_year",
+  "appraisal_cycle",
+  "column_break_yukro",
   "appraisal_template",
+  "appraisal_round",
   "key_work_goals",
   "goals",
   "additional_contributions_section",
@@ -27,20 +32,16 @@
   "upload_certifications",
   "column_break_rqu29",
   "for_following_year",
-  "mid_year_review",
+  "self_review",
   "self_evaluation",
   "column_break_ahi1z",
   "ros_comment",
-  "end_year_review",
-  "comment_on_self_evaluation",
-  "column_break_d8eup",
-  "comment_of_ros",
   "competency_rating_section",
   "self_rating",
   "result_section",
-  "final_grade",
+  "mid_year_grade",
   "column_break_osmwb",
-  "final_rating",
+  "final_grade",
   "amended_from"
  ],
  "fields": [
@@ -48,12 +49,14 @@
    "fieldname": "employee",
    "fieldtype": "Link",
    "label": "Employee",
-   "options": "Employee"
+   "options": "Employee",
+   "reqd": 1
   },
   {
    "fetch_from": "employee.employee_name",
    "fieldname": "employee_name",
    "fieldtype": "Read Only",
+   "in_list_view": 1,
    "label": "Employee Name"
   },
   {
@@ -102,13 +105,15 @@
   },
   {
    "fieldname": "section_break_8afkq",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Appraisal Period"
   },
   {
+   "fetch_from": "appraisal_cycle.appraisal_template",
    "fieldname": "appraisal_template",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "label": "Appraisal Template",
-   "options": "Employee Appraisal Evaluation Template"
+   "read_only": 1
   },
   {
    "collapsible": 1,
@@ -121,7 +126,8 @@
    "fieldname": "goals",
    "fieldtype": "Table",
    "label": "Goals",
-   "options": "Key Work Goals"
+   "options": "Key Work Goals",
+   "reqd": 1
   },
   {
    "collapsible": 1,
@@ -157,13 +163,6 @@
    "label": "For Following Year"
   },
   {
-   "collapsible": 1,
-   "depends_on": "appraisal_template",
-   "fieldname": "mid_year_review",
-   "fieldtype": "Section Break",
-   "label": "Mid Year Review"
-  },
-  {
    "fieldname": "self_evaluation",
    "fieldtype": "Small Text",
    "label": "Self Evaluation"
@@ -176,28 +175,6 @@
    "fieldname": "ros_comment",
    "fieldtype": "Small Text",
    "label": "ROs comment",
-   "permlevel": 1
-  },
-  {
-   "collapsible": 1,
-   "depends_on": "appraisal_template",
-   "fieldname": "end_year_review",
-   "fieldtype": "Section Break",
-   "label": "End Year Review"
-  },
-  {
-   "fieldname": "comment_on_self_evaluation",
-   "fieldtype": "Small Text",
-   "label": "Comment on Self Evaluation "
-  },
-  {
-   "fieldname": "column_break_d8eup",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "comment_of_ros",
-   "fieldtype": "Small Text",
-   "label": "Comment of ROs",
    "permlevel": 1
   },
   {
@@ -224,18 +201,12 @@
    "fieldname": "final_grade",
    "fieldtype": "Select",
    "label": "Final Grade",
-   "options": "\nA+\nA\nB\nC\nD\nNA",
+   "options": "\nA (Exceeds)\nB ( Meeting)\nC (Developing)\nD (Unsatisfactory)",
    "permlevel": 1
   },
   {
    "fieldname": "column_break_osmwb",
    "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "final_rating",
-   "fieldtype": "Rating",
-   "label": "Final Rating",
-   "permlevel": 1
   },
   {
    "fieldname": "upload_certifications",
@@ -245,17 +216,58 @@
   {
    "fieldname": "appraisal_year",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Appraisal Year",
-   "options": "Academic Year"
+   "options": "Fiscal Year",
+   "reqd": 1
+  },
+  {
+   "fieldname": "appraisal_cycle",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Appraisal Cycle",
+   "options": "Employee Appraisal Cycle",
+   "reqd": 1
+  },
+  {
+   "collapsible": 1,
+   "depends_on": "appraisal_template",
+   "fieldname": "self_review",
+   "fieldtype": "Section Break",
+   "label": "Self Review"
+  },
+  {
+   "fieldname": "column_break_yukro",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "appraisal_cycle.appraisal_round",
+   "fieldname": "appraisal_round",
+   "fieldtype": "Read Only",
+   "label": "Appraisal Round",
+   "read_only": 1
+  },
+  {
+   "fieldname": "mid_year_grade",
+   "fieldtype": "Read Only",
+   "label": "Mid Year Grade"
+  },
+  {
+   "fetch_from": "employee.reporting_authority_email",
+   "fieldname": "reporting_authority",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Reporting Authority"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-01 15:24:44.780461",
+ "modified": "2023-09-08 10:49:09.525354",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Appraisal Portal",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

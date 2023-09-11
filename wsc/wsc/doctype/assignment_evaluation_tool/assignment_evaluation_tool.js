@@ -5,7 +5,23 @@ frappe.ui.form.on('Assignment Evaluation Tool', {
 	// refresh: function(frm) {
 
 	// }
+	setup: function(frm){
+		frm.set_query("instructor_id", function() {
+			return {
+				query: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.instructor',
+				filters:{"participant_group_id":frm.doc.participant_group}
+				
+			};
+		});
 
+		frm.set_query("participant_id", function() {
+			return {
+				query: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.participant',
+				filters:{"participant_group_id":frm.doc.participant_group}
+				
+			};
+		});
+	},
 	participant_group: function(frm){
 		frappe.call({
 			method : 'wsc.wsc.doctype.assignment_evaluation_tool.assignment_evaluation_tool.get_details',
@@ -18,14 +34,15 @@ frappe.ui.form.on('Assignment Evaluation Tool', {
 					frm.set_value("module", result.message[3])
 					frm.set_value("academic_year", result.message[0])
 					frm.set_value("academic_term", result.message[1])
-					frm.set_df_property('instructor_id', 'options', result.message[4])
-					frm.set_df_property('participant_id', 'options', result.message[5])
+					// frm.set_df_property('instructor_id', 'options', result.message[4])
+					// frm.set_df_property('participant_id', 'options', result.message[5])
 					frm.set_value("total_participants", result.message[6])
 				}
 			}
 		})
 	},
 	instructor_id: function(frm){
+		alert(frm.doc.instructor_id)
 		frappe.call({
 			method: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_instructor_name',
 			args: {
@@ -35,9 +52,7 @@ frappe.ui.form.on('Assignment Evaluation Tool', {
 			callback: function(result){
 				frm.set_value("instructor_name", result.message)
 			}
-		})
-	},
-	instructor_name: function(frm){
+		}),
 		frappe.call({
 			method: 'wsc.wsc.doctype.assignment_evaluation_tool.assignment_evaluation_tool.get_assignment_list',
 			args:{
@@ -50,7 +65,23 @@ frappe.ui.form.on('Assignment Evaluation Tool', {
 				frm.set_df_property('select_job_sheetassessment', 'options', result.message)  // select assignment
 			}
 		})
+
 	},
+	// instructor_id: function(frm){
+	// 	// alert(frm.doc.instructor_id)
+	// 	frappe.call({
+	// 		method: 'wsc.wsc.doctype.assignment_evaluation_tool.assignment_evaluation_tool.get_assignment_list',
+	// 		args:{
+	// 			instructor_id: frm.doc.instructor_id,
+	// 			participant_group_id : frm.doc.participant_group,
+	// 			programs : frm.doc.course,
+	// 			course: frm.doc.module
+	// 		},
+	// 		callback: function(result){
+	// 			frm.set_df_property('select_job_sheetassessment', 'options', result.message)  // select assignment
+	// 		}
+	// 	})
+	// },
 	get_participants : function(frm){
 		frappe.call({
 			

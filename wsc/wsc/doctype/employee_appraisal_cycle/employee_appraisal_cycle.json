@@ -1,0 +1,98 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{appraisal_cycle_name}-{year}",
+ "creation": "2023-09-05 15:41:28.352673",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "appraisal_cycle_name",
+  "year",
+  "appraisal_template",
+  "appraisal_round",
+  "column_break_op82g",
+  "from_date",
+  "to_date",
+  "notify_employee_after"
+ ],
+ "fields": [
+  {
+   "fieldname": "appraisal_cycle_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Appraisal Cycle Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "appraisal_template",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Appraisal Template",
+   "options": "Employee Appraisal Evaluation Template",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_op82g",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "label": "From Date"
+  },
+  {
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "label": "To Date"
+  },
+  {
+   "fieldname": "notify_employee_after",
+   "fieldtype": "Date",
+   "label": "Notify Employee After",
+   "reqd": 1
+  },
+  {
+   "fieldname": "year",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Year",
+   "options": "Fiscal Year",
+   "reqd": 1
+  },
+  {
+   "fieldname": "appraisal_round",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Appraisal Round ",
+   "options": "\n1\n2",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-09-05 16:17:31.505429",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Employee Appraisal Cycle",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

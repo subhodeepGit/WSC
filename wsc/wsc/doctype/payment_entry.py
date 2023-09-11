@@ -82,7 +82,7 @@ class PaymentEntry(AccountsController):
 		self.validate_paid_invoices()
 		self.ensure_supplier_is_not_blocked()
 		self.set_status()
-		# validate_writeoff_outstanding(self)	#write-off
+		validate_writeoff_outstanding(self)	#write-off
 
 		if self.party_type=="Student":
 			student_info=frappe.db.get_list("Student",filters={"name":self.party},fields=["roll_no"])
@@ -855,6 +855,7 @@ class PaymentEntry(AccountsController):
 			self.setup_party_account_field()	
 		gl_entries = []
 		self.add_party_gl_entries(gl_entries)
+		# print(gl_entries)
 		self.add_bank_gl_entries(gl_entries)
 		self.add_deductions_gl_entries(gl_entries)
 		self.add_tax_gl_entries(gl_entries)
@@ -979,19 +980,23 @@ class PaymentEntry(AccountsController):
 									})
 
 									gl_entries.append(gle)					
-					if self.unallocated_amount:
-						exchange_rate = self.get_exchange_rate()
-						base_unallocated_amount = (self.unallocated_amount * exchange_rate)
+				if self.unallocated_amount:
+					# print('\n')
+					exchange_rate = self.get_exchange_rate()
+					base_unallocated_amount = (self.unallocated_amount * exchange_rate)
 
-						# gle = party_gl_dict.copy()
-						gle = t.copy()
+					gle = party_gl_dict.copy()
+					# print('\n',gle)
+					# gle = t.copy()
+					# print('\n',gle)
 
-						gle.update({
-							dr_or_cr + "_in_account_currency": self.unallocated_amount,
-							dr_or_cr: base_unallocated_amount
-						})
-
-						gl_entries.append(gle)
+					# print(dr_or_cr,':',base_unallocated_amount)
+					gle.update({
+						dr_or_cr + "_in_account_currency": self.unallocated_amount,
+						dr_or_cr: base_unallocated_amount
+					})
+					# a.s
+					gl_entries.append(gle)
 			else:
 				if self.payment_type == "Receive":
 					against_account = self.paid_to
@@ -1579,6 +1584,7 @@ def get_outstanding_fees(args):
 					j['Type']='Fees'
 					j['program']=t['program']
 					j['reference_name']=t['name']
+					j['exchange_rate']=1
 					fee_component_info.append(j)
 
 	for t in fees_info:
@@ -1592,6 +1598,7 @@ def get_outstanding_fees(args):
 					j['Type']='Fees'
 					j['program']=t['program']
 					j['reference_name']=t['name']
+					j['exchange_rate']=1
 					fee_component_info.append(j)
 	for t in fees_info:
 		# if (t['fee_structure']==None or t['fee_structure']=="") and (t['hostel_fee_structure']==None or t['hostel_fee_structure']==""):
@@ -1604,6 +1611,7 @@ def get_outstanding_fees(args):
 					j['Type']='Fees'
 					j['program']=t['program']
 					j['reference_name']=t['name']
+					j['exchange_rate']=1
 					fee_component_info.append(j)
 
 	data=fee_component_info	
@@ -2378,15 +2386,28 @@ def get_paid_amount(dt, dn, party_type, party, account, due_date):
 	return paid_amount[0][0] if paid_amount else 0
 
 def validate_writeoff_outstanding(self):
-	print('\n\n\n')
+	# print('\n\n\n')
 	if self.party_type=="Student":
-		fees_name=[]
-		for d in self.get("references"):
-			fees_name.append(d.reference_name)
-		unique_fees=list(set(fees_name))
-		print(unique_fees)
-		for t in unique_fees:
-			outstanding_amount=0
+		if self.deductions:
+			fees_name=[]
+			for d in self.get("references"):
+				fees_name.append(d.reference_name)
+			unique_fees=list(set(fees_name))
+			
+			sum_outstanding_amount=0
+			for t in unique_fees:
+				outstanding_amount=frappe.get_all("Fees",{'name':t},['outstanding_amount'])
+				sum_outstanding_amount+=outstanding_amount[0]['outstanding_amount']
+			# print(sum_outstanding_amount)
+			
+			write_off_amt=0
+			for j in self.get("deductions"):
+				write_off_amt += j.amount
+			# print(write_off_amt)
+
+			if self.paid_amount+write_off_amt != sum_outstanding_amount:
+				frappe.throw("Please check write-off amount")
+
 
 @frappe.whitelist()
 def get_party_and_account_balance(company, date, paid_from=None, paid_to=None, ptype=None, pty=None, cost_center=None):
