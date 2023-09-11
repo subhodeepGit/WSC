@@ -2,9 +2,28 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Employee Skills and Certification', {
-	// refresh: function(frm) {
+	refresh: function(frm) {
+		
+		if(!frm.is_new()){
+            frappe.call({
+        
+                method: 'wsc.wsc.doctype.employee_skills_and_certification.employee_skills_and_certification.is_verified_user',
+                args: {
+                    docname: frm.doc.name
+                },
+                
+                callback: function(r) {
+                   
+                    if (r.message===false) {
+                    
+                        $('.actions-btn-group').prop('hidden', true);
 
-	// }
+                    }
+                }
+                
+            });
+        }
+	},
 });
 frappe.ui.form.on('Employee Skills and Certification', {
 employee: function(frm) {

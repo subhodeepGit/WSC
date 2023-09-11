@@ -30,13 +30,7 @@
  ],
  "fields": [
   {
-   "fieldname": "applicant_id",
-   "fieldtype": "Link",
-   "label": "Applicant ID",
-   "options": "Entrance Exam Admit Card"
-  },
-  {
-   "fetch_from": "applicant_id.applicant_name",
+   "fetch_from": "applicant_id.title",
    "fieldname": "applicant_name",
    "fieldtype": "Data",
    "label": "Applicant Name"
@@ -69,7 +63,7 @@
   },
   {
    "default": "0",
-   "fetch_from": "applicant_id.physical_disablity",
+   "fetch_from": "applicant_id.physically_disabled",
    "fieldname": "physically_disabled",
    "fieldtype": "Check",
    "label": "Physically Disabled"
@@ -139,12 +133,18 @@
    "options": "Entrance Exam Result Publication",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "applicant_id",
+   "fieldtype": "Link",
+   "label": "Applicant ID",
+   "options": "Student Applicant"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-28 18:16:43.273845",
+ "modified": "2023-09-08 12:11:48.863044",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Result Publication",

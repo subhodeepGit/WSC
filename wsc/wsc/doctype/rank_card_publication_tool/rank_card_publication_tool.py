@@ -51,7 +51,7 @@ def ranking(list_data , col , rank_name):
 	return ranked_data
 
 @frappe.whitelist()
-def get_qualified_applicants(declaration , academic_year , academic_term , department,rank_card_masters):
+def get_qualified_applicants(declaration , rank_card_masters):
 	print("\n\n\n\nrank tool")
 
 	rank_card_master_data = frappe.get_all("Rank Card Master" , 
@@ -80,6 +80,7 @@ def get_qualified_applicants(declaration , academic_year , academic_term , depar
 	for i in all_round_ranks:
 		i['rank_type'] = rank_card_master_data[0]['no_category_rank_name']
 
+	print(all_round_applicant_data)
 	return all_round_ranks
 
 @frappe.whitelist()
