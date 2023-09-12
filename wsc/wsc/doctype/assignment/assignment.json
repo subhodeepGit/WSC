@@ -13,6 +13,7 @@
   "assignment_name",
   "section_break_8rp8h",
   "start_date",
+  "total_duration",
   "column_break_qdq1i",
   "end_date",
   "section_break_xokaq",
@@ -174,8 +175,8 @@
   },
   {
    "fieldname": "start_date",
-   "fieldtype": "Date",
-   "label": "Start Date",
+   "fieldtype": "Datetime",
+   "label": "Start Date and Time",
    "reqd": 1
   },
   {
@@ -184,19 +185,25 @@
   },
   {
    "fieldname": "end_date",
-   "fieldtype": "Date",
-   "label": "End Date",
+   "fieldtype": "Datetime",
+   "label": "End Date and Time",
    "reqd": 1
   },
   {
    "fieldname": "section_break_xokaq",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "total_duration",
+   "fieldtype": "Data",
+   "label": "Total duration",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-12 12:42:43.792436",
+ "modified": "2023-09-12 16:19:20.375371",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment",
