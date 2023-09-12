@@ -36,6 +36,7 @@ frappe.ui.form.on('Participant Group', {
 		}),
 		frm.set_df_property('participants', 'cannot_add_rows', true);
 		frm.set_df_property('participants', 'cannot_delete_rows', true);
+		frm.set_df_property('classes', 'cannot_delete_rows', true);
 
 		// frm.set_query('course', function(){
 		// 	return{
