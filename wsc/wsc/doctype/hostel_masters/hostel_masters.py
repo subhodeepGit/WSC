@@ -8,6 +8,8 @@ import datetime
 
 class HostelMasters(Document):
 	def validate(doc):
+		pincode(doc)
+		alpha(doc)
 		hostel_name=doc.hostel_name
 		try:
 			start_date=datetime.datetime.strptime(str(doc.start_date),'%Y-%m-%d').date()
@@ -38,3 +40,14 @@ class HostelMasters(Document):
 					pass
 				else:
 					frappe.throw("Can't be updated as students are already allotted in hostel")		
+
+def pincode(doc):
+	if doc.pincode:
+		if not (doc.pincode).isdigit():
+			frappe.throw("Field <b>Pin Code</b> Accept Digits Only")
+
+def alpha(doc):
+	if doc.state:
+		if not (doc.state).isalpha():
+			frappe.throw("Field <b>State</b> Accept Alphabet Only")
+

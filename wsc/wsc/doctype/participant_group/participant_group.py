@@ -4,7 +4,7 @@
 import frappe 
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta,timedelta
 from wsc.wsc.utils import get_courses_by_semester
 
 class ParticipantGroup(Document):
@@ -12,36 +12,86 @@ class ParticipantGroup(Document):
 		dupicate_student_group_chk(self)
 		self.calculate_total_hours()
 		self.trainer_ck()
-
-
 		dulicate_trainer_chk(self)
 		class_scheduling_date_validation(self)
 		re_scheduling_chk(self)
 		class_scheduling_ovelaping_chk(self)
 		tot_class_schedule(self)
-		class_scheduling_ovelaping_other_scheduling(self)
+		cancel_class(self)
 
 
 	def calculate_total_hours(self):
 		for d in self.get("classes"):
 			if d.to_time and d.from_time:
-				d.duration = datetime.strptime(d.to_time, '%H:%M:%S') - datetime.strptime(d.from_time, '%H:%M:%S') 
+				d.duration = datetime.strptime(d.to_time, '%H:%M:%S') - datetime.strptime(d.from_time, '%H:%M:%S')
+				if d.duration < timedelta(0):
+					frappe.throw("Duration of the class can't be negative for the line no <b>%s</b>"%(d.idx))
+
 	def trainer_ck(self):
 		flag="No"
 		for t in self.get("instructor"):
 			flag="Yes"
+			break
 		if flag=="No":
-			frappe.throw("Please Provide Trainers Details")				
+			frappe.throw("Please Provide Trainers Details")		
+
+
+def cancel_class(self):
+	participant_group_id=self.name
+	module_name=self.course
+	for t in self.get('classes'):
+		if t.is_canceled==1:
+			re_scheduled_data=frappe.get_all('ToT Class Schedule',{
+												'participant_group_id':participant_group_id,
+												'module_id':module_name,
+												'scheduled_date':t.scheduled_date,
+												'from_time':t.from_time,
+												"to_time":t.to_time,
+												'room_name':t.room_name,
+												},['name'])
+			
+			for j in re_scheduled_data:
+				doc=frappe.get_doc('ToT Class Schedule',j['name'])
+				doc.is_canceled=1
+				doc.save()
+
+
+	data=frappe.get_all("Participant Group",{"name":self.name})
+	if data:
+		doc_before_save = self.get_doc_before_save()
+		old_object=doc_before_save.get("classes")
+		for t in self.get('classes'):
+			if t.is_scheduled==1:
+				if t.is_canceled==0:
+					for j in old_object:
+						if t.name==j.name and t.is_canceled!=j.is_canceled:
+							re_scheduled_data=frappe.get_all('ToT Class Schedule',{
+													'participant_group_id':participant_group_id,
+													'module_id':module_name,
+													'scheduled_date':t.scheduled_date,
+													'from_time':t.from_time,
+													"to_time":t.to_time,
+													'room_name':t.room_name,
+													},['name'])
+							for k in re_scheduled_data:	
+								doc=frappe.get_doc('ToT Class Schedule',k['name'])
+								doc.is_canceled=0
+								doc.save()
+
+
 
 def re_scheduling_chk(self):
 	present_object=self.get("classes")
-	old_object=self.get("classes")
-	for p in present_object:
-		if p.re_scheduled==1:
-			for o in old_object:
-				if p.name==o.name:
-					if p.scheduled_date==o.scheduled_date and p.room_name==o.room_name and p.from_time==o.from_time and p.to_time==p.to_time:  
-						frappe.throw("<b>No change found in the the Class Rescheduling for line no:- %s </b>"%(p.idx))
+	data=frappe.get_all("Participant Group",{"name":self.name})
+	if data:
+		doc_before_save = self.get_doc_before_save()
+		old_object=doc_before_save.get("classes")
+		for p in present_object:
+			if p.re_scheduled==1:
+				for o in old_object:
+					if p.name==o.name:
+						if p.scheduled_date==o.scheduled_date and p.room_name==o.room_name and p.from_time==o.from_time and p.to_time==p.to_time:  
+							frappe.throw("<b>No change found in the the Class Rescheduling for line no:- %s </b>"%(p.idx))
 
 def tot_class_schedule(self):
 	for d in self.get("classes"):
@@ -95,7 +145,7 @@ def tot_class_schedule(self):
 						doc.scheduled_date=d.scheduled_date
 						doc.from_time=d.from_time
 						doc.to_time=d.to_time
-						doc.duration=d.room_name
+						doc.duration=d.duration
 						doc.room_number=d.room_number
 						doc.re_scheduled=1
 						doc.save()
@@ -119,61 +169,6 @@ def class_scheduling_date_validation(self):
 					frappe.throw("class schedule Overlapping in line No %s and %s "%(t.idx,j.idx))
 	######################### End of data time validation of the scheduling
 
-
-def class_scheduling_ovelaping_other_scheduling(self):
-	print("\n\n\n\n")
-	student_with_class_sed=[]
-	for t in self.get("participants"):
-		for j in self.get("classes"):
-			a={}
-			if t.active==1:
-				a['participant']=t.participant
-				a['scheduled_date']=j.scheduled_date
-				a['room_name']=j.room_name
-				a['from_time']=j.from_time
-				a['to_time']=j.to_time
-				a['parent']=self.name
-				student_with_class_sed.append(a)
-
-	student_with_class_sed_int=[]
-	for t in student_with_class_sed:
-		for j in self.get("instructor"):
-			t.update({'instructors':j.instructors})
-			student_with_class_sed_int.append(t)
-
-
-	print(student_with_class_sed_int)
-
-	# if student_with_class_sed:
-	# 	for t in student_with_class_sed:
-	# 		from_time=datetime.strptime(t['from_time'], "%H:%M:%S").time()
-	# 		to_time=datetime.strptime(t['to_time'], "%H:%M:%S").time()
-	# 		date_format = "%Y-%m-%d"
-	# 		parsed_date = datetime.strptime(t['scheduled_date'], date_format).date()
-	# 		print(t)
-
-
-			# data=frappe.db.sql("""select PG.name 
-			# 	from `tabParticipant Group` as PG
-			# 	Join `tabToT Class Table` CT on CT.parent=PG.name
-			# 	Join `tabParticipant Table` P on PG.name=P.parent 
-			# 	where PG.name!='{name}' and P.participant='{participant}' and CT.scheduled_date ='{parsed_date}' and
-			# 	(CT.from_time > '{from_time}' and CT.from_time < '{to_time}' or
-			# 	(CT.to_time > '{from_time}' and CT.to_time < '{to_time}') or
-			# 	('{from_time}' > CT.from_time and '{from_time}' < CT.to_time) or
-			# 	('{from_time}' = CT.from_time and '{to_time}' = CT.to_time))
-			# 	""".format(
-			# 		**{
-			# 			"name":t['parent'],
-			# 			"participant":t['participant'],
-			# 			"from_time":from_time,
-			# 			"to_time":to_time,
-			# 			'parsed_date':parsed_date
-			# 		}
-			# 	)
-			# 	,as_dict=True
-			# 	)
-			# print(data)	
 
 @frappe.whitelist()
 def participant(doctype, txt, searchfield, start, page_len, filters):
@@ -247,16 +242,25 @@ def dulicate_trainer_chk(self):
 
 @frappe.whitelist()
 def get_enrollment_details(enrollment_id):
-	enrollment_details = frappe.db.sql(""" SELECT  academic_year, academic_term, programs, semester FROM `tabToT Participant Enrollment` WHERE name = '%s'"""%(enrollment_id), as_dict=1)
-	# modules = frappe.db.sql(""" SELECT course FROM `tabProgram Course` WHERE parent = '%s'"""%(enrollment_details[0]['programs']))
-	return [enrollment_details[0]['academic_year'], enrollment_details[0]['academic_term'], enrollment_details[0]['programs'], enrollment_details[0]['semester']]
+	if(enrollment_id == ''):
+		return ['','','', '']
+	else:
+		enrollment_details = frappe.db.sql(""" SELECT  academic_year, academic_term, programs, semester FROM `tabToT Participant Enrollment` WHERE name = '%s'"""%(enrollment_id), as_dict=1)
+		# modules = frappe.db.sql(""" SELECT course FROM `tabProgram Course` WHERE parent = '%s'"""%(enrollment_details[0]['programs']))
+		return [enrollment_details[0]['academic_year'], enrollment_details[0]['academic_term'], enrollment_details[0]['programs'], enrollment_details[0]['semester']]
 
 @frappe.whitelist()
 def get_module_name(module_id):
-	data = frappe.db.sql(""" SELECT course_name FROM `tabCourse` WHERE name = '%s'"""%(module_id), as_dict =1)
-	return data[0]['course_name']
+	if(module_id == ''):
+		return ''
+	else:
+		data = frappe.db.sql(""" SELECT course_name FROM `tabCourse` WHERE name = '%s'"""%(module_id), as_dict =1)
+		return data[0]['course_name']
 
 @frappe.whitelist()
-def get_participants(enrollment_id):
-	data = frappe.get_all("Reported Participant", filters = [['parent', '=', enrollment_id], ['is_reported', '=', 1]], fields =['participant', 'participant_name'])
-	return data
+def get_participants(enrollment_id = None):
+	if(enrollment_id == None):
+		pass
+	else:
+		data = frappe.get_all("Reported Participant", filters = [['parent', '=', enrollment_id], ['is_reported', '=', 1]], fields =['participant', 'participant_name'])
+		return data
