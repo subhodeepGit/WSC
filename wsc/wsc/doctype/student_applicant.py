@@ -78,7 +78,7 @@ class StudentApplicant(Document):
         # if len(doc.program_priority ) == 0:
         #     set_web_form_fields(doc)
 
-        validate_counselling_structure(doc)
+        # validate_counselling_structure(doc)
         validate_academic_year(doc)
         duplicate_row_validation(doc, "guardians", ['guardian', 'guardian_name'])
         duplicate_row_validation(doc, "siblings", ['full_name', 'gender'])
@@ -364,8 +364,6 @@ def add_document_list_rows(doc):
     if doc.student_category and doc.academic_year:
         doc.set("document_list",[])
         for d in get_document_list_by_category(doc):
-            print("\n\n\n")
-            print(d)
             doc.append("document_list",{
                 "document_name":d.document_name,
                 "mandatory":d.mandatory,
@@ -719,10 +717,10 @@ def check_int(pin_code):
     import re
     return re.match(r"[-+]?\d+(\.0*)?$", pin_code) is not None
 
-def validate_counselling_structure(doc):
-    if doc.counselling_structure:
-        if doc.counselling_structure not in [d['name'] for d in frappe.get_all("Counselling Structure",{"program_grade":doc.program_grade,"department":doc.department,"academic_year":doc.academic_year},['name'])]:
-            frappe.throw("Counselling structure <b>'{0}'</b> not belongs to program grade,academic year and department".format(doc.counselling_structure))
+# def validate_counselling_structure(doc):
+#     if doc.counselling_structure:
+#         if doc.counselling_structure not in [d['name'] for d in frappe.get_all("Counselling Structure",{"program_grade":doc.program_grade,"department":doc.department,"academic_year":doc.academic_year},['name'])]:
+#             frappe.throw("Counselling structure <b>'{0}'</b> not belongs to program grade,academic year and department".format(doc.counselling_structure))
             
         # program_list = [d.programs for d in frappe.get_all("Counselling Programs",{"parent":doc.counselling_structure},"programs")]
         # for p in doc.program_priority:

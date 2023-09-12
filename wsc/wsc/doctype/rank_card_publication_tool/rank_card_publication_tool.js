@@ -2,17 +2,17 @@
 // For license information, please see license.txt
 function rank_generation(doc){
 	// console.log(doc);
-	if(doc.ranked_students_list.length != 0){
-		frappe.call({
-			method:'wsc.wsc.doctype.rank_card_publication_tool.rank_card_publication_tool.generate_rank_cards',
-			args:{
-				'doc':doc
-			},
-			callback:function(result){
-				return result.message
-			}
-		})
-	}
+	// if(doc.ranked_students_list.length != 0){
+	// 	frappe.call({
+	// 		method:'wsc.wsc.doctype.rank_card_publication_tool.rank_card_publication_tool.generate_rank_cards',
+	// 		args:{
+	// 			'doc':doc
+	// 		},
+	// 		callback:function(result){
+	// 			return result.message
+	// 		}
+	// 	})
+	// }
 }
 
 frappe.ui.form.on('Rank Card Publication Tool', {
