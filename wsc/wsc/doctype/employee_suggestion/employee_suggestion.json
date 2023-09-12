@@ -20,6 +20,7 @@
   "suggestion",
   "expected_impact",
   "implementation_plan",
+  "comments",
   "amended_from"
  ],
  "fields": [
@@ -59,7 +60,8 @@
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "\nDraft\nSuggested\nApproved\nRejected"
+   "options": "\nDraft\nSuggested\nApproved\nRejected\nCancelled",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_7",
@@ -74,21 +76,21 @@
   },
   {
    "fieldname": "suggestion",
-   "fieldtype": "Text",
+   "fieldtype": "Small Text",
    "in_list_view": 1,
    "label": "Suggestion",
    "reqd": 1
   },
   {
    "fieldname": "expected_impact",
-   "fieldtype": "Text",
+   "fieldtype": "Small Text",
    "in_list_view": 1,
    "label": "Expected Impact",
    "reqd": 1
   },
   {
    "fieldname": "implementation_plan",
-   "fieldtype": "Text",
+   "fieldtype": "Small Text",
    "in_list_view": 1,
    "label": "Implementation Plan",
    "reqd": 1
@@ -107,12 +109,18 @@
    "fieldname": "user_id",
    "fieldtype": "Read Only",
    "label": "User ID"
+  },
+  {
+   "fieldname": "comments",
+   "fieldtype": "Small Text",
+   "label": "Comments",
+   "permlevel": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-24 13:00:09.315161",
+ "modified": "2023-09-11 15:44:54.627237",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Suggestion",

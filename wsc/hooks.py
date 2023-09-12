@@ -417,12 +417,13 @@ doc_events = {
 
 scheduler_events = {
 
-    # "cron":{
-    #     "0 10 * * *" : [
-    #         "wsc.task.warranty_notification",
-    #         "wsc.task.safety_stock_reach"
-    #     ]
-    # },
+    "cron":{
+        "0 10 * * *" : [
+            # "wsc.task.warranty_notification",
+            # "wsc.task.safety_stock_reach",
+            # "wsc.task.appraisal_reminder"
+        ]
+    },
 
     "daily": [
 		"wsc.wsc.validations.student_blocklist_check.student_blocklist_check",

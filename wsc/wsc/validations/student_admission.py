@@ -1,6 +1,7 @@
 import frappe
 import collections
 from collections import Counter
+from frappe.utils.data import flt
 from wsc.wsc.utils import semester_belongs_to_programs,academic_term
 
 
@@ -21,6 +22,20 @@ def validate(doc, method):
     validate_total_seats(doc)
     validate_parameters(doc)
     semester_belongs_to_programs(doc)
+    calculate_totals(doc)
+    
+
+def calculate_totals(self):
+    allocated=balance=tot_seat=0
+    for d in self.get("reservations_distribution"):
+        allocated+=flt(d.allocated_seat)
+        balance+=flt(d.seat_balance)
+        tot_seat+=flt(d.total_seat)
+        if tot_seat>self.total_seats:
+            frappe.throw("Total Seats exceed in Reserevation Distribution Table")
+    self.seat_balance=balance
+    self.allocated_seat=allocated
+   
 
 def validate_total_seats(doc):
     total_seats = 0

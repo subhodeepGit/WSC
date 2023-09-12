@@ -24,6 +24,7 @@
   "exam_schedule_id",
   "exam_course",
   "class",
+  "is_restricted_class",
   "semester",
   "exam_start_date",
   "section_break_16",
@@ -136,8 +137,9 @@
   {
    "fetch_from": "exam_declaration_id.class",
    "fieldname": "class",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Class",
+   "options": "School House",
    "read_only": 1
   },
   {
@@ -189,6 +191,7 @@
   {
    "fieldname": "marker_name",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "Marker",
    "options": "Instructor",
    "reqd": 1
@@ -196,6 +199,7 @@
   {
    "fieldname": "checker",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "Checker",
    "options": "Instructor",
    "reqd": 1
@@ -203,6 +207,7 @@
   {
    "fieldname": "course_manager_name",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "Course Manager",
    "options": "Instructor",
    "reqd": 1
@@ -239,7 +244,7 @@
   {
    "fieldname": "section_break_25",
    "fieldtype": "Section Break",
-   "label": "Maker and Checker Details"
+   "label": "Marker and Checker Details"
   },
   {
    "fieldname": "column_break_24",
@@ -366,12 +371,20 @@
    "label": "Department",
    "options": "Department",
    "read_only": 1
+  },
+  {
+   "default": "0",
+   "fetch_from": "class.is_restrict_",
+   "fieldname": "is_restricted_class",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Is Restricted Class"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-14 10:57:30.498551",
+ "modified": "2023-09-06 17:30:28.251621",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Module Wise Exam Group",

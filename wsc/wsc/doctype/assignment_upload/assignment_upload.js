@@ -8,7 +8,7 @@ frappe.ui.form.on('Assignment Upload', {
 	setup: function(frm){
 		frm.set_query("instructor_id", function() {
 			return {
-				query: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.instructor',
+				query: 'wsc.wsc.doctype.assignment_upload.assignment_upload.instructor',
 				filters:{"participant_group_id":frm.doc.participant_group}
 				
 			};
@@ -16,7 +16,15 @@ frappe.ui.form.on('Assignment Upload', {
 
 		frm.set_query("participant_id", function() {
 			return {
-				query: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.participant',
+				query: 'wsc.wsc.doctype.assignment_upload.assignment_upload.participant',
+				filters:{"participant_group_id":frm.doc.participant_group}
+				
+			};
+		});
+
+		frm.set_query("assignment_id", function() {
+			return {
+				query: 'wsc.wsc.doctype.assignment_upload.assignment_upload.assignment',
 				filters:{"participant_group_id":frm.doc.participant_group}
 				
 			};
