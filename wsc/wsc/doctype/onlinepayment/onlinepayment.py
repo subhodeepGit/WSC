@@ -19,11 +19,11 @@ from .database_operations import fetch_config_data
 from frappe import db
 
 class OnlinePayment(Document):
-    # def validate(self):
-    # 	if self.paying_amount>self.total_outstanding_amout:
-    # 		frappe.throw("Paying Amount can't be more then Total Outstanding Amount")
-    # 	if self.total_outstanding_amout==0:
-    # 		frappe.throw("Outstanding Amount can't be Rs.0 ")  
+    def validate(self):
+        if self.paying_amount>self.total_outstanding_amout:
+            frappe.throw("Paying Amount can't be more then Total Outstanding Amount")
+        if self.total_outstanding_amout==0:
+            frappe.throw("Outstanding Amount can't be Rs.0 ")  
 
     def on_cancel(doc):
         frappe.throw("Once form is submitted it can't be cancelled")    
@@ -52,15 +52,15 @@ currency = 'INR'
 language = 'EN'
    
 
-# @frappe.whitelist()
-# def get_outstanding_amount(student):
-# 	fee_voucher_list=frappe.get_all("Fees",filters=[["student","=",student],["outstanding_amount","!=",0],["docstatus","=",1]],
-# 															fields=['outstanding_amount'],
-# 															order_by="due_date asc")
-# 	outstanding_amount=0
-# 	for t in fee_voucher_list:
-# 		outstanding_amount=t['outstanding_amount']+outstanding_amount
-# 	return outstanding_amount
+@frappe.whitelist()
+def get_outstanding_amount(student):
+	fee_voucher_list=frappe.get_all("Fees",filters=[["student","=",student],["outstanding_amount","!=",0],["docstatus","=",1]],
+															fields=['outstanding_amount'],
+															order_by="due_date asc")
+	outstanding_amount=0
+	for t in fee_voucher_list:
+		outstanding_amount=t['outstanding_amount']+outstanding_amount
+	return outstanding_amount
 
 @frappe.whitelist()
 def open_gateway(party_name, roll_no, amount, order_id,url,gw_provider): 

@@ -20,6 +20,14 @@ frappe.ui.form.on('Assignment Declaration', {
 				
 			};
 		});
+
+		frm.set_query("select_assessment_criteria", function() {
+			return {
+				query: 'wsc.wsc.doctype.assignment_declaration.assignment_declaration.criteria',
+				filters:{"course":frm.doc.module}
+				
+			};
+		});
 	},
 	participant_group: function(frm){
 		frappe.call({
@@ -34,7 +42,7 @@ frappe.ui.form.on('Assignment Declaration', {
 					frm.set_value("academic_year", result.message[0])
 					frm.set_value("academic_term", result.message[1])
 					// frm.set_df_property('evaluator_id', 'options', result.message[4])
-					frm.set_df_property('select_assessment_criteria', 'options', result.message[5])
+					// frm.set_df_property('select_assessment_criteria', 'options', result.message[5])
 				}
 			}
 		})
@@ -88,6 +96,27 @@ frappe.ui.form.on('Assignment Declaration', {
 				frm.set_value("total_marks", result.message[0])
 				frm.set_value("pass_marks", result.message[1])
 				frm.set_value("weightage", result.message[2])
+			}
+		}),
+		frappe.call({
+			"method": "wsc.wsc.doctype.assignment_declaration.assignment_declaration.get_assignments",
+			args:{
+				participant_group:frm.doc.participant_group,
+				select_assessment_criteria:frm.doc.select_assessment_criteria
+			},
+			callback: function(r) {
+				if (r.message){
+					frappe.model.clear_table(frm.doc, 'job_sheet');
+					(r.message).forEach(element => {
+					    var c = frm.add_child("job_sheet")
+					    c.job_sheet_name=element.assignment_name
+					    c.assessment_criteria=element.assessment_criteria
+					    c.total_marks=element.total_marks
+					    c.pass_marks=element.passing_marks
+					    c.weightage=element.weightage
+					});
+					frm.refresh_field("job_sheet")
+				}
 			}
 		})
 	},
