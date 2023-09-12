@@ -18,7 +18,7 @@ class LongLeave(Document):
 			if len(long_leave_df)==0:
 				pass
 			else:
-				frappe.throw("Already Document ")
+				frappe.throw("Already Documented")
 		elif workflow_state=="Communication to the Student":
 			medium_of_communicatinon=doc.medium_of_communicatinon
 			if medium_of_communicatinon!="":

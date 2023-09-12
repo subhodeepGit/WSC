@@ -91,7 +91,8 @@
    "fieldname": "job_sheet",
    "fieldtype": "Table",
    "label": "Job Sheet",
-   "options": "Job sheet"
+   "options": "Job sheet",
+   "read_only": 1
   },
   {
    "fieldname": "get_participant",
@@ -102,7 +103,8 @@
    "fieldname": "participant_list",
    "fieldtype": "Table",
    "label": "Participant List",
-   "options": "Participant List Table"
+   "options": "Participant List Table",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_6",
@@ -210,7 +212,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-12 11:49:12.635397",
+ "modified": "2023-09-12 18:03:49.059194",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Declaration",

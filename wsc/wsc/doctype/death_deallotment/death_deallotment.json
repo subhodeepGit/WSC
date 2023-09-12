@@ -103,7 +103,7 @@
   {
    "fieldname": "guardians_infroamtion_section",
    "fieldtype": "Section Break",
-   "label": "Guardians Infroamtion"
+   "label": "Guardians Information"
   },
   {
    "fieldname": "guardians",
@@ -266,7 +266,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-22 11:19:13.528241",
+ "modified": "2023-09-12 17:24:09.820338",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Death Deallotment",
