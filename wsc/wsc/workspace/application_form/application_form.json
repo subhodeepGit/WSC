@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"qKCh0JUC0_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Application Form</span>\",\"col\":12}},{\"id\":\"QjGIbZp4aN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Apply For Job Applicant\",\"col\":6}},{\"id\":\"NbRmdmVtmK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Job Application Form\",\"col\":6}},{\"id\":\"pOnFZQFh_9\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Apply For Student Applicant\",\"col\":6}},{\"id\":\"jPp3_n3YyF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Student Application Form\",\"col\":6}}]",
+ "content": "[{\"id\":\"qKCh0JUC0_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Application Form</span>\",\"col\":12}},{\"id\":\"pOnFZQFh_9\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Apply For Student Applicant\",\"col\":6}},{\"id\":\"jPp3_n3YyF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Student Application Form\",\"col\":6}}]",
  "creation": "2023-08-24 04:57:26.265019",
  "custom_blocks": [],
  "docstatus": 0,
@@ -12,7 +12,7 @@
  "is_hidden": 0,
  "label": "Application Form",
  "links": [],
- "modified": "2023-08-29 11:11:01.516339",
+ "modified": "2023-09-12 15:44:29.952926",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Application Form",
@@ -21,6 +21,7 @@
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
+ "restrict_to_domain": "Education",
  "roles": [
   {
    "role": "Applicant"
@@ -28,20 +29,6 @@
  ],
  "sequence_id": 46.0,
  "shortcuts": [
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "My Job Application Form",
-   "link_to": "Job Applicant",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "New",
-   "label": "Apply For Job Applicant",
-   "link_to": "Job Applicant",
-   "type": "DocType"
-  },
   {
    "color": "Grey",
    "doc_view": "New",

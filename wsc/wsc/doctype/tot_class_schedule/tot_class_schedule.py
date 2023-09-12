@@ -7,8 +7,10 @@ from datetime import datetime, timedelta
 
 class ToTClassSchedule(Document):
 	def validate(self):
-		if self.re_scheduled==1:
+		if self.re_scheduled==1 and self.is_canceled==0:
 			frappe.msgprint("Class:-%s is Re Scheduled "%(self.name))
+		elif self.is_canceled==1:
+			frappe.msgprint("Class:-%s is canceled"%(self.name))	
 
 
 @frappe.whitelist()
