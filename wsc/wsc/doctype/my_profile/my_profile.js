@@ -5,7 +5,6 @@ frappe.ui.form.on('My Profile', {
 	refresh: function(frm) {
 		frm.add_custom_button(__('Apply Profile Update'), function() {
             frappe.new_doc('Employee Profile Updation', {
-                // employee: frm.doc.employee  // Pass any relevant data you need
             });
         });
 	}

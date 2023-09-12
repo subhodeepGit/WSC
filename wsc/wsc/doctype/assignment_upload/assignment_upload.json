@@ -27,7 +27,8 @@
   "passing_marks",
   "section_break_12",
   "assignment_attach_button",
-  "description"
+  "description",
+  "amended_from"
  ],
  "fields": [
   {
@@ -148,11 +149,21 @@
   {
    "fieldname": "section_break_g3bpp",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Assignment Upload",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-09-08 16:38:59.919206",
+ "modified": "2023-09-11 12:07:07.778644",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Upload",

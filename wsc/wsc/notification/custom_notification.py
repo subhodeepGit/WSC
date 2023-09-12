@@ -841,7 +841,7 @@ def notify_hr(doc):
     employee_suggestion_url = get_url_to_form('Employee Suggestion', doc['name'])
     msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(employee_suggestion_url)
     send_mail([doc['hr_email']],sub,msg)
-    frappe.msgprint("Email sent to HR",[doc['hr_mail']])
+    frappe.msgprint("Email sent to HR",[doc['hr_email']])
 def notify_director(doc):
     sub="""<p><b>Employee Suggestion</b></p><br>"""
     msg="""<b>---------------------Employee Suggestion Details---------------------</b><br>"""
@@ -860,6 +860,27 @@ def notify_employee(doc):
     msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(employee_suggestion_url)
     send_mail([doc['employee_email']],sub,msg)
     frappe.msgprint("Email sent to Employee",[doc['employee_email']])
+
+def notify_committee(doc):
+    sub = "Reg:Employee Suggestion </b></p><br>"
+
+    msg = "<b>---------------------Employee Suggestion Details---------------------</b><br>"
+
+    msg="""<b>---------------------Employee Suggestion Details---------------------</b><br>"""
+    msg+="""<b>Employee Suggestion:</b>  {0}<br>""".format(doc.get('name'))
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc.get('workflow_state'))
+    employee_suggestion_url = get_url_to_form('Employee Suggestion', doc.get('name'))
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(employee_suggestion_url)
+
+    recipients = frappe.get_all("User", filters={'role': 'Suggestion Committee Member'}, fields=['email'])
+    recipient_emails = [recipient.get('email') for recipient in recipients]
+    if len(recipient_emails)!=0 :
+
+
+        send_mail(recipient_emails, sub, msg)
+        frappe.msgprint("Email sent to Suggestion Committee")
+    else :
+        frappe.throw("No mail id found for the Committee Members !")
 
 # def online_payment_submit(doc):
 #     msg="""<p><b>Payment Status</b></p><br>"""

@@ -13,7 +13,7 @@ class EmployeeHostelAllotment(Document):
 		if len(hostel_val)!=0:
 			emp_info=frappe.db.sql("""select * from `tabEmployee Hostel Allotment` where employees="%s" and hostel_masters="%s" 
 										and (start_date<=now() and end_date>= now());"""%(Emp,Emp_hostel_al))						
-			if len(emp_info)==0:
+			if len(emp_info)==0 or emp_info[0][0]==doc.name:
 				pass
 			else:
 				frappe.throw("Employee is already allotted doc no %s"%(emp_info[0][0]))	
