@@ -16,8 +16,8 @@ frappe.ui.form.on('Student Admission', {
         frm.set_query("department" , function(){
             return {
                 filters: {
-                    "is_group":1,
-	                "is_stream": 1
+                    "is_group":0,
+	                // "is_stream": 0
                 }
             }
         })

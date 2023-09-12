@@ -427,5 +427,18 @@
   "name": "689f2e12de",
   "source_text": "Department Email ID",
   "translated_text": "Procurement & Inventory Management Department Email"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-09-11 10:31:07.940715",
+  "name": "c924dc1755",
+  "source_text": "Branch",
+  "translated_text": "Campus Location"
  }
 ]

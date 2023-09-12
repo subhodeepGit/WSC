@@ -28,7 +28,8 @@
   "passing_marks",
   "section_break_9",
   "assignment_attach_button",
-  "description"
+  "description",
+  "amended_from"
  ],
  "fields": [
   {
@@ -107,8 +108,9 @@
   },
   {
    "fieldname": "assessment_criteria",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Assessment Criteria",
+   "options": "Assessment Criteria",
    "reqd": 1
   },
   {
@@ -150,11 +152,21 @@
   {
    "fieldname": "section_break_wjf36",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Assignment",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-09-08 16:14:42.517460",
+ "modified": "2023-09-11 12:06:43.937078",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment",

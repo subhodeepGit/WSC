@@ -10,11 +10,14 @@ class AssignmentUpload(Document):
 
 @frappe.whitelist()
 def get_details(participant_group_id):
-	group_details = frappe.get_all('Participant Group', filters = [['name','=',participant_group_id]], fields = ['program', 'course', 'academic_year', 'academic_term'])
-	participants = frappe.db.sql(""" SELECT participant FROM `tabParticipant Table` Where parent='%s'"""%(participant_group_id))
-	instructors = frappe.db.sql(""" SELECT instructors FROM `tabInstructor Table` where parent = '%s'"""%(participant_group_id))
-	assignments = frappe.db.sql(""" SELECT name FROM `tabAssignment` WHERE participant_group='%s' AND programs = '%s' AND course='%s'"""%(participant_group_id, group_details[0]['program'], group_details[0]['course']))
-	return [group_details[0]['program'], group_details[0]['course'], group_details[0]['academic_year'],group_details[0]['academic_term'], participants, instructors, assignments]
+	if(participant_group_id == ''):
+		return ['','','','','', '', '']
+	else:
+		group_details = frappe.get_all('Participant Group', filters = [['name','=',participant_group_id]], fields = ['program', 'course', 'academic_year', 'academic_term'])
+		participants = frappe.db.sql(""" SELECT participant FROM `tabParticipant Table` Where parent='%s'"""%(participant_group_id))
+		instructors = frappe.db.sql(""" SELECT instructors FROM `tabInstructor Table` where parent = '%s'"""%(participant_group_id))
+		assignments = frappe.db.sql(""" SELECT name FROM `tabAssignment` WHERE participant_group='%s' AND programs = '%s' AND course='%s'"""%(participant_group_id, group_details[0]['program'], group_details[0]['course']))
+		return [group_details[0]['program'], group_details[0]['course'], group_details[0]['academic_year'],group_details[0]['academic_term'], participants, instructors, assignments]
 
 @frappe.whitelist()
 def get_instructor_name(participant_group_id, instructor_id):
@@ -29,9 +32,6 @@ def get_participant_name(participant_group_id, participant_id):
 
 @frappe.whitelist()
 def get_assignment_details(assignment_name):
-	print('\n\n\n\n')
-	print('echo')
-	print('\n\n\n\n')
 	criteria_details = frappe.get_all('Assignment', filters = [['name', '=', assignment_name]], fields = ['assessment_criteria', 'total_marks','passing_marks','weightage', 'assignment_name'])
 	return [criteria_details[0]['assessment_criteria'] ,criteria_details[0]['total_marks'], criteria_details[0]['passing_marks'], criteria_details[0]['weightage'], criteria_details[0]['assignment_name']]
 
