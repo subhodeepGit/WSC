@@ -231,7 +231,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-08-30 11:39:09.156819",
+ "modified": "2023-09-06 16:41:35.759876",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Academics",
@@ -252,12 +252,6 @@
   },
   {
    "role": "Education Administrator"
-  },
-  {
-   "role": "Course Manager"
-  },
-  {
-   "role": "Class Advisor"
   }
  ],
  "sequence_id": 2.0,

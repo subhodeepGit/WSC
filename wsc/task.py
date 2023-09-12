@@ -284,6 +284,20 @@ def employee_re_engagement_workFlow():
             send_mail(t['user_id'],'Employee Re-engagement',msg)    
 
 
+def appraisal_reminder():
+    #notify_employee_after
+    today = frappe.utils.today()
+    employee_data = frappe.get_all("Employee",['name','date_of_joining','user_id','employee_name'])
+    appraisal_cycle_date = frappe.get_all("Employee Appraisal Cycle",{'notify_employee_after': today},["notify_employee_after"])
+    if appraisal_cycle_date:
+        print("Yes it is working")
+        for t in employee_data:
+            if t["user_id"]:
+                msg="""<p>Dear %s ,Your Appraisal  form is ready. Kindly fill up the form</p><br>"""%(t['employee_name'])
+                send_mail(t['user_id'],'Employee Appraisal',msg)
+
+
+
 
 def get_previous_date(base_date, months_to_subtract, days_to_subtract):
     # Convert the base date to a datetime object
@@ -293,30 +307,3 @@ def get_previous_date(base_date, months_to_subtract, days_to_subtract):
     start_date = base_date - relativedelta(months=months_to_subtract) - timedelta(days=days_to_subtract)
 
     return start_date
-
-def update_onboarding_status(doc):
-    
-    onboarding_name = frappe.db.get_value("Employee Onboarding", {"project": doc.project}, "name")
-    if onboarding_name:
-        activity_records = frappe.get_all("Employee Boarding Activity", filters={"parent": onboarding_name}, fields=["name","activity_name"])
-        
-        for activity_record in activity_records:
-            # Step v: Update status field to the new status value
-            if activity_record.activity_name in doc.subject:
-                print(activity_record.activity_name)
-                print("\n\n\n")
-                frappe.db.set_value("Employee Boarding Activity", activity_record.name, "status", doc.status)
-
-                
-                # Step vi: Save changes to each On-boarding Activity document
-                frappe.db.commit()
-                # frappe.msgprint("Status updated in Employee Onboarding Activities")
-            else :
-                pass
-            
-    else:
-        return "No employee on-boarding record found for the provided project."
-
-
-def validate(doc,method):
-    update_onboarding_status(doc)

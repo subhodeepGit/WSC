@@ -1,0 +1,67 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-09-01 12:46:47.861050",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "goal",
+  "category",
+  "due_date",
+  "status",
+  "uplaod_document",
+  "ros_comment"
+ ],
+ "fields": [
+  {
+   "fieldname": "goal",
+   "fieldtype": "Link",
+   "label": "Goal",
+   "options": "KRA",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "label": "Category",
+   "options": "\nIndividual Goal\nEstablishment Goal",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "due_date",
+   "fieldtype": "Date",
+   "label": "Due date",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "\nNot Completed\nCompleted\nIn progress"
+  },
+  {
+   "fieldname": "uplaod_document",
+   "fieldtype": "Attach",
+   "label": "Uplaod Document"
+  },
+  {
+   "fieldname": "ros_comment",
+   "fieldtype": "Data",
+   "label": "ROs Comment",
+   "permlevel": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-09-07 17:06:56.407990",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Key Work Goals",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

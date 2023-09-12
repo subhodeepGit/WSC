@@ -41,17 +41,43 @@ def get_participant_group(based_on):
 
 @frappe.whitelist()
 def get_details(participant_group_id):
-	dates = frappe.db.sql(""" SELECT scheduled_date FROM `tabToT Class Schedule` WHERE participant_group_id = '%s'"""%(participant_group_id))
-	group_details = frappe.get_all('Participant Group', filters = [['name', '=', participant_group_id]], fields = ['academic_year', 'academic_term', 'program', 'course'])
-	instructor_details = frappe.db.sql(""" SELECT instructors FROM `tabInstructor Table` where parent = '%s'"""%(participant_group_id))
-	return [group_details[0]['academic_year'], group_details[0]['academic_term'], group_details[0]['program'], group_details[0]['course'], instructor_details, dates]
+	if(participant_group_id == ''):
+		return ['','','','', '', '']
+	else:
+		dates = frappe.db.sql(""" SELECT scheduled_date FROM `tabToT Class Schedule` WHERE participant_group_id = '%s'"""%(participant_group_id))
+		group_details = frappe.get_all('Participant Group', filters = [['name', '=', participant_group_id]], fields = ['academic_year', 'academic_term', 'program', 'course'])
+		instructor_details = frappe.db.sql(""" SELECT instructors FROM `tabInstructor Table` where parent = '%s'"""%(participant_group_id))
+		return [group_details[0]['academic_year'], group_details[0]['academic_term'], group_details[0]['program'], group_details[0]['course'], instructor_details, dates]
 
 @frappe.whitelist()
 def get_instructor_name(participant_group_id, instructor_id):
-	instructor_name = frappe.db.sql(""" SELECT instructor_name FROM `tabInstructor Table` WHERE parent = '%s' AND instructors = '%s'"""%(participant_group_id, instructor_id), as_dict=1)
-	return instructor_name[0]['instructor_name']
+	if(participant_group_id == '' or instructor_id == ''):
+		return ['','','','']
+	else:
+		instructor_name = frappe.db.sql(""" SELECT instructor_name FROM `tabInstructor Table` WHERE parent = '%s' AND instructors = '%s'"""%(participant_group_id, instructor_id), as_dict=1)
+		return instructor_name[0]['instructor_name']
 
 @frappe.whitelist()
-def get_participants(participant_group_id):
-	participants = frappe.get_all('Participant Table', filters = [['parent', '=', participant_group_id]], fields = ['participant', 'participant_name'])
-	return participants
+def get_participants(participant_group_id = None):
+	if(participant_group_id == None):
+		pass
+	else:
+		participants = frappe.get_all('Participant Table', filters = [['parent', '=', participant_group_id]], fields = ['participant', 'participant_name'])
+		return participants
+
+# --------------------------------------------------------------------------------
+@frappe.whitelist()
+def instructor(doctype, txt, searchfield, start, page_len, filters):
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)
+
+	participant_group_id=filters.get('participant_group_id')
+	instructor_details = frappe.db.sql(""" SELECT instructors FROM `tabInstructor Table` where ({key} like %(txt)s or {scond}) and
+				    parent = '{participant_group_id}'
+				    """.format(
+						**{
+						"key": searchfield,
+						"scond": searchfields,
+						"participant_group_id":participant_group_id
+					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	return instructor_details

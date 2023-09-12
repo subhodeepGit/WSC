@@ -36,7 +36,5 @@ def get_applicants(body):
 												  "exam_declared_for_applicant" : 0
 												} , 
 												['name' , 'title' , 'gender' , 'student_category' , 'physically_disabled'])
-	print("\n\n\n")
-	print(data)
 
 	return data

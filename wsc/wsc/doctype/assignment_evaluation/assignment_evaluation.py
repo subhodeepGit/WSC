@@ -62,3 +62,41 @@ def set_marks(participant_id, assignment_name):
 		data2 = frappe.db.sql(""" SELECT status FROM `tabParticipant List Table` WHERE parent = '%s' AND participant_id = '%s'"""%(assignment_name, participant_id), as_dict =1)
 		if(data2[0]['status'] == 'Not Qualified'):
 			return 0
+		
+
+
+# ---------------------------------------------------------------------------------------------
+@frappe.whitelist()
+def instructor(doctype, txt, searchfield, start, page_len, filters):
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)
+
+	participant_group_id=filters.get('participant_group_id')
+	instructor_details = frappe.db.sql(""" SELECT instructors FROM `tabInstructor Table` where ({key} like %(txt)s or {scond}) and
+				    parent = '{participant_group_id}'
+				    """.format(
+						**{
+						"key": searchfield,
+						"scond": searchfields,
+						"participant_group_id":participant_group_id
+					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	return instructor_details
+
+@frappe.whitelist()
+def participant(doctype, txt, searchfield, start, page_len, filters):
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join("TP."+field + " like %(txt)s" for field in searchfields)
+	participant_group_id=filters.get('participant_group_id')
+	participant_details = frappe.db.sql(""" SELECT TP.name 
+											FROM `tabParticipant Table` as PT
+											JOIN `tabToT Participant` as TP on TP.name=PT.participant
+											where (TP.{key} like %(txt)s or {scond}) and
+													PT.parent = '{participant_group_id}'
+											""".format(
+												**{
+												"key": searchfield,
+												"scond": searchfields,
+												"participant_group_id":participant_group_id
+											}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	return participant_details
+# -----------------------------------------------------------------------------------------------------------------------------

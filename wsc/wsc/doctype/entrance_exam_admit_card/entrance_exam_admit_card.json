@@ -8,6 +8,8 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "photo",
+  "section_break_ifglm",
   "entrance_exam",
   "section_break_bcgm6",
   "applicant_id",
@@ -175,12 +177,22 @@
    "options": "Entrance Exam Admit Card",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fetch_from": "applicant_id.image",
+   "fieldname": "photo",
+   "fieldtype": "Image",
+   "label": "Photo"
+  },
+  {
+   "fieldname": "section_break_ifglm",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-30 15:39:51.698952",
+ "modified": "2023-09-06 11:50:41.418317",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Admit Card",

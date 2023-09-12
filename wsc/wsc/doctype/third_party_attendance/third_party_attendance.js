@@ -2,6 +2,15 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Third Party Attendance', {
+	setup: function (frm) {
+		frm.set_query("third_party_attendance_contract", function () {
+			return {
+				filters: [
+					["Third Party Attendance Contract", "docstatus", "=", 1],
+				]
+			}
+		});
+	},
 	total_number_of_staff_present: function(frm) {
 		const absent = frm.doc.total_number_of_staff - frm.doc.total_number_of_staff_present
 		frm.set_value('total_number_of_staff_absent', absent)
