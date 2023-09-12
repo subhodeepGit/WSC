@@ -72,6 +72,29 @@ frappe.ui.form.on('Assignment', {
         frm.fields_dict.end_date.datepicker.update({
             minDate: frm.doc.start_date ? new Date(frm.doc.start_date) : null
         });
+		// Define the start and end datetime strings
+		var start_date_time = frm.doc.start_date;
+		var end_date_time = frm.doc.end_date;
+
+		// Parse the datetime strings into Date objects
+		var startDate = new Date(start_date_time);
+		var endDate = new Date(end_date_time);
+
+		if (isNaN(startDate) || isNaN(endDate)) {
+			
+		  } else {
+		var timeDifference = endDate - startDate;
+
+		// Convert the time difference to days, hours, minutes, and seconds
+		var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+		var hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+		var seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+		
+		// Output the total duration
+		// console.log("Total Duration: " + days + " days, " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds");
+		frm.set_value("total_duration",days + " days, " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds")
+		  }
     },
 
 	end_date: function(frm) {
@@ -79,5 +102,29 @@ frappe.ui.form.on('Assignment', {
         frm.fields_dict.start_date.datepicker.update({
             maxDate: frm.doc.end_date ? new Date(frm.doc.end_date) : null
         });
+		// Define the start and end datetime strings
+		var start_date_time = frm.doc.start_date;
+		var end_date_time = frm.doc.end_date;
+
+		// Parse the datetime strings into Date objects
+		var startDate = new Date(start_date_time);
+		var endDate = new Date(end_date_time);
+
+
+		if (isNaN(startDate) || isNaN(endDate)) {
+			
+		} else {
+		var timeDifference = endDate - startDate;
+
+		// Convert the time difference to days, hours, minutes, and seconds
+		var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+		var hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+		var seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+		
+		// Output the total duration
+		// console.log("Total Duration: " + days + " days, " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds");
+		frm.set_value("total_duration",days + " days, " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds")
+		}
     },
 });
