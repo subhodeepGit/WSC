@@ -147,8 +147,9 @@
   },
   {
    "fieldname": "select_assessment_criteria",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Select Assessment Criteria",
+   "options": "Assessment Criteria",
    "reqd": 1
   },
   {
@@ -209,7 +210,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-11 15:57:45.588475",
+ "modified": "2023-09-12 11:49:12.635397",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Declaration",

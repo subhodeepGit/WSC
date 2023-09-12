@@ -2,6 +2,14 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Employee Hostel Allotment', {
+	refresh: function(frm) {
+		if(!frm.is_new()){
+			frm.set_df_property('employees', 'read_only', 1)
+		}
+		else{
+			frm.set_df_property('employees', 'read_only', 0)
+		}
+	},
 	employees: function(frm) {
 		if(frm.doc.employees){
 			frappe.call({

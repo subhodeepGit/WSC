@@ -94,10 +94,13 @@
    "width": "25px"
   },
   {
+   "columns": 2,
    "fieldname": "examination_end_date",
    "fieldtype": "Date",
+   "in_list_view": 1,
    "label": "Examination End Date",
-   "reqd": 1
+   "reqd": 1,
+   "width": "10"
   },
   {
    "fieldname": "eligibility_details_section",
@@ -140,7 +143,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-07-14 12:59:21.876698",
+ "modified": "2023-09-06 16:11:26.638936",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Courses",

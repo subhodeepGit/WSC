@@ -170,7 +170,7 @@ def hostel_req_query(doctype, txt, searchfield, start, page_len, filters):
 	searchfields = frappe.get_meta(doctype).get_search_fields()
 	searchfields = " or ".join("S."+field + " like %(txt)s" for field in searchfields)
 
-	data=frappe.db.sql(""" SELECT S.name,SHA.name,S.title from `tabStudent Hostel Admission` as SHA 
+	data=frappe.db.sql(""" SELECT S.name,SHA.name,S.student_name from `tabStudent Hostel Admission` as SHA 
 							JOIN `tabStudent` S on S.name=SHA.student 
 							where (SHA.{key} like %(txt)s or {scond})  and 
 	       					SHA.allotment_status="Not Reported" and SHA.docstatus=1 """.format(
