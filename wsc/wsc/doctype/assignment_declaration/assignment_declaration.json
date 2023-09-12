@@ -91,7 +91,8 @@
    "fieldname": "job_sheet",
    "fieldtype": "Table",
    "label": "Job Sheet",
-   "options": "Job sheet"
+   "options": "Job sheet",
+   "read_only": 1
   },
   {
    "fieldname": "get_participant",
@@ -147,8 +148,9 @@
   },
   {
    "fieldname": "select_assessment_criteria",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Select Assessment Criteria",
+   "options": "Assessment Criteria",
    "reqd": 1
   },
   {
@@ -209,7 +211,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-11 15:57:45.588475",
+ "modified": "2023-09-12 17:33:32.652251",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Declaration",

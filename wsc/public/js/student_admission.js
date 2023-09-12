@@ -124,7 +124,11 @@ frappe.ui.form.on('Student Admission', {
 
     }
 })
-
+frappe.ui.form.on("Reservations List", "total_seat", function(frm, cdt, cdn) {
+    var d = locals[cdt][cdn];
+	d.seat_balance=d.total_seat
+	refresh_field("seat_balance", d.name, d.parentfield);
+});
 
 frappe.ui.form.on("Reservations List", "update_balance", function(frm, cdt, cdn) {
         var d = locals[cdt][cdn];
@@ -147,11 +151,11 @@ frappe.ui.form.on("Reservations List", "update_balance", function(frm, cdt, cdn)
         primary_action: function() {
             var data=dialog.get_values();
             if (data.type=="Add Balance"){
-                frappe.model.set_value(cdt, cdn, "allocated_seat", (d.allocated_seat || 0)+data.no_of_seats);
+                // frappe.model.set_value(cdt, cdn, "allocated_seat", (d.allocated_seat || 0)+data.no_of_seats);
                 frappe.model.set_value(cdt, cdn, "seat_balance", (d.seat_balance || 0)+data.no_of_seats);
             }
             else{
-                frappe.model.set_value(cdt, cdn, "allocated_seat", (d.allocated_seat || 0)-data.no_of_seats);
+                // frappe.model.set_value(cdt, cdn, "allocated_seat", (d.allocated_seat || 0)-data.no_of_seats);
                 frappe.model.set_value(cdt, cdn, "seat_balance", (d.seat_balance || 0)-data.no_of_seats);
             }
             dialog.hide();

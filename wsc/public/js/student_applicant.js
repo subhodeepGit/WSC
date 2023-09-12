@@ -187,7 +187,7 @@ frappe.ui.form.on('Student Applicant', {
             frappe.db.get_value('User',{'name':frappe.session.user},['module_profile'],(val) =>
 			{
                 if (val.module_profile!="Student"){
-                    frm.trigger("show_fees_button")
+                    // frm.trigger("show_fees_button")
                     frappe.db.get_list("Program Enrollment", {
                         filters:{"reference_doctype":"Student Applicant","reference_name":frm.doc.name},
                         fields: ["name"]
@@ -263,16 +263,16 @@ frappe.ui.form.on('Student Applicant', {
         //     // }
         // });
 	},
-    show_fees_button(frm){
-        if (frm.doc.name && frm.doc.application_status=="Approved"){
-            frm.add_custom_button(__("Fees"), function() {
-                frappe.model.open_mapped_doc({
-                    method: "wsc.wsc.doctype.student_applicant.create_fees",
-                    frm: frm,
-                });
-            })
-    }
-},
+//     show_fees_button(frm){
+//         if (frm.doc.name && frm.doc.application_status=="Approved"){
+//             frm.add_custom_button(__("Fees"), function() {
+//                 frappe.model.open_mapped_doc({
+//                     method: "wsc.wsc.doctype.student_applicant.create_fees",
+//                     frm: frm,
+//                 });
+//             })
+//     }
+// },
     program_grade(frm){
         // frm.trigger("get_counselling_structure");
         frm.set_value("counselling_structure",'')
