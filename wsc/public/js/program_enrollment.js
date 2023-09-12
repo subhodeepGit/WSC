@@ -56,24 +56,24 @@ frappe.ui.form.on('Program Enrollment', {
     
         }
        
-        if (!frm.doc.__islocal && frm.doc.boarding_student){
-			frm.add_custom_button("Hostel Admission", () => {
-				let data = {}
-				data.student=frm.doc.student
-				data.student_name=frm.doc.student_name
-                data.programs=frm.doc.programs
-                if (frm.doc.reference_doctype=="Student Applicant"){
-                    frappe.db.get_doc("Student Applicant",frm.doc.reference_name).then(( resp ) => {
-                        data.hostel_type=resp.room_type
-                        data.capacity=resp.sharing
-                        frappe.new_doc("Hostel Admission", data)
-                    });
-                }
-                else{
-                    frappe.new_doc("Hostel Admission", data)
-                }
-			},__('Create'));
-		}
+        // if (!frm.doc.__islocal && frm.doc.boarding_student){
+		// 	frm.add_custom_button("Hostel Admission", () => {
+		// 		let data = {}
+		// 		data.student=frm.doc.student
+		// 		data.student_name=frm.doc.student_name
+        //         data.programs=frm.doc.programs
+        //         if (frm.doc.reference_doctype=="Student Applicant"){
+        //             frappe.db.get_doc("Student Applicant",frm.doc.reference_name).then(( resp ) => {
+        //                 data.hostel_type=resp.room_type
+        //                 data.capacity=resp.sharing
+        //                 frappe.new_doc("Hostel Admission", data)
+        //             });
+        //         }
+        //         else{
+        //             frappe.new_doc("Hostel Admission", data)
+        //         }
+		// 	},__('Create'));
+		// }
         frm.set_df_property('program','label','Semester')
         // if (["Student Applicant","Student Exchange Applicant"].includes(frm.doc.reference_name)){
         //     frm.set_df_property('programs','read_only',1)
