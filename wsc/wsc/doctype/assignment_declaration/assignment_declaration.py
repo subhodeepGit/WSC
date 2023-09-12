@@ -134,5 +134,5 @@ def criteria(doctype, txt, searchfield, start, page_len, filters):
 def get_assignments(participant_group=None,select_assessment_criteria=None):
 	assignments = []
 	if participant_group != None:
-		assignments = frappe.get_all("Assignment",filters=[["participant_group","=",participant_group],["assessment_criteria","=",select_assessment_criteria],["docstatus","=",1]],fields=['name','assignment_name','assessment_criteria','weightage','total_marks','passing_marks'],group_by="name")
+		assignments = frappe.get_all("Assignment",filters=[["participant_group","=",participant_group],["assessment_criteria","=",select_assessment_criteria],["docstatus","=",1]],fields=['name','assignment_name','assessment_criteria','weightage','total_marks','passing_marks','start_date','end_date','total_duration'],group_by="name")
 	return assignments
