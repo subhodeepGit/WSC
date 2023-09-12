@@ -87,7 +87,7 @@ frappe.ui.form.on('Student Applicant', {
         frm.trigger("hide_n_show_child_table_fields");
     },
     setup: function(frm) {
-
+        console.log(frm.doc);
         //Hostel Required Checkbox
         frm.doc.hostel_required = 1;
         
@@ -316,30 +316,30 @@ frappe.ui.form.on('Student Applicant', {
     get_education_and_document_list(frm){
         frm.set_value("education_qualifications_details",[]);
         
-        if (frm.doc.counselling_structure && frm.doc.student_category){
+        // if (frm.doc.counselling_structure && frm.doc.student_category){
             
-            frappe.model.with_doc("Counselling Structure", frm.doc.counselling_structure, function() {
-                var tabletransfer= frappe.model.get_doc("Counselling Structure", frm.doc.counselling_structure)
-                // frappe.model.clear_table(frm.doc, 'education_qualifications_details');  //Sukalyan Code
-                $.each(tabletransfer.eligibility_parameter_list, function(index, row){
+        //     frappe.model.with_doc("Counselling Structure", frm.doc.counselling_structure, function() {
+        //         var tabletransfer= frappe.model.get_doc("Counselling Structure", frm.doc.counselling_structure)
+        //         // frappe.model.clear_table(frm.doc, 'education_qualifications_details');  //Sukalyan Code
+        //         $.each(tabletransfer.eligibility_parameter_list, function(index, row){
                     
-                    if(frm.doc.student_category == row.student_category){
-                        var d = frm.add_child("education_qualifications_details");
-                        d.qualification = row.parameter;
-                        d.percentage_cgpa = row.percentagecgpa
-                        d.mandatory = row.is_mandatory;
-                        d.admission_percentage = row.eligible_score;
-                    }
-                    // frm.refresh_field("education_qualifications_details");
-                });
-                $.each(tabletransfer.counselling_fees, function(index, row){
-                    if(frm.doc.student_category == row.student_category){
-                        frm.set_value("total_counselling_fee",row.amount)
-                    }
-                    // frm.refresh_field("total_counselling_fee");
-                });
-            });
-        }
+        //             if(frm.doc.student_category == row.student_category){
+        //                 var d = frm.add_child("education_qualifications_details");
+        //                 d.qualification = row.parameter;
+        //                 d.percentage_cgpa = row.percentagecgpa
+        //                 d.mandatory = row.is_mandatory;
+        //                 d.admission_percentage = row.eligible_score;
+        //             }
+        //             // frm.refresh_field("education_qualifications_details");
+        //         });
+        //         $.each(tabletransfer.counselling_fees, function(index, row){
+        //             if(frm.doc.student_category == row.student_category){
+        //                 frm.set_value("total_counselling_fee",row.amount) 
+        //             }
+        //             // frm.refresh_field("total_counselling_fee");
+        //         });
+        //     });
+        // }
        
     },
     // get_qualification_detail_for_admission(frm){
