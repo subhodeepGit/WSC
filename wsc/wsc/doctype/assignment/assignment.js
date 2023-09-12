@@ -2,9 +2,6 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Assignment', {
-	refresh: function(frm){
-		frm.set_value('evaluate', 1)
-	},
 	setup: function(frm){
 		frm.set_query("instructor_id", function() {
 			return {

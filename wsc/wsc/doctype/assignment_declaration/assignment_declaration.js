@@ -20,6 +20,14 @@ frappe.ui.form.on('Assignment Declaration', {
 				
 			};
 		});
+
+		frm.set_query("select_assessment_criteria", function() {
+			return {
+				query: 'wsc.wsc.doctype.assignment_declaration.assignment_declaration.criteria',
+				filters:{"course":frm.doc.module}
+				
+			};
+		});
 	},
 	participant_group: function(frm){
 		frappe.call({
@@ -34,7 +42,7 @@ frappe.ui.form.on('Assignment Declaration', {
 					frm.set_value("academic_year", result.message[0])
 					frm.set_value("academic_term", result.message[1])
 					// frm.set_df_property('evaluator_id', 'options', result.message[4])
-					frm.set_df_property('select_assessment_criteria', 'options', result.message[5])
+					// frm.set_df_property('select_assessment_criteria', 'options', result.message[5])
 				}
 			}
 		})
