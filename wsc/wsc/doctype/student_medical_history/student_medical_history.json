@@ -380,15 +380,16 @@
    "read_only": 1
   },
   {
-   "fetch_from": "allotment_number.registration_number",
+   "fetch_from": "allotment_number.hostel_registration_no",
    "fieldname": "registration_number",
    "fieldtype": "Data",
-   "label": "Registration Number"
+   "label": "Registration Number",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-03-25 15:57:15.133232",
+ "modified": "2023-09-12 15:22:40.625867",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Medical History",
