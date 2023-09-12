@@ -129,3 +129,10 @@ def criteria(doctype, txt, searchfield, start, page_len, filters):
 											}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
 	return criteria_details
 # -----------------------------------------------------------------------------------------------------------------------------
+
+@frappe.whitelist()
+def get_assignments(participant_group=None,select_assessment_criteria=None):
+	assignments = []
+	if participant_group != None:
+		assignments = frappe.get_all("Assignment",filters=[["participant_group","=",participant_group],["assessment_criteria","=",select_assessment_criteria],["docstatus","=",1]],fields=['name','assignment_name','assessment_criteria','weightage','total_marks','passing_marks'],group_by="name")
+	return assignments

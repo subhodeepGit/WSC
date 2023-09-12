@@ -11,6 +11,11 @@
   "evaluate",
   "section_break_up0pn",
   "assignment_name",
+  "section_break_8rp8h",
+  "start_date",
+  "column_break_qdq1i",
+  "end_date",
+  "section_break_xokaq",
   "participant_group",
   "section_break_wjf36",
   "programs",
@@ -162,12 +167,36 @@
    "options": "Assignment",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "section_break_8rp8h",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_qdq1i",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_xokaq",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-12 11:43:41.241728",
+ "modified": "2023-09-12 12:42:43.792436",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment",
