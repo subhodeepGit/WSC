@@ -52,7 +52,7 @@
    "fieldtype": "Select",
    "hidden": 1,
    "label": "Room Change ID",
-   "options": "RC-.YYYY.-"
+   "options": "LL-.YYYY.-"
   },
   {
    "fetch_from": "student.naming_series",
@@ -284,7 +284,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-02-21 15:36:49.730293",
+ "modified": "2023-09-12 17:33:13.524565",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Long Leave",

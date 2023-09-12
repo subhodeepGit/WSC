@@ -117,6 +117,7 @@ frappe.ui.form.on('Assignment Declaration', {
 						c.start_date_and_time=element.start_date
 						c.end_date_and_time=element.end_date
 						c.total_durationin_hours=element.total_duration
+						c.job_sheet_number=element.name
 					});
 					frm.refresh_field("job_sheet")
 				}

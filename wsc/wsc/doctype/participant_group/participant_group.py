@@ -55,38 +55,43 @@ def cancel_class(self):
 				doc.is_canceled=1
 				doc.save()
 
-	doc_before_save = self.get_doc_before_save()
-	old_object=doc_before_save.get("classes")
-	for t in self.get('classes'):
-		if t.is_scheduled==1:
-			if t.is_canceled==0:
-				for j in old_object:
-					if t.name==j.name and t.is_canceled!=j.is_canceled:
-						re_scheduled_data=frappe.get_all('ToT Class Schedule',{
-												'participant_group_id':participant_group_id,
-												'module_id':module_name,
-												'scheduled_date':t.scheduled_date,
-												'from_time':t.from_time,
-												"to_time":t.to_time,
-												'room_name':t.room_name,
-												},['name'])
-						for k in re_scheduled_data:	
-							doc=frappe.get_doc('ToT Class Schedule',k['name'])
-							doc.is_canceled=0
-							doc.save()
+
+	data=frappe.get_all("Participant Group",{"name":self.name})
+	if data:
+		doc_before_save = self.get_doc_before_save()
+		old_object=doc_before_save.get("classes")
+		for t in self.get('classes'):
+			if t.is_scheduled==1:
+				if t.is_canceled==0:
+					for j in old_object:
+						if t.name==j.name and t.is_canceled!=j.is_canceled:
+							re_scheduled_data=frappe.get_all('ToT Class Schedule',{
+													'participant_group_id':participant_group_id,
+													'module_id':module_name,
+													'scheduled_date':t.scheduled_date,
+													'from_time':t.from_time,
+													"to_time":t.to_time,
+													'room_name':t.room_name,
+													},['name'])
+							for k in re_scheduled_data:	
+								doc=frappe.get_doc('ToT Class Schedule',k['name'])
+								doc.is_canceled=0
+								doc.save()
 
 
 
 def re_scheduling_chk(self):
 	present_object=self.get("classes")
-	doc_before_save = self.get_doc_before_save()
-	old_object=doc_before_save.get("classes")
-	for p in present_object:
-		if p.re_scheduled==1:
-			for o in old_object:
-				if p.name==o.name:
-					if p.scheduled_date==o.scheduled_date and p.room_name==o.room_name and p.from_time==o.from_time and p.to_time==p.to_time:  
-						frappe.throw("<b>No change found in the the Class Rescheduling for line no:- %s </b>"%(p.idx))
+	data=frappe.get_all("Participant Group",{"name":self.name})
+	if data:
+		doc_before_save = self.get_doc_before_save()
+		old_object=doc_before_save.get("classes")
+		for p in present_object:
+			if p.re_scheduled==1:
+				for o in old_object:
+					if p.name==o.name:
+						if p.scheduled_date==o.scheduled_date and p.room_name==o.room_name and p.from_time==o.from_time and p.to_time==p.to_time:  
+							frappe.throw("<b>No change found in the the Class Rescheduling for line no:- %s </b>"%(p.idx))
 
 def tot_class_schedule(self):
 	for d in self.get("classes"):
