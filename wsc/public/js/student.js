@@ -15,7 +15,23 @@ frappe.ui.form.on('Student',{
             frm.remove_custom_button("Enroll");
             $(".menu-btn-group").hide();
         }  
+        frm.set_query("block", function() {
+            return {
+                filters: {
+                    "districts":frm.doc.district
+                }
+            }; 
+        });
+
+        frm.set_query("district", function() {
+            return {
+                filters: {
+                    "state":frm.doc.stat
+                }
+            };
+        });
     }
+    
 })
 
 // Pop-up message Room Allotment Data in Student doctype in js
