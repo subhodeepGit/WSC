@@ -4,7 +4,7 @@
 import frappe 
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
-from datetime import datetime, timedelta,timedelta
+from datetime import datetime, timedelta,time
 from wsc.wsc.utils import get_courses_by_semester
 
 class ParticipantGroup(Document):
@@ -16,8 +16,9 @@ class ParticipantGroup(Document):
 		class_scheduling_date_validation(self)
 		re_scheduling_chk(self)
 		class_scheduling_ovelaping_chk(self)
-		tot_class_schedule(self)
 		cancel_class(self)
+		tot_class_schedule(self)
+		
 
 
 	def calculate_total_hours(self):
@@ -90,7 +91,24 @@ def re_scheduling_chk(self):
 			if p.re_scheduled==1:
 				for o in old_object:
 					if p.name==o.name:
-						if p.scheduled_date==o.scheduled_date and p.room_name==o.room_name and p.from_time==o.from_time and p.to_time==p.to_time:  
+						date_format = "%Y-%m-%d"
+						scheduled_date = datetime.strptime(p.scheduled_date, date_format).date()
+						from_time=datetime.strptime(p.from_time, "%H:%M:%S").time()
+						my_time =from_time # Replace this with your desired time
+						# Calculate the time difference from midnight (00:00:00)
+						from_time = timedelta(
+							hours=my_time.hour,
+							minutes=my_time.minute,
+							seconds=my_time.second
+						)
+						to_time=datetime.strptime(p.to_time, "%H:%M:%S").time()
+						my_time =to_time
+						to_time = timedelta(
+							hours=my_time.hour,
+							minutes=my_time.minute,
+							seconds=my_time.second
+						)
+						if scheduled_date==o.scheduled_date and p.room_name==o.room_name and from_time==o.from_time and to_time==o.to_time:  
 							frappe.throw("<b>No change found in the the Class Rescheduling for line no:- %s </b>"%(p.idx))
 
 def tot_class_schedule(self):
@@ -98,21 +116,27 @@ def tot_class_schedule(self):
 		if d.is_scheduled!=1:
 			if d.re_scheduled!=1:
 				for t in self.get('instructor'):
-					parent_doc = frappe.new_doc("ToT Class Schedule")
-					parent_doc.participant_group_id = self.name
-					parent_doc.academic_year = self.academic_year
-					parent_doc.academic_term = self.academic_term
-					parent_doc.course_name = self.program
-					parent_doc.module_id = self.course
-					parent_doc.module_name = self.module_name
-					parent_doc.scheduled_date = d.scheduled_date
-					parent_doc.room_number = d.room_number
-					parent_doc.room_name = d.room_name
-					parent_doc.from_time = d.from_time
-					parent_doc.to_time = d.to_time
-					parent_doc.duration = d.duration
-					parent_doc.trainers=t.instructors
-					parent_doc.save()
+					if t.idx==1:
+						parent_doc = frappe.new_doc("ToT Class Schedule")
+						parent_doc.participant_group_id = self.name
+						parent_doc.academic_year = self.academic_year
+						parent_doc.academic_term = self.academic_term
+						parent_doc.course_name = self.program
+						parent_doc.module_id = self.course
+						parent_doc.module_name = self.module_name
+						parent_doc.scheduled_date = d.scheduled_date
+						parent_doc.room_number = d.room_number
+						parent_doc.room_name = d.room_name
+						parent_doc.from_time = d.from_time
+						parent_doc.to_time = d.to_time
+						parent_doc.duration = d.duration
+						parent_doc.trainers=t.instructors
+						for l in self.get('instructor'):
+							parent_doc.append("instructor",{
+								"instructors":l.instructors,
+								"instructor_name":l.instructor_name,
+							})
+						parent_doc.save()
 				d.is_scheduled=1
 		if d.re_scheduled==1 and d.is_scheduled==1:
 			participant_group_id=self.name
@@ -138,7 +162,8 @@ def tot_class_schedule(self):
 														'from_time':t['from_time'],
 														"to_time":t['to_time'],
 														'room_number':t['room_name'],
-														'trainers':j.instructors
+														'trainers':j.instructors,
+														"is_canceled":0
 														},['name'])
 					for k in re_scheduled_data:
 						doc=frappe.get_doc('ToT Class Schedule',k['name'])
