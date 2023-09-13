@@ -6,6 +6,7 @@ frappe.ui.form.on('Assignment Upload', {
 
 	// }
 	setup: function(frm){
+
 		frm.set_query("instructor_id", function() {
 			return {
 				query: 'wsc.wsc.doctype.assignment_upload.assignment_upload.instructor',
@@ -76,6 +77,14 @@ frappe.ui.form.on('Assignment Upload', {
 					frm.set_value("passing_marks", result.message[2])
 					frm.set_value("weightage", result.message[3])
 					frm.set_value("assignment_number", result.message[4])
+					frm.set_value("start_date", result.message[5])
+					frm.set_value("end_date", result.message[6])
+
+					const d = new Date();
+
+					// alert(d.getFullYear()+'-'+(d.getMonth()+1).padStart(2, 0)+'-'+(d.getDate()))
+					d = (String(d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2, '0')+'-'+String(d.getDate()).padStart(2, 0)))
+					t = '' + (String())
 				}
 			}
 		})

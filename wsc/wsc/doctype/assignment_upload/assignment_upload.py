@@ -4,12 +4,19 @@
 import frappe 
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
+# from frappe.utils import now
+import datetime
 
 class AssignmentUpload(Document):
 	pass
 
 @frappe.whitelist()
 def get_details(participant_group_id):
+	print('\n\n\n')
+	current_datetime = datetime.datetime.now()
+	formatted_datetime = current_datetime.strftime("%d-%m-%Y %H:%M:%S") #("%Y-%m-%d %H:%M:%S")
+	print(formatted_datetime)
+	print('\n\n\n')
 	if(participant_group_id == ''):
 		return ['','','','','', '', '']
 	else:
@@ -38,10 +45,13 @@ def get_participant_name(participant_group_id, participant_id):
 @frappe.whitelist()
 def get_assignment_details(assignment_name):
 	if(assignment_name == ''):
-		return ['','','','','']
+		return ['','','','','', '', '']
 	else:
-		criteria_details = frappe.get_all('Assignment', filters = [['name', '=', assignment_name]], fields = ['assessment_criteria', 'total_marks','passing_marks','weightage', 'assignment_name'])
-		return [criteria_details[0]['assessment_criteria'] ,criteria_details[0]['total_marks'], criteria_details[0]['passing_marks'], criteria_details[0]['weightage'], criteria_details[0]['assignment_name']]
+		criteria_details = frappe.get_all('Assignment', filters = [['name', '=', assignment_name]], fields = ['assessment_criteria', 'total_marks','passing_marks','weightage', 'assignment_name', 'start_date', 'end_date'])
+		print('\n\n\n')
+		print(criteria_details)
+		print('\n\n\n')
+		return [criteria_details[0]['assessment_criteria'] ,criteria_details[0]['total_marks'], criteria_details[0]['passing_marks'], criteria_details[0]['weightage'], criteria_details[0]['assignment_name'], criteria_details[0]['start_date'], criteria_details[0]['end_date']]
 
 
 # ---------------------------------------------------------------------------------------------
