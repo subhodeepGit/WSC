@@ -500,6 +500,8 @@ def enroll_student(source_name):
         program_enrollment.program = st_applicant.counselling_semester
         program_enrollment.academic_year=st_applicant.academic_year
         program_enrollment.academic_term=st_applicant.academic_term
+        program_enrollment.category=st_applicant.category
+        program_enrollment.seat_reservation_type=st_applicant.category
         program_enrollment.reference_doctype="Student Applicant"
         program_enrollment.reference_name=source_name
         program_enrollment.program_grade = st_applicant.program_grade

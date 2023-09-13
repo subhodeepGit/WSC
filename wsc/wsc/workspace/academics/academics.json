@@ -231,7 +231,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-09-06 16:41:35.759876",
+ "modified": "2023-09-13 16:36:56.478136",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Academics",
@@ -252,9 +252,21 @@
   },
   {
    "role": "Education Administrator"
+  },
+  {
+   "role": "Course Manager"
+  },
+  {
+   "role": "Class Advisor"
+  },
+  {
+   "role": "Accounts Manager"
+  },
+  {
+   "role": "Accounts User"
   }
  ],
- "sequence_id": 2.0,
+ "sequence_id": 3.0,
  "shortcuts": [
   {
    "color": "Green",
