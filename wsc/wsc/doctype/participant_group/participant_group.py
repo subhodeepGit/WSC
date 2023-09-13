@@ -49,6 +49,7 @@ def cancel_class(self):
 												'from_time':t.from_time,
 												"to_time":t.to_time,
 												'room_name':t.room_name,
+												"is_canceled":0
 												},['name'])
 			
 			for j in re_scheduled_data:
