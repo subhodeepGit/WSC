@@ -464,7 +464,8 @@ def get_document_list_by_category(doc):
         group_by="document_name"
 
     doc_list  = frappe.db.sql("""SELECT DL.document_name, DL.mandatory, DL.is_available, DL.mandatory_during_counselling from `tabDocuments Template List` as DL 
-    inner join `tabDocuments Template` as D on DL.parent= D.name where D.student_category='{0}' and D.academic_year = '{1}' ORDER BY document_name ASC""".format(doc.student_category,doc.academic_year) ,as_dict=1)
+    inner join `tabDocuments Template` as D on DL.parent= D.name where D.student_category='{0}' and D.academic_year = '{1}' and D.department = '{2}' ORDER BY document_name ASC""".format(doc.student_category,doc.academic_year,doc.department) ,as_dict=1)
+    print("\n\n\nDOCUMENTS",doc_list)
     return doc_list if doc_list else []
 # def get_eligibility_list_by_category(doc):
 #     filters={"student_category":doc.student_category}
@@ -607,7 +608,6 @@ def validate_attachment(doc):
 def validate_student_admission(doc):
     for i in doc.program_priority:
         stud_admi_data = frappe.db.sql("""SELECT CA.student_admission, CS.name from `tabProgram Priority` as CA inner join `tabStudent Applicant`  as CS on CA.parent = CS.name where CS.academic_year = '{0}' and CS.docstatus=1""".format(doc.academic_year), as_dict=1)
-        print("\n\n\n\nHEUUE",stud_admi_data)
         if i.student_admission in [d.student_admission for d in stud_admi_data]:
             exist_data = ', '.join(map(str, [d.name for d in stud_admi_data]))
             frappe.throw("Student admission <b>'{0}'</b> already exists in Counselling Structure <b>'{1}'</b> ".format(i.student_admission, exist_data))
