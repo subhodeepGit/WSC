@@ -12,9 +12,12 @@
   "section_break_g3bpp",
   "course",
   "academic_year",
+  "start_date",
+  "todays_date",
   "column_break_oapsg",
   "programs",
   "academic_term",
+  "end_date",
   "section_break_zaymx",
   "participant_id",
   "assignment_id",
@@ -158,12 +161,29 @@
    "options": "Assignment Upload",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Datetime",
+   "label": "Start Date"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Datetime",
+   "label": "End Date"
+  },
+  {
+   "default": "Today",
+   "fieldname": "todays_date",
+   "fieldtype": "Datetime",
+   "label": "Today",
+   "options": "today"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-11 12:07:07.778644",
+ "modified": "2023-09-13 17:25:32.385249",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Upload",
