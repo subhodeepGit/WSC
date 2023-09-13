@@ -13,7 +13,14 @@ class RankCardPublicationTool(Document):
 			frappe.throw("Rank Card Tool is Already Published")
 
 	def on_cancel(self):
-		
+		# student_applicant = frappe.get_doc("Student Applicant" , m['applicant_id'])
+		for i in self.ranked_students_list:
+			rank_card_data = frappe.get_all("Rank Card" , {'applicant_id':i.applicant_id} , ['name'])
+			rank_card = frappe.get_doc("Rank Card" , rank_card_data[0]['name'])
+
+			if rank_card.docstatus == 1:
+				rank_card.cancel()
+			
 		for i in self.ranked_students_list:
 
 			student_applicant = frappe.get_doc("Student Applicant" , i.applicant_id)
@@ -199,7 +206,7 @@ def generate_rank_cards(doc):
 
 			count = count + 1
 			rank_data.save()
-			# rank_data.submit()
+			rank_data.submit()
 			student_applicant.save()
 		
 	if count == len(all_round_ranks):

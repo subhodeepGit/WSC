@@ -1828,7 +1828,7 @@
    "sort_options": 0,
    "translatable": 0,
    "unique": 0,
-   "width": null
+   "width": "10"
   },
   {
    "_assign": null,
@@ -1889,7 +1889,7 @@
    "sort_options": 0,
    "translatable": 0,
    "unique": 0,
-   "width": null
+   "width": "10"
   },
   {
    "_assign": null,

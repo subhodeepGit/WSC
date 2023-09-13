@@ -1,6 +1,6 @@
 frappe.listview_settings['Student Applicant'] = {
     refresh: function(listview) {
-        if (!frappe.route_options & frappe.user.has_role(["Student Applicant"]) && !frappe.user.has_role(["System Manager"])){ 
+        if (!frappe.route_options & frappe.user.has_role(["Applicant"]) && !frappe.user.has_role(["System Manager"])){ 
             $(".filter-selector").hide();
                frappe.route_options = {
                 "owner": ["=", frappe.session.user],
