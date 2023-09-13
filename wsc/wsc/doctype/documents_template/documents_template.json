@@ -8,6 +8,7 @@
  "engine": "InnoDB",
  "field_order": [
   "template_name",
+  "department",
   "academic_year",
   "is_active",
   "description",
@@ -58,11 +59,18 @@
    "fieldname": "is_active",
    "fieldtype": "Check",
    "label": "Is Active"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-31 11:14:31.964734",
+ "modified": "2023-09-13 21:15:31.776458",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Documents Template",
