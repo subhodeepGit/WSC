@@ -2,17 +2,17 @@
 // For license information, please see license.txt
 function rank_generation(doc){
 	// console.log(doc);
-	if(doc.ranked_students_list.length != 0){
-		frappe.call({
-			method:'wsc.wsc.doctype.rank_card_publication_tool.rank_card_publication_tool.generate_rank_cards',
-			args:{
-				'doc':doc
-			},
-			callback:function(result){
-				return result.message
-			}
-		})
-	}
+	// if(doc.ranked_students_list.length != 0){
+	// 	frappe.call({
+	// 		method:'wsc.wsc.doctype.rank_card_publication_tool.rank_card_publication_tool.generate_rank_cards',
+	// 		args:{
+	// 			'doc':doc
+	// 		},
+	// 		callback:function(result){
+	// 			return result.message
+	// 		}
+	// 	})
+	// }
 }
 
 frappe.ui.form.on('Rank Card Publication Tool', {
@@ -119,15 +119,12 @@ frappe.ui.form.on('Rank Card Publication Tool', {
 			args:{
 				//add course type and filter as such
 				 'declaration':frm.doc.entrance_exam_declaration,
-				 'academic_year':frm.doc.academic_year,
-				 'academic_term':frm.doc.academic_term,
-				 'department':frm.doc.departments,
 				 "rank_card_masters":frm.doc.rank_card_masters
 			},
 			callback:function(result){
 				frappe.model.clear_table(frm.doc, 'ranked_students_list');
 				result.message.map((i) => {
-					// console.log(i);
+					console.log(i);
 					let c =frm.add_child('ranked_students_list')
 					c.applicant_id = i.applicant_id
 					c.applicant_name = i.applicant_name

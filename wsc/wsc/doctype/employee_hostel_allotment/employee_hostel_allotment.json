@@ -94,12 +94,12 @@
    "fieldname": "role_selection",
    "fieldtype": "Select",
    "label": "Role Selection",
-   "options": "\nWarden\nSuperintendent\nHostel Administrator"
+   "options": "\nWarden\nSuperintendent"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-21 14:55:31.095329",
+ "modified": "2023-09-12 17:42:28.838002",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Hostel Allotment",

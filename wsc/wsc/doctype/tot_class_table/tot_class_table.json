@@ -11,7 +11,10 @@
   "room_number",
   "from_time",
   "to_time",
-  "duration"
+  "duration",
+  "re_scheduled",
+  "is_scheduled",
+  "is_canceled"
  ],
  "fields": [
   {
@@ -20,12 +23,6 @@
    "in_list_view": 1,
    "label": "Scheduled Date",
    "reqd": 1
-  },
-  {
-   "fieldname": "scheduled_time",
-   "fieldtype": "Time",
-   "hidden": 1,
-   "label": "Scheduled Time"
   },
   {
    "fetch_from": "room_name.room_number",
@@ -64,12 +61,39 @@
    "in_list_view": 1,
    "label": "Duration",
    "read_only": 1
+  },
+  {
+   "columns": 1,
+   "default": "0",
+   "fieldname": "is_scheduled",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Is Scheduled",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "default": "0",
+   "depends_on": "eval:doc.is_scheduled==1",
+   "fieldname": "re_scheduled",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Re Scheduled",
+   "read_only_depends_on": "eval:doc.is_scheduled==0"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.is_scheduled==1",
+   "fieldname": "is_canceled",
+   "fieldtype": "Check",
+   "label": "is canceled",
+   "read_only_depends_on": "eval:doc.is_scheduled==0"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-05 17:04:42.073631",
+ "modified": "2023-09-12 11:01:12.832996",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Class Table",

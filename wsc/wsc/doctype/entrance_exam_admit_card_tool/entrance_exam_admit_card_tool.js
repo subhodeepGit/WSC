@@ -1,9 +1,10 @@
 // Copyright (c) 2023, SOUL Limited and contributors
 // For license information, please see license.txt
-let flag = 0
+// let flag = 0
 frappe.ui.form.on('Entrance Exam Admit Card Tool', {
 	setup:function(frm){
-
+		// flag = 0
+		
 		frm.set_query("entrance_exam_declaration", function() {
             return {
                 query: "wsc.wsc.doctype.entrance_exam_admit_card_tool.entrance_exam_admit_card_tool.ra_query"
@@ -23,23 +24,26 @@ frappe.ui.form.on('Entrance Exam Admit Card Tool', {
 		// frm.disable_save()
 		frm.set_df_property('deallotted_applicant_list', 'cannot_add_rows', true)
 		frm.set_df_property('deallotted_applicant_list', 'cannot_delete_rows', true)
-		// const flag = 0;
-		if(flag === 1){
-			console.log(flag);
+		frm.set_df_property('center' , 'hidden' , 1)
+		frm.remove_custom_button('Generate Ranks')
+		
+		console.log(frm.doc.flag);
+		if(frm.doc.flag === 1){
+			
 			frm.set_df_property('center' , 'hidden' , 0)
 		}
 
-		if(flag === 2){
-			console.log(flag);
+		if(frm.doc.flag === 2){
+			
 			frm.set_df_property('center' , 'hidden' , 1)
 			frm.remove_custom_button('Generate Ranks')
 		}
-		frm.remove_custom_button('Generate Ranks')
-		if(frm.doc.docstatus === 1 && flag !== 2){
+		
+		if(frm.doc.docstatus === 1 && frm.doc.flag === 0){
 			
 			frm.add_custom_button(__('Admit Card Generation'), function(){
-				console.log(flag);
-				if(flag == 0){
+				
+				if(frm.doc.flag === 0){
 					console.log("normal call");
 					const body = JSON.stringify({
 						name:frm.doc.name ,
@@ -56,22 +60,14 @@ frappe.ui.form.on('Entrance Exam Admit Card Tool', {
 							const { leftovers , available_centers } = result.message
 							
 							if (leftovers.length !== 0) {
-								console.log(leftovers);
-								// available_centers.map((i) => {
-									
-								// 	// const date = i.slot_starting_time.split(" ")
-								// 	options.push(`${i.centre} - ${i.slot_name} - ${i.district} - ${i.slot_date}`)
-								// })
-		
-								// set_field_options("centre" , options)
 								alert(`Number of Unalloted Students is ${leftovers.length}`)
-								flag = 1
+								frm.set_value({'flag':1}) 
 							}
 							else {
-								console.log("complete");
 								alert("All Students Alloted")
 								frm.remove_custom_button('Admit Card Generation')
-								flag = 2
+								// frm.doc.flag = 2
+								// frm.set_value({'flag':2})
 							}
 							window.location.reload();
 							frm.refresh()
@@ -99,7 +95,6 @@ frappe.ui.form.on('Entrance Exam Admit Card Tool', {
 							
 							const options = [" "]
 							const { leftovers } = result.message
-							const { available_centers } = result.message
 				
 							if (leftovers.length !== 0) {
 								
@@ -110,13 +105,13 @@ frappe.ui.form.on('Entrance Exam Admit Card Tool', {
 		
 								// set_field_options("centre" , options)
 								alert(`Number of Unalloted Students is ${leftovers.length}`)
-								flag = 1
+								// frm.doc.flag = 1
 							}
 							else {
 								console.log("complete2");
 								alert("All Students Alloted")
 								frm.remove_custom_button('Admit Card Generation')
-								flag = 2
+								// frm.doc.flag = 2
 							}
 							window.location.reload();
 							frm.refresh()

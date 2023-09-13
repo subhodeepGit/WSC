@@ -13,7 +13,6 @@
   "column_break_5",
   "department",
   "section_break_7",
-  "total_marks",
   "all_round_cutoff",
   "column_break_9",
   "section_break_mskhg",
@@ -38,11 +37,6 @@
    "fieldtype": "Link",
    "label": "Department",
    "options": "Department"
-  },
-  {
-   "fieldname": "total_marks",
-   "fieldtype": "Float",
-   "label": "Total Marks"
   },
   {
    "fieldname": "maximum_number_of_ranks",
@@ -109,7 +103,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-25 11:25:15.066703",
+ "modified": "2023-09-12 14:57:49.582001",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Rank Card Master",

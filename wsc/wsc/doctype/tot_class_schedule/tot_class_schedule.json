@@ -7,12 +7,16 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "re_scheduled",
+  "is_canceled",
+  "section_break_ehyhd",
   "participant_group_id",
   "column_break_ojus4",
   "participant_group_name",
   "section_break_low7n",
   "academic_term",
   "academic_year",
+  "semester",
   "section_break_1wsjd",
   "course_id",
   "course_name",
@@ -23,17 +27,19 @@
   "column_break_uqb7l",
   "module_name",
   "section_break_rapdv",
-  "semester",
-  "scheduled_date",
   "room_number",
-  "from_time",
-  "duration",
-  "column_break_llk2o",
-  "scheduled_time",
   "room_name",
+  "column_break_f7bkx",
+  "scheduled_date",
+  "from_time",
+  "column_break_llk2o",
+  "duration",
   "to_time",
+  "section_break_uvolg",
   "trainers",
-  "trainers_name"
+  "trainers_name",
+  "section_break_stimh",
+  "instructor"
  ],
  "fields": [
   {
@@ -45,28 +51,31 @@
    "reqd": 1
   },
   {
+   "fetch_from": "participant_group_id.academic_year",
    "fieldname": "academic_year",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Academic Year",
    "options": "Academic Year",
-   "reqd": 1
-  },
-  {
-   "fieldname": "academic_term",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Academic Term",
-   "options": "Academic Term",
    "read_only": 1,
    "reqd": 1
   },
   {
+   "fetch_from": "participant_group_id.academic_term",
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Academic Term",
+   "options": "Academic Term"
+  },
+  {
+   "fetch_from": "participant_group_id.program",
    "fieldname": "course_id",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Programs",
    "options": "Programs",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -77,10 +86,12 @@
    "read_only": 1
   },
   {
+   "fetch_from": "participant_group_id.course",
    "fieldname": "module_id",
    "fieldtype": "Link",
    "label": "Module ID",
    "options": "Course",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -91,12 +102,6 @@
    "read_only": 1
   },
   {
-   "fieldname": "scheduled_time",
-   "fieldtype": "Data",
-   "label": "Scheduled Time",
-   "read_only": 1
-  },
-  {
    "fieldname": "room_number",
    "fieldtype": "Link",
    "label": "Room Number",
@@ -104,6 +109,7 @@
    "reqd": 1
   },
   {
+   "fetch_from": "room_number.room_name",
    "fieldname": "room_name",
    "fieldtype": "Data",
    "label": "Room Name",
@@ -112,13 +118,14 @@
   {
    "fieldname": "from_time",
    "fieldtype": "Time",
-   "label": "From Time"
+   "label": "From Time",
+   "reqd": 1
   },
   {
    "fieldname": "to_time",
-   "fieldtype": "Data",
+   "fieldtype": "Time",
    "label": "To Time",
-   "read_only": 1
+   "reqd": 1
   },
   {
    "fieldname": "duration",
@@ -143,19 +150,22 @@
   },
   {
    "fieldname": "section_break_low7n",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Academic Info"
   },
   {
    "fieldname": "scheduled_date",
-   "fieldtype": "Data",
-   "label": "Scheduled Date"
+   "fieldtype": "Date",
+   "label": "Scheduled Date",
+   "reqd": 1
   },
   {
+   "fetch_from": "participant_group_id.semester",
    "fieldname": "semester",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Semester",
-   "options": "Program",
-   "read_only": 1
+   "options": "Program"
   },
   {
    "fetch_from": "trainers.instructor_name",
@@ -180,11 +190,13 @@
   },
   {
    "fieldname": "section_break_1wsjd",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Course Details"
   },
   {
    "fieldname": "section_break_2xqxh",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Module"
   },
   {
    "fieldname": "column_break_vfjgx",
@@ -192,16 +204,54 @@
   },
   {
    "fieldname": "section_break_rapdv",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Room Details"
   },
   {
    "fieldname": "column_break_uqb7l",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_f7bkx",
+   "fieldtype": "Section Break",
+   "label": "Class Scheduling"
+  },
+  {
+   "fieldname": "section_break_uvolg",
+   "fieldtype": "Section Break",
+   "label": "Trainers"
+  },
+  {
+   "fieldname": "section_break_ehyhd",
+   "fieldtype": "Section Break",
+   "label": "Participant Group"
+  },
+  {
+   "default": "0",
+   "fieldname": "re_scheduled",
+   "fieldtype": "Check",
+   "label": "Re Scheduled"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_canceled",
+   "fieldtype": "Check",
+   "label": "Is canceled"
+  },
+  {
+   "fieldname": "section_break_stimh",
+   "fieldtype": "Section Break",
+   "label": "List of Trainers"
+  },
+  {
+   "fieldname": "instructor",
+   "fieldtype": "Table",
+   "options": "Instructor Table"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-06 21:19:39.441272",
+ "modified": "2023-09-13 15:34:02.673267",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Class Schedule",

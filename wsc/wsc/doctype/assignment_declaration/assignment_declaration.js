@@ -2,6 +2,33 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Assignment Declaration', {
+	setup: function(frm){
+		frm.set_df_property('participant_list', 'cannot_add_rows', true);
+		frm.set_df_property('participant_list', 'cannot_delete_rows', true);
+		frm.set_query("evaluator_id", function() {
+			return {
+				query: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.instructor',
+				filters:{"participant_group_id":frm.doc.participant_group}
+				
+			};
+		});
+
+		frm.set_query("participant_id", function() {
+			return {
+				query: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.participant',
+				filters:{"participant_group_id":frm.doc.participant_group}
+				
+			};
+		});
+
+		frm.set_query("select_assessment_criteria", function() {
+			return {
+				query: 'wsc.wsc.doctype.assignment_declaration.assignment_declaration.criteria',
+				filters:{"course":frm.doc.module}
+				
+			};
+		});
+	},
 	participant_group: function(frm){
 		frappe.call({
 			method : 'wsc.wsc.doctype.assignment_declaration.assignment_declaration.get_details',
@@ -14,26 +41,26 @@ frappe.ui.form.on('Assignment Declaration', {
 					frm.set_value("module", result.message[3])
 					frm.set_value("academic_year", result.message[0])
 					frm.set_value("academic_term", result.message[1])
-					frm.set_df_property('evaluator_id', 'options', result.message[4])
-					frm.set_df_property('select_assessment_criteria', 'options', result.message[5])
+					// frm.set_df_property('evaluator_id', 'options', result.message[4])
+					// frm.set_df_property('select_assessment_criteria', 'options', result.message[5])
 				}
 			}
 		})
 	},
-	evaluator_id: function(frm){
-		frappe.call({
-			method: 'wsc.wsc.doctype.assignment_declaration.assignment_declaration.get_instructor_name',
-			args:{
-				participant_group_id : frm.doc.participant_group,
-				instructor_id: frm.doc.evaluator_id
-			},
-			callback: function(result){
-				if(result.message){
-					frm.set_value("evaluator_name", result.message)
-				}
-			}
-		})
-	},
+	// evaluator_id: function(frm){
+	// 	frappe.call({
+	// 		method: 'wsc.wsc.doctype.assignment_declaration.assignment_declaration.get_instructor_name',
+	// 		args:{
+	// 			participant_group_id : frm.doc.participant_group,
+	// 			instructor_id: frm.doc.evaluator_id
+	// 		},
+	// 		callback: function(result){
+	// 			if(result.message){
+	// 				frm.set_value("evaluator_name", result.message)
+	// 			}
+	// 		}
+	// 	})
+	// },
 	get_participant: function(frm){
 		frappe.call({
 			method:'wsc.wsc.doctype.assignment_declaration.assignment_declaration.get_participants',
@@ -43,7 +70,6 @@ frappe.ui.form.on('Assignment Declaration', {
 				attendance_percentage : frm.doc.attendance_percentage,
 			},
 			callback: function(result){
-				alert(200)
 				if(result.message){
 					frappe.model.clear_table(frm.doc, 'participant_list')
 					result.message.forEach(element => {
@@ -71,8 +97,46 @@ frappe.ui.form.on('Assignment Declaration', {
 				frm.set_value("pass_marks", result.message[1])
 				frm.set_value("weightage", result.message[2])
 			}
+		}),
+		frappe.call({
+			"method": "wsc.wsc.doctype.assignment_declaration.assignment_declaration.get_assignments",
+			args:{
+				participant_group:frm.doc.participant_group,
+				select_assessment_criteria:frm.doc.select_assessment_criteria
+			},
+			callback: function(r) {
+				if (r.message){
+					frappe.model.clear_table(frm.doc, 'job_sheet');
+					(r.message).forEach(element => {
+					    var c = frm.add_child("job_sheet")
+					    c.job_sheet_name=element.assignment_name
+					    c.assessment_criteria=element.assessment_criteria
+					    c.total_marks=element.total_marks
+					    c.pass_marks=element.passing_marks
+					    c.weightage=element.weightage
+						c.start_date_and_time=element.start_date
+						c.end_date_and_time=element.end_date
+						c.total_durationin_hours=element.total_duration
+						c.job_sheet_number=element.name
+					});
+					frm.refresh_field("job_sheet")
+				}
+			}
 		})
 	},
+	assignment_start_date: function(frm) {
+        // set minimum To Date equal to From Date
+        frm.fields_dict.assignment_end_date.datepicker.update({
+            minDate: frm.doc.assignment_start_date ? new Date(frm.doc.assignment_start_date) : null
+        });
+    },
+
+    assignment_end_date: function(frm) {
+        // set maximum From Date equal to To Date
+        frm.fields_dict.assignment_start_date.datepicker.update({
+            maxDate: frm.doc.assignment_end_date ? new Date(frm.doc.assignment_end_date) : null
+        });
+    },
 });
 
 // frappe.ui.form.on("Job Sheet", "assessment_criteria", function(frm, cdt, cdn) {

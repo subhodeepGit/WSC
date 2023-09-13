@@ -19,28 +19,19 @@ frappe.ui.form.on('Entrance Exam Result Publication', {
 		frm.set_query("department", function(){
 	        return{
 	            filters:{
-	                "is_group":1,
-	                "is_stream": 1
+	                "is_group":0,
+	                // "is_stream": 1
 	            }
 	        }
 	    });
-
-		frm.set_query("applicant_id" , function() {
+		
+		frm.set_query("applicant_id" , function(){
 			return {
+                query: "wsc.wsc.doctype.entrance_exam_result_publication.entrance_exam_result_publication.ra_query3",
 				filters:{
-					"entrance_exam":frm.doc.entrance_exam_declaration
+					'entrance_exam_declaration':frm.doc.entrance_exam_declaration
 				}
-			}
+            }
 		})
-
-		// frm.set_query("applicant_id" , function() {
-		// 	return {
-		// 		filters: {
-		// 			"academic_year":frm.doc.academic_year,
-		// 			"academic_term":frm.doc.academic_term,
-		// 			"department":frm.doc.department
-		// 		}
-		// 	}
-		// })
 	}
 });

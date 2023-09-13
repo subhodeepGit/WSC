@@ -4,53 +4,197 @@
 import frappe 
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta,time
 from wsc.wsc.utils import get_courses_by_semester
 
 class ParticipantGroup(Document):
 	def validate(self):
 		dupicate_student_group_chk(self)
 		self.calculate_total_hours()
-		# for d in self.get("classes"):
-		# 	parent_doc = frappe.new_doc("ToT Class Schedule")
-		# 	parent_doc.participant_group_id = self.name
-		# 	parent_doc.academic_year = self.academic_year
-		# 	parent_doc.academic_term = self.academic_term
-		# 	parent_doc.course_name = self.program
-		# 	parent_doc.module_id = self.course
-		# 	parent_doc.module_name = self.module_name
-		# 	parent_doc.scheduled_date = d.scheduled_date
-		# 	# parent_doc.scheduled_time = d.scheduled_time
-		# 	parent_doc.room_number = d.room_number
-		# 	parent_doc.room_name = d.room_name
-		# 	parent_doc.from_time = d.from_time
-		# 	parent_doc.to_time = d.to_time
-		# 	parent_doc.duration = d.duration
-
-		# 	for td1 in self.get('participants'):
-		# 		parent_doc.append('participants', {
-		# 			'participant_id' : td1.participant,
-		# 			'participant_name' : td1.participant_name,
-		# 			# 'group_roll_number' : td1.group_roll_number,
-		# 			'active' : td1.active,	
-		# 		})
-		# 	for td2 in self.get('instructor'):
-		# 		parent_doc.append('trainers', {
-		# 			'trainer_id' : td2.instructors,
-		# 			'trainer_name' : td2.instructor_name	
-		# 		})
-		# 	# parent_doc.save()	
-
+		self.trainer_ck()
 		dulicate_trainer_chk(self)
 		class_scheduling_date_validation(self)
+		re_scheduling_chk(self)
 		class_scheduling_ovelaping_chk(self)
-		class_scheduling_ovelaping_other_scheduling(self)
+		cancel_class(self)
+		tot_class_schedule(self)
+		
 
 
 	def calculate_total_hours(self):
 		for d in self.get("classes"):
 			if d.to_time and d.from_time:
-				d.duration = datetime.strptime(d.to_time, '%H:%M:%S') - datetime.strptime(d.from_time, '%H:%M:%S') 
+				d.duration = datetime.strptime(d.to_time, '%H:%M:%S') - datetime.strptime(d.from_time, '%H:%M:%S')
+				if d.duration < timedelta(0):
+					frappe.throw("Duration of the class can't be negative for the line no <b>%s</b>"%(d.idx))
+
+	def trainer_ck(self):
+		flag="No"
+		for t in self.get("instructor"):
+			flag="Yes"
+			break
+		if flag=="No":
+			frappe.throw("Please Provide Trainers Details")		
+
+
+def cancel_class(self):
+	participant_group_id=self.name
+	module_name=self.course
+	for t in self.get('classes'):
+		if t.is_canceled==1:
+			re_scheduled_data=frappe.get_all('ToT Class Schedule',{
+												'participant_group_id':participant_group_id,
+												'module_id':module_name,
+												'scheduled_date':t.scheduled_date,
+												'from_time':t.from_time,
+												"to_time":t.to_time,
+												'room_name':t.room_name,
+												"is_canceled":0
+												},['name'])
+			
+			for j in re_scheduled_data:
+				doc=frappe.get_doc('ToT Class Schedule',j['name'])
+				doc.is_canceled=1
+				doc.save()
+
+
+	data=frappe.get_all("Participant Group",{"name":self.name})
+	if data:
+		doc_before_save = self.get_doc_before_save()
+		old_object=doc_before_save.get("classes")
+		for t in self.get('classes'):
+			if t.is_scheduled==1:
+				if t.is_canceled==0:
+					for j in old_object:
+						if t.name==j.name and t.is_canceled!=j.is_canceled:
+							re_scheduled_data=frappe.get_all('ToT Class Schedule',{
+													'participant_group_id':participant_group_id,
+													'module_id':module_name,
+													'scheduled_date':t.scheduled_date,
+													'from_time':t.from_time,
+													"to_time":t.to_time,
+													'room_name':t.room_name,
+													},['name'])
+							for k in re_scheduled_data:	
+								doc=frappe.get_doc('ToT Class Schedule',k['name'])
+								doc.is_canceled=0
+								doc.save()
+
+
+
+def re_scheduling_chk(self):
+	present_object=self.get("classes")
+	data=frappe.get_all("Participant Group",{"name":self.name})
+	if data:
+		doc_before_save = self.get_doc_before_save()
+		old_object=doc_before_save.get("classes")
+		for p in present_object:
+			if p.re_scheduled==1:
+				for o in old_object:
+					if p.name==o.name:
+						date_format = "%Y-%m-%d"
+						scheduled_date = datetime.strptime(p.scheduled_date, date_format).date()
+						from_time=datetime.strptime(p.from_time, "%H:%M:%S").time()
+						my_time =from_time # Replace this with your desired time
+						# Calculate the time difference from midnight (00:00:00)
+						from_time = timedelta(
+							hours=my_time.hour,
+							minutes=my_time.minute,
+							seconds=my_time.second
+						)
+						to_time=datetime.strptime(p.to_time, "%H:%M:%S").time()
+						my_time =to_time
+						to_time = timedelta(
+							hours=my_time.hour,
+							minutes=my_time.minute,
+							seconds=my_time.second
+						)
+						if scheduled_date==o.scheduled_date and p.room_name==o.room_name and from_time==o.from_time and to_time==o.to_time:  
+							frappe.throw("<b>No change found in the the Class Rescheduling for line no:- %s </b>"%(p.idx))
+
+def tot_class_schedule(self):
+	for d in self.get("classes"):
+		if d.is_scheduled!=1:
+			if d.re_scheduled!=1:
+				for t in self.get('instructor'):
+					if t.idx==1:
+						parent_doc = frappe.new_doc("ToT Class Schedule")
+						parent_doc.participant_group_id = self.name
+						parent_doc.academic_year = self.academic_year
+						parent_doc.academic_term = self.academic_term
+						parent_doc.course_name = self.program
+						parent_doc.module_id = self.course
+						parent_doc.module_name = self.module_name
+						parent_doc.scheduled_date = d.scheduled_date
+						parent_doc.room_number = d.room_number
+						parent_doc.room_name = d.room_name
+						parent_doc.from_time = d.from_time
+						parent_doc.to_time = d.to_time
+						parent_doc.duration = d.duration
+						parent_doc.trainers=t.instructors
+						for l in self.get('instructor'):
+							parent_doc.append("instructor",{
+								"instructors":l.instructors,
+								"instructor_name":l.instructor_name,
+							})
+						parent_doc.save()
+				d.is_scheduled=1
+		if d.re_scheduled==1 and d.is_scheduled==1:
+			participant_group_id=self.name
+			module_name=self.course
+			old_data=[]
+			doc_before_save = self.get_doc_before_save()
+			for t in doc_before_save.get('classes'):
+				if t.idx==d.idx:
+					a={}
+					a['scheduled_date']=t.scheduled_date
+					a['room_name']=t.room_number 
+					a['from_time']=t.from_time
+					a['to_time']=t.to_time
+					a['name']=t.name
+					# a['idx']=
+					old_data.append(a)
+			for t in old_data:
+				for j in self.get('instructor'):
+					re_scheduled_data=frappe.get_all('ToT Class Schedule',{
+														'participant_group_id':participant_group_id,
+														'module_id':module_name,
+														'scheduled_date':t['scheduled_date'],
+														'from_time':t['from_time'],
+														"to_time":t['to_time'],
+														'room_number':t['room_name'],
+														'trainers':j.instructors,
+														"is_canceled":0
+														},['name'])
+					for k in re_scheduled_data:
+						doc=frappe.get_doc('ToT Class Schedule',k['name'])
+						doc.scheduled_date=d.scheduled_date
+						doc.from_time=d.from_time
+						doc.to_time=d.to_time
+						doc.duration=d.duration
+						doc.room_number=d.room_number
+						doc.re_scheduled=1
+						doc.save()
+			d.re_scheduled=0
+
+def class_scheduling_date_validation(self):
+	####################### data time validation of the scheduling
+	classes=[]
+	for t in self.get('classes'):
+		for j in self.get('classes'):
+			if t.scheduled_date==j.scheduled_date and t.name!=j.name and t.room_name!=j.room_name:
+				t_from_time=datetime.strptime(t.from_time, "%H:%M:%S")
+				t_to_time=datetime.strptime(t.to_time, "%H:%M:%S") 
+				j_from_time=datetime.strptime(j.from_time,"%H:%M:%S")
+				j_to_time=datetime.strptime(j.to_time, "%H:%M:%S")
+				#### from time check
+				if j_from_time<=t_from_time<=j_to_time:
+					frappe.throw("class schedule Overlapping in line No %s and %s "%(t.idx,j.idx))
+				##### to Time check
+				if j_from_time<=t_to_time<=j_to_time:
+					frappe.throw("class schedule Overlapping in line No %s and %s "%(t.idx,j.idx))
+	######################### End of data time validation of the scheduling
+
 
 @frappe.whitelist()
 def participant(doctype, txt, searchfield, start, page_len, filters):
@@ -95,69 +239,6 @@ def class_scheduling_ovelaping_chk(self):
 		frappe.throw("<b>Class Schedule is beyond TOT period</b>")
 
 
-def class_scheduling_date_validation(self):
-	####################### data time validation of the scheduling
-	classes=[]
-	for t in self.get('classes'):
-		for j in self.get('classes'):
-			if t.scheduled_date==j.scheduled_date and t.name!=j.name and t.room_name!=j.room_name:
-				t_from_time=datetime.strptime(t.from_time, "%H:%M:%S")
-				t_to_time=datetime.strptime(t.to_time, "%H:%M:%S") 
-				j_from_time=datetime.strptime(j.from_time,"%H:%M:%S")
-				j_to_time=datetime.strptime(j.to_time, "%H:%M:%S")
-				#### from time check
-				if j_from_time<=t_from_time<=j_to_time:
-					frappe.throw("class schedule Overlapping in line No %s and %s "%(t.idx,j.idx))
-				##### to Time check
-				if j_from_time<=t_to_time<=j_to_time:
-					frappe.throw("class schedule Overlapping in line No %s and %s "%(t.idx,j.idx))
-	######################### End of data time validation of the scheduling
-				
-
-
-def class_scheduling_ovelaping_other_scheduling(self):
-	print("\n\n\n\n")
-	student_with_class_sed=[]
-	for t in self.get("participants"):
-		for j in self.get("classes"):
-			a={}
-			if t.active==1:
-				a['participant']=t.participant
-				a['scheduled_date']=j.scheduled_date
-				a['room_name']=j.room_name
-				a['from_time']=j.from_time
-				a['to_time']=j.to_time
-				a['parent']=self.name
-				student_with_class_sed.append(a)
-				
-	if student_with_class_sed:
-		print(student_with_class_sed)
-		for t in student_with_class_sed:
-			from_time=datetime.strptime(t['from_time'], "%H:%M:%S").time()
-			to_time=datetime.strptime(t['to_time'], "%H:%M:%S").time()
-			date_format = "%Y-%m-%d"
-			parsed_date = datetime.strptime(t['scheduled_date'], date_format).date()
-			data=frappe.db.sql("""select PG.name 
-				from `tabParticipant Group` as PG
-				Join `tabToT Class Table` CT on CT.parent=PG.name
-				Join `tabParticipant Table` P on PG.name=P.parent 
-				where PG.name!='{name}' and P.participant='{participant}' and CT.scheduled_date ='{parsed_date}' and
-				(CT.from_time > '{from_time}' and CT.from_time < '{to_time}' or
-				(CT.to_time > '{from_time}' and CT.to_time < '{to_time}') or
-				('{from_time}' > CT.from_time and '{from_time}' < CT.to_time) or
-				('{from_time}' = CT.from_time and '{to_time}' = CT.to_time))
-				""".format(
-					**{
-						"name":t['parent'],
-						"participant":t['participant'],
-						"from_time":from_time,
-						"to_time":to_time,
-						'parsed_date':parsed_date
-					}
-				)
-				,as_dict=True
-				)
-			print(data)
 
 def dupicate_student_group_chk(self):
 	data=frappe.get_all("Participant Group",{"participant_enrollment_id":self.participant_enrollment_id,
@@ -187,16 +268,25 @@ def dulicate_trainer_chk(self):
 
 @frappe.whitelist()
 def get_enrollment_details(enrollment_id):
-	enrollment_details = frappe.db.sql(""" SELECT  academic_year, academic_term, programs, semester FROM `tabToT Participant Enrollment` WHERE name = '%s'"""%(enrollment_id), as_dict=1)
-	# modules = frappe.db.sql(""" SELECT course FROM `tabProgram Course` WHERE parent = '%s'"""%(enrollment_details[0]['programs']))
-	return [enrollment_details[0]['academic_year'], enrollment_details[0]['academic_term'], enrollment_details[0]['programs'], enrollment_details[0]['semester']]
+	if(enrollment_id == ''):
+		return ['','','', '']
+	else:
+		enrollment_details = frappe.db.sql(""" SELECT  academic_year, academic_term, programs, semester FROM `tabToT Participant Enrollment` WHERE name = '%s'"""%(enrollment_id), as_dict=1)
+		# modules = frappe.db.sql(""" SELECT course FROM `tabProgram Course` WHERE parent = '%s'"""%(enrollment_details[0]['programs']))
+		return [enrollment_details[0]['academic_year'], enrollment_details[0]['academic_term'], enrollment_details[0]['programs'], enrollment_details[0]['semester']]
 
 @frappe.whitelist()
 def get_module_name(module_id):
-	data = frappe.db.sql(""" SELECT course_name FROM `tabCourse` WHERE name = '%s'"""%(module_id), as_dict =1)
-	return data[0]['course_name']
+	if(module_id == ''):
+		return ''
+	else:
+		data = frappe.db.sql(""" SELECT course_name FROM `tabCourse` WHERE name = '%s'"""%(module_id), as_dict =1)
+		return data[0]['course_name']
 
 @frappe.whitelist()
-def get_participants(enrollment_id):
-	data = frappe.get_all("Reported Participant", filters = [['parent', '=', enrollment_id], ['is_reported', '=', 1]], fields =['participant', 'participant_name'])
-	return data
+def get_participants(enrollment_id = None):
+	if(enrollment_id == None):
+		pass
+	else:
+		data = frappe.get_all("Reported Participant", filters = [['parent', '=', enrollment_id], ['is_reported', '=', 1]], fields =['participant', 'participant_name'])
+		return data

@@ -841,7 +841,7 @@ def notify_hr(doc):
     employee_suggestion_url = get_url_to_form('Employee Suggestion', doc['name'])
     msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(employee_suggestion_url)
     send_mail([doc['hr_email']],sub,msg)
-    frappe.msgprint("Email sent to HR",[doc['hr_mail']])
+    frappe.msgprint("Email sent to HR",[doc['hr_email']])
 def notify_director(doc):
     sub="""<p><b>Employee Suggestion</b></p><br>"""
     msg="""<b>---------------------Employee Suggestion Details---------------------</b><br>"""
@@ -860,6 +860,27 @@ def notify_employee(doc):
     msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(employee_suggestion_url)
     send_mail([doc['employee_email']],sub,msg)
     frappe.msgprint("Email sent to Employee",[doc['employee_email']])
+
+def notify_committee(doc):
+    sub = "Reg:Employee Suggestion </b></p><br>"
+
+    msg = "<b>---------------------Employee Suggestion Details---------------------</b><br>"
+
+    msg="""<b>---------------------Employee Suggestion Details---------------------</b><br>"""
+    msg+="""<b>Employee Suggestion:</b>  {0}<br>""".format(doc.get('name'))
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc.get('workflow_state'))
+    employee_suggestion_url = get_url_to_form('Employee Suggestion', doc.get('name'))
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(employee_suggestion_url)
+
+    recipients = frappe.get_all("User", filters={'role': 'Suggestion Committee Member'}, fields=['email'])
+    recipient_emails = [recipient.get('email') for recipient in recipients]
+    if len(recipient_emails)!=0 :
+
+
+        send_mail(recipient_emails, sub, msg)
+        frappe.msgprint("Email sent to Suggestion Committee")
+    else :
+        frappe.throw("No mail id found for the Committee Members !")
 
 # def online_payment_submit(doc):
 #     msg="""<p><b>Payment Status</b></p><br>"""
@@ -1227,6 +1248,63 @@ def sendDirector(doc):
     send_mail([doc['director_mail']],sub,msg)
     frappe.msgprint("Mail sent to Director for Approval",[doc['director_mail']])
 
+
+################################ Notification for Appraisal ######################################################################
+
+def sendHR_appraisal(doc):
+    sub="""<p><b>Employee Appraisal</b></p><br>"""
+    msg="""<b>---------------------Appraisal Details---------------------</b><br>"""
+    msg+="""<b>Appraisal:</b>  {0}<br>""".format(doc['name'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    msg+="""<b>Appraisal Cycle:</b>  {0}<br>""".format(doc['appraisal_cycle'])
+    appraisal_url = get_url_to_form('Employee Appraisal Portal', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(appraisal_url)
+    msg+="""<p><b>Initiate the Separation Process for the Employee if it is Approved</b></p><br>"""
+    send_mail([doc['hr_mail']],sub,msg)
+    frappe.msgprint("Confirmation mail sent to HR",[doc['hr_mail']])
+# def sendEmployee(doc):
+#     sub="""<p><b>Employee Resignation</b></p><br>"""
+#     msg="""<b>---------------------Resignation Details---------------------</b><br>"""
+#     msg+="""<b>Resignation:</b>  {0}<br>""".format(doc['name'])
+#     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+#     resignation_url = get_url_to_form('Employee Resignation', doc['name'])
+#     msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(resignation_url)
+#     send_mail([doc['employee_mail']],sub,msg)
+#     frappe.msgprint("Confirmation mail sent to Employee",[doc['employee_mail']])
+
+def sendRa_appraisal(doc):
+    sub="""<p><b>Employee Appraisal</b></p><br>"""
+    msg="""<b>---------------------Appraisal Details---------------------</b><br>"""
+    msg+="""<b>Appraisal:</b>  {0}<br>""".format(doc['name'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    msg+="""<b>Appraisal Cycle:</b>  {0}<br>""".format(doc['appraisal_cycle'])
+    appraisal_url = get_url_to_form('Employee Appraisal Portal', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(appraisal_url)
+    send_mail([doc['ra_mail']],sub,msg)
+    frappe.msgprint("Mail sent to Reporting Authority for Approval",[doc['ra_mail']])
+
+def sendDh_appraisal(doc):
+    sub="""<p><b>Employee Appraisal</b></p><br>"""
+    msg="""<b>---------------------Appraisal Details---------------------</b><br>"""
+    msg+="""<b>Appraisal:</b>  {0}<br>""".format(doc['name'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    msg+="""<b>Appraisal Cycle:</b>  {0}<br>""".format(doc['appraisal_cycle'])
+    appraisal_url = get_url_to_form('Employee Appraisal Portal', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(appraisal_url)
+    send_mail([doc['dh_mail']],sub,msg)
+    frappe.msgprint("Mail sent to Department Head for Approval",[doc['dh_mail']])
+def sendDirector_appraisal(doc):
+    sub="""<p><b>Employee Appraisal</b></p><br>"""
+    msg="""<b>---------------------Appraisal Details---------------------</b><br>"""
+    msg+="""<b>Appraisal:</b>  {0}<br>""".format(doc['name'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    msg+="""<b>Appraisal Cycle:</b>  {0}<br>""".format(doc['appraisal_cycle'])
+    appraisal_url = get_url_to_form('Employee Appraisal Portal', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(appraisal_url)
+    send_mail([doc['director_mail']],sub,msg)
+    frappe.msgprint("Mail sent to Director for Approval",[doc['director_mail']])
+
+
 def mentor_mentee_communication_submit(doc):
     mentor = frappe.db.get_value("Mentor Allocation", {"name":doc.get("mentor")}, "mentor")
     if frappe.session.user == frappe.get_all("Student", {'name':doc.student}, ['user'])[0]["user"]:
@@ -1291,3 +1369,87 @@ def send_mail_to_jobapplicants_rerd(self):
             recipients = applicant_email
             send_mail(recipients,'WSC Exam Result Notification',msg)
             frappe.msgprint("Email sent to Job Applicants")
+###############################################Compensatory Leave Request Notification#############################################
+def employee_comp_reporting_authority_email(doc):
+	sub = "Reg:Compensatory Leave Request Details"
+	msg = """<p>Dear Ma'am/Sir,</p><br>"""
+	msg += """<p>Kindly refer to the Employee Compensatory Leave Request Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+
+	msg += "<b>---------------------Employee Compensatory Leave Request Details---------------------</b><br>"
+
+	msg += "<b>Employee Compensatory Leave Request ID:</b> {0}<br>".format(doc.get('name'))
+	msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
+	msg += "<b>Employee Name:</b> {0}<br>".format(doc.get('employee_name'))
+	msg += "<b>Leave Type:</b> {0}<br>".format(doc.get('leave_type'))
+	msg += "<b>Work From Date:</b> {0}<br>".format(doc.get('work_from_date'))
+	msg += "<b>Work End Date:</b> {0}<br>".format(doc.get('work_end_date'))
+
+	comp_app_url = get_url_to_form('Compensatory Leave Request', doc.get('name'))
+	msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(comp_app_url)
+
+	send_mail(frappe.db.get_value("Compensatory Leave Request",doc.get('name'),"reporting_authority_email"),sub,msg)
+	frappe.msgprint("Employee Compensatory Leave Request Details is sent to the Reporting Authority")
+
+def employee_comp_leave_approver_email(doc):
+	sub = "Reg:Compensatory Leave Request Details"
+	msg = """<p>Dear Ma'am/Sir,</p><br>"""
+	msg += """<p>Kindly refer to the Employee Compensatory Leave Request Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+
+	msg += "<b>---------------------Employee Compensatory Leave Request Details---------------------</b><br>"
+
+	msg += "<b>Employee Compensatory Leave Request ID:</b> {0}<br>".format(doc.get('name'))
+	msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
+	msg += "<b>Employee Name:</b> {0}<br>".format(doc.get('employee_name'))
+	msg += "<b>Leave Type:</b> {0}<br>".format(doc.get('leave_type'))
+	msg += "<b>Work From Date:</b> {0}<br>".format(doc.get('work_from_date'))
+	msg += "<b>Work End Date:</b> {0}<br>".format(doc.get('work_end_date'))
+
+	comp_app_url = get_url_to_form('Compensatory Leave Request', doc.get('name'))
+	msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(comp_app_url)
+
+	send_mail(frappe.db.get_value("Compensatory Leave Request",doc.get('name'),"leave_approver"),sub,msg)
+	frappe.msgprint("Employee Compensatory Leave Request Details is sent to the Leave Approver")
+
+def employee_comp_hr_email(doc):
+
+	sub = "Reg:Compensatory Leave Request Details"
+	msg = """<p>Dear Ma'am/Sir,</p><br>"""
+	msg += """<p>Kindly refer to the Employee Compensatory Leave Request Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+
+	msg += "<b>---------------------Employee Compensatory Leave Request Details---------------------</b><br>"
+
+	msg += "<b>Employee Compensatory Leave Request ID:</b> {0}<br>".format(doc.get('name'))
+	msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
+	msg += "<b>Employee Name:</b> {0}<br>".format(doc.get('employee_name'))
+	msg += "<b>Leave Type:</b> {0}<br>".format(doc.get('leave_type'))
+	msg += "<b>Work From Date:</b> {0}<br>".format(doc.get('work_from_date'))
+	msg += "<b>Work End Date:</b> {0}<br>".format(doc.get('work_end_date'))
+
+	comp_app_url = get_url_to_form('Compensatory Leave Request', doc.get('name'))
+	msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(comp_app_url)
+	recipients = frappe.get_all("User", filters={'role': 'HR Admin'}, fields=['email'])
+	recipient_emails = [recipient.get('email') for recipient in recipients]
+	send_mail(recipient_emails,sub,msg)
+	frappe.msgprint("Email sent to HR") 
+
+def employee_comp_employee_email(doc):
+
+	sub = "Reg:Compensatory Leave Request Details"
+	msg = """<p>Dear Ma'am/Sir,</p><br>"""
+	msg += """<p>Kindly refer to the Employee Compensatory Leave Request Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+
+	msg += "<b>---------------------Employee Compensatory Leave Request Details---------------------</b><br>"
+
+	msg += "<b>Employee Compensatory Leave Request ID:</b> {0}<br>".format(doc.get('name'))
+	msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
+	msg += "<b>Employee Name:</b> {0}<br>".format(doc.get('employee_name'))
+	msg += "<b>Leave Type:</b> {0}<br>".format(doc.get('leave_type'))
+	msg += "<b>Work From Date:</b> {0}<br>".format(doc.get('work_from_date'))
+	msg += "<b>Work End Date:</b> {0}<br>".format(doc.get('work_end_date'))
+	msg += "<b>Status:</b> {0}<br>".format(doc.get('status'))
+
+	comp_app_url = get_url_to_form('Compensatory Leave Request', doc.get('name'))
+	msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(comp_app_url)
+	send_mail(frappe.db.get_value("Compensatory Leave Request",doc.get('name'),"employee_email"),sub,msg)
+	frappe.msgprint("Email sent to Employee") 
+############################################################################################################################################

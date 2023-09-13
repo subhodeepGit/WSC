@@ -9,7 +9,7 @@
  "engine": "InnoDB",
  "field_order": [
   "photo",
-  "section_break_odfhv",
+  "section_break_ifglm",
   "entrance_exam",
   "section_break_bcgm6",
   "applicant_id",
@@ -64,9 +64,8 @@
   {
    "fetch_from": "venue.district",
    "fieldname": "district",
-   "fieldtype": "Link",
-   "label": "District",
-   "options": "Districts"
+   "fieldtype": "Data",
+   "label": "District"
   },
   {
    "fetch_from": "venue.pincode",
@@ -180,19 +179,20 @@
    "read_only": 1
   },
   {
+   "fetch_from": "applicant_id.image",
    "fieldname": "photo",
-   "fieldtype": "Attach Image",
+   "fieldtype": "Image",
    "label": "Photo"
   },
   {
-   "fieldname": "section_break_odfhv",
+   "fieldname": "section_break_ifglm",
    "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-04 12:02:13.240404",
+ "modified": "2023-09-06 11:50:41.418317",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Admit Card",

@@ -14,7 +14,8 @@
   "deallotted_applicant_list",
   "use_in_case_there_are_unalloted_students_section",
   "center",
-  "amended_from"
+  "amended_from",
+  "flag"
  ],
  "fields": [
   {
@@ -31,7 +32,6 @@
    "label": "Get Applicants"
   },
   {
-   "allow_on_submit": 1,
    "fieldname": "deallotted_applicant_list",
    "fieldtype": "Table",
    "label": "DeAllotted Applicant List",
@@ -52,18 +52,23 @@
    "read_only": 1
   },
   {
-   "allow_on_submit": 1,
    "fieldname": "center",
    "fieldtype": "Link",
-   "hidden": 1,
    "label": "Center",
    "options": "Entrance Exam Centre Allocation"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "flag",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Flag"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-04 18:26:13.768047",
+ "modified": "2023-09-12 12:20:09.252901",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Admit Card Tool",
