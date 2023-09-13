@@ -486,7 +486,7 @@
    "sort_options": 0,
    "translatable": 0,
    "unique": 0,
-   "width": null
+   "width": "10"
   },
   {
    "_assign": null,
@@ -1781,7 +1781,7 @@
    "collapsible_depends_on": null,
    "columns": 0,
    "creation": "2023-09-12 10:49:59.755172",
-   "default": null,
+   "default": "0",
    "depends_on": null,
    "description": null,
    "docstatus": 0,
@@ -1842,7 +1842,7 @@
    "collapsible_depends_on": null,
    "columns": 0,
    "creation": "2023-09-12 10:50:00.270801",
-   "default": null,
+   "default": "0",
    "depends_on": null,
    "description": null,
    "docstatus": 0,

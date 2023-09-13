@@ -2,7 +2,6 @@
  "actions": [],
  "creation": "2021-09-21 14:38:53.891182",
  "doctype": "DocType",
- "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "programs",
@@ -30,7 +29,7 @@
    "fieldname": "programs",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Programs",
+   "label": "Programs \u25bc",
    "options": "Programs",
    "reqd": 1
   },
@@ -102,7 +101,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-08 16:08:42.459005",
+ "modified": "2023-09-13 21:55:37.362344",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Program Priority",
