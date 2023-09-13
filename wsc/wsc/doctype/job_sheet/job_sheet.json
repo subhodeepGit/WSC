@@ -71,14 +71,15 @@
   },
   {
    "fieldname": "job_sheet_number",
-   "fieldtype": "Data",
-   "label": "Job Sheet Number"
+   "fieldtype": "Link",
+   "label": "Job Sheet Number",
+   "options": "Assignment"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-12 17:37:43.943299",
+ "modified": "2023-09-13 11:10:19.247785",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Job sheet",

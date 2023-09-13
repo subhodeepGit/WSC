@@ -1,0 +1,45 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-09-13 16:11:24.311574",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "instruction"
+ ],
+ "fields": [
+  {
+   "bold": 1,
+   "default": "Steps for Filling Up the form:\n1. All fields marked with (*) are mandatory\n2. Select your respective departments such as School Of Engineering, School Of Services.\n3. Select the Course Type.\n4. To Select the Courses, click on the add row button.\n5. Select the Courses in descending priority where first row will be highest and last row will be lowest.\n6. Your can fill only three(3) Courses according to your preferences beyond that will not be considered.\n7. You can only fill the Educational Details when you filled the Course Preference table\n8. Your Passport Photo size should not be more than 200 KB.\n9. Don't change your Mobile No. and Email Id till admission gets over.\n10. After Saving the Applicant form, you need to attach your photo on top left corner and some of the required documents such as: Certificates, Adhaar Card, Etc in document list table.\n11. After submitting the form, please note down the Application Number and print your application form for future reference.\n12. After taking print of your Application Form, don't forget to Logout the page.\n13. To Logout the page click on the top right icon button of your Application Form, then click on Logout.",
+   "fieldname": "instruction",
+   "fieldtype": "Small Text",
+   "label": "Instruction",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2023-09-13 16:36:51.467006",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Student Applicant Instruction",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
