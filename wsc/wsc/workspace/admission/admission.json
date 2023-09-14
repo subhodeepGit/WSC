@@ -521,7 +521,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-09-12 19:50:08.855221",
+ "modified": "2023-09-13 16:36:35.199259",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Admission",
@@ -539,6 +539,12 @@
   },
   {
    "role": "Education Admission Head"
+  },
+  {
+   "role": "Accounts Manager"
+  },
+  {
+   "role": "Accounts User"
   }
  ],
  "sequence_id": 1.0,

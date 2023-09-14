@@ -9,7 +9,16 @@ frappe.ui.form.on('Student Applicant', {
         let lname=frm.doc.last_name;        
         frm.set_value("title",fname+" "+lname)
     },
-    
+    on_submit:function(frm){
+        frappe.msgprint({
+            title: __('Notification'),
+            indicator: 'purple',
+            message: __('Your Application form is Successfully Submitted. Please Notedown Your Application No. <b>{0}</b> for Future reference.',[frm.doc.name]),
+            primary_action: {
+                'label': 'Kindly Print the Application Form For the Future Admission Process',
+                }
+        });
+    },
     onload: function(frm) {
         //For Counselling Based Program Priority
         

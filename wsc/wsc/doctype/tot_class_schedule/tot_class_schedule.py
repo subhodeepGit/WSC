@@ -11,9 +11,11 @@ class ToTClassSchedule(Document):
 		if self.re_scheduled==1 and self.is_canceled==0:
 			frappe.msgprint("Class:-%s is Re Scheduled "%(self.name))
 		elif self.is_canceled==1:
-			frappe.msgprint("Class:-%s is canceled"%(self.name))	
+			frappe.msgprint("Class:-%s is canceled"%(self.name))
 
-		validate_overlap(self)
+		data=frappe.get_all("Participant Group",{"name":self.name})
+		if self.is_canceled==0:
+			validate_overlap(self)
 
 		self.validate_date()
 
@@ -37,6 +39,7 @@ def validate_overlap(self):
 	if self.participant_group_id :
 		# validate_overlap_for(self, "Course Schedule", "student_group")
 		validate_overlap_for(self, "ToT Class Schedule", "participant_group_id")
+		
 
 	# validate_overlap_for(self, "Course Schedule", "instructor")
 	validate_overlap_for(self, "ToT Class Schedule", "trainers")
@@ -49,7 +52,6 @@ def validate_overlap_for(doc, doctype, fieldname, value=None):
 
 	:param fieldname: Checks Overlap for this field
 	"""
-
 	existing = get_overlap_for(doc, doctype, fieldname, value)
 	if existing:
 		frappe.throw(
@@ -76,7 +78,7 @@ def get_overlap_for(doc, doctype, fieldname, value=None):
 			(to_time > %(from_time)s and to_time < %(to_time)s) or
 			(%(from_time)s > from_time and %(from_time)s < to_time) or
 			(%(from_time)s = from_time and %(to_time)s = to_time))
-		and name!=%(name)s and docstatus!=2 and is_canceled=0 """.format(
+		and name!=%(name)s and docstatus!=2 and is_canceled!=1 """.format(
 			doctype, fieldname
 		),
 		{

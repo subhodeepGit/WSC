@@ -52,10 +52,10 @@ def student_applicant_submit(doc):
     msg+="""<b>Student Name:</b>  {0}{1}<br>""".format(doc.get('first_name'), doc.get('last_name'))
     msg+="""<b>Application Number:</b>  {0}<br>""".format(doc.get('name'))
     msg+="""<b>Department:</b>  {0}<br>""".format(doc.get('department'))
-    msg+="""<b>Program Grade:</b>  {0}<br>""".format(doc.get('program_grade'))
-    msg+="""<p>Priority Programs: </p>"""
+    msg+="""<b>Course Type:</b>  {0}<br>""".format(doc.get('program_grade'))
+    msg+="""<p>Course Preferences: </p>"""
     msg += """</u></b></p><table class='table table-bordered'><tr>
-        <th>Programs</th>"""
+        <th>Courses</th>"""
     for d in doc.get("program_priority"):
         msg += """<tr><td>{0}</td></tr>""".format(str(d.get('programs'))) 
     msg += "</table>"

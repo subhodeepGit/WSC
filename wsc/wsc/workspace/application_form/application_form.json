@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"qKCh0JUC0_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Application Form</span>\",\"col\":12}},{\"id\":\"pOnFZQFh_9\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Apply For Student Applicant\",\"col\":6}},{\"id\":\"jPp3_n3YyF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Student Application Form\",\"col\":6}}]",
+ "content": "[{\"id\":\"qKCh0JUC0_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Application Form</span>\",\"col\":12}},{\"id\":\"P562xykj5h\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instruction To Apply the Form\",\"col\":4}},{\"id\":\"pOnFZQFh_9\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Apply For Student Applicant\",\"col\":4}},{\"id\":\"jPp3_n3YyF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Application Form\",\"col\":4}}]",
  "creation": "2023-08-24 04:57:26.265019",
  "custom_blocks": [],
  "docstatus": 0,
@@ -12,7 +12,7 @@
  "is_hidden": 0,
  "label": "Application Form",
  "links": [],
- "modified": "2023-09-12 15:44:29.952926",
+ "modified": "2023-09-13 16:24:20.629539",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Application Form",
@@ -31,6 +31,13 @@
  "shortcuts": [
   {
    "color": "Grey",
+   "doc_view": "List",
+   "label": "My Application Form",
+   "link_to": "Student Applicant",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
    "doc_view": "New",
    "label": "Apply For Student Applicant",
    "link_to": "Student Applicant",
@@ -38,9 +45,9 @@
   },
   {
    "color": "Grey",
-   "doc_view": "List",
-   "label": "My Student Application Form",
-   "link_to": "Student Applicant",
+   "doc_view": "New",
+   "label": "Instruction To Apply the Form",
+   "link_to": "Student Applicant Instruction",
    "type": "DocType"
   }
  ],
