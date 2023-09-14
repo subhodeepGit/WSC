@@ -144,6 +144,7 @@
    "read_only": 1
   },
   {
+   "description": "You can also search using scheduled date",
    "fieldname": "select_class_schedule",
    "fieldtype": "Link",
    "label": "Select Class Schedule",
@@ -170,7 +171,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-14 18:02:29.264711",
+ "modified": "2023-09-14 18:05:34.427278",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Attendance Tool",
