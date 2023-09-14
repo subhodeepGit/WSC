@@ -60,7 +60,8 @@
    "fieldtype": "Link",
    "in_standard_filter": 1,
    "label": "Allotment Number",
-   "options": "Room Allotment"
+   "options": "Room Allotment",
+   "reqd": 1
   },
   {
    "fetch_from": "allotment_number.student",
@@ -174,7 +175,8 @@
    "depends_on": "eval:doc.medium_of_communicatinon == \"Email\";",
    "fieldname": "email_id",
    "fieldtype": "Data",
-   "label": "Email Id"
+   "label": "Email Id",
+   "options": "Email"
   },
   {
    "fieldname": "column_break_18",
@@ -196,7 +198,8 @@
    "depends_on": "eval:doc.medium_of_communicatinon == \"Postal\";",
    "fieldname": "pincode",
    "fieldtype": "Data",
-   "label": "Pincode"
+   "label": "Pincode",
+   "length": 6
   },
   {
    "depends_on": "eval:doc.medium_of_communicatinon == \"Postal\";",
@@ -245,7 +248,8 @@
    "depends_on": "eval:doc.medium_of_communicatinon_from_student == \"Email\";",
    "fieldname": "email",
    "fieldtype": "Data",
-   "label": "Email"
+   "label": "Email",
+   "options": "Email"
   },
   {
    "fieldname": "column_break_32",
@@ -267,7 +271,8 @@
    "depends_on": "eval:doc.medium_of_communicatinon_from_student == \"Postal\";",
    "fieldname": "pincode_student",
    "fieldtype": "Data",
-   "label": "Pincode"
+   "label": "Pincode",
+   "length": 6
   },
   {
    "depends_on": "eval:doc.medium_of_communicatinon_from_student == \"Postal\";",
@@ -284,7 +289,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-12 17:33:13.524565",
+ "modified": "2023-09-13 17:06:34.921999",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Long Leave",

@@ -52,10 +52,10 @@ def student_applicant_submit(doc):
     msg+="""<b>Student Name:</b>  {0}{1}<br>""".format(doc.get('first_name'), doc.get('last_name'))
     msg+="""<b>Application Number:</b>  {0}<br>""".format(doc.get('name'))
     msg+="""<b>Department:</b>  {0}<br>""".format(doc.get('department'))
-    msg+="""<b>Program Grade:</b>  {0}<br>""".format(doc.get('program_grade'))
-    msg+="""<p>Priority Programs: </p>"""
+    msg+="""<b>Course Type:</b>  {0}<br>""".format(doc.get('program_grade'))
+    msg+="""<p>Course Preferences: </p>"""
     msg += """</u></b></p><table class='table table-bordered'><tr>
-        <th>Programs</th>"""
+        <th>Courses</th>"""
     for d in doc.get("program_priority"):
         msg += """<tr><td>{0}</td></tr>""".format(str(d.get('programs'))) 
     msg += "</table>"
@@ -351,24 +351,24 @@ def student_applicant_rejected(doc):
   
 
 def program_enrollment_admitted(doc):
-    msg="""<p>You are admitted in the Programs <b>{0}</b></p><br>""".format(doc.get('programs'))
+    msg="""<p>You are admitted in the Course <b>{0}</b></p><br>""".format(doc.get('programs'))
     msg+="""<b>---------------------Student Details---------------------</b><br>"""
     msg+="""<b>Student Name:</b>  {0}<br>""".format(doc.get('student_name'))
     msg+="""<b>Student Batch:</b>  {0}<br>""".format(doc.get('student_batch_name') or '-')
-    msg+="""<b>Permanent Registration Number:</b>  {0}<br>""".format(doc.get('permanant_registration_number') or '-' )
-    msg+="""<b>Program:</b>  {0}<br>""".format(doc.get('programs'))
+    # msg+="""<b>Permanent Registration Number:</b>  {0}<br>""".format(doc.get('permanant_registration_number') or '-' )
+    msg+="""<b>Course:</b>  {0}<br>""".format(doc.get('programs'))
     msg+="""<b>Semester:</b>  {0}<br>""".format(doc.get('program'))
     msg+="""<b>Academic Year:</b>  {0}<br>""".format(doc.get('academic_year') or '-')
     msg+="""<b>Academic Term:</b> {0}<br>""".format(doc.get('academic_term') or '-')
     send_mail(frappe.db.get_value("Student",doc.get('student'),"student_email_id"),'Application status',msg)
 
 def program_enrollment_provisional_admission(doc):
-    msg="""<p>You are Provisionaly Admitted in the Programs <b>{0}</b></p><br>""".format(doc.get('programs'))
+    msg="""<p>You are Provisionaly Admitted in the Course <b>{0}</b></p><br>""".format(doc.get('programs'))
     msg+="""<b>---------------------Student Details---------------------</b><br>"""
     msg+="""<b>Student Name:</b>  {0}<br>""".format(doc.get('student_name'))
     msg+="""<b>Student Batch:</b>  {0}<br>""".format(doc.get('student_batch_name') or '-')
-    msg+="""<b>Permanent Registration Number:</b>  {0}<br>""".format(doc.get('permanant_registration_number') or '-' )
-    msg+="""<b>Program:</b>  {0}<br>""".format(doc.get('programs'))
+    # msg+="""<b>Permanent Registration Number:</b>  {0}<br>""".format(doc.get('permanant_registration_number') or '-' )
+    msg+="""<b>Course:</b>  {0}<br>""".format(doc.get('programs'))
     msg+="""<b>Semester:</b>  {0}<br>""".format(doc.get('program'))
     msg+="""<b>Academic Year:</b>  {0}<br>""".format(doc.get('academic_year') or '-')
     msg+="""<b>Academic Term:</b> {0}<br>""".format(doc.get('academic_term') or '-')
@@ -454,7 +454,7 @@ def mentor_allocation_submit(doc):
     msg+="""<b>Mentor Name:</b>  {0}<br>""".format(doc.get('mentor_name') or '-')
     msg+="""<b>Alloaction From:</b>  {0}<br>""".format(doc.get('allocation_from') or '-')
     msg+="""<b>Alloaction To:</b>  {0}<br>""".format(doc.get('allocation_to') or '-')
-    msg+="""<b>Program:</b>  {0}<br>""".format(doc.get('program') or '-')
+    msg+="""<b>Course:</b>  {0}<br>""".format(doc.get('program') or '-')
     msg+="""<b>Semester:</b>  {0}<br>""".format(doc.get('semester') or '-')
     msg+="""<b>Student Table:</b>  <a href="{0}">Click here to see the students</a><br>""".format(get_url_to_form('Mentor Allocation',doc.get('name')))
 
@@ -467,7 +467,7 @@ def mentor_allocation_submit(doc):
         msg+="""<b>Mentor Name:</b>  {0}<br>""".format(doc.get('mentor_name') or '-')
         msg+="""<b>Alloaction From:</b>  {0}<br>""".format(doc.get('allocation_from') or '-')
         msg+="""<b>Alloaction To:</b>  {0}<br>""".format(doc.get('allocation_to') or '-')
-        msg+="""<b>Program:</b>  {0}<br>""".format(doc.get('program') or '-')
+        msg+="""<b>Course:</b>  {0}<br>""".format(doc.get('program') or '-')
         msg+="""<b>Semester:</b>  {0}<br>""".format(doc.get('semester') or '-')
         msg+="""<b>Student Application No:</b> {0}<br>""".format(doc.get('name'))
 
@@ -478,11 +478,11 @@ def exam_declaration_submit(doc):
     sub = "Exam has been declared for your program {0}".format(doc.exam_program)
     msg="""<p>--------Exam Details----------</p>"""
     msg+="""<p>Exam Declaration Id : {0}</p>""".format(doc.name)
-    msg+="""<p>Exam Program : {0}</p>""".format(doc.exam_program)
+    msg+="""<p>Exam Course : {0}</p>""".format(doc.exam_program)
     msg+="""<p>Application start date : {0}</p>""".format(doc.application_form_start_date)
     msg+="""<p>Application End Date : {0}</p>""".format(doc.application_form_end_date)
     msg+="""<p>Blocklist Date:{0}</p>""".format(doc.block_list_display_date)
-    msg+="""<p>Admit Card Issue Date : {0}</p>""".format(doc.admit_card_issue_date)
+    # msg+="""<p>Admit Card Issue Date : {0}</p>""".format(doc.admit_card_issue_date)
     msg+="""<p>Exam Semester : </p>"""
     msg += """</u></b></p><table class='table table-bordered'><tr>
         <th>Semester</th>"""
@@ -507,7 +507,7 @@ def post_exam_declaration_save(doc):
     exam_declrn = frappe.db.get_all('Exam Declaration', {'name':doc.exam_declaration})
     ed_doc = frappe.get_doc('Exam Declaration',exam_declrn[0]['name'])
     exam_program = ''
-    msg+="""<p>Exam Program : {0}</p>""".format(ed_doc.exam_program)
+    msg+="""<p>Exam Course : {0}</p>""".format(ed_doc.exam_program)
     msg+="""<p>Application start date : {0}</p>""".format(doc.start_date or "")
     msg+="""<p>Application End Date : {0}</p>""".format(doc.end_date or "")
     msg+="""<p>Exam Semester : </p>  """
@@ -589,7 +589,7 @@ def exam_declaration_for_instructor_submit(doc):
     msg="""<p>--------Exam Details----------</p>"""
     msg="""<p>The exam has been declared for {0}</p>""".format(doc.exam_program)
     msg+="""<p>Exam Declaration Id : {0}</p>""".format(doc.name)
-    msg+="""<p>Exam Program : {0}</p>""".format(doc.exam_program)
+    msg+="""<p>Exam Course : {0}</p>""".format(doc.exam_program)
 
     msg+="""<p>Exam start date : {0}</p>""".format(doc.exam_start_date)
     msg+="""<p>Exam End Date : {0}</p>""".format(doc.exam_end_date)
