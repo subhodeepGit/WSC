@@ -56,6 +56,7 @@ frappe.ui.form.on('Auto Reconciliation', {
 					};
 				}
 				frm.refresh();
+				frm.save()
 				frm.refresh_field("student_reference")
 			}
 		})
