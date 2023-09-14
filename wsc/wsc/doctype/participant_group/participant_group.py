@@ -12,7 +12,7 @@ class ParticipantGroup(Document):
 		dupicate_student_group_chk(self)
 		self.calculate_total_hours()
 		self.trainer_ck()
-		# self.restricted_table_change()
+		# restricted_table_change(self)
 		dulicate_trainer_chk(self)
 		class_scheduling_date_validation(self)
 		re_scheduling_chk(self)
@@ -36,18 +36,28 @@ class ParticipantGroup(Document):
 			break
 		if flag=="No":
 			frappe.throw("Please Provide Trainers Details")	
-	def restricted_table_change(self):
-		data=frappe.get_all("Participant Group",{"name":self.name})
-		if data:
-			doc_before_save = self.get_doc_before_save()
-			old_object=doc_before_save.get("classes")
-			present_object=self.get("classes")
 
-			for t in old_object:
-				for j in present_object:
-					if ((t.scheduled_date!=j.scheduled_date) or (t.room_name!=j.room_name) or (t.from_time!=j.from_time) or 
-	 					(t.to_time!=j.to_time)) and (t.re_scheduled==0):
-						frappe.throw("asdasd")
+
+# def restricted_table_change(self):
+# 	data=frappe.get_all("Participant Group",{"name":self.name})
+# 	if data:
+# 		doc_before_save = self.get_doc_before_save()
+# 		old_object=doc_before_save.get("classes")
+# 		present_object=self.get("classes")
+
+# 		for t in old_object:
+# 			for j in present_object:
+# 				print("\n\n\n")
+# 				print(t.name)
+# 				print(j.name)
+# 				print(t.scheduled_date)
+# 				if t.name==j.name:
+# 					if ((t.scheduled_date!=j.scheduled_date) or (t.room_name!=j.room_name) or (t.from_time!=j.from_time) or 
+# 						(t.to_time!=j.to_time)) and (t.re_scheduled==0):
+# 						frappe.throw("Please Check Rescheduled To Reschedule The Class")
+# 					if ((t.scheduled_date!=j.scheduled_date) or (t.room_name!=j.room_name) or (t.from_time!=j.from_time) or 
+# 						(t.to_time!=j.to_time)) and (t.re_scheduled==0):
+# 						frappe.throw("Class Schedule Is Already Cancelled")	
 
 
 def cancel_class(self):
@@ -151,11 +161,6 @@ def tot_class_schedule(self):
 								"instructor_name":l.instructor_name,
 							})
 						parent_doc.save()
-						# print("\n\n\n\n\n")
-						# print(parent_doc.name)
-						# print(d.name)
-						# print(frappe.get_all("ToT Class Table",{"name","%s"%(d.name)}))
-						# frappe.set_value("ToT Class Table",d.name, "tot_class_schedule",parent_doc.name)
 						d.tot_class_schedule=parent_doc.name
 				d.is_scheduled=1
 		if d.re_scheduled==1 and d.is_scheduled==1:
