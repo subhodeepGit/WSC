@@ -251,7 +251,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-13 15:34:02.673267",
+ "modified": "2023-09-14 18:09:36.428473",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Class Schedule",
@@ -271,6 +271,7 @@
    "write": 1
   }
  ],
+ "search_fields": "scheduled_date,room_number",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
