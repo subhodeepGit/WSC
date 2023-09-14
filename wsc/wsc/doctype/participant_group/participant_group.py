@@ -72,36 +72,16 @@ def cancel_class(self):
 				if t.is_canceled==0:
 					for j in old_object:
 						if t.name==j.name and t.is_canceled!=j.is_canceled:
-							re_scheduled_data=frappe.get_all('ToT Class Schedule',{
-													'participant_group_id':participant_group_id,
-													'module_id':module_name,
-													'scheduled_date':t.scheduled_date,
-													'from_time':t.from_time,
-													"to_time":t.to_time,
-													'room_name':t.room_name,
-													"is_canceled":1
-													},['name'])
-							for k in re_scheduled_data:	
-								doc=frappe.get_doc('ToT Class Schedule',k['name'])
-								doc.is_canceled=0
-								doc.save()
+							doc=frappe.get_doc('ToT Class Schedule',t.tot_class_schedule)
+							doc.is_canceled=0
+							doc.save()
 				elif t.is_canceled==1:
 
 					for j in old_object:
 						if t.name==j.name and t.is_canceled!=j.is_canceled:
-							re_scheduled_data=frappe.get_all('ToT Class Schedule',{
-													'participant_group_id':participant_group_id,
-													'module_id':module_name,
-													'scheduled_date':t.scheduled_date,
-													'from_time':t.from_time,
-													"to_time":t.to_time,
-													'room_name':t.room_name,
-													"is_canceled":0
-													},['name'])
-							for k in re_scheduled_data:	
-								doc=frappe.get_doc('ToT Class Schedule',k['name'])
-								doc.is_canceled=1
-								doc.save()				
+							doc=frappe.get_doc('ToT Class Schedule',t.tot_class_schedule)
+							doc.is_canceled=1
+							doc.save()				
 
 
 
@@ -164,8 +144,6 @@ def tot_class_schedule(self):
 						d.tot_class_schedule=parent_doc.name
 				d.is_scheduled=1
 		if d.re_scheduled==1 and d.is_scheduled==1:
-			participant_group_id=self.name
-			module_name=self.course
 			old_data=[]
 			doc_before_save = self.get_doc_before_save()
 			for t in doc_before_save.get('classes'):
@@ -181,25 +159,14 @@ def tot_class_schedule(self):
 			for t in old_data:
 				for j in self.get('instructor'):
 					if j.idx==1:
-						re_scheduled_data=frappe.get_all('ToT Class Schedule',{
-															'participant_group_id':participant_group_id,
-															'module_id':module_name,
-															'scheduled_date':t['scheduled_date'],
-															'from_time':t['from_time'],
-															"to_time":t['to_time'],
-															'room_number':t['room_name'],
-															'trainers':j.instructors,
-															"is_canceled":0
-															},['name'])
-						for k in re_scheduled_data:
-							doc=frappe.get_doc('ToT Class Schedule',k['name'])
-							doc.scheduled_date=d.scheduled_date
-							doc.from_time=d.from_time
-							doc.to_time=d.to_time
-							doc.duration=d.duration
-							doc.room_number=d.room_number
-							doc.re_scheduled=1
-							doc.save()
+						doc=frappe.get_doc('ToT Class Schedule',d.tot_class_schedule)
+						doc.scheduled_date=d.scheduled_date
+						doc.from_time=d.from_time
+						doc.to_time=d.to_time
+						doc.duration=d.duration
+						doc.room_number=d.room_number
+						doc.re_scheduled=1
+						doc.save()
 			d.re_scheduled=0
 
 def class_scheduling_date_validation(self):
