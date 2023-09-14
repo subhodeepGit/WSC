@@ -47,12 +47,16 @@
    "fetch_from": "hostel_id.hostel_short_name",
    "fieldname": "hostel_short_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Hostel Short Name",
    "reqd": 1
   },
   {
    "fieldname": "hostel_type",
    "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Hostel Type",
    "options": "Hostel Type",
    "reqd": 1
@@ -150,7 +154,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-12 16:26:04.493769",
+ "modified": "2023-09-13 16:33:34.896978",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Hostel Masters",
