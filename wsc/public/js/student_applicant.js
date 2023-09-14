@@ -151,6 +151,9 @@ frappe.ui.form.on('Student Applicant', {
         frm.set_df_property('image', 'reqd', 1);
     },
     refresh(frm){
+            frm.add_custom_button("Instruction", () => {
+                frappe.new_doc("Student Applicant Instruction")
+            });    
         
         // console.log(frm.doc.image);
         if(frappe.user.has_role(["Applicant"]) && !frappe.user.has_role(["System Manager"])){
