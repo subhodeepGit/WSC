@@ -71,7 +71,7 @@ frappe.ui.form.on('Fees', {
 	},
 
     refresh(frm){
-        if( frappe.user.has_role(["Student","Education Administrator","Fee Waiver","Transport User"]) && !frappe.user.has_role(["Administrator"])){
+        if(!frappe.user.has_role(["Administrator","Accounts Manager","Accounts User"])){
             frm.remove_custom_button(__("Return/Refund"));
         }
        else if(frm.doc.docstatus===1 && frm.doc.outstanding_amount==0) {
@@ -355,7 +355,7 @@ frappe.ui.form.on('Fees', {
 
 frappe.ui.form.on('Fees', {
     onload:function(frm) {
-		if(frappe.user.has_role(["Student","Fee Waiver","Transport User"]) && !frappe.user.has_role(["Administrator"])){
+		if (!frappe.user.has_role(["Administrator","Accounts Manager","Accounts User"])){
   			frm.remove_custom_button('Payment','Create');
             frm.remove_custom_button('General Ledger w/ Cancellation','View');
             frm.remove_custom_button('Payments','View');

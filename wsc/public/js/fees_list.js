@@ -14,5 +14,10 @@ frappe.listview_settings['Fees'] = {
         else if (flt(doc.outstanding_amount) < 0 && doc.docstatus==1) {
 			return [__("Return"), "grey", "outstanding_amount,<,0"];
 		}
-	}
+	},
+	refresh: function(listview) {
+		if(!frappe.user.has_role(["Administrator","Accounts Manager","Accounts User"])){
+        	$('.primary-action').hide();
+		}
+    }
 };

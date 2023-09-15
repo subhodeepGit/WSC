@@ -13,7 +13,16 @@ class ToTClassSchedule(Document):
 		elif self.is_canceled==1:
 			frappe.msgprint("Class:-%s is canceled"%(self.name))
 
-		data=frappe.get_all("Participant Group",{"name":self.name})
+
+		data=frappe.get_all("ToT Class Schedule",{"name":self.name})
+		if data:
+			doc_before_save = self.get_doc_before_save()
+			old_object=doc_before_save.is_canceled
+			if old_object==1:
+				frappe.throw("Class Is Already Cancelled.Please Create New Class.")
+
+
+
 		if self.is_canceled==0:
 			validate_overlap(self)
 
@@ -38,6 +47,7 @@ def validate_overlap(self):
 	# Validate overlapping course schedules.
 	if self.participant_group_id :
 		# validate_overlap_for(self, "Course Schedule", "student_group")
+		print("ok")
 		validate_overlap_for(self, "ToT Class Schedule", "participant_group_id")
 		
 
@@ -90,7 +100,6 @@ def get_overlap_for(doc, doctype, fieldname, value=None):
 		},
 		as_dict=True,
 	)
-
 	return existing[0] if existing else None
 
 @frappe.whitelist()
