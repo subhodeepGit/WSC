@@ -100,14 +100,14 @@
   {
    "fieldname": "select_course",
    "fieldtype": "Link",
-   "label": "Select Course",
+   "label": "Programs",
    "options": "Programs",
    "read_only": 1
   },
   {
    "fieldname": "select_module",
    "fieldtype": "Link",
-   "label": "Select Module",
+   "label": "Course",
    "options": "Course",
    "read_only": 1
   },
@@ -200,7 +200,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-15 15:43:23.478440",
+ "modified": "2023-09-15 15:57:40.349829",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Attendance Tool",

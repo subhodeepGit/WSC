@@ -12,9 +12,11 @@
   "participant_group",
   "section_break_iypjm",
   "select_course",
+  "module_name",
   "academic_year",
   "section_break_guaiv",
   "select_module",
+  "module_code",
   "academic_term",
   "section_break_o9ucy",
   "instructor_id",
@@ -69,7 +71,7 @@
   {
    "fieldname": "select_module",
    "fieldtype": "Link",
-   "label": "Select Module",
+   "label": "Course",
    "options": "Course",
    "read_only": 1
   },
@@ -94,7 +96,7 @@
   {
    "fieldname": "select_course",
    "fieldtype": "Link",
-   "label": "Select Course",
+   "label": "Programs",
    "options": "Programs",
    "read_only": 1
   },
@@ -144,11 +146,24 @@
   {
    "fieldname": "section_break_o9ucy",
    "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "select_module.course_name",
+   "fieldname": "module_name",
+   "fieldtype": "Data",
+   "label": "Module Name"
+  },
+  {
+   "fetch_from": "select_module.course_code",
+   "fieldname": "module_code",
+   "fieldtype": "Data",
+   "label": "Module Code",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-15 12:28:20.677824",
+ "modified": "2023-09-15 16:03:02.034372",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant Attendance",
