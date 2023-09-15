@@ -150,7 +150,19 @@ frappe.ui.form.on('Student Applicant', {
     after_save:function(frm){
         frm.set_df_property('image', 'reqd', 1);
     },
+    review_student: function(frm) {
+		frappe.model.open_mapped_doc({
+			method: "wsc.wsc.doctype.student_applicant.review_student",
+			frm: frm
+		})
+    },
     refresh(frm){
+        frm.add_custom_button(__("Preview"), function()  {
+            frm.trigger("review_student")
+        }).addClass("btn-primary");
+            frm.add_custom_button("Instruction", () => {
+                frappe.new_doc("Student Applicant Instruction")
+            });    
             frm.add_custom_button("Instruction", () => {
                 frappe.new_doc("Student Applicant Instruction")
             });    
