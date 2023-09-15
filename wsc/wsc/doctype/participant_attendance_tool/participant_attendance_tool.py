@@ -31,6 +31,7 @@ class ParticipantAttendanceTool(Document):
 			else:
 				new_doc.status = "Absent"
 			new_doc.save()		
+			new_doc.submit()
 			
 @frappe.whitelist()
 def get_participant_group(based_on):
@@ -61,7 +62,7 @@ def get_participants(participant_group_id = None):
 	if(participant_group_id == None):
 		pass
 	else:
-		participants = frappe.get_all('Participant Table', filters = [['parent', '=', participant_group_id]], fields = ['participant', 'participant_name'])
+		participants = frappe.get_all('Participant Table', filters = [['parent', '=', participant_group_id],['active', '=', 1]], fields = ['participant', 'participant_name'])
 		return participants
 
 # --------------------------------------------------------------------------------
