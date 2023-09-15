@@ -4,12 +4,14 @@
 import frappe 
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
+from frappe import msgprint, _
 
 class ToTParticipantAttendance(Document):
 	def validate(self):
 		attendance_count = frappe.db.sql(""" SELECT COUNT(*) FROM `tabToT Participant Attendance` WHERE participant_id = '%s' AND participant_group = '%s' AND date = '%s'"""%(self.participant_id, self.participant_group, self.date))
 		if(attendance_count[0][0] > 0):
-			frappe.throw("Record already exists")
+			frappe.throw(_('Attendance record already exists against the Participant {0}')
+                .format(frappe.bold(self.participant_id)), title=_('Duplicate Entry'))
 
 @frappe.whitelist()
 def get_details(participant_group_id):

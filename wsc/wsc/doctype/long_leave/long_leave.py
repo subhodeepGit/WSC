@@ -8,6 +8,7 @@ import pandas as pd
 class LongLeave(Document):
 	# @frappe.whitelist()
 	def validate(doc):
+		space(doc)
 		alpha(doc)
 		pincode_validation(doc)
 		# mobile_number_validation(doc) #v14 phone data type present
@@ -109,3 +110,11 @@ def alpha(doc):
 	if doc.state_student:
 		if not (doc.state_student).isalpha():
 			frappe.throw("Field <b>State</b> Accept Alphabet Only")
+
+def space(doc):
+	if doc.phone_no is not None:
+		if ' ' in doc.phone_no:
+			frappe.throw("Spaces are present in the <b>Adminstration Communication Phone Number</b>.")
+	if doc.communication_phone_no is not None:
+		if ' ' in doc.communication_phone_no:
+			frappe.throw("Spaces are present in the <b>Student Communication Phone Number</b>.")
