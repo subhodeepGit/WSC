@@ -27,7 +27,8 @@
   "column_break_7",
   "instructor_name",
   "participant_name",
-  "status"
+  "status",
+  "amended_from"
  ],
  "fields": [
   {
@@ -40,7 +41,6 @@
   {
    "fieldname": "participant_group",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Participant Group",
    "options": "Participant Group",
@@ -50,6 +50,7 @@
    "fetch_from": "class_schedule.scheduled_date",
    "fieldname": "date",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Date",
    "read_only": 1
   },
@@ -59,7 +60,8 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Status",
-   "options": "\nPresent\nAbsent"
+   "options": "\nPresent\nAbsent",
+   "reqd": 1
   },
   {
    "default": "Now",
@@ -159,11 +161,21 @@
    "fieldtype": "Data",
    "label": "Module Code",
    "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "ToT Participant Attendance",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-09-15 16:03:02.034372",
+ "modified": "2023-09-15 17:02:17.561887",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant Attendance",

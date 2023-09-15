@@ -31,6 +31,7 @@ class ParticipantAttendanceTool(Document):
 			else:
 				new_doc.status = "Absent"
 			new_doc.save()		
+			new_doc.submit()
 			
 @frappe.whitelist()
 def get_participant_group(based_on):
