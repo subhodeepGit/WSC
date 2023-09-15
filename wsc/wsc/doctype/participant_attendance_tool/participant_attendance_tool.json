@@ -8,6 +8,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_rw4oy",
   "participant_group",
   "section_break_n7rht",
   "select_course",
@@ -25,7 +26,6 @@
   "select_class_schedule",
   "column_break_zczb6",
   "dated",
-  "column_break_t7ayu",
   "term",
   "section_break_8",
   "participants",
@@ -116,16 +116,13 @@
   },
   {
    "fieldname": "section_break_n7rht",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "hide_border": 1
   },
   {
    "fieldname": "section_break_fjzdx",
    "fieldtype": "Section Break",
    "label": "Classes Scheduled"
-  },
-  {
-   "fieldname": "column_break_t7ayu",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "amended_from",
@@ -144,7 +141,7 @@
    "read_only": 1
   },
   {
-   "description": "You can also search using scheduled date",
+   "description": "You can refer to the above table to select the scheduled class",
    "fieldname": "select_class_schedule",
    "fieldtype": "Link",
    "label": "Select Class Schedule",
@@ -166,12 +163,17 @@
    "fieldname": "section_break_5wmjx",
    "fieldtype": "Section Break",
    "hide_border": 1
+  },
+  {
+   "fieldname": "section_break_rw4oy",
+   "fieldtype": "Section Break",
+   "hide_border": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-14 18:05:34.427278",
+ "modified": "2023-09-15 11:00:03.505948",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Attendance Tool",
