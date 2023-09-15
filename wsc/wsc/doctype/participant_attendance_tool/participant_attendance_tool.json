@@ -12,9 +12,11 @@
   "participant_group",
   "section_break_n7rht",
   "select_course",
+  "module_name",
   "academic_year",
   "column_break_4",
   "select_module",
+  "module_code",
   "academic_term",
   "section_break_9",
   "instructor_id",
@@ -70,15 +72,18 @@
   },
   {
    "fieldname": "section_break_8",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "hide_border": 1
   },
   {
+   "depends_on": "eval:doc.participant_group",
    "fieldname": "participants",
    "fieldtype": "Table",
    "label": "Participants",
    "options": "Participant Attendance Table"
   },
   {
+   "depends_on": "eval:doc.participant_group",
    "fieldname": "instructor_id",
    "fieldtype": "Link",
    "label": "Instructor ID",
@@ -108,7 +113,8 @@
   },
   {
    "fieldname": "section_break_9",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Instructor Details"
   },
   {
    "fieldname": "column_break_12",
@@ -117,7 +123,8 @@
   {
    "fieldname": "section_break_n7rht",
    "fieldtype": "Section Break",
-   "hide_border": 1
+   "hide_border": 1,
+   "label": "Group Details"
   },
   {
    "fieldname": "section_break_fjzdx",
@@ -142,6 +149,7 @@
    "read_only": 1
   },
   {
+   "depends_on": "eval:doc.participant_group",
    "description": "You can refer to the above table to select the scheduled class",
    "fieldname": "select_class_schedule",
    "fieldtype": "Link",
@@ -153,7 +161,8 @@
   },
   {
    "fieldname": "column_break_zczb6",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "hide_border": 1
   },
   {
    "fieldname": "classes",
@@ -165,18 +174,33 @@
   {
    "fieldname": "section_break_5wmjx",
    "fieldtype": "Section Break",
-   "hide_border": 1
+   "hide_border": 1,
+   "label": "Attendance Details"
   },
   {
    "fieldname": "section_break_rw4oy",
    "fieldtype": "Section Break",
    "hide_border": 1
+  },
+  {
+   "fetch_from": "select_module.course_name",
+   "fieldname": "module_name",
+   "fieldtype": "Data",
+   "label": "Module Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "select_module.course_code",
+   "fieldname": "module_code",
+   "fieldtype": "Data",
+   "label": "Module Code",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-15 12:32:40.920491",
+ "modified": "2023-09-15 15:43:23.478440",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Attendance Tool",
