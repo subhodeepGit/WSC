@@ -21,6 +21,7 @@ class ParticipantAttendanceTool(Document):
 			new_doc.instructor_name = self.instructor_name
 			new_doc.participant_id = d.participant_id
 			new_doc.participant_name = d.participant_name
+			new_doc.class_schedule = self.select_class_schedule
 			new_doc.date = self.dated
 			new_doc.time = self.term
 			

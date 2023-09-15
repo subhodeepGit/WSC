@@ -8,67 +8,84 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_43oxp",
   "participant_group",
-  "select_module",
-  "section_break_guaiv",
+  "section_break_iypjm",
   "select_course",
-  "section_break_v1qy4",
   "academic_year",
+  "section_break_guaiv",
+  "select_module",
+  "academic_term",
+  "section_break_o9ucy",
   "instructor_id",
   "participant_id",
+  "class_schedule",
   "date",
-  "status",
+  "time",
   "column_break_7",
-  "academic_term",
   "instructor_name",
   "participant_name",
-  "time"
+  "status"
  ],
  "fields": [
   {
    "fieldname": "participant_name",
    "fieldtype": "Data",
-   "label": "Participant Name"
+   "in_list_view": 1,
+   "label": "Participant Name",
+   "read_only": 1
   },
   {
    "fieldname": "participant_group",
    "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Participant Group",
-   "options": "Participant Group"
+   "options": "Participant Group",
+   "reqd": 1
   },
   {
+   "fetch_from": "class_schedule.scheduled_date",
    "fieldname": "date",
    "fieldtype": "Select",
-   "label": "Date"
+   "label": "Date",
+   "read_only": 1
   },
   {
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Status",
    "options": "\nPresent\nAbsent"
   },
   {
+   "default": "Now",
    "fieldname": "time",
    "fieldtype": "Time",
-   "label": "Time"
+   "label": "Time",
+   "read_only": 1
   },
   {
    "fieldname": "select_module",
    "fieldtype": "Link",
    "label": "Select Module",
-   "options": "Course"
+   "options": "Course",
+   "read_only": 1
   },
   {
    "fieldname": "academic_year",
    "fieldtype": "Link",
    "label": "Academic Year",
-   "options": "Academic Year"
+   "options": "Academic Year",
+   "read_only": 1
   },
   {
    "fieldname": "participant_id",
    "fieldtype": "Link",
    "label": "Participant ID",
-   "options": "ToT Participant"
+   "options": "ToT Participant",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_7",
@@ -78,37 +95,60 @@
    "fieldname": "select_course",
    "fieldtype": "Link",
    "label": "Select Course",
-   "options": "Programs"
+   "options": "Programs",
+   "read_only": 1
   },
   {
    "fieldname": "academic_term",
    "fieldtype": "Link",
    "label": "Academic term",
-   "options": "Academic Term"
+   "options": "Academic Term",
+   "read_only": 1
   },
   {
    "fieldname": "instructor_id",
    "fieldtype": "Link",
    "label": "Instructor ID",
-   "options": "Instructor"
+   "options": "Instructor",
+   "reqd": 1
   },
   {
    "fieldname": "instructor_name",
    "fieldtype": "Data",
-   "label": "Instructor Name"
+   "label": "Instructor Name",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_guaiv",
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "section_break_v1qy4",
+   "fieldname": "class_schedule",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Class Schedule",
+   "options": "ToT Class Schedule",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_43oxp",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "section_break_iypjm",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "section_break_o9ucy",
    "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-05 14:47:03.150452",
+ "modified": "2023-09-15 12:28:20.677824",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant Attendance",

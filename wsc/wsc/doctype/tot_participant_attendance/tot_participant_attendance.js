@@ -18,6 +18,15 @@ frappe.ui.form.on('ToT Participant Attendance', {
 				
 			};
 		});
+		frm.set_query('class_schedule', function(){
+			return{
+				filters:{
+					'participant_group_id' : frm.doc.participant_group,
+					'course_id':frm.doc.select_course,
+					'module_id':frm.doc.select_module,
+				}	
+			}
+		})
 	},
 
 	participant_group: function(frm){	
