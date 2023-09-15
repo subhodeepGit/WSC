@@ -7,8 +7,9 @@ from frappe.model.mapper import get_mapped_doc
 
 class ParticipantAttendanceTool(Document):
 	def validate(self):
-		
+		pass
 
+	def on_submit(self):
 		for d in self.get('participants'):
 			new_doc = frappe.new_doc("ToT Participant Attendance")
 			new_doc.participant_group = self.participant_group
@@ -44,11 +45,12 @@ def get_details(participant_group_id):
 	if(participant_group_id == ''):
 		return ['','','','', '', '']
 	else:
-		dates = frappe.db.sql(""" SELECT scheduled_date FROM `tabToT Class Schedule` WHERE participant_group_id = '%s'"""%(participant_group_id))
+		# dates = frappe.db.sql(""" SELECT scheduled_date FROM `tabToT Class Schedule` WHERE participant_group_id = '%s'"""%(participant_group_id))
 		group_details = frappe.get_all('Participant Group', filters = [['name', '=', participant_group_id]], fields = ['academic_year', 'academic_term', 'program', 'course'])
 		instructor_details = frappe.db.sql(""" SELECT instructors FROM `tabInstructor Table` where parent = '%s'"""%(participant_group_id))
-		return [group_details[0]['academic_year'], group_details[0]['academic_term'], group_details[0]['program'], group_details[0]['course'], instructor_details, dates]
-
+		# return [group_details[0]['academic_year'], group_details[0]['academic_term'], group_details[0]['program'], group_details[0]['course'], instructor_details, dates]
+		return [group_details[0]['academic_year'], group_details[0]['academic_term'], group_details[0]['program'], group_details[0]['course'], instructor_details]
+	
 @frappe.whitelist()
 def get_instructor_name(participant_group_id, instructor_id):
 	if(participant_group_id == '' or instructor_id == ''):
@@ -81,3 +83,10 @@ def instructor(doctype, txt, searchfield, start, page_len, filters):
 						"participant_group_id":participant_group_id
 					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
 	return instructor_details
+
+@frappe.whitelist()
+def get_classes(participant_group=None):
+	course_schedule=[]
+	if participant_group != None:
+		course_schedule=frappe.get_all("ToT Class Table",filters=[["parent","=",participant_group]],fields=['scheduled_date','room_name','room_number','from_time','to_time','duration','re_scheduled','is_scheduled','is_canceled','tot_class_schedule'])
+	return course_schedule

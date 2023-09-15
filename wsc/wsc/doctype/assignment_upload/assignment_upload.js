@@ -43,27 +43,10 @@ frappe.ui.form.on('Assignment Upload', {
 					frm.set_value("course", result.message[1])
 					frm.set_value("academic_year", result.message[2])
 					frm.set_value("academic_term", result.message[3])
-					// frm.set_df_property('participant_id', 'options', result.message[4])
-					// frm.set_df_property('instructor_id', 'options', result.message[5])
-					// frm.set_df_property('assignment_id', 'options', result.message[6]) // need help for this
 				}
 			}
 		})
 	},
-	// participant_id: function(frm){
-	// 	frappe.call({
-	// 		method: 'wsc.wsc.doctype.assignment_upload.assignment_upload.get_participant_name',
-	// 		args:{
-	// 			participant_group_id : frm.doc.participant_group,
-	// 			participant_id : frm.doc.participant_id
-	// 		},
-	// 		callback: function(result){
-	// 			if(result.message){
-	// 				frm.set_value("participant_name",result.message)
-	// 			}
-	// 		}
-	// 	})
-	// },
 	assignment_id: function(frm){
 		frappe.call({
 			method: 'wsc.wsc.doctype.assignment_upload.assignment_upload.get_assignment_details',
@@ -79,12 +62,6 @@ frappe.ui.form.on('Assignment Upload', {
 					frm.set_value("assignment_number", result.message[4])
 					frm.set_value("start_date", result.message[5])
 					frm.set_value("end_date", result.message[6])
-
-					const d = new Date();
-
-					// alert(d.getFullYear()+'-'+(d.getMonth()+1).padStart(2, 0)+'-'+(d.getDate()))
-					d = (String(d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2, '0')+'-'+String(d.getDate()).padStart(2, 0)))
-					t = '' + (String())
 				}
 			}
 		})
