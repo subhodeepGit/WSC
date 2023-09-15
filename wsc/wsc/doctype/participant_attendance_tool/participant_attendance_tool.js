@@ -17,7 +17,8 @@ frappe.ui.form.on('Participant Attendance Tool', {
 				filters:{
 					'participant_group_id' : frm.doc.participant_group,
 					'course_id':frm.doc.select_course,
-					'module_id':frm.doc.select_module
+					'module_id':frm.doc.select_module,
+					'attendance_taken':0
 				}	
 			}
 		})

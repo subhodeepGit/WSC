@@ -21,7 +21,7 @@ class ParticipantAttendanceTool(Document):
 			new_doc.instructor_name = self.instructor_name
 			new_doc.participant_id = d.participant_id
 			new_doc.participant_name = d.participant_name
-			new_doc.date = self.date
+			new_doc.date = self.dated
 			new_doc.time = self.term
 			
 			if(d.present == 1):
@@ -29,7 +29,7 @@ class ParticipantAttendanceTool(Document):
 			else:
 				new_doc.status = "Absent"
 
-			attendance_count = frappe.db.sql(""" SELECT COUNT(*) FROM `tabToT Participant Attendance` WHERE participant_id = '%s' AND participant_group = '%s' AND date = '%s'"""%(d.participant_id, self.participant_group, self.date))
+			attendance_count = frappe.db.sql(""" SELECT COUNT(*) FROM `tabToT Participant Attendance` WHERE participant_id = '%s' AND participant_group = '%s' AND date = '%s'"""%(d.participant_id, self.participant_group, self.dated))
 			if(attendance_count[0][0] > 0):
 				frappe.throw(f"Record already exists for {d.participant_id}")
 			else:
