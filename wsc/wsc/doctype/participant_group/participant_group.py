@@ -277,8 +277,8 @@ def get_module_name(module_id):
 
 @frappe.whitelist()
 def get_participants(enrollment_id = None):
-	if(enrollment_id == None):
-		pass
-	else:
+	if enrollment_id:
 		data = frappe.get_all("Reported Participant", filters = [['parent', '=', enrollment_id], ['is_reported', '=', 1]], fields =['participant', 'participant_name'])
 		return data
+	else:
+		frappe.throw("Please Select <b>Participant Enrollment ID</b> For Fetching Enrolled Participant")
