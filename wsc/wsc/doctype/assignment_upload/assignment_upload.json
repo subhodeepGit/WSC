@@ -18,11 +18,13 @@
   "section_break_zaymx",
   "participant_id",
   "assignment_id",
+  "start_date",
   "assessment_component",
   "weightage",
   "column_break_6",
   "participant_name",
   "assignment_number",
+  "end_date",
   "total_marks",
   "passing_marks",
   "section_break_12",
@@ -158,12 +160,24 @@
    "options": "Assignment Upload",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Datetime",
+   "hidden": 1,
+   "label": "Start Date"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Datetime",
+   "hidden": 1,
+   "label": "End Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-11 12:07:07.778644",
+ "modified": "2023-09-14 11:06:31.153000",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Upload",

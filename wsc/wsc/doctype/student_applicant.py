@@ -78,7 +78,7 @@ class StudentApplicant(Document):
         # if len(doc.program_priority ) == 0:
         #     set_web_form_fields(doc)
 
-        validate_counselling_structure(doc)
+        # validate_counselling_structure(doc)
         validate_academic_year(doc)
         duplicate_row_validation(doc, "guardians", ['guardian', 'guardian_name'])
         duplicate_row_validation(doc, "siblings", ['full_name', 'gender'])
@@ -364,8 +364,6 @@ def add_document_list_rows(doc):
     if doc.student_category and doc.academic_year:
         doc.set("document_list",[])
         for d in get_document_list_by_category(doc):
-            print("\n\n\n")
-            print(d)
             doc.append("document_list",{
                 "document_name":d.document_name,
                 "mandatory":d.mandatory,
@@ -466,7 +464,8 @@ def get_document_list_by_category(doc):
         group_by="document_name"
 
     doc_list  = frappe.db.sql("""SELECT DL.document_name, DL.mandatory, DL.is_available, DL.mandatory_during_counselling from `tabDocuments Template List` as DL 
-    inner join `tabDocuments Template` as D on DL.parent= D.name where D.student_category='{0}' and D.academic_year = '{1}' ORDER BY document_name ASC""".format(doc.student_category,doc.academic_year) ,as_dict=1)
+    inner join `tabDocuments Template` as D on DL.parent= D.name where D.student_category='{0}' and D.academic_year = '{1}' and D.department = '{2}' ORDER BY document_name ASC""".format(doc.student_category,doc.academic_year,doc.department) ,as_dict=1)
+    print("\n\n\nDOCUMENTS",doc_list)
     return doc_list if doc_list else []
 # def get_eligibility_list_by_category(doc):
 #     filters={"student_category":doc.student_category}
@@ -502,6 +501,8 @@ def enroll_student(source_name):
         program_enrollment.program = st_applicant.counselling_semester
         program_enrollment.academic_year=st_applicant.academic_year
         program_enrollment.academic_term=st_applicant.academic_term
+        program_enrollment.category=st_applicant.category
+        program_enrollment.seat_reservation_type=st_applicant.category
         program_enrollment.reference_doctype="Student Applicant"
         program_enrollment.reference_name=source_name
         program_enrollment.program_grade = st_applicant.program_grade
@@ -607,7 +608,6 @@ def validate_attachment(doc):
 def validate_student_admission(doc):
     for i in doc.program_priority:
         stud_admi_data = frappe.db.sql("""SELECT CA.student_admission, CS.name from `tabProgram Priority` as CA inner join `tabStudent Applicant`  as CS on CA.parent = CS.name where CS.academic_year = '{0}' and CS.docstatus=1""".format(doc.academic_year), as_dict=1)
-        print("\n\n\n\nHEUUE",stud_admi_data)
         if i.student_admission in [d.student_admission for d in stud_admi_data]:
             exist_data = ', '.join(map(str, [d.name for d in stud_admi_data]))
             frappe.throw("Student admission <b>'{0}'</b> already exists in Counselling Structure <b>'{1}'</b> ".format(i.student_admission, exist_data))
@@ -719,10 +719,10 @@ def check_int(pin_code):
     import re
     return re.match(r"[-+]?\d+(\.0*)?$", pin_code) is not None
 
-def validate_counselling_structure(doc):
-    if doc.counselling_structure:
-        if doc.counselling_structure not in [d['name'] for d in frappe.get_all("Counselling Structure",{"program_grade":doc.program_grade,"department":doc.department,"academic_year":doc.academic_year},['name'])]:
-            frappe.throw("Counselling structure <b>'{0}'</b> not belongs to program grade,academic year and department".format(doc.counselling_structure))
+# def validate_counselling_structure(doc):
+#     if doc.counselling_structure:
+#         if doc.counselling_structure not in [d['name'] for d in frappe.get_all("Counselling Structure",{"program_grade":doc.program_grade,"department":doc.department,"academic_year":doc.academic_year},['name'])]:
+#             frappe.throw("Counselling structure <b>'{0}'</b> not belongs to program grade,academic year and department".format(doc.counselling_structure))
             
         # program_list = [d.programs for d in frappe.get_all("Counselling Programs",{"parent":doc.counselling_structure},"programs")]
         # for p in doc.program_priority:

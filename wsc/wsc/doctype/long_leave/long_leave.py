@@ -8,6 +8,7 @@ import pandas as pd
 class LongLeave(Document):
 	# @frappe.whitelist()
 	def validate(doc):
+		alpha(doc)
 		pincode_validation(doc)
 		# mobile_number_validation(doc) #v14 phone data type present
 		Al_no=doc.allotment_number
@@ -18,7 +19,7 @@ class LongLeave(Document):
 			if len(long_leave_df)==0:
 				pass
 			else:
-				frappe.throw("Already Document ")
+				frappe.throw("Already Documented")
 		elif workflow_state=="Communication to the Student":
 			medium_of_communicatinon=doc.medium_of_communicatinon
 			if medium_of_communicatinon!="":
@@ -88,8 +89,23 @@ def mobile_number_validation(doc):
 def pincode_validation(doc):
 	if doc.pincode:
 		if not (doc.pincode).isdigit():
-			frappe.throw("Field Contact Number Accept Digits Only")
+			frappe.throw("Field Pincode Accept Digits Only")
 		if len(doc.pincode)>6:
-			frappe.throw("Field Contact Number must be 6 Digits")
+			frappe.throw("Field Pincode must be 6 Digits")
 		if len(doc.pincode)<6:
-			frappe.throw("Field Contact Number must be 6 Digits")
+			frappe.throw("Field Pincode must be 6 Digits")
+	if doc.pincode_student:
+		if not (doc.pincode_student).isdigit():
+			frappe.throw("Field Pincode Accept Digits Only")
+		if len(doc.pincode_student)>6:
+			frappe.throw("Field Pincode must be 6 Digits")
+		if len(doc.pincode_student)<6:
+			frappe.throw("Field Pincode must be 6 Digits")
+
+def alpha(doc):
+	if doc.state:
+		if not (doc.state).isalpha():
+			frappe.throw("Field <b>State</b> Accept Alphabet Only")
+	if doc.state_student:
+		if not (doc.state_student).isalpha():
+			frappe.throw("Field <b>State</b> Accept Alphabet Only")

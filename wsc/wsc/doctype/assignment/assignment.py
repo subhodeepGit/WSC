@@ -28,7 +28,7 @@ def get_instructor_name(participant_group_id, instructor_id):
 
 @frappe.whitelist()
 def get_criteria_details(course, assessment_criteria):
-	if(course == '' and assessment_criteria == ''):
+	if(course == '' or assessment_criteria == ''):
 		return ['','','']
 	else:
 		criteria_details = frappe.get_all('Credit distribution List', filters = [['parent', '=', course], ['assessment_criteria', '=', assessment_criteria]], fields = ['total_marks','passing_marks','weightage'])
