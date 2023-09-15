@@ -47,7 +47,6 @@ def validate_overlap(self):
 	# Validate overlapping course schedules.
 	if self.participant_group_id :
 		# validate_overlap_for(self, "Course Schedule", "student_group")
-		print("ok")
 		validate_overlap_for(self, "ToT Class Schedule", "participant_group_id")
 		
 

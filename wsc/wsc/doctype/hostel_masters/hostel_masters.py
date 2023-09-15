@@ -8,6 +8,7 @@ import datetime
 
 class HostelMasters(Document):
 	def validate(doc):
+		space(doc)
 		pincode(doc)
 		alpha(doc)
 		hostel_name=doc.hostel_name
@@ -55,3 +56,10 @@ def alpha(doc):
 		if not (doc.state).isalpha():
 			frappe.throw("Field <b>State</b> Accept Alphabet Only")
 
+def space(doc):
+	if doc.hostel_phone_number_1 is not None:
+		if ' ' in doc.hostel_phone_number_1:
+			frappe.throw("Spaces are present in the <b>Hostel Phone Number 1</b>.")
+	if doc.hostel_phone_number_2 is not None:
+		if ' ' in doc.hostel_phone_number_2:
+			frappe.throw("Spaces are present in the <b>Hostel Phone Number 2</b>.")

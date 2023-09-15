@@ -12,6 +12,14 @@ frappe.ui.form.on('Participant Group', {
 		});
 	},
 	refresh: function(frm) {
+		frm.set_query("course_type", function() {
+            return {
+                filters: {
+                    "is_short_term_course":"Yes"
+                }
+            };
+        }),
+
 		frm.set_query('academic_term', function(){
 			return{
 				filters:{
@@ -23,14 +31,23 @@ frappe.ui.form.on('Participant Group', {
 		frm.set_query('program', function(){
 			return{
 				filters:{
+					'program_grade' : frm.doc.course_type,
 					'is_tot': 1
+				}
+			}
+		}),
+		frm.set_query('tot_participant_selection', function(){
+			return{
+				filters:{
+					'docstatus': 1
 				}
 			}
 		}),
 		frm.set_query('participant_enrollment_id', function(){
 			return{
 				filters:{
-					'docstatus': 1
+					'docstatus': 1,
+					'tot_participant_selection_id':frm.doc.tot_participant_selection
 				}
 			}
 		}),
@@ -54,22 +71,48 @@ frappe.ui.form.on('Participant Group', {
 		// 	}
 		// })
 	},
-
-	participant_enrollment_id: function(frm){
-		frappe.call({
-			method : 'wsc.wsc.doctype.participant_group.participant_group.get_enrollment_details',
-			args: {
-				enrollment_id : frm.doc.participant_enrollment_id
-			},
-			callback: function(result){
-				frm.set_value("academic_year", result.message[0])
-				frm.set_value("academic_term", result.message[1])
-				frm.set_value("program", result.message[2])
-				frm.set_value("semester", result.message[3])
-				// frm.set_df_property('course', 'options', result.message[3])
-			}
-		})
-	},
+	// program: function(frm){
+	// 	if(frm.doc.program){
+	// 		frappe.call({
+	// 			method: 'wsc.wsc.doctype.tot_participant_selection.tot_participant_selection.get_semester',
+	// 			args:{
+	// 				course: frm.doc.program,
+	// 			},
+	// 			callback: function(r) {
+	// 				frm.set_value('semester', r.message);
+	// 			}		
+	// 		})
+	// 	}
+	// },
+	// academic_year: function(frm){
+	// 	if(frm.doc.academic_year){
+	// 		frappe.call({
+	// 			method: 'wsc.wsc.doctype.tot_participant_selection.tot_participant_selection.get_academic_term',
+	// 			args:{
+	// 				academic_year: frm.doc.academic_year,
+	// 			},
+	// 			callback: function(r) {
+	// 				frm.set_value('academic_term', r.message);
+	// 				// frm.refresh_field("student_list")
+	// 			}		
+	// 		})
+	// 	}
+	// },
+	// participant_enrollment_id: function(frm){
+	// 	frappe.call({
+	// 		method : 'wsc.wsc.doctype.participant_group.participant_group.get_enrollment_details',
+	// 		args: {
+	// 			enrollment_id : frm.doc.participant_enrollment_id
+	// 		},
+	// 		callback: function(result){
+	// 			// frm.set_value("academic_year", result.message[0])
+	// 			frm.set_value("academic_term", result.message[1])
+	// 			// frm.set_value("program", result.message[2])
+	// 			// frm.set_value("semester", result.message[3])
+	// 			// frm.set_df_property('course', 'options', result.message[3])
+	// 		}
+	// 	})
+	// },
 	course: function(frm){
 		frappe.call({
 			method: 'wsc.wsc.doctype.participant_group.participant_group.get_module_name',
@@ -109,7 +152,7 @@ frappe.ui.form.on('Participant Group', {
 				}
 				frm.refresh()
 				frm.refresh_field('participants')
-				// frm.save();
+				frm.save();
 			}
 		})
 	},
