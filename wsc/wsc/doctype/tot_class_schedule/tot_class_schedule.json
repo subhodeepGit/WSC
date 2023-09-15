@@ -39,8 +39,7 @@
   "trainers",
   "trainers_name",
   "section_break_stimh",
-  "instructor",
-  "attendance_taken"
+  "instructor"
  ],
  "fields": [
   {
@@ -248,17 +247,11 @@
    "fieldname": "instructor",
    "fieldtype": "Table",
    "options": "Instructor Table"
-  },
-  {
-   "default": "0",
-   "fieldname": "attendance_taken",
-   "fieldtype": "Check",
-   "label": "Attendance taken?"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-15 10:58:10.609990",
+ "modified": "2023-09-15 12:17:50.787757",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Class Schedule",
@@ -278,7 +271,6 @@
    "write": 1
   }
  ],
- "search_fields": "scheduled_date,course_name,module_name,room_number",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
