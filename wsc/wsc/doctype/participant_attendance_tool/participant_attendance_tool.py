@@ -61,7 +61,7 @@ def get_participants(participant_group_id = None):
 	if(participant_group_id == None):
 		pass
 	else:
-		participants = frappe.get_all('Participant Table', filters = [['parent', '=', participant_group_id]], fields = ['participant', 'participant_name'])
+		participants = frappe.get_all('Participant Table', filters = [['parent', '=', participant_group_id],['active', '=', 1]], fields = ['participant', 'participant_name'])
 		return participants
 
 # --------------------------------------------------------------------------------
