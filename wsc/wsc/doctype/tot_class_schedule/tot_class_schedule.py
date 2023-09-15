@@ -115,3 +115,28 @@ def get_instructor(doctype, txt, searchfield, start, page_len, filters):
 	lst=tuple(lst)
 	instructor=lst
 	return instructor
+
+@frappe.whitelist()
+def get_class_schedule_calendar(start, end, filters=None):
+	from frappe.desk.calendar import get_event_conditions
+
+	conditions = get_event_conditions("ToT Class Schedule", filters)
+
+	data = frappe.db.sql(
+		"""select name, participant_group_id,
+			timestamp(scheduled_date, from_time) as from_time,
+			timestamp(scheduled_date, to_time) as to_time,
+			CONCAT(course_name, ' (', course_id, ')') as course,
+			is_canceled, participant_group_name, 0 as 'allDay'
+		from `tabToT Class Schedule`
+		where ( scheduled_date between %(start)s and %(end)s )
+		AND is_canceled = 0
+		{conditions}""".format(
+			conditions=conditions
+		),
+		{"start": start, "end": end},
+		as_dict=True,
+		update={"allDay": 0},
+	)
+
+	return data
