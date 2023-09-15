@@ -18,6 +18,7 @@
   "select_module",
   "module_code",
   "academic_term",
+  "semester",
   "section_break_9",
   "instructor_id",
   "column_break_12",
@@ -195,12 +196,20 @@
    "fieldtype": "Data",
    "label": "Module Code",
    "read_only": 1
+  },
+  {
+   "fetch_from": "participant_group.semester",
+   "fieldname": "semester",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Semester",
+   "options": "Program"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-15 15:57:40.349829",
+ "modified": "2023-09-15 17:39:51.957231",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Attendance Tool",

@@ -18,6 +18,7 @@
   "select_module",
   "module_code",
   "academic_term",
+  "semester",
   "section_break_o9ucy",
   "instructor_id",
   "participant_id",
@@ -49,8 +50,9 @@
   {
    "fetch_from": "class_schedule.scheduled_date",
    "fieldname": "date",
-   "fieldtype": "Select",
+   "fieldtype": "Date",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Date",
    "read_only": 1
   },
@@ -171,12 +173,20 @@
    "options": "ToT Participant Attendance",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fetch_from": "participant_group.semester",
+   "fieldname": "semester",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Semester",
+   "options": "Program"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-15 17:20:48.109063",
+ "modified": "2023-09-15 17:38:48.243566",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant Attendance",
