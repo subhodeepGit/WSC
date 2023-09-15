@@ -8,57 +8,61 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "based_on",
-  "academic_year",
-  "select_course",
-  "column_break_4",
+  "section_break_rw4oy",
   "participant_group",
-  "academic_term",
+  "section_break_n7rht",
+  "select_course",
+  "academic_year",
+  "column_break_4",
   "select_module",
+  "academic_term",
   "section_break_9",
   "instructor_id",
-  "date",
   "column_break_12",
   "instructor_name",
+  "section_break_fjzdx",
+  "classes",
+  "section_break_5wmjx",
+  "select_class_schedule",
+  "column_break_zczb6",
+  "dated",
   "term",
   "section_break_8",
-  "get_participants",
-  "participants"
+  "participants",
+  "amended_from"
  ],
  "fields": [
   {
-   "fieldname": "based_on",
-   "fieldtype": "Select",
-   "label": "Based On",
-   "options": "\nParticipant Group"
-  },
-  {
    "fieldname": "participant_group",
    "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Participant Group",
-   "options": "Participant Group"
+   "options": "Participant Group",
+   "reqd": 1
   },
   {
    "fieldname": "academic_year",
    "fieldtype": "Link",
    "label": "Academic Year",
-   "options": "Academic Year"
+   "options": "Academic Year",
+   "read_only": 1
   },
   {
    "fieldname": "academic_term",
    "fieldtype": "Link",
    "label": "Academic Term",
-   "options": "Academic Term"
+   "options": "Academic Term",
+   "read_only": 1
   },
   {
-   "fieldname": "date",
-   "fieldtype": "Select",
-   "label": "Date"
-  },
-  {
+   "default": "Now",
    "fieldname": "term",
    "fieldtype": "Time",
-   "label": "Time"
+   "in_list_view": 1,
+   "label": "Time",
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fieldname": "column_break_4",
@@ -78,25 +82,29 @@
    "fieldname": "instructor_id",
    "fieldtype": "Link",
    "label": "Instructor ID",
-   "options": "Instructor"
+   "options": "Instructor",
+   "reqd": 1
   },
   {
    "fetch_from": "instructor_id.instructor_name",
    "fieldname": "instructor_name",
    "fieldtype": "Data",
-   "label": "Instructor Name"
+   "label": "Instructor Name",
+   "read_only": 1
   },
   {
    "fieldname": "select_course",
    "fieldtype": "Link",
    "label": "Select Course",
-   "options": "Programs"
+   "options": "Programs",
+   "read_only": 1
   },
   {
    "fieldname": "select_module",
    "fieldtype": "Link",
    "label": "Select Module",
-   "options": "Course"
+   "options": "Course",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_9",
@@ -107,14 +115,68 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "get_participants",
-   "fieldtype": "Button",
-   "label": "Get Participants"
+   "fieldname": "section_break_n7rht",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "section_break_fjzdx",
+   "fieldtype": "Section Break",
+   "label": "Classes Scheduled"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Participant Attendance Tool",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fetch_from": "select_class_schedule.scheduled_date",
+   "fieldname": "dated",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date",
+   "read_only": 1
+  },
+  {
+   "description": "You can refer to the above table to select the scheduled class",
+   "fieldname": "select_class_schedule",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Select Class Schedule",
+   "options": "ToT Class Schedule",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_zczb6",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "classes",
+   "fieldtype": "Table",
+   "label": "Classes",
+   "options": "ToT Class Table",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_5wmjx",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "section_break_rw4oy",
+   "fieldtype": "Section Break",
+   "hide_border": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-09-05 17:35:13.257652",
+ "modified": "2023-09-15 12:32:40.920491",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Attendance Tool",

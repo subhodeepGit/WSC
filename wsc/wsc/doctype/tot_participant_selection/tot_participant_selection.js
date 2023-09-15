@@ -2,7 +2,7 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('ToT Participant Selection', {
-		course_type: function(frm){
+	course_type: function(frm){
 		frm.set_query('course', function(){
 			return{
 				filters:{
