@@ -21,6 +21,13 @@ frappe.ui.form.on('Participant Attendance Tool', {
 					'attendance_taken':0
 				}	
 			}
+		});
+		frm.set_query('participant_group', function(){
+			return{
+				filters:{
+					'disabled' : 0,
+				}	
+			}
 		})
 	},
 	participant_group: function(frm){
