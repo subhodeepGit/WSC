@@ -4,6 +4,7 @@
 import frappe 
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
+from frappe import msgprint, _
 
 class ParticipantAttendanceTool(Document):
 	def validate(self):
@@ -29,12 +30,7 @@ class ParticipantAttendanceTool(Document):
 				new_doc.status = "Present"
 			else:
 				new_doc.status = "Absent"
-
-			attendance_count = frappe.db.sql(""" SELECT COUNT(*) FROM `tabToT Participant Attendance` WHERE participant_id = '%s' AND participant_group = '%s' AND date = '%s'"""%(d.participant_id, self.participant_group, self.dated))
-			if(attendance_count[0][0] > 0):
-				frappe.throw(f"Record already exists for {d.participant_id}")
-			else:
-				new_doc.save()		
+			new_doc.save()		
 			
 @frappe.whitelist()
 def get_participant_group(based_on):
