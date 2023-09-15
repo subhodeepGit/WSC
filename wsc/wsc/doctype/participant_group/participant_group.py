@@ -12,6 +12,7 @@ class ParticipantGroup(Document):
 		dupicate_student_group_chk(self)
 		self.calculate_total_hours()
 		self.trainer_ck()
+		# restricted_table_change(self)
 		dulicate_trainer_chk(self)
 		class_scheduling_date_validation(self)
 		re_scheduling_chk(self)
@@ -34,30 +35,34 @@ class ParticipantGroup(Document):
 			flag="Yes"
 			break
 		if flag=="No":
-			frappe.throw("Please Provide Trainers Details")		
+			frappe.throw("Please Provide Trainers Details")	
+
+
+# def restricted_table_change(self):
+# 	data=frappe.get_all("Participant Group",{"name":self.name})
+# 	if data:
+# 		doc_before_save = self.get_doc_before_save()
+# 		old_object=doc_before_save.get("classes")
+# 		present_object=self.get("classes")
+
+# 		for t in old_object:
+# 			for j in present_object:
+# 				print("\n\n\n")
+# 				print(t.name)
+# 				print(j.name)
+# 				print(t.scheduled_date)
+# 				if t.name==j.name:
+# 					if ((t.scheduled_date!=j.scheduled_date) or (t.room_name!=j.room_name) or (t.from_time!=j.from_time) or 
+# 						(t.to_time!=j.to_time)) and (t.re_scheduled==0):
+# 						frappe.throw("Please Check Rescheduled To Reschedule The Class")
+# 					if ((t.scheduled_date!=j.scheduled_date) or (t.room_name!=j.room_name) or (t.from_time!=j.from_time) or 
+# 						(t.to_time!=j.to_time)) and (t.re_scheduled==0):
+# 						frappe.throw("Class Schedule Is Already Cancelled")	
 
 
 def cancel_class(self):
 	participant_group_id=self.name
 	module_name=self.course
-	for t in self.get('classes'):
-		if t.is_canceled==1:
-			re_scheduled_data=frappe.get_all('ToT Class Schedule',{
-												'participant_group_id':participant_group_id,
-												'module_id':module_name,
-												'scheduled_date':t.scheduled_date,
-												'from_time':t.from_time,
-												"to_time":t.to_time,
-												'room_name':t.room_name,
-												"is_canceled":0
-												},['name'])
-			
-			for j in re_scheduled_data:
-				doc=frappe.get_doc('ToT Class Schedule',j['name'])
-				doc.is_canceled=1
-				doc.save()
-
-
 	data=frappe.get_all("Participant Group",{"name":self.name})
 	if data:
 		doc_before_save = self.get_doc_before_save()
@@ -67,18 +72,16 @@ def cancel_class(self):
 				if t.is_canceled==0:
 					for j in old_object:
 						if t.name==j.name and t.is_canceled!=j.is_canceled:
-							re_scheduled_data=frappe.get_all('ToT Class Schedule',{
-													'participant_group_id':participant_group_id,
-													'module_id':module_name,
-													'scheduled_date':t.scheduled_date,
-													'from_time':t.from_time,
-													"to_time":t.to_time,
-													'room_name':t.room_name,
-													},['name'])
-							for k in re_scheduled_data:	
-								doc=frappe.get_doc('ToT Class Schedule',k['name'])
-								doc.is_canceled=0
-								doc.save()
+							doc=frappe.get_doc('ToT Class Schedule',t.tot_class_schedule)
+							doc.is_canceled=0
+							doc.save()
+				elif t.is_canceled==1:
+
+					for j in old_object:
+						if t.name==j.name and t.is_canceled!=j.is_canceled:
+							doc=frappe.get_doc('ToT Class Schedule',t.tot_class_schedule)
+							doc.is_canceled=1
+							doc.save()				
 
 
 
@@ -138,10 +141,9 @@ def tot_class_schedule(self):
 								"instructor_name":l.instructor_name,
 							})
 						parent_doc.save()
+						d.tot_class_schedule=parent_doc.name
 				d.is_scheduled=1
 		if d.re_scheduled==1 and d.is_scheduled==1:
-			participant_group_id=self.name
-			module_name=self.course
 			old_data=[]
 			doc_before_save = self.get_doc_before_save()
 			for t in doc_before_save.get('classes'):
@@ -156,18 +158,8 @@ def tot_class_schedule(self):
 					old_data.append(a)
 			for t in old_data:
 				for j in self.get('instructor'):
-					re_scheduled_data=frappe.get_all('ToT Class Schedule',{
-														'participant_group_id':participant_group_id,
-														'module_id':module_name,
-														'scheduled_date':t['scheduled_date'],
-														'from_time':t['from_time'],
-														"to_time":t['to_time'],
-														'room_number':t['room_name'],
-														'trainers':j.instructors,
-														"is_canceled":0
-														},['name'])
-					for k in re_scheduled_data:
-						doc=frappe.get_doc('ToT Class Schedule',k['name'])
+					if j.idx==1:
+						doc=frappe.get_doc('ToT Class Schedule',d.tot_class_schedule)
 						doc.scheduled_date=d.scheduled_date
 						doc.from_time=d.from_time
 						doc.to_time=d.to_time
@@ -285,8 +277,8 @@ def get_module_name(module_id):
 
 @frappe.whitelist()
 def get_participants(enrollment_id = None):
-	if(enrollment_id == None):
-		pass
-	else:
+	if enrollment_id:
 		data = frappe.get_all("Reported Participant", filters = [['parent', '=', enrollment_id], ['is_reported', '=', 1]], fields =['participant', 'participant_name'])
 		return data
+	else:
+		frappe.throw("Please Select <b>Participant Enrollment ID</b> For Fetching Enrolled Participant")

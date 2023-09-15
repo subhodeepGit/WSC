@@ -4,12 +4,34 @@
 import frappe 
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
+from frappe import msgprint, _
+from frappe.utils import comma_and, get_link_to_form,get_link_to_form, getdate, formatdate
 
 class ToTParticipantAttendance(Document):
 	def validate(self):
-		attendance_count = frappe.db.sql(""" SELECT COUNT(*) FROM `tabToT Participant Attendance` WHERE participant_id = '%s' AND participant_group = '%s' AND date = '%s'"""%(self.participant_id, self.participant_group, self.date))
-		if(attendance_count[0][0] > 0):
-			frappe.throw("Record already exists")
+		# attendance_count = frappe.db.sql(""" SELECT COUNT(*) FROM `tabToT Participant Attendance` WHERE participant_id = '%s' AND participant_group = '%s' AND date = '%s'"""%(self.participant_id, self.participant_group, self.date))
+		# if(attendance_count[0][0] > 0):
+		# 	frappe.throw(_('Attendance record already exists against the Participant {0}')
+        #         .format(frappe.bold(self.participant_id)), title=_('Duplicate Entry'))
+		self.validate_duplication()
+			
+	def validate_duplication(self):
+		"""Check if the Attendance Record is Unique"""
+		attendance_record = None
+		
+		attendance_record = frappe.db.exists('ToT Participant Attendance', {
+			'participant_group': self.participant_group,
+			'participant_id': self.participant_id,
+			'class_schedule': self.class_schedule,
+			'date': self.date,
+			'docstatus': ('!=', 2),
+			'name': ('!=', self.name)
+		})
+
+		if attendance_record:
+			record = get_link_to_form('ToT Participant Attendance', attendance_record)
+			frappe.throw(_('Attendance record {0} already exists against the Participant {1}')
+				.format(record, frappe.bold(self.participant_id)), title=_('Duplicate Entry'))
 
 @frappe.whitelist()
 def get_details(participant_group_id):
