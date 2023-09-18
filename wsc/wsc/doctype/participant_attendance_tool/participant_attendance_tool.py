@@ -96,6 +96,15 @@ def instructor(doctype, txt, searchfield, start, page_len, filters):
 @frappe.whitelist()
 def get_classes(participant_group=None):
 	course_schedule=[]
+	new_course_schedule = []
 	if participant_group != None:
-		course_schedule=frappe.get_all("ToT Class Table",filters=[["parent","=",participant_group]],fields=['scheduled_date','room_name','room_number','from_time','to_time','duration','re_scheduled','is_scheduled','is_canceled','tot_class_schedule'])
+		course_schedule=frappe.get_all("ToT Class Table",filters=[["parent","=",participant_group]],fields=['scheduled_date','room_name','room_number','from_time','to_time','duration','re_scheduled','is_scheduled','is_canceled','tot_class_schedule'], order_by='scheduled_date asc' )
+		for i in course_schedule:
+			doc = frappe.get_doc('ToT Class Schedule', i['tot_class_schedule'])
+			if doc.attendance_taken == 0:
+				new_course_schedule.append(i)
+
+			course_schedule = new_course_schedule
+
+
 	return course_schedule
