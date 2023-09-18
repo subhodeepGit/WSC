@@ -6,6 +6,7 @@ from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 from datetime import datetime, timedelta,time
 from wsc.wsc.utils import get_courses_by_semester
+from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
 
 class ParticipantGroup(Document):
 	def validate(self):
@@ -19,8 +20,11 @@ class ParticipantGroup(Document):
 		class_scheduling_ovelaping_chk(self)
 		cancel_class(self)
 		tot_class_schedule(self)
-		
+		if not self.get("__islocal"):
+			create_user_permission(self)
 
+	def after_insert(doc):
+		create_user_permission(doc)
 
 	def calculate_total_hours(self):
 		for d in self.get("classes"):
@@ -282,3 +286,13 @@ def get_participants(enrollment_id = None):
 		return data
 	else:
 		frappe.throw("Please Select <b>Participant Enrollment ID</b> For Fetching Enrolled Participant")
+
+def create_user_permission(doc):
+    for d in doc.get("instructor"):
+        for instr in frappe.get_all("Instructor",{"name":d.instructors},['employee','department']):
+            for emp in frappe.get_all("Employee",{"name":instr.employee},['user_id','department']):
+                if emp.user_id:
+                    add_user_permission(doc.doctype,doc.name,emp.user_id,doc)		
+
+def remove_permissions(doc):
+    delete_ref_doctype_permissions(["Student Group"],doc)					
