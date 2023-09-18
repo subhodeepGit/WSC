@@ -8,6 +8,8 @@ from frappe import _
 
 class ToTClassSchedule(Document):
 	def validate(self):
+		if self.attendance_taken==1:
+			frappe.throw("<b>Attendance is already taken! Classes cannot be rescheduled or cancelled.</b>")
 		if self.re_scheduled==1 and self.is_canceled==0:
 			frappe.msgprint("Class:-%s is Re Scheduled "%(self.name))
 		elif self.is_canceled==1:

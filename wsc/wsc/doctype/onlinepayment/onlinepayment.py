@@ -9,17 +9,15 @@ import hashlib
 import json
 from frappe import _
 import secrets
-import pymysql
-from urllib.parse import urlparse
 import os
-import sys
 import logging
-from .database_operations import fetch_config_data
 
-from frappe import db
 
 class OnlinePayment(Document):
     def validate(self):
+        if self.paying_amount<10:
+            frappe.throw("Paying amount can't be less the <b>Rs.10</b>")
+
         if self.paying_amount>self.total_outstanding_amout:
             frappe.throw("Paying Amount can't be more then Total Outstanding Amount")
         if self.total_outstanding_amout==0:
