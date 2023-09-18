@@ -20,6 +20,9 @@ from frappe import db
 
 class OnlinePayment(Document):
     def validate(self):
+        if self.paying_amount<10:
+            frappe.throw("Paying amount can't be less the <b>Rs.10</b>")
+            
         if self.paying_amount>self.total_outstanding_amout:
             frappe.throw("Paying Amount can't be more then Total Outstanding Amount")
         if self.total_outstanding_amout==0:
