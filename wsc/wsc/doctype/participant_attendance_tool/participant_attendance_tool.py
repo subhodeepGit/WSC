@@ -33,15 +33,35 @@ class ParticipantAttendanceTool(Document):
 				new_doc.status = "Absent"
 			new_doc.save()		
 			new_doc.submit()
-			cs_record = None
 
-			cs_record = frappe.db.exists('ToT Class Schedule', {
-				'name': self.select_class_schedule,
-			})
-			if cs_record:
-				doc = frappe.get_doc('ToT Class Schedule', self.select_class_schedule)
-				doc.attendance_taken = 1
-				doc.save()
+		cs_record = None
+
+		cs_record = frappe.db.exists('ToT Class Schedule', {
+			'name': self.select_class_schedule,
+		})
+		if cs_record:
+			doc = frappe.get_doc('ToT Class Schedule', self.select_class_schedule)
+			doc.attendance_taken = 1
+			doc.save()
+
+
+	def on_cancel(self):
+		atte_rec = frappe.get_all("ToT Participant Attendance",filters=[["class_schedule","=",self.select_class_schedule],["docstatus","=",1]])
+		for t in atte_rec:
+			doc=frappe.get_doc("ToT Participant Attendance",t['name'])
+			doc.cancel()
+
+		cs_record = None
+
+		cs_record = frappe.db.exists('ToT Class Schedule', {
+			'name': self.select_class_schedule,
+		})
+		if cs_record:
+			doc = frappe.get_doc('ToT Class Schedule', self.select_class_schedule)
+			doc.attendance_taken = 0
+			doc.save(ignore_permissions=True)
+
+
 
 
 @frappe.whitelist()
