@@ -1,0 +1,459 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-09-15 10:59:40.501464",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "first_name",
+  "middle_name",
+  "last_name",
+  "caste_category",
+  "column_break_o4ogi",
+  "application_date",
+  "academic_year",
+  "academic_term",
+  "student_category",
+  "course_prefernce_details_section",
+  "department",
+  "program_grades",
+  "course_preferences",
+  "personal_details_section",
+  "date_of_birth",
+  "gender",
+  "religion",
+  "blood_group",
+  "column_break_dbksj",
+  "student_email_address",
+  "student_mobile_number",
+  "nationality",
+  "physically_disabled",
+  "award_winner",
+  "section_break_0bno9",
+  "physically_disabled_table",
+  "awards_winner_list",
+  "home_address_section",
+  "states",
+  "districts",
+  "blocks",
+  "post_office",
+  "column_break_owbal",
+  "ciity",
+  "address_line_1",
+  "address_line_2",
+  "pincode",
+  "education_details_section",
+  "education_qualifications_details",
+  "documents_required_section",
+  "document_list",
+  "guardian_details_section",
+  "fathers_name",
+  "fathers_contact_number",
+  "fathers_qualification",
+  "fathers_occupation",
+  "fathers_annual_income",
+  "column_break_eflqr",
+  "mothers_name",
+  "mothers_contact_number",
+  "mothers_qualification",
+  "mothers_occupation",
+  "mothers_annual_income",
+  "column_break_0spzk",
+  "local_guardians_name",
+  "local_guardian_contact_no",
+  "relation_with_student",
+  "local_guardian_occupation",
+  "local_guardian_address"
+ ],
+ "fields": [
+  {
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "label": "First Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "middle_name",
+   "fieldtype": "Data",
+   "label": "Middle Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "label": "Last Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "caste_category",
+   "fieldtype": "Link",
+   "label": "Caste Category",
+   "options": "Student Category",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_o4ogi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "application_date",
+   "fieldtype": "Date",
+   "label": "Application Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year",
+   "read_only": 1
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term",
+   "read_only": 1
+  },
+  {
+   "fieldname": "student_category",
+   "fieldtype": "Link",
+   "label": "Student Category",
+   "options": "Category",
+   "read_only": 1
+  },
+  {
+   "fieldname": "course_prefernce_details_section",
+   "fieldtype": "Section Break",
+   "label": "Course Prefernce Details"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department",
+   "read_only": 1
+  },
+  {
+   "fieldname": "program_grades",
+   "fieldtype": "Link",
+   "label": "Program Grades",
+   "options": "Program Grades",
+   "read_only": 1
+  },
+  {
+   "fieldname": "course_preferences",
+   "fieldtype": "Table",
+   "label": "Course Preferences",
+   "options": "Program Priority",
+   "read_only": 1
+  },
+  {
+   "fieldname": "personal_details_section",
+   "fieldtype": "Section Break",
+   "label": "Personal Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "Date of Birth",
+   "read_only": 1
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Link",
+   "label": "Gender",
+   "options": "Gender",
+   "read_only": 1
+  },
+  {
+   "fieldname": "religion",
+   "fieldtype": "Link",
+   "label": "Religion",
+   "options": "Religion",
+   "read_only": 1
+  },
+  {
+   "fieldname": "blood_group",
+   "fieldtype": "Select",
+   "label": "Blood Group",
+   "options": "\nA+\nA-\nB+\nB-\nO+\nO-\nAB+\nAB-\nOther",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_dbksj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "student_email_address",
+   "fieldtype": "Data",
+   "label": "Student Email Address",
+   "options": "Email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "student_mobile_number",
+   "fieldtype": "Int",
+   "label": "Student Mobile Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "nationality",
+   "fieldtype": "Data",
+   "label": "Nationality",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "physically_disabled",
+   "fieldtype": "Check",
+   "label": "Physically Disabled",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "award_winner",
+   "fieldtype": "Check",
+   "label": "Award Winner",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_0bno9",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "physically_disabled_table",
+   "fieldtype": "Table",
+   "label": "Physically Disabled Table",
+   "options": "Physically Disabled",
+   "read_only": 1
+  },
+  {
+   "fieldname": "awards_winner_list",
+   "fieldtype": "Table",
+   "label": "Awards Winner List",
+   "options": "Awards List",
+   "read_only": 1
+  },
+  {
+   "fieldname": "home_address_section",
+   "fieldtype": "Section Break",
+   "label": "Home Address"
+  },
+  {
+   "fieldname": "states",
+   "fieldtype": "Link",
+   "label": "States",
+   "options": "State",
+   "read_only": 1
+  },
+  {
+   "fieldname": "districts",
+   "fieldtype": "Link",
+   "label": "Districts",
+   "options": "Districts",
+   "read_only": 1
+  },
+  {
+   "fieldname": "blocks",
+   "fieldtype": "Link",
+   "label": "Blocks",
+   "options": "Blocks",
+   "read_only": 1
+  },
+  {
+   "fieldname": "post_office",
+   "fieldtype": "Data",
+   "label": "Post Office",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_owbal",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ciity",
+   "fieldtype": "Data",
+   "label": "City/Village/Town",
+   "read_only": 1
+  },
+  {
+   "fieldname": "address_line_1",
+   "fieldtype": "Data",
+   "label": "Address Line 1",
+   "read_only": 1
+  },
+  {
+   "fieldname": "address_line_2",
+   "fieldtype": "Data",
+   "label": "Address Line 2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "pincode",
+   "fieldtype": "Data",
+   "label": "Pincode",
+   "read_only": 1
+  },
+  {
+   "fieldname": "education_details_section",
+   "fieldtype": "Section Break",
+   "label": "Education Details"
+  },
+  {
+   "fieldname": "education_qualifications_details",
+   "fieldtype": "Table",
+   "label": "Education Qualifications Details",
+   "options": "Education Qualifications Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "documents_required_section",
+   "fieldtype": "Section Break",
+   "label": "Documents Required"
+  },
+  {
+   "fieldname": "document_list",
+   "fieldtype": "Table",
+   "label": "Document List",
+   "options": "Document List",
+   "read_only": 1
+  },
+  {
+   "fieldname": "guardian_details_section",
+   "fieldtype": "Section Break",
+   "label": "Guardian Details"
+  },
+  {
+   "fieldname": "fathers_name",
+   "fieldtype": "Data",
+   "label": "Father's Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fathers_contact_number",
+   "fieldtype": "Int",
+   "label": "Fathers Contact Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fathers_qualification",
+   "fieldtype": "Select",
+   "label": "Father's Qualification",
+   "options": "\nIlliterate\nBelow 10th\nMatriculation\n12th Pass\nGraduate\nPost Graduate",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fathers_occupation",
+   "fieldtype": "Select",
+   "label": "Father's Occupation",
+   "options": "\nFarmer\nDaily Wager\nBusiness\nJob(Govt/Pvt)\nOthers",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fathers_annual_income",
+   "fieldtype": "Select",
+   "label": "Father's Annual Income",
+   "options": "\n0-50,000\n50,001-1,00,000\n1,00,001-2,50,000\nMore than 2,50,000",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_eflqr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mothers_name",
+   "fieldtype": "Data",
+   "label": "Mother's Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "mothers_contact_number",
+   "fieldtype": "Int",
+   "label": "Mothers Contact Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "mothers_qualification",
+   "fieldtype": "Select",
+   "label": "Mother's Qualification",
+   "options": "\nIlliterate\nBelow 10th\nMatriculation\n12th Pass\nGraduate\nPost Graduate",
+   "read_only": 1
+  },
+  {
+   "fieldname": "mothers_occupation",
+   "fieldtype": "Select",
+   "label": "Mother's Occupation",
+   "options": "\nFarmer\nDaily Wager\nBusiness\nHousewife\nJob(Govt/Pvt)\nOthers",
+   "read_only": 1
+  },
+  {
+   "fieldname": "mothers_annual_income",
+   "fieldtype": "Select",
+   "label": "Mother's Annual Income",
+   "options": "\n0-50,000\n50,001-1,00,000\n1,00,001-2,50,000\nMore than 2,50,000",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_0spzk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "local_guardians_name",
+   "fieldtype": "Data",
+   "label": "Local Guardian's Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "local_guardian_contact_no",
+   "fieldtype": "Int",
+   "label": "Local Guardian Contact No.",
+   "read_only": 1
+  },
+  {
+   "fieldname": "relation_with_student",
+   "fieldtype": "Data",
+   "label": "Relation with Student",
+   "read_only": 1
+  },
+  {
+   "fieldname": "local_guardian_occupation",
+   "fieldtype": "Select",
+   "label": "Local Guardian Occupation",
+   "options": "\nFarmer\nDaily Wager\nBusiness\nHousewife\nJob(Govt/Pvt)\nOthers",
+   "read_only": 1
+  },
+  {
+   "fieldname": "local_guardian_address",
+   "fieldtype": "Data",
+   "label": "Local Guardian Address",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2023-09-15 21:59:26.086679",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Preview",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

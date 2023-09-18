@@ -18,6 +18,11 @@ frappe.ui.form.on('Student Applicant', {
                 'label': 'Kindly Print the Application Form For the Future Admission Process',
                 }
         });
+      
+        
+    },
+    go_to_top:function(frm){
+        window.scrollTo(0, 0);
     },
     onload: function(frm) {
         //For Counselling Based Program Priority
@@ -150,7 +155,25 @@ frappe.ui.form.on('Student Applicant', {
     after_save:function(frm){
         frm.set_df_property('image', 'reqd', 1);
     },
+    review_student: function(frm) {
+		frappe.model.open_mapped_doc({
+			method: "wsc.wsc.doctype.student_applicant.review_student",
+			frm: frm
+		})
+    },
     refresh(frm){
+        frm.fields_dict.go_to_top.$input.addClass(' btn btn-primary');
+        if(!frm.is_new()){
+            frm.add_custom_button(__("Preview"), function()  {
+                frm.trigger("review_student")
+            }).addClass("btn-primary");
+        }
+        if (frm.doc.docstatus==1){
+            frm.remove_custom_button("Preview")
+        }
+            frm.add_custom_button("Instruction", () => {
+                frappe.new_doc("Student Applicant Instruction")
+            });    
             frm.add_custom_button("Instruction", () => {
                 frappe.new_doc("Student Applicant Instruction")
             });    
