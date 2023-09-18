@@ -4,9 +4,20 @@
 import frappe 
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
+# from frappe.utils import now
+import datetime
 
 class AssignmentUpload(Document):
-	pass
+	def validate(self): 
+		formatted_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") 
+		start_date = self.start_date
+		end_date = self.end_date
+		if formatted_datetime < start_date or formatted_datetime > end_date:
+			frappe.throw('Cannot submit assignment before or after assigned dates')
+		else:
+			record_count = frappe.db.sql(""" SELECT COUNT(*) FROM `tabAssignment Upload` where participant_group = '%s' AND participant_id = '%s' AND assignment_id = '%s' AND docstatus = '1'"""%(self.participant_group, self.participant_id, self.assignment_id))
+			if(record_count[0][0] > 0):
+				frappe.throw('Record already exists')
 
 @frappe.whitelist()
 def get_details(participant_group_id):
@@ -38,10 +49,10 @@ def get_participant_name(participant_group_id, participant_id):
 @frappe.whitelist()
 def get_assignment_details(assignment_name):
 	if(assignment_name == ''):
-		return ['','','','','']
+		return ['','','','','', '', '']
 	else:
-		criteria_details = frappe.get_all('Assignment', filters = [['name', '=', assignment_name]], fields = ['assessment_criteria', 'total_marks','passing_marks','weightage', 'assignment_name'])
-		return [criteria_details[0]['assessment_criteria'] ,criteria_details[0]['total_marks'], criteria_details[0]['passing_marks'], criteria_details[0]['weightage'], criteria_details[0]['assignment_name']]
+		criteria_details = frappe.get_all('Assignment', filters = [['name', '=', assignment_name]], fields = ['assessment_criteria', 'total_marks','passing_marks','weightage', 'assignment_name', 'start_date', 'end_date'])
+		return [criteria_details[0]['assessment_criteria'] ,criteria_details[0]['total_marks'], criteria_details[0]['passing_marks'], criteria_details[0]['weightage'], criteria_details[0]['assignment_name'], criteria_details[0]['start_date'], criteria_details[0]['end_date']]
 
 
 # ---------------------------------------------------------------------------------------------

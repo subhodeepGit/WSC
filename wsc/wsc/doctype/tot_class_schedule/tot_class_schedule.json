@@ -37,7 +37,9 @@
   "to_time",
   "section_break_uvolg",
   "trainers",
-  "trainers_name"
+  "trainers_name",
+  "section_break_stimh",
+  "instructor"
  ],
  "fields": [
   {
@@ -235,11 +237,21 @@
    "fieldname": "is_canceled",
    "fieldtype": "Check",
    "label": "Is canceled"
+  },
+  {
+   "fieldname": "section_break_stimh",
+   "fieldtype": "Section Break",
+   "label": "List of Trainers"
+  },
+  {
+   "fieldname": "instructor",
+   "fieldtype": "Table",
+   "options": "Instructor Table"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-12 11:05:00.634948",
+ "modified": "2023-09-15 12:17:50.787757",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Class Schedule",

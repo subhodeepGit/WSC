@@ -590,7 +590,6 @@ def get_data_stud_app(student_applicant):
 
 
 def update_reserved_seats(doc,on_submit=0):
-    print("\n\n\n\nHELLOW WORK")
     if doc.reference_doctype and doc.reference_name and doc.reference_doctype in ["Student Applicant","Branch Sliding Application"]:
 
         # for applicant
@@ -598,7 +597,6 @@ def update_reserved_seats(doc,on_submit=0):
             
             for ad in frappe.get_all("Program Priority",{"parent":doc.reference_name,"programs":doc.programs,"semester":doc.program},["student_admission"]):
                 admission=frappe.get_doc("Student Admission",ad.student_admission)
-                print("\n\n\nWOWO")
 
                 # check reservation type exists
                 # if len(frappe.get_all("Reservations List",{"seat_reservation_type":doc.seat_reservation_type,"parent":admission.name}))==0:
@@ -617,7 +615,6 @@ def update_reserved_seats(doc,on_submit=0):
 
                 # update seat 
             for d in admission.get("reservations_distribution"):
-                print("\n\n\nWOWO MOMO")
                 if doc.seat_reservation_type==d.seat_reservation_type:
                     if on_submit:
                         if int(d.seat_balance) > 0:

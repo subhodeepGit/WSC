@@ -486,7 +486,7 @@
    "sort_options": 0,
    "translatable": 0,
    "unique": 0,
-   "width": null
+   "width": "10"
   },
   {
    "_assign": null,
@@ -1776,12 +1776,12 @@
    "_user_tags": null,
    "allow_in_quick_entry": 0,
    "allow_on_submit": 0,
-   "bold": 0,
+   "bold": 1,
    "collapsible": 0,
    "collapsible_depends_on": null,
    "columns": 0,
    "creation": "2023-09-12 10:49:59.755172",
-   "default": null,
+   "default": "0",
    "depends_on": null,
    "description": null,
    "docstatus": 0,
@@ -1799,7 +1799,7 @@
    "ignore_xss_filter": 0,
    "in_global_search": 0,
    "in_list_view": 1,
-   "in_preview": 0,
+   "in_preview": 1,
    "in_standard_filter": 0,
    "insert_after": "section_break_zu2xh",
    "is_system_generated": 0,
@@ -1828,7 +1828,7 @@
    "sort_options": 0,
    "translatable": 0,
    "unique": 0,
-   "width": null
+   "width": "10"
   },
   {
    "_assign": null,
@@ -1837,12 +1837,12 @@
    "_user_tags": null,
    "allow_in_quick_entry": 0,
    "allow_on_submit": 0,
-   "bold": 0,
+   "bold": 1,
    "collapsible": 0,
    "collapsible_depends_on": null,
    "columns": 0,
    "creation": "2023-09-12 10:50:00.270801",
-   "default": null,
+   "default": "0",
    "depends_on": null,
    "description": null,
    "docstatus": 0,
@@ -1860,7 +1860,7 @@
    "ignore_xss_filter": 0,
    "in_global_search": 0,
    "in_list_view": 1,
-   "in_preview": 0,
+   "in_preview": 1,
    "in_standard_filter": 0,
    "insert_after": "column_break_heuii",
    "is_system_generated": 0,
@@ -1889,7 +1889,7 @@
    "sort_options": 0,
    "translatable": 0,
    "unique": 0,
-   "width": null
+   "width": "10"
   },
   {
    "_assign": null,

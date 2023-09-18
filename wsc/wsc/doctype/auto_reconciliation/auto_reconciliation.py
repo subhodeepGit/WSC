@@ -67,7 +67,7 @@ def generate_payment(payment_schedule):
 				payment_entry.paid_to_account_type=account_cur[0]['account_type']
 				payment_entry.source_exchange_rate=1
 				# Cash - SOUL  paid_from_account_type
-				paid_from="Cash - SOUL"
+				paid_from="Cash - WSC"
 				account_cur=frappe.get_all("Account",{"name":paid_from},['account_currency',"account_type"])
 				payment_entry.paid_from=paid_from
 				payment_entry.paid_from_account_type=account_cur[0]['account_type']
