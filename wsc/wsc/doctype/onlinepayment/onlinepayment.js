@@ -118,13 +118,13 @@ frappe.ui.form.on('OnlinePayment', {
 
         hdfcButton.css({ 'color': 'black', 'background-color': 'white', 'font-weight': 'normal' });
 
-        var axisButton = frm.add_custom_button("By Axis", function () {
-            // HAve to add the logic for Axis payment here
+        // var axisButton = frm.add_custom_button("By Axis", function () {
+        //     // HAve to add the logic for Axis payment here
 
-            alert("axisButton clicked")
-        }, "Online Payment");
+        //     alert("axisButton clicked")
+        // }, "Online Payment");
 
-        axisButton.css({ 'color': 'black', 'background-color': 'white', 'font-weight': 'normal' });
+        // axisButton.css({ 'color': 'black', 'background-color': 'white', 'font-weight': 'normal' });
     }
 });
 
