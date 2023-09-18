@@ -5,6 +5,7 @@ import frappe
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 from frappe import msgprint, _
+from frappe.utils import comma_and, get_link_to_form,get_link_to_form, getdate, formatdate
 
 class ParticipantAttendanceTool(Document):
 	def validate(self):
@@ -32,7 +33,17 @@ class ParticipantAttendanceTool(Document):
 				new_doc.status = "Absent"
 			new_doc.save()		
 			new_doc.submit()
-			
+			cs_record = None
+
+			cs_record = frappe.db.exists('ToT Class Schedule', {
+				'name': self.select_class_schedule,
+			})
+			if cs_record:
+				doc = frappe.get_doc('ToT Class Schedule', self.select_class_schedule)
+				doc.attendance_taken = 1
+				doc.save()
+
+
 @frappe.whitelist()
 def get_participant_group(based_on):
 	data = frappe.db.sql(""" SELECT name FROM `tabParticipant Group`""")

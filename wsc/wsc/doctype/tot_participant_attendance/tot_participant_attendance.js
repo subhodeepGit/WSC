@@ -24,6 +24,7 @@ frappe.ui.form.on('ToT Participant Attendance', {
 					'participant_group_id' : frm.doc.participant_group,
 					'course_id':frm.doc.select_course,
 					'module_id':frm.doc.select_module,
+					'attendance_taken':0
 				}	
 			}
 		})
