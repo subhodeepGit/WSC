@@ -108,7 +108,7 @@ def open_gateway(party_name, roll_no, amount, order_id,url,gw_provider):
             
         elif is_prod is 1:
             logging.info("is_prod is 1: %s", is_prod)
-            myDoc = frappe.get_doc("HDFCSettingProd")
+            myDoc = frappe.get_doc("HDFCSetting")
             merchant_id = myDoc.get("merchant_id")
             access_code = myDoc.get("access_code")
             working_key = myDoc.get("working_key")
@@ -282,7 +282,7 @@ def getTransactionDetails(doc):
 
         elif is_prod is 1:
             logging.info("is_prod is : %s", is_prod)
-            myDoc = frappe.get_doc("HDFCSettingProd")
+            myDoc = frappe.get_doc("HDFCSetting")
             logging.info("is_prod is None inside If 4: %s", is_prod)           
             access_code = myDoc.get("access_code")
             working_key = myDoc.get("working_key")
