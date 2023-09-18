@@ -119,7 +119,7 @@ def add_line_JobApplicant_js():
     for i, line in enumerate(lines):
         if target_line in line:           
             if line_to_add not in lines:
-                insert_index = i + 2
+                insert_index = i + 3
                 lines.insert(insert_index, line_to_add)
                 line_added = True
             break 
