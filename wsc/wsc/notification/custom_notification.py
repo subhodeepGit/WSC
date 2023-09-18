@@ -110,6 +110,8 @@ def employee_shift_approver(doc):
 ##################################################################################
 def employee_grievance_member(doc):
     sub = "Reg:Employee Grievance Details</b></p><br>"
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Grievance Details below and navigate to the form by clicking on "Open Now".</p></br>"""
 
     msg = "<b>---------------------Employee Grievance Details---------------------</b><br>"
 
@@ -133,7 +135,8 @@ def employee_grievance_member(doc):
 
 def employee_grievance_employee_mail(doc):
     sub = "Reg:Employee Grievance Status"
-
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Grievance Details below and navigate to the form by clicking on "Open Now".</p></br>"""
     msg = "<b>---------------------Employee Grievance Status Details---------------------</b><br>"
 
     msg += "<b>Employee Grievance ID:</b> {0}<br>".format(doc.get('name'))
@@ -152,7 +155,8 @@ def employee_grievance_employee_mail(doc):
 
 def employee_grievance_hr_mail(doc):
     sub = "Reg:Employee Grievance Status"
-
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Grievance Details below and navigate to the form by clicking on "Open Now".</p></br>"""
     msg = "<b>---------------------Employee Grievance Status Details---------------------</b><br>"
 
     msg += "<b>Employee Grievance ID:</b> {0}<br>".format(doc.get('name'))
@@ -178,7 +182,7 @@ def employee_separation_reporting_authority_mail(doc):
     
     msg = """<p>Dear Ma'am/Sir,</p><br>"""
     msg += """<p>Kindly refer to the Employee Separation Details below and navigate to the form by clicking on "Open Now".</p></br>"""
-    msg += "<b>---------------------Employee Grievance Status Details---------------------</b><br>"
+    msg += "<b>---------------------Employee Separation Details---------------------</b><br>"
     msg += "<b>Employee Separation ID:</b> {0}<br>".format(doc.get('name'))
     msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
     msg += "<b>Employee Name:</b> {0}<br>".format(doc.get('employee_name'))
@@ -250,6 +254,29 @@ def employee_separation_hr_mail(doc):
     msg += "<b>Status:</b> {0}<br>".format(doc.get('workflow_state'))
 
     separation_app_url = get_url_to_form('Employee Separation', doc.get('name'))
+    msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(separation_app_url)
+
+    recipients = frappe.get_all("User", filters={'role':'HR Admin'}, fields=['email'])
+    recipient_emails = [recipient.get('email') for recipient in recipients]
+
+    send_mail(recipient_emails, sub, msg)
+    frappe.msgprint("Employee Separation Details status is sent to the HR")
+
+def employee_separation_final_hr(doc):
+    sub = "Reg:Employee Separation Status Detail"
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Separation Details Status below and navigate to the form by clicking on "Open Now".</p></br>"""
+    msg += "<b>---------------------Employee Separation Status---------------------</b><br>"
+
+    msg += "<b>Employee Separation ID:</b> {0}<br>".format(doc["employee_separation"])
+    msg += "<b>Employee ID:</b> {0}<br>".format(doc["employee"])
+    msg += "<b>Employee Name:</b> {0}<br>".format(doc["employee_name"])
+    msg += "<b>Department:</b> {0}<br>".format(doc["department"])
+    # msg += "<b>Designation:</b> {0}<br>".format(doc.get('designation'))
+    # msg += "<b>Final Working Date:</b> {0}<br>".format(doc.get('final_working_date'))
+    msg += "<b>Status:</b> {0}<br>".format(doc["current_status"])
+
+    separation_app_url = get_url_to_form('Employee Separation', doc["employee_separation"])
     msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(separation_app_url)
 
     recipients = frappe.get_all("User", filters={'role':'HR Admin'}, fields=['email'])
@@ -749,7 +776,9 @@ def payment_entry_submit(doc):
     send_mail(recipients,'Payment Successful',msg,attachments)
 
 def employee_reporting_aprover(doc):
-    sub="""<p><b>Profile Updation Notification</b></p><br>"""
+    sub="""<p><b>Reg : Profile Updation Notification</b></p><br>"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Profile Updation Details below and navigate to the form by clicking on "Open Now".</p></br>"""
     msg="""<b>---------------------Employee Details---------------------</b><br>"""
     msg+="""<b>Employee Name:</b>  {0}<br>""".format(doc['employee_name'])
     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
@@ -760,7 +789,9 @@ def employee_reporting_aprover(doc):
 
     frappe.msgprint("Email sent to reporting authority")
 def employee_hr(doc):
-    sub="""<p><b>Profile Updation Notification</b></p><br>"""
+    sub="""<p><b>Reg : Profile Updation Notification</b></p><br>"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Profile Updation Details below and navigate to the form by clicking on "Open Now".</p></br>"""
     msg="""<b>---------------------Employee Details---------------------</b><br>"""
     msg+="""<b>Employee Name:</b>  {0}<br>""".format(doc['employee_name'])
     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
@@ -768,8 +799,12 @@ def employee_hr(doc):
     msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(emp_profile_updation)
     send_mail([doc['hr_email']],sub,msg)
     frappe.msgprint("Email sent to HR",[doc['hr_email']])
+
+#######################Leave Policy #########################
 def send_mail_to_director(doc):
-    sub="""<p><b>Leave Policy Request</b></p><br>"""
+    sub="""<p><b>Reg : Leave Policy Request</b></p><br>"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Leave Policy Details below and navigate to the form by clicking on "Open Now".</p></br>"""
     msg="""<b>---------------------Leave Policy Details---------------------</b><br>"""
     msg+="""<b>Leave polciy:</b>  {0}<br>""".format(doc['leave_policy'])
     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
@@ -778,7 +813,9 @@ def send_mail_to_director(doc):
     send_mail([doc['director_mail']],sub,msg)
     frappe.msgprint("Email sent to Director",[doc['director_mail']])
 def send_mail_to_hr(doc):
-    sub="""<p><b>Leave Policy Request</b></p><br>"""
+    sub="""<p><b>Reg : Leave Policy Request</b></p><br>"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Leave Policy Details below and navigate to the form by clicking on "Open Now".</p></br>"""
     msg="""<b>---------------------Leave Policy Details---------------------</b><br>"""
     msg+="""<b>Leave polciy:</b>  {0}<br>""".format(doc['leave_policy'])
     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
@@ -789,7 +826,9 @@ def send_mail_to_hr(doc):
 
 #Notification for Employee onboarding :
 def maildirector(doc):
-    sub="""<p><b>Employee Onboarding Request</b></p><br>"""
+    sub="""<p><b>Reg : Employee Onboarding Request</b></p><br>"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Onboarding Details below and navigate to the form by clicking on "Open Now".</p></br>"""
     msg="""<b>---------------------Employee Onboarding Details---------------------</b><br>"""
     msg+="""<b>Employee Onboarding:</b>  {0}<br>""".format(doc['employee_onboarding'])
     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
@@ -798,7 +837,9 @@ def maildirector(doc):
     send_mail([doc['director_mail']],sub,msg)
     frappe.msgprint("Email sent to Director",[doc['director_mail']])
 def mailhr(doc):
-    sub="""<p><b>Employee Onboarding Request</b></p><br>"""
+    sub="""<p><b> Reg :Employee Onboarding Request</b></p><br>"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Onboarding Details below and navigate to the form by clicking on "Open Now".</p></br>"""
     msg="""<b>---------------------Employee Onboarding Details---------------------</b><br>"""
     msg+="""<b>Employee Onboarding:</b>  {0}<br>""".format(doc['employee_onboarding'])
     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
@@ -807,7 +848,9 @@ def mailhr(doc):
     send_mail([doc['hr_mail']],sub,msg)
     frappe.msgprint("Email sent to HR",[doc['hr_mail']])
 def mailhr_aftercomplete(doc):
-    sub="""<p><b>Employee Onboarding Request</b></p><br>"""
+    sub="""<p><b>Reg : Employee Onboarding Request</b></p><br>"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Onboarding Details below and navigate to the form by clicking on "Open Now".</p></br>"""
     msg="""<b>---------------------Employee Onboarding Details---------------------</b><br>"""
     msg+="""<b>Onboarding Tasks Completed for the following Onboarding Process"""
     msg+="""<b>Employee Onboarding:</b>  {0}<br>""".format(doc['employee_onboarding'])
@@ -815,6 +858,7 @@ def mailhr_aftercomplete(doc):
     emp_onboarding_url = get_url_to_form('Employee Onboarding', doc['name'])
     msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(emp_onboarding_url)
     send_mail([doc['hr_mail']],sub,msg)
+    print("Working")
     frappe.msgprint("Email sent to HR",[doc['hr_mail']])
 ###########################################################################
 
@@ -834,7 +878,9 @@ def shift_req_hr(doc):
 
 #Notification for Employee Suggestion 
 def notify_hr(doc):
-    sub="""<p><b>Employee Suggestion</b></p><br>"""
+    sub="""<p><b>Reg : Employee Suggestion</b></p><br>"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Suggestion Details below and navigate to the form by clicking on "Open Now".</p></br>"""
     msg="""<b>---------------------Employee Suggestion Details---------------------</b><br>"""
     msg+="""<b>Employee Suggestion:</b>  {0}<br>""".format(doc['employee_suggestion'])
     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
@@ -843,7 +889,9 @@ def notify_hr(doc):
     send_mail([doc['hr_email']],sub,msg)
     frappe.msgprint("Email sent to HR",[doc['hr_email']])
 def notify_director(doc):
-    sub="""<p><b>Employee Suggestion</b></p><br>"""
+    sub="""<p><b> Reg : Employee Suggestion</b></p><br>"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Suggestion Details below and navigate to the form by clicking on "Open Now".</p></br>"""
     msg="""<b>---------------------Employee Suggestion Details---------------------</b><br>"""
     msg+="""<b>Employee Suggestion:</b>  {0}<br>""".format(doc['employee_suggestion'])
     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
@@ -852,7 +900,9 @@ def notify_director(doc):
     send_mail([doc['director_email']],sub,msg)
     frappe.msgprint("Email sent to Director",[doc['director_email']])
 def notify_employee(doc):
-    sub="""<p><b>Employee Suggestion</b></p><br>"""
+    sub="""<p><b> Reg :Employee Suggestion</b></p><br>"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Suggestion Details below and navigate to the form by clicking on "Open Now".</p></br>"""
     msg="""<b>---------------------Employee Suggestion Details---------------------</b><br>"""
     msg+="""<b>Employee Suggestion:</b>  {0}<br>""".format(doc['employee_suggestion'])
     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
@@ -863,10 +913,10 @@ def notify_employee(doc):
 
 def notify_committee(doc):
     sub = "Reg:Employee Suggestion </b></p><br>"
-
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Suggestion Details below and navigate to the form by clicking on "Open Now".</p></br>"""
     msg = "<b>---------------------Employee Suggestion Details---------------------</b><br>"
 
-    msg="""<b>---------------------Employee Suggestion Details---------------------</b><br>"""
     msg+="""<b>Employee Suggestion:</b>  {0}<br>""".format(doc.get('name'))
     msg+="""<b>Status:</b>  {0}<br>""".format(doc.get('workflow_state'))
     employee_suggestion_url = get_url_to_form('Employee Suggestion', doc.get('name'))
@@ -1202,7 +1252,9 @@ def send_mail_to_trainers_mweg(self):
    #################  Notification Coding for Employee Resignation #######################
 
 def sendHR(doc):
-    sub="""<p><b>Employee Resignation</b></p><br>"""
+    sub="""<p><b>Reg : Employee Resignation</b></p><br>"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Resignation Details below and navigate to the form by clicking on "Open Now".</p></br>"""
     msg="""<b>---------------------Resignation Details---------------------</b><br>"""
     msg+="""<b>Resignation:</b>  {0}<br>""".format(doc['name'])
     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
@@ -1212,7 +1264,9 @@ def sendHR(doc):
     send_mail([doc['hr_mail']],sub,msg)
     frappe.msgprint("Confirmation mail sent to HR",[doc['hr_mail']])
 def sendEmployee(doc):
-    sub="""<p><b>Employee Resignation</b></p><br>"""
+    sub="""<p><b>Reg : Employee Resignation</b></p><br>"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Resignation Details below and navigate to the form by clicking on "Open Now".</p></br>"""
     msg="""<b>---------------------Resignation Details---------------------</b><br>"""
     msg+="""<b>Resignation:</b>  {0}<br>""".format(doc['name'])
     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
@@ -1221,7 +1275,9 @@ def sendEmployee(doc):
     send_mail([doc['employee_mail']],sub,msg)
     frappe.msgprint("Confirmation mail sent to Employee",[doc['employee_mail']])
 def sendRa(doc):
-    sub="""<p><b>Employee Resignation</b></p><br>"""
+    sub="""<p><b>Reg : Employee Resignation</b></p><br>"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Resignation Details below and navigate to the form by clicking on "Open Now".</p></br>"""
     msg="""<b>---------------------Resignation Details---------------------</b><br>"""
     msg+="""<b>Resignation:</b>  {0}<br>""".format(doc['name'])
     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
@@ -1230,7 +1286,9 @@ def sendRa(doc):
     send_mail([doc['ra_mail']],sub,msg)
     frappe.msgprint("Mail sent to Reporting Authority for Approval",[doc['ra_mail']])
 def sendDh(doc):
-    sub="""<p><b>Employee Resignation</b></p><br>"""
+    sub="""<p><b>EReg : mployee Resignation</b></p><br>"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Resignation Details below and navigate to the form by clicking on "Open Now".</p></br>"""
     msg="""<b>---------------------Resignation Details---------------------</b><br>"""
     msg+="""<b>Resignation:</b>  {0}<br>""".format(doc['name'])
     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
@@ -1239,7 +1297,9 @@ def sendDh(doc):
     send_mail([doc['dh_mail']],sub,msg)
     frappe.msgprint("Mail sent to Department Head for Approval",[doc['dh_mail']])
 def sendDirector(doc):
-    sub="""<p><b>Employee Resignation</b></p><br>"""
+    sub="""<p><b>Reg : Employee Resignation</b></p><br>"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Resignation Details below and navigate to the form by clicking on "Open Now".</p></br>"""
     msg="""<b>---------------------Resignation Details---------------------</b><br>"""
     msg+="""<b>Resignation:</b>  {0}<br>""".format(doc['name'])
     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
@@ -1252,7 +1312,9 @@ def sendDirector(doc):
 ################################ Notification for Appraisal ######################################################################
 
 def sendHR_appraisal(doc):
-    sub="""<p><b>Employee Appraisal</b></p><br>"""
+    sub="""<p><b>Reg : Employee Appraisal</b></p><br>"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Appraisal Details below and navigate to the form by clicking on "Open Now".</p></br>"""
     msg="""<b>---------------------Appraisal Details---------------------</b><br>"""
     msg+="""<b>Appraisal:</b>  {0}<br>""".format(doc['name'])
     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
@@ -1273,7 +1335,9 @@ def sendHR_appraisal(doc):
 #     frappe.msgprint("Confirmation mail sent to Employee",[doc['employee_mail']])
 
 def sendRa_appraisal(doc):
-    sub="""<p><b>Employee Appraisal</b></p><br>"""
+    sub="""<p><b>Reg :Employee Appraisal</b></p><br>"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Appraisal Details below and navigate to the form by clicking on "Open Now".</p></br>"""
     msg="""<b>---------------------Appraisal Details---------------------</b><br>"""
     msg+="""<b>Appraisal:</b>  {0}<br>""".format(doc['name'])
     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
@@ -1284,7 +1348,9 @@ def sendRa_appraisal(doc):
     frappe.msgprint("Mail sent to Reporting Authority for Approval",[doc['ra_mail']])
 
 def sendDh_appraisal(doc):
-    sub="""<p><b>Employee Appraisal</b></p><br>"""
+    sub="""<p><b>Reg : Employee Appraisal</b></p><br>"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Appraisal Details below and navigate to the form by clicking on "Open Now".</p></br>"""
     msg="""<b>---------------------Appraisal Details---------------------</b><br>"""
     msg+="""<b>Appraisal:</b>  {0}<br>""".format(doc['name'])
     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
@@ -1294,7 +1360,9 @@ def sendDh_appraisal(doc):
     send_mail([doc['dh_mail']],sub,msg)
     frappe.msgprint("Mail sent to Department Head for Approval",[doc['dh_mail']])
 def sendDirector_appraisal(doc):
-    sub="""<p><b>Employee Appraisal</b></p><br>"""
+    sub="""<p><b>Reg : Employee Appraisal</b></p><br>"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Appraisal Details below and navigate to the form by clicking on "Open Now".</p></br>"""
     msg="""<b>---------------------Appraisal Details---------------------</b><br>"""
     msg+="""<b>Appraisal:</b>  {0}<br>""".format(doc['name'])
     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
@@ -1371,85 +1439,173 @@ def send_mail_to_jobapplicants_rerd(self):
             frappe.msgprint("Email sent to Job Applicants")
 ###############################################Compensatory Leave Request Notification#############################################
 def employee_comp_reporting_authority_email(doc):
-	sub = "Reg:Compensatory Leave Request Details"
-	msg = """<p>Dear Ma'am/Sir,</p><br>"""
-	msg += """<p>Kindly refer to the Employee Compensatory Leave Request Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+    sub = "Reg:Compensatory Leave Request Details"
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Compensatory Leave Request Details below and navigate to the form by clicking on "Open Now".</p></br>"""
 
-	msg += "<b>---------------------Employee Compensatory Leave Request Details---------------------</b><br>"
+    msg += "<b>---------------------Employee Compensatory Leave Request Details---------------------</b><br>"
 
-	msg += "<b>Employee Compensatory Leave Request ID:</b> {0}<br>".format(doc.get('name'))
-	msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
-	msg += "<b>Employee Name:</b> {0}<br>".format(doc.get('employee_name'))
-	msg += "<b>Leave Type:</b> {0}<br>".format(doc.get('leave_type'))
-	msg += "<b>Work From Date:</b> {0}<br>".format(doc.get('work_from_date'))
-	msg += "<b>Work End Date:</b> {0}<br>".format(doc.get('work_end_date'))
+    msg += "<b>Employee Compensatory Leave Request ID:</b> {0}<br>".format(doc.get('name'))
+    msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
+    msg += "<b>Employee Name:</b> {0}<br>".format(doc.get('employee_name'))
+    msg += "<b>Leave Type:</b> {0}<br>".format(doc.get('leave_type'))
+    msg += "<b>Work From Date:</b> {0}<br>".format(doc.get('work_from_date'))
+    msg += "<b>Work End Date:</b> {0}<br>".format(doc.get('work_end_date'))
 
-	comp_app_url = get_url_to_form('Compensatory Leave Request', doc.get('name'))
-	msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(comp_app_url)
+    comp_app_url = get_url_to_form('Compensatory Leave Request', doc.get('name'))
+    msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(comp_app_url)
 
-	send_mail(frappe.db.get_value("Compensatory Leave Request",doc.get('name'),"reporting_authority_email"),sub,msg)
-	frappe.msgprint("Employee Compensatory Leave Request Details is sent to the Reporting Authority")
+    send_mail(frappe.db.get_value("Compensatory Leave Request",doc.get('name'),"reporting_authority_email"),sub,msg)
+    frappe.msgprint("Employee Compensatory Leave Request Details is sent to the Reporting Authority")
 
 def employee_comp_leave_approver_email(doc):
-	sub = "Reg:Compensatory Leave Request Details"
-	msg = """<p>Dear Ma'am/Sir,</p><br>"""
-	msg += """<p>Kindly refer to the Employee Compensatory Leave Request Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+    sub = "Reg:Compensatory Leave Request Details"
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Compensatory Leave Request Details below and navigate to the form by clicking on "Open Now".</p></br>"""
 
-	msg += "<b>---------------------Employee Compensatory Leave Request Details---------------------</b><br>"
+    msg += "<b>---------------------Employee Compensatory Leave Request Details---------------------</b><br>"
 
-	msg += "<b>Employee Compensatory Leave Request ID:</b> {0}<br>".format(doc.get('name'))
-	msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
-	msg += "<b>Employee Name:</b> {0}<br>".format(doc.get('employee_name'))
-	msg += "<b>Leave Type:</b> {0}<br>".format(doc.get('leave_type'))
-	msg += "<b>Work From Date:</b> {0}<br>".format(doc.get('work_from_date'))
-	msg += "<b>Work End Date:</b> {0}<br>".format(doc.get('work_end_date'))
+    msg += "<b>Employee Compensatory Leave Request ID:</b> {0}<br>".format(doc.get('name'))
+    msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
+    msg += "<b>Employee Name:</b> {0}<br>".format(doc.get('employee_name'))
+    msg += "<b>Leave Type:</b> {0}<br>".format(doc.get('leave_type'))
+    msg += "<b>Work From Date:</b> {0}<br>".format(doc.get('work_from_date'))
+    msg += "<b>Work End Date:</b> {0}<br>".format(doc.get('work_end_date'))
 
-	comp_app_url = get_url_to_form('Compensatory Leave Request', doc.get('name'))
-	msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(comp_app_url)
+    comp_app_url = get_url_to_form('Compensatory Leave Request', doc.get('name'))
+    msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(comp_app_url)
 
-	send_mail(frappe.db.get_value("Compensatory Leave Request",doc.get('name'),"leave_approver"),sub,msg)
-	frappe.msgprint("Employee Compensatory Leave Request Details is sent to the Leave Approver")
+    send_mail(frappe.db.get_value("Compensatory Leave Request",doc.get('name'),"leave_approver"),sub,msg)
+    frappe.msgprint("Employee Compensatory Leave Request Details is sent to the Leave Approver")
 
 def employee_comp_hr_email(doc):
 
-	sub = "Reg:Compensatory Leave Request Details"
-	msg = """<p>Dear Ma'am/Sir,</p><br>"""
-	msg += """<p>Kindly refer to the Employee Compensatory Leave Request Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+    sub = "Reg:Compensatory Leave Request Details"
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Compensatory Leave Request Details below and navigate to the form by clicking on "Open Now".</p></br>"""
 
-	msg += "<b>---------------------Employee Compensatory Leave Request Details---------------------</b><br>"
+    msg += "<b>---------------------Employee Compensatory Leave Request Details---------------------</b><br>"
 
-	msg += "<b>Employee Compensatory Leave Request ID:</b> {0}<br>".format(doc.get('name'))
-	msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
-	msg += "<b>Employee Name:</b> {0}<br>".format(doc.get('employee_name'))
-	msg += "<b>Leave Type:</b> {0}<br>".format(doc.get('leave_type'))
-	msg += "<b>Work From Date:</b> {0}<br>".format(doc.get('work_from_date'))
-	msg += "<b>Work End Date:</b> {0}<br>".format(doc.get('work_end_date'))
+    msg += "<b>Employee Compensatory Leave Request ID:</b> {0}<br>".format(doc.get('name'))
+    msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
+    msg += "<b>Employee Name:</b> {0}<br>".format(doc.get('employee_name'))
+    msg += "<b>Leave Type:</b> {0}<br>".format(doc.get('leave_type'))
+    msg += "<b>Work From Date:</b> {0}<br>".format(doc.get('work_from_date'))
+    msg += "<b>Work End Date:</b> {0}<br>".format(doc.get('work_end_date'))
 
-	comp_app_url = get_url_to_form('Compensatory Leave Request', doc.get('name'))
-	msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(comp_app_url)
-	recipients = frappe.get_all("User", filters={'role': 'HR Admin'}, fields=['email'])
-	recipient_emails = [recipient.get('email') for recipient in recipients]
-	send_mail(recipient_emails,sub,msg)
-	frappe.msgprint("Email sent to HR") 
+    comp_app_url = get_url_to_form('Compensatory Leave Request', doc.get('name'))
+    msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(comp_app_url)
+    recipients = frappe.get_all("User", filters={'role': 'HR Admin'}, fields=['email'])
+    recipient_emails = [recipient.get('email') for recipient in recipients]
+    send_mail(recipient_emails,sub,msg)
+    frappe.msgprint("Email sent to HR") 
 
 def employee_comp_employee_email(doc):
 
-	sub = "Reg:Compensatory Leave Request Details"
-	msg = """<p>Dear Ma'am/Sir,</p><br>"""
-	msg += """<p>Kindly refer to the Employee Compensatory Leave Request Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+    sub = "Reg:Compensatory Leave Request Details"
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Compensatory Leave Request Details below and navigate to the form by clicking on "Open Now".</p></br>"""
 
-	msg += "<b>---------------------Employee Compensatory Leave Request Details---------------------</b><br>"
+    msg += "<b>---------------------Employee Compensatory Leave Request Details---------------------</b><br>"
 
-	msg += "<b>Employee Compensatory Leave Request ID:</b> {0}<br>".format(doc.get('name'))
-	msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
-	msg += "<b>Employee Name:</b> {0}<br>".format(doc.get('employee_name'))
-	msg += "<b>Leave Type:</b> {0}<br>".format(doc.get('leave_type'))
-	msg += "<b>Work From Date:</b> {0}<br>".format(doc.get('work_from_date'))
-	msg += "<b>Work End Date:</b> {0}<br>".format(doc.get('work_end_date'))
-	msg += "<b>Status:</b> {0}<br>".format(doc.get('status'))
+    msg += "<b>Employee Compensatory Leave Request ID:</b> {0}<br>".format(doc.get('name'))
+    msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
+    msg += "<b>Employee Name:</b> {0}<br>".format(doc.get('employee_name'))
+    msg += "<b>Leave Type:</b> {0}<br>".format(doc.get('leave_type'))
+    msg += "<b>Work From Date:</b> {0}<br>".format(doc.get('work_from_date'))
+    msg += "<b>Work End Date:</b> {0}<br>".format(doc.get('work_end_date'))
+    msg += "<b>Status:</b> {0}<br>".format(doc.get('status'))
 
-	comp_app_url = get_url_to_form('Compensatory Leave Request', doc.get('name'))
-	msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(comp_app_url)
-	send_mail(frappe.db.get_value("Compensatory Leave Request",doc.get('name'),"employee_email"),sub,msg)
-	frappe.msgprint("Email sent to Employee") 
+    comp_app_url = get_url_to_form('Compensatory Leave Request', doc.get('name'))
+    msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(comp_app_url)
+    send_mail(frappe.db.get_value("Compensatory Leave Request",doc.get('name'),"employee_email"),sub,msg)
+    frappe.msgprint("Email sent to Employee") 
 ############################################################################################################################################
+
+#Employee Re-engagement Notification
+
+def employee_reengagement_reporting_authority_mail(doc):
+    sub = "Reg:Employee Re-engagemeent Details"
+    
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Re-engagement Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+    msg += "<b>---------------------Employee Resignation Details---------------------</b><br>"
+    msg += "<b>Employee Re-engagement ID:</b> {0}<br>".format(doc.get('name'))
+    msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
+    msg += "<b>Employee Name:</b> {0}<br>".format(doc.get('employee_name'))
+    msg += "<b>Department:</b> {0}<br>".format(doc.get('department'))
+    msg += "<b>Designation:</b> {0}<br>".format(doc.get('designation'))
+    # msg += "<b>Final Working Date:</b> {0}<br>".format(doc.get('final_working_date'))
+
+    reengagement_app_url = get_url_to_form('Employee Re-engagement', doc.get('name'))
+    msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(reengagement_app_url)
+
+    send_mail(frappe.db.get_value("Employee Re-engagement",doc.get('name'),"reporting_authority"),sub,msg)
+    frappe.msgprint("Employee Re-engagement Details is sent to the Reporting Authority")
+
+def employee_reengagement_department_head_mail(doc):
+    sub = "Reg:Employee Re-engagemeent Details"
+    
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Re-engagement Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+    msg += "<b>---------------------Employee Resignation Details---------------------</b><br>"
+    msg += "<b>Employee Re-engagement ID:</b> {0}<br>".format(doc.get('name'))
+    msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
+    msg += "<b>Employee Name:</b> {0}<br>".format(doc.get('employee_name'))
+    msg += "<b>Department:</b> {0}<br>".format(doc.get('department'))
+    msg += "<b>Designation:</b> {0}<br>".format(doc.get('designation'))
+    # msg += "<b>Final Working Date:</b> {0}<br>".format(doc.get('final_working_date'))
+
+    reengagement_app_url = get_url_to_form('Employee Re-engagement', doc.get('name'))
+    msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(reengagement_app_url)
+
+    send_mail(frappe.db.get_value("Employee Separation",doc.get('name'),"department_head"),sub,msg)
+    frappe.msgprint("Employee Reengagement Details is sent to the Department Head")    
+
+def employee_reengagement_director_mail(doc):
+    sub = "Reg:Employee Re-engagemeent Details"
+    
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Re-engagement Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+    msg += "<b>---------------------Employee Resignation Details---------------------</b><br>"
+    msg += "<b>Employee Re-engagement ID:</b> {0}<br>".format(doc.get('name'))
+    msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
+    msg += "<b>Employee Name:</b> {0}<br>".format(doc.get('employee_name'))
+    msg += "<b>Department:</b> {0}<br>".format(doc.get('department'))
+    msg += "<b>Designation:</b> {0}<br>".format(doc.get('designation'))
+    # msg += "<b>Final Working Date:</b> {0}<br>".format(doc.get('final_working_date'))
+
+    reengagement_app_url = get_url_to_form('Employee Re-engagement', doc.get('name'))
+    msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(reengagement_app_url)
+
+    separation_app_url = get_url_to_form('Employee Separation', doc.get('name'))
+    msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(separation_app_url)
+
+    recipients = frappe.get_all("User", filters={'role': 'Director'}, fields=['email'])
+    recipient_emails = [recipient.get('email') for recipient in recipients]
+
+    send_mail(recipient_emails, sub, msg)
+    frappe.msgprint("Employee Reengagement Details is sent to the Director")
+
+def employee_reengagement_hr_mail(doc):
+    sub = "Reg:Employee Re-engagemeent Details"
+    
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Re-engagement Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+    msg += "<b>---------------------Employee Resignation Details---------------------</b><br>"
+    msg += "<b>Employee Re-engagement ID:</b> {0}<br>".format(doc.get('name'))
+    msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
+    msg += "<b>Employee Name:</b> {0}<br>".format(doc.get('employee_name'))
+    msg += "<b>Department:</b> {0}<br>".format(doc.get('department'))
+    msg += "<b>Designation:</b> {0}<br>".format(doc.get('designation'))
+    # msg += "<b>Final Working Date:</b> {0}<br>".format(doc.get('final_working_date'))
+
+    reengagement_app_url = get_url_to_form('Employee Re-engagement', doc.get('name'))
+    msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(reengagement_app_url)
+
+    recipients = frappe.get_all("User", filters={'role':'HR Admin'}, fields=['email'])
+    recipient_emails = [recipient.get('email') for recipient in recipients]
+
+    send_mail(recipient_emails, sub, msg)
+    frappe.msgprint("Employee Reengagement Details status is sent to the HR")
+

@@ -44,6 +44,7 @@ def on_cancel(doc,method):
             # else :
             #     pass
         frappe.db.set_value(doc.doctype,doc.name, "boarding_status", "Pending")
+        frappe.db.set_value(doc.doctype,doc.name,"mail_sent","")
         frappe.db.commit()
 def director_mail(doc):
     director_mail = frappe.get_all("User",filters={'role':"Director"},pluck='name')
