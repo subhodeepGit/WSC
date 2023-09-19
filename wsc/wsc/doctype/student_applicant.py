@@ -53,6 +53,7 @@ class StudentApplicant(Document):
         if len(student)>1:
             frappe.throw(_("Cannot change status as student {0} is linked with student application {1}").format(student[0].name, doc.name))
     def validate(doc):
+        validate_edu_details(doc)
         # validate_percentage(doc)
         # check_age(doc)
         validate_duplicate_record(doc)
@@ -370,6 +371,25 @@ def add_document_list_rows(doc):
                 "is_available" :d.is_available,
                 "mandatory_during_counselling":d.mandatory_during_counselling
             })
+
+def validate_edu_details(doc):
+    # doc.set("education_qualifications_details",[])
+    if len(doc.education_qualifications_details ) == 0:
+        for result in frappe.get_all("Eligibility Parameter List",{"parent":doc.student_admission,"parenttype":"Student Admission"},["parameter","percentagecgpa","is_mandatory","eligible_score"] , order_by="parameter",group_by="parameter"):
+            doc.append("education_qualifications_details",{
+                "qualification":result.parameter,
+                "percentage_cgpa":result.percentagecgpa,
+                "mandatory":result.is_mandatory,
+                "admission_percentage":result.eligible_score
+            })
+#  var edu_row = frm.add_child("education_qualifications_details");
+#                     //                         edu_row.qualification = row.parameter;
+#                     //                         edu_row.percentage_cgpa = row.percentagecgpa;
+#                     //                         edu_row.mandatory = row.is_mandatory;
+#                     //                         edu_row.admission_percentage = row.eligible_score;
+# for d in doc.get("document_list"):
+#         if d.mandatory and not d.attach:
+
 # def add_eligibility_table_rows(doc): 
 #     if doc.student_category and doc.academic_year:
 #         doc.set("education_qualifications_details",[])
@@ -765,9 +785,9 @@ def get_counselling_structure(program_grade,department,academic_year):
     for d in frappe.get_all("Counselling Structure",{"program_grade":program_grade,"department":department,"academic_year":academic_year}):
         return d
 
-@frappe.whitelist()
-def get_education_qualifications_details_by_admissions(student_category,admission):
-    return frappe.get_all("Eligibility Parameter List",{"parent":["IN",[d.get("student_admission") for d in json.loads(admission)]],"parenttype":"Student Admission"},["parameter","percentagecgpa","is_mandatory","eligible_score"] , order_by="parameter",group_by="parameter")
+# @frappe.whitelist() for future student applicant in wsc (Tousiff)
+# def get_education_qualifications_details_by_admissions(student_category,admission):
+#     return frappe.get_all("Eligibility Parameter List",{"parent":["IN",[d.get("student_admission") for d in json.loads(admission)]],"parenttype":"Student Admission"},["parameter","percentagecgpa","is_mandatory","eligible_score"] , order_by="parameter",group_by="parameter")
 
 @frappe.whitelist()
 def filter_programs_by_department(doctype, txt, searchfield, start, page_len, filters):
