@@ -583,6 +583,7 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
                     // if(a<=1){
                         frm.set_value("program",r.message['semester'])
                         frm.set_value("programs_",r.message['admission_program'])
+                        frm.set_value("student_admission",r.message['name'])
                     // }
                     // frm.set_value("program",r.message['semester'])
                     // frm.set_value("programs_",r.message['admission_program'])
