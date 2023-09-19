@@ -374,14 +374,14 @@ def add_document_list_rows(doc):
 
 def validate_edu_details(doc):
     # doc.set("education_qualifications_details",[])
-    if len(doc.education_qualifications_details ) == 0:
+    if len(doc.education_qualifications_details) == 0:
         for result in frappe.get_all("Eligibility Parameter List",{"parent":doc.student_admission,"parenttype":"Student Admission"},["parameter","percentagecgpa","is_mandatory","eligible_score"] , order_by="parameter",group_by="parameter"):
             doc.append("education_qualifications_details",{
                 "qualification":result.parameter,
                 "percentage_cgpa":result.percentagecgpa,
                 "mandatory":result.is_mandatory,
                 "admission_percentage":result.eligible_score
-            })
+        })
 #  var edu_row = frm.add_child("education_qualifications_details");
 #                     //                         edu_row.qualification = row.parameter;
 #                     //                         edu_row.percentage_cgpa = row.percentagecgpa;
