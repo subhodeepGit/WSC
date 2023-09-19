@@ -6,7 +6,19 @@ from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 
 class Assignment(Document):
-	pass
+	def validate(self):
+		self.duplicate_assignment()
+
+	def duplicate_assignment(self):
+		data=frappe.get_all("Assignment",{"docstatus":1,
+			       					'programs':self.programs,
+									"participant_group":self.participant_group,
+									"assignment_name":self.assignment_name,
+									"programs":self.programs,
+									"course":self.course,
+									"course":self.course})
+		if data:
+			frappe.thorw("Assignment Name already exist")
 
 @frappe.whitelist()
 def get_details(participant_group_id):

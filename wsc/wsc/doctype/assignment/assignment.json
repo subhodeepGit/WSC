@@ -18,13 +18,27 @@
   "end_date",
   "section_break_xokaq",
   "participant_group",
+  "participant_group_name",
+  "column_break_mvrpl",
+  "tot_start_date",
+  "tot_end_date",
   "section_break_wjf36",
   "programs",
-  "academic_year",
+  "course_type",
+  "section_break_qmu7e",
+  "course_duration",
+  "course_name",
+  "semester",
   "column_break_hbdkn",
-  "course",
+  "academic_year",
   "academic_term",
   "section_break_kyqjw",
+  "course",
+  "module_name",
+  "column_break_gr8l4",
+  "module_type",
+  "module_code",
+  "section_break_9ubca",
   "instructor_id",
   "assessment_criteria",
   "weightage",
@@ -55,14 +69,14 @@
   {
    "fieldname": "programs",
    "fieldtype": "Link",
-   "label": "Select Course",
+   "label": "Programs",
    "options": "Programs",
    "read_only": 1
   },
   {
    "fieldname": "course",
    "fieldtype": "Link",
-   "label": "Select Module",
+   "label": "Course",
    "options": "Course",
    "read_only": 1
   },
@@ -96,7 +110,8 @@
   },
   {
    "fieldname": "section_break_9",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Assignment Attachment and Description"
   },
   {
    "fieldname": "academic_year",
@@ -108,6 +123,7 @@
   {
    "fieldname": "academic_term",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Academic Term",
    "options": "Academic Term",
    "read_only": 1
@@ -146,7 +162,8 @@
   },
   {
    "fieldname": "section_break_up0pn",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Assignment Details"
   },
   {
    "fieldname": "column_break_hbdkn",
@@ -154,11 +171,14 @@
   },
   {
    "fieldname": "section_break_kyqjw",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Module Details"
   },
   {
    "fieldname": "section_break_wjf36",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Course Details",
+   "read_only": 1
   },
   {
    "fieldname": "amended_from",
@@ -191,19 +211,106 @@
   },
   {
    "fieldname": "section_break_xokaq",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Participant Group Details"
   },
   {
    "fieldname": "total_duration",
    "fieldtype": "Data",
    "label": "Total duration",
    "read_only": 1
+  },
+  {
+   "fetch_from": "programs.program_grade",
+   "fieldname": "course_type",
+   "fieldtype": "Data",
+   "label": "Course Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "programs.programs_name",
+   "fieldname": "course_name",
+   "fieldtype": "Data",
+   "label": "Course Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "programs.programs_duration",
+   "fieldname": "course_duration",
+   "fieldtype": "Data",
+   "label": "Course Duration",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_qmu7e",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "participant_group.semester",
+   "fieldname": "semester",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Semester"
+  },
+  {
+   "fieldname": "section_break_9ubca",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "course.course_name",
+   "fieldname": "module_name",
+   "fieldtype": "Data",
+   "label": "Module Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "course.module_type",
+   "fieldname": "module_type",
+   "fieldtype": "Data",
+   "label": "Module Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "course.course_code",
+   "fieldname": "module_code",
+   "fieldtype": "Data",
+   "label": "Module Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_gr8l4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "participant_group.participant_group",
+   "fieldname": "participant_group_name",
+   "fieldtype": "Data",
+   "label": "Participant Group Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "participant_group.tot_start_date",
+   "fieldname": "tot_start_date",
+   "fieldtype": "Date",
+   "label": "TOT Start Date",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "participant_group.tot_end_date",
+   "fieldname": "tot_end_date",
+   "fieldtype": "Date",
+   "label": " TOT End Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_mvrpl",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-12 16:19:20.375371",
+ "modified": "2023-09-18 17:34:59.791490",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment",

@@ -9,7 +9,15 @@ from frappe import _
 class ToTClassSchedule(Document):
 	def validate(self):
 		if self.attendance_taken==1:
-			frappe.throw("<b>Attendance is already taken! Classes cannot be rescheduled or cancelled.</b>")
+			data=frappe.get_all("ToT Class Schedule",{"name":self.name})
+			if data:
+				doc_before_save = self.get_doc_before_save()
+				old_object=doc_before_save.attendance_taken
+				if old_object==0 and self.attendance_taken==1:
+					# frappe.throw("<b>Attendance is already taken! Classes cannot be rescheduled or cancelled.</b>")
+					pass
+				else:
+					frappe.throw("<b>Attendance is already taken! Classes cannot be rescheduled or cancelled.</b>")
 		if self.re_scheduled==1 and self.is_canceled==0:
 			frappe.msgprint("Class:-%s is Re Scheduled "%(self.name))
 		elif self.is_canceled==1:

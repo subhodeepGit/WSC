@@ -14,6 +14,11 @@ class ToTParticipantAttendance(Document):
 		# 	frappe.throw(_('Attendance record already exists against the Participant {0}')
         #         .format(frappe.bold(self.participant_id)), title=_('Duplicate Entry'))
 		self.validate_duplication()
+		self.validate_date()
+
+	def validate_date(self):
+		if getdate(self.date) > getdate():
+			frappe.throw(_('Attendance cannot be marked for future dates.'))
 			
 	def validate_duplication(self):
 		"""Check if the Attendance Record is Unique"""
