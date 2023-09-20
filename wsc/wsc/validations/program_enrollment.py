@@ -91,6 +91,7 @@ def update_student(doc):
     student.save()
 
 def on_submit(doc,method):
+    onlinepay(doc)
     make_fee_records(doc)
     create_student(doc)
     create_participant(doc)
@@ -797,3 +798,14 @@ def validate_seat_reservation_type(doc):
                     reservation_type.append(d.seat_reservation_type)
         if doc.seat_reservation_type not in reservation_type:
             frappe.throw("Seat reservation type <b>'{0}'</b> not belongs to the student admission referring doc student applicant <b>'{1}'</b> ".format(doc.seat_reservation_type, doc.reference_name))
+
+def onlinepay(doc):
+    email_stu = frappe.get_all("Student",{"name":doc.student},["student_email_id"])
+    if doc.docstatus==1:
+        student = frappe.get_doc("User",email_stu[0]["student_email_id"])
+        student.new_password = ''
+        student.role_profile_name = ''
+        student.add_roles("Provisionally admitted","Applicant")
+        student.new_password = ''
+        student.flags.ignore_permissions = True
+        student.save()
