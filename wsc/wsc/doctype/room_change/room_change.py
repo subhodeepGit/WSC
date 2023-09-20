@@ -34,7 +34,7 @@ class RoomChange(Document):
 		if workflow_state=="Submit":
 			chk_df=chk_df[(chk_df['application_status'].isnull())|(chk_df['application_status']=="Open")].reset_index()
 			if len(chk_df)!=0:
-				frappe.throw("Document already Present Dco no %s"%(chk_df['Room_doc_no'][0]))
+				frappe.throw("Document already present Doc no %s"%(chk_df['Room_doc_no'][0]))
 			else:
 				pass
 		elif workflow_state=="Reported":

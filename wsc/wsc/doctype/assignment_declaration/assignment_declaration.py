@@ -8,15 +8,15 @@ from frappe.model.mapper import get_mapped_doc
 class AssignmentDeclaration(Document):
 	pass
 
-@frappe.whitelist()
-def get_details(participant_group_id):
-	if(participant_group_id == ''):
-		return ['','','','','', '', '']
-	else:
-		group_details = frappe.get_all('Participant Group', filters = [['name', '=', participant_group_id]], fields = ['academic_year', 'academic_term', 'program', 'course'])
-		instructor_details = frappe.db.sql(""" SELECT instructors FROM `tabInstructor Table` where parent = '%s'"""%(participant_group_id))
-		assessment_criteria = frappe.db.sql(""" SELECT assessment_criteria FROM `tabCredit distribution List` where parent = '%s'"""%(group_details[0]['course']))
-		return [group_details[0]['academic_year'], group_details[0]['academic_term'], group_details[0]['program'], group_details[0]['course'], instructor_details, assessment_criteria]
+# @frappe.whitelist()
+# def get_details(participant_group_id):
+# 	if(participant_group_id == ''):
+# 		return ['','','','','', '', '']
+# 	else:
+# 		group_details = frappe.get_all('Participant Group', filters = [['name', '=', participant_group_id]], fields = ['academic_year', 'academic_term', 'program', 'course'])
+# 		instructor_details = frappe.db.sql(""" SELECT instructors FROM `tabInstructor Table` where parent = '%s'"""%(participant_group_id))
+# 		assessment_criteria = frappe.db.sql(""" SELECT assessment_criteria FROM `tabCredit distribution List` where parent = '%s'"""%(group_details[0]['course']))
+# 		return [group_details[0]['academic_year'], group_details[0]['academic_term'], group_details[0]['program'], group_details[0]['course'], instructor_details, assessment_criteria]
 
 
 @frappe.whitelist()
@@ -63,8 +63,12 @@ def get_participants(participant_group_id = None, attendance_applicable = 0, att
 		participants = frappe.get_all('Participant Table', filters = [['parent', '=', participant_group_id]], fields = ['participant', 'participant_name'])
 		for d in participants:
 			participant_classes = frappe.db.sql(""" SELECT COUNT(*) FROM `tabToT Class Table` WHERE parent = '%s'"""%(participant_group_id))
-			participant_present_for = frappe.db.sql(""" SELECT COUNT(*) FROM `tabToT Participant Attendance` WHERE participant_id = '%s' AND participant_group = '%s'"""%(d.participant, participant_group_id))
-			final_attendance = (participant_present_for[0][0]/participant_classes[0][0])*100
+			participant_present_for = frappe.db.sql(""" SELECT COUNT(*) FROM `tabToT Participant Attendance` WHERE participant_id = '%s' AND participant_group = '%s' AND docstatus = 1 AND status = 'Present'"""%(d.participant, participant_group_id))
+			try:
+				final_attendance = (participant_present_for[0][0]/participant_classes[0][0])*100
+			except ZeroDivisionError:
+				final_attendance = 0
+			# final_attendance = (participant_present_for[0][0]/participant_classes[0][0])*100
 			d['attendance'] = "{:.2f}".format(final_attendance)	
 					
 			if(attendance_applicable == '1'):

@@ -11,6 +11,7 @@ from frappe.model.document import Document
 import pandas as pd
 import datetime
 from datetime import date
+from wsc.wsc.doctype.user_permission import add_user_permission
 
 
 class RoomAllotment(Document):
@@ -50,6 +51,7 @@ class RoomAllotment(Document):
 				
 	# @frappe.whitelist()
 	def on_submit(doc):
+		print('\n\n\n')
 		room_id=doc.room_id
 		# room_info_vac=vacancy_quety_vali("Genaral",room_id)
 		# if room_info_vac["validity"][0]=="Approved":
@@ -72,7 +74,9 @@ class RoomAllotment(Document):
 		# 	frappe.throw("Room is not valid")
 		frappe.db.sql("""UPDATE `tabRoom Masters` SET `vacancy`=`vacancy`-1 WHERE `name`="%s" """%(room_id)) 
 		frappe.db.set_value("Student Hostel Admission",doc.hostel_registration_no, "allotment_status", "Allotted") 
-
+		stu_user=frappe.get_all("Student",{'name':doc.student},['user'])
+		if len(stu_user)>0:
+			add_user_permission("Room Allotment",doc.name,stu_user[0]['user'],doc)
 
 	# @frappe.whitelist()
 	def on_cancel(doc):
@@ -80,6 +84,11 @@ class RoomAllotment(Document):
 		frappe.db.sql("""UPDATE `tabRoom Masters` SET `vacancy`=`vacancy`+1 WHERE `name`="%s" """%(room_id))
 		frappe.db.set_value("Student Hostel Admission",doc.hostel_registration_no, "allotment_status", "Cancelled") 
 		cancel_hostel_admission(doc)
+		doc.delete_permission()
+
+	def delete_permission(self):
+		for d in frappe.get_all("User Permission",{"reference_doctype":self.doctype,"reference_docname":self.name}):
+			frappe.delete_doc("User Permission",d.name)
 	
 
 
@@ -87,13 +96,14 @@ class RoomAllotment(Document):
 @frappe.validate_and_sanitize_search_inputs
 def test_query(doctype, txt, searchfield, start, page_len, filters):
 	User=frappe.session.user
-	if frappe.session.user!="Administrator":
+	if frappe.session.user=="Administrator" or "Student" in frappe.get_roles(frappe.session.user):
 		return frappe.db.sql("""
-				SELECT `hostel_masters` from `tabEmployee Hostel Allotment` WHERE user_name="%s" and
-				(`start_date`<=now() and `end_date`>=now())"""%(User))
+				SELECT `hostel_name` from `tabHostel Masters` WHERE `start_date`<=now() and `end_date`>=now()""")
+		
 	else:
 		return frappe.db.sql("""
-				SELECT `hostel_name` from `tabHostel Masters` WHERE `start_date`<=now() and `end_date`>=now()""")			
+				SELECT `hostel_masters` from `tabEmployee Hostel Allotment` WHERE user_name="%s" and
+				(`start_date`<=now() and `end_date`>=now())"""%(User))		
 			
 def cancel_hostel_admission(doc):
 	if doc.hostel_registration_no:
