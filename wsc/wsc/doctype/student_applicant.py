@@ -454,9 +454,6 @@ def review_student(source_name):
     from wsc.wsc.doctype.semesters.semesters import get_courses
     st_applicant=frappe.get_doc("Student Applicant", source_name)
     
-    # counselling_based_program_priority = frappe.get_all("Counseling Based Program Priority" , {'parent' : st_applicant.name , 'approve' : 1} , ['programs'])
-    print(st_applicant)
-
     program_enrollment = frappe.new_doc("Preview")
     program_enrollment.first_name = st_applicant.first_name 
     program_enrollment.caste_category = st_applicant.student_category

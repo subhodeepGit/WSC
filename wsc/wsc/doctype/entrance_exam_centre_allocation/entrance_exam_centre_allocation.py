@@ -9,12 +9,7 @@ class EntranceExamCentreAllocation(Document):
     def validate(self):
         date_format = "%Y-%m-%d"
         print("\n\n")
-
-        print(type(self.exam_start_date) , type(self.exam_end_date))
-        # exam_start_date = datetime.strptime(self.exam_start_date, date_format).date()
-
-        # exam_end_date = datetime.strptime(self.exam_end_date, date_format).date()
-
+        
         for i in self.get('exam_slot_timings'):
 
             slot_date = datetime.strptime(i.slot_date, date_format).date()
