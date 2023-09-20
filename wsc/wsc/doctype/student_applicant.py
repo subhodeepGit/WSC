@@ -158,7 +158,7 @@ def validate_applicant_name(doc):
         if not contains_only_characters(doc.local_guardians_name):
             frappe.throw("Local Guardian Name should be only characters")
 def contains_only_characters(first_name):
-    return all(char.isalpha() or char.isspace() for char in first_name)
+    return all(char.isalpha() or char.isspace() or char == '.' for char in first_name)
 def delete_user_permission(doc):
     if doc.application_status=="Rejected":
         delete_permissions(doc)
