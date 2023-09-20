@@ -9,13 +9,8 @@
  "engine": "InnoDB",
  "field_order": [
   "evaluate",
-  "section_break_up0pn",
-  "assignment_name",
-  "section_break_8rp8h",
-  "start_date",
-  "total_duration",
-  "column_break_qdq1i",
-  "end_date",
+  "column_break_ayhpd",
+  "assignment_creation_status",
   "section_break_xokaq",
   "participant_group",
   "participant_group_name",
@@ -40,11 +35,19 @@
   "module_code",
   "section_break_9ubca",
   "instructor_id",
-  "assessment_criteria",
-  "weightage",
-  "column_break_5",
+  "column_break_bxk0b",
   "instructor_name",
+  "section_break_up0pn",
+  "assignment_name",
+  "total_duration",
+  "column_break_5",
+  "start_date",
+  "end_date",
+  "section_break_8rp8h",
+  "assessment_criteria",
   "total_marks",
+  "column_break_qdq1i",
+  "weightage",
   "passing_marks",
   "section_break_9",
   "assignment_attach_button",
@@ -94,7 +97,7 @@
   },
   {
    "fieldname": "description",
-   "fieldtype": "Long Text",
+   "fieldtype": "Text Editor",
    "label": "Description"
   },
   {
@@ -143,6 +146,7 @@
    "read_only": 1
   },
   {
+   "depends_on": "eval:doc.evaluate==1",
    "fieldname": "weightage",
    "fieldtype": "Percent",
    "label": "Weightage",
@@ -254,7 +258,8 @@
   },
   {
    "fieldname": "section_break_9ubca",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Instructor Details"
   },
   {
    "fetch_from": "course.course_name",
@@ -305,12 +310,25 @@
   {
    "fieldname": "column_break_mvrpl",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_bxk0b",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "assignment_creation_status",
+   "fieldtype": "Data",
+   "label": "Assignment Creation Status"
+  },
+  {
+   "fieldname": "column_break_ayhpd",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-18 17:34:59.791490",
+ "modified": "2023-09-19 17:20:54.756922",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment",

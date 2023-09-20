@@ -4,10 +4,12 @@
 import frappe 
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
+import json
 
 class Assignment(Document):
 	def validate(self):
 		self.duplicate_assignment()
+		self.assignment_creation_status="Pending"	
 
 	def duplicate_assignment(self):
 		data=frappe.get_all("Assignment",{"docstatus":1,
@@ -98,3 +100,12 @@ def criteria(doctype, txt, searchfield, start, page_len, filters):
 											}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
 	return criteria_details
 # -----------------------------------------------------------------------------------------------------------------------------
+
+@frappe.whitelist()
+def create_assignment(frm):
+	print("\n\n\n\n\n")
+	doc= frappe.get_doc("Assignment",frm)
+	participant_group=doc.participant_group
+	# print(participant_group)
+	# frappe.get_all("")
+
