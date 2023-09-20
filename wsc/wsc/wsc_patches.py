@@ -80,7 +80,6 @@ def comment_lines_list_view():
     file_path = "{}/{}".format(BENCH_PATH,
                                "apps/frappe/frappe/public/js/frappe/list/list_view.js")
     lines_to_comment = [
-        "actions_menu_items.push(bulk_edit());",
         "actions_menu_items.push(bulk_assignment());",
         "actions_menu_items.push(bulk_assignment_rule());",
         "actions_menu_items.push(bulk_add_tags());"
