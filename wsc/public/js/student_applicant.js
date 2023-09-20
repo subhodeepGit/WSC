@@ -187,7 +187,7 @@ frappe.ui.form.on('Student Applicant', {
         frm.set_df_property('student_rank', 'cannot_add_rows', true)
 		// frm.set_df_property('student_rank', 'cannot_delete_rows', true) 
         frm.set_df_property('education_qualifications_details', 'cannot_add_rows', true);
-        // frm.set_df_property('education_qualifications_details', 'cannot_delete_rows', true);
+        frm.set_df_property('education_qualifications_details', 'cannot_delete_rows', true);
         frm.set_df_property('document_list', 'cannot_add_rows', true);
         frm.set_df_property('document_list', 'cannot_delete_rows', true);
         

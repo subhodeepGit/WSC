@@ -23,9 +23,8 @@
   "section_break_qmu7e",
   "course_duration",
   "course_name",
-  "semester",
-  "column_break_hbdkn",
   "academic_year",
+  "semester",
   "academic_term",
   "section_break_kyqjw",
   "course",
@@ -39,9 +38,10 @@
   "instructor_name",
   "section_break_up0pn",
   "assignment_name",
+  "section_break_btncn",
+  "start_date",
   "total_duration",
   "column_break_5",
-  "start_date",
   "end_date",
   "section_break_8rp8h",
   "assessment_criteria",
@@ -167,11 +167,8 @@
   {
    "fieldname": "section_break_up0pn",
    "fieldtype": "Section Break",
+   "hide_border": 1,
    "label": "Assignment Details"
-  },
-  {
-   "fieldname": "column_break_hbdkn",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "section_break_kyqjw",
@@ -195,7 +192,8 @@
   },
   {
    "fieldname": "section_break_8rp8h",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Assessment Component Details"
   },
   {
    "fieldname": "start_date",
@@ -318,17 +316,22 @@
   {
    "fieldname": "assignment_creation_status",
    "fieldtype": "Data",
-   "label": "Assignment Creation Status"
+   "label": "Assignment Creation Status",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_ayhpd",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_btncn",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-19 17:20:54.756922",
+ "modified": "2023-09-20 16:34:36.466519",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment",

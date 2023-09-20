@@ -249,6 +249,7 @@ def delete_user_permission(student_email_address):
     user_permission_list=frappe.db.get_all("User Permission",filters={"user": student_email_address},fields="name")
     if len(user_permission_list)>0:
         for up in user_permission_list:
+            
             frappe.db.delete("User Permission",up)
     frappe.db.commit()
 
@@ -307,3 +308,21 @@ def get_previous_date(base_date, months_to_subtract, days_to_subtract):
     start_date = base_date - relativedelta(months=months_to_subtract) - timedelta(days=days_to_subtract)
 
     return start_date
+
+
+def check_and_delete_exit_employee_permissions():
+    employee_status = frappe.db.get_all("Employee",{'status':"Left"},['employee','user_id'])
+    # if employee_status in ["Left", "Inactive"]:
+    if employee_status:
+        for employee in employee_status:
+            user_email = employee.get('user_id')
+
+
+            if user_email:
+                user_permission_list = frappe.get_all("User Permission", filters={"user": user_email}, fields="name")
+                if user_permission_list:
+                    for up in user_permission_list:
+                        frappe.delete_doc("User Permission", up["name"])
+                
+        frappe.db.commit()   
+  
