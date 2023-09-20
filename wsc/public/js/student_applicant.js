@@ -1,14 +1,14 @@
 frappe.ui.form.on('Student Applicant', {
-    first_name:function(frm){    
-        let fname=frm.doc.first_name;    
-        let lname=frm.doc.last_name;    
-        frm.set_value("title",fname+" "+lname);    
-    },   
-    last_name:function(frm){        
-        let fname=frm.doc.first_name;        
-        let lname=frm.doc.last_name;        
-        frm.set_value("title",fname+" "+lname)
-    },
+    // first_name:function(frm){    
+    //     let fname=frm.doc.first_name;    
+    //     let lname=frm.doc.last_name;    
+    //     frm.set_value("title",fname+" "+lname);    
+    // },   
+    // last_name:function(frm){        
+    //     let fname=frm.doc.first_name;        
+    //     let lname=frm.doc.last_name;        
+    //     frm.set_value("title",fname+" "+lname)
+    // },
     on_submit:function(frm){
         frappe.msgprint({
             title: __('Notification'),
@@ -187,7 +187,7 @@ frappe.ui.form.on('Student Applicant', {
         frm.set_df_property('student_rank', 'cannot_add_rows', true)
 		// frm.set_df_property('student_rank', 'cannot_delete_rows', true) 
         frm.set_df_property('education_qualifications_details', 'cannot_add_rows', true);
-        // frm.set_df_property('education_qualifications_details', 'cannot_delete_rows', true);
+        frm.set_df_property('education_qualifications_details', 'cannot_delete_rows', true);
         frm.set_df_property('document_list', 'cannot_add_rows', true);
         frm.set_df_property('document_list', 'cannot_delete_rows', true);
         
