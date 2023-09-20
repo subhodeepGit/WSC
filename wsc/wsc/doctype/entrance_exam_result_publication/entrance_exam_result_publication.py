@@ -55,5 +55,5 @@ def ra_query3(doctype, txt, searchfield, start, page_len, filters):
             "declartion":filters['entrance_exam_declaration']
             # "info":info
         }),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
-    print(data)
+
     return data
