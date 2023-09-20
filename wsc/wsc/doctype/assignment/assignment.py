@@ -20,7 +20,7 @@ class Assignment(Document):
 									"course":self.course,
 									"course":self.course})
 		if data:
-			frappe.thorw("Assignment Name already exist")
+			frappe.throw("Assignment Name already exist")
 
 @frappe.whitelist()
 def get_details(participant_group_id):
