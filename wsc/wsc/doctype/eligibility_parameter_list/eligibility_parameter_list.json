@@ -1,17 +1,18 @@
 {
  "actions": [],
+ "allow_rename": 1,
  "creation": "2021-05-15 15:16:32.132813",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "is_mandatory",
   "student_category",
   "parameter",
+  "eligible_score",
+  "is_mandatory",
   "percentagecgpa",
   "column_break_4",
-  "total_score",
-  "eligible_score"
+  "total_score"
  ],
  "fields": [
   {
@@ -63,6 +64,7 @@
    "default": "Yes",
    "fieldname": "is_mandatory",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Is Mandatory",
    "options": "Yes\nNo",
    "reqd": 1
@@ -71,7 +73,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-11 11:35:35.364591",
+ "modified": "2023-09-19 11:38:01.622105",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Eligibility Parameter List",

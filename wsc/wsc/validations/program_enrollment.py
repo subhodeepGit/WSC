@@ -124,7 +124,7 @@ def on_submit(doc,method):
 def get_fee_structure(doc):
     existed_fs = frappe.db.get_list("Fee Structure", {'programs':doc.programs, 'program':doc.program, 
                  'fee_type':'Semester Fees', 'academic_year':doc.academic_year,
-                  'academic_term':doc.academic_term, 'docstatus':1},["name"])
+                  'academic_term':doc.academic_term, 'docstatus':1, 'student_category':doc.student_category},["name"])
     
     if len(existed_fs) != 0:                            
         fee_structure_id = existed_fs[0]['name']        
@@ -590,7 +590,6 @@ def get_data_stud_app(student_applicant):
 
 
 def update_reserved_seats(doc,on_submit=0):
-    print("\n\n\n\nHELLOW WORK")
     if doc.reference_doctype and doc.reference_name and doc.reference_doctype in ["Student Applicant","Branch Sliding Application"]:
 
         # for applicant
@@ -598,7 +597,6 @@ def update_reserved_seats(doc,on_submit=0):
             
             for ad in frappe.get_all("Program Priority",{"parent":doc.reference_name,"programs":doc.programs,"semester":doc.program},["student_admission"]):
                 admission=frappe.get_doc("Student Admission",ad.student_admission)
-                print("\n\n\nWOWO")
 
                 # check reservation type exists
                 # if len(frappe.get_all("Reservations List",{"seat_reservation_type":doc.seat_reservation_type,"parent":admission.name}))==0:
@@ -617,7 +615,6 @@ def update_reserved_seats(doc,on_submit=0):
 
                 # update seat 
             for d in admission.get("reservations_distribution"):
-                print("\n\n\nWOWO MOMO")
                 if doc.seat_reservation_type==d.seat_reservation_type:
                     if on_submit:
                         if int(d.seat_balance) > 0:

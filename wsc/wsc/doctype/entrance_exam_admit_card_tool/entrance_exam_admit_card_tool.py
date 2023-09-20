@@ -7,7 +7,17 @@ from datetime import datetime
 from frappe.model.document import Document
 
 class EntranceExamAdmitCardTool(Document):
-	pass
+	def validate(self):
+		if frappe.get_all("Entrance Exam Admit Card Tool",{"entrance_exam_declaration":self.entrance_exam_declaration,"docstatus":1}):
+			frappe.throw("Admit Card Tool is Already Published")
+	
+	def on_cancel(self):
+		for i in self.deallotted_applicant_list:
+			admit_card_data = frappe.get_all("Entrance Exam Admit Card" , {'applicant_id':i.applicant_id} , ['name'])
+			admit_card = frappe.get_doc("Rank Card" , admit_card_data[0]['name'])
+
+			if admit_card.docstatus == 1:
+				admit_card.cancel()
 
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
@@ -105,7 +115,7 @@ def admit_card_generate(alloted_applicant_data):
 				admit_card.exam_end_time = i['ending_time']
 				
 				admit_card.save()
-				# admit_card.submit()
+				admit_card.submit()
 
 @frappe.whitelist()
 def student_allotment(body):
@@ -125,9 +135,8 @@ def student_allotment(body):
 		data = {}
 		for j in prefered_center:
 		
-			print()
 			exam_center_allocation = frappe.get_all("Entrance Exam Centre Allocation" , 
-					   {'entrance_exam_declaration' : declaration , 'centre': j['center_name']} , 
+					   {'entrance_exam_declaration' : declaration , 'centre': j['center_name'] , 'docstatus' : 1} , 
 					 	['name' ,
 						'academic_year' , 'academic_term' ,
 						'department' ,
@@ -188,9 +197,19 @@ def student_allotment(body):
 			data2['student_category'] = i['student_category']
 			data2['physical_disability'] = i['physical_disability']
 			unalloted_students_after_center_allotment.append(data2)
-			
+
+	### For Flag	
+	admit_card_tool = frappe.get_doc('Entrance Exam Admit Card Tool' , name)
+
+	if len(unalloted_students_after_center_allotment) == 0:
+		admit_card_tool.flag = 2
+		admit_card_tool.save()
+	else:
+		admit_card_tool.flag = 1
+		admit_card_tool.save()
+
 	admit_card_generate(alloted_applicant_data)
-	
+
 	return {
 		'leftovers':unalloted_students_after_center_allotment,
 	}
@@ -214,7 +233,7 @@ def leftovers_allotment(body):
 	for i in leftover_applicant:
 		data = {}
 		exam_center_allocation = frappe.get_all("Entrance Exam Centre Allocation" , 					   				
-									  {'name':center} ,
+									  {'name':center , 'docstatus' : 1} ,
 					 					['name' ,
 										'academic_year' , 'academic_term' ,
 										'department' ,
@@ -274,6 +293,15 @@ def leftovers_allotment(body):
 			data2['physical_disability'] = i['physical_disability']
 			unalloted_applicants.append(data2)
 	
+	### For flag
+	admit_card_tool = frappe.get_doc('Entrance Exam Admit Card Tool' , name)
+	if len(unalloted_applicants) == 0:
+		admit_card_tool.flag = 2
+		admit_card_tool.save()
+	else:
+		admit_card_tool.flag = 1
+		admit_card_tool.save()
+
 	admit_card_generate(alloted_applicant_data)
 	
 	return {

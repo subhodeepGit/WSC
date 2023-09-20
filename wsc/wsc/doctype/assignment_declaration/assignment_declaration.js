@@ -28,24 +28,74 @@ frappe.ui.form.on('Assignment Declaration', {
 				
 			};
 		});
-	},
-	participant_group: function(frm){
-		frappe.call({
-			method : 'wsc.wsc.doctype.assignment_declaration.assignment_declaration.get_details',
-			args: {
-				participant_group_id: frm.doc.participant_group
-			},
-			callback: function(result){
-				if(result.message){
-					frm.set_value("course", result.message[2])
-					frm.set_value("module", result.message[3])
-					frm.set_value("academic_year", result.message[0])
-					frm.set_value("academic_term", result.message[1])
-					// frm.set_df_property('evaluator_id', 'options', result.message[4])
-					// frm.set_df_property('select_assessment_criteria', 'options', result.message[5])
-				}
+		frm.set_query("participant_group", function(){
+			return {
+				"filters": [
+					["Participant Group", "program", "=", frm.doc.course],
+					["Participant Group", "course", "=", frm.doc.module],
+					["Participant Group", "academic_year", "=", frm.doc.academic_year],
+				]
+			}
+		});
+		frm.set_query('course', function(){
+			return{
+				"filters": [
+					["Programs", "program_grade", "=", frm.doc.course_type],
+					["Programs", "is_tot", "=", 1],
+				]
 			}
 		})
+		frm.set_query('course_type', function(){
+			return{
+				"filters": [
+					["Program Grades", "is_short_term_course", "=", "Yes"],
+				]
+			}
+		})
+	},
+	participant_group: function(frm){
+		// frappe.call({
+		// 	method : 'wsc.wsc.doctype.assignment_declaration.assignment_declaration.get_details',
+		// 	args: {
+		// 		participant_group_id: frm.doc.participant_group
+		// 	},
+		// 	callback: function(result){
+		// 		if(result.message){
+		// 			frm.set_value("course", result.message[2])
+		// 			frm.set_value("module", result.message[3])
+		// 			frm.set_value("academic_year", result.message[0])
+		// 			frm.set_value("academic_term", result.message[1])
+		// 			// frm.set_df_property('evaluator_id', 'options', result.message[4])
+		// 			// frm.set_df_property('select_assessment_criteria', 'options', result.message[5])
+		// 		}
+		// 	}
+		// })
+		frm.trigger('get_participant')
+	},
+	attendance_percentage: function(frm){
+		frm.trigger('get_participant')
+	},
+	attendance_applicable: function(frm){
+		if (frm.is_dirty()) {
+			frm.set_value("attendance_percentage",0)
+			frm.trigger('get_participant')
+		}
+	},
+	tot_start_date: function(frm) {
+		frm.fields_dict.assignment_start_date.datepicker.update({
+            minDate: frm.doc.tot_start_date ? new Date(frm.doc.tot_start_date) : null
+        });
+		// frm.fields_dict.assignment_start_date.datepicker.update({
+        //     maxDate: frm.doc.tot_end_date ? new Date(frm.doc.tot_end_date) : null
+        // });
+	},
+	tot_end_date: function(frm) {
+		frm.fields_dict.assignment_end_date.datepicker.update({
+            minDate: frm.doc.tot_start_date ? new Date(frm.doc.tot_start_date) : null
+        });
+		// frm.fields_dict.assignment_end_date.datepicker.update({
+        //     maxDate: frm.doc.tot_end_date ? new Date(frm.doc.tot_end_date) : null
+        // });
 	},
 	// evaluator_id: function(frm){
 	// 	frappe.call({
@@ -114,6 +164,10 @@ frappe.ui.form.on('Assignment Declaration', {
 					    c.total_marks=element.total_marks
 					    c.pass_marks=element.passing_marks
 					    c.weightage=element.weightage
+						c.start_date_and_time=element.start_date
+						c.end_date_and_time=element.end_date
+						c.total_durationin_hours=element.total_duration
+						c.job_sheet_number=element.name
 					});
 					frm.refresh_field("job_sheet")
 				}

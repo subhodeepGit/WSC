@@ -134,6 +134,15 @@ body[frappe-session-status='logged-out'] nav.navbar {display: none;}
 .tags-placeholder{
     visibility: hidden; 
 }
+.text-center.sign-up-message{
+    background: #ddb70b;
+    width: 400px;
+    width: 250px;
+    height: 25px;
+    margin: auto;
+    border: 2px solid #2f0750;
+    
+}
 /*
 .btn .btn-default .btn-sm .btn-attach{
     background: #5c3c92;

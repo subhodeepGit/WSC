@@ -2,6 +2,23 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Assignment', {
+	refresh: function(frm) {
+		frm.set_query("participant_group", function() {
+            return {
+                filters: {
+                    "disabled":0
+                }
+            };
+        });
+		if(frm.doc.docstatus===1 && frm.doc.assignment_creation_status=="Pending") {
+			frm.add_custom_button(__("Create Assignment"), function() {
+                frappe.model.open_mapped_doc({
+					method: "wsc.wsc.doctype.assignment.assignment.create_assignment",
+					frm: frm,
+				});
+			});
+		}
+	},
 	setup: function(frm){
 		frm.set_query("instructor_id", function() {
 			return {
@@ -127,4 +144,20 @@ frappe.ui.form.on('Assignment', {
 		frm.set_value("total_duration",days + " days, " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds")
 		}
     },
+	tot_start_date: function(frm) {
+		frm.fields_dict.start_date.datepicker.update({
+            minDate: frm.doc.tot_start_date ? new Date(frm.doc.tot_start_date) : null
+        });
+		frm.fields_dict.start_date.datepicker.update({
+            maxDate: frm.doc.tot_end_date ? new Date(frm.doc.tot_end_date) : null
+        });
+	},
+	tot_end_date: function(frm) {
+		frm.fields_dict.end_date.datepicker.update({
+            minDate: frm.doc.tot_start_date ? new Date(frm.doc.tot_start_date) : null
+        });
+		frm.fields_dict.end_date.datepicker.update({
+            maxDate: frm.doc.tot_end_date ? new Date(frm.doc.tot_end_date) : null
+        });
+	}
 });

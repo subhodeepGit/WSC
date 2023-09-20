@@ -9,6 +9,7 @@
  "field_order": [
   "re_scheduled",
   "is_canceled",
+  "attendance_taken",
   "section_break_ehyhd",
   "participant_group_id",
   "column_break_ojus4",
@@ -37,7 +38,9 @@
   "to_time",
   "section_break_uvolg",
   "trainers",
-  "trainers_name"
+  "trainers_name",
+  "section_break_stimh",
+  "instructor"
  ],
  "fields": [
   {
@@ -235,11 +238,29 @@
    "fieldname": "is_canceled",
    "fieldtype": "Check",
    "label": "Is canceled"
+  },
+  {
+   "fieldname": "section_break_stimh",
+   "fieldtype": "Section Break",
+   "label": "List of Trainers"
+  },
+  {
+   "fieldname": "instructor",
+   "fieldtype": "Table",
+   "options": "Instructor Table"
+  },
+  {
+   "default": "0",
+   "description": "If attendance is taken, classes cannot be rescheduled or cancelled",
+   "fieldname": "attendance_taken",
+   "fieldtype": "Check",
+   "label": "Attendance taken?",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-12 11:05:00.634948",
+ "modified": "2023-09-18 11:47:14.210079",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Class Schedule",

@@ -24,10 +24,24 @@ class EntranceExamCentreSelection(Document):
 			result.save()
 			result.submit()
 
+		frappe.msgprint("Centers Records Created")
+		self.flag = 2
+		self.save()
+		print(self.flag)
+
 	def validate(self):
 		self.validate_duplicate_record()
 
 	def on_cancel(self):
+		# center_select = frappe.get_doc("Entrance exam select" , )
+		self.flag = 0
+		self.save()
+		for i in self.current_centers:
+			center_select_data = frappe.get_all("Entrance exam select" , {'center' : i.center} , ['name'])
+			if len(center_select_data) != 0:
+				center_select = frappe.get_doc("Entrance exam select" , center_select_data[0]['name'])
+
+				center_select.cancel()
 		frappe.db.sql("""
 			UPDATE `tabEntrance exam select` SET available_center = 0 WHERE academic_year = '{academic_year}' AND academic_term = '{academic_term}'
 		""".format(academic_year = self.academic_year , academic_term = self.academic_term))

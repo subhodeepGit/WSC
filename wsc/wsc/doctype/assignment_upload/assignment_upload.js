@@ -6,6 +6,7 @@ frappe.ui.form.on('Assignment Upload', {
 
 	// }
 	setup: function(frm){
+
 		frm.set_query("instructor_id", function() {
 			return {
 				query: 'wsc.wsc.doctype.assignment_upload.assignment_upload.instructor',
@@ -42,27 +43,10 @@ frappe.ui.form.on('Assignment Upload', {
 					frm.set_value("course", result.message[1])
 					frm.set_value("academic_year", result.message[2])
 					frm.set_value("academic_term", result.message[3])
-					// frm.set_df_property('participant_id', 'options', result.message[4])
-					// frm.set_df_property('instructor_id', 'options', result.message[5])
-					// frm.set_df_property('assignment_id', 'options', result.message[6]) // need help for this
 				}
 			}
 		})
 	},
-	// participant_id: function(frm){
-	// 	frappe.call({
-	// 		method: 'wsc.wsc.doctype.assignment_upload.assignment_upload.get_participant_name',
-	// 		args:{
-	// 			participant_group_id : frm.doc.participant_group,
-	// 			participant_id : frm.doc.participant_id
-	// 		},
-	// 		callback: function(result){
-	// 			if(result.message){
-	// 				frm.set_value("participant_name",result.message)
-	// 			}
-	// 		}
-	// 	})
-	// },
 	assignment_id: function(frm){
 		frappe.call({
 			method: 'wsc.wsc.doctype.assignment_upload.assignment_upload.get_assignment_details',
@@ -76,6 +60,8 @@ frappe.ui.form.on('Assignment Upload', {
 					frm.set_value("passing_marks", result.message[2])
 					frm.set_value("weightage", result.message[3])
 					frm.set_value("assignment_number", result.message[4])
+					frm.set_value("start_date", result.message[5])
+					frm.set_value("end_date", result.message[6])
 				}
 			}
 		})

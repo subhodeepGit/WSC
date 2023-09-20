@@ -10,7 +10,7 @@
   "hostel_info_section",
   "hostel_name",
   "hostel_short_name",
-  "hostel_phone_number",
+  "hostel_phone_number_1",
   "hostel_phone_number_2",
   "hostel_type",
   "column_break_6",
@@ -47,12 +47,16 @@
    "fetch_from": "hostel_id.hostel_short_name",
    "fieldname": "hostel_short_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Hostel Short Name",
    "reqd": 1
   },
   {
    "fieldname": "hostel_type",
    "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Hostel Type",
    "options": "Hostel Type",
    "reqd": 1
@@ -65,12 +69,14 @@
    "fieldname": "total_floors",
    "fieldtype": "Int",
    "label": "Total Floors",
+   "non_negative": 1,
    "reqd": 1
   },
   {
    "fieldname": "total_rooms",
    "fieldtype": "Int",
    "label": "Total Rooms",
+   "non_negative": 1,
    "reqd": 1
   },
   {
@@ -81,7 +87,8 @@
   {
    "fieldname": "no_of_blocks",
    "fieldtype": "Int",
-   "label": "No. Of Blocks"
+   "label": "No. Of Blocks",
+   "non_negative": 1
   },
   {
    "default": "Today",
@@ -134,20 +141,20 @@
    "label": "State"
   },
   {
-   "fieldname": "hostel_phone_number",
-   "fieldtype": "Phone",
-   "label": "Hostel Phone Number 1",
-   "reqd": 1
-  },
-  {
    "fieldname": "hostel_phone_number_2",
    "fieldtype": "Phone",
    "label": "Hostel Phone Number 2"
+  },
+  {
+   "fieldname": "hostel_phone_number_1",
+   "fieldtype": "Phone",
+   "label": "Hostel Phone Number 1",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-03-30 13:18:47.061554",
+ "modified": "2023-09-13 16:33:34.896978",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Hostel Masters",

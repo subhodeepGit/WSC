@@ -10,15 +10,16 @@
   "state",
   "districts",
   "center_name",
+  "center",
   "cityvillage",
-  "center"
+  "address"
  ],
  "fields": [
   {
    "fieldname": "center_name",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Centre Name",
+   "label": "Centre ",
    "options": "Entrance exam select",
    "reqd": 1
   },
@@ -46,17 +47,22 @@
    "label": "City/Village/Town"
   },
   {
-   "fetch_from": "center_name.center",
+   "fetch_from": "center_name.center_name",
    "fieldname": "center",
    "fieldtype": "Data",
-   "hidden": 1,
-   "label": "center"
+   "label": " Center Name"
+  },
+  {
+   "fetch_from": "center_name.address",
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "label": "Address"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-06-08 16:46:13.235163",
+ "modified": "2023-09-14 11:18:40.938794",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Centre Preference",

@@ -14,6 +14,8 @@
   "gender",
   "designation",
   "employee_number",
+  "reporting_authority",
+  "department_head",
   "branch",
   "column_break_l2gfl",
   "company",
@@ -191,12 +193,26 @@
    "options": "Employee Re-engagement",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fetch_from": "employee.reporting_authority_email",
+   "fieldname": "reporting_authority",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Reporting Authority"
+  },
+  {
+   "fetch_from": "department.department_head",
+   "fieldname": "department_head",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Department Head"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-03 17:17:47.266755",
+ "modified": "2023-09-14 16:22:13.713386",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Re-engagement",

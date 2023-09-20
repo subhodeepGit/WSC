@@ -1,6 +1,6 @@
 {
  "actions": [],
- "autoname": "field:student_category",
+ "autoname": "field:category",
  "creation": "2021-10-21 15:49:34.321036",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -8,6 +8,7 @@
  "field_order": [
   "reservation_name",
   "student_category",
+  "category",
   "award_winner",
   "physically_disabled",
   "seat_reservations_category_item"
@@ -32,26 +33,34 @@
    "default": "0",
    "fieldname": "physically_disabled",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Physically Disabled"
   },
   {
    "default": "0",
    "fieldname": "award_winner",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Award Winner"
   },
   {
    "fieldname": "student_category",
    "fieldtype": "Link",
-   "label": "Student Category",
+   "label": "Caste Category",
    "options": "Student Category",
-   "reqd": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Link",
+   "label": "Student Category",
+   "options": "Category",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-12 12:53:41.349833",
+ "modified": "2023-09-13 17:03:50.732857",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Seat Reservation Type",

@@ -92,16 +92,16 @@ frappe.ui.form.on('OnlinePayment', {
                         var encRequest = r.message["encRequest"];
                         var access_code = r.message["accessCode"];
                         var is_prod = r.message["is_prod"];
-                        alert(is_prod)
+                        // alert(is_prod)
                         // alert(encRequest)
                         // alert(access_code)
 
 
                         if (is_prod == 1) {
                             // alert("1")
-                            window.location.href = "https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
+                            // window.location.href = "https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
 
-                            // window.location.href = "https://ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
+                            window.location.href = "https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
 
                         } else {
                             // alert("2")
@@ -118,13 +118,13 @@ frappe.ui.form.on('OnlinePayment', {
 
         hdfcButton.css({ 'color': 'black', 'background-color': 'white', 'font-weight': 'normal' });
 
-        var axisButton = frm.add_custom_button("By Axis", function () {
-            // HAve to add the logic for Axis payment here
+        // var axisButton = frm.add_custom_button("By Axis", function () {
+        //     // HAve to add the logic for Axis payment here
 
-            alert("axisButton clicked")
-        }, "Online Payment");
+        //     alert("axisButton clicked")
+        // }, "Online Payment");
 
-        axisButton.css({ 'color': 'black', 'background-color': 'white', 'font-weight': 'normal' });
+        // axisButton.css({ 'color': 'black', 'background-color': 'white', 'font-weight': 'normal' });
     }
 });
 
