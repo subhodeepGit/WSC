@@ -106,6 +106,8 @@ def create_assignment(frm):
 	print("\n\n\n\n\n")
 	doc= frappe.get_doc("Assignment",frm)
 	participant_group=doc.participant_group
-	# print(participant_group)
-	# frappe.get_all("")
+	participant_list=frappe.get_all("Participant Table",{"parent":participant_group,"active":1})
+	print(participant_list)
+	
+
 

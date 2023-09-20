@@ -28,34 +28,42 @@
    "fetch_from": "entrance_exam_declaration.academic_year",
    "fieldname": "academic_year",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Academic Year",
-   "options": "Academic Year"
+   "options": "Academic Year",
+   "reqd": 1
   },
   {
    "fetch_from": "entrance_exam_declaration.department",
    "fieldname": "department",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Department",
-   "options": "Department"
+   "options": "Department",
+   "reqd": 1
   },
   {
    "fieldname": "maximum_number_of_ranks",
    "fieldtype": "Int",
-   "label": "Maximum Number of Ranks"
+   "label": "Maximum Number of Ranks",
+   "reqd": 1
   },
   {
    "allow_on_submit": 1,
    "fieldname": "ranking_category",
    "fieldtype": "Table",
    "label": "Ranking Category",
-   "options": "Ranking Category"
+   "options": "Ranking Category",
+   "reqd": 1
   },
   {
    "fetch_from": "entrance_exam_declaration.academic_term",
    "fieldname": "academic_term",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Academic Term",
-   "options": "Academic Term"
+   "options": "Academic Term",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_5",
@@ -85,7 +93,9 @@
   {
    "fieldname": "all_round_cutoff",
    "fieldtype": "Float",
-   "label": "All Round Cutoff "
+   "in_list_view": 1,
+   "label": "All Round Cutoff ",
+   "reqd": 1
   },
   {
    "fieldname": "section_break_mskhg",
@@ -98,12 +108,13 @@
   {
    "fieldname": "no_category_rank_name",
    "fieldtype": "Data",
-   "label": "No Category Rank Name"
+   "label": "No Category Rank Name",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-12 14:57:49.582001",
+ "modified": "2023-09-20 15:53:58.460380",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Rank Card Master",

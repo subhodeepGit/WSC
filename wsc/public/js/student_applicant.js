@@ -1,14 +1,14 @@
 frappe.ui.form.on('Student Applicant', {
-    first_name:function(frm){    
-        let fname=frm.doc.first_name;    
-        let lname=frm.doc.last_name;    
-        frm.set_value("title",fname+" "+lname);    
-    },   
-    last_name:function(frm){        
-        let fname=frm.doc.first_name;        
-        let lname=frm.doc.last_name;        
-        frm.set_value("title",fname+" "+lname)
-    },
+    // first_name:function(frm){    
+    //     let fname=frm.doc.first_name;    
+    //     let lname=frm.doc.last_name;    
+    //     frm.set_value("title",fname+" "+lname);    
+    // },   
+    // last_name:function(frm){        
+    //     let fname=frm.doc.first_name;        
+    //     let lname=frm.doc.last_name;        
+    //     frm.set_value("title",fname+" "+lname)
+    // },
     on_submit:function(frm){
         frappe.msgprint({
             title: __('Notification'),
