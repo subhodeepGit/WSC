@@ -135,9 +135,8 @@ def student_allotment(body):
 		data = {}
 		for j in prefered_center:
 		
-			print()
 			exam_center_allocation = frappe.get_all("Entrance Exam Centre Allocation" , 
-					   {'entrance_exam_declaration' : declaration , 'centre': j['center_name']} , 
+					   {'entrance_exam_declaration' : declaration , 'centre': j['center_name'] , 'docstatus' : 1} , 
 					 	['name' ,
 						'academic_year' , 'academic_term' ,
 						'department' ,
@@ -234,7 +233,7 @@ def leftovers_allotment(body):
 	for i in leftover_applicant:
 		data = {}
 		exam_center_allocation = frappe.get_all("Entrance Exam Centre Allocation" , 					   				
-									  {'name':center} ,
+									  {'name':center , 'docstatus' : 1} ,
 					 					['name' ,
 										'academic_year' , 'academic_term' ,
 										'department' ,

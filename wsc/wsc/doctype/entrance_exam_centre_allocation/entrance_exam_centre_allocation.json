@@ -138,7 +138,7 @@
    "label": "Center Selection"
   },
   {
-   "fetch_from": "centre.center",
+   "fetch_from": "centre.center_name",
    "fieldname": "centre_name",
    "fieldtype": "Data",
    "label": "Centre Name"
@@ -147,7 +147,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-30 12:33:44.282383",
+ "modified": "2023-09-13 16:44:12.645554",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Centre Allocation",

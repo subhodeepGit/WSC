@@ -466,7 +466,8 @@ frappe.ui.form.on("Education Qualifications Details", "earned_marks", function(f
                         ['academic_term' , '=' , frm.doc.academic_term] ,
                         ['state' , '=' , d.state] , 
                         ['district' , '=' , d.districts] , 
-                        ['available_center' , '=' , 1]
+                        ['available_center' , '=' , 1],
+                        ['docstatus' , '=' , 1]
                     ]}
         }
     }
