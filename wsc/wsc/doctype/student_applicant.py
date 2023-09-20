@@ -54,7 +54,10 @@ class StudentApplicant(Document):
             frappe.throw(_("Cannot change status as student {0} is linked with student application {1}").format(student[0].name, doc.name))
     def validate(doc):
         validate_edu_details(doc)
-        doc.title=doc.first_name + doc.middle_name + doc.last_name
+        doc.title = " ".join(
+			filter(None, [doc.first_name, doc.middle_name, doc.last_name])
+		)
+        # doc.title=doc.first_name + doc.middle_name + doc.last_name
         # validate_percentage(doc)
         # check_age(doc)
         validate_duplicate_record(doc)
