@@ -66,6 +66,13 @@ frappe.ui.form.on('Job Applicant', {
 				frm.save_or_update();
 				frappe.msgprint("Please Click on the Confirm button")
 			}, 'Actions');
+
+			frm.add_custom_button(__("Rejected"), function() {
+				frm.set_value("current_status", "Rejected");
+				frm.save_or_update();
+				frappe.msgprint("Please Click on the Confirm button")
+			}, 'Actions');
+
 			frm.add_custom_button(__("On Hold"), function() {
 				frm.set_value("current_status", "On Hold");
 				frm.save_or_update();
@@ -96,6 +103,7 @@ frappe.ui.form.on('Job Applicant', {
 			frm.remove_custom_button("Disqualified","Actions");
 			frm.remove_custom_button("Qualified","Actions");
 			frm.remove_custom_button("CV Selected","Actions");
+			frm.remove_custom_button("Rejected","Actions");
 		}
 	}
 		
