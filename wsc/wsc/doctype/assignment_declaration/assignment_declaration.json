@@ -45,7 +45,8 @@
   "get_participant",
   "participant_list",
   "section_break_tnkb4",
-  "job_sheet"
+  "job_sheet",
+  "amended_from"
  ],
  "fields": [
   {
@@ -288,11 +289,21 @@
    "label": "Course Type",
    "options": "Program Grades",
    "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Assignment Declaration",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-09-20 15:49:34.929442",
+ "modified": "2023-09-20 17:39:05.090845",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Declaration",
