@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"I34K0-Span\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h1\\\">Admission</span>\",\"col\":12}},{\"id\":\"Vpzx3gf95K\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ywzjT_I2WT\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Department\",\"col\":3}},{\"id\":\"CWLqDt2BnK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":3}},{\"id\":\"qsTiFgwIKa\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Semester\",\"col\":3}},{\"id\":\"4rnD6h2CmZ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course\",\"col\":3}},{\"id\":\"UK8H2h-3tS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instructor\",\"col\":3}},{\"id\":\"PP-iJn_1gz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student\",\"col\":3}},{\"id\":\"yp_dEg0btu\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"RrzHInDfHG\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Master &amp; Application</span><span class=\\\"h4\\\"><b><br></b></span>\",\"col\":12}},{\"id\":\"VZ4Vh0w5Ai\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"ZfB-R1ZaJN\",\"type\":\"card\",\"data\":{\"card_name\":\"Admission Master\",\"col\":4}},{\"id\":\"k_n6UG5naR\",\"type\":\"card\",\"data\":{\"card_name\":\"Student and Trainer\",\"col\":4}},{\"id\":\"hS7OiYlYTe\",\"type\":\"card\",\"data\":{\"card_name\":\"Counselling\",\"col\":4}},{\"id\":\"YVUIBqB2oj\",\"type\":\"card\",\"data\":{\"card_name\":\"Entrance Exam\",\"col\":4}},{\"id\":\"2riNHbo_Zy\",\"type\":\"card\",\"data\":{\"card_name\":\"Admit Card\",\"col\":4}},{\"id\":\"XjgEcspPRN\",\"type\":\"card\",\"data\":{\"card_name\":\"Rank Card And Reporting\",\"col\":4}},{\"id\":\"tmUKQynhR3\",\"type\":\"card\",\"data\":{\"card_name\":\"Student Enrollment\",\"col\":4}},{\"id\":\"zt0xuVkL7Q\",\"type\":\"card\",\"data\":{\"card_name\":\"Fees\",\"col\":4}},{\"id\":\"IJQWaM-BCi\",\"type\":\"card\",\"data\":{\"card_name\":\"Tools\",\"col\":4}},{\"id\":\"ZRZh_xsfKN\",\"type\":\"card\",\"data\":{\"card_name\":\"Feedback\",\"col\":4}}]",
+ "content": "[{\"id\":\"I34K0-Span\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h1\\\">Admission</span>\",\"col\":12}},{\"id\":\"Vpzx3gf95K\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ywzjT_I2WT\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Department\",\"col\":3}},{\"id\":\"CWLqDt2BnK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":3}},{\"id\":\"qsTiFgwIKa\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"User\",\"col\":3}},{\"id\":\"4rnD6h2CmZ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course\",\"col\":3}},{\"id\":\"UK8H2h-3tS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instructor\",\"col\":3}},{\"id\":\"PP-iJn_1gz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student\",\"col\":3}},{\"id\":\"Gb1v3PdGUy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Admission\",\"col\":3}},{\"id\":\"j2gTeWzYvY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Applicant\",\"col\":3}},{\"id\":\"yp_dEg0btu\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"RrzHInDfHG\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Master &amp; Application</span><span class=\\\"h4\\\"><b><br></b></span>\",\"col\":12}},{\"id\":\"VZ4Vh0w5Ai\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"ZfB-R1ZaJN\",\"type\":\"card\",\"data\":{\"card_name\":\"Admission Master\",\"col\":4}},{\"id\":\"k_n6UG5naR\",\"type\":\"card\",\"data\":{\"card_name\":\"Student and Trainer\",\"col\":4}},{\"id\":\"hS7OiYlYTe\",\"type\":\"card\",\"data\":{\"card_name\":\"Counselling\",\"col\":4}},{\"id\":\"YVUIBqB2oj\",\"type\":\"card\",\"data\":{\"card_name\":\"Entrance Exam\",\"col\":4}},{\"id\":\"2riNHbo_Zy\",\"type\":\"card\",\"data\":{\"card_name\":\"Admit Card\",\"col\":4}},{\"id\":\"XjgEcspPRN\",\"type\":\"card\",\"data\":{\"card_name\":\"Rank Card\",\"col\":4}},{\"id\":\"tmUKQynhR3\",\"type\":\"card\",\"data\":{\"card_name\":\"Student Enrollment\",\"col\":4}},{\"id\":\"zt0xuVkL7Q\",\"type\":\"card\",\"data\":{\"card_name\":\"Fees\",\"col\":4}},{\"id\":\"IJQWaM-BCi\",\"type\":\"card\",\"data\":{\"card_name\":\"Tools\",\"col\":4}},{\"id\":\"ZRZh_xsfKN\",\"type\":\"card\",\"data\":{\"card_name\":\"Feedback\",\"col\":4}}]",
  "creation": "2023-02-15 12:40:14.406775",
  "custom_blocks": [],
  "docstatus": 0,
@@ -140,44 +140,6 @@
    "label": "Course Enrollment Tool",
    "link_count": 0,
    "link_to": "Student Reregistration Tool",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Enrollment",
-   "link_count": 3,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Admission",
-   "link_count": 0,
-   "link_to": "Student Admission",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Program Enrollment",
-   "link_count": 0,
-   "link_to": "Program Enrollment",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Course Enrollment",
-   "link_count": 0,
-   "link_to": "Course Enrollment",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -351,6 +313,34 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Counselling",
+   "link_count": 2,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Counselling Structure",
+   "link_count": 0,
+   "link_to": "Counselling Structure",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reporting Desk",
+   "link_count": 0,
+   "link_to": "Reporting Desk",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Admit Card",
    "link_count": 2,
    "onboard": 0,
@@ -379,17 +369,37 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Counselling",
-   "link_count": 1,
+   "label": "Rank Card",
+   "link_count": 3,
    "onboard": 0,
    "type": "Card Break"
   },
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Counselling Structure",
+   "label": "Rank Card Master",
    "link_count": 0,
-   "link_to": "Counselling Structure",
+   "link_to": "Rank Card Master",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Rank Card Publication Tool",
+   "link_count": 0,
+   "link_to": "Rank Card Publication Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Rank Cards",
+   "link_count": 0,
+   "link_to": "Rank Card",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -398,7 +408,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Entrance Exam",
-   "link_count": 5,
+   "link_count": 6,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -455,14 +465,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Rank Card And Reporting",
-   "link_count": 5,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Entrance Exam Result Publication",
    "link_count": 0,
    "link_to": "Entrance Exam Result Publication",
@@ -473,9 +475,17 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Rank Card Master",
+   "label": "Student Enrollment",
+   "link_count": 4,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Admission",
    "link_count": 0,
-   "link_to": "Rank Card Master",
+   "link_to": "Student Admission",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -483,9 +493,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Rank Card Publication Tool",
+   "label": "Student Applicant",
    "link_count": 0,
-   "link_to": "Rank Card Publication Tool",
+   "link_to": "Student Applicant",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -493,9 +503,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Rank Cards",
+   "label": "Course Enrollment",
    "link_count": 0,
-   "link_to": "Rank Card",
+   "link_to": "Program Enrollment",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -503,15 +513,15 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Reporting Desk",
+   "label": "Module Enrollment",
    "link_count": 0,
-   "link_to": "Reporting Desk",
+   "link_to": "Course Enrollment",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
   }
  ],
- "modified": "2023-09-20 15:57:35.165407",
+ "modified": "2023-09-20 17:51:53.442860",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Admission",
@@ -529,6 +539,12 @@
   },
   {
    "role": "Education Admission Head"
+  },
+  {
+   "role": "Accounts Manager"
+  },
+  {
+   "role": "Accounts User"
   }
  ],
  "sequence_id": 1.0,
@@ -543,6 +559,20 @@
   {
    "color": "Green",
    "doc_view": "List",
+   "label": "User",
+   "link_to": "User",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Student Admission",
+   "link_to": "Student Admission",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
    "label": "Department",
    "link_to": "Department",
    "type": "DocType"
@@ -550,15 +580,15 @@
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "Course",
-   "link_to": "Course",
+   "label": "Student Applicant",
+   "link_to": "Student Applicant",
    "type": "DocType"
   },
   {
-   "color": "Green",
+   "color": "Grey",
    "doc_view": "List",
-   "label": "Semester",
-   "link_to": "Program",
+   "label": "Course",
+   "link_to": "Course",
    "type": "DocType"
   },
   {
