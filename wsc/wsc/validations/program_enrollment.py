@@ -804,7 +804,7 @@ def onlinepay(doc):
     if doc.docstatus==1:
         student = frappe.get_doc("User",email_stu[0]["student_email_id"])
         student.new_password = ''
-        student.role_profile_name = ''
+        # student.role_profile_name = ''
         student.add_roles("Provisionally admitted")
         student.new_password = ''
         student.flags.ignore_permissions = True
