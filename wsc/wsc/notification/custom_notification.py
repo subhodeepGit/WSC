@@ -24,8 +24,9 @@ def admit_card_submit(doc):
     msg+="""<b>Date of Exam:</b>  {0}<br>""".format(doc.get('date_of_exam'))
     msg+="""<b>Exam Start Time:</b>  {0}<br>""".format(doc.get('exam_start_time'))
     msg+="""<b>Exam End Time:</b>  {0}<br>""".format(doc.get('exam_end_time'))
-    print(frappe.db.get_value("Student Applicant" , {"name":doc.applicant_id} , ["student_email_id"]))
-    send_mail(frappe.db.get_value("Student Applicant" , {"name":doc.applicant_id} , ["student_email_id"]), sub , msg)
+    attachments = [frappe.attach_print(doc.doctype, doc.name, file_name=doc.name, print_format='Entrance Exam Admit Card Print Format')]
+    # send_mail(recipients,'Payment Successful',msg,attachments)
+    send_mail(frappe.db.get_value("Student Applicant" , {"name":doc.applicant_id} , ["student_email_id"]), sub , msg , attachments)
 
 ############ Notification For Rank Card####
 def rank_card_submit(doc):
@@ -44,7 +45,8 @@ def rank_card_submit(doc):
     for  d in doc.get("student_ranks_list"):
         msg += """<tr><td>{0} - {1}</td></tr>""".format(d.get('rank_type') , d.get('rank_obtained'))
     msg += "</table>"
-    send_mail(frappe.db.get_value("Student Applicant" , {"name":doc.applicant_id} , ["student_email_id"]), sub , msg)
+    attachments = [frappe.attach_print(doc.doctype, doc.name, file_name=doc.name, print_format='Entrance Exam Rank Card')]
+    send_mail(frappe.db.get_value("Student Applicant" , {"name":doc.applicant_id} , ["student_email_id"]), sub , msg , attachments)
 
 def student_applicant_submit(doc):
     sub="""<p><b>Application Form is Sucessfully Submitted</b></p><br>"""
