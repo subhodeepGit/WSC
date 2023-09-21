@@ -10,7 +10,6 @@ from frappe import msgprint, _
 class AssignmentDeclaration(Document):
 	def validate(self):
 		self.validate_duplication()
-		# pass
 
 
 
@@ -24,13 +23,12 @@ class AssignmentDeclaration(Document):
 			'course': self.course,
 			'academic_year': self.academic_year,
 			'docstatus': ('!=', 2),
-			'docstatus': ('!=', 0),
-			'assignment_name': self.assignment_name
+			'name': ('!=', self.name)
 		})
 
 		if assignment_record:
 			record = get_link_to_form('Assignment Declaration', assignment_record)
-			frappe.throw(_('Assignment record {0} already exists!')
+			frappe.throw(_('Assignment Declaration record {0} already exists!')
 				.format(record), title=_('Duplicate Entry'))
 			
 # @frappe.whitelist()
