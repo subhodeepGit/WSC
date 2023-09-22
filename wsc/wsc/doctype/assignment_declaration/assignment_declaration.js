@@ -28,39 +28,59 @@ frappe.ui.form.on('Assignment Declaration', {
 				
 			};
 		});
-	},
-	participant_group: function(frm){
-		frappe.call({
-			method : 'wsc.wsc.doctype.assignment_declaration.assignment_declaration.get_details',
-			args: {
-				participant_group_id: frm.doc.participant_group
-			},
-			callback: function(result){
-				if(result.message){
-					frm.set_value("course", result.message[2])
-					frm.set_value("module", result.message[3])
-					frm.set_value("academic_year", result.message[0])
-					frm.set_value("academic_term", result.message[1])
-					// frm.set_df_property('evaluator_id', 'options', result.message[4])
-					// frm.set_df_property('select_assessment_criteria', 'options', result.message[5])
-				}
+		frm.set_query("participant_group", function(){
+			return {
+				"filters": [
+					["Participant Group", "program", "=", frm.doc.course],
+					["Participant Group", "course", "=", frm.doc.module],
+					["Participant Group", "academic_year", "=", frm.doc.academic_year],
+				]
+			}
+		});
+		frm.set_query('course', function(){
+			return{
+				"filters": [
+					["Programs", "program_grade", "=", frm.doc.course_type],
+					["Programs", "is_tot", "=", 1],
+				]
+			}
+		})
+		frm.set_query('course_type', function(){
+			return{
+				"filters": [
+					["Program Grades", "is_short_term_course", "=", "Yes"],
+				]
 			}
 		})
 	},
-	// evaluator_id: function(frm){
-	// 	frappe.call({
-	// 		method: 'wsc.wsc.doctype.assignment_declaration.assignment_declaration.get_instructor_name',
-	// 		args:{
-	// 			participant_group_id : frm.doc.participant_group,
-	// 			instructor_id: frm.doc.evaluator_id
-	// 		},
-	// 		callback: function(result){
-	// 			if(result.message){
-	// 				frm.set_value("evaluator_name", result.message)
-	// 			}
-	// 		}
-	// 	})
-	// },
+	participant_group: function(frm){
+		frm.trigger('get_participant')
+	},
+	attendance_percentage: function(frm){
+		frm.trigger('get_participant')
+	},
+	attendance_applicable: function(frm){
+		if (frm.is_dirty()) {
+			frm.set_value("attendance_percentage",0)
+			frm.trigger('get_participant')
+		}
+	},
+	tot_start_date: function(frm) {
+		frm.fields_dict.assignment_start_date.datepicker.update({
+            minDate: frm.doc.tot_start_date ? new Date(frm.doc.tot_start_date) : null
+        });
+		// frm.fields_dict.assignment_start_date.datepicker.update({
+        //     maxDate: frm.doc.tot_end_date ? new Date(frm.doc.tot_end_date) : null
+        // });
+	},
+	tot_end_date: function(frm) {
+		frm.fields_dict.assignment_end_date.datepicker.update({
+            minDate: frm.doc.tot_start_date ? new Date(frm.doc.tot_start_date) : null
+        });
+		// frm.fields_dict.assignment_end_date.datepicker.update({
+        //     maxDate: frm.doc.tot_end_date ? new Date(frm.doc.tot_end_date) : null
+        // });
+	},
 	get_participant: function(frm){
 		frappe.call({
 			method:'wsc.wsc.doctype.assignment_declaration.assignment_declaration.get_participants',
@@ -125,20 +145,30 @@ frappe.ui.form.on('Assignment Declaration', {
 		})
 	},
 	assignment_start_date: function(frm) {
-        // set minimum To Date equal to From Date
         frm.fields_dict.assignment_end_date.datepicker.update({
             minDate: frm.doc.assignment_start_date ? new Date(frm.doc.assignment_start_date) : null
         });
     },
 
     assignment_end_date: function(frm) {
-        // set maximum From Date equal to To Date
         frm.fields_dict.assignment_start_date.datepicker.update({
             maxDate: frm.doc.assignment_end_date ? new Date(frm.doc.assignment_end_date) : null
         });
     },
-});
 
-// frappe.ui.form.on("Job Sheet", "assessment_criteria", function(frm, cdt, cdn) {
-//     alert(500)
-// });
+	course_type: function(frm){
+		frm.set_value("participant_group","")
+	},
+
+	course: function(frm){
+		frm.set_value("participant_group","")
+	},
+
+	academic_year: function(frm){
+		frm.set_value("participant_group","")
+	},
+
+	module: function(frm){
+		frm.set_value("participant_group","")
+	},
+});

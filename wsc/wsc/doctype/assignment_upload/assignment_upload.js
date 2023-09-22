@@ -5,12 +5,20 @@ frappe.ui.form.on('Assignment Upload', {
 	// refresh: function(frm) {
 
 	// }
-	setup: function(frm){
-
+	refresh: function(frm){
+		frm.set_query("participant_group", function() {
+            return {
+                filters: {
+                    "disabled":0
+                }
+            };
+        });
 		frm.set_query("instructor_id", function() {
 			return {
 				query: 'wsc.wsc.doctype.assignment_upload.assignment_upload.instructor',
-				filters:{"participant_group_id":frm.doc.participant_group}
+				filters:{
+					"participant_group_id":frm.doc.participant_group,
+				}
 				
 			};
 		});
@@ -26,7 +34,10 @@ frappe.ui.form.on('Assignment Upload', {
 		frm.set_query("assignment_id", function() {
 			return {
 				query: 'wsc.wsc.doctype.assignment_upload.assignment_upload.assignment',
-				filters:{"participant_group_id":frm.doc.participant_group}
+				filters:{
+					"participant_group_id":frm.doc.participant_group,
+					"course":frm.doc.course
+				}
 				
 			};
 		});

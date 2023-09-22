@@ -284,7 +284,7 @@
    "name": "Job Applicant-current_status",
    "no_copy": 0,
    "non_negative": 0,
-   "options": "\nApplied\nCV Selected\nQualified\nDisqualified\nSelected\nOn Hold\nWaiting",
+   "options": "\nApplied\nCV Selected\nQualified\nDisqualified\nSelected\nOn Hold\nRejected\nWaiting",
    "owner": "Administrator",
    "permlevel": 0,
    "precision": "",

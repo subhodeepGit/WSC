@@ -61,7 +61,8 @@
    "fieldname": "centre",
    "fieldtype": "Link",
    "label": "Centre",
-   "options": "Entrance exam select"
+   "options": "Entrance exam select",
+   "reqd": 1
   },
   {
    "fetch_from": "centre.address",
@@ -94,7 +95,8 @@
    "fieldname": "exam_slot_timings",
    "fieldtype": "Table",
    "label": "Exam Slot Timings",
-   "options": "Exam Slot Timings"
+   "options": "Exam Slot Timings",
+   "reqd": 1
   },
   {
    "fieldname": "entrance_exam_invigilator",
@@ -138,7 +140,7 @@
    "label": "Center Selection"
   },
   {
-   "fetch_from": "centre.center",
+   "fetch_from": "centre.center_name",
    "fieldname": "centre_name",
    "fieldtype": "Data",
    "label": "Centre Name"
@@ -147,7 +149,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-30 12:33:44.282383",
+ "modified": "2023-09-20 15:55:24.561527",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Centre Allocation",

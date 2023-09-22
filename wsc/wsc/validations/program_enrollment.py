@@ -91,6 +91,7 @@ def update_student(doc):
     student.save()
 
 def on_submit(doc,method):
+    onlinepay(doc)
     make_fee_records(doc)
     create_student(doc)
     create_participant(doc)
@@ -124,7 +125,7 @@ def on_submit(doc,method):
 def get_fee_structure(doc):
     existed_fs = frappe.db.get_list("Fee Structure", {'programs':doc.programs, 'program':doc.program, 
                  'fee_type':'Semester Fees', 'academic_year':doc.academic_year,
-                  'academic_term':doc.academic_term, 'docstatus':1},["name"])
+                  'academic_term':doc.academic_term, 'docstatus':1, 'student_category':doc.student_category},["name"])
     
     if len(existed_fs) != 0:                            
         fee_structure_id = existed_fs[0]['name']        
@@ -797,3 +798,14 @@ def validate_seat_reservation_type(doc):
                     reservation_type.append(d.seat_reservation_type)
         if doc.seat_reservation_type not in reservation_type:
             frappe.throw("Seat reservation type <b>'{0}'</b> not belongs to the student admission referring doc student applicant <b>'{1}'</b> ".format(doc.seat_reservation_type, doc.reference_name))
+
+def onlinepay(doc):
+    email_stu = frappe.get_all("Student",{"name":doc.student},["student_email_id"])
+    if doc.docstatus==1:
+        student = frappe.get_doc("User",email_stu[0]["student_email_id"])
+        student.new_password = ''
+        # student.role_profile_name = ''
+        student.add_roles("Provisionally admitted")
+        student.new_password = ''
+        student.flags.ignore_permissions = True
+        student.save()

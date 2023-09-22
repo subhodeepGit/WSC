@@ -102,8 +102,7 @@ after_migrate = [
         'wsc.patches.migrate_patch.set_custom_role_permission',
         'wsc.wsc.delete_doc_if_linked.execute',
         'wsc.patches.migrate_patch.set_custom_role_permission_remove_duplicate',
-        'wsc.patches.create_all_tax_category.execute',
-        'wsc.wsc.wsc_patches.execute'
+        'wsc.patches.create_all_tax_category.execute'
 ]
 
 # application home page (will override Website Settings)
@@ -425,7 +424,7 @@ doc_events = {
 scheduler_events = {
 
     "cron":{
-        "0 10 * * *" : [
+        "* * * * *" : [
             # "wsc.task.warranty_notification",
             # "wsc.task.safety_stock_reach",
             # "wsc.task.appraisal_reminder"
@@ -437,7 +436,8 @@ scheduler_events = {
         "wsc.task.warranty_notification",
         "wsc.task.safety_stock_reach",
         "wsc.task.student_disable_check",
-        "wsc.task.employee_re_engagement_workFlow"
+        "wsc.task.employee_re_engagement_workFlow",
+        "wsc.task.check_and_delete_exit_employee_permissions"
         # "wsc.wsc.validations.exam_assessment_plan.make_exam_paper_setting_by_paper_setting_date"
 	]
 }

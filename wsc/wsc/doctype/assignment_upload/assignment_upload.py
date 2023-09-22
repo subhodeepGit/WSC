@@ -81,7 +81,7 @@ def participant(doctype, txt, searchfield, start, page_len, filters):
 											FROM `tabParticipant Table` as PT
 											JOIN `tabToT Participant` as TP on TP.name=PT.participant
 											where (TP.{key} like %(txt)s or {scond}) and
-													PT.parent = '{participant_group_id}'
+													PT.parent = '{participant_group_id}' and PT.active=1
 											""".format(
 												**{
 												"key": searchfield,
@@ -96,14 +96,18 @@ def assignment(doctype, txt, searchfield, start, page_len, filters):
 	searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)
 
 	participant_group_id=filters.get('participant_group_id')
-	assignment_details = frappe.db.sql(""" SELECT name FROM `tabAssignment` where ({key} like %(txt)s or {scond}) and
-				    participant_group = '{participant_group_id}'
-				    """.format(
-						**{
-						"key": searchfield,
-						"scond": searchfields,
-						"participant_group_id":participant_group_id
-					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	course=filters.get('course')
+	assignment_details=[]
+	if course and participant_group_id:
+		assignment_details = frappe.db.sql(""" SELECT name FROM `tabAssignment` where ({key} like %(txt)s or {scond}) and
+						participant_group = '{participant_group_id}' and course='{course}' and docstatus=1
+						""".format(
+							**{
+							"key": searchfield,
+							"scond": searchfields,
+							"participant_group_id":participant_group_id,
+							"course":course
+						}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
 	return assignment_details
 
 # -----------------------------------------------------------------------------------------------------------------------------

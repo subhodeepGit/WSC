@@ -24,8 +24,9 @@ def admit_card_submit(doc):
     msg+="""<b>Date of Exam:</b>  {0}<br>""".format(doc.get('date_of_exam'))
     msg+="""<b>Exam Start Time:</b>  {0}<br>""".format(doc.get('exam_start_time'))
     msg+="""<b>Exam End Time:</b>  {0}<br>""".format(doc.get('exam_end_time'))
-    print(frappe.db.get_value("Student Applicant" , {"name":doc.applicant_id} , ["student_email_id"]))
-    send_mail(frappe.db.get_value("Student Applicant" , {"name":doc.applicant_id} , ["student_email_id"]), sub , msg)
+    attachments = [frappe.attach_print(doc.doctype, doc.name, file_name=doc.name, print_format='Entrance Exam Admit Card Print Format')]
+    # send_mail(recipients,'Payment Successful',msg,attachments)
+    send_mail(frappe.db.get_value("Student Applicant" , {"name":doc.applicant_id} , ["student_email_id"]), sub , msg , attachments)
 
 ############ Notification For Rank Card####
 def rank_card_submit(doc):
@@ -44,7 +45,8 @@ def rank_card_submit(doc):
     for  d in doc.get("student_ranks_list"):
         msg += """<tr><td>{0} - {1}</td></tr>""".format(d.get('rank_type') , d.get('rank_obtained'))
     msg += "</table>"
-    send_mail(frappe.db.get_value("Student Applicant" , {"name":doc.applicant_id} , ["student_email_id"]), sub , msg)
+    attachments = [frappe.attach_print(doc.doctype, doc.name, file_name=doc.name, print_format='Entrance Exam Rank Card')]
+    send_mail(frappe.db.get_value("Student Applicant" , {"name":doc.applicant_id} , ["student_email_id"]), sub , msg , attachments)
 
 def student_applicant_submit(doc):
     sub="""<p><b>Application Form is Sucessfully Submitted</b></p><br>"""
@@ -1429,14 +1431,14 @@ def send_mail_to_jobapplicants_rerd(self):
             recipients = applicant_email
             send_mail(recipients,'WSC Exam Result Notification',msg)
             frappe.msgprint("Email sent to Job Applicants")
-        if result_status == "Disqualified":
-            msg="""<p>Dear Applicant,<br>"""
-            msg+="""<p>Greetings!!!<br>"""
-            msg+="""<p>This is to inform you that the for Job Opnening <b>{0}</b> and exam round <b>{1}</b> ,you have been not been selected.""".format(self.get('job_opening'),self.get('job_selection_round'))
-            msg+="""<p>All the Best for your future.</p>"""
-            recipients = applicant_email
-            send_mail(recipients,'WSC Exam Result Notification',msg)
-            frappe.msgprint("Email sent to Job Applicants")
+        # if result_status == "Disqualified":
+        #     msg="""<p>Dear Applicant,<br>"""
+        #     msg+="""<p>Greetings!!!<br>"""
+        #     msg+="""<p>This is to inform you that the for Job Opnening <b>{0}</b> and exam round <b>{1}</b> ,you have been not been selected.""".format(self.get('job_opening'),self.get('job_selection_round'))
+        #     msg+="""<p>All the Best for your future.</p>"""
+        #     recipients = applicant_email
+        #     send_mail(recipients,'WSC Exam Result Notification',msg)
+        #     frappe.msgprint("Email sent to Job Applicants")
 ###############################################Compensatory Leave Request Notification#############################################
 def employee_comp_reporting_authority_email(doc):
     sub = "Reg:Compensatory Leave Request Details"
@@ -1609,3 +1611,31 @@ def employee_reengagement_hr_mail(doc):
     send_mail(recipient_emails, sub, msg)
     frappe.msgprint("Employee Reengagement Details status is sent to the HR")
 
+#####################################Recruitment Final Exam Result Declaration#################################################################################      
+def send_mail_to_jobapplicants_final_notification(doc):
+	print("\n\n\nFinal Mail")
+	if doc['current_status']=="Selected":
+		msg = """<html>
+			<body>
+				<p>Dear Applicant,</p>
+				<p>Congratulations!!!</p>
+				<p>This is to inform you that for the job opening <b>{0}</b>, you have been SELECTED.</p>
+				<p>Further process details will be provided soon.</p>
+			</body>
+		</html>""".format(doc['job_title'])
+
+		send_mail([doc['email_id']], "Regarding WSC Recruitment Result Status", msg)
+		frappe.msgprint("Email sent to Job Applicants")
+	if doc['current_status']=="Rejected":
+		msg = """<html>
+			<body>
+				<p>Dear Applicant,</p>
+				<p>Warm Greetings!!!</p>
+				<p>I hope this message finds you well. We appreciate the time and effort you put into your application for the Job Opening<b>{0}</b>.We regret to inform you that you have not been Selected for the further round.</p>
+				<p>All the best for your future!!!</p>
+			</body>
+		</html>""".format(doc['job_title'])
+
+		send_mail([doc['email_id']],"Reg:WSC Recruitment Result Status",msg)
+		frappe.msgprint("Email sent to Job Applicants")
+##########################################################################################################################################################################################

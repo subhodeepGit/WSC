@@ -17,3 +17,19 @@ frappe.ui.form.on('User',{
         
     }
 })
+
+frappe.ui.form.on('User',{
+    refresh: function(frm) {
+        if (frappe.session.user != "Administrator"){
+            if (frm.doc.full_name=="Administrator" || frm.doc.email == "admin@soulunileaders.com"){
+            Object.keys(cur_frm.fields_dict).forEach(field=>{
+                frm.set_df_property(field,'hidden',1)
+            })
+            frm.remove_custom_button('Reset Password', 'Password');
+            frm.remove_custom_button('Reset OTP Secret', 'Password');
+        }
+        frm.remove_custom_button('Set User Permissions', 'Permissions');
+        frm.remove_custom_button('View Permitted Documents', 'Permissions');
+    }  
+    }
+})

@@ -62,8 +62,10 @@
   {
    "fieldname": "rank_card_masters",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Rank Card Masters",
-   "options": "Rank Card Master"
+   "options": "Rank Card Master",
+   "reqd": 1
   },
   {
    "fieldname": "get_applicants",
@@ -73,8 +75,10 @@
   {
    "fieldname": "entrance_exam_declaration",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Entrance Exam Declaration",
-   "options": "Entrance Exam Declaration"
+   "options": "Entrance Exam Declaration",
+   "reqd": 1
   },
   {
    "fieldname": "amended_from",
@@ -97,7 +101,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-29 15:20:54.312032",
+ "modified": "2023-09-20 15:55:54.066851",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Rank Card Publication Tool",

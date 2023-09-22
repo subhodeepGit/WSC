@@ -6,7 +6,7 @@
    "_liked_by": null,
    "_user_tags": null,
    "allow_in_quick_entry": 0,
-   "allow_on_submit": 1,
+   "allow_on_submit": 0,
    "bold": 0,
    "collapsible": 0,
    "collapsible_depends_on": null,
@@ -56,7 +56,6 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
-   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -67,7 +66,7 @@
    "_liked_by": null,
    "_user_tags": null,
    "allow_in_quick_entry": 0,
-   "allow_on_submit": 1,
+   "allow_on_submit": 0,
    "bold": 0,
    "collapsible": 0,
    "collapsible_depends_on": null,
@@ -117,7 +116,6 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
-   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -128,7 +126,7 @@
    "_liked_by": null,
    "_user_tags": null,
    "allow_in_quick_entry": 0,
-   "allow_on_submit": 1,
+   "allow_on_submit": 0,
    "bold": 0,
    "collapsible": 0,
    "collapsible_depends_on": null,
@@ -178,7 +176,6 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
-   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -239,7 +236,6 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
-   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -300,7 +296,6 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
-   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -361,7 +356,6 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
-   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -372,7 +366,7 @@
    "_liked_by": null,
    "_user_tags": null,
    "allow_in_quick_entry": 0,
-   "allow_on_submit": 1,
+   "allow_on_submit": 0,
    "bold": 0,
    "collapsible": 0,
    "collapsible_depends_on": null,
@@ -422,7 +416,6 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
-   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -483,7 +476,6 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
-   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -544,7 +536,6 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
-   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -605,7 +596,6 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
-   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -666,7 +656,6 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
-   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -727,7 +716,6 @@
    "report_hide": 0,
    "reqd": 0,
    "search_index": 0,
-   "sort_options": 0,
    "translatable": 0,
    "unique": 0,
    "width": null
@@ -737,6 +725,29 @@
  "doctype": "Education Qualifications Details",
  "links": [],
  "property_setters": [
+  {
+   "_assign": null,
+   "_comments": null,
+   "_liked_by": null,
+   "_user_tags": null,
+   "creation": "2023-09-19 11:54:03.059791",
+   "default_value": null,
+   "doc_type": "Education Qualifications Details",
+   "docstatus": 0,
+   "doctype_or_field": "DocField",
+   "field_name": "year_of_completion",
+   "idx": 0,
+   "is_system_generated": 0,
+   "modified": "2023-09-19 11:54:03.059791",
+   "modified_by": "Administrator",
+   "module": null,
+   "name": "Education Qualifications Details-year_of_completion-allow_on_submit",
+   "owner": "Administrator",
+   "property": "allow_on_submit",
+   "property_type": "Check",
+   "row_name": null,
+   "value": "0"
+  },
   {
    "_assign": null,
    "_comments": null,
