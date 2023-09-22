@@ -54,22 +54,6 @@ frappe.ui.form.on('Assignment Declaration', {
 		})
 	},
 	participant_group: function(frm){
-		// frappe.call({
-		// 	method : 'wsc.wsc.doctype.assignment_declaration.assignment_declaration.get_details',
-		// 	args: {
-		// 		participant_group_id: frm.doc.participant_group
-		// 	},
-		// 	callback: function(result){
-		// 		if(result.message){
-		// 			frm.set_value("course", result.message[2])
-		// 			frm.set_value("module", result.message[3])
-		// 			frm.set_value("academic_year", result.message[0])
-		// 			frm.set_value("academic_term", result.message[1])
-		// 			// frm.set_df_property('evaluator_id', 'options', result.message[4])
-		// 			// frm.set_df_property('select_assessment_criteria', 'options', result.message[5])
-		// 		}
-		// 	}
-		// })
 		frm.trigger('get_participant')
 	},
 	attendance_percentage: function(frm){
@@ -97,20 +81,6 @@ frappe.ui.form.on('Assignment Declaration', {
         //     maxDate: frm.doc.tot_end_date ? new Date(frm.doc.tot_end_date) : null
         // });
 	},
-	// evaluator_id: function(frm){
-	// 	frappe.call({
-	// 		method: 'wsc.wsc.doctype.assignment_declaration.assignment_declaration.get_instructor_name',
-	// 		args:{
-	// 			participant_group_id : frm.doc.participant_group,
-	// 			instructor_id: frm.doc.evaluator_id
-	// 		},
-	// 		callback: function(result){
-	// 			if(result.message){
-	// 				frm.set_value("evaluator_name", result.message)
-	// 			}
-	// 		}
-	// 	})
-	// },
 	get_participant: function(frm){
 		frappe.call({
 			method:'wsc.wsc.doctype.assignment_declaration.assignment_declaration.get_participants',
@@ -175,20 +145,30 @@ frappe.ui.form.on('Assignment Declaration', {
 		})
 	},
 	assignment_start_date: function(frm) {
-        // set minimum To Date equal to From Date
         frm.fields_dict.assignment_end_date.datepicker.update({
             minDate: frm.doc.assignment_start_date ? new Date(frm.doc.assignment_start_date) : null
         });
     },
 
     assignment_end_date: function(frm) {
-        // set maximum From Date equal to To Date
         frm.fields_dict.assignment_start_date.datepicker.update({
             maxDate: frm.doc.assignment_end_date ? new Date(frm.doc.assignment_end_date) : null
         });
     },
-});
 
-// frappe.ui.form.on("Job Sheet", "assessment_criteria", function(frm, cdt, cdn) {
-//     alert(500)
-// });
+	course_type: function(frm){
+		frm.set_value("participant_group","")
+	},
+
+	course: function(frm){
+		frm.set_value("participant_group","")
+	},
+
+	academic_year: function(frm){
+		frm.set_value("participant_group","")
+	},
+
+	module: function(frm){
+		frm.set_value("participant_group","")
+	},
+});

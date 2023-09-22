@@ -19,6 +19,7 @@
   "course_prefernce_details_section",
   "department",
   "program_grades",
+  "programs",
   "course_preferences",
   "personal_details_section",
   "date_of_birth",
@@ -146,9 +147,9 @@
   {
    "fieldname": "course_preferences",
    "fieldtype": "Table",
+   "hidden": 1,
    "label": "Course Preferences",
-   "options": "Program Priority",
-   "read_only": 1
+   "options": "Program Priority"
   },
   {
    "fieldname": "personal_details_section",
@@ -306,6 +307,7 @@
   {
    "fieldname": "education_qualifications_details",
    "fieldtype": "Table",
+   "hidden": 1,
    "label": "Education Qualifications Details",
    "options": "Education Qualifications Details",
    "read_only": 1
@@ -431,12 +433,19 @@
    "fieldtype": "Data",
    "label": "Local Guardian Address",
    "read_only": 1
+  },
+  {
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "label": "Programs",
+   "options": "Programs",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-09-15 21:59:26.086679",
+ "modified": "2023-09-22 11:57:22.882950",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Preview",

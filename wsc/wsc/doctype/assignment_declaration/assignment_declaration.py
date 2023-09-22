@@ -30,16 +30,6 @@ class AssignmentDeclaration(Document):
 			record = get_link_to_form('Assignment Declaration', assignment_record)
 			frappe.throw(_('Assignment Declaration record {0} already exists!')
 				.format(record), title=_('Duplicate Entry'))
-			
-# @frappe.whitelist()
-# def get_details(participant_group_id):
-# 	if(participant_group_id == ''):
-# 		return ['','','','','', '', '']
-# 	else:
-# 		group_details = frappe.get_all('Participant Group', filters = [['name', '=', participant_group_id]], fields = ['academic_year', 'academic_term', 'program', 'course'])
-# 		instructor_details = frappe.db.sql(""" SELECT instructors FROM `tabInstructor Table` where parent = '%s'"""%(participant_group_id))
-# 		assessment_criteria = frappe.db.sql(""" SELECT assessment_criteria FROM `tabCredit distribution List` where parent = '%s'"""%(group_details[0]['course']))
-# 		return [group_details[0]['academic_year'], group_details[0]['academic_term'], group_details[0]['program'], group_details[0]['course'], instructor_details, assessment_criteria]
 
 
 @frappe.whitelist()
@@ -57,25 +47,6 @@ def get_criteria_details(course, assessment_criteria):
 	else:
 		criteria_details = frappe.get_all('Credit distribution List', filters = [['parent', '=', course], ['assessment_criteria', '=', assessment_criteria]], fields = ['total_marks','passing_marks','weightage'])
 		return [criteria_details[0]['total_marks'], criteria_details[0]['passing_marks'], criteria_details[0]['weightage']]
-
-# @frappe.whitelist()
-# def get_participants(participant_group_id, attendance_applicable, attendance_percentage = 0):
-# 	eligible_participants = []
-# 	participants = frappe.get_all('Participant Table', filters = [['parent', '=', participant_group_id]], fields = ['participant', 'participant_name'])
-# 	for d in participants:
-# 		if(attendance_applicable == '0'):
-# 			d['attendance'] = 'NA'
-# 		elif(attendance_applicable == '1'):
-# 			participant_classes = frappe.db.sql(""" SELECT COUNT(*) FROM `tabToT Class Table` WHERE parent = '%s'"""%(participant_group_id))
-# 			participant_present_for = frappe.db.sql(""" SELECT COUNT(*) FROM `tabToT Participant Attendance` WHERE participant_id = '%s' AND participant_group = '%s'"""%(d.participant, participant_group_id))
-# 			final_attendance = (participant_present_for[0][0]/participant_classes[0][0])*100
-# 			d['attendance'] = "{:.2f}".format(final_attendance)	
-# 			if(final_attendance >= int(attendance_percentage)):
-# 				eligible_participants.append(d)
-# 	if(attendance_applicable == '0'):
-# 		return participants
-# 	elif(attendance_applicable == '1'):
-# 		return eligible_participants
 
 
 @frappe.whitelist()

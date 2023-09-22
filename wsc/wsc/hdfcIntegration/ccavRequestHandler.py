@@ -23,13 +23,13 @@ def ccavResponseHandler():
     if selected_working_key == workingKey:
                
         plainText = res(request.form['encResp'],workingKey)
-        print(request.form['encResp'])	       
-        print("Output with workingKey:", workingKey)
+        # print(request.form['encResp'])	       
+        # print("Output with workingKey:", workingKey)
         return plainText
     elif selected_working_key == workingKey2:        
         plainText = res(request.form['encResp'],workingKey2)
-        print(request.form['encResp'])	       
-        print("Output with workingKey2:", workingKey2)
+        # print(request.form['encResp'])	       
+        # print("Output with workingKey2:", workingKey2)
         return plainText
     else:
         print("Invalid working key selection")

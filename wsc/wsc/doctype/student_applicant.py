@@ -458,72 +458,78 @@ def review_student(source_name):
     from wsc.wsc.doctype.semesters.semesters import get_courses
     st_applicant=frappe.get_doc("Student Applicant", source_name)
     
-    program_enrollment = frappe.new_doc("Preview")
-    program_enrollment.first_name = st_applicant.first_name 
-    program_enrollment.caste_category = st_applicant.student_category
-    program_enrollment.middle_name = st_applicant.middle_name
-    program_enrollment.last_name = st_applicant.last_name
-    program_enrollment.department = st_applicant.department 
+    preview_applicant = frappe.new_doc("Preview")
+    preview_applicant.first_name = st_applicant.first_name 
+    preview_applicant.caste_category = st_applicant.student_category
+    preview_applicant.middle_name = st_applicant.middle_name
+    preview_applicant.last_name = st_applicant.last_name
+    preview_applicant.department = st_applicant.department 
     # program_enrollment.programs = counselling_based_program_priority[0]['programs']
-    program_enrollment.date_of_birth = st_applicant.date_of_birth
-    program_enrollment.academic_year=st_applicant.academic_year
-    program_enrollment.academic_term=st_applicant.academic_term
-    program_enrollment.student_category=st_applicant.category
-    program_enrollment.seat_reservation_type=st_applicant.category
-    program_enrollment.program_grades = st_applicant.program_grade
-    program_enrollment.gender = st_applicant.gender
-    program_enrollment.religion=st_applicant.religion
-    program_enrollment.blood_group=st_applicant.blood_group
-    program_enrollment.student_email_address=st_applicant.student_email_id
-    program_enrollment.student_mobile_number=st_applicant.student_mobile_number
-    program_enrollment.nationality = st_applicant.nationality
-    program_enrollment.physically_disabled = st_applicant.physically_disabled
-    program_enrollment.award_winner=st_applicant.award_winner
-    program_enrollment.states=st_applicant.states
-    program_enrollment.districts=st_applicant.districts
-    program_enrollment.blocks=st_applicant.blocks
-    program_enrollment.post_office = st_applicant.post_office
-    program_enrollment.ciity = st_applicant.city
-    program_enrollment.address_line_1=st_applicant.address_line_i
-    program_enrollment.address_line_2=st_applicant.address_line_ii
-    program_enrollment.pincode=st_applicant.pin_code
-    program_enrollment.fathers_name=st_applicant.fathers_name
-    program_enrollment.fathers_contact_number = st_applicant.fathers_contact_number
+    preview_applicant.date_of_birth = st_applicant.date_of_birth
+    preview_applicant.academic_year=st_applicant.academic_year
+    preview_applicant.academic_term=st_applicant.academic_term
+    preview_applicant.student_category=st_applicant.category
+    preview_applicant.seat_reservation_type=st_applicant.category
+    preview_applicant.program_grades = st_applicant.program_grade
+    preview_applicant.gender = st_applicant.gender
+    preview_applicant.religion=st_applicant.religion
+    preview_applicant.blood_group=st_applicant.blood_group
+    preview_applicant.student_email_address=st_applicant.student_email_id
+    preview_applicant.student_mobile_number=st_applicant.student_mobile_number
+    preview_applicant.nationality = st_applicant.nationality
+    preview_applicant.physically_disabled = st_applicant.physically_disabled
+    preview_applicant.award_winner=st_applicant.award_winner
+    preview_applicant.states=st_applicant.states
+    preview_applicant.districts=st_applicant.districts
+    preview_applicant.blocks=st_applicant.blocks
+    preview_applicant.post_office = st_applicant.post_office
+    preview_applicant.ciity = st_applicant.city
+    preview_applicant.address_line_1=st_applicant.address_line_i
+    preview_applicant.address_line_2=st_applicant.address_line_ii
+    preview_applicant.pincode=st_applicant.pin_code
+    preview_applicant.fathers_name=st_applicant.fathers_name
+    preview_applicant.fathers_contact_number = st_applicant.fathers_contact_number
+    preview_applicant.programs = st_applicant.programs_
 
 
-    program_enrollment.fathers_qualification = st_applicant.qualification
-    program_enrollment.fathers_occupation=st_applicant.fathers_occupation
-    program_enrollment.fathers_annual_income=st_applicant.father_annual_income
-    program_enrollment.mothers_name=st_applicant.mothers_name
-    program_enrollment.mothers_contact_number=st_applicant.mothers_contact_number
-    program_enrollment.mothers_qualification = st_applicant.mothers_qualification
-    program_enrollment.mothers_occupation = st_applicant.mothers_occupation
-    program_enrollment.mothers_annual_income=st_applicant.mother_annual_income
-    program_enrollment.local_guardians_name=st_applicant.local_guardians_name
-    program_enrollment.local_guardian_contact_no=st_applicant.local_guardian_contact_no
-    program_enrollment.relation_with_student=st_applicant.relation_with_student
-    program_enrollment.local_guardian_occupation = st_applicant.local_guardian_occupation
-    program_enrollment.local_guardian_address = st_applicant.local_guardian_address
+    preview_applicant.fathers_qualification = st_applicant.qualification
+    preview_applicant.fathers_occupation=st_applicant.fathers_occupation
+    preview_applicant.fathers_annual_income=st_applicant.father_annual_income
+    preview_applicant.mothers_name=st_applicant.mothers_name
+    preview_applicant.mothers_contact_number=st_applicant.mothers_contact_number
+    preview_applicant.mothers_qualification = st_applicant.mothers_qualification
+    preview_applicant.mothers_occupation = st_applicant.mothers_occupation
+    preview_applicant.mothers_annual_income=st_applicant.mother_annual_income
+    preview_applicant.local_guardians_name=st_applicant.local_guardians_name
+    preview_applicant.local_guardian_contact_no=st_applicant.local_guardian_contact_no
+    preview_applicant.relation_with_student=st_applicant.relation_with_student
+    preview_applicant.local_guardian_occupation = st_applicant.local_guardian_occupation
+    preview_applicant.local_guardian_address = st_applicant.local_guardian_address
 
     
     for d in st_applicant.get("disable_type"):
-        program_enrollment.append("physically_disabled_table",{
+        preview_applicant.append("physically_disabled_table",{
             "disability_type":d.disability_type,
             "percentage_of_disability":d.percentage_of_disability,
             "attach_disability_certificate":d.attach_disability_certificate
         })
     
     for d in st_applicant.get("awards_list"):
-        program_enrollment.append("awards_winner_list",{
+        preview_applicant.append("awards_winner_list",{
             "awards":d.awards,
             "won_in_year":d.won_in_year
         })
     for d in st_applicant.get("program_priority"):
-            program_enrollment.append("course_preferences",{
-                "programs":d.programs,
-            })
+        preview_applicant.append("course_preferences",{
+            "programs":d.programs,
+            "approve":d.approve
+        })
+    # for d in st_applicant.get("program_priority"):
+    #     preview_applicant.append("course_preferences",{
+    #         "programs":d.programs,
+    #     })
     for d in st_applicant.get("education_qualifications_details"):
-        program_enrollment.append("education_qualifications_details",{
+        preview_applicant.append("education_qualifications_details",{
             "qualification":d.qualification,
             "institute":d.institute,
             "board":d.board,
@@ -534,11 +540,13 @@ def review_student(source_name):
             "cgpa":d.cgpa,
             "score":d.score,
             "year_of_completion":d.year_of_completion,
+            "mandatory":d.mandatory
         })
     for d in st_applicant.get("document_list"):
-            program_enrollment.append("document_list",{
+            preview_applicant.append("document_list",{
                 "document_name":d.document_name,
                 "attach":d.attach,
+                "mandatory":d.mandatory
             })
 
     # if st_applicant.program:
@@ -560,7 +568,7 @@ def review_student(source_name):
     #         for d in get_academic_calender_table(st_admission.academic_calendar):
     #             program_enrollment.append("academic_events_table",d)
     # print(program_enrollment.program_grade)
-    return program_enrollment
+    return preview_applicant
 
 def get_admission_fees(doc):
    doc.set("admission_fees",[])
