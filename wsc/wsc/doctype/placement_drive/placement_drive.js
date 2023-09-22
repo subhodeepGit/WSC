@@ -75,7 +75,8 @@ frappe.ui.form.on('Placement Drive', {
 		frm.set_query("placement_company" , function(){
 			return{
 				filters:{
-					"black_list":0
+					"black_list":0,
+					// 'visitor' :
 				}
 			}
 		})

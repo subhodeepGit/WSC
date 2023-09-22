@@ -1,21 +1,21 @@
 // Copyright (c) 2023, SOUL Limited and contributors
 // For license information, please see license.txt
 
-frappe.ui.form.on('Generate certificate tool', {
-	refresh: function(frm) {
 
-	},
-	is_in_a_program : function(frm){
-		if(frm.doc.is_in_a_program == 1){
-			frm.set_query('select_event', function(){
-				return{
-					filters:{
-						'select_program' : frm.doc.select_program
-					}
-				}
-			})
-		}
-	},
+// frappe.ui.form.on('Generate certificate tool', {
+// 	refresh: function(frm){
+
+// 	},
+// 	select_event: function(frm){
+// 		alert(1)
+// 		frm.set_value('select_program', 'TPP-00001')
+// 	}
+// })
+
+
+// -----------------------------------------------------------------------------
+
+frappe.ui.form.on('Generate certificate tool', {
 	select_program : function(frm){
 		frappe.call({
 			method : 'wsc.wsc.doctype.generate_certificate_tool.generate_certificate_tool.get_program_name',
@@ -34,7 +34,15 @@ frappe.ui.form.on('Generate certificate tool', {
 				event_id : frm.doc.select_event
 			},
 			callback : function(result){
-				frm.set_value("event_name", result.message)
+				if(result.message[0] == 0){
+					frm.set_value("event_name", result.message[1])
+					frm.set_value("select_program", '')
+					frm.set_value("program_name", '')
+				}
+				else if(result.message[0] == 1){
+					frm.set_value("event_name", result.message[1])
+					frm.set_value("select_program", result.message[2])
+				}
 			}
 		})
 	},
@@ -65,7 +73,7 @@ frappe.ui.form.on('Generate certificate tool', {
 				doc : frm.doc
 			},
 			callback: function(result){
-				console.log('Hello')
+			
 			}
 		})
 	}

@@ -8,6 +8,7 @@
  "engine": "InnoDB",
  "field_order": [
   "enable",
+  "section_break_vtx6e",
   "title",
   "posting_date",
   "placement_company",
@@ -246,12 +247,16 @@
   {
    "fieldname": "column_break_5",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_vtx6e",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-03-03 17:50:43.268785",
+ "modified": "2023-09-22 13:55:29.302491",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive",

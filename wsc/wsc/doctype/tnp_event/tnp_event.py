@@ -9,9 +9,7 @@ class TnPEvent(Document):
 	pass
 
 @frappe.whitelist()
-def get_program_name(program_id):
+def get_program_name(program_id = None):
 	program_name = frappe.db.sql("""SELECT program_name FROM `tabTnP Program` WHERE name = '%s'"""%(program_id))
-	print('\n\n\n\n')
-	print(program_name[0][0])
-	print("\n\n\n\n")
-	return program_name[0][0]
+	if(len(program_name) > 0):
+		return program_name[0][0]
