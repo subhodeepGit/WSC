@@ -8,24 +8,22 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "is_in_a_program",
-  "section_break_q9ah2",
-  "selected_program",
   "select_event",
+  "selected_program",
   "get_participants",
   "section_break_kouut",
-  "program_name",
   "event_name",
+  "program_name",
   "selected_participants_section",
   "selected_participants_table"
  ],
  "fields": [
   {
-   "depends_on": "is_in_a_program",
    "fieldname": "selected_program",
    "fieldtype": "Link",
    "label": "Select Program",
-   "options": "TnP Program"
+   "options": "TnP Program",
+   "read_only": 1
   },
   {
    "fieldname": "select_event",
@@ -38,10 +36,10 @@
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "is_in_a_program",
    "fieldname": "program_name",
    "fieldtype": "Data",
-   "label": "Program Name"
+   "label": "Program Name",
+   "read_only": 1
   },
   {
    "fieldname": "event_name",
@@ -63,21 +61,11 @@
    "fieldtype": "Table",
    "label": "Selected Participants Table",
    "options": "Selected participants list"
-  },
-  {
-   "default": "0",
-   "fieldname": "is_in_a_program",
-   "fieldtype": "Check",
-   "label": "is in a program"
-  },
-  {
-   "fieldname": "section_break_q9ah2",
-   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-06-05 16:43:22.823701",
+ "modified": "2023-09-21 17:53:21.634665",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Attendance",

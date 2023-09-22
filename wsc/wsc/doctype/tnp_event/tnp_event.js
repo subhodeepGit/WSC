@@ -5,6 +5,12 @@ frappe.ui.form.on('TnP Event', {
 	refresh: function(frm) {
 
 	},
+	in_a_program : function(frm){
+		if(frm.doc.in_a_program == 0){
+			frm.set_value('select_program', '')
+			frm.set_value('program_name', '')
+		}
+	},
 	event_start_date : function(frm){
 		if(frm.doc.event_start_date && frm.doc.event_end_date){
 			if(frm.doc.event_start_date > frm.doc.event_end_date){
@@ -25,6 +31,7 @@ frappe.ui.form.on('TnP Event', {
 		}
 	},
 	event_date : function(frm){
+		frm.set_value('event_start_date', frm.doc.event_date)
 		if(frm.doc.event_date && frm.doc.event_start_date){
 			if(frm.doc.event_date != frm.doc.event_start_date){
 				frappe.throw("Event Date and Event Start Date must be same");
@@ -47,7 +54,7 @@ frappe.ui.form.on('TnP Event', {
 	},
 	select_program : function(frm){
 		frappe.call({
-			method : 'wsc.wsc.doctype.participant_registration.participant_registration.get_program_name',
+			method : 'wsc.wsc.doctype.tnp_event.tnp_event.get_program_name',
 			args: {
 				program_id : frm.doc.select_program
 			},
@@ -55,5 +62,20 @@ frappe.ui.form.on('TnP Event', {
 				frm.set_value('program_name', result.message)
 			}
 		})
+	}
+});
+
+// --------------------------------------------------
+
+frappe.ui.form.on('coordinators list', {
+	coordinators_list_add: function(frm){
+		frm.fields_dict['coordinators_list'].grid.get_field('coordinator_id').get_query = function(doc){
+			var coordinator_list = [];
+			$.each(doc.coordinators_list, function(idx, val){
+				if (val.coordinator_id) coordinator_list.push(val.coordinator_id);
+			});
+
+			return { filters: [['Employee', 'name', 'not in', coordinator_list]] };
+		};
 	}
 });

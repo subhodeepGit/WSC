@@ -8,31 +8,31 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "is_in_a_program",
-  "section_break_jlheb",
-  "select_program",
   "select_event",
+  "select_program",
   "get_eligible_participants_list",
   "column_break_rqlmf",
-  "program_name",
   "event_name",
+  "program_name",
   "eligible_participants_section",
   "selected_participants_list",
   "generate_certificate"
  ],
  "fields": [
   {
-   "depends_on": "is_in_a_program",
    "fieldname": "select_program",
    "fieldtype": "Link",
    "label": "Select Program",
-   "options": "TnP Program"
+   "options": "TnP Program",
+   "read_only": 1
   },
   {
    "fieldname": "select_event",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Select Event",
-   "options": "TnP Event"
+   "options": "TnP Event",
+   "reqd": 1
   },
   {
    "fieldname": "get_eligible_participants_list",
@@ -44,15 +44,17 @@
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "is_in_a_program",
    "fieldname": "program_name",
    "fieldtype": "Data",
-   "label": "Program Name"
+   "label": "Program Name",
+   "read_only": 1
   },
   {
    "fieldname": "event_name",
    "fieldtype": "Data",
-   "label": "Event Name"
+   "in_list_view": 1,
+   "label": "Event Name",
+   "reqd": 1
   },
   {
    "fieldname": "eligible_participants_section",
@@ -69,21 +71,11 @@
    "fieldname": "generate_certificate",
    "fieldtype": "Button",
    "label": "Generate Certificate"
-  },
-  {
-   "default": "0",
-   "fieldname": "is_in_a_program",
-   "fieldtype": "Check",
-   "label": "is in a program"
-  },
-  {
-   "fieldname": "section_break_jlheb",
-   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-06-06 17:51:15.970036",
+ "modified": "2023-09-22 12:15:02.274389",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Generate certificate tool",

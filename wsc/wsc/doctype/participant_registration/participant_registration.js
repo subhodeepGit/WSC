@@ -5,16 +5,9 @@ frappe.ui.form.on('Participant Registration', {
 	refresh: function(frm) {
 		
 	},
-	is_in_a_program : function(frm){
-		if(frm.doc.is_in_a_program == 1){
-			frm.set_query('select_event', function(){
-				return{
-					filters:{
-						'select_program' : frm.doc.select_program
-					}
-				}
-			})
-		}
+	participant_type : function(frm){
+		frm.set_value('participant_id', '')
+		frm.set_value('participant_name', '')
 	},
 	select_program : function(frm){
 		frappe.call({
@@ -34,10 +27,32 @@ frappe.ui.form.on('Participant Registration', {
 				event_id : frm.doc.select_event
 			},
 			callback : function(result){
-				frm.set_value("event_name", result.message[0])
-				frm.set_value("event_date", result.message[1])
-				frm.set_value("event_time", result.message[2])
+				if(result.message[0] == '0'){
+					frm.set_value("event_name", result.message[1])
+					frm.set_value("event_date", result.message[2])
+					frm.set_value("event_time", result.message[3])
+					frm.set_value("select_program", '')
+					frm.set_value("program_name", '')
+				}
+				else if(result.message[0] == '1'){
+					frm.set_value("select_program", result.message[1])
+					frm.set_value("event_name", result.message[2])
+					frm.set_value("event_date", result.message[3])
+					frm.set_value("event_time", result.message[4])
+				}
 			}
 		})
-	},	
+	},
+	participant_id : function(frm){
+		frappe.call({
+			method: 'wsc.wsc.doctype.participant_registration.participant_registration.get_participant_name',
+			args: {
+				participant_type : frm.doc.participant_type,
+				participant_id : frm.doc.participant_id
+			},
+			callback: function(result){
+				frm.set_value("participant_name", result.message)
+			}
+		})
+	}
 });

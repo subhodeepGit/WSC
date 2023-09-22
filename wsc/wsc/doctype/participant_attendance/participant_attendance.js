@@ -5,17 +5,6 @@ frappe.ui.form.on('Participant Attendance', {
 	refresh: function(frm) {
 
 	},
-	is_in_a_program : function(frm){
-		if(frm.doc.is_in_a_program == 1){
-			frm.set_query('select_event', function(){
-				return{
-					filters:{
-						'select_program' : frm.doc.selected_program
-					}
-				}
-			})
-		}
-	},
 	selected_program : function(frm){
 		frappe.call({
 			method: 'wsc.wsc.doctype.participant_attendance.participant_attendance.get_program_name',
@@ -29,12 +18,20 @@ frappe.ui.form.on('Participant Attendance', {
 	},
 	select_event : function(frm){
 		frappe.call({
-			method: 'wsc.wsc.doctype.participant_attendance.participant_attendance.get_event_name',
+			method: 'wsc.wsc.doctype.participant_attendance.participant_attendance.get_event_details',
 			args: {
 				event_id : frm.doc.select_event
 			},
 			callback : function(result){
-				frm.set_value('event_name', result.message)
+				if(result.message[0] == 0){
+					frm.set_value('event_name', result.message[1])
+					frm.set_value('selected_program', '')
+					frm.set_value('program_name', '')
+				}
+				else if(result.message[0] == 1){
+					frm.set_value('event_name', result.message[1])
+					frm.set_value('selected_program', result.message[2])
+				}
 			}
 		})
 	},
