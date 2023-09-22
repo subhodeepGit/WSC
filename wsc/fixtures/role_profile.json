@@ -412,5 +412,155 @@
     "role": "GM-Procurement & Contract Management"
    }
   ]
- }
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2023-08-18 15:10:25.668926",
+  "name": "Trainer",
+  "role_profile": "Trainer",
+  "roles": [
+   {
+    "parent": "Trainer",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Instructor"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2023-08-18 15:40:21.054554",
+  "name": "Course Manager",
+  "role_profile": "Course Manager",
+  "roles": [
+   {
+    "parent": "Course Manager",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Course Manager"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2023-08-18 15:54:07.347197",
+  "name": "Dy. Director",
+  "role_profile": "Dy. Director",
+  "roles": [
+   {
+    "parent": "Dy. Director",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Dy. Director"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2023-08-18 16:38:45.706604",
+  "name": "Stock Manager- MM",
+  "role_profile": "Stock Manager- MM",
+  "roles": [
+   {
+    "parent": "Stock Manager- MM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Stock Manager- MM"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2023-08-21 11:36:40.486693",
+  "name": "Board of Directors",
+  "role_profile": "Board of Directors",
+  "roles": [
+   {
+    "parent": "Board of Directors",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Board of Directors"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2023-08-21 12:22:45.954182",
+  "name": "Dy. Principal",
+  "role_profile": "Dy. Principal",
+  "roles": [
+   {
+    "parent": "Dy. Principal",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Dy. Principal"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2023-08-21 12:32:52.731374",
+  "name": "Principal",
+  "role_profile": "Principal",
+  "roles": [
+   {
+    "parent": "Principal",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Principal"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2023-08-21 12:42:38.263117",
+  "name": "CEO",
+  "role_profile": "CEO",
+  "roles": [
+   {
+    "parent": "CEO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "CEO"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2023-08-21 13:01:07.650231",
+  "name": "CFO",
+  "role_profile": "CFO",
+  "roles": [
+   {
+    "parent": "CFO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "CFO"
+   }
+  ]
+ },
+ {
+    "docstatus": 0,
+    "doctype": "Role Profile",
+    "modified": "2023-08-31 06:45:53.993583",
+    "name": "ToT Participant",
+    "role_profile": "ToT Participant",
+    "roles": [
+     {
+      "parent": "ToT Participant",
+      "parentfield": "roles",
+      "parenttype": "Role Profile",
+      "role": "TOT Candidate"
+     }
+    ]
+   }
 ]

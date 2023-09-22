@@ -84,6 +84,20 @@ frappe.ui.form.on('Course Assessment', {
 				}
 		  })
 		}
+		frappe.call({
+			method: "wsc.wsc.doctype.course_assessment.course_assessment.get_module_details",
+			args: {
+				"assessment_component":frm.doc.assessment_criteria,
+				"module":frm.doc.course
+				},
+			callback: function(r) {
+				frm.set_value("trainer_id",r.message['marker_name'])
+				frm.set_value("trainer_name",r.message['marker'])
+				frm.set_value("module_wise_exam_group",r.message['name'])
+				frm.set_value("checker_id",(r.message)['checker'])
+				frm.set_value("checker_name",(r.message)['checker_name'])
+			}
+		})
 
 	  frm.trigger("get_total_marks");
 	},

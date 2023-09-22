@@ -52,7 +52,8 @@
   "previous_participations",
   "participant_education_details",
   "participant_experience_details",
-  "participant_medical_history"
+  "participant_medical_history",
+  "student_no"
  ],
  "fields": [
   {
@@ -89,9 +90,9 @@
   },
   {
    "fieldname": "user",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "label": "User ID",
-   "options": "User"
+   "read_only": 1
   },
   {
    "fieldname": "column_break_4",
@@ -117,17 +118,16 @@
   },
   {
    "fieldname": "participant_mobile_number",
-   "fieldtype": "Data",
-   "in_global_search": 1,
-   "label": "Participant Mobile Number",
-   "length": 10
+   "fieldtype": "Phone",
+   "label": "Participant Mobile Number"
   },
   {
    "default": "Today",
    "fieldname": "joining_date",
    "fieldtype": "Date",
    "in_list_view": 1,
-   "label": "Joining Date"
+   "label": "Joining Date",
+   "read_only": 1
   },
   {
    "fieldname": "image",
@@ -163,7 +163,8 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Gender",
-   "options": "Gender"
+   "options": "Gender",
+   "reqd": 1
   },
   {
    "fieldname": "nationality",
@@ -231,7 +232,8 @@
    "fieldname": "participant_id",
    "fieldtype": "Link",
    "label": "Participant Id",
-   "options": "Student"
+   "options": "Student",
+   "read_only": 1
   },
   {
    "fieldname": "designation",
@@ -316,11 +318,18 @@
   {
    "fieldname": "section_break_40",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "student_no",
+   "fieldtype": "Link",
+   "label": "Student No",
+   "options": "Student",
+   "read_only": 1
   }
  ],
  "image_field": "image",
  "links": [],
- "modified": "2023-08-18 05:39:57.694991",
+ "modified": "2023-08-29 20:37:48.641050",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant",

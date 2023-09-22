@@ -2,6 +2,7 @@
  "charts": [],
  "content": "[{\"id\":\"BlrylCsK4O\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h1\\\">Academics</span>\",\"col\":12}},{\"id\":\"rHoSFTDqhh\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"-FBrfVl_aW\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Shortcuts</span>\",\"col\":12}},{\"id\":\"sYDUze-v5L\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Class Schedule\",\"col\":3}},{\"id\":\"wqntQ6OgA5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Attendance\",\"col\":3}},{\"id\":\"pOmbFxqrnp\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ZcHFqSOXo8\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b><span class=\\\"h2\\\">Reports &amp; Masters</span><br></b></span>\",\"col\":12}},{\"id\":\"nwzxJrLENe\",\"type\":\"card\",\"data\":{\"card_name\":\"Groups &amp; Schedules\",\"col\":4}},{\"id\":\"Gi8iqUuD2x\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance &amp; Leave Application\",\"col\":4}},{\"id\":\"qZZddX7w7A\",\"type\":\"card\",\"data\":{\"card_name\":\"Mentor-Mentee\",\"col\":4}},{\"id\":\"mpvXx9ldmS\",\"type\":\"card\",\"data\":{\"card_name\":\"Placement &amp; Drives\",\"col\":4}},{\"id\":\"mAxyO-fPLp\",\"type\":\"card\",\"data\":{\"card_name\":\"Tools\",\"col\":4}},{\"id\":\"qrCVytNKM_\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}}]",
  "creation": "2023-02-15 15:10:09.602390",
+ "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
  "for_user": "",
@@ -91,6 +92,26 @@
    "label": "Student Attendance Tool",
    "link_count": 0,
    "link_to": "Students Attendance Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reason for Leave",
+   "link_count": 0,
+   "link_to": "Reason for Leave",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Class Advisor and Manager Assignment",
+   "link_count": 0,
+   "link_to": "Course Advisor and Manager Assignment",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -191,19 +212,30 @@
   },
   {
    "hidden": 0,
-   "is_query_report": 0,
+   "is_query_report": 1,
    "label": "Student Attendance Report",
    "link_count": 0,
    "link_to": "Student Attendance Report",
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Student Attendance Report for Billing",
+   "link_count": 0,
+   "link_to": "Student Attendance Report for Billing",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-07-19 12:05:44.518697",
+ "modified": "2023-09-13 16:36:56.478136",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Academics",
+ "number_cards": [],
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,
@@ -220,9 +252,21 @@
   },
   {
    "role": "Education Administrator"
+  },
+  {
+   "role": "Course Manager"
+  },
+  {
+   "role": "Class Advisor"
+  },
+  {
+   "role": "Accounts Manager"
+  },
+  {
+   "role": "Accounts User"
   }
  ],
- "sequence_id": 2.0,
+ "sequence_id": 3.0,
  "shortcuts": [
   {
    "color": "Green",

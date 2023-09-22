@@ -13,7 +13,7 @@ class EmployeeHostelAllotment(Document):
 		if len(hostel_val)!=0:
 			emp_info=frappe.db.sql("""select * from `tabEmployee Hostel Allotment` where employees="%s" and hostel_masters="%s" 
 										and (start_date<=now() and end_date>= now());"""%(Emp,Emp_hostel_al))						
-			if len(emp_info)==0:
+			if len(emp_info)==0 or emp_info[0][0]==doc.name:
 				pass
 			else:
 				frappe.throw("Employee is already allotted doc no %s"%(emp_info[0][0]))	
@@ -21,3 +21,8 @@ class EmployeeHostelAllotment(Document):
 		else:
 			frappe.throw("Hostel is closed. Please contact to the Admin.")										
 
+	@frappe.whitelist()
+	def get_emp_data(self):
+		if self.employees:
+			data=frappe.db.get_all("Employee",{"name":self.employees},["employee_name","user_id","designation"])
+			return data[0]

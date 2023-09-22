@@ -54,7 +54,10 @@ def on_cancel(doc,method):
         delete_permissions(doc)
         delete_course_enrollment(doc)
         update_student(doc) 
+        
 def on_change(doc,method):
+    onlinepayrole(doc)
+    # update_reserved_seats(doc)
     update_student(doc)
     student=frappe.get_doc("Student",doc.student)
     student.roll_no=doc.roll_no
@@ -92,6 +95,7 @@ def update_student(doc):
 def on_submit(doc,method):
     make_fee_records(doc)
     create_student(doc)
+    create_participant(doc)
     update_enrollment_admission_status(doc)
     update_reserved_seats(doc, on_submit)
 
@@ -122,7 +126,7 @@ def on_submit(doc,method):
 def get_fee_structure(doc):
     existed_fs = frappe.db.get_list("Fee Structure", {'programs':doc.programs, 'program':doc.program, 
                  'fee_type':'Semester Fees', 'academic_year':doc.academic_year,
-                  'academic_term':doc.academic_term, 'docstatus':1},["name"])
+                  'academic_term':doc.academic_term, 'docstatus':1, 'student_category':doc.student_category},["name"])
     
     if len(existed_fs) != 0:                            
         fee_structure_id = existed_fs[0]['name']        
@@ -131,7 +135,7 @@ def get_fee_structure(doc):
             frappe.throw("Academic Term Start Date,End Date Not Found.")
         return fee_structure_id 
     elif len(existed_fs) == 0:
-        frappe.msgprint("Fees not charged. Program enrollment is Done.")
+        frappe.msgprint("Fees not charged. Course Enrollment Done.")
         return existed_fs
 
 
@@ -148,7 +152,7 @@ def fee_structure_validation(doc):
             frappe.throw("Academic Term Start Date,End Date Not Found")
         return fee_structure_id 
     elif len(existed_fs) == 0:
-        frappe.msgprint("Fees not found.")
+    #     frappe.msgprint("Fees not found.")
         return existed_fs
 
 def create_fees(doc,fee_structure_id,on_submit=0):
@@ -238,6 +242,25 @@ def delete_course_enrollment(doc):
 #         "academic_term":doc.academic_term
 #     })
 #     student.save()  
+def create_participant(doc):
+    if doc.is_tot==1:
+        participant=frappe.get_doc("ToT Participant",doc.participant)
+        if participant.participant_email_id:
+            if not frappe.db.exists("User",participant.participant_email_id):
+                user=frappe.new_doc("User")
+                
+            else:
+                user=frappe.get_doc("User",participant.participant_email_id)
+            user.email=participant.participant_email_id
+            user.first_name=participant.first_name
+            user.last_name=participant.last_name       
+            user.module_profile="ToT Participant"
+            user.role_profile_name="ToT Participant"
+            user.enabled=1
+            participant.user=participant.participant_email_id
+            user.save()
+            set_permission_to_participant(user.name,doc)
+            participant.save()
 
 def create_student(doc):
     student=frappe.get_doc("Student",doc.student)
@@ -320,6 +343,10 @@ def make_fee_records(doc):
             fee_list = ["""<a href="/app/Form/Fees/%s" target="_blank">%s</a>""" % \
                 (fee, fee) for fee in fee_list]
             msgprint(_("Fee Records Created - {0}").format(comma_and(fee_list)))
+
+def set_permission_to_participant(user,program_enroll):
+    add_user_permission("ToT Participant",program_enroll.participant, user,program_enroll)
+
 def set_permission_to_student(user,program_enroll):
     add_user_permission("Student",program_enroll.student, user,program_enroll)
     add_user_permission("Programs",program_enroll.programs, user,program_enroll)
@@ -574,8 +601,8 @@ def update_reserved_seats(doc,on_submit=0):
                 admission=frappe.get_doc("Student Admission",ad.student_admission)
 
                 # check reservation type exists
-                if len(frappe.get_all("Reservations List",{"seat_reservation_type":doc.seat_reservation_type,"parent":admission.name}))==0:
-                    frappe.throw("Reservation Type <b>{0}</b> Not Exists in Admission <b>{1}</b>".format(doc.seat_reservation_type,admission.name))
+                # if len(frappe.get_all("Reservations List",{"seat_reservation_type":doc.seat_reservation_type,"parent":admission.name}))==0:
+                #     frappe.throw("Reservation Type <b>{0}</b> Not Exists in Admission <b>{1}</b>".format(doc.seat_reservation_type,admission.name))
 
                 # check checkbox values
                 # for reservation_type in frappe.get_all("Seat Reservation Type",{"name":doc.seat_reservation_type},["physically_disabled","award_winner","name"]):
@@ -589,19 +616,21 @@ def update_reserved_seats(doc,on_submit=0):
                     # validate_reservation_type_by_criteria(doc,reservation_type.name)
 
                 # update seat 
-                for d in admission.get("reservations_distribution"):
-                    if doc.seat_reservation_type==d.seat_reservation_type:
-                        if on_submit:
-                            if int(d.seat_balance) > 0:
-                                d.seat_balance-=1
-                            else:
-                                frappe.throw("There is no available seat.")
-                        elif on_cancel:
-                            if int(d.allocated_seat) > int(d.seat_balance):
-                                d.seat_balance+=1
-                            else:
-                                frappe.throw("Error !!")
-                admission.save()
+            for d in admission.get("reservations_distribution"):
+                if doc.seat_reservation_type==d.seat_reservation_type:
+                    if on_submit:
+                        if int(d.seat_balance) > 0:
+                            d.seat_balance-=1
+                            d.allocated_seat=d.total_seat-d.seat_balance
+                        else:
+                            frappe.throw("There is no available seat.")
+                    elif on_cancel:
+                        # if int(d.allocated_seat) > int(d.seat_balance):
+                        d.seat_balance+=1
+                        d.allocated_seat=d.total_seat-d.seat_balance
+                        # else:
+                        #     frappe.throw("Error !!")
+            admission.save()
         
         # branch sliding
         else:
@@ -770,3 +799,17 @@ def validate_seat_reservation_type(doc):
                     reservation_type.append(d.seat_reservation_type)
         if doc.seat_reservation_type not in reservation_type:
             frappe.throw("Seat reservation type <b>'{0}'</b> not belongs to the student admission referring doc student applicant <b>'{1}'</b> ".format(doc.seat_reservation_type, doc.reference_name))
+
+def onlinepayrole(doc):
+    email_stu = frappe.get_all("Student",{"name":doc.student},["student_email_id"])
+    if doc.docstatus==1:
+        student = frappe.get_doc("User",email_stu[0]["student_email_id"])
+        student.new_password = ''
+        # student.role_profile_name = ''
+        if doc.admission_status=="Provisional Admission":
+            student.add_roles("Provisionally admitted")
+        if doc.admission_status=="Admitted":
+            student.add_roles("Student")
+        student.new_password = ''
+        student.flags.ignore_permissions = True
+        student.save()

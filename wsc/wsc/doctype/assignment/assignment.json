@@ -1,76 +1,111 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "ASG.-.#####",
  "creation": "2023-07-05 14:52:32.011330",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "evaluate",
+  "column_break_ayhpd",
+  "assignment_creation_status",
+  "section_break_xokaq",
   "participant_group",
-  "course",
-  "academic_year",
-  "instructor_id",
-  "assignment_name",
-  "total_marks",
-  "weightage",
-  "column_break_5",
+  "participant_group_name",
+  "column_break_mvrpl",
+  "tot_start_date",
+  "tot_end_date",
+  "section_break_wjf36",
   "programs",
-  "select_sub_module",
+  "course_type",
+  "section_break_qmu7e",
+  "course_duration",
+  "course_name",
+  "academic_year",
+  "semester",
   "academic_term",
+  "section_break_kyqjw",
+  "course",
+  "module_name",
+  "column_break_gr8l4",
+  "module_type",
+  "module_code",
+  "section_break_9ubca",
+  "instructor_id",
+  "column_break_bxk0b",
   "instructor_name",
+  "section_break_up0pn",
+  "assignment_name",
+  "section_break_btncn",
+  "start_date",
+  "total_duration",
+  "column_break_5",
+  "end_date",
+  "section_break_8rp8h",
   "assessment_criteria",
+  "total_marks",
+  "column_break_qdq1i",
+  "weightage",
   "passing_marks",
   "section_break_9",
   "assignment_attach_button",
-  "description"
+  "description",
+  "amended_from"
  ],
  "fields": [
   {
    "fieldname": "instructor_name",
    "fieldtype": "Data",
-   "label": "Instructor Name"
+   "label": "Instructor Name",
+   "read_only": 1
   },
   {
    "fieldname": "participant_group",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Participant Group",
-   "options": "Participant Group"
+   "options": "Participant Group",
+   "reqd": 1
   },
   {
    "fieldname": "programs",
-   "fieldtype": "Data",
-   "label": "Select Course"
+   "fieldtype": "Link",
+   "label": "Programs",
+   "options": "Programs",
+   "read_only": 1
   },
   {
    "fieldname": "course",
-   "fieldtype": "Data",
-   "label": "Select Module"
+   "fieldtype": "Link",
+   "label": "Course",
+   "options": "Course",
+   "read_only": 1
   },
   {
    "fieldname": "assignment_name",
    "fieldtype": "Data",
-   "label": "Assignment Name"
+   "label": "Assignment Name",
+   "reqd": 1
   },
   {
    "fieldname": "assignment_attach_button",
    "fieldtype": "Attach",
-   "label": "Assignment Attach Button"
+   "label": "Assignment Attach Button",
+   "reqd": 1
   },
   {
    "fieldname": "description",
-   "fieldtype": "Long Text",
+   "fieldtype": "Text Editor",
    "label": "Description"
   },
   {
-   "fieldname": "select_sub_module",
-   "fieldtype": "Select",
-   "label": "Select Sub Module"
-  },
-  {
    "fieldname": "instructor_id",
-   "fieldtype": "Select",
-   "label": "Instructor ID"
+   "fieldtype": "Link",
+   "label": "Instructor ID",
+   "options": "Instructor",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_5",
@@ -78,45 +113,229 @@
   },
   {
    "fieldname": "section_break_9",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Assignment Attachment and Description"
   },
   {
    "fieldname": "academic_year",
-   "fieldtype": "Data",
-   "label": "Academic Year"
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year",
+   "read_only": 1
   },
   {
    "fieldname": "academic_term",
-   "fieldtype": "Data",
-   "label": "Academic Term"
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Academic Term",
+   "options": "Academic Term",
+   "read_only": 1
   },
   {
+   "depends_on": "eval:doc.evaluate==1",
    "fieldname": "assessment_criteria",
-   "fieldtype": "Select",
-   "label": "Assessment Criteria"
+   "fieldtype": "Link",
+   "label": "Assessment Criteria",
+   "mandatory_depends_on": "eval:doc.evaluate==1",
+   "options": "Assessment Criteria"
   },
   {
    "fieldname": "total_marks",
    "fieldtype": "Data",
-   "label": "Total Marks"
+   "label": "Total Marks",
+   "read_only": 1
   },
   {
+   "depends_on": "eval:doc.evaluate==1",
    "fieldname": "weightage",
    "fieldtype": "Percent",
-   "label": "Weightage"
+   "label": "Weightage",
+   "read_only": 1
   },
   {
    "fieldname": "passing_marks",
    "fieldtype": "Data",
-   "label": "Passing Marks"
+   "label": "Passing Marks",
+   "read_only": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "evaluate",
+   "fieldtype": "Check",
+   "label": "Evaluate"
+  },
+  {
+   "fieldname": "section_break_up0pn",
+   "fieldtype": "Section Break",
+   "hide_border": 1,
+   "label": "Assignment Details"
+  },
+  {
+   "fieldname": "section_break_kyqjw",
+   "fieldtype": "Section Break",
+   "label": "Module Details"
+  },
+  {
+   "fieldname": "section_break_wjf36",
+   "fieldtype": "Section Break",
+   "label": "Course Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Assignment",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_8rp8h",
+   "fieldtype": "Section Break",
+   "label": "Assessment Component Details"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Datetime",
+   "label": "Start Date and Time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_qdq1i",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Datetime",
+   "label": "End Date and Time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_xokaq",
+   "fieldtype": "Section Break",
+   "label": "Participant Group Details"
+  },
+  {
+   "fieldname": "total_duration",
+   "fieldtype": "Data",
+   "label": "Total duration",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "programs.program_grade",
+   "fieldname": "course_type",
+   "fieldtype": "Data",
+   "label": "Course Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "programs.programs_name",
+   "fieldname": "course_name",
+   "fieldtype": "Data",
+   "label": "Course Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "programs.programs_duration",
+   "fieldname": "course_duration",
+   "fieldtype": "Data",
+   "label": "Course Duration",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_qmu7e",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "participant_group.semester",
+   "fieldname": "semester",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Semester"
+  },
+  {
+   "fieldname": "section_break_9ubca",
+   "fieldtype": "Section Break",
+   "label": "Instructor Details"
+  },
+  {
+   "fetch_from": "course.course_name",
+   "fieldname": "module_name",
+   "fieldtype": "Data",
+   "label": "Module Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "course.module_type",
+   "fieldname": "module_type",
+   "fieldtype": "Data",
+   "label": "Module Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "course.course_code",
+   "fieldname": "module_code",
+   "fieldtype": "Data",
+   "label": "Module Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_gr8l4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "participant_group.participant_group",
+   "fieldname": "participant_group_name",
+   "fieldtype": "Data",
+   "label": "Participant Group Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "participant_group.tot_start_date",
+   "fieldname": "tot_start_date",
+   "fieldtype": "Date",
+   "label": "TOT Start Date",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "participant_group.tot_end_date",
+   "fieldname": "tot_end_date",
+   "fieldtype": "Date",
+   "label": " TOT End Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_mvrpl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_bxk0b",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "assignment_creation_status",
+   "fieldtype": "Data",
+   "label": "Assignment Creation Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_ayhpd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_btncn",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-07-25 11:33:12.801899",
+ "modified": "2023-09-20 16:34:36.466519",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -132,6 +351,7 @@
    "write": 1
   }
  ],
+ "search_fields": "assignment_name,participant_group",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

@@ -101,7 +101,7 @@
    "label": "Hostel Info"
   },
   {
-   "fetch_from": "hostel.hostel_phone_number",
+   "fetch_from": "hostel.hostel_phone_number_1",
    "fieldname": "hostel_phone_number_1",
    "fieldtype": "Data",
    "label": "Hostel Phone Number 1",
@@ -165,6 +165,7 @@
   {
    "fieldname": "hostel_fee_structure_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Hostel Fee Structure"
   },
   {
@@ -244,6 +245,7 @@
    "read_only": 1
   },
   {
+   "default": "NO",
    "fieldname": "hostel_fee_applicable",
    "fieldtype": "Select",
    "label": "Is Hostel Fee Applicable",
@@ -254,7 +256,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-03-25 12:31:23.798666",
+ "modified": "2023-09-13 15:52:35.950761",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Hostel Admission",

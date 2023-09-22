@@ -8,6 +8,8 @@ import pandas as pd
 class LongLeave(Document):
 	# @frappe.whitelist()
 	def validate(doc):
+		space(doc)
+		alpha(doc)
 		pincode_validation(doc)
 		# mobile_number_validation(doc) #v14 phone data type present
 		Al_no=doc.allotment_number
@@ -18,7 +20,7 @@ class LongLeave(Document):
 			if len(long_leave_df)==0:
 				pass
 			else:
-				frappe.throw("Already Document ")
+				frappe.throw("Already Documented")
 		elif workflow_state=="Communication to the Student":
 			medium_of_communicatinon=doc.medium_of_communicatinon
 			if medium_of_communicatinon!="":
@@ -52,8 +54,7 @@ class LongLeave(Document):
 
 			status=frappe.get_all("Room Allotment",{"name":doc.allotment_number},['hostel_registration_no','room_id'])
 			frappe.db.sql("""UPDATE `tabRoom Masters` SET `vacancy`=`vacancy`+1 WHERE `name`="%s" """%(status[0]['room_id']))
-			frappe.db.set_value("Student Hostel Admission",status[0]['hostel_registration_no'], "allotment_status", "De-allotted") 
-			pass	
+			frappe.db.set_value("Student Hostel Admission",status[0]['hostel_registration_no'], "allotment_status", "De-allotted") 	
 											
 
 def Long_leave_def(info):
@@ -89,8 +90,31 @@ def mobile_number_validation(doc):
 def pincode_validation(doc):
 	if doc.pincode:
 		if not (doc.pincode).isdigit():
-			frappe.throw("Field Contact Number Accept Digits Only")
+			frappe.throw("Field Pincode Accept Digits Only")
 		if len(doc.pincode)>6:
-			frappe.throw("Field Contact Number must be 6 Digits")
+			frappe.throw("Field Pincode must be 6 Digits")
 		if len(doc.pincode)<6:
-			frappe.throw("Field Contact Number must be 6 Digits")
+			frappe.throw("Field Pincode must be 6 Digits")
+	if doc.pincode_student:
+		if not (doc.pincode_student).isdigit():
+			frappe.throw("Field Pincode Accept Digits Only")
+		if len(doc.pincode_student)>6:
+			frappe.throw("Field Pincode must be 6 Digits")
+		if len(doc.pincode_student)<6:
+			frappe.throw("Field Pincode must be 6 Digits")
+
+def alpha(doc):
+	if doc.state:
+		if not (doc.state).isalpha():
+			frappe.throw("Field <b>State</b> Accept Alphabet Only")
+	if doc.state_student:
+		if not (doc.state_student).isalpha():
+			frappe.throw("Field <b>State</b> Accept Alphabet Only")
+
+def space(doc):
+	if doc.phone_no is not None:
+		if ' ' in doc.phone_no:
+			frappe.throw("Spaces are present in the <b>Adminstration Communication Phone Number</b>.")
+	if doc.communication_phone_no is not None:
+		if ' ' in doc.communication_phone_no:
+			frappe.throw("Spaces are present in the <b>Student Communication Phone Number</b>.")

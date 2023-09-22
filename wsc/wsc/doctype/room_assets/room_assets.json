@@ -16,42 +16,60 @@
  ],
  "fields": [
   {
+   "columns": 2,
    "fieldname": "item_code",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Item Code",
-   "options": "Item"
+   "options": "Asset",
+   "reqd": 1
   },
   {
+   "columns": 1,
    "fetch_from": "item_code.item_name",
    "fieldname": "item_name",
    "fieldtype": "Data",
-   "label": "Item Name"
+   "in_list_view": 1,
+   "label": "Item Name",
+   "read_only": 1
   },
   {
+   "columns": 1,
+   "fetch_from": "item_code.location",
    "fieldname": "location",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Location"
   },
   {
+   "columns": 2,
+   "fetch_from": "item_code.asset_name",
    "fieldname": "asset_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Asset Name"
   },
   {
+   "columns": 2,
+   "fetch_from": "item_code.custodian",
    "fieldname": "custodian",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Custodian"
   },
   {
+   "columns": 2,
+   "fetch_from": "item_code.department",
    "fieldname": "department",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Department"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-04-18 15:33:44.508267",
+ "modified": "2023-09-05 18:58:51.426261",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Room Assets",

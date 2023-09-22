@@ -87,52 +87,6 @@ frappe.ui.form.on('Fees Waiver', {
 		frm.set_value("fee_structure",'')
 	},
 
-	fee_structure: function(frm) {
-		frm.set_value("components" ,"");
-		if (frm.doc.fee_structure) {
-			frappe.call({
-				method: "wsc.wsc.doctype.fees.get_fee_components",
-				args: {
-					"fee_structure": frm.doc.fee_structure
-				},
-				callback: function(r) {
-					if (r.message) {
-						$.each(r.message, function(i, d) {
-							var row = frappe.model.add_child(frm.doc, "Fee Component", "components");
-							row.fees_category = d.fees_category;
-							row.receivable_account=d.receivable_account;
-							row.income_account = d.income_account;
-							row.description = d.description;
-							row.amount = d.amount;
-                            row.grand_fee_amount=d.grand_fee_amount;
-                            row.outstanding_fees=d.outstanding_fees;
-                            row.waiver_type=d.waiver_type;
-                            row.percentage=d.percentage;
-                            row.waiver_amount=d.waiver_amount;
-                            row.total_waiver_amount=d.total_waiver_amount; 
-						});
-					}
-					refresh_field("components");
-				}
-			});
-			var df_amount = frappe.meta.get_docfield("Fee Component","amount", frm.doc.name);
-            df_amount.read_only = 1;
-			var df_receivable_account = frappe.meta.get_docfield("Fee Component","receivable_account", frm.doc.name);
-            df_receivable_account.read_only = 1;
-			var df_income_account = frappe.meta.get_docfield("Fee Component","income_account", frm.doc.name);
-            df_income_account.read_only = 1;
-			var df_company = frappe.meta.get_docfield("Fee Component","company", frm.doc.name);
-            df_company.read_only = 1;
-			var df_total_waiver_amount = frappe.meta.get_docfield("Fee Component","total_waiver_amount", frm.doc.name);
-            df_total_waiver_amount.read_only = 1;
-            frm.clear_table("components");
-            frm.refresh_field('components');
-            frm.refresh_field('amount');
-			frm.refresh_field('receivable_account');
-			frm.refresh_field('income_account');
-			frm.refresh_field('company');
-		}
-	},
 	student(frm){
         if (frm.doc.student){
 				frappe.call({
@@ -251,4 +205,56 @@ frappe.ui.form.on("Fee Component", "waiver_type", function(frm, cdt, cdn){
 		cur_frm.refresh_field ("components");
 	});
 });
+
+
+frappe.ui.form.on('Fees Waiver', {
+    setup(frm){
+        frm.set_query("fee_structure", function() {
+				frm.set_value("components" ,"");
+				if (frm.doc.fee_structure) {
+					frappe.call({
+						method: "wsc.wsc.doctype.fees_waiver.fees_waiver.get_fee_components",
+						args: {
+							"fee_structure": frm.doc.fee_structure
+						},
+						callback: function(r) {
+							if (r.message) {
+								$.each(r.message, function(i, d) {
+									var row = frappe.model.add_child(frm.doc, "Fee Component", "components");
+									row.fees_category = d.fees_category;
+									row.receivable_account=d.receivable_account;
+									row.income_account = d.income_account;
+									row.description = d.description;
+									row.amount = d.amount;
+									row.grand_fee_amount=d.grand_fee_amount;
+									row.outstanding_fees=d.outstanding_fees;
+									row.waiver_type=d.waiver_type;
+									row.percentage=d.percentage;
+									row.waiver_amount=d.waiver_amount;
+									row.total_waiver_amount=d.total_waiver_amount; 
+								});
+							}
+							refresh_field("components");
+						}
+					});
+					var df_amount = frappe.meta.get_docfield("Fee Component","amount", frm.doc.name);
+					df_amount.read_only = 1;
+					var df_receivable_account = frappe.meta.get_docfield("Fee Component","receivable_account", frm.doc.name);
+					df_receivable_account.read_only = 1;
+					var df_income_account = frappe.meta.get_docfield("Fee Component","income_account", frm.doc.name);
+					df_income_account.read_only = 1;
+					var df_company = frappe.meta.get_docfield("Fee Component","company", frm.doc.name);
+					df_company.read_only = 1;
+					var df_total_waiver_amount = frappe.meta.get_docfield("Fee Component","total_waiver_amount", frm.doc.name);
+					df_total_waiver_amount.read_only = 1;
+					frm.clear_table("components");
+					frm.refresh_field('components');
+					frm.refresh_field('amount');
+					frm.refresh_field('receivable_account');
+					frm.refresh_field('income_account');
+					frm.refresh_field('company');
+				}
+        });
+    },
+})
 

@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "ASE.-.#####",
  "creation": "2023-07-05 16:45:25.570425",
  "default_view": "List",
  "doctype": "DocType",
@@ -9,18 +10,19 @@
  "field_order": [
   "participant_group",
   "select_module",
+  "column_break_vjh6g",
+  "select_course",
+  "section_break_xwr9u",
   "academic_year",
-  "participant_id",
   "instructor_id",
   "select_assignment",
-  "assessment_criteria",
+  "participant_id",
+  "assessment_component",
   "column_break_7",
-  "select_course",
-  "select_sub_module",
   "academic_term",
-  "participant_name",
   "instructor_name",
   "assignment_name",
+  "participant_name",
   "section_break_13",
   "total_marks",
   "weightage",
@@ -30,19 +32,22 @@
  ],
  "fields": [
   {
+   "fetch_from": "participant_id.participant_name",
    "fieldname": "participant_name",
    "fieldtype": "Data",
    "label": "Participant Name"
   },
   {
    "fieldname": "academic_year",
-   "fieldtype": "Data",
-   "label": "Academic Year"
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
   },
   {
    "fieldname": "instructor_id",
-   "fieldtype": "Select",
-   "label": "Instructor ID"
+   "fieldtype": "Link",
+   "label": "Evaluator ID",
+   "options": "Instructor"
   },
   {
    "fieldname": "participant_group",
@@ -51,9 +56,10 @@
    "options": "Participant Group"
   },
   {
+   "fetch_from": "instructor_id.instructor_name",
    "fieldname": "instructor_name",
    "fieldtype": "Data",
-   "label": "Instructor Name"
+   "label": "Evaluator Name"
   },
   {
    "fieldname": "column_break_7",
@@ -61,28 +67,27 @@
   },
   {
    "fieldname": "academic_term",
-   "fieldtype": "Data",
-   "label": "Academic Term"
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
   },
   {
    "fieldname": "select_course",
-   "fieldtype": "Data",
-   "label": "Select Course"
-  },
-  {
-   "fieldname": "select_sub_module",
-   "fieldtype": "Select",
-   "label": "Select Sub Module"
+   "fieldtype": "Link",
+   "label": "Select Course",
+   "options": "Programs"
   },
   {
    "fieldname": "select_module",
-   "fieldtype": "Data",
-   "label": "Select Module"
+   "fieldtype": "Link",
+   "label": "Select Module",
+   "options": "Course"
   },
   {
    "fieldname": "select_assignment",
-   "fieldtype": "Select",
-   "label": "Select Assignment"
+   "fieldtype": "Link",
+   "label": "Select Assignment",
+   "options": "Assignment"
   },
   {
    "fieldname": "marks_earned",
@@ -91,8 +96,9 @@
   },
   {
    "fieldname": "participant_id",
-   "fieldtype": "Select",
-   "label": "Participant ID"
+   "fieldtype": "Link",
+   "label": "Participant ID",
+   "options": "ToT Participant"
   },
   {
    "fieldname": "section_break_13",
@@ -108,11 +114,6 @@
    "label": "Total Marks"
   },
   {
-   "fieldname": "assessment_criteria",
-   "fieldtype": "Data",
-   "label": "Assessment Criteria"
-  },
-  {
    "fieldname": "weightage",
    "fieldtype": "Data",
    "label": "Weightage"
@@ -126,14 +127,29 @@
    "fieldname": "assignment_name",
    "fieldtype": "Data",
    "label": "Assignment Name"
+  },
+  {
+   "fieldname": "column_break_vjh6g",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_xwr9u",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "assessment_component",
+   "fieldtype": "Link",
+   "label": "Assessment Component",
+   "options": "Assessment Criteria"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-25 17:28:50.644645",
+ "modified": "2023-09-05 15:33:16.722686",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Evaluation",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

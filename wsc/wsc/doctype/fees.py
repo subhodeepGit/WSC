@@ -239,7 +239,7 @@ def get_term(doctype, txt, searchfield, start, page_len, filters):
 def get_fee_components(fee_structure=None,student=None):
 	fees=[]
 	if fee_structure and student:
-		fee_waiver=frappe.get_all("Fees Waiver",{"student":student,"fee_structure":fee_structure},['name'])
+		fee_waiver=frappe.get_all("Fees Waiver",{"student":student,"fee_structure":fee_structure,"docstatus":1},['name'])
 		if not fee_waiver:
 			fees = frappe.get_all("Fee Component", fields=["fees_category", "description", "amount","receivable_account",
 												"income_account","grand_fee_amount","outstanding_fees","waiver_type","percentage","waiver_amount",

@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "EECA-.####",
+ "autoname": "format:{entrance_exam_declaration}-{centre_name}",
  "creation": "2023-05-09 17:28:02.897730",
  "default_view": "List",
  "doctype": "DocType",
@@ -31,6 +31,7 @@
   {
    "fieldname": "entrance_exam_declaration",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Entrance Exam Declaration",
    "options": "Entrance Exam Declaration",
    "reqd": 1
@@ -58,41 +59,44 @@
   },
   {
    "fieldname": "centre",
-   "fieldtype": "Select",
-   "in_list_view": 1,
+   "fieldtype": "Link",
    "label": "Centre",
+   "options": "Entrance exam select",
    "reqd": 1
   },
   {
-   "fieldname": "centre_name",
-   "fieldtype": "Data",
-   "label": "Centre Name"
-  },
-  {
+   "fetch_from": "centre.address",
    "fieldname": "address",
    "fieldtype": "Data",
    "label": "Address"
   },
   {
+   "fetch_from": "centre.district",
    "fieldname": "district",
-   "fieldtype": "Data",
-   "label": "District"
+   "fieldtype": "Link",
+   "label": "District",
+   "options": "Districts"
   },
   {
+   "fetch_from": "centre.state",
    "fieldname": "state",
-   "fieldtype": "Data",
-   "label": "State"
+   "fieldtype": "Link",
+   "label": "State",
+   "options": "State"
   },
   {
+   "fetch_from": "centre.pincode",
    "fieldname": "pin_code",
    "fieldtype": "Data",
    "label": "Pin Code"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "exam_slot_timings",
    "fieldtype": "Table",
    "label": "Exam Slot Timings",
-   "options": "Exam Slot Timings"
+   "options": "Exam Slot Timings",
+   "reqd": 1
   },
   {
    "fieldname": "entrance_exam_invigilator",
@@ -120,32 +124,36 @@
   {
    "fetch_from": "entrance_exam_declaration.exam_start_date",
    "fieldname": "exam_start_date",
-   "fieldtype": "Data",
-   "label": "Exam Start Date",
-   "read_only": 1
+   "fieldtype": "Date",
+   "label": "Exam Start Date"
   },
   {
    "fetch_from": "entrance_exam_declaration.exam_end_date",
    "fieldname": "exam_end_date",
-   "fieldtype": "Data",
-   "label": "Exam End Date",
-   "read_only": 1
+   "fieldtype": "Date",
+   "label": "Exam End Date"
   },
   {
    "fetch_from": "entrance_exam_declaration.center_selection",
    "fieldname": "center_selection",
    "fieldtype": "Data",
    "label": "Center Selection"
+  },
+  {
+   "fetch_from": "centre.center_name",
+   "fieldname": "centre_name",
+   "fieldtype": "Data",
+   "label": "Centre Name"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-31 13:13:18.469778",
+ "modified": "2023-09-20 15:55:24.561527",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Centre Allocation",
- "naming_rule": "Expression (old style)",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

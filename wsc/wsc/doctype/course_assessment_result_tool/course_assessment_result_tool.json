@@ -9,16 +9,21 @@
   "exam_declaration",
   "academic_year",
   "academic_term",
+  "module_exam_group",
   "exam_assessment_plan",
-  "total_students",
+  "trainer_id",
+  "trainer_name",
+  "checker_id",
+  "checker_name",
   "column_break_2",
   "program_grade",
   "programs",
   "semester",
+  "assessment_criteria",
   "course",
   "course_code",
   "course_name",
-  "assessment_criteria",
+  "total_students",
   "section_break_7",
   "reference_doctype",
   "reference_docname",
@@ -50,6 +55,7 @@
    "reqd": 1
   },
   {
+   "depends_on": "eval:doc.exam_declaration",
    "fieldname": "course",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -68,6 +74,7 @@
    "reqd": 1
   },
   {
+   "depends_on": "eval:doc.exam_declaration",
    "fieldname": "total_students",
    "fieldtype": "Int",
    "label": "Total Students",
@@ -111,10 +118,12 @@
   {
    "fieldname": "exam_assessment_plan",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Exam Assessment Plan",
    "options": "Exam Assessment Plan"
   },
   {
+   "depends_on": "eval:doc.exam_declaration",
    "fetch_from": "course.course_name",
    "fieldname": "course_name",
    "fieldtype": "Data",
@@ -122,6 +131,7 @@
    "read_only": 1
   },
   {
+   "depends_on": "eval:doc.exam_declaration",
    "fetch_from": "course.course_code",
    "fieldname": "course_code",
    "fieldtype": "Data",
@@ -153,12 +163,56 @@
    "options": "Program Grades",
    "read_only": 1,
    "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.course",
+   "fetch_from": "module_exam_group.marker_name",
+   "fieldname": "trainer_id",
+   "fieldtype": "Link",
+   "label": "Marker Id",
+   "options": "Instructor",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.course",
+   "fetch_from": "trainer_id.instructor_name",
+   "fieldname": "trainer_name",
+   "fieldtype": "Data",
+   "label": "Marker Name",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.course",
+   "fieldname": "module_exam_group",
+   "fieldtype": "Link",
+   "label": "Module Exam Group",
+   "options": "Module Wise Exam Group",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.course",
+   "fetch_from": "module_exam_group.checker",
+   "fieldname": "checker_id",
+   "fieldtype": "Link",
+   "label": "Checker Id",
+   "options": "Instructor",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.course",
+   "fetch_from": "checker_id.instructor_name",
+   "fieldname": "checker_name",
+   "fieldtype": "Data",
+   "label": "Checker Name",
+   "read_only": 1
   }
  ],
  "hide_toolbar": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-07-05 17:18:50.237920",
+ "modified": "2023-09-04 15:55:57.682386",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Course Assessment Result Tool",

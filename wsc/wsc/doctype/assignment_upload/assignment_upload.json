@@ -1,82 +1,106 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "ASU.-.#####",
  "creation": "2023-07-05 15:01:59.476128",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "participant_group_details_section",
   "participant_group",
+  "column_break_eqtxy",
+  "participant_group_name",
+  "section_break_g3bpp",
   "course",
+  "module_code",
+  "column_break_oapsg",
+  "module_name",
+  "section_break_3b6wq",
+  "programs",
+  "column_break_hfeji",
+  "course_name",
+  "section_break_zaymx",
   "academic_year",
+  "academic_term",
+  "semester",
+  "section_break_35irg",
   "participant_id",
-  "instructor_id",
-  "assignment_number",
-  "total_marks",
+  "column_break_k1h8d",
+  "participant_name",
+  "section_break_jynwu",
+  "assignment_id",
+  "start_date",
+  "assessment_component",
   "weightage",
   "column_break_6",
-  "programs",
-  "topic",
-  "academic_term",
-  "participant_name",
-  "instructor_name",
-  "assessment_component",
+  "assignment_number",
+  "end_date",
+  "total_marks",
   "passing_marks",
+  "assignment_questions",
   "section_break_12",
   "assignment_attach_button",
-  "description"
+  "description",
+  "amended_from"
  ],
  "fields": [
   {
-   "fieldname": "instructor_name",
-   "fieldtype": "Data",
-   "label": "Instructor Name"
-  },
-  {
+   "fetch_from": "assignment_id.assignment_name",
    "fieldname": "assignment_number",
-   "fieldtype": "Select",
-   "label": "Assignment Name"
+   "fieldtype": "Data",
+   "label": "Assignment Name",
+   "read_only": 1
   },
   {
    "fieldname": "participant_id",
-   "fieldtype": "Select",
-   "label": "Participant ID"
+   "fieldtype": "Link",
+   "label": "Participant ID",
+   "options": "ToT Participant",
+   "reqd": 1
   },
   {
+   "fetch_from": "participant_id.participant_name",
    "fieldname": "participant_name",
    "fieldtype": "Data",
-   "label": "Participant Name"
+   "label": "Participant Name",
+   "read_only": 1
   },
   {
    "fieldname": "programs",
-   "fieldtype": "Data",
-   "label": "Select Course"
+   "fieldtype": "Link",
+   "label": "Programs",
+   "options": "Programs",
+   "read_only": 1
   },
   {
    "fieldname": "academic_year",
-   "fieldtype": "Data",
-   "label": "Academic Year"
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year",
+   "read_only": 1
   },
   {
    "fieldname": "academic_term",
-   "fieldtype": "Data",
-   "label": "Academic Term"
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Academic Term",
+   "options": "Academic Term",
+   "read_only": 1
   },
   {
    "fieldname": "course",
-   "fieldtype": "Data",
-   "label": "Select Module"
-  },
-  {
-   "fieldname": "topic",
-   "fieldtype": "Select",
-   "label": "Select Sub Module"
+   "fieldtype": "Link",
+   "label": "Course",
+   "options": "Course",
+   "read_only": 1
   },
   {
    "fieldname": "assignment_attach_button",
    "fieldtype": "Attach",
-   "label": "Attach Assignment"
+   "label": "Attach Assignment",
+   "reqd": 1
   },
   {
    "fieldname": "description",
@@ -86,8 +110,10 @@
   {
    "fieldname": "participant_group",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Participant Group",
-   "options": "Participant Group"
+   "options": "Participant Group",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_6",
@@ -98,37 +124,154 @@
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "instructor_id",
-   "fieldtype": "Select",
-   "label": "Instructor ID"
-  },
-  {
    "fieldname": "total_marks",
    "fieldtype": "Data",
-   "label": "Total Marks"
+   "label": "Total Marks",
+   "read_only": 1
   },
   {
    "fieldname": "weightage",
    "fieldtype": "Data",
-   "label": "Weightage"
+   "label": "Weightage",
+   "read_only": 1
   },
   {
    "fieldname": "assessment_component",
    "fieldtype": "Data",
-   "label": "Assessment Component"
+   "label": "Assessment Component",
+   "read_only": 1
   },
   {
    "fieldname": "passing_marks",
    "fieldtype": "Data",
-   "label": "Passing Marks"
+   "label": "Passing Marks",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_oapsg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_zaymx",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "assignment_id",
+   "fieldtype": "Link",
+   "label": "Assignment ID",
+   "options": "Assignment",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_g3bpp",
+   "fieldtype": "Section Break",
+   "label": "Module Details"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Assignment Upload",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Datetime",
+   "hidden": 1,
+   "label": "Start Date"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Datetime",
+   "hidden": 1,
+   "label": "End Date"
+  },
+  {
+   "fetch_from": "participant_group.participant_group",
+   "fieldname": "participant_group_name",
+   "fieldtype": "Data",
+   "label": "Participant Group Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_eqtxy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "participant_group_details_section",
+   "fieldtype": "Section Break",
+   "label": "Participant Group Details"
+  },
+  {
+   "fetch_from": "course.course_name",
+   "fieldname": "module_name",
+   "fieldtype": "Data",
+   "label": "Module Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "course.course_code",
+   "fieldname": "module_code",
+   "fieldtype": "Data",
+   "label": "Module Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_3b6wq",
+   "fieldtype": "Section Break",
+   "label": "Course Details"
+  },
+  {
+   "fetch_from": "programs.programs_name",
+   "fieldname": "course_name",
+   "fieldtype": "Data",
+   "label": "Course Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_hfeji",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_35irg",
+   "fieldtype": "Section Break",
+   "label": "Participant Details"
+  },
+  {
+   "fetch_from": "participant_group.semester",
+   "fieldname": "semester",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Semester",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_jynwu",
+   "fieldtype": "Section Break",
+   "label": "Assignment Details"
+  },
+  {
+   "fieldname": "column_break_k1h8d",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "assignment_id.assignment_attach_button",
+   "fieldname": "assignment_questions",
+   "fieldtype": "Data",
+   "label": "Assignment Questions",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-07-25 11:44:28.940063",
+ "modified": "2023-09-20 16:22:03.206198",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Upload",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

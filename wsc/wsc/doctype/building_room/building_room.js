@@ -16,6 +16,13 @@ frappe.ui.form.on("Building Room", {
 			}
 		
 		});
+		frm.set_query("floor" , function() {
+			return {
+				filters:{
+					"building_name":frm.doc.building_name
+				}
+			}
+		})
 	}
 });
 

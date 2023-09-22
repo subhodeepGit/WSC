@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "AET.-.#####",
  "creation": "2023-07-05 16:57:16.666699",
  "default_view": "List",
  "doctype": "DocType",
@@ -11,7 +12,6 @@
   "academic_year",
   "instructor_id",
   "course",
-  "select_sub_module",
   "column_break_6",
   "total_participants",
   "academic_term",
@@ -28,13 +28,15 @@
   "assessment_criteria",
   "section_break_14",
   "get_participants",
-  "participant_details_data"
+  "participant_details_data",
+  "disqualified_participants"
  ],
  "fields": [
   {
    "fieldname": "academic_year",
-   "fieldtype": "Data",
-   "label": "Academic Year"
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
   },
   {
    "fieldname": "total_participants",
@@ -43,13 +45,15 @@
   },
   {
    "fieldname": "course",
-   "fieldtype": "Data",
-   "label": "Select Course"
+   "fieldtype": "Link",
+   "label": "Select Course",
+   "options": "Programs"
   },
   {
    "fieldname": "module",
-   "fieldtype": "Data",
-   "label": "Select Module"
+   "fieldtype": "Link",
+   "label": "Select Module",
+   "options": "Course"
   },
   {
    "fieldname": "job_sheetassessment_scheme",
@@ -60,7 +64,7 @@
   {
    "fieldname": "participant_details_data",
    "fieldtype": "Table",
-   "label": "Participant Details Data",
+   "label": "Qualified Participants",
    "options": "Participant Details Data"
   },
   {
@@ -70,18 +74,14 @@
    "options": "Participant Group"
   },
   {
-   "fieldname": "select_sub_module",
-   "fieldtype": "Select",
-   "label": "Select Sub Module"
-  },
-  {
    "fieldname": "column_break_6",
    "fieldtype": "Column Break"
   },
   {
    "fieldname": "academic_term",
-   "fieldtype": "Data",
-   "label": "Academic Term"
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
   },
   {
    "fieldname": "section_break_10",
@@ -107,13 +107,15 @@
   },
   {
    "fieldname": "instructor_id",
-   "fieldtype": "Select",
-   "label": "Instructor ID"
+   "fieldtype": "Link",
+   "label": "Evaluator ID",
+   "options": "Instructor"
   },
   {
+   "fetch_from": "instructor_id.instructor_name",
    "fieldname": "instructor_name",
    "fieldtype": "Data",
-   "label": "Instructor Name"
+   "label": "Evaluator Name"
   },
   {
    "fieldname": "total_marks",
@@ -136,17 +138,25 @@
    "label": "Assessment Criteria"
   },
   {
+   "fetch_from": "select_job_sheetassessment.assignment_name",
    "fieldname": "assignment_name",
    "fieldtype": "Data",
    "label": "Assignment Name"
+  },
+  {
+   "fieldname": "disqualified_participants",
+   "fieldtype": "Table",
+   "label": "Disqualified Participants",
+   "options": "disqualified tot participants"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-25 17:30:26.666829",
+ "modified": "2023-09-06 17:16:03.179083",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Evaluation Tool",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

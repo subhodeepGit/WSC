@@ -2,8 +2,35 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('ToT Participant Attendance', {
+	setup: function(frm){
+		frm.set_query("instructor_id", function() {
+			return {
+				query: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.instructor',
+				filters:{"participant_group_id":frm.doc.participant_group}
+				
+			};
+		});
 
-	participant_group: function(frm){
+		frm.set_query("participant_id", function() {
+			return {
+				query: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.participant',
+				filters:{"participant_group_id":frm.doc.participant_group}
+				
+			};
+		});
+		frm.set_query('class_schedule', function(){
+			return{
+				filters:{
+					'participant_group_id' : frm.doc.participant_group,
+					'course_id':frm.doc.select_course,
+					'module_id':frm.doc.select_module,
+					'attendance_taken':0
+				}	
+			}
+		})
+	},
+
+	participant_group: function(frm){	
 		frappe.call({
 			method: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.get_details',
 			args: {
@@ -14,9 +41,7 @@ frappe.ui.form.on('ToT Participant Attendance', {
 				frm.set_value("academic_term", result.message[1]) // academic_term
 				frm.set_value("select_course", result.message[2]) // course
 				frm.set_value("select_module", result.message[3]) // module
-				frm.set_df_property('select_sub_module', 'options', result.message[4]) // sub module
-				frm.set_df_property('instructor_id', 'options', result.message[5]) // instructors
-				frm.set_df_property('participant_id', 'options', result.message[6]) // participants
+				frm.set_df_property('date', 'options', result.message[5]) //date
 			}
 		})
 	},

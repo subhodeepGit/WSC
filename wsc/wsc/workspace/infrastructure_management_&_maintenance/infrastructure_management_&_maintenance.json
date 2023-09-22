@@ -1,7 +1,8 @@
 {
  "charts": [],
- "content": "[{\"id\":\"azJrlaeHO5\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Infrastructure Management &amp; Maintenance</span>\",\"col\":12}},{\"id\":\"94JdVYcqVo\",\"type\":\"card\",\"data\":{\"card_name\":\"Infrastructure Management\",\"col\":3}},{\"id\":\"NfJnRVy0N3\",\"type\":\"spacer\",\"data\":{\"col\":9}},{\"id\":\"DwgKnyGhUs\",\"type\":\"card\",\"data\":{\"card_name\":\"Infrastructure Maintenance\",\"col\":3}}]",
+ "content": "[{\"id\":\"azJrlaeHO5\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Infrastructure Management &amp; Maintenance</span>\",\"col\":12}},{\"id\":\"94JdVYcqVo\",\"type\":\"card\",\"data\":{\"card_name\":\"Infrastructure Masters\",\"col\":3}},{\"id\":\"DwgKnyGhUs\",\"type\":\"card\",\"data\":{\"card_name\":\"Asset Maintenance\",\"col\":3}}]",
  "creation": "2023-02-15 12:28:13.024508",
+ "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
  "for_user": "",
@@ -11,64 +12,6 @@
  "is_hidden": 0,
  "label": "Infrastructure Management & Maintenance",
  "links": [
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Infrastructure Management",
-   "link_count": 5,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Land",
-   "link_count": 0,
-   "link_to": "Land",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Buildings",
-   "link_count": 0,
-   "link_to": "Buildings",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Floor",
-   "link_count": 0,
-   "link_to": "Floor",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Building type Room",
-   "link_count": 0,
-   "link_to": "Building type Room",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Building Room",
-   "link_count": 0,
-   "link_to": "Building Room",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
   {
    "hidden": 0,
    "is_query_report": 0,
@@ -126,12 +69,129 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Infrastructure Masters",
+   "link_count": 5,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Land",
+   "link_count": 0,
+   "link_to": "Land",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Buildings",
+   "link_count": 0,
+   "link_to": "Buildings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Floor",
+   "link_count": 0,
+   "link_to": "Floor",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Building type Room",
+   "link_count": 0,
+   "link_to": "Building type Room",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Building Room",
+   "link_count": 0,
+   "link_to": "Building Room",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Asset Maintenance",
+   "link_count": 5,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Asset",
+   "link_count": 0,
+   "link_to": "Asset",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Asset Maintenance Team",
+   "link_count": 0,
+   "link_to": "Asset Maintenance Team",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Asset Maintenance",
+   "link_count": 0,
+   "link_to": "Asset Maintenance",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Asset Maintenance Log",
+   "link_count": 0,
+   "link_to": "Asset Maintenance Log",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Asset Repair",
+   "link_count": 0,
+   "link_to": "Asset Repair",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-05-12 16:19:32.507362",
+ "modified": "2023-09-08 15:47:00.629804",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Infrastructure Management & Maintenance",
+ "number_cards": [],
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,
@@ -139,6 +199,18 @@
  "roles": [
   {
    "role": "System Manager"
+  },
+  {
+   "role": "Building Administrator"
+  },
+  {
+   "role": "Floor Supervisor"
+  },
+  {
+   "role": "Maintenance Department"
+  },
+  {
+   "role": "Employee- Infrastructure"
   }
  ],
  "sequence_id": 29.0,

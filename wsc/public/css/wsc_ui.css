@@ -37,7 +37,7 @@ background: #555;
     transition: all .25s ease;
 }
 /* .form-dashboard-section:hover, */
-.page-form:hover,
+/* .page-form:hover, */
 .comment-box:hover,
 /* .form-section.card-section:hover, */
 .widget:hover,
@@ -116,13 +116,71 @@ body[frappe-session-status='logged-out'] nav.navbar {display: none;}
     font-size: 15px;
     border-radius: 10px;
 }
+.sidebar-label{
+    visibility: hidden; 
+}
+.form-stats{
+    visibility: hidden; 
+}
+.data-pill{
+    visibility: hidden; 
+}
+.flex-wrap{
+    visibility: hidden; 
+}
+.form-follow{
+    visibility: hidden; 
+}
+.tags-placeholder{
+    visibility: hidden; 
+}
+.text-center.sign-up-message{
+    background: rgba(181, 175, 210, 0.7);
+    width: 400px;
+    width: 250px;
+    height: 25px;
+    margin: auto;
+    border: 2px solid #5c3c92; 
+    border-radius: 5px;
+}
+/*
+.btn .btn-default .btn-sm .btn-attach{
+    background: #5c3c92;
+}
+.btn{
+    background: #5c3c92;
+}
+.btn-default{
+    background: #5c3c92;
+}
+.btn-sm{
+    background: #5c3c92;
+}
+.btn-attach{
+    background: #5c3c92;
+}
+.input-sm{
+    background: #5c3c92;}
+*/
+
+/* btn btn-default btn-sm btn-attach bold input-sm */
+/* .text-muted{
+    visibility: hidden; 
+} */
+/* .text-muted .btn .btn-default .icon-btn .add-assignment-btn{
+    visibility: hidden; 
+} */
+/* .flex flex-wrap */
 /* .btn.btn-default.icon-btn{
     visibility: hidden;
 } */
-.menu-btn-group{
+/* .menu-btn-group{
     visibility: hidden;
-}
-.btn.btn-default.btn-sm.ellipsis{
+} */
+/* .btn.btn-default.btn-sm.ellipsis{
+    visibility: hidden;
+} */
+.inner-page-message.text-muted.small{
     visibility: hidden;
 }
 .grid-footer-toolbar.hidden-xs.flex.justify-between{
@@ -135,9 +193,6 @@ body[frappe-session-status='logged-out'] nav.navbar {display: none;}
     visibility: hidden; 
 }
 
-/* .btn.btn-secondary.btn-sm.pull-right.grid-insert-row-below.hidden-xs{
-    visibility: hidden; 
-} */
 .grid-shortcuts{
     visibility: hidden;
 }

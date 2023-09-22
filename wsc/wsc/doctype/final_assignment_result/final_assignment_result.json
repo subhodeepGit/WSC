@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "FAR.-.#####",
  "creation": "2023-07-05 17:25:30.939441",
  "default_view": "List",
  "doctype": "DocType",
@@ -17,6 +18,7 @@
   "academic_year",
   "participant_id",
   "grading_scale",
+  "attendance_percentage",
   "column_break_9",
   "academic_term",
   "participant_name",
@@ -35,18 +37,21 @@
  "fields": [
   {
    "fieldname": "course",
-   "fieldtype": "Data",
-   "label": "Select Course"
+   "fieldtype": "Link",
+   "label": "Select Course",
+   "options": "Programs"
   },
   {
    "fieldname": "module",
-   "fieldtype": "Data",
-   "label": "Select Module"
+   "fieldtype": "Link",
+   "label": "Select Module",
+   "options": "Course"
   },
   {
    "fieldname": "academic_year",
-   "fieldtype": "Data",
-   "label": "Academic Year"
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
   },
   {
    "fieldname": "participant_name",
@@ -100,8 +105,9 @@
   },
   {
    "fieldname": "academic_term",
-   "fieldtype": "Data",
-   "label": "Academic Term"
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
   },
   {
    "fieldname": "section_break_13",
@@ -148,14 +154,20 @@
    "fieldname": "overall_result",
    "fieldtype": "Data",
    "label": "Overall Result"
+  },
+  {
+   "fieldname": "attendance_percentage",
+   "fieldtype": "Data",
+   "label": "Attendance Percentage"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-03 12:14:33.772812",
+ "modified": "2023-09-06 15:04:43.895358",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Final Assignment Result",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

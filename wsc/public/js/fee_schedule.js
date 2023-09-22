@@ -7,6 +7,13 @@ frappe.ui.form.on('Fee Schedule',{
                 }
             };
         });
+        frm.set_query("fee_structure", function() {
+            return {
+                filters: {
+                    "docstatus":1
+                }
+            };
+        });
         frm.set_query("program", function() {
             return {
                 filters: {
@@ -51,28 +58,29 @@ frappe.ui.form.on('Fee Schedule',{
                 }
             };
         });
-        if (frm.doc.fee_creation_status === 'Successful') {
-			frm.add_custom_button(__('Accounting Ledger'), function() {
-				frappe.route_options = {
-					// voucher_no: frm.doc.name,
-                    voucher_no: frm.doc.name,
-					from_date: frm.doc.posting_date,
-					to_date: moment(frm.doc.modified).format('YYYY-MM-DD'),
-					company: frm.doc.company,
-					group_by: '',
-					show_cancelled_entries: frm.doc.docstatus === 2
-				};
-				frappe.set_route("query-report", "Fee structure General Ledger");
-                // frappe.set_route("query-report", "General Ledger");
+        // for demo
+        // if (frm.doc.fee_creation_status === 'Successful') {
+		// 	frm.add_custom_button(__('Accounting Ledger'), function() {
+		// 		frappe.route_options = {
+		// 			// voucher_no: frm.doc.name,
+        //             voucher_no: frm.doc.name,
+		// 			from_date: frm.doc.posting_date,
+		// 			to_date: moment(frm.doc.modified).format('YYYY-MM-DD'),
+		// 			company: frm.doc.company,
+		// 			group_by: '',
+		// 			show_cancelled_entries: frm.doc.docstatus === 2
+		// 		};
+		// 		frappe.set_route("query-report", "Fee structure General Ledger");
+        //         // frappe.set_route("query-report", "General Ledger");
                 
-			});
-		}
+		// 	});
+		// }
     }
 });
 
 frappe.ui.form.on('Fee Schedule', {
     refresh:function(frm) {
-		if(frappe.user.has_role(["Accounts User","Student","Education Administrator"]) && !frappe.user.has_role(["Administrator"])){
+		if(!frappe.user.has_role(["Administrator","Accounts Manager","Accounts User"])){
   			frm.remove_custom_button('Create Fees');
         }
 	}

@@ -7,6 +7,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from frappe import utils
 from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
+from wsc.wsc.notification.custom_notification import employee_reengagement_reporting_authority_mail,employee_reengagement_department_head_mail,employee_reengagement_director_mail,employee_reengagement_hr_mail
 
 
 class EmployeeReengagement(Document):
@@ -15,6 +16,21 @@ class EmployeeReengagement(Document):
 			self.date_validation()
 			self.elegibilty()
 			self.contract_validation()
+
+			####Notification Code#######
+		if self.workflow_state=="Submit":
+			employee_reengagement_hr_mail(self)
+
+		if self.workflow_state=="Reporting Authority Approval":
+			employee_reengagement_reporting_authority_mail(self)
+		if self.workflow_state=="Department Head Approval":
+			employee_reengagement_department_head_mail(self)
+		if self.workflow_state=="Approved":
+			employee_reengagement_hr_mail(self)
+		if self.workflow_state=="Director Admin Approval":
+			employee_reengagement_director_mail(self)
+
+			######Notification Code########
 
 	def after_insert(self):
 		user_perimssion_report_manager(self)
@@ -93,11 +109,17 @@ class EmployeeReengagement(Document):
 				else:
 					date_of_joining=self.date_of_joining
 
+				if isinstance(self.new_contract_start_date,str):
 
-				if date_of_joining<datetime.strptime(self.new_contract_start_date, '%Y-%m-%d').date():
-					pass
-				else:
-					frappe.throw("<b> New Contract Start Date </b>should be greater then <b> Date of Joining </b>")
+					if date_of_joining<datetime.strptime(self.new_contract_start_date, '%Y-%m-%d').date():
+						pass
+					else:
+						frappe.throw("<b> New Contract Start Date </b>should be greater then <b> Date of Joining </b>")
+				else :
+					if date_of_joining<self.new_contract_start_date:
+						pass
+					else :
+						frappe.throw("<b> New Contract Start Date </b>should be greater then <b> Date of Joining </b>")
 		else:
 			frappe.throw("Please Maintain Joining Date In Employee")
 

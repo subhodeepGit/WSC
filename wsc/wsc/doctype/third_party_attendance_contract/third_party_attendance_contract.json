@@ -1,0 +1,151 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "prompt",
+ "creation": "2023-08-31 12:09:51.199628",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "details_section",
+  "contract",
+  "party_type",
+  "column_break_shsrn",
+  "party_name",
+  "party_user",
+  "contract_period_section",
+  "start_date",
+  "column_break_eaq2p",
+  "end_date",
+  "column_break_784n8",
+  "total_days",
+  "number_of_reporting_staff_section",
+  "total_number_of_staff",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "contract",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Contract",
+   "options": "Contract"
+  },
+  {
+   "fetch_from": "contract.party_type",
+   "fieldname": "party_type",
+   "fieldtype": "Data",
+   "label": "Party Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_shsrn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "contract.party_name",
+   "fieldname": "party_name",
+   "fieldtype": "Data",
+   "label": "Party Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "contract.party_user",
+   "fieldname": "party_user",
+   "fieldtype": "Data",
+   "label": "Party User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "contract_period_section",
+   "fieldtype": "Section Break",
+   "label": "Contract Period"
+  },
+  {
+   "fetch_from": "contract.start_date",
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Start Date",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "contract.end_date",
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "End Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_eaq2p",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval: doc.start_date && doc.end_date",
+   "fieldname": "total_days",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Total Days",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_784n8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Third Party Attendance Contract",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "number_of_reporting_staff_section",
+   "fieldtype": "Section Break",
+   "label": "Staff Details"
+  },
+  {
+   "fieldname": "total_number_of_staff",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Total Number of Staff",
+   "non_negative": 1,
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-09-07 12:38:54.449911",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Third Party Attendance Contract",
+ "naming_rule": "Set by user",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

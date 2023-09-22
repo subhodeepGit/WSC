@@ -5,23 +5,35 @@ from ccavutil import encrypt,decrypt
 from ccavResponseHandler import res
 from string import Template
 from waitress import serve
-import logging
 
 app = Flask('ccavRequestHandler') 
 
-logging.basicConfig(filename='/home/wsc/frappe-bench/apps/wsc/wsc/wsc/hdfcIntegration/response_log.log', level=logging.INFO,
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 @app.route('/')
 def webprint():
-	return render_template('dataForm.html')
+    return render_template('dataForm.html')
 
 @app.route('/ccavResponseHandler', methods=['GET', 'POST'])
 def ccavResponseHandler():
-	url = request.url
-	logging.info("********request url: %s", url)
-	plainText = res(request.form['encResp'],url)
-	# print(plainText)	
-	return plainText
+    
+    workingKey = 'F5D6C4A0155454refedfertrtrB72336ECB'
+    workingKey2 = 'F5D6C4A01508C64EEF91EBDB72336ECB'
+    
+    selected_working_key = 'F5D6C4A01508C64EEF91EBDB72336ECB'      
+    
+    if selected_working_key == workingKey:
+               
+        plainText = res(request.form['encResp'],workingKey)
+        print(request.form['encResp'])	       
+        print("Output with workingKey:", workingKey)
+        return plainText
+    elif selected_working_key == workingKey2:        
+        plainText = res(request.form['encResp'],workingKey2)
+        print(request.form['encResp'])	       
+        print("Output with workingKey2:", workingKey2)
+        return plainText
+    else:
+        print("Invalid working key selection")
+       
 
 
 # 	p_merchant_id = request.form['merchant_id']
@@ -58,8 +70,8 @@ def ccavResponseHandler():
 
 
 if __name__ == '__main__':
-	# app.run(host = '127.0.0.1', debug = True, port = 8080)
-	serve(app, host='0.0.0.0', port=5000, debug = True, url_scheme='https')
+    # app.run(host = '127.0.0.1', debug = True, port = 8080)
+    serve(app, host='0.0.0.0', port=5000, debug = True, url_scheme='https')
 
 
 

@@ -72,7 +72,7 @@ def hostel_leave(self):
 			hostel_leave.room_type=ra_id[0]["room_type"]
 			hostel_leave.comment=self.reason
 			hostel_leave.save()
-			hostel_leave.submit()
+			# hostel_leave.submit()
 
 
 @frappe.whitelist()

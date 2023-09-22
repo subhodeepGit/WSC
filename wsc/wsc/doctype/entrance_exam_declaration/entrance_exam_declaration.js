@@ -22,8 +22,8 @@ frappe.ui.form.on('Entrance Exam Declaration', {
 		frm.set_query("department", function(){
 	        return{
 	            filters:{
-	                "is_group":1,
-	                "is_stream": 1
+	                "is_group":0,
+	                // "is_stream": 1
 	            }
 	        }
 	    });
@@ -53,7 +53,7 @@ frappe.ui.form.on('Entrance Exam Declaration', {
 							c.applicant_name = title
 							c.gender = gender
 							c.student_category = student_category
-							c.physically_disabled = physically_disabled
+							c.physical_disability = physically_disabled
 						})
 						frm.refresh();
 						frm.refresh_field("applicant_list")

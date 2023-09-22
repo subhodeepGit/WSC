@@ -5,7 +5,7 @@ import frappe
 from frappe.model.document import Document
 from wsc.wsc.notification.custom_notification import sendHR,sendEmployee,sendDh,sendDirector,sendRa
 from wsc.wsc.doctype.user_permission import add_user_permission
-
+from datetime import datetime
 class EmployeeResignation(Document):
 
 	def set_user_permission(self):
@@ -33,7 +33,10 @@ class EmployeeResignation(Document):
 	#send mail to HR
 	def send_mail_hr(self):
 		hr_mail = frappe.get_all("User",filters={'role':"HR Admin"},pluck='name')
-		if hr_mail!=None and hr_mail[0]!='':
+		if hr_mail==[None]:
+			frappe.throw("HR Admin mail id not found")
+			
+		else :
 			hr_mail_id = hr_mail[0]
 			data={}
 			data["hr_mail"]=hr_mail_id
@@ -41,8 +44,6 @@ class EmployeeResignation(Document):
 			data["current_status"]=self.workflow_state
 			data["name"]=self.name
 			sendHR(data)
-		else :
-			frappe.msgprint("HR Admin mail id not found")
 		
 	#send mail to employee
 	def send_employee(self):
@@ -62,7 +63,10 @@ class EmployeeResignation(Document):
 		department = self.department
 		department_head = frappe.get_all("Department",filters = {"name":department},pluck="department_head")
 		
-		if department_head != None and department_head[0] != '':
+		if department_head== [None]:
+			frappe.throw("Department Head Mail Not found")
+			
+		else :
 			dh_id = department_head[0]
 			data = {}
 			data["dh_mail"]=dh_id
@@ -70,8 +74,6 @@ class EmployeeResignation(Document):
 			data["current_status"]=self.workflow_state
 			data["name"]=self.name
 			sendDh(data)
-		else :
-			frappe.msgprint("Department Head Mail Not found")
 
 		
 
@@ -80,7 +82,10 @@ class EmployeeResignation(Document):
 		director_mail = frappe.get_all("User",filters={"role":"Director"},pluck='name')
 		# print("\n\n\n")
 		# print(director_mail)
-		if director_mail!=None and director_mail[0]!='':
+		if director_mail==[None]:
+			frappe.throw("Director Mail not found")
+
+		else :
 			director_mail_id = director_mail[0]
 			data={}
 			data["director_mail"]=director_mail_id
@@ -88,9 +93,7 @@ class EmployeeResignation(Document):
 			data["current_status"]=self.workflow_state
 			data["name"]=self.name
 			sendDirector(data)
-
-		else :
-			frappe.msgprint("Director Mail not found")
+			
 
 	#send mail to reporting authority
 	def send_mail_ra(self):
@@ -103,7 +106,7 @@ class EmployeeResignation(Document):
 			data["name"]=self.name
 			sendRa(data)
 		else :
-			frappe.msgprint("Reporting Authority mail not found")
+			frappe.throw("Reporting Authority mail not found")
 
 	#validate
 	def validate(self):
@@ -117,8 +120,19 @@ class EmployeeResignation(Document):
 			self.send_mail_director()
 		if self.workflow_state == "Approved" or self.workflow_state=="Rejected":
 			self.send_employee()
-			self.send_mail_hr
+			self.send_mail_hr()
+		if self.resignation_applied_date :
+			print("\n\n\n\n")
+			print(type(self.resignation_applied_date))
+			if isinstance(self.resignation_applied_date,str):
 
+				date_object = datetime.strptime(self.resignation_applied_date, "%Y-%m-%d").date()
+				
+				if date_object>datetime.now().date():
+					
+					frappe.throw("Resignation Applied date should not be a future date.") 
+			else :
+				pass
 
 ################### Notification coding Ended ##################################
 	

@@ -11,7 +11,7 @@ def validate(self,method):
         online_payment(self)
         # if self.mode_of_payment=="Fees Refundable / Adjustable":   
         #     refundable_amount(self)
-        calucate_total(self)
+        # calucate_total(self)      #comment for write_off
 
 def on_update(self,method):
     pass

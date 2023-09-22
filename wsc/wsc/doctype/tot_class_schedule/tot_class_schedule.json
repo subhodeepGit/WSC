@@ -1,0 +1,286 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "TCS.-.#####",
+ "creation": "2023-08-18 17:38:17.834329",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "re_scheduled",
+  "is_canceled",
+  "attendance_taken",
+  "section_break_ehyhd",
+  "participant_group_id",
+  "column_break_ojus4",
+  "participant_group_name",
+  "section_break_low7n",
+  "academic_term",
+  "academic_year",
+  "semester",
+  "section_break_1wsjd",
+  "course_id",
+  "course_name",
+  "column_break_vfjgx",
+  "course_type",
+  "section_break_2xqxh",
+  "module_id",
+  "column_break_uqb7l",
+  "module_name",
+  "section_break_rapdv",
+  "room_number",
+  "room_name",
+  "column_break_f7bkx",
+  "scheduled_date",
+  "from_time",
+  "column_break_llk2o",
+  "duration",
+  "to_time",
+  "section_break_uvolg",
+  "trainers",
+  "trainers_name",
+  "section_break_stimh",
+  "instructor"
+ ],
+ "fields": [
+  {
+   "fieldname": "participant_group_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Participant Group ID",
+   "options": "Participant Group",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "participant_group_id.academic_year",
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Academic Year",
+   "options": "Academic Year",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fetch_from": "participant_group_id.academic_term",
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Academic Term",
+   "options": "Academic Term"
+  },
+  {
+   "fetch_from": "participant_group_id.program",
+   "fieldname": "course_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Programs",
+   "options": "Programs",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fetch_from": "course_id.programs_name",
+   "fieldname": "course_name",
+   "fieldtype": "Data",
+   "label": "Course Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "participant_group_id.course",
+   "fieldname": "module_id",
+   "fieldtype": "Link",
+   "label": "Module ID",
+   "options": "Course",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fetch_from": "module_id.course_name",
+   "fieldname": "module_name",
+   "fieldtype": "Data",
+   "label": "Module Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "room_number",
+   "fieldtype": "Link",
+   "label": "Room Number",
+   "options": "Room",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "room_number.room_name",
+   "fieldname": "room_name",
+   "fieldtype": "Data",
+   "label": "Room Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "from_time",
+   "fieldtype": "Time",
+   "label": "From Time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "to_time",
+   "fieldtype": "Time",
+   "label": "To Time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "duration",
+   "fieldtype": "Data",
+   "label": "Duration",
+   "read_only": 1
+  },
+  {
+   "fieldname": "trainers",
+   "fieldtype": "Link",
+   "label": "Trainers",
+   "options": "Instructor",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ojus4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_llk2o",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_low7n",
+   "fieldtype": "Section Break",
+   "label": "Academic Info"
+  },
+  {
+   "fieldname": "scheduled_date",
+   "fieldtype": "Date",
+   "label": "Scheduled Date",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "participant_group_id.semester",
+   "fieldname": "semester",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Semester",
+   "options": "Program"
+  },
+  {
+   "fetch_from": "trainers.instructor_name",
+   "fieldname": "trainers_name",
+   "fieldtype": "Data",
+   "label": "Trainers Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "participant_group_id.participant_group",
+   "fieldname": "participant_group_name",
+   "fieldtype": "Data",
+   "label": "Participant Group Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "course_id.program_grade",
+   "fieldname": "course_type",
+   "fieldtype": "Data",
+   "label": "Course Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_1wsjd",
+   "fieldtype": "Section Break",
+   "label": "Course Details"
+  },
+  {
+   "fieldname": "section_break_2xqxh",
+   "fieldtype": "Section Break",
+   "label": "Module"
+  },
+  {
+   "fieldname": "column_break_vfjgx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_rapdv",
+   "fieldtype": "Section Break",
+   "label": "Room Details"
+  },
+  {
+   "fieldname": "column_break_uqb7l",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_f7bkx",
+   "fieldtype": "Section Break",
+   "label": "Class Scheduling"
+  },
+  {
+   "fieldname": "section_break_uvolg",
+   "fieldtype": "Section Break",
+   "label": "Trainers"
+  },
+  {
+   "fieldname": "section_break_ehyhd",
+   "fieldtype": "Section Break",
+   "label": "Participant Group"
+  },
+  {
+   "default": "0",
+   "fieldname": "re_scheduled",
+   "fieldtype": "Check",
+   "label": "Re Scheduled"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_canceled",
+   "fieldtype": "Check",
+   "label": "Is canceled"
+  },
+  {
+   "fieldname": "section_break_stimh",
+   "fieldtype": "Section Break",
+   "label": "List of Trainers"
+  },
+  {
+   "fieldname": "instructor",
+   "fieldtype": "Table",
+   "options": "Instructor Table"
+  },
+  {
+   "default": "0",
+   "description": "If attendance is taken, classes cannot be rescheduled or cancelled",
+   "fieldname": "attendance_taken",
+   "fieldtype": "Check",
+   "label": "Attendance taken?",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-09-18 11:47:14.210079",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "ToT Class Schedule",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

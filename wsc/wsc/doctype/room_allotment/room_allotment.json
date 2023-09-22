@@ -132,13 +132,16 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "employee",
    "fieldtype": "Link",
    "label": "Employee",
    "options": "Employee",
-   "read_only": 1
+   "read_only": 1,
+   "reqd": 1
   },
   {
+   "allow_on_submit": 1,
    "fetch_from": "employee.employee_name",
    "fieldname": "employee_name",
    "fieldtype": "Data",
@@ -186,6 +189,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fetch_from": "employee.designation",
    "fieldname": "designation",
    "fieldtype": "Data",
@@ -193,6 +197,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fetch_from": "employee.cell_number",
    "fieldname": "contact_number",
    "fieldtype": "Data",
@@ -409,7 +414,7 @@
    "link_fieldname": "room_allotment_no"
   }
  ],
- "modified": "2023-08-18 11:35:55.205446",
+ "modified": "2023-09-12 12:14:38.124663",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Room Allotment",
@@ -434,7 +439,5 @@
  "sort_order": "DESC",
  "states": [],
  "title_field": "student_name",
- "track_changes": 1,
- "track_seen": 1,
- "track_views": 1
+ "track_changes": 1
 }

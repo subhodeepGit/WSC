@@ -3,6 +3,23 @@
 
 // ------------------------------------------------------------------------------------------------------------
 frappe.ui.form.on('Assignment Evaluation', {
+	setup: function(frm){
+		frm.set_query("instructor_id", function() {
+			return {
+				query: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.instructor',
+				filters:{"participant_group_id":frm.doc.participant_group}
+				
+			};
+		});
+
+		frm.set_query("participant_id", function() {
+			return {
+				query: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.participant',
+				filters:{"participant_group_id":frm.doc.participant_group}
+				
+			};
+		});
+	},
 	participant_group: function(frm){
 		frappe.call({
 			method : 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_details',
@@ -13,11 +30,11 @@ frappe.ui.form.on('Assignment Evaluation', {
 				if(result.message){
 					frm.set_value("select_course", result.message[2])
 					frm.set_value("select_module", result.message[3])
-					frm.set_df_property('select_sub_module', 'options', result.message[5])
 					frm.set_value("academic_year", result.message[0])
 					frm.set_value("academic_term", result.message[1])
-					frm.set_df_property('instructor_id', 'options', result.message[4])
-					frm.set_df_property('participant_id', 'options', result.message[6])
+					// frm.set_df_property('instructor_id', 'options', result.message[4])
+					// frm.set_df_property('participant_id', 'options', result.message[5])
+					// frm.set_df_property('select_assignment', 'options', result.message[6]) // need help with this
 				}
 			}
 		})
@@ -37,6 +54,20 @@ frappe.ui.form.on('Assignment Evaluation', {
 			}
 		})
 	},
+	participant_name: function(frm){
+		frappe.call({
+			method: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.set_marks',
+			args:{
+				participant_id : frm.doc.participant_id,
+				assignment_name : frm.doc.select_assignment
+			},
+			callback: function(result){
+				if(result.message){
+					frm.set_value("marks_earned", '0')
+				}
+			}
+		})
+	},
 	instructor_id: function(frm){
 		frappe.call({
 			method: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_instructor_name',
@@ -49,16 +80,14 @@ frappe.ui.form.on('Assignment Evaluation', {
 			}
 		})
 	},
-	select_sub_module: function(frm){
-		alert(500)
+	instructor_name: function(frm){
 		frappe.call({
 			method: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_assignment_list',
 			args: {
 				instructor_id: frm.doc.instructor_id,
-				participant_group_id : frm.doc.participant_group,
+				participant_group_id: frm.doc.participant_group,
 				programs : frm.doc.select_course,
 				course: frm.doc.select_module,
-				topic : frm.doc.select_sub_module
 			},
 			callback: function(result){
 				frm.set_df_property('select_assignment', 'options', result.message) // assignment
@@ -66,16 +95,14 @@ frappe.ui.form.on('Assignment Evaluation', {
 		})
 	},
 	select_assignment: function(frm){
-		alert(500)
 		frappe.call({
 			method: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_assignment_details',
 			args:{
 				assignment_name : frm.doc.select_assignment
 			},
 			callback: function(result){
-				alert(600)
 				if(result.message){
-					frm.set_value("assessment_criteria", result.message[0])
+					frm.set_value("assessment_component", result.message[0])
 					frm.set_value("total_marks", result.message[1])
 					frm.set_value("passing_marks", result.message[2])
 					frm.set_value("weightage", result.message[3])

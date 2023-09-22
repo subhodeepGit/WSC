@@ -3,14 +3,15 @@
  "autoname": "hash",
  "creation": "2021-05-13 17:05:33.976430",
  "doctype": "DocType",
+ "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "document_name",
-  "mandatory",
-  "mandatory_during_counselling",
   "attach",
+  "mandatory_during_counselling",
   "is_available",
-  "attached"
+  "attached",
+  "mandatory"
  ],
  "fields": [
   {
@@ -20,35 +21,40 @@
    "in_list_view": 1,
    "label": "Document Name",
    "options": "Documents",
+   "read_only": 1,
    "width": "10px"
   },
   {
+   "columns": 2,
    "default": "0",
    "fieldname": "mandatory",
    "fieldtype": "Check",
    "in_list_view": 1,
-   "label": "Mandatory During Application",
+   "label": "Mandatory",
    "read_only": 1
   },
   {
    "allow_on_submit": 1,
    "bold": 1,
-   "description": "Click on the top right arrow (v) button or outside of the table to go back...",
+   "columns": 2,
+   "description": "Click on the attach button to upload your document",
    "fieldname": "attach",
    "fieldtype": "Attach",
    "in_list_view": 1,
-   "label": "Attach"
+   "label": "Document Attach Button"
   },
   {
    "allow_on_submit": 1,
-   "default": "0",
+   "default": "1",
    "description": "Click on the top right arrow (v) button or outside of the table to go back...",
    "fieldname": "is_available",
    "fieldtype": "Check",
    "in_list_view": 1,
-   "label": "Is Available ?"
+   "label": "Is Available ?",
+   "permlevel": 3
   },
   {
+   "columns": 1,
    "default": "1",
    "depends_on": "eval:doc.attach!=null",
    "fieldname": "attached",
@@ -60,13 +66,14 @@
    "default": "0",
    "fieldname": "mandatory_during_counselling",
    "fieldtype": "Check",
-   "label": "Mandatory During Counselling"
+   "label": "Mandatory During Counselling",
+   "permlevel": 3
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-07-28 17:32:49.389123",
+ "modified": "2023-09-13 21:39:26.195549",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Document List",

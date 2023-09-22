@@ -14,6 +14,7 @@ class ContinuousEvaluationTool(Document):
 			if self.assessment_criteria == d.assessment_criteria:
 				return d
 
+
 	@frappe.whitelist()
 	def get_student_allocations(self):
 		data_list=[]
@@ -68,9 +69,19 @@ class ContinuousEvaluationTool(Document):
 				data_list.append(student)
 
 		return data_list
-		
 @frappe.whitelist()
-def make_continuous_evaluation(continuous_evaluation):
+def get_module_details(module,assessment_component):
+	for result in frappe.get_all("Module Wise Exam Group",{"modules_id":module,"assessment_component":assessment_component},['name','marker_name','checker']):
+		return result
+@frappe.whitelist()
+def get_semester_and_exam_assessment_plan(declaration_id=None):
+	result={}
+	if declaration_id:
+		sem_date=frappe.get_all("Examination Semester",{"parent":declaration_id},['semester'])
+		result['semester']=sem_date[0]['semester']
+	return result	
+@frappe.whitelist()
+def make_continuous_evaluation(continuous_evaluation,exam_declaration_id):
 	result=json.loads(continuous_evaluation)
 	if result.get("exam_cate")=="Regular":
 		student_data=get_student_allocations_dict(frappe._dict({"course":result.get("course"),"assessment_criteria":result.get("criteria")}))
@@ -100,6 +111,12 @@ def make_continuous_evaluation(continuous_evaluation):
 					doc.course=result.get("course")
 					doc.course_name=result.get("course_name")
 					doc.course_code=result.get("course_code")
+					doc.exam_declaration=exam_declaration_id
+					doc.module_exam_group=result.get("module_exam_group")
+					doc.marker=result.get("marker")
+					doc.checker=result.get("checker")
+					doc.marker_name=result.get("marker_name")
+					doc.checker_name=result.get("checker_name")
 					for row in student_data.get(result.get('rows')[d].get("student"))['rows']:
 						doc.append("final_credit_item",{
 							"course_assessment":row.get("name"),
@@ -118,7 +135,7 @@ def make_continuous_evaluation(continuous_evaluation):
 					doc.attendence_status=result.get('rows')[d].get("exam_attendence")
 					doc.program_grade=result.get("program_grade")	
 					doc.save()
-					# doc.submit()
+					doc.submit()
 					records=True
 				else:
 					frappe.msgprint("Please add final marks and earned credits for student <b>{0}</b>".format(result.get('rows')[d].get("student")))

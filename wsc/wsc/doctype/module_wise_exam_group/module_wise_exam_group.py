@@ -9,7 +9,6 @@ from wsc.wsc.notification.custom_notification import send_mail_to_students_mweg,
 
 class ModuleWiseExamGroup(Document):
     def validate(self):
-        print("\n\n\n")
         duplicate_validation(self)
         over_lapping_of_scheduling(self)
         group_validation(self,"validate")
@@ -157,7 +156,8 @@ def date_validation(self):
         if t.examination_date:
             examination_date = datetime.strptime(t.examination_date , '%Y-%m-%d').date()
             module_exam_start_date = datetime.strptime(self.module_exam_start_date , '%Y-%m-%d').date()
-            if module_exam_start_date <= examination_date and module_exam_start_date >= examination_date:
+            module_exam_end_date = datetime.strptime(self.module_exam_end_date , '%Y-%m-%d').date()
+            if module_exam_start_date <= examination_date and module_exam_end_date >= examination_date:
                 pass
             else:
                 frappe.throw("Date provided in Exam Group:- <b> %s </b> is not in between Module Exam Start Date and Module Exam End Date"%(t.group_name))	

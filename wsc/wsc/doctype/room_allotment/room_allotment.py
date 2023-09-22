@@ -11,6 +11,7 @@ from frappe.model.document import Document
 import pandas as pd
 import datetime
 from datetime import date
+from wsc.wsc.doctype.user_permission import add_user_permission
 
 
 class RoomAllotment(Document):
@@ -50,6 +51,7 @@ class RoomAllotment(Document):
 				
 	# @frappe.whitelist()
 	def on_submit(doc):
+		print('\n\n\n')
 		room_id=doc.room_id
 		# room_info_vac=vacancy_quety_vali("Genaral",room_id)
 		# if room_info_vac["validity"][0]=="Approved":
@@ -72,13 +74,21 @@ class RoomAllotment(Document):
 		# 	frappe.throw("Room is not valid")
 		frappe.db.sql("""UPDATE `tabRoom Masters` SET `vacancy`=`vacancy`-1 WHERE `name`="%s" """%(room_id)) 
 		frappe.db.set_value("Student Hostel Admission",doc.hostel_registration_no, "allotment_status", "Allotted") 
-
+		stu_user=frappe.get_all("Student",{'name':doc.student},['user'])
+		if len(stu_user)>0:
+			add_user_permission("Room Allotment",doc.name,stu_user[0]['user'],doc)
 
 	# @frappe.whitelist()
 	def on_cancel(doc):
 		room_id=doc.room_id
 		frappe.db.sql("""UPDATE `tabRoom Masters` SET `vacancy`=`vacancy`+1 WHERE `name`="%s" """%(room_id))
 		frappe.db.set_value("Student Hostel Admission",doc.hostel_registration_no, "allotment_status", "Cancelled") 
+		cancel_hostel_admission(doc)
+		doc.delete_permission()
+
+	def delete_permission(self):
+		for d in frappe.get_all("User Permission",{"reference_doctype":self.doctype,"reference_docname":self.name}):
+			frappe.delete_doc("User Permission",d.name)
 	
 
 
@@ -86,15 +96,21 @@ class RoomAllotment(Document):
 @frappe.validate_and_sanitize_search_inputs
 def test_query(doctype, txt, searchfield, start, page_len, filters):
 	User=frappe.session.user
-	if frappe.session.user!="Administrator":
+	if frappe.session.user=="Administrator" or "Student" in frappe.get_roles(frappe.session.user):
 		return frappe.db.sql("""
-				SELECT `hostel_masters` from `tabEmployee Hostel Allotment` WHERE user_name="%s" and
-				(`start_date`<=now() and `end_date`>=now())"""%(User))
+				SELECT `hostel_name` from `tabHostel Masters` WHERE `start_date`<=now() and `end_date`>=now()""")
+		
 	else:
 		return frappe.db.sql("""
-				SELECT `hostel_name` from `tabHostel Masters` WHERE `start_date`<=now() and `end_date`>=now()""")			
+				SELECT `hostel_masters` from `tabEmployee Hostel Allotment` WHERE user_name="%s" and
+				(`start_date`<=now() and `end_date`>=now())"""%(User))		
 			
-	
+def cancel_hostel_admission(doc):
+	if doc.hostel_registration_no:
+		hostel_admission_object= frappe.get_doc("Student Hostel Admission",doc.hostel_registration_no)
+		if hostel_admission_object.docstatus!=2 and hostel_admission_object.docstatus!=0:
+			hostel_admission_object.cancel()
+		frappe.msgprint("Hostel admission is also cancelled")
 
 
 
@@ -164,7 +180,7 @@ def hostel_req_query(doctype, txt, searchfield, start, page_len, filters):
 	searchfields = frappe.get_meta(doctype).get_search_fields()
 	searchfields = " or ".join("S."+field + " like %(txt)s" for field in searchfields)
 
-	data=frappe.db.sql(""" SELECT S.name,SHA.name,S.title from `tabStudent Hostel Admission` as SHA 
+	data=frappe.db.sql(""" SELECT S.name,SHA.name,S.student_name from `tabStudent Hostel Admission` as SHA 
 							JOIN `tabStudent` S on S.name=SHA.student 
 							where (SHA.{key} like %(txt)s or {scond})  and 
 	       					SHA.allotment_status="Not Reported" and SHA.docstatus=1 """.format(
@@ -193,6 +209,7 @@ def allotment(student):
 # @frappe.validate_and_sanitize_search_inputs
 def employee():
 	user=frappe.session.user
+	name=""
 	if user == "Administrator":
 		pass
 	else:
@@ -200,7 +217,8 @@ def employee():
 	if user == "Administrator":
 		name=""
 	else:
-		name=employee_name[0]['name']
+		if employee_name:
+			name=employee_name[0]['name']
 	if len(name)>0:
 		return name
 	

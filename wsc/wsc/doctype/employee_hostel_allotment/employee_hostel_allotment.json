@@ -30,6 +30,7 @@
   {
    "fieldname": "employees",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "Employee ID",
    "options": "Employee"
   },
@@ -86,18 +87,19 @@
    "fieldname": "designation",
    "fieldtype": "Link",
    "label": "Designation",
-   "options": "Designation"
+   "options": "Designation",
+   "read_only": 1
   },
   {
    "fieldname": "role_selection",
    "fieldtype": "Select",
    "label": "Role Selection",
-   "options": "Select\nWarden\nSuperindendent\nDeputy Superindendent"
+   "options": "\nWarden\nSuperintendent"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-10 14:47:59.315593",
+ "modified": "2023-09-12 17:42:28.838002",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Hostel Allotment",
@@ -120,7 +122,5 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "track_changes": 1,
- "track_seen": 1,
- "track_views": 1
+ "track_changes": 1
 }

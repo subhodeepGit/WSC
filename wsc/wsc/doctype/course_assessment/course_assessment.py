@@ -4,6 +4,8 @@
 import frappe
 from frappe.model.document import Document
 from frappe.utils import flt
+from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
+
 
 class CourseAssessment(Document):
     def validate(self):
@@ -12,8 +14,32 @@ class CourseAssessment(Document):
         self.qualifying_status()
         self.exam_type()
         self.get_module_wise_exam_group()
+        self.validate_marker()
+    def on_submit(self):
+        self.create_permissions()
 
+    
+    def on_cancel(self):
+        self.delete_permissions()
 
+    def create_permissions(doc):
+        for instr in frappe.get_all("Instructor",{"name":doc.trainer_id},['department','name','employee']):
+            for emp in frappe.get_all("Employee",{"name":instr.employee},['user_id','department']):
+                if emp.user_id:
+                    add_user_permission(doc.doctype,doc.name,emp.user_id,doc)	
+
+    def delete_permissions(doc):
+        for usr in frappe.get_all("User Permission",{"allow":doc.doctype,"for_value":doc.name}):
+            frappe.delete_doc("User Permission",usr.name)
+        for usr in frappe.get_all("User Permission",{"reference_doctype":"Course Assessment","reference_docname":doc.name}):
+            frappe.delete_doc("User Permission",usr.name)
+
+    def validate_marker(self):
+        for id in frappe.get_all("Instructor",{"email_id":frappe.session.user},['name','email_id']):
+            if id.name==self.trainer_id:
+                pass
+            else:
+                frappe.throw("You do not have the permission to give marks to the students for this module!!!")
     def get_module_wise_exam_group(self):
         exam_declaration=self.exam_declaration
         course=self.course
@@ -49,6 +75,11 @@ class CourseAssessment(Document):
             if flt(self.earned_marks)!=0:
                 frappe.throw("If Attendence Status <b>Absent </b> Then <b>Earned Marks Can't be more the Zero </b>")
 
+@frappe.whitelist()
+def get_module_details(module,assessment_component):
+	for result in frappe.get_all("Module Wise Exam Group",{"modules_id":module,"assessment_component":assessment_component},['name','marker_name','checker','marker','checker_name']):
+                
+		return result
 
 @frappe.whitelist()
 def get_courses(doctype, txt, searchfield, start, page_len, filters):
