@@ -24,7 +24,28 @@ def validate(doc,method):
 #     #     print("\n\n\n")
 #     #     hr_mail_after_complete(doc)
 #     #     print("mailsent")
+def on_submit(self,method):
+    tasks = frappe.get_all("Task", {"project": self.project},["name","subject"])
+    # print("\n\n\n\nTasks")
+    # print(tasks)
+    activity_records = frappe.get_all("Employee Boarding Activity", filters={"parent": self.name}, fields=["name","activity_name","is_dependent","task_order","dependent_on_task"])
+    # print("\n\n\n\n\nActivities")
+    # print(activity_records)
+    for task in tasks :
+        for acitivity_record in activity_records:
+            if acitivity_record.activity_name in task.subject:
+                task_doc = frappe.get_doc("Task",{"subject":task.subject})
+                task_doc.is_dependent = acitivity_record.is_dependent
+                task_doc.task_order=acitivity_record.task_order   
+                # if acitivity_record.is_dependent==1 :
+                #     task_order = acitivity_record.task_order
+                #     dependency = acitivity_record.dependent_on_task
+                #     docs = frappe.get_doc("Task",{"subject":task.subject,"task_order":dependency},["name"])
+                #     new_row = task_doc.append("depends_on")
+                #     for item in docs:
+                #         new_row.task = item.name
 
+                task_doc.save()
 def on_cancel(doc,method):
     onboarding_name = doc.name
     if onboarding_name:

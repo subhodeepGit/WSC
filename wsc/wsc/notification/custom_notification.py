@@ -285,7 +285,7 @@ def employee_separation_final_hr(doc):
     recipient_emails = [recipient.get('email') for recipient in recipients]
 
     send_mail(recipient_emails, sub, msg)
-    frappe.msgprint("Employee Separation Details status is sent to the HR")
+    # frappe.msgprint("Employee Separation Details status is sent to the HR")
 
     ######################################################################################################Attendance Request#############
 
@@ -860,7 +860,7 @@ def mailhr_aftercomplete(doc):
     emp_onboarding_url = get_url_to_form('Employee Onboarding', doc['name'])
     msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(emp_onboarding_url)
     send_mail([doc['hr_mail']],sub,msg)
-    print("Working")
+    # print("Working")
     frappe.msgprint("Email sent to HR",[doc['hr_mail']])
 ###########################################################################
 
