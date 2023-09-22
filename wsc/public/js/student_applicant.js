@@ -9,18 +9,18 @@ frappe.ui.form.on('Student Applicant', {
     //     let lname=frm.doc.last_name;        
     //     frm.set_value("title",fname+" "+lname)
     // },
-    on_submit:function(frm){
-        frappe.msgprint({
-            title: __('Notification'),
-            indicator: 'purple',
-            message: __('Your Application form is Successfully Submitted. Please Notedown Your Application No. <b>{0}</b> for Future reference.',[frm.doc.name]),
-            primary_action: {
-                'label': 'Kindly Print the Application Form For the Future Admission Process',
-                }
-        });
+    // on_submit:function(frm){
+    //     frappe.msgprint({
+    //         title: __('Notification'),
+    //         indicator: 'purple',
+    //         message: __('Your Application form is Successfully Submitted. Please Notedown Your Application No. <b>{0}</b> for Future reference.',[frm.doc.name]),
+    //         primary_action: {
+    //             'label': 'Kindly Print the Application Form For the Future Admission Process',
+    //             }
+    //     });
       
         
-    },
+    // },
     go_to_top:function(frm){
         window.scrollTo(0, 0);
     },
@@ -160,6 +160,35 @@ frappe.ui.form.on('Student Applicant', {
 			method: "wsc.wsc.doctype.student_applicant.review_student",
 			frm: frm
 		})
+    },
+    // before_submit: function(frm){
+    //     frappe.msgprint({
+    //         title: __('Notification'),
+    //         message: __('I hereby declare that the information given by me in the Application is true. If any point of time, I am found to have concealed any information or given any false document, my application shall liable to be summarily rejected without notice or compensation.'),
+    //         primary_action:{
+    //             action(values) {
+    //                 console.log(values);
+    //             }
+    //         }
+    //     });
+    // },
+    before_submit: function(frm){
+        frappe.confirm('I hereby declare that the information given by me in the Application is true. If any point of time, I am found to have concealed any information or given any false document, my application shall liable to be summarily rejected without notice.',
+            () => {
+                frm.set_value("declaration", "I hereby declare that the information given by me in the Application is true. If any point of time, I am found to have concealed any information or given any false document, my application shall liable to be summarily rejected without notice.");
+                frappe.msgprint({
+                    title: __('Notification'),
+                    indicator: 'purple',
+                    message: __('Your Application form is Successfully Submitted. Please Notedown Your Application No. <b>{0}</b> for Future reference.',[frm.doc.name]),
+                    primary_action: {
+                        'label': 'Kindly Print the Application Form For the Future Admission Process',
+                        }
+                });
+                // action to perform if Yes is selected
+            }, () => {
+                window.close();
+                // action to perform if No is selected
+        })
     },
     refresh(frm){
         frm.fields_dict.go_to_top.$input.addClass(' btn btn-primary');
