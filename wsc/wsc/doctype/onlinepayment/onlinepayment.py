@@ -174,7 +174,7 @@ def get_order_status():
         logging.info(" amount_paid %s",amount_paid)
         billing_name = response_data.get('billing_name')[0]
         logging.info(" billing_name %s",billing_name)
-        time_of_transaction = response_data.get('trans_date')[0]
+        time_of_transaction = response_data.get('order_date_time')[0]
         logging.info(" time_of_transaction %s",time_of_transaction)
         status_message = response_data.get('status_message')[0]
         logging.info(" status_message %s",status_message) 
