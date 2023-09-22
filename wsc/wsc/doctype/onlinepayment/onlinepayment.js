@@ -114,7 +114,9 @@ frappe.ui.form.on('OnlinePayment', {
                     }
                 }
             });
-        }, __('<a href="https://example.com/online-payment" style="background-color: #5c3c92; color: white; padding: 10px; text-decoration: none;">Click here for Online Payment</a>'));
+        }, __('Click here for Online Payment'));
+
+        frm.page.wrapper.find('button:contains("Click here for Online Payment")').addClass('btn-primary');
 
         // hdfcButton.css({ 'color': 'black', 'background-color': 'white', 'font-weight': 'normal' });
 
