@@ -8,23 +8,21 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "is_in_a_program",
-  "section_break_pcilw",
-  "select_program",
   "select_event",
+  "select_program",
   "participant_id",
   "column_break_fldod",
-  "program_name",
   "event_name",
+  "program_name",
   "participant_name"
  ],
  "fields": [
   {
-   "depends_on": "is_in_a_program",
    "fieldname": "select_program",
    "fieldtype": "Link",
    "label": "Select Program",
-   "options": "TnP Program"
+   "options": "TnP Program",
+   "read_only": 1
   },
   {
    "fieldname": "select_event",
@@ -43,10 +41,10 @@
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "is_in_a_program",
    "fieldname": "program_name",
    "fieldtype": "Data",
-   "label": "Program Name"
+   "label": "Program Name",
+   "read_only": 1
   },
   {
    "fieldname": "event_name",
@@ -57,21 +55,11 @@
    "fieldname": "participant_name",
    "fieldtype": "Data",
    "label": "Participant Name"
-  },
-  {
-   "default": "0",
-   "fieldname": "is_in_a_program",
-   "fieldtype": "Check",
-   "label": "is in a program"
-  },
-  {
-   "fieldname": "section_break_pcilw",
-   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-06-07 18:12:32.871818",
+ "modified": "2023-09-22 12:23:48.621207",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Generate Certificate",
