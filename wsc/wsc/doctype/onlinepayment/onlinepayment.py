@@ -11,6 +11,7 @@ from frappe import _
 import secrets
 import os
 import logging
+from wsc.wsc.notification.custom_notification import email_transaction_status
 
 
 class OnlinePayment(Document):
@@ -28,6 +29,7 @@ class OnlinePayment(Document):
     
     def on_submit(doc):
         getTransactionDetails(doc)
+        email_transaction_status(doc)
         frappe.msgprint("Your Transaction is completed. Your Transaction Id is " +
                 doc.transaction_id + "."  " Status is " + frappe.bold(doc.transaction_status))
         
@@ -174,9 +176,11 @@ def get_order_status():
         logging.info(" billing_name %s",billing_name)
         time_of_transaction = response_data.get('trans_date')[0]
         logging.info(" time_of_transaction %s",time_of_transaction)
+        status_message = response_data.get('status_message')[0]
+        logging.info(" status_message %s",status_message) 
         gateway_name = response_data.get('delivery_name')[0]
         logging.info(" gateway_name %s", gateway_name)
-        transaction_info = f"Order ID: {order_id}\nTransaction ID: {transaction_id}\nAmount Paid: {amount_paid}\nBilling Name: {billing_name}\nTime of Transaction: {time_of_transaction}"
+        transaction_info = f"Order ID: {order_id}\nStatus Message: {status_message}\nAmount Paid: {amount_paid}\nBilling Name: {billing_name}\nGateway_name: {gateway_name}"
        
         
         if order_id and transaction_id:
