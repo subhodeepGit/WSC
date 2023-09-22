@@ -180,7 +180,7 @@ def get_order_status():
         logging.info(" status_message %s",status_message) 
         gateway_name = response_data.get('delivery_name')[0]
         logging.info(" gateway_name %s", gateway_name)
-        transaction_info = f"Order ID: {order_id}\nStatus Message: {status_message}\nAmount Paid: {amount_paid}\nGateway_name: {gateway_name}"
+        transaction_info = f"Order ID: {order_id}\nStatus Message: {status_message}\nAmount Paid: {amount_paid}\nBilling Name: {billing_name}\nGateway_name: {gateway_name}"
        
         
         if order_id and transaction_id:
