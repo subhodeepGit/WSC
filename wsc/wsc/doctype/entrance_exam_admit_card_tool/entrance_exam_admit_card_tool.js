@@ -27,7 +27,6 @@ frappe.ui.form.on('Entrance Exam Admit Card Tool', {
 		frm.set_df_property('center' , 'hidden' , 1)
 		frm.remove_custom_button('Generate Ranks')
 		
-		console.log(frm.doc.flag);
 		if(frm.doc.flag === 1){
 			
 			frm.set_df_property('center' , 'hidden' , 0)
@@ -44,7 +43,7 @@ frappe.ui.form.on('Entrance Exam Admit Card Tool', {
 			frm.add_custom_button(__('Admit Card Generation'), function(){
 				
 				if(frm.doc.flag === 0){
-					console.log("normal call");
+					
 					const body = JSON.stringify({
 						name:frm.doc.name ,
 						declaration:frm.doc.entrance_exam_declaration,
@@ -66,8 +65,6 @@ frappe.ui.form.on('Entrance Exam Admit Card Tool', {
 							else {
 								alert("All Students Alloted")
 								frm.remove_custom_button('Admit Card Generation')
-								// frm.doc.flag = 2
-								// frm.set_value({'flag':2})
 							}
 							window.location.reload();
 							frm.refresh()
@@ -78,8 +75,7 @@ frappe.ui.form.on('Entrance Exam Admit Card Tool', {
 				} else {
 					 
 					  const res = frm.doc.deallotted_applicant_list.filter((i) => i.center_allocated_status === 0)
-					//   let center_detail = frm.doc.centre.split(" - ")
-
+					
 					  const body = JSON.stringify({
 						name:frm.doc.name ,
 						declaration:frm.doc.entrance_exam_declaration,
@@ -98,20 +94,14 @@ frappe.ui.form.on('Entrance Exam Admit Card Tool', {
 				
 							if (leftovers.length !== 0) {
 								
-								// available_centers.map((i) => {
-								// 	// const date = i.slot_starting_time.split(" ")
-								// 	options.push(`${i.centre_name} - ${i.slot_name} - ${i.district} - ${i.slot_date}`)
-								// })
-		
-								// set_field_options("centre" , options)
 								alert(`Number of Unalloted Students is ${leftovers.length}`)
-								// frm.doc.flag = 1
+								
 							}
 							else {
-								console.log("complete2");
+								
 								alert("All Students Alloted")
 								frm.remove_custom_button('Admit Card Generation')
-								// frm.doc.flag = 2
+								
 							}
 							window.location.reload();
 							frm.refresh()

@@ -76,7 +76,7 @@ frappe.ui.form.on('OnlinePayment', {
 
 frappe.ui.form.on('OnlinePayment', {
     refresh: function (frm) {
-        var hdfcButton = frm.add_custom_button("By HDFC", function () {
+        frm.add_custom_button("By HDFC Payment Gateway", function () {
             frappe.call({
                 method: "wsc.wsc.doctype.onlinepayment.onlinepayment.open_gateway",
                 args: {
@@ -114,9 +114,9 @@ frappe.ui.form.on('OnlinePayment', {
                     }
                 }
             });
-        }, "Online Payment");
+        }, "Click here for Online Payment");
 
-        hdfcButton.css({ 'color': 'black', 'background-color': 'white', 'font-weight': 'normal' });
+        // hdfcButton.css({ 'color': 'black', 'background-color': 'white', 'font-weight': 'normal' });
 
         // var axisButton = frm.add_custom_button("By Axis", function () {
         //     // HAve to add the logic for Axis payment here
@@ -133,8 +133,8 @@ frappe.ui.form.on('OnlinePayment', {
 
         if (frm.is_new() && frm.doc.docstatus === 0) {
             // frm.remove_custom_button('Online Payment');
-            frm.remove_custom_button('By HDFC', 'Online Payment');
-            frm.remove_custom_button('By Axis', 'Online Payment');
+            frm.remove_custom_button('By HDFC Payment Gateway', 'Click here for Online Payment');
+            frm.remove_custom_button('By Axis', 'Click here for Online Payment');
         }
 
         if (!frm.is_new() && frm.doc.docstatus === 0) {
@@ -143,16 +143,16 @@ frappe.ui.form.on('OnlinePayment', {
 
         if (!frm.is_new() && frm.doc.docstatus === 1) {
             // frm.remove_custom_button('Online Payment');
-            frm.remove_custom_button('By HDFC', 'Online Payment');
-            frm.remove_custom_button('By Axis', 'Online Payment');
+            frm.remove_custom_button('By HDFC Payment Gateway', 'Click here for Online Payment');
+            frm.remove_custom_button('By Axis', 'Click here for Online Payment');
         }
         if (!frm.is_new() && frm.doc.docstatus === 0 && frm.doc.transaction_id != undefined) {
             $('.primary-action').prop('disabled', false);
 
             if (!frm.is_new() && frm.doc.docstatus === 0 && frm.doc.transaction_status != undefined) {
                 // frm.remove_custom_button('Online Payment');
-                frm.remove_custom_button('By HDFC', 'Online Payment');
-                frm.remove_custom_button('By Axis', 'Online Payment');
+                frm.remove_custom_button('By HDFC Payment Gateway', 'Click here for Online Payment');
+                frm.remove_custom_button('By Axis', 'Click here for Online Payment');
             }
         }
 

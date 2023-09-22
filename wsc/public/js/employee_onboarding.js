@@ -13,9 +13,11 @@ frappe.ui.form.on('Employee Onboarding', {
                     callback :function(r){
                         frm.set_value("mail_sent",1)
                         frm.save("Submit",function(){
-                            // frape.msgprint("Final Mail Sent to HR");
-                        })
+                            frappe.show_alert("Final Mail Sent to HR", 5);
+
+                        });
                     }
+
                 });
 
             }

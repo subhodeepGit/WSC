@@ -24,8 +24,9 @@ def admit_card_submit(doc):
     msg+="""<b>Date of Exam:</b>  {0}<br>""".format(doc.get('date_of_exam'))
     msg+="""<b>Exam Start Time:</b>  {0}<br>""".format(doc.get('exam_start_time'))
     msg+="""<b>Exam End Time:</b>  {0}<br>""".format(doc.get('exam_end_time'))
-    print(frappe.db.get_value("Student Applicant" , {"name":doc.applicant_id} , ["student_email_id"]))
-    send_mail(frappe.db.get_value("Student Applicant" , {"name":doc.applicant_id} , ["student_email_id"]), sub , msg)
+    attachments = [frappe.attach_print(doc.doctype, doc.name, file_name=doc.name, print_format='Entrance Exam Admit Card Print Format')]
+    # send_mail(recipients,'Payment Successful',msg,attachments)
+    send_mail(frappe.db.get_value("Student Applicant" , {"name":doc.applicant_id} , ["student_email_id"]), sub , msg , attachments)
 
 ############ Notification For Rank Card####
 def rank_card_submit(doc):
@@ -44,7 +45,8 @@ def rank_card_submit(doc):
     for  d in doc.get("student_ranks_list"):
         msg += """<tr><td>{0} - {1}</td></tr>""".format(d.get('rank_type') , d.get('rank_obtained'))
     msg += "</table>"
-    send_mail(frappe.db.get_value("Student Applicant" , {"name":doc.applicant_id} , ["student_email_id"]), sub , msg)
+    attachments = [frappe.attach_print(doc.doctype, doc.name, file_name=doc.name, print_format='Entrance Exam Rank Card')]
+    send_mail(frappe.db.get_value("Student Applicant" , {"name":doc.applicant_id} , ["student_email_id"]), sub , msg , attachments)
 
 def student_applicant_submit(doc):
     sub="""<p><b>Application Form is Sucessfully Submitted</b></p><br>"""
@@ -283,7 +285,7 @@ def employee_separation_final_hr(doc):
     recipient_emails = [recipient.get('email') for recipient in recipients]
 
     send_mail(recipient_emails, sub, msg)
-    frappe.msgprint("Employee Separation Details status is sent to the HR")
+    # frappe.msgprint("Employee Separation Details status is sent to the HR")
 
     ######################################################################################################Attendance Request#############
 
@@ -858,7 +860,7 @@ def mailhr_aftercomplete(doc):
     emp_onboarding_url = get_url_to_form('Employee Onboarding', doc['name'])
     msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(emp_onboarding_url)
     send_mail([doc['hr_mail']],sub,msg)
-    print("Working")
+    # print("Working")
     frappe.msgprint("Email sent to HR",[doc['hr_mail']])
 ###########################################################################
 
@@ -1637,3 +1639,21 @@ def send_mail_to_jobapplicants_final_notification(doc):
 		send_mail([doc['email_id']],"Reg:WSC Recruitment Result Status",msg)
 		frappe.msgprint("Email sent to Job Applicants")
 ##########################################################################################################################################################################################
+### Student payment notification through email ###    
+## Started by Rupali Bhatta 
+def email_transaction_status(doc):
+   
+    msg="""<b>---------------------Transaction Details---------------------</b><br>"""
+    msg+="""<b>Payment Entry No.:</b>  {0}<br>""".format(doc.get('name'))
+    msg+="""<b>Date:</b>  {0}<br>""".format(doc.get('date_time_of_transaction'))
+    msg+="""<p>---------------------Payment From / TO---------------------</p><br>"""
+    msg+="""<b>Name:</b>  {0}<br>""".format(doc.get('party_name') or '-')
+    msg+="""<b>Roll Number:</b>  {0}<br>""".format(doc.get('roll_no') or '-' )
+    msg+="""<b>Total Outstanding Amount :</b>  {0}<br>""".format(doc.get('total_outstanding_amout') or '-' )
+    msg+="""<b>Amount Paid:</b>  {0}<br>""".format(doc.get('paying_amount') or '-' )
+    msg+="""<b>Transaction Id:</b>  {0}<br>""".format(doc.get('transaction_id') or '-' )
+    msg+="""<b>Transaction Status:</b>  {0}<br>""".format(doc.get('transaction_status') or '-' )
+    recipients = frappe.db.get_value("Student",doc.get('party'),"student_email_id")
+    send_mail(recipients,'Transaction Details',msg)
+    
+## Ended by Rupali Bhatta  
