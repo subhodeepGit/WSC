@@ -266,6 +266,10 @@ nav.navbar{
 .btn.btn-primary{
     background: #5c3c92;
 }
+.btn.btn-primary:hover{
+    background: #5c3c92;
+    color: #fff
+}
 .abc{
     background-color: #B5AFD2;
 }
