@@ -54,7 +54,7 @@ def on_cancel(doc,method):
         delete_permissions(doc)
         delete_course_enrollment(doc)
         update_student(doc) 
-        
+
 def on_change(doc,method):
     onlinepayrole(doc)
     # update_reserved_seats(doc)
@@ -809,7 +809,7 @@ def onlinepayrole(doc):
         if doc.admission_status=="Provisional Admission":
             student.add_roles("Provisionally admitted")
         if doc.admission_status=="Admitted":
-            student.add_roles("Student")
+            student.add_roles("Provisionally admitted","Student")
         student.new_password = ''
         student.flags.ignore_permissions = True
         student.save()
