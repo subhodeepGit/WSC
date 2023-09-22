@@ -69,6 +69,7 @@ doctype_js = {
                 "Employee Onboarding":"public/js/employee_onboarding.js",
                 "Job Offer":"public/js/job_offer.js",
                 "Compensatory Leave Request":"public/js/compensatory_leave_request.js",
+                "Task":"public/js/task.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -340,7 +341,12 @@ doc_events = {
     },
     "Employee Separation":{
         "validate":"wsc.wsc.validations.employee_separation.validate",
-        "after_insert":"wsc.wsc.validations.employee_separation.after_insert"
+        "after_insert":"wsc.wsc.validations.employee_separation.after_insert",
+        "on_cancel":"wsc.wsc.validations.employee_separation.on_cancel",
+        "on_submit":"wsc.wsc.validations.employee_separation.on_submit"
+        # "on_update_after_submit":"wsc.wsc.validations.employee_separation.on_update_after_submit"
+
+        # "on_submit":"wsc.wsc.validations.employee_separation.on_submit"
     },
     "Asset Maintenance" : {
         "validate" :"wsc.wsc.doctype.asset_maintenance.validate"
@@ -387,6 +393,7 @@ doc_events = {
     "Employee Onboarding": {
         "validate":"wsc.wsc.doctype.employee_onboarding.validate",
         "on_cancel" : "wsc.wsc.doctype.employee_onboarding.on_cancel",
+        "on_submit":"wsc.wsc.doctype.employee_onboarding.on_submit"
         # "on_change" : "wsc.wsc.doctype.employee_onboarding.on_change",
 
     },
@@ -535,8 +542,8 @@ override_doctype_dashboards = {
 # fixtures = [
 	# {"dt": "Custom DocPerm", "filters": [
 	# 	["parent", "not in", ["DocType"]],
-    #     ["parent", "in", ["Assignment","Assignment Upload"]],
-    #     ["role", "in", ["TOT Director", "TOT Administrator", "TOT Trainer", "TOT Candidate"]]
+    #     ["parent", "in", ["Employee Separation"]],
+    #     ["role", "in", ["Report Manager"]]
 	# ]},
     # {"dt": "Role","filters": [
     #     ["name", "in", ["TOT Director", "TOT Administrator", "TOT Trainer"]]
@@ -545,7 +552,7 @@ override_doctype_dashboards = {
 #     # # {"dt": "Module Profile"},
     # {"dt" : "Workflow","filters": [
     #     [
-    #         "name", "in", ["Workflow for Leave Policy"]
+    #         "name", "in", ["Employee Separation Workflow"]
     #     ]
     # ]},
     # {"dt" : "Workflow"},
