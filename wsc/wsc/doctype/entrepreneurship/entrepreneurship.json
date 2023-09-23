@@ -32,7 +32,9 @@
   {
    "fieldname": "company_name",
    "fieldtype": "Data",
-   "label": "Company Name"
+   "in_list_view": 1,
+   "label": "Company Name",
+   "reqd": 1
   },
   {
    "fieldname": "company_registration_year",
@@ -41,8 +43,11 @@
   },
   {
    "fieldname": "state",
-   "fieldtype": "Data",
-   "label": "State"
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "State",
+   "options": "State",
+   "reqd": 1
   },
   {
    "fieldname": "full_address",
@@ -52,7 +57,9 @@
   {
    "fieldname": "website_link",
    "fieldtype": "Data",
-   "label": "Website Link"
+   "in_list_view": 1,
+   "label": "Website Link",
+   "reqd": 1
   },
   {
    "fieldname": "attache_company_image",
@@ -66,7 +73,9 @@
   {
    "fieldname": "company_registration_number",
    "fieldtype": "Data",
-   "label": "Company Registration Number"
+   "in_list_view": 1,
+   "label": "Company Registration Number",
+   "reqd": 1
   },
   {
    "fieldname": "number_of_employees",
@@ -87,7 +96,8 @@
    "fieldname": "student_details_table",
    "fieldtype": "Table",
    "label": "Student Details Table",
-   "options": "entrepreneurship student details"
+   "options": "entrepreneurship student details",
+   "reqd": 1
   },
   {
    "fieldname": "revenue_details_section",
@@ -103,7 +113,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-29 17:39:31.038155",
+ "modified": "2023-09-20 17:43:46.006720",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrepreneurship",

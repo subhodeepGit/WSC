@@ -5,17 +5,17 @@ frappe.ui.form.on('Generate Certificate', {
 	refresh: function(frm) {
 
 	},
-	is_in_a_program : function(frm){
-		if(frm.doc.is_in_a_program == 1){
-			frm.set_query('select_event', function(){
-				return{
-					filters:{
-						'select_program' : frm.doc.select_program
-					}
-				}
-			})
-		}
-	},
+	// is_in_a_program : function(frm){
+	// 	if(frm.doc.is_in_a_program == 1){
+	// 		frm.set_query('select_event', function(){
+	// 			return{
+	// 				filters:{
+	// 					'select_program' : frm.doc.select_program
+	// 				}
+	// 			}
+	// 		})
+	// 	}
+	// },
 	select_program : function(frm){
 		frappe.call({
 			method : 'wsc.wsc.doctype.generate_certificate.generate_certificate.get_program_name',
@@ -35,8 +35,6 @@ frappe.ui.form.on('Generate Certificate', {
 			},
 			callback : function(result){
 				frm.set_value("event_name", result.message[0])
-				frm.set_value("event_start_date", result.message[1])
-				frm.set_value("event_end_date", result.message[2])
 			}
 		})
 	},

@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "ICS.-.#####",
  "creation": "2023-05-30 11:46:39.006297",
  "default_view": "List",
  "doctype": "DocType",
@@ -29,8 +30,9 @@
   },
   {
    "fieldname": "completion_status",
-   "fieldtype": "Data",
-   "label": "Completion Status"
+   "fieldtype": "Select",
+   "label": "Completion Status",
+   "options": "\nCompleted\nNot completed"
   },
   {
    "fieldname": "column_break_allk5",
@@ -42,6 +44,7 @@
    "label": "Internship Name"
   },
   {
+   "fetch_from": "select_participant.student_name",
    "fieldname": "participant_name",
    "fieldtype": "Data",
    "label": "Participant Name"
@@ -49,10 +52,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-17 17:28:13.993068",
+ "modified": "2023-09-22 13:47:38.109549",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Completion status",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

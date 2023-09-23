@@ -264,7 +264,22 @@ nav.navbar{
     margin: 2px 0;
 }
 .btn.btn-primary{
-    background: #5c3c92;
+    background-image: linear-gradient(to right, #b28ef1  0%, #5c3c92  51%, #b28ef1 100%);
+    margin: 10px;
+    padding: 5px 5px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+}
+.btn.btn-primary:hover{
+    background-image: linear-gradient(to right, #b28ef1  0%, #5c3c92  51%, #b28ef1 100%);
+    background-position: right center; /* change the direction of the change here */
+    color: white;
+    text-decoration: none;
 }
 .abc{
     background-color: #B5AFD2;
