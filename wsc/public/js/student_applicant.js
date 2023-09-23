@@ -173,9 +173,9 @@ frappe.ui.form.on('Student Applicant', {
     //     });
     // },
     before_submit: function(frm){
-        frappe.confirm('I hereby declare that the information given by me in the Application is true. If any point of time, I am found to have concealed any information or given any false document, my application shall liable to be summarily rejected without notice.',
+        frappe.confirm('I hereby declare that I have read and understood all the instructions clearly. The information given by me in the application is true and to the best of my knowledge. I understand and accept that World Skill Center reserves the rights to reject my application, if any of the information provided by me is found to be false.',
             () => {
-                frm.set_value("declaration", "I hereby declare that the information given by me in the Application is true. If any point of time, I am found to have concealed any information or given any false document, my application shall liable to be summarily rejected without notice.");
+                frm.set_value("declaration", "I hereby declare that I have read and understood all the instructions clearly. The information given by me in the application is true and to the best of my knowledge. I understand and accept that World Skill Center reserves the rights to reject my application, if any of the information provided by me is found to be false.");
                 frappe.msgprint({
                     title: __('Notification'),
                     indicator: 'purple',
