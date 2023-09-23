@@ -14,7 +14,9 @@
 // };
 frappe.listview_settings['Student Applicant'] = {
     onload: function(listview) {
+
         if (frappe.user.has_role(["Applicant"]) && !frappe.user.has_role(["System Manager"])){        
+            $('.primary-action').hide();
             if(frappe.route_options){
                 frappe.route_options = {
                     "student_email_id": ["=", frappe.session.user]

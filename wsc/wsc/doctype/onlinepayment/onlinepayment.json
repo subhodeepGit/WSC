@@ -119,6 +119,7 @@
    "in_standard_filter": 1,
    "label": "Party",
    "options": "Student",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -173,6 +174,7 @@
    "fieldname": "paying_amount",
    "fieldtype": "Currency",
    "label": "Paying Amount",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -196,7 +198,7 @@
   {
    "allow_on_submit": 1,
    "fieldname": "transaction_status_description",
-   "fieldtype": "Long Text",
+   "fieldtype": "Data",
    "label": "Transaction Status Description",
    "read_only": 1
   },
@@ -239,7 +241,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-22 15:06:57.072602",
+ "modified": "2023-09-24 01:44:31.718572",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "OnlinePayment",
