@@ -173,23 +173,30 @@ frappe.ui.form.on('Student Applicant', {
     //     });
     // },
     before_submit: function(frm){
-        frappe.confirm('I hereby declare that I have read and understood all the instructions clearly. The information given by me in the application is true and to the best of my knowledge. I understand and accept that World Skill Center reserves the rights to reject my application, if any of the information provided by me is found to be false.',
-            () => {
-                frm.set_value("declaration", "I hereby declare that I have read and understood all the instructions clearly. The information given by me in the application is true and to the best of my knowledge. I understand and accept that World Skill Center reserves the rights to reject my application, if any of the information provided by me is found to be false.");
-                frappe.msgprint({
-                    title: __('Notification'),
-                    indicator: 'purple',
-                    message: __('Your Application form is Successfully Submitted. Please Notedown Your Application No. <b>{0}</b> for Future reference.',[frm.doc.name]),
-                    primary_action: {
-                        'label': 'Kindly Print the Application Form For the Future Admission Process',
-                        }
-                });
-                // action to perform if Yes is selected
-            }, () => {
-                window.close();
-                // action to perform if No is selected
-        })
+        frm.set_value("declaration", "I hereby declare that I have read and understood all the instructions clearly. The information given by me in the application is true and to the best of my knowledge. I understand and accept that World Skill Center reserves the rights to reject my application, if any of the information provided by me is found to be false.");
     },
+    
+    on_submit: function(frm){
+        frappe.msgprint({
+            title: __('Declaration'),
+            message:__('I hereby declare that I have read and understood all the instructions clearly. The information given by me in the application is true and to the best of my knowledge. I understand and accept that World Skill Center reserves the rights to reject my application, if any of the information provided by me is found to be false.'),
+            primary_action: {
+                label: __("Yes"),
+                action: function () {
+                    if (frm.doc.docstatus==1){
+                        frappe.msgprint({
+                            title: __('Notification'),
+                            indicator: 'purple',
+                            message: __('Your Application form is Successfully Submitted. Please Notedown Your Application No. <b>{0}</b> for Future reference.',[frm.doc.name]),
+                            primary_action: {
+                                'label': 'Kindly Print the Application Form For the Future Admission Process',
+                                }
+                        });
+                    }
+				},
+        }
+    })
+},
     refresh(frm){
         frm.fields_dict.go_to_top.$input.addClass(' btn btn-primary');
         if(!frm.is_new()){
