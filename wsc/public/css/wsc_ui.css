@@ -180,7 +180,15 @@ body[frappe-session-status='logged-out'] nav.navbar {display: none;}
 /* .btn.btn-default.btn-sm.ellipsis{
     visibility: hidden;
 } */
-
+.standard-actions.flex{
+    visibility: hidden;
+}
+/* .btn .btn-secondary.btn-default.btn-sm{
+    visibility: hidden;
+} */
+.btn.btn-default.ellipsis{
+    visibility: hidden;
+}
 .inner-page-message.text-muted.small{
     visibility: hidden;
 }
