@@ -36,7 +36,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-04-25 12:10:48.979938",
+ "modified": "2023-09-24 01:25:33.144170",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Physically Disabled",
@@ -44,5 +44,6 @@
  "permissions": [],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

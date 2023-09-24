@@ -21,7 +21,8 @@
    "fieldtype": "Link",
    "hidden": 1,
    "label": "Student Admission",
-   "options": "Student Admission"
+   "options": "Student Admission",
+   "read_only": 1
   },
   {
    "description": "Click on the top right arrow (v) button or outside of the table to go back...",
@@ -101,7 +102,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-19 11:46:25.746323",
+ "modified": "2023-09-24 01:26:33.186614",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Program Priority",

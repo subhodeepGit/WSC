@@ -48,20 +48,35 @@ def rank_card_submit(doc):
     attachments = [frappe.attach_print(doc.doctype, doc.name, file_name=doc.name, print_format='Entrance Exam Rank Card')]
     send_mail(frappe.db.get_value("Student Applicant" , {"name":doc.applicant_id} , ["student_email_id"]), sub , msg , attachments)
 
+# def student_applicant_submit(doc):
+#     sub="""<p><b>Application Form is Sucessfully Submitted</b></p><br>"""
+#     msg="""<b>---------------------Applicant Details---------------------</b><br>"""
+#     msg+="""<b>Student Name:</b>  {0}{1}<br>""".format(doc.get('first_name'), doc.get('last_name'))
+#     msg+="""<b>Application Number:</b>  {0}<br>""".format(doc.get('name'))
+#     msg+="""<b>Department:</b>  {0}<br>""".format(doc.get('department'))
+#     msg+="""<b>Course Type:</b>  {0}<br>""".format(doc.get('program_grade'))
+#     msg+="""<p>Course Preferences: </p>"""
+#     msg += """</u></b></p><table class='table table-bordered'><tr>
+#         <th>Courses</th>"""
+#     for d in doc.get("program_priority"):
+#         msg += """<tr><td>{0}</td></tr>""".format(str(d.get('programs'))) 
+#     msg += "</table>"
+#     send_mail(frappe.db.get_value("Student Applicant",doc.get('name'),"student_email_id"),'Application status',msg)
 def student_applicant_submit(doc):
-    sub="""<p><b>Application Form is Sucessfully Submitted</b></p><br>"""
-    msg="""<b>---------------------Applicant Details---------------------</b><br>"""
-    msg+="""<b>Student Name:</b>  {0}{1}<br>""".format(doc.get('first_name'), doc.get('last_name'))
-    msg+="""<b>Application Number:</b>  {0}<br>""".format(doc.get('name'))
-    msg+="""<b>Department:</b>  {0}<br>""".format(doc.get('department'))
-    msg+="""<b>Course Type:</b>  {0}<br>""".format(doc.get('program_grade'))
-    msg+="""<p>Course Preferences: </p>"""
-    msg += """</u></b></p><table class='table table-bordered'><tr>
-        <th>Courses</th>"""
-    for d in doc.get("program_priority"):
-        msg += """<tr><td>{0}</td></tr>""".format(str(d.get('programs'))) 
-    msg += "</table>"
+
+    sub = """<p><b>Application Form is Sucessfully Submitted</b></p><br>"""
+    
+    msg="""<p>Thank you for submitting your details. You have been provisionally allotted a seat in the trade <b> {0} </b> in World Skill Center. 
+                Your final admission is subjected to the following:</p><br>""".format(doc.get('programs_'))
+    msg+="""•     Verification of all the submitted documents<br>"""
+    msg+="""•     Payment of fees for the 1st semester, i.e.- INR 10,000 only<br>"""
+    msg+="""•     Any other condition, as prescribed<br>"""
+    msg+="""The verification of all your submitted documents is pending. You will be intimated after the verification of all the submitted 
+                documents for the payment of fees for the 1st semester, i.e.- INR 10,000 only.<br>"""
+    msg+="""<p><b>WSC reserves the right to reject any application if any of the above conditions are not met and the decision is final.</b></p>"""
     send_mail(frappe.db.get_value("Student Applicant",doc.get('name'),"student_email_id"),'Application status',msg)
+
+
 
 
 def employee_reporting_aproverr(doc):
@@ -361,7 +376,7 @@ def student_applicant_approved(doc):
     msg+="""Further Process, we will connect with you soon.</b><br>"""
     msg+="""<b>---------------------Applicant Details---------------------</b><br>"""
     msg+="""<b>Student Name:</b>  {0}{1}<br>""".format(doc.get('first_name'), doc.get('last_name'))
-    msg+="""<b>Application Number:</b>  {0}<br>""".format(doc.get('name'))
+    msg+="""<b>Application Number:</b>  {0}<br>""".format(doc.get('student_application_id'))
     send_mail(frappe.db.get_value("Student Applicant",doc.get('name'),"student_email_id"),'Application status',msg)
 
 def student_applicant_onhold(doc):
@@ -375,7 +390,7 @@ def student_applicant_rejected(doc):
     sub="""<p><b>Application Form has been rejected.</b></p><br>"""
     msg+="""<b>---------------------Applicant Details---------------------</b><br>"""
     msg+="""<b>Student Name:</b>  {0}{1}<br>""".format(doc.get('first_name'), doc.get('last_name'))
-    msg+="""<b>Application Number:</b>  {0}<br>""".format(doc.get('name'))
+    msg+="""<b>Application Number:</b>  {0}<br>""".format(doc.get('student_application_id'))
     send_mail(frappe.db.get_value("Student Applicant",doc.get('name'),"student_email_id"),'Application status',msg)
   
 
@@ -391,18 +406,27 @@ def program_enrollment_admitted(doc):
     msg+="""<b>Academic Term:</b> {0}<br>""".format(doc.get('academic_term') or '-')
     send_mail(frappe.db.get_value("Student",doc.get('student'),"student_email_id"),'Application status',msg)
 
+# def program_enrollment_provisional_admission(doc):
+#     msg="""<p>You are Provisionaly Admitted in the Course <b>{0}</b></p><br>""".format(doc.get('programs'))
+#     msg+="""<b>---------------------Student Details---------------------</b><br>"""
+#     msg+="""<b>Student Name:</b>  {0}<br>""".format(doc.get('student_name'))
+#     msg+="""<b>Student Batch:</b>  {0}<br>""".format(doc.get('student_batch_name') or '-')
+#     # msg+="""<b>Permanent Registration Number:</b>  {0}<br>""".format(doc.get('permanant_registration_number') or '-' )
+#     msg+="""<b>Course:</b>  {0}<br>""".format(doc.get('programs'))
+#     msg+="""<b>Semester:</b>  {0}<br>""".format(doc.get('program'))
+#     msg+="""<b>Academic Year:</b>  {0}<br>""".format(doc.get('academic_year') or '-')
+#     msg+="""<b>Academic Term:</b> {0}<br>""".format(doc.get('academic_term') or '-')
+
+#     send_mail(frappe.db.get_value("Student",doc.get('student'),"student_email_id"),'Application status',msg)
+
 def program_enrollment_provisional_admission(doc):
     msg="""<p>You are Provisionaly Admitted in the Course <b>{0}</b></p><br>""".format(doc.get('programs'))
-    msg+="""<b>---------------------Student Details---------------------</b><br>"""
-    msg+="""<b>Student Name:</b>  {0}<br>""".format(doc.get('student_name'))
-    msg+="""<b>Student Batch:</b>  {0}<br>""".format(doc.get('student_batch_name') or '-')
-    # msg+="""<b>Permanent Registration Number:</b>  {0}<br>""".format(doc.get('permanant_registration_number') or '-' )
-    msg+="""<b>Course:</b>  {0}<br>""".format(doc.get('programs'))
-    msg+="""<b>Semester:</b>  {0}<br>""".format(doc.get('program'))
-    msg+="""<b>Academic Year:</b>  {0}<br>""".format(doc.get('academic_year') or '-')
-    msg+="""<b>Academic Term:</b> {0}<br>""".format(doc.get('academic_term') or '-')
-
+    msg+="""We are pleased to inform you that the verification of all your submitted documents is completed and found to be in order. 
+            You are hereby requested to make the payment of fees for the 1st semester, i.e.- INR 10,000 only by <b> 06 th  October 2023 </b> positively<br>"""
+    msg+="""<b>WSC reserves the right to reject any application if the full payment of the for the 1 st  semester is not received and the decision is final.</b> """
+    
     send_mail(frappe.db.get_value("Student",doc.get('student'),"student_email_id"),'Application status',msg)
+
 
 
 def branch_change_declaration_submit(doc):
