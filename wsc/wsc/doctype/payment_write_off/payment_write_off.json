@@ -1,0 +1,116 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format: PWO-STU-FEE-{####}",
+ "creation": "2023-09-12 10:31:27.080918",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "student",
+  "student_name",
+  "student_roll_no",
+  "get_outstanding_fees",
+  "references",
+  "total_allocated_amount",
+  "amended_from",
+  "payment_write_off_amount",
+  "payment_status",
+  "payment_entry"
+ ],
+ "fields": [
+  {
+   "fieldname": "student",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Student",
+   "options": "Student",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "student.student_name",
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "label": "Student Name"
+  },
+  {
+   "fetch_from": "student.roll_no",
+   "fieldname": "student_roll_no",
+   "fieldtype": "Data",
+   "label": "Roll No"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Payment Write Off",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "get_outstanding_fees",
+   "fieldtype": "Button",
+   "label": "Get Outstanding Fees"
+  },
+  {
+   "fieldname": "references",
+   "fieldtype": "Table",
+   "label": "Payment References",
+   "options": "Payment Entry Reference",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_allocated_amount",
+   "fieldtype": "Currency",
+   "label": "Total Allocated Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "payment_write_off_amount",
+   "fieldtype": "Currency",
+   "label": "Payment Write Off Amount"
+  },
+  {
+   "default": "0",
+   "fieldname": "payment_status",
+   "fieldtype": "Check",
+   "label": "Payment Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "payment_entry",
+   "fieldtype": "Data",
+   "label": "Payment Entry",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-09-18 17:46:15.925000",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Payment Write Off",
+ "name_case": "UPPER CASE",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
