@@ -331,6 +331,16 @@ frappe.ui.form.on('Payment Entry', {
 				]
 			}
 		});
+		//Payment write off filter
+		frm.set_query("payment_write_off","deductions", function(_doc, cdt, cdn) {
+			var d = locals[cdt][cdn];
+			return {
+				filters: {
+					'student': frm.doc.party,
+					'payment_status':0
+				}
+			};
+		});	
 		// Rupali:Code for Refund amount:Start	
 		
 		if (frm.doc.paid_amount == undefined){
@@ -430,3 +440,23 @@ frappe.ui.form.on('Payment Entry Reference', {	//Child table Name
 	refresh_field("paid_amount");
   },
 })
+
+frappe.ui.form.on('Payment Entry', {
+    validate: function(frm) {
+        // Get the value of the parent field
+        var parentFieldValue = frm.doc.party_type;
+		console.log(parentFieldValue)
+        // Iterate through the child table rows
+        $.each(frm.doc.deductions || [], function(index, row) {
+            // Check if the parent field value meets the condition to make the child field mandatory
+            if (parentFieldValue === 'Student') {  // Replace 'ConditionValue' with the desired condition
+                if (!row.payment_write_off) {
+                    frappe.msgprint(__("Please select Payment write off"));
+                    frappe.validated = false;
+					
+                }
+            }
+        });
+    }
+});
+
