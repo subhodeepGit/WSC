@@ -90,6 +90,7 @@ class StudentApplicant(Document):
         validate_pincode(doc)
 
     def on_submit(self):
+        concat_title(self)
         student_applicant_submit(self)
         # validate_photo_attachment(self)
         for docmnt in self.document_list:
@@ -97,6 +98,7 @@ class StudentApplicant(Document):
                 docmnt.is_available = 1
             else:
                 docmnt.is_available = 0
+        
 def on_change(doc,method):
     delete_user_permission(doc)
     if doc.docstatus==1:
@@ -120,7 +122,11 @@ def validate_duplicate_record(self):
 		})
 		if duplicateForm:
 			frappe.throw(("Student Applicant is already Filled the form for this Academic Term."))
-                        
+
+# def concat_title(self):
+#     self.student_full_name=self.first_name + self.last_name
+#     print("\n\n\nstudent_full_name",self.student_full_name)
+
 def validate_student_name(doc):
     if doc.first_name:
             if not contains_only_characters(doc.first_name):

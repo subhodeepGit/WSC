@@ -4,5 +4,15 @@
 frappe.ui.form.on('Student Applicant Instruction', {
 	refresh: function(frm) {
 		frm.disable_save();
-	}
+		frm.add_custom_button(__("Go Back"), function() {
+			frm.trigger("redirect")
+		});
+	},
+	redirect: function(frm){
+		window.location.href="javascript:history.back()"
+	   },
+
 });
+
+
+	
