@@ -14,11 +14,16 @@ def file_size(doc):
     url=localFile 
     ext=os.path.splitext(url)
     extstr=ext[1] 
-    ext_list=[".jpg",".jpeg",".jfif",".pjpeg",".pjp",".png"]
+    ext_list=[".jpg",".jpeg",".jfif",".pjpeg",".pjp",".png",".pdf"]
+    flag="No"
     for t in ext_list:
         if t==extstr:
+            flag="Yes"
             file_size = os.path.getsize(url)
             if file_size > 200000:
                 os.remove(url)
                 return frappe.throw("Image Size cannot exceed 200KB. Please upload an Image of smaller size.")
+    if flag=="No":
+        os.remove(url)
+        frappe.throw("File Type is not Allowed")        
 

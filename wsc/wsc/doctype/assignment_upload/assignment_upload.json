@@ -99,8 +99,7 @@
   {
    "fieldname": "assignment_attach_button",
    "fieldtype": "Attach",
-   "label": "Attach Assignment",
-   "reqd": 1
+   "label": "Attach Assignment"
   },
   {
    "fieldname": "description",
@@ -179,13 +178,11 @@
   {
    "fieldname": "start_date",
    "fieldtype": "Datetime",
-   "hidden": 1,
    "label": "Start Date"
   },
   {
    "fieldname": "end_date",
    "fieldtype": "Datetime",
-   "hidden": 1,
    "label": "End Date"
   },
   {
@@ -267,7 +264,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-20 16:22:03.206198",
+ "modified": "2023-09-25 16:26:08.859495",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Upload",
