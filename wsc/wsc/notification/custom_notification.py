@@ -1665,19 +1665,21 @@ def send_mail_to_jobapplicants_final_notification(doc):
 ##########################################################################################################################################################################################
 ### Student payment notification through email ###    
 ## Started by Rupali Bhatta 
-def email_transaction_status(doc):
-   
-    msg="""<b>---------------------Transaction Details---------------------</b><br>"""
-    msg+="""<b>Payment Entry No.:</b>  {0}<br>""".format(doc.get('name'))
-    msg+="""<b>Date:</b>  {0}<br>""".format(doc.get('date_time_of_transaction'))
-    msg+="""<p>---------------------Payment From / TO---------------------</p><br>"""
-    msg+="""<b>Name:</b>  {0}<br>""".format(doc.get('party_name') or '-')
-    msg+="""<b>Roll Number:</b>  {0}<br>""".format(doc.get('roll_no') or '-' )
-    msg+="""<b>Total Outstanding Amount :</b>  {0}<br>""".format(doc.get('total_outstanding_amout') or '-' )
-    msg+="""<b>Amount Paid:</b>  {0}<br>""".format(doc.get('paying_amount') or '-' )
-    msg+="""<b>Transaction Id:</b>  {0}<br>""".format(doc.get('transaction_id') or '-' )
-    msg+="""<b>Transaction Status:</b>  {0}<br>""".format(doc.get('transaction_status') or '-' )
+
+def email_transaction_status(doc):   
+    course_details = frappe.get_value("Current Educational Details", {"parent":format(doc.get("name"))},["programs","academic_term"])
+    enrol_course= course_details[0]
+    enrol_semester= course_details[1]
+    msg = """<p>Dear Student,</p><br>"""
+    msg+= """<p>We are pleased to inform you that the payment of the fees for the 1st semester of </p><br>"""
+    msg+="""<b>INR </b>  {0}<br>""".format(doc.get('paying_amount') or '-' )   
+    msg+= """<p>You have been successfully allotted a seat in the</p><br>"""
+    
+    msg += "<b>trade:</b> {0}<br>".format(enrol_course) or '-' 
+    msg+= """<p>.in World Skill Center.</p><br>"""
+    msg+= """<p>You will be intimated about the orientation and admission in World Skill Center in due time.</p><br>"""
+       
     recipients = frappe.db.get_value("Student",doc.get('party'),"student_email_id")
     send_mail(recipients,'Transaction Details',msg)
     
-## Ended by Rupali Bhatta  
+## Ended by Rupali Bhatta
