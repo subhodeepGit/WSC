@@ -33,23 +33,25 @@
   "column_break_0taaf",
   "participant_name",
   "section_break_whz5q",
-  "select_assignment",
   "assessment_component",
-  "column_break_7",
-  "assignment_name",
   "section_break_13",
   "total_marks",
   "weightage",
   "column_break_15",
   "passing_marks",
-  "marks_earned"
+  "marks_earned",
+  "section_break_bv17f",
+  "select_assignment",
+  "column_break_7",
+  "assignment_name"
  ],
  "fields": [
   {
    "fetch_from": "participant_id.participant_name",
    "fieldname": "participant_name",
    "fieldtype": "Data",
-   "label": "Participant Name"
+   "label": "Participant Name",
+   "read_only": 1
   },
   {
    "fetch_from": "participant_group.academic_year",
@@ -136,19 +138,25 @@
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "assignment_declaration.total_marks",
    "fieldname": "total_marks",
    "fieldtype": "Int",
-   "label": "Total Marks"
+   "label": "Total Marks",
+   "read_only": 1
   },
   {
+   "fetch_from": "assignment_declaration.weightage",
    "fieldname": "weightage",
    "fieldtype": "Data",
-   "label": "Weightage"
+   "label": "Weightage",
+   "read_only": 1
   },
   {
+   "fetch_from": "assignment_declaration.pass_marks",
    "fieldname": "passing_marks",
    "fieldtype": "Data",
-   "label": "Passing Marks"
+   "label": "Passing Marks",
+   "read_only": 1
   },
   {
    "fieldname": "assignment_name",
@@ -165,10 +173,12 @@
    "label": "Participant Details"
   },
   {
+   "fetch_from": "assignment_declaration.select_assessment_criteria",
    "fieldname": "assessment_component",
    "fieldtype": "Link",
    "label": "Assessment Component",
-   "options": "Assessment Criteria"
+   "options": "Assessment Criteria",
+   "read_only": 1
   },
   {
    "fieldname": "assignment_declaration",
@@ -251,12 +261,18 @@
   },
   {
    "fieldname": "section_break_whz5q",
+   "fieldtype": "Section Break",
+   "hide_border": 1,
+   "label": "Assessment Component Details (Marks)"
+  },
+  {
+   "fieldname": "section_break_bv17f",
    "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-25 12:48:22.849437",
+ "modified": "2023-09-25 16:53:34.853764",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Evaluation",
