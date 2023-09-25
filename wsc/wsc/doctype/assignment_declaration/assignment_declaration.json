@@ -303,7 +303,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-20 17:39:05.090845",
+ "modified": "2023-09-25 10:54:15.761553",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Declaration",
@@ -323,6 +323,7 @@
    "write": 1
   }
  ],
+ "search_fields": "assignment_name,course,module,participant_group,select_assessment_criteria",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

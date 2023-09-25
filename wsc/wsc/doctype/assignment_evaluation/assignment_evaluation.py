@@ -66,7 +66,7 @@ def set_marks1(participant_id, assignment_name):
 		return 0
 	
 @frappe.whitelist()
-def set_marks(participant_id, assignment_name):
+def set_marks(participant_id=None, assignment_name=None):
 	count1 = frappe.db.sql(""" SELECT COUNT(*) FROM `tabAssignment` WHERE name = '%s'"""%(assignment_name))
 	count2 = frappe.db.sql(""" SELECT COUNT(*) FROM `tabAssignment Declaration` WHERE name = '%s'"""%(assignment_name))
 	if(count1[0][0] > 0):
