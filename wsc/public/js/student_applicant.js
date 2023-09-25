@@ -179,7 +179,7 @@ frappe.ui.form.on('Student Applicant', {
     on_submit: function(frm){
         frappe.msgprint({
             title: __('Declaration'),
-            message:__('I hereby declare that I have read and understood all the instructions clearly. The information given by me in the application is true and to the best of my knowledge. I understand and accept that World Skill Center reserves the rights to reject my application, if any of the information provided by me is found to be false.'),
+            message:__('I hereby declare that I have read and understood all the instructions clearly. The information given by me in the application is true and to the best of my knowledge.<br> I understand and accept that World Skill Center reserves the rights to reject my application, if any of the information provided by me is found to be false.'),
             primary_action: {
                 label: __("Yes"),
                 action: function () {
