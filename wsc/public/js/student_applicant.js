@@ -174,9 +174,13 @@ frappe.ui.form.on('Student Applicant', {
     // },
     before_submit: function(frm){
         frm.set_value("declaration", "I hereby declare that I have read and understood all the instructions clearly. The information given by me in the application is true and to the best of my knowledge. I understand and accept that World Skill Center reserves the rights to reject my application, if any of the information provided by me is found to be false.");
+        let fname=frm.doc.first_name;    
+        let lname=frm.doc.last_name;    
+        frm.set_value("title",fname+" "+lname);  
     },
     
-    on_submit: function(frm){
+    on_submit: function(frm){  
+        
         frappe.msgprint({
             title: __('Declaration'),
             message:__('I hereby declare that I have read and understood all the instructions clearly. The information given by me in the application is true and to the best of my knowledge.<br> I understand and accept that World Skill Center reserves the rights to reject my application, if any of the information provided by me is found to be false.'),
@@ -187,7 +191,7 @@ frappe.ui.form.on('Student Applicant', {
                         frappe.msgprint({
                             title: __('Notification'),
                             indicator: 'purple',
-                            message: __('Your Application form is Successfully Submitted. Please Notedown Your Application No. <b>{0}</b> for Future reference.',[frm.doc.name]),
+                            message: __('Your Application form is Successfully Submitted. Please Notedown Your Acknowledge No. <b>{0}</b> for Future reference.',[frm.doc.name]),
                             primary_action: {
                                 'label': 'Kindly Print the Application Form For the Future Admission Process',
                                 }
