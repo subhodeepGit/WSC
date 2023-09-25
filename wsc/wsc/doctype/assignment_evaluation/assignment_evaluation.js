@@ -20,25 +20,25 @@ frappe.ui.form.on('Assignment Evaluation', {
 			};
 		});
 	},
-	participant_group: function(frm){
-		frappe.call({
-			method : 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_details',
-			args: {
-				participant_group_id: frm.doc.participant_group
-			},
-			callback: function(result){
-				if(result.message){
-					frm.set_value("select_course", result.message[2])
-					frm.set_value("select_module", result.message[3])
-					frm.set_value("academic_year", result.message[0])
-					frm.set_value("academic_term", result.message[1])
-					// frm.set_df_property('instructor_id', 'options', result.message[4])
-					// frm.set_df_property('participant_id', 'options', result.message[5])
-					// frm.set_df_property('select_assignment', 'options', result.message[6]) // need help with this
-				}
-			}
-		})
-	},
+	// participant_group: function(frm){
+	// 	frappe.call({
+	// 		method : 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_details',
+	// 		args: {
+	// 			participant_group_id: frm.doc.participant_group
+	// 		},
+	// 		callback: function(result){
+	// 			if(result.message){
+	// 				frm.set_value("select_course", result.message[2])
+	// 				frm.set_value("select_module", result.message[3])
+	// 				frm.set_value("academic_year", result.message[0])
+	// 				frm.set_value("academic_term", result.message[1])
+	// 				// frm.set_df_property('instructor_id', 'options', result.message[4])
+	// 				// frm.set_df_property('participant_id', 'options', result.message[5])
+	// 				// frm.set_df_property('select_assignment', 'options', result.message[6]) // need help with this
+	// 			}
+	// 		}
+	// 	})
+	// },
 	participant_id: function(frm){
 		frappe.call({
 			method: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_participant_name',
@@ -68,18 +68,18 @@ frappe.ui.form.on('Assignment Evaluation', {
 			}
 		})
 	},
-	instructor_id: function(frm){
-		frappe.call({
-			method: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_instructor_name',
-			args: {
-				participant_group_id: frm.doc.participant_group,
-				instructor_id: frm.doc.instructor_id
-			},
-			callback: function(result){
-				frm.set_value("instructor_name", result.message)
-			}
-		})
-	},
+	// instructor_id: function(frm){
+	// 	frappe.call({
+	// 		method: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_instructor_name',
+	// 		args: {
+	// 			participant_group_id: frm.doc.participant_group,
+	// 			instructor_id: frm.doc.instructor_id
+	// 		},
+	// 		callback: function(result){
+	// 			frm.set_value("instructor_name", result.message)
+	// 		}
+	// 	})
+	// },
 	instructor_name: function(frm){
 		frappe.call({
 			method: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_assignment_list',
