@@ -5,30 +5,41 @@ import frappe
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 # from frappe.utils import now
-import datetime
+# import datetime
+from datetime import datetime, timedelta,date
 
 class AssignmentUpload(Document):
 	def validate(self): 
-		formatted_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") 
+		print("\n\n\n")
+		formatted_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+		print(formatted_datetime)
+		
+
+		if isinstance(formatted_datetime, str):
+			formatted_datetime=datetime.strptime(formatted_datetime, '%Y-%m-%d %H:%M:%S')
+		print(type(formatted_datetime))	
 		start_date = self.start_date
 		end_date = self.end_date
+		if isinstance(end_date, str):
+			end_date=datetime.strptime(end_date, '%Y-%m-%d %H:%M:%S')
+			start_date=datetime.strptime(start_date, '%Y-%m-%d %H:%M:%S')
+
+
 		if formatted_datetime < start_date or formatted_datetime > end_date:
 			frappe.throw('Cannot submit assignment before or after assigned dates')
 		else:
-			# record_count = frappe.db.sql(""" SELECT COUNT(*) FROM `tabAssignment Upload` where participant_group = '%s' AND participant_id = '%s' AND assignment_id = '%s' AND docstatus = '1'"""%(self.participant_group, self.participant_id, self.assignment_id))
-			# if(record_count[0][0] > 0):
-			# 	frappe.throw('Record already exists')
-
 			duplicate_upload(self)
+	def on_submit(self):
+		pass		
 
 def duplicate_upload(self):
 	data=frappe.get_all("Assignment Upload",{
-										"docstatus":1,
+										"docstatus":0,
 										"assignment_id":self.assignment_id,
 										'participant_id':self.participant_id,
 										})	
 	if data:
-		frappe.throw("You Have Already Submitted Assignment <b>%s</b> "%(self.assignment_id))	
+		frappe.throw("You Have Already Created Assignment <b>%s</b> "%(self.assignment_id))	
 
 @frappe.whitelist()
 def get_details(participant_group_id):

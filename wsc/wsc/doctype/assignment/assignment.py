@@ -106,8 +106,23 @@ def create_assignment(frm):
 	print("\n\n\n\n\n")
 	doc= frappe.get_doc("Assignment",frm)
 	participant_group=doc.participant_group
-	participant_list=frappe.get_all("Participant Table",{"parent":participant_group,"active":1})
+	print(participant_group)
+	participant_list=frappe.get_all("Participant Table",{"parent":participant_group,'active':1},['name','participant','participant_name','active'])
 	print(participant_list)
-	
+
+	for t in participant_list:
+		doc_data=frappe.new_doc("Assignment Upload")
+		doc_data.participant_group=participant_group
+		doc_data.start_date=doc.tot_start_date 
+		doc_data.end_date=doc.tot_end_date
+		doc_data.course=doc.course
+		doc_data.programs=doc.programs
+		doc_data.academic_year=doc.academic_year
+		doc_data.academic_term=doc.academic_term
+		doc_data.semester=doc.semester
+		doc_data.participant_id=t.participant
+		doc_data.assignment_id=doc.name
+		doc_data.save()  
+
 
 
