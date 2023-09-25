@@ -802,14 +802,14 @@ def validate_seat_reservation_type(doc):
 
 def onlinepayrole(doc):
     email_stu = frappe.get_all("Student",{"name":doc.student},["student_email_id"])
-    if doc.docstatus==1:
-        student = frappe.get_doc("User",email_stu[0]["student_email_id"])
-        student.new_password = ''
-        # student.role_profile_name = ''
-        if doc.admission_status=="Provisional Admission":
-            student.add_roles("Provisionally admitted")
-        if doc.admission_status=="Admitted":
-            student.add_roles("Provisionally admitted","Student")
-        student.new_password = ''
-        student.flags.ignore_permissions = True
-        student.save()
+    # if doc.docstatus==1:
+    student = frappe.get_doc("User",email_stu[0]["student_email_id"])
+    student.new_password = ''
+    # student.role_profile_name = ''
+    if doc.admission_status=="Provisional Admission":
+        student.add_roles("Provisionally admitted")
+    if doc.admission_status=="Admitted":
+        student.add_roles("Provisionally admitted","Student")
+    student.new_password = ''
+    student.flags.ignore_permissions = True
+    student.save()
