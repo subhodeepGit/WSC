@@ -111,7 +111,7 @@ class PaymentEntry(AccountsController):
 					if len(hostel_fee_comp)>0:
 						frappe.db.set_value("Fee Component",hostel_fee_comp[0]['name'], "outstanding_fees",d.outstanding_amount)
 						frappe.db.set_value("Hostel Fees",hostel_fee_info[0]['name'], "outstanding_amount",hostel_fee_info[0]['outstanding_amount']-d.allocated_amount)
-		update_payment_write_off_on_submit(self)
+		# update_payment_write_off_on_submit(self)
 
 	def on_cancel(self):
 		self.ignore_linked_doctypes = ('GL Entry', 'Stock Ledger Entry')
