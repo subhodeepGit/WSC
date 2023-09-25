@@ -198,6 +198,21 @@ frappe.ui.form.on('Student Applicant', {
     })
 },
     refresh(frm){
+        if (frm.doc.application_status==="Applied" && frm.doc.docstatus===1 ) {
+			frm.add_custom_button(__("Approve"), function() {
+				frm.set_value("application_status", "Approved");
+				frm.save_or_update();
+
+			}, 'Actions');
+
+			frm.add_custom_button(__("Not Approve"), function() {
+				frm.set_value("application_status", "Hold");
+				frm.save_or_update();
+			}, 'Actions');
+		}
+        frm.set_df_property('application_status', 'options', ['Applied', 'Approved','Hold', 'Not Approved','Rejected']);
+
+        frm.remove_custom_button("Reject","Actions");
         frm.fields_dict.go_to_top.$input.addClass(' btn btn-primary');
         if(!frm.is_new()){
             frm.add_custom_button(__("Preview"), function()  {
@@ -215,7 +230,7 @@ frappe.ui.form.on('Student Applicant', {
             });    
         
         // console.log(frm.doc.image);
-        if(frappe.user.has_role(["Applicant"]) && !frappe.user.has_role(["System Manager"])){
+        if(frappe.user.has_role(["Applicant"]) && !frappe.user.has_role(["System Manager"]) && frappe.user.has_role(["Education Examination Dept"])){
 			frm.set_value("student_email_id", frappe.session.user)
 			frm.set_df_property('student_email_id', 'read_only', 1);
 		}

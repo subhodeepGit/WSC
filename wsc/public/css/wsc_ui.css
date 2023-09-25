@@ -203,6 +203,9 @@ body[frappe-session-status='logged-out'] nav.navbar {display: none;}
 .grid-shortcuts{
     visibility: hidden;
 }
+/* .custom-actions {
+    display: none;
+} */
 /* .dropdown-menu.dropdown-menu-right.show{
     visibility: hidden;
 } */
