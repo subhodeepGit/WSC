@@ -172,7 +172,7 @@ frappe.ui.form.on('OnlinePayment', {
 frappe.ui.form.on("OnlinePayment", "refresh", function (frm) {
     frm.set_df_property("amount", "read_only", frm.is_new() ? 0 : 1);
     frm.set_df_property("name1", "read_only", frm.is_new() ? 0 : 1);
-    frm.set_df_property("roll_no", "read_only", frm.is_new() ? 0 : 1);
+    // frm.set_df_property("roll_no", "read_only", frm.is_new() ? 0 : 1);
 });
 
 
