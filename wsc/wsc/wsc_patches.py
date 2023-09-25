@@ -8,6 +8,7 @@ def execute():
     comment_lines_job_applicant()
     comment_lines_list_view()
     add_line_JobApplicant_js()
+    grid_rowjs_overrides()
 
 def disable_cancel_link():
     file_path = "{}/{}".format(BENCH_PATH,
@@ -129,7 +130,22 @@ def add_line_JobApplicant_js():
         print("Line added in hrms/hrms/hr/doctype/job_applicant/job_applicant.js")
 
 
+def grid_rowjs_overrides():
+    file_path = "{}/{}".format(BENCH_PATH,
+                               "apps/frappe/frappe/public/js/frappe/form/grid_row.js")
+    
+    with open(file_path, "r") as file:
+        content = file.read()
 
+    updated_content = content.replace('<div class="hidden-xs edit-grid-row">${__("Edit")}</div>', '<div class="hidden-xs edit-grid-row">${__("View")}</div>')
+
+    with open(file_path) as f:
+        if '<div class="hidden-xs edit-grid-row">${__("View")}</div>' in f.read():
+            return
+
+    with open(file_path, "w") as file:
+        file.write(updated_content)
+    print('frappe/frappe/public/js/frappe/form/grid_row.js modified Edit to View')
 
 
 

@@ -8,21 +8,35 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_jn5ad",
+  "assignment_declaration",
+  "section_break_oojbv",
+  "assignment_declaration_start_date",
   "participant_group",
-  "select_module",
-  "column_break_vjh6g",
-  "select_course",
-  "section_break_xwr9u",
+  "tot_start_date",
   "academic_year",
+  "select_course",
+  "module_name",
+  "column_break_vjh6g",
+  "assignment_declaration_end_date",
+  "participant_group_name",
+  "tot_end_date",
+  "academic_term",
+  "select_module",
+  "module_code",
+  "section_break_szylx",
   "instructor_id",
-  "select_assignment",
+  "column_break_0ztnm",
+  "instructor_name",
+  "section_break_xwr9u",
   "participant_id",
+  "column_break_0taaf",
+  "participant_name",
+  "section_break_whz5q",
+  "select_assignment",
   "assessment_component",
   "column_break_7",
-  "academic_term",
-  "instructor_name",
   "assignment_name",
-  "participant_name",
   "section_break_13",
   "total_marks",
   "weightage",
@@ -38,50 +52,63 @@
    "label": "Participant Name"
   },
   {
+   "fetch_from": "participant_group.academic_year",
    "fieldname": "academic_year",
    "fieldtype": "Link",
    "label": "Academic Year",
-   "options": "Academic Year"
+   "options": "Academic Year",
+   "read_only": 1
   },
   {
+   "fetch_from": "assignment_declaration.evaluator_id",
    "fieldname": "instructor_id",
    "fieldtype": "Link",
    "label": "Evaluator ID",
-   "options": "Instructor"
+   "options": "Instructor",
+   "read_only": 1
   },
   {
+   "fetch_from": "assignment_declaration.participant_group",
    "fieldname": "participant_group",
    "fieldtype": "Link",
    "label": "Participant Group",
-   "options": "Participant Group"
+   "options": "Participant Group",
+   "read_only": 1
   },
   {
    "fetch_from": "instructor_id.instructor_name",
    "fieldname": "instructor_name",
    "fieldtype": "Data",
-   "label": "Evaluator Name"
+   "label": "Evaluator Name",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_7",
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "participant_group.academic_term",
    "fieldname": "academic_term",
    "fieldtype": "Link",
    "label": "Academic Term",
-   "options": "Academic Term"
+   "options": "Academic Term",
+   "read_only": 1
   },
   {
+   "fetch_from": "participant_group.program",
    "fieldname": "select_course",
    "fieldtype": "Link",
-   "label": "Select Course",
-   "options": "Programs"
+   "label": "Programs",
+   "options": "Programs",
+   "read_only": 1
   },
   {
+   "fetch_from": "participant_group.course",
    "fieldname": "select_module",
    "fieldtype": "Link",
-   "label": "Select Module",
-   "options": "Course"
+   "label": "Course",
+   "options": "Course",
+   "read_only": 1
   },
   {
    "fieldname": "select_assignment",
@@ -134,18 +161,102 @@
   },
   {
    "fieldname": "section_break_xwr9u",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Participant Details"
   },
   {
    "fieldname": "assessment_component",
    "fieldtype": "Link",
    "label": "Assessment Component",
    "options": "Assessment Criteria"
+  },
+  {
+   "fieldname": "assignment_declaration",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Assignment Declaration",
+   "options": "Assignment Declaration",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_jn5ad",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_oojbv",
+   "fieldtype": "Section Break",
+   "label": "Details of Declaration"
+  },
+  {
+   "fieldname": "section_break_szylx",
+   "fieldtype": "Section Break",
+   "label": "Evaluator Details"
+  },
+  {
+   "fetch_from": "participant_group.participant_group",
+   "fieldname": "participant_group_name",
+   "fieldtype": "Data",
+   "label": "Participant Group Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "participant_group.tot_start_date",
+   "fieldname": "tot_start_date",
+   "fieldtype": "Date",
+   "label": "TOT Start Date",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "participant_group.tot_end_date",
+   "fieldname": "tot_end_date",
+   "fieldtype": "Date",
+   "label": "TOT End Date",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "select_module.course_name",
+   "fieldname": "module_name",
+   "fieldtype": "Data",
+   "label": "Module Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "select_module.course_code",
+   "fieldname": "module_code",
+   "fieldtype": "Data",
+   "label": "Module Code",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "assignment_declaration.assignment_start_date",
+   "fieldname": "assignment_declaration_start_date",
+   "fieldtype": "Date",
+   "label": "Assignment Declaration Start Date",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "assignment_declaration.assignment_end_date",
+   "fieldname": "assignment_declaration_end_date",
+   "fieldtype": "Date",
+   "label": "Assignment Declaration End Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_0ztnm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_0taaf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_whz5q",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-05 15:33:16.722686",
+ "modified": "2023-09-25 12:48:22.849437",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Evaluation",
