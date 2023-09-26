@@ -78,14 +78,14 @@
   },
   {
    "fieldname": "marks",
-   "fieldtype": "Int",
+   "fieldtype": "Data",
    "label": "Marks Earned"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-26 12:48:40.904343",
+ "modified": "2023-09-26 15:15:45.640526",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Job sheet",

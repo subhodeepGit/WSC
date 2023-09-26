@@ -38,6 +38,14 @@ frappe.ui.form.on('Assignment Evaluation', {
 		frm.refresh_field('weightage');
 		frm.refresh_field('marks');
 
+		frm.set_query('assignment_declaration', function(){
+			return{
+				"filters": [
+					["Assignment Declaration", "docstatus", "=", 1],
+				]
+			}
+		})
+
 		frm.set_query("instructor_id", function() {
 			return {
 				query: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.instructor',
@@ -176,3 +184,15 @@ frappe.ui.form.on('Assignment Evaluation', {
 		}
 	}
 })
+
+// Child table Calculation
+frappe.ui.form.on('Job sheet', {	//Child table Name
+	marks:function(frm, cdt, cdn){	//Child table field Name where you data enter
+	var d = locals[cdt][cdn];
+	var total = 0;
+	let a= parseInt(total)
+	frm.doc.job_sheet_fetch.forEach(function(d)  { if (d.marks >= 0){a = a+ parseInt(d.marks);} }); //Child table name and field name
+	frm.set_value("marks_earned", a);			// Parent field name where calculation going to fetch
+	refresh_field("marks_earned");
+  },
+});
