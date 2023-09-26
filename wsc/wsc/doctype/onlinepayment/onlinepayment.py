@@ -12,7 +12,7 @@ import secrets
 import os
 import logging
 from wsc.wsc.notification.custom_notification import email_transaction_status
-
+from datetime import datetime
 
 class OnlinePayment(Document):
     def validate(self):
@@ -89,7 +89,11 @@ def open_gateway(party_name, roll_no, amount, order_id,url,gw_provider):
             
             p_merchant_id = merchant_id
             p_billing_name = party_name
-            p_customer_identifier = roll_no
+            if roll_no:
+                p_customer_identifier = roll_no
+            else:
+                p_customer_identifier=""
+
             p_amount = amount
             p_order_id = order_id
             p_merchant_url = url
@@ -174,13 +178,27 @@ def get_order_status():
         logging.info(" amount_paid %s",amount_paid)
         billing_name = response_data.get('billing_name')[0]
         logging.info(" billing_name %s",billing_name)
-        time_of_transaction = response_data.get('order_date_time')[0]
-        logging.info(" time_of_transaction %s",time_of_transaction)
+
+        if "trans_date" in response_data:
+            
+            if response_data["trans_date"][0]=='null': 
+                time_of_transaction= datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                logging.info(" time_of_transaction %s",time_of_transaction)
+            else:
+                time_of_transaction = response_data.get('trans_date')[0]
+                logging.info(" time_of_transaction %s",time_of_transaction)
+        else:    
+            time_of_transaction = response_data.get('order_date_time')[0]
+            logging.info(" time_of_transaction %s",time_of_transaction)  
+             
+
+       
         status_message = response_data.get('status_message')[0]
         logging.info(" status_message %s",status_message) 
         gateway_name = response_data.get('delivery_name')[0]
+        gateway_nameinupper=gateway_name.upper()
         logging.info(" gateway_name %s", gateway_name)
-        transaction_info = f"Order ID: {order_id}\nStatus Message: {status_message}\nAmount Paid: {amount_paid}\nBilling Name: {billing_name}\nGateway_name: {gateway_name}"
+        transaction_info = f"Order ID: {order_id}\nStatus Message: {status_message}\nAmount Paid: {amount_paid}\nBilling Name: {billing_name}"
        
         
         if order_id and transaction_id:
@@ -194,6 +212,8 @@ def get_order_status():
             doc.transaction_status = order_status
             doc.transaction_status_description = transaction_info
             doc.date_time_of_transaction=time_of_transaction
+            doc.gateway_name=gateway_nameinupper
+            
             try:
                 logging.info("inside try.....................")
 
@@ -272,11 +292,13 @@ def getTransactionDetails(doc):
             data_dict = json.loads(json_string)
             order_no = data_dict["Order_Status_Result"]["order_no"]
             order_status = data_dict["Order_Status_Result"]["order_status"]
+            logging.info(" order_status: %s",order_status)
             order_bank_ref_no = data_dict["Order_Status_Result"]["order_bank_response"]
             order_gross_amt = data_dict["Order_Status_Result"]["order_gross_amt"]
             order_amt = data_dict["Order_Status_Result"]["order_amt"]
             reference_no = data_dict["Order_Status_Result"]["reference_no"]
             order_date_time = data_dict["Order_Status_Result"]["order_status_date_time"]
+            
             final_status_info = f"Order ID: {order_no}\nTransaction ID: {reference_no}\nGross Amount : {order_gross_amt}\nOrder Amount : {order_amt}\nOrder Status: {order_status}\nTime of Transaction: {order_date_time}\nBank Ref No.: {order_bank_ref_no}"
             logging.info(" final_status_info : %s",data_dict)
             logging.info(" SUCESSFULLY COMPLETED")

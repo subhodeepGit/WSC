@@ -4,6 +4,48 @@
 // ------------------------------------------------------------------------------------------------------------
 frappe.ui.form.on('Assignment Evaluation', {
 	setup: function(frm){
+		frm.set_df_property('job_sheet_fetch', 'cannot_add_rows', true);
+		frm.set_df_property('job_sheet_fetch', 'cannot_delete_rows', true);
+		var df = frappe.meta.get_docfield("Job sheet","job_sheet_number", frm.doc.name);
+		df.read_only = 1;
+		var df = frappe.meta.get_docfield("Job sheet","job_sheet_name", frm.doc.name);
+		df.read_only = 1;
+		var df = frappe.meta.get_docfield("Job sheet","start_date_and_time", frm.doc.name);
+		df.read_only = 1;
+		var df = frappe.meta.get_docfield("Job sheet","end_date_and_time", frm.doc.name);
+		df.read_only = 1;
+		var df = frappe.meta.get_docfield("Job sheet","total_durationin_hours", frm.doc.name);
+		df.read_only = 1;
+		var df = frappe.meta.get_docfield("Job sheet","assessment_criteria", frm.doc.name);
+		df.read_only = 1;
+		var df = frappe.meta.get_docfield("Job sheet","total_marks", frm.doc.name);
+		df.read_only = 1;
+		var df = frappe.meta.get_docfield("Job sheet","pass_marks", frm.doc.name);
+		df.read_only = 1;
+		var df = frappe.meta.get_docfield("Job sheet","weightage", frm.doc.name);
+		df.read_only = 1;
+		var df = frappe.meta.get_docfield("Job sheet","marks", frm.doc.name);
+		df.reqd = 1;
+
+		frm.refresh_field('job_sheet_fetch');
+		frm.refresh_field('job_sheet_name');
+		frm.refresh_field('start_date_and_time');
+		frm.refresh_field('end_date_and_time');
+		frm.refresh_field('total_durationin_hours');
+		frm.refresh_field('assessment_criteria');
+		frm.refresh_field('total_marks');
+		frm.refresh_field('pass_marks');
+		frm.refresh_field('weightage');
+		frm.refresh_field('marks');
+
+		frm.set_query('assignment_declaration', function(){
+			return{
+				"filters": [
+					["Assignment Declaration", "docstatus", "=", 1],
+				]
+			}
+		})
+
 		frm.set_query("instructor_id", function() {
 			return {
 				query: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.instructor',
@@ -116,5 +158,41 @@ frappe.ui.form.on('Assignment Evaluation', {
 			alert('Earned marks cannot be more than total marks')
 			frm.set_value('marks_earned', '')
 		}
+	},
+	assignment_declaration: function(frm){
+		if (frm.doc.assignment_declaration == undefined || frm.doc.assignment_declaration == "" || frm.doc.assignment_declaration == null) {
+
+		} else {
+			frappe.model.with_doc("Assignment Declaration", frm.doc.assignment_declaration, function () {
+				var tabletransfer = frappe.model.get_doc("Assignment Declaration", frm.doc.assignment_declaration);
+				cur_frm.doc.job_sheet_fetch = "";
+				cur_frm.refresh_field("job_sheet_fetch");
+				$.each(tabletransfer.job_sheet, function (index, row) {
+					var d = frappe.model.add_child(cur_frm.doc, "Job sheet", "job_sheet_fetch");
+					d.job_sheet_number = row.job_sheet_number;
+					d.job_sheet_name = row.job_sheet_name;
+					d.start_date_and_time = row.start_date_and_time;
+					d.end_date_and_time = row.end_date_and_time;
+					d.total_durationin_hours = row.total_durationin_hours;
+					d.assessment_criteria = row.assessment_criteria;
+					d.total_marks = row.total_marks;
+					d.pass_marks = row.pass_marks;
+					d.weightage = row.weightage;
+					cur_frm.refresh_field("job_sheet_fetch");
+				});
+			});
+		}
 	}
 })
+
+// Child table Calculation
+frappe.ui.form.on('Job sheet', {	//Child table Name
+	marks:function(frm, cdt, cdn){	//Child table field Name where you data enter
+	var d = locals[cdt][cdn];
+	var total = 0;
+	let a= parseInt(total)
+	frm.doc.job_sheet_fetch.forEach(function(d)  { if (d.marks >= 0){a = a+ parseInt(d.marks);} }); //Child table name and field name
+	frm.set_value("marks_earned", a);			// Parent field name where calculation going to fetch
+	refresh_field("marks_earned");
+  },
+});

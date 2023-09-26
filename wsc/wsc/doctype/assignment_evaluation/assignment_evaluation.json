@@ -34,16 +34,13 @@
   "participant_name",
   "section_break_whz5q",
   "assessment_component",
-  "section_break_13",
-  "total_marks",
   "weightage",
-  "column_break_15",
-  "passing_marks",
   "marks_earned",
+  "column_break_15",
+  "total_marks",
+  "passing_marks",
   "section_break_bv17f",
-  "select_assignment",
-  "column_break_7",
-  "assignment_name"
+  "job_sheet_fetch"
  ],
  "fields": [
   {
@@ -85,10 +82,6 @@
    "read_only": 1
   },
   {
-   "fieldname": "column_break_7",
-   "fieldtype": "Column Break"
-  },
-  {
    "fetch_from": "participant_group.academic_term",
    "fieldname": "academic_term",
    "fieldtype": "Link",
@@ -113,12 +106,6 @@
    "read_only": 1
   },
   {
-   "fieldname": "select_assignment",
-   "fieldtype": "Link",
-   "label": "Select Assignment",
-   "options": "Assignment"
-  },
-  {
    "fieldname": "marks_earned",
    "fieldtype": "Int",
    "label": "Marks Earned"
@@ -128,10 +115,6 @@
    "fieldtype": "Link",
    "label": "Participant ID",
    "options": "ToT Participant"
-  },
-  {
-   "fieldname": "section_break_13",
-   "fieldtype": "Section Break"
   },
   {
    "fieldname": "column_break_15",
@@ -157,11 +140,6 @@
    "fieldtype": "Data",
    "label": "Passing Marks",
    "read_only": 1
-  },
-  {
-   "fieldname": "assignment_name",
-   "fieldtype": "Data",
-   "label": "Assignment Name"
   },
   {
    "fieldname": "column_break_vjh6g",
@@ -268,11 +246,18 @@
   {
    "fieldname": "section_break_bv17f",
    "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.assignment_declaration",
+   "fieldname": "job_sheet_fetch",
+   "fieldtype": "Table",
+   "label": "Job Sheet",
+   "options": "Job sheet"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-25 16:53:34.853764",
+ "modified": "2023-09-26 12:49:17.697462",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Evaluation",
