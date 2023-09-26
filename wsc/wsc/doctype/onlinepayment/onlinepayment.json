@@ -34,7 +34,8 @@
   "payment_status",
   "payment_id",
   "remarks",
-  "amended_from"
+  "amended_from",
+  "gateway_name"
  ],
  "fields": [
   {
@@ -119,6 +120,7 @@
    "in_standard_filter": 1,
    "label": "Party",
    "options": "Student",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -235,12 +237,17 @@
    "options": "OnlinePayment",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "gateway_name",
+   "fieldtype": "Data",
+   "label": "Gateway Name"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-25 10:09:26.579223",
+ "modified": "2023-09-26 17:22:31.369152",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "OnlinePayment",
