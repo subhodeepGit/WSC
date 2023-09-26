@@ -210,7 +210,7 @@ frappe.ui.form.on('Student Applicant', {
 			}, 'Actions');
 
 			frm.add_custom_button(__("Not Approve"), function() {
-				frm.set_value("application_status", "Hold");
+				frm.set_value("application_status", "Applied");
 				frm.save_or_update();
 			}, 'Actions');
 		}
@@ -232,9 +232,9 @@ frappe.ui.form.on('Student Applicant', {
             frm.add_custom_button("Instruction", () => {
                 frappe.new_doc("Student Applicant Instruction")
             });    
-        
-        // console.log(frm.doc.image);
-        if(frappe.user.has_role(["Applicant"]) && !frappe.user.has_role(["System Manager"]) && frappe.user.has_role(["Education Examination Dept"])){
+
+        // }
+        if(frappe.user.has_role(["Applicant"]) && !frappe.user.has_role(["System Manager"])){
 			frm.set_value("student_email_id", frappe.session.user)
 			frm.set_df_property('student_email_id', 'read_only', 1);
 		}
@@ -265,6 +265,7 @@ frappe.ui.form.on('Student Applicant', {
             frm.remove_custom_button("Approve","Actions");
             
         }
+
         if (!cur_frm.doc.__islocal && frappe.user.has_role(["Applicant"]) && !frappe.user.has_role(["System Manager"])){
             frm.remove_custom_button("Reject","Actions");
             frm.remove_custom_button("Approve","Actions");
@@ -273,7 +274,7 @@ frappe.ui.form.on('Student Applicant', {
         if (frappe.user.has_role(["Student","Instructor"]) && !frappe.user.has_role(["System Manager"])){
             frm.set_df_property('application_status', 'read_only', 1);
         }
-        if (frm.doc.application_status === "Approved" && frm.doc.docstatus === 1) {
+        if (frm.doc.application_status === "Approved" && frm.doc.docstatus === 1 && (frappe.user.has_role(["Education Admission Head"]))) {
             frappe.db.get_value('User',{'name':frappe.session.user},['module_profile'],(val) =>
 			{
                 if (val.module_profile!="Student"){
