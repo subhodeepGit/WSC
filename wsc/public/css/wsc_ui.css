@@ -174,9 +174,9 @@ body[frappe-session-status='logged-out'] nav.navbar {display: none;}
 /* .btn.btn-default.icon-btn{
     visibility: hidden; 
 } */
-.menu-btn-group{
+/* .menu-btn-group{
     visibility: hidden;
-}
+} */
 /* .btn.btn-default.btn-sm.ellipsis{
     visibility: hidden;
 } */
