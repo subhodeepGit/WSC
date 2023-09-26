@@ -15,7 +15,8 @@
   "assessment_criteria",
   "total_marks",
   "pass_marks",
-  "weightage"
+  "weightage",
+  "marks"
  ],
  "fields": [
   {
@@ -74,12 +75,17 @@
    "fieldtype": "Link",
    "label": "Job Sheet Number",
    "options": "Assignment"
+  },
+  {
+   "fieldname": "marks",
+   "fieldtype": "Int",
+   "label": "Marks Earned"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-13 11:10:19.247785",
+ "modified": "2023-09-26 12:48:40.904343",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Job sheet",
