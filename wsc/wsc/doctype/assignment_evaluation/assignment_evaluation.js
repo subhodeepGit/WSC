@@ -38,6 +38,14 @@ frappe.ui.form.on('Assignment Evaluation', {
 		frm.refresh_field('weightage');
 		frm.refresh_field('marks');
 
+		frm.set_query('assignment_declaration', function(){
+			return{
+				"filters": [
+					["Assignment Declaration", "docstatus", "=", 1],
+				]
+			}
+		})
+
 		frm.set_query("instructor_id", function() {
 			return {
 				query: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.instructor',
