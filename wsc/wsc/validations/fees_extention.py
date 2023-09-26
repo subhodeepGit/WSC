@@ -31,11 +31,12 @@ def on_cancel(self,method):
         online_payment_on_cancel(self)
 
 def online_payment(self):
-    if self.mode_of_payment=="Online Payment":
+    if self.mode_of_payment=="Online PG HDFC":
         if self.reference_no==None:
             frappe.throw("Reference Transaction ID. not maintaned")
         else:
-            Recon_info=frappe.get_all("OnlinePayment",{"transaction_id":self.reference_no,"transaction_status":"SUCCESS","docstatus":1,"payment_status":0},
+            Recon_info=frappe.get_all("OnlinePayment",{"transaction_id":self.reference_no,"transaction_status":"SUCCESS",
+                                                    "docstatus":1,"payment_status":0,"gateway_name":"HDFC"},
                                                         ["name","date_time_of_transaction","paying_amount","total_outstanding_amout","party"])
             if Recon_info:
                 Recon_info=Recon_info[0]
@@ -54,15 +55,50 @@ def online_payment(self):
                 else:
                     frappe.throw("Transaction ID. Belong to different studnet") 
             else:
-                frappe.throw("Transaction ID. not Found")     
+                frappe.throw("Transaction ID. not Found")   
+    if self.mode_of_payment=="Online PG AXIS":
+        if self.reference_no==None:
+            frappe.throw("Reference Transaction ID. not maintaned")
+        else:
+            Recon_info=frappe.get_all("OnlinePayment",{"transaction_id":self.reference_no,"transaction_status":"SUCCESS",
+                                                       "docstatus":1,"payment_status":0,"gateway_name":"AXIS"},
+                                                        ["name","date_time_of_transaction","paying_amount","total_outstanding_amout","party"])
+            if Recon_info:
+                Recon_info=Recon_info[0]
+                if self.party==Recon_info["party"]:
+                    if Recon_info['paying_amount']==self.total_allocated_amount:
+                        date_time_str = Recon_info["date_time_of_transaction"]
+                        try:
+                            date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f')
+                        except:
+                            # 14/08/2023 12:05:40
+                            date_time_obj = datetime.datetime.strptime(date_time_str, '%d/%m/%Y %H:%M:%S')
+                        date=date_time_obj.date()
+                        self.reference_date=date
+                    else:
+                        frappe.throw("Total Amount Of Transaction And Payment Amount Should Be Same Of Amount <b>Rs.%s </b>"%(Recon_info['paying_amount']))
+                else:
+                    frappe.throw("Transaction ID. Belong to different studnet") 
+            else:
+                frappe.throw("Transaction ID. not Found")                 
 
 def online_payment_on_submit(self):
-    if self.mode_of_payment=="Online Payment":
-        Recon_info=frappe.get_all("OnlinePayment",{"transaction_id":self.reference_no,"transaction_status":"SUCCESS","docstatus":1,"payment_status":0},
-                                                        ["name","date_time_of_transaction","paying_amount","total_outstanding_amout","party"])
+    if self.mode_of_payment=="Online PG HDFC":
+        Recon_info=frappe.get_all("OnlinePayment",{"transaction_id":self.reference_no,
+                                                   "transaction_status":"SUCCESS","docstatus":1,
+                                                   "payment_status":0,"gateway_name":"HDFC"},
+                                                    ["name","date_time_of_transaction","paying_amount",
+                                                        "total_outstanding_amout","party"])
         Recon_info=Recon_info[0]
         frappe.db.set_value("OnlinePayment",Recon_info['name'],"payment_status",1)
         frappe.db.set_value("OnlinePayment",Recon_info['name'],"payment_id",self.name)
+    if self.mode_of_payment=="Online PG AXIS":
+        Recon_info=frappe.get_all("OnlinePayment",{"transaction_id":self.reference_no,"transaction_status":"SUCCESS",
+                                                   "docstatus":1,"payment_status":0,"gateway_name":"AXIS"},
+                                                        ["name","date_time_of_transaction","paying_amount","total_outstanding_amout","party"])
+        Recon_info=Recon_info[0]
+        frappe.db.set_value("OnlinePayment",Recon_info['name'],"payment_status",1)
+        frappe.db.set_value("OnlinePayment",Recon_info['name'],"payment_id",self.name)    
 
 def online_payment_on_cancel(self):
     if self.mode_of_payment=="Online Payment":
