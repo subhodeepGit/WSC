@@ -11,6 +11,14 @@ from datetime import datetime
 
 class StudentApplicant(Document):
     def on_update_after_submit(doc):
+        if doc.docstatus==1 and doc.application_status=="Approved":
+                  if doc.doc_approved==1:
+                      frappe.throw("Unable to Edit the form once the application is Approved")
+                      doc.doc_approved=1
+
+        if doc.docstatus==1 and doc.application_status=="Approved":
+            frappe.db.set_value("Student Applicant",doc.name,'doc_approved',1)
+        
         if doc.docstatus==1:
             validate_attachment(doc)
             # validate_student_admission(doc)
@@ -90,8 +98,15 @@ class StudentApplicant(Document):
         validate_pincode(doc)
 
     def on_submit(self):
+        from datetime import datetime
+
+# datetime object containing current date and time
+        now = datetime.now()
+        print("now =", now)
+        dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+        frappe.db.set_value("Student Applicant",self.name,'date_time',dt_string)
         student_applicant_submit(self)
-        # validate_photo_attachment(self)
+
         for docmnt in self.document_list:
             if docmnt.attach:
                 docmnt.is_available = 1
@@ -99,9 +114,11 @@ class StudentApplicant(Document):
                 docmnt.is_available = 0
         
 def on_change(doc,method):
+    print("\n\n\nHELLO")
     delete_user_permission(doc)
     if doc.docstatus==1:
         if doc.application_status=="Approved":
+            # frappe.throw("Unable to change the any data after approval of the form")
             student_applicant_approved(doc)
         elif doc.applicaiton_status=="Rejected":
             student_applicant_rejected(doc)
