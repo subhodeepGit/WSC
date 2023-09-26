@@ -228,10 +228,10 @@ frappe.ui.form.on('Student Applicant', {
             frm.remove_custom_button("Preview")
         }
             frm.add_custom_button("Instruction", () => {
-                frappe.new_doc("Student Applicant Instruction")
+                frappe.new_doc("Application Form Instruction")
             });    
             frm.add_custom_button("Instruction", () => {
-                frappe.new_doc("Student Applicant Instruction")
+                frappe.new_doc("Application Form Instruction")
             });    
 
         // }
