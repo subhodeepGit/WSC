@@ -176,3 +176,15 @@ frappe.ui.form.on('Assignment Evaluation', {
 		}
 	}
 })
+
+// Child table Calculation
+frappe.ui.form.on('Job sheet', {	//Child table Name
+	marks:function(frm, cdt, cdn){	//Child table field Name where you data enter
+	var d = locals[cdt][cdn];
+	var total = 0;
+	let a= parseInt(total)
+	frm.doc.job_sheet_fetch.forEach(function(d)  { if (d.marks >= 0){a = a+ parseInt(d.marks);} }); //Child table name and field name
+	frm.set_value("marks_earned", a);			// Parent field name where calculation going to fetch
+	refresh_field("marks_earned");
+  },
+});
