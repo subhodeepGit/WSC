@@ -10,6 +10,7 @@
  "field_order": [
   "program_name",
   "start_date",
+  "current_date",
   "column_break_wyvzc",
   "program_status",
   "end_date",
@@ -75,11 +76,17 @@
    "label": "Chief coordinators list",
    "options": "chief coordinators list",
    "reqd": 1
+  },
+  {
+   "fieldname": "current_date",
+   "fieldtype": "Date",
+   "hidden": 1,
+   "label": "Current Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-31 11:03:24.014346",
+ "modified": "2023-09-25 17:17:26.761777",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "TnP Program",

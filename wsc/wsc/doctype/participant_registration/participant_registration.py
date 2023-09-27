@@ -16,7 +16,7 @@ def get_program_name(program_id = None):
 
 @frappe.whitelist()
 def get_event_details(event_id):
-	event_details = frappe.db.sql(""" SELECT event_name, event_date, start_time FROM `tabTnP Event` WHERE name = '%s' """%(event_id))
+	event_details = frappe.db.sql(""" SELECT event_name, event_start_date, start_time FROM `tabTnP Event` WHERE name = '%s' """%(event_id))
 	program_details = frappe.db.sql(""" SELECT in_a_program FROM `tabTnP Event` WHERE name = '%s'"""%(event_id))
 	if(program_details[0][0] == 0):
 		return [program_details[0][0], event_details[0][0], event_details[0][1], event_details[0][2]]

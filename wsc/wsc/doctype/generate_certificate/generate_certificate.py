@@ -7,18 +7,22 @@ from frappe.model.mapper import get_mapped_doc
 
 class GenerateCertificate(Document):
 	pass
+# ----------------------------------------------------------------------------------------------------------------------
+@frappe.whitelist()
+def get_program_id(event_id):
+	program_id = frappe.db.sql(""" SELECT in_a_program, select_program FROM `tabTnP Event` where name = '%s'"""%(event_id))
+	if(program_id[0][0] == 0):
+		return [0]
+	else:
+		return [program_id[0][0], program_id[0][1]]
+	
 
 @frappe.whitelist()
-def get_program_name(program_id):
-	program_name = frappe.db.sql("""SELECT program_name FROM `tabTnP Program` WHERE name = '%s'"""%(program_id))
-	return program_name[0][0]
+def get_participants(event_id):
+	participant_id = frappe.db.sql(""" SELECT participant_id FROM `tabParticipant Registration` WHERE select_event = '%s'"""%(event_id))
+	return participant_id
 
 @frappe.whitelist()
-def get_event_details(event_id):
-	event_details = frappe.db.sql(""" SELECT event_name, event_start_date, event_end_date FROM `tabTnP Event` WHERE name = '%s' """%(event_id))
-	return [event_details[0][0], event_details[0][1], event_details[0][2]]
-
-@frappe.whitelist()
-def get_participant_name(participant_id):
-	participant_name = frappe.db.sql(""" SELECT student_name FROM `tabStudent` WHERE name = '%s'"""%(participant_id))
-	return participant_name[0][0]
+def get_participant_name(event_id, participant_id):
+	participant_details = frappe.db.sql(""" SELECT participant_name, participant_type FROM `tabParticipant Registration` WHERE select_event = '%s' AND participant_id = '%s'"""%(event_id, participant_id))
+	return [participant_details[0][0], participant_details[0][1]]
