@@ -206,6 +206,12 @@
     "parentfield": "roles",
     "parenttype": "Role Profile",
     "role": "Instructor"
+   },
+   {
+      "parent": "Admission Manager",
+      "parentfield": "roles",
+      "parenttype": "Role Profile",
+      "role": "Education Admission Dept"
    }
   ]
  },
