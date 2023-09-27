@@ -5,6 +5,7 @@ import frappe
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 import json
+from frappe import _, scrub
 
 class Assignment(Document):
 	def validate(self):
@@ -103,18 +104,22 @@ def criteria(doctype, txt, searchfield, start, page_len, filters):
 
 @frappe.whitelist()
 def create_assignment(frm):
-	print("\n\n\n\n\n")
+	frappe.enqueue(assignment_enqueue, frm=frm, queue="long")
+	doc= frappe.get_doc("Assignment",frm)
+	doc.assignment_creation_status="Completed"
+	doc.save() 
+	# assignment_enqueue(frm)
+
+def assignment_enqueue(frm):
 	doc= frappe.get_doc("Assignment",frm)
 	participant_group=doc.participant_group
-	print(participant_group)
 	participant_list=frappe.get_all("Participant Table",{"parent":participant_group,'active':1},['name','participant','participant_name','active'])
-	print(participant_list)
-
+	# count = 0
 	for t in participant_list:
 		doc_data=frappe.new_doc("Assignment Upload")
 		doc_data.participant_group=participant_group
-		doc_data.start_date=doc.tot_start_date 
-		doc_data.end_date=doc.tot_end_date
+		doc_data.start_date=doc.start_date 
+		doc_data.end_date=doc.end_date
 		doc_data.course=doc.course
 		doc_data.programs=doc.programs
 		doc_data.academic_year=doc.academic_year
@@ -122,7 +127,11 @@ def create_assignment(frm):
 		doc_data.semester=doc.semester
 		doc_data.participant_id=t.participant
 		doc_data.assignment_id=doc.name
-		doc_data.save()  
+		doc_data.save()
+	# 	count += 1
+	
+	# frappe.publish_progress(count * 100 / len(participant_list), title=_("Creating Dimensions..."))
+	# frappe.clear_cache()
 
 
 
