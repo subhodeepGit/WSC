@@ -100,6 +100,9 @@ frappe.ui.form.on('Student Applicant', {
     after_save: function(frm) {
         frm.trigger("hide_n_show_child_table_fields");
     },
+    districts:function(frm){
+        frm.set_value("blocks","")
+    },
     setup: function(frm) {
         console.log(frm.doc);
         //Hostel Required Checkbox
@@ -107,9 +110,10 @@ frappe.ui.form.on('Student Applicant', {
         
         frm.set_query("blocks", function() {
             return {
-                filters: {
-                    "districts":frm.doc.districts
-                }
+                filters: [
+                    // "districts":frm.doc.districts
+                    ["Blocks","districts","=",frm.doc.districts]
+                ]
             }; 
         });
 
