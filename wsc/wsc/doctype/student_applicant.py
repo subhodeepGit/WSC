@@ -11,6 +11,8 @@ from datetime import datetime
 
 class StudentApplicant(Document):
     def on_update_after_submit(doc):
+        if not doc.image:
+            frappe.throw("Profile Photo is Mandatory")
         if doc.docstatus==1 and doc.application_status=="Approved":
                   if doc.doc_approved==1:
                       frappe.throw("Unable to Edit the form once the application is Approved")
