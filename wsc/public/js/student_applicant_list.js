@@ -26,10 +26,8 @@ frappe.listview_settings['Student Applicant'] = {
                 
             }
         }
-    }      
-};
-frappe.listview_settings['Student Applicant'] = {
-	add_fields: [ "application_status", 'paid'],
+    },  
+    add_fields: [ "application_status", 'paid'],
 	has_indicator_for_draft: 1,
 	get_indicator: function(doc) {
 		if (doc.paid) {
