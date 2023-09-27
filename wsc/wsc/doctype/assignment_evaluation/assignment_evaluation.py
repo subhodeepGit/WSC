@@ -97,21 +97,42 @@ def instructor(doctype, txt, searchfield, start, page_len, filters):
 					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
 	return instructor_details
 
+# @frappe.whitelist()
+# def participant(doctype, txt, searchfield, start, page_len, filters):
+# 	print("\n\n\n","ok")
+# 	searchfields = frappe.get_meta(doctype).get_search_fields()
+# 	searchfields = " or ".join("TP."+field + " like %(txt)s" for field in searchfields)
+# 	participant_group_id=filters.get('participant_group_id')
+# 	participant_details = frappe.db.sql(""" SELECT TP.name 
+# 											FROM `tabParticipant Table` as PT
+# 											JOIN `tabToT Participant` as TP on TP.name=PT.participant
+# 											where (TP.{key} like %(txt)s or {scond}) and
+# 													PT.parent = '{participant_group_id}'
+# 											""".format(
+# 												**{
+# 												"key": searchfield,
+# 												"scond": searchfields,
+# 												"participant_group_id":participant_group_id
+# 											}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+# 	return participant_details
+# -----------------------------------------------------------------------------------------------------------------------------
+
 @frappe.whitelist()
-def participant(doctype, txt, searchfield, start, page_len, filters):
+@frappe.validate_and_sanitize_search_inputs
+def get_qualified_participants(doctype, txt, searchfield, start, page_len, filters):
+	############################## Search Field Code################# 	
 	searchfields = frappe.get_meta(doctype).get_search_fields()
 	searchfields = " or ".join("TP."+field + " like %(txt)s" for field in searchfields)
-	participant_group_id=filters.get('participant_group_id')
-	participant_details = frappe.db.sql(""" SELECT TP.name 
-											FROM `tabParticipant Table` as PT
-											JOIN `tabToT Participant` as TP on TP.name=PT.participant
-											where (TP.{key} like %(txt)s or {scond}) and
-													PT.parent = '{participant_group_id}'
-											""".format(
-												**{
-												"key": searchfield,
-												"scond": searchfields,
-												"participant_group_id":participant_group_id
-											}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
-	return participant_details
-# -----------------------------------------------------------------------------------------------------------------------------
+	data=frappe.db.sql(""" select PT.participant_id, PT.participant_name, PT.status 
+					from `tabParticipant List Table` as PT
+					JOIN `tabToT Participant` as TP on TP.name=PT.participant_id
+					where (TP.{key} like %(txt)s or {scond}) and 
+					PT.parent ='{assignment_declaration}' and PT.status = 'Qualified'
+						 """.format(
+					**{
+						"key": searchfield,
+						"scond": searchfields,
+						"assignment_declaration":filters.get("assignment_declaration"),
+					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	############################ End Search Field Code ###############
+	return data
