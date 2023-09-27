@@ -9,24 +9,32 @@
  "engine": "InnoDB",
  "field_order": [
   "participant_type",
+  "section_break_jjn4n",
+  "participant_id",
   "select_internship",
   "column_break_yfbdt",
-  "participant_id",
+  "participant_name",
   "internship_name",
   "column_break_2sdjy",
-  "participant_name"
+  "company_name",
+  "internship_drive_name",
+  "column_break_piqle",
+  "company_sector",
+  "type_of_drive",
+  "section_break_uq88o",
+  "drive_description"
  ],
  "fields": [
   {
    "fieldname": "participant_type",
    "fieldtype": "Select",
    "label": "Participant Type",
-   "options": "Student\nStaff"
+   "options": "Student\nEmployee"
   },
   {
    "fieldname": "select_internship",
    "fieldtype": "Link",
-   "label": "Select Internship",
+   "label": "Select Internship Drive",
    "options": "Internship Drive"
   },
   {
@@ -35,9 +43,9 @@
   },
   {
    "fieldname": "participant_id",
-   "fieldtype": "Link",
+   "fieldtype": "Dynamic Link",
    "label": "Participant ID",
-   "options": "Student"
+   "options": "participant_type"
   },
   {
    "fieldname": "internship_name",
@@ -46,17 +54,60 @@
   },
   {
    "fieldname": "column_break_2sdjy",
-   "fieldtype": "Column Break"
+   "fieldtype": "Section Break",
+   "label": "Internship Details"
   },
   {
    "fieldname": "participant_name",
    "fieldtype": "Data",
    "label": "Participant Name"
+  },
+  {
+   "fieldname": "section_break_jjn4n",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "select_internship.company_name",
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "label": "Company Name"
+  },
+  {
+   "fieldname": "column_break_piqle",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "select_internship.company_sector",
+   "fieldname": "company_sector",
+   "fieldtype": "Data",
+   "label": "Company Sector"
+  },
+  {
+   "fieldname": "section_break_uq88o",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "select_internship.about_drive",
+   "fieldname": "drive_description",
+   "fieldtype": "Text Editor",
+   "label": "Drive Description"
+  },
+  {
+   "fetch_from": "select_internship.title_of_drive",
+   "fieldname": "internship_drive_name",
+   "fieldtype": "Data",
+   "label": "Internship Drive Name"
+  },
+  {
+   "fetch_from": "select_internship.type_of_drive",
+   "fieldname": "type_of_drive",
+   "fieldtype": "Data",
+   "label": "Type of Drive"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-06-05 17:31:53.922848",
+ "modified": "2023-09-27 18:02:24.747661",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Application",

@@ -8,22 +8,26 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "event_details_section",
   "select_event",
-  "select_program",
-  "participant_id",
-  "column_break_fldod",
+  "event_start_date",
+  "column_break_jvzbw",
   "event_name",
+  "event_end_date",
+  "program_details_section",
+  "program_id",
+  "program_start_date",
+  "column_break_oxjld",
   "program_name",
-  "participant_name"
+  "program_end_date",
+  "participant_details_section",
+  "participant_id",
+  "participant_type",
+  "column_break_ga9pw",
+  "participant_name",
+  "completion_status"
  ],
  "fields": [
-  {
-   "fieldname": "select_program",
-   "fieldtype": "Link",
-   "label": "Select Program",
-   "options": "TnP Program",
-   "read_only": 1
-  },
   {
    "fieldname": "select_event",
    "fieldtype": "Link",
@@ -32,21 +36,18 @@
   },
   {
    "fieldname": "participant_id",
-   "fieldtype": "Link",
-   "label": "Participant ID",
-   "options": "Student"
+   "fieldtype": "Select",
+   "label": "Participant ID"
   },
   {
-   "fieldname": "column_break_fldod",
-   "fieldtype": "Column Break"
-  },
-  {
+   "fetch_from": "program_id.program_name",
    "fieldname": "program_name",
    "fieldtype": "Data",
    "label": "Program Name",
    "read_only": 1
   },
   {
+   "fetch_from": "select_event.event_name",
    "fieldname": "event_name",
    "fieldtype": "Data",
    "label": "Event Name"
@@ -55,11 +56,82 @@
    "fieldname": "participant_name",
    "fieldtype": "Data",
    "label": "Participant Name"
+  },
+  {
+   "fieldname": "event_details_section",
+   "fieldtype": "Section Break",
+   "label": "Event Details"
+  },
+  {
+   "fetch_from": "select_event.event_start_date",
+   "fieldname": "event_start_date",
+   "fieldtype": "Data",
+   "label": "Event Start Date"
+  },
+  {
+   "fieldname": "column_break_jvzbw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "select_event.event_end_date",
+   "fieldname": "event_end_date",
+   "fieldtype": "Data",
+   "label": "Event End Date"
+  },
+  {
+   "fieldname": "program_details_section",
+   "fieldtype": "Section Break",
+   "label": "Program Details"
+  },
+  {
+   "fieldname": "program_id",
+   "fieldtype": "Link",
+   "label": "Program ID",
+   "options": "TnP Program",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "program_id.start_date",
+   "fieldname": "program_start_date",
+   "fieldtype": "Data",
+   "label": "Program Start Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_oxjld",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "program_id.end_date",
+   "fieldname": "program_end_date",
+   "fieldtype": "Data",
+   "label": "Program End Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "participant_details_section",
+   "fieldtype": "Section Break",
+   "label": "Participant details"
+  },
+  {
+   "fieldname": "participant_type",
+   "fieldtype": "Data",
+   "label": "Participant Type"
+  },
+  {
+   "fieldname": "column_break_ga9pw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "completion_status",
+   "fieldtype": "Select",
+   "label": "Completion Status",
+   "options": "Complete\nIncomplete"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-22 12:23:48.621207",
+ "modified": "2023-09-27 15:52:55.558072",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Generate Certificate",
