@@ -36,7 +36,7 @@ frappe.listview_settings['Student Applicant'] = {
 			return [__("Paid"), "green", "paid,=,Yes"];
 		}
         else if (doc.application_status=="Applied" && doc.docstatus==0) {
-			return [__("Draft"), "orange", "application_status,=,Applied"];
+			return [__("Draft"), "yellow", "application_status,=,Applied"];
 		}
 		else if (doc.application_status=="Applied" && doc.docstatus==1) {
 			return [__("Applied"), "orange", "application_status,=,Applied"];
