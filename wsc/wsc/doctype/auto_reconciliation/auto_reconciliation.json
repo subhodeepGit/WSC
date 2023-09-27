@@ -42,14 +42,6 @@
    "fieldtype": "Section Break"
   },
   {
-   "default": "Online Payment",
-   "fieldname": "type_of_transaction",
-   "fieldtype": "Select",
-   "label": "Type of Transaction",
-   "options": "Online Payment",
-   "reqd": 1
-  },
-  {
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "label": "Doc No",
@@ -80,12 +72,18 @@
    "fieldname": "error_log",
    "fieldtype": "Read Only",
    "label": "Error Log"
+  },
+  {
+   "fieldname": "type_of_transaction",
+   "fieldtype": "Select",
+   "label": "Type of Transaction",
+   "options": "Online PG HDFC\nOnline PG AXIS"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-14 16:28:56.183074",
+ "modified": "2023-09-26 17:34:02.092218",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Auto Reconciliation",
