@@ -503,7 +503,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Course Enrollment",
+   "label": "Program Enrollment",
    "link_count": 0,
    "link_to": "Program Enrollment",
    "link_type": "DocType",
@@ -521,7 +521,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-09-20 17:51:53.442860",
+ "modified": "2023-09-27 00:38:38.082716",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Admission",
@@ -545,6 +545,9 @@
   },
   {
    "role": "Accounts User"
+  },
+  {
+   "role": "Education Admission Dept"
   }
  ],
  "sequence_id": 1.0,
