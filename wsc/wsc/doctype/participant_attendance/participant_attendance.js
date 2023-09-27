@@ -47,7 +47,8 @@ frappe.ui.form.on('Participant Attendance', {
 					result.message.forEach(element =>{
 						var childTable = frm.add_child('selected_participants_table')
 						childTable.participant_id = element.participant_id
-						childTable.participant_name = element.student_name
+						childTable.participant_name = element.participant_name
+						childTable.participant_type = element.participant_type
 					})
 				}
 				frm.refresh()

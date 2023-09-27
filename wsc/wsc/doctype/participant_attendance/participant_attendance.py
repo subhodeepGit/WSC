@@ -19,12 +19,18 @@ def get_event_name(event_id):
 	event_details = frappe.db.sql(""" SELECT event_name FROM `tabTnP Event` WHERE name = '%s' """%(event_id))
 	return event_details[0][0]
 
+# @frappe.whitelist()
+# def get_participants(event_id):
+# 	participant_data = frappe.get_all('Participant Registration', filters = [['select_event', '=', event_id]], fields = ['participant_id'])
+# 	for t in participant_data:
+# 		student_name = frappe.get_all('Student', filters = [['name', '=', t['participant_id']]], fields = ['student_name'])
+# 		t['student_name'] = student_name[0]['student_name']
+# 	return participant_data
+
+
 @frappe.whitelist()
 def get_participants(event_id):
-	participant_data = frappe.get_all('Participant Registration', filters = [['select_event', '=', event_id]], fields = ['participant_id'])
-	for t in participant_data:
-		student_name = frappe.get_all('Student', filters = [['name', '=', t['participant_id']]], fields = ['student_name'])
-		t['student_name'] = student_name[0]['student_name']
+	participant_data = frappe.get_all('Participant Registration', filters = [['select_event', '=', event_id]], fields = ['participant_id', 'participant_name', 'participant_type'])
 	return participant_data
 
 

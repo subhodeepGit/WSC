@@ -11,15 +11,15 @@
   "enable",
   "section_break_2armi",
   "title_of_drive",
+  "company_name",
   "posting_date",
   "application_start_date",
-  "current_cgpa",
   "internship_drive_for",
   "column_break_usibm",
   "internship_company",
+  "company_sector",
   "type_of_drive",
   "application_end_date",
-  "active_backlog",
   "location_of_drive",
   "section_break_f4br7",
   "about_drive",
@@ -55,11 +55,6 @@
    "label": "Application Start Date"
   },
   {
-   "fieldname": "current_cgpa",
-   "fieldtype": "Data",
-   "label": "Current CGPA"
-  },
-  {
    "fieldname": "internship_drive_for",
    "fieldtype": "Select",
    "label": "Internship Drive For",
@@ -85,11 +80,6 @@
    "fieldname": "application_end_date",
    "fieldtype": "Date",
    "label": "Application End Date"
-  },
-  {
-   "fieldname": "active_backlog",
-   "fieldtype": "Data",
-   "label": "Active Backlog"
   },
   {
    "fieldname": "location_of_drive",
@@ -128,11 +118,25 @@
    "fieldname": "about_drive",
    "fieldtype": "Text Editor",
    "label": "About Drive"
+  },
+  {
+   "fetch_from": "internship_company.company_name",
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Company Name"
+  },
+  {
+   "fetch_from": "internship_company.sector",
+   "fieldname": "company_sector",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Company Sector"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-22 13:36:08.339783",
+ "modified": "2023-09-27 17:58:25.831445",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Drive",
