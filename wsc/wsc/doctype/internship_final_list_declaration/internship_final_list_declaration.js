@@ -5,7 +5,8 @@
 
 frappe.ui.form.on('Internship Final List Declaration', {
 	refresh: function(frm) {
-
+		frm.set_df_property('selected_participants_list', 'cannot_add_rows', true)
+		frm.set_df_property('selected_participants_list', 'cannot_delete_rows', true)
 	},
 	select_internship : function(frm){
 		frappe.call({

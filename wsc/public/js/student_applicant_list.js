@@ -25,8 +25,14 @@ frappe.listview_settings['Student Applicant'] = {
                 $(".filter-selector").hide();
                 
             }
+            $('[data-label="Export"]').parent().parent().remove();  
+            $('[data-label="Edit"]').parent().parent().remove(); 
+            $('[data-label="Cancel"]').parent().parent().remove();
+            $('[data-label="Delete"]').parent().parent().remove();
+            $('[data-label="Submit"]').parent().parent().remove();
         }
     },  
+    
     add_fields: [ "application_status", 'paid'],
 	has_indicator_for_draft: 1,
 	get_indicator: function(doc) {

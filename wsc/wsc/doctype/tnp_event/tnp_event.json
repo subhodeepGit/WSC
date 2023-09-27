@@ -12,12 +12,17 @@
   "column_break_ztkus",
   "has_certificate",
   "section_break_de69j",
-  "event_name",
   "select_program",
-  "event_date",
+  "program_start_date",
+  "column_break_yu3dt",
+  "program_name",
+  "program_end_date",
+  "section_break_kc018",
+  "program_description",
+  "section_break_rzzfs",
+  "event_name",
   "column_break_2qkdb",
   "event_status",
-  "program_name",
   "section_break_ek8db",
   "start_time",
   "event_start_date",
@@ -48,17 +53,13 @@
   },
   {
    "fieldname": "section_break_de69j",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Program Details"
   },
   {
    "fieldname": "event_name",
    "fieldtype": "Data",
    "label": "Event Name"
-  },
-  {
-   "fieldname": "event_date",
-   "fieldtype": "Date",
-   "label": "Event Date"
   },
   {
    "fieldname": "column_break_2qkdb",
@@ -132,12 +133,47 @@
    "depends_on": "in_a_program",
    "fieldname": "program_name",
    "fieldtype": "Data",
-   "label": "Program Name"
+   "label": "Program Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "select_program.start_date",
+   "fieldname": "program_start_date",
+   "fieldtype": "Date",
+   "label": "Program Start Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_yu3dt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "select_program.end_date",
+   "fieldname": "program_end_date",
+   "fieldtype": "Date",
+   "label": "Program End Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_kc018",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "select_program.description",
+   "fieldname": "program_description",
+   "fieldtype": "Text Editor",
+   "label": "Program Description",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_rzzfs",
+   "fieldtype": "Section Break",
+   "label": "Event Details"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-21 14:22:56.917191",
+ "modified": "2023-09-26 15:19:08.246614",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "TnP Event",

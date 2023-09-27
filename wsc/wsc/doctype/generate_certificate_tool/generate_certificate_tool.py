@@ -7,7 +7,23 @@ from frappe.model.mapper import get_mapped_doc
 import json
 
 class Generatecertificatetool(Document):
-	pass
+	def validate(self):
+		for d in self.get('selected_participants_list'):
+			result = frappe.new_doc('Generate Certificate')
+			result.select_event = self.select_event
+			result.event_name = self.event_name
+			result.event_start_date = self.event_start_date
+			result.event_end_date = self.event_end_date
+			result.participant_id = d.participant_id
+			result.participant_name = d.participant_name
+			result.participant_type = d.participant_type
+			result.completion_status = 'Complete'
+			if(len(self.select_program) > 0):
+				result.program_id = self.select_program
+				result.program_name = self.program_name
+				result.program_start_date = self.program_start_date
+				result.program_end_date = self.program_end_date
+			result.save()
 
 @frappe.whitelist()
 def get_program_name(program_id = None):
@@ -28,34 +44,8 @@ def get_event_details(event_id):
 def get_eligible_participants(event_id):
 	parent_name = frappe.db.sql( """ SELECT name FROM `tabParticipant Attendance` WHERE select_event = '%s' """%(event_id))
 	parent_name = parent_name[0][0]
-	participant_data = frappe.get_all('Selected participants list', filters = [['parent', '=', parent_name],['present', '=', 1]], fields = ['participant_id', 'participant_name']) 
+	participant_data = frappe.get_all('Selected participants list', filters = [['parent', '=', parent_name],['present', '=', 1]], fields = ['participant_id', 'participant_name', 'participant_type']) 
 	return participant_data
 
-@frappe.whitelist()
-def generate_record(doc):
-	obj = json.loads(doc)
-	participants_table = obj['selected_participants_list']
-	print('\n\n')
-	print(type(len(obj['select_program'])))
-	print('\n\n')
-	if(len(obj['select_program']) == 0):
-		# event has no program
-		for d in participants_table:
-			result = frappe.new_doc('Generate Certificate')
-			result.select_event = obj['select_event']
-			result.event_name = obj['event_name']
-			result.participant_id = d['participant_id']
-			result.participant_name = d['participant_name']
-			result.save()
-	elif(len(obj['select_program']) != 0 and len(obj['program_name']) != 0):
-		# event is in a program
-		for d in participants_table:
-			result = frappe.new_doc('Generate Certificate')
-			result.select_program = obj['select_program']
-			result.program_name = obj['program_name']
-			result.select_event = obj['select_event']
-			result.event_name = obj['event_name']
-			result.participant_id = d['participant_id']
-			result.participant_name = d['participant_name']
-			result.save()
+
 	
