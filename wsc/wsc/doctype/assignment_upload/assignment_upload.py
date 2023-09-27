@@ -9,28 +9,25 @@ from frappe.model.mapper import get_mapped_doc
 from datetime import datetime, timedelta,date
 
 class AssignmentUpload(Document):
-	def validate(self): 
-		print("\n\n\n")
+	def validate(self):
 		formatted_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-		print(formatted_datetime)
-		
-
 		if isinstance(formatted_datetime, str):
 			formatted_datetime=datetime.strptime(formatted_datetime, '%Y-%m-%d %H:%M:%S')
-		print(type(formatted_datetime))	
 		start_date = self.start_date
 		end_date = self.end_date
 		if isinstance(end_date, str):
 			end_date=datetime.strptime(end_date, '%Y-%m-%d %H:%M:%S')
-			start_date=datetime.strptime(start_date, '%Y-%m-%d %H:%M:%S')
-
+			start_date=datetime.strptime(start_date, '%Y-%m-%d %H:%M:%S')	
 
 		if formatted_datetime < start_date or formatted_datetime > end_date:
 			frappe.throw('Cannot submit assignment before or after assigned dates')
 		else:
-			duplicate_upload(self)
+			if self.is_new():
+				duplicate_upload(self)
+
 	def on_submit(self):
-		pass		
+		if not self.assignment_attach_button:
+			frappe.throw("Assignment Is Not Attached")		
 
 def duplicate_upload(self):
 	data=frappe.get_all("Assignment Upload",{
