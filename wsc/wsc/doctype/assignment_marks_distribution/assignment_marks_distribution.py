@@ -6,6 +6,8 @@ from frappe.model.document import Document
 
 class AssignmentMarksDistribution(Document):
 	def validate(self):
+		if self.is_new():
+			self.duplicate_record()
 		self.weightage_cal()
 		self.passing_marks_cal()
 		self.total_marks_cal()
@@ -30,5 +32,10 @@ class AssignmentMarksDistribution(Document):
 
 		if total!=int(self.total_marks):
 			frappe.throw(" Aggregate Total Marks Should Be Equal To Total Marks ")
+	def duplicate_record(self):
+		data=frappe.get_all("Assignment Marks Distribution",{"course":self.course,"assessment_criteria":self.assessment_criteria})
+		if data:
+			frappe.throw("For the Module %s and For Assessment Component %s Data Already Present"%(self.course,self.assessment_criteria))
+		
 
 
