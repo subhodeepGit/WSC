@@ -127,7 +127,7 @@ def get_qualified_participants(doctype, txt, searchfield, start, page_len, filte
 					from `tabParticipant List Table` as PT
 					JOIN `tabToT Participant` as TP on TP.name=PT.participant_id
 					where (TP.{key} like %(txt)s or {scond}) and 
-					PT.parent ='{assignment_declaration}' and PT.status = 'Qualified'
+					PT.parent ='{assignment_declaration}' and PT.qualification_check = 1
 						 """.format(
 					**{
 						"key": searchfield,
