@@ -1,0 +1,129 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "AMD-.####",
+ "creation": "2023-09-27 16:55:14.591403",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "course",
+  "module_name",
+  "column_break_jyyny",
+  "module_type",
+  "module_code",
+  "section_break_ljdkr",
+  "assessment_criteria",
+  "total_marks",
+  "column_break_p0f3k",
+  "weightage",
+  "passing_marks",
+  "section_break_1ql7b",
+  "assignment_marks_distribution_child"
+ ],
+ "fields": [
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Course",
+   "options": "Course",
+   "reqd": 1
+  },
+  {
+   "fieldname": "assessment_criteria",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Assessment Criteria",
+   "options": "Assessment Criteria",
+   "reqd": 1
+  },
+  {
+   "fieldname": "total_marks",
+   "fieldtype": "Data",
+   "label": "Total Marks",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weightage",
+   "fieldtype": "Data",
+   "label": "Assessment Criteria Weightage",
+   "read_only": 1
+  },
+  {
+   "fieldname": "passing_marks",
+   "fieldtype": "Data",
+   "label": "Total Passing Marks",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_1ql7b",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "assignment_marks_distribution_child",
+   "fieldtype": "Table",
+   "label": "Assignment Marks Distribution",
+   "options": "Assignment Marks Distribution Child"
+  },
+  {
+   "fieldname": "section_break_ljdkr",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "course.course_name",
+   "fieldname": "module_name",
+   "fieldtype": "Data",
+   "label": "Module Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "course.module_type",
+   "fieldname": "module_type",
+   "fieldtype": "Data",
+   "label": " Module Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_jyyny",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "course.course_code",
+   "fieldname": "module_code",
+   "fieldtype": "Data",
+   "label": " Module Code ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_p0f3k",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-09-28 16:02:42.597041",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Assignment Marks Distribution",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
