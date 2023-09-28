@@ -85,8 +85,9 @@
   },
   {
    "fieldname": "assignment_name",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Assignment Name",
+   "options": "Assignment Name",
    "reqd": 1
   },
   {
@@ -332,7 +333,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-27 16:31:46.936658",
+ "modified": "2023-09-28 16:54:04.743484",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment",
