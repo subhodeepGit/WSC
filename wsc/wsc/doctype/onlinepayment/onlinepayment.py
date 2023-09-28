@@ -125,7 +125,12 @@ def open_gateway(party_name, roll_no, amount, order_id,url,gw_provider):
         
             p_merchant_id = merchant_id
             p_billing_name = party_name
-            p_customer_identifier = roll_no
+
+            if roll_no:
+                p_customer_identifier = roll_no
+            else:
+                p_customer_identifier=""
+           
             p_amount = amount
             p_order_id = order_id
             p_merchant_url = url
