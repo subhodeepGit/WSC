@@ -464,7 +464,30 @@ frappe.ui.form.on('Student Applicant', {
     //     }
     // }
 })
+frappe.ui.form.on("Education Qualifications Details", "total_marks", function(frm, cdt, cdn) {
+       
+    var data = locals[cdt][cdn];
 
+    if(data.total_marks>=data.earned_marks){
+        data.total_marks==" " && data.earned_marks==" "
+        data.score=(data.earned_marks/data.total_marks)*100
+        
+    }
+    else{
+        // frm.set_value("score","")
+        
+        // cur_frm.refresh_field (data.score);
+        data.score=""
+        data.earned_marks=""
+        refresh_field("score", data.name, data.parentfield);
+        refresh_field("earned_marks", data.name, data.parentfield);
+        frappe.msgprint("Please Enter Valid Data..")
+    }       
+    cur_frm.refresh_field ("education_qualifications_details");
+    if (data.score < data.admission_percentage){
+        frappe.throw("You are not eligible to apply for these course.")
+    }
+ });
 frappe.ui.form.on("Education Qualifications Details", "earned_marks", function(frm, cdt, cdn) {
        
     var data = locals[cdt][cdn];
@@ -473,7 +496,13 @@ frappe.ui.form.on("Education Qualifications Details", "earned_marks", function(f
         data.total_marks==" " && data.earned_marks==" "
         data.score=(data.earned_marks/data.total_marks)*100
     }
-    else{
+    else if (data.earned_marks>data.total_marks){
+        // frm.set_value("score","")
+    
+        data.earned_marks=""
+        refresh_field("earned_marks", data.name, data.parentfield);
+        data.score=""
+        refresh_field("score", data.name, data.parentfield);
         frappe.throw("Please Enter Valid Data..")
     }       
     cur_frm.refresh_field ("education_qualifications_details");
@@ -488,6 +517,8 @@ frappe.ui.form.on("Education Qualifications Details", "earned_marks", function(f
         data.score=data.cgpa*10   
     }
     else if(data.cgpa>10 || data.cgpa<0){
+        data.score=""
+        data.
         frappe.throw("Please enter your valid CGPA")
     }
     else{

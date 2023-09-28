@@ -68,11 +68,15 @@ def get_participants(participant_group_id = None, attendance_applicable = 0, att
 			if(attendance_applicable == '1'):
 				if(final_attendance >= int(attendance_percentage)):
 					d['status'] = 'Qualified'
+					d['qualification_check']=1
 					pass
 				else:
 					d['status'] = 'Not Qualified'
+					d['qualification_check']=0
 			else:
 				d['status'] = 'Qualified'
+				d['qualification_check']=1
+		print("\n\n\n\n",participants)
 		return participants
 
 

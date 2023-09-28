@@ -113,8 +113,7 @@
    "fieldname": "participant_list",
    "fieldtype": "Table",
    "label": "Participant List",
-   "options": "Participant List Table",
-   "read_only": 1
+   "options": "Participant List Table"
   },
   {
    "fieldname": "column_break_6",
@@ -303,7 +302,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-25 10:54:15.761553",
+ "modified": "2023-09-28 16:14:21.811767",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Declaration",

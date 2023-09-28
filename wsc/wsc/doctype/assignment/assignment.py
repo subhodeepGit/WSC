@@ -46,8 +46,32 @@ def get_criteria_details(course, assessment_criteria):
 	if(course == '' or assessment_criteria == ''):
 		return ['','','']
 	else:
-		criteria_details = frappe.get_all('Credit distribution List', filters = [['parent', '=', course], ['assessment_criteria', '=', assessment_criteria]], fields = ['total_marks','passing_marks','weightage'])
+		criteria_details = frappe.get_all('Credit distribution List', 
+										filters = [['parent', '=', course], ['assessment_criteria', '=', assessment_criteria]], 
+										fields = ['total_marks','passing_marks','weightage'])
 		return [criteria_details[0]['total_marks'], criteria_details[0]['passing_marks'], criteria_details[0]['weightage']]
+	
+@frappe.whitelist()
+def get_criteria_details_amd(course, assessment_criteria,assignment_name):
+	final_data=[]
+	if course and assessment_criteria and assignment_name:
+		amd_data=frappe.get_all("Assignment Marks Distribution",{"course":course,"assessment_criteria":assessment_criteria},['name'])
+		total_marks=''
+		passing_marks=''
+		weightage=''
+		for t in amd_data:
+			amd_child_data=frappe.get_all("Assignment Marks Distribution Child",{"parent":t['name'],
+																		"assignment_name":assignment_name},
+																		['name',"total_marks","weightage"])
+			for j in amd_child_data:
+				total_marks=j["total_marks"]
+				passing_marks=j["total_marks"]
+				weightage=j["weightage"]
+
+		final_data=[total_marks, passing_marks,weightage]	
+			
+	return final_data
+		
 
 
 # ---------------------------------------------------------------------------------------------
@@ -108,7 +132,7 @@ def create_assignment(frm):
 	doc= frappe.get_doc("Assignment",frm)
 	doc.assignment_creation_status="Completed"
 	doc.save() 
-	# assignment_enqueue(frm)
+	assignment_enqueue(frm)
 
 def assignment_enqueue(frm):
 	doc= frappe.get_doc("Assignment",frm)

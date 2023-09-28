@@ -5,6 +5,21 @@ frappe.ui.form.on('Assignment Declaration', {
 	setup: function(frm){
 		frm.set_df_property('participant_list', 'cannot_add_rows', true);
 		frm.set_df_property('participant_list', 'cannot_delete_rows', true);
+
+		var df = frappe.meta.get_docfield("Participant List Table","participant_id", frm.doc.name);
+		df.read_only = 1;
+		var df = frappe.meta.get_docfield("Participant List Table","participant_name", frm.doc.name);
+		df.read_only = 1;
+		var df = frappe.meta.get_docfield("Participant List Table","participant_attendance", frm.doc.name);
+		df.read_only = 1;
+		var df = frappe.meta.get_docfield("Participant List Table","status", frm.doc.name);
+		df.read_only = 1;
+
+		frm.refresh_field('participant_id');
+		frm.refresh_field('participant_name');
+		frm.refresh_field('participant_attendance');
+		frm.refresh_field('status');
+
 		frm.set_query("evaluator_id", function() {
 			return {
 				query: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.instructor',
@@ -98,6 +113,7 @@ frappe.ui.form.on('Assignment Declaration', {
 						childTable.participant_name = element.participant_name
 						childTable.participant_attendance = element.attendance
 						childTable.status = element.status
+						childTable.qualification_check = element.qualification_check
 					})
 				}
 				frm.refresh()
@@ -172,3 +188,15 @@ frappe.ui.form.on('Assignment Declaration', {
 		frm.set_value("participant_group","")
 	},
 });
+
+// frappe.ui.form.on('Participant List Table', 'qualification_check', function(frm, cdt, cdn) {
+// 		var d = locals[cdt][cdn];
+// 		if(d.qualification_check == 1){
+// 			d.status = "Qualified"
+// 			refresh_field("status", d.name, d.parentfield);
+// 		} else {
+// 			d.status = "Not Qualified"
+// 			refresh_field("status", d.name, d.parentfield);
+// 		}
+// 	}
+// );
