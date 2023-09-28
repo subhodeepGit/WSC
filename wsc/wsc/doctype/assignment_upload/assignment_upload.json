@@ -49,8 +49,9 @@
   {
    "fetch_from": "assignment_id.assignment_name",
    "fieldname": "assignment_number",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Assignment Name",
+   "options": "Assignment Name",
    "read_only": 1
   },
   {
@@ -265,7 +266,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-27 11:48:49.415706",
+ "modified": "2023-09-28 17:58:37.851223",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Upload",

@@ -169,6 +169,12 @@ frappe.ui.form.on('Assignment Evaluation', {
 		}
 	},
 	assignment_declaration: function(frm){
+		// alert(JSON.stringify(frm.doc.job_sheet_fetch))
+		if (frm.doc.job_sheet_fetch != ""){
+			frm.set_df_property('marks_earned', 'read_only', 1)
+		} else {
+			frm.set_df_property('marks_earned', 'read_only', 0)
+		}
 		if (frm.doc.assignment_declaration == undefined || frm.doc.assignment_declaration == "" || frm.doc.assignment_declaration == null) {
 
 		} else {
@@ -198,6 +204,11 @@ frappe.ui.form.on('Assignment Evaluation', {
 frappe.ui.form.on('Job sheet', {	//Child table Name
 	marks:function(frm, cdt, cdn){	//Child table field Name where you data enter
 	var d = locals[cdt][cdn];
+	// if (d.marks > d.total_marks){
+	// 	d.marks = ''
+	// 	frm.set_value("marks_earned", '');
+	// 	refresh_field("marks", d.name, d.parentfield);
+	// }
 	var total = 0;
 	let a= parseInt(total)
 	frm.doc.job_sheet_fetch.forEach(function(d)  { if (d.marks >= 0){a = a+ parseInt(d.marks);} }); //Child table name and field name
