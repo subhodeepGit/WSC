@@ -329,7 +329,7 @@
  ],
  "image_field": "image",
  "links": [],
- "modified": "2023-08-29 20:37:48.641050",
+ "modified": "2023-09-28 10:46:50.438227",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant",
@@ -373,7 +373,7 @@
   }
  ],
  "restrict_to_domain": "Education",
- "search_fields": "hrms_id",
+ "search_fields": "hrms_id,participant_name",
  "show_name_in_global_search": 1,
  "sort_field": "modified",
  "sort_order": "DESC",

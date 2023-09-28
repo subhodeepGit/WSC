@@ -82,7 +82,7 @@ frappe.ui.form.on('OnlinePayment', {
                 method: "wsc.wsc.doctype.onlinepayment.onlinepayment.open_gateway",
                 args: {
                     party_name: frm.doc.party_name,
-                    roll_no: frm.doc.roll_no,
+                    roll_no: frm.doc.party,
                     amount: frm.doc.paying_amount,
                     order_id: frm.doc.name,
                     url: window.location.href,

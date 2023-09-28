@@ -1666,12 +1666,12 @@ def send_mail_to_jobapplicants_final_notification(doc):
 ### Student payment notification through email ###    
 ## Started by Rupali Bhatta 
 
-def email_transaction_status(doc):   
-    course_details = frappe.get_value("Current Educational Details", {"parent":format(doc.get("name"))},["programs","academic_term"])
+def email_transaction_status(doc): 
+    course_details = frappe.get_value("Current Educational Details", {"parent":doc.get("party")},["programs","academic_term"])
     enrol_course= course_details[0]
     enrol_semester= course_details[1]
     msg = """<p>Dear Student,</p><br>"""
-    msg+= """<p>We are pleased to inform you that the payment of the fees for the 1st semester of </p><br>"""
+    msg+= """<p>We are pleased to inform you that the payment of the fees for the {0} of </p><br>""".format(enrol_semester) or '-' 
     msg+="""<b>INR </b>  {0}<br>""".format(doc.get('paying_amount') or '-' )   
     msg+= """<p>You have been successfully allotted a seat in the</p><br>"""
     
