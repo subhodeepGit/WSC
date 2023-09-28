@@ -484,9 +484,9 @@ frappe.ui.form.on("Education Qualifications Details", "total_marks", function(fr
         frappe.msgprint("Please Enter Valid Data..")
     }       
     cur_frm.refresh_field ("education_qualifications_details");
-    if (data.score < data.admission_percentage){
-        frappe.throw("You are not eligible to apply for these course.")
-    }
+    // if (data.score < data.admission_percentage){
+    //     frappe.throw("You are not eligible to apply for these course.")
+    // }
  });
 frappe.ui.form.on("Education Qualifications Details", "earned_marks", function(frm, cdt, cdn) {
        
