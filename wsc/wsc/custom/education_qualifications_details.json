@@ -74,7 +74,7 @@
    "columns": 0,
    "creation": "2022-04-11 12:40:08.824899",
    "default": null,
-   "depends_on": "eval:doc.percentage_cgpa=='Percentage'",
+   "depends_on": "eval:doc.percentage_cgpa=='Percentage' && doc.total_marks",
    "description": null,
    "docstatus": 0,
    "dt": "Education Qualifications Details",
