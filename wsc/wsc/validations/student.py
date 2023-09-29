@@ -47,15 +47,25 @@ def on_trash(doc,method):
 def on_update(doc,method):
 	if doc.student_applicant:
 		frappe.db.set_value("Student Applicant", doc.student_applicant, "application_status", "Approved")
+
 def on_change(self,method):
-	user_info=frappe.get_all("Student",{"name":self.name},["student_email_id","user"])
-	if user_info[0]["user"]!=self.student_email_id and user_info[0]["user"]!= None:
-		old_user=user_info[0]["user"]
-		frappe.rename_doc("User", old_user, self.student_email_id)
-		frappe.db.commit()
-		user=frappe.get_doc("User",self.student_email_id)
-		user.email=self.student_email_id
-		user.save()
+	pass
+	# if not self.is_new():
+	# 	print("\n\n\n\n")
+	# 	print(self.is_new())
+	# 	print(self.name)
+	# 	a=frappe.db.sql(""" select name from `tabStudent` where name="%s" """%(self.name))
+	# 	print(a)
+	# 	user_update(self)
+	# user_info=frappe.get_all("Student",{"name":self.name},["student_email_id","user"])
+	# if user_info[0]["user"]!=self.student_email_id and user_info[0]["user"]!= None:
+	# 	old_user=user_info[0]["user"]
+	# 	frappe.rename_doc("User", old_user, self.student_email_id)
+	# 	frappe.db.commit()
+	# 	user=frappe.get_doc("User",self.student_email_id)
+	# 	user.email=self.student_email_id
+	# 	user.save()
+	
 def validate(doc,method):
 	validate_pin_code(doc)
 	validate_job_date(doc)
@@ -65,6 +75,26 @@ def validate(doc,method):
 	duplicate_row_validation(doc, "siblings", ['full_name', 'gender'])
 	duplicate_row_validation(doc, "disable_type", ['disability_type', 'percentage_of_disability'])
 	records = frappe.get_all("Program Intermit Form",{"form_status":"Approve"},["student","student_name"])
+	if not doc.is_new():
+		user_update(doc)
+
+
+def user_update(self):
+	present_email=self.student_email_id
+	doc_before_save = self.get_doc_before_save()
+	old_email=doc_before_save.student_email_id
+	if present_email!=old_email:
+		frappe.rename_doc("User", old_email, present_email)
+		frappe.db.commit()
+		user=frappe.get_doc("User",self.student_email_id)
+		user.email=self.student_email_id
+		user.save()
+		if self.user: 
+			self.user=present_email
+		if self.student_applicant:
+			frappe.db.sql(""" UPDATE `tabStudent Applicant` SET  student_email_id='%s' WHERE name='%s' """%(present_email,self.student_applicant))
+
+
 def validate_job_date(doc):
 	for d in doc.get("experience_detail"):
 			if d.job_start_date  > d.job_end_date:
