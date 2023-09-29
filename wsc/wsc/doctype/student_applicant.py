@@ -232,7 +232,15 @@ def delete_permissions(doc):
     
 
 def mobile_number_validation(doc):
-    
+
+    if doc.student_mobile_number:
+        if not (doc.student_mobile_number).isdigit():
+            frappe.throw("Field <b>Mobile Number</b> Accept Digits Only")
+        if len(doc.student_mobile_number)>10:
+            frappe.throw("Field <b>Mobile Number</b> must be 10 Digits")
+        if len(doc.student_mobile_number)<10:
+            frappe.throw("Field <b>Mobile Number</b> must be 10 Digits")
+        
     if doc.local_guardian_contact_no:
        
         if not (doc.local_guardian_contact_no).isdigit():
@@ -252,7 +260,7 @@ def mobile_number_validation(doc):
         if len(doc.fathers_contact_number)>10:
             frappe.throw("Field <b>Father's Contact Number</b> must be 10 Digits")
 
-    if doc.fathers_contact_number:
+    if doc.mothers_contact_number:
         
         if not (doc.mothers_contact_number).isdigit():
             frappe.throw("Field <b>Mother's Contact Number</b> Accept Digits Only")
@@ -378,14 +386,7 @@ def education_details_validation(doc):
             if d.parameter not in [ed.qualification for ed in doc.get("education_qualifications_details")]:
                 frappe.throw("Please Add <b>{0}</b> in Education Details Table".format(d.parameter))
            
-def mobile_number_validation(doc):
-    if doc.student_mobile_number:
-        if not (doc.student_mobile_number).isdigit():
-            frappe.throw("Field <b>Mobile Number</b> Accept Digits Only")
-        if len(doc.student_mobile_number)>10:
-            frappe.throw("Field <b>Mobile Number</b> must be 10 Digits")
-        if len(doc.student_mobile_number)<10:
-            frappe.throw("Field <b>Mobile Number</b> must be 10 Digits")
+
 
 def email_validation(doc):
     for stu_app in frappe.get_all("Student Applicant",{"student_email_id":doc.student_email_id,"docstatus":("!=",2),"name":("!=",doc.name)}):
