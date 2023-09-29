@@ -12,7 +12,7 @@
  "is_hidden": 0,
  "label": "Application Form",
  "links": [],
- "modified": "2023-09-25 18:39:10.232747",
+ "modified": "2023-09-26 20:03:45.625563",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Application Form",
@@ -33,7 +33,7 @@
    "color": "Grey",
    "doc_view": "New",
    "label": "Instruction For Admission Form",
-   "link_to": "Student Applicant Instruction",
+   "link_to": "Application Form Instruction",
    "type": "DocType"
   },
   {

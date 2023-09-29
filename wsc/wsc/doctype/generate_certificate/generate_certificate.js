@@ -16,37 +16,86 @@ frappe.ui.form.on('Generate Certificate', {
 	// 		})
 	// 	}
 	// },
-	select_program : function(frm){
+
+
+	select_event: function(frm){
 		frappe.call({
-			method : 'wsc.wsc.doctype.generate_certificate.generate_certificate.get_program_name',
-			args: {
-				program_id : frm.doc.select_program
-			},
-			callback : function(result){
-				frm.set_value('program_name', result.message)
-			}
-		})
-	},
-	select_event : function(frm){
-		frappe.call({
-			method: 'wsc.wsc.doctype.generate_certificate.generate_certificate.get_event_details',
+			method: 'wsc.wsc.doctype.generate_certificate.generate_certificate.get_program_id',
 			args:{
 				event_id : frm.doc.select_event
 			},
-			callback : function(result){
-				frm.set_value("event_name", result.message[0])
+			callback: function(result){
+				if(result.message[0] == 0){
+					frm.set_value('program_id', '')
+				}
+				else{
+					frm.set_value('program_id', result.message[1])
+				}
+			}
+		})
+		frappe.call({
+			method: 'wsc.wsc.doctype.generate_certificate.generate_certificate.get_participants',
+			args:{
+				event_id : frm.doc.select_event
+			},
+			callback: function(result){
+				if(result.message[0] == 0){
+					frm.set_value('program_id', '')
+				}
+				else{
+					frm.set_df_property('participant_id','options', result.message)
+				}
 			}
 		})
 	},
-	participant_id : function(frm){
+	participant_id: function(frm){
 		frappe.call({
-			method :'wsc.wsc.doctype.generate_certificate.generate_certificate.get_participant_name',
+			method: 'wsc.wsc.doctype.generate_certificate.generate_certificate.get_participant_name',
 			args:{
+				event_id : frm.doc.select_event,
 				participant_id : frm.doc.participant_id
 			},
 			callback: function(result){
-				frm.set_value('participant_name', result.message)
+				frm.set_value('participant_name', result.message[0])
+				frm.set_value('participant_type', result.message[1])
 			}
 		})
 	},
+
+	// -------------------------------------------------------------------------------------------------------
+
+
+	// select_program : function(frm){
+	// 	frappe.call({
+	// 		method : 'wsc.wsc.doctype.generate_certificate.generate_certificate.get_program_name',
+	// 		args: {
+	// 			program_id : frm.doc.select_program
+	// 		},
+	// 		callback : function(result){
+	// 			frm.set_value('program_name', result.message)
+	// 		}
+	// 	})
+	// },
+	// select_event : function(frm){
+	// 	frappe.call({
+	// 		method: 'wsc.wsc.doctype.generate_certificate.generate_certificate.get_event_details',
+	// 		args:{
+	// 			event_id : frm.doc.select_event
+	// 		},
+	// 		callback : function(result){
+	// 			frm.set_value("event_name", result.message[0])
+	// 		}
+	// 	})
+	// },
+	// participant_id : function(frm){
+	// 	frappe.call({
+	// 		method :'wsc.wsc.doctype.generate_certificate.generate_certificate.get_participant_name',
+	// 		args:{
+	// 			participant_id : frm.doc.participant_id
+	// 		},
+	// 		callback: function(result){
+	// 			frm.set_value('participant_name', result.message)
+	// 		}
+	// 	})
+	// },
 });

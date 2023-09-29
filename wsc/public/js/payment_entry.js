@@ -458,7 +458,7 @@ frappe.ui.form.on('Payment Entry', {
     validate: function(frm) {
         // Get the value of the parent field
         var parentFieldValue = frm.doc.party_type;
-		console.log(parentFieldValue)
+		// console.log(parentFieldValue)
         // Iterate through the child table rows
         $.each(frm.doc.deductions || [], function(index, row) {
             // Check if the parent field value meets the condition to make the child field mandatory

@@ -277,7 +277,8 @@ def get_order_status():
         transaction_info = f"Order ID: {order_id}\nStatus Message: {status_message}\nAmount Paid: {amount_paid}\nBilling Name: {billing_name}"
        
         
-        if order_id and transaction_id:
+        # if order_id and transaction_id:
+        if order_status !='Timeout':
             logging.info("inside if.....................")
             logging.info(" order_id %s",order_id)
             logging.info(" transaction_id %s",transaction_id)
@@ -292,7 +293,6 @@ def get_order_status():
             
             try:
                 logging.info("inside try.....................")
-
                 doc.save(ignore_permissions=True)
                 logging.info("inside save.....................")
                 doc.run_method('submit')

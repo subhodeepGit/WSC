@@ -8,13 +8,20 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "event_details_section",
   "select_event",
-  "select_program",
-  "get_eligible_participants_list",
-  "column_break_rqlmf",
+  "event_start_date",
+  "column_break_3u0gi",
   "event_name",
+  "event_end_date",
+  "program_details_section",
+  "select_program",
+  "program_start_date",
+  "column_break_l9wng",
   "program_name",
+  "program_end_date",
   "eligible_participants_section",
+  "get_eligible_participants_list",
   "selected_participants_list",
   "generate_certificate"
  ],
@@ -23,8 +30,7 @@
    "fieldname": "select_program",
    "fieldtype": "Link",
    "label": "Select Program",
-   "options": "TnP Program",
-   "read_only": 1
+   "options": "TnP Program"
   },
   {
    "fieldname": "select_event",
@@ -40,16 +46,13 @@
    "label": "Get Eligible Participants List"
   },
   {
-   "fieldname": "column_break_rqlmf",
-   "fieldtype": "Column Break"
-  },
-  {
+   "fetch_from": "select_program.program_name",
    "fieldname": "program_name",
    "fieldtype": "Data",
-   "label": "Program Name",
-   "read_only": 1
+   "label": "Program Name"
   },
   {
+   "fetch_from": "select_event.event_name",
    "fieldname": "event_name",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -71,11 +74,53 @@
    "fieldname": "generate_certificate",
    "fieldtype": "Button",
    "label": "Generate Certificate"
+  },
+  {
+   "fieldname": "event_details_section",
+   "fieldtype": "Section Break",
+   "label": "Event Details"
+  },
+  {
+   "fetch_from": "select_event.event_start_date",
+   "fieldname": "event_start_date",
+   "fieldtype": "Data",
+   "label": "Event Start Date"
+  },
+  {
+   "fieldname": "column_break_3u0gi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "select_event.event_end_date",
+   "fieldname": "event_end_date",
+   "fieldtype": "Data",
+   "label": "Event End Date"
+  },
+  {
+   "fieldname": "program_details_section",
+   "fieldtype": "Section Break",
+   "label": "Program Details"
+  },
+  {
+   "fetch_from": "select_program.start_date",
+   "fieldname": "program_start_date",
+   "fieldtype": "Data",
+   "label": "Program Start Date"
+  },
+  {
+   "fieldname": "column_break_l9wng",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "select_program.end_date",
+   "fieldname": "program_end_date",
+   "fieldtype": "Data",
+   "label": "Program End Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-22 12:15:02.274389",
+ "modified": "2023-09-27 16:13:26.295698",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Generate certificate tool",

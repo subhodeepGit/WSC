@@ -8,17 +8,18 @@
  "engine": "InnoDB",
  "field_order": [
   "black_list",
+  "section_break_iay3v",
   "company_name",
   "email",
-  "about_company",
-  "sector",
-  "visitor",
-  "section_break_7",
-  "belong_to_department",
-  "address_and_contact_section",
   "address_html",
+  "column_break_pm2ot",
+  "sector",
+  "contact_html",
+  "visitor",
   "column_break_9",
-  "contact_html"
+  "about_company",
+  "section_break_7",
+  "belong_to_department"
  ],
  "fields": [
   {
@@ -35,7 +36,8 @@
   },
   {
    "fieldname": "section_break_7",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "For departments"
   },
   {
    "fieldname": "belong_to_department",
@@ -45,24 +47,18 @@
    "reqd": 1
   },
   {
-   "fieldname": "address_and_contact_section",
-   "fieldtype": "Section Break",
-   "label": "Address and Contact",
-   "options": "fa fa-map-marker"
-  },
-  {
    "fieldname": "address_html",
    "fieldtype": "Data",
    "label": "Address "
   },
   {
    "fieldname": "column_break_9",
-   "fieldtype": "Column Break"
+   "fieldtype": "Section Break"
   },
   {
    "fieldname": "contact_html",
    "fieldtype": "Phone",
-   "label": "Contact "
+   "label": "Company Contact "
   },
   {
    "default": "0",
@@ -87,12 +83,21 @@
    "fieldname": "visitor",
    "fieldtype": "Select",
    "label": "Visitor",
-   "options": "\nInternship\nDay 0 visitor\nDay 1 visitor\nDay 2 visitor\nOne time visitor\nNormal visitor"
+   "options": "\nInternship\nDay 0 visitor\nDay 1 visitor\nDay 2 visitor\nOne time visitor\nNormal visitor",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_iay3v",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_pm2ot",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-03-02 17:23:16.771279",
+ "modified": "2023-09-27 17:31:34.657034",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Company",

@@ -54,11 +54,20 @@ frappe.ui.form.on('Assignment Evaluation', {
 			};
 		});
 
+		// frm.set_query("participant_id", function() {
+		// 	return {
+		// 		query: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.participant',
+		// 		filters:{"participant_group_id":frm.doc.participant_group}
+		// 		// filters:{"assignment_declaration":frm.doc.assignment_declaration}
+				
+		// 	};
+		// });
 		frm.set_query("participant_id", function() {
 			return {
-				query: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.participant',
-				filters:{"participant_group_id":frm.doc.participant_group}
-				
+				query: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_qualified_participants',
+				filters: {
+					"assignment_declaration":frm.doc.assignment_declaration,
+				}
 			};
 		});
 	},
@@ -81,21 +90,21 @@ frappe.ui.form.on('Assignment Evaluation', {
 	// 		}
 	// 	})
 	// },
-	participant_id: function(frm){
-		frappe.call({
-			method: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_participant_name',
-			args:{
-				participant_group_id : frm.doc.participant_group,
-				participant_id : frm.doc.participant_id
-			},
-			callback: function(result){
-				// alert(JSON.stringify(result))
-				if(result.message){
-					frm.set_value("participant_name",result.message)
-				}
-			}
-		})
-	},
+	// participant_id: function(frm){
+	// 	frappe.call({
+	// 		method: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_participant_name',
+	// 		args:{
+	// 			participant_group_id : frm.doc.participant_group,
+	// 			participant_id : frm.doc.participant_id
+	// 		},
+	// 		callback: function(result){
+	// 			// alert(JSON.stringify(result))
+	// 			if(result.message){
+	// 				frm.set_value("participant_name",result.message)
+	// 			}
+	// 		}
+	// 	})
+	// },
 	participant_name: function(frm){
 		frappe.call({
 			method: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.set_marks',
@@ -155,11 +164,17 @@ frappe.ui.form.on('Assignment Evaluation', {
 	},
 	marks_earned: function(frm){
 		if(frm.doc.marks_earned > frm.doc.total_marks){
-			alert('Earned marks cannot be more than total marks')
+			frappe.msgprint('Earned marks cannot be more than total marks')
 			frm.set_value('marks_earned', '')
 		}
 	},
 	assignment_declaration: function(frm){
+		// alert(JSON.stringify(frm.doc.job_sheet_fetch))
+		if (frm.doc.job_sheet_fetch != ""){
+			frm.set_df_property('marks_earned', 'read_only', 1)
+		} else {
+			frm.set_df_property('marks_earned', 'read_only', 0)
+		}
 		if (frm.doc.assignment_declaration == undefined || frm.doc.assignment_declaration == "" || frm.doc.assignment_declaration == null) {
 
 		} else {
@@ -189,6 +204,12 @@ frappe.ui.form.on('Assignment Evaluation', {
 frappe.ui.form.on('Job sheet', {	//Child table Name
 	marks:function(frm, cdt, cdn){	//Child table field Name where you data enter
 	var d = locals[cdt][cdn];
+	if (d.marks > d.total_marks){
+		d.marks = ''
+		frm.set_value("marks_earned", '');
+		refresh_field("marks", d.name, d.parentfield);
+        frappe.msgprint("Earned Marks cannot be greater than Total Marks!")
+	}
 	var total = 0;
 	let a= parseInt(total)
 	frm.doc.job_sheet_fetch.forEach(function(d)  { if (d.marks >= 0){a = a+ parseInt(d.marks);} }); //Child table name and field name

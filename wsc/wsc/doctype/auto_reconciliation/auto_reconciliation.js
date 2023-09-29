@@ -28,20 +28,7 @@ frappe.ui.form.on('Auto Reconciliation', {
 			},
 			callback: function(r) {
 				if(r.message){
-					if(frm.doc.type_of_transaction !="Online Payment"){
-						frappe.model.clear_table(frm.doc, 'student_reference');
-						(r.message).forEach(element => {
-							var c = frm.add_child("student_reference")
-							c.student=element.student
-							c.student_name=element.student_name
-							c.utr_no=element.unique_transaction_reference_utr
-							c.amount=element.amount
-							c.outstanding_amount=element.outstanding_amount
-							c.reconciliation_status=element.reconciliation_status
-							c.remarks=element.remarks
-						});
-					};
-					if(frm.doc.type_of_transaction=="Online Payment"){
+					if(frm.doc.type_of_transaction =="Online PG HDFC"){
 						frappe.model.clear_table(frm.doc, 'student_reference');
 						(r.message).forEach(element => {
 							var c = frm.add_child("student_reference")
@@ -50,14 +37,31 @@ frappe.ui.form.on('Auto Reconciliation', {
 							c.utr_no=element.transaction_id
 							c.amount=element.paying_amount
 							c.outstanding_amount=element.outstanding_amount
-							c.reconciliation_status=element.payment_status
+							// c.reconciliation_status=element.transaction_status
+							c.gateway_name=element.gateway_name
 							c.remarks=element.remarks
 						});
+						frm.refresh_field("student_reference")
+					};
+					if(frm.doc.type_of_transaction=="Online PG AXIS"){
+						frappe.model.clear_table(frm.doc, 'student_reference');
+						(r.message).forEach(element => {
+							var c = frm.add_child("student_reference")
+							c.student=element.party
+							c.student_name=element.party_name
+							c.utr_no=element.transaction_id
+							c.amount=element.paying_amount
+							c.outstanding_amount=element.outstanding_amount
+							// c.reconciliation_status=element.transaction_status
+							c.gateway_name=element.gateway_name
+							c.remarks=element.remarks
+						});
+						frm.refresh_field("student_reference")
 					};
 				}
 				frm.refresh();
 				frm.save()
-				frm.refresh_field("student_reference")
+				
 			}
 		})
 	}

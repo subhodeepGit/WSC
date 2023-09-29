@@ -5,6 +5,19 @@ frappe.ui.form.on('TnP Program', {
 	refresh: function(frm) {
 
 	},
+	setup: function(frm){
+		const date = new Date()
+		let year = date.getFullYear()
+		let month = String(date.getMonth() + 1).padStart(2,'0')
+		let day = String(date.getDate()).padStart(2,'0')
+		frm.set_value('current_date', `${year}-${month}-${day}`)
+	},
+	// current_date: function(frm){
+	// 	frm.fields_dict.start_date.datepicker.update({
+    //         minDate: frm.doc.current_date ? new Date(frm.doc.current_date) : null
+    //     });
+	// 	alert(minDate)
+	// },
 	start_date : function(frm){
 		if(frm.doc.start_date && frm.doc.end_date){
 			if(frm.doc.start_date > frm.doc.end_date){

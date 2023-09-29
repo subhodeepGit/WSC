@@ -85,8 +85,9 @@
   },
   {
    "fieldname": "assignment_name",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Assignment Name",
+   "options": "Assignment Name",
    "reqd": 1
   },
   {
@@ -314,6 +315,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "assignment_creation_status",
    "fieldtype": "Data",
    "label": "Assignment Creation Status",
@@ -331,7 +333,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-20 16:34:36.466519",
+ "modified": "2023-09-28 16:54:04.743484",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment",
