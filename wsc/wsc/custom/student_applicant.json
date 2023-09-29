@@ -1562,7 +1562,7 @@
    "is_virtual": 0,
    "label": "Physically Disabled",
    "length": 0,
-   "mandatory_depends_on": "",
+   "mandatory_depends_on": "eval:doc.physically_disabled==\"1\"",
    "modified": "2021-11-25 19:01:10.850755",
    "modified_by": "Administrator",
    "module": null,
