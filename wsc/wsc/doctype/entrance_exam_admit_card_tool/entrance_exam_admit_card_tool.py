@@ -104,7 +104,7 @@ def admit_card_generate(alloted_applicant_data):
 				admit_card.academic_term = i['academic_term']
 				admit_card.student_category = i['student_category']
 				admit_card.physical_disablity = i['physical_disability']
-				admit_card.venue = i['centre']
+				admit_card.venue = i['centre_name']
 				admit_card.address = i['address']
 				admit_card.district = i['district']
 				admit_card.pin_code = i['pincode']
@@ -217,7 +217,6 @@ def student_allotment(body):
 @frappe.whitelist()
 def leftovers_allotment(body):
 	body = json.loads(body)
-	print("\n\n\nspecial call")
 	
 	name = body['name']
 	declaration = body['declaration']

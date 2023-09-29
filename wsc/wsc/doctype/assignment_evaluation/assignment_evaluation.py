@@ -123,7 +123,20 @@ def get_qualified_participants(doctype, txt, searchfield, start, page_len, filte
 	############################## Search Field Code################# 	
 	searchfields = frappe.get_meta(doctype).get_search_fields()
 	searchfields = " or ".join("TP."+field + " like %(txt)s" for field in searchfields)
-	data=frappe.db.sql(""" select PT.participant_id, PT.participant_name, PT.status 
+	# data=frappe.db.sql(""" select PT.participant_id, PT.participant_name, PT.status ,
+	# 				IF((PT.qualification_check = 1 and PT.status="Not Qualified" ), CONCAT('<b><p style="color: red;">', 'Specially Qualified', '</p></b>'), '') AS specially_qualified
+	# 				from `tabParticipant List Table` as PT
+	# 				JOIN `tabToT Participant` as TP on TP.name=PT.participant_id
+	# 				where (TP.{key} like %(txt)s or {scond}) and 
+	# 				PT.parent ='{assignment_declaration}' and PT.qualification_check = 1
+	# 					 """.format(
+	# 				**{
+	# 					"key": searchfield,
+	# 					"scond": searchfields,
+	# 					"assignment_declaration":filters.get("assignment_declaration"),
+	# 				}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	data=frappe.db.sql(""" select PT.participant_id, PT.participant_name, PT.status ,
+					IF((PT.qualification_check = 1 and PT.status="Not Qualified" ), CONCAT('<b>', 'Specially Qualified', '</b>'), '') AS specially_qualified
 					from `tabParticipant List Table` as PT
 					JOIN `tabToT Participant` as TP on TP.name=PT.participant_id
 					where (TP.{key} like %(txt)s or {scond}) and 

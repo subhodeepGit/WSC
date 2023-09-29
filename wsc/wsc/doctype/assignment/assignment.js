@@ -72,10 +72,11 @@ frappe.ui.form.on('Assignment', {
 	},
 	assessment_criteria: function(frm){
 		frappe.call({
-			method: 'wsc.wsc.doctype.assignment.assignment.get_criteria_details',
+			method: 'wsc.wsc.doctype.assignment.assignment.get_criteria_details_amd',
 			args:{
 				course: frm.doc.course,
-				assessment_criteria : frm.doc.assessment_criteria
+				assessment_criteria : frm.doc.assessment_criteria,
+				assignment_name: frm.doc.assignment_name 
 			},
 			callback: function(result){
 				frm.set_value("total_marks", result.message[0])
