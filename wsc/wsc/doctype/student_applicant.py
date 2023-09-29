@@ -20,6 +20,11 @@ class StudentApplicant(Document):
 
         if doc.docstatus==1 and doc.application_status=="Approved":
             frappe.db.set_value("Student Applicant",doc.name,'doc_approved',1)
+            # frappe.db.set_value("Program Priority",doc.program_priority,'approve',1)
+            for t in doc.get("program_priority"):
+                if t.approve!=1:
+                    t.approve=1
+                            
         
         if doc.docstatus==1:
             validate_attachment(doc)
@@ -227,7 +232,13 @@ def delete_permissions(doc):
     
 
 def mobile_number_validation(doc):
-    
+    if doc.student_mobile_number:
+        if not (doc.student_mobile_number).isdigit():
+            frappe.throw("Field <b>Mobile Number</b> Accept Digits Only")
+        if len(doc.student_mobile_number)>10:
+            frappe.throw("Field <b>Mobile Number</b> must be 10 Digits")
+        if len(doc.student_mobile_number)<10:
+            frappe.throw("Field <b>Mobile Number</b> must be 10 Digits")
     if doc.local_guardian_contact_no:
        
         if not (doc.local_guardian_contact_no).isdigit():
@@ -372,14 +383,14 @@ def education_details_validation(doc):
             if d.parameter not in [ed.qualification for ed in doc.get("education_qualifications_details")]:
                 frappe.throw("Please Add <b>{0}</b> in Education Details Table".format(d.parameter))
            
-def mobile_number_validation(doc):
-    if doc.student_mobile_number:
-        if not (doc.student_mobile_number).isdigit():
-            frappe.throw("Field <b>Mobile Number</b> Accept Digits Only")
-        if len(doc.student_mobile_number)>10:
-            frappe.throw("Field <b>Mobile Number</b> must be 10 Digits")
-        if len(doc.student_mobile_number)<10:
-            frappe.throw("Field <b>Mobile Number</b> must be 10 Digits")
+# def mobile_number_validation(doc):
+    # if doc.student_mobile_number:
+    #     if not (doc.student_mobile_number).isdigit():
+    #         frappe.throw("Field <b>Mobile Number</b> Accept Digits Only")
+    #     if len(doc.student_mobile_number)>10:
+    #         frappe.throw("Field <b>Mobile Number</b> must be 10 Digits")
+    #     if len(doc.student_mobile_number)<10:
+    #         frappe.throw("Field <b>Mobile Number</b> must be 10 Digits")
 
 def email_validation(doc):
     for stu_app in frappe.get_all("Student Applicant",{"student_email_id":doc.student_email_id,"docstatus":("!=",2),"name":("!=",doc.name)}):
@@ -673,17 +684,17 @@ def enroll_student(source_name):
         program_enrollment.award_winner=st_applicant.award_winner  
         program_enrollment.boarding_student=st_applicant.hostel_required
         
-        for d in st_applicant.get("disable_type"):
-            program_enrollment.append("disable_type",{
-                "disability_type":d.disability_type,
-                "percentage_of_disability":d.percentage_of_disability
-            })
+        # for d in st_applicant.get("disable_type"):
+        #     program_enrollment.append("disable_type",{
+        #         "disability_type":d.disability_type,
+        #         "percentage_of_disability":d.percentage_of_disability
+        #     })
         
-        for d in st_applicant.get("awards_list"):
-            program_enrollment.append("awards_list",{
-                "awards":d.awards,
-                "won_in_year":d.won_in_year
-            })
+        # for d in st_applicant.get("awards_list"):
+        #     program_enrollment.append("awards_list",{
+        #         "awards":d.awards,
+        #         "won_in_year":d.won_in_year
+        #     })
 
         if st_applicant.program:
             for crs in get_courses(st_applicant.program):
