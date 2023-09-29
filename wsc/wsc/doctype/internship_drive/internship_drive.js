@@ -6,7 +6,8 @@ frappe.ui.form.on('Internship Drive', {
 		frm.set_query('internship_company', function(){
 			return{
 				filters:{
-					'visitor' : 'Internship'
+					'visitor' : 'Internship',
+					'black_list' : 0
 				}
 			}
 		})
