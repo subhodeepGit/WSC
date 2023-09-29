@@ -678,17 +678,17 @@ def enroll_student(source_name):
         program_enrollment.award_winner=st_applicant.award_winner  
         program_enrollment.boarding_student=st_applicant.hostel_required
         
-        for d in st_applicant.get("disable_type"):
-            program_enrollment.append("disable_type",{
-                "disability_type":d.disability_type,
-                "percentage_of_disability":d.percentage_of_disability
-            })
+        # for d in st_applicant.get("disable_type"):
+        #     program_enrollment.append("disable_type",{
+        #         "disability_type":d.disability_type,
+        #         "percentage_of_disability":d.percentage_of_disability
+        #     })
         
-        for d in st_applicant.get("awards_list"):
-            program_enrollment.append("awards_list",{
-                "awards":d.awards,
-                "won_in_year":d.won_in_year
-            })
+        # for d in st_applicant.get("awards_list"):
+        #     program_enrollment.append("awards_list",{
+        #         "awards":d.awards,
+        #         "won_in_year":d.won_in_year
+        #     })
 
         if st_applicant.program:
             for crs in get_courses(st_applicant.program):
