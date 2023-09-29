@@ -2,22 +2,15 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Generate Certificate', {
-	refresh: function(frm) {
-
+	refresh : function(frm){
+		frm.set_query('select_event', function(){
+			return{
+				filters:{
+					'has_certificate' : 1
+				}
+			}
+		})	
 	},
-	// is_in_a_program : function(frm){
-	// 	if(frm.doc.is_in_a_program == 1){
-	// 		frm.set_query('select_event', function(){
-	// 			return{
-	// 				filters:{
-	// 					'select_program' : frm.doc.select_program
-	// 				}
-	// 			}
-	// 		})
-	// 	}
-	// },
-
-
 	select_event: function(frm){
 		frappe.call({
 			method: 'wsc.wsc.doctype.generate_certificate.generate_certificate.get_program_id',
