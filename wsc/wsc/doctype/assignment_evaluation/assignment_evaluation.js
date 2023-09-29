@@ -204,11 +204,12 @@ frappe.ui.form.on('Assignment Evaluation', {
 frappe.ui.form.on('Job sheet', {	//Child table Name
 	marks:function(frm, cdt, cdn){	//Child table field Name where you data enter
 	var d = locals[cdt][cdn];
-	// if (d.marks > d.total_marks){
-	// 	d.marks = ''
-	// 	frm.set_value("marks_earned", '');
-	// 	refresh_field("marks", d.name, d.parentfield);
-	// }
+	if (d.marks > d.total_marks){
+		d.marks = ''
+		frm.set_value("marks_earned", '');
+		refresh_field("marks", d.name, d.parentfield);
+        frappe.msgprint("Earned Marks cannot be greater than Total Marks!")
+	}
 	var total = 0;
 	let a= parseInt(total)
 	frm.doc.job_sheet_fetch.forEach(function(d)  { if (d.marks >= 0){a = a+ parseInt(d.marks);} }); //Child table name and field name
