@@ -8,11 +8,11 @@
  "engine": "InnoDB",
  "field_order": [
   "student_details",
-  "student_name",
   "student_no",
+  "academic_year",
   "program_name",
   "column_break_5",
-  "academic_year",
+  "student_name",
   "semesters",
   "company_details",
   "company_name",
@@ -29,8 +29,9 @@
  "fields": [
   {
    "fieldname": "student_no",
-   "fieldtype": "Data",
-   "label": "Student no."
+   "fieldtype": "Link",
+   "label": "Student no.",
+   "options": "Student"
   },
   {
    "fieldname": "student_details",
@@ -38,6 +39,7 @@
    "label": "Student Details"
   },
   {
+   "fetch_from": "student_no.student_name",
    "fieldname": "student_name",
    "fieldtype": "Data",
    "label": "Student name"
@@ -49,8 +51,9 @@
   },
   {
    "fieldname": "academic_year",
-   "fieldtype": "Data",
-   "label": "Academic year"
+   "fieldtype": "Link",
+   "label": "Academic year",
+   "options": "Academic Year"
   },
   {
    "fieldname": "semesters",
@@ -124,7 +127,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-07 16:34:47.333235",
+ "modified": "2023-09-29 11:11:29.299306",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Selection Round",

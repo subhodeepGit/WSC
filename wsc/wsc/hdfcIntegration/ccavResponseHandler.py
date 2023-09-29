@@ -32,96 +32,188 @@ logging.basicConfig(filename=file_path_response_log, level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 
-def res(encResp, key):   
-    logging.info("Processing res function...")
-    logging.info(" key: %s", key)
-    try:      
-            
-        decResp = decrypt(encResp, key)
-        logging.info("  decResp: %s",decResp)
-        parsed_data = parse_qs(decResp)
-        logging.info("  parsed_data: %s",parsed_data)
-        cleaned_data = {key.strip("b'"): value[0] if value else None for key, value in parsed_data.items()}
-        logging.info("  cleaned_data:%s",cleaned_data)
-
-        order_id = parsed_data.get("b'order_id", [None])[0]
-        logging.info("  order_id %s",order_id)
-        tracking_id = parsed_data.get('tracking_id', [None])[0]
-        logging.info("  tracking_id %s",tracking_id)
-        amount = parsed_data.get('amount', [None])[0]
-        logging.info("  amount %s",amount)
-        order_status = parsed_data.get('order_status', [None])[0]
-        logging.info("  order_status %s",order_status)
-        trans_date = parsed_data.get('trans_date', [None])[0]
-        logging.info("  trans_date %s",trans_date)
-        gateway_name = parsed_data.get('delivery_name')[0]
-        logging.info(" gateway_name %s", gateway_name)
-        site_passed = parsed_data.get('merchant_param1', [None])[0]
-        logging.info(" *** site_passed %s",site_passed)
-
-
-        if site_passed.startswith("http/"):
-            m_corrected_url = site_passed.replace("http/", "http://")
-            corrected_url = m_corrected_url.replace("8000", ":8000")
-            logging.info(" corrected_url %s",corrected_url)
-        elif site_passed.startswith("https/"):
-            corrected_url = site_passed.replace("https/", "https://")
-            logging.info(" corrected_url %s",corrected_url)
-        else:
-            corrected_url = site_passed
-            logging.info(" corrected_url %s",corrected_url)
-     
-       
-        redirect_url = corrected_url
-        logging.info("redirect_url %s", redirect_url)
-
-        parsed_url = urlparse(corrected_url)
-        base_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
-
-        # base_url = "http://erp.soulunileaders.com:8000"
-        logging.info("base_url %s", base_url)
-
-        api_endpoint_get_token = '/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_token'
-        api_getToken = base_url + api_endpoint_get_token
-        logging.info("api_getToken %s", api_getToken)
-
-        user = 'hdfc'
-        response = requests.post(api_getToken, json={'user': user})
-        
-        if response.status_code == 200:
-            try:
-                data = response.json()
-                token = data['message']['token'].strip()
-            except json.JSONDecodeError:
-                print("Invalid JSON response from the API.")
+def res(encResp, key, pg):
+    if pg=='hdfc':  
+        logging.info("Processing res function...")
+        logging.info(" key: %s", key)
+        try:      
                 
-            if token:
-                transaction_data = {'response_data': parsed_data}
-                headers = {'Authorization': f'Bearer {token}'}
-                
-                api_endpoint_get_order_status = '/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_order_status'
-                frappe_api_endpoint = base_url + api_endpoint_get_order_status
+            decResp = decrypt(encResp, key)
+            logging.info("  decResp: %s",decResp)
+            parsed_data = parse_qs(decResp)
+            logging.info("  parsed_data: %s",parsed_data)
+            cleaned_data = {key.strip("b'"): value[0] if value else None for key, value in parsed_data.items()}
+            logging.info("  cleaned_data:%s",cleaned_data)
 
-                params = {'transaction_data': json.dumps(transaction_data)}
-                response = requests.post(frappe_api_endpoint, params=params, headers=headers)
+            order_id = parsed_data.get("b'order_id", [None])[0]
+            logging.info("  order_id %s",order_id)
+            tracking_id = parsed_data.get('tracking_id', [None])[0]
+            logging.info("  tracking_id %s",tracking_id)
+            amount = parsed_data.get('amount', [None])[0]
+            logging.info("  amount %s",amount)
+            order_status = parsed_data.get('order_status', [None])[0]
+            logging.info("  order_status %s",order_status)
+            trans_date = parsed_data.get('trans_date', [None])[0]
+            logging.info("  trans_date %s",trans_date)
+            gateway_name = parsed_data.get('delivery_name')[0]
+            logging.info(" gateway_name %s", gateway_name)
+            site_passed = parsed_data.get('merchant_param1', [None])[0]
+            logging.info(" *** site_passed %s",site_passed)
 
-                try:
-                    if transaction_data['response_data']["order_status"]:
-                       logging.info("Order status updated successfully in Frappe.")
-                    else:
-                        logging.info("Failed to update order status in Frappe:")
-                except json.JSONDecodeError:
-                    logging.info("Invalid JSON response from the Frappe API.")
-                except Exception as e:
-                    logging.info("Error while communicating with Frappe API:", str(e))
+
+            if site_passed.startswith("http/"):
+                m_corrected_url = site_passed.replace("http/", "http://")
+                corrected_url = m_corrected_url.replace("8000", ":8000")
+                logging.info(" corrected_url %s",corrected_url)
+            elif site_passed.startswith("https/"):
+                corrected_url = site_passed.replace("https/", "https://")
+                logging.info(" corrected_url %s",corrected_url)
             else:
-                logging.info("Token not found in the response. %s", response.status_code)
-        else:
-            logging.info("Failed to get the token. Status code:%s", response.status_code)
+                corrected_url = site_passed
+                logging.info(" corrected_url %s",corrected_url)
+        
+        
+            redirect_url = corrected_url
+            logging.info("redirect_url %s", redirect_url)
+
+            parsed_url = urlparse(corrected_url)
+            base_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
+
+            # base_url = "http://erp.soulunileaders.com:8000"
+            logging.info("base_url %s", base_url)
+
+            api_endpoint_get_token = '/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_token'
+            api_getToken = base_url + api_endpoint_get_token
+            logging.info("api_getToken %s", api_getToken)
+
+            user = 'hdfc'
+            response = requests.post(api_getToken, json={'user': user})
+            
+            if response.status_code == 200:
+                try:
+                    data = response.json()
+                    token = data['message']['token'].strip()
+                except json.JSONDecodeError:
+                    print("Invalid JSON response from the API.")
+                    
+                if token:
+                    transaction_data = {'response_data': parsed_data}
+                    headers = {'Authorization': f'Bearer {token}'}
+                    
+                    api_endpoint_get_order_status = '/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_order_status'
+                    frappe_api_endpoint = base_url + api_endpoint_get_order_status
+
+                    params = {'transaction_data': json.dumps(transaction_data)}
+                    response = requests.post(frappe_api_endpoint, params=params, headers=headers)
+
+                    try:
+                        if transaction_data['response_data']["order_status"]:
+                            logging.info("Order status updated successfully in Frappe.")
+                        else:
+                            logging.info("Failed to update order status in Frappe:")
+                    except json.JSONDecodeError:
+                        logging.info("Invalid JSON response from the Frappe API.")
+                    except Exception as e:
+                        logging.info("Error while communicating with Frappe API:", str(e))
+                else:
+                    logging.info("Token not found in the response. %s", response.status_code)
+            else:
+                logging.info("Failed to get the token. Status code:%s", response.status_code)
 
 
-    except Exception as e:
-     logging.error(str(e))
+        except Exception as e:
+            logging.error(str(e))
+
+    if pg=="axis":
+        logging.info("Axis--"+"Processing res function...")
+        logging.info("Axis--"+" key: %s", key)
+        try:      
+                
+            decResp = decrypt(encResp, key)
+            logging.info("Axis--"+"  decResp: %s",decResp)
+            parsed_data = parse_qs(decResp)
+            logging.info("Axis--"+"  parsed_data: %s",parsed_data)
+            cleaned_data = {key.strip("b'"): value[0] if value else None for key, value in parsed_data.items()}
+            logging.info("Axis--"+"  cleaned_data:%s",cleaned_data)
+
+            order_id = parsed_data.get("b'order_id", [None])[0]
+            logging.info("Axis--"+"  order_id %s",order_id)
+            tracking_id = parsed_data.get('tracking_id', [None])[0]
+            logging.info("Axis--"+"  tracking_id %s",tracking_id)
+            amount = parsed_data.get('amount', [None])[0]
+            logging.info("Axis--"+"  amount %s",amount)
+            order_status = parsed_data.get('order_status', [None])[0]
+            logging.info("Axis--"+"  order_status %s",order_status)
+            trans_date = parsed_data.get('trans_date', [None])[0]
+            logging.info("Axis--"+"  trans_date %s",trans_date)
+            gateway_name = parsed_data.get('delivery_name')[0]
+            logging.info("Axis--"+" gateway_name %s", gateway_name)
+            site_passed = parsed_data.get('merchant_param1', [None])[0]
+            logging.info("Axis--"+" *** site_passed %s",site_passed)
+
+
+            if site_passed.startswith("http/"):
+                m_corrected_url = site_passed.replace("http/", "http://")
+                corrected_url = m_corrected_url.replace("8000", ":8000")
+                logging.info("Axis--"+" corrected_url %s",corrected_url)
+            elif site_passed.startswith("https/"):
+                corrected_url = site_passed.replace("https/", "https://")
+                logging.info("Axis--"+" corrected_url %s",corrected_url)
+            else:
+                corrected_url = site_passed
+                logging.info("Axis--"+" corrected_url %s",corrected_url)
+        
+        
+            redirect_url = corrected_url
+            logging.info("Axis--"+"redirect_url %s", redirect_url)
+
+            parsed_url = urlparse(corrected_url)
+            base_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
+
+            # base_url = "http://erp.soulunileaders.com:8000"
+            logging.info("Axis--"+"base_url %s", base_url)
+
+            api_endpoint_get_token = '/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_token'
+            api_getToken = base_url + api_endpoint_get_token
+            logging.info("Axis--"+"api_getToken %s", api_getToken)
+
+            user = 'axis'
+            response = requests.post(api_getToken, json={'user': user})
+            
+            if response.status_code == 200:
+                try:
+                    data = response.json()
+                    token = data['message']['token'].strip()
+                except json.JSONDecodeError:
+                    print("Invalid JSON response from the API.")
+                    
+                if token:
+                    transaction_data = {'response_data': parsed_data}
+                    headers = {'Authorization': f'Bearer {token}'}
+                    
+                    api_endpoint_get_order_status = '/api/method/wsc.wsc.doctype.onlinepayment.onlinepayment.get_order_status'
+                    frappe_api_endpoint = base_url + api_endpoint_get_order_status
+
+                    params = {'transaction_data': json.dumps(transaction_data)}
+                    response = requests.post(frappe_api_endpoint, params=params, headers=headers)
+
+                    try:
+                        if transaction_data['response_data']["order_status"]:
+                            logging.info("Axis--"+"Order status updated successfully in Frappe.")
+                        else:
+                            logging.info("Axis--"+"Failed to update order status in Frappe:")
+                    except json.JSONDecodeError:
+                        logging.info("Axis--"+"Invalid JSON response from the Frappe API.")
+                    except Exception as e:
+                        logging.info("Axis--"+"Error while communicating with Frappe API:", str(e))
+                else:
+                    logging.info("Axis--"+"Token not found in the response. %s", response.status_code)
+            else:
+                logging.info("Axis--"+"Failed to get the token. Status code:%s", response.status_code)
+
+
+        except Exception as e:
+            logging.error(str(e))
  
 
     html = '''
