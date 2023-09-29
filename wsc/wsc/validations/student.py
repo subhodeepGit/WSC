@@ -112,7 +112,7 @@ def validate_pin_code(doc):
 		if not contains_only_characters(doc.last_name):
 			frappe.throw("Last Name should be only characters")
 def contains_only_characters(first_name):
-    return all(char.isalpha() or char.isspace() for char in first_name)
+	return all(char.isalpha() or char.isspace() or char == '.' for char in first_name)
     # return all(char.isalpha() for char in first_name)
 
 def check_int(pin_code):
