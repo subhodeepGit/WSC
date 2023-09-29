@@ -51,8 +51,6 @@ def get_data(filters):
         fltr.update({'academic_year':filters.get("academic_year")})
     if filters.get("academic_term"):
         fltr.update({"academic_term":filters.get("academic_term")})
-    print("\n\n\nhello")
-	
 	
     data=frappe.db.sql('''
 		SELECT 
