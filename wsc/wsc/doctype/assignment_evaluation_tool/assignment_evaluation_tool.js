@@ -1,133 +1,189 @@
 // Copyright (c) 2023, SOUL Limited and contributors
 // For license information, please see license.txt
 
-frappe.ui.form.on('Assignment Evaluation Tool', {
-	// refresh: function(frm) {
+// frappe.ui.form.on('Assignment Evaluation Tool', {
+// 	// refresh: function(frm) {
 
-	// }
-	setup: function(frm){
-		frm.set_query("instructor_id", function() {
-			return {
-				query: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.instructor',
-				filters:{"participant_group_id":frm.doc.participant_group}
+// 	// }
+// 	setup: function(frm){
+// 		frm.set_query("instructor_id", function() {
+// 			return {
+// 				query: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.instructor',
+// 				filters:{"participant_group_id":frm.doc.participant_group}
 				
-			};
-		});
+// 			};
+// 		});
 
-		frm.set_query("participant_id", function() {
-			return {
-				query: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.participant',
-				filters:{"participant_group_id":frm.doc.participant_group}
+// 		frm.set_query("participant_id", function() {
+// 			return {
+// 				query: 'wsc.wsc.doctype.tot_participant_attendance.tot_participant_attendance.participant',
+// 				filters:{"participant_group_id":frm.doc.participant_group}
 				
-			};
-		});
-	},
-	participant_group: function(frm){
-		frappe.call({
-			method : 'wsc.wsc.doctype.assignment_evaluation_tool.assignment_evaluation_tool.get_details',
-			args: {
-				participant_group_id: frm.doc.participant_group
-			},
-			callback: function(result){
-				if(result.message){
-					frm.set_value("course", result.message[2])
-					frm.set_value("module", result.message[3])
-					frm.set_value("academic_year", result.message[0])
-					frm.set_value("academic_term", result.message[1])
-					// frm.set_df_property('instructor_id', 'options', result.message[4])
-					// frm.set_df_property('participant_id', 'options', result.message[5])
-					frm.set_value("total_participants", result.message[6])
-				}
-			}
-		})
-	},
-	instructor_id: function(frm){
-		alert(frm.doc.instructor_id)
-		frappe.call({
-			method: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_instructor_name',
-			args: {
-				participant_group_id: frm.doc.participant_group,
-				instructor_id: frm.doc.instructor_id
-			},
-			callback: function(result){
-				frm.set_value("instructor_name", result.message)
-			}
-		}),
-		frappe.call({
-			method: 'wsc.wsc.doctype.assignment_evaluation_tool.assignment_evaluation_tool.get_assignment_list',
-			args:{
-				instructor_id: frm.doc.instructor_id,
-				participant_group_id : frm.doc.participant_group,
-				programs : frm.doc.course,
-				course: frm.doc.module
-			},
-			callback: function(result){
-				frm.set_df_property('select_job_sheetassessment', 'options', result.message)  // select assignment
-			}
-		})
+// 			};
+// 		});
+// 	},
+// 	participant_group: function(frm){
+// 		frappe.call({
+// 			method : 'wsc.wsc.doctype.assignment_evaluation_tool.assignment_evaluation_tool.get_details',
+// 			args: {
+// 				participant_group_id: frm.doc.participant_group
+// 			},
+// 			callback: function(result){
+// 				if(result.message){
+// 					frm.set_value("course", result.message[2])
+// 					frm.set_value("module", result.message[3])
+// 					frm.set_value("academic_year", result.message[0])
+// 					frm.set_value("academic_term", result.message[1])
+// 					// frm.set_df_property('instructor_id', 'options', result.message[4])
+// 					// frm.set_df_property('participant_id', 'options', result.message[5])
+// 					frm.set_value("total_participants", result.message[6])
+// 				}
+// 			}
+// 		})
+// 	},
+// 	instructor_id: function(frm){
+// 		alert(frm.doc.instructor_id)
+// 		frappe.call({
+// 			method: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_instructor_name',
+// 			args: {
+// 				participant_group_id: frm.doc.participant_group,
+// 				instructor_id: frm.doc.instructor_id
+// 			},
+// 			callback: function(result){
+// 				frm.set_value("instructor_name", result.message)
+// 			}
+// 		}),
+// 		frappe.call({
+// 			method: 'wsc.wsc.doctype.assignment_evaluation_tool.assignment_evaluation_tool.get_assignment_list',
+// 			args:{
+// 				instructor_id: frm.doc.instructor_id,
+// 				participant_group_id : frm.doc.participant_group,
+// 				programs : frm.doc.course,
+// 				course: frm.doc.module
+// 			},
+// 			callback: function(result){
+// 				frm.set_df_property('select_job_sheetassessment', 'options', result.message)  // select assignment
+// 			}
+// 		})
 
-	},
-	// instructor_id: function(frm){
-	// 	// alert(frm.doc.instructor_id)
-	// 	frappe.call({
-	// 		method: 'wsc.wsc.doctype.assignment_evaluation_tool.assignment_evaluation_tool.get_assignment_list',
-	// 		args:{
-	// 			instructor_id: frm.doc.instructor_id,
-	// 			participant_group_id : frm.doc.participant_group,
-	// 			programs : frm.doc.course,
-	// 			course: frm.doc.module
-	// 		},
-	// 		callback: function(result){
-	// 			frm.set_df_property('select_job_sheetassessment', 'options', result.message)  // select assignment
-	// 		}
-	// 	})
-	// },
-	get_participants : function(frm){
-		frappe.call({
+// 	},
+// 	// instructor_id: function(frm){
+// 	// 	// alert(frm.doc.instructor_id)
+// 	// 	frappe.call({
+// 	// 		method: 'wsc.wsc.doctype.assignment_evaluation_tool.assignment_evaluation_tool.get_assignment_list',
+// 	// 		args:{
+// 	// 			instructor_id: frm.doc.instructor_id,
+// 	// 			participant_group_id : frm.doc.participant_group,
+// 	// 			programs : frm.doc.course,
+// 	// 			course: frm.doc.module
+// 	// 		},
+// 	// 		callback: function(result){
+// 	// 			frm.set_df_property('select_job_sheetassessment', 'options', result.message)  // select assignment
+// 	// 		}
+// 	// 	})
+// 	// },
+// 	get_participants : function(frm){
+// 		frappe.call({
 			
-			method: 'wsc.wsc.doctype.assignment_evaluation_tool.assignment_evaluation_tool.get_participants',
+// 			method: 'wsc.wsc.doctype.assignment_evaluation_tool.assignment_evaluation_tool.get_participants',
+// 			args: {
+// 				assignment_name: frm.doc.select_job_sheetassessment,
+// 				participant_group_id : frm.doc.participant_group
+// 			},
+// 			callback: function(result){
+// 				if(result.message){
+// 					// Qualified participants
+// 					frappe.model.clear_table(frm.doc, 'participant_details_data')
+// 					result.message[0].forEach(element => {
+// 						var childTable = frm.add_child('participant_details_data')
+// 						childTable.participant_id = element.participant_id
+// 						childTable.participant_name = element.participant_name
+// 					})
+// 					// Not qualified participants
+// 					frappe.model.clear_table(frm.doc, 'disqualified_participants')
+// 					result.message[1].forEach(element => {
+// 						var childTable = frm.add_child('disqualified_participants')
+// 						childTable.participant_id = element.participant_id
+// 						childTable.participant_name = element.participant_name
+// 						childTable.earned_marks = '0'
+// 					})
+// 				}
+// 				frm.refresh()
+// 				frm.refresh_field('participant_details_data')
+// 				frm.refresh_field('disqualified_participants')
+// 			}
+// 		})
+// 	},
+// 	select_job_sheetassessment: function(frm){
+// 		frappe.call({
+// 			method: 'wsc.wsc.doctype.assignment_evaluation_tool.assignment_evaluation_tool.get_assignment_details',
+// 			args: {
+// 				assignment_name : frm.doc.select_job_sheetassessment
+// 			},
+// 			callback: function(result){
+// 				frm.set_value('assessment_criteria', result.message[0])
+// 				frm.set_value("total_marks", result.message[1])
+// 				frm.set_value("passing_marks", result.message[2])
+// 				frm.set_value("weightage", result.message[3])
+// 				frm.set_value('assignment_name', result.message[4])
+// 			}
+// 		})
+// 	},
+
+// });
+
+// End of Trash Code
+
+
+frappe.ui.form.on('Assignment Evaluation Tool', {
+	assignment_declaration: function(frm){
+		// alert(JSON.stringify(frm.doc.job_sheet_fetch))
+		if (frm.doc.job_sheet_fetch != ""){
+			frm.set_df_property('marks_earned', 'read_only', 1)
+		} else {
+			frm.set_df_property('marks_earned', 'read_only', 0)
+		}
+		if (frm.doc.assignment_declaration == undefined || frm.doc.assignment_declaration == "" || frm.doc.assignment_declaration == null) {
+
+		} else {
+			frappe.model.with_doc("Assignment Declaration", frm.doc.assignment_declaration, function () {
+				var tabletransfer = frappe.model.get_doc("Assignment Declaration", frm.doc.assignment_declaration);
+				cur_frm.doc.job_sheet_fetch = "";
+				cur_frm.refresh_field("job_sheet_fetch");
+				$.each(tabletransfer.job_sheet, function (index, row) {
+					var d = frappe.model.add_child(cur_frm.doc, "Job sheet", "job_sheet_fetch");
+					d.job_sheet_number = row.job_sheet_number;
+					d.job_sheet_name = row.job_sheet_name;
+					d.start_date_and_time = row.start_date_and_time;
+					d.end_date_and_time = row.end_date_and_time;
+					d.total_durationin_hours = row.total_durationin_hours;
+					d.assessment_criteria = row.assessment_criteria;
+					d.total_marks = row.total_marks;
+					d.pass_marks = row.pass_marks;
+					d.weightage = row.weightage;
+					cur_frm.refresh_field("job_sheet_fetch");
+				});
+			});
+		}
+	},
+	get_participants: function(frm){
+		frappe.call({
+			method:'wsc.wsc.doctype.assignment_evaluation_tool.assignment_evaluation_tool.get_participants',
 			args: {
-				assignment_name: frm.doc.select_job_sheetassessment,
-				participant_group_id : frm.doc.participant_group
+				assignment_declaration: frm.doc.assignment_declaration,
 			},
 			callback: function(result){
 				if(result.message){
-					// Qualified participants
-					frappe.model.clear_table(frm.doc, 'participant_details_data')
-					result.message[0].forEach(element => {
-						var childTable = frm.add_child('participant_details_data')
+					frappe.model.clear_table(frm.doc, 'participants_list')
+					result.message.forEach(element => {
+						var childTable = frm.add_child('participants_list')
 						childTable.participant_id = element.participant_id
 						childTable.participant_name = element.participant_name
-					})
-					// Not qualified participants
-					frappe.model.clear_table(frm.doc, 'disqualified_participants')
-					result.message[1].forEach(element => {
-						var childTable = frm.add_child('disqualified_participants')
-						childTable.participant_id = element.participant_id
-						childTable.participant_name = element.participant_name
-						childTable.earned_marks = '0'
 					})
 				}
 				frm.refresh()
-				frm.refresh_field('participant_details_data')
-				frm.refresh_field('disqualified_participants')
+				frm.refresh_field('participants_list')
 			}
 		})
-	},
-	select_job_sheetassessment: function(frm){
-		frappe.call({
-			method: 'wsc.wsc.doctype.assignment_evaluation_tool.assignment_evaluation_tool.get_assignment_details',
-			args: {
-				assignment_name : frm.doc.select_job_sheetassessment
-			},
-			callback: function(result){
-				frm.set_value('assessment_criteria', result.message[0])
-				frm.set_value("total_marks", result.message[1])
-				frm.set_value("passing_marks", result.message[2])
-				frm.set_value("weightage", result.message[3])
-				frm.set_value('assignment_name', result.message[4])
-			}
-		})
-	},
-
-});
+	}
+})

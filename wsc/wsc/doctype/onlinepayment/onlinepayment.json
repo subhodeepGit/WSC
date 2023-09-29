@@ -120,7 +120,6 @@
    "in_standard_filter": 1,
    "label": "Party",
    "options": "Student",
-   "read_only": 1,
    "reqd": 1
   },
   {
@@ -175,7 +174,6 @@
    "fieldname": "paying_amount",
    "fieldtype": "Currency",
    "label": "Paying Amount",
-   "read_only": 1,
    "reqd": 1
   },
   {

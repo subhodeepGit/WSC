@@ -8,151 +8,227 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_n4cqp",
+  "assignment_declaration",
+  "details_of_declaration_section",
+  "assignment_declaration_start_date",
   "participant_group",
+  "tot_start_date",
   "academic_year",
-  "instructor_id",
-  "course",
-  "column_break_6",
-  "total_participants",
+  "programs",
+  "module_name",
+  "column_break_wf4bz",
+  "assignment_declaration_end_date",
+  "participant_group_name",
+  "tot_end_date",
   "academic_term",
-  "instructor_name",
-  "module",
-  "section_break_10",
-  "select_job_sheetassessment",
-  "total_marks",
-  "weightage",
-  "job_sheetassessment_scheme",
-  "column_break_12",
-  "assignment_name",
-  "passing_marks",
-  "assessment_criteria",
-  "section_break_14",
+  "course",
+  "module_code",
+  "evaluator_details_section",
+  "evaluator_id",
+  "column_break_pofwd",
+  "evaluator_name",
+  "participant_details_section",
   "get_participants",
-  "participant_details_data",
-  "disqualified_participants"
+  "participants_list",
+  "assessment_component_details_marks_section",
+  "assessment_component",
+  "weightage",
+  "marks_earned",
+  "column_break_x02hn",
+  "total_marks",
+  "passing_marks",
+  "section_break_ftpa1",
+  "job_sheet_fetch"
  ],
  "fields": [
   {
+   "fetch_from": "assignment_declaration.academic_year",
    "fieldname": "academic_year",
    "fieldtype": "Link",
    "label": "Academic Year",
    "options": "Academic Year"
   },
   {
-   "fieldname": "total_participants",
-   "fieldtype": "Data",
-   "label": "Total Participants"
-  },
-  {
-   "fieldname": "course",
-   "fieldtype": "Link",
-   "label": "Select Course",
-   "options": "Programs"
-  },
-  {
-   "fieldname": "module",
-   "fieldtype": "Link",
-   "label": "Select Module",
-   "options": "Course"
-  },
-  {
-   "fieldname": "job_sheetassessment_scheme",
-   "fieldtype": "Link",
-   "label": "Job Sheet / Assessment Scheme",
-   "options": "Job sheet"
-  },
-  {
-   "fieldname": "participant_details_data",
-   "fieldtype": "Table",
-   "label": "Qualified Participants",
-   "options": "Participant Details Data"
-  },
-  {
+   "fetch_from": "assignment_declaration.participant_group",
    "fieldname": "participant_group",
    "fieldtype": "Link",
    "label": "Participant Group",
    "options": "Participant Group"
   },
   {
-   "fieldname": "column_break_6",
+   "fieldname": "section_break_n4cqp",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "assignment_declaration",
+   "fieldtype": "Link",
+   "label": "Assignment Declaration",
+   "options": "Assignment Declaration"
+  },
+  {
+   "fieldname": "details_of_declaration_section",
+   "fieldtype": "Section Break",
+   "label": "Details of Declaration"
+  },
+  {
+   "fetch_from": "assignment_declaration.assignment_start_date",
+   "fieldname": "assignment_declaration_start_date",
+   "fieldtype": "Date",
+   "label": "Assignment Declaration Start Date"
+  },
+  {
+   "fetch_from": "assignment_declaration.tot_start_date",
+   "fieldname": "tot_start_date",
+   "fieldtype": "Data",
+   "label": "TOT Start Date"
+  },
+  {
+   "fetch_from": "assignment_declaration.course",
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "label": "Programs",
+   "options": "Programs"
+  },
+  {
+   "fetch_from": "assignment_declaration.module_name",
+   "fieldname": "module_name",
+   "fieldtype": "Data",
+   "label": "Module Name"
+  },
+  {
+   "fieldname": "column_break_wf4bz",
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "assignment_declaration.assignment_end_date",
+   "fieldname": "assignment_declaration_end_date",
+   "fieldtype": "Date",
+   "label": "Assignment Declaration End Date"
+  },
+  {
+   "fetch_from": "assignment_declaration.participant_group_name",
+   "fieldname": "participant_group_name",
+   "fieldtype": "Data",
+   "label": "Participant Group Name"
+  },
+  {
+   "fetch_from": "assignment_declaration.tot_end_date",
+   "fieldname": "tot_end_date",
+   "fieldtype": "Date",
+   "label": "TOT End Date"
+  },
+  {
+   "fetch_from": "assignment_declaration.academic_term",
    "fieldname": "academic_term",
    "fieldtype": "Link",
    "label": "Academic Term",
    "options": "Academic Term"
   },
   {
-   "fieldname": "section_break_10",
-   "fieldtype": "Section Break"
+   "fetch_from": "assignment_declaration.module",
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "label": "Course",
+   "options": "Course"
   },
   {
-   "fieldname": "select_job_sheetassessment",
-   "fieldtype": "Select",
-   "label": "Select Job Sheet / Assessment"
+   "fetch_from": "course.course_code",
+   "fieldname": "module_code",
+   "fieldtype": "Data",
+   "label": "Module Code"
   },
   {
-   "fieldname": "column_break_12",
-   "fieldtype": "Column Break"
+   "fieldname": "evaluator_details_section",
+   "fieldtype": "Section Break",
+   "label": "Evaluator Details"
   },
   {
-   "fieldname": "section_break_14",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "get_participants",
-   "fieldtype": "Button",
-   "label": "Get participants"
-  },
-  {
-   "fieldname": "instructor_id",
+   "fetch_from": "assignment_declaration.evaluator_id",
+   "fieldname": "evaluator_id",
    "fieldtype": "Link",
    "label": "Evaluator ID",
    "options": "Instructor"
   },
   {
-   "fetch_from": "instructor_id.instructor_name",
-   "fieldname": "instructor_name",
+   "fieldname": "column_break_pofwd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "assignment_declaration.evaluator_name",
+   "fieldname": "evaluator_name",
    "fieldtype": "Data",
    "label": "Evaluator Name"
   },
   {
-   "fieldname": "total_marks",
-   "fieldtype": "Data",
-   "label": "Total Marks"
+   "fieldname": "participant_details_section",
+   "fieldtype": "Section Break",
+   "label": "Participant Details"
   },
   {
+   "fieldname": "assessment_component_details_marks_section",
+   "fieldtype": "Section Break",
+   "label": "Assessment Component Details (Marks)"
+  },
+  {
+   "fetch_from": "assignment_declaration.select_assessment_criteria",
+   "fieldname": "assessment_component",
+   "fieldtype": "Link",
+   "label": "Assessment Component",
+   "options": "Assessment Criteria"
+  },
+  {
+   "fetch_from": "assignment_declaration.weightage",
    "fieldname": "weightage",
    "fieldtype": "Data",
    "label": "Weightage"
   },
   {
+   "fieldname": "marks_earned",
+   "fieldtype": "Int",
+   "label": "Marks Earned"
+  },
+  {
+   "fieldname": "column_break_x02hn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "assignment_declaration.total_marks",
+   "fieldname": "total_marks",
+   "fieldtype": "Int",
+   "label": "Total Marks"
+  },
+  {
+   "fetch_from": "assignment_declaration.pass_marks",
    "fieldname": "passing_marks",
    "fieldtype": "Data",
    "label": "Passing Marks"
   },
   {
-   "fieldname": "assessment_criteria",
-   "fieldtype": "Data",
-   "label": "Assessment Criteria"
+   "fieldname": "section_break_ftpa1",
+   "fieldtype": "Section Break"
   },
   {
-   "fetch_from": "select_job_sheetassessment.assignment_name",
-   "fieldname": "assignment_name",
-   "fieldtype": "Data",
-   "label": "Assignment Name"
-  },
-  {
-   "fieldname": "disqualified_participants",
+   "fieldname": "participants_list",
    "fieldtype": "Table",
-   "label": "Disqualified Participants",
-   "options": "disqualified tot participants"
+   "label": "Qualified Participants List",
+   "options": "Assignment Evaluation Tool Participants"
+  },
+  {
+   "fieldname": "job_sheet_fetch",
+   "fieldtype": "Table",
+   "label": "Job Sheet",
+   "options": "Job sheet"
+  },
+  {
+   "fieldname": "get_participants",
+   "fieldtype": "Button",
+   "label": "Get Participants"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-06 17:16:03.179083",
+ "modified": "2023-09-29 16:45:13.547127",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Evaluation Tool",
