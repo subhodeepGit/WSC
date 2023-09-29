@@ -69,93 +69,164 @@ def open_gateway(party_name, roll_no, amount, order_id,url,gw_provider):
     logging.info("op gw_provider 3%s", gw_provider)
 
     try:       
-        getDoc = frappe.get_doc("HDFCSetting")
-        logging.info("op getDoc 4: %s", getDoc)
-        is_prod = getDoc.get("is_production")
-        # is_prod = frappe.get_value("HDFCSetting", None, "is_prod")
-        logging.info("is_prod 5: %s", is_prod)
-        
-        if is_prod is 0:
-            logging.info("if is_prod is 0: %s", is_prod)
-            merchant_id = getDoc.get("merchant_id")
-            access_code = getDoc.get("access_code")
-            working_key = getDoc.get("working_key")
-            redirect_url = getDoc.get("redirect_url")
-            cancel_url = getDoc.get("cancel_url")
-            site_name = getDoc.get("site_name")
-            gateway_name = gw_provider
-            dev_type = getDoc.get("dev_type")
-            logging.info("merchant_id : %s", merchant_id)
+        if gw_provider == "hdfc": 
+            getDoc = frappe.get_doc("HDFCSetting")
+            logging.info("op getDoc 4: %s", getDoc)
+            is_prod = getDoc.get("is_production")
+            # is_prod = frappe.get_value("HDFCSetting", None, "is_prod")
+            logging.info("is_prod 5: %s", is_prod)
             
-            p_merchant_id = merchant_id
-            p_billing_name = party_name
-            if roll_no:
+            if is_prod is 0:
+                logging.info("if is_prod is 0: %s", is_prod)
+                merchant_id = getDoc.get("merchant_id")
+                access_code = getDoc.get("access_code")
+                working_key = getDoc.get("working_key")
+                redirect_url = getDoc.get("redirect_url")
+                cancel_url = getDoc.get("cancel_url")
+                site_name = getDoc.get("site_name")
+                gateway_name = gw_provider
+                dev_type = getDoc.get("dev_type")
+                logging.info("merchant_id : %s", merchant_id)
+                
+                p_merchant_id = merchant_id
+                p_billing_name = party_name
+                if roll_no:
+                    p_customer_identifier = roll_no
+                else:
+                    p_customer_identifier=""
+
+                p_amount = amount
+                p_order_id = order_id
+                p_merchant_url = url
+                logging.info("p_merchant_url : %s", p_merchant_url)
+
+                merchant_data = 'merchant_id=' + p_merchant_id + '&' + 'order_id=' + p_order_id + '&' + "currency=" + currency + '&' + 'amount=' + p_amount + '&' + 'redirect_url=' + redirect_url + '&' + 'cancel_url=' + cancel_url + '&' + 'language=' + language + '&' + 'billing_name=' + p_billing_name + '&' + 'customer_identifier=' + p_customer_identifier + '&' + 'merchant_param1='+ p_merchant_url + '&' + 'delivery_name=' + gateway_name
+                
+                logging.info("merchant_data : %s", merchant_data)
+                encryption = encrypt(merchant_data, working_key)
+
+                logging.info("encryption 5: %s", encryption)
+                logging.info("accessCode 6: %s", access_code)
+                logging.info("is_prod 7: %s", is_prod)
+                
+                return {"encRequest": str(encryption), "accessCode": access_code, "is_prod": is_prod}
+                
+            elif is_prod is 1:
+                logging.info("is_prod is 1: %s", is_prod)
+                myDoc = frappe.get_doc("HDFCSetting")
+                merchant_id = myDoc.get("merchant_id")
+                access_code = myDoc.get("access_code")
+                working_key = myDoc.get("working_key")
+                redirect_url = myDoc.get("redirect_url")
+                cancel_url = myDoc.get("cancel_url")
+                site_name = myDoc.get("site_name")
+                gateway_name = myDoc.get("gateway_name")
+                dev_type = myDoc.get("dev_type")
+                logging.info("merchant_id : %s", merchant_id)
+            
+                p_merchant_id = merchant_id
+                p_billing_name = party_name
                 p_customer_identifier = roll_no
+                p_amount = amount
+                p_order_id = order_id
+                p_merchant_url = url
+                logging.info("p_merchant_url : %s", p_merchant_url)
+
+                merchant_data = 'merchant_id=' + p_merchant_id + '&' + 'order_id=' + p_order_id + '&' + "currency=" + currency + '&' + 'amount=' + p_amount + '&' + 'redirect_url=' + redirect_url + '&' + 'cancel_url=' + cancel_url + '&' + 'language=' + language + '&' + 'billing_name=' + p_billing_name + '&' + 'customer_identifier=' + p_customer_identifier + '&' + 'merchant_param1='+ p_merchant_url + '&' + 'delivery_name=' + gateway_name
+                
+                logging.info("merchant_data : %s", merchant_data)
+                encryption = encrypt(merchant_data, working_key)
+
+                logging.info("encryption 5: %s", encryption)
+                logging.info("accessCode 6: %s", access_code)
+                logging.info("is_prod 7: %s", is_prod)
+                
+                return {"encRequest": str(encryption), "accessCode": access_code, "is_prod": is_prod}
+
             else:
-                p_customer_identifier=""
+                frappe.throw("Error: is_prod value is None")
 
-            p_amount = amount
-            p_order_id = order_id
-            p_merchant_url = url
-            logging.info("p_merchant_url : %s", p_merchant_url)
+#################################################  AXIS GATEWAY  ########################################################################
 
-            merchant_data = 'merchant_id=' + p_merchant_id + '&' + 'order_id=' + p_order_id + '&' + "currency=" + currency + '&' + 'amount=' + p_amount + '&' + 'redirect_url=' + redirect_url + '&' + 'cancel_url=' + cancel_url + '&' + 'language=' + language + '&' + 'billing_name=' + p_billing_name + '&' + 'customer_identifier=' + p_customer_identifier + '&' + 'merchant_param1='+ p_merchant_url + '&' + 'delivery_name=' + gateway_name
+        if gw_provider == "AXIS":
+            getDoc = frappe.get_doc("AXIS Settings")
+            logging.info("AXIS--"+"op getDoc 4: %s", getDoc)
+            is_prod = getDoc.get("is_production")
+            logging.info("AXIS--"+"is_prod 5: %s", is_prod)
             
-            logging.info("merchant_data : %s", merchant_data)
-            encryption = encrypt(merchant_data, working_key)
+            if is_prod == 0:
+                logging.info("AXIS--"+"if is_prod is 0: %s", is_prod)
+                merchant_id = getDoc.get("merchant_id")
+                access_code = getDoc.get("access_code")
+                working_key = getDoc.get("working_key")
+                redirect_url = getDoc.get("redirect_url")
+                cancel_url = getDoc.get("cancel_url")
+                site_name = getDoc.get("site_name")
+                gateway_name = gw_provider
+                dev_type = getDoc.get("dev_type")
+                logging.info("AXIS--"+"merchant_id : %s", merchant_id)
+                
+                p_merchant_id = merchant_id
+                p_billing_name = party_name
+                if roll_no:
+                    p_customer_identifier = roll_no
+                else:
+                    p_customer_identifier=""
 
-            logging.info("encryption 5: %s", encryption)
-            logging.info("accessCode 6: %s", access_code)
-            logging.info("is_prod 7: %s", is_prod)
-            
-            return {"encRequest": str(encryption), "accessCode": access_code, "is_prod": is_prod}
-            
-        elif is_prod is 1:
-            logging.info("is_prod is 1: %s", is_prod)
-            myDoc = frappe.get_doc("HDFCSetting")
-            merchant_id = myDoc.get("merchant_id")
-            access_code = myDoc.get("access_code")
-            working_key = myDoc.get("working_key")
-            redirect_url = myDoc.get("redirect_url")
-            cancel_url = myDoc.get("cancel_url")
-            site_name = myDoc.get("site_name")
-            gateway_name = myDoc.get("gateway_name")
-            dev_type = myDoc.get("dev_type")
-            logging.info("merchant_id : %s", merchant_id)
-        
-            p_merchant_id = merchant_id
-            p_billing_name = party_name
+                p_amount = amount
+                p_order_id = order_id
+                p_merchant_url = url
+                logging.info("AXIS--"+"p_merchant_url : %s", p_merchant_url)
 
-            if roll_no:
+                merchant_data = 'merchant_id=' + p_merchant_id + '&' + 'order_id=' + p_order_id + '&' + "currency=" + currency + '&' + 'amount=' + p_amount + '&' + 'redirect_url=' + redirect_url + '&' + 'cancel_url=' + cancel_url + '&' + 'language=' + language + '&' + 'billing_name=' + p_billing_name + '&' + 'customer_identifier=' + p_customer_identifier + '&' + 'merchant_param1='+ p_merchant_url + '&' + 'delivery_name=' + gateway_name
+                
+                logging.info("AXIS--"+"merchant_data : %s", merchant_data)
+                encryption = encrypt(merchant_data, working_key)
+
+                logging.info("AXIS--"+"encryption 5: %s", encryption)
+                logging.info("AXIS--"+"accessCode 6: %s", access_code)
+                logging.info("AXIS--"+"is_prod 7: %s", is_prod)
+                
+                return {"encRequest": str(encryption), "accessCode": access_code, "is_prod": is_prod}
+                
+            elif is_prod is 1:
+                logging.info("AXIS--"+"is_prod is 1: %s", is_prod)
+                myDoc = frappe.get_doc("AXIS Settings")
+                merchant_id = myDoc.get("merchant_id")
+                access_code = myDoc.get("access_code")
+                working_key = myDoc.get("working_key")
+                redirect_url = myDoc.get("redirect_url")
+                cancel_url = myDoc.get("cancel_url")
+                site_name = myDoc.get("site_name")
+                gateway_name = myDoc.get("gateway_name")
+                dev_type = myDoc.get("dev_type")
+                logging.info("AXIS--"+"merchant_id : %s", merchant_id)
+            
+                p_merchant_id = merchant_id
+                p_billing_name = party_name
                 p_customer_identifier = roll_no
+                p_amount = amount
+                p_order_id = order_id
+                p_merchant_url = url
+                logging.info("AXIS--"+"p_merchant_url : %s", p_merchant_url)
+
+                merchant_data = 'merchant_id=' + p_merchant_id + '&' + 'order_id=' + p_order_id + '&' + "currency=" + currency + '&' + 'amount=' + p_amount + '&' + 'redirect_url=' + redirect_url + '&' + 'cancel_url=' + cancel_url + '&' + 'language=' + language + '&' + 'billing_name=' + p_billing_name + '&' + 'customer_identifier=' + p_customer_identifier + '&' + 'merchant_param1='+ p_merchant_url + '&' + 'delivery_name=' + gateway_name
+                
+                logging.info("AXIS--"+"merchant_data : %s", merchant_data)
+                encryption = encrypt(merchant_data, working_key)
+
+                logging.info("AXIS--"+"encryption 5: %s", encryption)
+                logging.info("AXIS--"+"accessCode 6: %s", access_code)
+                logging.info("AXIS--"+"is_prod 7: %s", is_prod)
+                
+                return {"encRequest": str(encryption), "accessCode": access_code, "is_prod": is_prod}
+                
             else:
-                p_customer_identifier=""
-           
-            p_amount = amount
-            p_order_id = order_id
-            p_merchant_url = url
-            logging.info("p_merchant_url : %s", p_merchant_url)
-
-            merchant_data = 'merchant_id=' + p_merchant_id + '&' + 'order_id=' + p_order_id + '&' + "currency=" + currency + '&' + 'amount=' + p_amount + '&' + 'redirect_url=' + redirect_url + '&' + 'cancel_url=' + cancel_url + '&' + 'language=' + language + '&' + 'billing_name=' + p_billing_name + '&' + 'customer_identifier=' + p_customer_identifier + '&' + 'merchant_param1='+ p_merchant_url + '&' + 'delivery_name=' + gateway_name
-            
-            logging.info("merchant_data : %s", merchant_data)
-            encryption = encrypt(merchant_data, working_key)
-
-            logging.info("encryption 5: %s", encryption)
-            logging.info("accessCode 6: %s", access_code)
-            logging.info("is_prod 7: %s", is_prod)
-            
-            return {"encRequest": str(encryption), "accessCode": access_code, "is_prod": is_prod}
-            
-        
-        else:
-            frappe.throw("Error: is_prod value is None")
+                frappe.throw("Error: is_prod value is None")
 
     except Exception as e:
         # return str(e)
         logging.info("Error saving document:", str(e))
-
-
 
 
 @frappe.whitelist(allow_guest=True)
@@ -239,8 +310,14 @@ def get_order_status():
 
 @frappe.whitelist(allow_guest=True)
 def get_token(user):
-    user_passed = 'hdfc'
-    if user == user_passed:
+    # user_passed = 'hdfc'
+    # if user == user_passed:
+    if user == 'hdfc':
+        token = secrets.token_hex(32)
+        frappe.session.data['api_token'] = token
+        return {'token': token}
+    
+    if user == 'axis':
         token = secrets.token_hex(32)
         frappe.session.data['api_token'] = token
         return {'token': token}
@@ -368,8 +445,6 @@ def getTransactionDetails(doc):
 
     except Exception as e:	
         return str(e)
-
-   
 
 def pad(data):
     length = 16 - (len(data) % 16)
