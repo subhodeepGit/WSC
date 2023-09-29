@@ -20,6 +20,11 @@ class StudentApplicant(Document):
 
         if doc.docstatus==1 and doc.application_status=="Approved":
             frappe.db.set_value("Student Applicant",doc.name,'doc_approved',1)
+            # frappe.db.set_value("Program Priority",doc.program_priority,'approve',1)
+            for t in doc.get("program_priority"):
+                if t.approve!=1:
+                    t.approve=1
+                            
         
         if doc.docstatus==1:
             validate_attachment(doc)
