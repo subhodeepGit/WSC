@@ -121,11 +121,37 @@ frappe.ui.form.on('OnlinePayment', {
 
         // hdfcButton.css({ 'color': 'black', 'background-color': 'white', 'font-weight': 'normal' });
 
-        // var axisButton = frm.add_custom_button("By Axis", function () {
-        //     // HAve to add the logic for Axis payment here
+        //#################################### AXIS Button ########################################
 
-        //     alert("axisButton clicked")
-        // }, "Online Payment");
+        // frm.add_custom_button("By Axis Payment Gateway", function () {
+        //         frappe.call({
+        //         method: "wsc.wsc.doctype.onlinepayment.onlinepayment.open_gateway",
+        //         args: {
+        //             party_name: frm.doc.party_name,
+        //             roll_no: frm.doc.party,
+        //             amount: frm.doc.paying_amount,
+        //             order_id: frm.doc.name,
+        //             url: window.location.href,
+        //             gw_provider: "AXIS"
+        //         },
+                
+        //         callback: function (r) {
+        //             if (r.message) {
+        //                 var encRequest = r.message["encRequest"];
+        //                 var access_code = r.message["accessCode"];
+        //                 var is_prod = r.message["is_prod"];
+
+        //                 if (is_prod == 1) {
+        //                     window.location.href = "https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
+        //                 } else {
+        //                     window.location.href = "https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
+        //                 }
+        //             } else {
+        //                 alert("No response data received.");
+        //             }
+        //         }
+        //     });
+        // }, __('Click here for Online Payment'));
 
         // axisButton.css({ 'color': 'black', 'background-color': 'white', 'font-weight': 'normal' });
     }
@@ -139,7 +165,7 @@ frappe.ui.form.on('OnlinePayment', {
             // frm.remove_custom_button('Online Payment');
             // frm.remove_custom_button('By HDFC Payment Gateway', 'Click here for Online Payment');
             frm.remove_custom_button(btn_name, 'Click here for Online Payment');
-            frm.remove_custom_button('By Axis', 'Click here for Online Payment');
+            frm.remove_custom_button('By Axis Payment Gateway', 'Click here for Online Payment');
         }
 
         if (!frm.is_new() && frm.doc.docstatus === 0) {
@@ -150,7 +176,7 @@ frappe.ui.form.on('OnlinePayment', {
             // frm.remove_custom_button('Online Payment');
             // frm.remove_custom_button('By HDFC Payment Gateway', 'Click here for Online Payment');
             frm.remove_custom_button(btn_name, 'Click here for Online Payment');
-            frm.remove_custom_button('By Axis', 'Click here for Online Payment');
+            frm.remove_custom_button('By Axis Payment Gateway', 'Click here for Online Payment');
         }
         if (!frm.is_new() && frm.doc.docstatus === 0 && frm.doc.transaction_id != undefined) {
             $('.primary-action').prop('disabled', false);
@@ -159,7 +185,7 @@ frappe.ui.form.on('OnlinePayment', {
                 // frm.remove_custom_button('Online Payment');
                 // frm.remove_custom_button('By HDFC Payment Gateway', 'Click here for Online Payment');
                 frm.remove_custom_button(btn_name, 'Click here for Online Payment');
-                frm.remove_custom_button('By Axis', 'Click here for Online Payment');
+                frm.remove_custom_button('By Axis Payment Gateway', 'Click here for Online Payment');
             }
         }
 
