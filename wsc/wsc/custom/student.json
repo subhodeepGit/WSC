@@ -3033,7 +3033,7 @@
    "name": "Student-mother_annual_income",
    "no_copy": 0,
    "non_negative": 0,
-   "options": "\n0-50,000\n50,001-1,00,000\n1,00,001-2,50,000\nMore than 2,50,00",
+   "options": "\n0-50,000\n50,001-1,00,000\n1,00,001-2,50,000\nMore than 2,50,000",
    "owner": "Administrator",
    "permlevel": 0,
    "precision": "",
