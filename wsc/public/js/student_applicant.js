@@ -214,7 +214,7 @@ frappe.ui.form.on('Student Applicant', {
 			}, 'Actions');
 
 			frm.add_custom_button(__("Not Approve"), function() {
-				frm.set_value("application_status", "Rejected");
+				frm.set_value("application_status", "Hold");
 				frm.save_or_update();
 			}, 'Actions');           
 		}
