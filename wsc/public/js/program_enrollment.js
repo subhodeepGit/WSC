@@ -1,23 +1,23 @@
 frappe.ui.form.on('Program Enrollment', {
-	seat_reservation_type:function(frm){
-        if(frm.doc.seat_reservation_type){
-            frappe.call({
-                method: "wsc.wsc.validations.program_enrollment.get_available_seats",
-                args:{
-                    "student_applicant":frm.doc.reference_name,
-                    "seat_reservation_type":frm.doc.seat_reservation_type,
-                    "programs":frm.doc.programs,
-                    "program":frm.doc.program
-                },
-                callback: function(r) {
-                    if(r.message) {
-                        frm.set_value('available_seats', r.message)
-                        frm.refresh_field("available_seats")
-                    }
-                }
-            });
-        }
-    },
+	// seat_reservation_type:function(frm){
+    //     if(frm.doc.seat_reservation_type){
+    //         frappe.call({
+    //             method: "wsc.wsc.validations.program_enrollment.get_available_seats",
+    //             args:{
+    //                 "student_applicant":frm.doc.reference_name,
+    //                 "seat_reservation_type":frm.doc.seat_reservation_type,
+    //                 "programs":frm.doc.programs,
+    //                 "program":frm.doc.program
+    //             },
+    //             callback: function(r) {
+    //                 if(r.message) {
+    //                     frm.set_value('available_seats', r.message)
+    //                     frm.refresh_field("available_seats")
+    //                 }
+    //             }
+    //         });
+    //     }
+    // },
     refresh(frm){
         frm.set_df_property('courses', 'cannot_add_rows', true)
          if(frm.doc.reference_doctype== "Student Applicant" && frm.doc.reference_name){
