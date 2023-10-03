@@ -56,6 +56,12 @@ class StudentApplicant(Document):
                 }
             }, ignore_permissions=True)
             student.save()
+            # student=frappe.get_doc("Student",student)
+            student.student_category_1=doc.category
+            student.block=doc.blocks
+            student.district=doc.districts
+            student.save()
+
         if doc.account_name and doc.bank and doc.account_type and doc.branch_code and doc.bank_account_no:
             acc_doc = frappe.new_doc('Bank Account')
             acc_doc.account_name = doc.account_name
