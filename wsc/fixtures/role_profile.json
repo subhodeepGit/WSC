@@ -131,22 +131,10 @@
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2022-09-19 13:31:59.580918",
+  "modified": "2023-10-03 17:41:12.286552",
   "name": "Admission Administrator",
   "role_profile": "Admission Administrator",
   "roles": [
-   {
-    "parent": "Admission Administrator",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Employee"
-   },
-   {
-    "parent": "Admission Administrator",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Instructor"
-   },
    {
     "parent": "Admission Administrator",
     "parentfield": "roles",
@@ -158,6 +146,12 @@
     "parentfield": "roles",
     "parenttype": "Role Profile",
     "role": "Education Admission Head"
+   },
+   {
+    "parent": "Admission Administrator",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Employee"
    }
   ]
  },
