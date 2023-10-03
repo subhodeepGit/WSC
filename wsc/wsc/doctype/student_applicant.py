@@ -13,7 +13,10 @@ class StudentApplicant(Document):
     def on_update_after_submit(doc):
         if not doc.image:
             frappe.throw("Profile Photo is Mandatory")
-        if doc.docstatus==1 and doc.application_status=="Approved":
+        roles = frappe.get_roles(frappe.session.user)
+    	# if "HR Manager/CS Officer" in roles or "HR Admin" in roles or "Director" in roles or "Admin" in roles or "Administrator" in roles:
+        if doc.docstatus==1 and doc.application_status=="Approved" and "Administrator" not in roles:
+              # or "Education Admission Head" not in roles)
                   if doc.doc_approved==1:
                       frappe.throw("Unable to Edit the form once the application is Approved")
                       doc.doc_approved=1
@@ -121,7 +124,6 @@ class StudentApplicant(Document):
                 docmnt.is_available = 0
         
 def on_change(doc,method):
-    print("\n\n\nHELLO")
     delete_user_permission(doc)
     if doc.docstatus==1:
         if doc.application_status=="Approved":
@@ -232,6 +234,7 @@ def delete_permissions(doc):
     
 
 def mobile_number_validation(doc):
+
     if doc.student_mobile_number:
         if not (doc.student_mobile_number).isdigit():
             frappe.throw("Field <b>Mobile Number</b> Accept Digits Only")
@@ -239,6 +242,7 @@ def mobile_number_validation(doc):
             frappe.throw("Field <b>Mobile Number</b> must be 10 Digits")
         if len(doc.student_mobile_number)<10:
             frappe.throw("Field <b>Mobile Number</b> must be 10 Digits")
+        
     if doc.local_guardian_contact_no:
        
         if not (doc.local_guardian_contact_no).isdigit():
@@ -258,7 +262,7 @@ def mobile_number_validation(doc):
         if len(doc.fathers_contact_number)>10:
             frappe.throw("Field <b>Father's Contact Number</b> must be 10 Digits")
 
-    if doc.fathers_contact_number:
+    if doc.mothers_contact_number:
         
         if not (doc.mothers_contact_number).isdigit():
             frappe.throw("Field <b>Mother's Contact Number</b> Accept Digits Only")
@@ -360,6 +364,7 @@ def on_update(doc,method):
                 "Education Qualifications Details": {
                     "doctype": "Educational Details"
                 },
+                
                 "Document List": {
                     "doctype": "Document List"
                 }
@@ -383,14 +388,7 @@ def education_details_validation(doc):
             if d.parameter not in [ed.qualification for ed in doc.get("education_qualifications_details")]:
                 frappe.throw("Please Add <b>{0}</b> in Education Details Table".format(d.parameter))
            
-# def mobile_number_validation(doc):
-    # if doc.student_mobile_number:
-    #     if not (doc.student_mobile_number).isdigit():
-    #         frappe.throw("Field <b>Mobile Number</b> Accept Digits Only")
-    #     if len(doc.student_mobile_number)>10:
-    #         frappe.throw("Field <b>Mobile Number</b> must be 10 Digits")
-    #     if len(doc.student_mobile_number)<10:
-    #         frappe.throw("Field <b>Mobile Number</b> must be 10 Digits")
+
 
 def email_validation(doc):
     for stu_app in frappe.get_all("Student Applicant",{"student_email_id":doc.student_email_id,"docstatus":("!=",2),"name":("!=",doc.name)}):
