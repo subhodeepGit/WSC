@@ -124,7 +124,6 @@ class StudentApplicant(Document):
                 docmnt.is_available = 0
         
 def on_change(doc,method):
-    print("\n\n\nHELLO")
     delete_user_permission(doc)
     if doc.docstatus==1:
         if doc.application_status=="Approved":
