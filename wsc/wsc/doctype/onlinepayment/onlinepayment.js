@@ -166,6 +166,7 @@ frappe.ui.form.on('OnlinePayment', {
             // frm.remove_custom_button('By HDFC Payment Gateway', 'Click here for Online Payment');
             frm.remove_custom_button(btn_name, 'Click here for Online Payment');
             frm.remove_custom_button('By Axis Payment Gateway', 'Click here for Online Payment');
+            frm.set_df_property('declaration', 'hidden', 1);
         }
 
         if (!frm.is_new() && frm.doc.docstatus === 0) {
@@ -191,6 +192,7 @@ frappe.ui.form.on('OnlinePayment', {
 
         if (!frm.is_new() && frm.doc.docstatus === 1) {
             frm.page.btn_secondary.hide();
+            frm.set_df_property('declaration', 'hidden', 0);
         }
 
     }
