@@ -2,6 +2,16 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Placement Drive', {
+	// refresh: function(frm) {
+	// 	frm.set_query('placement_company', function(){
+	// 		return{
+	// 			filters:{
+	// 				'visitor' : 'Internship',
+	// 				// 'black_list' : 0
+	// 			}
+	// 		}
+	// 	})
+	// },
 	get_students: function(frm){
 		if(!frm.is_new()){
 			let body = JSON.stringify({
@@ -74,10 +84,10 @@ frappe.ui.form.on('Placement Drive', {
         });
 		frm.set_query("placement_company" , function(){
 			return{
-				filters:{
-					"black_list":0,
-					// 'visitor' :
-				}
+				filters:[
+					["black_list", "=", "0"],
+					["visitor", "!=", "Internship"]
+				]
 			}
 		})
 	},

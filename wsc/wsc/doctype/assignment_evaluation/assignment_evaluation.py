@@ -4,9 +4,32 @@
 import frappe 
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
+from frappe.utils import comma_and, get_link_to_form,get_link_to_form, getdate, formatdate
+from frappe import msgprint, _
 
 class AssignmentEvaluation(Document):
-	pass
+	def validate(self):
+		self.validate_duplication()
+
+
+
+	def validate_duplication(self):
+		"""Check if the Assignment Evaluation Record is Unique"""
+		assignment_record = None
+		
+		assignment_record = frappe.db.exists('Assignment Evaluation', {
+			'assignment_declaration': self.assignment_declaration,
+			'participant_group': self.participant_group,
+			'academic_year': self.academic_year,
+			'participant_id': self.participant_id,
+			'docstatus': ('!=', 2),
+			'name': ('!=', self.name)
+		})
+
+		if assignment_record:
+			record = get_link_to_form('Assignment Evaluation', assignment_record)
+			frappe.throw(_('Assignment Evaluation record {0} already exists!')
+				.format(record), title=_('Duplicate Entry'))
 
 @frappe.whitelist()
 def get_details(participant_group_id):

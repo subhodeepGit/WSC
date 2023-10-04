@@ -4,7 +4,7 @@
 frappe.ui.form.on('Placement Tool', {
 	refresh: function(frm){
 		frm.set_df_property('student_list', 'cannot_add_rows', true)
-		frm.set_df_property('student_list', 'cannot_delete_rows', true)
+		// frm.set_df_property('student_list', 'cannot_delete_rows', true)
 		frm.set_query('placement_drive_name', function(){
 			return{
 				filters:{
@@ -14,24 +14,15 @@ frappe.ui.form.on('Placement Tool', {
 				}
 			}
 		})
-	}, // end of refresh
-
-	company_name : function(frm){
-		// get the name of different placment drives based on the company name and the chosen placement batch year and set it in drive_title
-		frappe.call({
-			method : 'wsc.wsc.doctype.placement_tool.placement_tool.get_drive_names',
-			args : {
-				company_name : frm.doc.company_name
-			}, 
-			callback : function(result){
-				let arr = [];
-				for(let x in result.message){
-					arr.push(result.message[x]);
-				}
-				frm.set_df_property('drive_title', 'options', arr)
+		frm.set_query('company_name', function(){
+			return{
+				filters:[
+					["black_list", "=", "0"],
+					["visitor", "!=", "Internship"]
+				]
 			}
 		})
-	},
+	}, 
 
 	round_status : function(frm){
 		//  get rounds based on whether rounds are being scheduled or result is being declared
