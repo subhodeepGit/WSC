@@ -40,6 +40,7 @@ def set_duration(doc):
 
 def on_update(doc,method):
     update_student(doc)
+   
 
 def on_cancel(doc,method):
     delete_permissions(doc)
@@ -56,6 +57,7 @@ def on_cancel(doc,method):
         update_student(doc) 
 
 def on_change(doc,method):
+    applicant_enroll_status(doc)
     onlinepayrole(doc)
     # update_reserved_seats(doc)
     update_student(doc)
@@ -93,6 +95,8 @@ def update_student(doc):
     student.save()
 
 def on_submit(doc,method):
+    
+    applicant_enroll_status(doc)
     make_fee_records(doc)
     create_student(doc)
     create_participant(doc)
@@ -123,6 +127,13 @@ def on_submit(doc,method):
         else:
             frappe.msgprint("Student is a Year back so fees is not charged.")
 
+def applicant_enroll_status(self):
+    for enroll in frappe.get_all("Program Enrollment",{"name":self.name},['name']):
+        if enroll.name!=None:
+            applicant_status=frappe.get_doc("Student Applicant",self.reference_name)
+            applicant_status.enrollment_status="Enrolled"
+            applicant_status.submit()
+    
 def get_fee_structure(doc):
     existed_fs = frappe.db.get_list("Fee Structure", {'programs':doc.programs, 'program':doc.program, 
                  'fee_type':'Semester Fees', 'academic_year':doc.academic_year,
@@ -671,10 +682,12 @@ def get_field_name(doc,linked_field):
     frappe.throw("Link Field <b>{0}</b> Not Exist In <b>{1}</b>".format(linked_field,doc.doctype))
 
 
-def update_student_applicant(doc):
-    if doc.reference_doctype == "Student Applicant":
-        student_applicant=frappe.get_doc("Student Applicant",doc.reference_name)
-        student_applicant.application_status="Admitted"
+# def update_student_applicant(doc):
+#     print("\n\nAdmitted")
+#     if doc.reference_doctype == "Student Applicant" and doc.admission_status =="Admitted":
+#         print("\n\nAdmitted1")
+#         student_applicant=frappe.get_doc("Student Applicant",doc.reference_name)
+#         student_applicant.application_status="Admitted"
         # student_applicant.physically_disabled = doc.physically_disabled
         # for d in doc.get("disable_type"):
         #     student_applicant.append("disable_type",{
@@ -690,7 +703,7 @@ def update_student_applicant(doc):
         #         "won_in_year":d.won_in_year
         #     })
 
-        student_applicant.submit()
+        # student_applicant.submit()
 
 def get_set_holding_date(doc):
     if doc.is_provisional_admission=="Yes" and doc.reference_doctype=="Student Applicant":
@@ -802,14 +815,14 @@ def validate_seat_reservation_type(doc):
 
 def onlinepayrole(doc):
     email_stu = frappe.get_all("Student",{"name":doc.student},["student_email_id"])
-    # if doc.docstatus==1:
-    student = frappe.get_doc("User",email_stu[0]["student_email_id"])
-    student.new_password = ''
-    # student.role_profile_name = ''
-    if doc.admission_status=="Provisional Admission":
-        student.add_roles("Provisionally admitted")
-    if doc.admission_status=="Admitted":
-        student.add_roles("Provisionally admitted","Student")
-    student.new_password = ''
-    student.flags.ignore_permissions = True
-    student.save()
+    if doc.docstatus!=0:
+        student = frappe.get_doc("User",email_stu[0]["student_email_id"])
+        student.new_password = ''
+        # student.role_profile_name = ''
+        if doc.admission_status=="Provisional Admission":
+            student.add_roles("Provisionally admitted")
+        if doc.admission_status=="Admitted":
+            student.add_roles("Provisionally admitted","Student")
+        student.new_password = ''
+        student.flags.ignore_permissions = True
+        student.save()
