@@ -5,8 +5,9 @@ import frappe
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 
-# class AssignmentEvaluationTool(Document):
-# 	def validate(self):
+class AssignmentEvaluationTool(Document):
+	def validate(self):
+		pass
 # 		for d in self.get('participant_details_data'):
 # 			result = frappe.new_doc('Assignment Evaluation')
 # 			result.participant_group = self.participant_group
