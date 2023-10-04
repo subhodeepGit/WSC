@@ -132,9 +132,9 @@ def get_eligibility(body):
 				k['programs'] = j['programs']
 				k['academic_year'] = j['academic_year']
 				k['student_name'] = student[0]['student_name']
-	# print('\n\n\n')
-	# print(student_dict)
-	# print('\n\n\n')
+	print('\n\n\n')
+	print(student_dict)
+	print('\n\n\n')
 	return student_dict
 
 	
