@@ -136,41 +136,27 @@
 
 
 frappe.ui.form.on('Assignment Evaluation Tool', {
+	setup: function(frm){
+		frm.set_df_property('participants_list', 'cannot_add_rows', true);
+		frm.set_df_property('participants_list', 'cannot_delete_rows', true);
+		frm.set_query("assignment_declaration", function(){
+			return {
+				"filters": [
+					["Assignment Declaration", "docstatus", "=", 1],
+				]
+			}
+		});
+	},
 	assignment_declaration: function(frm){
-		// alert(JSON.stringify(frm.doc.job_sheet_fetch))
-		if (frm.doc.job_sheet_fetch != ""){
-			frm.set_df_property('marks_earned', 'read_only', 1)
-		} else {
-			frm.set_df_property('marks_earned', 'read_only', 0)
-		}
-		if (frm.doc.assignment_declaration == undefined || frm.doc.assignment_declaration == "" || frm.doc.assignment_declaration == null) {
-
-		} else {
-			frappe.model.with_doc("Assignment Declaration", frm.doc.assignment_declaration, function () {
-				var tabletransfer = frappe.model.get_doc("Assignment Declaration", frm.doc.assignment_declaration);
-				cur_frm.doc.job_sheet_fetch = "";
-				cur_frm.refresh_field("job_sheet_fetch");
-				$.each(tabletransfer.job_sheet, function (index, row) {
-					var d = frappe.model.add_child(cur_frm.doc, "Job sheet", "job_sheet_fetch");
-					d.job_sheet_number = row.job_sheet_number;
-					d.job_sheet_name = row.job_sheet_name;
-					d.start_date_and_time = row.start_date_and_time;
-					d.end_date_and_time = row.end_date_and_time;
-					d.total_durationin_hours = row.total_durationin_hours;
-					d.assessment_criteria = row.assessment_criteria;
-					d.total_marks = row.total_marks;
-					d.pass_marks = row.pass_marks;
-					d.weightage = row.weightage;
-					cur_frm.refresh_field("job_sheet_fetch");
-				});
-			});
-		}
+		frm.set_value("participants_list","")
 	},
 	get_participants: function(frm){
 		frappe.call({
-			method:'wsc.wsc.doctype.assignment_evaluation_tool.assignment_evaluation_tool.get_participants',
+			method:'wsc.wsc.doctype.assignment_evaluation_tool.assignment_evaluation_tool.get_participants_and_assignments',
 			args: {
 				assignment_declaration: frm.doc.assignment_declaration,
+				participant_group:frm.doc.participant_group,
+				select_assessment_criteria:frm.doc.assessment_component
 			},
 			callback: function(result){
 				if(result.message){
@@ -179,6 +165,15 @@ frappe.ui.form.on('Assignment Evaluation Tool', {
 						var childTable = frm.add_child('participants_list')
 						childTable.participant_id = element.participant_id
 						childTable.participant_name = element.participant_name
+						childTable.job_sheet_number = element.name
+						childTable.job_sheet_name = element.assignment_name
+						childTable.assessment_criteria = element.assessment_criteria
+						childTable.start_date_and_time = element.start_date
+						childTable.total_duration = element.total_duration
+						childTable.total_marks = element.total_marks
+						childTable.pass_marks = element.passing_marks
+						childTable.end_date_and_time = element.end_date
+						childTable.weightage = element.weightage
 					})
 				}
 				frm.refresh()
@@ -187,3 +182,14 @@ frappe.ui.form.on('Assignment Evaluation Tool', {
 		})
 	}
 })
+
+frappe.ui.form.on('Assignment Evaluation Tool Participants', {	
+	marks_earned:function(frm, cdt, cdn){	
+	var d = locals[cdt][cdn];
+	if (d.total_marks != null && d.marks_earned > d.total_marks) {
+			d.marks_earned = ''
+			refresh_field("marks_earned", d.name, d.parentfield);
+			frappe.msgprint("Earned Marks cannot be greater than Total Marks!")
+		}
+  },
+});
