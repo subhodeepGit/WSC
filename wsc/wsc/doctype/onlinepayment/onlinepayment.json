@@ -35,7 +35,8 @@
   "payment_id",
   "remarks",
   "amended_from",
-  "gateway_name"
+  "gateway_name",
+  "declaration"
  ],
  "fields": [
   {
@@ -120,6 +121,7 @@
    "in_standard_filter": 1,
    "label": "Party",
    "options": "Student",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -243,12 +245,18 @@
    "fieldtype": "Data",
    "label": "Gateway Name",
    "read_only": 1
+  },
+  {
+   "default": "I undertake to submit my original CLC of last institution studied on the day of reporting in WSC without fail. I solemnly declare and inform that I fulfill all the eligibility conditions required to be met for admission for this programme. I understand that in case of failure to produce the deficient document, my admission will stand forfeited and I shall have no future claim to refund the Course fee of 1st Semester,\u00a0i.e.-INR\u00a010,000.",
+   "fieldname": "declaration",
+   "fieldtype": "Small Text",
+   "label": "Declaration"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-03 15:54:06.955729",
+ "modified": "2023-10-04 16:25:40.186877",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "OnlinePayment",
