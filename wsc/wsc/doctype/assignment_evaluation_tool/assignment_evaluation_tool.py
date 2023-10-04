@@ -186,6 +186,5 @@ def get_participants_and_assignments(assignment_declaration = None,participant_g
 			participant_assignments.append(participants)
 			
 
-	print(participant_assignments)
 	return participant_assignments
 	

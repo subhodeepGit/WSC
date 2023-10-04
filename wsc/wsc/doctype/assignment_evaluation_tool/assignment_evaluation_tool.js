@@ -183,13 +183,13 @@ frappe.ui.form.on('Assignment Evaluation Tool', {
 	}
 })
 
-frappe.ui.form.on('Assignment Evaluation Tool Participants', {	//Child table Name
-	marks_earned:function(frm, cdt, cdn){	//Child table field Name where you data enter
+frappe.ui.form.on('Assignment Evaluation Tool Participants', {	
+	marks_earned:function(frm, cdt, cdn){	
 	var d = locals[cdt][cdn];
-	if (d.marks_earned > d.total_marks){
-		d.marks_earned = ''
-		refresh_field("marks_earned", d.name, d.parentfield);
-        frappe.msgprint("Earned Marks cannot be greater than Total Marks!")
-	}
+	if (d.total_marks != null && d.marks_earned > d.total_marks) {
+			d.marks_earned = ''
+			refresh_field("marks_earned", d.name, d.parentfield);
+			frappe.msgprint("Earned Marks cannot be greater than Total Marks!")
+		}
   },
 });
