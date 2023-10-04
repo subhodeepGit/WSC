@@ -40,6 +40,7 @@ def set_duration(doc):
 
 def on_update(doc,method):
     update_student(doc)
+   
 
 def on_cancel(doc,method):
     delete_permissions(doc)
@@ -56,6 +57,7 @@ def on_cancel(doc,method):
         update_student(doc) 
 
 def on_change(doc,method):
+    applicant_enroll_status(doc)
     onlinepayrole(doc)
     # update_reserved_seats(doc)
     update_student(doc)
@@ -93,6 +95,7 @@ def update_student(doc):
     student.save()
 
 def on_submit(doc,method):
+    applicant_enroll_status(doc)
     make_fee_records(doc)
     create_student(doc)
     create_participant(doc)
@@ -123,6 +126,12 @@ def on_submit(doc,method):
         else:
             frappe.msgprint("Student is a Year back so fees is not charged.")
 
+def applicant_enroll_status(self):
+    for enroll in frappe.get_all("Program Enrollment",{"name":self.name},['name']):
+        if enroll.name!=None:
+            applicant_status=frappe.get_doc("Student Applicant",self.reference_name)
+            applicant_status.enrollment_status="Enrolled"
+            applicant_status.submit()
 def get_fee_structure(doc):
     existed_fs = frappe.db.get_list("Fee Structure", {'programs':doc.programs, 'program':doc.program, 
                  'fee_type':'Semester Fees', 'academic_year':doc.academic_year,
