@@ -9,12 +9,15 @@ class PlacementDriveApplication(Document):
     def validate(self):
         self.validate_block_student()
         self.validate_placement_drive()
-
-    def on_submit(self):
         self.update_status()
+
+    # def on_submit(self):
+        # self.update_status()
     
     def update_status(self):
-        self.status = "Applied"
+       if(self.status != "Applied"):
+            self.status = "Applied"
+
 
     def validate_block_student(self):
         if frappe.db.count("Placement Drive Application",{"status":"Hired","docstatus":1,"block_student":1,"student":self.student,"name":("!=",self.name)}):
