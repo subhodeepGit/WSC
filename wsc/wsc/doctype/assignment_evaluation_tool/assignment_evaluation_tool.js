@@ -136,6 +136,17 @@
 
 
 frappe.ui.form.on('Assignment Evaluation Tool', {
+	setup: function(frm){
+		frm.set_df_property('participants_list', 'cannot_add_rows', true);
+		frm.set_df_property('participants_list', 'cannot_delete_rows', true);
+		frm.set_query("assignment_declaration", function(){
+			return {
+				"filters": [
+					["Assignment Declaration", "docstatus", "=", 1],
+				]
+			}
+		});
+	},
 	assignment_declaration: function(frm){
 		frm.set_value("participants_list","")
 	},

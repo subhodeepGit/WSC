@@ -220,17 +220,18 @@
    "fieldname": "participants_list",
    "fieldtype": "Table",
    "label": "Qualified Participants List",
-   "options": "Assignment Evaluation Tool Participants"
+   "options": "Assignment Evaluation Tool Participants",
+   "reqd": 1
   },
   {
    "fieldname": "get_participants",
    "fieldtype": "Button",
-   "label": "Get Participants with Assignments"
+   "label": "Get Participants with Assignments(if any)"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-04 14:19:13.310178",
+ "modified": "2023-10-04 14:31:31.472061",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Evaluation Tool",
