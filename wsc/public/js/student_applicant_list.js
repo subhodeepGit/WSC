@@ -18,11 +18,12 @@ frappe.listview_settings['Student Applicant'] = {
         }
     },  
     
-    add_fields: [ "application_status", 'paid'],
+    add_fields: [ "application_status", 'paid',"enrollment_status"],
 	has_indicator_for_draft: 1,
 	get_indicator: function(doc) {
-		if (doc.paid) {
-			return [__("Paid"), "green", "paid,=,Yes"];
+
+        if (doc.enrollment_status=="Enrolled" && doc.application_status=="Approved") {
+            return [__("Enrolled"), "pink", "enrollment_status,=,Enrolled"];
 		}
         else if (doc.application_status=="Applied" && doc.docstatus==0) {
 			return [__("Draft"), "yellow", "application_status,=,Applied"];
@@ -30,15 +31,16 @@ frappe.listview_settings['Student Applicant'] = {
 		else if (doc.application_status=="Applied" && doc.docstatus==1) {
 			return [__("Applied"), "orange", "application_status,=,Applied"];
 		}
-		else if (doc.application_status=="Approved") {
+		else if (doc.application_status=="Approved" && doc.enrollment_status=="Not Enrolled") {
 			return [__("Approved"), "green", "application_status,=,Approved"];
 		}
 		else if (doc.application_status=="Rejected") {
 			return [__("Rejected"), "red", "application_status,=,Rejected"];
 		}
-		else if (doc.application_status=="Admitted") {
-			return [__("Admitted"), "blue", "application_status,=,Admitted"];
-		}
+		// else if (doc.application_status=="Admitted") {
+		// 	return [__("Admitted"), "blue", "application_status,=,Admitted"];
+		// }
+       
 	}
 };
 frappe.listview_settings['Student Applicant'].refresh = function(listview) {

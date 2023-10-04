@@ -8,10 +8,14 @@ from frappe.model.mapper import get_mapped_doc
 
 class PlacementTool(Document):
     def validate(self):
-        if(self.round_status == 'Scheduling Of Round'):
-            set_round_status = frappe.db.sql(""" UPDATE `tabRounds of Placement` SET round_status = 'Scheduled' WHERE parent = '%s' and round_name = '%s' """%(self.placement_drive_name, self.round_of_placement))
-        elif(self.round_status == 'Round Result Declaration'):
-            set_round_status = frappe.db.sql(""" UPDATE `tabRounds of Placement` SET round_status = 'Result Declared' WHERE parent = '%s' and round_name = '%s' """%(self.placement_drive_name, self.round_of_placement))
+        for d in self.get('student_list'):
+            print(d.ref_no)
+            frappe.set_value('Placement Drive Application', d.ref_no, 'status', d.shortlisting_status)
+
+        if self.round_status == 'Scheduling Of Round':
+            frappe.db.sql(""" UPDATE `tabRounds of Placement` SET round_status = 'Scheduled' WHERE parent = '%s' and round_name = '%s' """%(self.placement_drive_name, self.round_of_placement))
+        elif self.round_status == 'Round Result Declaration':
+            frappe.db.sql(""" UPDATE `tabRounds of Placement` SET round_status = 'Result Declared' WHERE parent = '%s' and round_name = '%s' """%(self.placement_drive_name, self.round_of_placement))
             
         for d in self.get('student_list'):
                 print(d.student_name)
@@ -67,7 +71,7 @@ def get_students(drive_name):
     fil.append(['placement_drive', '=', drive_name])
     fil.append(['status', 'in',['Applied','Shortlisted']])
     fil.append(['docstatus','=',1])
-    student_data = frappe.get_all('Placement Drive Application', filters=fil, fields=['student','name','student_name'])
+    student_data = frappe.get_all('Placement Drive Application', filters=fil, fields=['name', 'student','student_name'])
     for t in student_data:
         data = frappe.get_all('Current Educational Details',{'parent':t['student'], 'parenttype':'student'},['programs','semesters', 'academic_year'])
         t['programs'] = data[0]['programs']
