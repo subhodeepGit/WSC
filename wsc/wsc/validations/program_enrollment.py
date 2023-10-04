@@ -95,6 +95,7 @@ def update_student(doc):
     student.save()
 
 def on_submit(doc,method):
+    
     applicant_enroll_status(doc)
     make_fee_records(doc)
     create_student(doc)
@@ -132,6 +133,7 @@ def applicant_enroll_status(self):
             applicant_status=frappe.get_doc("Student Applicant",self.reference_name)
             applicant_status.enrollment_status="Enrolled"
             applicant_status.submit()
+    
 def get_fee_structure(doc):
     existed_fs = frappe.db.get_list("Fee Structure", {'programs':doc.programs, 'program':doc.program, 
                  'fee_type':'Semester Fees', 'academic_year':doc.academic_year,
@@ -680,10 +682,12 @@ def get_field_name(doc,linked_field):
     frappe.throw("Link Field <b>{0}</b> Not Exist In <b>{1}</b>".format(linked_field,doc.doctype))
 
 
-def update_student_applicant(doc):
-    if doc.reference_doctype == "Student Applicant":
-        student_applicant=frappe.get_doc("Student Applicant",doc.reference_name)
-        student_applicant.application_status="Admitted"
+# def update_student_applicant(doc):
+#     print("\n\nAdmitted")
+#     if doc.reference_doctype == "Student Applicant" and doc.admission_status =="Admitted":
+#         print("\n\nAdmitted1")
+#         student_applicant=frappe.get_doc("Student Applicant",doc.reference_name)
+#         student_applicant.application_status="Admitted"
         # student_applicant.physically_disabled = doc.physically_disabled
         # for d in doc.get("disable_type"):
         #     student_applicant.append("disable_type",{
@@ -699,7 +703,7 @@ def update_student_applicant(doc):
         #         "won_in_year":d.won_in_year
         #     })
 
-        student_applicant.submit()
+        # student_applicant.submit()
 
 def get_set_holding_date(doc):
     if doc.is_provisional_admission=="Yes" and doc.reference_doctype=="Student Applicant":
