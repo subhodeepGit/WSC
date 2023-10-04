@@ -173,6 +173,7 @@ frappe.ui.form.on('Assignment Evaluation Tool', {
 						childTable.total_marks = element.total_marks
 						childTable.pass_marks = element.passing_marks
 						childTable.end_date_and_time = element.end_date
+						childTable.weightage = element.weightage
 					})
 				}
 				frm.refresh()
