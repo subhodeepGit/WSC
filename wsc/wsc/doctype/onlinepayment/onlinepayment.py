@@ -23,6 +23,10 @@ class OnlinePayment(Document):
             frappe.throw("Paying Amount can't be more then Total Outstanding Amount")
         if self.total_outstanding_amout==0:
             frappe.throw("Outstanding Amount can't be Rs.0 ")  
+        if self.is_new() and self.docstatus==0:
+            data=frappe.get_all("OnlinePayment",{"transaction_status":"success","payment_status":0,"party":self.party})    
+            if data:
+                frappe.throw("Last Transaction is not yet settled.So new Transaction can not be initiated.")
 
     def on_cancel(doc):
         frappe.throw("Once form is submitted it can't be cancelled")    
@@ -68,6 +72,14 @@ def open_gateway(party_name, roll_no, amount, order_id,url,gw_provider,form_stat
     # print(form_status)
     if form_status == "Yes":
         frappe.throw("Please Save the Form Before Initiate The Transaction.")
+
+    data=frappe.get_all("OnlinePayment",{"transaction_status":"success","payment_status":0,"party":roll_no})  
+    print("\n\n\n\n")  
+    print(roll_no)
+    print(data)
+    if data:
+        frappe.throw("Last Transaction is not yet settled.So new Transaction can not be initiated.") 
+
     logging.info("Processing open_gateway function...1")
     logging.info("op url passed 2 %s",url)
     logging.info("op gw_provider 3%s", gw_provider)
