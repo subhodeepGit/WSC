@@ -1,17 +1,19 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "FWA.-.####",
  "creation": "2023-05-24 15:21:21.204769",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "academic_year",
   "date",
+  "from_date",
+  "to_date",
   "task",
   "column_break_3",
-  "from",
-  "to",
   "work_order_details_section",
   "work_order",
   "allocate_faculty",
@@ -39,16 +41,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "from",
-   "fieldtype": "Date",
-   "label": "From"
-  },
-  {
-   "fieldname": "to",
-   "fieldtype": "Date",
-   "label": "To"
-  },
-  {
    "fieldname": "work_order_details_section",
    "fieldtype": "Section Break",
    "label": "Work Order Details"
@@ -73,15 +65,33 @@
    "options": "Faculty Work Assignment",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
+  },
+  {
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "label": "From Date"
+  },
+  {
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "label": "To Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-05-24 15:24:10.883323",
+ "modified": "2023-10-04 11:33:23.189943",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Faculty Work Assignment",
+ "name_case": "UPPER CASE",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

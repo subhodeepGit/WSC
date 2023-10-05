@@ -2,7 +2,5 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Faculty Work Assignment', {
-	// refresh: function(frm) {
-
-	// }
+	// Nothing is there.
 });
