@@ -36,7 +36,8 @@
   "weightage",
   "column_break_x02hn",
   "total_marks",
-  "passing_marks"
+  "passing_marks",
+  "amended_from"
  ],
  "fields": [
   {
@@ -228,11 +229,21 @@
    "fieldname": "get_participants",
    "fieldtype": "Button",
    "label": "Get Participants with Assignments(if any)"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Assignment Evaluation Tool",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-10-04 14:38:59.663577",
+ "modified": "2023-10-05 16:21:59.677437",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Evaluation Tool",
