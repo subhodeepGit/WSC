@@ -1,0 +1,98 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2023-10-05 10:24:36.144093",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "transactionid",
+  "order_status",
+  "order_number",
+  "order_gross_amount",
+  "order_amount",
+  "dev_type",
+  "transaction_status",
+  "amended_from",
+  "naming_series"
+ ],
+ "fields": [
+  {
+   "fieldname": "transaction_status",
+   "fieldtype": "Long Text",
+   "label": "Transaction Status"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "HDFC Final Transaction Status",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "transactionid",
+   "fieldtype": "Data",
+   "label": "TransactionId"
+  },
+  {
+   "fieldname": "order_number",
+   "fieldtype": "Data",
+   "label": "Order Number"
+  },
+  {
+   "fieldname": "order_gross_amount",
+   "fieldtype": "Data",
+   "label": "Order Gross Amount"
+  },
+  {
+   "fieldname": "order_amount",
+   "fieldtype": "Data",
+   "label": "Order Amount"
+  },
+  {
+   "fieldname": "order_status",
+   "fieldtype": "Data",
+   "label": "Order Status"
+  },
+  {
+   "fieldname": "dev_type",
+   "fieldtype": "Data",
+   "label": "Dev Type"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "HDFC-STS-.DD.-.MM.-.YYYY.-"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-10-05 12:33:45.137998",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "HDFC Final Transaction Status",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

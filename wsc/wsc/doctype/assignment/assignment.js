@@ -39,7 +39,10 @@ frappe.ui.form.on('Assignment', {
 		frm.set_query("assessment_criteria", function() {
 			return {
 				query: 'wsc.wsc.doctype.assignment.assignment.criteria',
-				filters:{"course":frm.doc.course}
+				filters:{
+							"course":frm.doc.course,
+							"assignment_name":frm.doc.assignment_name
+						}
 				
 			};
 		});
