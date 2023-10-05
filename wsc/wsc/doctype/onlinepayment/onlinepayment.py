@@ -28,7 +28,7 @@ class OnlinePayment(Document):
         frappe.throw("Once form is submitted it can't be cancelled")    
     
     def on_submit(doc):
-        getTransactionDetails(doc)
+        # getTransactionDetails(doc)
         email_transaction_status(doc)
         frappe.msgprint("Your Transaction is completed. Your Transaction Id is " +
                 doc.transaction_id + "."  " Status is " + frappe.bold(doc.transaction_status))
@@ -63,7 +63,11 @@ def get_outstanding_amount(student):
 	return outstanding_amount
 
 @frappe.whitelist()
-def open_gateway(party_name, roll_no, amount, order_id,url,gw_provider): 
+def open_gateway(party_name, roll_no, amount, order_id,url,gw_provider,form_status): 
+    # print('\n\n\n\n')
+    # print(form_status)
+    if form_status == "Yes":
+        frappe.throw("Please Save the Form Before Initiate The Transaction.")
     logging.info("Processing open_gateway function...1")
     logging.info("op url passed 2 %s",url)
     logging.info("op gw_provider 3%s", gw_provider)
@@ -296,6 +300,7 @@ def get_order_status():
                 doc.save(ignore_permissions=True)
                 logging.info("inside save.....................")
                 doc.run_method('submit')
+                getTransactionDetails(doc)
                 frappe.msgprint("Your Transaction is completed. Your Transaction Id is " +doc.transaction_id + "."  " Status is " + frappe.bold(doc.transaction_status))
                 # return "Order status and tracking ID updated successfully in Frappe."
                 logging.info("Order status and tracking ID updated successfully in Frappe.")
@@ -384,7 +389,19 @@ def getTransactionDetails(doc):
             final_status_info = f"Order ID: {order_no}\nTransaction ID: {reference_no}\nGross Amount : {order_gross_amt}\nOrder Amount : {order_amt}\nOrder Status: {order_status}\nTime of Transaction: {order_date_time}\nBank Ref No.: {order_bank_ref_no}"
             logging.info(" final_status_info : %s",data_dict)
             logging.info(" SUCESSFULLY COMPLETED")
-            doc.status = final_status_info
+
+           
+            final_api = frappe.new_doc("HDFC Final Transaction Status")   
+            final_api.transactionid = reference_no
+            final_api.order_status = order_status
+            final_api.order_number = order_no
+            final_api.order_gross_amount = order_gross_amt
+            final_api.order_amount = order_amt
+            final_api.dev_type =  "Test"   
+            final_api.transaction_status = final_status_info
+            final_api.save(ignore_permissions=True)           
+            final_api.run_method('submit')           
+            # doc.status = final_status_info
 
         elif is_prod is 1:
             logging.info("is_prod is : %s", is_prod)
@@ -428,17 +445,30 @@ def getTransactionDetails(doc):
             end_idx = decryptData.rfind('}}') + 2
             json_string = decryptData[start_idx:end_idx]
             data_dict = json.loads(json_string)
+            logging.info("Data Dict :%s",data_dict)
             order_no = data_dict["Order_Status_Result"]["order_no"]
             order_status = data_dict["Order_Status_Result"]["order_status"]
-            order_bank_ref_no = data_dict["Order_Status_Result"]["order_bank_response"]
+            order_bank_ref_no = data_dict["Order_Status_Result"]["order_bank_ref_no"]
             order_gross_amt = data_dict["Order_Status_Result"]["order_gross_amt"]
             order_amt = data_dict["Order_Status_Result"]["order_amt"]
             reference_no = data_dict["Order_Status_Result"]["reference_no"]
             order_date_time = data_dict["Order_Status_Result"]["order_status_date_time"]
-            final_status_info = f"Order ID: {order_no}\nTransaction ID: {reference_no}\nGross Amount : {order_gross_amt}\nOrder Amount : {order_amt}\nOrder Status: {order_status}\nTime of Transaction: {order_date_time}\nBank Ref No.: {order_bank_ref_no}"
+            order_status_reason= data_dict["Order_Status_Result"]["order_bank_response"]
+            final_status_info = f"Order ID: {order_no}\nTransaction ID: {reference_no}\nGross Amount : {order_gross_amt}\nOrder Amount : {order_amt}\nOrder Status: {order_status}\nTime of Transaction: {order_date_time}\nBank Ref No.: {order_bank_ref_no}\nBank Response.:{order_status_reason}"
             logging.info(" final_status_info : %s",data_dict)
             logging.info(" SUCESSFULLY COMPLETED")
-            doc.status = final_status_info
+            
+            final_api = frappe.new_doc("HDFC Final Transaction Status")   
+            final_api.transactionid = reference_no
+            final_api.order_status = order_status
+            final_api.order_number = order_no
+            final_api.order_gross_amount = order_gross_amt
+            final_api.order_amount = order_amt
+            final_api.dev_type =  "Production"   
+            final_api.transaction_status = final_status_info
+            final_api.save(ignore_permissions=True)           
+            final_api.run_method('submit')           
+            # doc.status = final_status_info
             
         else:
             frappe.throw("Error: is_prod value is None")  
