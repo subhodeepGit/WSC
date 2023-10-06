@@ -22,9 +22,10 @@
   {
    "columns": 2,
    "fieldname": "job_sheet_name",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Job Sheet Name"
+   "label": "Assignment Name",
+   "options": "Assignment Name"
   },
   {
    "columns": 2,
@@ -73,8 +74,9 @@
   {
    "fieldname": "job_sheet_number",
    "fieldtype": "Link",
-   "label": "Job Sheet Number",
-   "options": "Assignment"
+   "label": "Assignment Number",
+   "options": "Assignment",
+   "reqd": 1
   },
   {
    "fieldname": "marks",
@@ -89,7 +91,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-29 11:51:58.686539",
+ "modified": "2023-10-06 12:35:04.950244",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Job sheet",
