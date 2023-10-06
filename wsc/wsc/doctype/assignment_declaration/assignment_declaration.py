@@ -76,7 +76,6 @@ def get_participants(participant_group_id = None, attendance_applicable = 0, att
 			else:
 				d['status'] = 'Qualified'
 				d['qualification_check']=1
-		print("\n\n\n\n",participants)
 		return participants
 
 
@@ -133,8 +132,35 @@ def criteria(doctype, txt, searchfield, start, page_len, filters):
 # -----------------------------------------------------------------------------------------------------------------------------
 
 @frappe.whitelist()
-def get_assignments(participant_group=None,select_assessment_criteria=None):
+def get_assignments(participant_group=None,select_assessment_criteria=None,module=None):
+
 	assignments = []
 	if participant_group != None:
-		assignments = frappe.get_all("Assignment",filters=[["participant_group","=",participant_group],["assessment_criteria","=",select_assessment_criteria],["docstatus","=",1],["evaluate","=",1]],fields=['name','assignment_name','assessment_criteria','weightage','total_marks','passing_marks','start_date','end_date','total_duration'],group_by="name")
+		amd_data=frappe.get_all("Assignment Marks Distribution",{"course":module,"assessment_criteria":select_assessment_criteria},['name','assessment_criteria'])
+		amd_data_child=[]
+		for t in amd_data:
+			amd_data_child=frappe.get_all("Assignment Marks Distribution Child",{"parent":t['name']},['name',"assignment_name","total_marks","weightage","passing_marks"],order_by="idx asc")
+			for j in amd_data_child:
+				j['assessment_criteria']=t['assessment_criteria']
+		assignments = frappe.get_all("Assignment",filters=[["participant_group","=",participant_group],
+													 ["assessment_criteria","=",select_assessment_criteria],['course',"=",module],["docstatus","=",1],["evaluate","=",1]],
+													 fields=['name','assignment_name','assessment_criteria','weightage','total_marks','passing_marks','start_date',
+					  								'end_date','total_duration'],group_by="name")
+		
+		final_list=[]
+		for t in amd_data_child:
+			a={}
+			a['assignment_name']=t['assignment_name']
+			a['assessment_criteria']=t['assessment_criteria']
+			a['weightage']=t["weightage"]
+			a['total_marks']=t['total_marks']
+			a["passing_marks"]=t["passing_marks"]
+			for j in assignments:
+				if j['assignment_name']==t['assignment_name']:
+					a['name']=j['name']
+					a['start_date']=j['start_date']
+					a['end_date']=j['end_date']
+					a['total_duration']=j['total_duration']
+			final_list.append(a)			
+		assignments=final_list
 	return assignments
