@@ -47,7 +47,7 @@ frappe.ui.form.on('Assignment Declaration', {
 			return {
 				"filters": [
 					["Participant Group", "program", "=", frm.doc.course],
-					["Participant Group", "course", "=", frm.doc.module],
+					// ["Participant Group", "course", "=", frm.doc.module],
 					["Participant Group", "academic_year", "=", frm.doc.academic_year],
 				]
 			}
@@ -67,6 +67,22 @@ frappe.ui.form.on('Assignment Declaration', {
 				]
 			}
 		})
+		// frm.set_query('module', function(){
+		// 	return{
+		// 		"filters": [
+		// 			["Program Grades", "is_short_term_course", "=", "Yes"],
+		// 		]
+		// 	}
+		// })
+	},
+	semester: function(frm){
+		frm.set_query("module", function() {
+			return {
+				query: 'wsc.wsc.validations.student_group.filter_courses',
+				filters:{"semester":frm.doc.semester,"disable":0}
+				
+			};
+		});
 	},
 	participant_group: function(frm){
 		frm.trigger('get_participant')
@@ -138,7 +154,8 @@ frappe.ui.form.on('Assignment Declaration', {
 			"method": "wsc.wsc.doctype.assignment_declaration.assignment_declaration.get_assignments",
 			args:{
 				participant_group:frm.doc.participant_group,
-				select_assessment_criteria:frm.doc.select_assessment_criteria
+				select_assessment_criteria:frm.doc.select_assessment_criteria,
+				module:frm.doc.module
 			},
 			callback: function(r) {
 				if (r.message){
@@ -184,9 +201,9 @@ frappe.ui.form.on('Assignment Declaration', {
 		frm.set_value("participant_group","")
 	},
 
-	module: function(frm){
-		frm.set_value("participant_group","")
-	},
+	// module: function(frm){
+	// 	frm.set_value("participant_group","")
+	// },
 });
 
 // frappe.ui.form.on('Participant List Table', 'qualification_check', function(frm, cdt, cdn) {
