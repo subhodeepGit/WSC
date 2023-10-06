@@ -204,7 +204,9 @@ frappe.ui.form.on('Assignment Evaluation', {
 frappe.ui.form.on('Job sheet', {	//Child table Name
 	marks:function(frm, cdt, cdn){	//Child table field Name where you data enter
 	var d = locals[cdt][cdn];
-	if (d.marks > d.total_marks){
+	let total_marks = parseInt(d.total_marks)
+	let marks = parseInt(d.marks)
+	if (marks > total_marks){
 		d.marks = ''
 		frm.set_value("marks_earned", '');
 		refresh_field("marks", d.name, d.parentfield);
