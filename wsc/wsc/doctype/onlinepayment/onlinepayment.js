@@ -130,6 +130,10 @@ frappe.ui.form.on('OnlinePayment', {
         //#################################### AXIS Button ########################################
 
         // frm.add_custom_button("By Axis Payment Gateway", function () {
+        //         var formStatus = "Yes"
+        //         if (!frm.is_new()){
+        //             formStatus="No"
+        //         }
         //         frappe.call({
         //         method: "wsc.wsc.doctype.onlinepayment.onlinepayment.open_gateway",
         //         args: {
@@ -138,7 +142,8 @@ frappe.ui.form.on('OnlinePayment', {
         //             amount: frm.doc.paying_amount,
         //             order_id: frm.doc.name,
         //             url: window.location.href,
-        //             gw_provider: "AXIS"
+        //             gw_provider: "AXIS",
+        //             form_status:formStatus
         //         },
                 
         //         callback: function (r) {

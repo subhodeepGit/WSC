@@ -22,8 +22,7 @@
   "program_end_date",
   "eligible_participants_section",
   "get_eligible_participants_list",
-  "selected_participants_list",
-  "generate_certificate"
+  "selected_participants_list"
  ],
  "fields": [
   {
@@ -71,11 +70,6 @@
    "options": "Selected Training Participants List"
   },
   {
-   "fieldname": "generate_certificate",
-   "fieldtype": "Button",
-   "label": "Generate Certificate"
-  },
-  {
    "fieldname": "event_details_section",
    "fieldtype": "Section Break",
    "label": "Event Details"
@@ -120,7 +114,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-27 16:13:26.295698",
+ "modified": "2023-10-05 15:33:41.147494",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Generate certificate tool",

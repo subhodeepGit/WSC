@@ -25,10 +25,13 @@ def file_size(doc):
         for t in ext_list:
             if t==extstr:
                 flag="Yes"
-                file_size = os.path.getsize(url)
-                if file_size > 200000:
-                    os.remove(url)
-                    return frappe.throw("Image Size cannot exceed 200KB. Please upload an Image of smaller size.")
+                if t==".pdf":
+                    pass
+                else:
+                    file_size = os.path.getsize(url)
+                    if file_size > 500000:
+                        os.remove(url)
+                        return frappe.throw("Image Size cannot exceed 500KB. Please upload an Image of smaller size.")
         if flag=="No":
             os.remove(url)
             frappe.throw("File Type is not Allowed")        
