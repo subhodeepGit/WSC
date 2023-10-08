@@ -473,3 +473,15 @@ frappe.ui.form.on('Payment Entry', {
     }
 });
 
+
+frappe.ui.form.on('Payment Entry', {
+	refresh: function(frm) {
+		if(frm.doc.docstatus == 1 && frm.doc.party_type == "Student"){
+			if (!frappe.boot.desk_settings.form_sidebar) {
+				cur_page.page.page.add_action_icon("printer", function() {
+					cur_frm.print_doc();
+				}, '', __("Print"));
+			}
+		}
+	}
+});

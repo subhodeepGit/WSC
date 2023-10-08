@@ -183,13 +183,34 @@ frappe.ui.form.on('Assignment Evaluation Tool', {
 	}
 })
 
-frappe.ui.form.on('Assignment Evaluation Tool Participants', {	
-	marks_earned:function(frm, cdt, cdn){	
+// frappe.ui.form.on('Assignment Evaluation Tool Participants', {	
+// 	marks_earned:function(frm, cdt, cdn){	
+// 	var d = locals[cdt][cdn];
+// 	if (d.total_marks != null){
+// 		alert(d.marks_earned)
+// 		alert(d.total_marks)
+// 		alert(d.marks_earned > d.total_marks)
+// 		if (d.marks_earned > d.total_marks) {
+// 			alert(d.total_marks)
+// 			alert(d.idx)
+// 			alert(d.marks_earned)
+// 			d.marks_earned = ''
+// 			refresh_field("marks_earned", d.name, d.parentfield);
+// 			frappe.msgprint("Earned Marks cannot be greater than Total Marks!")
+// 		}
+// 	} 
+//   },
+// });
+
+frappe.ui.form.on("Assignment Evaluation Tool Participants", "marks_earned", function(frm, cdt, cdn){
 	var d = locals[cdt][cdn];
-	if (d.total_marks != null && d.marks_earned > d.total_marks) {
+	if (d.total_marks != null){
+		let total_marks = parseInt(d.total_marks)
+		let marks_earned = parseInt(d.marks_earned)
+		if (total_marks < marks_earned) {
 			d.marks_earned = ''
 			refresh_field("marks_earned", d.name, d.parentfield);
 			frappe.msgprint("Earned Marks cannot be greater than Total Marks!")
 		}
-  },
+	}
 });
