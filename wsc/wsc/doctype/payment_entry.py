@@ -134,7 +134,7 @@ class PaymentEntry(AccountsController):
 					if len(hostel_fee_comp)>0:
 						frappe.db.set_value("Fee Component",hostel_fee_comp[0]['name'], "outstanding_fees",d.outstanding_amount)
 						frappe.db.set_value("Hostel Fees",hostel_fee_info[0]['name'], "outstanding_amount",hostel_fee_info[0]['outstanding_amount']+d.allocated_amount)
-		update_payment_write_off_on_cancel(self)
+		# update_payment_write_off_on_cancel(self)
 
 	def set_payment_req_status(self):
 		from erpnext.accounts.doctype.payment_request.payment_request import update_payment_req_status
