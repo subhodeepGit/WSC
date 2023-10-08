@@ -35,7 +35,8 @@
   "payment_id",
   "remarks",
   "amended_from",
-  "gateway_name"
+  "gateway_name",
+  "declaration"
  ],
  "fields": [
   {
@@ -47,7 +48,6 @@
    "bold": 1,
    "fieldname": "payment_type",
    "fieldtype": "Select",
-   "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Payment Type",
    "options": "Receive",
@@ -120,6 +120,7 @@
    "in_standard_filter": 1,
    "label": "Party",
    "options": "Student",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -129,6 +130,7 @@
    "fieldname": "party_name",
    "fieldtype": "Data",
    "in_global_search": 1,
+   "in_list_view": 1,
    "label": "Party Name",
    "read_only": 1
   },
@@ -174,6 +176,7 @@
    "fieldname": "paying_amount",
    "fieldtype": "Currency",
    "label": "Paying Amount",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -187,6 +190,7 @@
    "allow_on_submit": 1,
    "fieldname": "transaction_status",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Transaction Status",
    "read_only": 1
   },
@@ -242,12 +246,18 @@
    "fieldtype": "Data",
    "label": "Gateway Name",
    "read_only": 1
+  },
+  {
+   "default": "I undertake to submit my original CLC of last institution studied on the day of reporting in WSC without fail. I solemnly declare and inform that I fulfill all the eligibility conditions required to be met for admission for this programme. I understand that in case of failure to produce the deficient document, my admission will stand forfeited and I shall have no future claim to refund the Course fee of 1st Semester,\u00a0i.e.-INR\u00a010,000.",
+   "fieldname": "declaration",
+   "fieldtype": "Small Text",
+   "label": "Declaration"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-28 16:42:53.678901",
+ "modified": "2023-10-06 15:40:06.101826",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "OnlinePayment",

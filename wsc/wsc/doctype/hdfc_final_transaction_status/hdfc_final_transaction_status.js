@@ -1,6 +1,8 @@
 // Copyright (c) 2023, SOUL Limited and contributors
 // For license information, please see license.txt
 
-frappe.ui.form.on('Faculty Work Assignment', {
-	// Nothing is there.
+frappe.ui.form.on('HDFC Final Transaction Status', {
+	// refresh: function(frm) {
+
+	// }
 });

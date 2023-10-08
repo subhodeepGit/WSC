@@ -214,11 +214,17 @@ frappe.ui.form.on('Student Applicant', {
 			}, 'Actions');
 
 			frm.add_custom_button(__("Not Approve"), function() {
-				frm.set_value("application_status", "Applied");
+				frm.set_value("application_status", "Hold");
 				frm.save_or_update();
-			}, 'Actions');
+			}, 'Actions');           
 		}
-        frm.set_df_property('application_status', 'options', ['Applied', 'Approved','Hold', 'Not Approved','Rejected']);
+    //     if (frm.doc.application_status=="Rejected"){
+    //         frm.add_custom_button(__("Approve"), function() {
+    //             frm.set_value("application_status", "Approved");
+    //             frm.save_or_update();
+    //     }, 'Actions');
+    // };
+        // frm.set_df_property('application_status', 'options', ['Applied', 'Approved','Hold', 'Not Approved','Rejected']);
 
         frm.remove_custom_button("Reject","Actions");
 
@@ -481,7 +487,7 @@ frappe.ui.form.on("Education Qualifications Details", "total_marks", function(fr
         data.earned_marks=""
         refresh_field("score", data.name, data.parentfield);
         refresh_field("earned_marks", data.name, data.parentfield);
-        frappe.msgprint("Please Enter Valid Data..")
+        frappe.msgprint("Earned Marks is greater then the Total Marks.")
     }       
     cur_frm.refresh_field ("education_qualifications_details");
     // if (data.score < data.admission_percentage){
@@ -503,7 +509,7 @@ frappe.ui.form.on("Education Qualifications Details", "earned_marks", function(f
         refresh_field("earned_marks", data.name, data.parentfield);
         data.score=""
         refresh_field("score", data.name, data.parentfield);
-        frappe.throw("Please Enter Valid Data..")
+        frappe.throw("Earned Marks is greater then the Total Marks.")
     }       
     cur_frm.refresh_field ("education_qualifications_details");
     if (data.score < data.admission_percentage){

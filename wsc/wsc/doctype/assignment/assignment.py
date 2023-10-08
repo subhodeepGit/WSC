@@ -115,14 +115,28 @@ def criteria(doctype, txt, searchfield, start, page_len, filters):
 	searchfields = frappe.get_meta(doctype).get_search_fields()
 	searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)
 	course =filters.get('course')
-	criteria_details = frappe.db.sql(""" SELECT assessment_criteria FROM `tabCredit distribution List` where ({key} like %(txt)s or {scond}) and
-													parent = '{course}'
-											""".format(
-												**{
-												"key": searchfield,
-												"scond": searchfields,
-												"course": course
-											}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	assignment_name=filters.get('assignment_name')
+	final_list=[]
+	assignment_marks_distribution_list=frappe.get_all("Assignment Marks Distribution",{"course":course},['name',"assessment_criteria"])
+	for t in assignment_marks_distribution_list:
+		name=t['name']
+		amd_child=frappe.get_all("Assignment Marks Distribution Child",{"parent":name,"assignment_name":assignment_name})
+		if amd_child:
+			data=[t['assessment_criteria']]
+			final_list.append(tuple(data))
+	final_list=tuple(final_list)			
+	criteria_details=final_list
+
+
+	# criteria_details = frappe.db.sql(""" SELECT assessment_criteria FROM `tabCredit distribution List` where ({key} like %(txt)s or {scond}) and
+	# 												parent = '{course}'
+	# 										""".format(
+	# 											**{
+	# 											"key": searchfield,
+	# 											"scond": searchfields,
+	# 											"course": course
+	# 										}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	# print(criteria_details)
 	return criteria_details
 # -----------------------------------------------------------------------------------------------------------------------------
 

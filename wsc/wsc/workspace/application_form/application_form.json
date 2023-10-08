@@ -12,7 +12,7 @@
  "is_hidden": 0,
  "label": "Application Form",
  "links": [],
- "modified": "2023-09-26 20:03:45.625563",
+ "modified": "2023-10-06 12:33:41.309578",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Application Form",
@@ -38,7 +38,7 @@
   },
   {
    "color": "Grey",
-   "doc_view": "New",
+   "doc_view": "List",
    "label": "Online Payment",
    "link_to": "OnlinePayment",
    "type": "DocType"

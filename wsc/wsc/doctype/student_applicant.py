@@ -13,7 +13,10 @@ class StudentApplicant(Document):
     def on_update_after_submit(doc):
         if not doc.image:
             frappe.throw("Profile Photo is Mandatory")
-        if doc.docstatus==1 and doc.application_status=="Approved":
+        roles = frappe.get_roles(frappe.session.user)
+    	# if "HR Manager/CS Officer" in roles or "HR Admin" in roles or "Director" in roles or "Admin" in roles or "Administrator" in roles:
+        if doc.docstatus==1 and doc.application_status=="Approved" and "Administrator" not in roles:
+              # or "Education Admission Head" not in roles)
                   if doc.doc_approved==1:
                       frappe.throw("Unable to Edit the form once the application is Approved")
                       doc.doc_approved=1
@@ -53,6 +56,12 @@ class StudentApplicant(Document):
                 }
             }, ignore_permissions=True)
             student.save()
+            # student=frappe.get_doc("Student",student)
+            student.student_category_1=doc.category
+            student.block=doc.blocks
+            student.district=doc.districts
+            student.save()
+
         if doc.account_name and doc.bank and doc.account_type and doc.branch_code and doc.bank_account_no:
             acc_doc = frappe.new_doc('Bank Account')
             acc_doc.account_name = doc.account_name
@@ -121,7 +130,6 @@ class StudentApplicant(Document):
                 docmnt.is_available = 0
         
 def on_change(doc,method):
-    print("\n\n\nHELLO")
     delete_user_permission(doc)
     if doc.docstatus==1:
         if doc.application_status=="Approved":
