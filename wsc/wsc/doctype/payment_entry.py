@@ -134,6 +134,9 @@ class PaymentEntry(AccountsController):
 					if len(hostel_fee_comp)>0:
 						frappe.db.set_value("Fee Component",hostel_fee_comp[0]['name'], "outstanding_fees",d.outstanding_amount)
 						frappe.db.set_value("Hostel Fees",hostel_fee_info[0]['name'], "outstanding_amount",hostel_fee_info[0]['outstanding_amount']+d.allocated_amount)
+		data=frappe.get_all("Payment Ledger Entry",{"voucher_no":self.name})
+		for t in data:
+			frappe.db.delete("Payment Ledger Entry", t['name'])				
 		# update_payment_write_off_on_cancel(self)
 
 	def set_payment_req_status(self):
