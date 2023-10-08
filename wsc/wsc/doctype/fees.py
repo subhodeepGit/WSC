@@ -112,7 +112,9 @@ class Fees(AccountsController):
 
 		self.ignore_linked_doctypes = ('GL Entry', 'Stock Ledger Entry')
 		make_reverse_gl_entries(voucher_type=self.doctype, voucher_no=self.name)
-		# frappe.db.set(self, 'status', 'Cancelled')
+		data=frappe.get_all("Payment Ledger Entry",{"voucher_no":self.name})
+		for t in data:
+			frappe.db.delete("Payment Ledger Entry", t['name'])
 
 
 	def make_gl_entries(self):
