@@ -7,60 +7,13 @@ from frappe.model.document import Document
 
 class StudentApplicantUpdation(Document):
 	
-	def validate_pin_code(doc):
-    # try:
-		if doc.pin_code:
-
-			if len(doc.pin_code)<6:
-				frappe.throw("Field <b>Pincode</b> must be 6 Digits")
-			if len(doc.pin_code)>6:
-				frappe.throw("Field <b>Pincode</b> must be 6 Digits")
-
-	def mobile_number_validation(doc):
-
-		if doc.student_mobile_number:
-			if not (doc.student_mobile_number).isdigit():
-				frappe.throw("Field <b>Mobile Number</b> Accept Digits Only")
-			if len(doc.student_mobile_number)>10:
-				frappe.throw("Field <b>Mobile Number</b> must be 10 Digits")
-			if len(doc.student_mobile_number)<10:
-				frappe.throw("Field <b>Mobile Number</b> must be 10 Digits")
-			
-		if doc.local_guardian_contact_no:
-		
-			if not (doc.local_guardian_contact_no).isdigit():
-				frappe.throw("Field <b>Local Guardian Contact Number</b> Accept Digits Only")
-			if len(doc.local_guardian_contact_no)<10:
-				frappe.throw("Field <b>Local Guardian Contact Number</b> must be 10 Digits")
-			if len(doc.local_guardian_contact_no)>10:
-				frappe.throw("Field <b>Local Guardian Contact Number</b> must be 10 Digits")
-
-
-		if doc.fathers_contact_number:
-			
-			if not (doc.fathers_contact_number).isdigit():
-				frappe.throw("Field <b>Father's Contact Number</b> Accept Digits Only")
-			if len(doc.fathers_contact_number)<10:
-				frappe.throw("Field <b>Father's Contact Number</b> must be 10 Digits")
-			if len(doc.fathers_contact_number)>10:
-				frappe.throw("Field <b>Father's Contact Number</b> must be 10 Digits")
-
-		if doc.mothers_contact_number:
-			
-			if not (doc.mothers_contact_number).isdigit():
-				frappe.throw("Field <b>Mother's Contact Number</b> Accept Digits Only")
-			if len(doc.mothers_contact_number)<10:
-				frappe.throw("Field <b>Mother's Contact Number</b> must be 10 Digits")
-			if len(doc.mothers_contact_number)>10:
-				frappe.throw("Field <b>Mother's Contact Number</b> must be 10 Digits")
-				
-	def validate(self):
-		validate_pin_code(self)
-		mobile_number_validation(self)
-
+	def validate(doc):
+		validate_pin_code(doc)
+		mobile_number_validation(doc)
+		email_validation(doc)
+		  
 	@frappe.whitelist()
 	def update_student_applicant(self):
-		print("\n\nupdate")
 		
 		frappe.db.sql("""
 			UPDATE `tabStudent Applicant` 
@@ -166,13 +119,63 @@ class StudentApplicantUpdation(Document):
 							percentage_of_disability = l.won_in_year ,
 						))
 
+def validate_pin_code(doc):
+    # try:
+		if doc.pin_code:
+
+			if len(doc.pin_code)<6:
+				frappe.throw("Field <b>Pincode</b> must be 6 Digits")
+			if len(doc.pin_code)>6:
+				frappe.throw("Field <b>Pincode</b> must be 6 Digits")
+
+def mobile_number_validation(doc):
+
+		if doc.student_mobile_number:
+			if not (doc.student_mobile_number).isdigit():
+				frappe.throw("Field <b>Mobile Number</b> Accept Digits Only")
+			if len(doc.student_mobile_number)>10:
+				frappe.throw("Field <b>Mobile Number</b> must be 10 Digits")
+			if len(doc.student_mobile_number)<10:
+				frappe.throw("Field <b>Mobile Number</b> must be 10 Digits")
+			
+		if doc.local_guardian_contact_no:
+		
+			if not (doc.local_guardian_contact_no).isdigit():
+				frappe.throw("Field <b>Local Guardian Contact Number</b> Accept Digits Only")
+			if len(doc.local_guardian_contact_no)<10:
+				frappe.throw("Field <b>Local Guardian Contact Number</b> must be 10 Digits")
+			if len(doc.local_guardian_contact_no)>10:
+				frappe.throw("Field <b>Local Guardian Contact Number</b> must be 10 Digits")
+
+
+		if doc.fathers_contact_number:
+			
+			if not (doc.fathers_contact_number).isdigit():
+				frappe.throw("Field <b>Father's Contact Number</b> Accept Digits Only")
+			if len(doc.fathers_contact_number)<10:
+				frappe.throw("Field <b>Father's Contact Number</b> must be 10 Digits")
+			if len(doc.fathers_contact_number)>10:
+				frappe.throw("Field <b>Father's Contact Number</b> must be 10 Digits")
+
+		if doc.mothers_contact_number:
+			
+			if not (doc.mothers_contact_number).isdigit():
+				frappe.throw("Field <b>Mother's Contact Number</b> Accept Digits Only")
+			if len(doc.mothers_contact_number)<10:
+				frappe.throw("Field <b>Mother's Contact Number</b> must be 10 Digits")
+			if len(doc.mothers_contact_number)>10:
+				frappe.throw("Field <b>Mother's Contact Number</b> must be 10 Digits")
+	
+def email_validation(doc):
+		for stu_app in frappe.get_all("Student Applicant",{"student_email_id":doc.student_email_id,"docstatus":("!=",2),"name":("!=",doc.name)}):
+			frappe.throw("<b>Email ID</b> already Exist <b><a href='/app/student-applicant/{0}' target='_blank'>{0}</a></b>".format(stu_app.name))			
+		
+
 # caste_category ,
 @frappe.whitelist()
 def applicant_data(applicant_id):
 	
-	# print(applicant_id)
 	data = []
-	# docstatus ,
 	applicant_data = frappe.db.sql("""
 		SELECT 
 			first_name , middle_name , last_name ,

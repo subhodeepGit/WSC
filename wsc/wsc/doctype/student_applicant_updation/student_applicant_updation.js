@@ -45,7 +45,7 @@ frappe.ui.form.on('Student Applicant Updation', {
 						console.log(result.message[0][0][key]);
 						frm.doc[key] = result.message[0][0][key]
 					}   
-					// console.log(result.message[0][0][room_type]);
+					
 					frappe.model.clear_table(frm.doc, 'education_qualifications_details');
 					frappe.model.clear_table(frm.doc, 'course_preferences');
 					
@@ -55,8 +55,6 @@ frappe.ui.form.on('Student Applicant Updation', {
 						let c = frm.add_child('education_qualifications_details')
 						
 						c.qualification = i.qualification// result.message[3].forEach((i) => {
-							// 	let 
-							// })
 						c.institute = i.institute
 						c.board = i.board
 						c.percentage_cgpa = i.percentage_cgpa
