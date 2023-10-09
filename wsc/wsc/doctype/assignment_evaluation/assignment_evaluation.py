@@ -88,18 +88,18 @@ def set_marks1(participant_id, assignment_name):
 	if(data[0]['status'] == 'Not Qualified'):
 		return 0
 	
-@frappe.whitelist()
-def set_marks(participant_id=None, assignment_name=None):
-	count1 = frappe.db.sql(""" SELECT COUNT(*) FROM `tabAssignment` WHERE name = '%s'"""%(assignment_name))
-	count2 = frappe.db.sql(""" SELECT COUNT(*) FROM `tabAssignment Declaration` WHERE name = '%s'"""%(assignment_name))
-	if(count1[0][0] > 0):
-		data1 = frappe.db.sql(""" SELECT COUNT(*) FROM `tabAssignment Upload` WHERE assignment_id = '%s' AND participant_id ='%s'"""%(assignment_name, participant_id))
-		if(data1[0][0] == 0):
-			return 0
-	elif(count2[0][0] > 0):
-		data2 = frappe.db.sql(""" SELECT status FROM `tabParticipant List Table` WHERE parent = '%s' AND participant_id = '%s'"""%(assignment_name, participant_id), as_dict =1)
-		if(data2[0]['status'] == 'Not Qualified'):
-			return 0
+# @frappe.whitelist()
+# def set_marks(participant_id=None, assignment_name=None):
+# 	count1 = frappe.db.sql(""" SELECT COUNT(*) FROM `tabAssignment` WHERE name = '%s'"""%(assignment_name))
+# 	count2 = frappe.db.sql(""" SELECT COUNT(*) FROM `tabAssignment Declaration` WHERE name = '%s'"""%(assignment_name))
+# 	if(count1[0][0] > 0):
+# 		data1 = frappe.db.sql(""" SELECT COUNT(*) FROM `tabAssignment Upload` WHERE assignment_id = '%s' AND participant_id ='%s'"""%(assignment_name, participant_id))
+# 		if(data1[0][0] == 0):
+# 			return 0
+# 	elif(count2[0][0] > 0):
+# 		data2 = frappe.db.sql(""" SELECT status FROM `tabParticipant List Table` WHERE parent = '%s' AND participant_id = '%s'"""%(assignment_name, participant_id), as_dict =1)
+# 		if(data2[0]['status'] == 'Not Qualified'):
+# 			return 0
 		
 
 
@@ -172,3 +172,19 @@ def get_qualified_participants(doctype, txt, searchfield, start, page_len, filte
 					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
 	############################ End Search Field Code ###############
 	return data
+
+
+@frappe.whitelist()
+def get_assignments_if_uploaded(assignment_declaration = None, participant_id = None):
+	assignments = frappe.get_all("Job sheet", filters=[["parent","=",assignment_declaration],["docstatus","=",1]], fields=["job_sheet_number","job_sheet_name","assessment_criteria","start_date_and_time","total_durationin_hours","total_marks","pass_marks","weightage","end_date_and_time","marks"])
+	uploaded_assignments = frappe.get_all("Assignment Upload", filters=[["participant_id","=",participant_id],["docstatus","=",1]], fields=["name","assignment_id"])
+
+	assignment_fetch = []
+
+	if uploaded_assignments:
+		for i in uploaded_assignments:
+			for j in assignments:
+				if i['assignment_id']==j['job_sheet_number']:
+					assignment_fetch.append(j)
+					
+	return assignment_fetch
