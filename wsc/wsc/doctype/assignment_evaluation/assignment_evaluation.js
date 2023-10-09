@@ -24,6 +24,10 @@ frappe.ui.form.on('Assignment Evaluation', {
 		df.read_only = 1;
 		var df = frappe.meta.get_docfield("Job sheet","weightage", frm.doc.name);
 		df.read_only = 1;
+		var df = frappe.meta.get_docfield("Job sheet","assignment_upload_status", frm.doc.name);
+		df.read_only = 1;
+		var df = frappe.meta.get_docfield("Job sheet","assignment_upload_link", frm.doc.name);
+		df.read_only = 1;
 		var df = frappe.meta.get_docfield("Job sheet","marks", frm.doc.name);
 		df.reqd = 1;
 
@@ -36,6 +40,8 @@ frappe.ui.form.on('Assignment Evaluation', {
 		frm.refresh_field('total_marks');
 		frm.refresh_field('pass_marks');
 		frm.refresh_field('weightage');
+		frm.refresh_field('assignment_upload_status');
+		frm.refresh_field('assignment_upload_link');
 		frm.refresh_field('marks');
 
 		frm.set_query('assignment_declaration', function(){
@@ -105,20 +111,20 @@ frappe.ui.form.on('Assignment Evaluation', {
 	// 		}
 	// 	})
 	// },
-	participant_name: function(frm){
-		frappe.call({
-			method: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.set_marks',
-			args:{
-				participant_id : frm.doc.participant_id,
-				assignment_name : frm.doc.select_assignment
-			},
-			callback: function(result){
-				if(result.message){
-					frm.set_value("marks_earned", '0')
-				}
-			}
-		})
-	},
+	// participant_name: function(frm){
+	// 	frappe.call({
+	// 		method: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.set_marks',
+	// 		args:{
+	// 			participant_id : frm.doc.participant_id,
+	// 			assignment_name : frm.doc.select_assignment
+	// 		},
+	// 		callback: function(result){
+	// 			if(result.message){
+	// 				frm.set_value("marks_earned", '0')
+	// 			}
+	// 		}
+	// 	})
+	// },
 	// instructor_id: function(frm){
 	// 	frappe.call({
 	// 		method: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_instructor_name',
@@ -168,43 +174,81 @@ frappe.ui.form.on('Assignment Evaluation', {
 			frm.set_value('marks_earned', '')
 		}
 	},
-	assignment_declaration: function(frm){
-		// alert(JSON.stringify(frm.doc.job_sheet_fetch))
-		if (frm.doc.job_sheet_fetch != ""){
-			frm.set_df_property('marks_earned', 'read_only', 1)
-		} else {
-			frm.set_df_property('marks_earned', 'read_only', 0)
-		}
-		if (frm.doc.assignment_declaration == undefined || frm.doc.assignment_declaration == "" || frm.doc.assignment_declaration == null) {
+// 	assignment_declaration: function(frm){
+// 		// alert(JSON.stringify(frm.doc.job_sheet_fetch))
+// 		if (frm.doc.job_sheet_fetch != ""){
+// 			frm.set_df_property('marks_earned', 'read_only', 1)
+// 		} else {
+// 			frm.set_df_property('marks_earned', 'read_only', 0)
+// 		}
+// 		if (frm.doc.assignment_declaration == undefined || frm.doc.assignment_declaration == "" || frm.doc.assignment_declaration == null) {
 
-		} else {
-			frappe.model.with_doc("Assignment Declaration", frm.doc.assignment_declaration, function () {
-				var tabletransfer = frappe.model.get_doc("Assignment Declaration", frm.doc.assignment_declaration);
-				cur_frm.doc.job_sheet_fetch = "";
-				cur_frm.refresh_field("job_sheet_fetch");
-				$.each(tabletransfer.job_sheet, function (index, row) {
-					var d = frappe.model.add_child(cur_frm.doc, "Job sheet", "job_sheet_fetch");
-					d.job_sheet_number = row.job_sheet_number;
-					d.job_sheet_name = row.job_sheet_name;
-					d.start_date_and_time = row.start_date_and_time;
-					d.end_date_and_time = row.end_date_and_time;
-					d.total_durationin_hours = row.total_durationin_hours;
-					d.assessment_criteria = row.assessment_criteria;
-					d.total_marks = row.total_marks;
-					d.pass_marks = row.pass_marks;
-					d.weightage = row.weightage;
-					cur_frm.refresh_field("job_sheet_fetch");
-				});
-			});
-		}
+// 		} else {
+// 			frappe.model.with_doc("Assignment Declaration", frm.doc.assignment_declaration, function () {
+// 				var tabletransfer = frappe.model.get_doc("Assignment Declaration", frm.doc.assignment_declaration);
+// 				cur_frm.doc.job_sheet_fetch = "";
+// 				cur_frm.refresh_field("job_sheet_fetch");
+// 				$.each(tabletransfer.job_sheet, function (index, row) {
+// 					var d = frappe.model.add_child(cur_frm.doc, "Job sheet", "job_sheet_fetch");
+// 					d.job_sheet_number = row.job_sheet_number;
+// 					d.job_sheet_name = row.job_sheet_name;
+// 					d.start_date_and_time = row.start_date_and_time;
+// 					d.end_date_and_time = row.end_date_and_time;
+// 					d.total_durationin_hours = row.total_durationin_hours;
+// 					d.assessment_criteria = row.assessment_criteria;
+// 					d.total_marks = row.total_marks;
+// 					d.pass_marks = row.pass_marks;
+// 					d.weightage = row.weightage;
+// 					cur_frm.refresh_field("job_sheet_fetch");
+// 				});
+// 			});
+// 		}
+// 	}
+participant_id: function(frm){
+	frm.set_value("marks_earned","")
+	if (frm.doc.job_sheet_fetch != ""){
+		frm.set_df_property('marks_earned', 'read_only', 1)
+	} else {
+		frm.set_df_property('marks_earned', 'read_only', 0)
 	}
+	frappe.call({
+		method:'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_assignments_if_uploaded',
+		args: {
+			assignment_declaration: frm.doc.assignment_declaration,
+			participant_id: frm.doc.participant_id,
+		},
+		callback: function(result){
+			if(result.message){
+				frappe.model.clear_table(frm.doc, 'job_sheet_fetch')
+				result.message.forEach(element => {
+					var childTable = frm.add_child('job_sheet_fetch')
+					childTable.job_sheet_number = element.job_sheet_number
+					childTable.job_sheet_name = element.job_sheet_name
+					childTable.assessment_criteria = element.assessment_criteria
+					childTable.start_date_and_time = element.start_date_and_time
+					childTable.total_durationin_hours = element.total_durationin_hours
+					childTable.total_marks = element.total_marks
+					childTable.pass_marks = element.pass_marks
+					childTable.end_date_and_time = element.end_date_and_time
+					childTable.weightage = element.weightage
+					childTable.assignment_upload_status = element.assignment_upload_status
+					childTable.assignment_upload_link = element.assignment_upload_link
+				})
+			}
+			frm.refresh()
+			frm.refresh_field('job_sheet_fetch')
+		}
+	})
+},
 })
 
 // Child table Calculation
 frappe.ui.form.on('Job sheet', {	//Child table Name
 	marks:function(frm, cdt, cdn){	//Child table field Name where you data enter
 	var d = locals[cdt][cdn];
-	if (d.marks > d.total_marks){
+	let total_marks = parseInt(d.total_marks)
+	let marks = parseInt(d.marks)
+	if (marks > total_marks){
 		d.marks = ''
 		frm.set_value("marks_earned", '');
 		refresh_field("marks", d.name, d.parentfield);

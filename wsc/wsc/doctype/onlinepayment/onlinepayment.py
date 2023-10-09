@@ -26,7 +26,7 @@ class OnlinePayment(Document):
         if self.is_new() and self.docstatus==0:
             data=frappe.get_all("OnlinePayment",{"transaction_status":"success","payment_status":0,"party":self.party})    
             if data:
-                frappe.throw("Last Transaction is not yet settled.So new Transaction can not be initiated.")
+                frappe.throw("The last transaction was successful.A receipt for money will be generated.")
 
     def on_cancel(doc):
         frappe.throw("Once form is submitted it can't be cancelled")    
