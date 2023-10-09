@@ -5,6 +5,10 @@ import frappe
 from frappe.model.document import Document
 
 class Floor(Document):
+
+	def validate(self):
+		floor_check(self)
+
 	def on_submit(self):
 		#maximum number of floors that can be created for self.building
 		building_total_floor = frappe.db.get_value("Buildings",{"name":self.building_name},["total_floors"])
@@ -22,4 +26,10 @@ class Floor(Document):
 
 		if total_rooms_floor > building_total_rooms:
 			frappe.throw("Total rooms for current building exceeds the total number from Master Building form")
+
+def floor_check(self):
+	if self.floor_number<=0:
+		frappe.throw("Field <b>Floor number</b> must not be zero or negative")
 	
+	if self.number_of_rooms<=0:
+		frappe.throw("Field <b>Number of room</b> must not be zero or negative")

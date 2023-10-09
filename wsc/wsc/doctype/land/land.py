@@ -9,6 +9,7 @@ class Land(Document):
 	def validate(self):
 		dateValidate(self)
 		pincode(self)
+		phone(self)
 
 
 # To validate if the start date is not after the end date
@@ -27,3 +28,10 @@ def pincode(self):
 
 	if len(self.pin_code)<6:	
 			frappe.throw("Field <b>Pin Code</b> must be 6 Digits")
+
+def phone(self):
+	if len(self.phone)>10:
+		frappe.throw("Field <b>Phone number</b> must be 10 Digits")
+	
+	if len(self.phone)<10:
+		frappe.throw("Field <b>Phone number</b> must be 10 Digits")
