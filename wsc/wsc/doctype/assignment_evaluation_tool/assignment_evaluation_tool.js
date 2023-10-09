@@ -138,7 +138,7 @@
 frappe.ui.form.on('Assignment Evaluation Tool', {
 	setup: function(frm){
 		frm.set_df_property('participants_list', 'cannot_add_rows', true);
-		frm.set_df_property('participants_list', 'cannot_delete_rows', true);
+		// frm.set_df_property('participants_list', 'cannot_delete_rows', true);
 		frm.set_query("assignment_declaration", function(){
 			return {
 				"filters": [
@@ -174,6 +174,8 @@ frappe.ui.form.on('Assignment Evaluation Tool', {
 						childTable.pass_marks = element.passing_marks
 						childTable.end_date_and_time = element.end_date
 						childTable.weightage = element.weightage
+						childTable.assignment_upload_status = element.assignment_upload_status
+						childTable.assignment_upload_link = element.assignment_upload_link
 					})
 				}
 				frm.refresh()
