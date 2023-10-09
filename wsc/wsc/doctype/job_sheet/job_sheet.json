@@ -11,12 +11,14 @@
   "assessment_criteria",
   "start_date_and_time",
   "total_durationin_hours",
+  "assignment_upload_status",
   "column_break_crnx5",
   "total_marks",
   "pass_marks",
   "weightage",
   "end_date_and_time",
-  "marks"
+  "marks",
+  "assignment_upload_link"
  ],
  "fields": [
   {
@@ -86,12 +88,23 @@
   {
    "fieldname": "column_break_crnx5",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "assignment_upload_status",
+   "fieldtype": "Data",
+   "label": "Assignment Upload Status"
+  },
+  {
+   "fieldname": "assignment_upload_link",
+   "fieldtype": "Link",
+   "label": "Assignment Upload Link",
+   "options": "Assignment Upload"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-10-06 12:35:04.950244",
+ "modified": "2023-10-09 12:12:19.079505",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Job sheet",
