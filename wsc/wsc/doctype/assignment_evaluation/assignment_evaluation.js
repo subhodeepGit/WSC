@@ -24,6 +24,10 @@ frappe.ui.form.on('Assignment Evaluation', {
 		df.read_only = 1;
 		var df = frappe.meta.get_docfield("Job sheet","weightage", frm.doc.name);
 		df.read_only = 1;
+		var df = frappe.meta.get_docfield("Job sheet","assignment_upload_status", frm.doc.name);
+		df.read_only = 1;
+		var df = frappe.meta.get_docfield("Job sheet","assignment_upload_link", frm.doc.name);
+		df.read_only = 1;
 		var df = frappe.meta.get_docfield("Job sheet","marks", frm.doc.name);
 		df.reqd = 1;
 
@@ -36,6 +40,8 @@ frappe.ui.form.on('Assignment Evaluation', {
 		frm.refresh_field('total_marks');
 		frm.refresh_field('pass_marks');
 		frm.refresh_field('weightage');
+		frm.refresh_field('assignment_upload_status');
+		frm.refresh_field('assignment_upload_link');
 		frm.refresh_field('marks');
 
 		frm.set_query('assignment_declaration', function(){
@@ -225,6 +231,8 @@ participant_id: function(frm){
 					childTable.pass_marks = element.pass_marks
 					childTable.end_date_and_time = element.end_date_and_time
 					childTable.weightage = element.weightage
+					childTable.assignment_upload_status = element.assignment_upload_status
+					childTable.assignment_upload_link = element.assignment_upload_link
 				})
 			}
 			frm.refresh()

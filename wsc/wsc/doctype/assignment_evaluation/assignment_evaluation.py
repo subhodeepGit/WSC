@@ -179,12 +179,18 @@ def get_assignments_if_uploaded(assignment_declaration = None, participant_id = 
 	assignments = frappe.get_all("Job sheet", filters=[["parent","=",assignment_declaration],["docstatus","=",1]], fields=["job_sheet_number","job_sheet_name","assessment_criteria","start_date_and_time","total_durationin_hours","total_marks","pass_marks","weightage","end_date_and_time","marks"])
 	uploaded_assignments = frappe.get_all("Assignment Upload", filters=[["participant_id","=",participant_id],["docstatus","=",1]], fields=["name","assignment_id"])
 
-	assignment_fetch = []
+	if assignments:
+		for i in assignments:
+			if uploaded_assignments:
+				for j in uploaded_assignments:
+					if i['job_sheet_number']==j['assignment_id']:
+						i['assignment_upload_status']="Submitted"
+						i['assignment_upload_link']=j['name']
+					else:
+						i['assignment_upload_status']="Not Submitted"
+						i['assignment_upload_link']=None
+			else:
+				i['assignment_upload_status']="Not Submitted"
+				i['assignment_upload_link']=None
 
-	if uploaded_assignments:
-		for i in uploaded_assignments:
-			for j in assignments:
-				if i['assignment_id']==j['job_sheet_number']:
-					assignment_fetch.append(j)
-					
-	return assignment_fetch
+	return assignments
