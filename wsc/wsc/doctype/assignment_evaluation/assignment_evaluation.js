@@ -199,7 +199,12 @@ frappe.ui.form.on('Assignment Evaluation', {
 // 		}
 // 	}
 participant_id: function(frm){
-	// frm.set_value("job_sheet_fetch","")
+	frm.set_value("marks_earned","")
+	if (frm.doc.job_sheet_fetch != ""){
+		frm.set_df_property('marks_earned', 'read_only', 1)
+	} else {
+		frm.set_df_property('marks_earned', 'read_only', 0)
+	}
 	frappe.call({
 		method:'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_assignments_if_uploaded',
 		args: {
