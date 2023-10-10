@@ -111,7 +111,7 @@ class PaymentEntry(AccountsController):
 					if len(hostel_fee_comp)>0:
 						frappe.db.set_value("Fee Component",hostel_fee_comp[0]['name'], "outstanding_fees",d.outstanding_amount)
 						frappe.db.set_value("Hostel Fees",hostel_fee_info[0]['name'], "outstanding_amount",hostel_fee_info[0]['outstanding_amount']-d.allocated_amount)
-		# update_payment_write_off_on_submit(self)
+		update_payment_write_off_on_submit(self)
 
 	def on_cancel(self):
 		self.ignore_linked_doctypes = ('GL Entry', 'Stock Ledger Entry')
@@ -137,7 +137,7 @@ class PaymentEntry(AccountsController):
 		data=frappe.get_all("Payment Ledger Entry",{"voucher_no":self.name})
 		for t in data:
 			frappe.db.delete("Payment Ledger Entry", t['name'])				
-		# update_payment_write_off_on_cancel(self)
+		update_payment_write_off_on_cancel(self)
 
 	def set_payment_req_status(self):
 		from erpnext.accounts.doctype.payment_request.payment_request import update_payment_req_status
@@ -2457,23 +2457,23 @@ def update_payment_write_off_on_submit(self):
 		child_table1 = frappe.get_all("Payment Entry Deduction", {"parent" : self.name})
 		child_table2 = frappe.get_all("Payment Entry Deduction", {"parent" : _doc[0].name})
 
-	if child_table1 and child_table2:
-		if (len(child_table1) == len(child_table2)):
-			for child_table_name in child_table1.keys():
-				child_table_1 = child_table1[child_table_name]
-				child_table_2 = child_table2.get(child_table_name, [])
+		if child_table1 and child_table2:
+			if (len(child_table1) == len(child_table2)):
+				for child_table_name in child_table1.keys():
+					child_table_1 = child_table1[child_table_name]
+					child_table_2 = child_table2.get(child_table_name, [])
 
-			for child_table_1_record in child_table_1:
-				child_table_2_record = frappe.get_doc(child_table_name, child_table_1_record.name)
-			
-			for field in child_table_1_record.keys():
-				if field not in child_table_2_record.keys() or child_table_1_record[field] != child_table_2_record[field]:
-					frappe.throw("Tables are not matching.")
+				for child_table_1_record in child_table_1:
+					child_table_2_record = frappe.get_doc(child_table_name, child_table_1_record.name)
+				
+				for field in child_table_1_record.keys():
+					if field not in child_table_2_record.keys() or child_table_1_record[field] != child_table_2_record[field]:
+						frappe.throw("Tables are not matching.")
 
-	for deduction in self.deductions:
-		if deduction.payment_write_off:
-			frappe.db.set_value('Payment Write Off', deduction.payment_write_off, 'payment_entry', self.name)
-			frappe.db.set_value('Payment Write Off', deduction.payment_write_off, 'payment_status', 1)
+		for deduction in self.deductions:
+			if deduction.payment_write_off:
+				frappe.db.set_value('Payment Write Off', deduction.payment_write_off, 'payment_entry', self.name)
+				frappe.db.set_value('Payment Write Off', deduction.payment_write_off, 'payment_status', 1)
 			
 def update_payment_write_off_on_cancel(self):
 	_doc = frappe.get_all("Payment Write Off", {"student" : self.party}, "name")
@@ -2481,23 +2481,23 @@ def update_payment_write_off_on_cancel(self):
 		child_table1 = frappe.get_all("Payment Entry Deduction", {"parent" : self.name})
 		child_table2 = frappe.get_all("Payment Entry Deduction", {"parent" : _doc[0].name})
 
-	if child_table1 and child_table2:
-		if (len(child_table1) == len(child_table2)):
-			for child_table_name in child_table1.keys():
-				child_table_1 = child_table1[child_table_name]
-				child_table_2 = child_table2.get(child_table_name, [])
+		if child_table1 and child_table2:
+			if (len(child_table1) == len(child_table2)):
+				for child_table_name in child_table1.keys():
+					child_table_1 = child_table1[child_table_name]
+					child_table_2 = child_table2.get(child_table_name, [])
 
-			for child_table_1_record in child_table_1:
-				child_table_2_record = frappe.get_doc(child_table_name, child_table_1_record.name)
-			
-			for field in child_table_1_record.keys():
-				if field not in child_table_2_record.keys() or child_table_1_record[field] != child_table_2_record[field]:
-					frappe.throw("Tables are not matching.")
+				for child_table_1_record in child_table_1:
+					child_table_2_record = frappe.get_doc(child_table_name, child_table_1_record.name)
+				
+				for field in child_table_1_record.keys():
+					if field not in child_table_2_record.keys() or child_table_1_record[field] != child_table_2_record[field]:
+						frappe.throw("Tables are not matching.")
 
-	for deduction in self.deductions:
-		if deduction.payment_write_off:
-			frappe.db.set_value('Payment Write Off', deduction.payment_write_off, 'payment_entry', '')
-			frappe.db.set_value('Payment Write Off', deduction.payment_write_off, 'payment_status', 0)
+			for deduction in self.deductions:
+				if deduction.payment_write_off:
+					frappe.db.set_value('Payment Write Off', deduction.payment_write_off, 'payment_entry', '')
+					frappe.db.set_value('Payment Write Off', deduction.payment_write_off, 'payment_status', 0)
 
 
 

@@ -1,0 +1,23 @@
+{
+ "aggregate_function_based_on": "seat_balance",
+ "creation": "2023-10-10 10:01:15.562466",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "document_type": "Student Admission",
+ "dynamic_filters_json": "[]",
+ "filters_json": "[[\"Student Admission\",\"name\",\"=\",\"MCE 2023-24 Admission\",false]]",
+ "function": "Sum",
+ "idx": 0,
+ "is_public": 1,
+ "is_standard": 1,
+ "label": "MCE Seat Balance",
+ "modified": "2023-10-10 10:33:28.136506",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "MCE Seat Balance",
+ "owner": "Administrator",
+ "report_function": "Sum",
+ "show_percentage_stats": 1,
+ "stats_time_interval": "Daily",
+ "type": "Document Type"
+}
