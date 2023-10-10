@@ -308,6 +308,9 @@ frappe.ui.form.on('Student Applicant', {
                 }
 			});
         }
+        else if (frm.doc.enrollment_status=="Not Enrolled"){
+            frm.remove_custom_button("Enroll")
+        }
         // frappe.call({
         //     method: "wsc.wsc.doctype.student_applicant.get_qualification_list",
         //     callback: function(r) {

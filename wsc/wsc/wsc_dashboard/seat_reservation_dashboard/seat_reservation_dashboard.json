@@ -1,0 +1,67 @@
+{
+ "cards": [
+  {
+   "card": "ACR Total Seats"
+  },
+  {
+   "card": "ACR Seat Balance"
+  },
+  {
+   "card": "ACR Seat Allocated"
+  },
+  {
+   "card": "ACR General Men Seats"
+  },
+  {
+   "card": "ACR General Women Seats"
+  },
+  {
+   "card": "ACR General PWD Seats"
+  },
+  {
+   "card": "ACR General Skill  Seats"
+  },
+  {
+   "card": "ACR ST Men Seats"
+  },
+  {
+   "card": "ACR ST Women  Seats"
+  },
+  {
+   "card": "ACR ST PWD  Seats"
+  },
+  {
+   "card": "ACR ST Skill  Seats"
+  },
+  {
+   "card": "ACR SC Men Seats"
+  },
+  {
+   "card": "ACR SC Women Seats"
+  },
+  {
+   "card": "ACR SC PWD  Seats"
+  },
+  {
+   "card": "ACR SC Skill  Seats"
+  }
+ ],
+ "charts": [
+  {
+   "chart": "Student Admission",
+   "width": "Full"
+  }
+ ],
+ "creation": "2023-10-05 12:42:30.541088",
+ "dashboard_name": "SEAT RESERVATION DASHBOARD",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "modified": "2023-10-09 11:45:06.760677",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "SEAT RESERVATION DASHBOARD",
+ "owner": "Administrator"
+}

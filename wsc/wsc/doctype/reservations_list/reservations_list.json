@@ -26,8 +26,7 @@
    "fieldname": "allocated_seat",
    "fieldtype": "Int",
    "in_list_view": 1,
-   "label": "Allocated Seat",
-   "read_only": 1
+   "label": "Allocated Seat"
   },
   {
    "fieldname": "update_balance",
@@ -39,8 +38,7 @@
    "fieldname": "seat_balance",
    "fieldtype": "Int",
    "in_list_view": 1,
-   "label": "Seat Balance",
-   "read_only": 1
+   "label": "Seat Balance"
   },
   {
    "columns": 2,
@@ -55,7 +53,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-12 12:32:40.864518",
+ "modified": "2023-10-09 13:23:01.798940",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Reservations List",
