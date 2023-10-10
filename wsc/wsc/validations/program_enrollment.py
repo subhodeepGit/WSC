@@ -841,7 +841,7 @@ def validate_seat_reservation_type(doc):
 
 def onlinepayrole(doc):
     email_stu = frappe.get_all("Student",{"name":doc.student},["student_email_id"])
-    if doc.docstatus!=0:
+    if doc.docstatus==1:
         student = frappe.get_doc("User",email_stu[0]["student_email_id"])
         student.new_password = ''
         # student.role_profile_name = ''
@@ -852,3 +852,9 @@ def onlinepayrole(doc):
         student.new_password = ''
         student.flags.ignore_permissions = True
         student.save()
+    if doc.docstatus==2:
+        role_disable = frappe.get_doc("User",email_stu[0]["student_email_id"])
+        role_disable.remove_roles("Provisionally admitted","Student")
+        role_disable.new_password = ''
+        role_disable.flags.ignore_permissions = True
+        role_disable.save()
