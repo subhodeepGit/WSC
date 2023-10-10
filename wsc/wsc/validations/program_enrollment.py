@@ -639,20 +639,35 @@ def update_reserved_seats(doc,on_submit=0):
     #                     Select  `admission_status` from `tabProgram Enrollment` where `name`= "%s" """ %(doc.name))
     # for t in result:
     #     print("\n\n\n\n\nRESULT",t[0])
-    if doc.is_provisional_admission=="No" and doc.admission_status=="Admitted":
-        for d in admission.get("reservations_distribution"):
-            if doc.seat_reservation_type==d.seat_reservation_type:
-                if on_update:
-                    if int(d.seat_balance) > 0:
-                        d.seat_balance-=1
-                        d.allocated_seat=d.total_seat-d.seat_balance
-                    else:
-                        frappe.throw("There is no available seat.")
-                elif on_cancel:
-                    d.seat_balance+=1
+    for d in admission.get("reservations_distribution"):
+        if doc.seat_reservation_type==d.seat_reservation_type:
+            if on_submit:
+                if int(d.seat_balance) > 0:
+                    d.seat_balance-=1
                     d.allocated_seat=d.total_seat-d.seat_balance
+                else:
+                    frappe.throw("There is no available seat.")
+            elif on_cancel:
+                # if int(d.allocated_seat) > int(d.seat_balance):
+                d.seat_balance+=1
+                d.allocated_seat=d.total_seat-d.seat_balance
+                # else:
+                #     frappe.throw("Error !!")
+    admission.save()
+    # if doc.is_provisional_admission=="No" and doc.admission_status=="Admitted":
+    #     for d in admission.get("reservations_distribution"):
+    #         if doc.seat_reservation_type==d.seat_reservation_type:
+    #             if on_update:
+    #                 if int(d.seat_balance) > 0:
+    #                     d.seat_balance-=1
+    #                     d.allocated_seat=d.total_seat-d.seat_balance
+    #                 else:
+    #                     frappe.throw("There is no available seat.")
+    #             elif on_cancel:
+    #                 d.seat_balance+=1
+    #                 d.allocated_seat=d.total_seat-d.seat_balance
 
-        admission.save()
+    #     admission.save()
 
 # branch sliding
 # else:
