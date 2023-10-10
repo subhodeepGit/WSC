@@ -26,7 +26,8 @@
    "in_preview": 1,
    "in_standard_filter": 1,
    "label": "Building Name",
-   "options": "Buildings"
+   "options": "Buildings",
+   "reqd": 1
   },
   {
    "fieldname": "floor_size",
@@ -38,13 +39,15 @@
    "fieldtype": "Int",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Number of rooms"
+   "label": "Number of rooms",
+   "reqd": 1
   },
   {
    "fieldname": "floor_incharge",
    "fieldtype": "Link",
    "label": "Floor Incharge",
-   "options": "Employee"
+   "options": "Employee",
+   "reqd": 1
   },
   {
    "fieldname": "floor_assets",
@@ -60,11 +63,12 @@
   },
   {
    "fieldname": "floor_number",
-   "fieldtype": "Data",
+   "fieldtype": "Int",
    "in_list_view": 1,
    "in_preview": 1,
    "in_standard_filter": 1,
-   "label": "Floor Number"
+   "label": "Floor Number",
+   "reqd": 1
   },
   {
    "fieldname": "floor_plan",
@@ -84,7 +88,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-12 12:33:37.721430",
+ "modified": "2023-10-09 15:36:08.584312",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Floor",

@@ -108623,5 +108623,30 @@
   "share": 0,
   "submit": 1,
   "write": 1
+ },
+  {
+  "amend": 0,
+  "cancel": 0,
+  "create": 1,
+  "delete": 0,
+  "docstatus": 0,
+  "doctype": "Custom DocPerm",
+  "email": 0,
+  "export": 1,
+  "if_owner": 0,
+  "import": 0,
+  "modified": "2023-10-09 16:00:12.971556",
+  "name": "7d27e65c0b",
+  "parent": "Room",
+  "permlevel": 0,
+  "print": 0,
+  "read": 1,
+  "report": 0,
+  "role": "Building Administrator",
+  "select": 1,
+  "set_user_permissions": 0,
+  "share": 0,
+  "submit": 0,
+  "write": 1
  }
 ]
