@@ -1,5 +1,6 @@
 frappe.ui.form.on('Student',{
     refresh: function(frm) {
+        frm.set_df_property('document_list', 'cannot_delete_rows', true);
         if (!frm.doc.__islocal){
             frm.add_custom_button("Enroll", () => {
                 let data = {}
