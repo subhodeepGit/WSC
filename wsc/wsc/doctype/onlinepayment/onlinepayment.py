@@ -67,13 +67,12 @@ def get_outstanding_amount(student):
 	return outstanding_amount
 
 @frappe.whitelist()
-def open_gateway(party_name, roll_no, amount, order_id,url,gw_provider,form_status): 
-    # print('\n\n\n\n')
-    # print(form_status)
+def open_gateway(party_name, party, amount, order_id,url,gw_provider,form_status): 
+   
     if form_status == "Yes":
         frappe.throw("Please Save the Form Before Initiate The Transaction.")
 
-    data=frappe.get_all("OnlinePayment",{"transaction_status":"success","payment_status":0,"party":roll_no})  
+    data=frappe.get_all("OnlinePayment",{"transaction_status":"success","payment_status":0,"party":party})  
     if data:
         frappe.throw("Last Transaction is not yet settled.So new Transaction can not be initiated.") 
 
@@ -103,18 +102,14 @@ def open_gateway(party_name, roll_no, amount, order_id,url,gw_provider,form_stat
                 
                 p_merchant_id = merchant_id
                 p_billing_name = party_name
-                if roll_no:
-                    p_customer_identifier = roll_no
-                else:
-                    p_customer_identifier=""
-
+                p_customer_identifier = party
                 p_amount = amount
                 p_order_id = order_id
                 p_merchant_url = url
                 logging.info("p_merchant_url : %s", p_merchant_url)
 
                 merchant_data = 'merchant_id=' + p_merchant_id + '&' + 'order_id=' + p_order_id + '&' + "currency=" + currency + '&' + 'amount=' + p_amount + '&' + 'redirect_url=' + redirect_url + '&' + 'cancel_url=' + cancel_url + '&' + 'language=' + language + '&' + 'billing_name=' + p_billing_name + '&' + 'customer_identifier=' + p_customer_identifier + '&' + 'merchant_param1='+ p_merchant_url + '&' + 'delivery_name=' + gateway_name
-                
+                # merchant_data = 'tid='+ party + '&' + 'merchant_id=' + p_merchant_id + '&' + 'order_id=' + p_order_id + '&' + "currency=" + currency + '&' + 'amount=' + p_amount + '&' + 'redirect_url=' + redirect_url + '&' + 'cancel_url=' + cancel_url + '&' + 'language=' + language + '&' + 'billing_name=' + p_billing_name + '&' + 'customer_identifier=' + p_customer_identifier + '&' + 'merchant_param1='+ p_merchant_url + '&' + 'delivery_name=' + gateway_name
                 logging.info("merchant_data : %s", merchant_data)
                 encryption = encrypt(merchant_data, working_key)
 
@@ -139,7 +134,7 @@ def open_gateway(party_name, roll_no, amount, order_id,url,gw_provider,form_stat
             
                 p_merchant_id = merchant_id
                 p_billing_name = party_name
-                p_customer_identifier = roll_no
+                p_customer_identifier = party
                 p_amount = amount
                 p_order_id = order_id
                 p_merchant_url = url
@@ -181,10 +176,7 @@ def open_gateway(party_name, roll_no, amount, order_id,url,gw_provider,form_stat
                 
                 p_merchant_id = merchant_id
                 p_billing_name = party_name
-                if roll_no:
-                    p_customer_identifier = roll_no
-                else:
-                    p_customer_identifier=""
+                p_customer_identifier = party
 
                 p_amount = amount
                 p_order_id = order_id
@@ -217,7 +209,7 @@ def open_gateway(party_name, roll_no, amount, order_id,url,gw_provider,form_stat
             
                 p_merchant_id = merchant_id
                 p_billing_name = party_name
-                p_customer_identifier = roll_no
+                p_customer_identifier = party
                 p_amount = amount
                 p_order_id = order_id
                 p_merchant_url = url
@@ -268,18 +260,28 @@ def get_order_status():
         billing_name = response_data.get('billing_name')[0]
         logging.info(" billing_name %s",billing_name)
 
-        if "trans_date" in response_data:
+        if "trans_date" in response_data:          
             
-            if response_data["trans_date"][0]=='null': 
+            if response_data["trans_date"][0]=='null':                
                 time_of_transaction= datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 logging.info(" time_of_transaction %s",time_of_transaction)
             else:
-                time_of_transaction = response_data.get('trans_date')[0]
+                
+                transaction_time = response_data.get('trans_date')[0]               
+                logging.info(" server transaction_time %s",transaction_time)
+                date_obj = datetime.strptime(transaction_time, "%d/%m/%Y %H:%M:%S")
+                time_of_transaction = date_obj.strftime("%Y-%m-%d %H:%M:%S")
+
+                # time_of_transaction = response_data.get('trans_date')[0]
                 logging.info(" time_of_transaction %s",time_of_transaction)
-        else:    
-            time_of_transaction = response_data.get('order_date_time')[0]
-            logging.info(" time_of_transaction %s",time_of_transaction)  
-             
+        else:
+                     
+            transaction_time = response_data.get('order_date_time')[0]
+            logging.info(" server transaction_time %s",transaction_time)
+            date_obj = datetime.strptime(transaction_time, "%d/%m/%Y %H:%M:%S")
+            time_of_transaction = date_obj.strftime("%Y-%m-%d %H:%M:%S")
+            # time_of_transaction = response_data.get('trans_date')[0]
+            logging.info(" time_of_transaction %s",time_of_transaction)          
 
        
         status_message = response_data.get('status_message')[0]
@@ -354,8 +356,7 @@ def getTransactionDetails(doc):
             orderNo = doc.name
             referenceNo = doc.transaction_id
 
-            merchant_json_data = {
-                'reference_no': referenceNo,
+            merchant_json_data = {                
                 'order_no': orderNo
             }
 
@@ -365,8 +366,8 @@ def getTransactionDetails(doc):
             final_data = 'enc_request='+encrypted_data+'&'+'access_code='+access_code + \
                             '&'+'command=orderStatusTracker&request_type=JSON&response_type=JSON'
             logging.info("Final API final_data: %s", final_data)
-            r = requests.post(
-                'https://apitest.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)
+            r = requests.post('https://login.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)
+            # r = requests.post('https://apitest.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)
             
             t = r.text
             logging.info("Final API Req: %s", r)
@@ -424,7 +425,7 @@ def getTransactionDetails(doc):
             referenceNo = doc.transaction_id
 
             merchant_json_data = {
-                'reference_no': referenceNo,
+               
                 'order_no': orderNo
             }
 
@@ -434,8 +435,8 @@ def getTransactionDetails(doc):
             final_data = 'enc_request='+encrypted_data+'&'+'access_code='+access_code + \
                             '&'+'command=orderStatusTracker&request_type=JSON&response_type=JSON'
             logging.info("Final API final_data: %s", final_data)
-            r = requests.post(
-                'https://apitest.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)
+            r = requests.post('https://login.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)
+            # r = requests.post('https://apitest.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)
             
             t = r.text
             logging.info("Final API Req: %s", r)
@@ -486,6 +487,9 @@ def getTransactionDetails(doc):
 
     except Exception as e:	
         return str(e)
+    
+
+           
 
 def pad(data):
     length = 16 - (len(data) % 16)

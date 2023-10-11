@@ -4,6 +4,7 @@
 import frappe
 from frappe.model.document import Document
 from wsc.wsc.notification.custom_notification import sendHR_appraisal,sendRa_appraisal,sendDh_appraisal,sendDirector_appraisal
+from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
 
 
 class EmployeeAppraisalPortal(Document):
@@ -25,8 +26,8 @@ class EmployeeAppraisalPortal(Document):
 									 fieldname= "name")
 		if existing_record and existing_record!= self.name:
 			frappe.throw(
-            "Employee has already applied for appraisal for the same year and cycle. Duplicate entries are not allowed."
-        )
+			"Employee has already applied for appraisal for the same year and cycle. Duplicate entries are not allowed."
+		)
 
 	#send mail to HR
 	def send_mail_hr(self):
@@ -119,6 +120,15 @@ class EmployeeAppraisalPortal(Document):
 			sendRa_appraisal(data)
 		else :
 			frappe.throw("Reporting Authority mail not found")
+
+	def set_user_permission(doc):
+		if doc.reporting_authority:
+				for emp in frappe.get_all("Employee", {'reporting_authority_email':doc.reporting_authority}, ['reporting_authority_email']):
+					if emp.get('reporting_authority_email'):
+						print(emp.get('reporting_authority_email'))
+						add_user_permission("Employee Appraisal Portal",doc.name, emp.get('reporting_authority_email'), doc)
+					else:
+						frappe.msgprint("Reporting Authority Not Found")
 
 
 @frappe.whitelist()

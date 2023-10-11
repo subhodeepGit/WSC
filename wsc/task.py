@@ -4,6 +4,17 @@ from datetime import date, timedelta
 from dateutil.relativedelta import relativedelta
 from wsc.wsc.notification.custom_notification import item_expiry
 from frappe.utils import today, getdate
+import os
+import logging
+import json
+import requests
+from Crypto.Cipher import AES
+import hashlib
+import json
+from frappe import _
+import os
+import logging
+from datetime import datetime
 
 #Notification for 30 days to Warranty period
 def warranty_notification():
@@ -324,5 +335,189 @@ def check_and_delete_exit_employee_permissions():
                     for up in user_permission_list:
                         frappe.delete_doc("User Permission", up["name"])
                 
-        frappe.db.commit()   
+        frappe.db.commit() 
+
+###Online payment scheduler start
+def find_file_path(filename):
+    for dirpath, dirnames, filenames in os.walk('/'):
+        if filename in filenames:
+            return os.path.join(dirpath, filename)
+    return None
+file_name_transaction_log = 'payment_scheduler.log'
+file_path_transaction_log = find_file_path(file_name_transaction_log)
+logging.basicConfig(filename=file_path_transaction_log, level=logging.INFO,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')  
+def pad(data):
+    length = 16 - (len(data) % 16)
+    data += chr(length)*length
+    return data
+def encrypt(plainText, workingKey):
+    iv = b'\x00\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f'
+    plainText = pad(plainText)
+    encDigest = hashlib.md5()
+    encDigest.update(workingKey.encode())
+    enc_cipher = AES.new(encDigest.digest(), AES.MODE_CBC, iv)
+    encryptedText = enc_cipher.encrypt(plainText.encode()).hex()
+    return encryptedText
+def decrypt(cipherText, workingKey):
+    iv = b'\x00\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f'
+    decDigest = hashlib.md5()
+    decDigest.update(workingKey.encode())
+    encryptedText = bytes.fromhex(cipherText)
+    dec_cipher = AES.new(decDigest.digest(), AES.MODE_CBC, iv)
+    decryptedText = dec_cipher.decrypt(encryptedText)
+    return str(decryptedText)
+def getFinalTransactionStatus(doc):    
+    try:                                
+        getDoc = frappe.get_doc("HDFCSetting")
+        logging.info("Scheduler---gt getDoc: %s", getDoc)
+        is_prod = getDoc.get("is_production")
+        # is_prod = frappe.get_value("HDFCSetting", None, "is_prod")
+        logging.info("Scheduler gt is_prod: %s", is_prod)            
+            
+        if is_prod is 1:
+            logging.info("Scheduler is_prod is : %s", is_prod)
+            myDoc = frappe.get_doc("HDFCSetting")
+            logging.info("Scheduler is_prod is : %s", is_prod)           
+            access_code = myDoc.get("access_code")
+            working_key = myDoc.get("working_key")
+            orderNo = doc.name
+            logging.info("Scheduler orderNo: %s", orderNo)    
+            # referenceNo = doc.transaction_id
+
+            merchant_json_data = {
+                'order_no': orderNo
+            }
+           
+            merchant_data = json.dumps(merchant_json_data)
+            encrypted_data = encrypt(merchant_data, working_key)
+
+            final_data = 'enc_request='+encrypted_data+'&'+'access_code='+access_code + \
+                            '&'+'command=orderStatusTracker&request_type=JSON&response_type=JSON'
+            logging.info("Scheduler Final API final_data: %s", final_data)
+            # r = requests.post('https://apitest.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)
+            r = requests.post('https://login.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)
+            
+            t = r.text
+            logging.info("Scheduler Final API Req: %s", r)
+            key_value_pairs = t.split("&")
+            logging.info("Scheduler Final API key_value_pairs: %s", key_value_pairs)
+
+            enc_response_value = None
+            for pair in key_value_pairs:
+                if pair.startswith("enc_response="):
+                    enc_response_value = pair[len("enc_response="):]
+                    # logging.info("Final API enc_response_value: %s", enc_response_value)
+                    break
+
+            decryptData = decrypt(enc_response_value, working_key)
+            logging.info("Scheduler final_status_info decryptData: %s",decryptData)
+            start_idx = decryptData.find('{')
+            end_idx = decryptData.rfind('}}') + 2
+            json_string = decryptData[start_idx:end_idx]
+            data_dict = json.loads(json_string)
+            logging.info("Scheduler Data Dict :%s",data_dict)
+            # order_no = data_dict["Order_Status_Result"]["order_no"]
+            # order_bill_name= data_dict["Order_Status_Result"]["order_bill_name"]
+            # order_amt = data_dict["Order_Status_Result"]["order_amt"]
+            # order_bank_response= data_dict["Order_Status_Result"]["order_bank_response"]
+            # order_status = data_dict["Order_Status_Result"]["order_status"]
+            # order_bank_ref_no = data_dict["Order_Status_Result"]["order_bank_ref_no"]
+            # order_gross_amt = data_dict["Order_Status_Result"]["order_ship_name"]            
+            # reference_no = data_dict["Order_Status_Result"]["reference_no"]
+            # order_date_time = data_dict["Order_Status_Result"]["order_status_date_time"]           
+            # transaction_info = f"Order ID: {order_no}\nStatus Message: {order_bank_response}\nAmount Paid: {order_amt}\nBilling Name: {order_bill_name}"                   
+                 
+            return data_dict
+            
+        else:
+            frappe.throw("Error: is_prod value is None")  
+
+    except Exception as e:	
+        return str(e)
+    
+def await_transaction_update_status():    
+    # doc=frappe.get_doc("OnlinePayment","PAYM-2023-0027")        
+    # data_dict= getFinalTransactionStatus(doc)
+    # print(data_dict)
+    awaited_status_transactions_1=frappe.get_all("OnlinePayment",[["transaction_status" ,"IN",("Awaited","Failure","Initiated","Shipped","Rejected","Aborted")]])
+    awaited_status_transactions_0=frappe.get_all("OnlinePayment",[["docstatus" ,"=",0]])
+        
+    for t0 in awaited_status_transactions_0:
+        try:
+            doc=frappe.get_doc("OnlinePayment",t0["name"])        
+            data_dict= getFinalTransactionStatus(doc)
+
+            # print("t0",data_dict)
+
+            if doc.docstatus==0:
+                
+                if "order_no" in data_dict["Order_Status_Result" ]:
+                    # print("jkpasdpo",data_dict["Order_Status_Result"])
+                    doc.transaction_id = data_dict["Order_Status_Result"]["reference_no"]
+                    doc.transaction_status = data_dict["Order_Status_Result"]["order_status"]
+                    if data_dict["Order_Status_Result"]["order_status"]!='Initiated':
+                        doc.transaction_status_description = data_dict["Order_Status_Result"]["order_bank_response"]
+
+                    # transaction_time = data_dict["Order_Status_Result"]["order_status_date_time"] 
+                    # logging.info(" scheduler server transaction_time %s",transaction_time)
+                    # date_obj = datetime.strptime(transaction_time, "%d/%m/%Y %H:%M:%S")
+                    # doc.date_time_of_transaction = date_obj.strftime("%Y-%m-%d %H:%M:%S") 
+
+                    doc.date_time_of_transaction=data_dict["Order_Status_Result"]["order_status_date_time"] 
+                    doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper()                     
+                    transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nAmount Paid: {data_dict['Order_Status_Result']['order_amt']}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
+                    doc.transaction_status_description=transaction_info
+                    
+                    try:
+                        logging.info("scheduler inside try.....................")
+                        doc.save(ignore_permissions=True)
+                        logging.info("scheduler inside save.....................")
+                        doc.submit()
+                        logging.info(" Scheduler final_status_info : %s",data_dict)
+                        logging.info(" Scheduler SUCESSFULLY COMPLETED")    
+                    except Exception as save_exception:                        
+                        logging.info(f"Error saving document: {repr(save_exception)}")
+        except Exception as e:
+            print(e)
+
+    for t1 in awaited_status_transactions_1:
+        try:
+            doc=frappe.get_doc("OnlinePayment",t1["name"])  
+            data_dict= getFinalTransactionStatus(doc)
+
+            # print("t1",data_dict)
+            if doc.docstatus==1:  
+                doc.transaction_id = data_dict["Order_Status_Result"]["reference_no"]
+                doc.transaction_status = data_dict["Order_Status_Result"]["order_status"]
+                doc.transaction_status_description = data_dict["Order_Status_Result"]["order_bank_response"]
+                doc.date_time_of_transaction=data_dict["Order_Status_Result"]["order_status_date_time"]  
+                doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper()                     
+                transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nAmount Paid: {data_dict['Order_Status_Result']['order_amt']}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
+                doc.transaction_status_description=transaction_info
+                logging.info("scheduler transaction_info:%s",transaction_info)    
+                # order_id = doc.get('name') 
+                # print("order_id",order_id)
+                # order_status = doc.get('transaction_status')
+                # print("transaction_status",order_status)
+                # transaction_info = doc.get('transaction_status_description')
+                # print("transaction_status_description",transaction_info)
+                # frappe.db.sql("""UPDATE `tabOnlinePayment` SET `transaction_status` = %s , `transaction_status_description` = %s WHERE `name` = %s""", (data_dict["Order_Status_Result"]["order_status"],transaction_info,data_dict["Order_Status_Result"]["reference_no"]))
+                
+                frappe.db.sql("""
+                                UPDATE `tabOnlinePayment`
+                                SET `transaction_status` = %s, `transaction_status_description` = %s
+                                WHERE `name` = %s
+                             """, (
+                                data_dict["Order_Status_Result"]["order_status"],
+                                transaction_info,
+                                data_dict["Order_Status_Result"]["order_no"]
+                            ))
+
+                frappe.db.commit()
+        except Exception as e:	
+            print(e)
+
+##Online payment scheduler end
+
   

@@ -429,6 +429,9 @@ scheduler_events = {
             # "wsc.task.warranty_notification",
             # "wsc.task.safety_stock_reach",
             # "wsc.task.appraisal_reminder"
+        ],
+        "0 1 * * *" : [
+            "wsc.task.await_transaction_update_status"
         ]
     },
 
