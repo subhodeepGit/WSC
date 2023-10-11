@@ -83,8 +83,6 @@ frappe.ui.form.on('Student Applicant', {
 	            }
 	        }
 	    });
-        
-
     },
     states(frm){
         frm.set_value("country_code",'')
@@ -206,6 +204,9 @@ frappe.ui.form.on('Student Applicant', {
     })
 },
     refresh(frm){
+        if (frm.doc.application_status === "Approved" && frm.doc.docstatus === 1 && frm.doc.enrollment_status==="Enrolled") {
+            frm.remove_custom_button(__("Enroll")).addClass("btn-primary");
+        }
         if (frm.doc.application_status==="Applied" && frm.doc.docstatus===1 ) {
 			frm.add_custom_button(__("Approve"), function() {
 				frm.set_value("application_status", "Approved");
@@ -269,7 +270,6 @@ frappe.ui.form.on('Student Applicant', {
         frm.set_df_property('program', 'allow_on_submit', 1);
         frm.set_df_property('programs_', 'hidden', 1);
         frm.set_df_property('student_admission', 'hidden', 1);
-        frm.remove_custom_button("Enroll")
         
         if (!cur_frm.doc.__islocal && frappe.user.has_role(["Student"]) && !frappe.user.has_role(["System Manager"])){
             frm.remove_custom_button("Reject","Actions");
@@ -311,9 +311,7 @@ frappe.ui.form.on('Student Applicant', {
                 }
 			});
         }
-        else if (frm.doc.enrollment_status=="Not Enrolled"){
-            frm.remove_custom_button("Enroll")
-        }
+
         // frappe.call({
         //     method: "wsc.wsc.doctype.student_applicant.get_qualification_list",
         //     callback: function(r) {
@@ -752,4 +750,3 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
         }); 
     }
 });
-
