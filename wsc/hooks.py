@@ -432,6 +432,9 @@ scheduler_events = {
         ],
         "0 1 * * *" : [
             "wsc.task.await_transaction_update_status"
+        ],
+        "0 7 * * *" : [
+            "wsc.task.await_transaction_update_status"
         ]
     },
 

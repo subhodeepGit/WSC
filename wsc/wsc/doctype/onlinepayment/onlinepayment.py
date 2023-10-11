@@ -67,10 +67,13 @@ def get_outstanding_amount(student):
 	return outstanding_amount
 
 @frappe.whitelist()
-def open_gateway(party_name, party, amount, order_id,url,gw_provider,form_status): 
+def open_gateway(party_name, party, amount, order_id,url,gw_provider,form_status,formProgress): 
+    
    
-    if form_status == "Yes":
+    if form_status == "Yes" :
         frappe.throw("Please Save the Form Before Initiate The Transaction.")
+    if formProgress=="Initiated" or formProgress=="Completed"  :
+        frappe.throw("Your Last Transaction was already Initiated by the Bank. So please Initiate New Transaction.")
 
     data=frappe.get_all("OnlinePayment",{"transaction_status":"success","payment_status":0,"party":party})  
     if data:
@@ -82,7 +85,10 @@ def open_gateway(party_name, party, amount, order_id,url,gw_provider,form_status
 
     try:       
         if gw_provider == "hdfc": 
-            getDoc = frappe.get_doc("HDFCSetting")
+            progress_doc=frappe.get_doc("OnlinePayment",order_id)
+            progress_doc.transaction_progress="Initiated"
+            progress_doc.save()
+            getDoc = frappe.get_doc("HDFCSetting")            
             logging.info("op getDoc 4: %s", getDoc)
             is_prod = getDoc.get("is_production")
             # is_prod = frappe.get_value("HDFCSetting", None, "is_prod")
@@ -259,7 +265,7 @@ def get_order_status():
         logging.info(" amount_paid %s",amount_paid)
         billing_name = response_data.get('billing_name')[0]
         logging.info(" billing_name %s",billing_name)
-
+        
         if "trans_date" in response_data:          
             
             if response_data["trans_date"][0]=='null':                
@@ -289,7 +295,7 @@ def get_order_status():
         gateway_name = response_data.get('delivery_name')[0]
         gateway_nameinupper=gateway_name.upper()
         logging.info(" gateway_name %s", gateway_name)
-        transaction_info = f"Order ID: {order_id}\nStatus Message: {status_message}\nAmount Paid: {amount_paid}\nBilling Name: {billing_name}"
+        transaction_info = f"Order ID: {order_id}\nStatus Message: {status_message}\nPaying Amount: {amount_paid}\nBilling Name: {billing_name}"
        
         
         # if order_id and transaction_id:
@@ -305,12 +311,13 @@ def get_order_status():
             doc.transaction_status_description = transaction_info
             doc.date_time_of_transaction=time_of_transaction
             doc.gateway_name=gateway_nameinupper
+            doc.transaction_progress="Completed"
             
             try:
                 logging.info("inside try.....................")
                 doc.save(ignore_permissions=True)
                 logging.info("inside save.....................")
-                doc.run_method('submit')
+                doc.submit()
                 getTransactionDetails(doc)
                 frappe.msgprint("Your Transaction is completed. Your Transaction Id is " +doc.transaction_id + "."  " Status is " + frappe.bold(doc.transaction_status))
                 # return "Order status and tracking ID updated successfully in Frappe."
@@ -366,9 +373,10 @@ def getTransactionDetails(doc):
             final_data = 'enc_request='+encrypted_data+'&'+'access_code='+access_code + \
                             '&'+'command=orderStatusTracker&request_type=JSON&response_type=JSON'
             logging.info("Final API final_data: %s", final_data)
-            r = requests.post('https://login.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)
+            r = requests.post('https://api.ccavenue.com/apis/servlet/DoWebTran', params=final_data)
             # r = requests.post('https://apitest.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)
             
+
             t = r.text
             logging.info("Final API Req: %s", r)
             key_value_pairs = t.split("&")
@@ -435,7 +443,7 @@ def getTransactionDetails(doc):
             final_data = 'enc_request='+encrypted_data+'&'+'access_code='+access_code + \
                             '&'+'command=orderStatusTracker&request_type=JSON&response_type=JSON'
             logging.info("Final API final_data: %s", final_data)
-            r = requests.post('https://login.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)
+            r = requests.post('https://api.ccavenue.com/apis/servlet/DoWebTran', params=final_data)
             # r = requests.post('https://apitest.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)
             
             t = r.text
