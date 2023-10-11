@@ -63,6 +63,7 @@ frappe.ui.form.on('Placement Tool', {
 				drive_name : frm.doc.placement_drive_name
 			},
 			callback : function(result){
+				alert(JSON.stringify(result))
 				if(result.message){
 					frappe.model.clear_table(frm.doc, 'student_list')
 					result.message.forEach(element => {

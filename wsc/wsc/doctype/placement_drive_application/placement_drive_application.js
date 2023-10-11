@@ -29,6 +29,7 @@ frappe.ui.form.on('Placement Drive Application', {
                 var tabletransfer= frappe.model.get_doc("Student", frm.doc.student)
                 frm.clear_table("educational_details");
                 $.each(tabletransfer.education_details, function(index, row){
+					// alert(row)
                     var d = frm.add_child("educational_details");
                     d.qualification = row.qualification;
                     d.institute = row.institute;
