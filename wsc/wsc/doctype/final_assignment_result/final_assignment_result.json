@@ -8,66 +8,57 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "participant_group",
-  "course_code",
-  "module",
-  "column_break_3",
-  "course",
-  "course_name",
+  "participant_enrollment_details_section",
+  "tot_participant_enrollment",
+  "column_break_wvaa3",
+  "tot_participant_batch",
   "section_break_5",
+  "programs",
   "academic_year",
-  "participant_id",
-  "grading_scale",
-  "attendance_percentage",
   "column_break_9",
   "academic_term",
-  "participant_name",
-  "assessment_status",
+  "semester",
+  "section_break_17",
+  "participant_group",
+  "modules",
   "section_break_13",
+  "participant_id",
+  "column_break_1vezf",
+  "participant_name",
+  "section_break_xv8ho",
+  "grading_scale",
+  "section_break_c5r4r",
   "get_result",
   "assessment_result_item",
-  "section_break_17",
-  "overall_percentage",
-  "overall_result",
   "column_break_20",
   "overall_grade",
+  "overall_percentage",
+  "overall_result",
   "section_break_22",
   "comment"
  ],
  "fields": [
   {
-   "fieldname": "course",
-   "fieldtype": "Link",
-   "label": "Select Course",
-   "options": "Programs"
-  },
-  {
-   "fieldname": "module",
-   "fieldtype": "Link",
-   "label": "Select Module",
-   "options": "Course"
-  },
-  {
+   "fetch_from": "tot_participant_enrollment.academic_year",
    "fieldname": "academic_year",
    "fieldtype": "Link",
    "label": "Academic Year",
-   "options": "Academic Year"
+   "options": "Academic Year",
+   "read_only": 1
   },
   {
+   "fetch_from": "participant_id.participant_name",
    "fieldname": "participant_name",
    "fieldtype": "Data",
-   "label": "Participant Name"
+   "label": "Participant Name",
+   "read_only": 1
   },
   {
    "fieldname": "grading_scale",
    "fieldtype": "Link",
    "label": "Grading Scale",
-   "options": "Grading Scale"
-  },
-  {
-   "fieldname": "assessment_status",
-   "fieldtype": "Data",
-   "label": "Assessment Status"
+   "options": "Grading Scale",
+   "reqd": 1
   },
   {
    "fieldname": "get_result",
@@ -81,41 +72,37 @@
    "options": "ToT Assessment Result Item"
   },
   {
-   "fieldname": "participant_group",
-   "fieldtype": "Link",
-   "label": "Participant Group",
-   "options": "Participant Group"
-  },
-  {
-   "fieldname": "column_break_3",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "section_break_5",
    "fieldtype": "Section Break"
   },
   {
    "fieldname": "participant_id",
-   "fieldtype": "Select",
-   "label": "Participant ID"
+   "fieldtype": "Link",
+   "label": "ToT Participant",
+   "options": "ToT Participant",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_9",
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "tot_participant_enrollment.academic_term",
    "fieldname": "academic_term",
    "fieldtype": "Link",
    "label": "Academic Term",
-   "options": "Academic Term"
+   "options": "Academic Term",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_13",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Participant Details"
   },
   {
    "fieldname": "section_break_17",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Participant Group Details"
   },
   {
    "fieldname": "overall_grade",
@@ -124,7 +111,7 @@
   },
   {
    "fieldname": "column_break_20",
-   "fieldtype": "Column Break"
+   "fieldtype": "Section Break"
   },
   {
    "fieldname": "section_break_22",
@@ -134,16 +121,6 @@
    "fieldname": "comment",
    "fieldtype": "Small Text",
    "label": "Comment"
-  },
-  {
-   "fieldname": "course_code",
-   "fieldtype": "Data",
-   "label": "Course Code"
-  },
-  {
-   "fieldname": "course_name",
-   "fieldtype": "Data",
-   "label": "Course Name"
   },
   {
    "fieldname": "overall_percentage",
@@ -156,14 +133,77 @@
    "label": "Overall Result"
   },
   {
-   "fieldname": "attendance_percentage",
+   "fieldname": "tot_participant_enrollment",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "ToT Participant Enrollment",
+   "options": "ToT Participant Enrollment",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "tot_participant_enrollment.semester",
+   "fieldname": "semester",
+   "fieldtype": "Link",
+   "label": "Semester",
+   "options": "Program",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "tot_participant_enrollment.programs",
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "label": "Programs",
+   "options": "Programs",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_wvaa3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "tot_participant_enrollment.tot_participant_batch",
+   "fieldname": "tot_participant_batch",
    "fieldtype": "Data",
-   "label": "Attendance Percentage"
+   "label": "ToT Participant Batch ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "participant_group",
+   "fieldtype": "Table",
+   "label": "Participant Group",
+   "options": "Final Assignment Participant Group Child",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_c5r4r",
+   "fieldtype": "Section Break",
+   "label": "Assessment Result Details"
+  },
+  {
+   "fieldname": "participant_enrollment_details_section",
+   "fieldtype": "Section Break",
+   "label": "Participant Enrollment Details"
+  },
+  {
+   "fieldname": "modules",
+   "fieldtype": "Table",
+   "label": "Modules",
+   "options": "Program Course",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1vezf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_xv8ho",
+   "fieldtype": "Section Break",
+   "label": "Grading Scale Details"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-06 15:04:43.895358",
+ "modified": "2023-10-11 11:25:29.390986",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Final Assignment Result",

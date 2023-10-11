@@ -136,6 +136,11 @@
 
 
 frappe.ui.form.on('Assignment Evaluation Tool', {
+	refresh: function(frm){
+		frm.set_df_property('participants_list', 'cannot_add_rows', true);
+		frm.set_df_property('participants_list', 'cannot_delete_rows', true);
+		// frm.set_df_property('scheduling_group_exam', 'cannot_delete_rows', true);
+	},
 	setup: function(frm){
 		frm.set_df_property('participants_list', 'cannot_add_rows', true);
 		frm.set_df_property('participants_list', 'cannot_delete_rows', true);

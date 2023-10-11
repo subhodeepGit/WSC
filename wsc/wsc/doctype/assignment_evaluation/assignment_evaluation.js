@@ -170,6 +170,7 @@ frappe.ui.form.on('Assignment Evaluation', {
 	},
 	assignment_declaration: function(frm){
 		// alert(JSON.stringify(frm.doc.job_sheet_fetch))
+		frm.set_value("marks_earned","")
 		if (frm.doc.job_sheet_fetch != ""){
 			frm.set_df_property('marks_earned', 'read_only', 1)
 		} else {

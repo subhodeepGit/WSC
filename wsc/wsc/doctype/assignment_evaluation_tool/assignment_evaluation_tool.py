@@ -76,6 +76,8 @@ class AssignmentEvaluationTool(Document):
 @frappe.whitelist()
 def get_participants_and_assignments(assignment_declaration = None,participant_group=None,select_assessment_criteria=None):
     qualified_participants = frappe.get_all('Participant List Table', filters = [['parent', '=', assignment_declaration],['qualification_check', '=', 1]], fields = ['participant_id', 'participant_name'])
+    credit_details = frappe.get_all('Assignment Declaration', filters = [['name', '=', assignment_declaration]], fields = ['weightage', 'total_marks','pass_marks','select_assessment_criteria'],group_by="select_assessment_criteria")
+
     assignments = []
     if participant_group != None:
         assignments = frappe.get_all("Assignment",filters=[["participant_group","=",participant_group],["assessment_criteria","=",select_assessment_criteria],["docstatus","=",1],["evaluate","=",1]],fields=['name','assignment_name','assessment_criteria','weightage','total_marks','passing_marks','start_date','end_date','total_duration'],group_by="name")
@@ -103,20 +105,20 @@ def get_participants_and_assignments(assignment_declaration = None,participant_g
     else:
 
         for participant in qualified_participants:
-            participants = {}
-            participants['participant_id']=participant['participant_id']
-            participants['participant_name']=participant['participant_name']
-            participants['name']=None
-            participants['assignment_name']=None
-            participants['assessment_criteria']=None
-            participants['weightage']=None
-            participants['total_marks']=None
-            participants['passing_marks']=None
-            participants['start_date']=None
-            participants['end_date']=None
-            participants['total_duration']=None
-            participant_assignments.append(participants)
-            
+                participants = {}
+                participants['participant_id']=participant['participant_id']
+                participants['participant_name']=participant['participant_name']
+                participants['name']=None
+                participants['assignment_name']=None
+                participants['assessment_criteria']=credit_details[0]['select_assessment_criteria']
+                participants['weightage']=credit_details[0]['weightage']
+                participants['total_marks']=credit_details[0]['total_marks']
+                participants['passing_marks']=credit_details[0]['pass_marks']
+                participants['start_date']=None
+                participants['end_date']=None
+                participants['total_duration']=None
+                participant_assignments.append(participants)
+                
 
     return participant_assignments
     
