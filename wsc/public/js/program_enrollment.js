@@ -34,23 +34,25 @@ frappe.ui.form.on('Program Enrollment', {
                 // frm.set_value('programs','')
                 console.log(frm.doc.programs);
             }
-            // frm.set_query('programs', function() {
-            //     return{
-            //         query: 'wsc.wsc.validations.program_enrollment.get_programs_stud_app',
-            //         filters: {
-            //             "student_applicant":frm.doc.reference_name
-            //         }
-            //     }
-            // });
-            // frm.set_query('program', function() {
-            //     return{
-            //         query: 'wsc.wsc.validations.program_enrollment.get_program_stud_app',
-            //         filters: {
-            //             "student_applicant":frm.doc.reference_name,
-            //             "programs":frm.doc.programs
-            //         }
-            //     }
-            // });
+            frm.set_query('programs', function() {
+                return{
+                    query: 'wsc.wsc.validations.program_enrollment.get_programs_stud_app',
+                    filters: {
+                        "student_applicant":frm.doc.reference_name,
+                        "programs":frm.doc.programs
+                    }
+                }
+            });
+            
+            frm.set_query('program', function() {
+                return{
+                    query: 'wsc.wsc.validations.program_enrollment.get_program_stud_app',
+                    filters: {
+                        "student_applicant":frm.doc.reference_name,
+                        "programs":frm.doc.programs
+                    }
+                }
+            });
             frm.set_query("seat_reservation_type", function() {
                 return {
                     query: 'wsc.wsc.validations.program_enrollment.get_seat_reservation_type',
