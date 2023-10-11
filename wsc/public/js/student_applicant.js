@@ -497,6 +497,18 @@ frappe.ui.form.on("Education Qualifications Details", "total_marks", function(fr
     //     frappe.throw("You are not eligible to apply for these course.")
     // }
  });
+ frappe.ui.form.on("Education Qualifications Details", "percentage_cgpa", function(frm, cdt, cdn) {
+       
+    var data = locals[cdt][cdn];
+    data.score=""
+    data.cgpa=""
+    data.total_marks=""
+    data.earned_marks=""
+    refresh_field("score", data.name, data.parentfield);
+    refresh_field("cgpa", data.name, data.parentfield);
+    refresh_field("total_marks", data.name, data.parentfield);
+    refresh_field("earned_marks", data.name, data.parentfield);
+ });
 frappe.ui.form.on("Education Qualifications Details", "earned_marks", function(frm, cdt, cdn) {
        
     var data = locals[cdt][cdn];
@@ -515,9 +527,9 @@ frappe.ui.form.on("Education Qualifications Details", "earned_marks", function(f
         frappe.throw("Earned Marks is greater then the Total Marks.")
     }       
     cur_frm.refresh_field ("education_qualifications_details");
-    if (data.score < data.admission_percentage){
-        frappe.throw("You are not eligible to apply for these course.")
-    }
+    // if (data.score < data.admission_percentage){
+    //     frappe.throw("You are not eligible to apply for these course.")
+    // }
  });	
  frappe.ui.form.on("Education Qualifications Details", "cgpa", function(frm, cdt, cdn) {
   
@@ -525,20 +537,22 @@ frappe.ui.form.on("Education Qualifications Details", "earned_marks", function(f
     if(data.cgpa<=10 && data.cgpa>=0){
         data.score=data.cgpa*10   
     }
-    else if(data.cgpa>10 || data.cgpa<0){
+    else if(data.cgpa>10.000 || data.cgpa<0){
         data.score=""
-        data.
+        data.cgpa=""
+        // data.
+        refresh_field("score", data.name, data.parentfield);
+        refresh_field("cgpa", data.name, data.parentfield);
         frappe.throw("Please enter your valid CGPA")
     }
     else{
+        alert("hey 4")
         frappe.throw("Wrong Entry")
     }
-    
-    
     cur_frm.refresh_field ("education_qualifications_details");
-    if (data.score < data.admission_percentage){
-        frappe.throw("You are not eligible to apply for these course.")
-    }
+    // if (data.score < data.admission_percentage){
+    //     frappe.throw("You are not eligible to apply for these course.")
+    // }
  
  });      
 
