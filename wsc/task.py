@@ -373,7 +373,8 @@ def getFinalTransactionStatus(doc):
         logging.info("Scheduler---gt getDoc: %s", getDoc)
         is_prod = getDoc.get("is_production")
         # is_prod = frappe.get_value("HDFCSetting", None, "is_prod")
-        logging.info("Scheduler gt is_prod: %s", is_prod)            
+        logging.info("Scheduler gt is_prod: %s", is_prod)  
+
             
         if is_prod is 1:
             logging.info("Scheduler is_prod is : %s", is_prod)
@@ -396,8 +397,8 @@ def getFinalTransactionStatus(doc):
                             '&'+'command=orderStatusTracker&request_type=JSON&response_type=JSON'
             logging.info("Scheduler Final API final_data: %s", final_data)
             # r = requests.post('https://apitest.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)
+            # r = requests.post('https://api.ccavenue.com/apis/servlet/DoWebTran', params=final_data)
             r = requests.post('https://login.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)
-            
             t = r.text
             logging.info("Scheduler Final API Req: %s", r)
             key_value_pairs = t.split("&")
@@ -437,10 +438,10 @@ def getFinalTransactionStatus(doc):
         return str(e)
     
 def await_transaction_update_status():    
-    # doc=frappe.get_doc("OnlinePayment","PAYM-2023-0027")        
+    # doc=frappe.get_doc("OnlinePayment","PAYM-2023-0614")        
     # data_dict= getFinalTransactionStatus(doc)
     # print(data_dict)
-    awaited_status_transactions_1=frappe.get_all("OnlinePayment",[["transaction_status" ,"IN",("Awaited","Failure","Initiated","Shipped","Rejected","Aborted")]])
+    awaited_status_transactions_1=frappe.get_all("OnlinePayment",[["transaction_status" ,"IN",("Awaited","Failure","Initiated","Success","Rejected","Aborted","Unsuccessful")]])
     awaited_status_transactions_0=frappe.get_all("OnlinePayment",[["docstatus" ,"=",0]])
         
     for t0 in awaited_status_transactions_0:
@@ -466,8 +467,9 @@ def await_transaction_update_status():
 
                     doc.date_time_of_transaction=data_dict["Order_Status_Result"]["order_status_date_time"] 
                     doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper()                     
-                    transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nAmount Paid: {data_dict['Order_Status_Result']['order_amt']}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
+                    transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nPaying Amount: {data_dict['Order_Status_Result']['order_amt']}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
                     doc.transaction_status_description=transaction_info
+                    doc.transaction_progress="Completed"
                     
                     try:
                         logging.info("scheduler inside try.....................")
@@ -479,7 +481,7 @@ def await_transaction_update_status():
                     except Exception as save_exception:                        
                         logging.info(f"Error saving document: {repr(save_exception)}")
         except Exception as e:
-            print(e)
+           logging.info(f"Error in awaited_status_transactions_0: {repr(e)}")
 
     for t1 in awaited_status_transactions_1:
         try:
@@ -488,14 +490,28 @@ def await_transaction_update_status():
 
             # print("t1",data_dict)
             if doc.docstatus==1:  
-                doc.transaction_id = data_dict["Order_Status_Result"]["reference_no"]
-                doc.transaction_status = data_dict["Order_Status_Result"]["order_status"]
-                doc.transaction_status_description = data_dict["Order_Status_Result"]["order_bank_response"]
-                doc.date_time_of_transaction=data_dict["Order_Status_Result"]["order_status_date_time"]  
-                doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper()                     
-                transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nAmount Paid: {data_dict['Order_Status_Result']['order_amt']}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
-                doc.transaction_status_description=transaction_info
-                logging.info("scheduler transaction_info:%s",transaction_info)    
+                if data_dict["Order_Status_Result"]["order_status"]!=doc.transaction_status:
+                    doc.transaction_id = data_dict["Order_Status_Result"]["reference_no"]
+                    doc.transaction_status = data_dict["Order_Status_Result"]["order_status"]
+                    doc.transaction_status_description = data_dict["Order_Status_Result"]["order_bank_response"]
+                    doc.date_time_of_transaction=data_dict["Order_Status_Result"]["order_status_date_time"]  
+                    doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper()                     
+                    transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nAmount Paid: {data_dict['Order_Status_Result']['order_amt']}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
+                    doc.transaction_status_description=transaction_info
+                    doc.transaction_progress="Completed"
+                    doc.save()
+                    logging.info("scheduler transaction_info:%s",transaction_info)    
+                if data_dict["Order_Status_Result"]["order_status"]=="Shipped" and doc.transaction_status!="Success":
+                    doc.transaction_id = data_dict["Order_Status_Result"]["reference_no"]
+                    doc.transaction_status = data_dict["Order_Status_Result"]["order_status"]
+                    doc.transaction_status_description = data_dict["Order_Status_Result"]["order_bank_response"]
+                    doc.date_time_of_transaction=data_dict["Order_Status_Result"]["order_status_date_time"]  
+                    doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper()                     
+                    transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nAmount Paid: {data_dict['Order_Status_Result']['order_amt']}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
+                    doc.transaction_status_description=transaction_info
+                    doc.transaction_progress="Completed"
+                    doc.save()
+                    logging.info("scheduler transaction_info:%s",transaction_info)       
                 # order_id = doc.get('name') 
                 # print("order_id",order_id)
                 # order_status = doc.get('transaction_status')
@@ -504,19 +520,20 @@ def await_transaction_update_status():
                 # print("transaction_status_description",transaction_info)
                 # frappe.db.sql("""UPDATE `tabOnlinePayment` SET `transaction_status` = %s , `transaction_status_description` = %s WHERE `name` = %s""", (data_dict["Order_Status_Result"]["order_status"],transaction_info,data_dict["Order_Status_Result"]["reference_no"]))
                 
-                frappe.db.sql("""
-                                UPDATE `tabOnlinePayment`
-                                SET `transaction_status` = %s, `transaction_status_description` = %s
-                                WHERE `name` = %s
-                             """, (
-                                data_dict["Order_Status_Result"]["order_status"],
-                                transaction_info,
-                                data_dict["Order_Status_Result"]["order_no"]
-                            ))
+                # frappe.db.sql("""
+                #                 UPDATE `tabOnlinePayment`
+                #                 SET `transaction_status` = %s, `transaction_status_description` = %s
+                #                 WHERE `name` = %s
+                #              """, (
+                #                 data_dict["Order_Status_Result"]["order_status"],
+                #                 transaction_info,
+                #                 data_dict["Order_Status_Result"]["order_no"]
+                #             ))
 
                 frappe.db.commit()
         except Exception as e:	
-            print(e)
+            logging.info(f"Error in awaited_status_transactions_1: {repr(e)}")
+
 
 ##Online payment scheduler end
 

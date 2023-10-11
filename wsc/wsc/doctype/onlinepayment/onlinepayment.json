@@ -10,6 +10,7 @@
  "field_order": [
   "type_of_payment_section",
   "payment_type",
+  "transaction_progress",
   "payment_order_status",
   "column_break_5",
   "posting_date",
@@ -251,12 +252,19 @@
    "fieldname": "declaration",
    "fieldtype": "Small Text",
    "label": "Declaration"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "transaction_progress",
+   "fieldtype": "Data",
+   "label": "Transaction Progress",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-08 21:17:17.720133",
+ "modified": "2023-10-11 18:08:10.647753",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "OnlinePayment",

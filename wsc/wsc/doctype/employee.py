@@ -135,16 +135,21 @@ class Employee(NestedSet):
         for result in frappe.get_all("User",{"name":doc.user_id},['name']):
             for get_role in frappe.get_all("Has Role",{"parent":result.name},['role']):
                 print("\n\n\n\nROLE USER",get_role.role) 
-                if doc.user_id ==result.name and get_role.role not in ["HR Admin","Director"]:
-                # user_role and "Director" not in user_role:
-                    add_user_permission(doc.doctype,doc.name,doc.user_id,doc)
-                else:
-                    frappe.msgprint("Welcome")
-                
-                if doc.leave_approver:
-                    add_user_permission(doc.doctype,doc.name,doc.leave_approver,doc)
-                if doc.reporting_authority_email:
-                    add_user_permission(doc.doctype,doc.name,doc.reporting_authority_email,doc)
+            print("\n\nFirst",doc.user_id)
+            if doc.user_id ==result.name and get_role.role not in ["HR Admin","Director"]:
+               
+                print("\n\nSecond",result.name)
+                print("\n\nThrird",get_role.role)
+
+            # user_role and "Director" not in user_role:
+                add_user_permission(doc.doctype,doc.name,doc.user_id,doc)
+            else:
+                frappe.msgprint("Welcome")
+            
+            if doc.leave_approver:
+                add_user_permission(doc.doctype,doc.name,doc.leave_approver,doc)
+            if doc.reporting_authority_email:
+                add_user_permission(doc.doctype,doc.name,doc.reporting_authority_email,doc)
 
     def after_rename(self, old, new, merge):
         self.db_set("employee", new)

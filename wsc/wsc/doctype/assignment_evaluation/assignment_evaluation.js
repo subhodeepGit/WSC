@@ -174,14 +174,15 @@ frappe.ui.form.on('Assignment Evaluation', {
 			frm.set_value('marks_earned', '')
 		}
 	},
-// 	assignment_declaration: function(frm){
-// 		// alert(JSON.stringify(frm.doc.job_sheet_fetch))
-// 		if (frm.doc.job_sheet_fetch != ""){
-// 			frm.set_df_property('marks_earned', 'read_only', 1)
-// 		} else {
-// 			frm.set_df_property('marks_earned', 'read_only', 0)
-// 		}
-// 		if (frm.doc.assignment_declaration == undefined || frm.doc.assignment_declaration == "" || frm.doc.assignment_declaration == null) {
+	assignment_declaration: function(frm){
+		// alert(JSON.stringify(frm.doc.job_sheet_fetch))
+		frm.set_value("marks_earned","")
+		if (frm.doc.job_sheet_fetch != ""){
+			frm.set_df_property('marks_earned', 'read_only', 1)
+		} else {
+			frm.set_df_property('marks_earned', 'read_only', 0)
+		}
+		if (frm.doc.assignment_declaration == undefined || frm.doc.assignment_declaration == "" || frm.doc.assignment_declaration == null) {
 
 // 		} else {
 // 			frappe.model.with_doc("Assignment Declaration", frm.doc.assignment_declaration, function () {
