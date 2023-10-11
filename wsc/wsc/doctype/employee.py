@@ -139,7 +139,7 @@ class Employee(NestedSet):
                 # user_role and "Director" not in user_role:
                     add_user_permission(doc.doctype,doc.name,doc.user_id,doc)
                 else:
-                    frappe.throw("WRONG ENTRY")
+                    frappe.msgprint("Welcome")
                 
                 if doc.leave_approver:
                     add_user_permission(doc.doctype,doc.name,doc.leave_approver,doc)
