@@ -254,7 +254,7 @@ frappe.ui.form.on('Student Applicant', {
 		// frm.set_df_property('student_rank', 'cannot_delete_rows', true) 
         frm.set_df_property('education_qualifications_details', 'cannot_add_rows', true);
         frm.set_df_property('education_qualifications_details', 'cannot_delete_rows', true);
-        frm.set_df_property('document_list', 'cannot_add_rows', true);
+        // frm.set_df_property('document_list', 'cannot_add_rows', true);
         frm.set_df_property('document_list', 'cannot_delete_rows', true);
         
         if (cur_frm.doc.document_list){
@@ -281,11 +281,14 @@ frappe.ui.form.on('Student Applicant', {
         if (!cur_frm.doc.__islocal && frappe.user.has_role(["Applicant"]) && !frappe.user.has_role(["System Manager"])){
             frm.remove_custom_button("Reject","Actions");
             frm.remove_custom_button("Approve","Actions");
+            frm.set_df_property('document_list', 'cannot_add_rows', true);
             frm.remove_custom_button("Not Approve","Actions");
+            
             
         }
         if (frappe.user.has_role(["Student","Instructor"]) && !frappe.user.has_role(["System Manager"])){
             frm.set_df_property('application_status', 'read_only', 1);
+            frm.set_df_property('document_list', 'cannot_add_rows', true);
         }
         if (frm.doc.application_status === "Approved" && frm.doc.docstatus === 1 && (frappe.user.has_role(["Education Admission Head"]))) {
             frappe.db.get_value('User',{'name':frappe.session.user},['module_profile'],(val) =>
