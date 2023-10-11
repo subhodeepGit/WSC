@@ -563,25 +563,44 @@ def get_seat_reservation_type(doctype, txt, searchfield, start, page_len, filter
     return reservation_type
 
 @frappe.whitelist()
-#Old One
 def get_programs_stud_app(doctype, txt, searchfield, start, page_len, filters):
     
     fltr = {"parent":filters.get("student_applicant"),"approve":1}
-    
-    counselling_start = frappe.get_all("Student Applicant" , { 'name' : filters['student_applicant'] } , ['couselling_start'])
-
     if txt:
         fltr.update({'semester': ['like', '%{}%'.format(txt)]})
+    return frappe.get_all("Program Priority",fltr,['programs'], as_list=1)
 
-    if(counselling_start[0]['couselling_start'] == 0):
-        return frappe.get_all("Program Priority",fltr,['programs'], as_list=1)
-    else:
-        return frappe.get_all("Counseling Based Program Priority",fltr,['programs'], as_list=1)
-#     # if txt:
-#     #     fltr.update({'semester': ['like', '%{}%'.format(txt)]})
-#     #     print("\n\n\nFilter")
+@frappe.whitelist()
+def get_program_stud_app(doctype, txt, searchfield, start, page_len, filters):
+    
+    fltr = {"parent":filters.get("student_applicant"),"approve":1}
+    if txt:
+        fltr.update({'semester': ['like', '%{}%'.format(txt)]})
+    return frappe.get_all("Program Priority",fltr,['semester'], as_list=1)
+## Garbage Code for now
+    # return frappe.get_all("Program Priority",fltr,['semester'], as_list=1)
+    
+    # counselling_start = frappe.get_all("Student Applicant" , { 'name' : filters['student_applicant'] } , ['couselling_start'])
+
+    # if txt:
+    #     fltr.update({'semester': ['like', '%{}%'.format(txt)]})
+
+    # if(counselling_start[0]['couselling_start'] == 0):
+    #     return frappe.get_all("Program Priority",fltr,['programs'], as_list=1)
+    # else:
+    #     return frappe.get_all("Counseling Based Program Priority",fltr,['programs'], as_list=1)
+    # # if txt:
+    # #     fltr.update({'semester': ['like', '%{}%'.format(txt)]})
+    # #     print("\n\n\nFilter")
     
     # return frappe.get_all("Program Priority",fltr,['programs'], as_list=1)
+
+# @frappe.whitelist()
+# def get_programs_stud_app(doctype, txt, searchfield, start, page_len, filters):
+#     fltr = {"programs":filters.get("programs"),"parent":filters.get("student_applicant"),"approve":1}
+#     if txt:
+#         fltr.update({'semester': ['like', '%{}%'.format(txt)]})
+#     return frappe.get_all("Program Priority",fltr,['semester'], as_list=1)
 
 ##New One
 # def get_programs_stud_app(doctype, txt, searchfield, start, page_len, filters):
@@ -591,20 +610,20 @@ def get_programs_stud_app(doctype, txt, searchfield, start, page_len, filters):
 #     return frappe.get_all("Counseling Based Program Priority",fltr,['programs'], as_list=1)
 
 
-@frappe.whitelist()
-def get_program_stud_app(doctype, txt, searchfield, start, page_len, filters):
-    fltr = {"programs":filters.get("programs"),"parent":filters.get("student_applicant")}
+# @frappe.whitelist()
+# def get_program_stud_app(doctype, txt, searchfield, start, page_len, filters):
+#     fltr = {"programs":filters.get("programs"),"parent":filters.get("student_applicant")}
 
-    counselling_start = frappe.get_all("Student Applicant" , { 'name' : filters['student_applicant'] } , ['couselling_start'])
+#     counselling_start = frappe.get_all("Student Applicant" , { 'name' : filters['student_applicant'] } , ['couselling_start'])
 
-    if txt:
-        fltr.update({'semester': ['like', '%{}%'.format(txt)]})
+#     if txt:
+#         fltr.update({'semester': ['like', '%{}%'.format(txt)]})
     
-    if(counselling_start[0]['couselling_start'] == 0):
-        return frappe.get_all("Program Priority",fltr,['semester'], as_list=1)
-    # else:
-    #     return frappe.get_all("Counseling Based Program Priority",fltr,['semester'], as_list=1)
-    # return frappe.get_all("Counseling Based Program Priority",fltr,['semester'], as_list=1)
+#     if(counselling_start[0]['couselling_start'] == 0):
+#         return frappe.get_all("Program Priority",fltr,['semester'], as_list=1)
+#     # else:
+#     #     return frappe.get_all("Counseling Based Program Priority",fltr,['semester'], as_list=1)
+#     # return frappe.get_all("Counseling Based Program Priority",fltr,['semester'], as_list=1)
 
 @frappe.whitelist()
 def get_data_stud_app(student_applicant):
