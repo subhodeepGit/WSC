@@ -19,7 +19,8 @@ frappe.listview_settings['OnlinePayment'] = {
             return [__(doc.transaction_status), "yellow","transaction_status,=,Awaited"];
         }else if (doc.docstatus === 1 && doc.transaction_status==="Initiated") {
             return [__(doc.transaction_status), "cyan","transaction_status,=,Initiated"];          
-         
+        }else if (doc.docstatus === 1 && doc.transaction_status==="Unsuccessful") {
+            return [__(doc.transaction_status), "blue","transaction_status,=,Unsuccessful"];  
         } else if (doc.docstatus === 2 ) {
             return [__("Cancelled"), "red"];
         }

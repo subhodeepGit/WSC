@@ -82,6 +82,7 @@ frappe.ui.form.on('OnlinePayment', {
             if (!frm.is_new()){
                 formStatus="No"
             }
+            var formProgress=frm.doc.transaction_progress
             // alert(frm.is_new())
             frappe.call({
                 method: "wsc.wsc.doctype.onlinepayment.onlinepayment.open_gateway",
@@ -92,7 +93,8 @@ frappe.ui.form.on('OnlinePayment', {
                     order_id: frm.doc.name,
                     url: window.location.href,
                     gw_provider: "hdfc",
-                    form_status:formStatus
+                    form_status:formStatus,
+                    formProgress:formProgress
                 },
                 callback: function (r) {
                     if (r.message) {
@@ -205,6 +207,10 @@ frappe.ui.form.on('OnlinePayment', {
         if (!frm.is_new() && frm.doc.docstatus === 1) {
             frm.page.btn_secondary.hide();
             frm.set_df_property('declaration', 'hidden', 0);
+        }
+        if (frm.doc.docstatus === 0 && frm.doc.transaction_progress === "Initiated") {
+            frm.remove_custom_button(btn_name, 'Click here for Online Payment');
+            frm.remove_custom_button('By Axis Payment Gateway', 'Click here for Online Payment');
         }
 
     }
