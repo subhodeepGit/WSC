@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"ehbLnidrEQ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">HRMS (Base)</span>\",\"col\":12}},{\"id\":\"6kbSMS0x-o\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"7oA4tURN2k\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"lvSNzCWTUj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee\",\"col\":3}},{\"id\":\"NOTLb5D5FM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Application\",\"col\":3}},{\"id\":\"D42XsvfVST\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Attendance\",\"col\":3}},{\"id\":\"3YQ5IqWAmj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Resignation\",\"col\":3}},{\"id\":\"_dEDHnFXdv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Profile\",\"col\":3}},{\"id\":\"n7wS9dF_rw\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"iyn7sE_XHL\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Screen Lists<br></b></span>\",\"col\":12}},{\"id\":\"erFDnP6f_D\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"2i_BoxdRuG\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee Lifecycle\",\"col\":4}},{\"id\":\"qeGIt4tc6b\",\"type\":\"card\",\"data\":{\"card_name\":\"Leave Management\",\"col\":4}},{\"id\":\"EfNHl7nzje\",\"type\":\"card\",\"data\":{\"card_name\":\"Shift Management\",\"col\":4}},{\"id\":\"mDTZ0jsznS\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance Management\",\"col\":4}},{\"id\":\"QYBlGRBbXr\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"id\":\"saVLYRb1hH\",\"type\":\"card\",\"data\":{\"card_name\":\"Appraisal\",\"col\":4}}]",
+ "content": "[{\"id\":\"ehbLnidrEQ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">HRMS (Base)</span>\",\"col\":12}},{\"id\":\"6kbSMS0x-o\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"7oA4tURN2k\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"lvSNzCWTUj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee\",\"col\":3}},{\"id\":\"NOTLb5D5FM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Application\",\"col\":3}},{\"id\":\"D42XsvfVST\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Attendance\",\"col\":3}},{\"id\":\"3YQ5IqWAmj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Resignation\",\"col\":3}},{\"id\":\"_dEDHnFXdv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Profile\",\"col\":3}},{\"id\":\"n7wS9dF_rw\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"iyn7sE_XHL\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Screen Lists<br></b></span>\",\"col\":12}},{\"id\":\"erFDnP6f_D\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"8sv42Z6Q3t\",\"type\":\"card\",\"data\":{\"card_name\":\"Recruitment\",\"col\":4}},{\"id\":\"2i_BoxdRuG\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee Lifecycle\",\"col\":4}},{\"id\":\"qeGIt4tc6b\",\"type\":\"card\",\"data\":{\"card_name\":\"Leave Management\",\"col\":4}},{\"id\":\"EfNHl7nzje\",\"type\":\"card\",\"data\":{\"card_name\":\"Shift Management\",\"col\":4}},{\"id\":\"mDTZ0jsznS\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance Management\",\"col\":4}},{\"id\":\"QYBlGRBbXr\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"id\":\"saVLYRb1hH\",\"type\":\"card\",\"data\":{\"card_name\":\"Appraisal\",\"col\":4}}]",
  "creation": "2023-07-20 12:18:37.327573",
  "custom_blocks": [],
  "docstatus": 0,
@@ -81,17 +81,17 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Leave Management",
-   "link_count": 7,
+   "label": "Employee Lifecycle",
+   "link_count": 10,
    "onboard": 0,
    "type": "Card Break"
   },
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Leave Type",
+   "label": "Employee",
    "link_count": 0,
-   "link_to": "Leave Type",
+   "link_to": "Employee",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -99,9 +99,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Leave Policy Assignment",
+   "label": "Employee Profile Updation",
    "link_count": 0,
-   "link_to": "Leave Policy Assignment",
+   "link_to": "Employee Profile Updation",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -109,9 +109,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Leave Allocation",
+   "label": "Employee Onboarding",
    "link_count": 0,
-   "link_to": "Leave Allocation",
+   "link_to": "Employee Onboarding",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -119,9 +119,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Leave Application",
+   "label": "Employee Resignation",
    "link_count": 0,
-   "link_to": "Leave Application",
+   "link_to": "Employee Resignation",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -129,9 +129,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Leave Block List",
+   "label": "Employee Separation",
    "link_count": 0,
-   "link_to": "Leave Block List",
+   "link_to": "Employee Separation",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -139,9 +139,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Compensatory Leave Request",
+   "label": "Employee Suggestion",
    "link_count": 0,
-   "link_to": "Compensatory Leave Request",
+   "link_to": "Employee Suggestion",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -149,9 +149,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Leave Policy",
+   "label": "Employee Re-engagement",
    "link_count": 0,
-   "link_to": "Leave Policy",
+   "link_to": "Employee Re-engagement",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -159,17 +159,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Attendance Management",
-   "link_count": 4,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Attendance",
+   "label": "Employee Grievance Cell",
    "link_count": 0,
-   "link_to": "Attendance",
+   "link_to": "Employee Grievance Cell",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -177,9 +169,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Employee Attendance Tool",
+   "label": "Employee Grievance",
    "link_count": 0,
-   "link_to": "Employee Attendance Tool",
+   "link_to": "Employee Grievance",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -187,19 +179,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Attendance Request",
+   "label": "Employee Transfer",
    "link_count": 0,
-   "link_to": "Attendance Request",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Employee Checkin",
-   "link_count": 0,
-   "link_to": "Employee Checkin",
+   "link_to": "Employee Transfer",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -208,7 +190,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Masters",
-   "link_count": 8,
+   "link_count": 9,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -295,7 +277,155 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Employee Lifecycle",
+   "label": "Employee Onboarding Template",
+   "link_count": 0,
+   "link_to": "Employee Onboarding Template",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Recruitment",
+   "link_count": 13,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Job Requisition",
+   "link_count": 0,
+   "link_to": "Job Requisition",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Staffing Plan",
+   "link_count": 0,
+   "link_to": "Staffing Plan",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Job Opening",
+   "link_count": 0,
+   "link_to": "Job Opening",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Job Applicant",
+   "link_count": 0,
+   "link_to": "Job Applicant",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Recruitment Exam Declaration",
+   "link_count": 0,
+   "link_to": "Recruitment Exam Declaration",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Recruitment Exam Center",
+   "link_count": 0,
+   "link_to": "Recruitment Exam Center",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Recruitment Admit Card Generation Tool",
+   "link_count": 0,
+   "link_to": "Recruitment Admit Card Generation Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Recruitment Admit Card Generation",
+   "link_count": 0,
+   "link_to": "Recruitment Admit Card Generation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Recruitment Exam Result Declaration Tool",
+   "link_count": 0,
+   "link_to": "Recruitment Exam Result Declaration Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Recruitment Exam Result Declaration",
+   "link_count": 0,
+   "link_to": "Recruitment Exam Result Declaration",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Job Offer",
+   "link_count": 0,
+   "link_to": "Job Offer",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Appointment Letter Template",
+   "link_count": 0,
+   "link_to": "Appointment Letter Template",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Appointment Letter",
+   "link_count": 0,
+   "link_to": "Appointment Letter",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Leave Management",
    "link_count": 8,
    "onboard": 0,
    "type": "Card Break"
@@ -303,9 +433,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Employee",
+   "label": "Leave Type",
    "link_count": 0,
-   "link_to": "Employee",
+   "link_to": "Leave Type",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -313,9 +443,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Employee Profile Updation",
+   "label": "Leave Period",
    "link_count": 0,
-   "link_to": "Employee Profile Updation",
+   "link_to": "Leave Period",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -323,9 +453,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Employee Resignation",
+   "label": "Leave Policy",
    "link_count": 0,
-   "link_to": "Employee Resignation",
+   "link_to": "Leave Policy",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -333,9 +463,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Employee Separation",
+   "label": "Leave Policy Assignment",
    "link_count": 0,
-   "link_to": "Employee Separation",
+   "link_to": "Leave Policy Assignment",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -343,9 +473,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Employee Suggestion",
+   "label": "Leave Allocation",
    "link_count": 0,
-   "link_to": "Employee Suggestion",
+   "link_to": "Leave Allocation",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -353,9 +483,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Employee Transfer",
+   "label": "Leave Block List",
    "link_count": 0,
-   "link_to": "Employee Transfer",
+   "link_to": "Leave Block List",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -363,9 +493,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Employee Skill Map",
+   "label": "Leave Application",
    "link_count": 0,
-   "link_to": "Employee Skill Map",
+   "link_to": "Leave Application",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -373,9 +503,57 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Employee Grievance",
+   "label": "Compensatory Leave Request",
    "link_count": 0,
-   "link_to": "Employee Grievance",
+   "link_to": "Compensatory Leave Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Attendance Management",
+   "link_count": 4,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Employee Attendance Tool",
+   "link_count": 0,
+   "link_to": "Employee Attendance Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Attendance",
+   "link_count": 0,
+   "link_to": "Attendance",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Attendance Request",
+   "link_count": 0,
+   "link_to": "Attendance Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Employee Checkin",
+   "link_count": 0,
+   "link_to": "Employee Checkin",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -384,7 +562,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Appraisal",
-   "link_count": 4,
+   "link_count": 5,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -421,6 +599,16 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Employee Appraisal Cycle",
+   "link_count": 0,
+   "link_to": "Employee Appraisal Cycle",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Employee Appraisal Portal",
    "link_count": 0,
    "link_to": "Employee Appraisal Portal",
@@ -429,7 +617,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-09-07 16:24:38.172521",
+ "modified": "2023-10-11 10:57:00.793495",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "HRMS (Base)",
