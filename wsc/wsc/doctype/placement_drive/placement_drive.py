@@ -87,9 +87,6 @@ def get_eligibility(body):
 		student_list= frappe.get_all("Educational Details",{"parent":t}, ['qualification',"score",'year_of_completion','parent'])  #from student
 		experience_detail = frappe.get_all("Experience child table" , {"parent":t} , ['job_duration'])  #from student  #can be empty
 		student_cgpa = frappe.get_all("Exam Assessment Result" , {"student":t, "docstatus":1} , ['name' ,'overall_cgpa' , 'result'])
-		print('\n\n\n')
-		print(student_list)
-		print('\n\n\n')
 		if(len(student_cgpa) != 0 and len(student_list) != 0):
 			backlog_record = frappe.get_all("Evaluation Result Item" , {"parent":student_cgpa[0]['name']} , ['result' , 'parent'])  
 			for m in backlog_record:
@@ -132,9 +129,6 @@ def get_eligibility(body):
 				k['programs'] = j['programs']
 				k['academic_year'] = j['academic_year']
 				k['student_name'] = student[0]['student_name']
-	print('\n\n\n')
-	print(student_dict)
-	print('\n\n\n')
 	return student_dict
 
 	

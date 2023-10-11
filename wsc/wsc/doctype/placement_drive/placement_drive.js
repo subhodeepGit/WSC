@@ -36,11 +36,13 @@ frappe.ui.form.on('Placement Drive', {
 						let r = values[0]
 						frappe.model.clear_table(frm.doc, 'eligible_student');
 						values.forEach(r => {
+							if(r.length > 0){
 							let c =frm.add_child('eligible_student')
 							c.student_doctype_name= r[0].parent
 							c.student_name = r[0].student_name
 							c.program_enrollment = r[0].programs
 							c.academic_year = r[0].academic_year
+							}
 						})
 						frm.refresh();
 						frm.refresh_field("eligible_student")	
