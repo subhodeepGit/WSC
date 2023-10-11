@@ -83,8 +83,6 @@ frappe.ui.form.on('Student Applicant', {
 	            }
 	        }
 	    });
-        
-
     },
     states(frm){
         frm.set_value("country_code",'')
@@ -206,6 +204,9 @@ frappe.ui.form.on('Student Applicant', {
     })
 },
     refresh(frm){
+        if (frm.doc.application_status === "Approved" && frm.doc.docstatus === 1 && frm.doc.enrollment_status==="Enrolled") {
+            frm.remove_custom_button(__("Enroll")).addClass("btn-primary");
+        }
         if (frm.doc.application_status==="Applied" && frm.doc.docstatus===1 ) {
 			frm.add_custom_button(__("Approve"), function() {
 				frm.set_value("application_status", "Approved");
@@ -254,7 +255,7 @@ frappe.ui.form.on('Student Applicant', {
 		// frm.set_df_property('student_rank', 'cannot_delete_rows', true) 
         frm.set_df_property('education_qualifications_details', 'cannot_add_rows', true);
         frm.set_df_property('education_qualifications_details', 'cannot_delete_rows', true);
-        frm.set_df_property('document_list', 'cannot_add_rows', true);
+        // frm.set_df_property('document_list', 'cannot_add_rows', true);
         frm.set_df_property('document_list', 'cannot_delete_rows', true);
         
         if (cur_frm.doc.document_list){
@@ -269,7 +270,6 @@ frappe.ui.form.on('Student Applicant', {
         frm.set_df_property('program', 'allow_on_submit', 1);
         frm.set_df_property('programs_', 'hidden', 1);
         frm.set_df_property('student_admission', 'hidden', 1);
-        frm.remove_custom_button("Enroll")
         
         if (!cur_frm.doc.__islocal && frappe.user.has_role(["Student"]) && !frappe.user.has_role(["System Manager"])){
             frm.remove_custom_button("Reject","Actions");
@@ -281,11 +281,14 @@ frappe.ui.form.on('Student Applicant', {
         if (!cur_frm.doc.__islocal && frappe.user.has_role(["Applicant"]) && !frappe.user.has_role(["System Manager"])){
             frm.remove_custom_button("Reject","Actions");
             frm.remove_custom_button("Approve","Actions");
+            frm.set_df_property('document_list', 'cannot_add_rows', true);
             frm.remove_custom_button("Not Approve","Actions");
+            
             
         }
         if (frappe.user.has_role(["Student","Instructor"]) && !frappe.user.has_role(["System Manager"])){
             frm.set_df_property('application_status', 'read_only', 1);
+            frm.set_df_property('document_list', 'cannot_add_rows', true);
         }
         if (frm.doc.application_status === "Approved" && frm.doc.docstatus === 1 && (frappe.user.has_role(["Education Admission Head"]))) {
             frappe.db.get_value('User',{'name':frappe.session.user},['module_profile'],(val) =>
@@ -308,6 +311,7 @@ frappe.ui.form.on('Student Applicant', {
                 }
 			});
         }
+
         // frappe.call({
         //     method: "wsc.wsc.doctype.student_applicant.get_qualification_list",
         //     callback: function(r) {
@@ -494,6 +498,18 @@ frappe.ui.form.on("Education Qualifications Details", "total_marks", function(fr
     //     frappe.throw("You are not eligible to apply for these course.")
     // }
  });
+ frappe.ui.form.on("Education Qualifications Details", "percentage_cgpa", function(frm, cdt, cdn) {
+       
+    var data = locals[cdt][cdn];
+    data.score=""
+    data.cgpa=""
+    data.total_marks=""
+    data.earned_marks=""
+    refresh_field("score", data.name, data.parentfield);
+    refresh_field("cgpa", data.name, data.parentfield);
+    refresh_field("total_marks", data.name, data.parentfield);
+    refresh_field("earned_marks", data.name, data.parentfield);
+ });
 frappe.ui.form.on("Education Qualifications Details", "earned_marks", function(frm, cdt, cdn) {
        
     var data = locals[cdt][cdn];
@@ -512,9 +528,9 @@ frappe.ui.form.on("Education Qualifications Details", "earned_marks", function(f
         frappe.throw("Earned Marks is greater then the Total Marks.")
     }       
     cur_frm.refresh_field ("education_qualifications_details");
-    if (data.score < data.admission_percentage){
-        frappe.throw("You are not eligible to apply for these course.")
-    }
+    // if (data.score < data.admission_percentage){
+    //     frappe.throw("You are not eligible to apply for these course.")
+    // }
  });	
  frappe.ui.form.on("Education Qualifications Details", "cgpa", function(frm, cdt, cdn) {
   
@@ -522,20 +538,22 @@ frappe.ui.form.on("Education Qualifications Details", "earned_marks", function(f
     if(data.cgpa<=10 && data.cgpa>=0){
         data.score=data.cgpa*10   
     }
-    else if(data.cgpa>10 || data.cgpa<0){
+    else if(data.cgpa>10.000 || data.cgpa<0){
         data.score=""
-        data.
+        data.cgpa=""
+        // data.
+        refresh_field("score", data.name, data.parentfield);
+        refresh_field("cgpa", data.name, data.parentfield);
         frappe.throw("Please enter your valid CGPA")
     }
     else{
+        alert("hey 4")
         frappe.throw("Wrong Entry")
     }
-    
-    
     cur_frm.refresh_field ("education_qualifications_details");
-    if (data.score < data.admission_percentage){
-        frappe.throw("You are not eligible to apply for these course.")
-    }
+    // if (data.score < data.admission_percentage){
+    //     frappe.throw("You are not eligible to apply for these course.")
+    // }
  
  });      
 
@@ -732,4 +750,3 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
         }); 
     }
 });
-

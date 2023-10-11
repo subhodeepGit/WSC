@@ -8,6 +8,7 @@ class Buildings(Document):
 	def validate(self):
 		dateValidate(self)
 		pincode(self)
+		phone(self)
 
 # To validate if the start date is not after the end date
 def dateValidate(self):
@@ -25,6 +26,13 @@ def pincode(self):
 
 	if len(self.pin_code)<6:	
 			frappe.throw("Field <b>Pin Code</b> must be 6 Digits")
+
+def phone(self):
+	if self.total_rooms<=0:
+		frappe.throw("Field <b>Total room</b> must not be zero or negative")
+	
+	if self.total_floors<=0:
+		frappe.throw("Field <b>Total floors</b> must not be zero or negative")
 
 # To fetch only those buildings which are between start and end date of the Land with respect to today’s date
 @frappe.whitelist()

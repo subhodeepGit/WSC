@@ -60,6 +60,7 @@ def on_change(doc,method):
     applicant_enroll_status(doc)
     onlinepayrole(doc)
     # update_reserved_seats(doc)
+    # print("\n\n\nHELELO")
     update_student(doc)
     student=frappe.get_doc("Student",doc.student)
     student.roll_no=doc.roll_no
@@ -562,25 +563,44 @@ def get_seat_reservation_type(doctype, txt, searchfield, start, page_len, filter
     return reservation_type
 
 @frappe.whitelist()
-#Old One
 def get_programs_stud_app(doctype, txt, searchfield, start, page_len, filters):
     
     fltr = {"parent":filters.get("student_applicant"),"approve":1}
-    
-    counselling_start = frappe.get_all("Student Applicant" , { 'name' : filters['student_applicant'] } , ['couselling_start'])
-
     if txt:
         fltr.update({'semester': ['like', '%{}%'.format(txt)]})
+    return frappe.get_all("Program Priority",fltr,['programs'], as_list=1)
 
-    if(counselling_start[0]['couselling_start'] == 0):
-        return frappe.get_all("Program Priority",fltr,['programs'], as_list=1)
-    else:
-        return frappe.get_all("Counseling Based Program Priority",fltr,['programs'], as_list=1)
-#     # if txt:
-#     #     fltr.update({'semester': ['like', '%{}%'.format(txt)]})
-#     #     print("\n\n\nFilter")
+@frappe.whitelist()
+def get_program_stud_app(doctype, txt, searchfield, start, page_len, filters):
+    
+    fltr = {"parent":filters.get("student_applicant"),"approve":1}
+    if txt:
+        fltr.update({'semester': ['like', '%{}%'.format(txt)]})
+    return frappe.get_all("Program Priority",fltr,['semester'], as_list=1)
+## Garbage Code for now
+    # return frappe.get_all("Program Priority",fltr,['semester'], as_list=1)
+    
+    # counselling_start = frappe.get_all("Student Applicant" , { 'name' : filters['student_applicant'] } , ['couselling_start'])
+
+    # if txt:
+    #     fltr.update({'semester': ['like', '%{}%'.format(txt)]})
+
+    # if(counselling_start[0]['couselling_start'] == 0):
+    #     return frappe.get_all("Program Priority",fltr,['programs'], as_list=1)
+    # else:
+    #     return frappe.get_all("Counseling Based Program Priority",fltr,['programs'], as_list=1)
+    # # if txt:
+    # #     fltr.update({'semester': ['like', '%{}%'.format(txt)]})
+    # #     print("\n\n\nFilter")
     
     # return frappe.get_all("Program Priority",fltr,['programs'], as_list=1)
+
+# @frappe.whitelist()
+# def get_programs_stud_app(doctype, txt, searchfield, start, page_len, filters):
+#     fltr = {"programs":filters.get("programs"),"parent":filters.get("student_applicant"),"approve":1}
+#     if txt:
+#         fltr.update({'semester': ['like', '%{}%'.format(txt)]})
+#     return frappe.get_all("Program Priority",fltr,['semester'], as_list=1)
 
 ##New One
 # def get_programs_stud_app(doctype, txt, searchfield, start, page_len, filters):
@@ -590,20 +610,20 @@ def get_programs_stud_app(doctype, txt, searchfield, start, page_len, filters):
 #     return frappe.get_all("Counseling Based Program Priority",fltr,['programs'], as_list=1)
 
 
-@frappe.whitelist()
-def get_program_stud_app(doctype, txt, searchfield, start, page_len, filters):
-    fltr = {"programs":filters.get("programs"),"parent":filters.get("student_applicant")}
+# @frappe.whitelist()
+# def get_program_stud_app(doctype, txt, searchfield, start, page_len, filters):
+#     fltr = {"programs":filters.get("programs"),"parent":filters.get("student_applicant")}
 
-    counselling_start = frappe.get_all("Student Applicant" , { 'name' : filters['student_applicant'] } , ['couselling_start'])
+#     counselling_start = frappe.get_all("Student Applicant" , { 'name' : filters['student_applicant'] } , ['couselling_start'])
 
-    if txt:
-        fltr.update({'semester': ['like', '%{}%'.format(txt)]})
+#     if txt:
+#         fltr.update({'semester': ['like', '%{}%'.format(txt)]})
     
-    if(counselling_start[0]['couselling_start'] == 0):
-        return frappe.get_all("Program Priority",fltr,['semester'], as_list=1)
-    else:
-        return frappe.get_all("Counseling Based Program Priority",fltr,['semester'], as_list=1)
-    # return frappe.get_all("Counseling Based Program Priority",fltr,['semester'], as_list=1)
+#     if(counselling_start[0]['couselling_start'] == 0):
+#         return frappe.get_all("Program Priority",fltr,['semester'], as_list=1)
+#     # else:
+#     #     return frappe.get_all("Counseling Based Program Priority",fltr,['semester'], as_list=1)
+#     # return frappe.get_all("Counseling Based Program Priority",fltr,['semester'], as_list=1)
 
 @frappe.whitelist()
 def get_data_stud_app(student_applicant):
@@ -618,7 +638,6 @@ def update_reserved_seats(doc,on_submit=0):
             
     for ad in frappe.get_all("Program Priority",{"parent":doc.reference_name,"programs":doc.programs,"semester":doc.program},["student_admission"]):
         admission=frappe.get_doc("Student Admission",ad.student_admission)
-
         # check reservation type exists
         # if len(frappe.get_all("Reservations List",{"seat_reservation_type":doc.seat_reservation_type,"parent":admission.name}))==0:
         #     frappe.throw("Reservation Type <b>{0}</b> Not Exists in Admission <b>{1}</b>".format(doc.seat_reservation_type,admission.name))
@@ -635,6 +654,10 @@ def update_reserved_seats(doc,on_submit=0):
             # validate_reservation_type_by_criteria(doc,reservation_type.name)
 
         # update seat 
+    # result = frappe.db.sql("""
+    #                     Select  `admission_status` from `tabProgram Enrollment` where `name`= "%s" """ %(doc.name))
+    # for t in result:
+    #     print("\n\n\n\n\nRESULT",t[0])
     for d in admission.get("reservations_distribution"):
         if doc.seat_reservation_type==d.seat_reservation_type:
             if on_submit:
@@ -650,6 +673,20 @@ def update_reserved_seats(doc,on_submit=0):
                 # else:
                 #     frappe.throw("Error !!")
     admission.save()
+    # if doc.is_provisional_admission=="No" and doc.admission_status=="Admitted":
+    #     for d in admission.get("reservations_distribution"):
+    #         if doc.seat_reservation_type==d.seat_reservation_type:
+    #             if on_update:
+    #                 if int(d.seat_balance) > 0:
+    #                     d.seat_balance-=1
+    #                     d.allocated_seat=d.total_seat-d.seat_balance
+    #                 else:
+    #                     frappe.throw("There is no available seat.")
+    #             elif on_cancel:
+    #                 d.seat_balance+=1
+    #                 d.allocated_seat=d.total_seat-d.seat_balance
+
+    #     admission.save()
 
 # branch sliding
 # else:
@@ -823,7 +860,7 @@ def validate_seat_reservation_type(doc):
 
 def onlinepayrole(doc):
     email_stu = frappe.get_all("Student",{"name":doc.student},["student_email_id"])
-    if doc.docstatus!=0:
+    if doc.docstatus==1:
         student = frappe.get_doc("User",email_stu[0]["student_email_id"])
         student.new_password = ''
         # student.role_profile_name = ''
@@ -834,3 +871,9 @@ def onlinepayrole(doc):
         student.new_password = ''
         student.flags.ignore_permissions = True
         student.save()
+    if doc.docstatus==2:
+        role_disable = frappe.get_doc("User",email_stu[0]["student_email_id"])
+        role_disable.remove_roles("Provisionally admitted","Student")
+        role_disable.new_password = ''
+        role_disable.flags.ignore_permissions = True
+        role_disable.save()

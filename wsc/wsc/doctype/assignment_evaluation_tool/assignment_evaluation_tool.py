@@ -28,6 +28,8 @@ class AssignmentEvaluationTool(Document):
                     check_list_dict['end_date_and_time']=d.end_date_and_time
                     check_list_dict['total_duration']=d.total_duration
                     check_list_dict['marks_earned']=d.marks_earned
+                    check_list_dict['assignment_upload_status']=d.assignment_upload_status
+                    check_list_dict['assignment_upload_link']=d.assignment_upload_link
                     check_list.append(check_list_dict)
         participant_id_list=list(set(participant_id_list))
         for t in participant_id_list:
@@ -66,7 +68,9 @@ class AssignmentEvaluationTool(Document):
                             "total_marks": j['total_marks'],                           
                             "weightage": j['weightage'],                            
                             "end_date_and_time": j['end_date_and_time'],
-                            "marks": j['marks_earned'],                                    
+                            "marks": j['marks_earned'],
+                            "assignment_upload_status": j['assignment_upload_status'],  
+                            "assignment_upload_link": j['assignment_upload_link'],        
                         })
             doc.marks_earned=marks_earned        
             doc.save()    
@@ -100,6 +104,18 @@ def get_participants_and_assignments(assignment_declaration = None,participant_g
                 participants['start_date']=assignment['start_date']
                 participants['end_date']=assignment['end_date']
                 participants['total_duration']=assignment['total_duration']
+                uploaded_assignments = frappe.get_all("Assignment Upload", filters=[["participant_id","=",participant['participant_id']],["docstatus","=",1]], fields=["name","assignment_id"])
+                if uploaded_assignments:
+                    for j in uploaded_assignments:
+                        if assignment['name']==j['assignment_id']:
+                            participants['assignment_upload_status']="Submitted"
+                            participants['assignment_upload_link']=j['name']
+                        else:
+                            participants['assignment_upload_status']="Not Submitted"
+                            participants['assignment_upload_link']=None
+                else:
+                    participants['assignment_upload_status']="Not Submitted"
+                    participants['assignment_upload_link']=None
                 participant_assignments.append(participants)
 
     else:
