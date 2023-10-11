@@ -21,7 +21,7 @@
    "in_list_view": 1,
    "label": "Document Name",
    "options": "Documents",
-   "read_only": 1,
+   "permlevel": 2,
    "width": "10px"
   },
   {
@@ -73,7 +73,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-13 21:39:26.195549",
+ "modified": "2023-10-11 12:08:55.328964",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Document List",

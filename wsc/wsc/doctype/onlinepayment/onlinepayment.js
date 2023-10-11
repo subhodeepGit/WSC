@@ -87,7 +87,7 @@ frappe.ui.form.on('OnlinePayment', {
                 method: "wsc.wsc.doctype.onlinepayment.onlinepayment.open_gateway",
                 args: {
                     party_name: frm.doc.party_name,
-                    roll_no: frm.doc.party,
+                    party: frm.doc.party,
                     amount: frm.doc.paying_amount,
                     order_id: frm.doc.name,
                     url: window.location.href,
@@ -138,7 +138,7 @@ frappe.ui.form.on('OnlinePayment', {
         //         method: "wsc.wsc.doctype.onlinepayment.onlinepayment.open_gateway",
         //         args: {
         //             party_name: frm.doc.party_name,
-        //             roll_no: frm.doc.party,
+        //             party: frm.doc.party,
         //             amount: frm.doc.paying_amount,
         //             order_id: frm.doc.name,
         //             url: window.location.href,
@@ -156,6 +156,7 @@ frappe.ui.form.on('OnlinePayment', {
         //                     window.location.href = "https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
         //                 } else {
         //                     window.location.href = "https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
+                           
         //                 }
         //             } else {
         //                 alert("No response data received.");
