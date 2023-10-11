@@ -59,8 +59,8 @@ def on_cancel(doc,method):
 def on_change(doc,method):
     applicant_enroll_status(doc)
     onlinepayrole(doc)
-    update_reserved_seats(doc)
-    print("\n\n\nHELELO")
+    # update_reserved_seats(doc)
+    # print("\n\n\nHELELO")
     update_student(doc)
     student=frappe.get_doc("Student",doc.student)
     student.roll_no=doc.roll_no
