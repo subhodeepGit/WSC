@@ -62,7 +62,10 @@ def paid_from_account_type(reference_no=None,mode_of_payment=None):
         if Recon_info:
             date_time_str = Recon_info[0]["date_time_of_transaction"]
             try:
-                date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f')
+                try:
+                    date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f')
+                except:
+                    date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S')
             except:
                 # 14/08/2023 12:05:40
                 date_time_obj = datetime.datetime.strptime(date_time_str, '%d/%m/%Y %H:%M:%S')
@@ -74,7 +77,10 @@ def paid_from_account_type(reference_no=None,mode_of_payment=None):
         if Recon_info:
             date_time_str = Recon_info[0]["date_time_of_transaction"]
             try:
-                date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f')
+                try:
+                    date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f')
+                except:
+                    date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S')
             except:
                 # 14/08/2023 12:05:40
                 date_time_obj = datetime.datetime.strptime(date_time_str, '%d/%m/%Y %H:%M:%S')
