@@ -42,5 +42,6 @@ def get_applicants(body):
 	# data = frappe.get_all("Stude")
 
 	# data2 = frappe.get_all("Student Applicant" , { 'name' : 'EDU-APP-2023-00009'} , ['name' ,'academic_year' , 'department' , 'academic_term' , 'title' , 'gender' , 'student_category' , 'physically_disabled' , 'application_status' , 'exam_declared_for_applicant'])
-
+	print("\n\n")
+	print(data)
 	return data
