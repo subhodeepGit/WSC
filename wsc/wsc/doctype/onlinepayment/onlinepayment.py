@@ -373,7 +373,8 @@ def getTransactionDetails(doc):
             final_data = 'enc_request='+encrypted_data+'&'+'access_code='+access_code + \
                             '&'+'command=orderStatusTracker&request_type=JSON&response_type=JSON'
             logging.info("Final API final_data: %s", final_data)
-            r = requests.post('https://api.ccavenue.com/apis/servlet/DoWebTran', params=final_data)
+            r = requests.post('https://login.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)
+            # r = requests.post('https://api.ccavenue.com/apis/servlet/DoWebTran', params=final_data)
             # r = requests.post('https://apitest.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)
             
 
@@ -443,7 +444,8 @@ def getTransactionDetails(doc):
             final_data = 'enc_request='+encrypted_data+'&'+'access_code='+access_code + \
                             '&'+'command=orderStatusTracker&request_type=JSON&response_type=JSON'
             logging.info("Final API final_data: %s", final_data)
-            r = requests.post('https://api.ccavenue.com/apis/servlet/DoWebTran', params=final_data)
+            r = requests.post('https://login.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)
+            # r = requests.post('https://api.ccavenue.com/apis/servlet/DoWebTran', params=final_data)
             # r = requests.post('https://apitest.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)
             
             t = r.text

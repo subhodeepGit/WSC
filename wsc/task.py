@@ -438,9 +438,11 @@ def getFinalTransactionStatus(doc):
         return str(e)
     
 def await_transaction_update_status():    
-    # doc=frappe.get_doc("OnlinePayment","PAYM-2023-0614")        
+    # doc=frappe.get_doc("OnlinePayment","PAYM-2023-0607")        
     # data_dict= getFinalTransactionStatus(doc)
     # print(data_dict)
+
+
     awaited_status_transactions_1=frappe.get_all("OnlinePayment",[["transaction_status" ,"IN",("Awaited","Failure","Initiated","Success","Rejected","Aborted","Unsuccessful")]])
     awaited_status_transactions_0=frappe.get_all("OnlinePayment",[["docstatus" ,"=",0]])
         
@@ -493,9 +495,11 @@ def await_transaction_update_status():
                 if data_dict["Order_Status_Result"]["order_status"]!=doc.transaction_status:
                     doc.transaction_id = data_dict["Order_Status_Result"]["reference_no"]
                     doc.transaction_status = data_dict["Order_Status_Result"]["order_status"]
-                    doc.transaction_status_description = data_dict["Order_Status_Result"]["order_bank_response"]
                     doc.date_time_of_transaction=data_dict["Order_Status_Result"]["order_status_date_time"]  
-                    doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper()                     
+                    doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper()  
+                    if ["order_bank_response"]in data_dict["Order_Status_Result"]: 
+                        doc.transaction_status_description = data_dict["Order_Status_Result"]["order_bank_response"]                    
+                                      
                     transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nAmount Paid: {data_dict['Order_Status_Result']['order_amt']}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
                     doc.transaction_status_description=transaction_info
                     doc.transaction_progress="Completed"
@@ -504,22 +508,17 @@ def await_transaction_update_status():
                 if data_dict["Order_Status_Result"]["order_status"]=="Shipped" and doc.transaction_status!="Success":
                     doc.transaction_id = data_dict["Order_Status_Result"]["reference_no"]
                     doc.transaction_status = data_dict["Order_Status_Result"]["order_status"]
-                    doc.transaction_status_description = data_dict["Order_Status_Result"]["order_bank_response"]
                     doc.date_time_of_transaction=data_dict["Order_Status_Result"]["order_status_date_time"]  
-                    doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper()                     
+                    doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper()   
+                    if ["order_bank_response"]in data_dict["Order_Status_Result"]:
+                       doc.transaction_status_description = data_dict["Order_Status_Result"]["order_bank_response"] 
+                                      
                     transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nAmount Paid: {data_dict['Order_Status_Result']['order_amt']}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
                     doc.transaction_status_description=transaction_info
                     doc.transaction_progress="Completed"
                     doc.save()
                     logging.info("scheduler transaction_info:%s",transaction_info)       
-                # order_id = doc.get('name') 
-                # print("order_id",order_id)
-                # order_status = doc.get('transaction_status')
-                # print("transaction_status",order_status)
-                # transaction_info = doc.get('transaction_status_description')
-                # print("transaction_status_description",transaction_info)
-                # frappe.db.sql("""UPDATE `tabOnlinePayment` SET `transaction_status` = %s , `transaction_status_description` = %s WHERE `name` = %s""", (data_dict["Order_Status_Result"]["order_status"],transaction_info,data_dict["Order_Status_Result"]["reference_no"]))
-                
+               
                 # frappe.db.sql("""
                 #                 UPDATE `tabOnlinePayment`
                 #                 SET `transaction_status` = %s, `transaction_status_description` = %s
@@ -529,8 +528,7 @@ def await_transaction_update_status():
                 #                 transaction_info,
                 #                 data_dict["Order_Status_Result"]["order_no"]
                 #             ))
-
-                frappe.db.commit()
+                # frappe.db.commit()
         except Exception as e:	
             logging.info(f"Error in awaited_status_transactions_1: {repr(e)}")
 

@@ -19,6 +19,7 @@ frappe.ui.form.on('Entrance Exam Centre Selection', {
 		// });
 	},
 	refresh:function(frm){
+		// console.log(frm.doc.flag);
 		if(!frm.is_new() && frm.doc.docstatus === 1 && frm.doc.flag === 0){
 			frm.add_custom_button(__('Center Select'), function(){
 				frappe.call({
@@ -29,15 +30,10 @@ frappe.ui.form.on('Entrance Exam Centre Selection', {
 			}).addClass('btn-primary');
 		}
 	},
-	// after_cancel:function(frm){
-	// 	console.log(1);
-	// 	frappe.call({
-	// 		method: 'wsc.wsc.doctype.entrance_exam_centre_selection.entrance_exam_centre_selection.centers_cancel',
-	// 		args: {
-	// 			academic_year:frm.doc.academic_year,
-	// 			academic_term:frm.doc.academic_term
-	// 		}
-	// 	})
-	// }
+	before_cancel: function(frm){
+		frm.doc.flag = 0
+		frm.refresh_field('flag');
+		console.log(frm.doc.flag);
+	}
 	
 });

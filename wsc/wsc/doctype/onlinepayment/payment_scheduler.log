@@ -1,4 +1,65 @@
-2023-10-12 11:36:12,690 - rq.worker - INFO - home-wsc-frappe-bench:default: Job OK (erp.soulunileaders.com::scheduled_job::wsc.task.check_and_delete_exit_employee_permissions)
-2023-10-12 11:36:12,691 - rq.worker - INFO - Result is kept for 600 seconds
-2023-10-12 11:36:15,366 - rq.worker - INFO - home-wsc-frappe-bench:default: Job OK (erp.soulunileaders.com::scheduled_job::wsc.task.await_transaction_update_status)
-2023-10-12 11:36:15,368 - rq.worker - INFO - Result is kept for 600 seconds
+2023-10-12 10:29:43,264 - root - INFO - Scheduler---gt getDoc: HDFCSetting(HDFCSetting)
+2023-10-12 10:29:43,264 - root - INFO - Scheduler gt is_prod: 0
+2023-10-12 10:29:43,264 - root - INFO - Error in awaited_status_transactions_0: TypeError('string indices must be integers')
+2023-10-12 10:29:43,267 - root - INFO - Scheduler---gt getDoc: HDFCSetting(HDFCSetting)
+2023-10-12 10:29:43,267 - root - INFO - Scheduler gt is_prod: 0
+2023-10-12 10:29:43,267 - root - INFO - Error in awaited_status_transactions_1: TypeError('string indices must be integers')
+2023-10-12 10:29:43,270 - root - INFO - Scheduler---gt getDoc: HDFCSetting(HDFCSetting)
+2023-10-12 10:29:43,270 - root - INFO - Scheduler gt is_prod: 0
+2023-10-12 10:29:43,270 - root - INFO - Error in awaited_status_transactions_1: TypeError('string indices must be integers')
+2023-10-12 10:29:43,272 - root - INFO - Scheduler---gt getDoc: HDFCSetting(HDFCSetting)
+2023-10-12 10:29:43,272 - root - INFO - Scheduler gt is_prod: 0
+2023-10-12 10:29:43,273 - root - INFO - Error in awaited_status_transactions_1: TypeError('string indices must be integers')
+2023-10-12 10:29:43,275 - root - INFO - Scheduler---gt getDoc: HDFCSetting(HDFCSetting)
+2023-10-12 10:29:43,275 - root - INFO - Scheduler gt is_prod: 0
+2023-10-12 10:29:43,275 - root - INFO - Error in awaited_status_transactions_1: TypeError('string indices must be integers')
+2023-10-12 10:29:43,277 - root - INFO - Scheduler---gt getDoc: HDFCSetting(HDFCSetting)
+2023-10-12 10:29:43,277 - root - INFO - Scheduler gt is_prod: 0
+2023-10-12 10:29:43,278 - root - INFO - Error in awaited_status_transactions_1: TypeError('string indices must be integers')
+2023-10-12 10:29:43,280 - root - INFO - Scheduler---gt getDoc: HDFCSetting(HDFCSetting)
+2023-10-12 10:29:43,280 - root - INFO - Scheduler gt is_prod: 0
+2023-10-12 10:29:43,280 - root - INFO - Error in awaited_status_transactions_1: TypeError('string indices must be integers')
+2023-10-12 10:29:43,283 - root - INFO - Scheduler---gt getDoc: HDFCSetting(HDFCSetting)
+2023-10-12 10:29:43,283 - root - INFO - Scheduler gt is_prod: 0
+2023-10-12 10:29:43,283 - root - INFO - Error in awaited_status_transactions_1: TypeError('string indices must be integers')
+2023-10-12 10:29:43,288 - root - INFO - Scheduler---gt getDoc: HDFCSetting(HDFCSetting)
+2023-10-12 10:29:43,288 - root - INFO - Scheduler gt is_prod: 0
+2023-10-12 10:29:43,288 - root - INFO - Error in awaited_status_transactions_1: TypeError('string indices must be integers')
+2023-10-12 10:29:43,292 - root - INFO - Scheduler---gt getDoc: HDFCSetting(HDFCSetting)
+2023-10-12 10:29:43,292 - root - INFO - Scheduler gt is_prod: 0
+2023-10-12 10:29:43,292 - root - INFO - Error in awaited_status_transactions_1: TypeError('string indices must be integers')
+2023-10-12 10:29:43,295 - root - INFO - Scheduler---gt getDoc: HDFCSetting(HDFCSetting)
+2023-10-12 10:29:43,295 - root - INFO - Scheduler gt is_prod: 0
+2023-10-12 10:29:43,295 - root - INFO - Error in awaited_status_transactions_1: TypeError('string indices must be integers')
+2023-10-12 10:29:43,297 - root - INFO - Scheduler---gt getDoc: HDFCSetting(HDFCSetting)
+2023-10-12 10:29:43,297 - root - INFO - Scheduler gt is_prod: 0
+2023-10-12 10:29:43,297 - root - INFO - Error in awaited_status_transactions_1: TypeError('string indices must be integers')
+2023-10-12 10:29:43,299 - root - INFO - Scheduler---gt getDoc: HDFCSetting(HDFCSetting)
+2023-10-12 10:29:43,299 - root - INFO - Scheduler gt is_prod: 0
+2023-10-12 10:29:43,299 - root - INFO - Error in awaited_status_transactions_1: TypeError('string indices must be integers')
+2023-10-12 10:29:43,302 - root - INFO - Scheduler---gt getDoc: HDFCSetting(HDFCSetting)
+2023-10-12 10:29:43,302 - root - INFO - Scheduler gt is_prod: 0
+2023-10-12 10:29:43,302 - root - INFO - Error in awaited_status_transactions_1: TypeError('string indices must be integers')
+2023-10-12 10:29:43,304 - root - INFO - Scheduler---gt getDoc: HDFCSetting(HDFCSetting)
+2023-10-12 10:29:43,304 - root - INFO - Scheduler gt is_prod: 0
+2023-10-12 10:29:43,304 - root - INFO - Error in awaited_status_transactions_1: TypeError('string indices must be integers')
+2023-10-12 10:29:43,307 - root - INFO - Scheduler---gt getDoc: HDFCSetting(HDFCSetting)
+2023-10-12 10:29:43,307 - root - INFO - Scheduler gt is_prod: 0
+2023-10-12 10:29:43,307 - root - INFO - Error in awaited_status_transactions_1: TypeError('string indices must be integers')
+2023-10-12 10:29:43,309 - root - INFO - Scheduler---gt getDoc: HDFCSetting(HDFCSetting)
+2023-10-12 10:29:43,309 - root - INFO - Scheduler gt is_prod: 0
+2023-10-12 10:29:43,309 - root - INFO - Error in awaited_status_transactions_1: TypeError('string indices must be integers')
+2023-10-12 10:29:43,311 - root - INFO - Scheduler---gt getDoc: HDFCSetting(HDFCSetting)
+2023-10-12 10:29:43,311 - root - INFO - Scheduler gt is_prod: 0
+2023-10-12 10:29:43,312 - root - INFO - Error in awaited_status_transactions_1: TypeError('string indices must be integers')
+2023-10-12 10:29:43,314 - root - INFO - Scheduler---gt getDoc: HDFCSetting(HDFCSetting)
+2023-10-12 10:29:43,314 - root - INFO - Scheduler gt is_prod: 0
+2023-10-12 10:29:43,314 - root - INFO - Error in awaited_status_transactions_1: TypeError('string indices must be integers')
+2023-10-12 10:29:43,317 - root - INFO - Scheduler---gt getDoc: HDFCSetting(HDFCSetting)
+2023-10-12 10:29:43,317 - root - INFO - Scheduler gt is_prod: 0
+2023-10-12 10:29:43,317 - root - INFO - Error in awaited_status_transactions_1: TypeError('string indices must be integers')
+2023-10-12 10:29:43,320 - root - INFO - Scheduler---gt getDoc: HDFCSetting(HDFCSetting)
+2023-10-12 10:29:43,321 - root - INFO - Scheduler gt is_prod: 0
+2023-10-12 10:29:43,321 - root - INFO - Error in awaited_status_transactions_1: TypeError('string indices must be integers')
+2023-10-12 10:29:43,328 - rq.worker - INFO - home-wsc-frappe-bench:default: Job OK (erp.soulunileaders.com::scheduled_job::wsc.task.await_transaction_update_status)
+2023-10-12 10:29:43,328 - rq.worker - INFO - Result is kept for 600 seconds
