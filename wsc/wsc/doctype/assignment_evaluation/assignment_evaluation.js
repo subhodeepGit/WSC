@@ -70,23 +70,6 @@ frappe.ui.form.on('Assignment Evaluation', {
             };
         });
     },
-    select_assignment: function(frm){
-        frappe.call({
-            method: 'wsc.wsc.doctype.assignment_evaluation.assignment_evaluation.get_assignment_details',
-            args:{
-                assignment_name : frm.doc.select_assignment
-            },
-            callback: function(result){
-                if(result.message){
-                    frm.set_value("assessment_component", result.message[0])
-                    frm.set_value("total_marks", result.message[1])
-                    frm.set_value("passing_marks", result.message[2])
-                    frm.set_value("weightage", result.message[3])
-                    frm.set_value("assignment_name", result.message[4])
-                }
-            }
-        })
-    },
     marks_earned: function(frm){
         if(frm.doc.marks_earned > frm.doc.total_marks){
             frappe.msgprint('Earned marks cannot be more than total marks')
