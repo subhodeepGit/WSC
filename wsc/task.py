@@ -438,26 +438,26 @@ def getFinalTransactionStatus(doc):
         return str(e)
     
 def await_transaction_update_status():    
-    # doc=frappe.get_doc("OnlinePayment","PAYM-2023-0607")        
+    # doc=frappe.get_doc("OnlinePayment","PAYM-2023-0614")        
     # data_dict= getFinalTransactionStatus(doc)
     # print(data_dict)
 
 
     awaited_status_transactions_1=frappe.get_all("OnlinePayment",[["transaction_status" ,"IN",("Awaited","Failure","Initiated","Success","Rejected","Aborted","Unsuccessful")]])
     awaited_status_transactions_0=frappe.get_all("OnlinePayment",[["docstatus" ,"=",0]])
+    # print("awaited_status_transactions_0::::",awaited_status_transactions_0)
         
     for t0 in awaited_status_transactions_0:
         try:
             doc=frappe.get_doc("OnlinePayment",t0["name"])        
             data_dict= getFinalTransactionStatus(doc)
-
-            # print("t0",data_dict)
+            print("t0",data_dict)
 
             if doc.docstatus==0:
                 
-                if "order_no" in data_dict["Order_Status_Result" ]:
+                if "order_no" in data_dict["Order_Status_Result"].keys():
                     # print("jkpasdpo",data_dict["Order_Status_Result"])
-                    doc.transaction_id = data_dict["Order_Status_Result"]["reference_no"]
+                    doc.transaction_id = str(data_dict["Order_Status_Result"]["reference_no"])
                     doc.transaction_status = data_dict["Order_Status_Result"]["order_status"]
                     if data_dict["Order_Status_Result"]["order_status"]!='Initiated':
                         doc.transaction_status_description = data_dict["Order_Status_Result"]["order_bank_response"]
@@ -466,10 +466,10 @@ def await_transaction_update_status():
                     # logging.info(" scheduler server transaction_time %s",transaction_time)
                     # date_obj = datetime.strptime(transaction_time, "%d/%m/%Y %H:%M:%S")
                     # doc.date_time_of_transaction = date_obj.strftime("%Y-%m-%d %H:%M:%S") 
-
+                    paying_amount=str(data_dict['Order_Status_Result']['order_amt']) 
                     doc.date_time_of_transaction=data_dict["Order_Status_Result"]["order_status_date_time"] 
                     doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper()                     
-                    transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nPaying Amount: {data_dict['Order_Status_Result']['order_amt']}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
+                    transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nPaying Amount: {paying_amount}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
                     doc.transaction_status_description=transaction_info
                     doc.transaction_progress="Completed"
                     
@@ -490,30 +490,31 @@ def await_transaction_update_status():
             doc=frappe.get_doc("OnlinePayment",t1["name"])  
             data_dict= getFinalTransactionStatus(doc)
 
-            # print("t1",data_dict)
+            print("t1",data_dict)
             if doc.docstatus==1:  
                 if data_dict["Order_Status_Result"]["order_status"]!=doc.transaction_status:
-                    doc.transaction_id = data_dict["Order_Status_Result"]["reference_no"]
+                    doc.transaction_id = str(data_dict["Order_Status_Result"]["reference_no"])
                     doc.transaction_status = data_dict["Order_Status_Result"]["order_status"]
                     doc.date_time_of_transaction=data_dict["Order_Status_Result"]["order_status_date_time"]  
-                    doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper()  
-                    if ["order_bank_response"]in data_dict["Order_Status_Result"]: 
+                    doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper() 
+                    paying_amount=str(data_dict['Order_Status_Result']['order_amt']) 
+                    if "order_bank_response" in data_dict["Order_Status_Result"].keys(): 
                         doc.transaction_status_description = data_dict["Order_Status_Result"]["order_bank_response"]                    
                                       
-                    transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nAmount Paid: {data_dict['Order_Status_Result']['order_amt']}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
+                    transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nAmount Paid: {paying_amount}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
                     doc.transaction_status_description=transaction_info
                     doc.transaction_progress="Completed"
                     doc.save()
                     logging.info("scheduler transaction_info:%s",transaction_info)    
                 if data_dict["Order_Status_Result"]["order_status"]=="Shipped" and doc.transaction_status!="Success":
-                    doc.transaction_id = data_dict["Order_Status_Result"]["reference_no"]
+                    doc.transaction_id = str(data_dict["Order_Status_Result"]["reference_no"])
                     doc.transaction_status = data_dict["Order_Status_Result"]["order_status"]
                     doc.date_time_of_transaction=data_dict["Order_Status_Result"]["order_status_date_time"]  
                     doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper()   
-                    if ["order_bank_response"]in data_dict["Order_Status_Result"]:
+                    if "order_bank_response" in data_dict["Order_Status_Result"].keys():
                        doc.transaction_status_description = data_dict["Order_Status_Result"]["order_bank_response"] 
-                                      
-                    transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nAmount Paid: {data_dict['Order_Status_Result']['order_amt']}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
+                                   
+                    transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nAmount Paid: {paying_amount}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
                     doc.transaction_status_description=transaction_info
                     doc.transaction_progress="Completed"
                     doc.save()
@@ -535,4 +536,3 @@ def await_transaction_update_status():
 
 ##Online payment scheduler end
 
-  

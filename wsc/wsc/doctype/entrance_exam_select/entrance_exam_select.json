@@ -9,16 +9,20 @@
  "engine": "InnoDB",
  "field_order": [
   "academic_year",
+  "column_break_lov0n",
   "academic_term",
+  "section_break_j57vx",
   "center",
   "center_name",
-  "address",
   "cityvillagetown",
+  "address",
+  "column_break_k28vh",
   "district",
   "state",
   "pincode",
-  "amended_from",
-  "available_center"
+  "available_center",
+  "section_break_6mmwh",
+  "amended_from"
  ],
  "fields": [
   {
@@ -89,12 +93,28 @@
    "fieldname": "available_center",
    "fieldtype": "Check",
    "label": "Available Center"
+  },
+  {
+   "fieldname": "column_break_lov0n",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_j57vx",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_k28vh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_6mmwh",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-13 16:41:21.182525",
+ "modified": "2023-10-11 17:37:55.924926",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance exam select",
