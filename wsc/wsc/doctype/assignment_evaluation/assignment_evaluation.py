@@ -35,20 +35,6 @@ class AssignmentEvaluation(Document):
 
 
 
-@frappe.whitelist()
-def get_assignment_details(assignment_name = None):
-	if(assignment_name == None):
-		return ['','','','','', '']
-	else:
-		count1 = frappe.db.sql(""" SELECT COUNT(*) FROM `tabAssignment` WHERE name = '%s'"""%(assignment_name))
-		count2 = frappe.db.sql(""" SELECT COUNT(*) FROM `tabAssignment Declaration` WHERE name = '%s'"""%(assignment_name))
-		if(count1[0][0] > 0):
-			criteria_details = frappe.get_all('Assignment', filters = [['name','=',assignment_name]], fields = ['assignment_name','assessment_criteria','total_marks', 'passing_marks', 'weightage'])
-			return [criteria_details[0]['assessment_criteria'], criteria_details[0]['total_marks'],criteria_details[0]['passing_marks'],criteria_details[0]['weightage'],criteria_details[0]['assignment_name']]
-		elif(count2[0][0] > 0):
-			criteria_details = frappe.get_all('Assignment Declaration', filters = [['name','=',assignment_name]], fields = ['assignment_name','select_assessment_criteria','total_marks','pass_marks','weightage'])
-			return [criteria_details[0]['select_assessment_criteria'], criteria_details[0]['total_marks'],criteria_details[0]['pass_marks'],criteria_details[0]['weightage'],criteria_details[0]['assignment_name']]
-
 
 # ---------------------------------------------------------------------------------------------
 @frappe.whitelist()
