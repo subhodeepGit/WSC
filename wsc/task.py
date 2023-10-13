@@ -451,7 +451,7 @@ def await_transaction_update_status():
         try:
             doc=frappe.get_doc("OnlinePayment",t0["name"])        
             data_dict= getFinalTransactionStatus(doc)
-            print("t0",data_dict)
+            # print("t0",data_dict)
 
             if doc.docstatus==0:
                 
@@ -474,12 +474,12 @@ def await_transaction_update_status():
                     doc.transaction_progress="Completed"
                     
                     try:
-                        logging.info("scheduler inside try.....................")
+                        logging.info("t0 scheduler inside try.....................")
                         doc.save(ignore_permissions=True)
-                        logging.info("scheduler inside save.....................")
+                        logging.info("t0 scheduler inside save.....................")
                         doc.submit()
-                        logging.info(" Scheduler final_status_info : %s",data_dict)
-                        logging.info(" Scheduler SUCESSFULLY COMPLETED")    
+                        logging.info("t0 Scheduler final_status_info : %s",data_dict)
+                        logging.info("t0 Scheduler SUCESSFULLY COMPLETED")    
                     except Exception as save_exception:                        
                         logging.info(f"Error saving document: {repr(save_exception)}")
         except Exception as e:
@@ -490,7 +490,7 @@ def await_transaction_update_status():
             doc=frappe.get_doc("OnlinePayment",t1["name"])  
             data_dict= getFinalTransactionStatus(doc)
 
-            print("t1",data_dict)
+            # print("t1",data_dict)
             if doc.docstatus==1:  
                 if data_dict["Order_Status_Result"]["order_status"]!=doc.transaction_status:
                     doc.transaction_id = str(data_dict["Order_Status_Result"]["reference_no"])
@@ -505,7 +505,7 @@ def await_transaction_update_status():
                     doc.transaction_status_description=transaction_info
                     doc.transaction_progress="Completed"
                     doc.save()
-                    logging.info("scheduler transaction_info:%s",transaction_info)    
+                    logging.info("t1 scheduler transaction_info:%s",transaction_info)    
                 if data_dict["Order_Status_Result"]["order_status"]=="Shipped" and doc.transaction_status!="Success":
                     doc.transaction_id = str(data_dict["Order_Status_Result"]["reference_no"])
                     doc.transaction_status = data_dict["Order_Status_Result"]["order_status"]
@@ -518,7 +518,9 @@ def await_transaction_update_status():
                     doc.transaction_status_description=transaction_info
                     doc.transaction_progress="Completed"
                     doc.save()
-                    logging.info("scheduler transaction_info:%s",transaction_info)       
+                    logging.info("t1 scheduler transaction_info:%s",transaction_info) 
+                    logging.info("t1 Scheduler SUCESSFULLY COMPLETED") 
+                          
                
                 # frappe.db.sql("""
                 #                 UPDATE `tabOnlinePayment`
