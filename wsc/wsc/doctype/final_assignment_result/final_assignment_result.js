@@ -127,28 +127,32 @@ frappe.ui.form.on('Final Assignment Result', {
 				// participant_id : frm.doc.participant_id,
 				// grading_scale : frm.doc.grading_scale
 			},
-			// callback: function(result){
-			// 	if(result.message){
-			// 		frappe.model.clear_table(frm.doc, 'assessment_result_item')
-			// 		result.message[0].forEach(element => {
-			// 			var childTable = frm.add_child('assessment_result_item')
-			// 			childTable.assignment_id = element.select_assignment
-			// 			childTable.assignment_name = element.assignment_name
-			// 			childTable.assessment_criteria = element.assessment_criteria
-			// 			childTable.earned_marks = element.marks_earned
-			// 			childTable.total_marks = element.total_marks
-			// 			childTable.percentage = element.percentage
-			// 			childTable.grade = element.grade_code
-			// 			childTable.result = element.result
-			// 		})
-			// 	}
-			// 	frm.refresh()
-			// 	frm.refresh_field('assessment_result_item')
+			callback: function(result){
+				if(result.message){
+					frappe.model.clear_table(frm.doc, 'assessment_result_item')
+					result.message.forEach(element => {
+						var childTable = frm.add_child('assessment_result_item')
+						// [{'name': 'ASE-00002', 'assessment_component': 'Phase Test 1', 'total_marks': 50, 'weightage': '50', 'passing_marks': '10', 'marks_earned': 46, 'module_code': 'TOT-100'}, 
+						// {'name': 'ASE-00007', 'assessment_component': 'Phase Test 2', 'total_marks': 50, 'weightage': '50', 'passing_marks': '10', 'marks_earned': 40, 'module_code': 'TOT-100'}]
+						childTable.assignment_evaluation = element.name
+						childTable.course = element.select_module
+						childTable.module_name = element.module_name
+						childTable.assessment_criteria = element.assessment_component
+						childTable.earned_marks = element.marks_earned
+						childTable.total_marks = element.total_marks
+						childTable.percentage = element.percentage
+						childTable.grading = element.grade_code
+						childTable.result = element.result
+					})
+				}
+				frm.refresh()
+				frm.refresh_field('assessment_result_item')
+				frm.save()
 
-			// 	frm.set_value("overall_percentage", result.message[1]) //overall grade
-			// 	frm.set_value("overall_grade", result.message[2]) // overall percentage
-			// 	frm.set_value("overall_result", result.message[3]) // overall result
-			// }
+				// frm.set_value("overall_percentage", result.message[1]) //overall grade
+				// frm.set_value("overall_grade", result.message[2]) // overall percentage
+				// frm.set_value("overall_result", result.message[3]) // overall result
+			}
 		})
 	}
 });
