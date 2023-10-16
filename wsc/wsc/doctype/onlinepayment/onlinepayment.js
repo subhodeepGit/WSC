@@ -136,6 +136,7 @@ frappe.ui.form.on('OnlinePayment', {
         //         if (!frm.is_new()){
         //             formStatus="No"
         //         }
+        //         var formProgress=frm.doc.transaction_progress
         //         frappe.call({
         //         method: "wsc.wsc.doctype.onlinepayment.onlinepayment.open_gateway",
         //         args: {
@@ -145,7 +146,8 @@ frappe.ui.form.on('OnlinePayment', {
         //             order_id: frm.doc.name,
         //             url: window.location.href,
         //             gw_provider: "AXIS",
-        //             form_status:formStatus
+        //             form_status:formStatus,
+        //             formProgress:formProgress
         //         },
                 
         //         callback: function (r) {
@@ -157,8 +159,7 @@ frappe.ui.form.on('OnlinePayment', {
         //                 if (is_prod == 1) {
         //                     window.location.href = "https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
         //                 } else {
-        //                     window.location.href = "https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
-                           
+        //                     window.location.href = "https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" +  "&encRequest=" + encRequest +"&access_code=" + access_code;
         //                 }
         //             } else {
         //                 alert("No response data received.");
