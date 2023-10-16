@@ -677,7 +677,7 @@ def update_reserved_seats(doc,on_submit=0):
                 d.allocated_seat=d.total_seat-d.seat_balance
                 # else:
                 #     frappe.throw("Error !!")
-    admission.save()
+        admission.save()
     # if doc.is_provisional_admission=="No" and doc.admission_status=="Admitted":
     #     for d in admission.get("reservations_distribution"):
     #         if doc.seat_reservation_type==d.seat_reservation_type:

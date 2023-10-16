@@ -1,19 +1,24 @@
 import frappe
 
 def validate(self, doc):
-        date(self)
+        exp_date(self)
+        act_date(self)
         update_onboarding_status(self)
-        # if self.actual_start_date and self.actual_end_date:
-        #     if self.actual_start_date > self.actual_end_date:
-        #         frappe.throw("Start Date cannot be greater than Actual date")
         update_separation_status(self)
 
 
-def date(self):
-    if self.actual_start_date>self.actual_end_date:
-        frappe.throw("<b>Actual Start Date</b> cannot be greater than <b>Actual End date</b>")
+def exp_date(self):
+    if self.exp_start_date and self.exp_end_date:
+        if self.exp_start_date>self.exp_end_date:
+            frappe.throw("<b>Expected Start Date</b> cannot be greater than <b>Expected End date</b>")
+
+def act_date(self):
+    if self.actual_start_date and self.actual_end_date:
+        if self.actual_start_date>self.actual_end_date:
+            frappe.throw("<b>Actual Start Date</b> cannot be greater than <b>Actual End date</b>")
+
+
 def update_onboarding_status(self):
-    
     onboarding_name = frappe.db.get_value("Employee Onboarding", {"project": self.project}, "name")
     if onboarding_name:
         activity_records = frappe.get_all("Employee Boarding Activity", filters={"parent": onboarding_name}, fields=["name","activity_name"])
@@ -37,8 +42,8 @@ def update_onboarding_status(self):
     else:
         return "No employee on-boarding record found for the provided project."
 
-def update_separation_status(self):
-    
+
+def update_separation_status(self):   
     separation_name = frappe.db.get_value("Employee Separation", {"project": self.project}, "name")
     if separation_name:
         activity_records = frappe.get_all("Employee Boarding Activity", filters={"parent": separation_name}, fields=["name","activity_name"])
