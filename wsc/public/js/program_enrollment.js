@@ -19,7 +19,7 @@ frappe.ui.form.on('Program Enrollment', {
     //     }
     // },
     refresh(frm){
-        frm.set_df_property('courses', 'cannot_add_rows', true)
+        frm.set_df_prpoerty('courses', 'cannot_add_rows', true)
         frm.set_query("programs", function() {
             return {
                 filters: {
