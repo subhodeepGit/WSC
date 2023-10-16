@@ -31,11 +31,12 @@
   "get_result",
   "assessment_result_item",
   "column_break_20",
-  "overall_grade",
-  "overall_percentage",
-  "overall_result",
+  "total_marks",
+  "total_marks_earned",
+  "total_percentage",
   "section_break_22",
-  "comment"
+  "comment",
+  "amended_from"
  ],
  "fields": [
   {
@@ -105,11 +106,6 @@
    "label": "Participant Group Details"
   },
   {
-   "fieldname": "overall_grade",
-   "fieldtype": "Data",
-   "label": "Overall Grade"
-  },
-  {
    "fieldname": "column_break_20",
    "fieldtype": "Section Break"
   },
@@ -121,16 +117,6 @@
    "fieldname": "comment",
    "fieldtype": "Small Text",
    "label": "Comment"
-  },
-  {
-   "fieldname": "overall_percentage",
-   "fieldtype": "Data",
-   "label": "Overall Percentage"
-  },
-  {
-   "fieldname": "overall_result",
-   "fieldtype": "Data",
-   "label": "Overall Result"
   },
   {
    "fieldname": "tot_participant_enrollment",
@@ -199,11 +185,39 @@
    "fieldname": "section_break_xv8ho",
    "fieldtype": "Section Break",
    "label": "Grading Scale Details"
+  },
+  {
+   "fieldname": "total_marks",
+   "fieldtype": "Data",
+   "label": "Total Marks",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_marks_earned",
+   "fieldtype": "Data",
+   "label": "Total Marks Earned",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_percentage",
+   "fieldtype": "Data",
+   "label": "Total Percentage",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Final Assignment Result",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-10-11 11:25:29.390986",
+ "modified": "2023-10-16 10:53:35.800450",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Final Assignment Result",

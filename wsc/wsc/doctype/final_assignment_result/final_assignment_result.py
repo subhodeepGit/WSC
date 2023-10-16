@@ -3,11 +3,30 @@
 
 import frappe 
 from frappe.model.document import Document
-from frappe.model.mapper import get_mapped_doc
 import json
+from education.education.api import get_grade
+from frappe.utils import flt
+
 
 class FinalAssignmentResult(Document):
-	pass
+	def validate(self):
+		total=0
+		earned_marks=0 
+		for t in self.get("assessment_result_item"):
+			total+=t.total_marks
+			earned_marks+=t.earned_marks
+		self.total_marks=total
+		self.total_marks_earned=earned_marks
+		self.total_percentage=round((int(earned_marks)/int(total))*100,2)
+		if self.is_new():
+			duplicate_upload(self)	
+
+			
+def duplicate_upload(self):
+	data=frappe.get_all("Final Assignment Result",{"tot_participant_enrollment":self.tot_participant_enrollment,"participant_id":self.participant_id,"docstatus":1})
+	if data:
+		frappe.throw("Result Has Been Declared For The Participant")
+	
 
 
 
@@ -50,133 +69,82 @@ def get_participant_id(doctype, txt, searchfield, start, page_len, filters):
 		return data
 
 
-# @frappe.whitelist()
-# def get_details(participant_group_id):
-# 	group_details = frappe.get_all('Participant Group', filters = [['name','=',participant_group_id]], fields = ['academic_year', 'academic_term', 'program', 'course'])
-# 	participants = frappe.db.sql(""" SELECT participant FROM `tabParticipant Table` Where parent='%s'"""%(participant_group_id))
-# 	course_details = frappe.get_all('Course', filters = [['name', '=', group_details[0]['course']]], fields = ['course_name','course_code'])
-# 	return [group_details[0]['academic_year'], group_details[0]['academic_term'], group_details[0]['program'], group_details[0]['course'], participants, course_details[0]['course_name'], course_details[0]['course_code']]
-
-# @frappe.whitelist()
-# def get_participant_details(participant_group_id, participant_id):
-# 	participant_name = frappe.db.sql(""" SELECT participant_name FROM `tabParticipant Table` WHERE parent = '%s' AND participant = '%s'"""%(participant_group_id, participant_id), as_dict=1)
-# 	participant_classes = frappe.db.sql(""" SELECT COUNT(*) FROM `tabToT Class Table` WHERE parent = '%s'"""%(participant_group_id))
-# 	participant_present_for = frappe.db.sql(""" SELECT COUNT(*) FROM `tabToT Participant Attendance` WHERE participant_id = '%s' AND participant_group = '%s'"""%(participant_id, participant_group_id))
-# 	final_attendance = (participant_present_for[0][0]/participant_classes[0][0])*100
-# 	return [participant_name[0]['participant_name'], "{:.2f}".format(final_attendance)]
-
 
 @frappe.whitelist()
 def get_assignments(frm):
-	print("\n\n\n\n")
-	print(frm)
 	doc= json.loads(frm)
-
 	participant_id=doc['participant_id']
 	list_grp=[]
 
 	for t in doc.get("participant_group"):
 		list_grp.append(t['participant_group'])
-
-	if list_grp:
-		print(list_grp)
-		data=frappe.get_all("Assignment Evaluation",[["docstatus",'=',1],["participant_group","IN",tuple(list_grp)],['participant_id','=',participant_id]],
-				 				['name','assessment_component','total_marks','weightage','passing_marks','marks_earned','module_code'])
-		print(data)
-		
-		pass
-
-
-
-
-
-
-
-
-
-# @frappe.whitelist()
-# def get_assignments(participant_group_id, participant_id, grading_scale):
-# 	assignments = frappe.get_all('Assignment Evaluation', filters = [['participant_group','=', participant_group_id],['participant_id','=', participant_id]], fields = ['select_assignment', 'assessment_criteria', 'marks_earned', 'total_marks', 'assignment_name'])
-# 	for d in assignments:
-# 		percentage = (d['marks_earned'] / d['total_marks']) * 100 
-# 		print('\n\n\n')
-# 		print(d['marks_earned'])
-# 		print('\n\n\n')
-# 		print(d['total_marks'])
-# 		print('\n\n\n')
-# 		print(percentage)
-# 		print('\n\n\n')
-# 		assignment_data_new = frappe.db.sql("""SELECT result, threshold, grade_code FROM `tabGrading Scale Interval` WHERE parent = '%s' """%(grading_scale))
-# 		list = []
-# 		grade = []
-# 		for i in assignment_data_new:
-# 			list.append(i)
-# 		list.sort(key = lambda x:x[1])
-# 		for i in list:
-# 			if(percentage >= i[1]):
-# 				grade = i
-# 		d['result'] = grade[0]
-# 		d['percentage'] = percentage
-# 		d['grade_code'] = grade[2]
-
-# 	total_percentage = 0
-# 	count = 0
-
-# 	for i in assignments:
-# 		count += 1
-# 		total_percentage += i['percentage']
-# 	over_all_percentage = (total_percentage / count)
 	
-# 	final_list = []
-# 	final_grade_components = []
-# 	for i in assignment_data_new:
-# 		final_list.append(i)
-# 	final_list.sort(key = lambda x:x[1])
-# 	for i in list:
-# 		if(over_all_percentage >= i[1]):
-# 			final_grade_components = i
-
-# 	final_result = final_grade_components[0]
-# 	final_grade = final_grade_components[2]
-# 	print('\n\n\n')
-# 	print(assignments)
-# 	print('\n\n\n')
-# 	return([assignments, over_all_percentage, final_grade, final_result])
+	module_list=[]
+	for t in doc.get("modules"):
+		module_list.append(t['course'])
+		
+	credit_distribution_list=[]
+	if module_list:
+		for t in module_list:
+			data=frappe.get_all("Credit distribution List",[["parent","=",t]],['assessment_criteria','weightage','credits','passing_credits','total_marks','passing_marks','parent'])
+			for j in data:
+				credit_distribution_list.append(j)
+		
 
 
+	grading_scale=doc['grading_scale']
 
-# ---------------------------------------------------------------------------------------------
-# @frappe.whitelist()
-# def instructor(doctype, txt, searchfield, start, page_len, filters):
-# 	searchfields = frappe.get_meta(doctype).get_search_fields()
-# 	searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)
+	data=[]
+	if list_grp:
+		if len(list_grp)==1:
+			data=frappe.get_all("Assignment Evaluation",[["docstatus",'=',1],["participant_group","=",list_grp[0]],['participant_id','=',participant_id]],
+									['name','assessment_component','total_marks','weightage','passing_marks','marks_earned',
+									'module_code','module_name',"select_module"])
+		else:
+			data=frappe.get_all("Assignment Evaluation",[["docstatus",'=',1],["participant_group","IN",tuple(list_grp)],['participant_id','=',participant_id]],
+									['name','assessment_component','total_marks','weightage','passing_marks','marks_earned',
+									'module_code','module_name',"select_module"])
+		
+		for t in credit_distribution_list:
+			flag="No"
+			for j in data:				
+				if j['select_module']==t['parent'] and j['assessment_component']==t['assessment_criteria']:
+					flag="Yes"
+				if flag=="Yes":
+					t["flag"]="Yes"
+					break
+				else:
+					t["flag"]="No"
 
-# 	participant_group_id=filters.get('participant_group_id')
-# 	instructor_details = frappe.db.sql(""" SELECT instructors FROM `tabInstructor Table` where ({key} like %(txt)s or {scond}) and
-# 				    parent = '{participant_group_id}'
-# 				    """.format(
-# 						**{
-# 						"key": searchfield,
-# 						"scond": searchfields,
-# 						"participant_group_id":participant_group_id
-# 					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
-# 	return instructor_details
+		for t in credit_distribution_list:
+			if t['flag']=="No":
+				l=frappe.get_all("Course",{"name":t['parent']},['course_code','course_name'])
+				a={}
+				a['name']=""
+				a['assessment_component']=t["assessment_criteria"]
+				a['total_marks']=t['total_marks']
+				a['weightage']=t['weightage']
+				a['passing_marks']=t['passing_marks']
+				a['marks_earned']=0
+				a['module_code']=l[0]['course_code']
+				a['module_name']=l[0]['course_name']
+				a["select_module"]=t['parent']
+				data.append(a)
+		
+		for t in data:
+			percentage=(t['marks_earned']/t['total_marks'])*100
+			t['percentage']=percentage
+			a=get_grade_result(grading_scale,t['marks_earned'],t['total_marks'])
+			t['grade_code']=a['grade']
+			t['result']=a['result']
+	return data
 
-# @frappe.whitelist()
-# def participant(doctype, txt, searchfield, start, page_len, filters):
-# 	searchfields = frappe.get_meta(doctype).get_search_fields()
-# 	searchfields = " or ".join("TP."+field + " like %(txt)s" for field in searchfields)
-# 	participant_group_id=filters.get('participant_group_id')
-# 	participant_details = frappe.db.sql(""" SELECT TP.name 
-# 											FROM `tabParticipant Table` as PT
-# 											JOIN `tabToT Participant` as TP on TP.name=PT.participant
-# 											where (TP.{key} like %(txt)s or {scond}) and
-# 													PT.parent = '{participant_group_id}'
-# 											""".format(
-# 												**{
-# 												"key": searchfield,
-# 												"scond": searchfields,
-# 												"participant_group_id":participant_group_id
-# 											}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
-# 	return participant_details
-# -----------------------------------------------------------------------------------------------------------------------------
+
+def get_grade_result(grading_scale, earned_marks, total_marks):
+    grade = get_grade(grading_scale, (flt(earned_marks)/flt(total_marks))*100)
+    for g in frappe.get_all("Grading Scale Interval",{"parent":grading_scale,"grade_code":grade},['result']):
+        if g.result=="PASS":
+            result="PASS"
+        else:
+            result="FAIL"
+        return {'grade': grade, 'result':result}

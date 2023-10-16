@@ -407,74 +407,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Entrance Exam",
-   "link_count": 6,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Entrance Exam Centre Master",
-   "link_count": 0,
-   "link_to": "Entrance Exam Centre Master",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Entrance Exam Centre Selection",
-   "link_count": 0,
-   "link_to": "Entrance Exam Centre Selection",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Entrance Exam Center Select",
-   "link_count": 0,
-   "link_to": "Entrance exam select",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Entrance Exam Declaration",
-   "link_count": 0,
-   "link_to": "Entrance Exam Declaration",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Entrance Exam Centre Allocation",
-   "link_count": 0,
-   "link_to": "Entrance Exam Centre Allocation",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Entrance Exam Result Publication",
-   "link_count": 0,
-   "link_to": "Entrance Exam Result Publication",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Student Enrollment",
    "link_count": 4,
    "onboard": 0,
@@ -519,9 +451,77 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Entrance Exam",
+   "link_count": 6,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Entrance Exam Centre Master",
+   "link_count": 0,
+   "link_to": "Entrance Exam Centre Master",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Entrance Exam Centre Selection",
+   "link_count": 0,
+   "link_to": "Entrance Exam Centre Selection",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Entrance Exam Select",
+   "link_count": 0,
+   "link_to": "Entrance exam select",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Entrance Exam Declaration",
+   "link_count": 0,
+   "link_to": "Entrance Exam Declaration",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Entrance Exam Centre Allocation",
+   "link_count": 0,
+   "link_to": "Entrance Exam Centre Allocation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Entrance Exam Result Publication",
+   "link_count": 0,
+   "link_to": "Entrance Exam Result Publication",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-09-27 00:38:38.082716",
+ "modified": "2023-10-11 16:40:01.042188",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Admission",

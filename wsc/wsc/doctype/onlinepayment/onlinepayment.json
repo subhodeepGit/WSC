@@ -208,7 +208,7 @@
   {
    "allow_on_submit": 1,
    "fieldname": "date_time_of_transaction",
-   "fieldtype": "Data",
+   "fieldtype": "Datetime",
    "label": "Date Time of Transaction",
    "read_only": 1
   },
@@ -264,7 +264,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-11 18:08:10.647753",
+ "modified": "2023-10-13 12:56:43.394872",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "OnlinePayment",
