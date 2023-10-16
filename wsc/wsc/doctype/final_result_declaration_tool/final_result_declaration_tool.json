@@ -8,58 +8,37 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "participant_enrollment_details_section",
+  "tot_participant_enrollment",
+  "column_break_aoqdo",
+  "tot_participant_batch",
+  "participant_group_details_section",
   "participant_group",
-  "course_code",
-  "select_module",
+  "modules",
+  "section_break_8fopj",
+  "programs",
   "academic_year",
+  "academic_term",
+  "semester",
   "grading_scale",
   "column_break_5",
-  "select_course",
-  "course_name",
   "no_of_participants",
-  "academic_term",
   "section_break_10",
   "get_participants",
   "participants"
  ],
  "fields": [
   {
+   "fetch_from": "tot_participant_enrollment.academic_year",
    "fieldname": "academic_year",
    "fieldtype": "Link",
    "label": "Academic Year",
-   "options": "Academic Year"
-  },
-  {
-   "fieldname": "participant_group",
-   "fieldtype": "Link",
-   "label": "Participant Group",
-   "options": "Participant Group"
-  },
-  {
-   "fieldname": "course_code",
-   "fieldtype": "Data",
-   "label": "Course Code"
-  },
-  {
-   "fieldname": "select_module",
-   "fieldtype": "Link",
-   "label": "Select Module",
-   "options": "Course"
+   "options": "Academic Year",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_5",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "select_course",
-   "fieldtype": "Link",
-   "label": "Select Course",
-   "options": "Programs"
-  },
-  {
-   "fieldname": "course_name",
-   "fieldtype": "Data",
-   "label": "Course Name"
+   "fieldtype": "Section Break"
   },
   {
    "fieldname": "no_of_participants",
@@ -67,8 +46,10 @@
    "label": "No of Participants"
   },
   {
+   "fetch_from": "tot_participant_enrollment.academic_term",
    "fieldname": "academic_term",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Academic Term",
    "options": "Academic Term"
   },
@@ -85,18 +66,83 @@
   {
    "fieldname": "grading_scale",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Grading Scale",
-   "options": "Grading Scale"
+   "options": "Grading Scale",
+   "reqd": 1
   },
   {
    "fieldname": "get_participants",
    "fieldtype": "Button",
    "label": "Get Participants"
+  },
+  {
+   "fieldname": "participant_enrollment_details_section",
+   "fieldtype": "Section Break",
+   "label": "Participant Enrollment Details"
+  },
+  {
+   "fieldname": "tot_participant_enrollment",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "ToT Participant Enrollment",
+   "options": "ToT Participant Enrollment",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_8fopj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_aoqdo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "tot_participant_enrollment.tot_participant_batch",
+   "fieldname": "tot_participant_batch",
+   "fieldtype": "Data",
+   "label": "ToT Participant Batch ",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "tot_participant_enrollment.programs",
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "label": "Programs",
+   "options": "Programs",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "tot_participant_enrollment.semester",
+   "fieldname": "semester",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Semester",
+   "options": "Program"
+  },
+  {
+   "fieldname": "participant_group_details_section",
+   "fieldtype": "Section Break",
+   "label": " Participant Group Details"
+  },
+  {
+   "fieldname": "participant_group",
+   "fieldtype": "Table",
+   "label": "Participant Group",
+   "options": "Final Assignment Participant Group Child",
+   "read_only": 1
+  },
+  {
+   "fieldname": "modules",
+   "fieldtype": "Table",
+   "label": "Modules",
+   "options": "Program Course",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-06 14:58:47.490197",
+ "modified": "2023-10-16 16:07:17.014370",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Final Result Declaration Tool",
