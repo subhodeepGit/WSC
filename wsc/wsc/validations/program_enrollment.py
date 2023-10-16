@@ -136,13 +136,18 @@ def on_submit(doc,method):
 #             applicant_status.submit()
             
 def applicant_enroll_status(self):
-    if self.docstatus==1:
+    if self.docstatus==1 and self.reference_name:
         frappe.db.sql("""
                         UPDATE `tabStudent Applicant` SET enrollment_status = "Enrolled" WHERE `name`="%s" """ %(self.reference_name))
+    elif self.docstatus==1 and not self.reference_name:
+        frappe.db.sql("""
+                        UPDATE `tabStudent Applicant` SET enrollment_status = "Enrolled" WHERE `name`="%s" """ %(self.student_app_id))
     elif self.docstatus==2:  
         frappe.db.sql("""
                 UPDATE `tabStudent Applicant` SET enrollment_status = "Not Enrolled" WHERE `name`="%s" """ %(self.reference_name))    
-
+    elif self.docstatus==2 and not self.reference_name:  
+            frappe.db.sql("""
+                    UPDATE `tabStudent Applicant` SET enrollment_status = "Not Enrolled" WHERE `name`="%s" """ %(self.reference_name))  
 def get_fee_structure(doc):
     existed_fs = frappe.db.get_list("Fee Structure", {'programs':doc.programs, 'program':doc.program, 
                  'fee_type':'Semester Fees', 'academic_year':doc.academic_year,
