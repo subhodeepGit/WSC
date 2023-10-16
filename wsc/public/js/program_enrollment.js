@@ -1,4 +1,4 @@
-frappe.ui.form.on('Program Enrollment', {
+frappe.ui.form.on('Program Enrollment', {   
 	// seat_reservation_type:function(frm){
     //     if(frm.doc.seat_reservation_type){
     //         frappe.call({
@@ -19,17 +19,15 @@ frappe.ui.form.on('Program Enrollment', {
     //     }
     // },
     refresh(frm){
-        frm.set_df_prpoerty('courses', 'cannot_add_rows', true)
         frm.set_query("programs", function() {
             return {
                 filters: {
                     "department":frm.doc.department
                 }
-            }; 
+            };
         });
-         if(frm.doc.reference_doctype== "Student Applicant" && frm.doc.reference_name){
+        if(frm.doc.reference_doctype==="Student Applicant" && frm.doc.reference_name){
             if (frm.doc.__islocal){
-                
                 frm.set_value('program','')
                 // frm.set_value('programs','')
                 console.log(frm.doc.programs);
