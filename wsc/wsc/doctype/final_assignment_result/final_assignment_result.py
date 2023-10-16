@@ -3,7 +3,6 @@
 
 import frappe 
 from frappe.model.document import Document
-from frappe.model.mapper import get_mapped_doc
 import json
 from education.education.api import get_grade
 from frappe.utils import flt
@@ -19,9 +18,15 @@ class FinalAssignmentResult(Document):
 		self.total_marks=total
 		self.total_marks_earned=earned_marks
 		self.total_percentage=round((int(earned_marks)/int(total))*100,2)
+		if self.is_new():
+			duplicate_upload(self)	
 
 			
-
+def duplicate_upload(self):
+	data=frappe.get_all("Final Assignment Result",{"tot_participant_enrollment":self.tot_participant_enrollment,"participant_id":self.participant_id,"docstatus":1})
+	if data:
+		frappe.throw("Result Has Been Declared For The Participant")
+	
 
 
 
@@ -143,96 +148,3 @@ def get_grade_result(grading_scale, earned_marks, total_marks):
         else:
             result="FAIL"
         return {'grade': grade, 'result':result}
-
-
-
-
-
-
-
-# @frappe.whitelist()
-# def get_assignments(participant_group_id, participant_id, grading_scale):
-# 	assignments = frappe.get_all('Assignment Evaluation', filters = [['participant_group','=', participant_group_id],['participant_id','=', participant_id]], fields = ['select_assignment', 'assessment_criteria', 'marks_earned', 'total_marks', 'assignment_name'])
-# 	for d in assignments:
-# 		percentage = (d['marks_earned'] / d['total_marks']) * 100 
-# 		print('\n\n\n')
-# 		print(d['marks_earned'])
-# 		print('\n\n\n')
-# 		print(d['total_marks'])
-# 		print('\n\n\n')
-# 		print(percentage)
-# 		print('\n\n\n')
-# 		assignment_data_new = frappe.db.sql("""SELECT result, threshold, grade_code FROM `tabGrading Scale Interval` WHERE parent = '%s' """%(grading_scale))
-# 		list = []
-# 		grade = []
-# 		for i in assignment_data_new:
-# 			list.append(i)
-# 		list.sort(key = lambda x:x[1])
-# 		for i in list:
-# 			if(percentage >= i[1]):
-# 				grade = i
-# 		d['result'] = grade[0]
-# 		d['percentage'] = percentage
-# 		d['grade_code'] = grade[2]
-
-# 	total_percentage = 0
-# 	count = 0
-
-# 	for i in assignments:
-# 		count += 1
-# 		total_percentage += i['percentage']
-# 	over_all_percentage = (total_percentage / count)
-	
-# 	final_list = []
-# 	final_grade_components = []
-# 	for i in assignment_data_new:
-# 		final_list.append(i)
-# 	final_list.sort(key = lambda x:x[1])
-# 	for i in list:
-# 		if(over_all_percentage >= i[1]):
-# 			final_grade_components = i
-
-# 	final_result = final_grade_components[0]
-# 	final_grade = final_grade_components[2]
-# 	print('\n\n\n')
-# 	print(assignments)
-# 	print('\n\n\n')
-# 	return([assignments, over_all_percentage, final_grade, final_result])
-
-
-
-# ---------------------------------------------------------------------------------------------
-# @frappe.whitelist()
-# def instructor(doctype, txt, searchfield, start, page_len, filters):
-# 	searchfields = frappe.get_meta(doctype).get_search_fields()
-# 	searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)
-
-# 	participant_group_id=filters.get('participant_group_id')
-# 	instructor_details = frappe.db.sql(""" SELECT instructors FROM `tabInstructor Table` where ({key} like %(txt)s or {scond}) and
-# 				    parent = '{participant_group_id}'
-# 				    """.format(
-# 						**{
-# 						"key": searchfield,
-# 						"scond": searchfields,
-# 						"participant_group_id":participant_group_id
-# 					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
-# 	return instructor_details
-
-# @frappe.whitelist()
-# def participant(doctype, txt, searchfield, start, page_len, filters):
-# 	searchfields = frappe.get_meta(doctype).get_search_fields()
-# 	searchfields = " or ".join("TP."+field + " like %(txt)s" for field in searchfields)
-# 	participant_group_id=filters.get('participant_group_id')
-# 	participant_details = frappe.db.sql(""" SELECT TP.name 
-# 											FROM `tabParticipant Table` as PT
-# 											JOIN `tabToT Participant` as TP on TP.name=PT.participant
-# 											where (TP.{key} like %(txt)s or {scond}) and
-# 													PT.parent = '{participant_group_id}'
-# 											""".format(
-# 												**{
-# 												"key": searchfield,
-# 												"scond": searchfields,
-# 												"participant_group_id":participant_group_id
-# 											}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
-# 	return participant_details
-# -----------------------------------------------------------------------------------------------------------------------------
