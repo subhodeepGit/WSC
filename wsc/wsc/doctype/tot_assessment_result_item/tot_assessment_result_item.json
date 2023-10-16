@@ -6,12 +6,15 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "assignment_evaluation",
   "course",
+  "module_name",
   "assessment_criteria",
   "earned_marks",
   "total_marks",
   "percentage",
-  "result"
+  "result",
+  "grading"
  ],
  "fields": [
   {
@@ -20,7 +23,7 @@
    "in_list_view": 1,
    "label": "Assessment Criteria",
    "options": "Assessment Criteria",
-   "reqd": 1
+   "read_only": 1
   },
   {
    "columns": 1,
@@ -28,7 +31,7 @@
    "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Earned Marks",
-   "reqd": 1,
+   "read_only": 1,
    "width": "10px"
   },
   {
@@ -37,7 +40,7 @@
    "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Total Marks",
-   "reqd": 1,
+   "read_only": 1,
    "width": "10px"
   },
   {
@@ -45,7 +48,7 @@
    "fieldtype": "Percent",
    "in_list_view": 1,
    "label": "Percentage",
-   "reqd": 1
+   "read_only": 1
   },
   {
    "columns": 1,
@@ -54,7 +57,7 @@
    "in_list_view": 1,
    "label": "Result",
    "options": "\nPASS\nFAIL",
-   "reqd": 1,
+   "read_only": 1,
    "width": "10px"
   },
   {
@@ -63,12 +66,31 @@
    "in_list_view": 1,
    "label": "Course",
    "options": "Course",
-   "reqd": 1
+   "read_only": 1
+  },
+  {
+   "fieldname": "assignment_evaluation",
+   "fieldtype": "Link",
+   "label": "Assignment Evaluation",
+   "options": "Assignment Evaluation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "module_name",
+   "fieldtype": "Data",
+   "label": "Module Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "grading",
+   "fieldtype": "Data",
+   "label": "Grading",
+   "read_only": 1
   }
  ],
  "istable": 1,
  "links": [],
- "modified": "2023-10-11 12:46:11.951165",
+ "modified": "2023-10-13 16:22:06.807546",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Assessment Result Item",
