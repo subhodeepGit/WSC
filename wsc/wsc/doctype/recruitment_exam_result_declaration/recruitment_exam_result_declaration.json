@@ -87,11 +87,10 @@
    "label": "Job Applicant Email"
   }
  ],
- "in_create": 1,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-05 14:59:29.605099",
+ "modified": "2023-10-17 18:08:08.741187",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Recruitment Exam Result Declaration",
