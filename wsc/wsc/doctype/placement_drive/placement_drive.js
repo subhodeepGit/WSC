@@ -30,19 +30,16 @@ frappe.ui.form.on('Placement Drive', {
 					'body':body
 				},
 				callback: function(result){
-					const res = Object.values(result)
-					const values = Object.values(res[0])
-					if(values[0].length !== 0){
-						let r = values[0]
+					// console.log(result.message);
+					if(result.message.length !== 0){
 						frappe.model.clear_table(frm.doc, 'eligible_student');
-						values.forEach(r => {
-							if(r.length > 0){
+						result.message.forEach(i => {
+							console.log(i);
 							let c =frm.add_child('eligible_student')
-							c.student_doctype_name= r[0].parent
-							c.student_name = r[0].student_name
-							c.program_enrollment = r[0].programs
-							c.academic_year = r[0].academic_year
-							}
+							c.student_doctype_name = i.parent
+							c.student_name = i.student_name
+							c.program_enrollment = i.programs
+							c.academic_year = i.academic_year
 						})
 						frm.refresh();
 						frm.refresh_field("eligible_student")	
@@ -52,6 +49,28 @@ frappe.ui.form.on('Placement Drive', {
 						frm.refresh();
 						frm.refresh_field("eligible_student")
 					}
+					// const res = Object.values(result)
+					// const values = Object.values(res[0])
+					// if(values[0].length !== 0){
+					// 	let r = values[0]
+					// 	frappe.model.clear_table(frm.doc, 'eligible_student');
+					// 	values.forEach(r => {
+					// 		if(r.length > 0){
+					// 		let c =frm.add_child('eligible_student')
+					// 		c.student_doctype_name= r[0].parent
+					// 		c.student_name = r[0].student_name
+					// 		c.program_enrollment = r[0].programs
+					// 		c.academic_year = r[0].academic_year
+					// 		}
+					// 	})
+					// 	frm.refresh();
+					// 	frm.refresh_field("eligible_student")	
+					// } else {
+					// 	alert("No Eligible Students found")
+					// 	frappe.model.clear_table(frm.doc, 'eligible_student');
+					// 	frm.refresh();
+					// 	frm.refresh_field("eligible_student")
+					// }
 				}
 			})
 		}
