@@ -14,7 +14,7 @@ frappe.ui.form.on('Assignment Marks Distribution', {
         });
 		frm.set_query("assessment_criteria", function() {
 			return {
-				query: 'wsc.wsc.doctype.assignment.assignment.criteria',
+				query: 'wsc.wsc.doctype.assignment_marks_distribution.assignment_marks_distribution.criteria',
 				filters:{"course":frm.doc.course}
 				
 			};

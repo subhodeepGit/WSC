@@ -1,145 +1,21 @@
 {
  "charts": [],
- "content": "[{\"id\":\"Bv10RpKbf7\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Training of Trainers</span>\",\"col\":12}},{\"id\":\"nSyO0Rv954\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"5e-aRSPal2\",\"type\":\"card\",\"data\":{\"card_name\":\"Participant Selection and Enrollment\",\"col\":4}},{\"id\":\"dmUB-8rdSN\",\"type\":\"card\",\"data\":{\"card_name\":\"Classes and Attendance\",\"col\":4}},{\"id\":\"upN74jY0y0\",\"type\":\"card\",\"data\":{\"card_name\":\"Assignments and Evaluation\",\"col\":4}},{\"id\":\"SpN4dGgW_P\",\"type\":\"card\",\"data\":{\"card_name\":\"Result\",\"col\":4}}]",
- "creation": "2023-08-21 11:22:34.462854",
+ "content": "[{\"id\":\"xo8iteTJ3A\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Training and Placement</span>\",\"col\":12}},{\"id\":\"ejmsusaG09\",\"type\":\"card\",\"data\":{\"card_name\":\"Master\",\"col\":4}},{\"id\":\"ggUQPFA8k7\",\"type\":\"card\",\"data\":{\"card_name\":\"Training\",\"col\":4}},{\"id\":\"_qSVRMl4ts\",\"type\":\"card\",\"data\":{\"card_name\":\"Placement\",\"col\":4}},{\"id\":\"MItI2A5j1u\",\"type\":\"card\",\"data\":{\"card_name\":\"Certificates\",\"col\":4}}]",
+ "creation": "2023-10-17 14:57:55.249669",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
  "for_user": "",
  "hide_custom": 0,
- "icon": "share-people",
+ "icon": "lock",
  "idx": 0,
  "is_hidden": 0,
- "label": "Training of Trainers",
+ "label": "Training and Placement",
  "links": [
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Masters",
-   "link_count": 2,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Trainer",
-   "link_count": 0,
-   "link_to": "Instructor",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "ToT Participant",
-   "link_count": 0,
-   "link_to": "ToT Participant",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Assignment Name",
-   "link_count": 0,
-   "link_to": "Assignment Name",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Assignment Marks Distribution",
-   "link_count": 0,
-   "link_to": "Assignment Marks Distribution",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Classes and Attendance",
-   "link_count": 3,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "ToT Class Schedule",
-   "link_count": 0,
-   "link_to": "ToT Class Schedule",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "ToT Participant Attendance",
-   "link_count": 0,
-   "link_to": "ToT Participant Attendance",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Participant Attendance Tool",
-   "link_count": 0,
-   "link_to": "Participant Attendance Tool",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Participant Selection and Enrollment",
-   "link_count": 3,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "ToT Participant Selection",
-   "link_count": 0,
-   "link_to": "ToT Participant Selection",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "ToT Participant Enrollment",
-   "link_count": 0,
-   "link_to": "ToT Participant Enrollment",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Participant Group",
-   "link_count": 0,
-   "link_to": "Participant Group",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Assignments and Evaluation",
+   "label": "Master",
    "link_count": 5,
    "onboard": 0,
    "type": "Card Break"
@@ -147,9 +23,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Assignment",
+   "label": "TnP Program",
    "link_count": 0,
-   "link_to": "Assignment",
+   "link_to": "TnP Program",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -157,9 +33,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Assignment Upload",
+   "label": "TnP Event",
    "link_count": 0,
-   "link_to": "Assignment Upload",
+   "link_to": "TnP Event",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -167,9 +43,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Assignment Declaration",
+   "label": "Placement Company",
    "link_count": 0,
-   "link_to": "Assignment Declaration",
+   "link_to": "Placement Company",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -177,9 +53,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Assignment Evaluation",
+   "label": "Participant Registration",
    "link_count": 0,
-   "link_to": "Assignment Evaluation",
+   "link_to": "Participant Registration",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -187,9 +63,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Assignment Evaluation Tool",
+   "label": "Entrepreneurship",
    "link_count": 0,
-   "link_to": "Assignment Evaluation Tool",
+   "link_to": "Entrepreneurship",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -197,7 +73,143 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Result",
+   "label": "Training",
+   "link_count": 7,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Participant Attendance",
+   "link_count": 0,
+   "link_to": "Participant Attendance",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Internship Drive",
+   "link_count": 0,
+   "link_to": "Internship Drive",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Internship Application",
+   "link_count": 0,
+   "link_to": "Internship Application",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Internship Participant Selection",
+   "link_count": 0,
+   "link_to": "Internship Participant Selection",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Internship Final List Declaration",
+   "link_count": 0,
+   "link_to": "Internship Final List Declaration",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Internship Completion Status",
+   "link_count": 0,
+   "link_to": "Internship Completion status",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Event Feedback",
+   "link_count": 0,
+   "link_to": "Event feedback",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Placement",
+   "link_count": 5,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Placement Drive",
+   "link_count": 0,
+   "link_to": "Placement Drive",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Placement Drive Application",
+   "link_count": 0,
+   "link_to": "Placement Drive Application",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Placement Blocked Student",
+   "link_count": 0,
+   "link_to": "Placement Blocked Student",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Placement Tool",
+   "link_count": 0,
+   "link_to": "Placement Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Selection Round",
+   "link_count": 0,
+   "link_to": "Selection Round",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Certificates",
    "link_count": 2,
    "onboard": 0,
    "type": "Card Break"
@@ -205,9 +217,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Final Assignment Result",
+   "label": "Generate Certificate Tool",
    "link_count": 0,
-   "link_to": "Final Assignment Result",
+   "link_to": "Generate certificate tool",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -215,38 +227,25 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Final Result Declaration Tool",
+   "label": "Generate Certificate",
    "link_count": 0,
-   "link_to": "Final Result Declaration Tool",
+   "link_to": "Generate Certificate",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
   }
  ],
- "modified": "2023-10-12 15:51:28.082439",
+ "modified": "2023-10-17 15:10:24.481768",
  "modified_by": "Administrator",
  "module": "WSC",
- "name": "Training of Trainers",
+ "name": "Training and Placement",
  "number_cards": [],
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
- "roles": [
-  {
-   "role": "TOT Administrator"
-  },
-  {
-   "role": "TOT Candidate"
-  },
-  {
-   "role": "TOT Director"
-  },
-  {
-   "role": "TOT Trainer"
-  }
- ],
- "sequence_id": 1.0,
+ "roles": [],
+ "sequence_id": 53.0,
  "shortcuts": [],
- "title": "Training of Trainers"
+ "title": "Training and Placement"
 }

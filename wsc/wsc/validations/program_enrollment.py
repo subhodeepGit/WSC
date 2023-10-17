@@ -21,7 +21,7 @@ def validate(doc, method):
     validate_student_category(doc)
     validate_courses(doc)
     validate_dates_on_academic_events(doc)
-    validate_seat_reservation_type(doc)
+    # validate_seat_reservation_type(doc)
     duplicate_row_validation(doc, "courses", ['course', 'course_name'])
     duplicate_row_validation(doc, "academic_events_table", ['academic_events', 'start_date','end_date'])
     fee_structure_id = fee_structure_validation(doc)
@@ -136,13 +136,18 @@ def on_submit(doc,method):
 #             applicant_status.submit()
             
 def applicant_enroll_status(self):
-    if self.docstatus==1:
+    if self.docstatus==1 and self.reference_name:
         frappe.db.sql("""
                         UPDATE `tabStudent Applicant` SET enrollment_status = "Enrolled" WHERE `name`="%s" """ %(self.reference_name))
+    elif self.docstatus==1 and not self.reference_name:
+        frappe.db.sql("""
+                        UPDATE `tabStudent Applicant` SET enrollment_status = "Enrolled" WHERE `name`="%s" """ %(self.student_app_id))
     elif self.docstatus==2:  
         frappe.db.sql("""
                 UPDATE `tabStudent Applicant` SET enrollment_status = "Not Enrolled" WHERE `name`="%s" """ %(self.reference_name))    
-
+    elif self.docstatus==2 and not self.reference_name:  
+            frappe.db.sql("""
+                    UPDATE `tabStudent Applicant` SET enrollment_status = "Not Enrolled" WHERE `name`="%s" """ %(self.reference_name))  
 def get_fee_structure(doc):
     existed_fs = frappe.db.get_list("Fee Structure", {'programs':doc.programs, 'program':doc.program, 
                  'fee_type':'Semester Fees', 'academic_year':doc.academic_year,
@@ -672,7 +677,7 @@ def update_reserved_seats(doc,on_submit=0):
                 d.allocated_seat=d.total_seat-d.seat_balance
                 # else:
                 #     frappe.throw("Error !!")
-    admission.save()
+        admission.save()
     # if doc.is_provisional_admission=="No" and doc.admission_status=="Admitted":
     #     for d in admission.get("reservations_distribution"):
     #         if doc.seat_reservation_type==d.seat_reservation_type:
@@ -842,21 +847,21 @@ def validate_program_enrollment(doc):
             if e:
                 frappe.throw("Student <b>'{0}'</b> had program enrollment <b>'{1}'</b> already".format(e.student, e.name))
  
-def validate_seat_reservation_type(doc):
-    if doc.reference_doctype == "Student Applicant" and doc.reference_name:
-        reservation_type=[]
-        for i in frappe.get_all("Student Applicant",{"name":doc.reference_name,"docstatus":1},['student_admission','physically_disabled','award_winner']):
-            for d in frappe.get_all("Reservations List",{"parent":i.get("student_admission")},['seat_reservation_type']):
-                if d.seat_reservation_type=="Physically Disabled":
-                    if i.physically_disabled:
-                        reservation_type.append(d.seat_reservation_type)
-                elif d.seat_reservation_type=="Sport Person":
-                    if i.award_winner:
-                        reservation_type.append(d.seat_reservation_type)
-                else:
-                    reservation_type.append(d.seat_reservation_type)
-        if doc.seat_reservation_type not in reservation_type:
-            frappe.throw("Seat reservation type <b>'{0}'</b> not belongs to the student admission referring doc student applicant <b>'{1}'</b> ".format(doc.seat_reservation_type, doc.reference_name))
+# def validate_seat_reservation_type(doc):
+#     if doc.reference_doctype == "Student Applicant" and doc.reference_name:
+#         reservation_type=[]
+#         for i in frappe.get_all("Student Applicant",{"name":doc.reference_name,"docstatus":1},['student_admission','physically_disabled','award_winner']):
+#             for d in frappe.get_all("Reservations List",{"parent":i.get("student_admission")},['seat_reservation_type']):
+#                 if d.seat_reservation_type=="Physically Disabled":
+#                     if i.physically_disabled:
+#                         reservation_type.append(d.seat_reservation_type)
+#                 elif d.seat_reservation_type=="Sport Person":
+#                     if i.award_winner:
+#                         reservation_type.append(d.seat_reservation_type)
+#                 else:
+#                     reservation_type.append(d.seat_reservation_type)
+#         if doc.seat_reservation_type not in reservation_type:
+#             frappe.throw("Seat reservation type <b>'{0}'</b> not belongs to the student admission referring doc student applicant <b>'{1}'</b> ".format(doc.seat_reservation_type, doc.reference_name))
 
 def onlinepayrole(doc):
     email_stu = frappe.get_all("Student",{"name":doc.student},["student_email_id"])

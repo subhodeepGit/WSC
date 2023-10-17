@@ -432,6 +432,9 @@ scheduler_events = {
         ],
         "0 1 * * *" : [
             "wsc.task.await_transaction_update_status"
+        ],
+        "0 7 * * *" : [
+            "wsc.task.await_transaction_update_status"
         ]
     },
 
@@ -455,6 +458,7 @@ scheduler_events = {
 # ------------------------------
 #
 override_whitelisted_methods = {
+    "education.education.api.enroll_student": "wsc.wsc.doctype.student_applicant.enroll_student",
 	"education.education.api.get_course_schedule_events": "wsc.wsc.doctype.course_schedule.get_course_schedule_events",
     "education.education.api.mark_attendance": "wsc.wsc.doctype.student_attendance.mark_attendance",
     "erpnext.accounts.doctype.payment_entry.payment_entry.get_payment_entry":"wsc.wsc.doctype.payment_entry.get_payment_entry",	

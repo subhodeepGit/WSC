@@ -39,3 +39,20 @@ class AssignmentMarksDistribution(Document):
 		
 
 
+@frappe.whitelist()
+def criteria(doctype, txt, searchfield, start, page_len, filters):
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)
+	course =filters.get('course')
+
+
+	criteria_details = frappe.db.sql(""" SELECT assessment_criteria FROM `tabCredit distribution List` where ({key} like %(txt)s or {scond}) and
+													parent = '{course}'
+											""".format(
+												**{
+												"key": searchfield,
+												"scond": searchfields,
+												"course": course
+											}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+
+	return criteria_details

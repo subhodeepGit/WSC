@@ -107,7 +107,7 @@
    "read_only": 1
   },
   {
-   "depends_on": "eval:doc.assignment_declaration",
+   "depends_on": "eval:doc.assignment_declaration && doc.participant_id",
    "fieldname": "marks_earned",
    "fieldtype": "Int",
    "label": "Marks Earned",
@@ -271,7 +271,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-29 10:52:20.962983",
+ "modified": "2023-10-12 12:41:14.378156",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Evaluation",
