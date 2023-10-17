@@ -22,7 +22,28 @@ frappe.ui.form.on('Employee Onboarding', {
 
             }
         }
-    }
+    },
+    employee_onboarding_template: function(frm) {
+		frm.set_value("activities" ,"");
+		if (frm.doc.employee_onboarding_template) {
+			frappe.call({
+				method: "wsc.wsc.doctype.employee_onboarding.get_onboarding_details",
+				args: {
+					"parent": frm.doc.employee_onboarding_template,
+                    "parenttype": "Employee Onboarding Template"
+				},
+				callback: function(r) {
+					if (r.message) {
+						$.each(r.message, function(i, d) {
+							var row = frappe.model.add_child(frm.doc, "Employee Boarding Activity", "activities");
+							$.extend(row, d);
+						});
+					}
+					refresh_field("activities");
+				}
+			});
+		}
+	}
 
             
                 

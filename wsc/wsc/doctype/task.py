@@ -10,8 +10,11 @@ def validate(self, doc):
 
 
 def date(self):
-    if self.actual_start_date>self.actual_end_date:
-        frappe.throw("<b>Actual Start Date</b> cannot be greater than <b>Actual End date</b>")
+    if self.act_start_date and self.act_end_date:
+
+        if self.act_start_date>self.act_end_date:
+            frappe.throw("<b>Actual Start Date</b> cannot be greater than <b>Actual End date</b>")
+
 def update_onboarding_status(self):
     
     onboarding_name = frappe.db.get_value("Employee Onboarding", {"project": self.project}, "name")
