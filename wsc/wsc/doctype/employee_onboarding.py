@@ -115,3 +115,25 @@ def hr_mail_after_complete(docname):
 # @frappe.whitelist()
 # def sendfinalmail():
 #     hr_mail_after_complete(doc)
+
+@frappe.whitelist()
+def get_onboarding_details(parent,parenttype):
+	return frappe.get_all(
+		"Employee Boarding Activity",
+		fields=[
+			"activity_name",
+			"role",
+			"user",
+			"required_for_employee_creation",
+			"description",
+			"task_weight",
+			"begin_on",
+			"duration",
+            "department",
+            "is_dependent",
+            "task_order",
+            "dependent_on_task"
+		],
+		filters={"parent": parent,"parenttype": parenttype},
+		order_by="idx",
+	)
