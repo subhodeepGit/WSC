@@ -43,15 +43,15 @@ def online_payment(self):
                 if self.party==Recon_info["party"]:
                     if Recon_info['paying_amount']==self.total_allocated_amount:
                         date_time_str = Recon_info["date_time_of_transaction"]
-                        try:
-                            try:
-                                date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f')
-                            except:
-                                date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S')
-                        except:
-                            # 14/08/2023 12:05:40
-                            date_time_obj = datetime.datetime.strptime(date_time_str, '%d/%m/%Y %H:%M:%S')
-                        date=date_time_obj.date()
+                        # try:
+                        #     try:
+                        #         date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f')
+                        #     except:
+                        #         date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S')
+                        # except:
+                        #     # 14/08/2023 12:05:40
+                        #     date_time_obj = datetime.datetime.strptime(date_time_str, '%d/%m/%Y %H:%M:%S')
+                        date=date_time_str.date()
                         self.reference_date=date
                     else:
                         frappe.throw("Total Amount Of Transaction And Payment Amount Should Be Same Of Amount <b>Rs.%s </b>"%(Recon_info['paying_amount']))
@@ -71,15 +71,15 @@ def online_payment(self):
                 if self.party==Recon_info["party"]:
                     if Recon_info['paying_amount']==self.total_allocated_amount:
                         date_time_str = Recon_info["date_time_of_transaction"]
-                        try:
-                            try:
-                                date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f')
-                            except:
-                                date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S')
-                        except:
-                            # 14/08/2023 12:05:40
-                            date_time_obj = datetime.datetime.strptime(date_time_str, '%d/%m/%Y %H:%M:%S')
-                        date=date_time_obj.date()
+                        # try:
+                        #     try:
+                        #         date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f')
+                        #     except:
+                        #         date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S')
+                        # except:
+                        #     # 14/08/2023 12:05:40
+                        #     date_time_obj = datetime.datetime.strptime(date_time_str, '%d/%m/%Y %H:%M:%S')
+                        date=date_time_str.date()
                         self.reference_date=date
                     else:
                         frappe.throw("Total Amount Of Transaction And Payment Amount Should Be Same Of Amount <b>Rs.%s </b>"%(Recon_info['paying_amount']))

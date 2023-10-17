@@ -27,14 +27,16 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Assignment Name",
-   "options": "Assignment Name"
+   "options": "Assignment Name",
+   "read_only": 1
   },
   {
    "columns": 2,
    "fieldname": "total_durationin_hours",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Total duration"
+   "label": "Total duration",
+   "read_only": 1
   },
   {
    "columns": 2,
@@ -42,43 +44,49 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Assessment Criteria",
-   "options": "Assessment Criteria"
+   "options": "Assessment Criteria",
+   "read_only": 1
   },
   {
    "fieldname": "total_marks",
    "fieldtype": "Data",
-   "label": "Total Marks"
+   "label": "Total Marks",
+   "read_only": 1
   },
   {
    "fieldname": "pass_marks",
    "fieldtype": "Data",
-   "label": "Pass Marks"
+   "label": "Pass Marks",
+   "read_only": 1
   },
   {
    "fieldname": "weightage",
    "fieldtype": "Data",
-   "label": "Weightage"
+   "label": "Weightage",
+   "read_only": 1
   },
   {
    "columns": 2,
    "fieldname": "start_date_and_time",
    "fieldtype": "Datetime",
    "in_list_view": 1,
-   "label": "Start Date and Time"
+   "label": "Start Date and Time",
+   "read_only": 1
   },
   {
    "columns": 2,
    "fieldname": "end_date_and_time",
    "fieldtype": "Datetime",
    "in_list_view": 1,
-   "label": "End Date and Time"
+   "label": "End Date and Time",
+   "read_only": 1
   },
   {
    "fieldname": "job_sheet_number",
    "fieldtype": "Link",
    "label": "Assignment Number",
    "options": "Assignment",
-   "reqd": 1
+   "read_only": 1
   },
   {
    "fieldname": "marks",
@@ -92,7 +100,8 @@
   {
    "fieldname": "assignment_upload_status",
    "fieldtype": "Data",
-   "label": "Assignment Upload Status"
+   "label": "Assignment Upload Status",
+   "read_only": 1
   },
   {
    "fieldname": "assignment_upload_link",
@@ -104,7 +113,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-10-09 12:12:19.079505",
+ "modified": "2023-10-12 10:52:50.846602",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Job sheet",

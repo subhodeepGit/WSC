@@ -163,6 +163,9 @@ def open_gateway(party_name, party, amount, order_id,url,gw_provider,form_status
 #################################################  AXIS GATEWAY  ########################################################################
 
         if gw_provider == "AXIS":
+            progress_doc=frappe.get_doc("OnlinePayment",order_id)
+            progress_doc.transaction_progress="Initiated"
+            progress_doc.save()
             getDoc = frappe.get_doc("AXIS Settings")
             logging.info("AXIS--"+"op getDoc 4: %s", getDoc)
             is_prod = getDoc.get("is_production")
