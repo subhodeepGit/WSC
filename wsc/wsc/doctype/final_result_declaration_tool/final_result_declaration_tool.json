@@ -43,7 +43,8 @@
   {
    "fieldname": "no_of_participants",
    "fieldtype": "Data",
-   "label": "No of Participants"
+   "label": "No of Participants",
+   "read_only": 1
   },
   {
    "fetch_from": "tot_participant_enrollment.academic_term",
@@ -61,7 +62,9 @@
    "fieldname": "participants",
    "fieldtype": "Table",
    "label": "Participants",
-   "options": "Result Declaration Participant"
+   "options": "Result Declaration Participant",
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fieldname": "grading_scale",
@@ -142,7 +145,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-16 16:07:17.014370",
+ "modified": "2023-10-17 12:56:03.630817",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Final Result Declaration Tool",
