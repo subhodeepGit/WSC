@@ -11,78 +11,117 @@ class FinalResultDeclarationTool(Document):
 	def validate(self):
 		if self.is_new():
 			duplicate_upload(self)
-			
+
 	def on_submit(self):
-		pass			
+		get_assignments(self)		
 
 
-def get_assignments(frm):
-	doc= json.loads(frm)
-	participant_id=doc['participant_id']
-	list_grp=[]
-
-	for t in doc.get("participant_group"):
-		list_grp.append(t['participant_group'])
-	
+def get_assignments(self):
 	module_list=[]
-	for t in doc.get("modules"):
-		module_list.append(t['course'])
-		
+	for t in self.get("modules"):
+		module_list.append(t.course)
+
 	credit_distribution_list=[]
 	if module_list:
 		for t in module_list:
 			data=frappe.get_all("Credit distribution List",[["parent","=",t]],['assessment_criteria','weightage','credits','passing_credits','total_marks','passing_marks','parent'])
 			for j in data:
-				credit_distribution_list.append(j)
-		
+				credit_distribution_list.append(j)		
 
+	grading_scale=self.grading_scale
 
-	grading_scale=doc['grading_scale']
+	list_grp=[]
+	for t in self.get("participant_group"):
+		list_grp.append(t.participant_group)	
+	
 
-	data=[]
 	if list_grp:
-		if len(list_grp)==1:
-			data=frappe.get_all("Assignment Evaluation",[["docstatus",'=',1],["participant_group","=",list_grp[0]],['participant_id','=',participant_id]],
-									['name','assessment_component','total_marks','weightage','passing_marks','marks_earned',
-									'module_code','module_name',"select_module"])
-		else:
-			data=frappe.get_all("Assignment Evaluation",[["docstatus",'=',1],["participant_group","IN",tuple(list_grp)],['participant_id','=',participant_id]],
-									['name','assessment_component','total_marks','weightage','passing_marks','marks_earned',
-									'module_code','module_name',"select_module"])
-		
-		for t in credit_distribution_list:
-			flag="No"
-			for j in data:				
-				if j['select_module']==t['parent'] and j['assessment_component']==t['assessment_criteria']:
-					flag="Yes"
-				if flag=="Yes":
-					t["flag"]="Yes"
-					break
-				else:
-					t["flag"]="No"
+		for t in self.get("participants"):
+			data=[]
+			participant_id=t.participant_id
 
-		for t in credit_distribution_list:
-			if t['flag']=="No":
-				l=frappe.get_all("Course",{"name":t['parent']},['course_code','course_name'])
-				a={}
-				a['name']=""
-				a['assessment_component']=t["assessment_criteria"]
-				a['total_marks']=t['total_marks']
-				a['weightage']=t['weightage']
-				a['passing_marks']=t['passing_marks']
-				a['marks_earned']=0
-				a['module_code']=l[0]['course_code']
-				a['module_name']=l[0]['course_name']
-				a["select_module"]=t['parent']
-				data.append(a)
-		
-		for t in data:
-			percentage=(t['marks_earned']/t['total_marks'])*100
-			t['percentage']=percentage
-			a=get_grade_result(grading_scale,t['marks_earned'],t['total_marks'])
-			t['grade_code']=a['grade']
-			t['result']=a['result']
-	return data
+			if len(list_grp)==1:
+				data=frappe.get_all("Assignment Evaluation",[["docstatus",'=',1],["participant_group","=",list_grp[0]],['participant_id','=',participant_id]],
+										['name','assessment_component','total_marks','weightage','passing_marks','marks_earned',
+										'module_code','module_name',"select_module"])
+			else:
+				data=frappe.get_all("Assignment Evaluation",[["docstatus",'=',1],["participant_group","IN",tuple(list_grp)],['participant_id','=',participant_id]],
+										['name','assessment_component','total_marks','weightage','passing_marks','marks_earned',
+										'module_code','module_name',"select_module"])
+				
+			for k in credit_distribution_list:
+				flag="No"
+				for j in data:				
+					if j['select_module']==k['parent'] and j['assessment_component']==k['assessment_criteria']:
+						flag="Yes"
+					if flag=="Yes":
+						k["flag"]="Yes"
+						break
+					else:
+						k["flag"]="No"	
+
+			for k in credit_distribution_list:
+				if k['flag']=="No":
+					l=frappe.get_all("Course",{"name":k['parent']},['course_code','course_name'])
+					a={}
+					a['name']=""
+					a['assessment_component']=k["assessment_criteria"]
+					a['total_marks']=k['total_marks']
+					a['weightage']=k['weightage']
+					a['passing_marks']=k['passing_marks']
+					a['marks_earned']=0
+					a['module_code']=l[0]['course_code']
+					a['module_name']=l[0]['course_name']
+					a["select_module"]=k['parent']
+					data.append(a)	
+			
+			for k in data:
+				percentage=(k['marks_earned']/k['total_marks'])*100
+				k['percentage']=percentage
+				a=get_grade_result(grading_scale,k['marks_earned'],k['total_marks'])
+				k['grade_code']=a['grade']
+				k['result']=a['result']
+
+			doc=frappe.new_doc("Final Assignment Result")
+			doc.tot_participant_enrollment=self.tot_participant_enrollment 
+			doc.tot_participant_batch=self.tot_participant_batch 
+			doc.programs=self.programs
+			doc.academic_year=self.academic_year
+			doc.academic_term=self.academic_term
+			doc.semester=self.semester
+			for k in self.get("participant_group"):
+				doc.append("participant_group",{
+					'participant_group' : k.participant_group,
+					'participant_group_name':k.participant_group_name,
+					'course_type':k.course_type,
+					'course':k.course,
+					'module_name':k.module_name,
+					'module_code':k.module_code,
+					'mode':k.mode
+				})
+			for k in self.get("modules"):
+				doc.append("modules",{
+					'course':k.course,
+					"course_name":k.course_name,
+					"required":k.required
+				})
+			doc.participant_id=participant_id
+			doc.participant_name=t.participant_name 
+			doc.grading_scale=grading_scale
+			for k in data:
+				doc.append("assessment_result_item",{
+					"assignment_evaluation":k['name'],
+					"course":k['select_module'],
+					"module_name":k['module_name'],
+					"assessment_criteria":k['assessment_component'],
+					"earned_marks":k['marks_earned'],
+					"total_marks":k['total_marks'],
+					"percentage":k['percentage'],
+					"result":k['result'],
+					"grading":k['grade_code'],
+				})
+			doc.save()	
+
 
 def get_grade_result(grading_scale, earned_marks, total_marks):
     grade = get_grade(grading_scale, (flt(earned_marks)/flt(total_marks))*100)
