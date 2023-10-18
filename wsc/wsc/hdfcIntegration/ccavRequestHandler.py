@@ -39,10 +39,10 @@ def ccavResponseHandler():
 @app.route('/ccavAxisResponseHandler', methods=['GET', 'POST'])
 def ccavAxisResponseHandler():
     
-    workingKey = '25135D833A8053AC7803E080A5C4F2EA'
-    workingKey2 = '25135D833A8053AC7803E080A5C4F2EA'
+    workingKey = 'B16E96857331B25715B824FA112A625E'
+    workingKey2 = 'B16E96857331B25715B824FA112A625E'
     
-    selected_working_key = '25135D833A8053AC7803E080A5C4F2EA'      
+    selected_working_key = 'B16E96857331B25715B824FA112A625E'      
     pg='axis'
     
     if selected_working_key == workingKey:              

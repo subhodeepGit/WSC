@@ -1,0 +1,251 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"xo8iteTJ3A\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Training and Placement</span>\",\"col\":12}},{\"id\":\"ejmsusaG09\",\"type\":\"card\",\"data\":{\"card_name\":\"Master\",\"col\":4}},{\"id\":\"ggUQPFA8k7\",\"type\":\"card\",\"data\":{\"card_name\":\"Training\",\"col\":4}},{\"id\":\"_qSVRMl4ts\",\"type\":\"card\",\"data\":{\"card_name\":\"Placement\",\"col\":4}},{\"id\":\"MItI2A5j1u\",\"type\":\"card\",\"data\":{\"card_name\":\"Certificates\",\"col\":4}}]",
+ "creation": "2023-10-17 14:57:55.249669",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "lock",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Training and Placement",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Master",
+   "link_count": 5,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "TnP Program",
+   "link_count": 0,
+   "link_to": "TnP Program",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "TnP Event",
+   "link_count": 0,
+   "link_to": "TnP Event",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Placement Company",
+   "link_count": 0,
+   "link_to": "Placement Company",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Participant Registration",
+   "link_count": 0,
+   "link_to": "Participant Registration",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Entrepreneurship",
+   "link_count": 0,
+   "link_to": "Entrepreneurship",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Training",
+   "link_count": 7,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Participant Attendance",
+   "link_count": 0,
+   "link_to": "Participant Attendance",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Internship Drive",
+   "link_count": 0,
+   "link_to": "Internship Drive",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Internship Application",
+   "link_count": 0,
+   "link_to": "Internship Application",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Internship Participant Selection",
+   "link_count": 0,
+   "link_to": "Internship Participant Selection",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Internship Final List Declaration",
+   "link_count": 0,
+   "link_to": "Internship Final List Declaration",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Internship Completion Status",
+   "link_count": 0,
+   "link_to": "Internship Completion status",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Event Feedback",
+   "link_count": 0,
+   "link_to": "Event feedback",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Placement",
+   "link_count": 5,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Placement Drive",
+   "link_count": 0,
+   "link_to": "Placement Drive",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Placement Drive Application",
+   "link_count": 0,
+   "link_to": "Placement Drive Application",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Placement Blocked Student",
+   "link_count": 0,
+   "link_to": "Placement Blocked Student",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Placement Tool",
+   "link_count": 0,
+   "link_to": "Placement Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Selection Round",
+   "link_count": 0,
+   "link_to": "Selection Round",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Certificates",
+   "link_count": 2,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Generate Certificate Tool",
+   "link_count": 0,
+   "link_to": "Generate certificate tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Generate Certificate",
+   "link_count": 0,
+   "link_to": "Generate Certificate",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2023-10-17 15:10:24.481768",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Training and Placement",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 53.0,
+ "shortcuts": [],
+ "title": "Training and Placement"
+}

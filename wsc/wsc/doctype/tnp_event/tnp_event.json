@@ -32,7 +32,8 @@
   "event_end_date",
   "event_type",
   "coordinators_section",
-  "coordinators_list"
+  "coordinators_list",
+  "amended_from"
  ],
  "fields": [
   {
@@ -169,11 +170,21 @@
    "fieldname": "section_break_rzzfs",
    "fieldtype": "Section Break",
    "label": "Event Details"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "TnP Event",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-09-26 15:19:08.246614",
+ "modified": "2023-10-16 16:36:15.691869",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "TnP Event",
