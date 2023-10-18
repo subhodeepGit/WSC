@@ -201,7 +201,7 @@ def tot_participant_selection_id(doctype, txt, searchfield, start, page_len, fil
 
 	data=frappe.db.sql("""
 		SELECT `name`,`tot_participant_batch` FROM `tabToT Participant Selection` WHERE ({key} like %(txt)s or {scond})  and
-		    (`start_date` <= now() AND `end_date` >= now()) 
+		    (`start_date` <= now() AND `end_date` >= now()) and docstatus=1
 	""".format(
 		**{
 			"key": searchfield,
