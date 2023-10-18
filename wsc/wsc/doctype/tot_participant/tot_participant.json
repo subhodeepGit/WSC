@@ -145,7 +145,7 @@
    "fieldname": "date_of_birth",
    "fieldtype": "Date",
    "label": "Date of Birth",
-   "read_only": 1
+   "reqd": 1
   },
   {
    "fieldname": "blood_group",
@@ -165,13 +165,13 @@
    "in_standard_filter": 1,
    "label": "Gender",
    "options": "Gender",
-   "read_only": 1,
    "reqd": 1
   },
   {
    "fieldname": "nationality",
    "fieldtype": "Data",
-   "label": "Nationality"
+   "label": "Nationality",
+   "reqd": 1
   },
   {
    "fieldname": "section_break_22",
@@ -331,7 +331,7 @@
  ],
  "image_field": "image",
  "links": [],
- "modified": "2023-10-18 15:40:03.664982",
+ "modified": "2023-10-18 16:08:24.535907",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant",
