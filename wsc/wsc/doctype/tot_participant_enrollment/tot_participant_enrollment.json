@@ -71,8 +71,7 @@
    "fieldtype": "Link",
    "hidden": 1,
    "label": "Semester",
-   "options": "Program",
-   "read_only": 1
+   "options": "Program"
   },
   {
    "fetch_from": "tot_participant_selection_id.tot_participant_batch",
@@ -150,7 +149,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-31 12:09:43.611187",
+ "modified": "2023-10-19 13:07:22.385678",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant Enrollment",
