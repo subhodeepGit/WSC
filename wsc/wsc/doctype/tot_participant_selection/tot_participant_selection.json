@@ -45,7 +45,6 @@
    "description": "For Internal Purpose (Not Visible in the Application Front)",
    "fieldname": "semester",
    "fieldtype": "Link",
-   "hidden": 1,
    "label": "Semester",
    "options": "Program"
   },
@@ -114,6 +113,7 @@
    "description": "For Internal Purpose (Not Visible in the Application Front)",
    "fieldname": "academic_term",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Academic Term",
    "options": "Academic Term"
   },
@@ -130,7 +130,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-06 16:25:27.064700",
+ "modified": "2023-10-19 13:06:01.132709",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant Selection",
