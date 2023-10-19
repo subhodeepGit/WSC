@@ -16,8 +16,8 @@ frappe.query_reports["Student Application"] = {
 			"get_query": function(txt) {
 				return {
 					"filters": {
-						"is_group":1,
-						"is_stream": 1
+						"is_group":0,
+						// "is_stream": 1
 					  }
 				};
 			}
