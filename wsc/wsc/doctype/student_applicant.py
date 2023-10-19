@@ -642,7 +642,6 @@ def get_document_list_by_category(doc):
 
     doc_list  = frappe.db.sql("""SELECT DL.document_name, DL.mandatory, DL.is_available, DL.mandatory_during_counselling from `tabDocuments Template List` as DL 
     inner join `tabDocuments Template` as D on DL.parent= D.name where D.student_category='{0}' and D.academic_year = '{1}' and D.department = '{2}' ORDER BY document_name ASC""".format(doc.student_category,doc.academic_year,doc.department) ,as_dict=1)
-    print("\n\n\nDOCUMENTS",doc_list)
     return doc_list if doc_list else []
 # def get_eligibility_list_by_category(doc):
 #     filters={"student_category":doc.student_category}
