@@ -144,7 +144,8 @@
   {
    "fieldname": "date_of_birth",
    "fieldtype": "Date",
-   "label": "Date of Birth"
+   "label": "Date of Birth",
+   "reqd": 1
   },
   {
    "fieldname": "blood_group",
@@ -169,7 +170,8 @@
   {
    "fieldname": "nationality",
    "fieldtype": "Data",
-   "label": "Nationality"
+   "label": "Nationality",
+   "reqd": 1
   },
   {
    "fieldname": "section_break_22",
@@ -329,7 +331,7 @@
  ],
  "image_field": "image",
  "links": [],
- "modified": "2023-09-28 10:46:50.438227",
+ "modified": "2023-10-18 16:08:24.535907",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant",

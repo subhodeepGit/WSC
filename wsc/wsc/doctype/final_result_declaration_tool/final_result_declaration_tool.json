@@ -25,7 +25,8 @@
   "no_of_participants",
   "section_break_10",
   "get_participants",
-  "participants"
+  "participants",
+  "amended_from"
  ],
  "fields": [
   {
@@ -141,11 +142,21 @@
    "label": "Modules",
    "options": "Program Course",
    "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Final Result Declaration Tool",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-10-17 12:56:03.630817",
+ "modified": "2023-10-17 17:59:30.576357",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Final Result Declaration Tool",
