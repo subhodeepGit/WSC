@@ -4,7 +4,8 @@
 
 frappe.query_reports["Program Enrollment"] = {
 	"filters": [
-		
+	
+		// 
 		{
 			"fieldname": "department",
 			"label": __("Department"),
@@ -22,6 +23,7 @@ frappe.query_reports["Program Enrollment"] = {
 			}
 		
 		},
+	
 		{
 			"fieldname": "programs",
 			"label": __("Programs"),
@@ -43,16 +45,25 @@ frappe.query_reports["Program Enrollment"] = {
 			"label": __("Caste Category"),
 			"fieldtype": "Link",
 			"width": 50,
+			"reqd": 1,
 			"options": "Student Category",
 		},
 		{
-			"fieldname": "docstatus",
-			"label": __("Submitted Document"),
-			"fieldtype": "Int",
+			"fieldname": "transaction_status",
+			"label": __("Transcation Status"),
+			"fieldtype": "Select",
+			"reqd": 1,
 			"width": 50,
-			"default":1,
-			"read_only":1
-		}
+			"options": ["Awaited","Failure","Initiated","Success","Rejected","Aborted","Unsuccessful","Shipped"],
+		},
+		// {
+		// 	"fieldname": "docstatus",
+		// 	"label": __("Submitted Document"),
+		// 	"fieldtype": "Int",
+		// 	"width": 50,
+		// 	"default":1,
+		// 	"read_only":1
+		// }
 
 
 	]

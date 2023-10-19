@@ -105,9 +105,13 @@ def get_data(filters):
 	# 	fltr.update({"docstatus":filters.get("docstatus")})
 	if filters.get("programs"):
 		fltr.update({"programs":filters.get("programs")})
+	if filters.get("transaction_status"):
+		fltr.update({"transaction_status":filters.get("transaction_status")})
 
 
 	data=frappe.db.sql(''' SELECT pe.admission_status,
     pe.student, pe.student_application_id, pe.student_name, pe.department, pe.programs, pe.academic_year, pe.student_category, op.transaction_id, op.transaction_status
-	FROM `tabProgram Enrollment` as pe LEFT JOIN `tabOnlinePayment` as op ON pe.student=op.party WHERE pe.student_category = %s and pe.academic_year=%s and pe.programs=%s and pe.department=%s and pe.docstatus=1 ORDER BY pe.student''',(filters.get("student_category"),filters.get("academic_year"),filters.get("programs"),filters.get("department")),as_dict=1)
+	FROM `tabProgram Enrollment` as pe 
+	LEFT JOIN `tabOnlinePayment` as op ON pe.student=op.party 
+	WHERE pe.student_category = %s and pe.academic_year=%s and pe.programs=%s and pe.department=%s and op.transaction_status=%s and pe.docstatus=1 ORDER BY pe.student''',(filters.get("student_category"),filters.get("academic_year"),filters.get("programs"),filters.get("department"),filters.get("transaction_status")),as_dict=1)
 	return data
