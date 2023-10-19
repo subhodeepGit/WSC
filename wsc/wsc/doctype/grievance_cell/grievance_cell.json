@@ -76,7 +76,7 @@
   {
    "fetch_from": "student.student_mobile_number",
    "fieldname": "contact_phone_no",
-   "fieldtype": "Phone",
+   "fieldtype": "Data",
    "label": "Contact Phone No",
    "read_only": 1
   },
@@ -204,7 +204,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-02-13 10:00:28.920149",
+ "modified": "2023-10-18 11:59:01.190638",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Grievance Cell",

@@ -47,6 +47,7 @@
    "label": "City/Village/Town"
   },
   {
+   "allow_on_submit": 1,
    "fetch_from": "center_name.center_name",
    "fieldname": "center",
    "fieldtype": "Data",
@@ -62,7 +63,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-14 11:18:40.938794",
+ "modified": "2023-10-16 16:45:30.839138",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Centre Preference",

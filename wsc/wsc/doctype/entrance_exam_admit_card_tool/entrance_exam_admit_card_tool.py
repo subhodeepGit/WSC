@@ -14,10 +14,11 @@ class EntranceExamAdmitCardTool(Document):
 	def on_cancel(self):
 		for i in self.deallotted_applicant_list:
 			admit_card_data = frappe.get_all("Entrance Exam Admit Card" , {'applicant_id':i.applicant_id} , ['name'])
-			admit_card = frappe.get_doc("Rank Card" , admit_card_data[0]['name'])
+			if(len(admit_card_data) != 0):
+				admit_card = frappe.get_doc("Entrance Exam Admit Card" , admit_card_data[0]['name'])
 
-			if admit_card.docstatus == 1:
-				admit_card.cancel()
+				if admit_card.docstatus == 1:
+					admit_card.cancel()
 
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
@@ -143,7 +144,6 @@ def student_allotment(body):
 						'centre' , 'centre_name' , 'address' ,
 						'district' , 'state' , 'pin_code'] ,
 						order_by = "idx asc")
-			
 			
 			slots = frappe.get_all("Exam Slot Timings" , {'parent': exam_center_allocation[0]['name']} , 
 			  ['slot_name' , 'slot_starting_time' , 'slot_ending_time' , 'slot_date' , 'seating_capacity' , 'parent'])
