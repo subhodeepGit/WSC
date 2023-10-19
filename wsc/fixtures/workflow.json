@@ -5096,58 +5096,95 @@
 "workflow_state_field": "workflow_state"
 },
 {
-"docstatus": 0,
-"doctype": "Workflow",
-"document_type": "Job Applicant",
-"is_active": 1,
-"modified": "2023-08-24 11:27:33.066539",
-"name": "Job Applicant",
-"override_status": 0,
-"send_email_alert": 0,
-"states": [
- {
-  "allow_edit": "Applicant",
-  "doc_status": "0",
-  "is_optional_state": 0,
-  "message": null,
-  "next_action_email_template": null,
-  "parent": "Job Applicant",
-  "parentfield": "states",
-  "parenttype": "Workflow",
-  "state": "Draft",
-  "update_field": null,
-  "update_value": null
+  "docstatus": 0,
+  "doctype": "Workflow",
+  "document_type": "Job Applicant",
+  "is_active": 1,
+  "modified": "2023-10-18 11:19:56.902582",
+  "name": "Job Applicant",
+  "override_status": 0,
+  "send_email_alert": 0,
+  "states": [
+   {
+    "allow_edit": "Applicant",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Job Applicant",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Draft",
+    "update_field": null,
+    "update_value": null
+   },
+   {
+    "allow_edit": "Applicant",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Job Applicant",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Submitted",
+    "update_field": "current_status",
+    "update_value": "Applied"
+   },
+   {
+    "allow_edit": "HR Admin",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Job Applicant",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Submitted",
+    "update_field": "current_status",
+    "update_value": null
+   },
+   {
+    "allow_edit": "HR Admin",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Job Applicant",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Draft",
+    "update_field": null,
+    "update_value": null
+   }
+  ],
+  "transitions": [
+   {
+    "action": "Submit",
+    "allow_self_approval": 1,
+    "allowed": "Applicant",
+    "condition": null,
+    "next_state": "Submitted",
+    "parent": "Job Applicant",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Draft"
+   },
+   {
+    "action": "Submit",
+    "allow_self_approval": 1,
+    "allowed": "HR Admin",
+    "condition": null,
+    "next_state": "Submitted",
+    "parent": "Job Applicant",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Draft"
+   }
+  ],
+  "workflow_name": "Job Applicant",
+  "workflow_state_field": "workflow_state"
  },
- {
-  "allow_edit": "Applicant",
-  "doc_status": "0",
-  "is_optional_state": 0,
-  "message": null,
-  "next_action_email_template": null,
-  "parent": "Job Applicant",
-  "parentfield": "states",
-  "parenttype": "Workflow",
-  "state": "Submitted",
-  "update_field": "current_status",
-  "update_value": "Applied"
- }
-],
-"transitions": [
- {
-  "action": "Submit",
-  "allow_self_approval": 1,
-  "allowed": "Applicant",
-  "condition": null,
-  "next_state": "Submitted",
-  "parent": "Job Applicant",
-  "parentfield": "transitions",
-  "parenttype": "Workflow",
-  "state": "Draft"
- }
-],
-"workflow_name": "Job Applicant",
-"workflow_state_field": "workflow_state"
-},
 {
 "docstatus": 0,
 "doctype": "Workflow",
