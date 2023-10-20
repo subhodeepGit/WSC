@@ -110,9 +110,6 @@ def get_participants_and_assignments(assignment_declaration = None,participant_g
                         if assignment['name']==j['assignment_id']:
                             participants['assignment_upload_status']="Submitted"
                             participants['assignment_upload_link']=j['name']
-                        else:
-                            participants['assignment_upload_status']="Not Submitted"
-                            participants['assignment_upload_link']=None
                 else:
                     participants['assignment_upload_status']="Not Submitted"
                     participants['assignment_upload_link']=None
