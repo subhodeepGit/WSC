@@ -290,7 +290,7 @@ frappe.ui.form.on('Student Applicant', {
             frm.set_df_property('application_status', 'read_only', 1);
             frm.set_df_property('document_list', 'cannot_add_rows', true);
         }
-        if (frm.doc.application_status === "Approved" && frm.doc.docstatus === 1 && (frappe.user.has_role(["Education Admission Head"]))) {
+        if (frm.doc.application_status === "Approved" && frm.doc.docstatus === 1) {
             frappe.db.get_value('User',{'name':frappe.session.user},['module_profile'],(val) =>
 			{
                 if (val.module_profile!="Student"){
@@ -568,6 +568,28 @@ frappe.ui.form.on("Education Qualifications Details", "earned_marks", function(f
     //     console.log(frm.doc.exam_center_locations);
     // },
     exam_center_locations_add:function(frm , cdt ,cdn){
+        var d = locals[cdt][cdn]
+
+        frm.fields_dict['exam_center_locations'].grid.get_field('center_name').get_query = function(doc){
+            var exam_center_list = [];
+            // if(!doc.__islocal) exam_center_list.push(doc.name)
+            $.each(doc.exam_center_locations , function(idx , val){
+                if (val.center_name) exam_center_list.push(val.center_name)
+            })
+            
+            return { filters:[
+                        ['Entrance exam select' , 'name' , 'not in' , exam_center_list] , 
+                        ['docstatus','=',1] , 
+                        ['academic_year' , '=' , frm.doc.academic_year] , 
+                        ['academic_term' , '=' , frm.doc.academic_term] ,
+                        ['state' , '=' , d.state] , 
+                        ['district' , '=' , d.districts] , 
+                        ['available_center' , '=' , 1],
+                        ['docstatus' , '=' , 1]
+                    ]}
+        }
+    },
+    center_name: function(frm , cdt , cdn){
         var d = locals[cdt][cdn]
 
         frm.fields_dict['exam_center_locations'].grid.get_field('center_name').get_query = function(doc){

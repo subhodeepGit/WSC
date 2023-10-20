@@ -198,8 +198,8 @@ frappe.ui.form.on('Instructor Table', {
 									filters:
 										{
 											academic_year: frm.doc.academic_year,
-											course:course,
-											semesters:semesters,
+											course:frm.doc.course,
+											semesters:frm.doc.semester,
 											apply_semester_filter:frm.doc.group_based_on=="Combined Course"?0:1
 										}
 								},
