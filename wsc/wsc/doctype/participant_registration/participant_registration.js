@@ -3,7 +3,13 @@
 
 frappe.ui.form.on('Participant Registration', {
 	refresh: function(frm) {
-		
+		frm.set_query('select_event', function(){
+			return{
+				filters:{
+					'event_status' : 'Scheduled',
+				}
+			}
+		})
 	},
 	participant_type : function(frm){
 		frm.set_value('participant_id', '')

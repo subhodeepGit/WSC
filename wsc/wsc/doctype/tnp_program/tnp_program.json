@@ -45,7 +45,6 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Program Status",
-   "options": "Scheduled\nCompleted\nCancelled",
    "reqd": 1
   },
   {
@@ -86,7 +85,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-25 17:17:26.761777",
+ "modified": "2023-10-20 11:27:41.790652",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "TnP Program",

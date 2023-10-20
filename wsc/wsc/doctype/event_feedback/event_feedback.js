@@ -3,19 +3,14 @@
 
 frappe.ui.form.on('Event feedback', {
 	refresh: function(frm) {
-
+		frm.set_query("select_event" , function(){
+			return{
+				filters:[
+					["event_status", "!=", "Cancelled"]
+				]
+			}
+		})
 	},
-	// is_in_a_program : function(frm){
-	// 	if(frm.doc.is_in_a_program == 1){
-	// 		frm.set_query('select_event', function(){
-	// 			return{
-	// 				filters:{
-	// 					'select_program' : frm.doc.select_program
-	// 				}
-	// 			}
-	// 		})
-	// 	}
-	// },
 	participant_id : function(frm){
 		frappe.call({
 			method :'wsc.wsc.doctype.event_feedback.event_feedback.get_participant_name',
