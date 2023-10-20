@@ -52,7 +52,7 @@ frappe.query_reports["Program Enrollment"] = {
 			"fieldname": "transaction_status",
 			"label": __("Transcation Status"),
 			"fieldtype": "Select",
-			"reqd": 1,
+			// "reqd": 1,
 			"width": 50,
 			"options": ["Awaited","Failure","Initiated","Success","Rejected","Aborted","Unsuccessful","Shipped"],
 		},

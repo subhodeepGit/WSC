@@ -10,6 +10,13 @@ def execute(filters=None):
 def get_columns(filters=None):
     return [
 		{
+			"label": ("Enrollment Id"),
+			"fieldname": "name",
+			"fieldtype": "Link",
+			"options": "Program Enrollment",
+			"width": 180
+		},
+		{
 			"label": ("Admission Status"),
 			"fieldname": "admission_status",
 			"fieldtype": "Data",
@@ -19,7 +26,8 @@ def get_columns(filters=None):
 		{
 			"label": ("Student"),
 			"fieldname": "student",
-			"fieldtype": "Data",
+			"fieldtype": "Link",
+			"options": "Student",
 			"width": 180
 		},
 		{

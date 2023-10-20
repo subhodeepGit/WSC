@@ -111052,15 +111052,15 @@
  {
   "amend": 0,
   "cancel": 0,
-  "create": 0,
+  "create": 1,
   "delete": 0,
   "docstatus": 0,
   "doctype": "Custom DocPerm",
   "email": 0,
-  "export": 1,
+  "export": 0,
   "if_owner": 0,
   "import": 0,
-  "modified": "2023-10-19 10:34:46.859709",
+  "modified": "2023-10-20 10:34:46.859709",
   "name": "955074f2c8",
   "parent": "Fees",
   "permlevel": 0,
@@ -111071,8 +111071,8 @@
   "select": 1,
   "set_user_permissions": 0,
   "share": 0,
-  "submit": 0,
-  "write": 0
+  "submit": 1,
+  "write": 1
  },
  {
   "amend": 0,

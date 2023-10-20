@@ -23,7 +23,7 @@ frappe.ui.form.on('Entrance Exam Admit Card Tool', {
 	refresh:function(frm){
 		// frm.disable_save()
 		frm.set_df_property('deallotted_applicant_list', 'cannot_add_rows', true)
-		frm.set_df_property('deallotted_applicant_list', 'cannot_delete_rows', true)
+		// frm.set_df_property('deallotted_applicant_list', 'cannot_delete_rows', true)
 		frm.set_df_property('center' , 'hidden' , 1)
 		frm.remove_custom_button('Generate Ranks')
 		
