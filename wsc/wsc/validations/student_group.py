@@ -295,8 +295,8 @@ def get_program_enrollment(academic_year, academic_term=None, program=None, batc
         from
             `tabProgram Enrollment` pe {condition2}
         where
-            
-            pe.academic_year = %(academic_year)s  {condition1}
+        
+        pe.admission_status="Admitted" and pe.academic_year = %(academic_year)s {condition1} 
         order by
             pe.student_name asc
         '''.format(condition1=condition1, condition2=condition2),

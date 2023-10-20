@@ -61,22 +61,30 @@ def paid_from_account_type(reference_no=None,mode_of_payment=None):
                                                 ["name","date_time_of_transaction"])
         if Recon_info:
             date_time_str = Recon_info[0]["date_time_of_transaction"]
-            try:
-                date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f')
-            except:
-                # 14/08/2023 12:05:40
-                date_time_obj = datetime.datetime.strptime(date_time_str, '%d/%m/%Y %H:%M:%S')
-            date=date_time_obj.date()
+            # try:
+            #     try:
+            #         date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S')
+            #     except:
+            #         print('\n\n\n',date_time_obj)
+            #         date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S')
+                    
+            # except:
+            #     # 14/08/2023 12:05:40
+            #     date_time_obj = datetime.datetime.strptime(date_time_str, '%d/%m/%Y %H:%M:%S')
+            date=date_time_str.date()
     if mode_of_payment=="Online PG AXIS":
         Recon_info=frappe.get_all("OnlinePayment",{"transaction_id":reference_no,
                                                     "transaction_status":"SUCCESS","docstatus":1,"payment_status":0,"gateway_name":"AXIS"},
                                                     ["name","date_time_of_transaction"])
         if Recon_info:
             date_time_str = Recon_info[0]["date_time_of_transaction"]
-            try:
-                date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f')
-            except:
-                # 14/08/2023 12:05:40
-                date_time_obj = datetime.datetime.strptime(date_time_str, '%d/%m/%Y %H:%M:%S')
-            date=date_time_obj.date()        
+            # try:
+            #     try:
+            #         date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f')
+            #     except:
+            #         date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S')
+            # except:
+            #     # 14/08/2023 12:05:40
+            #     date_time_obj = datetime.datetime.strptime(date_time_str, '%d/%m/%Y %H:%M:%S')
+            date=date_time_str.date()        
     return date 

@@ -95,7 +95,8 @@ def make_participant(tot_participant_enrollment):
 			Y=list(X[0].values())
 			if Y[0]==d.email_address:
 				pass
-		else:	
+		else:
+			data=frappe.get_all("ToT Participant",{'name':d.participant},['date_of_birth','gender'])	
 			result=frappe.new_doc("Student")
 			result.first_name=d.first_name
 			result.middle_name=d.middle_name
@@ -104,6 +105,8 @@ def make_participant(tot_participant_enrollment):
 			result.district=d.district
 			result.state=d.odisha
 			result.pin_code=d.pincode
+			result.date_of_birth=data[0]['date_of_birth']
+			result.gender=data[0]['gender']
 			result.save()
 
 			student=result.name
@@ -201,7 +204,7 @@ def tot_participant_selection_id(doctype, txt, searchfield, start, page_len, fil
 
 	data=frappe.db.sql("""
 		SELECT `name`,`tot_participant_batch` FROM `tabToT Participant Selection` WHERE ({key} like %(txt)s or {scond})  and
-		    (`start_date` <= now() AND `end_date` >= now()) 
+		    (`start_date` <= now() AND `end_date` >= now()) and docstatus=1
 	""".format(
 		**{
 			"key": searchfield,

@@ -763,5 +763,14 @@
   "name": "Director Admin Approval",
   "style": "",
   "workflow_state_name": "Director Admin Approval"
- }
+ },
+ {
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-10-12 16:35:01.159538",
+    "name": "Submitted",
+    "style": "",
+    "workflow_state_name": "Submitted"
+   }
 ]

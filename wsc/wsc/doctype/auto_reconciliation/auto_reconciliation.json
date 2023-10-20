@@ -33,6 +33,7 @@
    "options": "Auto Reconciliation child"
   },
   {
+   "depends_on": "eval:doc.docstatus==0",
    "fieldname": "get_studnet",
    "fieldtype": "Button",
    "label": "Get Students"
@@ -83,7 +84,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-26 17:34:02.092218",
+ "modified": "2023-10-12 18:50:47.324390",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Auto Reconciliation",

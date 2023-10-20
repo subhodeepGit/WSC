@@ -290,7 +290,7 @@ frappe.ui.form.on('Student Applicant', {
             frm.set_df_property('application_status', 'read_only', 1);
             frm.set_df_property('document_list', 'cannot_add_rows', true);
         }
-        if (frm.doc.application_status === "Approved" && frm.doc.docstatus === 1 && (frappe.user.has_role(["Education Admission Head"]))) {
+        if (frm.doc.application_status === "Approved" && frm.doc.docstatus === 1) {
             frappe.db.get_value('User',{'name':frappe.session.user},['module_profile'],(val) =>
 			{
                 if (val.module_profile!="Student"){

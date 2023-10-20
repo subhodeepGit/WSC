@@ -15,54 +15,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Fees",
-   "link_count": 4,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Fee Structure",
-   "link_count": 0,
-   "link_to": "Fee Structure",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Fee Schedule",
-   "link_count": 0,
-   "link_to": "Fee Schedule",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Fee Category",
-   "link_count": 0,
-   "link_to": "Fee Category",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Fees",
-   "link_count": 0,
-   "link_to": "Fees",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Feedback",
    "link_count": 1,
    "onboard": 0,
@@ -523,17 +475,17 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Student Clearance",
-   "link_count": 2,
+   "label": "Fees",
+   "link_count": 6,
    "onboard": 0,
    "type": "Card Break"
   },
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Clearance Masters",
+   "label": "Fee Structure",
    "link_count": 0,
-   "link_to": "Clearance Master",
+   "link_to": "Fee Structure",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -541,15 +493,55 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Student Clearance Application",
+   "label": "Fee Schedule",
    "link_count": 0,
-   "link_to": "Student Clearance Application",
+   "link_to": "Fee Schedule",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Fee Category",
+   "link_count": 0,
+   "link_to": "Fee Category",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Fees",
+   "link_count": 0,
+   "link_to": "Fees",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Auto Reconcilation",
+   "link_count": 0,
+   "link_to": "Auto Reconciliation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Online Payment",
+   "link_count": 0,
+   "link_to": "OnlinePayment",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
   }
  ],
- "modified": "2023-10-19 16:59:08.861538",
+ "modified": "2023-10-19 10:59:03.970977",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Admission",
@@ -576,6 +568,9 @@
   },
   {
    "role": "Education Admission Dept"
+  },
+  {
+   "role": "Temporary Admission Group"
   }
  ],
  "sequence_id": 1.0,
