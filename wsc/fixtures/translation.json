@@ -440,5 +440,18 @@
   "name": "c924dc1755",
   "source_text": "Branch",
   "translated_text": "Campus Location"
+ },
+  {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-10-20 16:09:09.623799",
+  "name": "122a0b4a6b",
+  "source_text": "Price Impanelement Report",
+  "translated_text": "Price Empanelled Report"
  }
 ]
