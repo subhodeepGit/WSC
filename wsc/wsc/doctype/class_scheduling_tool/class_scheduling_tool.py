@@ -160,11 +160,10 @@ def get_course(doctype, txt, searchfield, start, page_len, filters):
     return frappe.db.sql("""
                             Select 
                                     enroll_cr.course,
-                                    enroll_cr.course_name,
-                                    enroll_cr.course_code
+                                    enroll_cr.course_name
                             from `tabProgram Enrollment` enroll
                             left join `tabProgram Enrollment Course` enroll_cr on enroll.name=enroll_cr.parent 
-                            where enroll.program='{0}' and enroll.docstatus=1  and (enroll_cr.course LIKE %(txt)s or enroll_cr.course_name LIKE %(txt)s or enroll_cr.course_code LIKE %(txt)s) 
+                            where enroll.program='{0}' and enroll.docstatus=1  and (enroll_cr.course LIKE %(txt)s or enroll_cr.course_name LIKE %(txt)s) 
                             GROUP BY enroll_cr.course
                         """.format(filters.get("program")),dict(txt="%{}%".format(txt)))    
 @ frappe.whitelist()
