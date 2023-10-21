@@ -355,7 +355,7 @@ frappe.ui.form.on('Fees', {
 
 frappe.ui.form.on('Fees', {
     onload:function(frm) {
-		if (!frappe.user.has_role(["Administrator","Accounts Manager","Accounts User","Education Admission Head"])){
+		if (!frappe.user.has_role(["Administrator","Accounts Manager","Accounts User"])){
   			frm.remove_custom_button('Payment','Create');
             frm.remove_custom_button('General Ledger w/ Cancellation','View');
             frm.remove_custom_button('Payments','View');
