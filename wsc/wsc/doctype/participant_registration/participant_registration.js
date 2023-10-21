@@ -2,7 +2,17 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Participant Registration', {
+	
 	refresh: function(frm) {
+		frm.set_query("participant_id", function () {
+			return {
+				query:"wsc.wsc.doctype.participant_registration.participant_registration.get_participant_id",
+				filters: {
+					"enabled":1,
+					"status":"Active"
+				}
+			}
+		});
 		frm.set_query('select_event', function(){
 			return{
 				filters:{
@@ -12,6 +22,7 @@ frappe.ui.form.on('Participant Registration', {
 		})
 	},
 	participant_type : function(frm){
+
 		frm.set_value('participant_id', '')
 		frm.set_value('participant_name', '')
 	},
@@ -49,12 +60,12 @@ frappe.ui.form.on('Participant Registration', {
 			}
 		})
 	},
-	participant_id : function(frm){
+	participant_id : function(frm){	
 		frappe.call({
 			method: 'wsc.wsc.doctype.participant_registration.participant_registration.get_participant_name',
 			args: {
 				participant_type : frm.doc.participant_type,
-				participant_id : frm.doc.participant_id
+				participant_id : frm.doc.participant_id,
 			},
 			callback: function(result){
 				frm.set_value("participant_name", result.message)
