@@ -18,7 +18,8 @@
   "event_name",
   "program_name",
   "event_time",
-  "participant_name"
+  "participant_name",
+  "amended_from"
  ],
  "fields": [
   {
@@ -38,16 +39,19 @@
    "fieldname": "select_event",
    "fieldtype": "Link",
    "label": "Select Event",
-   "options": "TnP Event"
+   "options": "TnP Event",
+   "read_only": 1
   },
   {
    "fieldname": "event_date",
    "fieldtype": "Date",
-   "label": "Event Date"
+   "label": "Event Date",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_id4mt",
-   "fieldtype": "Column Break"
+   "fieldtype": "Column Break",
+   "read_only": 1
   },
   {
    "fieldname": "participant_type",
@@ -64,12 +68,14 @@
   {
    "fieldname": "event_name",
    "fieldtype": "Data",
-   "label": "Event Name"
+   "label": "Event Name",
+   "read_only": 1
   },
   {
    "fieldname": "event_time",
    "fieldtype": "Data",
-   "label": "Event Time"
+   "label": "Event Time",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_si5vh",
@@ -79,11 +85,21 @@
    "fieldname": "participant_name",
    "fieldtype": "Data",
    "label": "Participant Name"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Participant Registration",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-09-21 17:05:14.042229",
+ "modified": "2023-10-21 12:29:28.519088",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Registration",
