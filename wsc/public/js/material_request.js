@@ -19,12 +19,12 @@ frappe.ui.form.on('Material Request', {
 				}
 			});
         }
-		if (frm.doc.material_request_type ==='Material Transfer' && frm.doc.workflow_state !== 'Approved by GM-Procurement & Contract Management'){
+		if (frm.doc.material_request_type ==='Material Transfer' && frm.doc.workflow_state !== 'Approved by Purchase Manager'){
             frm.remove_custom_button("Material Transfer","Create");
 			frm.remove_custom_button("Material Transfer (In Transit)","Create");
 			frm.remove_custom_button("Pick List","Create");
         }
-		if (frm.doc.material_request_type ==="Material Issue" && frm.doc.workflow_state !== 'Approved by GM-Procurement & Contract Management'){
+		if (frm.doc.material_request_type ==="Material Issue" && frm.doc.workflow_state !== 'Approved by Purchase Manager'){
             frm.remove_custom_button("Issue Material","Create");
         }
     },
@@ -37,6 +37,16 @@ frappe.ui.form.on('Material Request', {
 	}
 });
 
+frappe.ui.form.on('Material Request', {
+	refresh: function(frm) {
+		frm.set_df_property('material_request_type', 'options', ['Purchase', 'Material Transfer','Material Issue']);
+	}
+});	
+frappe.ui.form.on('Material Request', {
+	onload: function(frm) {
+	frm.set_df_property('status', 'options', ['Draft', 'Submitted','Hold','Cancelled','Pending','Partially Ordered']);
+	}
+});		
 
 frappe.ui.form.on("Material Request Item", "qty", function(frm, cdt, cdn) {
     var d = locals[cdt][cdn];

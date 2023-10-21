@@ -3519,35 +3519,11 @@
     "parent": "Accountant Admin",
     "parentfield": "block_modules",
     "parenttype": "Module Profile"
-   },
-   {
-    "module": "WSC",
-    "parent": "Accountant Admin",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "GST India",
-    "parent": "Accountant Admin",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "Income Tax India",
-    "parent": "Accountant Admin",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
-   },
-   {
-    "module": "VAT India",
-    "parent": "Accountant Admin",
-    "parentfield": "block_modules",
-    "parenttype": "Module Profile"
    }
   ],
   "docstatus": 0,
   "doctype": "Module Profile",
-  "modified": "2023-03-10 11:02:06.773943",
+  "modified": "2023-10-20 16:54:21.504048",
   "module_profile_name": "Accountant Admin",
   "name": "Accountant Admin"
  },

@@ -30,7 +30,7 @@ frappe.ui.form.on("Student Clearance Application", {
             callback: function(response) {
                 if (response.message && response.message.is_student) {
                     frm.set_df_property('clearance_type', 'hidden', 1);
-                    frm.set_df_property('departments_clearance_status', 'read_only', 1);
+                    // frm.set_df_property('departments_clearance_status', 'read_only', 1);
                     frm.refresh_field('departments_clearance_status');
                 }
             }
