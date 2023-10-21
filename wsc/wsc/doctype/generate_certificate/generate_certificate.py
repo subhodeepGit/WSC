@@ -6,7 +6,12 @@ from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 
 class GenerateCertificate(Document):
-	pass
+	def validate(self):
+		if self.is_new():
+			participant=self.participant_id
+			select_event=self.select_event
+			if frappe.get_all("Generate Certificate",{"select_event":select_event,"participant_id":participant,"docstatus":1}):
+				frappe.throw("<b> Certificate Has Been Generated For The Participant </b>")
 # ----------------------------------------------------------------------------------------------------------------------
 @frappe.whitelist()
 def get_program_id(event_id):
