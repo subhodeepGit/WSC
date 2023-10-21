@@ -26,10 +26,6 @@ frappe.ui.form.on('Material Request', {
         }
 		if (frm.doc.material_request_type ==="Material Issue" && frm.doc.workflow_state !== 'Approved by Purchase Manager'){
             frm.remove_custom_button("Issue Material","Create");
-		
-		frm.set_df_property('material_request_type', 'options', ['Purchase', 'Material Transfer','Material Issue']);
-		// frm.set_df_property('group_based_on', 'options', ['Batch', 'Course', 'Activity', 'Mentor-Mentee']);
-		// frm.refresh_field('material_request_type');
         }
     },
 	calculate_grand_total: function(frm) {
@@ -41,6 +37,16 @@ frappe.ui.form.on('Material Request', {
 	}
 });
 
+frappe.ui.form.on('Material Request', {
+	refresh: function(frm) {
+		frm.set_df_property('material_request_type', 'options', ['Purchase', 'Material Transfer','Material Issue']);
+	}
+});	
+frappe.ui.form.on('Material Request', {
+	onload: function(frm) {
+	frm.set_df_property('status', 'options', ['Draft', 'Submitted','Hold','Cancelled','Pending','Partially Ordered']);
+	}
+});		
 
 frappe.ui.form.on("Material Request Item", "qty", function(frm, cdt, cdn) {
     var d = locals[cdt][cdn];
