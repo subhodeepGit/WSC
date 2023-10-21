@@ -340,7 +340,7 @@ def get_program_enrollment(academic_term,programs=None,class_data=None):
             `tabProgram Enrollment` pe {condition2}
         join `tabStudent` s ON s.name=pe.student
         where
-            pe.academic_term = %(academic_term)s  {condition1}
+            pe.admission_status="Admitted" and pe.academic_term = %(academic_term)s  {condition1}
         order by
             pe.student asc
         '''.format(condition1=condition1, condition2=condition2),
