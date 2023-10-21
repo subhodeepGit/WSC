@@ -9,7 +9,8 @@ frappe.listview_settings['Program Enrollment'] = {
         else if (doc.admission_status=="Provisional Admission" && doc.docstatus==1) {
 			return [__("Provisional Admission"), "orange", "admission_status,=,Provisional Admission"];
 		}
-
-       
+		else if (doc.docstatus==0) {
+			return [__("Draft"), "yellow", "admission_status,=,Draft"];
+		}
 	}
 };

@@ -3,7 +3,12 @@
 
 frappe.ui.form.on('TnP Program', {
 	refresh: function(frm) {
-
+		if(frm.is_new()){
+			frm.set_df_property('program_status', 'options', ['Scheduled'])
+		}
+		else{
+			frm.set_df_property('program_status', 'options', ['Scheduled', 'Completed', 'Cancelled'])
+		}
 	},
 	setup: function(frm){
 		const date = new Date()
@@ -12,26 +17,36 @@ frappe.ui.form.on('TnP Program', {
 		let day = String(date.getDate()).padStart(2,'0')
 		frm.set_value('current_date', `${year}-${month}-${day}`)
 	},
-	// current_date: function(frm){
-	// 	frm.fields_dict.start_date.datepicker.update({
-    //         minDate: frm.doc.current_date ? new Date(frm.doc.current_date) : null
-    //     });
-	// 	alert(minDate)
+	start_date(frm) {
+        frm.fields_dict.end_date.datepicker.update({
+            minDate: frm.doc.start_date ? new Date(frm.doc.start_date) : null
+        });
+    },
+    end_date(frm) {
+        frm.fields_dict.exam_start_date.datepicker.update({
+            maxDate: frm.doc.end_date ? new Date(frm.doc.end_date) : null
+        });
+    },
+	// start_date : function(frm){
+	// 	if(frm.doc.start_date && frm.doc.end_date){
+	// 		if(frm.doc.start_date > frm.doc.end_date){
+	// 			frappe.throw("Program Start Date should be Less than Application End date");
+	// 		}
+	// 	}
+	// 	if(frm.doc.start_date < frm.doc.current_date){
+	// 		frappe.throw('Start date cannot be before current date')
+	// 	}
 	// },
-	start_date : function(frm){
-		if(frm.doc.start_date && frm.doc.end_date){
-			if(frm.doc.start_date > frm.doc.end_date){
-				frappe.throw("Application Start Date should be Less than Application Start date");
-			}
-		}
-	},
-	end_date:function(frm){
-		if(frm.doc.start_date && frm.doc.end_date){
-			if(frm.doc.end_date < frm.doc.start_date){
-				frappe.throw("Application End Date should be Greater than Application Start date");
-			}
-		}
-	},
+	// end_date:function(frm){
+	// 	if(frm.doc.start_date && frm.doc.end_date){
+	// 		if(frm.doc.end_date < frm.doc.start_date){
+	// 			frappe.throw("Program End Date should be Greater than Application Start date");
+	// 		}
+	// 	}
+	// 	if(frm.doc.end_date < frm.doc.current_date){
+	// 		frappe.throw('End date cannot be before current date')
+	// 	}
+	// },
 });
 
 // --------------------------------------------------

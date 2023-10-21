@@ -36,7 +36,8 @@ frappe.ui.form.on('Entrance Exam Centre Allocation', {
 				filters:{
 					'academic_year':frm.doc.academic_year,
 					'academic_term':frm.doc.academic_term,
-					'available_center': 1
+					'available_center': 1,
+					"docstatus":1
 				}
 			}
 		})

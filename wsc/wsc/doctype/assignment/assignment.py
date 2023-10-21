@@ -62,10 +62,10 @@ def get_criteria_details_amd(course, assessment_criteria,assignment_name):
 		for t in amd_data:
 			amd_child_data=frappe.get_all("Assignment Marks Distribution Child",{"parent":t['name'],
 																		"assignment_name":assignment_name},
-																		['name',"total_marks","weightage"])
+																		['name',"total_marks","weightage","passing_marks"])
 			for j in amd_child_data:
 				total_marks=j["total_marks"]
-				passing_marks=j["total_marks"]
+				passing_marks=j["passing_marks"]
 				weightage=j["weightage"]
 
 		final_data=[total_marks, passing_marks,weightage]	
