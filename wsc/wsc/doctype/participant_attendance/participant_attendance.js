@@ -3,7 +3,15 @@
 
 frappe.ui.form.on('Participant Attendance', {
 	refresh: function(frm) {
-
+        frm.set_query("select_event", function () {
+			return {
+				filters:{
+					"docstatus":1
+				}
+			}
+		});
+		frm.set_df_property('selected_participants_table', 'cannot_add_rows', true);
+        frm.set_df_property('selected_participants_table', 'cannot_add_rows', true);
 	},
 	selected_program : function(frm){
 		frappe.call({
@@ -53,6 +61,7 @@ frappe.ui.form.on('Participant Attendance', {
 				}
 				frm.refresh()
 				frm.refresh_field('selected_participants_table')
+				frm.save()
 			}
 		})
 	}

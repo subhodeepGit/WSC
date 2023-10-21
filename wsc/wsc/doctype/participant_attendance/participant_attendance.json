@@ -15,7 +15,8 @@
   "event_name",
   "program_name",
   "selected_participants_section",
-  "selected_participants_table"
+  "selected_participants_table",
+  "amended_from"
  ],
  "fields": [
   {
@@ -44,7 +45,8 @@
   {
    "fieldname": "event_name",
    "fieldtype": "Data",
-   "label": "Event Name"
+   "label": "Event Name",
+   "read_only": 1
   },
   {
    "fieldname": "get_participants",
@@ -61,11 +63,21 @@
    "fieldtype": "Table",
    "label": "Selected Participants Table",
    "options": "Selected participants list"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Participant Attendance",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-09-21 17:53:21.634665",
+ "modified": "2023-10-21 16:18:25.280052",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Attendance",
