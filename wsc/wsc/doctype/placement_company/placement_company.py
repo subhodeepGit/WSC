@@ -26,7 +26,8 @@ def create_placement_drive(source_name, target_doc=None):
         "Placement Company": {
             "doctype": "Placement Drive",
             "field_map": {
-                "company_name": "placement_company"
+                # "company_name": "placement_company"
+                "name": "placement_company"
             },
             "validation": {
                 "docstatus": ["!=", 2]
