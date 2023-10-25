@@ -8,6 +8,10 @@ import json
 
 class Generatecertificatetool(Document):
 	def validate(self):
+		if self.is_new():
+			if frappe.get_all("Generate certificate tool",{"docstatus":1,"select_event":self.select_event}):
+				frappe.throw("Certificate has been Generate for this Event")
+	def on_submit(self):
 		for d in self.get('selected_participants_list'):
 			result = frappe.new_doc('Generate Certificate')
 			result.select_event = self.select_event

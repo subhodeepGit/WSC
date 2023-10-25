@@ -8,17 +8,20 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "participant_type_section",
   "participant_type",
   "section_break_si5vh",
+  "participant_id",
+  "participant_name",
+  "section_break_rpan6",
   "select_event",
   "select_program",
   "event_date",
-  "participant_id",
   "column_break_id4mt",
   "event_name",
   "program_name",
   "event_time",
-  "participant_name"
+  "amended_from"
  ],
  "fields": [
   {
@@ -43,11 +46,13 @@
   {
    "fieldname": "event_date",
    "fieldtype": "Date",
-   "label": "Event Date"
+   "label": "Event Date",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_id4mt",
-   "fieldtype": "Column Break"
+   "fieldtype": "Column Break",
+   "read_only": 1
   },
   {
    "fieldname": "participant_type",
@@ -64,26 +69,50 @@
   {
    "fieldname": "event_name",
    "fieldtype": "Data",
-   "label": "Event Name"
+   "label": "Event Name",
+   "read_only": 1
   },
   {
    "fieldname": "event_time",
    "fieldtype": "Data",
-   "label": "Event Time"
+   "label": "Event Time",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_si5vh",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Participant Details"
   },
   {
    "fieldname": "participant_name",
    "fieldtype": "Data",
-   "label": "Participant Name"
+   "label": "Participant Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Participant Registration",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "participant_type_section",
+   "fieldtype": "Section Break",
+   "label": "Participant Type"
+  },
+  {
+   "fieldname": "section_break_rpan6",
+   "fieldtype": "Section Break",
+   "label": "Event Details"
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-09-21 17:05:14.042229",
+ "modified": "2023-10-21 15:55:57.995292",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Registration",

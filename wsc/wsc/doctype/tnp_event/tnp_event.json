@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "TPE.-.#####",
+ "autoname": "TPE.-.YYYY.-.#####",
  "creation": "2023-05-29 18:04:25.977564",
  "default_view": "List",
  "doctype": "DocType",
@@ -204,7 +204,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-20 12:16:19.383408",
+ "modified": "2023-10-21 15:58:35.116029",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "TnP Event",
@@ -224,6 +224,7 @@
    "write": 1
   }
  ],
+ "search_fields": "program_name,event_name,event_location",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

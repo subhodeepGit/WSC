@@ -25,7 +25,8 @@
   "participant_type",
   "column_break_ga9pw",
   "participant_name",
-  "completion_status"
+  "completion_status",
+  "amended_from"
  ],
  "fields": [
   {
@@ -50,12 +51,14 @@
    "fetch_from": "select_event.event_name",
    "fieldname": "event_name",
    "fieldtype": "Data",
-   "label": "Event Name"
+   "label": "Event Name",
+   "read_only": 1
   },
   {
    "fieldname": "participant_name",
    "fieldtype": "Data",
-   "label": "Participant Name"
+   "label": "Participant Name",
+   "read_only": 1
   },
   {
    "fieldname": "event_details_section",
@@ -66,7 +69,8 @@
    "fetch_from": "select_event.event_start_date",
    "fieldname": "event_start_date",
    "fieldtype": "Data",
-   "label": "Event Start Date"
+   "label": "Event Start Date",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_jvzbw",
@@ -76,7 +80,8 @@
    "fetch_from": "select_event.event_end_date",
    "fieldname": "event_end_date",
    "fieldtype": "Data",
-   "label": "Event End Date"
+   "label": "Event End Date",
+   "read_only": 1
   },
   {
    "fieldname": "program_details_section",
@@ -116,7 +121,8 @@
   {
    "fieldname": "participant_type",
    "fieldtype": "Data",
-   "label": "Participant Type"
+   "label": "Participant Type",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_ga9pw",
@@ -126,12 +132,23 @@
    "fieldname": "completion_status",
    "fieldtype": "Select",
    "label": "Completion Status",
-   "options": "Complete\nIncomplete"
+   "options": "Complete\nIncomplete",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Generate Certificate",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-09-27 15:52:55.558072",
+ "modified": "2023-10-21 16:38:22.755346",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Generate Certificate",

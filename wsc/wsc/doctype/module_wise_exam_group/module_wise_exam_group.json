@@ -374,7 +374,6 @@
   },
   {
    "default": "0",
-   "fetch_from": "class.is_restrict_",
    "fieldname": "is_restricted_class",
    "fieldtype": "Check",
    "hidden": 1,
@@ -384,7 +383,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-06 17:30:28.251621",
+ "modified": "2023-10-21 15:51:00.046427",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Module Wise Exam Group",

@@ -46,6 +46,7 @@ frappe.ui.form.on('TnP Event', {
 			frappe.throw("Event end date cannot be after of program end date")
 		}
 	},
+	
 	event_start_date: function(frm){
 		if(frm.doc.program_start_date && frm.doc.program_end_date && frm.doc.event_start_date){
 			if(frm.doc.event_start_date < frm.doc.program_start_date || frm.doc.event_start_date > frm.doc.program_end_date){

@@ -6,7 +6,8 @@ frappe.ui.form.on('Generate Certificate', {
 		frm.set_query('select_event', function(){
 			return{
 				filters:{
-					'has_certificate' : 1
+					'has_certificate' : 1,
+					"docstatus":1 
 				}
 			}
 		})	
