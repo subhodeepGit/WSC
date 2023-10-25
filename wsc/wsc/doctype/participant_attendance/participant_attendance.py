@@ -6,7 +6,11 @@ from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 
 class ParticipantAttendance(Document):
-	pass
+	def validate(self):
+		if self.is_new():
+			data=frappe.get_all("Participant Attendance",{"select_event":self.select_event, "docstatus":1})
+			if data:
+				frappe.throw("Participant Attendance for the event <b>%s</b> has already marked"%(self.select_event))
 
 @frappe.whitelist()
 def get_program_name(program_id = None):
@@ -30,7 +34,7 @@ def get_event_name(event_id):
 
 @frappe.whitelist()
 def get_participants(event_id):
-	participant_data = frappe.get_all('Participant Registration', filters = [['select_event', '=', event_id]], fields = ['participant_id', 'participant_name', 'participant_type'])
+	participant_data = frappe.get_all('Participant Registration', filters = [['select_event', '=', event_id],['docstatus','=','1']], fields = ['participant_id', 'participant_name', 'participant_type'])
 	return participant_data
 
 

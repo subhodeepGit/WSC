@@ -133,7 +133,7 @@ def get_enroll_students(programs=None,semester=None,academic_year=None,academic_
 	if academic_term:
 		filter.update({"academic_term":academic_term})
 	students=[]
-	for student in frappe.get_all("Program Enrollment",{"academic_year":academic_year,"programs":programs,"program":semester,"docstatus":1,"academic_term":academic_term},['student'],group_by="student",order_by="roll_no asc"):
+	for student in frappe.get_all("Program Enrollment",{"admission_status":"Admitted","academic_year":academic_year,"programs":programs,"program":semester,"docstatus":1,"academic_term":academic_term},['student'],group_by="student",order_by="roll_no asc"):
 	# for student in frappe.get_all("Current Educational Details",filter,['parent'],group_by="parent"):
 		completed=False
 		for course_enroll in frappe.get_all("Course Enrollment",{"student":student.student,"academic_year":academic_year}):

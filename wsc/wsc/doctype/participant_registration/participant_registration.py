@@ -34,3 +34,29 @@ def get_participant_name(participant_type = None, participant_id = None):
 		elif(participant_type == 'Employee'):
 			employee_name = frappe.db.sql(""" SELECT employee_name FROM `tabEmployee` WHERE name ='%s'"""%(participant_id))
 			return employee_name[0][0]
+		
+@frappe.whitelist()
+@frappe.validate_and_sanitize_search_inputs
+def get_participant_id(doctype, txt, searchfield, start, page_len, filters):
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)
+	data=[]
+	if doctype=="Student":
+		data=frappe.db.sql("""select name,student_name from `tabStudent` where ({key} like %(txt)s or {scond}) 
+	 					 and enabled={enabled}
+						 """.format(
+					**{
+						"key": searchfield,
+						"scond": searchfields,
+						"enabled":filters.get("enabled")
+					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	elif doctype=="Employee":
+		data=frappe.db.sql("""select name,employee_name from `tabEmployee` where ({key} like %(txt)s or {scond}) 
+	 					 and status='{status}'
+						 """.format(
+					**{
+						"key": searchfield,
+						"scond": searchfields,
+						"status":filters.get("status")
+					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})			
+	return data

@@ -2,18 +2,17 @@
 // For license information, please see license.txt
 /* eslint-disable */
 
+// Student ID Number
+// Placement Drive ID
+// Round Status
+
 frappe.query_reports["Selection Round Report"] = {
 	"filters": [
-		{
-            "fieldname":"from_date",
-            "label": __("From Date"),
-            "fieldtype": "Date",
-            "reqd":1,
-        },
         {
-            "fieldname":"to_date",
-            "label": __("To Date"),
-            "fieldtype": "Date",
+            "fieldname":"student_id",
+            "label": __("Student ID"),
+            "fieldtype": "Link",
+            "options": "Student",
             "reqd":1,
         },
 	]
