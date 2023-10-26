@@ -22,14 +22,16 @@
   "program_end_date",
   "eligible_participants_section",
   "get_eligible_participants_list",
-  "selected_participants_list"
+  "selected_participants_list",
+  "amended_from"
  ],
  "fields": [
   {
    "fieldname": "select_program",
    "fieldtype": "Link",
    "label": "Select Program",
-   "options": "TnP Program"
+   "options": "TnP Program",
+   "read_only": 1
   },
   {
    "fieldname": "select_event",
@@ -48,7 +50,8 @@
    "fetch_from": "select_program.program_name",
    "fieldname": "program_name",
    "fieldtype": "Data",
-   "label": "Program Name"
+   "label": "Program Name",
+   "read_only": 1
   },
   {
    "fetch_from": "select_event.event_name",
@@ -56,6 +59,7 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Event Name",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -78,7 +82,8 @@
    "fetch_from": "select_event.event_start_date",
    "fieldname": "event_start_date",
    "fieldtype": "Data",
-   "label": "Event Start Date"
+   "label": "Event Start Date",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_3u0gi",
@@ -88,7 +93,8 @@
    "fetch_from": "select_event.event_end_date",
    "fieldname": "event_end_date",
    "fieldtype": "Data",
-   "label": "Event End Date"
+   "label": "Event End Date",
+   "read_only": 1
   },
   {
    "fieldname": "program_details_section",
@@ -99,7 +105,8 @@
    "fetch_from": "select_program.start_date",
    "fieldname": "program_start_date",
    "fieldtype": "Data",
-   "label": "Program Start Date"
+   "label": "Program Start Date",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_l9wng",
@@ -109,12 +116,23 @@
    "fetch_from": "select_program.end_date",
    "fieldname": "program_end_date",
    "fieldtype": "Data",
-   "label": "Program End Date"
+   "label": "Program End Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Generate certificate tool",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-10-05 15:33:41.147494",
+ "modified": "2023-10-21 17:05:30.869748",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Generate certificate tool",

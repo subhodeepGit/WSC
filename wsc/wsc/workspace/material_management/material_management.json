@@ -555,54 +555,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Contract",
-   "link_count": 4,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Contract",
-   "link_count": 0,
-   "link_to": "Contract",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Contract Template",
-   "link_count": 0,
-   "link_to": "Contract Template",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Payment Term",
-   "link_count": 0,
-   "link_to": "Payment Term",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Payment Term Template",
-   "link_count": 0,
-   "link_to": "Payment Terms Template",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Masters",
    "link_count": 7,
    "onboard": 0,
@@ -733,9 +685,37 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Contract",
+   "link_count": 2,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Contract",
+   "link_count": 0,
+   "link_to": "Contract",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Contract Template",
+   "link_count": 0,
+   "link_to": "Contract Template",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-09-20 15:22:31.256109",
+ "modified": "2023-10-25 15:19:39.573185",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Material Management",

@@ -45,7 +45,8 @@
    "fieldname": "academic_year",
    "fieldtype": "Link",
    "label": "Academic Year",
-   "options": "Academic Year"
+   "options": "Academic Year",
+   "read_only": 1
   },
   {
    "fieldname": "group_based_on",
@@ -158,6 +159,7 @@
    "fetch_from": "tot_participant_selection.semester",
    "fieldname": "semester",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Semester",
    "options": "Program"
   },
@@ -232,7 +234,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-19 13:07:38.345353",
+ "modified": "2023-10-25 15:49:10.748281",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Group",

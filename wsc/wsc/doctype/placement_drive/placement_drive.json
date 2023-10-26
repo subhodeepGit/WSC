@@ -71,7 +71,8 @@
    "fieldname": "location_of_drive",
    "fieldtype": "Link",
    "label": "Location of Drive",
-   "options": "Location"
+   "options": "Location",
+   "reqd": 1
   },
   {
    "fieldname": "drive_details_section",
@@ -156,17 +157,18 @@
    "reqd": 1
   },
   {
+   "default": "0",
    "fieldname": "current_cgpapercentage",
    "fieldtype": "Float",
-   "label": "Current CGPA",
-   "reqd": 1
+   "hidden": 1,
+   "label": "Current CGPA"
   },
   {
    "fieldname": "active_backlog",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Active Backlog",
-   "options": "0\n1\n2\n3",
-   "reqd": 1
+   "options": "0\n1\n2\n3"
   },
   {
    "fetch_from": "placement_company.sector",
@@ -256,7 +258,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-22 13:55:29.302491",
+ "modified": "2023-10-25 11:15:51.648463",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive",

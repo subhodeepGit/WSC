@@ -21,7 +21,6 @@ class PlacementDrive(Document):
 		rounds_set = set(rounds)
 		# error_code = 500
 		if len(rounds) != len(rounds_set):
-			print(len(rounds) , len(rounds_set))
 			frappe.throw("Duplicate Round Names in rounds of placement")
 
 	def on_submit(self):
@@ -49,7 +48,6 @@ class PlacementDrive(Document):
 	
 @frappe.whitelist()
 def get_eligibility(body):
-	print("\n\nhit")
 	#from placement drive
 	body = json.loads(body)
 
@@ -61,7 +59,6 @@ def get_eligibility(body):
 	placement_drive_for = body['placement_drive_for'].lower()
 	
 	program = body['program']  #need loops
-	# print(len(program))
 	eligibility_criteria = body['eligibility_criteria'] #need loops
 
 	final_student_list=[]
@@ -77,30 +74,22 @@ def get_eligibility(body):
 								"semesters":j['semester']
 							} , 
 							['programs' , 'semesters' , 'academic_year' , 'academic_term',"parent"]) #from students.
-		print(len(current_education))
 		for t in current_education:
-			
 			student_dict[t['parent']] = []
 			# final_student_list.append(t)
 	
 	for t in student_dict:
 		count = 0
-		# print(t)
 		student_list= frappe.get_all("Educational Details",{"parent":t}, ['qualification',"score",'year_of_completion','parent'])  #from student
 		experience_detail = frappe.get_all("Experience child table" , {"parent":t} , ['job_duration'])  #from student  #can be empty
 		student_cgpa = frappe.get_all("Exam Assessment Result" , {"student":t, "docstatus":1} , ['name' ,'overall_cgpa' ])
-		# print("\n\nstudent")
-		# print(student_cgpa)
 		if(len(student_cgpa) != 0 and len(student_list) != 0):
-			# print(student_list , student_cgpa)
 			backlog_record = frappe.get_all("Evaluation Result Item" , {"parent":student_cgpa[0]['name']} , ['result' , 'parent'])  
 			for m in backlog_record:
 
 				if m['result'] == 'F':
 					count+=1
 		
-			list_data = student_dict[t]
-			# print(list_data , t)
 			if len(experience_detail) == 0 and placement_drive_for == "freshers":  #For freshers only
 				
 				for k in student_list:
@@ -118,32 +107,14 @@ def get_eligibility(body):
 							final_student_list.append(k)
 
 			elif placement_drive_for == "both":
-				# print("\nboth")
 				for k in student_list:
-					# print("\n" ,k)
 					for j in eligibility_criteria:	
 						if k['qualification'] == j['qualification'] and k['score'] >= j['percentage'] and req_cgpa <= student_cgpa[0]['overall_cgpa'] and count <= backlog:
 							# list_data.append(k)
 							final_student_list.append(k)
-							# print("\n\nlist_data",list_data)
 		else:
 			continue
 			
-		# student_dict[t]=list_data
-		
-	# print("\n\nfinal",final_student_list)
-
-	# for i in student_dict:
-	# 	print(i)
-		# for j in final_student_list:
-			# print(j)
-			# student = frappe.get_all("Exam Assessment Result" , {"name":j['parent']} , ['academic_year' , 'programs' , 'student_name'])
-			
-			# for k in student_dict[i]:
-			# 	k['programs'] = j['programs']
-			# 	k['academic_year'] = j['academic_year']
-			# 	k['student_name'] = student[0]['student_name']
-	# print(student_dict)
 	for i in final_student_list:
 		
 		student = frappe.get_all("Exam Assessment Result" , {"student":i['parent']} , ['academic_year' , 'programs' , 'student_name'])
@@ -151,7 +122,6 @@ def get_eligibility(body):
 		i['student_name'] = student[0]['student_name']
 		i['academic_year'] = student[0]['academic_year']
 		i['programs'] = student[0]['programs']
-	# print(final_student_list)
 	return final_student_list
 
 	

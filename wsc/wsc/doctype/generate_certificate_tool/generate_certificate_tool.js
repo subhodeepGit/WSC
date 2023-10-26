@@ -20,10 +20,13 @@ frappe.ui.form.on('Generate certificate tool', {
 		frm.set_query('select_event', function(){
 			return{
 				filters:{
-					'has_certificate' : 1
+					'has_certificate' : 1,
+					"docstatus":1
 				}
 			}
 		})	
+		frm.set_df_property('selected_participants_list', 'cannot_add_rows', true);
+        frm.set_df_property('selected_participants_list', 'cannot_add_rows', true);
 	},
 	select_event: function(frm){
 		frappe.call({
@@ -60,6 +63,7 @@ frappe.ui.form.on('Generate certificate tool', {
 				}
 				frm.refresh()
 				frm.refresh_field('selected_participants_list')
+				frm.save()
 			}
 		})
 	}

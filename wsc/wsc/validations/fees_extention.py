@@ -96,24 +96,36 @@ def online_payment_on_submit(self):
                                                     ["name","date_time_of_transaction","paying_amount",
                                                         "total_outstanding_amout","party"])
         Recon_info=Recon_info[0]
-        frappe.db.set_value("OnlinePayment",Recon_info['name'],"payment_status",1)
-        frappe.db.set_value("OnlinePayment",Recon_info['name'],"payment_id",self.name)
+        # frappe.db.set_value("OnlinePayment",Recon_info['name'],"payment_status",1)
+        # frappe.db.set_value("OnlinePayment",Recon_info['name'],"payment_id",self.name)
+        doc=frappe.get_doc("OnlinePayment",Recon_info['name'])
+        doc.payment_status=1
+        doc.payment_id=self.name
+        doc.save()
     if self.mode_of_payment=="Online PG AXIS":
         Recon_info=frappe.get_all("OnlinePayment",{"transaction_id":self.reference_no,"transaction_status":"SUCCESS",
                                                    "docstatus":1,"payment_status":0,"gateway_name":"AXIS"},
                                                         ["name","date_time_of_transaction","paying_amount","total_outstanding_amout","party"])
         Recon_info=Recon_info[0]
-        frappe.db.set_value("OnlinePayment",Recon_info['name'],"payment_status",1)
-        frappe.db.set_value("OnlinePayment",Recon_info['name'],"payment_id",self.name)    
+        # frappe.db.set_value("OnlinePayment",Recon_info['name'],"payment_status",1)
+        # frappe.db.set_value("OnlinePayment",Recon_info['name'],"payment_id",self.name)    
+        doc=frappe.get_doc("OnlinePayment",Recon_info['name'])
+        doc.payment_status=1
+        doc.payment_id=self.name
+        doc.save()
 
 def online_payment_on_cancel(self):
-    if self.mode_of_payment=="Online Payment":
+    if self.mode_of_payment=="Online PG HDFC" or self.mode_of_payment=="Online PG AXIS":
         Recon_info=frappe.get_all("OnlinePayment",{"transaction_id":self.reference_no},
                                                         ["name","date_time_of_transaction","paying_amount","total_outstanding_amout","party"])
         Recon_info=Recon_info[0]
-        frappe.db.set_value("OnlinePayment",Recon_info['name'],"payment_status",0)
-        # frappe.db.sql("""UPDATE `tabOnlinePayment` SET "payment_status" = 0 and "payment_id"="" WHERE name= '%s' """%(Recon_info['name']))
-        frappe.db.set_value("OnlinePayment",Recon_info['name'],"payment_id","")
+        # frappe.db.set_value("OnlinePayment",Recon_info['name'],"payment_status",0)
+        # # frappe.db.sql("""UPDATE `tabOnlinePayment` SET "payment_status" = 0 and "payment_id"="" WHERE name= '%s' """%(Recon_info['name']))
+        # frappe.db.set_value("OnlinePayment",Recon_info['name'],"payment_id","")
+        doc=frappe.get_doc("OnlinePayment",Recon_info['name'])
+        doc.payment_status=0
+        doc.payment_id=""
+        doc.save()
 
 # def recon_rtgs_neft(self):
 #     if self.mode_of_payment=="NEFT" or self.mode_of_payment=="RTGS" or self.mode_of_payment=="IMPS":

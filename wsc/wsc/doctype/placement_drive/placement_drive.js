@@ -12,6 +12,16 @@ frappe.ui.form.on('Placement Drive', {
 	// 		}
 	// 	})
 	// },
+	application_start_date(frm) {
+        frm.fields_dict.application_end_date.datepicker.update({
+            minDate: frm.doc.application_start_date ? new Date(frm.doc.application_start_date) : null
+        });
+    },
+    application_end_date(frm) {
+        frm.fields_dict.application_start_date.datepicker.update({
+            maxDate: frm.doc.application_end_date ? new Date(frm.doc.application_end_date) : null
+        });
+    },
 	get_students: function(frm){
 		if(!frm.is_new()){
 			let body = JSON.stringify({
@@ -158,3 +168,4 @@ frappe.ui.form.on('Placement Drive', {
 		}
 	}
 });
+
