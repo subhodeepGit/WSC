@@ -192,48 +192,48 @@ def generate_payment(payment_schedule):
 				error = True
 				err_msg = frappe.local.message_log and "\n\n".join(frappe.local.message_log) or cstr(e)
  
-		elif outstanding_amount==0: ##### testing correction
-			try:
-				############################# data entry in payment Refund Entry 
-				payment_refund=frappe.new_doc("Payment Refund")
-				"""Type of Payment"""
-				payment_refund.payment_type="Receive"
-				payment_refund.posting_date=utils.today()
-				payment_refund.mode_of_payment=doc.type_of_transaction
-				"""Payment From / To"""
-				payment_refund.party_type="Student"
-				payment_refund.party=t.student
-				payment_refund.party_name=t.student_name
-				student_email_id=frappe.get_all("Student",{"name":t.student},["student_email_id","sams_portal_id"])
-				payment_refund.student_email=student_email_id[0]["student_email_id"]
-				payment_refund.sams_portal_id=student_email_id[0]["sams_portal_id"]
-				"""Accounts"""
-				mode_of_payment=frappe.get_all("Mode of Payment Account",{"parent":doc.type_of_transaction},["name","parent","default_account"])
-				account_cur=frappe.get_all("Account",{"name":mode_of_payment[0]["default_account"]},['account_currency'])
-				payment_refund.paid_from=mode_of_payment[0]['default_account']
-				payment_refund.paid_from_account_type=account_cur[0]['account_currency']
-				"""Reference"""
-				account=frappe.get_all("Account",filters=[["name","like","%Fees Refundable / Adjustable%"],
-															["account_type","=","Income Account"]],fields=['name'])										
-				payment_refund.append("references",{
-					"fees_category":"Fees Refundable / Adjustable",
-					"account_paid_to":account[0]['name'],
-					"allocated_amount":amount,
-					"total_amount":amount
-				})
-				"""Accounting Dimensions"""
-				cost_cente=frappe.get_all("Company",['cost_center'])
-				payment_refund.cost_center=cost_cente[0]['cost_center']
-				"""Transaction ID"""
-				payment_refund.reference_no=t.utr_no
-				payment_refund.reference_date=data_of_clearing
-				payment_refund.save()
-				payment_refund.submit()
-				frappe.db.set_value("Auto Reconciliation child",t.name,"payment_voucher",payment_refund.name)
-				############################## End 
-			except Exception as e:
-				error = True
-				err_msg = frappe.local.message_log and "\n\n".join(frappe.local.message_log) or cstr(e)
+		# elif outstanding_amount==0: ##### testing correction
+		# 	try:
+		# 		############################# data entry in payment Refund Entry 
+		# 		payment_refund=frappe.new_doc("Payment Refund")
+		# 		"""Type of Payment"""
+		# 		payment_refund.payment_type="Receive"
+		# 		payment_refund.posting_date=utils.today()
+		# 		payment_refund.mode_of_payment=doc.type_of_transaction
+		# 		"""Payment From / To"""
+		# 		payment_refund.party_type="Student"
+		# 		payment_refund.party=t.student
+		# 		payment_refund.party_name=t.student_name
+		# 		student_email_id=frappe.get_all("Student",{"name":t.student},["student_email_id","sams_portal_id"])
+		# 		payment_refund.student_email=student_email_id[0]["student_email_id"]
+		# 		payment_refund.sams_portal_id=student_email_id[0]["sams_portal_id"]
+		# 		"""Accounts"""
+		# 		mode_of_payment=frappe.get_all("Mode of Payment Account",{"parent":doc.type_of_transaction},["name","parent","default_account"])
+		# 		account_cur=frappe.get_all("Account",{"name":mode_of_payment[0]["default_account"]},['account_currency'])
+		# 		payment_refund.paid_from=mode_of_payment[0]['default_account']
+		# 		payment_refund.paid_from_account_type=account_cur[0]['account_currency']
+		# 		"""Reference"""
+		# 		account=frappe.get_all("Account",filters=[["name","like","%Fees Refundable / Adjustable%"],
+		# 													["account_type","=","Income Account"]],fields=['name'])										
+		# 		payment_refund.append("references",{
+		# 			"fees_category":"Fees Refundable / Adjustable",
+		# 			"account_paid_to":account[0]['name'],
+		# 			"allocated_amount":amount,
+		# 			"total_amount":amount
+		# 		})
+		# 		"""Accounting Dimensions"""
+		# 		cost_cente=frappe.get_all("Company",['cost_center'])
+		# 		payment_refund.cost_center=cost_cente[0]['cost_center']
+		# 		"""Transaction ID"""
+		# 		payment_refund.reference_no=t.utr_no
+		# 		payment_refund.reference_date=data_of_clearing
+		# 		payment_refund.save()
+		# 		payment_refund.submit()
+		# 		frappe.db.set_value("Auto Reconciliation child",t.name,"payment_voucher",payment_refund.name)
+		# 		############################## End 
+		# 	except Exception as e:
+		# 		error = True
+		# 		err_msg = frappe.local.message_log and "\n\n".join(frappe.local.message_log) or cstr(e)
 
 	if error:
 		frappe.db.rollback()
