@@ -51,6 +51,7 @@ class Programs(Document):
 		for c in range(int(self.tot_programme)):
 			is_short_term_course=frappe.get_all("Program Grades",{"name":self.program_grade},['is_short_term_course'])
 			program_name=(self.programs_abbreviation)
+			print(program_name)
 			if not frappe.db.exists("Program",program_name):
 				is_existing=False
 				doc=frappe.new_doc("Program")
@@ -61,7 +62,7 @@ class Programs(Document):
 				doc.semester_order=c+1
 				doc.save()
 			else:
-				doc=frappe.get_doc("Program",self.name)
+				doc=frappe.get_doc("Program",program_name)
 				doc.is__tot=self.is_tot
 				doc.save()	
 
