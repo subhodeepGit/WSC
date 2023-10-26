@@ -113,6 +113,8 @@ def permission(doc):
                 for emp in frappe.get_all("Employee",{"name":instr.employee},['user_id']):
                     # if emp.user_id:
                     #     add_user_permission(doc.doctype,doc.name,emp.user_id,doc)
+                        dept=frappe.get_doc("Department",doc.department)
+                        dept.save()
                         programs=frappe.get_doc("Programs",d.programs)
                         programs.save()
                         module=frappe.get_doc("Course",d.course)

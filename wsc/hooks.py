@@ -404,6 +404,9 @@ doc_events = {
     "Task":
     {
         "validate":"wsc.wsc.doctype.task.validate"
+    },
+    "Department":{
+        "validate":"wsc.wsc.doctype.department.validate"
     }
     
     
@@ -487,6 +490,7 @@ override_doctype_class = {
     "Item": "wsc.wsc.validations.item.Item",
     "Leave Application":"wsc.wsc.doctype.leave_application.LeaveApplication",
     "Job Offer":"wsc.wsc.doctype.job_offer.JobOffer",
+    # "Department":"wsc.wsc.doctype.department.Department",
     # "Job Applicant": "wsc.wsc.doctype.job_applicant.Job Applicant"
     # "Data Import": "wsc.wsc.doctype.data_import.DataImport"
 }
