@@ -2428,7 +2428,7 @@
     {
     "amend": 0,
     "cancel": 0,
-    "create": 1,
+    "create": 0,
     "delete": 0,
     "docstatus": 0,
     "doctype": "Custom DocPerm",
@@ -2447,8 +2447,8 @@
     "select": 0,
     "set_user_permissions": 0,
     "share": 0,
-    "submit": 1,
-    "write": 1
+    "submit": 0,
+    "write": 0
     },
     {
     "amend": 0,
@@ -52377,8 +52377,8 @@
  },
  {
   "amend": 0,
-  "cancel": 1,
-  "create": 1,
+  "cancel": 0,
+  "create": 0,
   "delete": 0,
   "docstatus": 0,
   "doctype": "Custom DocPerm",
@@ -52397,8 +52397,8 @@
   "select": 0,
   "set_user_permissions": 0,
   "share": 0,
-  "submit": 1,
-  "write": 1
+  "submit": 0,
+  "write": 0
  },
  {
   "amend": 0,
@@ -60153,7 +60153,7 @@
  {
   "amend": 0,
   "cancel": 0,
-  "create": 1,
+  "create": 0,
   "delete": 0,
   "docstatus": 0,
   "doctype": "Custom DocPerm",
@@ -60172,8 +60172,8 @@
   "select": 0,
   "set_user_permissions": 0,
   "share": 0,
-  "submit": 1,
-  "write": 1
+  "submit": 0,
+  "write": 0
  },
  {
   "amend": 0,
@@ -109726,7 +109726,7 @@
    },
    {
     "amend": 0,
-    "cancel": 0,
+    "cancel": 1,
     "create": 1,
     "delete": 1,
     "docstatus": 0,
@@ -109746,7 +109746,7 @@
     "select": 1,
     "set_user_permissions": 0,
     "share": 0,
-    "submit": 0,
+    "submit": 1,
     "write": 1
    },
    {
