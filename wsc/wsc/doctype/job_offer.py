@@ -4,7 +4,7 @@ from frappe import _
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 from frappe.utils import cint, flt, get_link_to_form
-
+from frappe.utils import getdate, today
 
 class JobOffer(Document):
 	def onload(self):
@@ -16,6 +16,9 @@ class JobOffer(Document):
 		job_offer = frappe.db.exists(
 			"Job Offer", {"job_applicant": self.job_applicant, "docstatus": ["!=", 2]}
 		)
+		if self.offer_date:
+			if (self.offer_date) < today():
+				frappe.throw("Offer Date cannot be a past date.")
 		# if job_offer and job_offer != self.name:
 		# 	frappe.throw(
 		# 		_("Job Offer: {0} is already for Job Applicant: {1}").format(
