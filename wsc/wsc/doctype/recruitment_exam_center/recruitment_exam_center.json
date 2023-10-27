@@ -69,14 +69,17 @@
   },
   {
    "fieldname": "pincode",
-   "fieldtype": "Int",
+   "fieldtype": "Data",
    "label": "Pincode",
+   "length": 6,
    "reqd": 1
   },
   {
    "fieldname": "total_seating_capacity",
-   "fieldtype": "Int",
-   "label": "Total Seating Capacity"
+   "fieldtype": "Data",
+   "label": "Total Seating Capacity",
+   "non_negative": 1,
+   "reqd": 1
   },
   {
    "default": "0",
@@ -87,7 +90,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-29 15:12:49.450925",
+ "modified": "2023-10-26 11:38:45.938345",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Recruitment Exam Center",

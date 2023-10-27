@@ -1,5 +1,5 @@
 frappe.ui.form.on('Employee Grievance', {
-    // setup: function(frm) {
+    setup: function(frm) {
     //     frm.set_query("investigation_cell", function() {
     //         return {
     //             query: "wsc.wsc.validations.employee_grievance.get_cell",
@@ -26,10 +26,20 @@ frappe.ui.form.on('Employee Grievance', {
     //         };
     //     });
     // },
+
+    if (!frappe.user.has_role(["HR Admin","HR Manager/CS Officer","Grievance Cell Member","Director"]) || ! frappe.session.user=="Administrator"){
+        frm.set_query("raised_by", function() {
+            return {
+                query: "wsc.wsc.validations.employee_grievance.test_query",
+            };
+        });
+    }
+
+},
     investigation_cell:function(frm){
         frm.clear_table("grievance_cell_members")
 		frappe.call({
-			method: 'wsc.wsc.validations.employee_grievance.get_cell_members',
+			method: 'wsc.wsc.validations.employee_grievance.get_cell_members',  
 			args: {
 				"investigation_cell":frm.doc.investigation_cell
 			},
@@ -50,28 +60,5 @@ frappe.ui.form.on('Employee Grievance', {
 
         })
     },
-    // onload: function(frm) {
-    //     var user = frappe.session.user;
-    //     var user_roles = frappe.user_roles;
-
-    //     if (user_roles.includes("HR Admin") ||
-    //         user_roles.includes("Director") ||
-    //         user_roles.includes("Grievance Cell Member")) {
-    //         // Users with specified roles can view all documents, so no restriction.
-    //         return;
-    //     }
-
-    //     if (user_roles.includes("Employee")) {
-    //         // Restrict users with only the "Employee" role to their own documents.
-    //         frm.query_filters = {
-    //             "employee": user
-    //         };
-    //     } else {
-    //         // Users with no specified roles should not see any documents.
-    //         frm.query_filters = {
-    //             "name": "No documents"  // Replace with a value that would not match any document
-    //         };
-    //     }
-    // }
 
 });
