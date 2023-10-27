@@ -18,8 +18,8 @@ class AssignmentUpload(Document):
 		if isinstance(end_date, str):
 			end_date=datetime.strptime(end_date, '%Y-%m-%d %H:%M:%S')
 			start_date=datetime.strptime(start_date, '%Y-%m-%d %H:%M:%S')	
-
-		if formatted_datetime < start_date or formatted_datetime > end_date:
+		
+		if formatted_datetime <= start_date or formatted_datetime >= end_date:
 			frappe.throw('Cannot submit assignment before or after assigned dates')
 		else:
 			if self.is_new():
