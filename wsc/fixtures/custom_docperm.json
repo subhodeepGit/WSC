@@ -31176,31 +31176,6 @@
   "write": 1
  },
  {
-  "amend": 0,
-  "cancel": 0,
-  "create": 1,
-  "delete": 0,
-  "docstatus": 0,
-  "doctype": "Custom DocPerm",
-  "email": 0,
-  "export": 1,
-  "if_owner": 0,
-  "import": 0,
-  "modified": "2023-07-28 20:34:50.028328",
-  "name": "00857efd2f",
-  "parent": "Job Applicant",
-  "permlevel": 0,
-  "print": 0,
-  "read": 1,
-  "report": 0,
-  "role": "Employee",
-  "select": 0,
-  "set_user_permissions": 0,
-  "share": 0,
-  "submit": 0,
-  "write": 1
- },
- {
   "amend": 1,
   "cancel": 1,
   "create": 1,
@@ -109652,8 +109627,8 @@
    {
     "amend": 1,
     "cancel": 1,
-    "create": 0,
-    "delete": 0,
+    "create": 1,
+    "delete": 1,
     "docstatus": 0,
     "doctype": "Custom DocPerm",
     "email": 0,
@@ -109672,7 +109647,7 @@
     "set_user_permissions": 0,
     "share": 0,
     "submit": 1,
-    "write": 0
+    "write": 1
    },
    {
     "amend": 0,
@@ -109902,8 +109877,8 @@
    {
     "amend": 1,
     "cancel": 1,
-    "create": 0,
-    "delete": 0,
+    "create": 1,
+    "delete": 1,
     "docstatus": 0,
     "doctype": "Custom DocPerm",
     "email": 0,
@@ -109922,7 +109897,7 @@
     "set_user_permissions": 0,
     "share": 0,
     "submit": 1,
-    "write": 0
+    "write": 1
    },
    {
     "amend": 0,
