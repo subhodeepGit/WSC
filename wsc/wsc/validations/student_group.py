@@ -415,12 +415,32 @@ def filter_programs_by_course(doctype, txt, searchfield, start, page_len, filter
                     Where cr.course='{0}' and (pr.programs like %(txt)s) 
     """.format(filters.get('course')),{'txt': '%%%s%%' % txt})
 
+# def create_user_permission(doc):
+#     for d in doc.get("instructors"):
+#         for instr in frappe.get_all("Instructor",{"name":d.instructor},['employee','department']):
+#             for emp in frappe.get_all("Employee",{"name":instr.employee},['user_id','department']):
+#                 if emp.user_id:
+#                     add_user_permission(doc.doctype,doc.name,emp.user_id,doc)
+
+def remove_permissions(doc):
+    delete_ref_doctype_permissions(["Student Group"],doc)
+
 def create_user_permission(doc):
     for d in doc.get("instructors"):
         for instr in frappe.get_all("Instructor",{"name":d.instructor},['employee','department']):
             for emp in frappe.get_all("Employee",{"name":instr.employee},['user_id','department']):
-                if emp.user_id:
-                    add_user_permission(doc.doctype,doc.name,emp.user_id,doc)
+                roles = frappe.get_all("Has Role",{"parent":emp.user_id},['role'])
 
-def remove_permissions(doc):
-    delete_ref_doctype_permissions(["Student Group"],doc)
+                new_dict = {}
+                for item in roles:
+                    name = item['role']
+                    new_dict[name] = item
+                new_dict = {item['role']:item for item in roles}
+                ls=([list(d.values()) for d in roles])
+                flat_ls = []
+                for i in ls:
+                    for j in i:
+                        flat_ls.append(j)
+                if emp.user_id and "Course Manager" not in flat_ls:
+                    add_user_permission(doc.doctype,doc.name,emp.user_id,doc)
+                    

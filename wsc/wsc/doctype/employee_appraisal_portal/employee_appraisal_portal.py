@@ -134,12 +134,8 @@ class EmployeeAppraisalPortal(Document):
 @frappe.whitelist()
 def get_appraisal_cycle(doctype, txt, searchfield, start, page_len, filters):
 	data = frappe.get_all("Employee Appraisal Cycle",{"year":filters.get("appraisal_year")},["name"],as_list=1)
-	if data :
-		# print("\n\n\n\n\n\nEmployee Education Details")
-		# print(data)
-		return data
-	else :
-		pass
+	return data
+	
 
 @frappe.whitelist()
 def get_goals(appraisal_template):

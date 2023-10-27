@@ -117,7 +117,7 @@ def get_data(filters):
 		fltr.update({"transaction_status":filters.get("transaction_status")})
 
 
-	data=frappe.db.sql(''' SELECT pe.admission_status,
+	data=frappe.db.sql(''' SELECT pe.name, pe.admission_status,
     pe.student, pe.student_application_id, pe.student_name, pe.department, pe.programs, pe.academic_year, pe.student_category, op.transaction_id, op.transaction_status
 	FROM `tabProgram Enrollment` as pe 
 	LEFT JOIN `tabOnlinePayment` as op ON pe.student=op.party 
