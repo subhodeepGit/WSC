@@ -51,6 +51,7 @@ frappe.ui.form.on('Placement Drive', {
 						})
 						frm.refresh();
 						frm.refresh_field("eligible_student")	
+						frm.save()
 					} else {
 						alert("No Eligible Students found")
 						frappe.model.clear_table(frm.doc, 'eligible_student');

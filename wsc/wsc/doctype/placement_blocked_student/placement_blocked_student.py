@@ -25,7 +25,7 @@ class PlacementBlockedStudent(Document):
 
 @frappe.whitelist()
 def get_placement_drive(doctype, txt, searchfield, start, page_len, filters):
-	return frappe.get_all("Placement Department",{"parenttype":"Placement Drive","department":frappe.db.get_value("Programs",filters.get("programs"),'department'),"parent":['like', '%{}%'.format(txt)]},['parent'],group_by="parent",as_list=1)
+	return frappe.get_all("Placement Department",{"parenttype":"Placement Drive","department":frappe.db.get_value("Programs",filters.get("programs"),'department'),"docstatus":1,"parent":['like', '%{}%'.format(txt)]},['parent'],group_by="parent",as_list=1)
 
 @frappe.whitelist()
 def get_students(doctype, txt, searchfield, start, page_len, filters):
