@@ -12,7 +12,9 @@
   "program_name",
   "academic_year",
   "semesters",
-  "shortlisting_status"
+  "shortlisting_status",
+  "selection_round",
+  "last_round"
  ],
  "fields": [
   {
@@ -20,14 +22,16 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Application Ref no.",
-   "options": "Placement Drive Application"
+   "options": "Placement Drive Application",
+   "read_only": 1
   },
   {
    "fetch_from": "student_no.student_name",
    "fieldname": "student_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Student name"
+   "label": "Student name",
+   "read_only": 1
   },
   {
    "fieldname": "program_name",
@@ -41,19 +45,18 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Student No.",
-   "options": "Student"
+   "options": "Student",
+   "read_only": 1
   },
   {
    "fieldname": "semesters",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "Semesters",
    "read_only": 1
   },
   {
    "fieldname": "academic_year",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Academic year",
    "options": "Academic Year",
    "read_only": 1
@@ -61,15 +64,28 @@
   {
    "fieldname": "shortlisting_status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Shortlisting status",
    "options": "\nRejected\nShortlisted\nHired",
    "reqd": 1
+  },
+  {
+   "fieldname": "selection_round",
+   "fieldtype": "Data",
+   "label": "Selection Round",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_round",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Last Round"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-02-16 15:15:45.116220",
+ "modified": "2023-10-30 12:54:07.135612",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student child table",
