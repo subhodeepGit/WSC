@@ -23,7 +23,8 @@ class AssignmentDeclaration(Document):
 			'course': self.course,
 			'academic_year': self.academic_year,
 			'docstatus': ('!=', 2),
-			'name': ('!=', self.name)
+			'name': ('!=', self.name),
+			"participant_group":self.participant_group
 		})
 
 		if assignment_record:

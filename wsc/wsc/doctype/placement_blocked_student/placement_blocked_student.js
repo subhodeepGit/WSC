@@ -6,7 +6,7 @@ frappe.ui.form.on('Placement Blocked Student', {
 		frm.set_query('semester', function(doc) {
 			return {
 				filters: {
-					"programs":frm.doc.programs
+					"programs":frm.doc.programs,
 				}
 			};
 		});

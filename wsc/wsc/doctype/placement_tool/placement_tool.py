@@ -8,8 +8,9 @@ from frappe.model.mapper import get_mapped_doc
 
 class PlacementTool(Document):
     def validate(self):
+        pass
+    def on_submit(self):
         for d in self.get('student_list'):
-            print(d.ref_no)
             frappe.set_value('Placement Drive Application', d.ref_no, 'status', d.shortlisting_status)
 
         if self.round_status == 'Scheduling Of Round':
@@ -18,20 +19,30 @@ class PlacementTool(Document):
             frappe.db.sql(""" UPDATE `tabRounds of Placement` SET round_status = 'Result Declared' WHERE parent = '%s' and round_name = '%s' """%(self.placement_drive_name, self.round_of_placement))
             
         for d in self.get('student_list'):
-                print(d.student_name)
-                result = frappe.new_doc('Selection Round')
-                result.student_name = d.student_name
-                result.student_no = d.student_no
-                result.program_name = d.program_name
-                result.academic_year = d.academic_year
-                result.semesters = d.semesters
-                result.company_name = self.company_name
-                result.placement_batch_year = self.placement_batch_year
-                result.placement_drive_name = self.placement_drive_name
-                result.round_of_placement = self.round_of_placement
-                result.scheduled_date_of_round = self.scheduled_date_of_round
-                result.save()
-                result.submit()
+            result = frappe.new_doc('Selection Round')
+            result.student_name = d.student_name
+            result.student_no = d.student_no
+            result.program_name = d.program_name
+            result.academic_year = d.academic_year
+            result.semesters = d.semesters
+            result.company_name = self.company_name
+            result.placement_batch_year = self.placement_batch_year
+            result.placement_drive_name = self.placement_drive_name
+            result.round_of_placement = self.round_of_placement
+            result.scheduled_date_of_round = self.scheduled_date_of_round
+            result.save()
+            result.submit()
+            frappe.db.sql(""" Update `tabStudent child table` set selection_round='%s' where name='%s' """%(result.name,d.name))
+    def on_cancel(self):
+        if self.round_status == 'Scheduling Of Round':
+            frappe.db.sql(""" UPDATE `tabRounds of Placement` SET round_status = 'Not Scheduled' WHERE parent = '%s' and round_name = '%s' """%(self.placement_drive_name, self.round_of_placement))
+        elif self.round_status == 'Round Result Declaration':
+            frappe.db.sql(""" UPDATE `tabRounds of Placement` SET round_status = 'Scheduled' WHERE parent = '%s' and round_name = '%s' """%(self.placement_drive_name, self.round_of_placement))
+        for t in self.get('student_list'):
+            doc=frappe.get_doc("Selection Round",t.selection_round)
+            doc.cancel()
+        for d in self.get('student_list'):
+            frappe.set_value('Placement Drive Application', d.ref_no, 'status', d.last_round)    
 
     
 @frappe.whitelist()
@@ -71,7 +82,7 @@ def get_students(drive_name):
     fil.append(['placement_drive', '=', drive_name])
     fil.append(['status', 'in',['Applied','Shortlisted']])
     fil.append(['docstatus','=',1])
-    student_data = frappe.get_all('Placement Drive Application', filters=fil, fields=['name', 'student','student_name'])
+    student_data = frappe.get_all('Placement Drive Application', filters=fil, fields=['name', 'student','student_name','status'])
     for t in student_data:
         data = frappe.get_all('Current Educational Details',{'parent':t['student'], 'parenttype':'student'},['programs','semesters', 'academic_year'])
         t['programs'] = data[0]['programs']

@@ -10,7 +10,8 @@ frappe.ui.form.on('Placement Tool', {
 				filters:{
 					'placement_company' : frm.doc.company_name,
 					'academic_year' : frm.doc.placement_batch_year,
-					'title' : frm.doc.drive_title
+					'title' : frm.doc.drive_title,
+					"docstatus":1
 				}
 			}
 		})
@@ -74,10 +75,12 @@ frappe.ui.form.on('Placement Tool', {
 						childTable.program_name = element.programs
 						childTable.academic_year = element.academic_year
 						childTable.semesters = element.semesters
+						childTable.last_round = element.status
 					})
 				}
 				frm.refresh()
 				frm.refresh_field('student_list')
+				frm.save()
 			}
 		})
 	}

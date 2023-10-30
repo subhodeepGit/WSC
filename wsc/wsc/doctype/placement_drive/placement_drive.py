@@ -48,6 +48,7 @@ class PlacementDrive(Document):
 	
 @frappe.whitelist()
 def get_eligibility(body):
+	print("\n\n\n\n")
 	#from placement drive
 	body = json.loads(body)
 
@@ -77,12 +78,12 @@ def get_eligibility(body):
 		for t in current_education:
 			student_dict[t['parent']] = []
 			# final_student_list.append(t)
-	
+
 	for t in student_dict:
 		count = 0
 		student_list= frappe.get_all("Educational Details",{"parent":t}, ['qualification',"score",'year_of_completion','parent'])  #from student
 		experience_detail = frappe.get_all("Experience child table" , {"parent":t} , ['job_duration'])  #from student  #can be empty
-		student_cgpa = frappe.get_all("Exam Assessment Result" , {"student":t, "docstatus":1} , ['name' ,'overall_cgpa' ])
+		student_cgpa = frappe.get_all("Exam Assessment Result" , {"student":t, "docstatus":1} , ['name' ,'overall_cgpa'])
 		if(len(student_cgpa) != 0 and len(student_list) != 0):
 			backlog_record = frappe.get_all("Evaluation Result Item" , {"parent":student_cgpa[0]['name']} , ['result' , 'parent'])  
 			for m in backlog_record:
@@ -114,7 +115,7 @@ def get_eligibility(body):
 							final_student_list.append(k)
 		else:
 			continue
-			
+	print(final_student_list)		
 	for i in final_student_list:
 		
 		student = frappe.get_all("Exam Assessment Result" , {"student":i['parent']} , ['academic_year' , 'programs' , 'student_name'])
