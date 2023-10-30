@@ -567,6 +567,16 @@
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Course Enrollment Summary Report",
+   "link_count": 0,
+   "link_to": "Course Enrollment Summary Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
  "modified": "2023-10-26 17:34:06.160899",
