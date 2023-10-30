@@ -17,6 +17,8 @@ class FinalAssignmentResult(Document):
 			earned_marks+=t.earned_marks
 		self.total_marks=total
 		self.total_marks_earned=earned_marks
+		if(total == 0):
+			frappe.throw('total marks cannot be zero')
 		self.total_percentage=round((int(earned_marks)/int(total))*100,2)
 		if self.is_new():
 			duplicate_upload(self)	
