@@ -60,7 +60,8 @@
    "fieldname": "applicant_details",
    "fieldtype": "Table",
    "label": "Applicant Details",
-   "options": "Job Applicant Details"
+   "options": "Job Applicant Details",
+   "read_only": 1
   },
   {
    "fieldname": "recruitment_exam_center",
@@ -79,7 +80,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-06-01 14:43:56.810874",
+ "modified": "2023-10-25 17:13:30.779748",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Recruitment Exam Declaration",

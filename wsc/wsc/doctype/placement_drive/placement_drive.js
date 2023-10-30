@@ -33,14 +33,12 @@ frappe.ui.form.on('Placement Drive', {
 				program:frm.doc.for_programs,
 				eligibility_criteria:frm.doc.eligibility_criteria
 			})
-			// console.log(body)
 			frappe.call({
 				method: 'wsc.wsc.doctype.placement_drive.placement_drive.get_eligibility',
 				args: {
 					'body':body
 				},
 				callback: function(result){
-					// console.log(result.message);
 					if(result.message.length !== 0){
 						frappe.model.clear_table(frm.doc, 'eligible_student');
 						result.message.forEach(i => {
@@ -53,6 +51,7 @@ frappe.ui.form.on('Placement Drive', {
 						})
 						frm.refresh();
 						frm.refresh_field("eligible_student")	
+						frm.save()
 					} else {
 						alert("No Eligible Students found")
 						frappe.model.clear_table(frm.doc, 'eligible_student');

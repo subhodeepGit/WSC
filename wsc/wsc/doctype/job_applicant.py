@@ -83,6 +83,15 @@ def on_change(doc,method):
 def validate(doc,method):
 	# validate_duplicate_record(doc)
 	# delete_user_permission(doc)
+	my_field = doc.get("aadhar_card_number") 
+	if not my_field.isdigit():
+		frappe.throw("AAdhar Field must contain only digits.")
+	lower_range = doc.get("lower_range") 
+	higher_range =doc.get("upper_range") 
+
+	if lower_range is not None and higher_range is not None and higher_range < lower_range:
+		frappe.throw("Higher range cannot be less than the lower range.")
+
 	roles = frappe.get_roles(frappe.session.user)
 	if doc.current_status=="Applied" and "HR Admin" in roles or "Admin" in roles or "Administrator" in roles:
 		submit_document(doc)

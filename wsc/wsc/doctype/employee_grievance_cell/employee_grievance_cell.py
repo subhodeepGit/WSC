@@ -8,7 +8,7 @@ class EmployeeGrievanceCell(Document):
     def validate(self):
         self.get_employees()
     def get_employees(self):
-        for member in self.members:
+        for member in self.grievance_committee:
             user_id = member.user_id
             if not has_role(user_id, "Grievance Cell Member"):
                 frappe.throw(("User {0} does not have the role Grievance Cell Member.").format(user_id))
