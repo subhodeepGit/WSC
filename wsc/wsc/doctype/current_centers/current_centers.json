@@ -17,6 +17,7 @@
   {
    "fieldname": "center",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Center",
    "options": "Entrance Exam Centre Master"
   },
@@ -24,18 +25,21 @@
    "fetch_from": "center.address",
    "fieldname": "address",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Address"
   },
   {
    "fetch_from": "center.cityvillage",
    "fieldname": "citytownvillage",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "City/Town/Village"
   },
   {
    "fetch_from": "center.district",
    "fieldname": "district",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "District"
   },
   {
@@ -48,6 +52,7 @@
    "fetch_from": "center.center_name",
    "fieldname": "center_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Center Name"
   },
   {
@@ -60,7 +65,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-04 11:57:25.456349",
+ "modified": "2023-10-30 16:29:59.661551",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Current Centers",
