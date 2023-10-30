@@ -60,6 +60,7 @@
    "allow_on_submit": 1,
    "fieldname": "flag",
    "fieldtype": "Int",
+   "hidden": 1,
    "label": "flag",
    "options": "0"
   }
@@ -67,7 +68,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-11 15:43:05.462742",
+ "modified": "2023-10-30 16:32:06.414787",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Centre Selection",
