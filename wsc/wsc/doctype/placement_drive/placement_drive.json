@@ -46,6 +46,7 @@
    "fieldname": "title",
    "fieldtype": "Data",
    "label": "Title",
+   "reqd": 1,
    "unique": 1
   },
   {
@@ -131,7 +132,7 @@
   {
    "fieldname": "for_programs",
    "fieldtype": "Table",
-   "label": "For Programs",
+   "label": "For Courses",
    "options": "Place Eligible Programs",
    "reqd": 1
   },
@@ -193,7 +194,7 @@
   },
   {
    "fieldname": "ctc",
-   "fieldtype": "Float",
+   "fieldtype": "Currency",
    "label": "CTC"
   },
   {
@@ -258,7 +259,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-25 11:15:51.648463",
+ "modified": "2023-10-27 15:31:28.770814",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive",
@@ -278,6 +279,7 @@
    "write": 1
   }
  ],
+ "search_fields": "title,placement_company,academic_year,academic_term",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],

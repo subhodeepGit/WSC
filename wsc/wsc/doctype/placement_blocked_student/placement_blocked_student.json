@@ -7,6 +7,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "course_details_section",
   "date",
   "academic_year",
   "column_break_3",
@@ -22,7 +23,7 @@
    "default": "Today",
    "fieldname": "date",
    "fieldtype": "Date",
-   "label": "Date"
+   "label": "Posting Date"
   },
   {
    "fieldname": "academic_year",
@@ -44,41 +45,51 @@
    "fieldname": "semester",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "semester",
+   "label": "Semester",
    "options": "Program",
    "reqd": 1
   },
   {
    "fieldname": "section_break_5",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Placement Drive Details"
   },
   {
    "fieldname": "block_drive_list",
    "fieldtype": "Table",
    "label": "Block Drive List",
-   "options": "Block Drive List"
+   "options": "Block Drive List",
+   "reqd": 1
   },
   {
    "fieldname": "section_break_7",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Blocked Student Details"
   },
   {
    "fieldname": "blocked_student",
    "fieldtype": "Table",
    "label": "Blocked Student",
-   "options": "Placement Blocked Student List"
+   "options": "Placement Blocked Student List",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_3",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "course_details_section",
+   "fieldtype": "Section Break",
+   "label": "Course Details"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-02-03 00:12:03.397743",
+ "modified": "2023-10-27 15:26:01.046386",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Blocked Student",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -95,5 +106,6 @@
   }
  ],
  "sort_field": "modified",
- "sort_order": "DESC"
+ "sort_order": "DESC",
+ "states": []
 }

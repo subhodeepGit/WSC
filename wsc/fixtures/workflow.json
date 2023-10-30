@@ -333,7 +333,7 @@
       "modified": "2023-08-03 16:18:09.136994",
       "name": "Employee Grievance Workflow",
       "override_status": 0,
-      "send_email_alert": 1,
+      "send_email_alert": 0,
       "states": [
        {
         "allow_edit": "Employee",
@@ -2718,7 +2718,7 @@
    "modified": "2023-07-05 10:52:44.184140",
    "name": "Employee Profile Updation Workflow",
    "override_status": 0,
-   "send_email_alert": 1,
+   "send_email_alert": 0,
    "states": [
     {
      "allow_edit": "Employee",
@@ -3223,7 +3223,7 @@
    "modified": "2023-07-11 16:48:50.779674",
    "name": "Employee Shift Request Workflow",
    "override_status": 0,
-   "send_email_alert": 1,
+   "send_email_alert": 0,
    "states": [
     {
      "allow_edit": "Employee",
@@ -5329,7 +5329,7 @@
 "modified": "2023-08-24 17:51:10.495799",
 "name": "Workflow for Leave Policy",
 "override_status": 0,
-"send_email_alert": 1,
+"send_email_alert": 0,
 "states": [
  {
   "allow_edit": "HR Admin",

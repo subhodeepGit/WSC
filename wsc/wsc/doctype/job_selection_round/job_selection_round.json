@@ -16,7 +16,8 @@
    "fieldname": "name_of_rounds",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Name of Rounds"
+   "label": "Name of Rounds",
+   "reqd": 1
   },
   {
    "default": "Not Declared",
@@ -46,7 +47,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-05-24 12:49:01.218612",
+ "modified": "2023-10-26 15:46:38.077244",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Job Selection Round",
