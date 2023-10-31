@@ -6,13 +6,34 @@ from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 
 class InternshipApplication(Document):
-	pass
+	def validate(self):
+		if self.is_new():
+			if frappe.get_all("Internship Application", {"participant_type":self.participant_type,
+											 		"participant_id":self.participant_id,
+													"select_internship":self.select_internship,
+													"docstatus":1}):
+				frappe.throw("</b>Participant Has Already Applied For Internship Drive</b>")
 
 
-# @frappe.whitelist()
-# def get_participant_name(participant_id):
-# 	participant_name = frappe.db.sql(""" SELECT student_name FROM `tabStudent` WHERE name = '%s'"""%(participant_id))
-# 	return participant_name[0][0]
+
+@frappe.whitelist()
+@frappe.validate_and_sanitize_search_inputs
+def get_select_internship(doctype, txt, searchfield, start, page_len, filters):
+	data=[]
+	today_date=filters.get("today_date")
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)
+	data=frappe.db.sql("""select name,title_of_drive 
+								from `tabInternship Drive` 
+								where ({key} like %(txt)s or {scond}) 
+								and (application_start_date<='{data}' and application_end_date>='{data}')
+						 """.format(
+					**{
+						"key": searchfield,
+						"scond": searchfields,
+						"data":today_date
+					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	return data
 
 @frappe.whitelist()
 def get_internship_name(internship_id):

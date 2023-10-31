@@ -42,17 +42,24 @@
   {
    "fieldname": "title_of_drive",
    "fieldtype": "Data",
-   "label": "Title of Drive"
+   "label": "Title of Drive",
+   "reqd": 1,
+   "unique": 1
   },
   {
+   "default": "Today",
    "fieldname": "posting_date",
    "fieldtype": "Date",
-   "label": "Posting Date"
+   "in_list_view": 1,
+   "label": "Posting Date",
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fieldname": "application_start_date",
    "fieldtype": "Date",
-   "label": "Application Start Date"
+   "label": "Application Start Date",
+   "reqd": 1
   },
   {
    "fieldname": "internship_drive_for",
@@ -68,7 +75,8 @@
    "fieldname": "internship_company",
    "fieldtype": "Link",
    "label": "Internship Company",
-   "options": "Placement Company"
+   "options": "Placement Company",
+   "reqd": 1
   },
   {
    "fieldname": "type_of_drive",
@@ -79,7 +87,8 @@
   {
    "fieldname": "application_end_date",
    "fieldtype": "Date",
-   "label": "Application End Date"
+   "label": "Application End Date",
+   "reqd": 1
   },
   {
    "fieldname": "location_of_drive",
@@ -136,7 +145,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-27 17:58:25.831445",
+ "modified": "2023-10-31 15:44:30.452557",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Drive",
@@ -156,6 +165,7 @@
    "write": 1
   }
  ],
+ "search_fields": "title_of_drive",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
