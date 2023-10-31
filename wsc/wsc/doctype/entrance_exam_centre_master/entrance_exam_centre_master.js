@@ -18,5 +18,8 @@ frappe.ui.form.on('Entrance Exam Centre Master', {
 			}
 		});
 
+	},
+	district(frm){
+        frm.set_value("block",[]);
 	}
 });
