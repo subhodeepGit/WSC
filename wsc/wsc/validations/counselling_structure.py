@@ -3,7 +3,7 @@ import frappe
 def validate(doc, method):
     validate_date(doc)
     validate_fee_structure(doc)
-    validate_programs(doc)
+    # validate_programs(doc)
     validate_eligibility_parameters(doc)
     validate_department(doc)
 
