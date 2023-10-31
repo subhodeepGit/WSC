@@ -19,7 +19,10 @@ def validate_fee_structure(doc):
 
 def validate_programs(doc):
     for b in doc.counselling_programs:
-        if b.programs not in [p['name'] for p in frappe.get_all("Programs", {'program_grade':doc.program_grade, 'department':["IN",[d.name for d in frappe.get_all("Department",{"parent_department":doc.get("department")})]]},['name'])]:
+        # if b.programs not in [p['name'] for p in frappe.get_all("Programs", {'program_grade':doc.program_grade, 'department':["IN",[d.name for d in frappe.get_all("Department",{"parent_department":doc.get("department")})]]},['name'])]:
+        #     frappe.throw("Counselling programs <b>'{0}'</b> not belongs to program_grade and department".format(b.programs))
+
+        if b.programs not in [p['name'] for p in frappe.get_all("Programs", {'program_grade':doc.program_grade, 'department':["IN",[d.name for d in frappe.get_all("Department",{"name":doc.get("department")})]]},['name'])]:
             frappe.throw("Counselling programs <b>'{0}'</b> not belongs to program_grade and department".format(b.programs))
 
 def validate_eligibility_parameters(doc):
@@ -35,5 +38,8 @@ def validate_eligibility_parameters(doc):
 
 
 def validate_department(doc):
-    if doc.department and not frappe.db.get_value("Department",{"is_group":1,"is_stream": 1,"name":doc.department}):
+    # if doc.department and not frappe.db.get_value("Department",{"is_group":1,"is_stream": 1,"name":doc.department}):
+    #     frappe.throw("Department Should be <b>Is Group</b> and <b>Is Stream</b>")
+
+    if doc.department and not frappe.db.get_value("Department",{"is_group":0,"name":doc.department}):
         frappe.throw("Department Should be <b>Is Group</b> and <b>Is Stream</b>")
