@@ -83,64 +83,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Disciplinary Committee Processes",
-   "link_count": 5,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Indisciplinary Complaint Registration",
-   "link_count": 0,
-   "link_to": "Indisciplinary Complaint Registration",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Indisciplinary Actions",
-   "link_count": 0,
-   "link_to": "Indisciplinary Actions",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Disciplinary Committee Meeting",
-   "link_count": 0,
-   "link_to": "Disciplinary Committee Meeting",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Withdrawal of Suspension",
-   "link_count": 0,
-   "link_to": "Withdrawal of Suspension",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Hostel Suspension Room Change",
-   "link_count": 0,
-   "link_to": "Hostel Suspension Room Change",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Allotment &amp; De-Allotment",
    "link_count": 6,
    "onboard": 0,
@@ -202,72 +144,6 @@
    "label": "Inter or Intra Hostel Change",
    "link_count": 0,
    "link_to": "Inter or Intra Hostel Change",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Hostel Fees",
-   "link_count": 3,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Hostel Fee Structure",
-   "link_count": 0,
-   "link_to": "Fee Structure Hostel",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Hostel Fee Schedule",
-   "link_count": 0,
-   "link_to": "Hostel Fee Schedule",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Hostel Fees",
-   "link_count": 0,
-   "link_to": "Hostel Fees",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Inward Suspension Letters",
-   "link_count": 2,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Inward Suspension Letter",
-   "link_count": 0,
-   "link_to": "Inward Suspension Letter",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Withdrawal of Inward Suspension Letter",
-   "link_count": 0,
-   "link_to": "Withdrawal of Inward Suspension Letter",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -377,7 +253,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-08-21 15:41:17.244413",
+ "modified": "2023-10-31 11:49:44.632809",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Hostel",
@@ -392,9 +268,6 @@
   },
   {
    "role": "Hostel Administrator"
-  },
-  {
-   "role": "Hostel Superintendent"
   },
   {
    "role": "Hostel Warden"

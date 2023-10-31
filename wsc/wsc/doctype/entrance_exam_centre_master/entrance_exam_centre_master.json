@@ -71,12 +71,13 @@
    "fieldname": "pincode",
    "fieldtype": "Int",
    "label": "Pincode",
+   "length": 6,
    "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-30 17:37:54.096592",
+ "modified": "2023-10-31 12:05:37.541480",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Centre Master",
