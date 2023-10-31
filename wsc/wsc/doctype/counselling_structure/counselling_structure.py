@@ -49,4 +49,7 @@ def create_student_admission(source_name, target_doc=None):
 @frappe.whitelist()
 def filter_programs_by_department(doctype, txt, searchfield, start, page_len, filters):
     # parent_dept = frappe.db.get_value('Department', {'name':filters.get("department")},'parent_department')
-    return frappe.get_all("Programs",{"department":["IN",[d.name for d in frappe.get_all("Department",{"parent_department":filters.get("department")})]],'name': ['like', '%{}%'.format(txt)], 'program_grade':filters.get('program_grade')},as_list=1)
+    
+	# return frappe.get_all("Programs",{"department":["IN",[d.name for d in frappe.get_all("Department",{"parent_department":filters.get("department")})]],'name': ['like', '%{}%'.format(txt)], 'program_grade':filters.get('program_grade')},as_list=1)
+
+	return frappe.get_all("Programs",{"name":['like', '%{}%'.format(txt)],"department":["IN",[d.name for d in frappe.get_all("Department",{"name":filters.get("department")})]],"program_grade":["IN",[d.name for d in frappe.get_all("Program Grades",{"grade":filters.get("program_grade")})]]},order_by="name asc",as_list=1)
