@@ -567,9 +567,19 @@
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Course Enrollment Summary Report",
+   "link_count": 0,
+   "link_to": "Course Enrollment Summary Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-10-26 17:34:06.160899",
+ "modified": "2023-10-30 18:04:21.327210",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Admission",
