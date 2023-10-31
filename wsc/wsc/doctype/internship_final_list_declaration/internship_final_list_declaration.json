@@ -19,8 +19,10 @@
   {
    "fieldname": "select_internship",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Select Internship",
-   "options": "Internship Drive"
+   "options": "Internship Drive",
+   "reqd": 1
   },
   {
    "fieldname": "get_participants",
@@ -34,7 +36,8 @@
   {
    "fieldname": "internship_name",
    "fieldtype": "Data",
-   "label": "Internship Name"
+   "label": "Internship Name",
+   "read_only": 1
   },
   {
    "fieldname": "selected_participants_section",
@@ -50,7 +53,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-06-06 17:06:01.672683",
+ "modified": "2023-10-31 17:39:40.132542",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Final List Declaration",

@@ -7,7 +7,8 @@ frappe.ui.form.on('Internship Application', {
 			return {
 				query: 'wsc.wsc.doctype.internship_application.internship_application.get_select_internship',
 				filters: {
-					"today_date":frappe.datetime.get_today()
+					"today_date":frappe.datetime.get_today(),
+					"enable":1
 				}
 			};
 		});

@@ -13,14 +13,17 @@
   "column_break_249o1",
   "internship_name",
   "select_participants_section",
-  "select_participants_table"
+  "select_participants_table",
+  "amended_from"
  ],
  "fields": [
   {
    "fieldname": "select_internship",
    "fieldtype": "Link",
-   "label": "Select Internship",
-   "options": "Internship Drive"
+   "in_list_view": 1,
+   "label": "Select Internship Drive",
+   "options": "Internship Drive",
+   "reqd": 1
   },
   {
    "fieldname": "get_participants",
@@ -34,7 +37,8 @@
   {
    "fieldname": "internship_name",
    "fieldtype": "Data",
-   "label": "Internship Name"
+   "label": "Internship Name",
+   "read_only": 1
   },
   {
    "fieldname": "select_participants_section",
@@ -45,12 +49,23 @@
    "fieldname": "select_participants_table",
    "fieldtype": "Table",
    "label": "Select Participants Table",
-   "options": "Internship Select Participants Table"
+   "options": "Internship Select Participants Table",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Internship Participant Selection",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-06-05 17:39:55.179652",
+ "modified": "2023-10-31 17:29:24.388461",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Participant Selection",

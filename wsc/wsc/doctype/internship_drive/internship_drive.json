@@ -30,7 +30,7 @@
  ],
  "fields": [
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "enable",
    "fieldtype": "Check",
    "label": "Enable"
@@ -145,7 +145,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-31 15:44:30.452557",
+ "modified": "2023-10-31 17:08:28.250532",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Drive",

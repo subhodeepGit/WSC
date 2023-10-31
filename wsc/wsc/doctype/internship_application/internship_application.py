@@ -27,6 +27,7 @@ def get_select_internship(doctype, txt, searchfield, start, page_len, filters):
 								from `tabInternship Drive` 
 								where ({key} like %(txt)s or {scond}) 
 								and (application_start_date<='{data}' and application_end_date>='{data}')
+								and enable=1
 						 """.format(
 					**{
 						"key": searchfield,

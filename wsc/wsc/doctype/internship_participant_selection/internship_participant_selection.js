@@ -7,6 +7,14 @@ frappe.ui.form.on('Internship Participant Selection', {
 	refresh: function(frm) {
 		frm.set_df_property('select_participants_table', 'cannot_add_rows', true)
 		frm.set_df_property('select_participants_table', 'cannot_delete_rows', true)
+
+		frm.set_query("select_internship", function () {
+			return {
+				filters: {
+					"enable":1
+				}
+			}
+		});
 	},
 	select_internship : function(frm){
 		frappe.call({
