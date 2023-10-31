@@ -5,18 +5,21 @@ frappe.ui.form.on('Entrance Exam Centre Master', {
 	setup: function(frm){
 		frm.set_query("district", function() {
 			return{
-				filters:{
-					"state":frm.doc.state
-				}
+				filters:[
+					["Districts","state","=",frm.doc.state]
+				]
 			}
 		});
 		frm.set_query("block", function() {
 			return{
-				filters:{
-					"districts":frm.doc.district
-				}
+				filters:[
+					["Blocks","districts","=",frm.doc.district]
+				]
 			}
 		});
 
+	},
+	district(frm){
+        frm.set_value("block",[]);
 	}
 });
