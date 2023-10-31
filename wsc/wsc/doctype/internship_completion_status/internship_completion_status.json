@@ -21,20 +21,24 @@
   {
    "fieldname": "select_internship",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Select Internship",
-   "options": "Internship Drive"
+   "options": "Internship Drive",
+   "reqd": 1
   },
   {
    "fieldname": "select_participant",
    "fieldtype": "Dynamic Link",
    "label": "Select Participant",
-   "options": "participant_type"
+   "options": "participant_type",
+   "reqd": 1
   },
   {
    "fieldname": "completion_status",
    "fieldtype": "Select",
    "label": "Completion Status",
-   "options": "\nCompleted\nNot completed"
+   "options": "\nCompleted\nNot completed",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_allk5",
@@ -43,19 +47,23 @@
   {
    "fieldname": "internship_name",
    "fieldtype": "Data",
-   "label": "Internship Name"
+   "label": "Internship Name",
+   "read_only": 1
   },
   {
    "fetch_from": "select_participant.student_name",
    "fieldname": "participant_name",
    "fieldtype": "Data",
-   "label": "Participant Name"
+   "label": "Participant Name",
+   "read_only": 1
   },
   {
    "fieldname": "participant_type",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Participant Type",
-   "options": "Student\nEmployee"
+   "options": "Student\nEmployee",
+   "reqd": 1
   },
   {
    "fieldname": "section_break_lzd7b",
@@ -64,7 +72,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-05 15:52:13.422710",
+ "modified": "2023-10-31 18:06:23.178656",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Completion status",
