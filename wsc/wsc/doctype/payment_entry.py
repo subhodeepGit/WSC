@@ -5,7 +5,7 @@ from frappe import ValidationError, _, scrub, throw, qb
 from frappe.utils import cint, comma_or, flt, getdate, nowdate
 from numpy import append
 from six import iteritems, string_types
-from wsc.wsc.notification.custom_notification import payment_entry_submit
+# from wsc.wsc.notification.custom_notification import payment_entry_submit
 
 import erpnext
 from erpnext.accounts.doctype.bank_account.bank_account import (
@@ -101,7 +101,7 @@ class PaymentEntry(AccountsController):
 		self.update_donation()
 		self.update_payment_schedule()###########
 		self.set_status()
-		payment_entry_submit(self)
+		# payment_entry_submit(self)
 		if self.party_type=="Student":
 			for d in self.get("references"):
 				hostel_fee_info=frappe.get_all("Hostel Fees",filters=[["fees_id","=",d.reference_name]],fields=['name','outstanding_amount'])
