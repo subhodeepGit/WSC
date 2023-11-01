@@ -35,7 +35,8 @@ frappe.ui.form.on('Student Admission', {
                 filters: {
                     "program_grade":frm.doc.program_grade,
                     "programs":frm.doc.admission_program,
-                    "academic_year":frm.doc.academic_year
+                    "academic_year":frm.doc.academic_year,
+                    "department":frm.doc.department 
                 }
             };
         });
