@@ -112123,5 +112123,30 @@
   "share": 0,
   "submit": 0,
   "write": 0
+ },
+ {
+  "amend": 1,
+  "cancel": 1,
+  "create": 1,
+  "delete": 0,
+  "docstatus": 0,
+  "doctype": "Custom DocPerm",
+  "email": 0,
+  "export": 1,
+  "if_owner": 0,
+  "import": 0,
+  "modified": "2023-11-01 14:42:34.198854",
+  "name": "50a41e1b76",
+  "parent": "Asset Movement",
+  "permlevel": 0,
+  "print": 0,
+  "read": 1,
+  "report": 0,
+  "role": "Floor Supervisor",
+  "select": 1,
+  "set_user_permissions": 0,
+  "share": 0,
+  "submit": 1,
+  "write": 1
  }
 ]
