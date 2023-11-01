@@ -3,7 +3,15 @@
 
 frappe.ui.form.on('Internship Application', {
 	refresh: function(frm) {
-
+		frm.set_query("select_internship", function() {
+			return {
+				query: 'wsc.wsc.doctype.internship_application.internship_application.get_select_internship',
+				filters: {
+					"today_date":frappe.datetime.get_today(),
+					"enable":1
+				}
+			};
+		});
 	},
 	select_internship : function(frm){
 		frappe.call({
