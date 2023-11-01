@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"BlrylCsK4O\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h1\\\">Academics</span>\",\"col\":12}},{\"id\":\"rHoSFTDqhh\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"-FBrfVl_aW\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Shortcuts</span>\",\"col\":12}},{\"id\":\"sYDUze-v5L\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Class Schedule\",\"col\":3}},{\"id\":\"wqntQ6OgA5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Attendance\",\"col\":3}},{\"id\":\"pOmbFxqrnp\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ZcHFqSOXo8\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b><span class=\\\"h2\\\">Reports &amp; Masters</span><br></b></span>\",\"col\":12}},{\"id\":\"nwzxJrLENe\",\"type\":\"card\",\"data\":{\"card_name\":\"Groups &amp; Schedules\",\"col\":4}},{\"id\":\"Gi8iqUuD2x\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance &amp; Leave Application\",\"col\":4}},{\"id\":\"qZZddX7w7A\",\"type\":\"card\",\"data\":{\"card_name\":\"Mentor-Mentee\",\"col\":4}},{\"id\":\"mpvXx9ldmS\",\"type\":\"card\",\"data\":{\"card_name\":\"Placement &amp; Drives\",\"col\":4}},{\"id\":\"mAxyO-fPLp\",\"type\":\"card\",\"data\":{\"card_name\":\"Tools\",\"col\":4}},{\"id\":\"qrCVytNKM_\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"EocTkgQs6B\",\"type\":\"card\",\"data\":{\"card_name\":\"Grievance\",\"col\":4}}]",
+ "content": "[{\"id\":\"BlrylCsK4O\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h1\\\">Academics</span>\",\"col\":12}},{\"id\":\"rHoSFTDqhh\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"-FBrfVl_aW\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Shortcuts</span>\",\"col\":12}},{\"id\":\"sYDUze-v5L\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Class Schedule\",\"col\":3}},{\"id\":\"wqntQ6OgA5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Attendance\",\"col\":3}},{\"id\":\"pOmbFxqrnp\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ZcHFqSOXo8\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b><span class=\\\"h2\\\">Reports &amp; Masters</span><br></b></span>\",\"col\":12}},{\"id\":\"nwzxJrLENe\",\"type\":\"card\",\"data\":{\"card_name\":\"Groups &amp; Schedules\",\"col\":4}},{\"id\":\"Gi8iqUuD2x\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance &amp; Leave Application\",\"col\":4}},{\"id\":\"qZZddX7w7A\",\"type\":\"card\",\"data\":{\"card_name\":\"Mentor-Mentee\",\"col\":4}},{\"id\":\"mpvXx9ldmS\",\"type\":\"card\",\"data\":{\"card_name\":\"Placement &amp; Drives\",\"col\":4}},{\"id\":\"mAxyO-fPLp\",\"type\":\"card\",\"data\":{\"card_name\":\"Tools\",\"col\":4}},{\"id\":\"qrCVytNKM_\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"EocTkgQs6B\",\"type\":\"card\",\"data\":{\"card_name\":\"Grievance\",\"col\":4}},{\"id\":\"mlOytBHbM4\",\"type\":\"card\",\"data\":{\"card_name\":\"Faculty Workload\",\"col\":4}}]",
  "creation": "2023-02-15 15:10:09.602390",
  "custom_blocks": [],
  "docstatus": 0,
@@ -277,9 +277,37 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Faculty Workload",
+   "link_count": 2,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Faculty Work Assignment",
+   "link_count": 0,
+   "link_to": "Faculty Work Assignment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Instructor Workload Report",
+   "link_count": 0,
+   "link_to": "Instructor Workload",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-10-18 11:07:01.513108",
+ "modified": "2023-10-31 17:59:33.207934",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Academics",
