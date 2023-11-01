@@ -48,7 +48,6 @@ class PlacementDrive(Document):
 	
 @frappe.whitelist()
 def get_eligibility(body):
-	print("\n\n\n\n")
 	#from placement drive
 	body = json.loads(body)
 
@@ -114,8 +113,7 @@ def get_eligibility(body):
 							# list_data.append(k)
 							final_student_list.append(k)
 		else:
-			continue
-	print(final_student_list)		
+			continue	
 	for i in final_student_list:
 		
 		student = frappe.get_all("Exam Assessment Result" , {"student":i['parent']} , ['academic_year' , 'programs' , 'student_name'])

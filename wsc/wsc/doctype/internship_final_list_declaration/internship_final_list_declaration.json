@@ -13,14 +13,17 @@
   "column_break_tdptz",
   "internship_name",
   "selected_participants_section",
-  "selected_participants_list"
+  "selected_participants_list",
+  "amended_from"
  ],
  "fields": [
   {
    "fieldname": "select_internship",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Select Internship",
-   "options": "Internship Drive"
+   "options": "Internship Drive",
+   "reqd": 1
   },
   {
    "fieldname": "get_participants",
@@ -34,7 +37,8 @@
   {
    "fieldname": "internship_name",
    "fieldtype": "Data",
-   "label": "Internship Name"
+   "label": "Internship Name",
+   "read_only": 1
   },
   {
    "fieldname": "selected_participants_section",
@@ -46,11 +50,21 @@
    "fieldtype": "Table",
    "label": "Selected participants list",
    "options": "Internship Selected Participants Table"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Internship Final List Declaration",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-06-06 17:06:01.672683",
+ "modified": "2023-10-31 17:54:53.847205",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Final List Declaration",

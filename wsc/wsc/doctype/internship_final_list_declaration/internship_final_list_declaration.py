@@ -6,7 +6,10 @@ from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 
 class InternshipFinalListDeclaration(Document):
-	pass
+	def validate(self):
+		if self.is_new():
+			if frappe.get_all("Internship Final List Declaration",{"select_internship":self.select_internship,"docstatus":1}):
+				frappe.throw("Internship Final List Declaration Already Exist For This Internship Drive")
 
 @frappe.whitelist()
 def get_internship_name(internship_id):
@@ -15,7 +18,7 @@ def get_internship_name(internship_id):
 
 @frappe.whitelist()
 def get_selected_participants(internship_id):
-	parent_name = frappe.db.sql(""" SELECT name FROM `tabInternship Participant Selection` WHERE select_internship = '%s'"""%(internship_id))
+	parent_name = frappe.db.sql(""" SELECT name FROM `tabInternship Participant Selection` WHERE select_internship = '%s' and docstatus=1 """%(internship_id))
 	parent_name = parent_name[0][0]
 	participant_data = frappe.get_all('Internship Select Participants Table', filters = [['parent', '=', parent_name], ['select', '=', 1]], fields = ['applicant_id', 'applicant_name'])
 	return participant_data
