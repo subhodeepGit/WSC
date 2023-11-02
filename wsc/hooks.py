@@ -407,6 +407,12 @@ doc_events = {
     },
     "Job Requisition":{
         "validate":"wsc.wsc.doctype.job_requisition.validate"
+    },
+    "Item Group":{
+        "validate":"wsc.wsc.validations.item_group.validate"
+    },
+    "Item":{
+        "validate":"wsc.wsc.doctype.item.validate"
     }
     
     

@@ -11,9 +11,7 @@ class EntranceExamCentreMaster(Document):
 
 def pincode_validation(doc):
 	if doc.pincode:
-		if not (doc.pincode).isdigit():
-			frappe.throw("Field Pincode Accept Digits Only")
-		if len(doc.pincode)>6:
+		if len(str(doc.pincode))>6:
 			frappe.throw("Field Pincode must be 6 Digits")
-		if len(doc.pincode)<6:
+		if len(str(doc.pincode))<6:
 			frappe.throw("Field Pincode must be 6 Digits")

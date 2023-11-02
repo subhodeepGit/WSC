@@ -68,6 +68,18 @@ frappe.ui.form.on('Entrance Exam Declaration', {
 			})
 		}
 	},
+	// exam_start_date 
+	exam_start_date(frm) {
+        frm.fields_dict.exam_end_date.datepicker.update({
+            minDate: frm.doc.exam_start_date ? new Date(frm.doc.exam_start_date) : null
+        });
+    },
+
+    exam_end_date(frm) {
+        frm.fields_dict.exam_start_date.datepicker.update({
+            maxDate: frm.doc.exam_end_date ? new Date(frm.doc.exam_end_date) : null
+        });
+    },
 	refresh:function(frm){
 		if(!frm.is_new()){
 			frm.set_df_property('get_applicants' , 'hidden' , 0)
