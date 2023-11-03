@@ -1,7 +1,7 @@
 
 frappe.ui.form.on('Course', {
 	refresh: function(frm) {
-		if (frm.doc.is_tot==0){
+		if (frm.doc.is_tot==0 && frm.doc.is_short_term_course=="No"){
 			frm.remove_custom_button("Add to Programs","Action");
 			frm.remove_custom_button("Add to Semester","Action");
 			if (!cur_frm.doc.__islocal && (!frappe.user.has_role(["Student","Instructor"]) || frappe.user.has_role(["System Manager"]))) {
@@ -10,8 +10,8 @@ frappe.ui.form.on('Course', {
 				}, __('Action'));
 			}
 		}
-		// if (frappe.user.has_role(["Student","Instructor"]) && !frappe.user.has_role('System Manager')){
-		if ((frappe.user.has_role("Student")) || (frappe.user.has_role("Instructor"))){
+		if (frappe.user.has_role(["Student","Instructor"]) && !frappe.user.has_role('System Manager')){
+		// if ((frappe.user.has_role("Student")) || (frappe.user.has_role("Instructor"))){
 			frm.remove_custom_button("Add to Programs","Action");
 			frm.remove_custom_button("Add to Semester","Action");
 			frm.remove_custom_button("Add to ToT Course","Action");
