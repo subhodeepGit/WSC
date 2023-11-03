@@ -87,7 +87,8 @@ doctype_list_js = {
     "Student":"public/js/student_list.js",
     "Student Group":"public/js/student_group_list.js",
     "Employee Grievance":"public/js/employee_grievance_list.js",
-    "Item Price":"public/js/item_price_list.js"
+    "Item Price":"public/js/item_price_list.js",
+    "Material Request":"public/js/material_request_list.js"
 }
 
 doctype_tree_js = {"doctype" : "public/js/tax_category_tree.js"}
@@ -434,6 +435,21 @@ doc_events = {
     },
     "Tax Withholding Category":{
         "validate":"wsc.wsc.validations.tax_withholding_category.validate"
+    },
+    "Buying Settings":{
+        "validate":"wsc.wsc.validations.buying_settings.validate"
+    },
+    "Batch":{
+        "validate":"wsc.wsc.validations.batch.validate"
+    },
+    "Payment Term":{
+        "validate":"wsc.wsc.validations.payment_term.validate"
+    },
+    "Payment Terms Template":{
+        "validate":"wsc.wsc.validations.payment_terms_template.validate"
+    },
+    "Stock Entry":{
+        "validate":"wsc.wsc.validations.stock_entry.validate"
     }
     
     
