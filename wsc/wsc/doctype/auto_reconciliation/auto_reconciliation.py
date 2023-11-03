@@ -238,7 +238,7 @@ def generate_payment(payment_schedule):
 	if error:
 		frappe.db.rollback()
 		frappe.db.set_value("Auto Reconciliation", payment_schedule, "payment_status", "Failed")
-		frappe.db.set_value("Fee Schedule", payment_schedule, "error_log", err_msg)
+		frappe.db.set_value("Auto Reconciliation", payment_schedule, "error_log", err_msg)
 
 	else:
 		frappe.db.set_value("Auto Reconciliation", payment_schedule, "payment_status", "Successful")

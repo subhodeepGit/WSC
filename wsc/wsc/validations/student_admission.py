@@ -168,10 +168,11 @@ def validate_parameters(doc):
 def get_counselling_structure(pdoctype, txt, searchfield, start, page_len, filters):
     fltr={}
     if filters.get("program_grade") and filters.get("programs") and filters.get("academic_year"):
-        dept = frappe.db.get_value("Programs",filters.get("programs"),'department')
+        # dept = frappe.db.get_value("Programs",filters.get("programs"),'department')
         fltr.update({
             "program_grade":filters.get("program_grade"),
-            "department":frappe.db.get_value("Department",{'name':dept}, 'parent_department'),
+            # "department":frappe.db.get_value("Department",{'name':dept}, 'parent_department'),
+            "department":filters.get("department"),
             "academic_year":filters.get("academic_year"),
             'name': ['like', '%{}%'.format(txt)]
         })

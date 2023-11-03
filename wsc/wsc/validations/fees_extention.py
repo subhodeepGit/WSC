@@ -22,7 +22,7 @@ def on_submit(self,method):
         # recon_rtgs_neft_on_submit(self)
         online_payment_on_submit(self)    
         child_table_fees_outsatnding(self)
-        payment_entry_submit(self)
+        # payment_entry_submit(self)
         # refundable_fees_outsatnding(self,cancel=0)   
 
 def on_cancel(self,method):
