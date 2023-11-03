@@ -6,13 +6,11 @@ from frappe.model.document import Document
 
 class EntranceExamDeclaration(Document):
 	def on_submit(self):
-		print("\n\n\n")
 		for i in self.get('applicant_list'):
 			applicant = frappe.get_doc("Student Applicant" , i.applicant_id)
 			if applicant.exam_declared_for_applicant == 1:
 				applicant.exam_declared_for_applicant = 1
 			applicant.save()
-			print(applicant.exam_declared_for_applicant)
 	
 	def on_cancel(self):
 		for i in self.get('applicant_list'):
@@ -20,7 +18,6 @@ class EntranceExamDeclaration(Document):
 			if applicant.exam_declared_for_applicant == 1:
 				applicant.exam_declared_for_applicant = 0
 			applicant.save()
-			print(applicant.exam_declared_for_applicant)
 
 @frappe.whitelist()
 def get_applicants(body):
@@ -37,11 +34,9 @@ def get_applicants(body):
 												  'application_status': 'Applied' , 
 												  "exam_declared_for_applicant" : 0
 												} , 
-												['name' , 'title' , 'gender' , 'student_category' , 'physically_disabled'])
-
+												['name' , 'title' , 'gender' , 'student_category' , 'physically_disabled']
+												,order_by="name asc")
 	# data = frappe.get_all("Stude")
 
 	# data2 = frappe.get_all("Student Applicant" , { 'name' : 'EDU-APP-2023-00009'} , ['name' ,'academic_year' , 'department' , 'academic_term' , 'title' , 'gender' , 'student_category' , 'physically_disabled' , 'application_status' , 'exam_declared_for_applicant'])
-	print("\n\n")
-	print(data)
 	return data

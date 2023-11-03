@@ -3,6 +3,7 @@
  "allow_rename": 1,
  "creation": "2023-05-09 17:31:47.409181",
  "doctype": "DocType",
+ "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "slot_name",
@@ -15,34 +16,39 @@
   {
    "fieldname": "slot_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Slot Name"
   },
   {
    "fieldname": "slot_starting_time",
    "fieldtype": "Time",
+   "in_list_view": 1,
    "label": "Slot Starting Time"
   },
   {
    "fieldname": "slot_ending_time",
    "fieldtype": "Time",
+   "in_list_view": 1,
    "label": "Slot Ending Time"
   },
   {
    "allow_on_submit": 1,
    "fieldname": "seating_capacity",
    "fieldtype": "Int",
+   "in_list_view": 1,
    "label": "Seating Capacity"
   },
   {
    "fieldname": "slot_date",
    "fieldtype": "Date",
+   "in_list_view": 1,
    "label": "Slot Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-04 11:55:59.857511",
+ "modified": "2023-11-03 13:02:05.380433",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Slot Timings",

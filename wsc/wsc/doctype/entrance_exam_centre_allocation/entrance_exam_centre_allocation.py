@@ -8,8 +8,6 @@ from frappe.model.document import Document
 class EntranceExamCentreAllocation(Document):
     def validate(self):
         date_format = "%Y-%m-%d"
-        print("\n\n")
-        
         for i in self.get('exam_slot_timings'):
 
             slot_date = datetime.strptime(i.slot_date, date_format).date()
@@ -29,8 +27,6 @@ class EntranceExamCentreAllocation(Document):
 # 	# center_selection = frappe.get_all('Entrance Exam Centre Selection' , { 'academic_year':academic_year , 'academic_term':academic_term } , ['name'] )
 
 # 	current_centers = frappe.get_all('Current Centers' ,{'parent':center_selection }, ['center'])
-# 	print("\n\n\n")
-# 	# print(center_selection)
 # 	return current_centers
 
 # @frappe.whitelist()
@@ -48,9 +44,18 @@ def ra_query(doctype, txt, searchfield, start, page_len, filters):
     searchfields = frappe.get_meta(doctype).get_search_fields()
     searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)    
     
+    # data=frappe.db.sql("""
+    #     SELECT `name` FROM `tabEntrance Exam Declaration` WHERE ({key} like %(txt)s or {scond})  and
+    #         (`exam_start_date` <= now() AND `exam_end_date` >= now())
+    #          and `docstatus`=1 
+    # """.format(
+    #     **{
+    #         "key": searchfield,
+    #         "scond": searchfields,
+    #         # "info":info
+    #     }),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
     data=frappe.db.sql("""
-        SELECT `name` FROM `tabEntrance Exam Declaration` WHERE ({key} like %(txt)s or {scond})  and
-            (`exam_start_date` <= now() AND `exam_end_date` >= now())
+        SELECT `name` FROM `tabEntrance Exam Declaration` WHERE ({key} like %(txt)s or {scond})
              and `docstatus`=1 
     """.format(
         **{
@@ -58,5 +63,6 @@ def ra_query(doctype, txt, searchfield, start, page_len, filters):
             "scond": searchfields,
             # "info":info
         }),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+
 
     return data
