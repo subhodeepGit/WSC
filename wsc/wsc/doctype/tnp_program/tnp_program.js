@@ -17,36 +17,22 @@ frappe.ui.form.on('TnP Program', {
 		let day = String(date.getDate()).padStart(2,'0')
 		frm.set_value('current_date', `${year}-${month}-${day}`)
 	},
-	start_date(frm) {
-        frm.fields_dict.end_date.datepicker.update({
-            minDate: frm.doc.start_date ? new Date(frm.doc.start_date) : null
-        });
-    },
-    end_date(frm) {
-        frm.fields_dict.exam_start_date.datepicker.update({
-            maxDate: frm.doc.end_date ? new Date(frm.doc.end_date) : null
-        });
-    },
-	// start_date : function(frm){
-	// 	if(frm.doc.start_date && frm.doc.end_date){
-	// 		if(frm.doc.start_date > frm.doc.end_date){
-	// 			frappe.throw("Program Start Date should be Less than Application End date");
-	// 		}
-	// 	}
-	// 	if(frm.doc.start_date < frm.doc.current_date){
-	// 		frappe.throw('Start date cannot be before current date')
-	// 	}
-	// },
-	// end_date:function(frm){
-	// 	if(frm.doc.start_date && frm.doc.end_date){
-	// 		if(frm.doc.end_date < frm.doc.start_date){
-	// 			frappe.throw("Program End Date should be Greater than Application Start date");
-	// 		}
-	// 	}
-	// 	if(frm.doc.end_date < frm.doc.current_date){
-	// 		frappe.throw('End date cannot be before current date')
-	// 	}
-	// },
+	start_date: function(frm){
+		if(frm.doc.end_date && frm.doc.start_date > frm.doc.end_date){
+			frappe.throw("Start date cannot be after end date")
+		}
+		if(frm.doc.start_date < frm.doc.current_date){
+			frappe.throw("Start date cannot be before current date")
+		}
+	},
+	end_date : function(frm){
+		if(frm.doc.start_date && frm.doc.end_date < frm.doc.start_date){
+			frappe.throw("End date cannot be before start date")
+		}
+		if(frm.doc.end_date < frm.doc.current_date){
+			frappe.throw("End date cannot be before current date")
+		}
+	}
 });
 
 // --------------------------------------------------

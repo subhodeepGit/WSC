@@ -69,7 +69,9 @@ doctype_js = {
                 "Employee Onboarding":"public/js/employee_onboarding.js",
                 "Job Offer":"public/js/job_offer.js",
                 "Compensatory Leave Request":"public/js/compensatory_leave_request.js",
-                "Task":"public/js/task.js"
+                "Task":"public/js/task.js",
+                "Price List":"public/js/price_list.js",
+                "Supplier":"public/js/supplier.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -414,8 +416,19 @@ doc_events = {
     },
     "Item":{
         "validate":"wsc.wsc.doctype.item.validate"
+    },
+    "Price List":{
+        "validate":"wsc.wsc.validations.price_list.validate"
+    },
+    "Supplier":{
+        "validate":"wsc.wsc.validations.supplier.validate"
+    },
+    "Quality Inspection Template":{
+        "validate":"wsc.wsc.validations.quality_inspection_template.validate"
+    },
+    "Purchase Taxes and Charges Template":{
+        "validate":"wsc.wsc.validations.purchase_taxes_and_charges_template.validate"
     }
-    
     
     
     
@@ -561,8 +574,8 @@ override_doctype_dashboards = {
 # fixtures = [
 	# {"dt": "Custom DocPerm", "filters": [
 	# 	["parent", "not in", ["DocType"]],
-    #     ["parent", "in", ["Employee Separation"]],
-    #     ["role", "in", ["Report Manager"]]
+    #     ["parent", "in", ["Country"]],
+    #     ["role", "in", ["GM-Procurement & Contract Management","Purchase Manager-MM","Stock Manager- MM"]]
 	# ]},
     # {"dt": "Role","filters": [
     #     ["name", "in", ["TOT Director", "TOT Administrator", "TOT Trainer"]]

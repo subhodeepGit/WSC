@@ -512,7 +512,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Employee Lifecycle",
-   "link_count": 11,
+   "link_count": 12,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -599,6 +599,16 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Grievance Type",
+   "link_count": 0,
+   "link_to": "Grievance Type",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Employee Grievance Cell",
    "link_count": 0,
    "link_to": "Employee Grievance Cell",
@@ -627,7 +637,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-10-13 09:59:50.865627",
+ "modified": "2023-11-03 15:47:24.048108",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "HRMS (Base)",

@@ -3,7 +3,15 @@
 
 frappe.ui.form.on('Internship Completion status', {
 	refresh: function(frm) {
-
+		frm.set_query("select_participant", function() {
+			return {
+				query: 'wsc.wsc.doctype.internship_completion_status.internship_completion_status.participants',
+				filters:{
+					"internship_id":frm.doc.select_internship,
+				}
+				
+			};
+		});
 	},
 	select_internship : function(frm){
 		frappe.call({

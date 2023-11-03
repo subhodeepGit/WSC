@@ -15,9 +15,11 @@
   "section_break_5",
   "programs",
   "academic_year",
+  "start_date",
   "column_break_9",
   "academic_term",
   "semester",
+  "end_date",
   "section_break_17",
   "participant_group",
   "modules",
@@ -214,12 +216,24 @@
    "options": "Final Assignment Result",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fetch_from": "tot_participant_enrollment.start_date",
+   "fieldname": "start_date",
+   "fieldtype": "Data",
+   "label": "Start Date"
+  },
+  {
+   "fetch_from": "tot_participant_enrollment.end_date",
+   "fieldname": "end_date",
+   "fieldtype": "Data",
+   "label": "End Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-16 11:13:46.071320",
+ "modified": "2023-10-31 17:47:28.371125",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Final Assignment Result",

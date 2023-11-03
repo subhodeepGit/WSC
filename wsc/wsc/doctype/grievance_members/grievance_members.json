@@ -16,6 +16,7 @@
   {
    "fieldname": "employee",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Employee",
    "options": "Employee"
   },
@@ -23,31 +24,35 @@
    "fetch_from": "employee.employee_name",
    "fieldname": "employee_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Employee Name"
   },
   {
    "fetch_from": "employee.user_id",
    "fieldname": "user_id",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "User ID"
   },
   {
    "fetch_from": "employee.designation",
    "fieldname": "designation",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Designation"
   },
   {
    "fetch_from": "employee.department",
    "fieldname": "department",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Department"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-08-25 12:45:52.285688",
+ "modified": "2023-11-03 14:47:28.039678",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Grievance Members",
