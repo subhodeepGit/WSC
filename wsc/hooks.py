@@ -422,7 +422,13 @@ doc_events = {
     },
     "Supplier":{
         "validate":"wsc.wsc.validations.supplier.validate"
-    } 
+    },
+    "Quality Inspection Template":{
+        "validate":"wsc.wsc.validations.quality_inspection_template.validate"
+    },
+    "Purchase Taxes and Charges Template":{
+        "validate":"wsc.wsc.validations.purchase_taxes_and_charges_template.validate"
+    }
     
     
     
