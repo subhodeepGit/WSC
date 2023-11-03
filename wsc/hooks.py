@@ -428,6 +428,12 @@ doc_events = {
     },
     "Purchase Taxes and Charges Template":{
         "validate":"wsc.wsc.validations.purchase_taxes_and_charges_template.validate"
+    },
+    "Warehouse":{
+    "validate":"wsc.wsc.validations.warehouse.validate"
+    },
+    "Tax Withholding Category":{
+        "validate":"wsc.wsc.validations.tax_withholding_category.validate"
     }
     
     
