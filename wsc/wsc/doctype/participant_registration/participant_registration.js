@@ -15,9 +15,10 @@ frappe.ui.form.on('Participant Registration', {
 		});
 		frm.set_query('select_event', function(){
 			return{
-				filters:{
-					'event_status' : 'Scheduled',
-				}
+				filters:[
+					['event_status' ,"=", 'Scheduled'],
+					["docstatus", "!=", "2"]
+				]
 			}
 		})
 	},
