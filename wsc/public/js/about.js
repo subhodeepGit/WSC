@@ -12,8 +12,8 @@ frappe.ui.misc.about = function () {
 					"</p>  \
 		<p><i class='fa fa-globe fa-fw'></i>\
 			Website: <a href='https://soulunileaders.com/' target='_blank'>https://soulunileaders.com/</a></p>\
-		<p><i class='fa fa-github fa-fw'></i>\
-			Source: <a href='#' target='_blank'>https://github.com</a></p>\
+		<p><i class='fa fa-instagram fa-fw'></i>\
+			Instagram: <a href='https://www.instagram.com/soul__limited/' target='_blank'>https://www.instagram.com/soul__limited/</a></p>\
 		<p><i class='fa fa-linkedin fa-fw'></i>\
 			Linkedin: <a href='https://www.linkedin.com/company/soullimited/' target='_blank'>https://www.linkedin.com/company/soullimited/</a></p>\
 		<p><i class='fa fa-facebook fa-fw'></i>\
