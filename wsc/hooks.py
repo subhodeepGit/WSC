@@ -71,7 +71,8 @@ doctype_js = {
                 "Compensatory Leave Request":"public/js/compensatory_leave_request.js",
                 "Task":"public/js/task.js",
                 "Price List":"public/js/price_list.js",
-                "Supplier":"public/js/supplier.js"
+                "Supplier":"public/js/supplier.js",
+                "Request for Quotation":"public/js/request_for_quotation.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -88,7 +89,8 @@ doctype_list_js = {
     "Student Group":"public/js/student_group_list.js",
     "Employee Grievance":"public/js/employee_grievance_list.js",
     "Item Price":"public/js/item_price_list.js",
-    "Material Request":"public/js/material_request_list.js"
+    "Material Request":"public/js/material_request_list.js",
+    "Price List":"public/js/price_list_list.js"
 }
 
 doctype_tree_js = {"doctype" : "public/js/tax_category_tree.js"}
@@ -359,9 +361,9 @@ doc_events = {
         "validate":"wsc.wsc.doctype.attendance_request.validate",
         "after_insert":"wsc.wsc.doctype.attendance_request.after_insert"
     },
-    "Purchase Order": {
-        "validate":"wsc.wsc.doctype.purchase_order.validate"
-    },
+    # "Purchase Order": {
+    #     "validate":"wsc.wsc.doctype.purchase_order.validate"
+    # },
     "Material Request": {
         "validate":"wsc.wsc.doctype.material_request.validate",
         "on_submit":"wsc.wsc.doctype.material_request.workflow_notification",
@@ -421,9 +423,9 @@ doc_events = {
     "Price List":{
         "validate":"wsc.wsc.validations.price_list.validate"
     },
-    "Supplier":{
-        "validate":"wsc.wsc.validations.supplier.validate"
-    },
+    # "Supplier":{
+    #     "validate":"wsc.wsc.validations.supplier.validate"
+    # },
     "Quality Inspection Template":{
         "validate":"wsc.wsc.validations.quality_inspection_template.validate"
     },
@@ -450,8 +452,13 @@ doc_events = {
     },
     "Stock Entry":{
         "validate":"wsc.wsc.validations.stock_entry.validate"
-    }
-    
+    },
+    "Request for Quotation":{
+        "validate":"wsc.wsc.validations.request_for_quotation.validate"
+    },
+    "Supplier Quotation":{
+        "validate":"wsc.wsc.validations.supplier_quotation.validate"
+    }    
     
     
     
