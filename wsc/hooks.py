@@ -71,7 +71,8 @@ doctype_js = {
                 "Compensatory Leave Request":"public/js/compensatory_leave_request.js",
                 "Task":"public/js/task.js",
                 "Price List":"public/js/price_list.js",
-                "Supplier":"public/js/supplier.js"
+                "Supplier":"public/js/supplier.js",
+                "Request for Quotation":"public/js/request_for_quotation.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -450,8 +451,13 @@ doc_events = {
     },
     "Stock Entry":{
         "validate":"wsc.wsc.validations.stock_entry.validate"
-    }
-    
+    },
+    "Request for Quotation":{
+        "validate":"wsc.wsc.validations.request_for_quotation.validate"
+    },
+    "Supplier Quotation":{
+        "validate":"wsc.wsc.validations.supplier_quotation.validate"
+    }    
     
     
     
