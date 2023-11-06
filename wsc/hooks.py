@@ -69,7 +69,10 @@ doctype_js = {
                 "Employee Onboarding":"public/js/employee_onboarding.js",
                 "Job Offer":"public/js/job_offer.js",
                 "Compensatory Leave Request":"public/js/compensatory_leave_request.js",
-                "Task":"public/js/task.js"
+                "Task":"public/js/task.js",
+                "Price List":"public/js/price_list.js",
+                "Supplier":"public/js/supplier.js",
+                "Request for Quotation":"public/js/request_for_quotation.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -85,6 +88,9 @@ doctype_list_js = {
     "Student":"public/js/student_list.js",
     "Student Group":"public/js/student_group_list.js",
     "Employee Grievance":"public/js/employee_grievance_list.js",
+    "Item Price":"public/js/item_price_list.js",
+    "Material Request":"public/js/material_request_list.js",
+    "Price List":"public/js/price_list_list.js"
 }
 
 doctype_tree_js = {"doctype" : "public/js/tax_category_tree.js"}
@@ -355,9 +361,9 @@ doc_events = {
         "validate":"wsc.wsc.doctype.attendance_request.validate",
         "after_insert":"wsc.wsc.doctype.attendance_request.after_insert"
     },
-    "Purchase Order": {
-        "validate":"wsc.wsc.doctype.purchase_order.validate"
-    },
+    # "Purchase Order": {
+    #     "validate":"wsc.wsc.doctype.purchase_order.validate"
+    # },
     "Material Request": {
         "validate":"wsc.wsc.doctype.material_request.validate",
         "on_submit":"wsc.wsc.doctype.material_request.workflow_notification",
@@ -414,23 +420,45 @@ doc_events = {
     "Item":{
         "validate":"wsc.wsc.doctype.item.validate"
     },
-    "Income Tax Slab":{
-        "validate":"wsc.wsc.doctype.income_tax_slab.validate"
+    "Price List":{
+        "validate":"wsc.wsc.validations.price_list.validate"
     },
-    "Salary Structure Assignment":{
-        "validate":"wsc.wsc.doctype.salary_structure_assignment.validate"
+    # "Supplier":{
+    #     "validate":"wsc.wsc.validations.supplier.validate"
+    # },
+    "Quality Inspection Template":{
+        "validate":"wsc.wsc.validations.quality_inspection_template.validate"
     },
-    "Payroll Entry":{
-        "validate":"wsc.wsc.doctype.payroll_entry.validate"
+    "Purchase Taxes and Charges Template":{
+        "validate":"wsc.wsc.validations.purchase_taxes_and_charges_template.validate"
     },
-    "Employee Tax Exemption Category":{
-        "validate":"wsc.wsc.doctype.employee_tax_exemption_category.validate"
+    "Warehouse":{
+    "validate":"wsc.wsc.validations.warehouse.validate"
     },
-    "Employee Tax Exemption Declaration":{
-        "validate":"wsc.wsc.doctype.employee_tax_exemption_declaration.validate"
-    }
-    
-    
+    "Tax Withholding Category":{
+        "validate":"wsc.wsc.validations.tax_withholding_category.validate"
+    },
+    "Buying Settings":{
+        "validate":"wsc.wsc.validations.buying_settings.validate"
+    },
+    "Batch":{
+        "validate":"wsc.wsc.validations.batch.validate"
+    },
+    "Payment Term":{
+        "validate":"wsc.wsc.validations.payment_term.validate"
+    },
+    "Payment Terms Template":{
+        "validate":"wsc.wsc.validations.payment_terms_template.validate"
+    },
+    "Stock Entry":{
+        "validate":"wsc.wsc.validations.stock_entry.validate"
+    },
+    "Request for Quotation":{
+        "validate":"wsc.wsc.validations.request_for_quotation.validate"
+    },
+    "Supplier Quotation":{
+        "validate":"wsc.wsc.validations.supplier_quotation.validate"
+    }    
     
     
     
@@ -575,8 +603,8 @@ override_doctype_dashboards = {
 # fixtures = [
 	# {"dt": "Custom DocPerm", "filters": [
 	# 	["parent", "not in", ["DocType"]],
-    #     ["parent", "in", ["Employee Separation"]],
-    #     ["role", "in", ["Report Manager"]]
+    #     ["parent", "in", ["Country"]],
+    #     ["role", "in", ["GM-Procurement & Contract Management","Purchase Manager-MM","Stock Manager- MM"]]
 	# ]},
     # {"dt": "Role","filters": [
     #     ["name", "in", ["TOT Director", "TOT Administrator", "TOT Trainer"]]

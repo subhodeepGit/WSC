@@ -3,6 +3,7 @@
  "allow_rename": 1,
  "creation": "2023-05-09 17:31:47.409181",
  "doctype": "DocType",
+ "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "slot_name",
@@ -15,34 +16,44 @@
   {
    "fieldname": "slot_name",
    "fieldtype": "Data",
-   "label": "Slot Name"
+   "in_list_view": 1,
+   "label": "Slot Name",
+   "reqd": 1
   },
   {
    "fieldname": "slot_starting_time",
    "fieldtype": "Time",
-   "label": "Slot Starting Time"
+   "in_list_view": 1,
+   "label": "Slot Starting Time",
+   "reqd": 1
   },
   {
    "fieldname": "slot_ending_time",
    "fieldtype": "Time",
-   "label": "Slot Ending Time"
+   "in_list_view": 1,
+   "label": "Slot Ending Time",
+   "reqd": 1
   },
   {
    "allow_on_submit": 1,
    "fieldname": "seating_capacity",
    "fieldtype": "Int",
-   "label": "Seating Capacity"
+   "in_list_view": 1,
+   "label": "Seating Capacity",
+   "reqd": 1
   },
   {
    "fieldname": "slot_date",
    "fieldtype": "Date",
-   "label": "Slot Date"
+   "in_list_view": 1,
+   "label": "Slot Date",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-04 11:55:59.857511",
+ "modified": "2023-11-03 16:21:12.074709",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Slot Timings",

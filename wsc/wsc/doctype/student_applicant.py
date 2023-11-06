@@ -81,7 +81,7 @@ class StudentApplicant(Document):
         # doc.title = " ".join(
 			# filter(None, [doc.first_name, doc.middle_name, doc.last_name])
 		# )
-        # doc.title=doc.first_name + doc.middle_name + doc.last_name
+        doc.title=doc.first_name + doc.middle_name + doc.last_name
         # validate_percentage(doc)
         # check_age(doc)
         validate_duplicate_record(doc)

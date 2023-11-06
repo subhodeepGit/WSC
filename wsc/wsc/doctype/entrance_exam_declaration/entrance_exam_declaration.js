@@ -57,6 +57,7 @@ frappe.ui.form.on('Entrance Exam Declaration', {
 						})
 						frm.refresh();
 						frm.refresh_field("applicant_list")
+						frm.save()
 					} else {
 						alert("No Applicants found")
 						frappe.model.clear_table(frm.doc, 'applicant_list');
