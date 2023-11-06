@@ -12,6 +12,15 @@ frappe.ui.form.on('Internship Application', {
 				}
 			};
 		});
+		frm.set_query("select_internship", function() {
+			return {
+				query: 'wsc.wsc.doctype.internship_application.internship_application.drive_filter',
+				filters:{
+					"participant_id":frm.doc.participant_id,
+				}
+				
+			};
+		});
 	},
 	select_internship : function(frm){
 		frappe.call({
