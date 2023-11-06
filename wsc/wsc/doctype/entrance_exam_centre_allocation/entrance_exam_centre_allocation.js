@@ -42,7 +42,7 @@ frappe.ui.form.on('Entrance Exam Centre Allocation', {
 			}
 		})
 
-	},
+	}
 	// entrance_exam_declaration:function(frm){
 	// 	let arr = [" "]
 	// 	// frm.set_df_property('centre', 'options', arr)
@@ -111,3 +111,17 @@ frappe.ui.form.on('Entrance Exam Centre Allocation', {
 		
 	// }
 });
+
+
+frappe.ui.form.on('Entrance Exam Invigilator', {
+	entrance_exam_invigilator_add:function(frm){
+		frm.fields_dict['entrance_exam_invigilator'].grid.get_field('invigilator_id').get_query = function(doc){
+			var invigilator_id_list = [];
+			if(!doc.__islocal) invigilator_id_list.push(doc.name);
+			$.each(doc.entrance_exam_invigilator, function(idx, val){
+				if (val.invigilator_id) invigilator_id_list.push(val.invigilator_id);
+			});
+			return { filters: [['Employee', 'name', 'not in', invigilator_id_list]] };
+		}
+	}
+})
