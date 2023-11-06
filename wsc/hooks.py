@@ -89,7 +89,8 @@ doctype_list_js = {
     "Student Group":"public/js/student_group_list.js",
     "Employee Grievance":"public/js/employee_grievance_list.js",
     "Item Price":"public/js/item_price_list.js",
-    "Material Request":"public/js/material_request_list.js"
+    "Material Request":"public/js/material_request_list.js",
+    "Price List":"public/js/price_list_list.js"
 }
 
 doctype_tree_js = {"doctype" : "public/js/tax_category_tree.js"}
@@ -360,9 +361,9 @@ doc_events = {
         "validate":"wsc.wsc.doctype.attendance_request.validate",
         "after_insert":"wsc.wsc.doctype.attendance_request.after_insert"
     },
-    "Purchase Order": {
-        "validate":"wsc.wsc.doctype.purchase_order.validate"
-    },
+    # "Purchase Order": {
+    #     "validate":"wsc.wsc.doctype.purchase_order.validate"
+    # },
     "Material Request": {
         "validate":"wsc.wsc.doctype.material_request.validate",
         "on_submit":"wsc.wsc.doctype.material_request.workflow_notification",
@@ -422,9 +423,9 @@ doc_events = {
     "Price List":{
         "validate":"wsc.wsc.validations.price_list.validate"
     },
-    "Supplier":{
-        "validate":"wsc.wsc.validations.supplier.validate"
-    },
+    # "Supplier":{
+    #     "validate":"wsc.wsc.validations.supplier.validate"
+    # },
     "Quality Inspection Template":{
         "validate":"wsc.wsc.validations.quality_inspection_template.validate"
     },
