@@ -44,6 +44,7 @@ doctype_js = {
                 "Payment Entry" : "public/js/payment_entry.js",
                 "Program Enrollment":"public/js/program_enrollment.js",
                 "Program":"public/js/program.js",
+                "Stock Settings":"public/js/stock_settings.js",
                 "Student":"public/js/student.js",
                 "Student Admission":"public/js/student_admission.js",
                 "Student Applicant":"public/js/student_applicant.js",
