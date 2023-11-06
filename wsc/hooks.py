@@ -413,6 +413,21 @@ doc_events = {
     },
     "Item":{
         "validate":"wsc.wsc.doctype.item.validate"
+    },
+    "Income Tax Slab":{
+        "validate":"wsc.wsc.doctype.income_tax_slab.validate"
+    },
+    "Salary Structure Assignment":{
+        "validate":"wsc.wsc.doctype.salary_structure_assignment.validate"
+    },
+    "Payroll Entry":{
+        "validate":"wsc.wsc.doctype.payroll_entry.validate"
+    },
+    "Employee Tax Exemption Category":{
+        "validate":"wsc.wsc.doctype.employee_tax_exemption_category.validate"
+    },
+    "Employee Tax Exemption Declaration":{
+        "validate":"wsc.wsc.doctype.employee_tax_exemption_declaration.validate"
     }
     
     
