@@ -127,10 +127,15 @@ frappe.ui.form.on('Student Admission', {
 })
 frappe.ui.form.on("Reservations List", "total_seat", function(frm, cdt, cdn) {
     var d = locals[cdt][cdn];
+    if (d.allocated_seat==undefined){
+        d.seat_balance=d.total_seat
+        refresh_field("seat_balance", d.seat_balance);
+    }
+    else
 	// d.seat_balance=d.total_seat
-    d.seat_balance=d.total_seat-d.allocated_seat
-    // d.total_seat=d.
-	refresh_field("seat_balance", d.name, d.parentfield);
+        d.seat_balance=d.total_seat-d.allocated_seat
+        // d.total_seat=d.
+        refresh_field("seat_balance", d.name, d.parentfield);
     // refresh_field("allocated_seat", d.name, d.parentfield);
 });
 frappe.ui.form.on("Reservations List", "allocated_seat", function(frm, cdt, cdn) {
