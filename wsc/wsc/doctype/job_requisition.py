@@ -14,6 +14,6 @@ def validate(self,method):
 		frappe.throw("Expected date cannot be earlier than the posting date.")
 	# if self.completed_on < self.posting_date:
 	# 	frappe.throw("Completed On cannot be earlier than the posting date.")
-	if self.posting_date:
-		if (self.posting_date) < today():
-			frappe.throw("Posting Date cannot be a past date.")
+	# if self.posting_date:
+	# 	if (self.posting_date) < today():
+	# 		frappe.throw("Posting Date cannot be a past date.")
