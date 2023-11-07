@@ -17,7 +17,8 @@
    "fieldname": "applicant_id",
    "fieldtype": "Link",
    "label": "Applicant ID",
-   "options": "Student Applicant"
+   "options": "Student Applicant",
+   "read_only": 1
   },
   {
    "fetch_from": "applicant_id.title",
@@ -59,7 +60,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-04 11:56:26.184132",
+ "modified": "2023-11-06 12:33:29.386465",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Applicant List",

@@ -44,6 +44,7 @@ doctype_js = {
                 "Payment Entry" : "public/js/payment_entry.js",
                 "Program Enrollment":"public/js/program_enrollment.js",
                 "Program":"public/js/program.js",
+                "Stock Settings":"public/js/stock_settings.js",
                 "Student":"public/js/student.js",
                 "Student Admission":"public/js/student_admission.js",
                 "Student Applicant":"public/js/student_applicant.js",
@@ -71,7 +72,8 @@ doctype_js = {
                 "Compensatory Leave Request":"public/js/compensatory_leave_request.js",
                 "Task":"public/js/task.js",
                 "Price List":"public/js/price_list.js",
-                "Supplier":"public/js/supplier.js"
+                "Supplier":"public/js/supplier.js",
+                "Request for Quotation":"public/js/request_for_quotation.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -87,7 +89,9 @@ doctype_list_js = {
     "Student":"public/js/student_list.js",
     "Student Group":"public/js/student_group_list.js",
     "Employee Grievance":"public/js/employee_grievance_list.js",
-    "Item Price":"public/js/item_price_list.js"
+    "Item Price":"public/js/item_price_list.js",
+    "Material Request":"public/js/material_request_list.js",
+    "Price List":"public/js/price_list_list.js"
 }
 
 doctype_tree_js = {"doctype" : "public/js/tax_category_tree.js"}
@@ -358,9 +362,9 @@ doc_events = {
         "validate":"wsc.wsc.doctype.attendance_request.validate",
         "after_insert":"wsc.wsc.doctype.attendance_request.after_insert"
     },
-    "Purchase Order": {
-        "validate":"wsc.wsc.doctype.purchase_order.validate"
-    },
+    # "Purchase Order": {
+    #     "validate":"wsc.wsc.doctype.purchase_order.validate"
+    # },
     "Material Request": {
         "validate":"wsc.wsc.doctype.material_request.validate",
         "on_submit":"wsc.wsc.doctype.material_request.workflow_notification",
@@ -420,38 +424,57 @@ doc_events = {
     "Price List":{
         "validate":"wsc.wsc.validations.price_list.validate"
     },
-    "Supplier":{
-        "validate":"wsc.wsc.validations.supplier.validate"
-    },
+    # "Supplier":{
+    #     "validate":"wsc.wsc.validations.supplier.validate"
+    # },
     "Quality Inspection Template":{
         "validate":"wsc.wsc.validations.quality_inspection_template.validate"
     },
     "Purchase Taxes and Charges Template":{
         "validate":"wsc.wsc.validations.purchase_taxes_and_charges_template.validate"
     },
-    "Employee Benefit Claim":{
-        "validate":"wsc.wsc.doctype.employee_benefit_claim.validate"
+    "Warehouse":{
+    "validate":"wsc.wsc.validations.warehouse.validate"
     },
-    "Employee Benefit Application":{
-        "validate":"wsc.wsc.doctype.employee_benefit_application.validate"
+    "Tax Withholding Category":{
+        "validate":"wsc.wsc.validations.tax_withholding_category.validate"
     },
-    "Employee Incentive":{
-        "validate":"wsc.wsc.doctype.employee_incentive.validate"
+    "Buying Settings":{
+        "validate":"wsc.wsc.validations.buying_settings.validate"
     },
-    "Retention Bonus":{
-        "validate":"wsc.wsc.doctype.retention_bonus.validate"
+    "Batch":{
+        "validate":"wsc.wsc.validations.batch.validate"
     },
-    "Additional Salary":{
-        "validate":"wsc.wsc.doctype.additional_salary.validate"
+    "Payment Term":{
+        "validate":"wsc.wsc.validations.payment_term.validate"
     },
-    "Employee Other Income":{
-        "validate":"wsc.wsc.doctype.employee_other_income.validate"
+    "Payment Terms Template":{
+        "validate":"wsc.wsc.validations.payment_terms_template.validate"
     },
-    "Employee Tax Exemption Proof Submission":{
-        "validate":"wsc.wsc.doctype.employee_tax_exemption_proof_submission.validate"
+    "Stock Entry":{
+        "validate":"wsc.wsc.validations.stock_entry.validate"
+    },
+    "Request for Quotation":{
+        "validate":"wsc.wsc.validations.request_for_quotation.validate"
+    },
+    "Supplier Quotation":{
+        "validate":"wsc.wsc.validations.supplier_quotation.validate"
+    },
+    "Income Tax Slab":{
+        "validate":"wsc.wsc.doctype.income_tax_slab.validate"
+    },
+    "Salary Structure Assignment":{
+        "validate":"wsc.wsc.doctype.salary_structure_assignment.validate"
+    },
+    "Payroll Entry":{
+        "validate":"wsc.wsc.doctype.payroll_entry.validate"
+    },
+    "Employee Tax Exemption Category":{
+        "validate":"wsc.wsc.doctype.employee_tax_exemption_category.validate"
+    },
+    "Employee Tax Exemption Declaration":{
+        "validate":"wsc.wsc.doctype.employee_tax_exemption_declaration.validate"
     }
-    
-    
     
     
 

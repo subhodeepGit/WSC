@@ -7,9 +7,10 @@ from frappe.model.document import Document
 
 class EntranceExamCentreAllocation(Document):
     def validate(self):
+        if self.is_new():
+            dupicate_check(self)
+        time_validation(self)    
         date_format = "%Y-%m-%d"
-        print("\n\n")
-        
         for i in self.get('exam_slot_timings'):
 
             slot_date = datetime.strptime(i.slot_date, date_format).date()
@@ -23,14 +24,30 @@ class EntranceExamCentreAllocation(Document):
                 if self.exam_start_date >= slot_date or self.exam_end_date <= slot_date:
                     frappe.throw("Slot Date out of Scope")
 
+def dupicate_check(self):
+    if frappe.get_all("Entrance Exam Centre Allocation",{"docstatus":1,
+                                                      "entrance_exam_declaration":self.entrance_exam_declaration,
+                                                      "centre":self.centre}):
+        frappe.throw("</b> For This Center Entrance Exam Centre Allocation Has Already Scheduled </b> ")
+
+def time_validation(self):
+    for t in self.get("exam_slot_timings"):
+        # print(t.slot_starting_time)
+        # print(t.slot_ending_time)
+        # print(type(t.slot_starting_time)
+        # print(t.slot_ending_time)
+        if t.slot_starting_time and t.slot_ending_time:
+            from_time= datetime.strptime(t.slot_starting_time, '%H:%M:%S').time()
+            to_time= datetime.strptime(t.slot_ending_time, '%H:%M:%S').time()
+            if from_time>to_time:
+                frappe.throw("Row <b>{0}</b> Slot Ending Time cannot be greater than Slot Starting Time".format(t.idx))
+        pass
 # @frappe.whitelist()
 # def get_centers(center_selection):
 
 # 	# center_selection = frappe.get_all('Entrance Exam Centre Selection' , { 'academic_year':academic_year , 'academic_term':academic_term } , ['name'] )
 
 # 	current_centers = frappe.get_all('Current Centers' ,{'parent':center_selection }, ['center'])
-# 	print("\n\n\n")
-# 	# print(center_selection)
 # 	return current_centers
 
 # @frappe.whitelist()
@@ -48,9 +65,18 @@ def ra_query(doctype, txt, searchfield, start, page_len, filters):
     searchfields = frappe.get_meta(doctype).get_search_fields()
     searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)    
     
+    # data=frappe.db.sql("""
+    #     SELECT `name` FROM `tabEntrance Exam Declaration` WHERE ({key} like %(txt)s or {scond})  and
+    #         (`exam_start_date` <= now() AND `exam_end_date` >= now())
+    #          and `docstatus`=1 
+    # """.format(
+    #     **{
+    #         "key": searchfield,
+    #         "scond": searchfields,
+    #         # "info":info
+    #     }),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
     data=frappe.db.sql("""
-        SELECT `name` FROM `tabEntrance Exam Declaration` WHERE ({key} like %(txt)s or {scond})  and
-            (`exam_start_date` <= now() AND `exam_end_date` >= now())
+        SELECT `name` FROM `tabEntrance Exam Declaration` WHERE ({key} like %(txt)s or {scond})
              and `docstatus`=1 
     """.format(
         **{
@@ -58,5 +84,6 @@ def ra_query(doctype, txt, searchfield, start, page_len, filters):
             "scond": searchfields,
             # "info":info
         }),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+
 
     return data

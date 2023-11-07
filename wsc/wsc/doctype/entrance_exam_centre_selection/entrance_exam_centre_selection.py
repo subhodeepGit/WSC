@@ -7,8 +7,6 @@ from frappe.model.document import Document
 class EntranceExamCentreSelection(Document):
 	@frappe.whitelist()
 	def selected_centers(self):
-		print("\n\n\n",self)
-		# print(self.get('current_centers'))
 		for i in self.get('current_centers'):
 			result = frappe.new_doc('Entrance exam select')
 			result.academic_year = self.academic_year
@@ -27,7 +25,6 @@ class EntranceExamCentreSelection(Document):
 		frappe.msgprint("Centers Records Created")
 		self.flag = 2
 		self.save()
-		print(self.flag)
 
 	def validate(self):
 		self.validate_duplicate_record()
@@ -36,7 +33,6 @@ class EntranceExamCentreSelection(Document):
 		# center_select = frappe.get_doc("Entrance exam select" , )
 		self.flag = 0
 		# self.cancel()
-		print("\n\nhello" , self.flag)
 		for i in self.current_centers:
 			center_select_data = frappe.get_all("Entrance exam select" , {'center' : i.center , 'academic_year': self.academic_year , 'academic_term': self.academic_term , "docstatus": 1} , ['name'])
 			if len(center_select_data) != 0:
