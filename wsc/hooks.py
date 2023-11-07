@@ -428,6 +428,27 @@ doc_events = {
     },
     "Purchase Taxes and Charges Template":{
         "validate":"wsc.wsc.validations.purchase_taxes_and_charges_template.validate"
+    },
+    "Employee Benefit Claim":{
+        "validate":"wsc.wsc.doctype.employee_benefit_claim.validate"
+    },
+    "Employee Benefit Application":{
+        "validate":"wsc.wsc.doctype.employee_benefit_application.validate"
+    },
+    "Employee Incentive":{
+        "validate":"wsc.wsc.doctype.employee_incentive.validate"
+    },
+    "Retention Bonus":{
+        "validate":"wsc.wsc.doctype.retention_bonus.validate"
+    },
+    "Additional Salary":{
+        "validate":"wsc.wsc.doctype.additional_salary.validate"
+    },
+    "Employee Other Income":{
+        "validate":"wsc.wsc.doctype.employee_other_income.validate"
+    },
+    "Employee Tax Exemption Proof Submission":{
+        "validate":"wsc.wsc.doctype.employee_tax_exemption_proof_submission.validate"
     }
     
     
@@ -574,8 +595,8 @@ override_doctype_dashboards = {
 # fixtures = [
 	# {"dt": "Custom DocPerm", "filters": [
 	# 	["parent", "not in", ["DocType"]],
-    #     ["parent", "in", ["Country"]],
-    #     ["role", "in", ["GM-Procurement & Contract Management","Purchase Manager-MM","Stock Manager- MM"]]
+    #     ["parent", "in", ["Employee Tax Exemption Declaration"]],
+    #     ["role", "in", ["HR Admin"]]
 	# ]},
     # {"dt": "Role","filters": [
     #     ["name", "in", ["TOT Director", "TOT Administrator", "TOT Trainer"]]
