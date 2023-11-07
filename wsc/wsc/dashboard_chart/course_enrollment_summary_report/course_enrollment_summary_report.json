@@ -1,0 +1,47 @@
+{
+ "chart_name": "Course Enrollment Summary Report",
+ "chart_type": "Report",
+ "creation": "2023-10-30 17:39:42.634980",
+ "custom_options": "{\"x_field\": \"course\", \"chart_type\": \"Bar\", \"y_axis_fields\": [{\"idx\": 1, \"__islocal\": true, \"name\": \"row 1\", \"y_field\": \"Female\", \"color\": \"#ECAD4B\"}, {\"idx\": 2, \"__islocal\": true, \"name\": \"row 3\", \"y_field\": \"Male\", \"color\": \"#B4CD29\"}, {\"idx\": 3, \"__islocal\": true, \"name\": \"row 5\", \"y_field\": \"provisional_admission\"}, {\"idx\": 4, \"__islocal\": true, \"name\": \"row 2\", \"y_field\": \"admitted\", \"color\": \"#CB2929\"}, {\"idx\": 5, \"__islocal\": true, \"name\": \"row 4\", \"y_field\": \"total\"}], \"y_fields\": [\"Female\", \"Male\", \"provisional_admission\", \"admitted\", \"total\"], \"colors\": [\"#ECAD4B\", \"#B4CD29\", null, \"#CB2929\", null]}",
+ "docstatus": 0,
+ "doctype": "Dashboard Chart",
+ "filters_json": "{\"academic_year\":\"2023-24\",\"academic_term\":\"2023-24 (SEMESTER 1)\"}",
+ "group_by_type": "Count",
+ "idx": 0,
+ "is_public": 0,
+ "is_standard": 1,
+ "modified": "2023-10-30 17:39:42.832110",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Course Enrollment Summary Report",
+ "number_of_groups": 0,
+ "owner": "Administrator",
+ "report_name": "Course Enrollment Summary Report",
+ "roles": [],
+ "time_interval": "Yearly",
+ "timeseries": 0,
+ "timespan": "Last Year",
+ "type": "Bar",
+ "use_report_chart": 0,
+ "x_field": "course",
+ "y_axis": [
+  {
+   "color": "#ECAD4B",
+   "y_field": "Female"
+  },
+  {
+   "color": "#B4CD29",
+   "y_field": "Male"
+  },
+  {
+   "y_field": "provisional_admission"
+  },
+  {
+   "color": "#CB2929",
+   "y_field": "admitted"
+  },
+  {
+   "y_field": "total"
+  }
+ ]
+}

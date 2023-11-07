@@ -18,24 +18,30 @@
   "column_break_2sdjy",
   "company_name",
   "internship_drive_name",
+  "application_end_date",
   "column_break_piqle",
   "company_sector",
   "type_of_drive",
+  "application_start_date",
   "section_break_uq88o",
-  "drive_description"
+  "drive_description",
+  "amended_from"
  ],
  "fields": [
   {
    "fieldname": "participant_type",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Participant Type",
-   "options": "Student\nEmployee"
+   "options": "Student\nEmployee",
+   "reqd": 1
   },
   {
    "fieldname": "select_internship",
    "fieldtype": "Link",
    "label": "Select Internship Drive",
-   "options": "Internship Drive"
+   "options": "Internship Drive",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_yfbdt",
@@ -44,13 +50,16 @@
   {
    "fieldname": "participant_id",
    "fieldtype": "Dynamic Link",
+   "in_list_view": 1,
    "label": "Participant ID",
-   "options": "participant_type"
+   "options": "participant_type",
+   "reqd": 1
   },
   {
    "fieldname": "internship_name",
    "fieldtype": "Data",
-   "label": "Internship Name"
+   "label": "Internship Name",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_2sdjy",
@@ -60,7 +69,8 @@
   {
    "fieldname": "participant_name",
    "fieldtype": "Data",
-   "label": "Participant Name"
+   "label": "Participant Name",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_jjn4n",
@@ -70,7 +80,8 @@
    "fetch_from": "select_internship.company_name",
    "fieldname": "company_name",
    "fieldtype": "Data",
-   "label": "Company Name"
+   "label": "Company Name",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_piqle",
@@ -80,7 +91,8 @@
    "fetch_from": "select_internship.company_sector",
    "fieldname": "company_sector",
    "fieldtype": "Data",
-   "label": "Company Sector"
+   "label": "Company Sector",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_uq88o",
@@ -90,24 +102,51 @@
    "fetch_from": "select_internship.about_drive",
    "fieldname": "drive_description",
    "fieldtype": "Text Editor",
-   "label": "Drive Description"
+   "label": "Drive Description",
+   "read_only": 1
   },
   {
    "fetch_from": "select_internship.title_of_drive",
    "fieldname": "internship_drive_name",
    "fieldtype": "Data",
-   "label": "Internship Drive Name"
+   "label": "Internship Drive Name",
+   "read_only": 1
   },
   {
    "fetch_from": "select_internship.type_of_drive",
    "fieldname": "type_of_drive",
    "fieldtype": "Data",
-   "label": "Type of Drive"
+   "label": "Type of Drive",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "select_internship.application_start_date",
+   "fieldname": "application_start_date",
+   "fieldtype": "Date",
+   "label": " Application Start Date ",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "select_internship.application_end_date",
+   "fieldname": "application_end_date",
+   "fieldtype": "Date",
+   "label": "Application End Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Internship Application",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-09-27 18:02:24.747661",
+ "modified": "2023-10-31 15:43:27.328438",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Application",

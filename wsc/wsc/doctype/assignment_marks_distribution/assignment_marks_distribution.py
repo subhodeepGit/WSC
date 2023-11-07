@@ -11,6 +11,7 @@ class AssignmentMarksDistribution(Document):
 		self.weightage_cal()
 		self.passing_marks_cal()
 		self.total_marks_cal()
+		self.negtive_value_chk()
 	
 	def weightage_cal(self):
 		weightage=0
@@ -36,6 +37,15 @@ class AssignmentMarksDistribution(Document):
 		data=frappe.get_all("Assignment Marks Distribution",{"course":self.course,"assessment_criteria":self.assessment_criteria})
 		if data:
 			frappe.throw("For the Module %s and For Assessment Component %s Data Already Present"%(self.course,self.assessment_criteria))
+
+	def negtive_value_chk(self):
+		for t in self.get("assignment_marks_distribution_child"):
+			if t.weightage<=0:
+				frappe.throw("Weightage value can't be negative of Zero")
+			if t.total_marks<=0:
+				frappe.throw("Total Marks value can't be negative of Zero")	
+			if t.passing_marks<=0:
+				frappe.throw("Passing Marks value can't be negative of Zero")
 		
 
 

@@ -5,7 +5,10 @@ import frappe
 from frappe.model.document import Document
 
 class EntranceExamResultPublication(Document):
-	pass
+	def validate(self):
+          print("\n\n")
+          if self.earned_marks > self.total_marks:
+               frappe.throw('Earned Marks Cannot be Greater than Total Marks')
 
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
@@ -15,9 +18,19 @@ def ra_query(doctype, txt, searchfield, start, page_len, filters):
     searchfields = frappe.get_meta(doctype).get_search_fields()
     searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)    
     
+    # data=frappe.db.sql("""
+    #     SELECT `name` FROM `tabEntrance Exam Declaration` WHERE ({key} like %(txt)s or {scond})  and
+    #         (`exam_start_date` <= now() AND `exam_end_date` >= now())
+    #          and `docstatus`=1 
+    # """.format(
+    #     **{
+    #         "key": searchfield,
+    #         "scond": searchfields,
+    #         # "info":info
+    #     }),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+    
     data=frappe.db.sql("""
-        SELECT `name` FROM `tabEntrance Exam Declaration` WHERE ({key} like %(txt)s or {scond})  and
-            (`exam_start_date` <= now() AND `exam_end_date` >= now())
+        SELECT `name` FROM `tabEntrance Exam Declaration` WHERE ({key} like %(txt)s or {scond}) 
              and `docstatus`=1 
     """.format(
         **{

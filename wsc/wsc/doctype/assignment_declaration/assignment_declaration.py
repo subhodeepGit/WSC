@@ -23,7 +23,8 @@ class AssignmentDeclaration(Document):
 			'course': self.course,
 			'academic_year': self.academic_year,
 			'docstatus': ('!=', 2),
-			'name': ('!=', self.name)
+			'name': ('!=', self.name),
+			"participant_group":self.participant_group
 		})
 
 		if assignment_record:
@@ -46,7 +47,10 @@ def get_criteria_details(course, assessment_criteria):
 		return ['','','','','', '', '']
 	else:
 		criteria_details = frappe.get_all('Credit distribution List', filters = [['parent', '=', course], ['assessment_criteria', '=', assessment_criteria]], fields = ['total_marks','passing_marks','weightage'])
-		return [criteria_details[0]['total_marks'], criteria_details[0]['passing_marks'], criteria_details[0]['weightage']]
+		if criteria_details:
+			return [criteria_details[0]['total_marks'], criteria_details[0]['passing_marks'], criteria_details[0]['weightage']]
+		else:
+			frappe.throw("<b>Passing Marks and Weightage not defined in Component Distribution table of Module</b>")
 
 
 @frappe.whitelist()

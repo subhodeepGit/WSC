@@ -415,7 +415,7 @@
   "source_text": "Course",
   "translated_text": "Module"
  },
-  {
+ {
   "context": null,
   "contributed": 0,
   "contribution_docname": null,
@@ -441,7 +441,7 @@
   "source_text": "Branch",
   "translated_text": "Campus Location"
  },
-  {
+ {
   "context": null,
   "contributed": 0,
   "contribution_docname": null,
@@ -453,5 +453,18 @@
   "name": "122a0b4a6b",
   "source_text": "Price Impanelement Report",
   "translated_text": "Price Empanelled Report"
+ },
+ {
+  "context": null,
+  "contributed": 0,
+  "contribution_docname": null,
+  "contribution_status": "",
+  "docstatus": 0,
+  "doctype": "Translation",
+  "language": "en",
+  "modified": "2023-11-03 12:48:39.074439",
+  "name": "c775941d5c",
+  "source_text": "Entrance Exam Centre Selection",
+  "translated_text": "Entrance Exam Center Selection"
  }
 ]

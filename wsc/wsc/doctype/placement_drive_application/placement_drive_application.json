@@ -108,7 +108,8 @@
    "fieldname": "educational_details",
    "fieldtype": "Table",
    "label": "Educational Details",
-   "options": "Educational Details"
+   "options": "Educational Details",
+   "read_only": 1
   },
   {
    "fieldname": "resume",
@@ -152,7 +153,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-04 16:19:40.697051",
+ "modified": "2023-10-27 15:56:53.216774",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive Application",

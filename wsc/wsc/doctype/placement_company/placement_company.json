@@ -48,7 +48,7 @@
   },
   {
    "fieldname": "address_html",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Address "
   },
   {
@@ -97,7 +97,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-27 17:31:34.657034",
+ "modified": "2023-10-26 22:58:31.605050",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Company",

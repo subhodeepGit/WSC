@@ -22,19 +22,16 @@ frappe.ui.form.on('Internship Drive', {
 			};
 		});
 	},
-	application_start_date : function(frm){
-		if(frm.doc.application_start_date && frm.doc.application_end_date){
-			if(frm.doc.application_start_date > frm.doc.application_end_date){
-				frappe.throw("Application Start Date should be Less than Application Start date");
-			}
-		}
-	},
-	application_end_date:function(frm){
-		if(frm.doc.application_start_date && frm.doc.application_end_date){
-			if(frm.doc.application_end_date < frm.doc.application_start_date){
-				frappe.throw("Application End Date should be Greater than Application Start date");
-			}
-		}
-	},
+	application_start_date(frm) {
+        frm.fields_dict.application_end_date.datepicker.update({
+            minDate: frm.doc.application_start_date ? new Date(frm.doc.application_start_date) : null
+        });
+    },
+
+    application_end_date(frm) {
+        frm.fields_dict.application_start_date.datepicker.update({
+            maxDate: frm.doc.application_end_date ? new Date(frm.doc.application_end_date) : null
+        });
+    },
 	
 });

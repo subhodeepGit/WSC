@@ -280,7 +280,7 @@ class Item(Document):
     def validate_item_tax_net_rate_range(self):
         for tax in self.get("taxes"):
             if flt(tax.maximum_net_rate) < flt(tax.minimum_net_rate):
-                frappe.throw(_("Row #{0}: Maximum Net Rate cannot be greater than Minimum Net Rate"))
+                frappe.throw(_("Row #{0}: Minimum Net Rate cannot be greater than Maximum Net Rate").format(tax.idx))
 
     def update_template_tables(self):
         template = frappe.get_cached_doc("Item", self.variant_of)
