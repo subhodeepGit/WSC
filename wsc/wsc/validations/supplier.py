@@ -2,10 +2,12 @@ import frappe
 import re
 
 def validate(self, method):
-    if is_valid_field(self):
-        pass
-    else:
-        frappe.throw("Supplier email can only contain Alphabets and Numbers")
+    
+    if self.gstin:
+        if is_valid_field(self):
+            pass
+        else:
+            frappe.throw("Please Enter a valid GST number")
 
 def is_valid_field(self):
     field_pattern = r'^[a-zA-Z0-9]{15}$'
