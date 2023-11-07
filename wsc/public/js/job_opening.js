@@ -29,8 +29,8 @@ frappe.ui.form.on("Job Selection Round", "name_of_rounds", function(frm, cdt, cd
         a=frm.doc.job_selection_round.length;
         frm.set_value("count_rows", a);
         if(a>=frm.doc.number_of_selection_round){
-            alert("number_of_selection_round")
-            alert(frm.doc.number_of_selection_round)
+            // alert("number_of_selection_round")
+            // alert(frm.doc.number_of_selection_round)
             frm.set_df_property('job_selection_round', 'cannot_add_rows', true);
             frm.set_df_property('job_selection_round', 'cannot_delete_rows', true);
             // frm.set_df_property('program_priority', 'cannot_insert_below', true);
