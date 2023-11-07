@@ -44,6 +44,7 @@ doctype_js = {
                 "Payment Entry" : "public/js/payment_entry.js",
                 "Program Enrollment":"public/js/program_enrollment.js",
                 "Program":"public/js/program.js",
+                "Stock Settings":"public/js/stock_settings.js",
                 "Student":"public/js/student.js",
                 "Student Admission":"public/js/student_admission.js",
                 "Student Applicant":"public/js/student_applicant.js",
@@ -458,8 +459,43 @@ doc_events = {
     },
     "Supplier Quotation":{
         "validate":"wsc.wsc.validations.supplier_quotation.validate"
-    }    
-    
+    },
+    "Income Tax Slab":{
+        "validate":"wsc.wsc.doctype.income_tax_slab.validate"
+    },
+    "Salary Structure Assignment":{
+        "validate":"wsc.wsc.doctype.salary_structure_assignment.validate"
+    },
+    "Payroll Entry":{
+        "validate":"wsc.wsc.doctype.payroll_entry.validate"
+    },
+    "Employee Tax Exemption Category":{
+        "validate":"wsc.wsc.doctype.employee_tax_exemption_category.validate"
+    },
+    "Employee Tax Exemption Declaration":{
+        "validate":"wsc.wsc.doctype.employee_tax_exemption_declaration.validate"
+    },
+    "Employee Benefit Claim":{
+        "validate":"wsc.wsc.doctype.employee_benefit_claim.validate"
+    },
+    "Employee Benefit Application":{
+        "validate":"wsc.wsc.doctype.employee_benefit_application.validate"
+    },
+    "Employee Incentive":{
+        "validate":"wsc.wsc.doctype.employee_incentive.validate"
+    },
+    "Retention Bonus":{
+        "validate":"wsc.wsc.doctype.retention_bonus.validate"
+    },
+    "Additional Salary":{
+        "validate":"wsc.wsc.doctype.additional_salary.validate"
+    },
+    "Employee Other Income":{
+        "validate":"wsc.wsc.doctype.employee_other_income.validate"
+    },
+    "Employee Tax Exemption Proof Submission":{
+        "validate":"wsc.wsc.doctype.employee_tax_exemption_proof_submission.validate"
+    }
     
     
 
@@ -603,8 +639,8 @@ override_doctype_dashboards = {
 # fixtures = [
 	# {"dt": "Custom DocPerm", "filters": [
 	# 	["parent", "not in", ["DocType"]],
-    #     ["parent", "in", ["Country"]],
-    #     ["role", "in", ["GM-Procurement & Contract Management","Purchase Manager-MM","Stock Manager- MM"]]
+    #     ["parent", "in", ["Employee Tax Exemption Declaration"]],
+    #     ["role", "in", ["HR Admin"]]
 	# ]},
     # {"dt": "Role","filters": [
     #     ["name", "in", ["TOT Director", "TOT Administrator", "TOT Trainer"]]

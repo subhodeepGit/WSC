@@ -7,6 +7,7 @@
  ],
  "content": "[{\"id\":\"58h5L8NRYM\",\"type\":\"onboarding\",\"data\":{\"onboarding_name\":\"Payroll\",\"col\":12}},{\"id\":\"6gBaewnTLt\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Outgoing Salary\",\"col\":12}},{\"id\":\"9csUjcVrTE\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"6agOQiF2_R\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"n8GBX_8Omm\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Salary Register\",\"col\":3}},{\"id\":\"Xqn2D_Tdir\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Salary Structure\",\"col\":3}},{\"id\":\"vPM3xf9pPM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Income Tax Slab\",\"col\":3}},{\"id\":\"oeDmdAepjy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Salary Slip\",\"col\":3}},{\"id\":\"6mcGejlw78\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payroll Entry\",\"col\":3}},{\"id\":\"m1l8kJ5VjY\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Transactions &amp; Reports<br></b></span>\",\"col\":12}},{\"id\":\"aI-rNDD6Gy\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"iMyuVrCCwm\",\"type\":\"card\",\"data\":{\"card_name\":\"Payroll\",\"col\":4}},{\"id\":\"LKfnABuZW8\",\"type\":\"card\",\"data\":{\"card_name\":\"Taxation\",\"col\":4}},{\"id\":\"2eZpchV5SE\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounting\",\"col\":4}},{\"id\":\"8k9ARkemdO\",\"type\":\"card\",\"data\":{\"card_name\":\"Compensations\",\"col\":4}},{\"id\":\"ABY1R5SZ-g\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}}]",
  "creation": "2020-05-27 19:54:23.405607",
+ "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
  "for_user": "",
@@ -255,10 +256,11 @@
    "type": "Link"
   }
  ],
- "modified": "2023-03-16 11:35:38.060934",
+ "modified": "2023-11-06 14:38:15.187986",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Payroll",
+ "number_cards": [],
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,
@@ -267,6 +269,18 @@
  "roles": [
   {
    "role": "Admin"
+  },
+  {
+   "role": "Payroll Admin"
+  },
+  {
+   "role": "HR Admin"
+  },
+  {
+   "role": "Employee"
+  },
+  {
+   "role": "Director"
   }
  ],
  "sequence_id": 24.0,

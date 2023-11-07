@@ -82,7 +82,7 @@ def get_applicants(declaration):
 	return student_list
 
 def admit_card_generate(alloted_applicant_data):
-	print("\n\n")
+	# print("\n\n")
 	
 	for i in alloted_applicant_data:
 
@@ -133,9 +133,11 @@ def student_allotment(body):
 	for i in de_alloted_student:
 		
 		prefered_center = frappe.get_all("Exam Centre Preference" , {'parent' : i['applicant_id']} , ['center_name' , 'parent' , 'center'] , order_by = "idx asc")
+		print('\n' , prefered_center)
+		print("\n")
 		data = {}
 		for j in prefered_center:
-		
+			print("\n", j)
 			exam_center_allocation = frappe.get_all("Entrance Exam Centre Allocation" , 
 					   {'entrance_exam_declaration' : declaration , 'centre': j['center_name'] , 'docstatus' : 1} , 
 					 	['name' ,
@@ -174,13 +176,13 @@ def student_allotment(body):
 						data['seating_capacity'] = k['seating_capacity']
 						
 						i['center_allocated_status'] = 1				
-						frappe.db.sql("""
-								UPDATE `tabExam Slot Timings` SET seating_capacity = '{current_capacity}' WHERE parent = '{parent}' AND slot_name = '{slot_name}'
-						""".format(current_capacity = k['seating_capacity'] - 1 , parent = exam_center_allocation[0]['name'] , slot_name = k['slot_name']))	
+						# frappe.db.sql("""
+						# 		UPDATE `tabExam Slot Timings` SET seating_capacity = '{current_capacity}' WHERE parent = '{parent}' AND slot_name = '{slot_name}'
+						# """.format(current_capacity = k['seating_capacity'] - 1 , parent = exam_center_allocation[0]['name'] , slot_name = k['slot_name']))	
 
-						frappe.db.sql(""" 
-								UPDATE `tabApplicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}' AND parent = '{declaration}' 
-							""".format(applicant_id = i['applicant_id'] , declaration = declaration))   
+						# frappe.db.sql(""" 
+						# 		UPDATE `tabApplicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}' AND parent = '{declaration}' 
+						# 	""".format(applicant_id = i['applicant_id'] , declaration = declaration))   
 
 						frappe.db.sql("""
 								UPDATE `tabDeAllotted Applicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}' AND parent = '{name}'
@@ -209,7 +211,8 @@ def student_allotment(body):
 		admit_card_tool.save()
 
 	admit_card_generate(alloted_applicant_data)
-
+	print("\n\n")
+	# print(unalloted_students_after_center_allotment)
 	return {
 		'leftovers':unalloted_students_after_center_allotment,
 	}
