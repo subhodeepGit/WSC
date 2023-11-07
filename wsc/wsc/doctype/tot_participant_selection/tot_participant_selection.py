@@ -92,7 +92,7 @@ def update_participent(self):
 		doc.save()		
 @frappe.whitelist()
 def get_semester(course):
-	semester=[]
+	semester=''
 	for sem in frappe.get_all("Program",{'programs':course},['name']):
 		semester=sem.name
 	return semester
