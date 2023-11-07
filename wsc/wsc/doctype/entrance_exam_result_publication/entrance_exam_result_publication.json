@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{applicant_id}-{department}-{academic_year}",
+ "autoname": "format:{applicant_id}-{department}-{academic_term}",
  "creation": "2023-05-09 18:07:30.539407",
  "default_view": "List",
  "doctype": "DocType",
@@ -79,7 +79,8 @@
   {
    "fieldname": "earned_marks",
    "fieldtype": "Float",
-   "label": "Earned Marks"
+   "label": "Earned Marks",
+   "reqd": 1
   },
   {
    "fetch_from": "entrance_exam_declaration.academic_term",
@@ -141,13 +142,14 @@
    "fieldname": "applicant_id",
    "fieldtype": "Link",
    "label": "Applicant ID",
-   "options": "Student Applicant"
+   "options": "Student Applicant",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-06 10:44:47.074924",
+ "modified": "2023-11-06 15:38:29.301611",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Result Publication",
