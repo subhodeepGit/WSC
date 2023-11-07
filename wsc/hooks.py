@@ -474,6 +474,27 @@ doc_events = {
     },
     "Employee Tax Exemption Declaration":{
         "validate":"wsc.wsc.doctype.employee_tax_exemption_declaration.validate"
+    },
+    "Employee Benefit Claim":{
+        "validate":"wsc.wsc.doctype.employee_benefit_claim.validate"
+    },
+    "Employee Benefit Application":{
+        "validate":"wsc.wsc.doctype.employee_benefit_application.validate"
+    },
+    "Employee Incentive":{
+        "validate":"wsc.wsc.doctype.employee_incentive.validate"
+    },
+    "Retention Bonus":{
+        "validate":"wsc.wsc.doctype.retention_bonus.validate"
+    },
+    "Additional Salary":{
+        "validate":"wsc.wsc.doctype.additional_salary.validate"
+    },
+    "Employee Other Income":{
+        "validate":"wsc.wsc.doctype.employee_other_income.validate"
+    },
+    "Employee Tax Exemption Proof Submission":{
+        "validate":"wsc.wsc.doctype.employee_tax_exemption_proof_submission.validate"
     }
     
     
