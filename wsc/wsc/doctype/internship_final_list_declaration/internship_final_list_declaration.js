@@ -16,15 +16,21 @@ frappe.ui.form.on('Internship Final List Declaration', {
 		});
 	},
 	select_internship : function(frm){
-		frappe.call({
-			method : 'wsc.wsc.doctype.internship_final_list_declaration.internship_final_list_declaration.get_internship_name',
-			args: {
-				internship_id : frm.doc.select_internship
-			},
-			callback : function(result){
-				frm.set_value('internship_name', result.message)
-			}
-		})
+		if(frm.doc.select_internship){
+			frappe.call({
+				method : 'wsc.wsc.doctype.internship_final_list_declaration.internship_final_list_declaration.get_internship_name',
+				args: {
+					internship_id : frm.doc.select_internship
+				},
+				callback : function(result){
+					frm.set_value('internship_name', result.message)
+				}
+			})
+		}
+		else{
+			frm.set_value('internship_name', '')
+		}
+		
 	},
 	get_participants : function(frm){
 		frappe.call({

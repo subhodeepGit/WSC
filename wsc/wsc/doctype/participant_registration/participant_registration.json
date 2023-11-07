@@ -27,8 +27,10 @@
   {
    "fieldname": "participant_id",
    "fieldtype": "Dynamic Link",
+   "in_list_view": 1,
    "label": "Participant ID",
-   "options": "participant_type"
+   "options": "participant_type",
+   "reqd": 1
   },
   {
    "fieldname": "select_program",
@@ -41,7 +43,8 @@
    "fieldname": "select_event",
    "fieldtype": "Link",
    "label": "Select Event",
-   "options": "TnP Event"
+   "options": "TnP Event",
+   "reqd": 1
   },
   {
    "fieldname": "event_date",
@@ -57,8 +60,10 @@
   {
    "fieldname": "participant_type",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Participant Type",
-   "options": "Student\nEmployee"
+   "options": "Student\nEmployee",
+   "reqd": 1
   },
   {
    "fieldname": "program_name",
@@ -112,7 +117,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-21 15:55:57.995292",
+ "modified": "2023-11-07 12:48:13.243465",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Registration",
