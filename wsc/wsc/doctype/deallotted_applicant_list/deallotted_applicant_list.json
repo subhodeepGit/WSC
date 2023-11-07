@@ -17,45 +17,51 @@
    "fieldname": "applicant_id",
    "fieldtype": "Link",
    "label": "Applicant ID",
-   "options": "Student Applicant"
+   "options": "Student Applicant",
+   "read_only": 1
   },
   {
    "fetch_from": "applicant_id.title",
    "fieldname": "applicant_name",
    "fieldtype": "Data",
-   "label": "Applicant Name"
+   "label": "Applicant Name",
+   "read_only": 1
   },
   {
    "fetch_from": "applicant_id.gender",
    "fieldname": "gender",
    "fieldtype": "Data",
-   "label": "Gender"
+   "label": "Gender",
+   "read_only": 1
   },
   {
    "fetch_from": "applicant_id.student_category",
    "fieldname": "student_category",
    "fieldtype": "Data",
-   "label": "Student Category"
+   "label": "Student Category",
+   "read_only": 1
   },
   {
    "default": "0",
    "fetch_from": "applicant_id.physically_disabled",
    "fieldname": "physical_disability",
    "fieldtype": "Check",
-   "label": "Physical Disability"
+   "label": "Physical Disability",
+   "read_only": 1
   },
   {
    "allow_on_submit": 1,
    "default": "0",
    "fieldname": "center_allocated_status",
    "fieldtype": "Check",
-   "label": "Center Allocated Status"
+   "label": "Center Allocated Status",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-04 11:56:34.794950",
+ "modified": "2023-11-07 11:30:38.428566",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "DeAllotted Applicant List",

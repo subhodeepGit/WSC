@@ -35,7 +35,6 @@ frappe.ui.form.on('Entrance Exam Declaration', {
 				academic_term:frm.doc.academic_term,
 				department:frm.doc.department
 			})
-			// console.log(body);
 			frappe.call({
 				method:'wsc.wsc.doctype.entrance_exam_declaration.entrance_exam_declaration.get_applicants',
 				args:{
@@ -69,7 +68,6 @@ frappe.ui.form.on('Entrance Exam Declaration', {
 			})
 		}
 	},
-	// exam_start_date 
 	exam_start_date(frm) {
         frm.fields_dict.exam_end_date.datepicker.update({
             minDate: frm.doc.exam_start_date ? new Date(frm.doc.exam_start_date) : null
