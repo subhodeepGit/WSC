@@ -15,7 +15,7 @@
   {
    "fieldname": "student_category",
    "fieldtype": "Link",
-   "label": "Student Category",
+   "label": "Caste Category ",
    "options": "Student Category"
   },
   {
@@ -34,7 +34,7 @@
    "fieldname": "category_name",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Category Name",
+   "label": "Student Category",
    "options": "Category",
    "reqd": 1
   }
@@ -42,7 +42,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-11-07 18:30:23.427202",
+ "modified": "2023-11-08 11:19:56.211578",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Ranking Category",
