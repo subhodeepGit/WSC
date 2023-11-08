@@ -6,7 +6,7 @@ from frappe.model.document import Document
 
 class RankCardMaster(Document):
     def validate(self):
-        if self.is_new:
+        if self.is_new():
             if frappe.get_all("Rank Card Master",{"academic_year":self.academic_year,
                                                "department":self.department,
                                                "academic_term":self.academic_term}):
