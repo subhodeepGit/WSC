@@ -8,17 +8,17 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "academic_details_section",
   "academic_year",
   "academic_term",
   "column_break_5",
   "department",
   "section_break_7",
-  "all_round_cutoff",
+  "no_category_rank_name",
   "column_break_9",
-  "section_break_mskhg",
   "maximum_number_of_ranks",
   "column_break_4by1q",
-  "no_category_rank_name",
+  "all_round_cutoff",
   "section_break_11",
   "ranking_category",
   "amended_from"
@@ -71,7 +71,8 @@
   },
   {
    "fieldname": "section_break_7",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Rank Card Settings"
   },
   {
    "fieldname": "column_break_9",
@@ -79,7 +80,8 @@
   },
   {
    "fieldname": "section_break_11",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Ranking Category Settings"
   },
   {
    "fieldname": "amended_from",
@@ -98,23 +100,24 @@
    "reqd": 1
   },
   {
-   "fieldname": "section_break_mskhg",
-   "fieldtype": "Section Break"
-  },
-  {
    "fieldname": "column_break_4by1q",
    "fieldtype": "Column Break"
   },
   {
    "fieldname": "no_category_rank_name",
    "fieldtype": "Data",
-   "label": "No Category Rank Name",
+   "label": "Common Category Rank Name",
    "reqd": 1
+  },
+  {
+   "fieldname": "academic_details_section",
+   "fieldtype": "Section Break",
+   "label": "Academic Details"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-20 15:53:58.460380",
+ "modified": "2023-11-08 11:25:25.148190",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Rank Card Master",

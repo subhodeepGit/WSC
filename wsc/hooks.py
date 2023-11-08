@@ -73,7 +73,10 @@ doctype_js = {
                 "Task":"public/js/task.js",
                 "Price List":"public/js/price_list.js",
                 "Supplier":"public/js/supplier.js",
-                "Request for Quotation":"public/js/request_for_quotation.js"
+                "Request for Quotation":"public/js/request_for_quotation.js",
+                "Purchase Order":"public/js/purchase_order.js",
+                "Purchase Receipt":"public/js/purchase_receipt.js",
+                "Purchase Invoice":"public/js/purchase_invoice.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -495,6 +498,12 @@ doc_events = {
     },
     "Employee Tax Exemption Proof Submission":{
         "validate":"wsc.wsc.doctype.employee_tax_exemption_proof_submission.validate"
+    },
+    "Purchase Receipt":{
+        "validate":"wsc.wsc.validations.purchase_receipt.validate"
+    },
+    "Purchase Invoice":{
+        "validate":"wsc.wsc.validations.purchase_invoice.validate"
     }
     
     

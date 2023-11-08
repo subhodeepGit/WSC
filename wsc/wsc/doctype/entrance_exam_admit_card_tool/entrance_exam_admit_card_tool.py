@@ -151,7 +151,7 @@ def student_allotment(body):
 						'centre' , 'centre_name' , 'address' ,
 						'district' , 'state' , 'pin_code'] ,
 						order_by = "idx asc")
-			
+			print("\n", exam_center_allocation)
 			slots = frappe.get_all("Exam Slot Timings" , {'parent': exam_center_allocation[0]['name']} , 
 			  ['slot_name' , 'slot_starting_time' , 'slot_ending_time' , 'slot_date' , 'seating_capacity' , 'parent'])
 			
@@ -180,13 +180,14 @@ def student_allotment(body):
 						data['seating_capacity'] = k['seating_capacity']
 						
 						i['center_allocated_status'] = 1				
-						# frappe.db.sql("""
-						# 		UPDATE `tabExam Slot Timings` SET seating_capacity = '{current_capacity}' WHERE parent = '{parent}' AND slot_name = '{slot_name}'
-						# """.format(current_capacity = k['seating_capacity'] - 1 , parent = exam_center_allocation[0]['name'] , slot_name = k['slot_name']))	
 
-						# frappe.db.sql(""" 
-						# 		UPDATE `tabApplicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}' AND parent = '{declaration}' 
-						# 	""".format(applicant_id = i['applicant_id'] , declaration = declaration))   
+						frappe.db.sql("""
+								UPDATE `tabExam Slot Timings` SET seating_capacity = '{current_capacity}' WHERE parent = '{parent}' AND slot_name = '{slot_name}'
+						""".format(current_capacity = k['seating_capacity'] - 1 , parent = exam_center_allocation[0]['name'] , slot_name = k['slot_name']))	
+
+						frappe.db.sql(""" 
+								UPDATE `tabApplicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}' AND parent = '{declaration}' 
+							""".format(applicant_id = i['applicant_id'] , declaration = declaration))   
 
 						frappe.db.sql("""
 								UPDATE `tabDeAllotted Applicant List` SET center_allocated_status = 1 WHERE applicant_id = '{applicant_id}' AND parent = '{name}'
@@ -273,6 +274,7 @@ def leftovers_allotment(body):
 				data['seating_capacity'] = j['seating_capacity']
 
 				i['center_allocated_status'] = 1				
+				
 				frappe.db.sql("""
 						UPDATE `tabExam Slot Timings` SET seating_capacity = '{current_capacity}' WHERE parent = '{parent}' AND slot_name = '{slot_name}'
 				""".format(current_capacity = j['seating_capacity'] - 1 , parent = exam_center_allocation[0]['name'] , slot_name = j['slot_name']))	

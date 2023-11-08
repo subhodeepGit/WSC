@@ -24,7 +24,7 @@ frappe.ui.form.on('Entrance Exam Admit Card Tool', {
 		// frm.disable_save()
 		frm.set_df_property('deallotted_applicant_list', 'cannot_add_rows', true)
 		// frm.set_df_property('deallotted_applicant_list', 'cannot_delete_rows', true)
-		frm.set_df_property('center' , 'hidden' , 0)
+		frm.set_df_property('center' , 'hidden' , 1)
 		frm.remove_custom_button('Admit Card Generation')
 
 		console.log(frm.doc.flag);
