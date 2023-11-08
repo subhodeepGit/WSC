@@ -25,95 +25,109 @@ frappe.ui.form.on('Entrance Exam Admit Card Tool', {
 		frm.set_df_property('deallotted_applicant_list', 'cannot_add_rows', true)
 		// frm.set_df_property('deallotted_applicant_list', 'cannot_delete_rows', true)
 		frm.set_df_property('center' , 'hidden' , 1)
-		frm.remove_custom_button('Generate Ranks')
-		
-		if(frm.doc.flag === 1){
-			
-			frm.set_df_property('center' , 'hidden' , 0)
-		}
+		frm.remove_custom_button('Admit Card Generation')
 
-		if(frm.doc.flag === 2){
-			
-			frm.set_df_property('center' , 'hidden' , 1)
-			frm.remove_custom_button('Generate Ranks')
-		}
+		console.log(frm.doc.flag);
 		
-		if(frm.doc.docstatus === 1 && frm.doc.flag === 0){
+		// if(frm.doc.docstatus === 1 && frm.doc.flag === 0){
+		if(frm.doc.docstatus === 1){
 			
-			frm.add_custom_button(__('Admit Card Generation'), function(){
+			console.log("inside first if");
+
+			if(frm.doc.flag === 1){  //For Leftover Applicants
+
+				console.log("inside flag = 1");
+
+				frm.set_df_property('center' , 'hidden' , 0)
+				frm.add_custom_button(__('Admit Card Generation'), function(){
 				
-				if(frm.doc.flag === 0){
-					
+					console.log("flag = 1" , frm.doc.flag);
+					const res = frm.doc.deallotted_applicant_list.filter((i) => i.center_allocated_status === 0)
+				
 					const body = JSON.stringify({
-						name:frm.doc.name ,
-						declaration:frm.doc.entrance_exam_declaration,
-						de_allocated_student:frm.doc.deallotted_applicant_list
-					})
-					frappe.call({
-						method:'wsc.wsc.doctype.entrance_exam_admit_card_tool.entrance_exam_admit_card_tool.student_allotment',
-						args:{
-							body:body
-						},
-						callback:function(result){
-							const options = [" "]
-							const { leftovers , available_centers } = result.message
-							
-							if (leftovers.length !== 0) {
-								alert(`Number of Unalloted Students is ${leftovers.length}`)
-								frm.set_value({'flag':1}) 
-							}
-							else {
-								alert("All Students Alloted")
-								frm.remove_custom_button('Admit Card Generation')
-							}
-							window.location.reload();
-							frm.refresh()
-							frm.refresh_field("deallotted_applicant_list")
-							frm.refresh_field("centre")
-						}	
-					}) 
-				} else {
-					 
-					  const res = frm.doc.deallotted_applicant_list.filter((i) => i.center_allocated_status === 0)
-					
-					  const body = JSON.stringify({
 						name:frm.doc.name ,
 						declaration:frm.doc.entrance_exam_declaration,
 						leftovers:res,
 						center:frm.doc.center,
-					  })
-					  frappe.call({
-						method:'wsc.wsc.doctype.entrance_exam_admit_card_tool.entrance_exam_admit_card_tool.leftovers_allotment',
-						args:{
-							body:body
-						},
-						callback:function(result){
+					})
+					frappe.call({
+					method:'wsc.wsc.doctype.entrance_exam_admit_card_tool.entrance_exam_admit_card_tool.leftovers_allotment',
+					args:{
+						body:body
+					},
+					callback:function(result){
+						
+						const options = [" "]
+						const { leftovers } = result.message
+			
+						if (leftovers.length !== 0) {
 							
-							const options = [" "]
-							const { leftovers } = result.message
-				
-							if (leftovers.length !== 0) {
-								
-								alert(`Number of Unalloted Students is ${leftovers.length}`)
-								
-							}
-							else {
-								
-								alert("All Students Alloted")
-								frm.remove_custom_button('Admit Card Generation')
-								
-							}
-							window.location.reload();
-							frm.refresh()
-							frm.refresh_field("deallotted_applicant_list")
-							frm.refresh_field("centre")
+							alert(`Number of Unalloted Students is ${leftovers.length}`)
+							
 						}
-					  })
-				}
+						else {
+							
+							alert("All Students Alloted")
+							frm.remove_custom_button('Admit Card Generation')		
+						}
+						window.location.reload();
+						frm.refresh()
+						frm.refresh_field("deallotted_applicant_list")
+						frm.refresh_field("center")
+					}
+				}) 
+				}).addClass('btn-primary');
+
+			}
+	
+			if(frm.doc.flag === 2){
 				
-			}).addClass('btn-primary');
+				frm.set_df_property('center' , 'hidden' , 1)
+				frm.remove_custom_button('Admit Card Generation')
+			}
+
+			if(frm.doc.flag === 0){  //First Itteration for
+
+				console.log("inside flag = 0");
+
+				frm.add_custom_button(__('Admit Card Generation'), function(){
+				
+					// if(frm.doc.flag === 0){
+						console.log("flag = 0" , frm.doc.flag);
+
+						const body = JSON.stringify({
+							name:frm.doc.name ,
+							declaration:frm.doc.entrance_exam_declaration,
+							de_allocated_student:frm.doc.deallotted_applicant_list
+						})
+						frappe.call({
+							method:'wsc.wsc.doctype.entrance_exam_admit_card_tool.entrance_exam_admit_card_tool.student_allotment',
+							args:{
+								body:body
+							},
+							callback:function(result){
+								console.log(result.message);
+								
+								const { leftovers } = result.message
+								
+								if (leftovers.length !== 0) {
+									alert(`Number of Unalloted Students is ${leftovers.length}`)
+									frm.set_value({'flag':1}) 
+								}
+								else {
+									alert("All Students Alloted")
+									frm.remove_custom_button('Admit Card Generation')
+								}
+								window.location.reload();
+								frm.refresh()
+								frm.refresh_field("deallotted_applicant_list")
+								frm.refresh_field("center")
+							}	
+						}) 
+					// } 
+				}).addClass('btn-primary');
+			}
 		}
-		
 	},
 	
 	get_applicants:function(frm){
@@ -139,6 +153,7 @@ frappe.ui.form.on('Entrance Exam Admit Card Tool', {
 						})
 						frm.refresh();
 						frm.refresh_field("deallotted_applicant_list")
+						frm.save()
 						// alert("Students Alloted")
 					} else {
 						alert("All Students Alloted")

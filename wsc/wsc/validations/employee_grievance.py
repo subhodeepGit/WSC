@@ -2,14 +2,26 @@ from frappe import _
 import frappe
 from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
 from wsc.wsc.notification.custom_notification import employee_grievance_member,employee_grievance_employee_mail,employee_grievance_hr_mail
+from datetime import datetime
+
 def validate(self,method):
+	current_date = datetime.today().date()
 	if self.workflow_state == "Forwarded to HR":
 		employee_grievance_hr_mail(self)
 	if self.workflow_state=="Forwarded to Grievance Cell":
 		employee_grievance_member(self)
 	if self.workflow_state=="Resolved" or self.workflow_state=="Rejected":
 		employee_grievance_employee_mail(self)    
+	if self.date:
+		if isinstance(self.date,str):
+			datee = datetime.strptime(self.date, "%Y-%m-%d").date()
+			if datee>current_date:
+				frappe.throw("Date cannot be greater than the current date")
+		else :
 
+
+			if self.date > current_date:
+				frappe.throw("Date cannot be greater than the current date")
 # @frappe.whitelist()
 # def get_cell(doctype, txt, searchfield, start, page_len, filters):
 #     investigation_cell = frappe.get_all(

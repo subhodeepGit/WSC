@@ -12,3 +12,9 @@ frappe.ui.form.on('Item', {
 			frm.remove_custom_button('Add / Edit Prices','Actions');
 	}
 });
+
+frappe.ui.form.on('Item', {
+	refresh: function(frm) {
+		frm.set_df_property('default_material_request_type', 'options', ['Purchase', 'Material Transfer','Material Issue']);
+	}
+});

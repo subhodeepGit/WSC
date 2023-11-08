@@ -26,7 +26,7 @@
    "fieldname": "participant_type",
    "fieldtype": "Select",
    "label": "Participant Type",
-   "options": "Student\nStaff"
+   "options": "Student\nEmployee"
   },
   {
    "fieldname": "select_program",
@@ -47,9 +47,9 @@
   },
   {
    "fieldname": "participant_id",
-   "fieldtype": "Link",
+   "fieldtype": "Dynamic Link",
    "label": "Participant ID",
-   "options": "Student"
+   "options": "participant_type"
   },
   {
    "fetch_from": "select_program.program_name",
@@ -90,7 +90,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-20 17:55:45.222376",
+ "modified": "2023-11-03 18:25:35.633818",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Event feedback",

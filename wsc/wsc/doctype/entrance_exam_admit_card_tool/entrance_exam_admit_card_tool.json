@@ -52,6 +52,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "center",
    "fieldtype": "Link",
    "label": "Center",
@@ -68,7 +69,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-12 12:20:09.252901",
+ "modified": "2023-11-07 12:33:07.219223",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Admit Card Tool",

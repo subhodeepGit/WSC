@@ -1,4 +1,21 @@
 frappe.ui.form.on('Student Applicant', {
+    category: function(frm) {
+        frappe.call({
+            method: "wsc.wsc.doctype.student_applicant.get_cateogry_details",
+            args: {
+                category:frm.doc.category
+            },
+            callback: function(r) {
+                if (r.message) {
+                    frm.set_value("gender",r.message['gender'])               
+                }
+            }
+        });
+    },
+   
+    
+    
+  
     // first_name:function(frm){    
     //     let fname=frm.doc.first_name;    
     //     let lname=frm.doc.last_name;    
@@ -703,6 +720,7 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
         frappe.msgprint("Please Fill Student First")
         d.programs=''
     }
+
     if (d.programs){
         frappe.call({
             method: "wsc.wsc.doctype.student_applicant.get_admission_and_semester_by_program",

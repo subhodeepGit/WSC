@@ -13,26 +13,38 @@
  ],
  "fields": [
   {
+   "columns": 2,
+   "fetch_from": "category_name.caste_category",
    "fieldname": "student_category",
    "fieldtype": "Link",
-   "label": "Student Category",
-   "options": "Student Category"
+   "in_list_view": 1,
+   "label": "Caste Category",
+   "options": "Student Category",
+   "width": "10"
   },
   {
+   "columns": 2,
+   "fetch_from": "category_name.gender",
    "fieldname": "gender",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Gender",
-   "options": "Gender"
+   "options": "Gender",
+   "width": "10"
   },
   {
+   "columns": 2,
    "default": "0",
+   "fetch_from": "category_name.is_physically_disabled",
    "fieldname": "pwd",
    "fieldtype": "Check",
-   "label": "PWD"
+   "in_list_view": 1,
+   "label": "PWD",
+   "width": "10"
   },
   {
    "fieldname": "category_name",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Category Name",
    "reqd": 1
@@ -41,7 +53,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-20 15:54:17.407319",
+ "modified": "2023-11-08 12:23:12.594082",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Ranking Category",

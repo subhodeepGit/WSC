@@ -11,13 +11,13 @@
   "company_name",
   "company_registration_year",
   "state",
+  "website_link",
   "full_address",
   "attache_company_image",
   "column_break_1lhtf",
   "company_registration_number",
   "number_of_employees",
   "city",
-  "website_link",
   "student_details_section",
   "student_details_table",
   "revenue_details_section",
@@ -38,8 +38,9 @@
   },
   {
    "fieldname": "company_registration_year",
-   "fieldtype": "Data",
-   "label": "Company Registration Year"
+   "fieldtype": "Link",
+   "label": "Company Registration Year",
+   "options": "Year"
   },
   {
    "fieldname": "state",
@@ -51,7 +52,7 @@
   },
   {
    "fieldname": "full_address",
-   "fieldtype": "Data",
+   "fieldtype": "Long Text",
    "label": "Full Address"
   },
   {
@@ -113,7 +114,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-27 11:20:09.343340",
+ "modified": "2023-11-03 15:59:19.927793",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrepreneurship",

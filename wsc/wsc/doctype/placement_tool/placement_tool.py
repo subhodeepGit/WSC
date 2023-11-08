@@ -88,4 +88,7 @@ def get_students(drive_name):
         t['programs'] = data[0]['programs']
         t['semesters'] = data[0]['semesters']
         t['academic_year'] = data[0]['academic_year']
-    return student_data
+    if(len(student_data) != 0):
+        return student_data
+    else:
+        frappe.throw("No students available")
