@@ -107,6 +107,7 @@
   {
    "fieldname": "academic_term",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Academic term",
    "options": "Academic Term",
    "read_only": 1
@@ -186,7 +187,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-15 17:38:48.243566",
+ "modified": "2023-11-08 10:01:20.881299",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant Attendance",
