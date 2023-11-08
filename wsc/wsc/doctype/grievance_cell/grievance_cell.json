@@ -82,7 +82,7 @@
   },
   {
    "fieldname": "emergency_phone_no",
-   "fieldtype": "Phone",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Emergency Phone No",
    "reqd": 1
@@ -90,7 +90,7 @@
   {
    "fieldname": "grievance_section_section",
    "fieldtype": "Section Break",
-   "label": "I  have to think of section name"
+   "label": "Grievance Date Details"
   },
   {
    "fieldname": "posting_data",
@@ -204,7 +204,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-18 11:59:01.190638",
+ "modified": "2023-11-08 09:37:05.880643",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Grievance Cell",
