@@ -25,3 +25,17 @@ frappe.ui.form.on('Rank Card Master', {
 	    })
 	}
 });
+
+frappe.ui.form.on('Ranking Category', {
+	ranking_category_add: function(frm){
+		frm.fields_dict['ranking_category'].grid.get_field('category_name').get_query = function(doc){
+			var ranking_category_list = [];
+			$.each(doc.ranking_category, function(idx, val){
+				if (val.category_name) ranking_category_list.push(val.category_name);
+			});
+			return { filters: [['Category', 'name', 'not in', ranking_category_list],
+								// ['ToT Participant','enabled','=',1]
+							] };
+		};
+	}
+});

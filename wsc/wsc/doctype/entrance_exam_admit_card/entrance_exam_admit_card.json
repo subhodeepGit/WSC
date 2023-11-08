@@ -40,6 +40,7 @@
   {
    "fieldname": "applicant_id",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Applicant ID",
    "options": "Student Applicant"
   },
@@ -47,6 +48,7 @@
    "fetch_from": "applicant_id.title",
    "fieldname": "applicant_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Applicant Name"
   },
   {
@@ -58,6 +60,7 @@
   {
    "fieldname": "venue",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Venue",
    "options": "Entrance exam select"
   },
@@ -142,6 +145,7 @@
   {
    "fieldname": "student_category",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Student Category",
    "options": "Student Category"
   },
@@ -192,7 +196,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-06 11:50:41.418317",
+ "modified": "2023-11-08 11:58:29.498276",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Admit Card",

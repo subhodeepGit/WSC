@@ -5,7 +5,23 @@ import frappe
 from frappe.model.document import Document
 
 class StudentsGrievance(Document):
-	pass
+	def validate(self):
+		validate_date(self)
+		mobile_number_validation(self)
+        
+
+def validate_date(self):
+	if self.date_of_incident and  self.posting_date and self.date_of_incident > self.posting_date:
+		frappe.throw("Date of Incident <b>'{0}'</b> Must Be a valid Date <b>'{1}'</b>".format(self.date_of_incident, self.posting_date))
+def mobile_number_validation(self):
+
+    if self.emergency_phone_no:
+        if not (self.emergency_phone_no).isdigit():
+            frappe.throw("Field <b>Emergency Phone Number</b> Accept Digits Only")
+        if len(self.emergency_phone_no)>10:
+            frappe.throw("Field <b>Emergency Phone Number</b> must be 10 Digits")
+        if len(self.emergency_phone_no)<10:
+            frappe.throw("Field <b>Emergency Phone Number</b> must be 10 Digits")
 
 @frappe.whitelist()
 def get_register_complaint(source_name):

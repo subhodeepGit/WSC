@@ -39,7 +39,8 @@
   "eligible_students_section",
   "get_students",
   "eligible_student",
-  "amended_from"
+  "amended_from",
+  "current_date"
  ],
  "fields": [
   {
@@ -195,7 +196,7 @@
   {
    "fieldname": "ctc",
    "fieldtype": "Currency",
-   "label": "CTC"
+   "label": "CTC (in lakhs)"
   },
   {
    "fieldname": "rounds_of_placement_table",
@@ -254,12 +255,17 @@
   {
    "fieldname": "section_break_vtx6e",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "current_date",
+   "fieldtype": "Date",
+   "label": "Current Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-27 15:31:28.770814",
+ "modified": "2023-11-07 18:39:09.555364",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive",

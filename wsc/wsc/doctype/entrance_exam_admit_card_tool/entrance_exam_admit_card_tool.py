@@ -24,22 +24,31 @@ class EntranceExamAdmitCardTool(Document):
 @frappe.validate_and_sanitize_search_inputs
 def ra_query(doctype, txt, searchfield, start, page_len, filters):
     
-    ############################## Search Field Code#################
-    searchfields = frappe.get_meta(doctype).get_search_fields()
-    searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)    
-    
-    data=frappe.db.sql("""
-        SELECT `name` FROM `tabEntrance Exam Declaration` WHERE ({key} like %(txt)s or {scond})  and
-            (`exam_start_date` <= now() AND `exam_end_date` >= now())
-             and `docstatus`=1 
-    """.format(
-        **{
-            "key": searchfield,
-            "scond": searchfields,
-            # "info":info
-        }),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
-	
-    return data
+	############################## Search Field Code#################
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)    
+
+	# data=frappe.db.sql("""
+	#     SELECT `name` FROM `tabEntrance Exam Declaration` WHERE ({key} like %(txt)s or {scond})  and
+	#         (`exam_start_date` <= now() AND `exam_end_date` >= now())
+	#          and `docstatus`=1 
+	# """.format(
+	#     **{
+	#         "key": searchfield,
+	#         "scond": searchfields,
+	#         # "info":info
+	#     }),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	data=frappe.db.sql("""
+	SELECT `name` FROM `tabEntrance Exam Declaration` WHERE ({key} like %(txt)s or {scond})
+			and `docstatus`=1 
+	""".format(
+	**{
+		"key": searchfield,
+		"scond": searchfields,
+		# "info":info
+	}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+
+	return data
 
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
@@ -82,7 +91,6 @@ def get_applicants(declaration):
 	return student_list
 
 def admit_card_generate(alloted_applicant_data):
-	# print("\n\n")
 	
 	for i in alloted_applicant_data:
 
@@ -133,11 +141,8 @@ def student_allotment(body):
 	for i in de_alloted_student:
 		
 		prefered_center = frappe.get_all("Exam Centre Preference" , {'parent' : i['applicant_id']} , ['center_name' , 'parent' , 'center'] , order_by = "idx asc")
-		print('\n' , prefered_center)
-		print("\n")
 		data = {}
 		for j in prefered_center:
-			print("\n", j)
 			exam_center_allocation = frappe.get_all("Entrance Exam Centre Allocation" , 
 					   {'entrance_exam_declaration' : declaration , 'centre': j['center_name'] , 'docstatus' : 1} , 
 					 	['name' ,
@@ -146,11 +151,10 @@ def student_allotment(body):
 						'centre' , 'centre_name' , 'address' ,
 						'district' , 'state' , 'pin_code'] ,
 						order_by = "idx asc")
-			
+			print("\n", exam_center_allocation)
 			slots = frappe.get_all("Exam Slot Timings" , {'parent': exam_center_allocation[0]['name']} , 
 			  ['slot_name' , 'slot_starting_time' , 'slot_ending_time' , 'slot_date' , 'seating_capacity' , 'parent'])
 			
-			# print(slots)
 			for k in slots:
 				if k['seating_capacity'] > 0 and i['center_allocated_status'] == 0:
 				
@@ -211,8 +215,6 @@ def student_allotment(body):
 		admit_card_tool.save()
 
 	admit_card_generate(alloted_applicant_data)
-	print("\n\n")
-	# print(unalloted_students_after_center_allotment)
 	return {
 		'leftovers':unalloted_students_after_center_allotment,
 	}
@@ -225,7 +227,6 @@ def leftovers_allotment(body):
 	declaration = body['declaration']
 	leftover_applicant = body['leftovers']
 	center = body['center']
-	print(center)
 
 	date_format = "%Y-%m-%d"
 		

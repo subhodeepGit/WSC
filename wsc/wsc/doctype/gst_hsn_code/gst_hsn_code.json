@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2023-08-02 14:56:50.038211",
+ "creation": "2023-11-07 22:25:44.571473",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -18,7 +18,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-02 14:56:50.038211",
+ "modified": "2023-11-07 22:25:44.571473",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "GST HSN Code",
