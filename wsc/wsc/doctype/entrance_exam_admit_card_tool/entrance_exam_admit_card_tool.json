@@ -63,14 +63,13 @@
    "fieldname": "flag",
    "fieldtype": "Int",
    "hidden": 1,
-   "label": "Flag",
-   "non_negative": 1
+   "label": "Flag"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-07 18:33:03.618425",
+ "modified": "2023-11-07 12:33:07.219223",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Admit Card Tool",

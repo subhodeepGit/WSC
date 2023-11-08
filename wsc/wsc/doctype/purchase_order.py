@@ -12,20 +12,20 @@ def validate(self,method):
 			frappe.throw("Total Discount Percentage cannnot be negative")
 
 	if self.discount_amount:
-		 if self.discount_amount <0:
-			 frappe.throw("Discount Amount cannnot be negative")
+		if self.discount_amount <0:
+			frappe.throw("Discount Amount cannnot be negative")
 
 	for cd in self.items:
-		   if cd.price_list_rate < 0:
-			   frappe.throw("Price List Rate for Item cannot be negative")
+		if cd.price_list_rate < 0:
+			frappe.throw("Price List Rate for Item cannot be negative")
 
 	for cd in self.items:
-		   if cd.discount_percentage < 0:
-			   frappe.throw("Discount Percentage for Item cannot be negative")
+		if cd.discount_percentage < 0:
+			frappe.throw("Discount Percentage for Item cannot be negative")
 	
 	for cd in self.items:
-		   if cd.discount_amount < 0:
-			   frappe.throw("Discount Amount for Item cannot be negative")
+		if cd.discount_amount < 0:
+			frappe.throw("Discount Amount for Item cannot be negative")
 
 	for cd in self.items:
 		if cd.rate < 0:

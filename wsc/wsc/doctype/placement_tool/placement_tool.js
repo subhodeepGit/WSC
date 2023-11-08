@@ -80,7 +80,6 @@ frappe.ui.form.on('Placement Tool', {
 				}
 				frm.refresh()
 				frm.refresh_field('student_list')
-				frm.save()
 			}
 		})
 	}

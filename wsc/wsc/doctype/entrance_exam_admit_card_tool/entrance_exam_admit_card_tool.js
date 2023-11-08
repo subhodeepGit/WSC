@@ -153,6 +153,7 @@ frappe.ui.form.on('Entrance Exam Admit Card Tool', {
 						})
 						frm.refresh();
 						frm.refresh_field("deallotted_applicant_list")
+						frm.save()
 						// alert("Students Alloted")
 					} else {
 						alert("All Students Alloted")

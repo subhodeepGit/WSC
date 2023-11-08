@@ -13,47 +13,61 @@ frappe.ui.form.on('Generate Certificate', {
 		})	
 	},
 	select_event: function(frm){
-		frappe.call({
-			method: 'wsc.wsc.doctype.generate_certificate.generate_certificate.get_program_id',
-			args:{
-				event_id : frm.doc.select_event
-			},
-			callback: function(result){
-				if(result.message[0] == 0){
-					frm.set_value('program_id', '')
+		if(frm.doc.select_event){
+			frappe.call({
+				method: 'wsc.wsc.doctype.generate_certificate.generate_certificate.get_program_id',
+				args:{
+					event_id : frm.doc.select_event
+				},
+				callback: function(result){
+					if(result.message[0] == 0){
+						frm.set_value('program_id', '')
+					}
+					else{
+						frm.set_value('program_id', result.message[1])
+					}
 				}
-				else{
-					frm.set_value('program_id', result.message[1])
+			})
+			frappe.call({
+				method: 'wsc.wsc.doctype.generate_certificate.generate_certificate.get_participants',
+				args:{
+					event_id : frm.doc.select_event
+				},
+				callback: function(result){
+					if(result.message[0] == 0){
+						frm.set_value('program_id', '')
+					}
+					else{
+						frm.set_df_property('participant_id','options', result.message)
+					}
 				}
-			}
-		})
-		frappe.call({
-			method: 'wsc.wsc.doctype.generate_certificate.generate_certificate.get_participants',
-			args:{
-				event_id : frm.doc.select_event
-			},
-			callback: function(result){
-				if(result.message[0] == 0){
-					frm.set_value('program_id', '')
-				}
-				else{
-					frm.set_df_property('participant_id','options', result.message)
-				}
-			}
-		})
+			})
+		}
+		else{
+			frm.set_value('program_id', '')
+			frm.set_df_property('participant_id','options', [''])
+		}
 	},
 	participant_id: function(frm){
-		frappe.call({
-			method: 'wsc.wsc.doctype.generate_certificate.generate_certificate.get_participant_name',
-			args:{
-				event_id : frm.doc.select_event,
-				participant_id : frm.doc.participant_id
-			},
-			callback: function(result){
-				frm.set_value('participant_name', result.message[0])
-				frm.set_value('participant_type', result.message[1])
-			}
-		})
+		if(frm.doc.participant_id){
+			alert(frm.doc.participant_id)
+			frappe.call({
+				method: 'wsc.wsc.doctype.generate_certificate.generate_certificate.get_participant_name',
+				args:{
+					event_id : frm.doc.select_event,
+					participant_id : frm.doc.participant_id
+				},
+				callback: function(result){
+					frm.set_value('participant_name', result.message[0])
+					frm.set_value('participant_type', result.message[1])
+				}
+			})
+		}
+		else{
+			alert(500)
+			frm.set_value('participant_name', '')
+			frm.set_value('participant_type', '')
+		}
 	},
 
 	// -------------------------------------------------------------------------------------------------------

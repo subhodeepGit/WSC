@@ -25,6 +25,7 @@ frappe.ui.form.on('ToT Participant Enrollment', {
 						});
 					}
 					frm.refresh_field("participant_list")
+					frm.save()
 				} 
 				
 			}); 

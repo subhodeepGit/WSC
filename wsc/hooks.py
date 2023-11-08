@@ -362,9 +362,9 @@ doc_events = {
         "validate":"wsc.wsc.doctype.attendance_request.validate",
         "after_insert":"wsc.wsc.doctype.attendance_request.after_insert"
     },
-    # "Purchase Order": {
-    #     "validate":"wsc.wsc.doctype.purchase_order.validate"
-    # },
+    "Purchase Order": {
+        "validate":"wsc.wsc.doctype.purchase_order.validate"
+    },
     "Material Request": {
         "validate":"wsc.wsc.doctype.material_request.validate",
         "on_submit":"wsc.wsc.doctype.material_request.workflow_notification",
@@ -424,9 +424,9 @@ doc_events = {
     "Price List":{
         "validate":"wsc.wsc.validations.price_list.validate"
     },
-    # "Supplier":{
-    #     "validate":"wsc.wsc.validations.supplier.validate"
-    # },
+    "Supplier":{
+        "validate":"wsc.wsc.validations.supplier.validate"
+    },
     "Quality Inspection Template":{
         "validate":"wsc.wsc.validations.quality_inspection_template.validate"
     },
