@@ -26,7 +26,8 @@
   "designationsposition_section",
   "designations_table",
   "for_programs",
-  "eligibility_criteria"
+  "eligibility_criteria",
+  "current_date"
  ],
  "fields": [
   {
@@ -141,11 +142,17 @@
    "fieldtype": "Data",
    "hidden": 1,
    "label": "Company Sector"
+  },
+  {
+   "fieldname": "current_date",
+   "fieldtype": "Date",
+   "hidden": 1,
+   "label": "Current Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-07 17:08:26.244735",
+ "modified": "2023-11-08 16:34:39.568340",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Drive",
