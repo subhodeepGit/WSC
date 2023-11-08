@@ -146,7 +146,7 @@ def student_allotment(body):
 						'centre' , 'centre_name' , 'address' ,
 						'district' , 'state' , 'pin_code'] ,
 						order_by = "idx asc")
-			
+			print("\n", exam_center_allocation)
 			slots = frappe.get_all("Exam Slot Timings" , {'parent': exam_center_allocation[0]['name']} , 
 			  ['slot_name' , 'slot_starting_time' , 'slot_ending_time' , 'slot_date' , 'seating_capacity' , 'parent'])
 			
