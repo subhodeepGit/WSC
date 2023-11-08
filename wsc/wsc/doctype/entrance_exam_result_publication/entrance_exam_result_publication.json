@@ -1,13 +1,15 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
- "autoname": "format:{applicant_id}-{department}-{academic_term}",
+ "autoname": "format:{applicant_id}-{department}-{academic_year}",
  "creation": "2023-05-09 18:07:30.539407",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "entrance_exam_declaration_details_section",
   "entrance_exam_declaration",
   "section_break_vr0ay",
   "academic_year",
@@ -33,7 +35,8 @@
    "fetch_from": "applicant_id.title",
    "fieldname": "applicant_name",
    "fieldtype": "Data",
-   "label": "Applicant Name"
+   "label": "Applicant Name",
+   "read_only": 1
   },
   {
    "fetch_from": "entrance_exam_declaration.academic_year",
@@ -46,7 +49,8 @@
   {
    "fieldname": "result_declaration_date",
    "fieldtype": "Date",
-   "label": "Result Declaration Date"
+   "label": "Result Declaration Date",
+   "reqd": 1
   },
   {
    "fetch_from": "entrance_exam_declaration.department",
@@ -61,20 +65,23 @@
    "fieldname": "student_category",
    "fieldtype": "Link",
    "label": "Student Category",
-   "options": "Student Category"
+   "options": "Student Category",
+   "read_only": 1
   },
   {
    "default": "0",
    "fetch_from": "applicant_id.physically_disabled",
    "fieldname": "physically_disabled",
    "fieldtype": "Check",
-   "label": "Physically Disabled"
+   "label": "Physically Disabled",
+   "read_only": 1
   },
   {
    "fetch_from": "entrance_exam_declaration.total_marks",
    "fieldname": "total_marks",
    "fieldtype": "Float",
-   "label": "Total Marks"
+   "label": "Total Marks",
+   "read_only": 1
   },
   {
    "fieldname": "earned_marks",
@@ -108,14 +115,16 @@
   },
   {
    "fieldname": "section_break_6",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Applicant Details"
   },
   {
    "fetch_from": "applicant_id.gender",
    "fieldname": "gender",
    "fieldtype": "Link",
    "label": "Gender",
-   "options": "Gender"
+   "options": "Gender",
+   "read_only": 1
   },
   {
    "fieldname": "entrance_exam_declaration",
@@ -144,12 +153,17 @@
    "label": "Applicant ID",
    "options": "Student Applicant",
    "reqd": 1
+  },
+  {
+   "fieldname": "entrance_exam_declaration_details_section",
+   "fieldtype": "Section Break",
+   "label": "Entrance Exam Declaration Details"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-06 15:38:29.301611",
+ "modified": "2023-11-07 16:21:38.806959",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Result Publication",

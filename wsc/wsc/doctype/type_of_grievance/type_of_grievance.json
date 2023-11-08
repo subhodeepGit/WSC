@@ -31,7 +31,7 @@
    "fieldname": "description_of_grivence",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Description of Grivence",
+   "label": "Description of Grievance",
    "read_only": 1,
    "reqd": 1
   },
@@ -40,6 +40,7 @@
    "fieldtype": "Int",
    "in_list_view": 1,
    "label": "Standard compliance Period (In days)",
+   "non_negative": 1,
    "reqd": 1
   },
   {
@@ -51,7 +52,7 @@
   {
    "fieldname": "areas_of_grivence",
    "fieldtype": "Select",
-   "label": "Areas of Grivence",
+   "label": "Areas of Grievance",
    "options": "\nEducation\nEmployment\nAcademics\nRagging\nAccommodation\nNon -Teaching Activities\nTransportation\nHealth\nFooding\nsocial awareness\nseminars\nworkshops\nViolence Against Women\nThe Sexual Harassment of Women at Workplace\nExam\nClass Room\nCyber security",
    "reqd": 1
   },
@@ -63,7 +64,7 @@
   {
    "fieldname": "student_handbook_rule_discription",
    "fieldtype": "Text",
-   "label": "Student HandBook Rule Discription "
+   "label": "Student HandBook Rule Description"
   },
   {
    "default": "1",
@@ -75,7 +76,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-02-06 17:55:12.079884",
+ "modified": "2023-11-07 12:45:13.312221",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Type of Grievance",

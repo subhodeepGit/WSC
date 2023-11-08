@@ -10,8 +10,11 @@ class EmployeeGrievanceCell(Document):
     def get_employees(self):
         for member in self.grievance_committee:
             user_id = member.user_id
-            if not has_role(user_id, "Grievance Cell Member"):
-                frappe.throw(("User {0} does not have the role Grievance Cell Member.").format(user_id))
+            if user_id:
+                if not has_role(user_id, "Grievance Cell Member"):
+                    frappe.throw(("User {0} does not have the role Grievance Cell Member.").format(user_id))
+            else :
+                frappe.throw("User ID of the Grievance Cell Member Not found")
 
 
 def has_role(user_id,role):

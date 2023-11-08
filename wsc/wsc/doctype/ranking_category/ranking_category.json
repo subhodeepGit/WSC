@@ -46,8 +46,7 @@
    "fieldname": "category_name",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Student Category",
-   "options": "Category",
+   "label": "Category Name",
    "reqd": 1
   }
  ],

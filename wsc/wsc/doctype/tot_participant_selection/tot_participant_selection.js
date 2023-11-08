@@ -49,20 +49,33 @@ frappe.ui.form.on('ToT Participant Selection', {
 			})
 		}
 	},
-	start_date : function(frm){
-		if(frm.doc.start_date && frm.doc.end_date){
-			if(frm.doc.start_date > frm.doc.end_date){
-				frappe.throw("Event Start Date should be Less than Event Start date");
-			}
-		}
-	},
-	end_date:function(frm){
-		if(frm.doc.start_date && frm.doc.end_date){
-			if(frm.doc.end_date < frm.doc.start_date){
-				rappe.throw("Event End Date should be Greater than Event Start date");
-			}
-		}
-	}
+	// start_date : function(frm){
+	// 	if(frm.doc.start_date && frm.doc.end_date){
+	// 		if(frm.doc.start_date > frm.doc.end_date){
+	// 			frappe.throw("Event Start Date should be Less than Event Start date");
+	// 		}
+	// 	}
+	// },
+	// end_date:function(frm){
+	// 	if(frm.doc.start_date && frm.doc.end_date){
+	// 		if(frm.doc.end_date < frm.doc.start_date){
+	// 			rappe.throw("Event End Date should be Greater than Event Start date");
+	// 		}
+	// 	}
+	// }
+	start_date: function(frm) {
+        // set minimum To Date equal to From Date
+        frm.fields_dict.end_date.datepicker.update({
+            minDate: frm.doc.start_date ? new Date(frm.doc.start_date) : null
+        });
+    },
+
+	end_date: function(frm) {
+        // set maximum From Date equal to To Date
+        frm.fields_dict.start_date.datepicker.update({
+            maxDate: frm.doc.end_date ? new Date(frm.doc.end_date) : null
+        });
+    },
 });
 
 frappe.ui.form.on('Selected Participant', {

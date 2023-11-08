@@ -76,7 +76,7 @@
   {
    "fieldname": "section_break_14",
    "fieldtype": "Section Break",
-   "label": "Grievance Discription"
+   "label": "Grievance Description"
   },
   {
    "fieldname": "description",
@@ -165,7 +165,7 @@
    "fetch_from": "type_of_grievance.areas_of_grivence",
    "fieldname": "areas_of_grivence",
    "fieldtype": "Data",
-   "label": "Areas of Grivence",
+   "label": "Areas of Grievance",
    "read_only": 1
   },
   {
@@ -175,7 +175,7 @@
   },
   {
    "fieldname": "emergency_phone_no",
-   "fieldtype": "Phone",
+   "fieldtype": "Data",
    "label": "Emergency Phone No",
    "reqd": 1
   },
@@ -214,7 +214,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-18 10:43:12.944582",
+ "modified": "2023-11-08 09:44:32.593811",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Students Grievance",

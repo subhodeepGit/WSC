@@ -29,20 +29,25 @@ frappe.ui.form.on('Generate certificate tool', {
         frm.set_df_property('selected_participants_list', 'cannot_add_rows', true);
 	},
 	select_event: function(frm){
-		frappe.call({
-			method: 'wsc.wsc.doctype.generate_certificate.generate_certificate.get_program_id',
-			args:{
-				event_id : frm.doc.select_event
-			},
-			callback: function(result){
-				if(result.message[0] == 0){
-					frm.set_value('select_program', '')
+		if(frm.doc.select_event.length == 0){
+			frm.set_value('select_program', '')
+		}
+		else{
+			frappe.call({
+				method: 'wsc.wsc.doctype.generate_certificate.generate_certificate.get_program_id',
+				args:{
+					event_id : frm.doc.select_event
+				},
+				callback: function(result){
+					if(result.message[0] == 0){
+						frm.set_value('select_program', '')
+					}
+					else{
+						frm.set_value('select_program', result.message[1])
+					}
 				}
-				else{
-					frm.set_value('select_program', result.message[1])
-				}
-			}
-		})
+			})
+		}
 	},
 	// ----------------------------------------------------------------------------------------------------
 	get_eligible_participants_list : function(frm){

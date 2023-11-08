@@ -23,15 +23,23 @@ frappe.ui.form.on('Internship Application', {
 		});
 	},
 	select_internship : function(frm){
-		frappe.call({
-			method : 'wsc.wsc.doctype.internship_application.internship_application.get_internship_name',
-			args: {
-				internship_id : frm.doc.select_internship
-			},
-			callback : function(result){
-				frm.set_value('internship_name', result.message)
+		if(participant_id){
+			if(frm.doc.select_internship){
+				frappe.call({
+					method : 'wsc.wsc.doctype.internship_application.internship_application.get_internship_name',
+					args: {
+						internship_id : frm.doc.select_internship
+					},
+					callback : function(result){
+						frm.set_value('internship_name', result.message)
+					}
+				})
 			}
-		})
+		}
+		else{
+			frm.set_value('internship_name', '')
+		}
+		
 	},
 	participant_id : function(frm){
 		frappe.call({
