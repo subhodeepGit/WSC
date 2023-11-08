@@ -513,7 +513,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-11-08 12:55:09.773466",
+ "modified": "2023-11-08 13:03:34.788380",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Accounts",
@@ -525,10 +525,10 @@
  "restrict_to_domain": "",
  "roles": [
   {
-   "role": "System Manager"
+   "role": "Accounts Manager"
   },
   {
-   "role": "Admin"
+   "role": "Accounts User"
   }
  ],
  "sequence_id": 12.0,
