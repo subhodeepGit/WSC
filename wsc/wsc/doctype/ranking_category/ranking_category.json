@@ -32,16 +32,17 @@
   },
   {
    "fieldname": "category_name",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Category Name",
+   "options": "Category",
    "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-20 15:54:17.407319",
+ "modified": "2023-11-07 18:30:23.427202",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Ranking Category",
