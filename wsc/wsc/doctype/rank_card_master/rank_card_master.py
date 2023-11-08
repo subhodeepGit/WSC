@@ -5,7 +5,12 @@ import frappe
 from frappe.model.document import Document
 
 class RankCardMaster(Document):
-	pass
+    def validate(self):
+        if self.is_new:
+            if frappe.get_all("Rank Card Master",{"academic_year":self.academic_year,
+                                               "department":self.department,
+                                               "academic_term":self.academic_term}):
+                frappe.throw("Rank Master already exists for this Academic Year, Academic Term and Department")
 
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
