@@ -8,6 +8,7 @@ from frappe import _
 
 class ToTClassSchedule(Document):
 	def validate(self):
+		time_validation(self)
 		if self.attendance_taken==1:
 			data=frappe.get_all("ToT Class Schedule",{"name":self.name})
 			if data:
@@ -150,3 +151,7 @@ def get_class_schedule_calendar(start, end, filters=None):
 	)
 
 	return data
+
+def time_validation(self):
+	if self.from_time >= self.to_time:
+		frappe.throw("<b>From Time</b> cannot be greater than or equal to <b>To Time</b>")
