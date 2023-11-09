@@ -34,23 +34,32 @@ class RankCardPublicationTool(Document):
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
 def ra_query(doctype, txt, searchfield, start, page_len, filters):
-    
-    ############################## Search Field Code#################
-    searchfields = frappe.get_meta(doctype).get_search_fields()
-    searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)    
-    
-    data=frappe.db.sql("""
-        SELECT `name` FROM `tabEntrance Exam Declaration` WHERE ({key} like %(txt)s or {scond})  AND
-            (`exam_start_date` <= now() AND `exam_end_date` >= now())
-             and `docstatus`=1 
-    """.format(
-        **{
-            "key": searchfield,
-            "scond": searchfields,
-            # "info":info
-        }),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
 
-    return data
+	############################## Search Field Code#################
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)    
+
+	# data=frappe.db.sql("""
+	#     SELECT `name` FROM `tabEntrance Exam Declaration` WHERE ({key} like %(txt)s or {scond})  AND
+	#         (`exam_start_date` <= now() AND `exam_end_date` >= now())
+	#          and `docstatus`=1 
+	# """.format(
+	#     **{
+	#         "key": searchfield,
+	#         "scond": searchfields,
+	#         # "info":info
+	#     }),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	data=frappe.db.sql("""
+		SELECT `name` FROM `tabEntrance Exam Declaration` WHERE ({key} like %(txt)s or {scond}) 
+				and `docstatus`=1 
+	""".format(
+		**{
+			"key": searchfield,
+			"scond": searchfields,
+			# "info":info
+		}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+
+	return data
 
 @frappe.whitelist()
 def ranking(list_data , col , rank_name):
@@ -62,8 +71,6 @@ def ranking(list_data , col , rank_name):
 
 @frappe.whitelist()
 def get_qualified_applicants(declaration , rank_card_masters):
-	print("\n\n\n\nrank tool")
-
 	rank_card_master_data = frappe.get_all("Rank Card Master" , 
 											{
 												"name":rank_card_masters
@@ -90,12 +97,12 @@ def get_qualified_applicants(declaration , rank_card_masters):
 	for i in all_round_ranks:
 		i['rank_type'] = rank_card_master_data[0]['no_category_rank_name']
 
-	# print(all_round_applicant_data)
+	print(all_round_applicant_data)
 	return all_round_ranks
 
 @frappe.whitelist()
 def generate_rank_cards(doc):
-	print("\n\n")
+	print("\n\n\n")
 	data = json.loads(doc)
 
 	declaration = data['entrance_exam_declaration']
@@ -114,9 +121,6 @@ def generate_rank_cards(doc):
 												["student_category" , 'gender' , 'pwd' , 'category_name']
 
 											)
-
-	# print(all_round_ranks)
-
 	# {'student_category': None, 'gender': None, 'pwd': 1, 'category_name': 'PWD Rank'}
 
 	def list_of_student(student_category,gender,pwd,all_round_ranks):
@@ -236,8 +240,11 @@ def generate_rank_cards(doc):
 			student_applicant.save()
 		
 	if count == len(all_round_ranks):
-		return 200
-	else: 
-		return 400
+		frappe.set_value("Rank Card Publication Tool",data['name'],"status","Completed")
+		frappe.msgprint("All Rank Cards Generated")	
+		# return 200
+	# else:
+	# 	frappe.set_value("Rank Card Publication Tool",data['name'],"status","Completed") 
+	# 	# return 400
 
 		

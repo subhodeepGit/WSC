@@ -12,16 +12,17 @@
 	<thead>
 		<tr>
 			<th style="width: 20%">Student Name</th>
-			<th style="width: 10%">Student Id</th>
+			<th style="width: 20%">Student Id</th>
 			<th style="width: 10%">Roll Number</th>
-			<th style="width: 10%">Registration Number</th>
+			<!-- <th style="width: 10%">Registration Number</th> -->
 			<th style="width: 10%">Course Wise Evaluation</th>
 			<!-- <th style="width: 10%">Grace Marks</th> -->
-			<th style="width: 10%">Weightage Marks</th>
+			<!-- <th style="width: 10%">Weightage Marks</th> -->
 			<th style="width: 10%">Final Marks</th>
 			<th hidden style="width: 0%">Earned Credits</th>
 			<th hidden style="width: 0%">Total Credits</th>
 			<th style="width: 10%">Out of Marks</th>
+			<th style="width: 10%">Comment</th>
 			<th hidden style="width: 0%">Exam Attendence</th>
 		</tr>
 	</thead>
@@ -32,7 +33,7 @@
 			<td style="width: 20%">{{ s.student_name }}</td>
 			<td style="width: 10%">{{ s.student }}</td>
 			<td style="width: 10%">{{ s.roll_no }}</td>
-			<td style="width: 10%">{{ s.registration_number }}</i></td>
+			<!-- <td style="width: 10%">{{ s.registration_number }}</i></td> -->
 			<td style="width: 10%">
 				<table>
 					<thead>
@@ -40,6 +41,7 @@
 							<th style="width:2.8%">ID</th>
 							<th style="width: 6%">Earned Marks/Total Marks</th>
 							<th style="width:2.8%">Exam Attendence Status</th>
+							<!-- <th style="width:2.8%">Comment</th> -->
 						</tr>
 					</thead>
 					<tbody>
@@ -49,6 +51,7 @@
 							<td>{{ row.name }}</td>
 							<td>{{ row.earned_marks }} / {{row.total_marks}}</td>
 							<td>{{ row.attendence_status }}</td>
+							<!-- <td>{{ row.commment }}</td> -->
 						</tr>
 						{% endfor %}
 					</tbody>
@@ -59,12 +62,12 @@
 			{% else %} -->
 			<!-- <td style="width: 10%"><input type="number" 	 class="grace_marks"  data-row="{{s.student}}" disabled value></td> -->
 			{% endif %}
-			<td style="width: 10%"><input type="number" 	 class="weightage_marks"  data-row="{{s.student}}" disabled value="{{s.weightage_marks}}"></td>
+			<!-- <td style="width: 10%"><input type="number" 	 class="weightage_marks"  data-row="{{s.student}}" disabled value="{{s.weightage_marks}}"></td> -->
 			<td style="width: 10%"><input type="number" 	 class="final_marks"  data-row="{{s.student}}" disabled value="{{s.weightage_marks}}"></td>
 			<td hidden><input type="number" 	 class="earned_credits"  data-row="{{s.student}}"	style="width:0%;" disabled value="{{s.total_credits}}" ></td>
 			<td hidden><input type="number" 	 class="total_credits"  data-row="{{s.student}}"	style="width:0%;" disabled value="{{s.total_credits}}"></td>
 			<td style="width: 10%"><input type="number" 	 class="out_of_marks"  data-row="{{s.student}}" disabled value="{{s.out_of_marks}}"></td>
-
+			<td style="width: 40%"><input type="data" 	 class="comment"  data-row="{{s.student}}"></td>
 			<td hidden><input type="text" 	 class="exam_attendence"  data-row="{{s.student}}"	style="width:0%;" disabled value="{{s.attendence_status}}"></td>
 
 		</tr>
