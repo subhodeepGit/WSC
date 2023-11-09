@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "ENTP.-.#####",
  "creation": "2023-05-29 17:39:31.038155",
  "default_view": "List",
  "doctype": "DocType",
@@ -114,10 +115,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-03 15:59:19.927793",
+ "modified": "2023-11-08 15:13:21.836041",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrepreneurship",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

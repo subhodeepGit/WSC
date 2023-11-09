@@ -17,8 +17,8 @@
   "no_category_rank_name",
   "column_break_9",
   "maximum_number_of_ranks",
-  "column_break_4by1q",
   "all_round_cutoff",
+  "column_break_4by1q",
   "section_break_11",
   "ranking_category",
   "amended_from"
@@ -117,7 +117,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-08 11:25:25.148190",
+ "modified": "2023-11-08 15:27:58.987689",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Rank Card Master",

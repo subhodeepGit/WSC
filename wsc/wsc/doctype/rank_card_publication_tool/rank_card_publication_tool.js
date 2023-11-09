@@ -28,27 +28,30 @@ frappe.ui.form.on('Rank Card Publication Tool', {
 						args:{
 							'doc':frm.doc
 						},
-						callback:function(result){
-							if (result.message === 200){
-								frm.set_value({
-									'status':"Completed"
-								})
-								alert("All Rank Cards Generated")
-								frm.remove_custom_button('Generate Ranks')
-							}
-							else if(result.message === 500){
-								alert("Please Check There are leftover Admit Cards")
-							}
-						}
+						// callback:function(result){
+						// 	if (result.message === 200){
+						// 		frm.set_value({
+						// 			'status':"Completed"
+						// 		})
+						// 		alert("All Rank Cards Generated")
+						// 		frm.remove_custom_button('Generate Ranks')
+						// 	}
+						// 	else if(result.message === 500){
+						// 		alert("Please Check There are leftover Admit Cards")
+						// 	}
+						// }
 					})
 				}
 			}).addClass("btn-primary")
+
 		} 
 		else if(frm.doc.docstatus === 2){
 			frm.set_value({
 				'status':"Cancelled"
 			})
 		}
+		frm.set_df_property('ranked_students_list', 'cannot_add_rows', true);
+		frm.set_df_property('ranked_students_list', 'cannot_delete_rows', true);
 		// 	frm.add_custom_button(__('Generate Ranks') , function(){
 		// 		if(frm.doc.ranked_students_list.length != 0){
 		// 			frappe.call({
@@ -137,6 +140,7 @@ frappe.ui.form.on('Rank Card Publication Tool', {
 				})
 				frm.refresh();
 				frm.refresh_field("ranked_students_list")
+				frm.save()
 			}
 		})
 	}
