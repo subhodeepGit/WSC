@@ -787,273 +787,273 @@ def axis_getFinalTransactionStatus(doc):
 
 def axis_transaction_update_status():             # bench execute wsc.task.axis_transaction_update_status
 
-    doc=frappe.get_doc("OnlinePayment","PAYM-2023-0736")        
-    data_dict= axis_getFinalTransactionStatus(doc)
-    print(data_dict) 
-    # current_datetime = now_datetime()
-    # current_datetime = current_datetime.replace(microsecond=0)  
-    # five_days_ago = add_days(current_datetime, -5)
+    # doc=frappe.get_doc("OnlinePayment","PAYM-2023-0736")        
+    # data_dict= axis_getFinalTransactionStatus(doc)
+    # print(data_dict) 
+    current_datetime = now_datetime()
+    current_datetime = current_datetime.replace(microsecond=0)  
+    five_days_ago = add_days(current_datetime, -5)
            
 
-    # awaited_status_transactions_1=frappe.get_all("OnlinePayment",filters=[["date_time_of_transaction", ">=", five_days_ago],["date_time_of_transaction", "<=", current_datetime],["transaction_status" ,"IN",["Awaited","Failure","Initiated","Rejected","Aborted","Unsuccessful"]],['gateway_name','=','AXIS']],fields=['name'])  
-    # axis_file_logger.info("awaited_status_transactions_1:%s",awaited_status_transactions_1)
+    awaited_status_transactions_1=frappe.get_all("OnlinePayment",filters=[["date_time_of_transaction", ">=", five_days_ago],["date_time_of_transaction", "<=", current_datetime],["transaction_status" ,"IN",["Awaited","Failure","Initiated","Rejected","Aborted","Unsuccessful"]],['gateway_name','=','AXIS']],fields=['name'])  
+    axis_file_logger.info("awaited_status_transactions_1:%s",awaited_status_transactions_1)
 
-    # awaited_status_transactions_2=frappe.get_all("OnlinePayment",filters=[["date_time_of_transaction", ">=", five_days_ago],["date_time_of_transaction", "<=", current_datetime],["transaction_status" ,"IN",["Success","Shipped"]],['gateway_name','=','AXIS']],fields=['name',"transaction_id"])  
-    # axis_file_logger.info("awaited_status_transactions_2:%s",awaited_status_transactions_2)
+    awaited_status_transactions_2=frappe.get_all("OnlinePayment",filters=[["date_time_of_transaction", ">=", five_days_ago],["date_time_of_transaction", "<=", current_datetime],["transaction_status" ,"IN",["Success","Shipped"]],['gateway_name','=','AXIS']],fields=['name',"transaction_id"])  
+    axis_file_logger.info("awaited_status_transactions_2:%s",awaited_status_transactions_2)
 
-    # awaited_status_transactions_0=frappe.get_all("OnlinePayment",filters=[["docstatus" ,"=",0],["posting_date", ">=", five_days_ago],["posting_date", "<=", current_datetime],['gateway_name','=','AXIS']],fields=['name'])
-    # axis_file_logger.info("awaited_status_transactions_0 in draft:%s",awaited_status_transactions_0)
+    awaited_status_transactions_0=frappe.get_all("OnlinePayment",filters=[["docstatus" ,"=",0],["posting_date", ">=", five_days_ago],["posting_date", "<=", current_datetime],['gateway_name','=','AXIS']],fields=['name'])
+    axis_file_logger.info("awaited_status_transactions_0 in draft:%s",awaited_status_transactions_0)
 
-    # for t0 in awaited_status_transactions_0:
-    #     try:
-    #         doc=frappe.get_doc("OnlinePayment",t0["name"])  
-    #         axis_file_logger.info("t0 doc: %s", doc)      
-    #         data_dict= axis_getFinalTransactionStatus(doc)
+    for t0 in awaited_status_transactions_0:
+        try:
+            doc=frappe.get_doc("OnlinePayment",t0["name"])  
+            axis_file_logger.info("t0 doc: %s", doc)      
+            data_dict= axis_getFinalTransactionStatus(doc)
 
-    #         if doc.docstatus==0:
-    #             # print(data_dict["Order_Status_Result"])
-    #             if "order_no" in data_dict["Order_Status_Result"].keys():
-    #                 doc.transaction_id = data_dict["Order_Status_Result"]["reference_no"]
-    #                 axis_file_logger.info("t0 Final API transaction_id: %s", data_dict["Order_Status_Result"]["reference_no"])
-    #                 order_status= data_dict["Order_Status_Result"]["order_status"]
-    #                 if order_status=="Shipped":
-    #                     doc.transaction_status = "Success"
-    #                 else:
-    #                     doc.transaction_status = order_status
-    #                 if data_dict["Order_Status_Result"]["order_status"]!='Initiated':
-    #                     if data_dict["Order_Status_Result"]["order_bank_response"]:
-    #                         doc.transaction_status_description = data_dict["Order_Status_Result"]["order_bank_response"]
+            if doc.docstatus==0:
+                # print(data_dict["Order_Status_Result"])
+                if "order_no" in data_dict["Order_Status_Result"].keys():
+                    doc.transaction_id = data_dict["Order_Status_Result"]["reference_no"]
+                    axis_file_logger.info("t0 Final API transaction_id: %s", data_dict["Order_Status_Result"]["reference_no"])
+                    order_status= data_dict["Order_Status_Result"]["order_status"]
+                    if order_status=="Shipped":
+                        doc.transaction_status = "Success"
+                    else:
+                        doc.transaction_status = order_status
+                    if data_dict["Order_Status_Result"]["order_status"]!='Initiated':
+                        if data_dict["Order_Status_Result"]["order_bank_response"]:
+                            doc.transaction_status_description = data_dict["Order_Status_Result"]["order_bank_response"]
                    
-    #                 paying_amount=str(data_dict['Order_Status_Result']['order_amt'])
-    #                 if data_dict["Order_Status_Result"]["order_status_date_time"]:
-    #                     transaction_time = data_dict["Order_Status_Result"]["order_status_date_time"]
-    #                     # axis_file_logger.info("t0 scheduler server transaction_time %s", transaction_time)
+                    paying_amount=str(data_dict['Order_Status_Result']['order_amt'])
+                    if data_dict["Order_Status_Result"]["order_status_date_time"]:
+                        transaction_time = data_dict["Order_Status_Result"]["order_status_date_time"]
+                        # axis_file_logger.info("t0 scheduler server transaction_time %s", transaction_time)
 
-    #                     try:                          
-    #                         date_obj = datetime.strptime(transaction_time, "%Y-%m-%d %H:%M:%S.%f")
-    #                     except ValueError:
-    #                         try:                                
-    #                             date_obj = datetime.strptime(transaction_time, "%Y-%m-%d %H:%M:%S")
-    #                         except ValueError:
-    #                             axis_file_logger.info("Invalid date format: %s", transaction_time)
-    #                             date_obj = None
+                        try:                          
+                            date_obj = datetime.strptime(transaction_time, "%Y-%m-%d %H:%M:%S.%f")
+                        except ValueError:
+                            try:                                
+                                date_obj = datetime.strptime(transaction_time, "%Y-%m-%d %H:%M:%S")
+                            except ValueError:
+                                axis_file_logger.info("Invalid date format: %s", transaction_time)
+                                date_obj = None
 
-    #                     if date_obj:
-    #                         # axis_file_logger.info("t0 date_obj: %s", date_obj)
-    #                         doc.date_time_of_transaction = date_obj.strftime("%Y-%m-%d %H:%M:%S")
-    #                         # axis_file_logger.info("t0 updated date_obj: %s", date_obj.strftime("%Y-%m-%d %H:%M:%S"))
-    #                 else:
+                        if date_obj:
+                            # axis_file_logger.info("t0 date_obj: %s", date_obj)
+                            doc.date_time_of_transaction = date_obj.strftime("%Y-%m-%d %H:%M:%S")
+                            # axis_file_logger.info("t0 updated date_obj: %s", date_obj.strftime("%Y-%m-%d %H:%M:%S"))
+                    else:
                        
-    #                     axis_file_logger.info("Missing order_status_date_time in data_dict")     
-    #                 doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper() 
-    #                 order_no=data_dict['Order_Status_Result']['order_no'] 
-    #                 order_status=data_dict['Order_Status_Result']['order_status'] 
-    #                 payer_name=data_dict['Order_Status_Result']['order_bill_name'] 
+                        axis_file_logger.info("Missing order_status_date_time in data_dict")     
+                    doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper() 
+                    order_no=data_dict['Order_Status_Result']['order_no'] 
+                    order_status=data_dict['Order_Status_Result']['order_status'] 
+                    payer_name=data_dict['Order_Status_Result']['order_bill_name'] 
                                  
-    #                 # transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nPaying Amount: {paying_amount}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
-    #                 transaction_info = f"Order ID: {order_no}\nStatus Message: {order_status}\nPaying Amount: {paying_amount}\nBilling Name: {payer_name}"
-    #                 doc.transaction_status_description=transaction_info
-    #                 doc.transaction_progress="Completed"
+                    # transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nPaying Amount: {paying_amount}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
+                    transaction_info = f"Order ID: {order_no}\nStatus Message: {order_status}\nPaying Amount: {paying_amount}\nBilling Name: {payer_name}"
+                    doc.transaction_status_description=transaction_info
+                    doc.transaction_progress="Completed"
                     
-    #                 try:
-    #                     axis_file_logger.info("t0 scheduler inside try.....................")
-    #                     doc.save(ignore_permissions=True)                        
-    #                     doc.submit()
-    #                     axis_file_logger.info("t0 scheduler inside submit.....................")
-    #                     doc.submit()
-    #                     axis_file_logger.info("t0 Scheduler SUCESSFULLY COMPLETED")    
-    #                 except Exception as save_exception:                        
-    #                     axis_file_logger.info(f"Error saving document: {repr(save_exception)}")
-    #     except Exception as e:
-    #        axis_file_logger.info(f"Error in awaited_status_transactions_0: {repr(e)}")
+                    try:
+                        axis_file_logger.info("t0 scheduler inside try.....................")
+                        doc.save(ignore_permissions=True)                        
+                        doc.submit()
+                        axis_file_logger.info("t0 scheduler inside submit.....................")
+                        doc.submit()
+                        axis_file_logger.info("t0 Scheduler SUCESSFULLY COMPLETED")    
+                    except Exception as save_exception:                        
+                        axis_file_logger.info(f"Error saving document: {repr(save_exception)}")
+        except Exception as e:
+           axis_file_logger.info(f"Error in awaited_status_transactions_0: {repr(e)}")
 
-    # for t1 in awaited_status_transactions_1:
-    #     try:
-    #         doc=frappe.get_doc("OnlinePayment",t1["name"])  
-    #         data_dict= axis_getFinalTransactionStatus(doc)
+    for t1 in awaited_status_transactions_1:
+        try:
+            doc=frappe.get_doc("OnlinePayment",t1["name"])  
+            data_dict= axis_getFinalTransactionStatus(doc)
 
-    #         # print("t1",data_dict)
-    #         if doc.docstatus==1:  
-    #             if data_dict["Order_Status_Result"]["order_status"]!=doc.transaction_status:
-    #                 doc.transaction_id = data_dict["Order_Status_Result"]["reference_no"]
-    #                 axis_file_logger.info("t1 Final API transaction_id: %s", data_dict["Order_Status_Result"]["reference_no"])
-    #                 order_status= data_dict["Order_Status_Result"]["order_status"]
-    #                 axis_file_logger.info("t1 order_status: %s", order_status)
-    #                 if order_status=="Shipped":
-    #                     doc.transaction_status = "Success"
-    #                 else:
-    #                     doc.transaction_status = order_status
-    #                 if data_dict["Order_Status_Result"]["order_status_date_time"]:
-    #                     transaction_time = data_dict["Order_Status_Result"]["order_status_date_time"]
-    #                     axis_file_logger.info("t0 scheduler server transaction_time %s", transaction_time)
+            # print("t1",data_dict)
+            if doc.docstatus==1:  
+                if data_dict["Order_Status_Result"]["order_status"]!=doc.transaction_status:
+                    doc.transaction_id = data_dict["Order_Status_Result"]["reference_no"]
+                    axis_file_logger.info("t1 Final API transaction_id: %s", data_dict["Order_Status_Result"]["reference_no"])
+                    order_status= data_dict["Order_Status_Result"]["order_status"]
+                    axis_file_logger.info("t1 order_status: %s", order_status)
+                    if order_status=="Shipped":
+                        doc.transaction_status = "Success"
+                    else:
+                        doc.transaction_status = order_status
+                    if data_dict["Order_Status_Result"]["order_status_date_time"]:
+                        transaction_time = data_dict["Order_Status_Result"]["order_status_date_time"]
+                        axis_file_logger.info("t0 scheduler server transaction_time %s", transaction_time)
 
-    #                     try:                          
-    #                         date_obj = datetime.strptime(transaction_time, "%Y-%m-%d %H:%M:%S.%f")
-    #                     except ValueError:
-    #                         try:                                
-    #                             date_obj = datetime.strptime(transaction_time, "%Y-%m-%d %H:%M:%S")
-    #                         except ValueError:
-    #                             axis_file_logger.info("Invalid date format: %s", transaction_time)
-    #                             date_obj = None
+                        try:                          
+                            date_obj = datetime.strptime(transaction_time, "%Y-%m-%d %H:%M:%S.%f")
+                        except ValueError:
+                            try:                                
+                                date_obj = datetime.strptime(transaction_time, "%Y-%m-%d %H:%M:%S")
+                            except ValueError:
+                                axis_file_logger.info("Invalid date format: %s", transaction_time)
+                                date_obj = None
 
-    #                     if date_obj:
-    #                         axis_file_logger.info("t0 date_obj: %s", date_obj)
-    #                         doc.date_time_of_transaction = date_obj.strftime("%Y-%m-%d %H:%M:%S")
-    #                         axis_file_logger.info("t0 updated date_obj: %s", date_obj.strftime("%Y-%m-%d %H:%M:%S"))
-    #                 else:
+                        if date_obj:
+                            axis_file_logger.info("t0 date_obj: %s", date_obj)
+                            doc.date_time_of_transaction = date_obj.strftime("%Y-%m-%d %H:%M:%S")
+                            axis_file_logger.info("t0 updated date_obj: %s", date_obj.strftime("%Y-%m-%d %H:%M:%S"))
+                    else:
                        
-    #                     axis_file_logger.info("Missing order_status_date_time in data_dict")                     
-    #                 doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper() 
-    #                 axis_file_logger.info("t1 gateway_name: %s", data_dict["Order_Status_Result"]["order_ship_name"].upper() )
-    #                 paying_amount=str(data_dict['Order_Status_Result']['order_amt'])
-    #                 axis_file_logger.info("t1 paying_amount: %s", paying_amount)
-    #                 if "order_bank_response" in data_dict["Order_Status_Result"].keys(): 
-    #                     doc.transaction_status_description = data_dict["Order_Status_Result"]["order_bank_response"]                    
+                        axis_file_logger.info("Missing order_status_date_time in data_dict")                     
+                    doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper() 
+                    axis_file_logger.info("t1 gateway_name: %s", data_dict["Order_Status_Result"]["order_ship_name"].upper() )
+                    paying_amount=str(data_dict['Order_Status_Result']['order_amt'])
+                    axis_file_logger.info("t1 paying_amount: %s", paying_amount)
+                    if "order_bank_response" in data_dict["Order_Status_Result"].keys(): 
+                        doc.transaction_status_description = data_dict["Order_Status_Result"]["order_bank_response"]                    
                                       
-    #                 transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nAmount Paid: {paying_amount}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
-    #                 doc.transaction_status_description=transaction_info
-    #                 doc.transaction_progress="Completed"
-    #                 doc.save(ignore_permissions=True)  
-    #                 doc.submit()
-    #                 axis_file_logger.info("t1 Scheduler SUCESSFULLY COMPLETED")     
-    #             if data_dict["Order_Status_Result"]["order_status"]=="Shipped" and doc.transaction_status!="Success":
-    #                 doc.transaction_id = data_dict["Order_Status_Result"]["reference_no"]
-    #                 axis_file_logger.info("t1 Final API transaction_id: %s", data_dict["Order_Status_Result"]["reference_no"])
-    #                 order_status= data_dict["Order_Status_Result"]["order_status"]
-    #                 if order_status=="Shipped":
-    #                     doc.transaction_status = "Success"
-    #                 else:
-    #                     doc.transaction_status = order_status
-    #                 if data_dict["Order_Status_Result"]["order_status_date_time"]:
-    #                     transaction_time = data_dict["Order_Status_Result"]["order_status_date_time"]
-    #                     axis_file_logger.info("t0 scheduler server transaction_time %s", transaction_time)
+                    transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nAmount Paid: {paying_amount}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
+                    doc.transaction_status_description=transaction_info
+                    doc.transaction_progress="Completed"
+                    doc.save(ignore_permissions=True)  
+                    doc.submit()
+                    axis_file_logger.info("t1 Scheduler SUCESSFULLY COMPLETED")     
+                if data_dict["Order_Status_Result"]["order_status"]=="Shipped" and doc.transaction_status!="Success":
+                    doc.transaction_id = data_dict["Order_Status_Result"]["reference_no"]
+                    axis_file_logger.info("t1 Final API transaction_id: %s", data_dict["Order_Status_Result"]["reference_no"])
+                    order_status= data_dict["Order_Status_Result"]["order_status"]
+                    if order_status=="Shipped":
+                        doc.transaction_status = "Success"
+                    else:
+                        doc.transaction_status = order_status
+                    if data_dict["Order_Status_Result"]["order_status_date_time"]:
+                        transaction_time = data_dict["Order_Status_Result"]["order_status_date_time"]
+                        axis_file_logger.info("t0 scheduler server transaction_time %s", transaction_time)
 
-    #                     try:                          
-    #                         date_obj = datetime.strptime(transaction_time, "%Y-%m-%d %H:%M:%S.%f")
-    #                     except ValueError:
-    #                         try:                                
-    #                             date_obj = datetime.strptime(transaction_time, "%Y-%m-%d %H:%M:%S")
-    #                         except ValueError:
-    #                             axis_file_logger.info("Invalid date format: %s", transaction_time)
-    #                             date_obj = None
+                        try:                          
+                            date_obj = datetime.strptime(transaction_time, "%Y-%m-%d %H:%M:%S.%f")
+                        except ValueError:
+                            try:                                
+                                date_obj = datetime.strptime(transaction_time, "%Y-%m-%d %H:%M:%S")
+                            except ValueError:
+                                axis_file_logger.info("Invalid date format: %s", transaction_time)
+                                date_obj = None
 
-    #                     if date_obj:
-    #                         axis_file_logger.info("t0 date_obj: %s", date_obj)
-    #                         doc.date_time_of_transaction = date_obj.strftime("%Y-%m-%d %H:%M:%S")
-    #                         axis_file_logger.info("t0 updated date_obj: %s", date_obj.strftime("%Y-%m-%d %H:%M:%S"))
-    #                 else:
+                        if date_obj:
+                            axis_file_logger.info("t0 date_obj: %s", date_obj)
+                            doc.date_time_of_transaction = date_obj.strftime("%Y-%m-%d %H:%M:%S")
+                            axis_file_logger.info("t0 updated date_obj: %s", date_obj.strftime("%Y-%m-%d %H:%M:%S"))
+                    else:
                        
-    #                     axis_file_logger.info("Missing order_status_date_time in data_dict")   
-    #                 doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper()   
-    #                 if "order_bank_response" in data_dict["Order_Status_Result"].keys():
-    #                    doc.transaction_status_description = data_dict["Order_Status_Result"]["order_bank_response"] 
+                        axis_file_logger.info("Missing order_status_date_time in data_dict")   
+                    doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper()   
+                    if "order_bank_response" in data_dict["Order_Status_Result"].keys():
+                       doc.transaction_status_description = data_dict["Order_Status_Result"]["order_bank_response"] 
                                    
-    #                 transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nAmount Paid: {paying_amount}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
-    #                 doc.transaction_status_description=transaction_info
-    #                 doc.transaction_progress="Completed"
-    #                 doc.save(ignore_permissions=True)  
-    #                 doc.submit()
-    #                 axis_file_logger.info("t1 Scheduler SUCESSFULLY COMPLETED")  
-    #             # if data_dict["Order_Status_Result"]["order_status"]=="Shipped" and doc.transaction_status=="Shipped":
-    #             #     doc.transaction_status = "Success"
-    #             #     doc.save()
-    #             #     doc.submit()
-    #             #     axis_file_logger.info("t1 Successfully submitted") 
-    #     except Exception as e:	
-    #         axis_file_logger.info(f"Error in awaited_status_transactions_1: {repr(e)}")
+                    transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nAmount Paid: {paying_amount}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
+                    doc.transaction_status_description=transaction_info
+                    doc.transaction_progress="Completed"
+                    doc.save(ignore_permissions=True)  
+                    doc.submit()
+                    axis_file_logger.info("t1 Scheduler SUCESSFULLY COMPLETED")  
+                # if data_dict["Order_Status_Result"]["order_status"]=="Shipped" and doc.transaction_status=="Shipped":
+                #     doc.transaction_status = "Success"
+                #     doc.save()
+                #     doc.submit()
+                #     axis_file_logger.info("t1 Successfully submitted") 
+        except Exception as e:	
+            axis_file_logger.info(f"Error in awaited_status_transactions_1: {repr(e)}")
 
-    # for t2 in awaited_status_transactions_2:
-    #     try:
-    #         doc=frappe.get_doc("OnlinePayment",t2["name"])  
-    #         data_dict= axis_getFinalTransactionStatus(doc)
+    for t2 in awaited_status_transactions_2:
+        try:
+            doc=frappe.get_doc("OnlinePayment",t2["name"])  
+            data_dict= axis_getFinalTransactionStatus(doc)
 
-    #         # print("t1",data_dict)
-    #         if doc.docstatus==1:  
-    #             if data_dict["Order_Status_Result"]["order_status"]!=doc.transaction_status:
-    #                 print(type(data_dict["Order_Status_Result"]["order_status"]))
-    #                 doc.transaction_id = data_dict["Order_Status_Result"]["reference_no"]
-    #                 axis_file_logger.info("t2 Final API transaction_id: %s", data_dict["Order_Status_Result"]["reference_no"])
-    #                 order_status= data_dict["Order_Status_Result"]["order_status"]
-    #                 axis_file_logger.info("t2 order_status: %s", order_status)
-    #                 if order_status=="Shipped":
-    #                     doc.transaction_status = "Success"
-    #                 else:
-    #                     doc.transaction_status = order_status
-    #                 if data_dict["Order_Status_Result"]["order_status_date_time"]:
-    #                     transaction_time = data_dict["Order_Status_Result"]["order_status_date_time"]
-    #                     axis_file_logger.info("t2 scheduler server transaction_time %s", transaction_time)
+            # print("t1",data_dict)
+            if doc.docstatus==1:  
+                if data_dict["Order_Status_Result"]["order_status"]!=doc.transaction_status:
+                    print(type(data_dict["Order_Status_Result"]["order_status"]))
+                    doc.transaction_id = data_dict["Order_Status_Result"]["reference_no"]
+                    axis_file_logger.info("t2 Final API transaction_id: %s", data_dict["Order_Status_Result"]["reference_no"])
+                    order_status= data_dict["Order_Status_Result"]["order_status"]
+                    axis_file_logger.info("t2 order_status: %s", order_status)
+                    if order_status=="Shipped":
+                        doc.transaction_status = "Success"
+                    else:
+                        doc.transaction_status = order_status
+                    if data_dict["Order_Status_Result"]["order_status_date_time"]:
+                        transaction_time = data_dict["Order_Status_Result"]["order_status_date_time"]
+                        axis_file_logger.info("t2 scheduler server transaction_time %s", transaction_time)
 
-    #                     try:                          
-    #                         date_obj = datetime.strptime(transaction_time, "%Y-%m-%d %H:%M:%S.%f")
-    #                     except ValueError:
-    #                         try:                                
-    #                             date_obj = datetime.strptime(transaction_time, "%Y-%m-%d %H:%M:%S")
-    #                         except ValueError:
-    #                             axis_file_logger.info("Invalid date format: %s", transaction_time)
-    #                             date_obj = None
+                        try:                          
+                            date_obj = datetime.strptime(transaction_time, "%Y-%m-%d %H:%M:%S.%f")
+                        except ValueError:
+                            try:                                
+                                date_obj = datetime.strptime(transaction_time, "%Y-%m-%d %H:%M:%S")
+                            except ValueError:
+                                axis_file_logger.info("Invalid date format: %s", transaction_time)
+                                date_obj = None
 
-    #                     if date_obj:
-    #                         axis_file_logger.info("t0 date_obj: %s", date_obj)
-    #                         doc.date_time_of_transaction = date_obj.strftime("%Y-%m-%d %H:%M:%S")
-    #                         axis_file_logger.info("t0 updated date_obj: %s", date_obj.strftime("%Y-%m-%d %H:%M:%S"))
-    #                 else:
+                        if date_obj:
+                            axis_file_logger.info("t0 date_obj: %s", date_obj)
+                            doc.date_time_of_transaction = date_obj.strftime("%Y-%m-%d %H:%M:%S")
+                            axis_file_logger.info("t0 updated date_obj: %s", date_obj.strftime("%Y-%m-%d %H:%M:%S"))
+                    else:
                        
-    #                     axis_file_logger.info("Missing order_status_date_time in data_dict")                     
-    #                 doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper() 
-    #                 axis_file_logger.info("t2 gateway_name: %s", data_dict["Order_Status_Result"]["order_ship_name"].upper() )
-    #                 paying_amount=str(data_dict['Order_Status_Result']['order_amt'])
-    #                 axis_file_logger.info("t2 paying_amount: %s", paying_amount)
-    #                 if "order_bank_response" in data_dict["Order_Status_Result"].keys(): 
-    #                     doc.transaction_status_description = data_dict["Order_Status_Result"]["order_bank_response"]                    
+                        axis_file_logger.info("Missing order_status_date_time in data_dict")                     
+                    doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper() 
+                    axis_file_logger.info("t2 gateway_name: %s", data_dict["Order_Status_Result"]["order_ship_name"].upper() )
+                    paying_amount=str(data_dict['Order_Status_Result']['order_amt'])
+                    axis_file_logger.info("t2 paying_amount: %s", paying_amount)
+                    if "order_bank_response" in data_dict["Order_Status_Result"].keys(): 
+                        doc.transaction_status_description = data_dict["Order_Status_Result"]["order_bank_response"]                    
                                       
-    #                 transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nAmount Paid: {paying_amount}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
-    #                 doc.transaction_status_description=transaction_info
-    #                 doc.transaction_progress="Completed"
-    #                 doc.save(ignore_permissions=True)  
-    #                 doc.submit()
-    #                 axis_file_logger.info("t1 Scheduler SUCESSFULLY COMPLETED")     
-    #             if data_dict["Order_Status_Result"]["order_status"]=="Shipped" and doc.transaction_status!="Success":
-    #                 doc.transaction_id = data_dict["Order_Status_Result"]["reference_no"]
-    #                 axis_file_logger.info("t2 Final API transaction_id: %s", data_dict["Order_Status_Result"]["reference_no"])
-    #                 order_status= data_dict["Order_Status_Result"]["order_status"]
-    #                 if order_status=="Shipped":
-    #                     doc.transaction_status = "Success"
-    #                 else:
-    #                     doc.transaction_status = order_status
-    #                 if data_dict["Order_Status_Result"]["order_status_date_time"]:
-    #                     transaction_time = data_dict["Order_Status_Result"]["order_status_date_time"]
-    #                     axis_file_logger.info("t2 scheduler server transaction_time %s", transaction_time)
+                    transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nAmount Paid: {paying_amount}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
+                    doc.transaction_status_description=transaction_info
+                    doc.transaction_progress="Completed"
+                    doc.save(ignore_permissions=True)  
+                    doc.submit()
+                    axis_file_logger.info("t1 Scheduler SUCESSFULLY COMPLETED")     
+                if data_dict["Order_Status_Result"]["order_status"]=="Shipped" and doc.transaction_status!="Success":
+                    doc.transaction_id = data_dict["Order_Status_Result"]["reference_no"]
+                    axis_file_logger.info("t2 Final API transaction_id: %s", data_dict["Order_Status_Result"]["reference_no"])
+                    order_status= data_dict["Order_Status_Result"]["order_status"]
+                    if order_status=="Shipped":
+                        doc.transaction_status = "Success"
+                    else:
+                        doc.transaction_status = order_status
+                    if data_dict["Order_Status_Result"]["order_status_date_time"]:
+                        transaction_time = data_dict["Order_Status_Result"]["order_status_date_time"]
+                        axis_file_logger.info("t2 scheduler server transaction_time %s", transaction_time)
 
-    #                     try:                          
-    #                         date_obj = datetime.strptime(transaction_time, "%Y-%m-%d %H:%M:%S.%f")
-    #                     except ValueError:
-    #                         try:                                
-    #                             date_obj = datetime.strptime(transaction_time, "%Y-%m-%d %H:%M:%S")
-    #                         except ValueError:
-    #                             axis_file_logger.info("Invalid date format: %s", transaction_time)
-    #                             date_obj = None
+                        try:                          
+                            date_obj = datetime.strptime(transaction_time, "%Y-%m-%d %H:%M:%S.%f")
+                        except ValueError:
+                            try:                                
+                                date_obj = datetime.strptime(transaction_time, "%Y-%m-%d %H:%M:%S")
+                            except ValueError:
+                                axis_file_logger.info("Invalid date format: %s", transaction_time)
+                                date_obj = None
 
-    #                     if date_obj:
-    #                         axis_file_logger.info("t1 date_obj: %s", date_obj)
-    #                         doc.date_time_of_transaction = date_obj.strftime("%Y-%m-%d %H:%M:%S")
-    #                         axis_file_logger.info("t1 updated date_obj: %s", date_obj.strftime("%Y-%m-%d %H:%M:%S"))
-    #                 else:
+                        if date_obj:
+                            axis_file_logger.info("t1 date_obj: %s", date_obj)
+                            doc.date_time_of_transaction = date_obj.strftime("%Y-%m-%d %H:%M:%S")
+                            axis_file_logger.info("t1 updated date_obj: %s", date_obj.strftime("%Y-%m-%d %H:%M:%S"))
+                    else:
                        
-    #                     axis_file_logger.info("Missing order_status_date_time in data_dict")   
-    #                 doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper()   
-    #                 if "order_bank_response" in data_dict["Order_Status_Result"].keys():
-    #                    doc.transaction_status_description = data_dict["Order_Status_Result"]["order_bank_response"] 
+                        axis_file_logger.info("Missing order_status_date_time in data_dict")   
+                    doc.gateway_name=data_dict["Order_Status_Result"]["order_ship_name"].upper()   
+                    if "order_bank_response" in data_dict["Order_Status_Result"].keys():
+                       doc.transaction_status_description = data_dict["Order_Status_Result"]["order_bank_response"] 
                                    
-    #                 transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nAmount Paid: {paying_amount}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
-    #                 doc.transaction_status_description=transaction_info
-    #                 doc.transaction_progress="Completed"
-    #                 doc.save(ignore_permissions=True)  
-    #                 doc.submit()
-    #                 axis_file_logger.info("t2 Scheduler SUCESSFULLY COMPLETED")  
-    #             # if data_dict["Order_Status_Result"]["order_status"]=="Shipped" and doc.transaction_status=="Shipped":
-    #             #     doc.transaction_status = "Success"
-    #             #     doc.save()
-    #             #     doc.submit()
-    #             #     axis_file_logger.info("t1 Successfully submitted") 
-    #     except Exception as e:	
-    #         axis_file_logger.info(f"Error in awaited_status_transactions_2: {repr(e)}")
+                    transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nAmount Paid: {paying_amount}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
+                    doc.transaction_status_description=transaction_info
+                    doc.transaction_progress="Completed"
+                    doc.save(ignore_permissions=True)  
+                    doc.submit()
+                    axis_file_logger.info("t2 Scheduler SUCESSFULLY COMPLETED")  
+                # if data_dict["Order_Status_Result"]["order_status"]=="Shipped" and doc.transaction_status=="Shipped":
+                #     doc.transaction_status = "Success"
+                #     doc.save()
+                #     doc.submit()
+                #     axis_file_logger.info("t1 Successfully submitted") 
+        except Exception as e:	
+            axis_file_logger.info(f"Error in awaited_status_transactions_2: {repr(e)}")
