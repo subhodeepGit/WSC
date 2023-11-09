@@ -43,12 +43,15 @@ frappe.ui.form.on('Rank Card Publication Tool', {
 					})
 				}
 			}).addClass("btn-primary")
+
 		} 
 		else if(frm.doc.docstatus === 2){
 			frm.set_value({
 				'status':"Cancelled"
 			})
 		}
+		frm.set_df_property('ranked_students_list', 'cannot_add_rows', true);
+		frm.set_df_property('ranked_students_list', 'cannot_delete_rows', true);
 		// 	frm.add_custom_button(__('Generate Ranks') , function(){
 		// 		if(frm.doc.ranked_students_list.length != 0){
 		// 			frappe.call({
@@ -137,6 +140,7 @@ frappe.ui.form.on('Rank Card Publication Tool', {
 				})
 				frm.refresh();
 				frm.refresh_field("ranked_students_list")
+				frm.save()
 			}
 		})
 	}

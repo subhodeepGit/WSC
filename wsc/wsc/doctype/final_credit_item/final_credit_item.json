@@ -6,17 +6,19 @@
  "engine": "InnoDB",
  "field_order": [
   "course_assessment",
+  "passing_marks",
   "earned_marks",
   "grace_marks",
+  "column_break_e1l11",
   "final_earned_marks",
-  "passing_marks",
-  "total_marks"
+  "total_marks",
+  "comment"
  ],
  "fields": [
   {
    "fieldname": "earned_marks",
    "fieldtype": "Float",
-   "in_list_view": 1,
+   "hidden": 1,
    "label": "Wightage Marks"
   },
   {
@@ -37,24 +39,36 @@
   {
    "fieldname": "grace_marks",
    "fieldtype": "Float",
-   "in_list_view": 1,
+   "hidden": 1,
    "label": "Grace Marks"
   },
   {
    "fieldname": "final_earned_marks",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Final Earned Marks"
   },
   {
    "fieldname": "passing_marks",
    "fieldtype": "Float",
+   "in_list_view": 1,
    "label": "Passing Marks"
+  },
+  {
+   "fieldname": "column_break_e1l11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "comment",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Comment"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-07-06 13:10:07.101548",
+ "modified": "2023-11-09 11:48:08.570773",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Final Credit Item",

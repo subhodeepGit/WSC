@@ -8,13 +8,20 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_zfvze",
   "entrance_exam_declaration",
   "academic_year",
   "academic_term",
+  "column_break_iac7q",
   "departments",
   "total_marks",
+  "section_break_5rjhn",
   "rank_card_masters",
+  "maximum_number_of_ranks",
+  "column_break_b9ee1",
+  "all_round_cutoff",
   "posting_date",
+  "section_break_9hsss",
   "get_applicants",
   "ranked_students_list",
   "status",
@@ -26,25 +33,29 @@
    "fieldname": "academic_year",
    "fieldtype": "Link",
    "label": "Academic Year",
-   "options": "Academic Year"
+   "options": "Academic Year",
+   "read_only": 1
   },
   {
    "fetch_from": "entrance_exam_declaration.department",
    "fieldname": "departments",
    "fieldtype": "Link",
    "label": "Departments",
-   "options": "Department"
+   "options": "Department",
+   "read_only": 1
   },
   {
    "fetch_from": "entrance_exam_declaration.total_marks",
    "fieldname": "total_marks",
    "fieldtype": "Float",
-   "label": "Total Marks"
+   "label": "Total Marks",
+   "read_only": 1
   },
   {
    "fieldname": "posting_date",
    "fieldtype": "Date",
-   "label": "Posting Date"
+   "label": "Posting Date",
+   "reqd": 1
   },
   {
    "fieldname": "ranked_students_list",
@@ -57,7 +68,8 @@
    "fieldname": "academic_term",
    "fieldtype": "Link",
    "label": "Academic Term",
-   "options": "Academic Term"
+   "options": "Academic Term",
+   "read_only": 1
   },
   {
    "fieldname": "rank_card_masters",
@@ -96,12 +108,48 @@
    "fieldtype": "Data",
    "label": "Status",
    "read_only": 1
+  },
+  {
+   "fieldname": "section_break_zfvze",
+   "fieldtype": "Section Break",
+   "label": "Entrance Exam Declaration Details"
+  },
+  {
+   "fieldname": "section_break_5rjhn",
+   "fieldtype": "Section Break",
+   "label": "Rank Card Masters Details"
+  },
+  {
+   "fieldname": "column_break_iac7q",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_9hsss",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "rank_card_masters.maximum_number_of_ranks",
+   "fieldname": "maximum_number_of_ranks",
+   "fieldtype": "Data",
+   "label": "Maximum Number of Ranks",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "rank_card_masters.all_round_cutoff",
+   "fieldname": "all_round_cutoff",
+   "fieldtype": "Float",
+   "label": "All Round Cutoff ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_b9ee1",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-20 15:55:54.066851",
+ "modified": "2023-11-08 15:31:57.299660",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Rank Card Publication Tool",

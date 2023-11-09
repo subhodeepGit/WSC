@@ -16,38 +16,50 @@ class RankCardPublicationTool(Document):
 		# student_applicant = frappe.get_doc("Student Applicant" , m['applicant_id'])
 		for i in self.ranked_students_list:
 			rank_card_data = frappe.get_all("Rank Card" , {'applicant_id':i.applicant_id} , ['name'])
-			rank_card = frappe.get_doc("Rank Card" , rank_card_data[0]['name'])
 
-			if rank_card.docstatus == 1:
-				rank_card.cancel()
+			if len(rank_card_data[0] != 0):
+				rank_card = frappe.get_doc("Rank Card" , rank_card_data[0]['name'])
+
+				if rank_card.docstatus == 1:
+					rank_card.cancel()
 			
 		for i in self.ranked_students_list:
 
 			student_applicant = frappe.get_doc("Student Applicant" , i.applicant_id)
-			student_applicant.student_rank.clear()
-			student_applicant.save()	
+			if (len(student_applicant) != 0):
+				student_applicant.student_rank.clear()
+				student_applicant.save()	
 
 
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
 def ra_query(doctype, txt, searchfield, start, page_len, filters):
-    
-    ############################## Search Field Code#################
-    searchfields = frappe.get_meta(doctype).get_search_fields()
-    searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)    
-    
-    data=frappe.db.sql("""
-        SELECT `name` FROM `tabEntrance Exam Declaration` WHERE ({key} like %(txt)s or {scond})  AND
-            (`exam_start_date` <= now() AND `exam_end_date` >= now())
-             and `docstatus`=1 
-    """.format(
-        **{
-            "key": searchfield,
-            "scond": searchfields,
-            # "info":info
-        }),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
 
-    return data
+	############################## Search Field Code#################
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)    
+
+	# data=frappe.db.sql("""
+	#     SELECT `name` FROM `tabEntrance Exam Declaration` WHERE ({key} like %(txt)s or {scond})  AND
+	#         (`exam_start_date` <= now() AND `exam_end_date` >= now())
+	#          and `docstatus`=1 
+	# """.format(
+	#     **{
+	#         "key": searchfield,
+	#         "scond": searchfields,
+	#         # "info":info
+	#     }),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	data=frappe.db.sql("""
+		SELECT `name` FROM `tabEntrance Exam Declaration` WHERE ({key} like %(txt)s or {scond}) 
+				and `docstatus`=1 
+	""".format(
+		**{
+			"key": searchfield,
+			"scond": searchfields,
+			# "info":info
+		}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+
+	return data
 
 @frappe.whitelist()
 def ranking(list_data , col , rank_name):
@@ -59,8 +71,6 @@ def ranking(list_data , col , rank_name):
 
 @frappe.whitelist()
 def get_qualified_applicants(declaration , rank_card_masters):
-	print("\n\n\n\nrank tool")
-
 	rank_card_master_data = frappe.get_all("Rank Card Master" , 
 											{
 												"name":rank_card_masters
@@ -111,38 +121,54 @@ def generate_rank_cards(doc):
 												["student_category" , 'gender' , 'pwd' , 'category_name']
 
 											)
-
-	# print(all_round_ranks)
-
 	# {'student_category': None, 'gender': None, 'pwd': 1, 'category_name': 'PWD Rank'}
 
 	def list_of_student(student_category,gender,pwd,all_round_ranks):
 		out_put=[]
-		
-		if student_category!=None and gender!=None:
-			for t in all_round_ranks:
-				if t['student_category']==student_category and t["gender"]==gender and t['physical_disability']==pwd:
-					out_put.append(t)
-				
+		print("\nsort")
 
-		if student_category==None and gender!=None:
+		## Exclude condition 000 its already completed
+
+		if student_category != None and gender != None and pwd == 1:  #For 111 for checking conditions
 			for t in all_round_ranks:
-				if t["gender"]==gender and t['physical_disability']==pwd:
+				if student_category == t['student_category'] and gender == t['gender'] and t['physical_disability'] == pwd:  ##Matching criteria with applicant data
+					out_put.append(t)
+
+		if student_category != None and gender != None and pwd == 0:  ## 110 for checking conditions
+			for t in all_round_ranks:
+				if student_category == t['student_category'] and gender == t['gender']:   ##Matching criteria with applicant data
+					out_put.append(t)
+
+		if student_category==None and gender!=None and pwd == 1:   ##011 for checking conditions
+			for t in all_round_ranks:
+				if t["gender"]==gender and t['physical_disability']==pwd:   ##Matching criteria with applicant data
+					out_put.append(t)	
+		
+		if student_category==None and gender!=None and pwd == 0:   ##010 for checking conditions
+			for t in all_round_ranks:
+				if t["gender"]==gender:          ##Matching criteria with applicant data
 					out_put.append(t)	
 
-		if student_category==None and gender==None:
+		if student_category==None and gender==None and pwd == 1:  ##001 for checking conditions
 			for t in all_round_ranks:
 				if t['physical_disability']==pwd:
 					out_put.append(t)
 
-		if student_category!=None and gender==None:
+		if student_category!=None and gender==None and pwd == 1:   ##101   
 			for t in all_round_ranks:
 				if t['student_category']==student_category and t['physical_disability']==pwd:
 					out_put.append(t)								
+
+		if student_category != None and gender == None and pwd == 0:  ##100
+			for t in all_round_ranks:
+				if t['student_category']==student_category:
+					out_put.append(t)	
+
 		return out_put
 
 	category_based_ranks = {}
 	for i in ranking_category_data:
+		# print("\n" , i)
 		category_gender_pwd_data = []
 		category_gender_pwd_data=list_of_student(i['student_category'],i['gender'],i['pwd'],all_round_ranks)
 		category_based_ranks[i['category_name']] = ranking(category_gender_pwd_data , ['applicant_id' , 'student_category' , 'gender' , 'physical_disability' , 'earned_marks'] , i['category_name'])
@@ -153,10 +179,14 @@ def generate_rank_cards(doc):
 			for l in category_based_ranks[k]:
 				if j['applicant_id'] == l['applicant_id']:
 					j[k] = l[k]
+	
+	print("\n\n" , category_based_ranks , "\n\n")
 	count = 0
 	for m in all_round_ranks:
+		print("\n\n" , m , "\n\n")
 		### to check duplicate rank cards
 		rank_card_data = frappe.get_all("Rank Card",{"exam":declaration ,"applicant_id":m['applicant_id'] } , ['docstatus'])
+
 		for i in rank_card_data:
 			if i['docstatus'] == 0 or i['docstatus'] == 1:
 				frappe.throw("Rank Card is Already Published")
@@ -210,8 +240,11 @@ def generate_rank_cards(doc):
 			student_applicant.save()
 		
 	if count == len(all_round_ranks):
-		return 200
-	else: 
-		return 400
+		frappe.set_value("Rank Card Publication Tool",data['name'],"status","Completed")
+		frappe.msgprint("All Rank Cards Generated")	
+		# return 200
+	# else:
+	# 	frappe.set_value("Rank Card Publication Tool",data['name'],"status","Completed") 
+	# 	# return 400
 
 		
