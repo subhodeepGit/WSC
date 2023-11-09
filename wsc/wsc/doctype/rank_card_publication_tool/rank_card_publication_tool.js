@@ -29,16 +29,16 @@ frappe.ui.form.on('Rank Card Publication Tool', {
 							'doc':frm.doc
 						},
 						callback:function(result){
-							if (result.message === 200){
-								frm.set_value({
-									'status':"Completed"
-								})
-								alert("All Rank Cards Generated")
-								frm.remove_custom_button('Generate Ranks')
-							}
-							else if(result.message === 500){
-								alert("Please Check There are leftover Admit Cards")
-							}
+							// if (result.message === 200){
+							// 	frm.set_value({
+							// 		'status':"Completed"
+							// 	})
+							// 	alert("All Rank Cards Generated")
+							// 	frm.remove_custom_button('Generate Ranks')
+							// }
+							// else if(result.message === 500){
+							// 	alert("Please Check There are leftover Admit Cards")
+							// }
 						}
 					})
 				}
