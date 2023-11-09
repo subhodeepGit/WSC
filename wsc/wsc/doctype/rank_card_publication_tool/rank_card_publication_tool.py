@@ -16,16 +16,19 @@ class RankCardPublicationTool(Document):
 		# student_applicant = frappe.get_doc("Student Applicant" , m['applicant_id'])
 		for i in self.ranked_students_list:
 			rank_card_data = frappe.get_all("Rank Card" , {'applicant_id':i.applicant_id} , ['name'])
-			rank_card = frappe.get_doc("Rank Card" , rank_card_data[0]['name'])
 
-			if rank_card.docstatus == 1:
-				rank_card.cancel()
+			if len(rank_card_data[0] != 0):
+				rank_card = frappe.get_doc("Rank Card" , rank_card_data[0]['name'])
+
+				if rank_card.docstatus == 1:
+					rank_card.cancel()
 			
 		for i in self.ranked_students_list:
 
 			student_applicant = frappe.get_doc("Student Applicant" , i.applicant_id)
-			student_applicant.student_rank.clear()
-			student_applicant.save()	
+			if (len(student_applicant) != 0):
+				student_applicant.student_rank.clear()
+				student_applicant.save()	
 
 
 @frappe.whitelist()
@@ -87,12 +90,12 @@ def get_qualified_applicants(declaration , rank_card_masters):
 	for i in all_round_ranks:
 		i['rank_type'] = rank_card_master_data[0]['no_category_rank_name']
 
-	print(all_round_applicant_data)
+	# print(all_round_applicant_data)
 	return all_round_ranks
 
 @frappe.whitelist()
 def generate_rank_cards(doc):
-	print("\n\n\n")
+	print("\n\n")
 	data = json.loads(doc)
 
 	declaration = data['entrance_exam_declaration']
@@ -118,31 +121,50 @@ def generate_rank_cards(doc):
 
 	def list_of_student(student_category,gender,pwd,all_round_ranks):
 		out_put=[]
-		
-		if student_category!=None and gender!=None:
-			for t in all_round_ranks:
-				if t['student_category']==student_category and t["gender"]==gender and t['physical_disability']==pwd:
-					out_put.append(t)
-				
+		print("\nsort")
 
-		if student_category==None and gender!=None:
+		## Exclude condition 000 its already completed
+
+		if student_category != None and gender != None and pwd == 1:  #For 111 for checking conditions
 			for t in all_round_ranks:
-				if t["gender"]==gender and t['physical_disability']==pwd:
+				if student_category == t['student_category'] and gender == t['gender'] and t['physical_disability'] == pwd:  ##Matching criteria with applicant data
+					out_put.append(t)
+
+		if student_category != None and gender != None and pwd == 0:  ## 110 for checking conditions
+			for t in all_round_ranks:
+				if student_category == t['student_category'] and gender == t['gender']:   ##Matching criteria with applicant data
+					out_put.append(t)
+
+		if student_category==None and gender!=None and pwd == 1:   ##011 for checking conditions
+			for t in all_round_ranks:
+				if t["gender"]==gender and t['physical_disability']==pwd:   ##Matching criteria with applicant data
+					out_put.append(t)	
+		
+		if student_category==None and gender!=None and pwd == 0:   ##010 for checking conditions
+			for t in all_round_ranks:
+				if t["gender"]==gender:          ##Matching criteria with applicant data
 					out_put.append(t)	
 
-		if student_category==None and gender==None:
+		if student_category==None and gender==None and pwd == 1:  ##001 for checking conditions
 			for t in all_round_ranks:
 				if t['physical_disability']==pwd:
 					out_put.append(t)
 
-		if student_category!=None and gender==None:
+		if student_category!=None and gender==None and pwd == 1:   ##101   
 			for t in all_round_ranks:
 				if t['student_category']==student_category and t['physical_disability']==pwd:
 					out_put.append(t)								
+
+		if student_category != None and gender == None and pwd == 0:  ##100
+			for t in all_round_ranks:
+				if t['student_category']==student_category:
+					out_put.append(t)	
+
 		return out_put
 
 	category_based_ranks = {}
 	for i in ranking_category_data:
+		# print("\n" , i)
 		category_gender_pwd_data = []
 		category_gender_pwd_data=list_of_student(i['student_category'],i['gender'],i['pwd'],all_round_ranks)
 		category_based_ranks[i['category_name']] = ranking(category_gender_pwd_data , ['applicant_id' , 'student_category' , 'gender' , 'physical_disability' , 'earned_marks'] , i['category_name'])
@@ -153,10 +175,14 @@ def generate_rank_cards(doc):
 			for l in category_based_ranks[k]:
 				if j['applicant_id'] == l['applicant_id']:
 					j[k] = l[k]
+	
+	print("\n\n" , category_based_ranks , "\n\n")
 	count = 0
 	for m in all_round_ranks:
+		print("\n\n" , m , "\n\n")
 		### to check duplicate rank cards
 		rank_card_data = frappe.get_all("Rank Card",{"exam":declaration ,"applicant_id":m['applicant_id'] } , ['docstatus'])
+
 		for i in rank_card_data:
 			if i['docstatus'] == 0 or i['docstatus'] == 1:
 				frappe.throw("Rank Card is Already Published")

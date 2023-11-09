@@ -37,7 +37,7 @@ frappe.ui.form.on('Rank Card Publication Tool', {
 								frm.remove_custom_button('Generate Ranks')
 							}
 							else if(result.message === 500){
-								alert("Please Check There are leftover Admit Cards")
+								alert("Please Check There are leftover Rank Cards")
 							}
 						}
 					})
