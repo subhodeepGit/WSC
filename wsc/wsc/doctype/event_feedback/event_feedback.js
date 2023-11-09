@@ -4,9 +4,10 @@
 frappe.ui.form.on('Event feedback', {
 	refresh: function(frm) {
 		frm.set_query("select_event" , function(){
-			return{
+			return {
 				filters:[
-					["event_status", "!=", "Cancelled"]
+					['event_status' ,"!=", 'Cancelled'],
+					["docstatus", "!=", "2"]
 				]
 			}
 		})
@@ -15,7 +16,8 @@ frappe.ui.form.on('Event feedback', {
 		frappe.call({
 			method :'wsc.wsc.doctype.event_feedback.event_feedback.get_participant_name',
 			args:{
-				participant_id : frm.doc.participant_id
+				participant_id : frm.doc.participant_id,
+				participant_type: frm.doc.participant_type
 			},
 			callback: function(result){
 				frm.set_value('participant_name', result.message)
@@ -33,17 +35,6 @@ frappe.ui.form.on('Event feedback', {
 			}
 		})
 	},
-	// select_event : function(frm){
-	// 	frappe.call({
-	// 		method: 'wsc.wsc.doctype.event_feedback.event_feedback.get_event_name',
-	// 		args:{
-	// 			event_id : frm.doc.select_event
-	// 		},
-	// 		callback : function(result){
-	// 			frm.set_value("event_name", result.message)
-	// 		}
-	// 	})
-	// },
 	select_event : function(frm){
 		frappe.call({
 			method: 'wsc.wsc.doctype.event_feedback.event_feedback.get_event_details',

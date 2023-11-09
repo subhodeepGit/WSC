@@ -191,15 +191,25 @@ frappe.ui.form.on('Placement Drive', {
 	}
 });
 
-// frappe.ui.form.on('Eligibility Criteria', {
-// 	percentage: function(frm){
-// 		if(isNaN(frm.doc.percentage)){
-// 			frm.set_value("percentage", '0')
-// 			frappe.throw('value needs to be a positive number')
-// 		}
-// 		else if(frm.doc.percentage < 0){
-// 			frm.set_value("percentage", '0')
-// 			frappe.throw('value needs to be a positive number')
-// 		}
-// 	},
-// });
+frappe.ui.form.on('Eligibility Criteria', {
+	percentage:function(frm, cdt, cdn){
+	var d = locals[cdt][cdn];
+	frm.doc.eligibility_criteria.forEach(function(d){ 
+		if(d.percentage < 0){
+			d.percentage = 0;
+		}
+	});
+  }
+});
+
+frappe.ui.form.on('Rounds of Placement', {
+	date:function(frm, cdt, cdn){
+	var d = locals[cdt][cdn];
+	frm.doc.rounds_of_placement_table.forEach(function(d){ 
+		if(d.date < frm.doc.application_end_date){
+			d.date = ''
+			frappe.throw("Round date cannot be before application end date")
+		}
+	});
+  }
+});
