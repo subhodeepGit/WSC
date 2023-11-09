@@ -8,24 +8,28 @@
  "engine": "InnoDB",
  "field_order": [
   "enable",
-  "section_break_vtx6e",
+  "drive_details_section",
   "title",
-  "posting_date",
-  "placement_company",
-  "column_break_5",
   "academic_year",
+  "type_of_drive",
+  "posting_date",
+  "column_break_5",
+  "placement_company",
   "academic_term",
+  "location_of_drive",
   "current_cgpapercentage",
   "active_backlog",
-  "column_break_3",
-  "type_of_drive",
-  "location_of_drive",
+  "section_break_pi8z0",
   "for_department",
-  "drive_details_section",
+  "column_break_ovyuu",
+  "for_sectors",
+  "section_break_vtx6e",
   "sector_of_work",
-  "placement_drive_for",
   "application_start_date",
+  "column_break_4s3uf",
+  "placement_drive_for",
   "application_end_date",
+  "positions_offered_section",
   "designations_position",
   "for_programs",
   "eligibility_section",
@@ -57,10 +61,6 @@
    "label": "Placement Company",
    "options": "Placement Company",
    "reqd": 1
-  },
-  {
-   "fieldname": "column_break_3",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "type_of_drive",
@@ -173,12 +173,10 @@
    "options": "0\n1\n2\n3"
   },
   {
-   "fetch_from": "placement_company.sector",
    "fieldname": "sector_of_work",
    "fieldtype": "Link",
    "label": "Sector of Work",
    "options": "Sector",
-   "read_only": 1,
    "reqd": 1
   },
   {
@@ -260,12 +258,36 @@
    "fieldname": "current_date",
    "fieldtype": "Date",
    "label": "Current Date"
+  },
+  {
+   "fieldname": "column_break_4s3uf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "positions_offered_section",
+   "fieldtype": "Section Break",
+   "label": "Positions offered"
+  },
+  {
+   "fieldname": "section_break_pi8z0",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_ovyuu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "for_sectors",
+   "fieldtype": "Table",
+   "label": "For sectors",
+   "options": "For sector",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-07 18:39:09.555364",
+ "modified": "2023-11-09 15:05:37.320110",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive",
