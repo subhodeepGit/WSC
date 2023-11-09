@@ -63,6 +63,7 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 					["Module Wise Exam Group", "modules_id", "=", frm.doc.course],
 					["Module Wise Exam Group", "assessment_component", "=", frm.doc.assessment_criteria],
 					["Module Wise Exam Group", "exam_declaration_id", "=", frm.doc.exam_declaration_id],
+					["Module Wise Exam Group", "docstatus", "=", 1],
 				]
 			}
 		});
@@ -117,7 +118,9 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 							$(html_values).find(`[data-row="${resp.student}"].grace_marks`).each(function(el, input){
 								row['grace_marks']=$(input).val();
 							})
-		
+							$(html_values).find(`[data-row="${resp.student}"].comment`).each(function(el, input){
+								row['comment']=$(input).val();
+							})
 							$(html_values).find(`[data-row="${resp.student}"].weightage_marks`).each(function(el, input){
 								row['weightage_marks']=$(input).val();
 							})
