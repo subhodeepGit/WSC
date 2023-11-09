@@ -7,8 +7,9 @@ def validate(self,method):
 	if self.workflow_state == "Approved by CFO":
 		changed_impaneled_price(self)
 	
-	if self.supllier_email is None:
-		frappe.throw("Enter <b>Supplier email id</b> in <b>Supplier</b> Form")
+	# if self.supllier_email is None:
+	# 	frappe.throw("Enter <b>Supplier email id</b> in <b>Supplier</b> Form")
 
-	if self.price_list_rate <=0:
-		frappe.throw("Price of Item cannot be negative or zero")
+	if self.price_list_rate:
+		if self.price_list_rate <=0:
+			frappe.throw("Price of Item cannot be negative or zero")

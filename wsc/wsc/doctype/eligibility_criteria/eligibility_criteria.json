@@ -17,7 +17,8 @@
    "fieldname": "percentage",
    "fieldtype": "Float",
    "in_list_view": 1,
-   "label": "Percentage"
+   "label": "Percentage",
+   "non_negative": 1
   },
   {
    "fieldname": "result",
@@ -44,7 +45,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-10-25 11:53:06.807278",
+ "modified": "2023-11-07 18:45:02.456561",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Eligibility Criteria",

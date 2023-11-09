@@ -17,32 +17,38 @@
   {
    "fieldname": "emp_no",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Emp No"
   },
   {
    "fieldname": "emp_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Emp Name"
   },
   {
    "fieldname": "date_of_posting",
    "fieldtype": "Date",
+   "in_list_view": 1,
    "label": "Date of Posting"
   },
   {
    "fieldname": "remarks",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Remarks"
   },
   {
    "fieldname": "file_status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "File Status",
    "options": "\nOpened\nClosed"
   },
   {
    "fieldname": "decision",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Decision ",
    "options": "\nIssue Posted By Student\nIssue Received By Grievance Cell\nIssue Forwarded to Competent Authority\nIssue pending from Competent Authority\nIssue Closed"
   }
@@ -50,7 +56,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-02-10 16:15:11.410820",
+ "modified": "2023-11-03 15:56:14.368625",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Grievance status",

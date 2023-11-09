@@ -42,6 +42,10 @@ def get_participant_id(doctype, txt, searchfield, start, page_len, filters):
 	searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)
 	data=[]
 	if doctype=="Student":
+		roles = frappe.get_roles(frappe.session.user)
+		print('\n\n\n')
+		print(roles)
+		print('\n\n\n')
 		data=frappe.db.sql("""select name,student_name from `tabStudent` where ({key} like %(txt)s or {scond}) 
 	 					 and enabled={enabled}
 						 """.format(

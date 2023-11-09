@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "ENTP.-.#####",
  "creation": "2023-05-29 17:39:31.038155",
  "default_view": "List",
  "doctype": "DocType",
@@ -11,13 +12,13 @@
   "company_name",
   "company_registration_year",
   "state",
+  "website_link",
   "full_address",
   "attache_company_image",
   "column_break_1lhtf",
   "company_registration_number",
   "number_of_employees",
   "city",
-  "website_link",
   "student_details_section",
   "student_details_table",
   "revenue_details_section",
@@ -38,8 +39,9 @@
   },
   {
    "fieldname": "company_registration_year",
-   "fieldtype": "Data",
-   "label": "Company Registration Year"
+   "fieldtype": "Link",
+   "label": "Company Registration Year",
+   "options": "Year"
   },
   {
    "fieldname": "state",
@@ -51,7 +53,7 @@
   },
   {
    "fieldname": "full_address",
-   "fieldtype": "Data",
+   "fieldtype": "Long Text",
    "label": "Full Address"
   },
   {
@@ -113,10 +115,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-27 11:20:09.343340",
+ "modified": "2023-11-08 15:13:21.836041",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrepreneurship",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

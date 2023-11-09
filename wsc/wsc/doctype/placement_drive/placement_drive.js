@@ -2,16 +2,16 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Placement Drive', {
-	// refresh: function(frm) {
-	// 	frm.set_query('placement_company', function(){
-	// 		return{
-	// 			filters:{
-	// 				'visitor' : 'Internship',
-	// 				// 'black_list' : 0
-	// 			}
-	// 		}
-	// 	})
-	// },
+	refresh: function(frm) {
+		frm.set_query('placement_company', function(){
+			return{
+				filters:[
+					['visitor' ,"!=", 'Internship'],
+					['black_list', "=", '0']
+				]
+			}
+		})
+	},
 	application_start_date(frm) {
         frm.fields_dict.application_end_date.datepicker.update({
             minDate: frm.doc.application_start_date ? new Date(frm.doc.application_start_date) : null
@@ -22,6 +22,17 @@ frappe.ui.form.on('Placement Drive', {
             maxDate: frm.doc.application_end_date ? new Date(frm.doc.application_end_date) : null
         });
     },
+	ctc: function(frm){
+		if(isNaN(frm.doc.ctc)){
+			frm.set_value("ctc", '0')
+			frappe.throw('value needs to be a positive number')
+		}
+		else if(frm.doc.ctc < 0){
+			frm.set_value("ctc", '0')
+			frappe.throw('value needs to be a positive number')
+		}
+	},
+	
 	get_students: function(frm){
 		if(!frm.is_new()){
 			let body = JSON.stringify({
@@ -86,6 +97,12 @@ frappe.ui.form.on('Placement Drive', {
 		
 	},
 	setup:function(frm){
+		const date = new Date()
+		let year = date.getFullYear()
+		let month = String(date.getMonth() + 1).padStart(2,'0')
+		let day = String(date.getDate()).padStart(2,'0')
+		frm.set_value('current_date', `${year}-${month}-${day}`)
+
 		frm.set_query("programs","for_programs", function() {
 			var dept_list= []
 			$.each(frm.doc.for_department, function(index, row){
@@ -97,6 +114,7 @@ frappe.ui.form.on('Placement Drive', {
 				}
 			};
 		});
+		
 		frm.set_query("semester","for_programs", function(frm, cdt, cdn) {
 			var d = locals[cdt][cdn];
 			return {
@@ -138,6 +156,11 @@ frappe.ui.form.on('Placement Drive', {
 			frm.refresh_field("eligible_student")
 		}
 	},
+	application_start_date: function(frm){
+		if(frm.doc.application_start_date < frm.doc.current_date){
+			frappe.throw('Start date cannot be before current date')
+		}
+	},
 	application_end_date:function(frm){
 		if(frm.doc.application_start_date && frm.doc.application_end_date){
 			if(frm.doc.application_end_date < frm.doc.application_start_date){
@@ -168,3 +191,25 @@ frappe.ui.form.on('Placement Drive', {
 	}
 });
 
+frappe.ui.form.on('Eligibility Criteria', {
+	percentage:function(frm, cdt, cdn){
+	var d = locals[cdt][cdn];
+	frm.doc.eligibility_criteria.forEach(function(d){ 
+		if(d.percentage < 0){
+			d.percentage = 0;
+		}
+	});
+  }
+});
+
+frappe.ui.form.on('Rounds of Placement', {
+	date:function(frm, cdt, cdn){
+	var d = locals[cdt][cdn];
+	frm.doc.rounds_of_placement_table.forEach(function(d){ 
+		if(d.date < frm.doc.application_end_date){
+			d.date = ''
+			frappe.throw("Round date cannot be before application end date")
+		}
+	});
+  }
+});

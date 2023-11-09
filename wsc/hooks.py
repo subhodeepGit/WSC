@@ -73,7 +73,10 @@ doctype_js = {
                 "Task":"public/js/task.js",
                 "Price List":"public/js/price_list.js",
                 "Supplier":"public/js/supplier.js",
-                "Request for Quotation":"public/js/request_for_quotation.js"
+                "Request for Quotation":"public/js/request_for_quotation.js",
+                "Purchase Order":"public/js/purchase_order.js",
+                "Purchase Receipt":"public/js/purchase_receipt.js",
+                "Purchase Invoice":"public/js/purchase_invoice.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -362,9 +365,9 @@ doc_events = {
         "validate":"wsc.wsc.doctype.attendance_request.validate",
         "after_insert":"wsc.wsc.doctype.attendance_request.after_insert"
     },
-    # "Purchase Order": {
-    #     "validate":"wsc.wsc.doctype.purchase_order.validate"
-    # },
+    "Purchase Order": {
+        "validate":"wsc.wsc.doctype.purchase_order.validate"
+    },
     "Material Request": {
         "validate":"wsc.wsc.doctype.material_request.validate",
         "on_submit":"wsc.wsc.doctype.material_request.workflow_notification",
@@ -424,9 +427,9 @@ doc_events = {
     "Price List":{
         "validate":"wsc.wsc.validations.price_list.validate"
     },
-    # "Supplier":{
-    #     "validate":"wsc.wsc.validations.supplier.validate"
-    # },
+    "Supplier":{
+        "validate":"wsc.wsc.validations.supplier.validate"
+    },
     "Quality Inspection Template":{
         "validate":"wsc.wsc.validations.quality_inspection_template.validate"
     },
@@ -495,6 +498,12 @@ doc_events = {
     },
     "Employee Tax Exemption Proof Submission":{
         "validate":"wsc.wsc.doctype.employee_tax_exemption_proof_submission.validate"
+    },
+    "Purchase Receipt":{
+        "validate":"wsc.wsc.validations.purchase_receipt.validate"
+    },
+    "Purchase Invoice":{
+        "validate":"wsc.wsc.validations.purchase_invoice.validate"
     }
     
     

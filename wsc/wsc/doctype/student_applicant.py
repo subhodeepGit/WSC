@@ -81,7 +81,7 @@ class StudentApplicant(Document):
         # doc.title = " ".join(
 			# filter(None, [doc.first_name, doc.middle_name, doc.last_name])
 		# )
-        doc.title=doc.first_name + doc.middle_name + doc.last_name
+        # doc.title=doc.first_name + doc.middle_name + doc.last_name
         # validate_percentage(doc)
         # check_age(doc)
         validate_duplicate_record(doc)
@@ -817,6 +817,10 @@ def get_sharing_type():
 #             if len(award_winner_list) == 0 :
 #                 frappe.throw("Seat Reservation Type <b>Award Winner</b> Not Exists in Student Admissions List")
 
+@ frappe.whitelist()
+def get_cateogry_details(category):
+    for res in frappe.get_all("Category",{"category":category},['gender']):
+        return res
 @ frappe.whitelist()
 def get_admission_and_semester_by_program(programs,program_grade,academic_year):
     for d in frappe.get_all("Student Admission",{"admission_program":programs,"program_grade":program_grade,"academic_year":academic_year},['name','admission_program','semester','counselling_required','counselling_structure']):

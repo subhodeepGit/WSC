@@ -8,10 +8,15 @@ from frappe.model.mapper import get_mapped_doc
 class Eventfeedback(Document):
 	pass
 
-
 @frappe.whitelist()
-def get_participant_name(participant_id):
-	participant_name = frappe.db.sql(""" SELECT student_name FROM `tabStudent` WHERE name = '%s'"""%(participant_id))
+def get_participant_name(participant_id, participant_type):
+	print('\n\n\n')
+	print(1)
+	print('\n\n\n')
+	if(participant_type == 'Student'):
+		participant_name = frappe.db.sql(""" SELECT student_name FROM `tabStudent` WHERE name = '%s'"""%(participant_id))
+	elif(participant_type == 'Employee'):
+		participant_name = frappe.db.sql(""" SELECT employee_name FROM `tabEmployee` WHERE name = '%s'"""%(participant_id))
 	return participant_name[0][0]
 
 @frappe.whitelist()

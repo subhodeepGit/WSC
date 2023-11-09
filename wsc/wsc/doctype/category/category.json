@@ -8,7 +8,10 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "category"
+  "category",
+  "gender",
+  "caste_category",
+  "is_physically_disabled"
  ],
  "fields": [
   {
@@ -18,11 +21,30 @@
    "label": "Category",
    "reqd": 1,
    "unique": 1
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Link",
+   "label": "Gender",
+   "options": "Gender"
+  },
+  {
+   "fieldname": "caste_category",
+   "fieldtype": "Link",
+   "label": "Caste Category",
+   "options": "Student Category",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_physically_disabled",
+   "fieldtype": "Check",
+   "label": "Is Physically Disabled ?"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-03 12:15:45.892755",
+ "modified": "2023-11-08 09:46:16.524042",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Category",

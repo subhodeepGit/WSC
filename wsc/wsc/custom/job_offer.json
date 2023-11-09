@@ -623,7 +623,7 @@
    "columns": 0,
    "creation": "2023-08-31 16:53:35.710342",
    "default": null,
-   "depends_on": null,
+   "depends_on": "eval:doc.is_reengagement==\"1\"",
    "description": null,
    "docstatus": 0,
    "dt": "Job Offer",
