@@ -76,7 +76,8 @@ doctype_js = {
                 "Request for Quotation":"public/js/request_for_quotation.js",
                 "Purchase Order":"public/js/purchase_order.js",
                 "Purchase Receipt":"public/js/purchase_receipt.js",
-                "Purchase Invoice":"public/js/purchase_invoice.js"
+                "Purchase Invoice":"public/js/purchase_invoice.js",
+                "Warehouse":"public/js/warehouse.js",
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -646,13 +647,13 @@ override_doctype_dashboards = {
 # ]
 
 # fixtures = [
-	# {"dt": "Custom DocPerm", "filters": [
-	# 	["parent", "not in", ["DocType"]],
-    #     ["parent", "in", ["Employee Tax Exemption Declaration"]],
-    #     ["role", "in", ["HR Admin"]]
-	# ]},
+# 	{"dt": "Custom DocPerm", "filters": [
+# 		["parent", "not in", ["DocType"]],
+#         ["parent", "in", ["Material Request","Item","Warehouse","Address","Contact","Workflow State","Department"]],
+#         ["role", "in", ["Requisitioner"]]
+# 	]},
     # {"dt": "Role","filters": [
-    #     ["name", "in", ["TOT Director", "TOT Administrator", "TOT Trainer"]]
+    #     ["name", "in", ["Requisitioner"]]
     # ]},
 #     # # {"dt": "Role Profile"},
 #     # # {"dt": "Module Profile"},
