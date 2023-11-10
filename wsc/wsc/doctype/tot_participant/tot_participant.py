@@ -3,9 +3,12 @@
 
 import frappe
 from frappe.model.document import Document
+from frappe.utils import comma_and, get_link_to_form,get_link_to_form, getdate, formatdate
+from frappe import msgprint, _
 
 class ToTParticipant(Document):
     def validate(self):
+        validate_date(self)
         aadhar_number_validation(self)
         pin_code_validation(self)
         phone_no_vlaidation(self)    
@@ -48,3 +51,7 @@ def pin_code_validation(self):
             frappe.throw("Field <b>Pincode</b> must be 6 Digits")
         if len(self.pincode)<6:
             frappe.throw("Field <b>Pincode</b> must be 6 Digits")  
+
+def validate_date(self):
+    if getdate(self.date_of_birth) > getdate():
+        frappe.throw(_('Date of Birth cannot be a future date'))
