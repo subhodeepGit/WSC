@@ -532,7 +532,10 @@ scheduler_events = {
         ],
         "0 7 * * *" : [
             "wsc.task.await_transaction_update_status"
-        ]
+        ],
+        # "0 3 * * *" : [
+        #     "wsc.task.axis_transaction_update_status"       #AXIS Transaction status update
+        # ]
     },
 
     "daily": [
