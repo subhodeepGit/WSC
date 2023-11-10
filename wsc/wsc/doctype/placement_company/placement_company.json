@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{company_name}-{sector}",
+ "autoname": "format:{company_name}",
  "creation": "2021-11-15 01:39:28.361525",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -11,13 +11,14 @@
   "section_break_iay3v",
   "company_name",
   "email",
-  "address_html",
   "column_break_pm2ot",
-  "sector",
   "contact_html",
   "visitor",
   "column_break_9",
+  "address_html",
   "about_company",
+  "section_break_egycc",
+  "sector_of_work",
   "section_break_7",
   "belong_to_department"
  ],
@@ -43,8 +44,7 @@
    "fieldname": "belong_to_department",
    "fieldtype": "Table",
    "label": "Belong to department",
-   "options": "Placement Department",
-   "reqd": 1
+   "options": "Placement Department"
   },
   {
    "fieldname": "address_html",
@@ -73,13 +73,6 @@
    "options": "Email"
   },
   {
-   "fieldname": "sector",
-   "fieldtype": "Link",
-   "label": "Sector",
-   "options": "Sector",
-   "reqd": 1
-  },
-  {
    "fieldname": "visitor",
    "fieldtype": "Select",
    "label": "Visitor",
@@ -93,11 +86,21 @@
   {
    "fieldname": "column_break_pm2ot",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_egycc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "sector_of_work",
+   "fieldtype": "Table",
+   "label": "Sector of work",
+   "options": "sector of work"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-26 22:58:31.605050",
+ "modified": "2023-11-09 11:09:11.439296",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Company",

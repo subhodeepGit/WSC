@@ -257,7 +257,7 @@
    "fieldname": "adhaar_number",
    "fieldtype": "Data",
    "label": "Adhaar Number",
-   "length": 16
+   "length": 12
   },
   {
    "fieldname": "participant_category",
@@ -331,7 +331,7 @@
  ],
  "image_field": "image",
  "links": [],
- "modified": "2023-11-06 18:34:15.048956",
+ "modified": "2023-11-10 13:17:12.804307",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant",

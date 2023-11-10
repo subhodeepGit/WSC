@@ -5,18 +5,27 @@ import frappe
 from frappe.model.document import Document
 
 class ReportingDesk(Document):
+	def validate(self):
+		if self.is_new():
+			if frappe.get_all("Reporting Desk",{"applicant_id":self.applicant_id,"docstatus":1}):
+				frappe.throw("<b>Student Has Reported at Reporting Desk</b>")
 	def on_submit(self):
 	
-		applicant_id = frappe.get_all("Rank Card" , { 'name' : self.applicant_id } , ['applicant_id'])
+		# applicant_id = frappe.get_all("Rank Card" , { 'name' : self.applicant_id } , ['applicant_id'])
+		applicant_id =self.student_applicant
 		
-		frappe.db.set_value("Student Applicant" , applicant_id[0]['applicant_id'], {
+		frappe.db.set_value("Student Applicant" ,applicant_id, {
 			'couselling_start':1,
+		})
+	def on_cancel(self):
+		applicant_id =self.student_applicant
+		
+		frappe.db.set_value("Student Applicant" ,applicant_id, {
+			'couselling_start':0,
 		})
 		
 @frappe.whitelist()
 def reporting(applicant_id):
-
-	print("\n\n")
 	data_basic = frappe.get_all("Rank Card" , 
 		       				{'name':applicant_id} ,
 							['applicant_name' ,
@@ -31,8 +40,6 @@ def reporting(applicant_id):
 							 ['rank_type',
 	 						   'rank_obtained'
 	 						])
-	
-	print(data_rank)
 	data = []
 	data.append(data_basic)
 	data.append(data_rank)

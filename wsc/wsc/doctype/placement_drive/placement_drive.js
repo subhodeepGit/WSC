@@ -102,7 +102,22 @@ frappe.ui.form.on('Placement Drive', {
 		let month = String(date.getMonth() + 1).padStart(2,'0')
 		let day = String(date.getDate()).padStart(2,'0')
 		frm.set_value('current_date', `${year}-${month}-${day}`)
+		
+		// sector filter
+		frm.set_query("sector_of_work", function() {
+			var sector_list= []
+			$.each(frm.doc.for_sectors, function(index, row){
+                sector_list.push(row.sector);
+	        });
+			return {
+				filters: {
+					"sector_name":  ['in', sector_list]
+				}
+			};
+		});
 
+
+		// course
 		frm.set_query("programs","for_programs", function() {
 			var dept_list= []
 			$.each(frm.doc.for_department, function(index, row){
@@ -123,6 +138,8 @@ frappe.ui.form.on('Placement Drive', {
 				}
 			};
 		});
+		
+
 		frm.set_query("academic_term", function() {
             return {
                 filters: {
@@ -141,6 +158,7 @@ frappe.ui.form.on('Placement Drive', {
 	},
 	placement_company:function(frm){
 		if(frm.doc.placement_company){
+			// For departments
 			frappe.model.with_doc("Placement Company", frm.doc.placement_company, function() {
                 var tabletransfer= frappe.model.get_doc("Placement Company", frm.doc.placement_company)
                 frm.clear_table("for_department");	
@@ -148,10 +166,23 @@ frappe.ui.form.on('Placement Drive', {
                     var d = frm.add_child("for_department");
                     d.department = row.department;
                     frm.refresh_field("for_department");
+
+                });
+            });
+			// For sectors
+			frappe.model.with_doc("Placement Company", frm.doc.placement_company, function() {
+                var tabletransfer= frappe.model.get_doc("Placement Company", frm.doc.placement_company)
+                frm.clear_table("for_sectors");	
+                $.each(tabletransfer.sector_of_work, function(index, row){
+                    var d = frm.add_child("for_sectors");
+                    d.sector = row.sector_name;
+                    frm.refresh_field("for_sectors");
+
                 });
             });
         } else{
 			frm.clear_table("for_department");
+			frm.clear_table("for_sectors");
 			frm.refresh();
 			frm.refresh_field("eligible_student")
 		}

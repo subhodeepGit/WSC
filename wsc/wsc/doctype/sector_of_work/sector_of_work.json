@@ -1,34 +1,30 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2023-05-09 18:17:05.831655",
+ "creation": "2023-11-09 10:50:10.260699",
  "doctype": "DocType",
+ "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "rank_type",
-  "rank_obtained"
+  "sector_name"
  ],
  "fields": [
   {
-   "fieldname": "rank_type",
-   "fieldtype": "Data",
+   "fieldname": "sector_name",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Rank Type"
-  },
-  {
-   "fieldname": "rank_obtained",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Rank Obtained"
+   "label": "Sector name",
+   "options": "Sector",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-11-10 10:47:46.948109",
+ "modified": "2023-11-09 10:53:17.134704",
  "modified_by": "Administrator",
  "module": "WSC",
- "name": "Student Ranks List",
+ "name": "sector of work",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",

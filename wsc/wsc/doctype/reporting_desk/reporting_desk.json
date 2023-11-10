@@ -8,14 +8,20 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "applicant_details_section",
   "applicant_id",
   "applicant_name",
+  "student_applicant",
+  "column_break_sx4zg",
   "gender",
   "student_category",
   "physical_disability",
+  "section_break_ex0gk",
   "academic_year",
   "academic_term",
+  "column_break_0tqe4",
   "department",
+  "section_break_kzop3",
   "total_marks",
   "earned_marks",
   "applicant_rank",
@@ -33,59 +39,69 @@
   {
    "fieldname": "applicant_name",
    "fieldtype": "Data",
-   "label": "Applicant Name"
+   "label": "Applicant Name",
+   "read_only": 1
   },
   {
    "fieldname": "gender",
    "fieldtype": "Link",
    "label": "Gender",
-   "options": "Gender"
+   "options": "Gender",
+   "read_only": 1
   },
   {
    "fieldname": "student_category",
    "fieldtype": "Link",
    "label": "Student Category",
-   "options": "Student Category"
+   "options": "Student Category",
+   "read_only": 1
   },
   {
    "default": "0",
    "fieldname": "physical_disability",
    "fieldtype": "Check",
-   "label": "Physical Disability"
+   "label": "Physical Disability",
+   "read_only": 1
   },
   {
    "fieldname": "academic_year",
    "fieldtype": "Link",
    "label": "Academic Year",
-   "options": "Academic Year"
+   "options": "Academic Year",
+   "read_only": 1
   },
   {
    "fieldname": "academic_term",
    "fieldtype": "Link",
    "label": "Academic Term",
-   "options": "Academic Term"
+   "options": "Academic Term",
+   "read_only": 1
   },
   {
    "fieldname": "department",
    "fieldtype": "Link",
    "label": "Department",
-   "options": "Department"
+   "options": "Department",
+   "read_only": 1
   },
   {
    "fieldname": "total_marks",
    "fieldtype": "Float",
-   "label": "Total Marks"
+   "label": "Total Marks",
+   "read_only": 1
   },
   {
    "fieldname": "earned_marks",
    "fieldtype": "Float",
-   "label": "Earned Marks"
+   "label": "Earned Marks",
+   "read_only": 1
   },
   {
    "fieldname": "applicant_rank",
    "fieldtype": "Table",
    "label": "Applicant Rank",
-   "options": "Student Ranks List"
+   "options": "Student Ranks List",
+   "read_only": 1
   },
   {
    "fieldname": "amended_from",
@@ -95,12 +111,43 @@
    "options": "Reporting Desk",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "applicant_details_section",
+   "fieldtype": "Section Break",
+   "label": "Applicant Details"
+  },
+  {
+   "fieldname": "section_break_ex0gk",
+   "fieldtype": "Section Break",
+   "label": "Academic Details"
+  },
+  {
+   "fieldname": "column_break_sx4zg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "applicant_id.applicant_id",
+   "fieldname": "student_applicant",
+   "fieldtype": "Link",
+   "label": "Student Applicant",
+   "options": "Student Applicant",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_kzop3",
+   "fieldtype": "Section Break",
+   "label": "Rank Card Details"
+  },
+  {
+   "fieldname": "column_break_0tqe4",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-08 17:54:07.491409",
+ "modified": "2023-11-10 10:48:22.891391",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Reporting Desk",
