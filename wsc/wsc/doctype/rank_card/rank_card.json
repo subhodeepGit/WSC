@@ -41,23 +41,27 @@
   {
    "fieldname": "applicant_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Applicant Name"
   },
   {
    "fieldname": "gender",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Gender",
    "options": "Gender"
   },
   {
    "fieldname": "student_category",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Student Category",
    "options": "Student Category"
   },
   {
    "fieldname": "academic_year",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Academic Year",
    "options": "Academic Year"
   },
@@ -150,7 +154,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-08 12:32:09.822754",
+ "modified": "2023-11-09 10:04:41.650855",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Rank Card",
