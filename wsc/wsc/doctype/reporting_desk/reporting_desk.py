@@ -11,10 +11,17 @@ class ReportingDesk(Document):
 				frappe.throw("<b>Student Has Reported at Reporting Desk</b>")
 	def on_submit(self):
 	
-		applicant_id = frappe.get_all("Rank Card" , { 'name' : self.applicant_id } , ['applicant_id'])
+		# applicant_id = frappe.get_all("Rank Card" , { 'name' : self.applicant_id } , ['applicant_id'])
+		applicant_id =self.student_applicant
 		
-		frappe.db.set_value("Student Applicant" , applicant_id[0]['applicant_id'], {
+		frappe.db.set_value("Student Applicant" ,applicant_id, {
 			'couselling_start':1,
+		})
+	def on_cancel(self):
+		applicant_id =self.student_applicant
+		
+		frappe.db.set_value("Student Applicant" ,applicant_id, {
+			'couselling_start':0,
 		})
 		
 @frappe.whitelist()
