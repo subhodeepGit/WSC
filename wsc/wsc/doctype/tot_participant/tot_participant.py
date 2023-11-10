@@ -37,10 +37,10 @@ def aadhar_number_validation(self):
     if self.adhaar_number:
         if not (self.adhaar_number).isdigit():
             frappe.throw("Field <b>Adhaar Number</b> Accept Digits Only")
-        if len(self.adhaar_number)>16:
-            frappe.throw("Field <b>Adhaar Number</b> must be 16 Digits")
-        if len(self.adhaar_number)<16:
-            frappe.throw("Field <b>Adhaar Number</b> must be 16 Digits")   
+        if len(self.adhaar_number)>12:
+            frappe.throw("Field <b>Adhaar Number</b> must be 12 Digits")
+        if len(self.adhaar_number)<12:
+            frappe.throw("Field <b>Adhaar Number</b> must be 12 Digits")   
 
 def pin_code_validation(self):
 
