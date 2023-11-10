@@ -12,18 +12,20 @@
   {
    "fieldname": "rank_type",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Rank Type"
   },
   {
    "fieldname": "rank_obtained",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Rank Obtained"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-11-09 10:02:54.260359",
+ "modified": "2023-11-10 10:47:46.948109",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Ranks List",
