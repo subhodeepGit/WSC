@@ -124,7 +124,8 @@ def make_continuous_evaluation(continuous_evaluation,exam_declaration_id):
 							"total_marks":flt(row.get("total_marks")),
 							"grace_marks":flt(result.get('rows')[d].get("grace_marks")),
 							"exam_type":result.get("exam_cate"),
-							"attendence_status":result.get('rows')[d].get("exam_attendence")	
+							"attendence_status":result.get('rows')[d].get("exam_attendence"),
+							"comment":(result.get('rows')[d].get("comment")),
 						})
 					doc.grace_marks=flt(result.get('rows')[d].get("grace_marks"))
 					doc.weightage_marks=flt(result.get('rows')[d].get("weightage_marks"))
@@ -190,6 +191,7 @@ def make_continuous_evaluation(continuous_evaluation,exam_declaration_id):
 							qualifying_status="Pass"
 						weightage_marks=flt(row.get("earned_marks"))
 						grace_marks=flt(result.get('rows')[d].get("grace_marks"))
+						comment=flt(result.get('rows')[d].get("comment"))
 						out_of_marks=flt(row.get("total_marks"))
 						passing_marks=flt(cdl_list[0]['passing_marks'])
 						doc.append("final_credit_item",{
@@ -197,6 +199,7 @@ def make_continuous_evaluation(continuous_evaluation,exam_declaration_id):
 								"earned_marks":weightage_marks,
 								"total_marks":out_of_marks,
 								"grace_marks":grace_marks,
+								"comment":comment,
 								"passing_marks":passing_marks,
 								"final_earned_marks":final_result,
 								"exam_type":result.get("exam_cate"),

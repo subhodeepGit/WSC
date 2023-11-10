@@ -28,6 +28,7 @@ class Generatecertificatetool(Document):
 				result.program_start_date = self.program_start_date
 				result.program_end_date = self.program_end_date
 			result.save()
+			result.submit()
 
 @frappe.whitelist()
 def get_program_name(program_id = None):
@@ -46,7 +47,7 @@ def get_event_details(event_id):
 
 @frappe.whitelist()
 def get_eligible_participants(event_id):
-	parent_name = frappe.db.sql( """ SELECT name FROM `tabParticipant Attendance` WHERE select_event = '%s' """%(event_id))
+	parent_name = frappe.db.sql( """ SELECT name FROM `tabParticipant Attendance` WHERE select_event = '%s' and docstatus = '1'"""%(event_id))
 	parent_name = parent_name[0][0]
 	participant_data = frappe.get_all('Selected participants list', filters = [['parent', '=', parent_name],['present', '=', 1]], fields = ['participant_id', 'participant_name', 'participant_type']) 
 	return participant_data

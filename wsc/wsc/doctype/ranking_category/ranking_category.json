@@ -20,6 +20,7 @@
    "in_list_view": 1,
    "label": "Caste Category",
    "options": "Student Category",
+   "read_only": 1,
    "width": "10"
   },
   {
@@ -30,6 +31,7 @@
    "in_list_view": 1,
    "label": "Gender",
    "options": "Gender",
+   "read_only": 1,
    "width": "10"
   },
   {
@@ -40,6 +42,7 @@
    "fieldtype": "Check",
    "in_list_view": 1,
    "label": "PWD",
+   "read_only": 1,
    "width": "10"
   },
   {
@@ -54,7 +57,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-11-08 15:02:57.839596",
+ "modified": "2023-11-08 15:12:11.713071",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Ranking Category",
