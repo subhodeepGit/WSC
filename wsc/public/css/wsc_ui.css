@@ -51,9 +51,7 @@ background: #555;
     -o-transform: translateY(-1px) scale(1.02);
     transform: translateY(-1px) scale(1.02);   
     z-index: 999;
-}
-
-/* Login Screen */
+}/* Login Screen */
 body[frappe-session-status='logged-out']{
     background: url('../images/logologin.jpg');
     /* background-size: cover; */
@@ -122,9 +120,9 @@ body[frappe-session-status='logged-out'] nav.navbar {display: none;}
 .form-stats{
     visibility: hidden; 
 }
-.data-pill{
+/* .data-pill{
     visibility: hidden; 
-}
+} */
 .flex-wrap{
     visibility: hidden; 
 }

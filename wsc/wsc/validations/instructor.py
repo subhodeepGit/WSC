@@ -2,8 +2,10 @@ from queue import Empty
 import frappe
 from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
 from wsc.wsc.utils import semester_belongs_to_programs,academic_term,duplicate_row_validation,get_courses_by_semester
+from frappe.utils import validate_email_address
 
 def validate(doc,method):
+    validate_email(doc)
     update_user(doc)
     permission(doc)
     # director_permission(doc)
@@ -200,3 +202,8 @@ def create_user(trainer, user=None, email=None):
     )
     user.insert()
     return user.name
+
+
+def validate_email(self):
+    if self.email_id_for_guest_trainers:
+        validate_email_address(self.email_id_for_guest_trainers, True)

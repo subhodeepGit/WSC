@@ -748,14 +748,13 @@ def axis_getFinalTransactionStatus(doc):
                     'order_no': orderNo
                 }     
             merchant_data = json.dumps(merchant_json_data)
-            # print(merchant_data)
             encrypted_data = encrypt(merchant_data, working_key)
 
             final_data = 'enc_request='+encrypted_data+'&'+'access_code='+access_code + \
                             '&'+'command=orderStatusTracker&request_type=JSON&response_type=JSON'
             
-            r = requests.post('https://apitest.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)
-            # r = requests.post('https://api.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)
+            r = requests.post('https://apitest.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)        #Staging
+            # r = requests.post('https://api.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)              #Production
             # r = requests.post('https://login.ccavenue.com/apis/servlet/DoWebTrans', params=final_data)
             t = r.text
 
@@ -798,7 +797,7 @@ def axis_transaction_update_status():             # bench execute wsc.task.axis_
     awaited_status_transactions_1=frappe.get_all("OnlinePayment",filters=[["date_time_of_transaction", ">=", five_days_ago],["date_time_of_transaction", "<=", current_datetime],["transaction_status" ,"IN",["Awaited","Failure","Initiated","Rejected","Aborted","Unsuccessful"]],['gateway_name','=','AXIS']],fields=['name'])  
     axis_file_logger.info("awaited_status_transactions_1:%s",awaited_status_transactions_1)
 
-    awaited_status_transactions_2=frappe.get_all("OnlinePayment",filters=[["date_time_of_transaction", ">=", five_days_ago],["date_time_of_transaction", "<=", current_datetime],["transaction_status" ,"IN",["Success","Shipped"]],['gateway_name','=','AXIS']],fields=['name',"transaction_id"])  
+    awaited_status_transactions_2=frappe.get_all("OnlinePayment",filters=[["date_time_of_transaction", ">=", five_days_ago],["date_time_of_transaction", "<=", current_datetime],["transaction_status" ,"IN",["Success","Shipped","Successful"]],['gateway_name','=','AXIS']],fields=['name',"transaction_id"])  
     axis_file_logger.info("awaited_status_transactions_2:%s",awaited_status_transactions_2)
 
     awaited_status_transactions_0=frappe.get_all("OnlinePayment",filters=[["docstatus" ,"=",0],["posting_date", ">=", five_days_ago],["posting_date", "<=", current_datetime],['gateway_name','=','AXIS']],fields=['name'])
