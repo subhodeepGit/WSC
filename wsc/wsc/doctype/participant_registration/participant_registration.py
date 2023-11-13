@@ -6,7 +6,22 @@ from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 
 class ParticipantRegistration(Document):
-	pass
+	def validate(self):
+		super(ParticipantRegistration, self).validate()
+		self.validate_user_field()
+	def validate_user_field(self):
+		current_user = frappe.session.user
+		self.set_user_field_filter(current_user)
+	def set_user_field_filter(self, current_user):
+		user_field_name = "participant_id"
+		self.set_link_field_query(user_field_name, current_user)
+	def set_link_field_query(self, participant_id, current_user):
+		query = """
+			SELECT `tabUser`.`name`
+			FROM `tabUser`
+			WHERE `tabUser`.`name` = '{0}'
+		""".format(current_user)
+		self.set(participant_id, "options", query)
 
 @frappe.whitelist()
 def get_program_name(program_id = None):
@@ -42,25 +57,24 @@ def get_participant_id(doctype, txt, searchfield, start, page_len, filters):
 	searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)
 	data=[]
 	if doctype=="Student":
-		roles = frappe.get_roles(frappe.session.user)
-		print('\n\n\n')
-		print(roles)
-		print('\n\n\n')
+		roles = (frappe.session.user)
 		data=frappe.db.sql("""select name,student_name from `tabStudent` where ({key} like %(txt)s or {scond}) 
-	 					 and enabled={enabled}
+	 					 and enabled={enabled} and student_email_id='{student_email_id}'
 						 """.format(
 					**{
 						"key": searchfield,
 						"scond": searchfields,
-						"enabled":filters.get("enabled")
+						"enabled":filters.get("enabled"),
+						"student_email_id":roles
 					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
 	elif doctype=="Employee":
 		data=frappe.db.sql("""select name,employee_name from `tabEmployee` where ({key} like %(txt)s or {scond}) 
-	 					 and status='{status}'
+	 					 and status='{status}' and prefered_email = '{prefered_email}'
 						 """.format(
 					**{
 						"key": searchfield,
 						"scond": searchfields,
-						"status":filters.get("status")
+						"status":filters.get("status"),
+						"prefered_email":roles
 					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})			
 	return data
