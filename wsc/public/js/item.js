@@ -8,8 +8,11 @@ frappe.ui.form.on('Item', "item_group", function(frm) {
 frappe.ui.form.on('Item', {
     refresh:function(frm) {
 		frm.remove_custom_button('Stock Projected Qty','View');
-            frm.remove_custom_button('Publish in Website','Actions');
-			frm.remove_custom_button('Add / Edit Prices','Actions');
+		frm.remove_custom_button('Publish in Website','Actions');
+		frm.remove_custom_button('Add / Edit Prices','Actions');
+		frm.remove_custom_button('Duplicate');
+		frm.remove_custom_button('Stock Balance','View');
+		frm.remove_custom_button('Stock Ledger','View');
 	}
 });
 

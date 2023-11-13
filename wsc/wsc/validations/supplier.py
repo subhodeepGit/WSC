@@ -2,7 +2,7 @@ import frappe
 import re
 
 def validate(self, method):
-    
+    validate_email(self)
     if self.gstin:
         if is_valid_field(self):
             pass
@@ -16,3 +16,9 @@ def is_valid_field(self):
         return True
     else:
         return False
+    
+
+def validate_email(self):
+    if self.supplier_email_id:
+        if not re.match(r"[^@]+@[^@]+\.[^@]+", self.supplier_email_id):
+            frappe.throw("<b>{0}</b> is invalid email address. Please enter a valid email address.".format(self.supplier_email_id))

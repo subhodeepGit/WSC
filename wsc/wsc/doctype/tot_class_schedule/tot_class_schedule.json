@@ -137,7 +137,7 @@
   {
    "fieldname": "trainers",
    "fieldtype": "Link",
-   "label": "Trainers",
+   "label": "Trainer",
    "options": "Instructor",
    "reqd": 1
   },
@@ -172,7 +172,7 @@
    "fetch_from": "trainers.instructor_name",
    "fieldname": "trainers_name",
    "fieldtype": "Data",
-   "label": "Trainers Name",
+   "label": "Trainer's Name",
    "read_only": 1
   },
   {
@@ -220,7 +220,7 @@
   {
    "fieldname": "section_break_uvolg",
    "fieldtype": "Section Break",
-   "label": "Trainers"
+   "label": "Trainer"
   },
   {
    "fieldname": "section_break_ehyhd",
@@ -260,7 +260,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-19 14:52:21.948797",
+ "modified": "2023-11-10 12:48:25.583332",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Class Schedule",

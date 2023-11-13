@@ -492,7 +492,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-10-30 10:42:08.326752",
+ "modified": "2023-11-08 14:54:02.521134",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Training and Placement",
@@ -501,7 +501,14 @@
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
- "roles": [],
+ "roles": [
+  {
+   "role": "Training and Placement Administrator"
+  },
+  {
+   "role": "Student"
+  }
+ ],
  "sequence_id": 53.0,
  "shortcuts": [],
  "title": "Training and Placement"

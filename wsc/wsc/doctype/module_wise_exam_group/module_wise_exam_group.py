@@ -165,8 +165,14 @@ def date_validation(self):
 def date_time_mandatory(self):
     idx=[]
     for t in self.get('scheduling_group_exam'):
-        if not (t.examination_date or t.from_time or t.to_time):
-            frappe.throw("Date Time Not Mentioned in the Exam Group :- <b>%s</b> "%(t.group_name))
+        if not t.examination_date:
+            frappe.throw("Exam Date Not Mentioned in the Exam Group :- <b>%s</b> "%(t.group_name))
+        if not t.from_time:
+            frappe.throw("Exam From Time Not Mentioned in the Exam Group :- <b>%s</b> "%(t.group_name))   
+        if not t.to_time:
+            frappe.throw("Exam From Time Not Mentioned in the Exam Group :- <b>%s</b> "%(t.group_name))      
+        # if not (t.examination_date or t.from_time or t.to_time):
+        #     frappe.throw("Date Time Not Mentioned in the Exam Group :- <b>%s</b> "%(t.group_name))
 
 
 def group_validation(self,method):

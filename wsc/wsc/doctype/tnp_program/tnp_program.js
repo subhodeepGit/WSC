@@ -19,17 +19,21 @@ frappe.ui.form.on('TnP Program', {
 	},
 	start_date: function(frm){
 		if(frm.doc.end_date && frm.doc.start_date > frm.doc.end_date){
+			frm.set_value('start_date', 0)
 			frappe.throw("Start date cannot be after end date")
 		}
 		if(frm.doc.start_date < frm.doc.current_date){
+			frm.set_value('start_date', 0)
 			frappe.throw("Start date cannot be before current date")
 		}
 	},
 	end_date : function(frm){
 		if(frm.doc.start_date && frm.doc.end_date < frm.doc.start_date){
+			frm.set_value('end_date', 0)
 			frappe.throw("End date cannot be before start date")
 		}
 		if(frm.doc.end_date < frm.doc.current_date){
+			frm.set_value('end_date', 0)
 			frappe.throw("End date cannot be before current date")
 		}
 	}

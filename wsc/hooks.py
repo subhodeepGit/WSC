@@ -73,7 +73,11 @@ doctype_js = {
                 "Task":"public/js/task.js",
                 "Price List":"public/js/price_list.js",
                 "Supplier":"public/js/supplier.js",
-                "Request for Quotation":"public/js/request_for_quotation.js"
+                "Request for Quotation":"public/js/request_for_quotation.js",
+                "Purchase Order":"public/js/purchase_order.js",
+                "Purchase Receipt":"public/js/purchase_receipt.js",
+                "Purchase Invoice":"public/js/purchase_invoice.js",
+                "Warehouse":"public/js/warehouse.js",
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -495,6 +499,12 @@ doc_events = {
     },
     "Employee Tax Exemption Proof Submission":{
         "validate":"wsc.wsc.doctype.employee_tax_exemption_proof_submission.validate"
+    },
+    "Purchase Receipt":{
+        "validate":"wsc.wsc.validations.purchase_receipt.validate"
+    },
+    "Purchase Invoice":{
+        "validate":"wsc.wsc.validations.purchase_invoice.validate"
     }
     
     
@@ -523,7 +533,10 @@ scheduler_events = {
         ],
         "0 7 * * *" : [
             "wsc.task.await_transaction_update_status"
-        ]
+        ],
+        # "0 3 * * *" : [
+        #     "wsc.task.axis_transaction_update_status"       #AXIS Transaction status update
+        # ]
     },
 
     "daily": [
@@ -637,13 +650,13 @@ override_doctype_dashboards = {
 # ]
 
 # fixtures = [
-	# {"dt": "Custom DocPerm", "filters": [
-	# 	["parent", "not in", ["DocType"]],
-    #     ["parent", "in", ["Employee Tax Exemption Declaration"]],
-    #     ["role", "in", ["HR Admin"]]
-	# ]},
+# 	{"dt": "Custom DocPerm", "filters": [
+# 		["parent", "not in", ["DocType"]],
+#         ["parent", "in", ["Material Request","Item","Warehouse","Address","Contact","Workflow State","Department"]],
+#         ["role", "in", ["Requisitioner"]]
+# 	]},
     # {"dt": "Role","filters": [
-    #     ["name", "in", ["TOT Director", "TOT Administrator", "TOT Trainer"]]
+    #     ["name", "in", ["Requisitioner"]]
     # ]},
 #     # # {"dt": "Role Profile"},
 #     # # {"dt": "Module Profile"},
