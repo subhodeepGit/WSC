@@ -5,9 +5,11 @@ import frappe
 from frappe.model.document import Document
 from frappe.utils import comma_and, get_link_to_form,get_link_to_form, getdate, formatdate
 from frappe import msgprint, _
+from datetime import datetime, timedelta
 
 class ToTParticipant(Document):
     def validate(self):
+        validate_participant_job_date(self)
         validate_date(self)
         aadhar_number_validation(self)
         pin_code_validation(self)
@@ -55,3 +57,11 @@ def pin_code_validation(self):
 def validate_date(self):
     if getdate(self.date_of_birth) > getdate():
         frappe.throw(_('Date of Birth cannot be a future date'))
+
+def validate_participant_job_date(self):
+    for t in self.get('participant_experience_details'):
+        if t.job_start_date and t.job_end_date:
+            job_start_date = datetime.strptime(t.job_start_date , '%Y-%m-%d').date()
+            job_end_date = datetime.strptime(t.job_end_date , '%Y-%m-%d').date()
+            if job_start_date > job_end_date:
+                frappe.throw("Job Start Date cannot be greater than Job End Date in Row %s of Participant Experience Details table"%(t.idx))
