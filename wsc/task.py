@@ -978,7 +978,6 @@ def axis_transaction_update_status():             # bench execute wsc.task.axis_
             # print("t1",data_dict)
             if doc.docstatus==1:  
                 if data_dict["Order_Status_Result"]["order_status"]!=doc.transaction_status:
-                    print(type(data_dict["Order_Status_Result"]["order_status"]))
                     doc.transaction_id = data_dict["Order_Status_Result"]["reference_no"]
                     axis_file_logger.info("t2 Final API transaction_id: %s", data_dict["Order_Status_Result"]["reference_no"])
                     order_status= data_dict["Order_Status_Result"]["order_status"]
