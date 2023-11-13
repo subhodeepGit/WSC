@@ -10,7 +10,7 @@
  "idx": 0,
  "is_standard": "Yes",
  "letter_head": "Journal Entry Latter Head",
- "modified": "2023-07-07 16:49:28.350680",
+ "modified": "2023-11-13 12:00:08.633916",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Selection Round Report",
@@ -19,5 +19,12 @@
  "ref_doctype": "Selection Round",
  "report_name": "Selection Round Report",
  "report_type": "Script Report",
- "roles": []
+ "roles": [
+  {
+   "role": "Student"
+  },
+  {
+   "role": "Training and Placement Administrator"
+  }
+ ]
 }

@@ -33,10 +33,11 @@ class OnlinePayment(Document):
     
     def on_submit(doc):
         # getTransactionDetails(doc)
-        email_transaction_status(doc)
         frappe.msgprint("Your Transaction is completed. Your Transaction Id is " +
                 doc.transaction_id + "."  " Status is " + frappe.bold(doc.transaction_status))
-        # frappe.db.sql("""UPDATE table `tabOnlinePayment` SET email_status=1 WHERE name=%s""",(doc.name))
+        if doc.transaction_status=="Success": 
+            email_transaction_status(doc)
+            frappe.db.sql("""UPDATE table `tabOnlinePayment` SET email_status=1 WHERE name=%s""",(doc.name))
         
 # logging.basicConfig(filename='/home/erpnext/frappe-bench/apps/wsc/wsc/wsc/doctype/onlinepayment/transaction_log.log', level=logging.INFO,
 #                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
