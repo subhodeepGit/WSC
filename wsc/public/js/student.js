@@ -1,5 +1,11 @@
 frappe.ui.form.on('Student',{
     refresh: function(frm) {
+        frm.add_custom_button(__('Tnp Round Selection Report'), function() {
+            frappe.route_options = {
+                student_id: frm.doc.name,
+            };
+            frappe.set_route("query-report", "Selection Round Report");
+        })
         frm.set_df_property('document_list', 'cannot_delete_rows', true);
         if (!frm.doc.__islocal){
             frm.add_custom_button("Enroll", () => {
@@ -31,8 +37,7 @@ frappe.ui.form.on('Student',{
                 }
             };
         });
-    }
-    
+    }    
 })
 
 // Pop-up message Room Allotment Data in Student doctype in js
@@ -67,7 +72,7 @@ frappe.ui.form.on('Student', {
        
                }}
            })
-}
+    }
     })
     frappe.ui.form.on("Educational Details", "total_marks", function(frm, cdt, cdn) {
        
