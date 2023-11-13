@@ -1,32 +1,31 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:assignment_name",
- "creation": "2023-09-28 12:08:17.737269",
+ "autoname": "format:{type}",
+ "creation": "2023-11-10 11:23:12.360354",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "assignment_name"
+  "type"
  ],
  "fields": [
   {
-   "fieldname": "assignment_name",
+   "fieldname": "type",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Assignment Name",
-   "reqd": 1,
-   "unique": 1
+   "label": "Type",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-13 11:31:11.690356",
+ "modified": "2023-11-10 11:36:06.531284",
  "modified_by": "Administrator",
  "module": "WSC",
- "name": "Assignment Name",
- "naming_rule": "By fieldname",
+ "name": "Joining type",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
