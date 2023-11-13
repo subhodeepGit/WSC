@@ -36,6 +36,7 @@ class OnlinePayment(Document):
         email_transaction_status(doc)
         frappe.msgprint("Your Transaction is completed. Your Transaction Id is " +
                 doc.transaction_id + "."  " Status is " + frappe.bold(doc.transaction_status))
+        # frappe.db.sql("""UPDATE table `tabOnlinePayment` SET email_status=1 WHERE name=%s""",(doc.name))
         
 # logging.basicConfig(filename='/home/erpnext/frappe-bench/apps/wsc/wsc/wsc/doctype/onlinepayment/transaction_log.log', level=logging.INFO,
 #                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -87,6 +88,7 @@ def open_gateway(party_name, party, amount, order_id,url,gw_provider,form_status
         if gw_provider == "hdfc": 
             progress_doc=frappe.get_doc("OnlinePayment",order_id)
             progress_doc.transaction_progress="Initiated"
+            progress_doc.gateway_name="HDFC"
             progress_doc.save()
             getDoc = frappe.get_doc("HDFCSetting")            
             logging.info("op getDoc 4: %s", getDoc)
@@ -165,6 +167,7 @@ def open_gateway(party_name, party, amount, order_id,url,gw_provider,form_status
         if gw_provider == "AXIS":
             progress_doc=frappe.get_doc("OnlinePayment",order_id)
             progress_doc.transaction_progress="Initiated"
+            progress_doc.gateway_name="AXIS"
             progress_doc.save()
             getDoc = frappe.get_doc("AXIS Settings")
             logging.info("AXIS--"+"op getDoc 4: %s", getDoc)

@@ -32,8 +32,7 @@
    "fieldname": "caste_category",
    "fieldtype": "Link",
    "label": "Caste Category",
-   "options": "Student Category",
-   "reqd": 1
+   "options": "Student Category"
   },
   {
    "default": "0",
@@ -44,7 +43,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-08 09:46:16.524042",
+ "modified": "2023-11-09 12:12:32.891330",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Category",
