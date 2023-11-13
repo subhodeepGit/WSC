@@ -38,8 +38,11 @@
   "company_data_section",
   "ctc",
   "rounds_of_placement_table",
+  "section_break_xiprh",
   "joining_type",
   "type_of_job",
+  "column_break_tryyd",
+  "tentative_joining_date",
   "eligible_students_section",
   "get_students",
   "eligible_student",
@@ -205,16 +208,16 @@
   },
   {
    "fieldname": "joining_type",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Joining Type",
-   "options": "\nImmediate\nNon - immediate",
+   "options": "Joining type",
    "reqd": 1
   },
   {
    "fieldname": "type_of_job",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Type of Job",
-   "options": "\nInternship\nContractual\nNon-contractual\nPermanent",
+   "options": "Job type",
    "reqd": 1
   },
   {
@@ -257,6 +260,7 @@
   {
    "fieldname": "current_date",
    "fieldtype": "Date",
+   "hidden": 1,
    "label": "Current Date"
   },
   {
@@ -282,12 +286,25 @@
    "label": "For sectors",
    "options": "For sector",
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_tryyd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tentative_joining_date",
+   "fieldtype": "Date",
+   "label": "Tentative Joining Date"
+  },
+  {
+   "fieldname": "section_break_xiprh",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-09 15:05:37.320110",
+ "modified": "2023-11-10 12:05:59.885169",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive",

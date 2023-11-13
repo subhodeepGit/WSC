@@ -1,0 +1,55 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-11-10 16:16:00.065841",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "qualification",
+  "institute",
+  "board",
+  "percentagecgpa",
+  "year_of_completion"
+ ],
+ "fields": [
+  {
+   "fieldname": "qualification",
+   "fieldtype": "Data",
+   "label": "Qualification"
+  },
+  {
+   "fieldname": "institute",
+   "fieldtype": "Data",
+   "label": "Institute "
+  },
+  {
+   "fieldname": "board",
+   "fieldtype": "Data",
+   "label": "Board"
+  },
+  {
+   "fieldname": "percentagecgpa",
+   "fieldtype": "Data",
+   "label": "Percentage/CGPA"
+  },
+  {
+   "fieldname": "year_of_completion",
+   "fieldtype": "Link",
+   "label": "Year of Completion",
+   "options": "Year"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-11-10 16:16:00.065841",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "resume education table",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
