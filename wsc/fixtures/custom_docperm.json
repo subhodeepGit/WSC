@@ -106550,17 +106550,17 @@
   "write": 1
  },
  {
-  "amend": 0,
+  "amend": 1,
   "cancel": 1,
   "create": 1,
-  "delete": 0,
+  "delete": 1,
   "docstatus": 0,
   "doctype": "Custom DocPerm",
   "email": 0,
   "export": 0,
   "if_owner": 0,
   "import": 0,
-  "modified": "2023-11-10 11:37:08.293064",
+  "modified": "2023-11-13 11:37:08.293064",
   "name": "8681b25d92",
   "parent": "Entrance exam select",
   "permlevel": 0,
@@ -106775,9 +106775,9 @@
   "write": 1
  },
  {
-  "amend": 0,
-  "cancel": 0,
-  "create": 0,
+  "amend": 1,
+  "cancel": 1,
+  "create": 1,
   "delete": 0,
   "docstatus": 0,
   "doctype": "Custom DocPerm",
@@ -106785,7 +106785,7 @@
   "export": 0,
   "if_owner": 0,
   "import": 0,
-  "modified": "2023-09-14 12:37:00.280970",
+  "modified": "2023-11-13 12:37:00.280970",
   "name": "495259ef68",
   "parent": "Entrance exam select",
   "permlevel": 0,
@@ -106796,8 +106796,8 @@
   "select": 1,
   "set_user_permissions": 0,
   "share": 0,
-  "submit": 0,
-  "write": 0
+  "submit": 1,
+  "write": 1
  },
  {
   "amend": 0,
@@ -107277,7 +107277,7 @@
  {
   "amend": 0,
   "cancel": 0,
-  "create": 0,
+  "create": 1,
   "delete": 0,
   "docstatus": 0,
   "doctype": "Custom DocPerm",
@@ -107285,7 +107285,7 @@
   "export": 0,
   "if_owner": 0,
   "import": 0,
-  "modified": "2023-09-14 11:46:19.018576",
+  "modified": "2023-11-13 11:46:19.018576",
   "name": "b1c9a69cc3",
   "parent": "Entrance exam select",
   "permlevel": 0,
@@ -107296,8 +107296,8 @@
   "select": 1,
   "set_user_permissions": 0,
   "share": 0,
-  "submit": 0,
-  "write": 0
+  "submit": 1,
+  "write": 1
  },
  {
   "amend": 0,
@@ -107577,7 +107577,7 @@
  {
   "amend": 0,
   "cancel": 0,
-  "create": 0,
+  "create": 1,
   "delete": 0,
   "docstatus": 0,
   "doctype": "Custom DocPerm",
@@ -107596,8 +107596,8 @@
   "select": 1,
   "set_user_permissions": 0,
   "share": 0,
-  "submit": 0,
-  "write": 0
+  "submit": 1,
+  "write": 1
  },
  {
   "amend": 0,
