@@ -8,7 +8,7 @@ class EntranceExamDeclaration(Document):
 	def on_submit(self):
 		for i in self.get('applicant_list'):
 			applicant = frappe.get_doc("Student Applicant" , i.applicant_id)
-			if applicant.exam_declared_for_applicant == 1:
+			if applicant.exam_declared_for_applicant == 0:
 				applicant.exam_declared_for_applicant = 1
 			applicant.save()
 	
