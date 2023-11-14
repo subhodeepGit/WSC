@@ -9,7 +9,7 @@ class Land(Document):
 	def validate(self):
 		dateValidate(self)
 		pincode(self)
-		phone(self)
+		# phone(self)
 
 
 # To validate if the start date is not after the end date

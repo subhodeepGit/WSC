@@ -10,13 +10,6 @@ frappe.ui.form.on(`Entrance Exam Centre Selection`, {
 				}
 			}
 		})
-		// frm.set_query('center', 'current_centers', function() {
-		// 	return {
-		// 		filters: {
-		// 			'current_centers':1
-		// 		}
-		// 	};
-		// });
 	},
 	refresh:function(frm){
 		console.log(frm.doc.flag);
@@ -37,4 +30,18 @@ frappe.ui.form.on(`Entrance Exam Centre Selection`, {
 	// 	console.log(frm.doc.flag);
 	// }
 	
+});
+
+
+frappe.ui.form.on('Current Centers', {
+	current_centers_add: function(frm){
+		frm.fields_dict['current_centers'].grid.get_field('center').get_query = function(doc){
+			var center_list = [];
+			if(!doc.__islocal) center_list.push(doc.name);
+			$.each(doc.current_centers, function(idx, val){
+				if (val.center) center_list.push(val.center);
+			});
+			return { filters: [['Entrance Exam Centre Master', 'name', 'not in', center_list]] };
+		};
+	}
 });

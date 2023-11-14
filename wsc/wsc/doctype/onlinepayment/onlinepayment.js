@@ -27,7 +27,6 @@ frappe.ui.form.on('OnlinePayment', {
                 formStatus="No"
             }
             var formProgress=frm.doc.transaction_progress
-            // alert(frm.is_new())
             frappe.call({
                 method: "wsc.wsc.doctype.onlinepayment.onlinepayment.open_gateway",
                 args: {
@@ -45,16 +44,10 @@ frappe.ui.form.on('OnlinePayment', {
                         var encRequest = r.message["encRequest"];
                         var access_code = r.message["accessCode"];
                         var is_prod = r.message["is_prod"];
-                        // alert(is_prod)
-                        // alert(encRequest)
-                        // alert(access_code)
                         if (is_prod == 1) {
-                            // alert("1")
-                            // window.location.href = "https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
                             window.location.href = "https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
 
                         } else {
-                            // alert("2")
                             window.location.href = "https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
                         }
                     } else {
@@ -66,12 +59,11 @@ frappe.ui.form.on('OnlinePayment', {
 
         frm.page.wrapper.find('button:contains("Click here for Online Payment")').addClass('btn-primary');
 
-        // hdfcButton.css({ 'color': 'black', 'background-color': 'white', 'font-weight': 'normal' });
 
         //#################################### AXIS Button ########################################
 
 
-        // var axis_btn_name = 'By AXIS Payment Gateway &nbsp;&nbsp;<img src="/assets/wsc/images/axis_logo.png" alt="HDFC" style="width: 30px; height: 30px;" >'
+        // var axis_btn_name = 'By AXIS Payment Gateway &nbsp;&nbsp;<img src="/assets/wsc/images/axis_logo.png" alt="AXIS" style="width: 30px; height: 30px;" >'
         // frm.add_custom_button(axis_btn_name, function () {
         //         var formStatus = "Yes"
         //         if (!frm.is_new()){
@@ -109,17 +101,14 @@ frappe.ui.form.on('OnlinePayment', {
         //     });
         // }, __('Click here for Online Payment'));
 
-        // axisButton.css({ 'color': 'black', 'background-color': 'white', 'font-weight': 'normal' });
     }
 });
 
 frappe.ui.form.on('OnlinePayment', {
     refresh(frm) {
         var btn_name = 'By HDFC Payment Gateway <img src="/assets/wsc/images/hdfc_logo.png" alt="HDFC" style="width: 30px; height: 30px;">'
-        var axis_btn_name = 'By AXIS Payment Gateway &nbsp;&nbsp;<img src="/assets/wsc/images/axis_logo.png" alt="HDFC" style="width: 30px; height: 30px;" >'
+        var axis_btn_name = 'By AXIS Payment Gateway &nbsp;&nbsp;<img src="/assets/wsc/images/axis_logo.png" alt="AXIS" style="width: 30px; height: 30px;" >'
         if (frm.is_new() && frm.doc.docstatus === 0) {
-            // frm.remove_custom_button('Online Payment');
-            // frm.remove_custom_button('By HDFC Payment Gateway', 'Click here for Online Payment');
             frm.remove_custom_button(btn_name, 'Click here for Online Payment');
             frm.remove_custom_button(axis_btn_name, 'Click here for Online Payment');
             frm.set_df_property('declaration', 'hidden', 1);
@@ -130,8 +119,6 @@ frappe.ui.form.on('OnlinePayment', {
         }
 
         if (!frm.is_new() && frm.doc.docstatus === 1) {
-            // frm.remove_custom_button('Online Payment');
-            // frm.remove_custom_button('By HDFC Payment Gateway', 'Click here for Online Payment');
             frm.remove_custom_button(btn_name, 'Click here for Online Payment');
             frm.remove_custom_button(axis_btn_name, 'Click here for Online Payment');
         }
@@ -139,8 +126,6 @@ frappe.ui.form.on('OnlinePayment', {
             $('.primary-action').prop('disabled', false);
 
             if (!frm.is_new() && frm.doc.docstatus === 0 && frm.doc.transaction_status != undefined) {
-                // frm.remove_custom_button('Online Payment');
-                // frm.remove_custom_button('By HDFC Payment Gateway', 'Click here for Online Payment');
                 frm.remove_custom_button(btn_name, 'Click here for Online Payment');
                 frm.remove_custom_button(axis_btn_name, 'Click here for Online Payment');
             }
