@@ -8,15 +8,18 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "building_details_section",
   "building_name",
   "floor_number",
-  "floor_size",
+  "column_break_srowd",
+  "land_details",
+  "section_break_l7zv2",
   "number_of_rooms",
+  "floor_size",
   "floor_plan",
   "floor_incharge",
   "floor_assets",
-  "floor_documents",
-  "amended_from"
+  "floor_documents"
  ],
  "fields": [
   {
@@ -76,19 +79,30 @@
    "label": "Floor Plan"
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Floor",
-   "print_hide": 1,
+   "fieldname": "building_details_section",
+   "fieldtype": "Section Break",
+   "label": "Building Details"
+  },
+  {
+   "fieldname": "section_break_l7zv2",
+   "fieldtype": "Section Break",
+   "label": "Floor Details"
+  },
+  {
+   "fieldname": "land_details",
+   "fieldtype": "Table",
+   "label": "Land Details",
+   "options": "Land Details",
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_srowd",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
- "is_submittable": 1,
  "links": [],
- "modified": "2023-10-09 15:36:08.584312",
+ "modified": "2023-11-14 16:09:34.864794",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Floor",

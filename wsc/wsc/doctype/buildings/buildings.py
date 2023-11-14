@@ -8,7 +8,7 @@ class Buildings(Document):
 	def validate(self):
 		dateValidate(self)
 		pincode(self)
-		phone(self)
+		room_validation(self)
 
 # To validate if the start date is not after the end date
 def dateValidate(self):
@@ -27,7 +27,7 @@ def pincode(self):
 	if len(self.pin_code)<6:	
 			frappe.throw("Field <b>Pin Code</b> must be 6 Digits")
 
-def phone(self):
+def room_validation(self):
 	if self.total_rooms<=0:
 		frappe.throw("Field <b>Total room</b> must not be zero or negative")
 	
@@ -38,7 +38,7 @@ def phone(self):
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
 def room_type_query(doctype, txt, searchfield, start, page_len, filters):
-	return frappe.db.sql("""SELECT `name` from `tabLand` WHERE `start_date`<=now() and `end_date`>=now()""")
+	return frappe.db.sql("""SELECT name,land_complete_address from `tabLand` WHERE `start_date`<=now() and `end_date`>=now()""")
 
 
 

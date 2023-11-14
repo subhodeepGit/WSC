@@ -22,8 +22,56 @@ frappe.ui.form.on("Buildings", {
                 query: "wsc.wsc.doctype.buildings.buildings.room_type_query",
 			}
 		});
-	}
+        frm.set_query("block", function() {
+            return {
+                filters: [
+                    ["Blocks","districts","=",frm.doc.district]
+                ]
+            }; 
+        });
+
+        frm.set_query("district", function() {
+            return {
+                filters: [
+                    ["Districts","state","=",frm.doc.state]
+                ]
+            };
+        });
+	},
+    state: function(frm) {
+        frm.set_value("district","")
+        frm.set_value("block","")
+    },
+    district: function(frm) {
+        frm.set_value("block","")
+    },
 });
+
+// frm.set_query("land_plot_number","land_details", function(_doc, cdt, cdn) {
+//     var d = locals[cdt][cdn];
+//     return {
+//         filters: {
+//             'company': d.company,
+//             'account_type': d.account_type = 'Receivable',
+//             'is_group': d.is_group = 0
+//         }
+//     };
+// });
+frappe.ui.form.on("Buildings", {
+    setup: function(frm){
+        frm.set_query("land_plot_number","land_details", function(_doc, cdt, cdn) {
+            var d = locals[cdt][cdn];
+            return {
+                query: "wsc.wsc.doctype.buildings.buildings.room_type_query",
+                // filters: {
+                //     'company': d.company,
+                //     'account_type': d.account_type = 'Receivable',
+                //     'is_group': d.is_group = 0
+                // }
+            };
+        });
+    }
+})
 
 // To validate end date is not before start date
 frappe.ui.form.on("Buildings", {
@@ -40,3 +88,16 @@ frappe.ui.form.on("Buildings", {
     },
 });
 
+
+frappe.ui.form.on('Land Details', {
+	land_details_add: function(frm){
+		frm.fields_dict['land_details'].grid.get_field('land_plot_number').get_query = function(doc){
+			var land_list = [];
+			if(!doc.__islocal) land_list.push(doc.name);
+			$.each(doc.land_details, function(idx, val){
+				if (val.land_plot_number) land_list.push(val.land_plot_number);
+			});
+			return { filters: [['Land', 'name', 'not in', land_list]] };
+		};
+	}
+});

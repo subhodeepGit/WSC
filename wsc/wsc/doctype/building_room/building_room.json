@@ -8,6 +8,7 @@
  "field_order": [
   "buiding_details_section",
   "enabled",
+  "section_break_8ijsb",
   "building_name",
   "building_type",
   "building_address",
@@ -15,9 +16,10 @@
   "buildings_land_name",
   "buidings_land_address",
   "district",
-  "column_break_6",
   "state",
   "pin_code",
+  "column_break_6",
+  "land_details",
   "room_details_section",
   "room_no",
   "floor",
@@ -381,11 +383,23 @@
    "in_list_view": 1,
    "label": "Classroom",
    "read_only": 1
+  },
+  {
+   "fieldname": "land_details",
+   "fieldtype": "Table",
+   "label": "Land Details",
+   "options": "Land Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_8ijsb",
+   "fieldtype": "Section Break",
+   "is_virtual": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-01 15:55:20.145539",
+ "modified": "2023-11-14 16:00:14.088645",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Building Room",
