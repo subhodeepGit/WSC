@@ -15,6 +15,7 @@ from frappe import _
 import os
 from datetime import datetime
 from frappe.utils import now_datetime, add_days
+from wsc.wsc.notification.custom_notification import email_transaction_status
 
 #Notification for 30 days to Warranty period
 def warranty_notification():
@@ -513,7 +514,7 @@ def await_transaction_update_status():             # bench execute wsc.task.awai
                         doc.save(ignore_permissions=True)                        
                         doc.submit()
                         hdfc_file_logger.info("t0 scheduler inside submit.....................")
-                        doc.submit()
+                        # doc.submit()
                         hdfc_file_logger.info("t0 Scheduler SUCESSFULLY COMPLETED")    
                     except Exception as save_exception:                        
                         hdfc_file_logger.info(f"Error saving document: {repr(save_exception)}")
@@ -604,8 +605,12 @@ def await_transaction_update_status():             # bench execute wsc.task.awai
                     transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nAmount Paid: {paying_amount}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
                     doc.transaction_status_description=transaction_info
                     doc.transaction_progress="Completed"
+                    if doc.transaction_status=="Success":
+                        doc.email_status=1
+                        email_transaction_status(doc)
                     doc.save(ignore_permissions=True)  
-                    doc.submit()
+                    # doc.submit()
+
                     hdfc_file_logger.info("t1 Scheduler SUCESSFULLY COMPLETED")  
                 # if data_dict["Order_Status_Result"]["order_status"]=="Shipped" and doc.transaction_status=="Shipped":
                 #     doc.transaction_status = "Success"
@@ -700,7 +705,7 @@ def await_transaction_update_status():             # bench execute wsc.task.awai
                     doc.transaction_status_description=transaction_info
                     doc.transaction_progress="Completed"
                     doc.save(ignore_permissions=True)  
-                    doc.submit()
+                    # doc.submit()
                     hdfc_file_logger.info("t2 Scheduler SUCESSFULLY COMPLETED")  
                 # if data_dict["Order_Status_Result"]["order_status"]=="Shipped" and doc.transaction_status=="Shipped":
                 #     doc.transaction_status = "Success"
@@ -859,7 +864,7 @@ def axis_transaction_update_status():             # bench execute wsc.task.axis_
                         doc.save(ignore_permissions=True)                        
                         doc.submit()
                         axis_file_logger.info("t0 scheduler inside submit.....................")
-                        doc.submit()
+                        # doc.submit()
                         axis_file_logger.info("t0 Scheduler SUCESSFULLY COMPLETED")    
                     except Exception as save_exception:                        
                         axis_file_logger.info(f"Error saving document: {repr(save_exception)}")
@@ -950,8 +955,12 @@ def axis_transaction_update_status():             # bench execute wsc.task.axis_
                     transaction_info = f"Order ID: {data_dict['Order_Status_Result']['order_no']}\nStatus Message: {data_dict['Order_Status_Result']['order_status']}\nAmount Paid: {paying_amount}\nBilling Name: {data_dict['Order_Status_Result']['order_bill_name']}"
                     doc.transaction_status_description=transaction_info
                     doc.transaction_progress="Completed"
-                    doc.save(ignore_permissions=True)  
-                    doc.submit()
+                    if doc.transaction_status=="Success":
+                        doc.email_status=1
+                        email_transaction_status(doc)
+                    doc.save(ignore_permissions=True) 
+
+                    # doc.submit()
                     axis_file_logger.info("t1 Scheduler SUCESSFULLY COMPLETED")  
                 # if data_dict["Order_Status_Result"]["order_status"]=="Shipped" and doc.transaction_status=="Shipped":
                 #     doc.transaction_status = "Success"
@@ -969,7 +978,6 @@ def axis_transaction_update_status():             # bench execute wsc.task.axis_
             # print("t1",data_dict)
             if doc.docstatus==1:  
                 if data_dict["Order_Status_Result"]["order_status"]!=doc.transaction_status:
-                    print(type(data_dict["Order_Status_Result"]["order_status"]))
                     doc.transaction_id = data_dict["Order_Status_Result"]["reference_no"]
                     axis_file_logger.info("t2 Final API transaction_id: %s", data_dict["Order_Status_Result"]["reference_no"])
                     order_status= data_dict["Order_Status_Result"]["order_status"]
@@ -1047,7 +1055,7 @@ def axis_transaction_update_status():             # bench execute wsc.task.axis_
                     doc.transaction_status_description=transaction_info
                     doc.transaction_progress="Completed"
                     doc.save(ignore_permissions=True)  
-                    doc.submit()
+                    # doc.submit()
                     axis_file_logger.info("t2 Scheduler SUCESSFULLY COMPLETED")  
                 # if data_dict["Order_Status_Result"]["order_status"]=="Shipped" and doc.transaction_status=="Shipped":
                 #     doc.transaction_status = "Success"

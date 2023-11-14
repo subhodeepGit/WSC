@@ -79,7 +79,7 @@ def over_lapping_of_scheduling(self):
             dic['group_name']=t.group_name
             dic['name']=t.parent
             for j in self.get('scheduling_group_exam'):
-                if t.group_name==j.group_name and j.examination_date  and j.from_time:
+                if t.group_name==j.group_name and j.examination_date  and j.from_time and j.to_time:
                     dic['group_name']=j.group_name
                     dic['examination_date']=datetime.strptime(j.examination_date , '%Y-%m-%d').date()
                     from_time=datetime.strptime(j.from_time, '%H:%M:%S').time()
@@ -170,7 +170,7 @@ def date_time_mandatory(self):
         if not t.from_time:
             frappe.throw("Exam From Time Not Mentioned in the Exam Group :- <b>%s</b> "%(t.group_name))   
         if not t.to_time:
-            frappe.throw("Exam From Time Not Mentioned in the Exam Group :- <b>%s</b> "%(t.group_name))      
+            frappe.throw("Exam To Time Not Mentioned in the Exam Group :- <b>%s</b> "%(t.group_name))      
         # if not (t.examination_date or t.from_time or t.to_time):
         #     frappe.throw("Date Time Not Mentioned in the Exam Group :- <b>%s</b> "%(t.group_name))
 
