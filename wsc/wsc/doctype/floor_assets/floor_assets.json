@@ -21,6 +21,7 @@
    "in_list_view": 1,
    "label": "Item Code",
    "options": "Asset",
+   "reqd": 1,
    "width": "1px"
   },
   {
@@ -29,6 +30,7 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Item Name",
+   "read_only": 1,
    "width": "2px"
   },
   {
@@ -37,7 +39,8 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Location",
-   "print_width": "2px"
+   "print_width": "2px",
+   "read_only": 1
   },
   {
    "fetch_from": "item_code.asset_name",
@@ -45,6 +48,7 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Asset Name",
+   "read_only": 1,
    "width": "2px"
   },
   {
@@ -53,6 +57,7 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Custodian",
+   "read_only": 1,
    "width": "1px"
   },
   {
@@ -61,13 +66,14 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Department",
+   "read_only": 1,
    "width": "2px"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-05 18:57:07.132508",
+ "modified": "2023-11-14 16:07:02.966519",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Floor Assets",

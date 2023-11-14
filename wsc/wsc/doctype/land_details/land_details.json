@@ -1,0 +1,43 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-11-14 09:57:35.979371",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "land_plot_number",
+  "land_address"
+ ],
+ "fields": [
+  {
+   "fieldname": "land_plot_number",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Land Plot number",
+   "options": "Land",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "land_plot_number.land_complete_address",
+   "fieldname": "land_address",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Land Address ",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-11-14 10:03:02.172420",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Land Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

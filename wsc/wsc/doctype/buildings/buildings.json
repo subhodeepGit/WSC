@@ -13,12 +13,16 @@
   "building_name",
   "building_address",
   "post_office",
+  "land_size_in_sq_ft",
   "column_break_7",
-  "district",
   "state",
+  "district",
+  "block",
   "pin_code",
   "building_on_lease",
   "lease",
+  "section_break_d8hib",
+  "land_details",
   "building_details_section",
   "building_type",
   "building_type_if_any_other",
@@ -62,12 +66,11 @@
    "reqd": 1
   },
   {
-   "fetch_from": "district.state",
    "fieldname": "state",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "label": "State",
-   "read_only": 1,
+   "options": "State",
    "reqd": 1
   },
   {
@@ -100,6 +103,7 @@
    "fetch_from": "plot_number.land_complete_address",
    "fieldname": "land_address",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Land Address",
    "read_only": 1
   },
@@ -132,6 +136,7 @@
   {
    "fieldname": "plot_number",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Land Plot number",
    "options": "Land"
   },
@@ -185,11 +190,33 @@
    "fieldname": "building_type_if_any_other",
    "fieldtype": "Data",
    "label": "Building Type, if any other"
+  },
+  {
+   "fieldname": "land_details",
+   "fieldtype": "Table",
+   "label": "Land Details",
+   "options": "Land Details"
+  },
+  {
+   "fieldname": "section_break_d8hib",
+   "fieldtype": "Section Break",
+   "label": "Land Information"
+  },
+  {
+   "fieldname": "block",
+   "fieldtype": "Link",
+   "label": "Block",
+   "options": "Blocks"
+  },
+  {
+   "fieldname": "land_size_in_sq_ft",
+   "fieldtype": "Float",
+   "label": "Building Size (In Sq. ft)"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-09 14:40:44.079032",
+ "modified": "2023-11-14 12:25:44.395329",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Buildings",
