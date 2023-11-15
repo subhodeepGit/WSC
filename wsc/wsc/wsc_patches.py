@@ -8,7 +8,7 @@ def execute():
     comment_lines_job_applicant()
     comment_lines_list_view()
     add_line_JobApplicant_js()
-    grid_rowjs_overrides()
+    update_line_gridrow_js()
 
 def disable_cancel_link():
     file_path = "{}/{}".format(BENCH_PATH,
@@ -130,25 +130,39 @@ def add_line_JobApplicant_js():
         print("Line added in hrms/hrms/hr/doctype/job_applicant/job_applicant.js")
 
 
-def grid_rowjs_overrides():
-    file_path = "{}/{}".format(BENCH_PATH,
-                               "apps/frappe/frappe/public/js/frappe/form/grid_row.js")
+def update_line_gridrow_js():    #  bench execute wsc.wsc.wsc_patches.update_line_gridrow_js
+    input_file_path = "{}/{}".format(BENCH_PATH,
+                                "apps/frappe/frappe/public/js/frappe/form/grid_row.js")
     
-    with open(file_path, "r") as file:
-        content = file.read()
 
-    updated_content = content.replace('<div class="hidden-xs edit-grid-row">${__("Edit")}</div>', '<div class="hidden-xs edit-grid-row">${__("View")}</div>')
+    with open(input_file_path, 'r') as file:
+        lines = file.readlines()
 
-    with open(file_path) as f:
+    target_line_1 = 'if (cint(event.target.value) === 0) {'
+    target_line_2 = 'frappe.throw(__("Column width cannot be zero."));'
+    target_line_3 = '<div class="hidden-xs edit-grid-row">${__("Edit")}</div>'
+
+    for i, line in enumerate(lines):
+        if target_line_1 in line:
+            # Modify the first target line's condition
+            lines[i] = line.replace('=== 0', '=== 0 || cint(event.target.value) < 0')
+        elif target_line_2 in line:
+            # Modify the second target line's error message
+            lines[i] = line.replace('Column width cannot be zero.', 'Column width cannot be zero or negative value.')
+        elif target_line_3 in line:
+            # Modify the third target line's error message
+            lines[i] = line.replace('<div class="hidden-xs edit-grid-row">${__("Edit")}</div>', '<div class="hidden-xs edit-grid-row">${__("View")}</div>')
+
+    with open(input_file_path) as f:
         if '<div class="hidden-xs edit-grid-row">${__("View")}</div>' in f.read():
             return
+        elif 'Column width cannot be zero or negative value.' in f.read():
+            return
+        elif 'if (cint(event.target.value) === 0) {' in f.read():
+            return
+    
+    with open(input_file_path, 'w') as file:
+        file.writelines(lines)
 
-    with open(file_path, "w") as file:
-        file.write(updated_content)
-    print('frappe/frappe/public/js/frappe/form/grid_row.js modified Edit to View')
-
-
-
-
-
+    print('frappe/frappe/public/js/frappe/form/grid_row.js modified')
 

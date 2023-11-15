@@ -17,10 +17,11 @@ frappe.ui.form.on('Employee Appraisal Portal', {
 				
             };
         });
+        
     },
 	appraisal_template: function(frm) {
         frappe.call({
-            method: 'wsc.wsc.doctype.employee_appraisal_portal.employee_appraisal_portal.get_goals',
+            method: 'wsc.wsc.doctype.employee_appraisal_portal.employee_appraisal_portal.get_kras',
             args :{
                 "appraisal_template":frm.doc.appraisal_template
             },
@@ -28,24 +29,52 @@ frappe.ui.form.on('Employee Appraisal Portal', {
 
            callback: function(r) {
                 if(r.message){
-                    frappe.model.clear_table(frm.doc, 'goals');
+                    frappe.model.clear_table(frm.doc, 'kra_ratings');
                     (r.message).forEach(element => {
-                        var c = frm.add_child("goals")
-                        c.goal=element.goal
-                        c.category=element.category
-                        c.due_date=element.due_date
-                        c.status=element.status
+                        var c = frm.add_child("kra_ratings")
+                        c.kra=element.kra
+                        // c.category=element.category
+                        // c.due_date=element.due_date
+                        // c.status=element.status
                         // c.goal.$input.prop('readonly', true);
                         // c.category.$input.prop('readonly', true);
                         // c.due_date.$input.prop('readonly', true);
                     });
+
                 }
                 frm.refresh();
-                frm.refresh_field("goals")
+                frm.refresh_field("kra_ratings")
+            }
+        }),
+        frappe.call({
+            method: 'wsc.wsc.doctype.employee_appraisal_portal.employee_appraisal_portal.get_goals',
+            args :{
+                "employee":frm.doc.employee,
+                "appraisal_year":frm.doc.appraisal_year
+
+            },
+
+
+           callback: function(r) {
+                if(r.message){
+                    frappe.model.clear_table(frm.doc, 'key_work_goals');
+                    (r.message).forEach(element => {
+                        var c = frm.add_child("key_work_goals")
+                        c.goal=element.goal
+                        c.category=element.category
+                        c.due_date=element.due_date
+                        
+                    });
+                }
+                
+              
+                frm.refresh();
+                frm.refresh_field("key_work_goals")
             }
         })
 			
 	},
+    
 	appraisal_cycle : function(frm){
 		// Get the value of the "Appraisal Round" field
         var appraisalRound = frm.doc.appraisal_round;
@@ -54,10 +83,10 @@ frappe.ui.form.on('Employee Appraisal Portal', {
         var competencyRatingField = frm.doc.self_rating; // Replace "fieldname" with the actual fieldname
 
         // Check the value of "Appraisal Round" and show/hide the "Competency Rating" field accordingly
-        if (appraisalRound === '2') {
-            frm.toggle_display("self_rating", true);
+        if (appraisalRound === 'End Year') {
+            // frm.toggle_display("self_rating", true);
 			frm.toggle_display("mid_year_grade",true);
-            frm.toggle_display("self_review",true);
+            // frm.toggle_display("self_review",true);
 			frappe.call({
 				method: 'wsc.wsc.doctype.employee_appraisal_portal.employee_appraisal_portal.get_dimenssions',
 				// args :{
@@ -98,9 +127,9 @@ frappe.ui.form.on('Employee Appraisal Portal', {
 
         } else {
 			// alert(typeof appraisalRound)
-            frm.toggle_display("self_rating", false);
+            // frm.toggle_display("self_rating", false);
 			frm.toggle_display("mid_year_grade",false);
-            frm.toggle_display("self_review",false)
+            // frm.toggle_display("self_review",false)
         }
 
     },
