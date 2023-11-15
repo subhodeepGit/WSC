@@ -3,10 +3,19 @@
 
 import frappe
 from frappe.model.document import Document
-from wsc.wsc.notification.custom_notification import sendHR_appraisal,sendRa_appraisal,sendDh_appraisal,sendDirector_appraisal
+from wsc.wsc.notification.custom_notification import sendHR_goal,sendRa_goal,sendDh_goal,sendDirector_goal
 
 class GoalSetting(Document):
-	
+	def validate(self):
+		if self.workflow_state == "Pending Approval from Reporting Authority":
+			self.send_mail_ra()
+		if self.workflow_state == "Pending Approval from Department Head":
+			#code needs to be added 
+			self.send_mail_dh()
+		if self.workflow_state == "Pending Approval from Director Admin" :
+			self.send_mail_director()
+		if self.workflow_state == "Approved" or self.workflow_state=="Rejected":
+			self.send_mail_hr()
 	#Send mail to  HR
 	def send_mail_hr(self):
 		hr_mail = frappe.get_all("User",filters={'role':"HR Admin"},pluck='name')
@@ -22,8 +31,7 @@ class GoalSetting(Document):
 			data["employee_name"]=self.employee_name
 			data["current_status"]=self.workflow_state
 			data["name"]=self.name
-			data["appraisal_cycle"]=self.appraisal_cycle
-			sendHR_appraisal(data)
+			sendHR_goal(data)
 
 	#Send mail to Department Head
 	def send_mail_dh(self):
@@ -46,9 +54,8 @@ class GoalSetting(Document):
 			data["employee_name"]=self.employee_name
 			data["current_status"]=self.workflow_state
 			data["name"]=self.name
-			data["appraisal_cycle"]=self.appraisal_cycle
 			# sendDh(data)
-			sendDh_appraisal(data)
+			sendDh_goal(data)
 	
 	#Send Mail to Director
 	def send_mail_director(self):
@@ -66,9 +73,8 @@ class GoalSetting(Document):
 			data["employee_name"]=self.employee_name
 			data["current_status"]=self.workflow_state
 			data["name"]=self.name
-			data["appraisal_cycle"]=self.appraisal_cycle
 			# sendDirector(data)
-			sendDirector_appraisal(data)
+			sendDirector_goal(data)
 
 	#send mail to reporting authority
 	def send_mail_ra(self):
@@ -79,8 +85,7 @@ class GoalSetting(Document):
 			data["employee_name"]=self.employee_name
 			data["current_status"]=self.workflow_state
 			data["name"]=self.name
-			data["appraisal_cycle"]=self.appraisal_cycle
 			# sendRa(data)
-			sendRa_appraisal(data)
+			sendRa_goal(data)
 		else :
 			frappe.throw("Reporting Authority mail not found")
