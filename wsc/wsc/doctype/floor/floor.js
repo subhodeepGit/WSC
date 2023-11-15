@@ -2,9 +2,13 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Floor', {
-	// refresh: function(frm) {
-
-	// }
+	refresh: function(frm) {
+		frm.set_query("building_name", function() {
+			return {
+                query: "wsc.wsc.doctype.floor.floor.building_query",
+			}
+		});
+	},
 	building_name:function(frm){
 		frappe.model.with_doc("Buildings", frm.doc.building_name, function () {
 			var tabletransfer = frappe.model.get_doc("Buildings", frm.doc.building_name);

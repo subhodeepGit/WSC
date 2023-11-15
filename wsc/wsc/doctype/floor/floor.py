@@ -8,24 +8,57 @@ class Floor(Document):
 
 	def validate(self):
 		floor_check(self)
+		if self.is_new():
+			validate_floor_duplicate(self)
+			validate_floor_no(self)
+			number_of_rooms_data=frappe.get_all("Floor",{"building_name":self.building_name},['number_of_rooms'])
+			if number_of_rooms_data:
+				total_rooms = [int(rooms['number_of_rooms']) for rooms in number_of_rooms_data]
+				total_rooms=sum(total_rooms)
+				total_rooms=total_rooms+self.number_of_rooms 
+				buildings_details_info=buildings_details(self)
+				if buildings_details_info[0]['total_rooms']<total_rooms:
+					frappe.throw("<b>No of Room can't be more then Total No. of rooms mentioned in Building</b>")
+			else:
+				buildings_details_info=buildings_details(self)
+				if buildings_details_info[0]['total_rooms']<self.number_of_rooms :
+					frappe.throw("<b>No of Room can't be more then Total No. of rooms mentioned in Building</b>")		
+		else:
+			doc_before_save = self.get_doc_before_save()
+			if doc_before_save.floor_number!=self.floor_number:
+				validate_floor_duplicate(self)
+				validate_floor_no(self)
+			number_of_rooms_data=frappe.get_all("Floor",[["building_name",'=',self.building_name],['name','!=',self.name]],['number_of_rooms'])
+			total_rooms = [int(rooms['number_of_rooms']) for rooms in number_of_rooms_data]
+			total_rooms=sum(total_rooms)
+			total_rooms=total_rooms+self.number_of_rooms
+			buildings_details_info=buildings_details(self)
+			if buildings_details_info[0]['total_rooms']<total_rooms:
+				frappe.throw("<b>No of Room can't be more then Total No. of rooms mentioned in Building</b>")	
 
-	def on_submit(self):
-		#maximum number of floors that can be created for self.building
-		building_total_floor = frappe.db.get_value("Buildings",{"name":self.building_name},["total_floors"])
-		building_total_rooms = frappe.db.get_value("Buildings",{"name":self.building_name},["total_rooms"])
-		
-		#room that have been created for current building
-		existing_floor_dict = frappe.db.sql("select count(*) from `tabFloor` where docstatus = 1 and building_name=%s",self.building_name, as_dict=True)
-		created_room = existing_floor_dict[0]["count(*)"]
 
-		total_rooms_floor_dict = frappe.db.sql("select SUM(number_of_rooms) from `tabFloor` where docstatus = 1 and building_name=%s",self.building_name, as_dict=True)
-		total_rooms_floor = total_rooms_floor_dict[0]["SUM(number_of_rooms)"]
+def validate_floor_no(self):
+	total_floors_data=frappe.get_all("Buildings",{"name":self.building_name},['total_floors'])
+	no_rooms=total_floors_data[0]['total_floors']
+	flag="No"
+	for t in range(1,no_rooms+1):
+		if t==self.floor_number:
+			flag="Yes"
+			break 
+	if flag=="No":
+		frappe.throw("Floor Is Out of Range")
 
-		if created_room > building_total_floor:
-			frappe.throw("Maximum Floors defined in Building master has been reached")
 
-		if total_rooms_floor > building_total_rooms:
-			frappe.throw("Total rooms for current building exceeds the total number from Master Building form")
+
+def validate_floor_duplicate(self):
+	if frappe.get_all("Floor",{"building_name":self.building_name,"floor_number":self.floor_number,"enabled":1}):
+		frappe.throw("Floor no <b>%s</b> already exists for the building <b>%s</b> "%(self.floor_number,self.building_name))
+
+
+def buildings_details(self):
+	data=frappe.get_all("Buildings",{"name":self.building_name},['total_rooms'])
+	return data
+
 
 def floor_check(self):
 	if self.floor_number<=0:
@@ -33,3 +66,8 @@ def floor_check(self):
 	
 	if self.number_of_rooms<=0:
 		frappe.throw("Field <b>Number of room</b> must not be zero or negative")
+
+@frappe.whitelist()
+@frappe.validate_and_sanitize_search_inputs
+def building_query(doctype, txt, searchfield, start, page_len, filters):
+	return frappe.db.sql("""SELECT name  from `tabBuildings` WHERE `start_date`<=now() and `end_date`>=now() """)		
