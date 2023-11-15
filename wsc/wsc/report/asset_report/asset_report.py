@@ -13,9 +13,7 @@ def execute(filters=None):
 def get_data(filters=None):
     data=[]
     sql_query="""select item_code,status,
-                                     item_name,company,
-                                     asset_owner,
-                                     custodian,location,department,
+                                     item_name, custodian, custodian_name, location,department,
                                      cost_center,gross_purchase_amount,available_for_use_date,purchase_date,
                                      insured_value,policy_number,insurer,insurance_start_date,insurance_end_date,
                                      fb.finance_book,fb.depreciation_method,
@@ -39,21 +37,14 @@ def get_data(filters=None):
 def get_columns(filters=None):
     columns=[
         {
-            "label": _("Company"),
-            "fieldname": "company",
-            "fieldtype": "Link",
-            "options": "Item",
-            "width": 150,
-        },
-        {
             "fieldname":"item_code",
-            "label": _("Item Code"),
+            "label": _("Asset Code"),
             "fieldtype": "Link",
             "options": "Item",
             "width": 150,
         }, 
         {
-            "label": _("Item Name"),
+            "label": _("Asset Name"),
             "fieldname": "item_name",
             "fieldtype": "Data",
             "width": 150,
@@ -64,12 +55,6 @@ def get_columns(filters=None):
             "fieldtype": "Select",
             "width": 150,
         },  
-        {
-            "fieldname":"asset_owner",
-            "label": _("Asset Owner"),
-            "fieldtype": "Select",
-            "width": 150,
-        },
         {
             "fieldname":"location",
             "label": _("Location"),
@@ -82,6 +67,12 @@ def get_columns(filters=None):
             "label": _("Custodian"),
             "fieldtype": "Link",
             "options": "Employee",
+            "width": 150,
+        },
+        {
+            "fieldname":"custodian_name",
+            "label": _("Custodian Name"),
+            "fieldtype": "Data",
             "width": 150,
         },
         {

@@ -5,7 +5,7 @@ import frappe
 from frappe.model.document import Document
 from wsc.wsc.notification.custom_notification import sendHR_appraisal,sendRa_appraisal,sendDh_appraisal,sendDirector_appraisal
 from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
-
+from datetime import datetime
 
 class EmployeeAppraisalPortal(Document):
 	def validate(self):
@@ -19,6 +19,24 @@ class EmployeeAppraisalPortal(Document):
 			self.send_mail_director()
 		if self.workflow_state == "Approved" or self.workflow_state=="Rejected":
 			self.send_mail_hr()
+		self.validate_date(self.ros_review_meeting_date, "ROS Review Meeting")
+		self.validate_date(self.department_head_review_meeting_date, "Department Head Review Meeting")
+		self.validate_date(self.director_review_meeting_date, "Director Review Meeting")
+		
+	def validate_date(self,date_field, field_name):
+		if date_field:
+			current_date = datetime.now().date()
+
+			if isinstance(date_field, str):
+				selected_date = datetime.strptime(date_field, '%Y-%m-%d').date()
+			else:
+				selected_date = date_field
+
+			if selected_date > current_date:
+				frappe.throw(f"{field_name} date cannot be greater than the current date.")
+
+
+
 
 	def check_existing_record(self):
 		existing_record = frappe.get_value("Employee Appraisal Portal",
@@ -109,7 +127,7 @@ class EmployeeAppraisalPortal(Document):
 	#send mail to reporting authority
 	def send_mail_ra(self):
 		ra_mail = self.reporting_authority
-		if len(ra_mail)>0 :
+		if ra_mail:
 			data={}
 			data["ra_mail"]=ra_mail
 			data["employee_name"]=self.employee_name
@@ -133,15 +151,33 @@ class EmployeeAppraisalPortal(Document):
 
 @frappe.whitelist()
 def get_appraisal_cycle(doctype, txt, searchfield, start, page_len, filters):
-	data = frappe.get_all("Employee Appraisal Cycle",{"year":filters.get("appraisal_year")},["name"],as_list=1)
+	data = frappe.get_all("Employee Appraisal Cycle",{"year":filters.get("appraisal_year"),"status":"Open"},["name"],as_list=1)
 	return data
 	
 
 @frappe.whitelist()
-def get_goals(appraisal_template):
-	data =frappe.get_all("Key Work Goals",{'parent':appraisal_template},["goal","category","due_date","status"])
+def get_kras(appraisal_template):
+	data =frappe.get_all("KRA Rating",{'parent':appraisal_template},["kra"])
 	# print(data)
+	print(data)
 	return data
+
+@frappe.whitelist()
+def get_goals(employee,appraisal_year):
+	goal_setting = frappe.get_all("Goal Setting",{"employee":employee,"year":appraisal_year,"status":"Approved"},["name"])
+	print("\n\n\n")
+	print(goal_setting)
+
+	if len(goal_setting)>0:
+		if goal_setting[0].name :
+			document = goal_setting[0].name
+			data =frappe.get_all("Goals",{'parent':document},["goal","category","due_date"])
+			print(data)
+			print("\n\n\n")
+	# print(data)
+			return data
+
+
 
 @frappe.whitelist()
 def get_dimenssions():
@@ -153,7 +189,7 @@ def get_dimenssions():
 		pass
 @frappe.whitelist()
 def get_mid_year_grade(employee,appraisal_year):
-	data = frappe.get_all("Employee Appraisal Portal",{"employee":employee,"appraisal_year":appraisal_year,"appraisal_round":'1'},["final_grade"])
+	data = frappe.get_all("Employee Appraisal Portal",{"employee":employee,"appraisal_year":appraisal_year,"appraisal_round":'Mid Year'},["final_grade"])
 	print(data)
 	if data :
 		print("\n\n\n\n")

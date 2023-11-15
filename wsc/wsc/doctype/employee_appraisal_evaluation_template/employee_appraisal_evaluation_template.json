@@ -11,7 +11,7 @@
   "template_name",
   "description",
   "section_break_0jlml",
-  "key_work_goals"
+  "kra_ratings"
  ],
  "fields": [
   {
@@ -32,16 +32,15 @@
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "key_work_goals",
+   "fieldname": "kra_ratings",
    "fieldtype": "Table",
-   "label": "Key Work Goals",
-   "options": "Key Work Goals",
-   "reqd": 1
+   "label": "KRA Ratings",
+   "options": "KRA Rating"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-07 15:24:04.212293",
+ "modified": "2023-11-13 09:54:30.116305",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Appraisal Evaluation Template",
