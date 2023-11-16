@@ -35,7 +35,14 @@ class Floor(Document):
 			buildings_details_info=buildings_details(self)
 			if buildings_details_info[0]['total_rooms']<total_rooms:
 				frappe.throw("<b>No of Room can't be more then Total No. of rooms mentioned in Building</b>")	
+		self.enabled_floor()
 
+	def enabled_floor(self):
+		building_room_data=frappe.get_all("Building Room",{"floor":self.name})
+		for t in building_room_data:
+			doc=frappe.get_doc("Building Room",t['name'])
+			doc.enabled=self.enabled
+			doc.save()
 
 def validate_floor_no(self):
 	total_floors_data=frappe.get_all("Buildings",{"name":self.building_name},['total_floors'])

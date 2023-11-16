@@ -9,6 +9,32 @@ class Buildings(Document):
 		dateValidate(self)
 		pincode(self)
 		room_validation(self)
+		self.enabled_building()
+		self.enabled_land()
+		
+	def enabled_building(self):
+		if  self.enabled==0:
+			today = frappe.utils.nowdate()
+			if self.end_date > today:
+				frappe.throw("<b>Disabling Building in can't be in Future date</b>")
+
+		floor_name=frappe.get_all("Floor",{"building_name":self.name},['name'])
+		for t in floor_name:
+			doc=frappe.get_doc("Floor",t['name'])
+			doc.enabled=self.enabled
+			doc.save()
+
+	def enabled_land(self):
+		for k in self.get("land_details"):
+			land_plot_number_data=frappe.get_all("Land Details",[['land_plot_number','=',k.land_plot_number],
+																['parenttype','IN',['Floor',"Building Room"]]],
+																["parent","parenttype","name"])
+			for t in land_plot_number_data:
+				doc=frappe.get_doc(t['parenttype'],t['parent'])
+				for j in doc.get("land_details"):
+					if j.name==t['name']:
+						j.enabled=k.enabled
+				doc.save()
 
 # To validate if the start date is not after the end date
 def dateValidate(self):

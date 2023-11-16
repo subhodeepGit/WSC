@@ -8,12 +8,15 @@
  "engine": "InnoDB",
  "field_order": [
   "building_address_section",
+  "enabled",
+  "section_break_xdnpt",
   "plot_number",
   "land_address",
   "building_name",
   "building_address",
   "post_office",
   "land_size_in_sq_ft",
+  "building_valuation_in_rs",
   "column_break_7",
   "state",
   "district",
@@ -211,12 +214,28 @@
   {
    "fieldname": "land_size_in_sq_ft",
    "fieldtype": "Float",
-   "label": "Building Size (In Sq. ft)"
+   "label": "Building Size (In Sq. ft)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_xdnpt",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "building_valuation_in_rs",
+   "fieldtype": "Currency",
+   "label": "Building Valuation (In Rs.)"
+  },
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-14 12:25:44.395329",
+ "modified": "2023-11-16 11:21:26.567713",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Buildings",
