@@ -96722,7 +96722,7 @@
   "select": 1,
   "set_user_permissions": 0,
   "share": 0,
-  "submit": 0,
+  "submit": 1,
   "write": 1
  },
  {
@@ -96747,7 +96747,7 @@
   "select": 1,
   "set_user_permissions": 0,
   "share": 0,
-  "submit": 0,
+  "submit": 1,
   "write": 1
  },
  {
