@@ -9,7 +9,22 @@ class Land(Document):
 	def validate(self):
 		dateValidate(self)
 		pincode(self)
+		self.enabled_land()
 		# phone(self)
+
+	def enabled_land(self):
+		land_details_info=frappe.get_all("Land Details",{"land_plot_number":self.name},["parent","parenttype","name"])
+		for t in land_details_info:
+			doc=frappe.get_doc(t['parenttype'],t['parent'])
+			for j in doc.get("land_details"):
+				if j.name==t['name']:
+					j.enabled=self.enabled
+			doc.save()
+		if  self.enabled==0:
+			today = frappe.utils.nowdate()
+			if self.end_date > today:
+				frappe.throw("<b>Disabling Land in can't be in Future date</b>")
+			
 
 
 # To validate if the start date is not after the end date
