@@ -1,47 +1,47 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2023-09-01 14:55:48.486916",
+ "creation": "2023-11-13 09:48:32.975015",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "dimenssion",
-  "description",
-  "self_rating"
+  "kra",
+  "rating",
+  "ros_comment"
  ],
  "fields": [
   {
-   "fieldname": "dimenssion",
-   "fieldtype": "Data",
+   "fieldname": "kra",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Dimenssion",
-   "options": "Dimenssions for Appraisal",
+   "label": "KRA",
+   "options": "KRA",
    "permlevel": 1
   },
   {
-   "fieldname": "self_rating",
+   "fieldname": "rating",
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Rating",
-   "options": "\nExceed\nMeeting\nDeveloping",
+   "options": "\nMeeting\nExceed\nDeveloping",
    "permlevel": 1
   },
   {
-   "fieldname": "description",
-   "fieldtype": "Small Text",
+   "fieldname": "ros_comment",
+   "fieldtype": "Text",
    "in_list_view": 1,
-   "label": "Description",
+   "label": "ROs Comment",
    "permlevel": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-11-14 14:26:20.828045",
+ "modified": "2023-11-14 12:49:00.796568",
  "modified_by": "Administrator",
  "module": "WSC",
- "name": "Competency Ratings",
+ "name": "KRA Rating",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",
