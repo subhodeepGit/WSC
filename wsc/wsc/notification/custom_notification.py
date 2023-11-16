@@ -1347,19 +1347,8 @@ def sendHR_appraisal(doc):
     msg+="""<b>Appraisal Cycle:</b>  {0}<br>""".format(doc['appraisal_cycle'])
     appraisal_url = get_url_to_form('Employee Appraisal Portal', doc['name'])
     msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(appraisal_url)
-    msg+="""<p><b>Initiate the Separation Process for the Employee if it is Approved</b></p><br>"""
     send_mail([doc['hr_mail']],sub,msg)
     frappe.msgprint("Confirmation mail sent to HR",[doc['hr_mail']])
-# def sendEmployee(doc):
-#     sub="""<p><b>Employee Resignation</b></p><br>"""
-#     msg="""<b>---------------------Resignation Details---------------------</b><br>"""
-#     msg+="""<b>Resignation:</b>  {0}<br>""".format(doc['name'])
-#     msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
-#     resignation_url = get_url_to_form('Employee Resignation', doc['name'])
-#     msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(resignation_url)
-#     send_mail([doc['employee_mail']],sub,msg)
-#     frappe.msgprint("Confirmation mail sent to Employee",[doc['employee_mail']])
-
 def sendRa_appraisal(doc):
     sub="""<p><b>Reg :Employee Appraisal</b></p><br>"""
     msg = """<p>Dear Ma'am/Sir,</p><br>"""
@@ -1399,6 +1388,8 @@ def sendDirector_appraisal(doc):
     frappe.msgprint("Mail sent to Director for Approval",[doc['director_mail']])
 
 
+##############################################################################################################################
+
 def mentor_mentee_communication_submit(doc):
     mentor = frappe.db.get_value("Mentor Allocation", {"name":doc.get("mentor")}, "mentor")
     if frappe.session.user == frappe.get_all("Student", {'name':doc.student}, ['user'])[0]["user"]:
@@ -1428,6 +1419,59 @@ def send_notification_to_team_members(doc):
     msg+="""<b>Your Task is:</b>  {0} and next Due Date is {1}<br>""".format(tasks[0]['maintenance_task'],tasks[0]['next_due_date'])
     send_mail(email_list,'Asset Maintenance',msg)
     frappe.msgprint("Email sent to Maintenance Team")
+
+###################################################Notification for Goal Setting ############################################################
+
+def sendHR_goal(doc):
+    sub="""<p><b>Reg : Employee Goal Setting</b></p><br>"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Gaol Setting Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+    msg="""<b>---------------------Goal Setting Details---------------------</b><br>"""
+    msg+="""<b>Goal Setting:</b>  {0}<br>""".format(doc['name'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    goal_url = get_url_to_form('Employee Appraisal Portal', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(goal_url)
+    msg+="""<p><b>Final Status of Employee's Appraisal.</b></p><br>"""
+    send_mail([doc['hr_mail']],sub,msg)
+    frappe.msgprint("Confirmation mail sent to HR",[doc['hr_mail']])
+
+def sendRa_goal(doc):
+    sub="""<p><b>Reg :Employee Goal Setting</b></p><br>"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Goal Setting Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+    msg="""<b>---------------------Goal Setting Details---------------------</b><br>"""
+    msg+="""<b>Goal Setting:</b>  {0}<br>""".format(doc['name'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    goal_url = get_url_to_form('Goal Setting', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(goal_url)
+    send_mail([doc['ra_mail']],sub,msg)
+    frappe.msgprint("Mail sent to Reporting Authority for Approval",[doc['ra_mail']])
+
+def sendDh_goal(doc):
+    sub="""<p><b>Reg : Employee Goal Setting</b></p><br>"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Goal Setting Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+    msg="""<b>---------------------Goal Setting Details---------------------</b><br>"""
+    msg+="""<b>Goal Setting:</b>  {0}<br>""".format(doc['name'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    goal_url = get_url_to_form('Goal Setting', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(goal_url)
+    send_mail([doc['dh_mail']],sub,msg)
+    frappe.msgprint("Mail sent to Department Head for Approval",[doc['dh_mail']])
+
+def sendDirector_goal(doc):
+    sub="""<p><b>Reg : Employee Goal Setting</b></p><br>"""
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Employee Goal Setting Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+    msg="""<b>---------------------Goal Setting Details---------------------</b><br>"""
+    msg+="""<b>Goal Setting:</b>  {0}<br>""".format(doc['name'])
+    msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+    goal_url = get_url_to_form('Goal Setting', doc['name'])
+    msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(goal_url)
+    send_mail([doc['director_mail']],sub,msg)
+    frappe.msgprint("Mail sent to Director for Approval",[doc['director_mail']])
+
+
 ####################################Recruitment Exam Declaration Notification#####################################################################################
 def send_mail_to_jobapplicants_redn(self):
     for t in self.get("applicant_details"):
