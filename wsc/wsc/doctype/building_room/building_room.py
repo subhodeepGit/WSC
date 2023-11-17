@@ -11,19 +11,18 @@ class BuildingRoom(Document):
 		if self.is_scheduled:
 			new_doc(self)
 
-	def on_update(self):
-		# Building wise, Floor-wise room validation
-		building_total_room = frappe.db.get_value("Buildings",{"name":self.building_name},["total_rooms"])
-		floor_total_room = frappe.db.get_value("Floor",{"name":self.floor},["number_of_rooms"])
-		tot_floor_room_dict = frappe.db.sql("select count(*) from `tabBuilding Room` where floor=%s and enabled = '1'",self.floor, as_dict=True)
-		tot_floor_room = tot_floor_room_dict[0]["count(*)"]
-		tot_build_room_dict = frappe.db.sql("""select count(*) from `tabBuilding Room` where building_name=%s and enabled = '1'""",self.building_name, as_dict=True)
-		tot_build_room = tot_build_room_dict[0]["count(*)"]
-
-		if tot_build_room > building_total_room:
-			frappe.throw("Maximum rooms for selected building has been reached")
-		if tot_floor_room > floor_total_room:
-			frappe.throw("Maximum rooms for selected Floor has been reached")
+		if self.is_new():
+			room_count=frappe.db.count("Building Room",{"building_name":self.building_name,"enabled":1,"floor":self.floor})+1
+			floor_number_of_rooms=frappe.get_all("Floor",{"name":self.floor},['number_of_rooms'])
+			if floor_number_of_rooms[0]['number_of_rooms'] < room_count:
+				frappe.throw("Maximum rooms for selected Floor has been reached")
+		else:
+			doc_before_save = self.get_doc_before_save()
+			if doc_before_save.floor!=self.floor:
+				room_count=frappe.db.count("Building Room",{"building_name":self.building_name,"enabled":1,"floor":self.floor})+1
+				floor_number_of_rooms=frappe.get_all("Floor",{"name":self.floor},['number_of_rooms'])
+				if floor_number_of_rooms[0]['number_of_rooms'] < room_count:
+					frappe.throw("Maximum rooms for selected Floor has been reached")
 
 # To filter buildings which are currently between start and end date
 @frappe.whitelist()

@@ -74,7 +74,8 @@ frappe.ui.form.on('Fees', {
         if(!frappe.user.has_role(["Administrator","Accounts Manager","Accounts User"])){
             frm.remove_custom_button(__("Return/Refund"));
         }
-       else if(frm.doc.docstatus===1 && frm.doc.outstanding_amount==0) {
+    //    else if(frm.doc.docstatus===1 && frm.doc.outstanding_amount==0) {
+        else if(frm.doc.docstatus===1 && frm.doc.grand_total-frm.doc.outstanding_amount!=0) {
 			frm.add_custom_button(__("Return/Refund"), function() {
                 frappe.model.open_mapped_doc({
 					method: "wsc.wsc.doctype.fees.make_refund_fees",
@@ -344,7 +345,9 @@ frappe.ui.form.on('Fees', {
         // setTimeout(() => {
 		// if(frm.doc.docstatus===1 && frm.doc.outstanding_amount>0){
   			frm.remove_custom_button('Payment Request','Create');
+            if(frm.doc.grand_total<0 || frm.doc.grand_total<=frm.doc.custom_return_grand_total){
             frm.remove_custom_button('Return/Refund');
+            }
         //     }, 0.1);
         //     frm.refresh();
         // }
