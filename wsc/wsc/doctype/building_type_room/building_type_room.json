@@ -20,16 +20,18 @@
    "unique": 1
   },
   {
+   "default": "Non Allottable",
    "fieldname": "allotment_status",
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Allotment Status",
-   "options": "Non Allottable\nAllottable"
+   "options": "Non Allottable\nAllottable",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-09 15:38:29.141530",
+ "modified": "2023-11-15 16:18:04.927156",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Building type Room",

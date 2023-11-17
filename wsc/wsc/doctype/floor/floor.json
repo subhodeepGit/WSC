@@ -9,6 +9,8 @@
  "engine": "InnoDB",
  "field_order": [
   "building_details_section",
+  "enabled",
+  "section_break_mgfbn",
   "building_name",
   "floor_number",
   "column_break_srowd",
@@ -18,6 +20,7 @@
   "floor_size",
   "floor_plan",
   "floor_incharge",
+  "floor_incharge_name",
   "floor_assets",
   "floor_documents"
  ],
@@ -98,11 +101,28 @@
   {
    "fieldname": "column_break_srowd",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_mgfbn",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  },
+  {
+   "fetch_from": "floor_incharge.first_name",
+   "fieldname": "floor_incharge_name",
+   "fieldtype": "Data",
+   "label": "Floor Incharge Name",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-14 16:09:34.864794",
+ "modified": "2023-11-15 09:54:25.671407",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Floor",

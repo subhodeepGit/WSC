@@ -6,20 +6,14 @@ frappe.query_reports["Asset Report"] = {
 	"filters": [
 		{
             fieldname:"item_code",
-            label: __("Item Code"),
+            label: __("Asset Code"),
             fieldtype: "Link",
             options: "Item",
         },
 		{
             fieldname:"item_name",
-            label: __("Item Name"),
+            label: __("Asset Name"),
             fieldtype: "Data",
-        },
-		{
-            fieldname:"asset_owner",
-            label: __("Asset Owner"),
-            fieldtype: "Select",
-			options: "\nSupplier\nCustomer\nCompany",
         },
 		{
             fieldname:"location",
@@ -37,7 +31,7 @@ frappe.query_reports["Asset Report"] = {
             fieldname:"status",
             label: __("Status"),
             fieldtype: "Select",
-			options: "\nDraft\nSubmitted\nPartially Depreciated\nFully Depreciated\nSold\nScrapped\nIn Maintenance\nOut of Order\nIssue\nReceipt\nCapitalized\nDecapitalized",
+			options: "\nDraft\nSubmitted\nPartially Depreciated\nFully Depreciated\nSold\nScrapped",
         },
 	]
 };

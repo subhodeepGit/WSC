@@ -453,64 +453,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Appraisal",
-   "link_count": 5,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "KRA",
-   "link_count": 0,
-   "link_to": "KRA",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Dimensions for Appraisal",
-   "link_count": 0,
-   "link_to": "Dimenssions for Appraisal",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Employee Appraisal Evaluation Template",
-   "link_count": 0,
-   "link_to": "Employee Appraisal Evaluation Template",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Employee Appraisal Cycle",
-   "link_count": 0,
-   "link_to": "Employee Appraisal Cycle",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Employee Appraisal Portal",
-   "link_count": 0,
-   "link_to": "Employee Appraisal Portal",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Employee Lifecycle",
    "link_count": 12,
    "onboard": 0,
@@ -635,9 +577,77 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Appraisal",
+   "link_count": 6,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "KRA",
+   "link_count": 0,
+   "link_to": "KRA",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Dimensions for Appraisal",
+   "link_count": 0,
+   "link_to": "Dimenssions for Appraisal",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Employee Appraisal Evaluation Template",
+   "link_count": 0,
+   "link_to": "Employee Appraisal Evaluation Template",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Goal Setting",
+   "link_count": 0,
+   "link_to": "Goal Setting",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Employee Appraisal Cycle",
+   "link_count": 0,
+   "link_to": "Employee Appraisal Cycle",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Employee Appraisal Portal",
+   "link_count": 0,
+   "link_to": "Employee Appraisal Portal",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-11-03 15:47:24.048108",
+ "modified": "2023-11-13 14:39:23.912458",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "HRMS (Base)",
