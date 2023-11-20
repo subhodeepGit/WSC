@@ -1,0 +1,50 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2023-11-17 12:16:55.207484",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "modified": "2023-11-17 12:16:55.207484",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Room Allocation Report",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Room",
+ "report_name": "Room Allocation Report",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "Education Administrator"
+  },
+  {
+   "role": "Academic Management Group"
+  },
+  {
+   "role": "Academics User"
+  },
+  {
+   "role": "Instructor"
+  },
+  {
+   "role": "Admin"
+  },
+  {
+   "role": "Education Academic Head"
+  },
+  {
+   "role": "Education Admission Head"
+  },
+  {
+   "role": "Course Manager"
+  },
+  {
+   "role": "Department Head"
+  }
+ ]
+}

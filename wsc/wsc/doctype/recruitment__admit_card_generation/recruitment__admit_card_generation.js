@@ -29,6 +29,16 @@ frappe.ui.form.on('Recruitment  Admit Card Generation', {
                 if (response.message) {
 					frm.set_value('applicant_name', response.message.applicant_name);
 					frm.set_value('applicant_mail', response.message.applicant_email);
+                    frm.set_value('domicile', response.message.domicile);
+                    frm.set_value('caste_category', response.message.caste_category);
+                    frm.set_value('date_of_birth', response.message.date_of_birth);
+                    frm.set_value('address', response.message.address);
+                    frm.set_value('pwd', response.message.pwd);
+                    frm.set_value('fathersspousesguardians_name', response.message.fathersspousesguardians_name);
+
+                    
+
+        
 				}
             }
         });

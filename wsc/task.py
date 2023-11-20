@@ -271,30 +271,58 @@ def employee_re_engagement_workFlow():
     # bench --site erp.soulunileaders.com execute wsc.task.employee_re_engagement_workFlow
     today_date=getdate(today())
     base_date = str(today_date)
-    months_to_subtract = 9
-    days_to_subtract = 0
+    # months_to_subtract = 9
+    # days_to_subtract = 0
 
-    previous_date = get_previous_date(base_date, months_to_subtract, days_to_subtract)
-    previous_date=previous_date.strftime("%Y-%m-%d")
-    previous_date=datetime.strptime(previous_date, '%Y-%m-%d').date()
-    employee_data=frappe.get_all("Employee",['name','present_contract_start_date','date_of_joining','user_id','employee_name'])
-    present_contract_data_emp=[]
-    date_of_joining_data_emp=[]
+    # previous_date = get_previous_date(base_date, months_to_subtract, days_to_subtract)
+    # previous_date=previous_date.strftime("%Y-%m-%d")
+    # previous_date=datetime.strptime(previous_date, '%Y-%m-%d').date()
+    employee_data=frappe.get_all("Employee",['name','present_contract_start_date','present_contract_end_date','date_of_joining','user_id','employee_name'])
+    employee_above_ninth_month=[]
+    employee_above_six_month=[]
     for t in employee_data:
-        if t['present_contract_start_date'] and t['present_contract_start_date']==previous_date:
-            present_contract_data_emp.append({"name":t['name'],'user_id':t['user_id'],'full_name':['employee_name']})
-        elif t['date_of_joining'] and t['date_of_joining']==previous_date:
-            date_of_joining_data_emp.append({"name":t['name'],'user_id':t['user_id'],'full_name':['employee_name']})
+        if t["present_contract_start_date"] and t["present_contract_end_date"]:
+            if  isinstance(t["present_contract_start_date"],str):
+                contract_start_date = datetime.strptime(t['present_contract_start_date'], '%Y-%m-%d').date()
+            else :
+                contract_start_date= t["present_contract_start_date"]
+            if isinstance(t["present_contract_end_date"],str):
 
-    for t in  present_contract_data_emp:
-        if t['user_id']:
-            msg="""<p>Dear %s ,Your Employee Re-engagement form is ready. Kindly fill up the form</p><br>"""%(t['full_name'])
-            send_mail(t['user_id'],'Student Clearance Status',msg)
+                contract_end_date = datetime.strptime(t['present_contract_end_date'], '%Y-%m-%d').date()
+            else :
+                contract_end_date= t["present_contract_end_date"]
+            months_difference = frappe.utils.date_diff(contract_end_date,contract_start_date) // 30
+            if 6<=months_difference<=9:
+                months_to_subtract = 4
+                days_to_subtract = 0
 
-    for t in  date_of_joining_data_emp:
+                previous_date = get_previous_date(base_date, months_to_subtract, days_to_subtract)
+                previous_date=previous_date.strftime("%Y-%m-%d")
+                previous_date=datetime.strptime(previous_date, '%Y-%m-%d').date()
+                if t['present_contract_start_date'] and t['present_contract_start_date'] == previous_date:
+                    employee_above_six_month.append({"name":t['name'],'user_id':t['user_id'],'full_name':['employee_name']})
+
+            if months_difference>9:
+                months_to_subtract = 9
+                days_to_subtract = 0
+
+                previous_date = get_previous_date(base_date, months_to_subtract, days_to_subtract)
+                previous_date=previous_date.strftime("%Y-%m-%d")
+                previous_date=datetime.strptime(previous_date, '%Y-%m-%d').date()
+
+                if t['present_contract_start_date'] and t['present_contract_start_date'] == previous_date:
+                    employee_above_ninth_month.append({"name":t['name'],'user_id':t['user_id'],'full_name':['employee_name']})
+
+    for t in  employee_above_ninth_month:
         if t['user_id']:
-            msg="""<p>Dear %s ,Your Employee Re-engagement form is ready. Kindly fill up the form</p><br>"""%(t['full_name'])
-            send_mail(t['user_id'],'Employee Re-engagement',msg)    
+            msg="""<p>Dear %s ,Your Employee Renewal Form is ready. Kindly fill up the form</p><br>"""%(t['full_name'])
+            send_mail(t['user_id'],'Employee Renewal Form',msg)
+
+    for t in  employee_above_six_month:
+        if t['user_id']:
+            msg="""<p>Dear %s ,Your Employee Renewal Form is ready. Kindly fill up the form</p><br>"""%(t['full_name'])
+            send_mail(t['user_id'],'Employee Renewal Form',msg)  
+  
 
 
 def appraisal_reminder():
