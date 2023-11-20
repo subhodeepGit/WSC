@@ -22,11 +22,20 @@
   "location",
   "column_break_a4sqi",
   "email",
-  "section_break_3tlyr",
   "experience_details",
-  "education_details",
+  "experience_details_table",
+  "section_break_3tlyr",
+  "current_education_details",
+  "previous_education_details",
   "skills",
-  "languages"
+  "technical_skills",
+  "non_technical_skills",
+  "languages",
+  "declaration_section",
+  "date",
+  "signature_image",
+  "column_break_eo06c",
+  "place"
  ],
  "fields": [
   {
@@ -46,23 +55,19 @@
   },
   {
    "fieldname": "experience_details",
-   "fieldtype": "Data",
+   "fieldtype": "Section Break",
    "label": "Experience Details"
   },
   {
-   "fieldname": "education_details",
-   "fieldtype": "Data",
-   "label": "Education Details"
-  },
-  {
    "fieldname": "skills",
-   "fieldtype": "Data",
+   "fieldtype": "Section Break",
    "label": "Skills"
   },
   {
    "fieldname": "languages",
-   "fieldtype": "Data",
-   "label": "Languages"
+   "fieldtype": "Table",
+   "label": "Languages",
+   "options": "Languages"
   },
   {
    "fieldname": "section_break_qi79v",
@@ -120,12 +125,67 @@
   },
   {
    "fieldname": "section_break_3tlyr",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Education Details"
+  },
+  {
+   "fieldname": "current_education_details",
+   "fieldtype": "Table",
+   "label": "Current Education Details",
+   "options": "Resume Current Educational Details"
+  },
+  {
+   "fieldname": "previous_education_details",
+   "fieldtype": "Table",
+   "label": "Previous Education Details",
+   "options": "Resume Education Details"
+  },
+  {
+   "fieldname": "technical_skills",
+   "fieldtype": "Table",
+   "label": "Technical Skills",
+   "options": "Technical Skills Table"
+  },
+  {
+   "fieldname": "non_technical_skills",
+   "fieldtype": "Table",
+   "label": "Non Technical Skills",
+   "options": "Non Technical Skills"
+  },
+  {
+   "fieldname": "experience_details_table",
+   "fieldtype": "Table",
+   "label": "Experience Details Table",
+   "options": "Resume Experience Child Table"
+  },
+  {
+   "fieldname": "declaration_section",
+   "fieldtype": "Section Break",
+   "label": "Declaration"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Data",
+   "label": "Date"
+  },
+  {
+   "fieldname": "place",
+   "fieldtype": "Data",
+   "label": "Place"
+  },
+  {
+   "fieldname": "column_break_eo06c",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "signature_image",
+   "fieldtype": "Attach",
+   "label": "Signature image"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-15 17:36:00.544128",
+ "modified": "2023-11-16 14:43:15.254794",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Resume",
