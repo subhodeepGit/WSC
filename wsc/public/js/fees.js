@@ -364,6 +364,7 @@ frappe.ui.form.on('Fees', {
             frm.remove_custom_button('Payments','View');
             frm.remove_custom_button('Accounting Ledger','View');
         }
+        $('[data-label="Duplicate"]').parent().parent().remove();
 	}
 }
 );
