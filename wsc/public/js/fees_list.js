@@ -5,7 +5,11 @@ frappe.listview_settings['Fees'] = {
 			return [__("Return Issued"), "grey", "outstanding_amount,>,0"];
 		}
 		else if(flt(doc.outstanding_amount)==0) {
-			return [__("Paid"), "green", "outstanding_amount,=,0"];
+			if (doc.grand_total <0 ){
+				return [__("Refunded"), "green", "outstanding_amount,=,0|grand_total,<,0"];
+			}else{
+			return [__("Paid"), "green", "outstanding_amount,=,0|grand_total,>,0"];
+			}
 		} else if (flt(doc.outstanding_amount) > 0 && doc.due_date >= frappe.datetime.get_today()) {
 			return [__("Unpaid"), "orange", "outstanding_amount,>,0|due_date,>,Today"];
 		} else if (flt(doc.outstanding_amount) > 0 && doc.due_date < frappe.datetime.get_today()) {

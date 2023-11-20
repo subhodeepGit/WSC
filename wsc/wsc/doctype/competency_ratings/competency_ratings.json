@@ -23,8 +23,9 @@
    "fieldname": "self_rating",
    "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "Self Rating",
-   "options": "\nExceed\nMeeting\nDeveloping"
+   "label": "Rating",
+   "options": "\nExceed\nMeeting\nDeveloping",
+   "permlevel": 1
   },
   {
    "fieldname": "description",
@@ -37,7 +38,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-18 11:26:14.196611",
+ "modified": "2023-11-14 14:26:20.828045",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Competency Ratings",

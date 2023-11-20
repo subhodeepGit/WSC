@@ -8,6 +8,8 @@
  "engine": "InnoDB",
  "field_order": [
   "land_owner_details_section",
+  "enabled",
+  "section_break_rpyqk",
   "name1",
   "address",
   "phone",
@@ -138,10 +140,9 @@
   },
   {
    "fieldname": "phone",
-   "fieldtype": "Data",
+   "fieldtype": "Phone",
    "in_list_view": 1,
    "label": "Phone",
-   "options": "Phone",
    "reqd": 1
   },
   {
@@ -167,11 +168,21 @@
    "fieldtype": "Table",
    "label": "Land Documents",
    "options": "Land Documents"
+  },
+  {
+   "fieldname": "section_break_rpyqk",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-09 11:47:25.698786",
+ "modified": "2023-11-16 11:09:09.956204",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Land",

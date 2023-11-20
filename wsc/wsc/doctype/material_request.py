@@ -10,11 +10,11 @@ def workflow_notification(self,method):
     user_id = frappe.db.get_list("Employee",{"department":self.department},["user_id"])
     user_ids = [entry['user_id'] for entry in user_id]
     
-    if (self.material_request_type == "Material Transfer" or self.material_request_type == "Material Issue") and self.workflow_state == "Submit":
-        receipient_name = frappe.db.get_all('User',{'name':('in', user_ids),'role_profile_name':'Course Manager'},['name'])   
-        workflow_wating_approval(self,receipient_name)
+    # if (self.material_request_type == "Material Transfer" or self.material_request_type == "Material Issue") and self.workflow_state == "Submit":
+    #     receipient_name = frappe.db.get_all('User',{'name':('in', user_ids),'role_profile_name':'Requisitioner'},['name'])   
+    #     workflow_wating_approval(self,receipient_name)
 
-    elif (self. material_request_type == "Material Transfer" or self. material_request_type == "Material Issue" )and self.workflow_state == "Approved by Course Manager":
+    if (self. material_request_type == "Material Transfer" or self. material_request_type == "Material Issue" )and self.workflow_state == "Submit":
         receipient_name = frappe.db.get_list('User',{'name':('in', user_ids),'role_profile_name':'Dy. Director'},['name'])
         workflow_wating_approval(self, receipient_name)
 

@@ -15,7 +15,8 @@
   "column_break_op82g",
   "from_date",
   "to_date",
-  "notify_employee_after"
+  "notify_employee_after",
+  "status"
  ],
  "fields": [
   {
@@ -66,13 +67,20 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Appraisal Round ",
-   "options": "\n1\n2",
+   "options": "\nMid Year\nEnd Year",
    "reqd": 1
+  },
+  {
+   "default": "Open",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "\nOpen\nClosed"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-05 16:17:31.505429",
+ "modified": "2023-11-10 11:40:12.460137",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Appraisal Cycle",

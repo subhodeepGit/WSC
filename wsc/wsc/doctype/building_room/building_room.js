@@ -18,12 +18,26 @@ frappe.ui.form.on("Building Room", {
 		});
 		frm.set_query("floor" , function() {
 			return {
-				filters:{
-					"building_name":frm.doc.building_name
-				}
+				filters:[
+					["building_name",'=',frm.doc.building_name],
+					["enabled",'=',1]
+				]
 			}
 		})
-	}
+	},
+	building_name:function(frm){
+		frappe.model.with_doc("Buildings", frm.doc.building_name, function () {
+			var tabletransfer = frappe.model.get_doc("Buildings", frm.doc.building_name);
+			cur_frm.doc.land_details = "";
+			$.each(tabletransfer.land_details, function (index, row) {
+				var d = frappe.model.add_child(cur_frm.doc, "Land Details", "land_details");
+				d.land_plot_number = row.land_plot_number;
+				d.land_address =row.land_address;
+			});
+			cur_frm.refresh_field("land_details");
+		});
+	} 
+
 });
 
 // To filter buildings which are currently between start and end date
@@ -60,3 +74,7 @@ frappe.ui.form.on('Building Room', {
 					}
 				}
 			);
+
+
+
+		

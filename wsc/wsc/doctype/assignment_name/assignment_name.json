@@ -14,13 +14,15 @@
   {
    "fieldname": "assignment_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Assignment Name",
+   "reqd": 1,
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-28 12:09:11.019177",
+ "modified": "2023-11-13 11:31:11.690356",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Name",

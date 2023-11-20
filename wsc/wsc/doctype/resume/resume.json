@@ -1,0 +1,107 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-11-10 15:00:49.772213",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "image",
+  "name1",
+  "section_break_qi79v",
+  "description",
+  "column_break_owwgw",
+  "interests",
+  "section_break_usdvo",
+  "contact_details",
+  "experience_details",
+  "education_details",
+  "skills",
+  "languages"
+ ],
+ "fields": [
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Profile Image"
+  },
+  {
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "label": "Name"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "interests",
+   "fieldtype": "Small Text",
+   "label": "Interests"
+  },
+  {
+   "fieldname": "contact_details",
+   "fieldtype": "Table",
+   "label": "Contact Details",
+   "options": "Resume Contact Table"
+  },
+  {
+   "fieldname": "experience_details",
+   "fieldtype": "Data",
+   "label": "Experience Details"
+  },
+  {
+   "fieldname": "education_details",
+   "fieldtype": "Data",
+   "label": "Education Details"
+  },
+  {
+   "fieldname": "skills",
+   "fieldtype": "Data",
+   "label": "Skills"
+  },
+  {
+   "fieldname": "languages",
+   "fieldtype": "Data",
+   "label": "Languages"
+  },
+  {
+   "fieldname": "section_break_qi79v",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_owwgw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_usdvo",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-11-10 15:47:31.686858",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Resume",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
