@@ -63,43 +63,43 @@ frappe.ui.form.on('OnlinePayment', {
         //#################################### AXIS Button ########################################
 
 
-        // var axis_btn_name = 'By AXIS Payment Gateway &nbsp;&nbsp;<img src="/assets/wsc/images/axis_logo.png" alt="AXIS" style="width: 30px; height: 30px;" >'
-        // frm.add_custom_button(axis_btn_name, function () {
-        //         var formStatus = "Yes"
-        //         if (!frm.is_new()){
-        //             formStatus="No"
-        //         }
-        //         var formProgress=frm.doc.transaction_progress
-        //         frappe.call({
-        //         method: "wsc.wsc.doctype.onlinepayment.onlinepayment.open_gateway",
-        //         args: {
-        //             party_name: frm.doc.party_name,
-        //             party: frm.doc.party,
-        //             amount: frm.doc.paying_amount,
-        //             order_id: frm.doc.name,
-        //             url: window.location.href,
-        //             gw_provider: "AXIS",
-        //             form_status:formStatus,
-        //             formProgress:formProgress
-        //         },
+        var axis_btn_name = 'By AXIS Payment Gateway &nbsp;&nbsp;<img src="/assets/wsc/images/axis_logo.png" alt="AXIS" style="width: 30px; height: 30px;" >'
+        frm.add_custom_button(axis_btn_name, function () {
+                var formStatus = "Yes"
+                if (!frm.is_new()){
+                    formStatus="No"
+                }
+                var formProgress=frm.doc.transaction_progress
+                frappe.call({
+                method: "wsc.wsc.doctype.onlinepayment.onlinepayment.open_gateway",
+                args: {
+                    party_name: frm.doc.party_name,
+                    party: frm.doc.party,
+                    amount: frm.doc.paying_amount,
+                    order_id: frm.doc.name,
+                    url: window.location.href,
+                    gw_provider: "AXIS",
+                    form_status:formStatus,
+                    formProgress:formProgress
+                },
                 
-        //         callback: function (r) {
-        //             if (r.message) {
-        //                 var encRequest = r.message["encRequest"];
-        //                 var access_code = r.message["accessCode"];
-        //                 var is_prod = r.message["is_prod"];
+                callback: function (r) {
+                    if (r.message) {
+                        var encRequest = r.message["encRequest"];
+                        var access_code = r.message["accessCode"];
+                        var is_prod = r.message["is_prod"];
 
-        //                 if (is_prod == 1) {
-        //                     window.location.href = "https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
-        //                 } else {
-        //                     window.location.href = "https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" +  "&encRequest=" + encRequest +"&access_code=" + access_code;
-        //                 }
-        //             } else {
-        //                 alert("No response data received.");
-        //             }
-        //         }
-        //     });
-        // }, __('Click here for Online Payment'));
+                        if (is_prod == 1) {
+                            window.location.href = "https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction" + "&access_code=" + access_code + "&encRequest=" + encRequest;
+                        } else {
+                            window.location.href = "https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" +  "&encRequest=" + encRequest +"&access_code=" + access_code;
+                        }
+                    } else {
+                        alert("No response data received.");
+                    }
+                }
+            });
+        }, __('Click here for Online Payment'));
 
     }
 });

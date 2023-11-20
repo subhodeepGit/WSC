@@ -69,7 +69,7 @@ def get_outstanding_amount(student):
 	return outstanding_amount
 
 @frappe.whitelist()
-def open_gateway(party_name, party, amount, order_id,url,gw_provider,form_status,formProgress): 
+def open_gateway(party_name, party, amount, order_id,url,gw_provider,form_status,formProgress=None): 
     
    
     if form_status == "Yes" :
