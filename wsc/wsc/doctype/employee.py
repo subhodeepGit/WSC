@@ -1,6 +1,7 @@
 # Copyright (c) 2015, Frappe Technologies Pvt. Ltd. and Contributors
 # License: GNU General Public License v3. See license.txt
 import frappe
+
 from frappe import _, enqueue, scrub, throw
 from frappe.model.naming import set_name_by_naming_series
 from frappe.permissions import (
@@ -69,6 +70,9 @@ class Employee(NestedSet):
         self.validate_passport_date()
         self.validate_notice_days()
         self.validate_mobile_number() 
+        if not self.present_contract_start_date :
+            self.present_contract_start_date = self.date_of_joining
+        
 
     def create_profile(self):
         check_profile = frappe.get_all("My Profile", {'name':self.name},['name'])
@@ -595,5 +599,3 @@ def check_duplicate_permission(doc):
             'applicable_for': "Mentor Allocation",
             'name': ['!=', doc.name]
         }, limit=1)
-
-
