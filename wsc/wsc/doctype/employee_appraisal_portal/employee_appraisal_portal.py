@@ -158,32 +158,22 @@ def get_appraisal_cycle(doctype, txt, searchfield, start, page_len, filters):
 @frappe.whitelist()
 def get_kras(appraisal_template):
 	data =frappe.get_all("KRA Rating",{'parent':appraisal_template},["kra"])
-	# print(data)
-	print(data)
 	return data
 
 @frappe.whitelist()
 def get_goals(employee,appraisal_year):
 	goal_setting = frappe.get_all("Goal Setting",{"employee":employee,"year":appraisal_year,"status":"Approved"},["name"])
-	print("\n\n\n")
-	print(goal_setting)
 
 	if len(goal_setting)>0:
 		if goal_setting[0].name :
 			document = goal_setting[0].name
 			data =frappe.get_all("Goals",{'parent':document},["goal","category","due_date"])
-			print(data)
-			print("\n\n\n")
 	# print(data)
 			return data
-
-
-
 @frappe.whitelist()
 def get_dimenssions():
 	data = frappe.get_all("Dimenssions for Appraisal",{"is_active":1},["name","description"])
 	if data :
-		print(data)
 		return data
 	else :
 		pass
@@ -192,8 +182,6 @@ def get_mid_year_grade(employee,appraisal_year):
 	data = frappe.get_all("Employee Appraisal Portal",{"employee":employee,"appraisal_year":appraisal_year,"appraisal_round":'Mid Year'},["final_grade"])
 	print(data)
 	if data :
-		print("\n\n\n\n")
-		print(data)
 		return data[0]
 	else :
 		pass

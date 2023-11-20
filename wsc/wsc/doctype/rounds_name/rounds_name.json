@@ -1,40 +1,32 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:type_of_room",
- "creation": "2023-01-04 09:53:03.058408",
+ "autoname": "field:name_of_round",
+ "creation": "2023-11-14 11:11:29.498654",
+ "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "type_of_room",
-  "allotment_status"
+  "name_of_round"
  ],
  "fields": [
   {
-   "fieldname": "type_of_room",
+   "fieldname": "name_of_round",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Type of room",
+   "label": "Name of Round",
    "reqd": 1,
    "unique": 1
-  },
-  {
-   "default": "Non Allottable",
-   "fieldname": "allotment_status",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Allotment Status",
-   "options": "Non Allottable\nAllottable",
-   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-15 16:18:04.927156",
+ "modified": "2023-11-14 11:11:53.386939",
  "modified_by": "Administrator",
  "module": "WSC",
- "name": "Building type Room",
+ "name": "Rounds Name",
+ "name_case": "Title Case",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [

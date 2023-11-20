@@ -485,3 +485,62 @@ frappe.ui.form.on('Payment Entry', {
 		}
 	}
 });
+
+frappe.ui.form.on('Payment Entry', {
+    refresh: function (frm) {
+				if (frm.doc.payment_type === 'Pay') {
+					frm.set_query('mode_of_payment', function () {
+						return {
+							filters: [
+								['name', '!=', 'Online PG AXIS'],
+								['name', '!=', 'Online PG HDFC']
+							]
+						};
+					});
+				}else if (frm.doc.payment_type === '') {
+					frm.set_query('mode_of_payment', function () {
+						return {
+							filters: [
+								['name', '', '']
+							]
+						};
+					});
+				 } else {
+					frm.set_query('mode_of_payment', function () {
+						return {
+							filters: []
+						};
+					});
+				}
+    },
+	payment_type: function (frm) {
+		if (frm.doc.payment_type === "Pay" || frm.doc.payment_type === "Internal Transfer" || frm.doc.payment_type === "Receive" || frm.doc.payment_type === "" ) {
+			frm.set_value("mode_of_payment", "");
+		};
+		if (frm.doc.payment_type === 'Pay') {
+			frm.set_query('mode_of_payment', function () {
+				return {
+					filters: [
+						['name', '!=', 'Online PG AXIS'],
+						['name', '!=', 'Online PG HDFC']
+					]
+				};
+			});
+		}else if (frm.doc.payment_type === '') {
+			frm.set_query('mode_of_payment', function () {
+				return {
+					filters: [
+						['name', '', '']
+					]
+				};
+			});
+		 } else {
+			frm.set_query('mode_of_payment', function () {
+				return {
+					filters: []
+				};
+			});
+		}
+}
+});
+

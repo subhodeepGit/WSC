@@ -1,0 +1,33 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2023-11-17 16:30:53.168457",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "modified": "2023-11-17 17:40:21.170420",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Total Development Area",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "SELECT\n    `tabBuildings`.building_address as \"Building Address\",\n    `tabBuildings`.building_name as \"Building Name\",\n    `tabLand Details`.land_plot_number as \"Land Plot number\",\n    `tabLand Details`.land_address as \"Land Address\",\n    `tabBuildings`.land_size_in_sq_ft as \"Building Size (In Sq. ft)\",\n    `tabBuildings`.building_valuation_in_rs as \"Building Valuation (In Rs.)\",\n    `tabBuildings`.post_office as \"Post Office\",\n    `tabBuildings`.block as \"Block\",\n    `tabBuildings`.district as \"District\",\n    `tabBuildings`.state as \"State\",\n    `tabBuildings`.pin_code as \"Pin Code\",\n    `tabBuildings`.building_on_lease as \"Building on Lease\",\n    `tabBuildings`.building_type as \"Building Type\",\n    `tabBuildings`.total_rooms as \"Total Rooms\",\n    `tabBuildings`.total_floors as \"Total Floors\",\n    `tabBuildings`.facing as \"Facing\",\n    `tabBuildings`.campus as \"Campus\"\nFROM \n    `tabBuildings` \nJOIN \n    `tabLand Details`\nON\n    `tabBuildings`.name = `tabLand Details`.parent;",
+ "ref_doctype": "Buildings",
+ "report_name": "Total Development Area",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "Maintenance Department"
+  },
+  {
+   "role": "Floor Supervisor"
+  },
+  {
+   "role": "Building Administrator"
+  }
+ ]
+}

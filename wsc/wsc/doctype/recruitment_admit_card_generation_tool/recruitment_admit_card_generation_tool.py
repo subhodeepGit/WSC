@@ -11,14 +11,29 @@ class RecruitmentAdmitCardGenerationTool(Document):
 	@frappe.whitelist()
 	def create_admit_card(self):
 		for d in self.get('job_applicant_details'):
-			result = frappe.new_doc('Recruitment Admit Card Generation')
+			result = frappe.new_doc('Recruitment  Admit Card Generation')
 			result.exam_declaration = self.exam_declaration
 			result.exam_date = self.exam_date
 			result.exam_time = self.exam_time
 			result.center = self.center
+			result.domicile=self.domicile
+			result.session=self.session
+			result.position_name = self.position_name
+			result.shift_type = self.shift_type
+			result.exam_time = self.exam_time
+			result.center = self.center
+			result.domicile=self.domicile
 			result.applicant_number = d.job_applicant
 			result.applicant_name = d.applicant_name
 			result.applicant_mail = d.applicant_mail_id
+			result.fathersspousesguardians_name = d.fathersspousesguardians_name
+			result.date_of_birth = d.date_of_birth
+			result.pwd = d.pwd
+			result.address = d.address
+			result.gender = d.gender
+			result.image=d.applicant_photo
+			result.caste_category=d.caste_category
+			result.admit_card_issuing_authority=self.admit_card_issuing_authority
 			result.save()
 			result.submit()
 
@@ -39,8 +54,6 @@ class RecruitmentAdmitCardGenerationTool(Document):
 		job_opening_details = frappe.get_doc("Job Opening", job_opening)
 			
 		job_opening_details.job_opening = job_opening
-		print("\n\n\n\n\nJob Opening ", job_opening)
-		print("\n\n\n\n\nRound",selection_round)
 		for round in job_opening_details.job_selection_round:
 			
 			if round.name_of_rounds==selection_round:
@@ -50,7 +63,6 @@ class RecruitmentAdmitCardGenerationTool(Document):
 
 
 @frappe.whitelist()
-def fetch_applicants(recruitment_exam_declaration):
-	applicants = frappe.get_all("Job Applicant Details",filters={"parent":recruitment_exam_declaration},fields=["job_applicant","applicant_name","applicant_mail_id"])
-	print(applicants)
+def fetch_applicants(recruitment_exam_declaration,year):
+	applicants = frappe.get_all("Job Applicant Details",filters={"parent":recruitment_exam_declaration,"admit_card_status":0,"year":year},fields=["job_applicant","applicant_name","applicant_mail_id",'gender','caste_category','address','date_of_birth','pwd','admit_card_status'])
 	return applicants
