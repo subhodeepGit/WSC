@@ -12,12 +12,18 @@
   "job_opening",
   "selection_round",
   "exam_date",
+  "domicile",
   "column_break_3",
   "exam_time",
   "center",
+  "session",
+  "position_name",
+  "shift_type",
+  "year",
   "section_break_6",
   "get_applicant",
-  "job_applicant_details"
+  "job_applicant_details",
+  "admit_card_issuing_authority"
  ],
  "fields": [
   {
@@ -44,6 +50,7 @@
    "fetch_from": "exam_declaration.exam_time",
    "fieldname": "exam_time",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Exam Time"
   },
   {
@@ -66,8 +73,7 @@
    "fieldname": "job_applicant_details",
    "fieldtype": "Table",
    "label": "Job Applicant Details",
-   "options": "Job Applicant Details",
-   "read_only": 1
+   "options": "Job Applicant Details"
   },
   {
    "fetch_from": "exam_declaration.job_opening",
@@ -84,11 +90,51 @@
    "in_list_view": 1,
    "label": "Selection Round",
    "reqd": 1
+  },
+  {
+   "fieldname": "domicile",
+   "fieldtype": "Data",
+   "label": "Domicile"
+  },
+  {
+   "fieldname": "session",
+   "fieldtype": "Select",
+   "label": "Session",
+   "options": "\nForenoon\nAfternoon",
+   "reqd": 1
+  },
+  {
+   "fieldname": "position_name",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Position Name",
+   "options": "Job Opening"
+  },
+  {
+   "fieldname": "shift_type",
+   "fieldtype": "Select",
+   "label": "Shift Type",
+   "options": "\nFirst\nSecond",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "exam_declaration.application_year",
+   "fieldname": "year",
+   "fieldtype": "Link",
+   "label": "Year",
+   "options": "Year",
+   "reqd": 1
+  },
+  {
+   "fieldname": "admit_card_issuing_authority",
+   "fieldtype": "Attach Image",
+   "label": "Admit Card Issuing Authority",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-25 17:15:24.091294",
+ "modified": "2023-11-16 10:26:09.148987",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Recruitment Admit Card Generation Tool",

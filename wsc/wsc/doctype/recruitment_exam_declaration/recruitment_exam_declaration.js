@@ -9,7 +9,7 @@ job_opening: function(frm){
 	job_opening: frm.doc.job_opening
 		 },
 	callback: function(result){
-		// alert(JSON.stringify(result.message))
+		// alert(JSON.stringify(result.message)
 		console.log(result.message)
 		let arr = [];
         for (let i = 0; i < result.message.length; i++) {
@@ -49,6 +49,7 @@ get_applicants: function(frm){
 				row.job_applicant = applicant.name;
 				row.applicant_name = applicant.applicant_name;
 				row.applicant_mail_id = applicant.email_id;
+		
 				
 			  }
 

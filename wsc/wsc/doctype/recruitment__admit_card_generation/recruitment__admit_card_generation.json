@@ -10,13 +10,38 @@
  "field_order": [
   "exam_declaration",
   "exam_date",
+  "session",
+  "domicile",
   "column_break_3",
-  "exam_time",
   "center",
+  "position_name",
+  "exam_time",
+  "post_code",
+  "shift_type",
   "applicant_details_section",
   "applicant_number",
   "applicant_name",
+  "fathersspousesguardians_name",
+  "pwd",
+  "column_break_cgr6s",
+  "gender",
+  "caste_category",
+  "date_of_birth",
+  "address",
   "applicant_mail",
+  "image",
+  "section_break_jyssa",
+  "reportingentry_time_at_centre_for_first_shift",
+  "reportingentry_time_at_centre_for_second_shift",
+  "exam_start_time_first_shift",
+  "exam_start_time_second_shift",
+  "column_break_wpkzd",
+  "gate_closing_timing_at_the_centre_first_shift",
+  "gate_closing_timing_at_the_centre_second_shift",
+  "exam_end_time_first_shift",
+  "exam_end_time_second_shift",
+  "section_break_n8ese",
+  "admit_card_issuing_authority",
   "amended_from"
  ],
  "fields": [
@@ -27,6 +52,7 @@
    "options": "Recruitment Exam Declaration"
   },
   {
+   "fetch_from": "exam_declaration.exam_date",
    "fieldname": "exam_date",
    "fieldtype": "Data",
    "label": "Exam Date",
@@ -43,6 +69,7 @@
    "read_only": 1
   },
   {
+   "fetch_from": "exam_declaration.recruitment_exam_center",
    "fieldname": "center",
    "fieldtype": "Data",
    "label": "Center",
@@ -78,12 +105,173 @@
    "options": "Recruitment  Admit Card Generation",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "hidden": 1,
+   "label": "Image"
+  },
+  {
+   "fieldname": "session",
+   "fieldtype": "Select",
+   "label": "Session",
+   "options": "\nForenoon\nAfternoon"
+  },
+  {
+   "fetch_from": "exam_declaration.job_opening",
+   "fieldname": "position_name",
+   "fieldtype": "Link",
+   "label": "Position Name",
+   "options": "Job Opening"
+  },
+  {
+   "fetch_from": "exam_declaration.post_code",
+   "fieldname": "post_code",
+   "fieldtype": "Data",
+   "label": "Post Code"
+  },
+  {
+   "fieldname": "fathersspousesguardians_name",
+   "fieldtype": "Data",
+   "label": "Father's/Spouse's/Guardian's Name:",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_cgr6s",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Link",
+   "label": "Gender",
+   "options": "Gender",
+   "read_only": 1
+  },
+  {
+   "fieldname": "caste_category",
+   "fieldtype": "Link",
+   "label": "Caste Category",
+   "options": "Student Category",
+   "read_only": 1
+  },
+  {
+   "fieldname": "shift_type",
+   "fieldtype": "Select",
+   "label": "Shift Type",
+   "options": "\nFirst\nSecond"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "label": "Address",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_jyssa",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.shift_type==\"First\";",
+   "fetch_from": "exam_declaration.reporting__entry_time_at_centre_for_first_shift",
+   "fieldname": "reportingentry_time_at_centre_for_first_shift",
+   "fieldtype": "Data",
+   "label": "Reporting/Entry Time at Centre For First Shift",
+   "mandatory_depends_on": "eval:doc.shift_type==\"First\";"
+  },
+  {
+   "depends_on": "eval:doc.shift_type==\"Second\";",
+   "fetch_from": "exam_declaration.reporting__entry_time_at_centre_for_second_shift",
+   "fieldname": "reportingentry_time_at_centre_for_second_shift",
+   "fieldtype": "Data",
+   "label": "Reporting/Entry Time at Centre For Second Shift",
+   "read_only_depends_on": "eval:doc.shift_type==\"Second\";"
+  },
+  {
+   "depends_on": "eval:doc.shift_type==\"First\";",
+   "fetch_from": "exam_declaration.exam_time",
+   "fieldname": "exam_start_time_first_shift",
+   "fieldtype": "Data",
+   "label": "Exam Start Time (First Shift)",
+   "read_only_depends_on": "eval:doc.shift_type==\"First\";"
+  },
+  {
+   "depends_on": "eval:doc.shift_type==\"Second\";",
+   "fetch_from": "exam_declaration.exam_start_time_second_shift",
+   "fieldname": "exam_start_time_second_shift",
+   "fieldtype": "Data",
+   "label": "Exam Start Time (Second Shift)",
+   "read_only_depends_on": "eval:doc.shift_type==\"Second\";"
+  },
+  {
+   "fieldname": "column_break_wpkzd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.shift_type==\"First\";",
+   "fetch_from": "exam_declaration.gate_closing_timing_at_the_centre_first_shift",
+   "fieldname": "gate_closing_timing_at_the_centre_first_shift",
+   "fieldtype": "Data",
+   "label": "Gate Closing Timing at the Centre First Shift",
+   "read_only_depends_on": "eval:doc.shift_type==\"First\";"
+  },
+  {
+   "depends_on": "eval:doc.shift_type==\"Second\";",
+   "fetch_from": "exam_declaration.gate_closing_timing_at_the_centre_second_shift",
+   "fieldname": "gate_closing_timing_at_the_centre_second_shift",
+   "fieldtype": "Data",
+   "label": "Gate Closing Timing at the Centre Second Shift",
+   "read_only_depends_on": "eval:doc.shift_type==\"Second\";"
+  },
+  {
+   "depends_on": "eval:doc.shift_type==\"First\";",
+   "fetch_from": "exam_declaration.exam_end_time_first_shift",
+   "fieldname": "exam_end_time_first_shift",
+   "fieldtype": "Data",
+   "label": "Exam End Time (First Shift)",
+   "read_only_depends_on": "eval:doc.shift_type==\"First\";"
+  },
+  {
+   "depends_on": "eval:doc.shift_type==\"Second\";",
+   "fetch_from": "exam_declaration.exam_end_time_second_shift",
+   "fieldname": "exam_end_time_second_shift",
+   "fieldtype": "Data",
+   "label": "Exam End Time (Second Shift)",
+   "read_only_depends_on": "eval:doc.shift_type==\"Second\";"
+  },
+  {
+   "fieldname": "pwd",
+   "fieldtype": "Data",
+   "label": "PWD",
+   "read_only": 1
+  },
+  {
+   "fieldname": "domicile",
+   "fieldtype": "Data",
+   "label": "Domicile"
+  },
+  {
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "Date of Birth",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_n8ese",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "admit_card_issuing_authority",
+   "fieldtype": "Attach Image",
+   "label": "Admit Card Issuing Authority",
+   "reqd": 1
   }
  ],
+ "image_field": "image",
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-26 13:03:31.305133",
+ "modified": "2023-11-16 10:27:08.402882",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Recruitment  Admit Card Generation",

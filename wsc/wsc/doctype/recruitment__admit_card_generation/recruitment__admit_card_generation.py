@@ -5,8 +5,16 @@ import frappe
 from frappe.model.document import Document
 
 class RecruitmentAdmitCardGeneration(Document):
-	pass
+	def on_submit(self):
+		print("\n\n\nHJEjadfslk")
+		self.admit_card_status()
 
+	def admit_card_status(self):
+			
+		    frappe.db.sql("""UPDATE `tabJob Applicant Details` as JAD INNER JOIN `tabRecruitment  Admit Card Generation` as JA
+							ON JAD.job_applicant=JA.applicant_number
+							SET JAD.admit_card_status = "1" where JAD.parenttype="Recruitment Exam Declaration";""")
+		
 @frappe.whitelist()
 def fetch_applicants(docname):
     # if docname.exam_declaration:
@@ -18,11 +26,9 @@ def fetch_applicants(docname):
 @frappe.whitelist()
 def get_applicant_details(applicant_number):
 	applicant = frappe.get_doc("Job Applicant",applicant_number)
-	print("\n\n\nApplicant")
-	print(applicant)
-	print(applicant.applicant_name)
-	print(applicant.email_id)
-	return {"applicant_name":applicant.applicant_name,"applicant_email":applicant.email_id}
+	print("\n\n\nEHHENA")
+	return {"applicant_name":applicant.applicant_name,"applicant_email":applicant.email_id,'caste_category':applicant.caste_category,'domicile':applicant.domicile,'address':applicant.address,'date_of_birth':applicant.date_of_birth,'pwd':applicant.pwd,'fathersspousesguardians_name':applicant.fathersspousesguardians_name}
+
 
 
 
