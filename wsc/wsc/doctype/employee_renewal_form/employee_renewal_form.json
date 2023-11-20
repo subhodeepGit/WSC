@@ -18,6 +18,7 @@
   "department_head",
   "branch",
   "column_break_l2gfl",
+  "date",
   "company",
   "date_of_joining",
   "department",
@@ -29,10 +30,21 @@
   "present_contract_end_date",
   "employee_re_engagement_section_section",
   "status",
+  "section_break_l66lq",
   "new_contract_start_date",
   "column_break_ktslj",
   "revised_ctc",
   "new_contract_end_date",
+  "last_appraisal_details_section",
+  "appraisal_document",
+  "key_work_goals",
+  "grade",
+  "section_break_gu8v5",
+  "ros_comment",
+  "column_break_wwp1x",
+  "department_head_comment",
+  "column_break_uqxii",
+  "director_comment",
   "amended_from"
  ],
  "fields": [
@@ -135,7 +147,7 @@
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "eval:(doc.status!=\"Pending\" && doc.status!=\"Pending\")",
+   "depends_on": "eval:(doc.status==\"Pending Approval From Director\" && doc.status==\"Pending Approval From Director\")",
    "fieldname": "revised_ctc",
    "fieldtype": "Currency",
    "label": "Revised CTC"
@@ -164,18 +176,18 @@
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "eval:(doc.status==\"Approved By Director Admin\" && doc.status==\"Approved By Director Admin\")",
+   "depends_on": "eval:(doc.status==\"Pending Approval From Director\" && doc.status==\"Pending Approval From Director\")",
    "fieldname": "new_contract_start_date",
    "fieldtype": "Date",
    "label": "New Contract Start Date",
-   "mandatory_depends_on": "eval:(doc.status!=\"Pending\" && doc.status!=\"Pending\")"
+   "mandatory_depends_on": "eval:(doc.status==\"Pending Approval From Director\" && doc.status==\"Pending Approval From Director\")"
   },
   {
-   "depends_on": "eval:(doc.status==\"Approved By Director Admin\" && doc.status==\"Approved By Director Admin\")",
+   "depends_on": "eval:(doc.status==\"Pending Approval From Director\" && doc.status==\"Pending Approval From Director\")",
    "fieldname": "new_contract_end_date",
    "fieldtype": "Date",
    "label": "New Contract End Date",
-   "mandatory_depends_on": "eval:(doc.status!=\"Pending\" && doc.status!=\"Pending\")"
+   "mandatory_depends_on": "eval:(doc.status==\"Pending Approval From Director\" && doc.status==\"Pending Approval From Director\")"
   },
   {
    "fetch_from": "employee.branch",
@@ -190,7 +202,7 @@
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Employee Re-engagement",
+   "options": "Employee Renewal Form",
    "print_hide": 1,
    "read_only": 1
   },
@@ -207,12 +219,85 @@
    "fieldtype": "Data",
    "hidden": 1,
    "label": "Department Head"
+  },
+  {
+   "fieldname": "ros_comment",
+   "fieldtype": "Small Text",
+   "label": "ROs Comment",
+   "mandatory_depends_on": "eval:doc.status==\"Pending Approval From Reporting Authority\"",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "column_break_wwp1x",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "department_head_comment",
+   "fieldtype": "Small Text",
+   "label": "Department Head Comment",
+   "mandatory_depends_on": "eval:doc.status==\"Pending Approval From Department Head\"",
+   "permlevel": 2
+  },
+  {
+   "fieldname": "column_break_uqxii",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "director_comment",
+   "fieldtype": "Small Text",
+   "label": "Director Comment",
+   "mandatory_depends_on": "eval:doc.status==\"Pending Approval From Director\"",
+   "permlevel": 3
+  },
+  {
+   "fieldname": "section_break_l66lq",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_gu8v5",
+   "fieldtype": "Section Break",
+   "label": "Review and Comments"
+  },
+  {
+   "fieldname": "last_appraisal_details_section",
+   "fieldtype": "Section Break",
+   "label": "Last Appraisal Details"
+  },
+  {
+   "depends_on": "eval:(doc.status!=\"Pending\"&&doc.status!=\"Pending Approval From HR\")",
+   "fieldname": "appraisal_document",
+   "fieldtype": "Link",
+   "label": "Appraisal Document",
+   "options": "Employee Appraisal Portal",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:(doc.status!=\"Pending\"&&doc.status!=\"Pending Approval From HR\")",
+   "fieldname": "key_work_goals",
+   "fieldtype": "Table",
+   "label": "Key Work Goals",
+   "options": "Key Work Goals",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:(doc.status!=\"Pending\"&&doc.status!=\"Pending Approval From HR\")",
+   "fieldname": "grade",
+   "fieldtype": "Data",
+   "label": "Grade",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-03 15:36:00.719297",
+ "modified": "2023-11-17 15:59:42.702167",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Renewal Form",

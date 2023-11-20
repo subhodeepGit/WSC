@@ -1595,89 +1595,86 @@ def employee_comp_employee_email(doc):
 #Employee Re-engagement Notification
 
 def employee_reengagement_reporting_authority_mail(doc):
-    sub = "Reg:Employee Re-engagemeent Details"
+    sub = "Reg:Employee Renewal Details"
     
     msg = """<p>Dear Ma'am/Sir,</p><br>"""
-    msg += """<p>Kindly refer to the Employee Re-engagement Details below and navigate to the form by clicking on "Open Now".</p></br>"""
-    msg += "<b>---------------------Employee Resignation Details---------------------</b><br>"
-    msg += "<b>Employee Re-engagement ID:</b> {0}<br>".format(doc.get('name'))
+    msg += """<p>Kindly refer to the Employee Renewal Application Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+    msg += "<b>---------------------Employee Renewal Application Details---------------------</b><br>"
+    msg += "<b>Employee Renewal Form ID:</b> {0}<br>".format(doc.get('name'))
     msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
     msg += "<b>Employee Name:</b> {0}<br>".format(doc.get('employee_name'))
     msg += "<b>Department:</b> {0}<br>".format(doc.get('department'))
     msg += "<b>Designation:</b> {0}<br>".format(doc.get('designation'))
     # msg += "<b>Final Working Date:</b> {0}<br>".format(doc.get('final_working_date'))
 
-    reengagement_app_url = get_url_to_form('Employee Re-engagement', doc.get('name'))
+    reengagement_app_url = get_url_to_form('Employee Renewal Form', doc.get('name'))
     msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(reengagement_app_url)
 
-    send_mail(frappe.db.get_value("Employee Re-engagement",doc.get('name'),"reporting_authority"),sub,msg)
-    frappe.msgprint("Employee Re-engagement Details is sent to the Reporting Authority")
+    send_mail(frappe.db.get_value("Employee Renewal Form",doc.get('name'),"reporting_authority"),sub,msg)
+    frappe.msgprint("Employee Renewal Application Details is sent to the Reporting Authority")
 
 def employee_reengagement_department_head_mail(doc):
-    sub = "Reg:Employee Re-engagemeent Details"
+    sub = "Reg:Employee Renewal Details"
     
     msg = """<p>Dear Ma'am/Sir,</p><br>"""
-    msg += """<p>Kindly refer to the Employee Re-engagement Details below and navigate to the form by clicking on "Open Now".</p></br>"""
-    msg += "<b>---------------------Employee Resignation Details---------------------</b><br>"
-    msg += "<b>Employee Re-engagement ID:</b> {0}<br>".format(doc.get('name'))
+    msg += """<p>Kindly refer to the Employee Renewal Application Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+    msg += "<b>---------------------Employee Renewal Details---------------------</b><br>"
+    msg += "<b>Employee Renewal Form ID:</b> {0}<br>".format(doc.get('name'))
     msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
     msg += "<b>Employee Name:</b> {0}<br>".format(doc.get('employee_name'))
     msg += "<b>Department:</b> {0}<br>".format(doc.get('department'))
     msg += "<b>Designation:</b> {0}<br>".format(doc.get('designation'))
     # msg += "<b>Final Working Date:</b> {0}<br>".format(doc.get('final_working_date'))
 
-    reengagement_app_url = get_url_to_form('Employee Re-engagement', doc.get('name'))
+    reengagement_app_url = get_url_to_form('Employee Renewal Form', doc.get('name'))
     msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(reengagement_app_url)
 
     send_mail(frappe.db.get_value("Employee Separation",doc.get('name'),"department_head"),sub,msg)
-    frappe.msgprint("Employee Reengagement Details is sent to the Department Head")    
+    frappe.msgprint("Employee Renewal Application Details is sent to the Department Head")    
 
 def employee_reengagement_director_mail(doc):
-    sub = "Reg:Employee Re-engagemeent Details"
+    sub = "Reg:Employee Renewal Details"
     
     msg = """<p>Dear Ma'am/Sir,</p><br>"""
-    msg += """<p>Kindly refer to the Employee Re-engagement Details below and navigate to the form by clicking on "Open Now".</p></br>"""
-    msg += "<b>---------------------Employee Resignation Details---------------------</b><br>"
-    msg += "<b>Employee Re-engagement ID:</b> {0}<br>".format(doc.get('name'))
+    msg += """<p>Kindly refer to the Employee Renewal Application Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+    msg += "<b>---------------------Employee Renewal Details---------------------</b><br>"
+    msg += "<b>Employee Renewal Form ID:</b> {0}<br>".format(doc.get('name'))
     msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
     msg += "<b>Employee Name:</b> {0}<br>".format(doc.get('employee_name'))
     msg += "<b>Department:</b> {0}<br>".format(doc.get('department'))
     msg += "<b>Designation:</b> {0}<br>".format(doc.get('designation'))
     # msg += "<b>Final Working Date:</b> {0}<br>".format(doc.get('final_working_date'))
 
-    reengagement_app_url = get_url_to_form('Employee Re-engagement', doc.get('name'))
+    reengagement_app_url = get_url_to_form('Employee Renewal Form', doc.get('name'))
     msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(reengagement_app_url)
-
-    separation_app_url = get_url_to_form('Employee Separation', doc.get('name'))
-    msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(separation_app_url)
 
     recipients = frappe.get_all("User", filters={'role': 'Director'}, fields=['email'])
     recipient_emails = [recipient.get('email') for recipient in recipients]
 
     send_mail(recipient_emails, sub, msg)
-    frappe.msgprint("Employee Reengagement Details is sent to the Director")
+    frappe.msgprint("Employee Renewal Application Details is sent to the Director")
 
 def employee_reengagement_hr_mail(doc):
-    sub = "Reg:Employee Re-engagemeent Details"
+    sub = "Reg:Employee Renewal Details"
     
     msg = """<p>Dear Ma'am/Sir,</p><br>"""
-    msg += """<p>Kindly refer to the Employee Re-engagement Details below and navigate to the form by clicking on "Open Now".</p></br>"""
-    msg += "<b>---------------------Employee Resignation Details---------------------</b><br>"
-    msg += "<b>Employee Re-engagement ID:</b> {0}<br>".format(doc.get('name'))
+    msg += """<p>Kindly refer to the Employee Renewal Application Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+    msg += "<b>---------------------Employee Renewal Details---------------------</b><br>"
+    msg += "<b>Employee Renewal Form ID:</b> {0}<br>".format(doc.get('name'))
     msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
     msg += "<b>Employee Name:</b> {0}<br>".format(doc.get('employee_name'))
     msg += "<b>Department:</b> {0}<br>".format(doc.get('department'))
     msg += "<b>Designation:</b> {0}<br>".format(doc.get('designation'))
     # msg += "<b>Final Working Date:</b> {0}<br>".format(doc.get('final_working_date'))
 
-    reengagement_app_url = get_url_to_form('Employee Re-engagement', doc.get('name'))
+    reengagement_app_url = get_url_to_form('Employee Renewal Form', doc.get('name'))
     msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(reengagement_app_url)
 
     recipients = frappe.get_all("User", filters={'role':'HR Admin'}, fields=['email'])
     recipient_emails = [recipient.get('email') for recipient in recipients]
 
     send_mail(recipient_emails, sub, msg)
-    frappe.msgprint("Employee Reengagement Details status is sent to the HR")
+    frappe.msgprint("Employee Renewal Application Details status is sent to the HR")
 
 #####################################Recruitment Final Exam Result Declaration#################################################################################      
 def send_mail_to_jobapplicants_final_notification(doc):
