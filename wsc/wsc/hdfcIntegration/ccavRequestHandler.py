@@ -46,18 +46,35 @@ def ccavAxisResponseHandler():
     pg='axis'
     
     if selected_working_key == workingKey:              
-        plainText = res(request.form['encResp'],workingKey,pg)
+        plainText = res(request.form['encResp'],pg)
         # print(request.form['encResp'])	       
         # print("Output with workingKey:", workingKey)
         return plainText
     elif selected_working_key == workingKey2:        
-        plainText = res(request.form['encResp'],workingKey2,pg)
+        plainText = res(request.form['encResp'],pg)
         # print(request.form['encResp'])	       
         # print("Output with workingKey2:", workingKey2)
         return plainText
     else:
         print("Invalid working key selection")
 
+@app.route('/ccavAxisResponseHandlerProd', methods=['GET', 'POST'])
+def ccavAxisResponseHandlerProd():
+    
+    workingKey = '1DA6AD72FD8769B21BC7767A7508CF72'
+    workingKey2 = '1DA6AD72FD8769B21BC7767A7508CF72'
+    
+    selected_working_key = '1DA6AD72FD8769B21BC7767A7508CF72'      
+    pg='axis'
+    
+    if selected_working_key == workingKey:              
+        plainText = res(request.form['encResp'],pg)
+        return plainText
+    elif selected_working_key == workingKey2:        
+        plainText = res(request.form['encResp'],pg)
+        return plainText
+    else:
+        print("Invalid working key selection")
 
 # 	p_merchant_id = request.form['merchant_id']
 # 	p_order_id = request.form['order_id']

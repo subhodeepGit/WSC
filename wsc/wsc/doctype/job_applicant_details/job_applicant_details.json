@@ -8,7 +8,17 @@
  "field_order": [
   "job_applicant",
   "applicant_name",
-  "applicant_mail_id"
+  "applicant_mail_id",
+  "fathersspousesguardians_name",
+  "caste_category",
+  "gender",
+  "column_break_qpn09",
+  "applicant_photo",
+  "date_of_birth",
+  "pwd",
+  "address",
+  "year",
+  "admit_card_status"
  ],
  "fields": [
   {
@@ -16,27 +26,99 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Job Applicant",
-   "options": "Job Applicant"
+   "options": "Job Applicant",
+   "read_only": 1
   },
   {
    "fetch_from": "job_applicant.applicant_name",
    "fieldname": "applicant_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Applicant Name"
+   "label": "Applicant Name",
+   "read_only": 1
   },
   {
    "fetch_from": "job_applicant.email_id",
    "fieldname": "applicant_mail_id",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Applicant Mail Id"
+   "label": "Applicant Mail Id",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "job_applicant.fathersspousesguardians_name",
+   "fieldname": "fathersspousesguardians_name",
+   "fieldtype": "Data",
+   "label": "Father's/Spouse's/Guardian's Name:",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_qpn09",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "job_applicant.gender",
+   "fieldname": "gender",
+   "fieldtype": "Link",
+   "label": "Gender",
+   "options": "Gender",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "job_applicant.date_of_birth",
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "Date of Birth",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "job_applicant.pwd",
+   "fieldname": "pwd",
+   "fieldtype": "Data",
+   "label": "PWD",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "job_applicant.address",
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "label": "Address",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "job_applicant.caste_category",
+   "fieldname": "caste_category",
+   "fieldtype": "Link",
+   "label": "Caste Category",
+   "options": "Student Category",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "admit_card_status",
+   "fieldtype": "Check",
+   "label": "Is Admit Card Created ?"
+  },
+  {
+   "fetch_from": "job_applicant.application_year",
+   "fieldname": "year",
+   "fieldtype": "Link",
+   "label": "Year",
+   "options": "Year",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "job_applicant.image",
+   "fieldname": "applicant_photo",
+   "fieldtype": "Attach Image",
+   "label": "Applicant Photo",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-05-30 12:15:55.033687",
+ "modified": "2023-11-15 16:02:58.667514",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Job Applicant Details",
