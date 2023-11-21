@@ -3,10 +3,15 @@
 
 import frappe
 from frappe.model.document import Document
-
+from frappe.utils.pdf import get_pdf
+from frappe.website.serve import get_response_content
 
 class testdoctype(Document):
-	pass
+	def validate(self):
+		html = get_response_content("printview")
+		a=get_pdf(html, options={}, output=None)
+		self.text_field="%s"%(a)
+		pass
 
 import frappe
 @frappe.whitelist(allow_guest=True)
