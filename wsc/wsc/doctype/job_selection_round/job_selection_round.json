@@ -14,9 +14,10 @@
  "fields": [
   {
    "fieldname": "name_of_rounds",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Name of Rounds",
+   "options": "Rounds Name",
    "reqd": 1
   },
   {
@@ -47,7 +48,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-10-26 15:46:38.077244",
+ "modified": "2023-11-14 11:13:21.979328",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Job Selection Round",
