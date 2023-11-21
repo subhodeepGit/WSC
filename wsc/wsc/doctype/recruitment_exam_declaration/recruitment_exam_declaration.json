@@ -60,8 +60,9 @@
   },
   {
    "fieldname": "selection_round",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Selection Round",
+   "options": "Rounds Name",
    "reqd": 1
   },
   {
@@ -192,7 +193,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-15 16:03:29.638624",
+ "modified": "2023-11-20 16:31:22.040644",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Recruitment Exam Declaration",

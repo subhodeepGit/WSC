@@ -58,13 +58,18 @@ def update_job_opening(doc):
 
 	job_opening.save()
 
+# @frappe.whitelist()
+# def get_selectionrounds(job_opening):
+# 	selection_rounds = frappe.get_all('Job Selection Round' ,{'parent':job_opening}, ['name_of_rounds'],order_by='idx asc')
+# 	print("\n\n\n")
+# 	print(selection_rounds)
+# 	return selection_rounds
 @frappe.whitelist()
-def get_selectionrounds(job_opening):
-	selection_rounds = frappe.get_all('Job Selection Round' ,{'parent':job_opening}, ['name_of_rounds'],order_by='idx asc')
-	print("\n\n\n")
-	print(selection_rounds)
-	return selection_rounds
-
+def get_selectionround(doctype, txt, searchfield, start, page_len, filters):
+    fltr = {"parent":filters.get("job_opening")}
+    # if txt:
+    #     fltr.update({'semester': ['like', '%{}%'.format(txt)]})
+    return frappe.get_all("Job Selection Round",fltr,['name_of_rounds'], as_list=1)
 @frappe.whitelist()
 def get_job_applicants(job_opening):
 	job_applicants = frappe.db.get_all("Job Applicant",{"job_title":job_opening,},['name','applicant_name','email_id','current_status'])
