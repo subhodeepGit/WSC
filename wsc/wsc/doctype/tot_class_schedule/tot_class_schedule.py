@@ -40,7 +40,9 @@ class ToTClassSchedule(Document):
 		self.validate_date()
 
 	def validate_date(self):
-		academic_year, academic_term = frappe.db.get_value("Participant Group", self.participant_group_id, ["academic_year", "academic_term"])
+		# academic_year, academic_term = frappe.get_value("Participant Group", self.participant_group_id, ["academic_year", "academic_term"])
+		academic_year=self.academic_year
+		academic_term=self.academic_term
 		self.scheduled_date = frappe.utils.getdate(self.scheduled_date)
 
 		if academic_term:
