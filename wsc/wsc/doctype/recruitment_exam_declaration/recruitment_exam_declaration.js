@@ -2,25 +2,34 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Recruitment Exam Declaration', {
-job_opening: function(frm){
-	frappe.call({
-	method: 'wsc.wsc.doctype.recruitment_exam_declaration.recruitment_exam_declaration.get_selectionrounds',
- args:{
-	job_opening: frm.doc.job_opening
-		 },
-	callback: function(result){
-		// alert(JSON.stringify(result.message))
-		console.log(result.message)
-		let arr = [];
-        for (let i = 0; i < result.message.length; i++) {
-          arr.push(result.message[i].name_of_rounds);
-        }
-        // set_field_options('selection_round','option' ,arr)
-        frm.set_df_property('selection_round', 'options', arr);
-      }
-    });
-  },
-  
+// job_opening: function(frm){
+// 	frappe.call({
+// 	method: 'wsc.wsc.doctype.recruitment_exam_declaration.recruitment_exam_declaration.get_selectionrounds',
+//  args:{
+// 	job_opening: frm.doc.job_opening
+// 		 },
+// 	callback: function(result){
+// 		// alert(JSON.stringify(result.message)
+// 		console.log(result.message)
+// 		let arr = [];
+//         for (let i = 0; i < result.message.length; i++) {
+//           arr.push(result.message[i].name_of_rounds);
+//         }
+//         // set_field_options('selection_round','option' ,arr)
+//         frm.set_df_property('selection_round', 'options', arr);
+//       }
+//     });
+//   },
+	refresh(frm){
+		frm.set_query('selection_round', function() {
+			return{
+				query: 'wsc.wsc.doctype.recruitment_exam_declaration.recruitment_exam_declaration.get_selectionround',
+				filters: {
+					job_opening: frm.doc.job_opening
+				}
+			}
+		});
+	},
   setup(frm){
 	frm.set_query("recruitment_exam_center",function(){
 		return{
@@ -49,6 +58,7 @@ get_applicants: function(frm){
 				row.job_applicant = applicant.name;
 				row.applicant_name = applicant.applicant_name;
 				row.applicant_mail_id = applicant.email_id;
+		
 				
 			  }
 

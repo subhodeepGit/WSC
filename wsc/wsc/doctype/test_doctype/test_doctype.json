@@ -9,7 +9,8 @@
  "engine": "InnoDB",
  "field_order": [
   "first_name",
-  "last_name"
+  "last_name",
+  "text_field"
  ],
  "fields": [
   {
@@ -21,11 +22,16 @@
    "fieldname": "last_name",
    "fieldtype": "Data",
    "label": "Last name"
+  },
+  {
+   "fieldname": "text_field",
+   "fieldtype": "Text Editor",
+   "label": "text field"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-06-06 11:58:00.008941",
+ "modified": "2023-11-21 13:07:22.579707",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "test-doctype",

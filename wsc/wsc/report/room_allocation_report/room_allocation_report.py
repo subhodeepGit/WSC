@@ -12,54 +12,77 @@ def execute(filters=None):
 	return columns, data
 
 def get_data(filters=None):
-	print("\n\n\n\n\n\n")
 	room_no=filters.get('room_no')
 	from_date=filters.get('from_date')
 	to_date=filters.get("to_date")
 	data=[]
-	# print(room_no,from_date,to_date)
-	filter_data={}
+
+	filter_data_tot={}
+	filter_data=""
 	room_data=[]
-	filter_data['schedule_date']=["between", [from_date, to_date]]
+	filter_data_tot['scheduled_date']=["between", [from_date, to_date]]
 	if room_no!=None :
-		filter_data['room']=room_no
+		filter_data="And cs.room='%s' "%(room_no)
+		filter_data_tot['room_name']=room_no
 		room_data=frappe.get_all("Room",{"name":room_no})
 	else:
 		room_data=frappe.get_all("Room")	
 
 
 	date_data=all_date_bwn_from_to_date(from_date,to_date)
-	result = frappe.get_all("Course Schedule", filters=filter_data,
-						 						fields=['room','student_group','academic_year',"academic_term","program",
-				  						"course","course_name","school_house","schedule_date","from_time","to_time"],
-										order_by="from_time asc")
-	# final_list=[]
-	# for t in room_data:
-	# 	a={'room':t['name'],'student_group':'','academic_year':'',"academic_term":'',"program":'',
-	#  		"course":'',"course_name":'',"school_house":'',"schedule_date":'',"from_time":'',"to_time":''}
-	# 	{
-    #         "fieldname": "room", "fieldname": "student_group","fieldname": "academic_year","fieldname": "academic_term","fieldname": "course_type","fieldname": "course",
-	# 		"fieldname": "program","fieldname": "course", "fieldname": "course_name", "fieldname": "school_house", "fieldname": "schedule_date","fieldname": "from_time",
-	# 		"fieldname": "to_time",
-    #     },
-	# 	{
-    #         "label": _("Duration Of Class"),
-    #         "fieldname": "duration_of_class",
-    #         "fieldtype": "data",
-    #         "width":160 
-    #     },#
-	# 	{
-    #         "label": _("TOT Class"),
-    #         "fieldname": "tot_class",
-    #         "fieldtype": "data",
-    #         "width":160 
-    #     }
-	# 	final_list.append(a)
-	# 	for j in result:
-	# 		if t['name']==j['room']:
-	# 			print(j)
 
-	# data=result
+
+
+	result=frappe.db.sql(""" Select 
+							cs.room,cs.student_group,cs.academic_year,cs.academic_term,cs.program,cs.course,
+							cs.course_name,cs.school_house,cs.schedule_date,cs.from_time,cs.to_time,sg.programs,sg.program_grade
+							from `tabCourse Schedule` as cs
+							Join `tabStudent Group` as sg	on sg.name=cs.student_group
+					  		WHERE (cs.schedule_date BETWEEN '{from_date}' AND '{to_date}') {filter_data}
+							""".format(**{
+								"from_date":from_date,
+								"to_date":to_date,
+								"filter_data":filter_data
+							}),as_dict=True)
+	
+
+	result_tot=frappe.get_all("ToT Class Schedule",filters=filter_data_tot,fields=['room_name as room','participant_group_name as student_group',"academic_year",
+																				'academic_term','course_type as program_grade',"course_id as programs","semester as program",
+																				'module_id as course','module_name as course_name','from_time','to_time','scheduled_date as schedule_date'])
+
+
+	final_list=[]
+	for rooms in room_data:
+		a=	{
+		"room":'%s'%(rooms['name']), "student_group":"","academic_year":"","academic_term":"","course_type":"","course":"",
+		"program":"","course":"", "course_name":"", "school_house":"", "schedule_date":"","from_time":"",
+		"duration_of_class":"","to_time":"","tot_class":"",
+		}
+		final_list.append(a)
+		for date in date_data:
+			for course_schedule in result:
+				if course_schedule['room']==rooms['name'] and course_schedule['schedule_date']==date:					
+					a=	{
+					"room":'', "student_group":"%s"%(course_schedule['student_group']),"academic_year":"%s"%(course_schedule['academic_year']),"academic_term":"%s"%(course_schedule['academic_term']),
+					"course_type":"%s"%(course_schedule["program_grade"]),"course":"%s"%(course_schedule["programs"]),"program":"%s"%(course_schedule['program']),
+					"module_id":"%s"%(course_schedule['course']), "module_name":"%s"%(course_schedule['course_name']), "school_house":"%s"%(course_schedule['school_house']), 
+					"schedule_date":date,"from_time":"%s"%(course_schedule['from_time']),
+					"duration_of_class":"%s"%(course_schedule['to_time']-course_schedule['from_time']),"to_time":"%s"%(course_schedule['to_time']),"tot_class":"No",
+					}
+					final_list.append(a)
+			for course_schedule in result_tot:
+				if course_schedule['room']==rooms['name'] and course_schedule['schedule_date']==date:					
+					a=	{
+					"room":'', "student_group":"%s"%(course_schedule['student_group']),"academic_year":"%s"%(course_schedule['academic_year']),"academic_term":"%s"%(course_schedule['academic_term']),
+					"course_type":"%s"%(course_schedule["program_grade"]),"course":"%s"%(course_schedule["programs"]),"program":"%s"%(course_schedule['program']),
+					"module_id":"%s"%(course_schedule['course']), "module_name":"%s"%(course_schedule['course_name']), "school_house":"", 
+					"schedule_date":date,"from_time":"%s"%(course_schedule['from_time']),
+					"duration_of_class":"%s"%(course_schedule['to_time']-course_schedule['from_time']),"to_time":"%s"%(course_schedule['to_time']),"tot_class":"Yes",
+					}
+					final_list.append(a)		
+
+
+	data=final_list
 	return data
 
 
@@ -76,7 +99,8 @@ def all_date_bwn_from_to_date(from_date,to_date):
 	
 	date_data=[]
 	for single_date in daterange(start_date, end_date):
-		date_data.append(single_date.strftime("%Y-%m-%d"))
+		# date_data.append(single_date.strftime("%Y-%m-%d"))
+		date_data.append(single_date)
 	
 	return date_data		
 
@@ -97,9 +121,16 @@ def get_columns(filters=None):
         {
             "label": _("Student Group"),
             "fieldname": "student_group",
-            "fieldtype": "Link",
-			"options": "Student Group",
+			"fieldtype": "Data",
+            # "fieldtype": "Link",
+			# "options": "Student Group",
             "width":160
+        },
+		{
+            "label": _("Schedule Date"),
+            "fieldname": "schedule_date",
+            "fieldtype": "data",
+            "width":160 
         },
         {
             "label": _("Academic Year"),
@@ -123,7 +154,7 @@ def get_columns(filters=None):
             "width":160 
         },
         {
-            "label": _("Course Name"),
+            "label": _("Course ID"),
             "fieldname": "course",
             "fieldtype": "Link",
 			"options":"Programs",
@@ -138,16 +169,15 @@ def get_columns(filters=None):
         },
 		{
             "label": _("Module ID"),
-            "fieldname": "course",
+            "fieldname": "module_id",
             "fieldtype": "Link",
 			"options":"Course",
             "width":160 
         },
 		{
             "label": _("Module Name"),
-            "fieldname": "course_name",
+            "fieldname": "module_name",
             "fieldtype": "data",
-			"options":"Programs",
             "width":160 
         }, 	   
 		{
@@ -157,12 +187,7 @@ def get_columns(filters=None):
 			"options":"School House",
             "width":160 
         },
-		{
-            "label": _("Schedule Date"),
-            "fieldname": "schedule_date",
-            "fieldtype": "data",
-            "width":160 
-        },
+
 		{
             "label": _("From Time"),
             "fieldname": "from_time",

@@ -651,11 +651,11 @@ override_doctype_dashboards = {
 # ]
 
 # fixtures = [
-# 	{"dt": "Custom DocPerm", "filters": [
-# 		["parent", "not in", ["DocType"]],
-#         ["parent", "in", ["Material Request","Item","Warehouse","Address","Contact","Workflow State","Department"]],
-#         ["role", "in", ["Requisitioner"]]
-# 	]},
+	# {"dt": "Custom DocPerm", "filters": [
+	# 	["parent", "not in", ["DocType"]],
+    #     ["parent", "in", ["Material Request","Item","Warehouse","Address","Contact","Workflow State","Department"]],
+    #     ["role", "in", ["Requisitioner"]]
+	# ]},
     # {"dt": "Role","filters": [
     #     ["name", "in", ["Requisitioner"]]
     # ]},
@@ -677,7 +677,7 @@ override_doctype_dashboards = {
 #         [
 #             "source_text", "in", ["Department Email ID"]
 #         ]
-#     ]}
+    # ]}
 #  ]
 website_context = {
     "favicon": "/assets/wsc/images/wsc.png",
