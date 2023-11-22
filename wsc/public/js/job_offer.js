@@ -16,6 +16,20 @@ frappe.ui.form.on('Job Offer', {
         if (frm.doc.is_reengagement === 1) {
             frm.remove_custom_button('Create Employee');
         }
-    }
+    },
+    setup:function(frm){
+		// frm.remove_custom_button("Add to Programs","Action");
+		frm.set_query("job_applicant_id", function() {
+			return {
+				filters: {
+					"job_title":frm.doc.job_opening,
+                    "application_year":frm.doc.year,
+                    "current_status":"Selected"
+				}
+			};
+		});
+	},
+
+
 });
 

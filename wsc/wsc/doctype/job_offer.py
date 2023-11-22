@@ -82,3 +82,4 @@ def get_staffing_plan_detail(designation, company, offer_date):
 	)
 
 	return frappe._dict(detail[0]) if (detail and detail[0].parent) else None
+
