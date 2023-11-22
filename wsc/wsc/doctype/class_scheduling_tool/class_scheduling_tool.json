@@ -44,6 +44,7 @@
    "reqd": 1
   },
   {
+   "fetch_from": "student_group.course",
    "fieldname": "course",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -53,6 +54,7 @@
    "reqd": 1
   },
   {
+   "fetch_from": "student_group.program",
    "fieldname": "program",
    "fieldtype": "Link",
    "label": "Program",
@@ -200,7 +202,7 @@
  "hide_toolbar": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-08-14 10:29:56.142878",
+ "modified": "2023-11-15 08:47:35.776623",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Class Scheduling Tool",
