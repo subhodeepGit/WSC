@@ -136,9 +136,7 @@
    "fieldname": "employee",
    "fieldtype": "Link",
    "label": "Employee",
-   "options": "Employee",
-   "read_only": 1,
-   "reqd": 1
+   "options": "Employee"
   },
   {
    "allow_on_submit": 1,
@@ -269,6 +267,7 @@
    "fetch_from": "student.annual_income",
    "fieldname": "annual_income",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Father's Annual Income",
    "read_only": 1
   },
@@ -301,6 +300,7 @@
    "fetch_from": "student.mothers_annual_income",
    "fieldname": "mothers_annual_income",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Mother's Annual Income",
    "read_only": 1
   },
@@ -414,7 +414,7 @@
    "link_fieldname": "room_allotment_no"
   }
  ],
- "modified": "2023-09-12 12:14:38.124663",
+ "modified": "2023-11-22 15:52:52.636674",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Room Allotment",
