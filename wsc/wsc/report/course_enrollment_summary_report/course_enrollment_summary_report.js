@@ -20,5 +20,21 @@ frappe.query_reports["Course Enrollment Summary Report"] = {
 			"width": 150,
 			"reqd": 1,
 		},
+		{
+			"fieldname": "district",
+			"label": __("District"),
+			"fieldtype": "Link",
+			"options": "Districts",
+		},
+		{
+			"fieldname": "blocks",
+			"label": __("Blocks"),
+			"fieldtype": "MultiSelectList",
+			"options": "Blocks",
+			get_data: function(txt) {
+				return frappe.db.get_link_options('Blocks', txt,{districts: frappe.query_report.get_filter_value("district")});
+			},
+			"width": 150,
+		},
 	]
 };

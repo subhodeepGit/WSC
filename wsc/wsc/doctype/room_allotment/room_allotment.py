@@ -51,7 +51,6 @@ class RoomAllotment(Document):
 				
 	# @frappe.whitelist()
 	def on_submit(doc):
-		print('\n\n\n')
 		room_id=doc.room_id
 		# room_info_vac=vacancy_quety_vali("Genaral",room_id)
 		# if room_info_vac["validity"][0]=="Approved":

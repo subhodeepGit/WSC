@@ -6,6 +6,7 @@ from frappe.model.document import Document
 from frappe.utils import comma_and, get_link_to_form,get_link_to_form, getdate, formatdate
 from frappe import msgprint, _
 from datetime import datetime, timedelta
+from frappe.utils import getdate, today
 
 class ToTParticipant(Document):
     def validate(self):
@@ -14,14 +15,35 @@ class ToTParticipant(Document):
         aadhar_number_validation(self)
         pin_code_validation(self)
         phone_no_vlaidation(self)    
+        validate_name(self)
         self.participant_name = " ".join(
         filter(None, [self.first_name, self.middle_name, self.last_name])
         )
         if self.pincode:
             if len(self.pincode)<6:
                 frappe.throw("<b>Pincode</b> must be 6 Digits")
-            
-        
+
+
+def validate_name(doc):
+    if doc.date_of_birth and getdate(doc.date_of_birth) >= getdate(today()):
+        frappe.throw(_("Date of Birth cannot be greater than today."))
+
+    if doc.date_of_birth and getdate(doc.date_of_birth) >= getdate(doc.joining_date):
+        frappe.throw(_("Date of Birth cannot be greater than Joining Date."))
+    if doc.first_name:
+        if not contains_only_characters(doc.first_name):
+            frappe.throw("First Name should be only characters")
+    if doc.middle_name:
+        if not contains_only_characters(doc.middle_name):
+            frappe.throw("Middle Name should be only characters")
+    if doc.last_name:
+        if not contains_only_characters(doc.last_name):
+            frappe.throw("Last Name should be only characters")
+
+def contains_only_characters(first_name):
+	return all(char.isalpha() or char.isspace() or char == '.' for char in first_name)     
+
+
 def phone_no_vlaidation(self):
     if self.participant_mobile_number:
         data=frappe.get_all("ToT Participant",{"participant_mobile_number":self.participant_mobile_number},['name'])
