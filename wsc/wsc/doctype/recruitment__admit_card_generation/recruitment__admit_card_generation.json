@@ -10,6 +10,7 @@
  "field_order": [
   "exam_declaration",
   "exam_date",
+  "selection_round",
   "session",
   "domicile",
   "column_break_3",
@@ -41,6 +42,12 @@
   "exam_end_time_first_shift",
   "exam_end_time_second_shift",
   "section_break_n8ese",
+  "date_of_skill_test",
+  "date_of_interview",
+  "column_break_flk6v",
+  "reporting_time_for_skill_test",
+  "reporting_time_for_interview",
+  "section_break_7amio",
   "admit_card_issuing_authority",
   "amended_from"
  ],
@@ -55,6 +62,7 @@
    "fetch_from": "exam_declaration.exam_date",
    "fieldname": "exam_date",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Exam Date",
    "read_only": 1
   },
@@ -65,6 +73,7 @@
   {
    "fieldname": "exam_time",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Exam Time",
    "read_only": 1
   },
@@ -113,6 +122,7 @@
    "label": "Image"
   },
   {
+   "depends_on": "eval:doc.selection_round==\"Written\"",
    "fieldname": "session",
    "fieldtype": "Select",
    "label": "Session",
@@ -156,6 +166,7 @@
    "read_only": 1
   },
   {
+   "depends_on": "eval:doc.selection_round==\"Written\"",
    "fieldname": "shift_type",
    "fieldtype": "Select",
    "label": "Shift Type",
@@ -169,7 +180,8 @@
   },
   {
    "fieldname": "section_break_jyssa",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Date & Time"
   },
   {
    "depends_on": "eval:doc.shift_type==\"First\";",
@@ -177,7 +189,8 @@
    "fieldname": "reportingentry_time_at_centre_for_first_shift",
    "fieldtype": "Data",
    "label": "Reporting/Entry Time at Centre For First Shift",
-   "mandatory_depends_on": "eval:doc.shift_type==\"First\";"
+   "mandatory_depends_on": "eval:doc.shift_type==\"First\";",
+   "read_only": 1
   },
   {
    "depends_on": "eval:doc.shift_type==\"Second\";",
@@ -185,6 +198,7 @@
    "fieldname": "reportingentry_time_at_centre_for_second_shift",
    "fieldtype": "Data",
    "label": "Reporting/Entry Time at Centre For Second Shift",
+   "read_only": 1,
    "read_only_depends_on": "eval:doc.shift_type==\"Second\";"
   },
   {
@@ -193,6 +207,7 @@
    "fieldname": "exam_start_time_first_shift",
    "fieldtype": "Data",
    "label": "Exam Start Time (First Shift)",
+   "read_only": 1,
    "read_only_depends_on": "eval:doc.shift_type==\"First\";"
   },
   {
@@ -201,6 +216,7 @@
    "fieldname": "exam_start_time_second_shift",
    "fieldtype": "Data",
    "label": "Exam Start Time (Second Shift)",
+   "read_only": 1,
    "read_only_depends_on": "eval:doc.shift_type==\"Second\";"
   },
   {
@@ -213,6 +229,7 @@
    "fieldname": "gate_closing_timing_at_the_centre_first_shift",
    "fieldtype": "Data",
    "label": "Gate Closing Timing at the Centre First Shift",
+   "read_only": 1,
    "read_only_depends_on": "eval:doc.shift_type==\"First\";"
   },
   {
@@ -221,6 +238,7 @@
    "fieldname": "gate_closing_timing_at_the_centre_second_shift",
    "fieldtype": "Data",
    "label": "Gate Closing Timing at the Centre Second Shift",
+   "read_only": 1,
    "read_only_depends_on": "eval:doc.shift_type==\"Second\";"
   },
   {
@@ -229,6 +247,7 @@
    "fieldname": "exam_end_time_first_shift",
    "fieldtype": "Data",
    "label": "Exam End Time (First Shift)",
+   "read_only": 1,
    "read_only_depends_on": "eval:doc.shift_type==\"First\";"
   },
   {
@@ -237,6 +256,7 @@
    "fieldname": "exam_end_time_second_shift",
    "fieldtype": "Data",
    "label": "Exam End Time (Second Shift)",
+   "read_only": 1,
    "read_only_depends_on": "eval:doc.shift_type==\"Second\";"
   },
   {
@@ -258,20 +278,68 @@
   },
   {
    "fieldname": "section_break_n8ese",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Date & Time"
   },
   {
    "fieldname": "admit_card_issuing_authority",
    "fieldtype": "Attach Image",
    "label": "Admit Card Issuing Authority",
    "reqd": 1
+  },
+  {
+   "fetch_from": "exam_declaration.selection_round",
+   "fieldname": "selection_round",
+   "fieldtype": "Link",
+   "label": "Selection Round",
+   "options": "Rounds Name"
+  },
+  {
+   "depends_on": "eval:doc.selection_round==\"Skill Test & Interview\";",
+   "fetch_from": "exam_declaration.date_of_skill_test",
+   "fieldname": "date_of_skill_test",
+   "fieldtype": "Date",
+   "label": "Date of Skill Test",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.selection_round==\"Skill Test & Interview\" || doc.selection_round==\"Interview\";",
+   "fetch_from": "exam_declaration.date_of_interview",
+   "fieldname": "date_of_interview",
+   "fieldtype": "Date",
+   "label": "Date of Interview",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_flk6v",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.selection_round==\"Skill Test & Interview\";",
+   "fetch_from": "exam_declaration.reporting_time_for_skill_test",
+   "fieldname": "reporting_time_for_skill_test",
+   "fieldtype": "Data",
+   "label": "Reporting Time for Skill Test",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.selection_round==\"Skill Test & Interview\" || doc.selection_round==\"Interview\";",
+   "fetch_from": "exam_declaration.reporting_time_for_interview",
+   "fieldname": "reporting_time_for_interview",
+   "fieldtype": "Data",
+   "label": "Reporting Time for Interview ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_7amio",
+   "fieldtype": "Section Break"
   }
  ],
  "image_field": "image",
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-16 10:27:08.402882",
+ "modified": "2023-11-22 15:39:38.892769",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Recruitment  Admit Card Generation",
