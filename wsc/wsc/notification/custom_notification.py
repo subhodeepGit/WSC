@@ -398,7 +398,7 @@ def program_enrollment_admitted(doc):
     msg="""<p>You are admitted in the Course <b>{0}</b></p><br>""".format(doc.get('programs'))
     msg+="""<b>---------------------Student Details---------------------</b><br>"""
     msg+="""<b>Student Name:</b>  {0}<br>""".format(doc.get('student_name'))
-    msg+="""<b>Student Batch:</b>  {0}<br>""".format(doc.get('student_batch_name') or '-')
+    # msg+="""<b>Student Batch:</b>  {0}<br>""".format(doc.get('student_batch_name') or '-')
     # msg+="""<b>Permanent Registration Number:</b>  {0}<br>""".format(doc.get('permanant_registration_number') or '-' )
     msg+="""<b>Course:</b>  {0}<br>""".format(doc.get('programs'))
     msg+="""<b>Semester:</b>  {0}<br>""".format(doc.get('program'))

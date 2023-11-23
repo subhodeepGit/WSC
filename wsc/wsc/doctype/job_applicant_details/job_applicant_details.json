@@ -12,6 +12,7 @@
   "fathersspousesguardians_name",
   "caste_category",
   "gender",
+  "selection_round",
   "column_break_qpn09",
   "applicant_photo",
   "date_of_birth",
@@ -113,12 +114,17 @@
    "fieldtype": "Attach Image",
    "label": "Applicant Photo",
    "read_only": 1
+  },
+  {
+   "fieldname": "selection_round",
+   "fieldtype": "Data",
+   "label": "Selection Round"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-11-15 16:02:58.667514",
+ "modified": "2023-11-22 16:30:24.791817",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Job Applicant Details",
