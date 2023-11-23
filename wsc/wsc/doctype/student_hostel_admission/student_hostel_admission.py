@@ -169,3 +169,27 @@ def get_non_alloted_stud(doctype, txt, searchfield, start, page_len, filters):
     # return frappe.get_all("Program Priority",fltr,['programs'], as_list=1)
 	return data
 
+
+@frappe.whitelist()
+def get_student(doctype, txt, searchfield, start, page_len,filters):
+	print('\n\n\n\n')
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join("STU."+field + " like %(txt)s" for field in searchfields)
+	programs=filters.get('programs')
+	academic_term=filters.get('academic_term')
+	academic_year=filters.get('academic_year')
+
+	student_details = frappe.db.sql("""SELECT STU.name,STU.student_name,STU.roll_no,STU.student_application_id FROM 
+				 			`tabCurrent Educational Details` as CED JOIN `tabStudent` as STU 
+				 			on STU.name=CED.parent WHERE (STU.{key} like %(txt)s or {scond}) and CED.programs='{programs}' and 
+				 			CED.academic_year='{academic_year}' and CED.academic_term='{academic_term}' and STU.hostel_required=1;
+				 							""".format(
+												**{
+												"key": searchfield,
+												"scond": searchfields,
+												"programs":programs,
+												"academic_year":academic_year,
+												"academic_term":academic_term
+											}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	
+	return student_details

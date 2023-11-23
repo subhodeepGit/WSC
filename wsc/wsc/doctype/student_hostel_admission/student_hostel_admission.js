@@ -14,6 +14,26 @@ frappe.ui.form.on('Student Hostel Admission', {
 				txt:frm.doc.hostel,
 			};
 		});
+		frm.set_query("academic_term", function () {
+			return {
+				filters: [
+                    ['academic_year','=',frm.doc.academic_year],
+				]
+			};
+		});
+		frm.set_query("student", function() {
+			return {
+				query: 'wsc.wsc.doctype.student_hostel_admission.student_hostel_admission.get_student',
+				filters:{
+						"programs":frm.doc.programs,
+						"academic_term": frm.doc.academic_term,
+						"academic_year": frm.doc.academic_year
+					}
+			};
+		});
+	},
+	academic_year:function(frm){
+		frm.set_value("academic_term","")
 	},
 	hostel_fee_applicable: function(frm) {
 		frappe.call({
@@ -54,16 +74,7 @@ frappe.ui.form.on('Student Hostel Admission', {
 				frappe.set_route("query-report", "General Ledger");
 			}, __("View"));
 		}
-		frm.set_query('student', function() {
-			return{
-				// query: 'wsc.wsc.doctype.student_hostel_admission.student_hostel_admission.get_non_alloted_stud',
-				filters: {
-					"hostel_required":1
-				},
-				
-			}
-		});
-	}
+	},
 })
 
 frappe.ui.form.on("Student Hostel Admission", "student", function (frm) {
