@@ -24,6 +24,16 @@ frappe.ui.form.on('Room Allotment', {
 				query: "wsc.wsc.doctype.room_allotment.room_allotment.hostel_req_query"
 			};
 		});
+
+		frm.set_query("employee", function() {
+			return {
+				query: "wsc.wsc.doctype.room_allotment.room_allotment.get_emp",
+				filters: {
+					"hostel":frm.doc.hostel_id,
+				}
+			};
+		});
+
 		frappe.call({
             method: "wsc.wsc.doctype.room_allotment.room_allotment.employee",
             // args: {

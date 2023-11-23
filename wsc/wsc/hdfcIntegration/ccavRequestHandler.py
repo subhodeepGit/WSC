@@ -46,12 +46,12 @@ def ccavAxisResponseHandler():
     pg='axis'
     
     if selected_working_key == workingKey:              
-        plainText = res(request.form['encResp'],pg)
+        plainText = res(request.form['encResp'],workingKey,pg)
         # print(request.form['encResp'])	       
         # print("Output with workingKey:", workingKey)
         return plainText
     elif selected_working_key == workingKey2:        
-        plainText = res(request.form['encResp'],pg)
+        plainText = res(request.form['encResp'],workingKey,pg)
         # print(request.form['encResp'])	       
         # print("Output with workingKey2:", workingKey2)
         return plainText
@@ -68,10 +68,10 @@ def ccavAxisResponseHandlerProd():
     pg='axis'
     
     if selected_working_key == workingKey:              
-        plainText = res(request.form['encResp'],pg)
+        plainText = res(request.form['encResp'],workingKey,pg)
         return plainText
     elif selected_working_key == workingKey2:        
-        plainText = res(request.form['encResp'],pg)
+        plainText = res(request.form['encResp'],workingKey,pg)
         return plainText
     else:
         print("Invalid working key selection")
