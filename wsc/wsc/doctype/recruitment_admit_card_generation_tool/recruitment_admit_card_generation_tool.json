@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{exam_declaration}-{exam_date}",
+ "autoname": "RAC-.####",
  "creation": "2023-06-01 16:32:42.686492",
  "default_view": "List",
  "doctype": "DocType",
@@ -38,9 +38,9 @@
    "fetch_from": "exam_declaration.exam_date",
    "fieldname": "exam_date",
    "fieldtype": "Data",
+   "hidden": 1,
    "in_list_view": 1,
-   "label": "Exam Date",
-   "reqd": 1
+   "label": "Exam Date"
   },
   {
    "fieldname": "column_break_3",
@@ -97,11 +97,12 @@
    "label": "Domicile"
   },
   {
+   "depends_on": "eval:doc.selection_round==\"Written\";",
    "fieldname": "session",
    "fieldtype": "Select",
    "label": "Session",
-   "options": "\nForenoon\nAfternoon",
-   "reqd": 1
+   "mandatory_depends_on": "eval:doc.selection_round==\"Written\";",
+   "options": "\nForenoon\nAfternoon"
   },
   {
    "fieldname": "position_name",
@@ -111,11 +112,12 @@
    "options": "Job Opening"
   },
   {
+   "depends_on": "eval:doc.selection_round==\"Written\";",
    "fieldname": "shift_type",
    "fieldtype": "Select",
    "label": "Shift Type",
-   "options": "\nFirst\nSecond",
-   "reqd": 1
+   "mandatory_depends_on": "eval:doc.selection_round==\"Written\";",
+   "options": "\nFirst\nSecond"
   },
   {
    "fetch_from": "exam_declaration.application_year",
@@ -134,11 +136,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-16 10:26:09.148987",
+ "modified": "2023-11-22 15:46:20.603291",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Recruitment Admit Card Generation Tool",
- "naming_rule": "Expression",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

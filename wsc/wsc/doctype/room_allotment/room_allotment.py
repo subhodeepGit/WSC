@@ -235,3 +235,22 @@ def get(name=None, filters=None, parent=None):
        return room_allotment_data[0]
     else:
         return {}
+	
+@frappe.whitelist()
+@frappe.validate_and_sanitize_search_inputs
+def get_emp(doctype, txt, searchfield, start, page_len, filters):
+	hostel=filters.get("hostel")
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join("EMP."+field + " like %(txt)s " for field in searchfields)
+	data=[]
+	if hostel:
+		data=frappe.db.sql(""" select EMP.name,EMP.employee_name 
+					 	from `tabEmployee Hostel Allotment` as EHA 
+					 	JOIN `tabEmployee` EMP on EMP.name=EHA.employees
+						where EHA.hostel_masters like '{hostel}' and EHA.start_date <=now() and EHA.end_date>=now() """.
+						format(**{
+							"key": searchfield,
+							"scond": searchfields,
+							"hostel":hostel
+						}))
+	return data

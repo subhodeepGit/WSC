@@ -34,6 +34,15 @@ frappe.ui.form.on('Recruitment Admit Card Generation Tool', {
             
 		}
 		// frappe.msgprint(__('Admit Cards created successfully.'))
+        frm.set_query('selection_round', function() {
+            return{
+                query: 'wsc.wsc.doctype.recruitment_exam_declaration.recruitment_exam_declaration.get_selectionround',
+                filters: {
+                    job_opening: frm.doc.job_opening
+                }
+            }
+        });
+    
 	},
 	
     get_applicant: function(frm) {
@@ -42,7 +51,8 @@ frappe.ui.form.on('Recruitment Admit Card Generation Tool', {
             method: 'wsc.wsc.doctype.recruitment_admit_card_generation_tool.recruitment_admit_card_generation_tool.fetch_applicants',
             args: {
                 recruitment_exam_declaration: frm.doc.exam_declaration,
-                year:frm.doc.year
+                year:frm.doc.year,
+                selection_round:frm.doc.selection_round,
             },
             callback: function(r) {
                 if (r.message) {
