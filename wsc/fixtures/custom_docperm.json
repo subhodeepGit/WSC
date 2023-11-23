@@ -96711,7 +96711,7 @@
       "export": 0,
       "if_owner": 0,
       "import": 0,
-      "modified": "2023-11-15 11:43:16.285365",
+      "modified": "2023-11-23 11:43:16.285365",
       "name": "e2076e88a1",
       "parent": "ToT Participant Selection",
       "permlevel": 0,
@@ -96722,7 +96722,7 @@
       "select": 1,
       "set_user_permissions": 0,
       "share": 0,
-      "submit": 0,
+      "submit": 1,
       "write": 1
      },
      {
@@ -96736,7 +96736,7 @@
       "export": 0,
       "if_owner": 0,
       "import": 0,
-      "modified": "2023-11-15 11:43:16.285365",
+      "modified": "2023-11-23 11:43:16.285365",
       "name": "accf982a40",
       "parent": "ToT Participant Selection",
       "permlevel": 0,
@@ -96747,7 +96747,7 @@
       "select": 1,
       "set_user_permissions": 0,
       "share": 0,
-      "submit": 0,
+      "submit": 1,
       "write": 1
      },
      {
