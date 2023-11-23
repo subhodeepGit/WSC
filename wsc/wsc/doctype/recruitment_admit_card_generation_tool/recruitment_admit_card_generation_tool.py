@@ -36,7 +36,12 @@ class RecruitmentAdmitCardGenerationTool(Document):
 			result.admit_card_issuing_authority=self.admit_card_issuing_authority
 			result.save()
 			result.submit()
-
+	@frappe.whitelist()
+	def get_selectionround(doctype, txt, searchfield, start, page_len, filters):
+		fltr = {"parent":filters.get("job_opening")}
+		# if txt:
+		#     fltr.update({'semester': ['like', '%{}%'.format(txt)]})
+		return frappe.get_all("Job Selection Round",fltr,['name_of_rounds'], as_list=1)
 	@frappe.whitelist()
 	def update_job_opening(self):
 		job_opening = frappe.get_all("Recruitment Exam Declaration",{"name":self.exam_declaration},["job_opening"])
@@ -63,6 +68,6 @@ class RecruitmentAdmitCardGenerationTool(Document):
 
 
 @frappe.whitelist()
-def fetch_applicants(recruitment_exam_declaration,year):
-	applicants = frappe.get_all("Job Applicant Details",filters={"parent":recruitment_exam_declaration,"admit_card_status":0,"year":year},fields=["job_applicant","applicant_name","applicant_mail_id",'gender','caste_category','address','date_of_birth','pwd','admit_card_status'])
+def fetch_applicants(recruitment_exam_declaration,year,selection_round):
+	applicants = frappe.get_all("Job Applicant Details",filters={"parent":recruitment_exam_declaration,"admit_card_status":0,"selection_round":selection_round,"year":year},fields=["job_applicant","applicant_name","applicant_mail_id",'gender','caste_category','address','date_of_birth','pwd','admit_card_status'])
 	return applicants
