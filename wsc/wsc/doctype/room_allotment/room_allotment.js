@@ -21,7 +21,12 @@ frappe.ui.form.on('Room Allotment', {
 		});
 		frm.set_query("student", function() {
 			return {
-				query: "wsc.wsc.doctype.room_allotment.room_allotment.hostel_req_query"
+				query: "wsc.wsc.doctype.room_allotment.room_allotment.hostel_req_query",
+				filters:{
+					"programs":frm.doc.programs,
+					"academic_term": frm.doc.academic_term,
+					"academic_year": frm.doc.academic_year
+				}
 			};
 		});
 
@@ -31,6 +36,13 @@ frappe.ui.form.on('Room Allotment', {
 				filters: {
 					"hostel":frm.doc.hostel_id,
 				}
+			};
+		});
+		frm.set_query("academic_term", function () {
+			return {
+				filters: [
+                    ['academic_year','=',frm.doc.academic_year],
+				]
 			};
 		});
 
@@ -44,10 +56,11 @@ frappe.ui.form.on('Room Allotment', {
                     frm.set_value("employee",r.message)
                 }
             } 
-            
-        });    
-			
+        });    		
 		
+	},
+	academic_year:function(frm){
+		frm.set_value("academic_term","")
 	},
 	student(frm) {
         frappe.call({

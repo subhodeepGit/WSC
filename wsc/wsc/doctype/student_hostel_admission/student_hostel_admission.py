@@ -172,7 +172,6 @@ def get_non_alloted_stud(doctype, txt, searchfield, start, page_len, filters):
 
 @frappe.whitelist()
 def get_student(doctype, txt, searchfield, start, page_len,filters):
-	print('\n\n\n\n')
 	searchfields = frappe.get_meta(doctype).get_search_fields()
 	searchfields = " or ".join("STU."+field + " like %(txt)s" for field in searchfields)
 	programs=filters.get('programs')
