@@ -33,7 +33,7 @@ class ToTParticipantEnrollment(Document):
 	def on_cancel(self):
 		participant_list=[]
 		for t in self.get("participant_list"):
-			if t.is_reported==1:
+			if t.is_reported==1 and t.program_enrollment:
 				doc=frappe.get_doc("Program Enrollment",t.program_enrollment)
 				doc.cancel()
 				participant_list.append(t.participant)

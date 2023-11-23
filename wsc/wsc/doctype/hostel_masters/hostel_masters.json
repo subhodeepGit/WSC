@@ -13,6 +13,7 @@
   "hostel_phone_number_1",
   "hostel_phone_number_2",
   "hostel_type",
+  "hostel_capcity",
   "column_break_6",
   "total_floors",
   "total_rooms",
@@ -150,11 +151,16 @@
    "fieldtype": "Phone",
    "label": "Hostel Phone Number 1",
    "reqd": 1
+  },
+  {
+   "fieldname": "hostel_capcity",
+   "fieldtype": "Int",
+   "label": "Hostel Capcity"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-13 16:33:34.896978",
+ "modified": "2023-11-22 15:32:58.019462",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Hostel Masters",

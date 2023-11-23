@@ -40,7 +40,6 @@
   {
    "fieldname": "room_allotment_no",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Room Allotment No.",
    "options": "Room Allotment"
   },
@@ -97,6 +96,7 @@
    "fetch_from": "room_allotment_no.hostel_id",
    "fieldname": "hostel",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Hostel",
    "read_only": 1
   },
@@ -138,10 +138,11 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-05-16 15:13:02.423702",
+ "modified": "2023-11-22 17:16:46.145916",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Hostel Attendance",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -159,5 +160,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

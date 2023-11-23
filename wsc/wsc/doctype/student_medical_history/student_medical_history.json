@@ -105,7 +105,7 @@
    "read_only": 1
   },
   {
-   "fetch_from": "allotment_number.room_id",
+   "fetch_from": "allotment_number.room_number",
    "fieldname": "room_number",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -389,7 +389,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-12 15:22:40.625867",
+ "modified": "2023-11-22 16:46:34.092035",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Medical History",

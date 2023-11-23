@@ -112,14 +112,13 @@
    "fieldname": "actual_capacity",
    "fieldtype": "Select",
    "label": "Current Room Capacity",
-   "options": "\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10",
+   "options": "\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10",
    "reqd": 1
   },
   {
    "fieldname": "block",
    "fieldtype": "Data",
-   "label": "Block",
-   "reqd": 1
+   "label": "Block"
   },
   {
    "fieldname": "hostel_and_room_info_section",
@@ -197,7 +196,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-11-02 11:02:22.515310",
+ "modified": "2023-11-22 15:40:09.755371",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Room Masters",
@@ -220,6 +219,7 @@
  "search_fields": "room_number,vacancy",
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "title_field": "room_number",
  "track_changes": 1,
  "track_seen": 1,

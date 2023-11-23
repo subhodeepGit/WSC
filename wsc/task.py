@@ -484,6 +484,11 @@ def await_transaction_update_status():             # bench execute wsc.task.awai
     awaited_status_transactions_0=frappe.get_all("OnlinePayment",filters=[["docstatus" ,"=",0],["posting_date", ">=", five_days_ago],["posting_date", "<=", current_datetime],['gateway_name','=','HDFC']])
     hdfc_file_logger.info("awaited_status_transactions_0 in draft:%s",awaited_status_transactions_0)
 
+
+    # awaited_status_transactions_3=frappe.get_all("OnlinePayment",filters=[["posting_date", ">=", five_days_ago],["posting_date", "<=", current_datetime],['gateway_name','=','HDFC']])
+    # hdfc_file_logger.info("awaited_status_transactions_0 in draft:%s",awaited_status_transactions_3)
+    # print("awaited_status_transactions_3----->",awaited_status_transactions_3)       #To update submitted transaction status
+
            
     for t0 in awaited_status_transactions_0:
         try:

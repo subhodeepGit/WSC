@@ -616,20 +616,56 @@ frappe.ui.form.on("Program Priority" , {
     }
 })
 
-frappe.ui.form.on("Exam Centre Preference" , "center_name" , function(frm , cdt , cdn){
-    var d = locals[cdt][cdn];
-    var a = 0;
-    // if (d.programs && frappe.user.has_role(["Student Applicant"])){
-    if (d.center_name){
-        a=frm.doc.exam_center_locations.length;
-        // frm.set_value("count_programs", a);
-        if(a>=3){
+// frappe.ui.form.on("Exam Centre Preference" , "center_name" , function(frm , cdt , cdn){
+// // frappe.ui.form.on("Exam Centre Preference" , function(frm , cdt , cdn){
+//     var d = locals[cdt][cdn];
+//     var a = 0;
+//     // a=frm.doc.exam_center_locations.length;
+//     console.log(a >= 2);
+//     // if (d.programs && frappe.user.has_role(["Student Applicant"])){
+//     if (d.center_name){
+//         a=frm.doc.exam_center_locations.length;
+//         // frm.set_value("count_programs", a);
+//         if(a>=2){
+//             frm.set_df_property('exam_center_locations', 'cannot_add_rows', true);
+//             frm.set_df_property('exam_center_locations', 'cannot_delete_rows', true);
+//             // frm.set_df_property('program_priority', 'cannot_insert_below', true);
+//         }
+//     }
+// })
+
+frappe.ui.form.on("Exam Centre Preference" , {
+    // center_name:function(frm){
+    //     console.log(frm.doc.exam_center_locations);
+    // },
+    exam_center_locations_add:function(frm , cdt ,cdn){
+        var d = locals[cdt][cdn]
+        var a = frm.doc.exam_center_locations.length
+
+        if( a > 2 ){
             frm.set_df_property('exam_center_locations', 'cannot_add_rows', true);
-            frm.set_df_property('exam_center_locations', 'cannot_delete_rows', true);
-            // frm.set_df_property('program_priority', 'cannot_insert_below', true);
         }
-    }
-})
+        // console.log(frm.doc.exam_center_locations.length);
+        // frm.fields_dict['exam_center_locations'].grid.get_field('center_name').get_query = function(doc){
+        //     var exam_center_list = [];
+        //     // if(!doc.__islocal) exam_center_list.push(doc.name)
+        //     $.each(doc.exam_center_locations , function(idx , val){
+        //         if (val.center_name) exam_center_list.push(val.center_name)
+        //     })
+            
+        //     return { filters:[
+        //                 ['Entrance exam select' , 'name' , 'not in' , exam_center_list] , 
+        //                 ['docstatus','=',1] , 
+        //                 ['academic_year' , '=' , frm.doc.academic_year] , 
+        //                 ['academic_term' , '=' , frm.doc.academic_term] ,
+        //                 ['state' , '=' , d.state] , 
+        //                 ['district' , '=' , d.districts] , 
+        //                 ['available_center' , '=' , 1],
+        //                 ['docstatus' , '=' , 1]
+        //             ]}
+        // }
+    },
+ })
 
 frappe.ui.form.on("Counseling Based Program Priority","programs", function(frm, cdt, cdn) {
     var d = locals[cdt][cdn];

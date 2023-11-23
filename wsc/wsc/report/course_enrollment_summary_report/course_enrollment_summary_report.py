@@ -15,6 +15,17 @@ def execute(filters=None):
 def get_data(filters):
 	academic_year= filters.get('academic_year')
 	academic_term=filters.get('academic_term')
+	add_list=''
+	if filters.get('district'):
+		district=filters.get('district')
+		add_list=add_list+" and S.district='%s' "%(district)
+	if filters.get('blocks'):
+		blocks=filters.get('blocks')
+		if len(blocks)==1:
+			add_list=add_list+" and S.block= '%s' "%(blocks[0])
+		else:
+			add_list=add_list+" and S.block IN  %s "%(str(tuple(blocks)))
+
 	data=[]
 	if academic_term and academic_year:
 		gender_data=get_gender()
@@ -22,21 +33,95 @@ def get_data(filters):
 		course_data=get_course()
 		for t in course_data:
 			dic_data={}
-			total=frappe.db.count("Program Enrollment",{"programs":t['name'],"docstatus":1})
+				
+			data_t=frappe.db.sql(""" select count(PE.name) as total
+				 				from `tabProgram Enrollment` PE
+				 				JOIN `tabStudent` S on S.name=PE.student
+				 			where PE.programs='{program}' and  PE.academic_year='{academic_year}' and PE.academic_term='{academic_term}' 
+							and PE.docstatus=1 {add_list}
+				""".format(
+					**{
+						"program":t['name'],
+						"academic_term":academic_term,
+						"academic_year":academic_year,
+						"add_list":add_list
+					}),as_dict=True)
+			
+			# total=frappe.db.count("Program Enrollment",{"programs":t['name'],"academic_year":academic_year,"academic_term":academic_term,"docstatus":1})
+			total=data_t[0]['total']
 			dic_data['course']=t['name']
 			dic_data['total']=total
 			for j in gender_data:
 				fieldname=j['name'].replace(" ", "")
-				output=frappe.db.count("Program Enrollment",{"programs":t['name'],"gender":j['name'],"docstatus":1})
-				dic_data['%s'%(fieldname)]=output
+
+				data_t=frappe.db.sql(""" select count(PE.name) as total
+				 				from `tabProgram Enrollment` PE
+				 				JOIN `tabStudent` S on S.name=PE.student
+				 			where PE.programs='{program}' and  PE.academic_year='{academic_year}' and PE.academic_term='{academic_term}' 
+							and PE.docstatus=1 and PE.gender='{gender}' {add_list}
+				""".format(
+					**{
+						"program":t['name'],
+						"academic_term":academic_term,
+						"academic_year":academic_year,
+						"add_list":add_list,
+						"gender":j['name']
+					}),as_dict=True)
+
+				# output=frappe.db.count("Program Enrollment",{"programs":t['name'],"gender":j['name'],"academic_year":academic_year,"academic_term":academic_term,"docstatus":1})
+				dic_data['%s'%(fieldname)]=data_t[0]['total']
+
 			for j in student_category_data:
 				fieldname=j['name'].replace(" ", "")
-				output=frappe.db.count("Program Enrollment",{"programs":t['name'],"student_category":j['name'],"docstatus":1})
-				dic_data['%s'%(fieldname)]=output
-			provisional_admission=frappe.db.count("Program Enrollment",{"programs":t['name'],"admission_status":"Provisional Admission","docstatus":1})
-			dic_data['provisional_admission']=provisional_admission
-			admitted=frappe.db.count("Program Enrollment",{"programs":t['name'],"admission_status":"Admitted","docstatus":1})	
-			dic_data['admitted']=admitted
+				data_t=frappe.db.sql(""" select count(PE.name) as total
+				 				from `tabProgram Enrollment` PE
+				 				JOIN `tabStudent` S on S.name=PE.student
+				 			where PE.programs='{program}' and  PE.academic_year='{academic_year}' and PE.academic_term='{academic_term}' 
+							and PE.docstatus=1 and PE.student_category='{student_category}' {add_list}
+				""".format(
+					**{
+						"program":t['name'],
+						"academic_term":academic_term,
+						"academic_year":academic_year,
+						"add_list":add_list,
+						"student_category":j['name']
+					}),as_dict=True)
+				
+				# output=frappe.db.count("Program Enrollment",{"programs":t['name'],"student_category":j['name'],"academic_year":academic_year,"academic_term":academic_term,"docstatus":1})
+				dic_data['%s'%(fieldname)]=data_t[0]['total']
+
+
+			fieldname=j['name'].replace(" ", "")
+			data_t=frappe.db.sql(""" select count(PE.name) as total
+				 				from `tabProgram Enrollment` PE
+				 				JOIN `tabStudent` S on S.name=PE.student
+				 			where PE.programs='{program}' and  PE.academic_year='{academic_year}' and PE.academic_term='{academic_term}' 
+							and PE.docstatus=1 and PE.admission_status="Provisional Admission" {add_list}
+				""".format(
+					**{
+						"program":t['name'],
+						"academic_term":academic_term,
+						"academic_year":academic_year,
+						"add_list":add_list
+					}),as_dict=True)
+
+			# provisional_admission=frappe.db.count("Program Enrollment",{"programs":t['name'],"academic_year":academic_year,"academic_term":academic_term,"admission_status":"Provisional Admission","docstatus":1})
+			dic_data['provisional_admission']=data_t[0]['total']
+
+			data_t=frappe.db.sql(""" select count(PE.name) as total
+				 				from `tabProgram Enrollment` PE
+				 				JOIN `tabStudent` S on S.name=PE.student
+				 			where PE.programs='{program}' and  PE.academic_year='{academic_year}' and PE.academic_term='{academic_term}' 
+							and PE.docstatus=1 and PE.admission_status="Admitted" {add_list}
+				""".format(
+					**{
+						"program":t['name'],
+						"academic_term":academic_term,
+						"academic_year":academic_year,
+						"add_list":add_list
+					}),as_dict=True)
+			# admitted=frappe.db.count("Program Enrollment",{"programs":t['name'],"academic_year":academic_year,"academic_term":academic_term,"admission_status":"Admitted","docstatus":1})	
+			dic_data['admitted']=data_t[0]['total']
 
 
 
