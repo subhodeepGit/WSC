@@ -48,8 +48,8 @@ def on_cancel(doc,method):
     update_student(doc)
     update_reserved_seats(doc)
     # delete_permissions(doc)
-    fee_structure_id = get_fee_structure(doc)
-    if len(fee_structure_id)!=0:
+    fee_structure_id = get_fee_structure(doc,flag="on_cancel")
+    if doc.voucher_no:
         cancel_fees(doc,fee_structure_id)
     else:
         delete_permissions(doc)
@@ -104,7 +104,7 @@ def on_submit(doc,method):
     update_enrollment_admission_status(doc)
     update_reserved_seats(doc, on_submit)
 
-    fee_structure_id = get_fee_structure(doc)
+    fee_structure_id = get_fee_structure(doc,flag="on_submit")
     
     if len(fee_structure_id)!=0:
            
@@ -148,7 +148,7 @@ def applicant_enroll_status(self):
     elif self.docstatus==2 and not self.reference_name:  
             frappe.db.sql("""
                     UPDATE `tabStudent Applicant` SET enrollment_status = "Not Enrolled" WHERE `name`="%s" """ %(self.reference_name))  
-def get_fee_structure(doc):
+def get_fee_structure(doc,flag):
     existed_fs = frappe.db.get_list("Fee Structure", {'programs':doc.programs, 'program':doc.program, 
                  'fee_type':'Semester Fees', 'academic_year':doc.academic_year,
                   'academic_term':doc.academic_term, 'docstatus':1, 'student_category':doc.student_category},["name"])
@@ -159,7 +159,7 @@ def get_fee_structure(doc):
         if term_date == None:
             frappe.throw("Academic Term Start Date,End Date Not Found.")
         return fee_structure_id 
-    elif len(existed_fs) == 0:
+    elif len(existed_fs) == 0 and flag!="on_cancel":
         frappe.msgprint("Fees not charged. Course Enrollment Done.")
         return existed_fs
 
@@ -241,8 +241,9 @@ def create_fees(doc,fee_structure_id,on_submit=0):
         frappe.db.set_value("Fees Waiver",fee_waiver_student[0]['name'], "fees",fees.name)
     
 def cancel_fees(doc,fee_structure_id):
-    # cancel_doc = frappe.get_doc("Fees",voucher_no)
+    # cancel_doc = frappe.get_doc("Fees",doc.voucher_no)
     # cancel_doc.cancel()
+    # frappe.msgprint("Fees has been cancelled")
     for ce in frappe.get_all("Fees",{"program_enrollment":doc.name,"fee_structure":fee_structure_id}):
         make_reverse_gl_entries(voucher_type="Fees", voucher_no=ce.name)
 

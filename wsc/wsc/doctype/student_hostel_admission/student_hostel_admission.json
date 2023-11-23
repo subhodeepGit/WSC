@@ -51,7 +51,6 @@
   {
    "fieldname": "student",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Student",
    "options": "Student",
    "reqd": 1
@@ -69,6 +68,7 @@
    "fetch_from": "student.last_name",
    "fieldname": "last_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Last Name",
    "read_only": 1
   },
@@ -91,6 +91,7 @@
   {
    "fieldname": "hostel",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Hostel",
    "options": "Hostel Masters",
    "reqd": 1
@@ -214,6 +215,7 @@
   {
    "fieldname": "allotment_status",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Allotment Status",
    "read_only": 1
   },
@@ -256,7 +258,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-13 15:52:35.950761",
+ "modified": "2023-11-23 11:38:45.081790",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Hostel Admission",

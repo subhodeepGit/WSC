@@ -1,0 +1,113 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "HR-JOCR-.YYYY.-.#####",
+ "creation": "2023-11-21 11:16:04.804296",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "job_opening",
+  "year",
+  "column_break_4ga7o",
+  "date",
+  "designation",
+  "status",
+  "section_break_f3twp",
+  "get_applicants",
+  "applicant_details",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "job_opening",
+   "fieldtype": "Link",
+   "label": "Job Opening",
+   "options": "Job Opening"
+  },
+  {
+   "fieldname": "column_break_4ga7o",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.job_opening && doc.year",
+   "fieldname": "get_applicants",
+   "fieldtype": "Button",
+   "label": "Get Applicants"
+  },
+  {
+   "depends_on": "eval:doc.job_opening && doc.year",
+   "fieldname": "applicant_details",
+   "fieldtype": "Table",
+   "label": "Applicant Details",
+   "options": "Job Applicant Details"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Job Offer Creation Request",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_f3twp",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "job_opening.designation",
+   "fieldname": "designation",
+   "fieldtype": "Read Only",
+   "label": "Designation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "year",
+   "fieldtype": "Link",
+   "label": "Year",
+   "options": "Year"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-11-22 09:52:17.454018",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Job Offer Creation Request",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
