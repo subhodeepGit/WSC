@@ -48,9 +48,9 @@ def on_cancel(doc,method):
     update_student(doc)
     update_reserved_seats(doc)
     # delete_permissions(doc)
-    # fee_structure_id = get_fee_structure(doc)
+    fee_structure_id = get_fee_structure(doc)
     if doc.voucher_no:
-        cancel_fees(doc)
+        cancel_fees(doc,fee_structure_id)
     else:
         delete_permissions(doc)
         delete_course_enrollment(doc)
@@ -240,12 +240,12 @@ def create_fees(doc,fee_structure_id,on_submit=0):
     if fee_waiver_student:
         frappe.db.set_value("Fees Waiver",fee_waiver_student[0]['name'], "fees",fees.name)
     
-def cancel_fees(doc):
-    cancel_doc = frappe.get_doc("Fees",doc.voucher_no)
-    cancel_doc.cancel()
-    frappe.msgprint("Fees has been cancelled")
-    # for ce in frappe.get_all("Fees",{"program_enrollment":doc.name,"fee_structure":fee_structure_id}):
-    #     make_reverse_gl_entries(voucher_type="Fees", voucher_no=ce.name)
+def cancel_fees(doc,fee_structure_id):
+    # cancel_doc = frappe.get_doc("Fees",doc.voucher_no)
+    # cancel_doc.cancel()
+    # frappe.msgprint("Fees has been cancelled")
+    for ce in frappe.get_all("Fees",{"program_enrollment":doc.name,"fee_structure":fee_structure_id}):
+        make_reverse_gl_entries(voucher_type="Fees", voucher_no=ce.name)
 
 def delete_permissions(doc):          
     delete_ref_doctype_permissions(["Programs","Course Enrollment","Course"],doc)
