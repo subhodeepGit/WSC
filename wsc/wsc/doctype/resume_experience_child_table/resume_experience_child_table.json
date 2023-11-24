@@ -11,7 +11,8 @@
   "job_type",
   "job_start_date",
   "job_end_date",
-  "job_duration"
+  "job_location",
+  "work_description"
  ],
  "fields": [
   {
@@ -46,16 +47,21 @@
    "label": "Job End Date"
   },
   {
-   "fieldname": "job_duration",
+   "fieldname": "job_location",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Job Duration"
+   "label": "Job Location"
+  },
+  {
+   "fieldname": "work_description",
+   "fieldtype": "Small Text",
+   "label": "Work Description"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-11-16 12:47:53.664887",
+ "modified": "2023-11-24 12:43:21.507102",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Resume Experience Child Table",
