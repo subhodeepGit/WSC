@@ -178,20 +178,26 @@ def hostel_req_query(doctype, txt, searchfield, start, page_len, filters):
 	############################## Search Field Code################# 
 	searchfields = frappe.get_meta(doctype).get_search_fields()
 	searchfields = " or ".join("S."+field + " like %(txt)s" for field in searchfields)
+	programs=filters.get('programs')
+	academic_term=filters.get('academic_term')
+	academic_year=filters.get('academic_year')
 
 	data=frappe.db.sql(""" SELECT S.name,SHA.name,S.student_name from `tabStudent Hostel Admission` as SHA 
-							JOIN `tabStudent` S on S.name=SHA.student 
-							where (SHA.{key} like %(txt)s or {scond})  and 
-	       					SHA.allotment_status="Not Reported" and SHA.docstatus=1 """.format(
+							JOIN `tabStudent` as S on S.name=SHA.student 
+		    				JOIN `tabCurrent Educational Details` as CED on S.name=CED.parent 
+							where (S.{key} like %(txt)s or {scond})  and 
+	       					SHA.allotment_status="Not Reported" and SHA.docstatus=1 and CED.programs='{programs}' and 
+				 			CED.academic_year='{academic_year}' and CED.academic_term='{academic_term}' and S.hostel_required=1""".format(
 								**{
 									"key": searchfield,
 									"scond": searchfields,
+									"programs":programs,
+									"academic_year":academic_year,
+									"academic_term":academic_term
 								}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
 
 
-	# return frappe.db.sql(""" SELECT S.name,SHA.name,S.title from `tabStudent Hostel Admission` as SHA 
-	# 						JOIN `tabStudent` S on S.name=SHA.student 
-	# 						where SHA.allotment_status="Not Reported" and SHA.docstatus=1 """)
+	# return frappe.db.sql(""" SELECT S.name,SHA.name,S.student_name from `tabStudent Hostel Admission` as SHA JOIN `tabStudent` S on S.name=SHA.student JOIN `tabCurrent Educational Details` as CED on S.name=CED.parent where SHA.allotment_status="Not Reported" and SHA.docstatus=1 """)
 	return data
 						
 
@@ -235,3 +241,22 @@ def get(name=None, filters=None, parent=None):
        return room_allotment_data[0]
     else:
         return {}
+	
+@frappe.whitelist()
+@frappe.validate_and_sanitize_search_inputs
+def get_emp(doctype, txt, searchfield, start, page_len, filters):
+	hostel=filters.get("hostel")
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join("EMP."+field + " like %(txt)s " for field in searchfields)
+	data=[]
+	if hostel:
+		data=frappe.db.sql(""" select EMP.name,EMP.employee_name 
+					 	from `tabEmployee Hostel Allotment` as EHA 
+					 	JOIN `tabEmployee` EMP on EMP.name=EHA.employees
+						where EHA.hostel_masters like '{hostel}' and EHA.start_date <=now() and EHA.end_date>=now() """.
+						format(**{
+							"key": searchfield,
+							"scond": searchfields,
+							"hostel":hostel
+						}))
+	return data

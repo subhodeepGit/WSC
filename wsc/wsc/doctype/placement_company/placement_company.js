@@ -50,3 +50,18 @@ frappe.ui.form.on('Placement Company', {
 		})
     } 
 });
+
+// ------------------------------------------------------------------------------------
+
+frappe.ui.form.on('sector of work', {
+	sector_of_work_add: function(frm){
+		frm.fields_dict['sector_of_work'].grid.get_field('sector_name').get_query = function(doc){
+			var sector_of_work = [];
+			$.each(doc.sector_of_work, function(idx, val){
+				if (val.sector_name) sector_of_work.push(val.sector_name);
+			});
+
+			return { filters: [['Sector', 'name', 'not in', sector_of_work]] };
+		};
+	}
+});

@@ -6,7 +6,7 @@ frappe.listview_settings['Room Allotment'] = {
         else if (doc.allotment_type==="De-allotted") {
             return [__(doc.allotment_type), "orange","allotment_type,=,De-allotted"];
 		}
-        else if (doc.allotment_type==="De-allotted") {
+        else if (doc.allotment_type==="Death-Deallotted") {
             return [__(doc.allotment_type), "grey","allotment_type,=,Death-Deallotted"];
 		}
     }

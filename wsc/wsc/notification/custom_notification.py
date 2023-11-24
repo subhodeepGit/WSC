@@ -395,15 +395,12 @@ def student_applicant_rejected(doc):
   
 
 def program_enrollment_admitted(doc):
-    msg="""<p>You are admitted in the Course <b>{0}</b></p><br>""".format(doc.get('programs'))
+    sub="""<p>Welcome to World Skill Center<b>{0}</b></p><br>"""
     msg+="""<b>---------------------Student Details---------------------</b><br>"""
-    msg+="""<b>Student Name:</b>  {0}<br>""".format(doc.get('student_name'))
-    msg+="""<b>Student Batch:</b>  {0}<br>""".format(doc.get('student_batch_name') or '-')
-    # msg+="""<b>Permanent Registration Number:</b>  {0}<br>""".format(doc.get('permanant_registration_number') or '-' )
-    msg+="""<b>Course:</b>  {0}<br>""".format(doc.get('programs'))
-    msg+="""<b>Semester:</b>  {0}<br>""".format(doc.get('program'))
-    msg+="""<b>Academic Year:</b>  {0}<br>""".format(doc.get('academic_year') or '-')
-    msg+="""<b>Academic Term:</b> {0}<br>""".format(doc.get('academic_term') or '-')
+    msg+="""<b>Dear</b>  {0},<br>""".format(doc.get('student_name'))
+    msg+="""<bYou have successfully admitted to the course {0} for the academic Year {1}</b><br>""".format(doc.get('programs'),doc.get('academic_year'))
+    msg+="""<b>Admission Department</b><br>"""
+    msg+="""<b>World Skill Center</b>"""
     send_mail(frappe.db.get_value("Student",doc.get('student'),"student_email_id"),'Application status',msg)
 
 # def program_enrollment_provisional_admission(doc):
