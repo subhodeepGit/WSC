@@ -396,8 +396,8 @@ def student_applicant_rejected(doc):
 
 def program_enrollment_admitted(doc):
     sub="""<p>Welcome to World Skill Center<b>{0}</b></p><br>"""
-    msg+="""<b>---------------------Student Details---------------------</b><br>"""
-    msg+="""<b>Dear</b>  {0},<br>""".format(doc.get('student_name'))
+    # msg+="""<b>---------------------Student Details---------------------</b><br>"""
+    msg="""<b>Dear</b>  {0},<br>""".format(doc.get('student_name'))
     msg+="""<bYou have successfully admitted to the course {0} for the academic Year {1}</b><br>""".format(doc.get('programs'),doc.get('academic_year'))
     msg+="""<b>Admission Department</b><br>"""
     msg+="""<b>World Skill Center</b>"""

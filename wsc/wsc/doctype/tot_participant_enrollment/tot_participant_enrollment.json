@@ -9,6 +9,7 @@
  "engine": "InnoDB",
  "field_order": [
   "tot_participant_selection_id",
+  "department",
   "programs",
   "semester",
   "tot_participant_batch",
@@ -144,12 +145,20 @@
    "options": "ToT Participant Enrollment",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fetch_from": "programs.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-19 13:07:22.385678",
+ "modified": "2023-11-24 16:06:46.330162",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant Enrollment",
