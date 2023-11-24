@@ -40,7 +40,8 @@
    "fieldname": "exam_date",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Exam Date"
+   "label": "Exam Date",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_3",
@@ -136,7 +137,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-24 11:21:28.653750",
+ "modified": "2023-11-24 15:26:04.199879",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Recruitment Admit Card Generation Tool",

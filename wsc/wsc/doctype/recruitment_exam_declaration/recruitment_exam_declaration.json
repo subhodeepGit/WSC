@@ -50,11 +50,12 @@
    "reqd": 1
   },
   {
+   "depends_on": "eval:doc.selection_round==\"Written\";",
    "fieldname": "exam_date",
    "fieldtype": "Date",
-   "hidden": 1,
    "in_list_view": 1,
-   "label": "Exam Date"
+   "label": "Exam Date",
+   "mandatory_depends_on": "eval:doc.selection_round==\"Written\""
   },
   {
    "fieldname": "exam_name",
@@ -230,7 +231,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-22 15:39:20.323582",
+ "modified": "2023-11-24 15:24:58.191603",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Recruitment Exam Declaration",
