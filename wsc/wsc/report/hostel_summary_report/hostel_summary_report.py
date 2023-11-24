@@ -61,6 +61,8 @@ def get_data(filters):
 				fieldname=label.replace(" ", "")
 				a['%s'%(fieldname)]=output
 
+			output=frappe.db.count("Room Allotment",{"hostel_id":t['name'],"allotment_type":"Allotted"})	
+			a['total_no_of_students_allotted']=output
 
 			final_list.append(a)
 
@@ -111,6 +113,12 @@ def get_columns(room_type_data,get_room_description_data):
 		{
 			"label": _("Total Capacity Of The Hostel"),
 			"fieldname": "total_capacity_of_the_hostel",
+			"fieldtype": "Data",
+			"width":200
+		},
+		{
+			"label": _("Total No of Students Allotted"),
+			"fieldname": "total_no_of_students_allotted",
 			"fieldtype": "Data",
 			"width":200
 		},
