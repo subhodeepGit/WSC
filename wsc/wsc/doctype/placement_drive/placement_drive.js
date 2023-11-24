@@ -202,14 +202,17 @@ frappe.ui.form.on('Placement Drive', {
 	refresh:function(frm){
 		if(!frm.is_new()){
 			frm.set_df_property('get_students' , 'hidden' , 0)
+			frm.set_df_property('tentative_joining_date' , 'hidden' , 0)
 		}
 		else{
 			frm.set_df_property('get_students' , 'hidden' , 1)
+			frm.set_df_property('tentative_joining_date' , 'hidden' , 1)
 		}
 		if(frm.doc.docstatus==1){
 			frm.set_df_property('get_students' , 'hidden' , 1)
+			frm.set_df_property('tentative_joining_date' , 'hidden' , 1)
 		}
-		frm.set_df_property("authorized_signature", "cannot_add_rows", true);
+		frm.set_df_property("authorized_signature", "cannot_add_rows", true);		
 	},
 	before_submit:function(frm){
 		if(frm.doc.eligible_student.length === 0){
@@ -237,9 +240,9 @@ frappe.ui.form.on('Rounds of Placement', {
 	date:function(frm, cdt, cdn){
 	var d = locals[cdt][cdn];
 	frm.doc.rounds_of_placement_table.forEach(function(d){ 
-		if(d.date < frm.doc.application_end_date){
+		if(d.date <= frm.doc.application_end_date){
 			d.date = ''
-			frappe.throw("Round date cannot be before application end date")
+			alert("Round date cannot be before application end date")
 		}
 	});
   }

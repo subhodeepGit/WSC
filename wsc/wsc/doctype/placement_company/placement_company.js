@@ -65,3 +65,18 @@ frappe.ui.form.on('sector of work', {
 		};
 	}
 });
+
+// Belong to department table
+
+frappe.ui.form.on('Placement Department', {
+	belong_to_department_add: function(frm){
+		frm.fields_dict['belong_to_department'].grid.get_field('department').get_query = function(doc){
+			var departmentName = [];
+			$.each(doc.belong_to_department, function(idx, val){
+				if (val.department) departmentName.push(val.department);
+			});
+
+			return { filters: [['Department', 'name', 'not in', departmentName]] };
+		};
+	}
+});
