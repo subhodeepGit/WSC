@@ -33,6 +33,7 @@ frappe.ui.form.on('Recruitment  Admit Card Generation', {
                     frm.set_value('caste_category', response.message.caste_category);
                     frm.set_value('date_of_birth', response.message.date_of_birth);
                     frm.set_value('address', response.message.address);
+                    frm.set_value('domicile', response.message.domicile);
                     frm.set_value('pwd', response.message.pwd);
                     frm.set_value('fathersspousesguardians_name', response.message.fathersspousesguardians_name);
 
