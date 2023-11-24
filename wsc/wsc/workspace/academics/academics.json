@@ -307,7 +307,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-10-31 17:59:33.207934",
+ "modified": "2023-11-24 15:08:23.883100",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Academics",
@@ -342,7 +342,7 @@
    "role": "Accounts User"
   }
  ],
- "sequence_id": 3.0,
+ "sequence_id": 7.0,
  "shortcuts": [
   {
    "color": "Green",

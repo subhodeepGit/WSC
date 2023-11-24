@@ -2,6 +2,7 @@
  "charts": [],
  "content": "[{\"id\":\"BNIq_NyMbr\",\"type\":\"paragraph\",\"data\":{\"text\":\"<span class=\\\"h3\\\">HR</span>\",\"col\":12}},{\"id\":\"49AhcckM7o\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Your Shortcuts</span><br>\",\"col\":12}},{\"id\":\"HgEq9csbTU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee\",\"col\":3}},{\"id\":\"TIihatf2_X\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Application\",\"col\":3}},{\"id\":\"wTzltOB7NU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Attendance\",\"col\":3}},{\"id\":\"aYgVuRDXzF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Job Applicant\",\"col\":3}},{\"id\":\"EwyBi97eqa\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"5idSunWgom\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"5ItTeMi9s4\",\"type\":\"paragraph\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Reports &amp; Masters</span>\",\"col\":12}},{\"id\":\"pY_XapGpSk\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee\",\"col\":4}},{\"id\":\"nSUIUfYy2Q\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee Lifecycle\",\"col\":4}},{\"id\":\"dzL0ZjqGC2\",\"type\":\"card\",\"data\":{\"card_name\":\"Shift Management\",\"col\":4}},{\"id\":\"MRnGqEF6Wk\",\"type\":\"card\",\"data\":{\"card_name\":\"Leaves\",\"col\":4}},{\"id\":\"MaXp4yaqM_\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance\",\"col\":4}},{\"id\":\"cCRRTHJBK6\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"id\":\"veDMNa42x0\",\"type\":\"card\",\"data\":{\"card_name\":\"Recruitment\",\"col\":4}},{\"id\":\"km6rAvXMC5\",\"type\":\"card\",\"data\":{\"card_name\":\"Performance\",\"col\":4}}]",
  "creation": "2023-03-02 11:42:46.665842",
+ "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
  "for_user": "",
@@ -566,10 +567,11 @@
    "type": "Link"
   }
  ],
- "modified": "2023-07-17 09:58:41.427925",
+ "modified": "2023-11-24 15:08:25.428033",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "HRM",
+ "number_cards": [],
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,
@@ -579,7 +581,7 @@
    "role": "Blogger"
   }
  ],
- "sequence_id": 11.0,
+ "sequence_id": 24.0,
  "shortcuts": [
   {
    "color": "Orange",
