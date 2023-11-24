@@ -19,6 +19,14 @@ frappe.query_reports["Course Enrollment Summary Report"] = {
 			"options": "Academic Term",
 			"width": 150,
 			"reqd": 1,
+			get_query: () => {
+				var academic_year = frappe.query_report.get_filter_value('academic_year');
+				return {
+					filters: {
+						'academic_year': academic_year
+					}
+				}
+			}
 		},
 		{
 			"fieldname": "district",

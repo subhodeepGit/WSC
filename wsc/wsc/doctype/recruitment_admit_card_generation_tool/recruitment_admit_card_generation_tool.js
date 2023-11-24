@@ -70,6 +70,7 @@ frappe.ui.form.on('Recruitment Admit Card Generation Tool', {
                         row.address=applicant.address;
                         row.date_of_birth=applicant.date_of_birth;
                         row.pwd=applicant.pwd;
+                        row.domicile=applicant.domicile;
                     }
 
                     frm.refresh_field("job_applicant_details");

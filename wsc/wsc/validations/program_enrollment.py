@@ -46,7 +46,7 @@ def on_cancel(doc,method):
     delete_permissions(doc)
     delete_course_enrollment(doc)            
     update_student(doc)
-    update_reserved_seats(doc)
+    # update_reserved_seats(doc)
     # delete_permissions(doc)
     fee_structure_id = get_fee_structure(doc,flag="on_cancel")
     if doc.voucher_no:
@@ -64,7 +64,6 @@ def on_change(doc,method):
     update_student(doc)
     student=frappe.get_doc("Student",doc.student)
     student.roll_no=doc.roll_no
-    student.department=doc.department
     student.permanant_registration_number=doc.permanant_registration_number
     student.save()
     for course in doc.get("courses"):
@@ -102,7 +101,7 @@ def on_submit(doc,method):
     create_student(doc)
     create_participant(doc)
     update_enrollment_admission_status(doc)
-    update_reserved_seats(doc, on_submit)
+    # update_reserved_seats(doc, on_submit)
 
     fee_structure_id = get_fee_structure(doc,flag="on_submit")
     
@@ -289,8 +288,9 @@ def create_participant(doc):
             participant.save()
 
 def create_student(doc):
+   
     student=frappe.get_doc("Student",doc.student)
-    student.roll_no = doc.roll_no                        
+    student.roll_no = doc.roll_no                     
     student.set("current_education",[])
     student.append("current_education",{
         "programs":doc.programs,
@@ -301,8 +301,7 @@ def create_student(doc):
         "academic_year":doc.academic_year,
         "academic_term":doc.academic_term
     })
-      
-    if student.student_email_id:
+    if student.student_email_id and doc.is_tot==0:
         if not frappe.db.exists("User",student.student_email_id):
             user=frappe.new_doc("User")
             
@@ -472,6 +471,7 @@ def get_year(doctype, txt, searchfield, start, page_len, filters):
     return [(d,) for d in lst]
 
 def add_enrollment_details_in_student(doc,student):
+    print("\n\n in add enrollment")
     if doc.reference_doctype in ["Student Applicant","Student Exchange Applicant"] and doc.reference_name:
         applicant=frappe.get_doc(doc.reference_doctype,doc.reference_name)
         student.set("education_details",[])
