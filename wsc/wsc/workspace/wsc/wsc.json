@@ -2,6 +2,7 @@
  "charts": [],
  "content": "[{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">WSC</span>\",\"col\":12}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Department\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instructor\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Fees\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course Schedule\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Exam Declaration\",\"col\":3}},{\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Student and Instructor\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Admission Master\",\"col\":3}},{\"type\":\"card\",\"data\":{\"card_name\":\"Application and Enrollment\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Branch Change &amp; Exchange Application\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Fees\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Bank Reconcilation\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Tools\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Groups and Schedules\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Attendance and Leave Application\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Mentor-Mentee\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Placement &amp; Drives \",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Examination Master\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Examination\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Evaluation \",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Examination Tools\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Transcripts\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Card\",\"col\":4}}]",
  "creation": "2023-01-16 11:26:06.901863",
+ "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
  "for_user": "",
@@ -976,10 +977,11 @@
    "type": "Link"
   }
  ],
- "modified": "2023-02-27 17:58:58.848467",
+ "modified": "2023-11-24 15:08:24.019466",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "WSC",
+ "number_cards": [],
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,
@@ -989,7 +991,7 @@
    "role": "System Manager"
   }
  ],
- "sequence_id": 4.0,
+ "sequence_id": 9.0,
  "shortcuts": [
   {
    "color": "Grey",

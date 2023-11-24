@@ -256,7 +256,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-11-06 14:38:15.187986",
+ "modified": "2023-11-24 15:08:26.673851",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Payroll",
@@ -283,7 +283,7 @@
    "role": "Director"
   }
  ],
- "sequence_id": 24.0,
+ "sequence_id": 39.0,
  "shortcuts": [
   {
    "color": "Grey",

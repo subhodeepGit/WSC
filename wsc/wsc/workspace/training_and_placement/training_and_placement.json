@@ -2,6 +2,7 @@
  "charts": [],
  "content": "[{\"id\":\"xo8iteTJ3A\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Training and Placement</span>\",\"col\":12}},{\"id\":\"3PtRgLG0Ci\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"GNyya862-Z\",\"type\":\"card\",\"data\":{\"card_name\":\"Training Events\",\"col\":4}},{\"id\":\"j9MfB23GZo\",\"type\":\"card\",\"data\":{\"card_name\":\"Internships\",\"col\":4}},{\"id\":\"QW1x4q4u87\",\"type\":\"card\",\"data\":{\"card_name\":\"Placement\",\"col\":4}},{\"id\":\"f5NYT98tYo\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}}]",
  "creation": "2023-10-17 14:57:55.249669",
+ "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
  "for_user": "",
@@ -502,7 +503,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-11-10 15:07:43.355693",
+ "modified": "2023-11-24 15:08:27.270063",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Training and Placement",
@@ -519,7 +520,7 @@
    "role": "Student"
   }
  ],
- "sequence_id": 53.0,
+ "sequence_id": 51.0,
  "shortcuts": [],
  "title": "Training and Placement"
 }

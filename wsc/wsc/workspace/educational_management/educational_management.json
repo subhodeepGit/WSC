@@ -223,7 +223,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-09-06 16:09:34.947282",
+ "modified": "2023-11-24 15:08:27.226081",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Educational Management",
@@ -238,7 +238,7 @@
    "role": "Department Head"
   }
  ],
- "sequence_id": 52.0,
+ "sequence_id": 50.0,
  "shortcuts": [
   {
    "color": "Grey",
