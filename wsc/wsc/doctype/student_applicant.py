@@ -6,7 +6,8 @@ from wsc.wsc.utils import duplicate_row_validation
 from wsc.wsc.validations.student_admission import validate_academic_year
 from wsc.wsc.notification.custom_notification import student_applicant_submit,student_applicant_rejected,student_applicant_approved,student_applicant_onhold
 import math
-from datetime import datetime
+from datetime import datetime, timedelta
+from frappe.utils import getdate, today
 
 
 class StudentApplicant(Document):
@@ -77,6 +78,9 @@ class StudentApplicant(Document):
         if len(student)>1:
             frappe.throw(_("Cannot change status as student {0} is linked with student application {1}").format(student[0].name, doc.name))
     def validate(doc):
+        current_date = today()
+        if doc.date_of_birth >= current_date:
+            frappe.throw("Date of birth should not be today's date or future date")
         validate_edu_details(doc)
         # doc.title = " ".join(
 			# filter(None, [doc.first_name, doc.middle_name, doc.last_name])
