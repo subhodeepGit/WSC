@@ -16,13 +16,13 @@ class RecruitmentAdmitCardGenerationTool(Document):
 			result.exam_date = self.exam_date
 			result.exam_time = self.exam_time
 			result.center = self.center
-			result.domicile=self.domicile
+			result.domicile=d.domicile
 			result.session=self.session
 			result.position_name = self.position_name
 			result.shift_type = self.shift_type
 			result.exam_time = self.exam_time
 			result.center = self.center
-			result.domicile=self.domicile
+			result.domicile=d.domicile
 			result.applicant_number = d.job_applicant
 			result.applicant_name = d.applicant_name
 			result.applicant_mail = d.applicant_mail_id

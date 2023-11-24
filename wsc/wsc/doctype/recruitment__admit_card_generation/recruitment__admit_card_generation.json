@@ -268,7 +268,8 @@
   {
    "fieldname": "domicile",
    "fieldtype": "Data",
-   "label": "Domicile"
+   "label": "Domicile",
+   "read_only": 1
   },
   {
    "fieldname": "date_of_birth",
@@ -339,7 +340,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-24 11:22:33.127968",
+ "modified": "2023-11-24 16:17:29.047507",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Recruitment  Admit Card Generation",

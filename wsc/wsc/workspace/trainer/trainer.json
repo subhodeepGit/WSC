@@ -287,7 +287,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-08-16 05:08:40.492538",
+ "modified": "2023-11-24 15:08:26.909756",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Trainer",
@@ -301,7 +301,7 @@
    "role": "Instructor"
   }
  ],
- "sequence_id": 46.0,
+ "sequence_id": 43.0,
  "shortcuts": [
   {
    "color": "Grey",

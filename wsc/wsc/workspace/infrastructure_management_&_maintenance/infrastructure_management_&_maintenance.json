@@ -176,7 +176,7 @@
   },
   {
    "hidden": 0,
-   "is_query_report": 0,
+   "is_query_report": 1,
    "label": "Total Development Area",
    "link_count": 0,
    "link_to": "Total Development Area",
@@ -185,7 +185,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-11-21 11:37:21.319880",
+ "modified": "2023-11-24 15:53:17.424249",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Infrastructure Management & Maintenance",
@@ -211,7 +211,7 @@
    "role": "Employee- Infrastructure"
   }
  ],
- "sequence_id": 29.0,
+ "sequence_id": 42.0,
  "shortcuts": [],
  "title": "Infrastructure Management & Maintenance"
 }
