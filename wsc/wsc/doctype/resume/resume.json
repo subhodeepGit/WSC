@@ -41,7 +41,8 @@
   {
    "fieldname": "image",
    "fieldtype": "Attach Image",
-   "label": "Profile Image"
+   "label": "Profile Image",
+   "reqd": 1
   },
   {
    "fieldname": "description",
@@ -85,8 +86,10 @@
   {
    "fieldname": "id",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "ID",
-   "options": "Student"
+   "options": "Student",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_zalx3",
@@ -96,18 +99,23 @@
    "fetch_from": "id.student_name",
    "fieldname": "student_name",
    "fieldtype": "Data",
-   "label": "Name"
+   "label": "Name",
+   "read_only": 1
   },
   {
    "fetch_from": "id.student_mobile_number",
    "fieldname": "phone_number",
    "fieldtype": "Data",
-   "label": "Phone Number"
+   "in_list_view": 1,
+   "label": "Phone Number",
+   "reqd": 1
   },
   {
    "fieldname": "location",
    "fieldtype": "Data",
-   "label": "Location"
+   "in_list_view": 1,
+   "label": "Location",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_a4sqi",
@@ -117,7 +125,9 @@
    "fetch_from": "id.student_email_id",
    "fieldname": "email",
    "fieldtype": "Data",
-   "label": "Email"
+   "in_list_view": 1,
+   "label": "Email",
+   "reqd": 1
   },
   {
    "fieldname": "section_break_q2jiu",
@@ -132,13 +142,15 @@
    "fieldname": "current_education_details",
    "fieldtype": "Table",
    "label": "Current Education Details",
-   "options": "Resume Current Educational Details"
+   "options": "Resume Current Educational Details",
+   "reqd": 1
   },
   {
    "fieldname": "previous_education_details",
    "fieldtype": "Table",
    "label": "Previous Education Details",
-   "options": "Resume Education Details"
+   "options": "Resume Education Details",
+   "reqd": 1
   },
   {
    "fieldname": "technical_skills",
@@ -164,9 +176,11 @@
    "label": "Declaration"
   },
   {
+   "default": "Today",
    "fieldname": "date",
-   "fieldtype": "Data",
-   "label": "Date"
+   "fieldtype": "Date",
+   "label": "Date",
+   "read_only": 1
   },
   {
    "fieldname": "place",
@@ -180,12 +194,13 @@
   {
    "fieldname": "signature_image",
    "fieldtype": "Attach",
-   "label": "Signature image"
+   "label": "Signature image",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-16 14:43:15.254794",
+ "modified": "2023-11-24 10:52:48.454152",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Resume",

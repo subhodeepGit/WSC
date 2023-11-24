@@ -53,6 +53,17 @@ frappe.ui.form.on('Resume', {
 				})
 			})
 
+			
+			// location
+			frappe.call({
+				method : 'wsc.wsc.doctype.resume.resume.get_location',
+				args: {
+					student_id : frm.doc.id
+				},
+				callback : function(result){
+					frm.set_value('location', result.message)
+				}
+			})
 
 			// Current education
 
@@ -93,6 +104,4 @@ frappe.ui.form.on('Resume', {
 			frm.refresh()
 		}
 	}
-
-
 });

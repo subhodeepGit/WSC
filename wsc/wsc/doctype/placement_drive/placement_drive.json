@@ -178,7 +178,7 @@
   {
    "fieldname": "sector_of_work",
    "fieldtype": "Link",
-   "label": "Sector of Work",
+   "label": "Hiring For Sector",
    "options": "Sector",
    "reqd": 1
   },
@@ -304,7 +304,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-10 12:05:59.885169",
+ "modified": "2023-11-23 17:41:47.539355",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive",
