@@ -35,10 +35,10 @@
    "reqd": 1
   },
   {
+   "depends_on": "eval:doc.selection_round==\"Written\";",
    "fetch_from": "exam_declaration.exam_date",
    "fieldname": "exam_date",
    "fieldtype": "Data",
-   "hidden": 1,
    "in_list_view": 1,
    "label": "Exam Date"
   },
@@ -136,7 +136,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-22 15:46:20.603291",
+ "modified": "2023-11-24 11:21:28.653750",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Recruitment Admit Card Generation Tool",
