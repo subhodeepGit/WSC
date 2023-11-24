@@ -21,14 +21,14 @@ class ToTParticipantEnrollment(Document):
 			{"progress": "0", "reload": 1}, user=frappe.session.user)
 
 		total_records = len(self.get("participant_list"))
-		# if total_records > 50:
-		frappe.msgprint(_(''' Records will be created in the background.
-			In case of any error the error message will be updated in the Schedule.'''))
-		frappe.enqueue(make_participant, queue='default', timeout=6000, event='make_participant',
-			tot_participant_enrollment=self.name)
+		if total_records > 50:
+			frappe.msgprint(_(''' Records will be created in the background.
+				In case of any error the error message will be updated in the Schedule.'''))
+			frappe.enqueue(make_participant, queue='default', timeout=6000, event='make_participant',
+				tot_participant_enrollment=self.name)
 
-		# else:
-		# 	make_participant(self.name)
+		else:
+			make_participant(self.name)
 
 	def on_cancel(self):
 		participant_list=[]
@@ -60,14 +60,14 @@ class ToTParticipantEnrollment(Document):
 			{"progress": "0", "reload": 1}, user=frappe.session.user)
 
 		total_records = len(self.get("participant_list"))
-		# if total_records > 41:
-		frappe.msgprint(_(''' Records will be created in the background.
-			In case of any error the error message will be updated in the Schedule.'''))
-		frappe.enqueue(make_enrollment, queue='default', timeout=6000, event='make_enrollment',
-			tot_participant_enrollment=self.name)
+		if total_records > 41:
+			frappe.msgprint(_(''' Records will be created in the background.
+				In case of any error the error message will be updated in the Schedule.'''))
+			frappe.enqueue(make_enrollment, queue='default', timeout=6000, event='make_enrollment',
+				tot_participant_enrollment=self.name)
 
-		# else:
-		# 	make_enrollment(self.name)
+		else:
+			make_enrollment(self.name)
 
 def participant_count_validation(self):
 	count=0
@@ -107,6 +107,7 @@ def make_participant(tot_participant_enrollment):
 			result.pin_code=d.pincode
 			result.date_of_birth=data[0]['date_of_birth']
 			result.gender=data[0]['gender']
+			result.department=doc.department
 			result.save()
 
 			student=result.name
@@ -138,6 +139,7 @@ def make_enrollment(tot_participant_enrollment):
 			for data in frappe.get_all("ToT Participant Selection",{"name":doc.tot_participant_selection_id},['participant_selection_date']):
 				result=frappe.new_doc("Program Enrollment")
 				result.student=stud.name
+				result.department=doc.department
 				result.participant=d.participant
 				result.programs=doc.programs
 				result.program=doc.semester
