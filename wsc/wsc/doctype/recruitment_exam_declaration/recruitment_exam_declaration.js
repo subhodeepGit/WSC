@@ -58,8 +58,7 @@ get_applicants: function(frm){
 				row.job_applicant = applicant.name;
 				row.applicant_name = applicant.applicant_name;
 				row.applicant_mail_id = applicant.email_id;
-		
-				
+				row.selection_round=frm.doc.selection_round
 			  }
 
 			  frm.refresh_field("applicant_details");
