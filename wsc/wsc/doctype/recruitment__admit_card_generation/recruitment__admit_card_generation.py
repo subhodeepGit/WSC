@@ -29,7 +29,7 @@ def fetch_applicants(docname):
 @frappe.whitelist()
 def get_applicant_details(applicant_number):
 	applicant = frappe.get_doc("Job Applicant",applicant_number)
-	return {"applicant_name":applicant.applicant_name,"applicant_email":applicant.email_id,'caste_category':applicant.caste_category,'domicile':applicant.domicile,'address':applicant.address,'date_of_birth':applicant.date_of_birth,'pwd':applicant.pwd,'fathersspousesguardians_name':applicant.fathersspousesguardians_name}
+	return {"applicant_name":applicant.applicant_name,"applicant_email":applicant.email_id,'caste_category':applicant.caste_category,'domicile':applicant.domicile,'address':applicant.address,'date_of_birth':applicant.date_of_birth,'pwd':applicant.pwd,'fathersspousesguardians_name':applicant.fathersspousesguardians_name,'domicile':applicant.domicile}
 
 
 

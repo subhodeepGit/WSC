@@ -46,17 +46,17 @@ frappe.ui.form.on('Room Allotment', {
 			};
 		});
 
-		frappe.call({
-            method: "wsc.wsc.doctype.room_allotment.room_allotment.employee",
-            // args: {
-            //     employee: frm.doc.employee,
-            // },
-            callback: function(r) { 
-                if (r.message){
-                    frm.set_value("employee",r.message)
-                }
-            } 
-        });    		
+		// frappe.call({
+        //     method: "wsc.wsc.doctype.room_allotment.room_allotment.employee",
+        //     // args: {
+        //     //     employee: frm.doc.employee,
+        //     // },
+        //     callback: function(r) { 
+        //         if (r.message){
+        //             frm.set_value("employee",r.message)
+        //         }
+        //     } 
+        // });    		
 		
 	},
 	academic_year:function(frm){
@@ -83,9 +83,19 @@ frappe.ui.form.on('Room Allotment', {
 frappe.ui.form.on('Room Allotment', {
 	hostel_id: function(frm) {
 		frm.set_value("room_id", "");
-					}
-				}
-			);
+		frappe.call({
+            method: "wsc.wsc.doctype.room_allotment.room_allotment.employee",
+            // args: {
+            //     employee: frm.doc.employee,
+            // },
+            callback: function(r) { 
+                if (r.message){
+                    frm.set_value("employee",r.message)
+                }
+            } 
+        });
+	}
+});
 
 
 

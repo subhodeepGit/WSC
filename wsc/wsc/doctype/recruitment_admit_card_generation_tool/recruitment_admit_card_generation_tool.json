@@ -12,7 +12,6 @@
   "job_opening",
   "selection_round",
   "exam_date",
-  "domicile",
   "column_break_3",
   "exam_time",
   "center",
@@ -93,11 +92,6 @@
    "reqd": 1
   },
   {
-   "fieldname": "domicile",
-   "fieldtype": "Data",
-   "label": "Domicile"
-  },
-  {
    "depends_on": "eval:doc.selection_round==\"Written\";",
    "fieldname": "session",
    "fieldtype": "Select",
@@ -137,7 +131,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-24 15:26:04.199879",
+ "modified": "2023-11-24 16:12:43.894786",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Recruitment Admit Card Generation Tool",

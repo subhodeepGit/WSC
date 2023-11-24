@@ -1725,7 +1725,7 @@
    "description": null,
    "docstatus": 0,
    "dt": "Program Enrollment",
-   "fetch_from": "student.department",
+   "fetch_from": "programs.department",
    "fetch_if_empty": 0,
    "fieldname": "department",
    "fieldtype": "Link",
