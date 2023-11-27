@@ -90,7 +90,7 @@ frappe.ui.form.on('Resume', {
 					d.qualification = row.qualification
 					d.institute = row.institute
 					d.board = row.board
-					d.percentagecgpa = row.percentage
+					d.percentagecgpa = row.percentagecgpa
 					d.score = row.score			
 					d.year_of_completion = row.year_of_completion
 					frm.refresh_field("previous_education_details");

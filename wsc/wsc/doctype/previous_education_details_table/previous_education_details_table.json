@@ -1,0 +1,67 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-11-27 12:23:33.573104",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "qualification",
+  "institute",
+  "board",
+  "percentagecgpa",
+  "score",
+  "year_of_completion"
+ ],
+ "fields": [
+  {
+   "fieldname": "qualification",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Qualification",
+   "options": "Eligibility Parameters"
+  },
+  {
+   "fieldname": "institute",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Institute"
+  },
+  {
+   "fieldname": "board",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Board"
+  },
+  {
+   "fieldname": "score",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Score"
+  },
+  {
+   "fieldname": "year_of_completion",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Year of Completion"
+  },
+  {
+   "fieldname": "percentagecgpa",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Percentage/CGPA"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-11-27 16:40:07.669356",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Previous Education Details Table",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
