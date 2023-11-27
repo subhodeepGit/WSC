@@ -223,7 +223,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-11-24 15:08:23.607799",
+ "modified": "2023-11-27 17:15:58.132171",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Training of Trainers",
@@ -244,6 +244,9 @@
   },
   {
    "role": "TOT Trainer"
+  },
+  {
+   "role": "ToT Participant"
   }
  ],
  "sequence_id": 4.0,
