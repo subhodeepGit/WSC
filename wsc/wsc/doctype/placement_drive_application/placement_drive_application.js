@@ -15,6 +15,13 @@ frappe.ui.form.on('Placement Drive Application', {
 				}
 			};
 		});
+		frm.set_query('resume', function(){
+			return{
+				filters: {
+					"id":frm.doc.student
+				}
+			}
+		})
 		frm.set_query("current_semester", function() {
 			return {
 				filters: {
@@ -76,5 +83,18 @@ frappe.ui.form.on('Placement Drive Application', {
 				} 
 			});
 		}
+	},
+	resume: function(frm){
+		frappe.call({
+			method: "wsc.wsc.doctype.placement_drive_application.placement_drive_application.get_resume_info",
+			args:{
+				'resume_id': frm.doc.resume
+			},
+			callback: function(r) { 
+				if(r.message){
+					frappe.msgprint("Mail sent to student")
+				}
+			} 
+		});
 	}
 });

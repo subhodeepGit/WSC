@@ -187,5 +187,26 @@
   "modified": "2023-06-06 12:38:23.119249",
   "name": "Cancel",
   "workflow_action_name": "Cancel"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-11-20 11:15:07.504555",
+  "name": "Send To CFO",
+  "workflow_action_name": "Send To CFO"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-11-20 11:15:19.640429",
+  "name": "Send To COO",
+  "workflow_action_name": "Send To COO"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-11-20 11:15:31.926340",
+  "name": "Send To CEO",
+  "workflow_action_name": "Send To CEO"
  }
 ]
