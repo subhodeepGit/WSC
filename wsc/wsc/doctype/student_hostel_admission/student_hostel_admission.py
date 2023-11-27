@@ -192,3 +192,16 @@ def get_student(doctype, txt, searchfield, start, page_len,filters):
 											}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
 	
 	return student_details
+
+@frappe.whitelist()
+def get_course(doctype, txt, searchfield, start, page_len,filters):
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join(field + " like %(txt)s " for field in searchfields)
+	data=frappe.db.sql(""" Select name from `tabPrograms` WHERE ({key} like %(txt)s or {scond}) """.format(
+							**{
+								"key": searchfield,
+								"scond": searchfields,
+							}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+
+	# return frappe.db.sql(""" Select name, programs_name from `tabPrograms`""")
+	return data
