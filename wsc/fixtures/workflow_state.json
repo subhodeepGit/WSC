@@ -772,5 +772,41 @@
     "name": "Submitted",
     "style": "",
     "workflow_state_name": "Submitted"
-   }
+   },
+    {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-11-20 11:05:57.387800",
+  "name": "Approved by COO",
+  "style": "",
+  "workflow_state_name": "Approved by COO"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-11-20 11:17:54.414076",
+  "name": "Sent for Approval to COO",
+  "style": "",
+  "workflow_state_name": "Sent for Approval to COO"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-11-20 11:18:35.816809",
+  "name": "Sent for Approval to CEO",
+  "style": "",
+  "workflow_state_name": "Sent for Approval to CEO"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-11-20 12:20:53.210862",
+  "name": "Rejected by COO",
+  "style": "",
+  "workflow_state_name": "Rejected by COO"
+ }
 ]
