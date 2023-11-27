@@ -562,5 +562,53 @@
       "role": "ToT Participant"
      }
     ]
+   },
+   {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2023-11-23 12:50:50.357993",
+  "name": "ToT Trainer",
+  "role_profile": "ToT Trainer",
+  "roles": [
+   {
+    "parent": "ToT Trainer",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Instructor"
+   },
+   {
+    "parent": "ToT Trainer",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Employee"
+   },
+   {
+    "parent": "ToT Trainer",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "TOT Trainer"
    }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2023-11-23 16:31:08.546189",
+  "name": "ToT Director",
+  "role_profile": "ToT Director",
+  "roles": [
+   {
+    "parent": "ToT Director",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "TOT Director"
+   },
+   {
+    "parent": "ToT Director",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Employee"
+   }
+  ]
+ }
 ]
