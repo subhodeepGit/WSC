@@ -45,6 +45,11 @@ frappe.ui.form.on('Room Allotment', {
 				]
 			};
 		});
+		frm.set_query("programs", function () {
+			return {
+				query:'wsc.wsc.doctype.student_hostel_admission.student_hostel_admission.get_course'
+			};
+		});
 
 		// frappe.call({
         //     method: "wsc.wsc.doctype.room_allotment.room_allotment.employee",
