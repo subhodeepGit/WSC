@@ -98,7 +98,9 @@ frappe.ui.form.on('Placement Drive Application', {
 					d.job_profile = row.job_profile
 					d.job_type = row.job_type
 					d.job_start_date = row.job_start_date
-					d.job_end_date = row.job_end_date					
+					d.job_end_date = row.job_end_date			
+					d.job_location = row.job_location
+					d.work_description = row.work_description
 					frm.refresh_field("experience_details");
 				})
 			})
