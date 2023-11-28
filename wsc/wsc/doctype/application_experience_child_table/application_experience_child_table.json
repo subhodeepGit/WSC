@@ -1,0 +1,74 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-11-27 12:32:49.229811",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "company_name",
+  "job_profile",
+  "job_type",
+  "job_start_date",
+  "job_end_date",
+  "job_location",
+  "work_description"
+ ],
+ "fields": [
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Company Name"
+  },
+  {
+   "fieldname": "job_profile",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Job Profile"
+  },
+  {
+   "fieldname": "job_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Job Type",
+   "options": "\nPermanent\nInternship\nContractual\nNon-contractual"
+  },
+  {
+   "fieldname": "job_start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Job Start Date"
+  },
+  {
+   "fieldname": "job_end_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Job End Date"
+  },
+  {
+   "fieldname": "job_location",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Job Location"
+  },
+  {
+   "fieldname": "work_description",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Work Description"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-11-27 12:36:04.395884",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Application Experience Child Table",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

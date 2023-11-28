@@ -149,7 +149,7 @@ def create_assignment(frm):
 	doc= frappe.get_doc("Assignment",frm)
 	doc.assignment_creation_status="Completed"
 	doc.save() 
-	assignment_enqueue(frm)
+	# assignment_enqueue(frm)
 
 def assignment_enqueue(frm):
 	doc= frappe.get_doc("Assignment",frm)
