@@ -187,7 +187,7 @@
   {
    "fetch_from": "resume.phone_number",
    "fieldname": "resume_phone_number",
-   "fieldtype": "Phone",
+   "fieldtype": "Data",
    "label": "Resume Phone number",
    "read_only": 1
   },
@@ -265,19 +265,22 @@
    "fieldname": "languages",
    "fieldtype": "Table",
    "label": "Languages",
-   "options": "Application resume languages table"
+   "options": "Application resume languages table",
+   "read_only": 1
   },
   {
    "fieldname": "non_technical_skills",
    "fieldtype": "Table",
    "label": "Non Technical Skills",
-   "options": "Application non technical skills table"
+   "options": "Application non technical skills table",
+   "read_only": 1
   },
   {
    "fieldname": "technical_skills",
    "fieldtype": "Table",
    "label": "Technical Skills",
-   "options": "Application technical skills table"
+   "options": "Application technical skills table",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_5utiq",
@@ -307,7 +310,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-27 19:22:28.069593",
+ "modified": "2023-11-28 15:05:54.353473",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive Application",

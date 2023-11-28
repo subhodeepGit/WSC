@@ -30,6 +30,8 @@ class PlacementTool(Document):
             result.placement_drive_name = self.placement_drive_name
             result.round_of_placement = self.round_of_placement
             result.scheduled_date_of_round = self.scheduled_date_of_round
+            result.application_status = d.shortlisting_status
+            result.application_id = d.ref_no
             result.save()
             result.submit()
             frappe.db.sql(""" Update `tabStudent child table` set selection_round='%s' where name='%s' """%(result.name,d.name))
@@ -43,7 +45,6 @@ class PlacementTool(Document):
             doc.cancel()
         for d in self.get('student_list'):
             frappe.set_value('Placement Drive Application', d.ref_no, 'status', d.last_round)    
-
     
 @frappe.whitelist()
 def get_drive_names(company_name):
