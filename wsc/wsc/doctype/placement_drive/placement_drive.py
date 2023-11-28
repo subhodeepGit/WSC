@@ -49,6 +49,7 @@ class PlacementDrive(Document):
 @frappe.whitelist()
 def get_eligibility(body):
 	#from placement drive
+	print("\n\n")
 	body = json.loads(body)
 
 	academic_year = body['academic_year']
@@ -66,23 +67,46 @@ def get_eligibility(body):
 	
 	for j in program:
 		
-		current_education= frappe.get_all("Current Educational Details" ,
-				    		{	
-								"academic_year":academic_year ,
-	    						"academic_term":academic_term ,
-								"programs":j['programs'],
-								"semesters":j['semester']
-							} , 
-							['programs' , 'semesters' , 'academic_year' , 'academic_term',"parent"]) #from students.
+		# current_education= frappe.get_all("Current Educational Details" ,
+		# 		    		{	
+		# 						"academic_year":academic_year ,
+	    # 						"academic_term":academic_term ,
+		# 						"programs":j['programs'],
+		# 						"semesters":j['semester']
+		# 					} , 
+		# 					['programs' , 'semesters' , 'academic_year' , 'academic_term',"parent"]) #from students.
+
+		current_education = frappe.db.sql("""
+			SELECT 
+				c_edu_detail.programs , c_edu_detail.semesters ,
+				c_edu_detail.academic_year , c_edu_detail.academic_term ,
+				c_edu_detail.parent ,
+				pld_drive_appl.student , pld_drive_appl.status 
+			FROM 
+				`tabCurrent Educational Details`c_edu_detail 
+			INNER JOIN 
+				`tabPlacement Drive Application`pld_drive_appl 
+			ON 
+				c_edu_detail.parent = pld_drive_appl.student 
+			WHERE 
+				c_edu_detail.academic_year = '{academic_year}' AND
+				c_edu_detail.academic_term = '{academic_term}' AND
+				c_edu_detail.programs = '{programs}' AND
+				c_edu_detail.semesters = '{semester}' AND
+				pld_drive_appl.status != 'Hidden'
+			""".format(academic_year = academic_year , academic_term = academic_term , programs = j['programs'] , semester = j['semester']) , as_dict= 1)
+		
 		for t in current_education:
 			student_dict[t['parent']] = []
 			# final_student_list.append(t)
 
 	for t in student_dict:
+		print(t,"\n")
 		count = 0
 		student_list= frappe.get_all("Educational Details",{"parent":t}, ['qualification',"score",'year_of_completion','parent'])  #from student
 		experience_detail = frappe.get_all("Experience child table" , {"parent":t} , ['job_duration'])  #from student  #can be empty
 		student_cgpa = frappe.get_all("Exam Assessment Result" , {"student":t, "docstatus":1} , ['name' ,'overall_cgpa'])
+
 		if(len(student_cgpa) != 0 and len(student_list) != 0):
 			backlog_record = frappe.get_all("Evaluation Result Item" , {"parent":student_cgpa[0]['name']} , ['result' , 'parent'])  
 			for m in backlog_record:
