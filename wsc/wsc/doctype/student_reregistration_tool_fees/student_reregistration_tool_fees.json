@@ -30,7 +30,7 @@
   {
    "fieldname": "program_grade",
    "fieldtype": "Link",
-   "label": "Program Grade",
+   "label": "Program Grades",
    "options": "Program Grades",
    "reqd": 1
   },
@@ -148,7 +148,7 @@
  "hide_toolbar": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-01-19 11:09:54.646203",
+ "modified": "2023-11-27 09:37:34.625154",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Reregistration Tool Fees",
