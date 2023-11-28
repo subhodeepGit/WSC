@@ -36,8 +36,7 @@
   "get_participants",
   "participants",
   "instructor",
-  "classes",
-  "amended_from"
+  "classes"
  ],
  "fields": [
   {
@@ -221,20 +220,11 @@
    "label": "ToT Participant Selection",
    "options": "ToT Participant Selection",
    "reqd": 1
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Participant Group",
-   "print_hide": 1,
-   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-25 15:49:10.748281",
+ "modified": "2023-11-27 18:42:01.940709",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Group",

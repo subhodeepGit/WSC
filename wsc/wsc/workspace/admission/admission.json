@@ -379,6 +379,26 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Student Attrition Form",
+   "link_count": 0,
+   "link_to": "Student Attrition Form",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Roll No Auto Generation",
+   "link_count": 0,
+   "link_to": "Auto Roll No Generator",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Fees",
    "link_count": 6,
    "onboard": 0,
@@ -569,7 +589,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-11-24 15:08:23.515619",
+ "modified": "2023-11-27 09:49:30.259236",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Admission",

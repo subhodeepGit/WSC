@@ -12,5 +12,8 @@ frappe.listview_settings['Room Allotment'] = {
         else if (doc.allotment_type==="Long Leave De-allotment") {
             return [__(doc.allotment_type), "yellow","allotment_type,=,Long Leave De-allotment"];
 		}
+        else if (doc.allotment_type==="Passout") {
+            return [__(doc.allotment_type), "purple","allotment_type,=,Passout"];
+		}
     }
 };

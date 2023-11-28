@@ -31,6 +31,11 @@ frappe.ui.form.on('Student Hostel Admission', {
 					}
 			};
 		});
+		frm.set_query("programs", function () {
+			return {
+				query:'wsc.wsc.doctype.student_hostel_admission.student_hostel_admission.get_course'
+			};
+		});
 	},
 	academic_year:function(frm){
 		frm.set_value("academic_term","")

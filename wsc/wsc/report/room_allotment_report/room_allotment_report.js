@@ -4,6 +4,13 @@
 
 frappe.query_reports["Room Allotment Report"] = {
 	"filters": [
-
+		{
+			"fieldname": "hostel",
+			"label": __("Hostel"),
+			"fieldtype": "Link",
+			"options": "Hostel Masters",
+			"width": 150,
+			"reqd": 1,
+		},
 	]
 };
