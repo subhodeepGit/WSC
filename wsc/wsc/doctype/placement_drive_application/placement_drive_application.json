@@ -7,22 +7,44 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "applicant_details_section",
   "student",
-  "student_name",
   "roll_no",
-  "registration_number",
   "programs",
-  "current_semester",
-  "resume",
-  "column_break_5",
-  "status",
-  "block_student",
   "posting_date",
+  "column_break_la4qe",
+  "student_name",
+  "registration_number",
+  "current_semester",
+  "status",
+  "resume_section",
+  "resume",
+  "section_break_zavu7",
+  "resume_description",
+  "column_break_5utiq",
+  "interests",
+  "section_break_f6phf",
+  "resume_phone_number",
+  "resume_location",
+  "resume_place",
+  "column_break_lfpjg",
+  "resume_email",
+  "resume_date",
+  "column_break_nnfhz",
+  "experience_details",
+  "educational_details",
+  "previous_education_details",
+  "technical_skills",
+  "non_technical_skills",
+  "languages",
+  "resume_image",
+  "resume_signature",
+  "column_break_5",
+  "block_student",
   "drive_details_section",
   "placement_drive",
   "placement_company",
   "eligibility_details",
-  "educational_details",
   "amended_from"
  ],
  "fields": [
@@ -58,13 +80,14 @@
   },
   {
    "fieldname": "column_break_5",
-   "fieldtype": "Column Break"
+   "fieldtype": "Section Break"
   },
   {
    "default": "Today",
    "fieldname": "posting_date",
    "fieldtype": "Date",
-   "label": "Posting Date"
+   "label": "Posting Date",
+   "read_only": 1
   },
   {
    "fieldname": "placement_drive",
@@ -91,15 +114,14 @@
    "label": "Amended From",
    "no_copy": 1,
    "options": "Placement Drive Application",
-   "print_hide": 1,
-   "read_only": 1
+   "print_hide": 1
   },
   {
    "allow_on_submit": 1,
    "fieldname": "status",
    "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "Status",
+   "label": "Application Status",
    "options": "\nApplied\nRejected\nShortlisted\nHired",
    "permlevel": 1,
    "read_only": 1
@@ -107,15 +129,14 @@
   {
    "fieldname": "educational_details",
    "fieldtype": "Table",
-   "label": "Educational Details",
-   "options": "Educational Details",
+   "label": "Current Educational Details",
+   "options": "Application Current Education Details",
    "read_only": 1
   },
   {
-   "depends_on": "student",
    "fieldname": "resume",
    "fieldtype": "Link",
-   "label": "Resume",
+   "label": "Select Resume",
    "options": "Resume",
    "reqd": 1
   },
@@ -150,12 +171,143 @@
    "fieldtype": "Data",
    "label": " Registration Number",
    "read_only": 1
+  },
+  {
+   "fieldname": "resume_section",
+   "fieldtype": "Section Break",
+   "label": "Resume"
+  },
+  {
+   "fetch_from": "resume.description",
+   "fieldname": "resume_description",
+   "fieldtype": "Small Text",
+   "label": "Resume Description",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "resume.phone_number",
+   "fieldname": "resume_phone_number",
+   "fieldtype": "Phone",
+   "label": "Resume Phone number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "resume.email",
+   "fieldname": "resume_email",
+   "fieldtype": "Data",
+   "label": "Resume Email",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "resume.location",
+   "fieldname": "resume_location",
+   "fieldtype": "Data",
+   "label": "Resume Address",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "resume.date",
+   "fieldname": "resume_date",
+   "fieldtype": "Data",
+   "label": "Resume Date",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "resume.place",
+   "fieldname": "resume_place",
+   "fieldtype": "Data",
+   "label": "Resume Place",
+   "read_only": 1
+  },
+  {
+   "fieldname": "previous_education_details",
+   "fieldtype": "Table",
+   "label": "Previous Education Details",
+   "options": "Previous Education Details Table",
+   "read_only": 1
+  },
+  {
+   "fieldname": "experience_details",
+   "fieldtype": "Table",
+   "label": "Experience Details",
+   "options": "Application Experience Child Table",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "resume.interests",
+   "fieldname": "interests",
+   "fieldtype": "Small Text",
+   "label": "Interests",
+   "read_only": 1
+  },
+  {
+   "fieldname": "applicant_details_section",
+   "fieldtype": "Section Break",
+   "label": "Applicant Details"
+  },
+  {
+   "fieldname": "column_break_la4qe",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_lfpjg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_nnfhz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_zavu7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "languages",
+   "fieldtype": "Table",
+   "label": "Languages",
+   "options": "Application resume languages table"
+  },
+  {
+   "fieldname": "non_technical_skills",
+   "fieldtype": "Table",
+   "label": "Non Technical Skills",
+   "options": "Application non technical skills table"
+  },
+  {
+   "fieldname": "technical_skills",
+   "fieldtype": "Table",
+   "label": "Technical Skills",
+   "options": "Application technical skills table"
+  },
+  {
+   "fieldname": "column_break_5utiq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_f6phf",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "resume.image",
+   "fieldname": "resume_image",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Resume Image",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "resume.signature_image",
+   "fieldname": "resume_signature",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Resume Signature",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-24 17:52:08.600073",
+ "modified": "2023-11-27 19:22:28.069593",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive Application",

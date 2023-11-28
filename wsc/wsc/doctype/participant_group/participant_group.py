@@ -16,9 +16,11 @@ class ParticipantGroup(Document):
 		# restricted_table_change(self)
 		dulicate_trainer_chk(self)
 		class_scheduling_date_validation(self)
-		re_scheduling_chk(self)
+		if not self.is_new():
+			re_scheduling_chk(self)
+			cancel_class(self)
 		class_scheduling_ovelaping_chk(self)
-		cancel_class(self)
+		
 		tot_class_schedule(self)
 		if not self.get("__islocal"):
 			create_user_permission(self)

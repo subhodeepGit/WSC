@@ -129,6 +129,16 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Student Attrition Form",
+   "link_count": 0,
+   "link_to": "Student Attrition Form",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Tools",
    "link_count": 2,
    "onboard": 0,
@@ -307,7 +317,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-11-24 15:08:23.883100",
+ "modified": "2023-11-27 09:50:31.455157",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Academics",
