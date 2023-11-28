@@ -36,6 +36,7 @@ frappe.ui.form.on('Placement Drive', {
 	get_students: function(frm){
 		if(!frm.is_new()){
 			let body = JSON.stringify({
+				name: frm.doc.name,
 				academic_year:frm.doc.academic_year,
 				academic_term:frm.doc.academic_term,
 				placement_drive_for:frm.doc.placement_drive_for,
@@ -53,7 +54,7 @@ frappe.ui.form.on('Placement Drive', {
 					if(result.message.length !== 0){
 						frappe.model.clear_table(frm.doc, 'eligible_student');
 						result.message.forEach(i => {
-							console.log(i);
+							
 							let c =frm.add_child('eligible_student')
 							c.student_doctype_name = i.parent
 							c.student_name = i.student_name
