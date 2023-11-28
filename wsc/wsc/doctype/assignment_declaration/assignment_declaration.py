@@ -10,8 +10,19 @@ from frappe import msgprint, _
 class AssignmentDeclaration(Document):
 	def validate(self):
 		self.validate_duplication()
+		self.is_assignment_created()
+		self.is_assignment_completed()
 
+	def is_assignment_created(self):
+		for t in self.get('job_sheet'):
+			if not t.job_sheet_number:
+				frappe.throw("No Assignment has been created for %s"%(t.job_sheet_name))
 
+	def is_assignment_completed(self):
+		for t in self.get('job_sheet'):
+			output=frappe.db.count("Assignment Upload",filters=[['assignment_id',"=",t.job_sheet_number],['docstatus',"In",(0,1)]])
+			if output == 0:
+				frappe.throw("Assignment(s) not created in Assignment Upload screen")
 
 	def validate_duplication(self):
 		"""Check if the Assignment Declaration Record is Unique"""

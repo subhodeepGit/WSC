@@ -51,3 +51,9 @@ def is_placement_blocked_student(doc):
     for bl_st in frappe.get_all("Placement Blocked Student List",{"student":doc.student},['parent']):
         for drive in frappe.get_all("Block Drive List",{"parent":bl_st.parent,"placement_drive":doc.placement_drive},'placement_drive'):
             frappe.throw("Student is exists in <b>Placement Blocked Student</b> in {0} placement drive.".format(drive.placement_drive))
+
+
+@frappe.whitelist()
+def get_resume_info(resume_id):
+    # resume_form_details= frappe.db.sql(""" """)
+    pass
