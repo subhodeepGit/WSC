@@ -25,7 +25,9 @@
   "scheduled_date_of_round",
   "amended_from",
   "shortlisting_status",
-  "round_status"
+  "round_status",
+  "application_status",
+  "application_id"
  ],
  "fields": [
   {
@@ -123,12 +125,22 @@
    "fieldname": "round_status",
    "fieldtype": "Data",
    "label": "Round status"
+  },
+  {
+   "fieldname": "application_status",
+   "fieldtype": "Data",
+   "label": "Application Status"
+  },
+  {
+   "fieldname": "application_id",
+   "fieldtype": "Data",
+   "label": "Application ID"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-05 11:35:49.704993",
+ "modified": "2023-11-28 13:28:58.982950",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Selection Round",
