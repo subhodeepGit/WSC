@@ -1721,3 +1721,120 @@ def email_transaction_status(doc):
     send_mail(recipients,'Transaction Details',msg)
     
 ## Ended by Rupali Bhatta
+##############################################################################################################################################################################################
+####Job Requisition Notification#######
+def job_requisition_director(doc):
+    sub = "Reg:Job Requisition Details"
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Job Requisition below and navigate to the form by clicking on "Open Now".</p></br>"""
+
+    msg += "<b>---------------------Job Requisition Details---------------------</b><br>"
+
+    msg += "<b>Job Requisition ID:</b> {0}<br>".format(doc['name'])
+    msg += "<b>Department:</b> {0}<br>".format(doc['department'])
+    msg += "<b>Designation:</b> {0}<br>".format(doc['designation'])
+    msg += "<b>Number of Positions:</b> {0}<br>".format(doc['no_of_positions'])
+    msg += "<b>Status:</b> {0}<br>".format(doc['workflow_state'])
+
+    jobrequisition_app_url = get_url_to_form('Job Requisition', doc['name'])
+    msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(jobrequisition_app_url)
+
+    recipients = frappe.get_all("User", filters={'role': 'Director'}, fields=['email'])
+    recipient_emails = [recipient.get('email') for recipient in recipients]
+
+    send_mail(recipient_emails, sub, msg)
+    frappe.msgprint("Job Requisition Details is sent to the Director")
+
+def job_requisition_cfo(doc):
+    sub = "Reg:Job Requisition Details"
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Job Requisition below and navigate to the form by clicking on "Open Now".</p></br>"""
+
+    msg += "<b>---------------------Job Requisition Details---------------------</b><br>"
+
+    msg += "<b>Job Requisition ID:</b> {0}<br>".format(doc.get('name'))
+    msg += "<b>Department:</b> {0}<br>".format(doc.get('department'))
+    msg += "<b>Designation:</b> {0}<br>".format(doc.get('designation'))
+    msg += "<b>Number of Positions:</b> {0}<br>".format(doc.get('no_of_positions'))
+    msg += "<b>Status:</b> {0}<br>".format(doc.get('workflow_state'))
+
+
+    jobrequisition_app_url = get_url_to_form('Job Requisition', format(doc.get('name')))
+    msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(jobrequisition_app_url)
+
+    recipients = frappe.get_all("User", filters={'role': 'CFO'}, fields=['email'])
+    recipient_emails = [recipient.get('email') for recipient in recipients]
+
+    send_mail(recipient_emails, sub, msg)
+    frappe.msgprint("Job Requisition Details is sent to the CFO")
+
+
+def job_requisition_ceo(doc):
+    sub = "Reg:Job Requisition Details"
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Job Requisition below and navigate to the form by clicking on "Open Now".</p></br>"""
+
+    msg += "<b>---------------------Job Requisition Details---------------------</b><br>"
+
+    msg += "<b>Job Requisition ID:</b> {0}<br>".format(doc.get('name'))
+    msg += "<b>Department:</b> {0}<br>".format(doc.get('department'))
+    msg += "<b>Designation:</b> {0}<br>".format(doc.get('designation'))
+    msg += "<b>Number of Positions:</b> {0}<br>".format(doc.get('no_of_positions'))
+    msg += "<b>Status:</b> {0}<br>".format(doc.get('workflow_state'))
+
+
+    jobrequisition_app_url = get_url_to_form('Job Requisition', format(doc.get('name')))
+    msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(jobrequisition_app_url)
+
+    recipients = frappe.get_all("User", filters={'role': 'CEO'}, fields=['email'])
+    recipient_emails = [recipient.get('email') for recipient in recipients]
+
+    send_mail(recipient_emails, sub, msg)
+    frappe.msgprint("Job Requisition Details is sent to the CEO")
+
+
+def job_requisition_coo(doc):
+    sub = "Reg:Job Requisition Details"
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Job Requisition below and navigate to the form by clicking on "Open Now".</p></br>"""
+
+    msg += "<b>---------------------Job Requisition Details---------------------</b><br>"
+
+    msg += "<b>Job Requisition ID:</b> {0}<br>".format(doc.get('name'))
+    msg += "<b>Department:</b> {0}<br>".format(doc.get('department'))
+    msg += "<b>Designation:</b> {0}<br>".format(doc.get('designation'))
+    msg += "<b>Number of Positions:</b> {0}<br>".format(doc.get('no_of_positions'))
+    msg += "<b>Status:</b> {0}<br>".format(doc.get('workflow_state'))
+
+
+    jobrequisition_app_url = get_url_to_form('Job Requisition', format(doc.get('name')))
+    msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(jobrequisition_app_url)
+
+    recipients = frappe.get_all("User", filters={'role': 'COO'}, fields=['email'])
+    recipient_emails = [recipient.get('email') for recipient in recipients]
+
+    send_mail(recipient_emails, sub, msg)
+    frappe.msgprint("Job Requisition Details is sent to the COO")
+
+def job_requisition_hr(doc):
+    sub = "Reg:Job Requisition Details"
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p>Kindly refer to the Job Requisition below and navigate to the form by clicking on "Open Now".</p></br>"""
+
+    msg += "<b>---------------------Job Requisition Details---------------------</b><br>"
+
+    msg += "<b>Job Requisition ID:</b> {0}<br>".format(doc.get('name'))
+    msg += "<b>Department:</b> {0}<br>".format(doc.get('department'))
+    msg += "<b>Designation:</b> {0}<br>".format(doc.get('designation'))
+    msg += "<b>Number of Positions:</b> {0}<br>".format(doc.get('no_of_positions'))
+    msg += "<b>Status:</b> {0}<br>".format(doc.get('workflow_state'))
+
+
+    jobrequisition_app_url = get_url_to_form('Job Requisition', format(doc.get('name')))
+    msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(jobrequisition_app_url)
+
+    recipients = frappe.get_all("User", filters={'role': 'HR Admin'}, fields=['email'])
+    recipient_emails = [recipient.get('email') for recipient in recipients]
+
+    send_mail(recipient_emails, sub, msg)
+    frappe.msgprint("Job Requisition Details is sent to the HR")
