@@ -123,7 +123,7 @@ def get_columns(room_type_data,get_room_description_data):
 			"width":200
 		},
 		{
-			"label": _("Total Valency Of The Hostel"),
+			"label": _("Total Vacancy Of The Hostel"),
 			"fieldname": "total_valency_of_the_hostel",
 			"fieldtype": "Data",
 			"width":200
