@@ -11,8 +11,8 @@ class PlacementDriveApplication(Document):
         self.validate_placement_drive()
         self.update_status()
 
-    # def on_submit(self):
-        # self.update_status()
+    # def on_save(self):
+        # frappe.throw(self.name)
     
     def update_status(self):
        if(self.status != "Applied"):
