@@ -96,7 +96,7 @@ def participant(doctype, txt, searchfield, start, page_len, filters):
 	searchfields = frappe.get_meta(doctype).get_search_fields()
 	searchfields = " or ".join("TP."+field + " like %(txt)s" for field in searchfields)
 	participant_group_id=filters.get('participant_group_id')
-	participant_details = frappe.db.sql(""" SELECT TP.name 
+	participant_details = frappe.db.sql(""" SELECT TP.name,TP.participant_name 
 											FROM `tabParticipant Table` as PT
 											JOIN `tabToT Participant` as TP on TP.name=PT.participant
 											where (TP.{key} like %(txt)s or {scond}) and
