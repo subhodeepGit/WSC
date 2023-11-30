@@ -200,6 +200,21 @@ frappe.ui.form.on('Placement Drive', {
 			}
 		}
 	},
+	// tentative_joining_date: function(frm){
+	// 	frappe.call({
+	// 		method: 'wsc.wsc.doctype.placement_drive.placement_drive.tentative_date_validation',
+	// 		callback: function(result) {
+	// 			if(result.message){
+	// 				if(result.message[0] == 1){
+	// 					alert(300)
+	// 				}
+	// 				else if(result.message[0] == 2){
+	// 					alert(400)
+	// 				}
+	// 			}
+	// 		}
+	// 	})
+	// },
 	refresh:function(frm){
 		if(!frm.is_new()){
 			frm.set_df_property('get_students' , 'hidden' , 0)
