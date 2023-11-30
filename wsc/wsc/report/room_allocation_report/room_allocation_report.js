@@ -4,13 +4,15 @@
 
 frappe.query_reports["Room Allocation Report"] = {
 	onload: function (report) {
-        report.page.add_inner_button(__('Your Button Label'), function () {
-            // Your custom button logic here
-            frappe.msgprint('Button Clicked!');
-			frappe.route_options = {
-                student_id: "",
-            };
-            frappe.set_route("query-report", "Selection Round Report");
+        report.page.add_inner_button(__('Room Allocation Duration'), function () {
+            
+            let from_date_parts = report.filters[1].input.value.split("-")
+			let to_date_parts = report.filters[2].input.value.split("-")
+
+			frappe.set_route("query-report", "Room Allocation Duration Report" , {
+                from_date: (new Date(from_date_parts[2] , from_date_parts[1] - 1 , from_date_parts[0])),
+				to_date: (new Date(to_date_parts[2] , to_date_parts[1] - 1 , to_date_parts[0])),
+            });
         });
     },
 	"filters": [

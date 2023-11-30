@@ -195,6 +195,8 @@ def create_user(trainer, user=None, email=None):
             "middle_name": middle_name,
             "last_name": last_name,
             "gender": emp.gender,
+            "role_profile_name":"ToT Trainer",
+            "module_profile":"Instructor"
             # "birth_date": emp.date_of_birth,
             # "phone": emp.cell_number,
             # "bio": emp.bio,

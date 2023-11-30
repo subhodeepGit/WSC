@@ -20,88 +20,116 @@ def get_columns(filters=None):
         "width":180
 	},
     {
-        "label": "Total No. of Classes Scheduled",
+        "label": "Classes Sched.",
         "fieldtype":"Data",
         "fieldname":"total_classes",
         # "options":"Room",
-        "width":220
+        "width":120
     },
     {
-        "label": "No. of Classes Taken",
+        "label": "Classes Compl.",
         "fieldtype":"Data",
         "fieldname":"classes_completed",
         # "options":"Room",
-        "width":160
+        "width":120
     },
     {
-        "label": "Expected Class Duration In Hours",
+        "label": "Expt. Class Dur.(Hrs)",
         "fieldtype":"Data",
         "fieldname":"class_duration",
         # "options":"Student Group",
-        "width":240
+        "width":160
 	},
     {
-        "label": "Actual Class Duration In Hours",
+        "label": "Actual Class Dur.(Hrs)",
         "fieldtype":"Data",
         "fieldname":"class_duration_actual",
         # "options":"Student Group",
-        "width":240
+        "width":160
 	},
     {
-        "label": "Total No. of ToT Classes Scheduled",
+        "label": "Class Dur(%)",
+        "fieldtype":"Data",
+        "fieldname":"class_duration_percent",
+        # "options":"Room",
+        "width":110
+    },
+    {
+        "label": "Actual Class Dur(%)",
+        "fieldtype":"Data",
+        "fieldname":"class_duration_percent_actual",
+        # "options":"Student Group",
+        "width":160
+	},
+    {
+        "label": "ToT Class Sched.",
         "fieldtype":"Data",
         "fieldname":"total_tot_classes",
         # "options":"Room",
-        "width":250
+        "width":140
     },
     {
-        "label": "No. of ToT Classes Taken",
+        "label": "ToT Class Compl.",
         "fieldtype":"Data",
         "fieldname":"tot_classes_completed",
         # "options":"Room",
-        "width":190
+        "width":140
     },
     {
-        "label": "Expected ToT Duration In Hours",
+        "label": "Expt. ToT Dur.(Hrs)",
         "fieldtype":"Data",
         "fieldname":"tot_duration",
         # "options":"Student Group",
-        "width":240
+        "width":150
 	},
     {
-        "label": "Actual ToT Duration In Hours",
+        "label": "ToT Dur.(%)",
+        "fieldtype":"Data",
+        "fieldname":"tot_duration_percent",
+        # "options":"Student Group",
+        "width":110
+	},
+    {
+        "label": "Actual ToT Dur.(Hrs)",
         "fieldtype":"Data",
         "fieldname":"tot_duration_actual",
         # "options":"Student Group",
-        "width":240
+        "width":150
 	},
     {
-        "label": "Total Duration(Expected)",
+        "label": "Actual ToT Dur.(%)",
+        "fieldtype":"Data",
+        "fieldname":"tot_duration_percent_actual", ##
+        # "options":"Student Group",
+        "width":150
+	},
+    {
+        "label": "Expt. Total Dur.(Hrs)",
         "fieldtype":"Data",
         "fieldname":"total_duration",
         # "options":"Student Group",
-        "width":240
+        "width":150
 	},
     {
-        "label": "Actual Duration",
+        "label": "Actual Total Dur.(Hrs)",
         "fieldtype":"Data",
         "fieldname":"total_duration_actual",
         # "options":"Student Group",
-        "width":240
+        "width":160
 	},
     {
-        "label": "Duration Percentage(Expected)",
+        "label": "Expt. Dur.(%)",
         "fieldtype":"Data",
         "fieldname":"duration_percent",
         # "options":"Student Group",
-        "width":240
+        "width":110
 	},
     {
-        "label": "Actual Duration Percent",
+        "label": "Actual Dur.(%)",
         "fieldtype":"Data",
         "fieldname":"duration_percent_actual",
         # "options":"Student Group",
-        "width":240
+        "width":120
 	},
     
 ]
@@ -137,6 +165,8 @@ def get_data(filters):
         total_tot_count = 0
         actual_tot_duration = 0
         tot_duration = 0
+        tot_duration_percent = 0
+        tot_duration_percent_actual = 0
         tot_count = 0
 
 
@@ -150,21 +180,22 @@ def get_data(filters):
         ## Attendance Data fetch class
         attendance_data_class = frappe.db.sql("""
             SELECT 
-                class_atten.name , 
-                class_atten.date ,  
-                class_atten.student_name , 
-                class_atten.student_group , 
-                class_atten.course_schedule , 
+                class_atten.name, 
+                class_atten.date, 
+                class_atten.student_name, 
+                class_atten.student_group, class_atten.course_schedule, 
                 class.room 
             FROM 
-                `tabStudent Attendance` class_atten 
+                `tabStudent Attendance` class_atten
             INNER JOIN 
                 `tabCourse Schedule` class 
-            ON class_atten.course_schedule = class.name 
-            WHERE class_atten.date BETWEEN '{from_date}' AND '{to_date}'
+            ON 
+                class_atten.course_schedule = class.name 
+            WHERE 
+                class_atten.date BETWEEN '{from_date}' AND '{to_date}' GROUP BY class_atten.date
         """.format(from_date = filters['from_date']  , to_date = filters['to_date']), as_dict=1)
 
-
+        # print(attendance_data_class , "\n")
         ## Attendance Data fetch tot
         attendance_data_tot = frappe.db.sql("""
             SELECT 
@@ -180,10 +211,10 @@ def get_data(filters):
             INNER JOIN 
                 `tabToT Class Schedule`tot_class 
             ON tot_atten.class_schedule = tot_class.name 
-            WHERE tot_atten.date BETWEEN '{from_date}' AND '{to_date}';
+            WHERE tot_atten.date BETWEEN '{from_date}' AND '{to_date}' GROUP BY tot_atten.date;
         """.format(from_date = filters['from_date']  , to_date = filters['to_date']), as_dict=1)
 
-        
+        print(attendance_data_tot , "\n")
         ## data fetch tot
         data_tot = frappe.db.sql("""
             SELECT 
@@ -266,12 +297,20 @@ def get_data(filters):
                 duration = j['to_time'] - j['from_time']
 
                 class_duration = class_duration + duration.total_seconds()/3600      
-                
+
+
+        ## Duration percent class        
+        class_duration_percent = round(((class_duration/total_time) * 100) , 2)
+        class_duration_percent_actual = round(((actual_class_duration/total_time) * 100) , 2)
+
+        ## Duration percent tot
+        tot_duration_percent = round(((class_duration/total_time) * 100) , 2)
+        tot_duration_percent_actual = round(((actual_class_duration/total_time) * 100) , 2)
+
         ## Duration Expected
         total_duration = tot_duration + class_duration
         duration_percent = round(((total_duration/total_time) * 100) , 2)
-        print(total_duration)
-        print(total_duration/total_time , "duration Time")
+        
         ## Duration Actual
         total_duration_actual = actual_class_duration + actual_tot_duration
         duration_percent_actual = round(((total_duration_actual/total_time) * 100) , 2)
@@ -290,10 +329,18 @@ def get_data(filters):
         info['class_duration'] = class_duration
         info['class_duration_actual'] = actual_class_duration
 
+        ## Class Duration Percent
+        info['class_duration_percent'] = class_duration_percent
+        info['class_duration_percent_actual'] = class_duration_percent_actual
+
         ## TOT Class Duration
         info['tot_duration'] = tot_duration
         info['tot_duration_actual'] = actual_tot_duration
 
+        ## TOT Class Duration Percent
+        info['tot_duration_percent'] = tot_duration_percent
+        info['tot_duration_percent_actual'] = tot_duration_percent_actual
+        
         ## Total Duration
         info['total_duration'] = total_duration
         info['total_duration_actual'] = total_duration_actual

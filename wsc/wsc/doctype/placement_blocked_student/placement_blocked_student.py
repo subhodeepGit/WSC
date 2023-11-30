@@ -8,7 +8,7 @@ from wsc.wsc.utils import semester_belongs_to_programs,duplicate_row_validation
 class PlacementBlockedStudent(Document):
 	def validate(self):
 		self.validate_student()
-		self.validate_placement_drive()
+		# self.validate_placement_drive()
 		semester_belongs_to_programs(self)
 		duplicate_row_validation(self,'block_drive_list',['placement_drive'])
 		duplicate_row_validation(self,'blocked_student',['student'])

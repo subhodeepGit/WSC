@@ -3,6 +3,18 @@
 /* eslint-disable */
 
 frappe.query_reports["Room Allocation Duration Report"] = {
+	onload: function (report) {
+        report.page.add_inner_button(__('Room Allocation Report'), function () {
+			
+            let from_date_parts = report.filters[0].input.value.split("-")
+			let to_date_parts = report.filters[1].input.value.split("-")
+
+			frappe.set_route("query-report", "Room Allocation Report" , {
+                from_date: (new Date(from_date_parts[2] , from_date_parts[1] - 1 , from_date_parts[0])),
+				to_date: (new Date(to_date_parts[2] , to_date_parts[1] - 1 , to_date_parts[0])),
+            });
+        });
+    },
 	"filters": [
         // {
 		// 	"label":"Schedule Date",
