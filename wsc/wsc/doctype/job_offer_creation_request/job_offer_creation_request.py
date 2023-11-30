@@ -15,7 +15,7 @@ class JobOfferCreationRequest(Document):
 
     def check_duplicate_records(self):
         # Fetch existing records excluding the current one
-        existing_records = frappe.get_all('Job Offer Creation Request',filters={"job_opening":self.job_opening,"year":self.year,"designation":self.designation,"docstatus":1},fields=['name'])
+        existing_records = frappe.get_all('Job Offer Creation Request',filters={"job_opening":self.job_opening,"year":self.year,"designation":self.designation,"docstatus":1,"status":"Approved"},fields=['name'])
 
         return existing_records
 
