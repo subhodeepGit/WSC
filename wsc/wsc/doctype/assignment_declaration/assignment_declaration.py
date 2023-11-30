@@ -9,7 +9,7 @@ from frappe import msgprint, _
 
 class AssignmentDeclaration(Document):
 	def validate(self):
-		# self.validate_duplication()
+		self.validate_duplication()
 		self.is_assignment_created()
 		self.is_assignment_completed()
 		self.total_marks_validation()

@@ -2698,7 +2698,7 @@
   "home_page": null,
   "is_custom": 0,
   "list_sidebar": 0,
-  "modified": "2023-08-14 16:38:01.867286",
+  "modified": "2023-11-30 15:38:01.867286",
   "name": "TOT Trainer",
   "notifications": 0,
   "restrict_to_domain": null,
@@ -2706,7 +2706,7 @@
   "search_bar": 1,
   "timeline": 0,
   "two_factor_auth": 0,
-  "view_switcher": 0
+  "view_switcher": 1
  },
  {
   "bulk_actions": 0,

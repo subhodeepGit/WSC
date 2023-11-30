@@ -808,5 +808,14 @@
   "name": "Rejected by COO",
   "style": "",
   "workflow_state_name": "Rejected by COO"
- }
+ },
+ {
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-11-22 09:16:59.811051",
+    "name": "Pending Approval From CEO",
+    "style": "",
+    "workflow_state_name": "Pending Approval From CEO"
+   }
 ]

@@ -1,6 +1,6 @@
 import frappe
 from frappe import _
-from wsc.wsc.notification.custom_notification import send_mail_to_jobapplicants_final_notification
+from wsc.wsc.notification.custom_notification import send_mail_to_jobapplicants_final_notification,send_mail_to_jobapplicants_notification
 
 def update_document(doc, method):
 	roles = frappe.get_roles(frappe.session.user)
@@ -67,13 +67,18 @@ def on_update_after_submit(doc,method):
 	data["job_title"]=doc.job_title
 	data["current_status"]=doc.current_status
 	send_mail_to_jobapplicants_final_notification(data)
+	# send_mail_to_jobapplicants_notification(data)
 def on_update(doc,method):
 # 	delete_user_permission(doc)
 	roles = frappe.get_roles(frappe.session.user)
 	if doc.current_status=="Applied" and "HR Admin" in roles or "Admin" in roles or "Administrator" in roles:
 		submit_document(doc)
 		setup_workflow(doc)
-
+	data={}
+	data["email_id"]=doc.email_id
+	data["job_title"]=doc.job_title
+	data["current_status"]=doc.current_status
+	send_mail_to_jobapplicants_final_notification(data)
 def on_change(doc,method):
 # 	delete_user_permission(doc)
 	if doc.current_status=="Applied":
@@ -83,6 +88,11 @@ def on_change(doc,method):
 def validate(doc,method):
 	# validate_duplicate_record(doc)
 	# delete_user_permission(doc)
+	data={}
+	data["email_id"]=doc.email_id
+	data["job_title"]=doc.job_title
+	data["current_status"]=doc.current_status
+	send_mail_to_jobapplicants_notification(data)
 	my_field = doc.get("aadhar_card_number") 
 	if not my_field.isdigit():
 		frappe.throw("AAdhar Field must contain only digits.")

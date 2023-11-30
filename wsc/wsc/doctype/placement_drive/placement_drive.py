@@ -9,8 +9,12 @@ from wsc.wsc.notification.custom_notification import placement_drive_submit
 
 class PlacementDrive(Document):
 	def validate(self):
+		create_placement_drive_block_list(self)
 		validate_application_date(self)
 		self.rounds_of_placement_check()
+	
+	def before_submit(self):
+		tentative_date_validation(self)
 
 	def rounds_of_placement_check(self):
 		rounds_of_placement = frappe.get_all("Rounds of Placement" , {"parent":self.name} , ['round_name'])
@@ -80,7 +84,7 @@ def get_eligibility(body):
 
 		
 		for t in current_education:
-			print(t , "zetoth")
+			# print(t , "zetoth")
 			student_dict[t['parent']] = []
 			# final_student_list.append(t)
 
@@ -97,7 +101,7 @@ def get_eligibility(body):
 				status_appl_drive = 1
 				break
 
-		print(t, "first\n")
+		# print(t, "first\n")
 		print(status_appl_drive, "\n")
 		if status_appl_drive == 1:
 			print
@@ -108,6 +112,10 @@ def get_eligibility(body):
 			experience_detail = frappe.get_all("Experience child table" , {"parent":t} , ['job_duration'])  #from student  #can be empty
 			student_cgpa = frappe.get_all("Exam Assessment Result" , {"student":t, "docstatus":1} , ['name' ,'overall_cgpa'])
 
+			print(student_cgpa , "\n cgpa")
+			print(experience_detail , "\n exp")
+			print(student_list , "\n past score")
+
 			if(len(student_cgpa) != 0 and len(student_list) != 0):
 				backlog_record = frappe.get_all("Evaluation Result Item" , {"parent":student_cgpa[0]['name']} , ['result' , 'parent'])  
 				for m in backlog_record:
@@ -116,7 +124,7 @@ def get_eligibility(body):
 						count+=1
 			
 				if len(experience_detail) == 0 and placement_drive_for == "freshers":  #For freshers only
-					
+					print("fresh\n")
 					for k in student_list:
 							for j in eligibility_criteria:	
 								if k['qualification'] == j['qualification'] and k['score'] >= j['percentage'] and req_cgpa <= student_cgpa[0]['overall_cgpa'] and count <= backlog:
@@ -124,7 +132,7 @@ def get_eligibility(body):
 									final_student_list.append(k)
 									
 				elif len(experience_detail) > 0 and placement_drive_for == "experience": #For Experience only
-					
+					print("exp details\n")
 					for k in student_list:
 						for j in eligibility_criteria:	
 							if k['qualification'] == j['qualification'] and k['score'] >= j['percentage'] and req_cgpa <= student_cgpa[0]['overall_cgpa'] and count <= backlog:
@@ -132,6 +140,7 @@ def get_eligibility(body):
 								final_student_list.append(k)
 
 				elif placement_drive_for == "both":
+					print("both\n")
 					for k in student_list:
 						for j in eligibility_criteria:	
 							if k['qualification'] == j['qualification'] and k['score'] >= j['percentage'] and req_cgpa <= student_cgpa[0]['overall_cgpa'] and count <= backlog:
@@ -154,3 +163,26 @@ def validate_application_date(doc):
 		if doc.application_end_date < doc.application_start_date:
 			frappe.throw(_('Application_end_date <b>{0}</b> should be greater than application_start_date <b>{1}</b>.').format(doc.application_end_date, doc.application_start_date))
 
+
+@frappe.whitelist()
+def create_placement_drive_block_list(self):
+	blocklist_count = frappe.db.sql(""" SELECT Count(*) FROM `tabPlacement Blocked Student` WHERE placement_drive_id = '%s'"""%(self.name))
+	if(blocklist_count[0][0] == 0):
+		result = frappe.new_doc('Placement Blocked Student')
+		result.date = self.posting_date
+		result.academic_year = self.academic_year
+		result.programs = 'Mechatronics'
+		result.semester = 'MCE Semester I'
+		result.placement_drive_id = self.name
+		result.append("block_drive_list",{
+			"placement_drive" : self.name
+		})
+		result.save()
+		get_blocklist_name = frappe.db.sql(""" SELECT name FROM `tabPlacement Blocked Student` WHERE placement_drive_id = '%s'"""%(self.name))
+		self.blocklist_id = get_blocklist_name[0][0]
+
+def tentative_date_validation(self):
+	if(self.tentative_joining_date):
+		for d in self.get('rounds_of_placement_table'):
+			if(self.tentative_joining_date < d.date):
+				frappe.throw('Tentative Joining Date cannot be before date of the placement rounds')

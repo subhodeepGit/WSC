@@ -778,7 +778,7 @@
    "non_negative": 0,
    "options": null,
    "owner": "Administrator",
-   "permlevel": 1,
+   "permlevel": 0,
    "precision": "",
    "print_hide": 0,
    "print_hide_if_no_value": 0,
