@@ -3,22 +3,21 @@ import frappe
 BENCH_PATH = frappe.utils.get_bench_path()
 
 def execute():
-    # disable_cancel_link()
-    # add_line_for_po()
-    # comment_lines_job_applicant()
-    # comment_lines_list_view()
-    # add_line_JobApplicant_js()
-    # update_line_gridrow_js()
+    disable_cancel_link()
+    add_line_for_po()
+    comment_lines_job_applicant()
+    comment_lines_list_view()
+    add_line_JobApplicant_js()
+    update_line_gridrow_js()
     # upload_malicious_pdf()
-    # cross_site_scripting()
-    # login_password_encryption()
-    # login_password_decryption()
-    # add_login_html_overrides()
-    # insecure_transmission_password()
-    # improper_error_handling_response()
-    # process_response_website_js_1()
-    # process_response_website_js_2()
-    pass
+    cross_site_scripting()
+    login_password_encryption()
+    login_password_decryption()
+    add_login_html_overrides()
+    insecure_transmission_password()
+    improper_error_handling_response()
+    process_response_website_js_1()
+    process_response_website_js_2()
 
 def disable_cancel_link():
     file_path = "{}/{}".format(BENCH_PATH,
