@@ -26,7 +26,7 @@ def get_assignments(self):
 		for t in module_list:
 			data=frappe.get_all("Credit distribution List",[["parent","=",t]],['assessment_criteria','weightage','credits','passing_credits','total_marks','passing_marks','parent'])
 			for j in data:
-				credit_distribution_list.append(j)		
+				credit_distribution_list.append(j)					
 
 	grading_scale=self.grading_scale
 
@@ -39,7 +39,6 @@ def get_assignments(self):
 		for t in self.get("participants"):
 			data=[]
 			participant_id=t.participant_id
-
 			if len(list_grp)==1:
 				data=frappe.get_all("Assignment Evaluation",[["docstatus",'=',1],["participant_group","=",list_grp[0]],['participant_id','=',participant_id]],
 										['name','assessment_component','total_marks','weightage','passing_marks','marks_earned',
@@ -49,6 +48,10 @@ def get_assignments(self):
 										['name','assessment_component','total_marks','weightage','passing_marks','marks_earned',
 										'module_code','module_name',"select_module"])
 				
+			if not data:
+				frappe.throw("Assignment Evaluation Not Found or Submitted For the Participants %s "%(participant_id))	
+
+
 			for k in credit_distribution_list:
 				flag="No"
 				for j in data:				
@@ -59,7 +62,7 @@ def get_assignments(self):
 						break
 					else:
 						k["flag"]="No"	
-
+			
 			for k in credit_distribution_list:
 				if k['flag']=="No":
 					l=frappe.get_all("Course",{"name":k['parent']},['course_code','course_name'])
@@ -76,6 +79,8 @@ def get_assignments(self):
 					data.append(a)	
 			
 			for k in data:
+				if k['total_marks']==0:
+					frappe.throw("Total Marks Can't be Zero")
 				percentage=(k['marks_earned']/k['total_marks'])*100
 				k['percentage']=percentage
 				a=get_grade_result(grading_scale,k['marks_earned'],k['total_marks'])

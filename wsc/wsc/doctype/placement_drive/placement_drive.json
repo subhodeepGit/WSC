@@ -233,6 +233,7 @@
    "label": "Eligible Students"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "eligible_student",
    "fieldtype": "Table",
    "label": "Eligible Student",
@@ -240,6 +241,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "get_students",
    "fieldtype": "Button",
    "label": "Get Students"
@@ -304,7 +306,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-23 17:41:47.539355",
+ "modified": "2023-11-28 16:47:57.114483",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive",

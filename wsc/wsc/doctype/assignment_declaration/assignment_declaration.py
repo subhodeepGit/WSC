@@ -12,6 +12,7 @@ class AssignmentDeclaration(Document):
 		self.validate_duplication()
 		self.is_assignment_created()
 		self.is_assignment_completed()
+		self.total_marks_validation()
 
 	def is_assignment_created(self):
 		for t in self.get('job_sheet'):
@@ -42,6 +43,10 @@ class AssignmentDeclaration(Document):
 			record = get_link_to_form('Assignment Declaration', assignment_record)
 			frappe.throw(_('Assignment Declaration record {0} already exists!')
 				.format(record), title=_('Duplicate Entry'))
+
+	def total_marks_validation(self):
+		if int(self.total_marks)==0 or self.total_marks==None:
+			frappe.throw("Total Marks Can't be Zero or None. Kindly maintain total marks in the Module Screen For the Assessment Component %s "%(self.assessment_component)) 		
 
 
 @frappe.whitelist()

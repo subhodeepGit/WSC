@@ -52,6 +52,8 @@ def get_eligibility(body):
 	print("\n\n")
 	body = json.loads(body)
 
+	name = body['name']
+
 	academic_year = body['academic_year']
 	academic_term = body['academic_term']
 
@@ -67,77 +69,76 @@ def get_eligibility(body):
 	
 	for j in program:
 		
-		# current_education= frappe.get_all("Current Educational Details" ,
-		# 		    		{	
-		# 						"academic_year":academic_year ,
-	    # 						"academic_term":academic_term ,
-		# 						"programs":j['programs'],
-		# 						"semesters":j['semester']
-		# 					} , 
-		# 					['programs' , 'semesters' , 'academic_year' , 'academic_term',"parent"]) #from students.
+		current_education= frappe.get_all("Current Educational Details" ,
+				    		{	
+								"academic_year":academic_year ,
+	    						"academic_term":academic_term ,
+								"programs":j['programs'],
+								"semesters":j['semester']
+							} , 
+							['programs' , 'semesters' , 'academic_year' , 'academic_term',"parent"]) #from students.
 
-		current_education = frappe.db.sql("""
-			SELECT 
-				c_edu_detail.programs , c_edu_detail.semesters ,
-				c_edu_detail.academic_year , c_edu_detail.academic_term ,
-				c_edu_detail.parent ,
-				pld_drive_appl.student , pld_drive_appl.status 
-			FROM 
-				`tabCurrent Educational Details`c_edu_detail 
-			INNER JOIN 
-				`tabPlacement Drive Application`pld_drive_appl 
-			ON 
-				c_edu_detail.parent = pld_drive_appl.student 
-			WHERE 
-				c_edu_detail.academic_year = '{academic_year}' AND
-				c_edu_detail.academic_term = '{academic_term}' AND
-				c_edu_detail.programs = '{programs}' AND
-				c_edu_detail.semesters = '{semester}' AND
-				pld_drive_appl.status != 'Hidden'
-			""".format(academic_year = academic_year , academic_term = academic_term , programs = j['programs'] , semester = j['semester']) , as_dict= 1)
 		
 		for t in current_education:
+			print(t , "zetoth")
 			student_dict[t['parent']] = []
 			# final_student_list.append(t)
 
 	for t in student_dict:
-		print(t,"\n")
-		count = 0
-		student_list= frappe.get_all("Educational Details",{"parent":t}, ['qualification',"score",'year_of_completion','parent'])  #from student
-		experience_detail = frappe.get_all("Experience child table" , {"parent":t} , ['job_duration'])  #from student  #can be empty
-		student_cgpa = frappe.get_all("Exam Assessment Result" , {"student":t, "docstatus":1} , ['name' ,'overall_cgpa'])
-
-		if(len(student_cgpa) != 0 and len(student_list) != 0):
-			backlog_record = frappe.get_all("Evaluation Result Item" , {"parent":student_cgpa[0]['name']} , ['result' , 'parent'])  
-			for m in backlog_record:
-
-				if m['result'] == 'F':
-					count+=1
 		
-			if len(experience_detail) == 0 and placement_drive_for == "freshers":  #For freshers only
-				
-				for k in student_list:
+		count = 0
+# 'docstatus' : 1
+		placement_drive_appl_status = frappe.get_all("Placement Drive Application" , {'student': t , 'docstatus' : 1} , ['student' , 'placement_drive' , 'status'])
+
+		status_appl_drive = 0
+		print(placement_drive_appl_status , "\n")
+		for m in placement_drive_appl_status:
+			if m['status'].lower() == 'hired':
+				status_appl_drive = 1
+				break
+
+		print(t, "first\n")
+		print(status_appl_drive, "\n")
+		if status_appl_drive == 1:
+			print
+			continue
+		else:
+			print(t, name , "\n")
+			student_list= frappe.get_all("Educational Details",{"parent":t}, ['qualification',"score",'year_of_completion','parent'])  #from student
+			experience_detail = frappe.get_all("Experience child table" , {"parent":t} , ['job_duration'])  #from student  #can be empty
+			student_cgpa = frappe.get_all("Exam Assessment Result" , {"student":t, "docstatus":1} , ['name' ,'overall_cgpa'])
+
+			if(len(student_cgpa) != 0 and len(student_list) != 0):
+				backlog_record = frappe.get_all("Evaluation Result Item" , {"parent":student_cgpa[0]['name']} , ['result' , 'parent'])  
+				for m in backlog_record:
+
+					if m['result'] == 'F':
+						count+=1
+			
+				if len(experience_detail) == 0 and placement_drive_for == "freshers":  #For freshers only
+					
+					for k in student_list:
+							for j in eligibility_criteria:	
+								if k['qualification'] == j['qualification'] and k['score'] >= j['percentage'] and req_cgpa <= student_cgpa[0]['overall_cgpa'] and count <= backlog:
+									# list_data.append(k)
+									final_student_list.append(k)
+									
+				elif len(experience_detail) > 0 and placement_drive_for == "experience": #For Experience only
+					
+					for k in student_list:
 						for j in eligibility_criteria:	
 							if k['qualification'] == j['qualification'] and k['score'] >= j['percentage'] and req_cgpa <= student_cgpa[0]['overall_cgpa'] and count <= backlog:
 								# list_data.append(k)
 								final_student_list.append(k)
-								
-			elif len(experience_detail) > 0 and placement_drive_for == "experience": #For Experience only
-				
-				for k in student_list:
-					for j in eligibility_criteria:	
-						if k['qualification'] == j['qualification'] and k['score'] >= j['percentage'] and req_cgpa <= student_cgpa[0]['overall_cgpa'] and count <= backlog:
-							# list_data.append(k)
-							final_student_list.append(k)
 
-			elif placement_drive_for == "both":
-				for k in student_list:
-					for j in eligibility_criteria:	
-						if k['qualification'] == j['qualification'] and k['score'] >= j['percentage'] and req_cgpa <= student_cgpa[0]['overall_cgpa'] and count <= backlog:
-							# list_data.append(k)
-							final_student_list.append(k)
-		else:
-			continue	
+				elif placement_drive_for == "both":
+					for k in student_list:
+						for j in eligibility_criteria:	
+							if k['qualification'] == j['qualification'] and k['score'] >= j['percentage'] and req_cgpa <= student_cgpa[0]['overall_cgpa'] and count <= backlog:
+								# list_data.append(k)
+								final_student_list.append(k)
+			else:
+				continue	
 	for i in final_student_list:
 		
 		student = frappe.get_all("Exam Assessment Result" , {"student":i['parent']} , ['academic_year' , 'programs' , 'student_name'])
