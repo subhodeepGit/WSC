@@ -3,6 +3,8 @@
 
 frappe.ui.form.on('Placement Blocked Student', {
 	setup: function(frm) {
+		frm.set_df_property('block_drive_list', 'cannot_add_rows', true)
+		frm.set_df_property('block_drive_list', 'cannot_delete_rows', true)
 		frm.set_query('semester', function(doc) {
 			return {
 				filters: {

@@ -16,7 +16,8 @@
   "section_break_5",
   "block_drive_list",
   "section_break_7",
-  "blocked_student"
+  "blocked_student",
+  "placement_drive_id"
  ],
  "fields": [
   {
@@ -38,16 +39,14 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Programs",
-   "options": "Programs",
-   "reqd": 1
+   "options": "Programs"
   },
   {
    "fieldname": "semester",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Semester",
-   "options": "Program",
-   "reqd": 1
+   "options": "Program"
   },
   {
    "fieldname": "section_break_5",
@@ -70,8 +69,7 @@
    "fieldname": "blocked_student",
    "fieldtype": "Table",
    "label": "Blocked Student",
-   "options": "Placement Blocked Student List",
-   "reqd": 1
+   "options": "Placement Blocked Student List"
   },
   {
    "fieldname": "column_break_3",
@@ -81,11 +79,16 @@
    "fieldname": "course_details_section",
    "fieldtype": "Section Break",
    "label": "Course Details"
+  },
+  {
+   "fieldname": "placement_drive_id",
+   "fieldtype": "Data",
+   "label": "Placement drive id"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-27 15:26:01.046386",
+ "modified": "2023-11-29 18:37:45.422992",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Blocked Student",

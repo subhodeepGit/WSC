@@ -4,7 +4,7 @@
 frappe.ui.form.on('Placement Tool', {
 	refresh: function(frm){
 		frm.set_df_property('student_list', 'cannot_add_rows', true)
-		// frm.set_df_property('student_list', 'cannot_delete_rows', true)
+		frm.set_df_property('student_list', 'cannot_delete_rows', true)
 		frm.set_query('placement_drive_name', function(){
 			return{
 				filters:{
