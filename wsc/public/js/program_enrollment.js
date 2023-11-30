@@ -142,6 +142,28 @@ frappe.ui.form.on('Program Enrollment', {
         });
 
     },
+    course(frm){
+        frappe.call({
+            method: "wsc.wsc.validations.program_enrollment.get_program_courses",
+            args: {
+                semester: frm.doc.program,
+                year_end_date: frm.doc.year_end_date
+            },
+            callback: function(r) { 
+                if(r.message){
+                    frappe.model.clear_table(frm.doc, 'courses');
+                    (r.message).forEach(element => {
+                        var c = frm.add_child("courses")
+                        c.course=element.name
+                        c.course_name=element.course_name
+                        c.course_code=element.course_code
+                    });
+                }
+                frm.refresh_field("courses")
+            } 
+            
+        }); 
+    },
     program(frm){
         if (frm.doc.program){
             frappe.call({

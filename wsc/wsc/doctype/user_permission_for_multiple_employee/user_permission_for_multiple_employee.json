@@ -97,6 +97,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "depends_on": "eval:doc.employee",
    "fieldname": "section_break_tq0q1",
    "fieldtype": "Section Break"
   },
@@ -123,7 +124,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-06 17:52:34.025673",
+ "modified": "2023-11-30 15:12:57.391710",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "User Permission for multiple Employee",
