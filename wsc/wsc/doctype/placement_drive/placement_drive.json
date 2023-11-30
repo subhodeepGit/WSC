@@ -305,15 +305,16 @@
   },
   {
    "fieldname": "blocklist_id",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Blocklist ID",
+   "options": "Placement Blocked Student",
    "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-30 12:33:49.126063",
+ "modified": "2023-11-30 12:40:25.862722",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive",
