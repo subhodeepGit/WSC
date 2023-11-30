@@ -22,6 +22,15 @@ class ToTParticipant(Document):
         if self.pincode:
             if len(self.pincode)<6:
                 frappe.throw("<b>Pincode</b> must be 6 Digits")
+        earned_marks_percentage_cal(self)    
+
+def earned_marks_percentage_cal(self):
+    for t in self.get("participant_education_details"):
+        if t.total_marks<t.earned_marks:
+            frappe.throw("Earned Marks can't greater than total marks")
+        if t.total_marks and t.earned_marks:
+            percentage=(t.earned_marks/t.total_marks)*100
+            t.percentage=percentage
 
 
 def validate_name(doc):
@@ -83,7 +92,9 @@ def validate_date(self):
 def validate_participant_job_date(self):
     for t in self.get('participant_experience_details'):
         if t.job_start_date and t.job_end_date:
-            job_start_date = datetime.strptime(t.job_start_date , '%Y-%m-%d').date()
-            job_end_date = datetime.strptime(t.job_end_date , '%Y-%m-%d').date()
+            # job_start_date = datetime.strptime(t.job_start_date , '%Y-%m-%d').date()
+            # job_end_date = datetime.strptime(t.job_end_date , '%Y-%m-%d').date()    
+            job_start_date = t.job_start_date
+            job_end_date = t.job_end_date
             if job_start_date > job_end_date:
                 frappe.throw("Job Start Date cannot be greater than Job End Date in Row %s of Participant Experience Details table"%(t.idx))
