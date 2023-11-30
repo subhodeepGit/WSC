@@ -26,8 +26,10 @@
   {
    "fieldname": "job_opening",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Job Opening",
-   "options": "Job Opening"
+   "options": "Job Opening",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_4ga7o",
@@ -76,8 +78,10 @@
   {
    "fieldname": "year",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Year",
-   "options": "Year"
+   "options": "Year",
+   "reqd": 1
   },
   {
    "allow_on_submit": 1,
@@ -107,7 +111,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-30 15:47:20.871317",
+ "modified": "2023-11-30 16:53:35.768816",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Job Offer Creation Request",
