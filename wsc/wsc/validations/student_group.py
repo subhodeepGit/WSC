@@ -14,11 +14,13 @@ def validate(doc, method):
     validate_academic_year(doc)
     validate_semester(doc)
     validate_course(doc)
+    create_permission(doc)
     # validate_students(doc)
     get_options_from_student(doc)
     duplicate_student_group(doc)
     if not doc.get("__islocal"):
         create_user_permission(doc)
+        create_permission(doc)
 
 def validate_students(doc):
     for i in doc.students:
@@ -81,6 +83,13 @@ def on_trash(doc,method):
     remove_permissions(doc)
 def duplicate_student_group(doc):
     pass
+
+def create_permission(doc):
+    for i in frappe.get_all("Student Group Instructor",{"parent":doc.name},['instructor','course']):
+        user_id = frappe.db.get_value("Instructor",{"name":i.instructor},'email_id')
+        if user_id:
+            for d in frappe.get_all("Course Schedule",{"course":doc.course,"school_house":doc.school_house}):
+                frappe.permissions.add_user_permission("Course Schedule",d.name, user_id)
     # if doc.group_based_on=="Exam Declaration":
     #     for st_grp in frappe.get_all("Student Group",{"name":("!=",doc.name),"exam_declaration":doc.exam_declaration,"programs":doc.programs,"program":doc.program,"course":doc.course,"academic_year":doc.academic_year,"academic_term":doc.academic_term,"group_based_on":doc.group_based_on}):
     #         frappe.throw("Student Group Already Exists with Same Details <b>{0}</b>".format(st_grp.name))
@@ -168,7 +177,7 @@ def get_instructor(filters):
     filters=json.loads(filters)
     lst = []
     instructor=""
-    fltr={"academic_year":filters.get("academic_year"),"course":filters.get("course")}
+    fltr={"academic_year":filters.get("academic_year"),"course":filters.get("course"),"school_house":filters.get("school_house")}
     if filters.get("apply_semester_filter"):
         fltr.update({"program":["IN",filters.get("semesters")]})
     for i in frappe.get_all("Instructor Log",filters=fltr,fields=['parent'],order_by="parent"):

@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"-GiSlAH-_9\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Shortcuts</span>\",\"col\":12}},{\"id\":\"32c-PI8ksR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Profile\",\"col\":4}},{\"id\":\"WIcs96u7Y6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":4}},{\"id\":\"dnPfg0E83b\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course\",\"col\":4}},{\"id\":\"xrbxWNauIJ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Group\",\"col\":4}},{\"id\":\"Y2TGS9qp3s\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Class Scheduling Tool\",\"col\":4}},{\"id\":\"AA9p0nw_Hh\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Time Table\",\"col\":4}},{\"id\":\"jMSfznFFks\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Application</b></span>\",\"col\":12}},{\"id\":\"CIasxnZE5k\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"cXht6oFOHZ\",\"type\":\"card\",\"data\":{\"card_name\":\"Calendar & Enrollment\",\"col\":4}},{\"id\":\"anxe5rjUKY\",\"type\":\"card\",\"data\":{\"card_name\":\"Groups & Schedules\",\"col\":4}}]",
+ "content": "[{\"id\":\"-GiSlAH-_9\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Shortcuts</span>\",\"col\":12}},{\"id\":\"32c-PI8ksR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Profile\",\"col\":4}},{\"id\":\"WIcs96u7Y6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":4}},{\"id\":\"dnPfg0E83b\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instructor\",\"col\":4}},{\"id\":\"xrbxWNauIJ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Group\",\"col\":4}},{\"id\":\"Y2TGS9qp3s\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Class Scheduling Tool\",\"col\":4}},{\"id\":\"AA9p0nw_Hh\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Time Table\",\"col\":4}},{\"id\":\"jMSfznFFks\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Application</b></span>\",\"col\":12}},{\"id\":\"CIasxnZE5k\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"cXht6oFOHZ\",\"type\":\"card\",\"data\":{\"card_name\":\"Calendar & Enrollment\",\"col\":4}},{\"id\":\"anxe5rjUKY\",\"type\":\"card\",\"data\":{\"card_name\":\"Groups & Schedules\",\"col\":4}}]",
  "creation": "2023-09-05 15:37:57.746073",
  "custom_blocks": [],
  "docstatus": 0,
@@ -12,142 +12,6 @@
  "is_hidden": 0,
  "label": "Education Management",
  "links": [
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Masters",
-   "link_count": 7,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Department",
-   "link_count": 0,
-   "link_to": "Department",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Course Type",
-   "link_count": 0,
-   "link_to": "Program Grades",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Programs",
-   "link_count": 0,
-   "link_to": "Programs",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Semester",
-   "link_count": 0,
-   "link_to": "Program",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Course",
-   "link_count": 0,
-   "link_to": "Course",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Topic",
-   "link_count": 0,
-   "link_to": "Topic",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Class Room",
-   "link_count": 0,
-   "link_to": "Room",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Calendar & Enrollment",
-   "link_count": 5,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Academic Event",
-   "link_count": 0,
-   "link_to": "Academic Events",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Academic Calendar Template",
-   "link_count": 0,
-   "link_to": "Academic Calendar Template",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Batch",
-   "link_count": 0,
-   "link_to": "Student Batch Name",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Program Enrollment",
-   "link_count": 0,
-   "link_to": "Program Enrollment",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Course Enrollment Tool",
-   "link_count": 0,
-   "link_to": "Student Reregistration Tool",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
   {
    "hidden": 0,
    "is_query_report": 0,
@@ -205,9 +69,125 @@
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Calendar & Enrollment",
+   "link_count": 5,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Academic Event",
+   "link_count": 0,
+   "link_to": "Academic Events",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Academic Calendar Template",
+   "link_count": 0,
+   "link_to": "Academic Calendar Template",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Batch",
+   "link_count": 0,
+   "link_to": "Student Batch Name",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Course Enrollment",
+   "link_count": 0,
+   "link_to": "Program Enrollment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Course Enrollment Tool",
+   "link_count": 0,
+   "link_to": "Student Reregistration Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Masters",
+   "link_count": 5,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Department",
+   "link_count": 0,
+   "link_to": "Department",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Programs",
+   "link_count": 0,
+   "link_to": "Programs",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Program",
+   "link_count": 0,
+   "link_to": "Program",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Course",
+   "link_count": 0,
+   "link_to": "Course",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Topics",
+   "link_count": 0,
+   "link_to": "Topic",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-11-24 15:08:27.184193",
+ "modified": "2023-11-30 12:12:10.264097",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Education Management",
@@ -227,8 +207,24 @@
   {
    "color": "Grey",
    "doc_view": "List",
+   "format": "{} Long Term Courses",
+   "label": "Programs",
+   "link_to": "Programs",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
    "label": "My Profile",
    "link_to": "My Profile",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "format": "{} Active",
+   "label": "Instructor",
+   "link_to": "Instructor",
    "type": "DocType"
   },
   {
@@ -238,24 +234,6 @@
    "label": "Student Group",
    "link_to": "Student Group",
    "stats_filter": "{\"disabled\":[\"=\",0]}",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "format": "{} Long Term Courses",
-   "label": "Programs",
-   "link_to": "Programs",
-   "stats_filter": "{\"program_grade\":[\"=\",\"Advance Skill Development\"]}",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "format": "{} Active",
-   "label": "Course",
-   "link_to": "Course",
-   "stats_filter": "{\"disable\":[\"=\",0]}",
    "type": "DocType"
   },
   {

@@ -27,7 +27,7 @@ frappe.query_reports["Room Allocation Report"] = {
 			"label":"Form Date",
 			"fieldname":"from_date",
 			"fieldtype":"Date",
-            "reqd":1
+            "reqd":1  
 		},
         {
 			"label":"To date",

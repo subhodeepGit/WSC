@@ -454,6 +454,7 @@ frappe.ui.form.on('Student Group Instructor', {
 											academic_year: frm.doc.academic_year,
 											course:course,
 											semesters:semesters,
+											school_house:frm.doc.school_house,
 											apply_semester_filter:frm.doc.group_based_on=="Combined Course"?0:1
 										}
 								},
