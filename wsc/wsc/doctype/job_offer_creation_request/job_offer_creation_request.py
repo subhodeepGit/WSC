@@ -3,6 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
+from wsc.wsc.notification.custom_notification import jocr_director_mail,jocr_hr_mail,jocr_ceo_mail,jocr_coo_mail
 
 class JobOfferCreationRequest(Document):
     def validate(self):
@@ -12,6 +13,18 @@ class JobOfferCreationRequest(Document):
 
         if duplicate_records:
             frappe.throw("Duplicate records found for the same details. Please review.")
+
+        if self.workflow_state=="Pending Approval from Director Admin":
+            jocr_director_mail(self)
+
+        if self.workflow_state=="Pending Approval from COO":
+            jocr_coo_mail(self)
+
+        if self.workflow_state=="Pending Approval From CEO":
+            jocr_ceo_mail(self)
+
+        if self.workflow_state=="Approved" or self.workflow_state=="Rejected" or self.workflow_state == "Cancelled":
+            jocr_hr_mail(self)
 
     def check_duplicate_records(self):
         # Fetch existing records excluding the current one
