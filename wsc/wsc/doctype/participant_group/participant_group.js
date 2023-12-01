@@ -193,7 +193,7 @@ frappe.ui.form.on('Instructor Table', {
 						d.set_value("instructor","");
 						if (course){
 							frappe.call({
-								method: 'wsc.wsc.validations.student_group.get_instructor',
+								method: 'wsc.wsc.doctype.participant_group.participant_group.get_instructor',
 								args: {
 									filters:
 										{

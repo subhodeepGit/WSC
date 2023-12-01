@@ -7,6 +7,7 @@ from frappe.model.mapper import get_mapped_doc
 from datetime import datetime, timedelta,time
 from wsc.wsc.utils import get_courses_by_semester
 from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
+import json
 
 class ParticipantGroup(Document):
     def validate(self):
@@ -304,3 +305,18 @@ def remove_permissions(doc):
 def has_role(user_id,role):
     roles = frappe.get_roles(user_id)
     return role in roles
+
+
+@frappe.whitelist()
+def get_instructor(filters):
+    filters=json.loads(filters)
+    lst = []
+    instructor=""
+    fltr={"academic_year":filters.get("academic_year"),"course":filters.get("course")}
+    if filters.get("apply_semester_filter"):
+        fltr.update({"program":["IN",filters.get("semesters")]})
+    for i in frappe.get_all("Instructor Log",filters=fltr,fields=['parent'],order_by="parent"):
+        if i.parent not in lst:
+            lst.append(i.parent)
+            instructor+=("\n"+i.parent)
+    return instructor
