@@ -33,6 +33,7 @@ class PlacementDrive(Document):
 
 
 	def on_cancel(self):
+		# self.delete_placement_tool_records()
 		self.delete_student_permission()
 
 	def set_permission_to_enroll_student(self):
@@ -49,6 +50,15 @@ class PlacementDrive(Document):
 	def delete_student_permission(self):
 		for d in frappe.get_all("DocShare",{"share_doctype":self.doctype,"share_name":self.name},['name']):
 			frappe.delete_doc("DocShare",d.name)
+
+	# def delete_placement_tool_records(self):
+	# 	get_placement_tool_records = frappe.db.sql(""" SELECT name FROM `tabPlacement Tool` WHERE placement_drive_name='%s'"""%(self.name))
+	# 	for d in get_placement_tool_records:
+	# 		print('\n\n\n')
+	# 		print(d)
+	# 		print('\n\n\n')
+	# 		pass
+	# 	frappe.throw('200')
 	
 @frappe.whitelist()
 def get_eligibility(body):
