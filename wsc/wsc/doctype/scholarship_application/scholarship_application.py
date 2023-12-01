@@ -9,6 +9,7 @@ class ScholarshipApplication(Document):
 	def validate(self):
 		duplicacy_check(self)
 		validate_elgibility(self)
+		validate_ifsc_code(self)
 		if self.student_category!=self.student_catagory:
 			frappe.throw("Student don’t belong to the student category given by the company")
 		if len(self.document_list_tab) == 0:     
@@ -18,7 +19,12 @@ class ScholarshipApplication(Document):
 		for t in self.document_list_tab:
 			if t.mandatory==1 and (t.attach==None or t.attach==""):
 				frappe.throw("Document List not uploded. Kindly upload the Document")		
-
+def validate_ifsc_code(self):
+	if self.bank_ifsc:
+		if not contains_only_characters(self.bank_ifsc):
+			frappe.throw("Invalid IFSC Code")
+def contains_only_characters(bank_ifsc):
+    return all(char.isalpha() or char.isspace() or char.isdigit() for char in bank_ifsc)
 @frappe.whitelist()
 def calculateAge(student_no):
 	student_data=frappe.get_all("Student",{"name":student_no},["date_of_birth"])

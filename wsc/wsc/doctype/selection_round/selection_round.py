@@ -53,7 +53,9 @@ from frappe.model.mapper import get_mapped_doc
 from frappe.model.document import Document
 
 class SelectionRound(Document):
-	pass
+	# def on_cancel(self):
+	# 	frappe.set_value('Placement Drive Application', self.placement_drive_name, 'status', d.shortlisting_status)
+		pass
 
 @frappe.whitelist()
 def update_profile(self):
