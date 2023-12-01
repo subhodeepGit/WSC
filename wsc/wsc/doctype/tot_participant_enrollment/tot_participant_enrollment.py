@@ -10,6 +10,7 @@ class ToTParticipantEnrollment(Document):
 		data=frappe.get_all("ToT Participant Enrollment",{"tot_participant_selection_id":self.tot_participant_selection_id,"docstatus":1})
 		if data:
 			frappe.throw("Participant Selection Id is already submitted")
+		self.status="Not Completed "	
 
 	def on_submit(self):
 		participant_count_validation(self)	
@@ -38,6 +39,7 @@ class ToTParticipantEnrollment(Document):
 				doc.cancel()
 				participant_list.append(t.participant)
 				frappe.db.set_value('Reported Participant', t.name, 'program_enrollment',"")
+				frappe.db.set_value('Reported Participant', t.name,"is_reported",0)
 
 		result=frappe.get_doc("ToT Participant Selection",self.tot_participant_selection_id)
 		for t in result.get("participants"):
