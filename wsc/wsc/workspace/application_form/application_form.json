@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"qKCh0JUC0_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Admission Application Form</span>\",\"col\":12}},{\"id\":\"P562xykj5h\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instruction For Admission Form\",\"col\":4}},{\"id\":\"jPp3_n3YyF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Admission Application Form\",\"col\":4}},{\"id\":\"Mp6myvUmgK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Online Payment\",\"col\":4}}]",
+ "content": "[{\"id\":\"qKCh0JUC0_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Admission Application Form</span>\",\"col\":12}},{\"id\":\"P562xykj5h\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instruction For Admission Form\",\"col\":4}},{\"id\":\"jPp3_n3YyF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Admission Application Form\",\"col\":4}},{\"id\":\"Mp6myvUmgK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Online Payment\",\"col\":4}},{\"id\":\"zIonym-Zwc\",\"type\":\"card\",\"data\":{\"card_name\":\"Admission Forms\",\"col\":4}}]",
  "creation": "2023-08-24 04:57:26.265019",
  "custom_blocks": [],
  "docstatus": 0,
@@ -11,8 +11,57 @@
  "idx": 0,
  "is_hidden": 0,
  "label": "Application Form",
- "links": [],
- "modified": "2023-11-24 15:08:26.967006",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Admission Forms",
+   "link_count": 4,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Applicant",
+   "link_count": 0,
+   "link_to": "Student Applicant",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Entrance Exam Admit Card",
+   "link_count": 0,
+   "link_to": "Entrance Exam Admit Card",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Entrance Exam Rank Card",
+   "link_count": 0,
+   "link_to": "Rank Card",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reporting Deskk",
+   "link_count": 0,
+   "link_to": "Reporting Desk",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2023-12-01 12:34:23.957086",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Application Form",
