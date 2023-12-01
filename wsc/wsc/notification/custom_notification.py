@@ -1426,9 +1426,9 @@ def sendHR_goal(doc):
 	msg="""<b>---------------------Goal Setting Details---------------------</b><br>"""
 	msg+="""<b>Goal Setting:</b>  {0}<br>""".format(doc['name'])
 	msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
-	goal_url = get_url_to_form('Employee Appraisal Portal', doc['name'])
+	goal_url = get_url_to_form('Goal Setting', doc['name'])
 	msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(goal_url)
-	msg+="""<p><b>Final Status of Employee's Appraisal.</b></p><br>"""
+	msg+="""<p><b>Final Status of Goal Setting.</b></p><br>"""
 	send_mail([doc['hr_mail']],sub,msg)
 	frappe.msgprint("Confirmation mail sent to HR",[doc['hr_mail']])
 
@@ -1468,6 +1468,17 @@ def sendDirector_goal(doc):
 	send_mail([doc['director_mail']],sub,msg)
 	frappe.msgprint("Mail sent to Director for Approval",[doc['director_mail']])
 
+def sendEmployee_goal(doc):
+	sub="""<p><b>Reg : Employee Goal Setting</b></p><br>"""
+	msg = """<p>Dear Ma'am/Sir,</p><br>"""
+	msg += """<p>Kindly refer to the Employee Goal Setting Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+	msg="""<b>---------------------Goal Setting Details---------------------</b><br>"""
+	msg+="""<b>Goal Setting:</b>  {0}<br>""".format(doc.get('name'))
+	msg+="""<b>Status:</b>  {0}<br>""".format(doc.get("status"))
+	goal_url = get_url_to_form('Goal Setting', doc.get("name"))
+	msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(goal_url)
+	send_mail([doc.get("email")],sub,msg)
+	frappe.msgprint("Mail sent to Employee",[doc.get("email")])
 
 ####################################Recruitment Exam Declaration Notification#####################################################################################
 def send_mail_to_jobapplicants_redn(self):
@@ -1648,8 +1659,12 @@ def employee_reengagement_director_mail(doc):
 	recipients = frappe.get_all("User", filters={'role': 'Director'}, fields=['email'])
 	recipient_emails = [recipient.get('email') for recipient in recipients]
 
-	send_mail(recipient_emails, sub, msg)
-	frappe.msgprint("Employee Renewal Application Details is sent to the Director")
+	if len(recipient_emails)==0 or recipient_emails==[" "]:
+		frappe.throw("Director Email not found")
+	else :
+
+		send_mail(recipient_emails, sub, msg)
+		frappe.msgprint("Employee Renewal Application Details is sent to Director.")
 
 def employee_reengagement_hr_mail(doc):
 	sub = "Reg:Employee Renewal Details"
@@ -1670,8 +1685,12 @@ def employee_reengagement_hr_mail(doc):
 	recipients = frappe.get_all("User", filters={'role':'HR Admin'}, fields=['email'])
 	recipient_emails = [recipient.get('email') for recipient in recipients]
 
-	send_mail(recipient_emails, sub, msg)
-	frappe.msgprint("Employee Renewal Application Details status is sent to the HR")
+	if len(recipient_emails)==0 or recipient_emails==[" "]:
+		frappe.throw("HR Admin Email not found")
+	else :
+
+		send_mail(recipient_emails, sub, msg)
+		frappe.msgprint("Employee Renewal Application Details is sent to HR Admin.")
 
 #####################################Recruitment Final Exam Result Declaration#################################################################################      
 def send_mail_to_jobapplicants_final_notification(doc):
@@ -1853,3 +1872,104 @@ def send_mail_to_jobapplicants_notification(doc):
 
 		send_mail([doc['email_id']], "Regarding WSC Recruitment Result Status", msg)
 		frappe.msgprint("Email sent to Job Applicants")
+
+########################################################### Job Offer Creation Request #################################################
+
+def jocr_director_mail(doc):
+	sub = "Reg:Job Offer Creation Request"
+	
+	msg = """<p>Dear Ma'am/Sir,</p><br>"""
+	msg += """<p>Kindly refer to the Job Offer Creatioin Request below and navigate to the form by clicking on "Open Now".</p></br>"""
+	msg += "<b>---------------------Job Offer Creation Request---------------------</b><br>"
+	msg += "<b>Job Offer Creation Request ID:</b> {0}<br>".format(doc.get('name'))
+	msg += "<b>Job Opening:</b> {0}<br>".format(doc.get('job_opening'))
+	msg += "<b>Year:</b> {0}<br>".format(doc.get('year'))
+	msg += "<b>Designation:</b> {0}<br>".format(doc.get('designation'))
+	msg+="""<b>Status:</b>  {0}<br>""".format(doc.get('status'))
+
+	jocr_app_url = get_url_to_form('Job Offer Creation Request', doc.get('name'))
+	msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(jocr_app_url)
+
+	recipients = frappe.get_all("User", filters={'role': 'Director'}, fields=['email'])
+	recipient_emails = [recipient.get('email') for recipient in recipients]
+
+	if len(recipient_emails)==0 or recipient_emails==[" "]:
+		frappe.throw("Director Email not found")
+	else :
+
+		send_mail(recipient_emails, sub, msg)
+		frappe.msgprint("Job Offer Creation Request is sent to Director.")
+
+def jocr_hr_mail(doc):
+	sub = "Reg:Job Offer Creation Request"
+	
+	msg = """<p>Dear Ma'am/Sir,</p><br>"""
+	msg += """<p>Kindly refer to the Job Offer Creatioin Request below and navigate to the form by clicking on "Open Now".</p></br>"""
+	msg += "<b>---------------------Job Offer Creation Request---------------------</b><br>"
+	msg += "<b>Job Offer Creation Request ID:</b> {0}<br>".format(doc.get('name'))
+	msg += "<b>Job Opening:</b> {0}<br>".format(doc.get('job_opening'))
+	msg += "<b>Year:</b> {0}<br>".format(doc.get('year'))
+	msg += "<b>Designation:</b> {0}<br>".format(doc.get('designation'))
+	msg+="""<b>Status:</b>  {0}<br>""".format(doc.get('status'))
+
+	jocr_app_url = get_url_to_form('Job Offer Creation Request', doc.get('name'))
+	msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(jocr_app_url)
+
+	recipients = frappe.get_all("User", filters={'role': 'Director'}, fields=['email'])
+	recipient_emails = [recipient.get('email') for recipient in recipients]
+	if len(recipient_emails)==0 or recipient_emails==[" "]:
+		frappe.throw("HR Admin Email not found")
+	else :
+
+		send_mail(recipient_emails, sub, msg)
+		frappe.msgprint("Job Offer Creation Request is sent to HR Admin.")
+
+def jocr_coo_mail(doc):
+	sub = "Reg:Job Offer Creation Request"
+	
+	msg = """<p>Dear Ma'am/Sir,</p><br>"""
+	msg += """<p>Kindly refer to the Job Offer Creatioin Request below and navigate to the form by clicking on "Open Now".</p></br>"""
+	msg += "<b>---------------------Job Offer Creation Request---------------------</b><br>"
+	msg += "<b>Job Offer Creation Request ID:</b> {0}<br>".format(doc.get('name'))
+	msg += "<b>Job Opening:</b> {0}<br>".format(doc.get('job_opening'))
+	msg += "<b>Year:</b> {0}<br>".format(doc.get('year'))
+	msg += "<b>Designation:</b> {0}<br>".format(doc.get('designation'))
+	msg+="""<b>Status:</b>  {0}<br>""".format(doc.get('status'))
+
+	jocr_app_url = get_url_to_form('Job Offer Creation Request', doc.get('name'))
+	msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(jocr_app_url)
+
+	recipients = frappe.get_all("User", filters={'role': 'COO'}, fields=['email'])
+	recipient_emails = [recipient.get('email') for recipient in recipients]
+	if len(recipient_emails)==0 or recipient_emails==[" "]:
+		frappe.throw("COO Email not found")
+	else :
+
+		send_mail(recipient_emails, sub, msg)
+		frappe.msgprint("Job Offer Creation Request is sent to COO.")
+
+
+def jocr_ceo_mail(doc):
+	sub = "Reg:Job Offer Creation Request"
+	
+	msg = """<p>Dear Ma'am/Sir,</p><br>"""
+	msg += """<p>Kindly refer to the Job Offer Creatioin Request below and navigate to the form by clicking on "Open Now".</p></br>"""
+	msg += "<b>---------------------Job Offer Creation Request---------------------</b><br>"
+	msg += "<b>Job Offer Creation Request ID:</b> {0}<br>".format(doc.get('name'))
+	msg += "<b>Job Opening:</b> {0}<br>".format(doc.get('job_opening'))
+	msg += "<b>Year:</b> {0}<br>".format(doc.get('year'))
+	msg += "<b>Designation:</b> {0}<br>".format(doc.get('designation'))
+	msg+="""<b>Status:</b>  {0}<br>""".format(doc.get('status'))
+
+	jocr_app_url = get_url_to_form('Job Offer Creation Request', doc.get('name'))
+	msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(jocr_app_url)
+
+	recipients = frappe.get_all("User", filters={'role': 'CEO'}, fields=['email'])
+	recipient_emails = [recipient.get('email') for recipient in recipients]
+
+	if len(recipient_emails)==0 or recipient_emails==[" "]:
+		frappe.throw("CEO Email not found")
+	else :
+
+		send_mail(recipient_emails, sub, msg)
+		frappe.msgprint("Job Offer Creation Request is sent to CEO.")

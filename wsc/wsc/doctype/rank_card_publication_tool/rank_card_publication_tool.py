@@ -17,7 +17,7 @@ class RankCardPublicationTool(Document):
 		for i in self.ranked_students_list:
 			rank_card_data = frappe.get_all("Rank Card" , {'applicant_id':i.applicant_id} , ['name'])
 
-			if len(rank_card_data[0] != 0):
+			if rank_card_data:
 				rank_card = frappe.get_doc("Rank Card" , rank_card_data[0]['name'])
 
 				if rank_card.docstatus == 1:
