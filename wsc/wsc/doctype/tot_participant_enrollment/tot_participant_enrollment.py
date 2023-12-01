@@ -21,14 +21,14 @@ class ToTParticipantEnrollment(Document):
 			{"progress": "0", "reload": 1}, user=frappe.session.user)
 
 		total_records = len(self.get("participant_list"))
-		if total_records > 50:
-			frappe.msgprint(_(''' Records will be created in the background.
-				In case of any error the error message will be updated in the Schedule.'''))
-			frappe.enqueue(make_participant, queue='default', timeout=6000, event='make_participant',
-				tot_participant_enrollment=self.name)
+		# if total_records > 50:
+		frappe.msgprint(_(''' Records will be created in the background.
+			In case of any error the error message will be updated in the Schedule.'''))
+		frappe.enqueue(make_participant, queue='default', timeout=6000, event='make_participant',
+			tot_participant_enrollment=self.name)
 
-		else:
-			make_participant(self.name)
+		# else:
+		# 	make_participant(self.name)
 
 	def on_cancel(self):
 		participant_list=[]
@@ -60,14 +60,14 @@ class ToTParticipantEnrollment(Document):
 			{"progress": "0", "reload": 1}, user=frappe.session.user)
 
 		total_records = len(self.get("participant_list"))
-		if total_records > 41:
-			frappe.msgprint(_(''' Records will be created in the background.
-				In case of any error the error message will be updated in the Schedule.'''))
-			frappe.enqueue(make_enrollment, queue='default', timeout=6000, event='make_enrollment',
-				tot_participant_enrollment=self.name)
+		# if total_records > 41:
+		frappe.msgprint(_(''' Records will be created in the background.
+			In case of any error the error message will be updated in the Schedule.'''))
+		frappe.enqueue(make_enrollment, queue='default', timeout=6000, event='make_enrollment',
+			tot_participant_enrollment=self.name)
 
-		else:
-			make_enrollment(self.name)
+		# else:
+		# 	make_enrollment(self.name)
 
 def participant_count_validation(self):
 	count=0
@@ -76,7 +76,7 @@ def participant_count_validation(self):
 			count=count+1
 
 	if count==0:
-		frappe.throw("No Participant has not been repoted. Hence It can't be Submitted")
+		frappe.throw("No Participant has reported. Hence It can't be Submitted")
 
 
 
