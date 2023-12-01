@@ -110,7 +110,8 @@
    "default": "0",
    "fieldname": "total_dues",
    "fieldtype": "Currency",
-   "label": "Total Dues"
+   "label": "Total Dues",
+   "non_negative": 1
   },
   {
    "fetch_from": "student_id.student_email_id",
@@ -136,7 +137,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-05 16:39:12.769069",
+ "modified": "2023-12-01 09:54:10.475366",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Clearance Application",
