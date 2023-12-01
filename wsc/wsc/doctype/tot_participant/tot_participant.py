@@ -29,6 +29,8 @@ def earned_marks_percentage_cal(self):
         if t.total_marks<t.earned_marks:
             frappe.throw("Earned Marks can't greater than total marks")
         if t.total_marks and t.earned_marks:
+            if t.total_marks==0:
+                frappe.throw("Total Marks can't be zero")
             percentage=(t.earned_marks/t.total_marks)*100
             t.percentage=percentage
 
