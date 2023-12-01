@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{employee}-{year}",
+ "autoname": "HR-GS-.YYYY.-.#####",
  "creation": "2023-11-13 10:47:19.295153",
  "default_view": "List",
  "doctype": "DocType",
@@ -9,6 +9,7 @@
  "engine": "InnoDB",
  "field_order": [
   "employee",
+  "email",
   "employee_name",
   "reporting_authority",
   "department",
@@ -86,16 +87,22 @@
    "fieldtype": "Data",
    "hidden": 1,
    "label": "Reporting Authority"
+  },
+  {
+   "fetch_from": "employee.prefered_email",
+   "fieldname": "email",
+   "fieldtype": "Read Only",
+   "label": "Email"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-14 15:30:44.288522",
+ "modified": "2023-12-01 12:15:47.441224",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Goal Setting",
- "naming_rule": "Expression",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
