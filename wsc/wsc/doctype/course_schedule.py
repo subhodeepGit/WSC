@@ -22,8 +22,15 @@ class CourseSchedule(Document):
 		validate_instructor(self)
 		validate_exam_declaration(self)
 		validate_student_for_student_group(self)
+		self.permission()
 		# class_scheduled = frappe.db.sql("""Select count(*) from `tabCourse Schedule` where instructor = %s""",self.instructor_name)
 		# frappe.db.set_value("Instructor",self.instructor_name,"total_scheduled_classes",class_scheduled[0][0]+1)
+
+	def permission(self):
+		stu_grp=frappe.get_doc("Student Group",self.student_group)
+		stu_grp.save()
+		# mod_enr=frappe.get_doc("Course Enrollment",self.course)
+		# mod_enr.save()
 
 	def set_title(self):
 		"""Set document Title"""

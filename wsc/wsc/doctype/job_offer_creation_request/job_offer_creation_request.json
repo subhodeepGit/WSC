@@ -17,14 +17,19 @@
   "section_break_f3twp",
   "get_applicants",
   "applicant_details",
+  "attach_document",
+  "coo_comment",
+  "ceo_comment",
   "amended_from"
  ],
  "fields": [
   {
    "fieldname": "job_opening",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Job Opening",
-   "options": "Job Opening"
+   "options": "Job Opening",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_4ga7o",
@@ -73,8 +78,10 @@
   {
    "fieldname": "year",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Year",
-   "options": "Year"
+   "options": "Year",
+   "reqd": 1
   },
   {
    "allow_on_submit": 1,
@@ -82,12 +89,29 @@
    "fieldtype": "Data",
    "label": "Status",
    "read_only": 1
+  },
+  {
+   "fieldname": "attach_document",
+   "fieldtype": "Attach",
+   "label": "Attach Document"
+  },
+  {
+   "fieldname": "coo_comment",
+   "fieldtype": "Small Text",
+   "label": "COO Comment",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "ceo_comment",
+   "fieldtype": "Small Text",
+   "label": "CEO Comment",
+   "permlevel": 2
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-22 09:52:17.454018",
+ "modified": "2023-11-30 16:53:35.768816",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Job Offer Creation Request",

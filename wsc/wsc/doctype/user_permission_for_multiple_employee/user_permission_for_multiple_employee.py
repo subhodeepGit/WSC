@@ -11,7 +11,7 @@ class UserPermissionformultipleEmployee(Document):
 			if data:
 				frappe.throw("Already Record is Present For The Employee")
 
-		validation_child(self)
+		# validation_child(self)
 
 		if self.disable==0:
 			permission_given(self)
@@ -61,3 +61,4 @@ def validation_child(self):
 	for t in self.get("employees"):
 		if t.employee==emp:
 			frappe.throw("Repoting Employee Can't be Assigning Employee")			
+

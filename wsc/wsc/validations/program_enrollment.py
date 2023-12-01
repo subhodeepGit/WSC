@@ -64,6 +64,7 @@ def on_change(doc,method):
     update_student(doc)
     student=frappe.get_doc("Student",doc.student)
     student.roll_no=doc.roll_no
+    student.department=doc.department
     student.permanant_registration_number=doc.permanant_registration_number
     student.save()
     for course in doc.get("courses"):
@@ -81,6 +82,7 @@ def on_change(doc,method):
 def update_student(doc):
     student=frappe.get_doc("Student",doc.student)
     student.roll_no=doc.roll_no
+    student.department=doc.department
     student.set("current_education",[])
     for enroll in frappe.get_all("Program Enrollment",{"docstatus":1,"student":doc.student},["program_grade","student_batch_name","school_house","programs","program","academic_year","academic_term"],order_by='creation desc',limit=1):
         student.append("current_education",{
@@ -290,7 +292,8 @@ def create_participant(doc):
 def create_student(doc):
    
     student=frappe.get_doc("Student",doc.student)
-    student.roll_no = doc.roll_no                     
+    student.roll_no = doc.roll_no        
+    student.department=doc.department
     student.set("current_education",[])
     student.append("current_education",{
         "programs":doc.programs,

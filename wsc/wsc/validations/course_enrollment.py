@@ -4,10 +4,12 @@ from wsc.wsc.doctype.user_permission import add_user_permission
 from wsc.wsc.utils import get_courses_by_semester
 
 def validate(doc,method):
+	
 	if doc.get("__islocal"):
 		create_permission(doc)
 		mapping_from_course(doc)
 	validate_credit_distribution(doc)
+	create_permission(doc)
 	calculate_credit_distribution(doc)
 	mapping_from_program_enrollment(doc)
 	duplicate_row_validation(doc, "credit_distribution", ['assessment_criteria',])
@@ -63,9 +65,10 @@ def get_course(doctype, txt, searchfield, start, page_len, filters):
 
 def create_permission(doc):
 	user_id=frappe.db.get_value("Student",{"name":doc.student},"student_email_id")
-	if user_id:
-		for d in frappe.get_all("Course Schedule",{"course":doc.course}):
-			frappe.permissions.add_user_permission("Course Schedule",d.name, user_id)
+	for prog_enrol in frappe.get_all("Program Enrollment",{"name":doc.program_enrollment},["school_house","academic_term"]):
+		if user_id:
+			for d in frappe.get_all("Course Schedule",{"course":doc.course,"school_house":prog_enrol.school_house,"academic_term":prog_enrol.academic_term}):
+				frappe.permissions.add_user_permission("Course Schedule",d.name, user_id)
 
 def mapping_from_course(doc):
 	course=frappe.get_doc("Course",doc.course)
