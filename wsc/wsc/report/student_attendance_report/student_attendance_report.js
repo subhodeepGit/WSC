@@ -26,7 +26,7 @@ frappe.query_reports["Student Attendance Report"] = {
         },
 		{
             "fieldname":"course",
-            "label": __("Module"),
+            "label": __("Course"),
             "fieldtype": "MultiSelectList",
             // "options": "Project",
             "reqd":1,

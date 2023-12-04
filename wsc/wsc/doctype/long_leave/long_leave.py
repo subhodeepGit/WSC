@@ -8,6 +8,7 @@ import pandas as pd
 class LongLeave(Document):
 	# @frappe.whitelist()
 	def validate(doc):
+		validate_pincode(doc)
 		space(doc)
 		alpha(doc)
 		pincode_validation(doc)
@@ -56,7 +57,13 @@ class LongLeave(Document):
 			frappe.db.sql("""UPDATE `tabRoom Masters` SET `vacancy`=`vacancy`+1 WHERE `name`="%s" """%(status[0]['room_id']))
 			frappe.db.set_value("Student Hostel Admission",status[0]['hostel_registration_no'], "allotment_status", "De-allotted") 	
 											
+def validate_pincode(doc):
+	if doc.pincode:
+		if not contains_only_characters(doc.pincode):
+			frappe.throw("Pincode must be 6 digits")
 
+def contains_only_characters(pincode):
+    return all(char.isalpha() or char.isspace() or char.isdigit() for char in pincode)
 def Long_leave_def(info):
 		Long_leave=frappe.db.sql("""SELECT name,allotment_number,student,student_name,hostel,room_number,start_date,data_11,medium_of_communicatinon,
 									letter_attacmnent,phone_no,medium_of_communicatinon_from_student,communication_phone_no,reply_of_letter

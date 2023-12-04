@@ -155,12 +155,13 @@
   {
    "fieldname": "hostel_capcity",
    "fieldtype": "Int",
-   "label": "Hostel Capcity"
+   "label": "Hostel Capcity",
+   "non_negative": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-22 15:32:58.019462",
+ "modified": "2023-12-01 15:38:05.515523",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Hostel Masters",
