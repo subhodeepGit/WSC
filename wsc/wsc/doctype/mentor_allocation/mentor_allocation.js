@@ -15,9 +15,8 @@ frappe.ui.form.on('Mentor Allocation', {
 	setup(frm){
 		frm.set_query("semester", function() {
 			return {
-				filters: {
-					"programs":frm.doc.program
-				}
+				filters: [["Program","programs",'=',frm.doc.program]]
+					
 			};
 		});
 		frm.fields_dict['mentee_list'].grid.get_field('student').get_query = function(doc, cdt, cdn) {
