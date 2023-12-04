@@ -63,7 +63,6 @@ def get_participant_id(doctype, txt, searchfield, start, page_len, filters):
 	user_roles = frappe.get_roles(frappe.session.user)
 	user_email = (frappe.session.user)
 	if("Student" in user_roles and "Employee" not in user_roles and "Training and Placement Administrator" not in user_roles): # for students
-		frappe.throw(1)
 		if(doctype=="Student"):
 				data=frappe.db.sql("""select name,student_name from `tabStudent` where ({key} like %(txt)s or {scond}) 
 	 					 and enabled={enabled} and student_email_id='{student_email_id}'
@@ -78,7 +77,6 @@ def get_participant_id(doctype, txt, searchfield, start, page_len, filters):
 		else:
 			return []
 	elif("Student" not in user_roles and "Employee" in user_roles and "Training and Placement Administrator" not in user_roles): #for employees
-			frappe.throw(2)
 			if(doctype=="Employee"):
 				data=frappe.db.sql("""select name,employee_name from `tabEmployee` where ({key} like %(txt)s or {scond}) 
 	 					 and status='{status}' and prefered_email = '{prefered_email}'
@@ -92,8 +90,7 @@ def get_participant_id(doctype, txt, searchfield, start, page_len, filters):
 				return data
 			else:
 				return []
-	elif("Student" not in user_roles and "Employee" in user_roles and "Training and Placement Administrator" in user_roles): #for Training and Placement Administrator
-		frappe.throw(3)
+	elif("Student" not in user_roles and "Training and Placement Administrator" in user_roles): #for Training and Placement Administrator
 		if(doctype=="Student"):
 			data=frappe.db.sql("""select name,student_name from `tabStudent` where ({key} like %(txt)s or {scond}) 
 	 					 and enabled={enabled}

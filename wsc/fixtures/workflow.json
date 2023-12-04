@@ -6631,7 +6631,7 @@
   "doctype": "Workflow",
   "document_type": "Goal Setting",
   "is_active": 1,
-  "modified": "2023-11-13 11:42:10.992873",
+  "modified": "2023-12-01 12:07:59.225913",
   "name": "Workflow for Goal Setting",
   "override_status": 0,
   "send_email_alert": 0,
@@ -6713,6 +6713,19 @@
     "state": "Rejected",
     "update_field": "status",
     "update_value": "Rejected"
+   },
+   {
+    "allow_edit": "Director",
+    "doc_status": "2",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Workflow for Goal Setting",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Cancelled",
+    "update_field": "status",
+    "update_value": "Cancelled"
    }
   ],
   "transitions": [
@@ -6792,6 +6805,17 @@
     "parentfield": "transitions",
     "parenttype": "Workflow",
     "state": "Pending Approval from Director Admin"
+   },
+   {
+    "action": "Cancel",
+    "allow_self_approval": 1,
+    "allowed": "Director",
+    "condition": null,
+    "next_state": "Cancelled",
+    "parent": "Workflow for Goal Setting",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Approved"
    }
   ],
   "workflow_name": "Workflow for Goal Setting",

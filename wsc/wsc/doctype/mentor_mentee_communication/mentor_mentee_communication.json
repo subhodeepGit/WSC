@@ -88,11 +88,13 @@
   },
   {
    "fieldname": "section_break_10",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Message Description"
   },
   {
    "fieldname": "student",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Student",
    "options": "Student",
    "reqd": 1
@@ -105,7 +107,9 @@
    "fetch_from": "student.student_name",
    "fieldname": "student_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Student Name",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -115,14 +119,16 @@
   {
    "fieldname": "programs",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Programs",
    "options": "Programs",
+   "read_only": 1,
    "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-05 11:29:02.401315",
+ "modified": "2023-12-04 12:46:38.189971",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Mentor Mentee Communication",
