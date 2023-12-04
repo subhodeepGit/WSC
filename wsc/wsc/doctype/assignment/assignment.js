@@ -60,6 +60,15 @@ frappe.ui.form.on('Assignment', {
 				frm.set_value("course", result.message[3]) // module
 			}
 		})
+		frm.set_query("assignment_name", function() {
+			return {
+				query: 'wsc.wsc.doctype.assignment.assignment.assignment_name_data',
+				filters:{
+							"course":frm.doc.course,
+						}
+				
+			};
+		});
 	},
 	instructor_id: function(frm){
 		frappe.call({
