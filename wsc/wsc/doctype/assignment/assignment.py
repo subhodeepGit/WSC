@@ -176,3 +176,18 @@ def assignment_enqueue(frm):
 
 
 
+@frappe.whitelist()
+def assignment_name_data(doctype, txt, searchfield, start, page_len, filters):
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join("AMDC."+field + " like %(txt)s" for field in searchfields)
+	course =filters.get('course')
+	data=frappe.db.sql(""" select AMDC.assignment_name
+			   from `tabAssignment Marks Distribution` as AMD 
+			   Join `tabAssignment Marks Distribution Child` as AMDC on AMDC.parent=AMD.name 
+			   where (AMDC.{key} like %(txt)s or {scond}) and AMD.course like '{course}' """.
+			   format(**{
+				    "key": searchfield,
+                    "scond": searchfields,
+				   "course":course
+			   }),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	return data
