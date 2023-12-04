@@ -4,6 +4,7 @@
 import frappe
 from frappe.model.document import Document
 import pandas as pd
+import re
 
 class LongLeave(Document):
 	# @frappe.whitelist()
@@ -11,6 +12,7 @@ class LongLeave(Document):
 		space(doc)
 		alpha(doc)
 		pincode_validation(doc)
+		validate_email(doc)
 		# mobile_number_validation(doc) #v14 phone data type present
 		Al_no=doc.allotment_number
 		workflow_state=doc.workflow_state
@@ -118,3 +120,12 @@ def space(doc):
 	if doc.communication_phone_no is not None:
 		if ' ' in doc.communication_phone_no:
 			frappe.throw("Spaces are present in the <b>Student Communication Phone Number</b>.")
+
+def validate_email(self):
+	if self.email_id:
+		if not re.match(r"[^@]+@[^@]+\.[^@]+", self.email_id):
+			frappe.throw("<b>{0}</b> is invalid email address. Please enter a valid email address.".format(self.email_id))
+	if self.email:
+		if not re.match(r"[^@]+@[^@]+\.[^@]+", self.email):
+			frappe.throw("<b>{0}</b> is invalid email address. Please enter a valid email address.".format(self.email))
+
