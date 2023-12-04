@@ -38,12 +38,14 @@
   {
    "fieldname": "allocation_from",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Allocation from",
    "options": "Academic Year"
   },
   {
    "fieldname": "allocation_to",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Allocation To",
    "options": "Academic Year"
   },
@@ -113,10 +115,11 @@
    "link_fieldname": "mentor_allocation"
   }
  ],
- "modified": "2021-12-22 16:17:27.568556",
+ "modified": "2023-12-04 12:06:07.180573",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Mentor Allocation",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -134,5 +137,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

@@ -817,5 +817,14 @@
     "name": "Pending Approval From CEO",
     "style": "",
     "workflow_state_name": "Pending Approval From CEO"
+   },
+   {
+    "docstatus": 0,
+    "doctype": "Workflow State",
+    "icon": "",
+    "modified": "2023-11-30 09:22:49.998183",
+    "name": "Pending Approval from COO",
+    "style": "",
+    "workflow_state_name": "Pending Approval from COO"
    }
 ]
