@@ -16,7 +16,7 @@
  "is_hidden": 0,
  "label": "Dashboard WSC",
  "links": [],
- "modified": "2023-11-24 15:08:23.323880",
+ "modified": "2023-12-04 12:30:16.114862",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Dashboard WSC",
@@ -25,7 +25,11 @@
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
- "roles": [],
+ "roles": [
+  {
+   "role": "GM-Procurement & Contract Management"
+  }
+ ],
  "sequence_id": 1.0,
  "shortcuts": [],
  "title": "Dashboard WSC"
