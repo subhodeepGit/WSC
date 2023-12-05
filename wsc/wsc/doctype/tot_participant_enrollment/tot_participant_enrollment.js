@@ -59,5 +59,7 @@ frappe.ui.form.on('ToT Participant Enrollment', {
 			}
 		});
 	},
-	
+	tot_participant_selection_id(frm){
+		frm.trigger("get_participants")
+	}
 });
