@@ -252,6 +252,7 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 		// });
 	},
 	setup: function(frm) {
+		frm.disable_save();
 		frm.set_query("academic_term", function() {
 			return {
 				filters: {

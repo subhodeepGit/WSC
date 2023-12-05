@@ -17,6 +17,24 @@ frappe.ui.form.on('Cumulative Marksheet Tool', {
 		frm.set_df_property('cummulative_marksheet_student', 'cannot_add_rows', true);
 		
 	},
+	employee: function(frm) {
+		if(frm.doc.employee){
+			frappe.call({
+				doc:frm.doc,
+				method: "get_missing_fields",
+				callback: function(r) { 
+					if(r.message){
+						if (r.message['designation']){
+							frm.set_value("designation",r.message['designation'])
+						}
+						if (r.message['employee_name']){
+							frm.set_value("employee_name",r.message['employee_name'])
+						}
+					}
+				} 
+			}); 
+		}
+	},
 	get_students:function(frm){
 		frm.clear_table("cummulative_marksheet_student");
 		frappe.call({

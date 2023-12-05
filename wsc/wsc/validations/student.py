@@ -77,6 +77,10 @@ def validate(doc,method):
 	records = frappe.get_all("Program Intermit Form",{"form_status":"Approve"},["student","student_name"])
 	if not doc.is_new():
 		user_update(doc)
+	student = frappe.get_all("Student",{"name":doc.name},{"roll_no"})
+	if student:
+		if doc.roll_no!=student[0]["roll_no"]:
+			roll(doc)
 
 
 def user_update(self):
@@ -194,3 +198,12 @@ def create_user_permission(doc):
 # 		print(data)
 # 		frappe.throw(data)
 # 		return data
+
+def roll(doc):
+    id_card = frappe.db.get_all("Identity Card",filters=[["student","=",doc.name]],fields=["name"])
+    if id_card:
+        if len(id_card)==1:
+            frappe.db.sql(""" update `tabIdentity Card` set roll_no="%s" where name = "%s" """%(doc.roll_no,id_card[0]["name"]))
+        else:
+            id_info=tuple([t["name"] for t in id_card])
+            frappe.db.sql(""" update `tabIdentity Card` set roll_no="%s" where name in %s"""%(doc.roll_no,id_info))

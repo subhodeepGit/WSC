@@ -71,44 +71,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Attendance &amp; Leave Application",
-   "link_count": 3,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Attendance",
-   "link_count": 0,
-   "link_to": "Student Attendance",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Attendance Tool",
-   "link_count": 0,
-   "link_to": "Students Attendance Tool",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Reason for Leave",
-   "link_count": 0,
-   "link_to": "Reason for Leave",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Class Advisor and Manager Assignment",
    "link_count": 0,
    "link_to": "Course Advisor and Manager Assignment",
@@ -315,9 +277,77 @@
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Attendance &amp; Leave Application",
+   "link_count": 6,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Attendance",
+   "link_count": 0,
+   "link_to": "Student Attendance",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Attendance Tool",
+   "link_count": 0,
+   "link_to": "Students Attendance Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reason for Leave",
+   "link_count": 0,
+   "link_to": "Reason for Leave",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "CA & CM Assignment",
+   "link_count": 0,
+   "link_to": "Course Advisor and Manager Assignment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Leave Application",
+   "link_count": 0,
+   "link_to": "Leave Application for Student",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Attrition Form",
+   "link_count": 0,
+   "link_to": "Student Attrition Form",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-11-27 09:50:31.455157",
+ "modified": "2023-12-05 14:37:47.891094",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Academics",
