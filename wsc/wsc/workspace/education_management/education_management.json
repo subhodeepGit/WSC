@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"-GiSlAH-_9\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Shortcuts</span>\",\"col\":12}},{\"id\":\"32c-PI8ksR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Profile\",\"col\":4}},{\"id\":\"WIcs96u7Y6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":4}},{\"id\":\"dnPfg0E83b\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instructor\",\"col\":4}},{\"id\":\"xrbxWNauIJ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Group\",\"col\":4}},{\"id\":\"Y2TGS9qp3s\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Class Scheduling Tool\",\"col\":4}},{\"id\":\"AA9p0nw_Hh\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Time Table\",\"col\":4}},{\"id\":\"jMSfznFFks\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Application</b></span>\",\"col\":12}},{\"id\":\"CIasxnZE5k\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"cXht6oFOHZ\",\"type\":\"card\",\"data\":{\"card_name\":\"Calendar & Enrollment\",\"col\":4}},{\"id\":\"anxe5rjUKY\",\"type\":\"card\",\"data\":{\"card_name\":\"Groups & Schedules\",\"col\":4}}]",
+ "content": "[{\"id\":\"-GiSlAH-_9\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Shortcuts</span>\",\"col\":12}},{\"id\":\"32c-PI8ksR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Profile\",\"col\":4}},{\"id\":\"WIcs96u7Y6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":4}},{\"id\":\"dnPfg0E83b\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instructor\",\"col\":4}},{\"id\":\"xrbxWNauIJ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Group\",\"col\":4}},{\"id\":\"Y2TGS9qp3s\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Class Scheduling Tool\",\"col\":4}},{\"id\":\"AA9p0nw_Hh\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Time Table\",\"col\":4}},{\"id\":\"jMSfznFFks\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Application</b></span>\",\"col\":12}},{\"id\":\"CIasxnZE5k\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"cXht6oFOHZ\",\"type\":\"card\",\"data\":{\"card_name\":\"Calendar & Enrollment\",\"col\":4}},{\"id\":\"anxe5rjUKY\",\"type\":\"card\",\"data\":{\"card_name\":\"Groups & Schedules\",\"col\":4}},{\"id\":\"uzshsQ-1ST\",\"type\":\"card\",\"data\":{\"card_name\":\"Roles and Users\",\"col\":4}}]",
  "creation": "2023-09-05 15:37:57.746073",
  "custom_blocks": [],
  "docstatus": 0,
@@ -185,9 +185,47 @@
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Roles and Users",
+   "link_count": 3,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Role",
+   "link_count": 0,
+   "link_to": "Role",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Role Profile",
+   "link_count": 0,
+   "link_to": "Role Profile",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "User",
+   "link_count": 0,
+   "link_to": "User",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-12-04 17:08:34.978104",
+ "modified": "2023-12-05 11:11:19.404928",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Education Management",

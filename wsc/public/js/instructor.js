@@ -2,7 +2,22 @@ frappe.ui.form.on('Instructor',{
     refresh: function(frm) {
         frm.remove_custom_button("As Examiner","Assessment Plan");
         frm.remove_custom_button("As Supervisor","Assessment Plan");
-      
+        if (!(frm.doc.__islocal) && frm.doc.email_id_for_guest_trainers){
+            frappe.call({
+                method: "wsc.wsc.validations.instructor.remove_create_user",
+                args: {
+                    trainer: frm.doc.instructor_name,
+                    email: frm.doc.email_id_for_guest_trainers
+                },
+                callback: function (r) {
+                    if (r.message){
+                        frm.set_df_property('create_user', 'hidden', 1); 
+                    }
+                    
+                }
+            });
+        }
+       
         // if (!frm.doc.__islocal && frappe.user.has_role(["System Manager"])) {
 		// 	frm.add_custom_button(__("As Examiner"), function() {
 		// 		frappe.new_doc("Course Assessment Plan", {
@@ -25,7 +40,7 @@ frappe.ui.form.on('Instructor',{
             },
             );
         }
-
+        
         frm.set_query("program","instructor_log", function(_doc, cdt, cdn) {
             var d = locals[cdt][cdn];
             return {
@@ -65,8 +80,21 @@ frappe.ui.form.on('Instructor',{
     //         },
     //         );
     //     }
-    // },  
-                
+    // }, 
+    guest_trainer:function(frm){
+        if (frm.doc.guest_trainer=="Yes"){
+            frm.set_value("employee","")
+            frm.set_value("instructor_name","")
+        }
+        else if(frm.doc.guest_trainer=="No"){
+            frm.set_value("email_id_for_guest_trainers","")
+            frm.set_value("instructor_name","")
+        }
+    },
+    email_id_for_guest_trainers:function(frm){
+        frm.set_value("employee","")
+        frm.set_value("instructor_name","")
+    },        
     employee:function(frm){
         if(!frm.doc.employee){
             frm.set_value('instructor_name', '')
@@ -89,6 +117,7 @@ frappe.ui.form.on('Instructor',{
 				frm.set_value("email_id_for_guest_trainers", r.message);
 			}
 		});
+     
 	},
 
 
