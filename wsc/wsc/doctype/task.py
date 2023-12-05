@@ -78,10 +78,10 @@ def dependency_task(docname):
             related_doctype = "Employee Onboarding"
         else:
             related_doctype = None  # Handle other cases if needed
-            frappe.throw("The Task is not Related to Separation or Onboarding")
+            pass
     else:
         related_doctype = None
-        frappe.throw("The Task is not Related to Separation or Onboarding")
+        pass
     if doc.is_dependent == 1 :
         doc_name = frappe.db.get_value(related_doctype, {"project": doc.project}, "name")
         # print("Name",doc_name)
