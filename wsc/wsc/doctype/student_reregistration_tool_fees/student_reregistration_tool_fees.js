@@ -76,6 +76,7 @@ frappe.ui.form.on('Student Reregistration Tool Fees', {
 				}
 			};
 		});
+		frm.doc.program_enrollment_date = frappe.datetime.get_today();
 	},
 
 	"refresh": function(frm) {
