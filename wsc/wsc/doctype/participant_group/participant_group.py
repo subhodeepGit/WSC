@@ -135,6 +135,7 @@ def tot_class_schedule(self):
                         parent_doc.academic_year = self.academic_year
                         parent_doc.academic_term = self.academic_term
                         parent_doc.course_name = self.program
+                        parent_doc.course_id=self.program
                         parent_doc.module_id = self.course
                         parent_doc.module_name = self.module_name
                         parent_doc.scheduled_date = d.scheduled_date

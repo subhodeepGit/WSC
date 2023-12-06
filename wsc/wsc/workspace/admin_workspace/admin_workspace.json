@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"Kbl7GG7iks\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Admin Workspace</span>\",\"col\":12}},{\"id\":\"8TZtZwe0e0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"User\",\"col\":3}},{\"id\":\"qUPZpR4o4I\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Department\",\"col\":3}},{\"id\":\"rLP8pPgggq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Academic Year\",\"col\":3}},{\"id\":\"oUh3gQUx-q\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Academic Term\",\"col\":3}},{\"id\":\"kc-WAzB8AD\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Role permission\",\"col\":3}},{\"id\":\"M2xZ7FDBST\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Workflow\",\"col\":3}},{\"id\":\"QDpRNQcbO5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Workflow State\",\"col\":3}},{\"id\":\"S44tDfVmCq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Workflow Action Master\",\"col\":3}}]",
+ "content": "[{\"id\":\"Kbl7GG7iks\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Admin Workspace</span>\",\"col\":12}},{\"id\":\"qUPZpR4o4I\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Department\",\"col\":4}},{\"id\":\"rLP8pPgggq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Academic Year\",\"col\":4}},{\"id\":\"oUh3gQUx-q\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Academic Term\",\"col\":4}},{\"id\":\"QDpRNQcbO5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Workflow State\",\"col\":4}},{\"id\":\"S44tDfVmCq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Workflow Action Master\",\"col\":4}},{\"id\":\"M2xZ7FDBST\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Workflow\",\"col\":4}},{\"id\":\"kc-WAzB8AD\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Role permission\",\"col\":4}},{\"id\":\"8TZtZwe0e0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"User\",\"col\":4}},{\"id\":\"l4QtiuVI9S\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"User Permission\",\"col\":4}},{\"id\":\"vuvpHW6kzO\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Multiple Department Permission\",\"col\":4}},{\"id\":\"KMMzA0QTQx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Multiple Employee Permission\",\"col\":4}}]",
  "creation": "2023-07-18 05:25:03.595973",
  "custom_blocks": [],
  "docstatus": 0,
@@ -12,7 +12,7 @@
  "is_hidden": 0,
  "label": "Admin Workspace",
  "links": [],
- "modified": "2023-11-24 15:08:27.007022",
+ "modified": "2023-12-04 17:26:20.570967",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Admin Workspace",
@@ -38,8 +38,29 @@
   {
    "color": "Grey",
    "doc_view": "List",
+   "label": "User Permission",
+   "link_to": "User Permission",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Multiple Department Permission",
+   "link_to": "User Permission for multiple Departments",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
    "label": "Department",
    "link_to": "Department",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Multiple Employee Permission",
+   "link_to": "User Permission for multiple Employee",
    "type": "DocType"
   },
   {

@@ -386,6 +386,7 @@ def set_permission_to_student(user,program_enroll):
         add_user_permission(program_enroll.reference_doctype,program_enroll.reference_name, user,program_enroll)
 @frappe.whitelist()
 def get_program_courses(semester,year_end_date):
+    print("\n\n\nHIOOK")
     course_list = get_courses_by_semester_academic_year(semester,year_end_date)
     result = []
     for course in course_list:

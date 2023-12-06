@@ -151,7 +151,16 @@ def create_user(trainer, user=None, email=None):
     )
     user.insert()
     return user.name
-
+@frappe.whitelist()
+def remove_create_user(email):
+    print("\n\n\nHEY")
+    print("\n\nEmail",email)
+    for x in frappe.get_all("User",{"name":email},['name']):
+        print("\n\nX",x)
+        print("\n\n\nEMAIL:",email)
+        if x.name==email:
+            print("\n\n\nTrue")
+            return True
 
 def validate_email(self):
     if self.email_id_for_guest_trainers:

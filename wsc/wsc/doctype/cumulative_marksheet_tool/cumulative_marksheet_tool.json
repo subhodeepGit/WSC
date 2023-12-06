@@ -143,6 +143,7 @@
   {
    "fieldname": "employee",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "Signing Authority",
    "options": "Employee",
    "reqd": 1
@@ -151,13 +152,14 @@
    "fetch_from": "employee.employee_name",
    "fieldname": "employee_name",
    "fieldtype": "Data",
+   "ignore_user_permissions": 1,
    "label": "Signing Authority Name",
    "read_only": 1
   },
   {
-   "fetch_from": "employee.designation",
    "fieldname": "designation",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "Designation",
    "options": "Designation",
    "read_only": 1,
@@ -170,7 +172,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-14 17:40:47.282360",
+ "modified": "2023-12-05 17:23:47.241756",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Cumulative Marksheet Tool",
