@@ -17,7 +17,16 @@ function rank_generation(doc){
 
 frappe.ui.form.on('Rank Card Publication Tool', {
 	refresh:function(frm){
-		
+		// if(!frm.is_new()){
+		// 	frm.set_df_property('get_applicants' , 'hidden' , 0)
+		// }
+		// else{
+		// 	frm.set_df_property('get_applicants' , 'hidden' , 1)
+		// }
+		if(frm.doc.docstatus==1){
+			frm.set_df_property('get_applicants' , 'hidden' , 1)
+		}
+
 		frm.remove_custom_button('Generate Ranks')
 		if((frm.doc.docstatus === 1 && frm.doc.status === 'Incomplete') || (frm.doc.status === "Cancelled" && frm.doc.docstatus === 1) && (frm.doc.status !== "Completed")){
 			
