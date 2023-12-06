@@ -19,7 +19,6 @@
    "in_list_view": 1,
    "label": "Seat Reservation Type",
    "options": "Seat Reservation Type",
-   "permlevel": 3,
    "reqd": 1,
    "width": "10"
   },
@@ -57,7 +56,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-10-26 16:17:40.259250",
+ "modified": "2023-12-06 12:15:46.011631",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Reservations List",
