@@ -23,6 +23,9 @@ def validate_ifsc_code(self):
 	if self.bank_ifsc:
 		if not contains_only_characters(self.bank_ifsc):
 			frappe.throw("Invalid IFSC Code")
+	if self.ac_number:
+		if not contains_only_characters(self.ac_number):
+			frappe.throw("Invalid IFSC Code")
 def contains_only_characters(bank_ifsc):
     return all(char.isalpha() or char.isspace() or char.isdigit() for char in bank_ifsc)
 @frappe.whitelist()

@@ -24,10 +24,11 @@ class StudentReregistrationToolFees(Document):
         else:
             condition = 'and academic_term=%(academic_term)s' if self.academic_term else " "
             self.get_students_from = "Program Enrollment"
+            condition1 = 'and school_house=%(school_house)s' if self.school_house else " "
             condition2 = 'and student_batch_name=%(student_batch)s' if self.student_batch else " "
-            students = frappe.db.sql('''select student, student_name, student_batch_name, roll_no, permanant_registration_number, student_category from `tabProgram Enrollment`   
-                where program=%(program)s and academic_year=%(academic_year)s {0} {1} and docstatus != 2'''
-                .format(condition, condition2), self.as_dict(), as_dict=1)          
+            students = frappe.db.sql('''select student, student_name, student_batch_name, roll_no, permanant_registration_number, student_category,gender from `tabProgram Enrollment`   
+                where program=%(program)s and academic_year=%(academic_year)s {0} {1} {2} and docstatus != 2 '''
+                .format(condition, condition2,condition1), self.as_dict(), as_dict=1)          
 
             student_list = [d.student for d in students]
             if student_list:
@@ -38,14 +39,13 @@ class StudentReregistrationToolFees(Document):
                 for student in students:
                     if student.student in [d.student for d in inactive_students]:
                         students.remove(student)
-
         if students:
             return students
         else:
             frappe.throw(_("No students Found"))
     @frappe.whitelist()
     def enroll_students(self):
-        fee_structure_validation(self,validate=1)
+        # fee_structure_validation(self,validate=1)
         existed_enrollment = [p.get('student') for p in frappe.db.get_list("Program Enrollment", {'student':['in', [s.student for s in self.students]],'programs':self.programs, 'program': self.new_semester,'academic_year':self.new_academic_year, 'academic_term':self.new_academic_term,'docstatus':1 }, 'student')]
         if len(existed_enrollment) > 0:
             frappe.msgprint(_("{0} Students already enrolled").format( ', '.join(map(str, existed_enrollment))))
@@ -62,7 +62,7 @@ class StudentReregistrationToolFees(Document):
 
 
 def enroll_stud(self):
-    fee_structure_validation(self)
+    # fee_structure_validation(self)
     total = len(self.students)
     existed_enrollment = [p.get('student') for p in frappe.db.get_list("Program Enrollment", {'student':['in', [s.student for s in self.students]],'programs':self.programs, 'program': self.new_semester,'academic_year':self.new_academic_year, 'academic_term':self.new_academic_term,'docstatus':1 }, 'student')]
     if len(existed_enrollment) > 0:
@@ -72,6 +72,9 @@ def enroll_stud(self):
         frappe.publish_realtime("student_reregistration_tool_fees", dict(progress=[i+1, total]), user=frappe.session.user)
         if stud.student and stud.student not in existed_enrollment:
             prog_enrollment = frappe.new_doc("Program Enrollment")
+            print("\n\n\n\n")
+            print(prog_enrollment.name)
+            prog_enrollment.enrollment_date=self.program_enrollment_date 
             prog_enrollment.student = stud.student
             prog_enrollment.student_name = stud.student_name
             prog_enrollment.roll_no=stud.roll_no
@@ -81,6 +84,8 @@ def enroll_stud(self):
             prog_enrollment.program = self.new_semester
             prog_enrollment.academic_year = self.new_academic_year
             prog_enrollment.academic_term = self.new_academic_term
+            if self.new_class:
+                prog_enrollment.school_house = self.new_class
             prog_enrollment.is_provisional_admission="No"
             prog_enrollment.admission_status="Admitted"
             # prog_enrollment.student_batch_name = stud.student_batch_name if stud.student_batch_name else self.new_student_batch

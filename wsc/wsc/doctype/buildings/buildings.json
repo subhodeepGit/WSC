@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:building_name",
  "creation": "2022-12-28 14:09:16.897748",
@@ -235,7 +236,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-16 11:21:26.567713",
+ "modified": "2023-12-05 15:56:29.807633",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Buildings",

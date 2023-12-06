@@ -95,7 +95,7 @@ class AssessmentCreditsAllocation(Document):
             for j in frappe.get_all("Credit distribution List",fltr,["assessment_criteria"]):
                 lst.append(j.assessment_criteria)
         if self.assessment_criteria not in lst:
-            frappe.throw("Please Select the Assessment Criteria In Course <b>{0}</b>".format(self.get("course")))
+            frappe.throw("Please Select the Assessment Component In Module <b>{0}</b>".format(self.get("course")))
 
     def validate_marks(self):
         for cr in self.get("final_credit_item"):

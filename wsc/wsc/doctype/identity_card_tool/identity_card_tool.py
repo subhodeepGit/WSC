@@ -61,7 +61,7 @@ def create_identity_card(identity_card_tool):
 		result.dob=frappe.db.get_value("Student",result.student,'date_of_birth')
 		result.blood_group=frappe.db.get_value("Student",result.student,'blood_group')	
 		result.barcode=frappe.db.get_value("Student",result.student,'roll_no')
-		result.passport_photo=frappe.db.get_value("Student",result.student,'passport_photo')
+		result.passport_photo=frappe.db.get_value("Student",result.student,'image')
 
 		result.save()
 		created_records += 1

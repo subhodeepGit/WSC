@@ -22,7 +22,7 @@ frappe.ui.form.on('Exam Declaration', {
 			}
 		});
         if(frm.doc.docstatus==1){
-            if(frm.doc.docstatus == 1 && frappe.user.has_role(["Education Administrator"]) || frappe.user.has_role(["System Manager"])){
+            if(frm.doc.docstatus == 1 && frappe.user.has_role(["Education Administrator"]) || frappe.user.has_role(["Exam Coordinator"]) || frappe.user.has_role(["System Manager"])){
                 frm.add_custom_button("Exam Evaluation Plan", () => {
                     let data = {}
                     data.programs = frm.doc.exam_program
@@ -32,7 +32,7 @@ frappe.ui.form.on('Exam Declaration', {
                     data.exam_declaration = frm.doc.name
                     frappe.new_doc("Exam Assessment Plan", data)
                 },__('Create'));
-            if(frm.doc.docstatus == 1 && frappe.user.has_role(["Education Administrator"]) || frappe.user.has_role(["System Manager"])){
+            if(frm.doc.docstatus == 1 && frappe.user.has_role(["Education Administrator"]) || frappe.user.has_role(["Exam Coordinator"]) || frappe.user.has_role(["System Manager"])){
                 frm.add_custom_button("Module Wise Exam Group", () => {
                     let data = {}
                     data.exam_declaration_id = frm.doc.name
@@ -150,6 +150,7 @@ frappe.ui.form.on('Exam Declaration', {
                 }
             }
         }
+       
         frm.fields_dict['courses_offered'].grid.get_field("courses").get_query = function(doc, cdt, cdn) {
             var semesters = cur_frm.doc.semesters.map(d => d.semester);
             return {
@@ -161,6 +162,7 @@ frappe.ui.form.on('Exam Declaration', {
         }
         
     },
+    
 	get_courses: function(frm) {
 		frm.clear_table("courses_offered");
         frappe.call({

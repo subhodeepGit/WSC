@@ -10,12 +10,22 @@ frappe.ui.form.on('Reporting Desk', {
 				}
 			}
 		})
-		frm.set_query("applicant_id", function(){
+		
+		frm.set_query("entrance_exam_declaration", function(){
 			return {
 				filters:{
 					'docstatus':1
 				}
 			}
+		})
+		
+		frm.set_query("applicant_id" , function(){
+			return {
+                query: "wsc.wsc.doctype.reporting_desk.reporting_desk.ra_query3",
+				filters:{
+					'entrance_exam_declaration':frm.doc.entrance_exam_declaration
+				}
+            }
 		})
 	},
 	applicant_id: function(frm){

@@ -19,7 +19,18 @@ frappe.ui.form.on('Class Scheduling Tool', {
 				}
 			};
 		});
-	
+		frm.set_query("student_group", function() {
+			return {
+				query: 'wsc.wsc.doctype.class_scheduling_tool.class_scheduling_tool.get_student_group',
+				filters:{
+					
+						"program":frm.doc.program,
+						"academic_term": frm.doc.academic_term,
+						"school_house": frm.doc.school_house,
+						"course":frm.doc.course
+					}
+			};
+		});
 		// frm.fields_dict['additional_trainer'].grid.get_field('instructor').get_query = function(doc){
 		// 	var courses_list = [];
 		// 	$.each(doc.additional_trainer, function(idx, val){

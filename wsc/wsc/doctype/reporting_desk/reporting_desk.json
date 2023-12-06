@@ -8,10 +8,10 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "applicant_details_section",
+  "entrance_exam_declaration",
+  "section_break_dp5yy",
   "applicant_id",
   "applicant_name",
-  "student_applicant",
   "column_break_sx4zg",
   "gender",
   "student_category",
@@ -33,7 +33,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Applicant Id",
-   "options": "Rank Card",
+   "options": "Student Applicant",
    "reqd": 1
   },
   {
@@ -43,6 +43,7 @@
    "read_only": 1
   },
   {
+   "fetch_from": "applicant_id.gender",
    "fieldname": "gender",
    "fieldtype": "Link",
    "label": "Gender",
@@ -50,6 +51,7 @@
    "read_only": 1
   },
   {
+   "fetch_from": "applicant_id.student_category",
    "fieldname": "student_category",
    "fieldtype": "Link",
    "label": "Student Category",
@@ -64,6 +66,7 @@
    "read_only": 1
   },
   {
+   "fetch_from": "applicant_id.academic_year",
    "fieldname": "academic_year",
    "fieldtype": "Link",
    "label": "Academic Year",
@@ -71,6 +74,7 @@
    "read_only": 1
   },
   {
+   "fetch_from": "applicant_id.academic_term",
    "fieldname": "academic_term",
    "fieldtype": "Link",
    "label": "Academic Term",
@@ -78,6 +82,7 @@
    "read_only": 1
   },
   {
+   "fetch_from": "applicant_id.department",
    "fieldname": "department",
    "fieldtype": "Link",
    "label": "Department",
@@ -113,11 +118,6 @@
    "read_only": 1
   },
   {
-   "fieldname": "applicant_details_section",
-   "fieldtype": "Section Break",
-   "label": "Applicant Details"
-  },
-  {
    "fieldname": "section_break_ex0gk",
    "fieldtype": "Section Break",
    "label": "Academic Details"
@@ -127,14 +127,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fetch_from": "applicant_id.applicant_id",
-   "fieldname": "student_applicant",
-   "fieldtype": "Link",
-   "label": "Student Applicant",
-   "options": "Student Applicant",
-   "read_only": 1
-  },
-  {
    "fieldname": "section_break_kzop3",
    "fieldtype": "Section Break",
    "label": "Rank Card Details"
@@ -142,12 +134,22 @@
   {
    "fieldname": "column_break_0tqe4",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "entrance_exam_declaration",
+   "fieldtype": "Link",
+   "label": "Entrance Exam Declaration",
+   "options": "Entrance Exam Declaration"
+  },
+  {
+   "fieldname": "section_break_dp5yy",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-10 10:48:22.891391",
+ "modified": "2023-12-05 17:08:33.324246",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Reporting Desk",
