@@ -51,6 +51,7 @@
    "fetch_from": "student.fathers_name",
    "fieldname": "fathers_name",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Father's Name"
   },
   {
@@ -66,7 +67,8 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Class/Stream",
-   "options": "Programs"
+   "options": "Programs",
+   "read_only": 1
   },
   {
    "fieldname": "session",
@@ -75,7 +77,8 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Session",
-   "options": "Academic Year"
+   "options": "Academic Year",
+   "read_only": 1
   },
   {
    "fetch_from": "student.blood_group",
@@ -106,7 +109,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-02-17 13:19:08.618984",
+ "modified": "2023-12-05 15:26:04.500915",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Identity Card",

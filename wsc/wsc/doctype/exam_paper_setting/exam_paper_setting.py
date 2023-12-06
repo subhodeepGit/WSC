@@ -143,7 +143,7 @@ def is_verified_user(docname):
         print("")
     value1=values
 
-    m=frappe.get_all("Instructor",{"instructor_name":exam_coordinator_name},['email_id'])
+    m=frappe.get_all("Employee",{"employee_name":exam_coordinator_name},['user_id'])
     y=m[0]
     z=y.values()
     for values in z:

@@ -12,10 +12,12 @@
   "column_break_3",
   "academic_year",
   "academic_term",
+  "school_house",
   "section_break_5",
   "get_students",
   "students",
   "section_break_7",
+  "program_enrollment_date",
   "new_semester",
   "new_student_batch",
   "fees_due_date",
@@ -23,6 +25,7 @@
   "column_break_12",
   "new_academic_year",
   "new_academic_term",
+  "new_class",
   "section_break_18",
   "courses"
  ],
@@ -72,7 +75,8 @@
    "fieldname": "academic_term",
    "fieldtype": "Link",
    "label": "Academic Term",
-   "options": "Academic Term"
+   "options": "Academic Term",
+   "reqd": 1
   },
   {
    "fieldname": "section_break_5",
@@ -87,7 +91,8 @@
    "fieldname": "students",
    "fieldtype": "Table",
    "label": "Students",
-   "options": "Student Reregistration Item"
+   "options": "Student Reregistration Item",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_7",
@@ -127,7 +132,8 @@
    "fieldname": "new_academic_term",
    "fieldtype": "Link",
    "label": "New Academic Term",
-   "options": "Academic Term"
+   "options": "Academic Term",
+   "reqd": 1
   },
   {
    "fieldname": "section_break_18",
@@ -142,13 +148,33 @@
   {
    "fieldname": "fees_due_date",
    "fieldtype": "Date",
-   "label": "Fees Due Date"
+   "label": "Fees Due Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "school_house",
+   "fieldtype": "Link",
+   "label": "School House",
+   "options": "School House"
+  },
+  {
+   "description": "Enter the Today's Date",
+   "fieldname": "program_enrollment_date",
+   "fieldtype": "Date",
+   "label": " Program Enrollment Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "new_class",
+   "fieldtype": "Link",
+   "label": "New Class",
+   "options": "School House"
   }
  ],
  "hide_toolbar": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-11-27 09:37:34.625154",
+ "modified": "2023-12-05 12:29:44.619813",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Reregistration Tool Fees",

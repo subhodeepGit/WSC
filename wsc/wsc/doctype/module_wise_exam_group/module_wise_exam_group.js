@@ -17,6 +17,33 @@ frappe.ui.form.on('Module Wise Exam Group', {
 				}
 			}
 		});
+		frm.set_query("marker_name", function() {
+			return {
+				query: 'wsc.wsc.doctype.module_wise_exam_group.module_wise_exam_group.get_marker',
+				filters:{
+					
+						"department":frm.doc.department,
+					}
+			};
+		});
+		frm.set_query("checker", function() {
+			return {
+				query: 'wsc.wsc.doctype.module_wise_exam_group.module_wise_exam_group.get_checker',
+				filters:{
+					
+						"department":frm.doc.department,
+					}
+			};
+		});
+		frm.set_query("course_manager_name", function() {
+			return {
+				query: 'wsc.wsc.doctype.module_wise_exam_group.module_wise_exam_group.get_cm',
+				filters:{
+					
+						"department":frm.doc.department,
+					}
+			};
+		});
 		frm.set_query("modules_id", function() {
 			return {
 				query:"wsc.wsc.doctype.module_wise_exam_group.module_wise_exam_group.valid_module_as_exam_declation",

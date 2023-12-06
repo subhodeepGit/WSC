@@ -140,7 +140,6 @@
    "label": "Company Name"
   },
   {
-   "fetch_from": "internship_company.company_name",
    "fieldname": "company_sector",
    "fieldtype": "Data",
    "hidden": 1,
@@ -175,7 +174,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-05 12:30:41.358238",
+ "modified": "2023-12-05 11:05:57.733645",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Drive",

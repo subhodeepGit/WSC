@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"ijag25ANkj\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Shortcut</span>\",\"col\":12}},{\"id\":\"KYXRWa2Wg8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Profile\",\"col\":3}},{\"id\":\"76zT10RNzR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":3}},{\"id\":\"IdF2UNy-fG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Attendance Report\",\"col\":3}},{\"id\":\"WqCH1nG2Y1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Trainer\",\"col\":3}},{\"id\":\"uFUePZ53he\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Students\",\"col\":3}},{\"id\":\"TOjLWqc6oi\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Time Table\",\"col\":3}},{\"id\":\"Vw-GgAoapq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Exam Declaration\",\"col\":3}},{\"id\":\"PsN9IVFIDI\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Final Semester Result\",\"col\":3}},{\"id\":\"UdjwORIHs1\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Application</b></span>\",\"col\":12}},{\"id\":\"jkaPOUZdsd\",\"type\":\"card\",\"data\":{\"card_name\":\"Courses & Modules\",\"col\":4}},{\"id\":\"-6OM5lWHK6\",\"type\":\"card\",\"data\":{\"card_name\":\"Academics\",\"col\":4}},{\"id\":\"nQ21k7Nez0\",\"type\":\"card\",\"data\":{\"card_name\":\"Pre Examination\",\"col\":4}},{\"id\":\"oESN77Mg-P\",\"type\":\"card\",\"data\":{\"card_name\":\"Exam Evaluation\",\"col\":4}},{\"id\":\"ADm-haulSh\",\"type\":\"card\",\"data\":{\"card_name\":\"Examination Report\",\"col\":4}},{\"id\":\"GTetwDK-9v\",\"type\":\"card\",\"data\":{\"card_name\":\"Role\",\"col\":4}}]",
+ "content": "[{\"id\":\"ijag25ANkj\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Shortcut</span>\",\"col\":12}},{\"id\":\"KYXRWa2Wg8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Profile\",\"col\":3}},{\"id\":\"76zT10RNzR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":3}},{\"id\":\"IdF2UNy-fG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Attendance Report\",\"col\":3}},{\"id\":\"WqCH1nG2Y1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Trainer\",\"col\":3}},{\"id\":\"uFUePZ53he\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Students\",\"col\":3}},{\"id\":\"TOjLWqc6oi\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Time Table\",\"col\":3}},{\"id\":\"Vw-GgAoapq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Exam Declaration\",\"col\":3}},{\"id\":\"PsN9IVFIDI\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Final Semester Result\",\"col\":3}},{\"id\":\"UdjwORIHs1\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Application</b></span>\",\"col\":12}},{\"id\":\"jkaPOUZdsd\",\"type\":\"card\",\"data\":{\"card_name\":\"Courses & Modules\",\"col\":4}},{\"id\":\"-6OM5lWHK6\",\"type\":\"card\",\"data\":{\"card_name\":\"Academics\",\"col\":4}},{\"id\":\"nQ21k7Nez0\",\"type\":\"card\",\"data\":{\"card_name\":\"Pre Examination\",\"col\":4}},{\"id\":\"oESN77Mg-P\",\"type\":\"card\",\"data\":{\"card_name\":\"Exam Evaluation\",\"col\":4}},{\"id\":\"ADm-haulSh\",\"type\":\"card\",\"data\":{\"card_name\":\"Examination Report\",\"col\":4}}]",
  "creation": "2023-09-05 16:33:46.929555",
  "custom_blocks": [],
  "docstatus": 0,
@@ -57,54 +57,6 @@
    "link_count": 0,
    "link_to": "Student Attendance Report",
    "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Pre Examination",
-   "link_count": 4,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Exam Declaration",
-   "link_count": 0,
-   "link_to": "Exam Declaration",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Exam Group",
-   "link_count": 0,
-   "link_to": "Module Wise Exam Group",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Paper Setter & Moderator",
-   "link_count": 0,
-   "link_to": "Exam Assessment Plan",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Grading Scale",
-   "link_count": 0,
-   "link_to": "Grading Scale",
-   "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
   },
@@ -205,7 +157,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Programs",
+   "label": "Course",
    "link_count": 0,
    "link_to": "Programs",
    "link_type": "DocType",
@@ -215,9 +167,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Course",
+   "label": "Program",
    "link_count": 0,
-   "link_to": "Course",
+   "link_to": "Program",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -225,17 +177,17 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Role",
-   "link_count": 3,
+   "label": "Pre Examination",
+   "link_count": 4,
    "onboard": 0,
    "type": "Card Break"
   },
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Role",
+   "label": "Exam Declaration",
    "link_count": 0,
-   "link_to": "Role",
+   "link_to": "Exam Declaration",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -243,9 +195,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Role Profile",
+   "label": "Student Exam Group",
    "link_count": 0,
-   "link_to": "Role Profile",
+   "link_to": "Module Wise Exam Group",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -253,15 +205,25 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "User",
+   "label": "Paper Setter & Moderator",
    "link_count": 0,
-   "link_to": "User",
+   "link_to": "Exam Assessment Plan",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Exam Paper Setting",
+   "link_count": 0,
+   "link_to": "Exam Paper Setting",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
   }
  ],
- "modified": "2023-12-04 17:28:32.307682",
+ "modified": "2023-12-05 11:13:52.644121",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Educational Management",

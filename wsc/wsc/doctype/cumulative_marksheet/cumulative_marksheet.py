@@ -11,6 +11,12 @@ from frappe.utils.csvutils import getlink
 from education.education.api import get_grade
 
 class CumulativeMarksheet(Document):
+	@frappe.whitelist()
+	def get_missing_fields(self):
+		data={}
+		data["designation"]=frappe.db.get_value("Employee",{"name":self.employee},"designation")
+		data["employee_name"]=frappe.db.get_value("Employee",{"name":self.employee},"employee_name")
+		return data
 	def validate(self):
 		self.validate_duplicate_for_submit()
 		self.validate_duplicate_for_save()
