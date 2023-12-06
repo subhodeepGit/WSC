@@ -23,6 +23,10 @@
   "location_of_drive",
   "section_break_f4br7",
   "about_drive",
+  "section_break_jeof6",
+  "for_departments",
+  "column_break_xxssq",
+  "for_sectors",
   "designationsposition_section",
   "designations_table",
   "for_programs",
@@ -130,14 +134,13 @@
    "label": "About Drive"
   },
   {
-   "fetch_from": "internship_company.company_name",
    "fieldname": "company_name",
    "fieldtype": "Data",
    "hidden": 1,
    "label": "Company Name"
   },
   {
-   "fetch_from": "internship_company.sector",
+   "fetch_from": "internship_company.company_name",
    "fieldname": "company_sector",
    "fieldtype": "Data",
    "hidden": 1,
@@ -148,11 +151,31 @@
    "fieldtype": "Date",
    "hidden": 1,
    "label": "Current Date"
+  },
+  {
+   "fieldname": "section_break_jeof6",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_xxssq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "for_departments",
+   "fieldtype": "Table",
+   "label": "For departments",
+   "options": "Internship For Department"
+  },
+  {
+   "fieldname": "for_sectors",
+   "fieldtype": "Table",
+   "label": "For sectors",
+   "options": "Internship For Sectors"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-08 16:34:39.568340",
+ "modified": "2023-12-05 12:30:41.358238",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Drive",
