@@ -197,7 +197,7 @@
   {
    "depends_on": "eval:doc.medium_of_communicatinon == \"Postal\";",
    "fieldname": "pincode",
-   "fieldtype": "Int",
+   "fieldtype": "Data",
    "label": "Pincode",
    "length": 6,
    "non_negative": 1
@@ -290,7 +290,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-01 15:44:01.809642",
+ "modified": "2023-12-06 14:39:10.329194",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Long Leave",
