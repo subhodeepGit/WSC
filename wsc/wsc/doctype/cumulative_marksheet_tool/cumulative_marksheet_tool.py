@@ -12,6 +12,13 @@ from frappe import _
 from wsc.wsc.utils import duplicate_row_validation
 
 class CumulativeMarksheetTool(Document):
+	@frappe.whitelist()
+	def get_missing_fields(self):
+		data={}
+		data["designation"]=frappe.db.get_value("Employee",{"name":self.employee},"designation")
+		data["employee_name"]=frappe.db.get_value("Employee",{"name":self.employee},"employee_name")
+		return data
+
 	def validate(self):
 		pass	
 	@frappe.whitelist()
@@ -128,35 +135,35 @@ def create_cummulative_marksheet(cumulative_marksheet_tool):
 
 @frappe.whitelist()
 def get_students(academic_term=None, programs=None):
-    enrolled_students = get_program_enrollment(academic_term,programs)
-    if enrolled_students:
-        student_list = []
-        for s in enrolled_students:
-            if frappe.db.get_value("Student", s.student, "enabled"):
-                s.update({"active": 1})
-            else:
-                s.update({"active": 0})
-            student_list.append(s)
-        return student_list
-    else:
-        frappe.msgprint("No students found")
-        return []
+	enrolled_students = get_program_enrollment(academic_term,programs)
+	if enrolled_students:
+		student_list = []
+		for s in enrolled_students:
+			if frappe.db.get_value("Student", s.student, "enabled"):
+				s.update({"active": 1})
+			else:
+				s.update({"active": 0})
+			student_list.append(s)
+		return student_list
+	else:
+		frappe.msgprint("No students found")
+		return []
 def get_program_enrollment(academic_term,programs=None):
-    condition1 = " "
-    condition2 = " "
-    if programs:
-        condition1 += " and pe.programs = %(programs)s"
-    
-    return frappe.db.sql('''
-        select
-            pe.student, pe.student_name
-        from
-            `tabProgram Enrollment` pe {condition2}
-        where
-           pe.admission_status = "Admitted" and pe.academic_term = %(academic_term)s  {condition1}
-        order by
-            pe.student_name asc
-        '''.format(condition1=condition1, condition2=condition2),
-                ({"academic_term": academic_term,"programs": programs}), as_dict=1)
+	condition1 = " "
+	condition2 = " "
+	if programs:
+		condition1 += " and pe.programs = %(programs)s"
+	
+	return frappe.db.sql('''
+		select
+			pe.student, pe.student_name
+		from
+			`tabProgram Enrollment` pe {condition2}
+		where
+		   pe.admission_status = "Admitted" and pe.academic_term = %(academic_term)s  {condition1}
+		order by
+			pe.student_name asc
+		'''.format(condition1=condition1, condition2=condition2),
+				({"academic_term": academic_term,"programs": programs}), as_dict=1)
 
 	

@@ -46,6 +46,7 @@
   {
    "fieldname": "get_participants",
    "fieldtype": "Button",
+   "hidden": 1,
    "label": "Get Participants"
   },
   {
@@ -158,7 +159,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-24 16:06:46.330162",
+ "modified": "2023-12-05 15:48:03.336615",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant Enrollment",

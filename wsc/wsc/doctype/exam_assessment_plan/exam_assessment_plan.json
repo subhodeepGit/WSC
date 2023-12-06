@@ -162,12 +162,13 @@
   {
    "fieldname": "exam_coordinator",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "Exam Coordinator",
-   "options": "Instructor",
+   "options": "Employee",
    "reqd": 1
   },
   {
-   "fetch_from": "exam_coordinator.instructor_name",
+   "fetch_from": "exam_coordinator.employee_name",
    "fieldname": "exam_coordinator_name",
    "fieldtype": "Data",
    "label": "Exam Coordinator Name",
@@ -193,7 +194,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-14 10:59:06.379814",
+ "modified": "2023-12-05 15:23:53.930507",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Assessment Plan",

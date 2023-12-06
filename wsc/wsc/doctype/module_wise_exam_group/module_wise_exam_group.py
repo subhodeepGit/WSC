@@ -259,6 +259,48 @@ def module_start_date(modules_id=None,exam_id=None,academic_term=None):
                 t['term_end_date']=''		
     return output_date
 
+@ frappe.whitelist()
+def get_marker(doctype, txt, searchfield, start, page_len,filters):
+	department=filters.get('department')
+	details = frappe.db.sql("""SELECT name,instructor_name,employee_number FROM 
+				 			`tabInstructor`   WHERE 
+				 			department='{department}'
+				 							""".format(
+												**{
+												"department":department,
+												
+											}))
+	
+	return details
+
+@ frappe.whitelist()
+def get_checker(doctype, txt, searchfield, start, page_len,filters):
+	department=filters.get('department')
+	details = frappe.db.sql("""SELECT name,instructor_name,employee_number FROM 
+				 			`tabInstructor`   WHERE 
+				 			department='{department}'
+				 							""".format(
+												**{
+												"department":department,
+												
+											}))
+	
+	return details
+
+@ frappe.whitelist()
+def get_cm(doctype, txt, searchfield, start, page_len,filters):
+	department=filters.get('department')
+	details = frappe.db.sql("""SELECT name,instructor_name,employee_number FROM 
+				 			`tabInstructor`   WHERE 
+				 			department='{department}'
+				 							""".format(
+												**{
+												"department":department,
+												
+											}))
+	
+	return details
+
 @frappe.whitelist()
 def get_student(academic_term=None, programs=None,class_data=None,minimum_attendance_criteria=None,attendance_criteria=None,
                 start_date_of_attendence_duration=None,end_date_of_attendence_duration=None,modules_id=None,

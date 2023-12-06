@@ -1,0 +1,67 @@
+{
+ "cards": [
+  {
+   "card": "HFD Total Seats"
+  },
+  {
+   "card": "HFD Seat Allocated"
+  },
+  {
+   "card": "HFD Seat Balance"
+  },
+  {
+   "card": "HFD General Men Seats"
+  },
+  {
+   "card": "HFD General Women Seats"
+  },
+  {
+   "card": "HFD General PWD Seats"
+  },
+  {
+   "card": "HFD General Skill Seats"
+  },
+  {
+   "card": "HFD ST Men Seats"
+  },
+  {
+   "card": "HFD ST Women Seats"
+  },
+  {
+   "card": "HFD ST PWD Seats"
+  },
+  {
+   "card": "HFD ST Skill Seats"
+  },
+  {
+   "card": "HFD SC Men Seats"
+  },
+  {
+   "card": "HFD SC Women Seats"
+  },
+  {
+   "card": "HFD SC PWD Seats"
+  },
+  {
+   "card": "HFD SC Skill Seats"
+  }
+ ],
+ "charts": [
+  {
+   "chart": "Student Admission",
+   "width": "Full"
+  }
+ ],
+ "creation": "2023-12-06 12:08:04.669597",
+ "dashboard_name": "HFD SEAT RESERVATION DASHBOARD",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "modified": "2023-12-06 12:32:52.182152",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "HFD SEAT RESERVATION DASHBOARD",
+ "owner": "Administrator"
+}

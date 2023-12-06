@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:type_of_room",
  "creation": "2023-01-04 09:53:03.058408",
@@ -31,7 +32,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-15 16:18:04.927156",
+ "modified": "2023-12-05 15:59:17.043797",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Building type Room",
