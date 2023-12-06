@@ -9,14 +9,15 @@ class ReportingDesk(Document):
 		if self.is_new():
 			if frappe.get_all("Reporting Desk",{"applicant_id":self.applicant_id,"docstatus":1}):
 				frappe.throw("<b>Student Has Reported at Reporting Desk</b>")
+
 	def on_submit(self):
-	
 		# applicant_id = frappe.get_all("Rank Card" , { 'name' : self.applicant_id } , ['applicant_id'])
 		applicant_id =self.applicant_id
 		
 		frappe.db.set_value("Student Applicant" ,applicant_id, {
 			'couselling_start':1,
 		})
+
 	def on_cancel(self):
 		applicant_id =self.applicant_id
 		
@@ -43,11 +44,6 @@ def reporting(applicant_id):
 								'rank_obtained'
 								])
 		data = []
-
-		print("\n\n\n")
-
-		print(data_basic)
-		print(data_rank)
 
 		data.append(data_basic)
 		data.append(data_rank)
@@ -93,7 +89,4 @@ def ra_query3(doctype, txt, searchfield, start, page_len, filters):
             # "info":info
         }),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
     
-	# print("\n\n data")
-	# print(data)
-
 	return data
