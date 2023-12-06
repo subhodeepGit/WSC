@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "autoname": "autoincrement",
  "creation": "2023-01-04 09:49:26.900736",
  "doctype": "DocType",
@@ -407,7 +408,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-15 16:47:07.456245",
+ "modified": "2023-12-05 16:00:13.281380",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Building Room",

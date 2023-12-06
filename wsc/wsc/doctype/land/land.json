@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:plot_number",
  "creation": "2022-12-28 11:30:38.249847",
@@ -182,7 +183,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-16 11:09:09.956204",
+ "modified": "2023-12-05 15:54:46.846270",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Land",
