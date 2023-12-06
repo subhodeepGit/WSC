@@ -1,0 +1,67 @@
+{
+ "cards": [
+  {
+   "card": "VT Total Seats"
+  },
+  {
+   "card": "VT Seat Allocated"
+  },
+  {
+   "card": "VT Seat Balance"
+  },
+  {
+   "card": "VT General Men Seats"
+  },
+  {
+   "card": "VT General Women Seats"
+  },
+  {
+   "card": "VT General PWD Seats"
+  },
+  {
+   "card": "VT General Skill Seats"
+  },
+  {
+   "card": "VT ST Men Seats"
+  },
+  {
+   "card": "VT ST Women Seats"
+  },
+  {
+   "card": "VT ST PWD Seat"
+  },
+  {
+   "card": "VT ST Skill Seats"
+  },
+  {
+   "card": "VT SC Men Seats"
+  },
+  {
+   "card": "VT SC Women Seats"
+  },
+  {
+   "card": "VT SC PWD Seats"
+  },
+  {
+   "card": "VT SC Skill Seats"
+  }
+ ],
+ "charts": [
+  {
+   "chart": "Student Admission",
+   "width": "Full"
+  }
+ ],
+ "creation": "2023-12-06 09:48:45.347682",
+ "dashboard_name": "VT SEAT RESERVATION DASHBOARD",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "modified": "2023-12-06 09:48:45.347682",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "VT SEAT RESERVATION DASHBOARD",
+ "owner": "Administrator"
+}
