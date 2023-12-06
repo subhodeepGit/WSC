@@ -21,22 +21,31 @@ frappe.ui.form.on('Entrance Exam Admit Card Tool', {
 		})
 	},
 	refresh:function(frm){
+		// if(!frm.is_new()){
+		// 	frm.set_df_property('get_applicants' , 'hidden' , 0)
+		// }
+		// else{
+		// 	frm.set_df_property('get_applicants' , 'hidden' , 1)
+		// }
+		if(frm.doc.docstatus==1){
+			frm.set_df_property('get_applicants' , 'hidden' , 1)
+		}
 		// frm.disable_save()
 		frm.set_df_property('deallotted_applicant_list', 'cannot_add_rows', true)
 		// frm.set_df_property('deallotted_applicant_list', 'cannot_delete_rows', true)
 		frm.set_df_property('center' , 'hidden' , 1)
 		frm.remove_custom_button('Admit Card Generation')
 
-		console.log(frm.doc.flag);
+		// console.log(frm.doc.flag);
 		
 		// if(frm.doc.docstatus === 1 && frm.doc.flag === 0){
 		if(frm.doc.docstatus === 1){
 			
-			console.log("inside first if");
+			// console.log("inside first if");
 
 			if(frm.doc.flag === 1){  //For Leftover Applicants
 
-				console.log("inside flag = 1");
+				// console.log("inside flag = 1");
 
 				frm.set_df_property('center' , 'hidden' , 0)
 				frm.add_custom_button(__('Admit Card Generation'), function(){

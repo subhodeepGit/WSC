@@ -1,0 +1,67 @@
+{
+ "cards": [
+  {
+   "card": "BWS Total Seats"
+  },
+  {
+   "card": "BWS Seat Allocated"
+  },
+  {
+   "card": "BWS Seat Balance"
+  },
+  {
+   "card": "BWS General Men Seats"
+  },
+  {
+   "card": "BWS General Women Seats"
+  },
+  {
+   "card": "BWS General PWD Seats"
+  },
+  {
+   "card": "BWS General Skill Seats"
+  },
+  {
+   "card": "BWS ST Men Seats"
+  },
+  {
+   "card": "BWS ST Women Seats"
+  },
+  {
+   "card": "BWS ST PWD Seats"
+  },
+  {
+   "card": "BWS ST Skill Seats"
+  },
+  {
+   "card": "BWS SC Men Seats"
+  },
+  {
+   "card": "BWS SC Women Seats"
+  },
+  {
+   "card": "BWS SC PWD Seats"
+  },
+  {
+   "card": "BWS SC PWD Seats-1"
+  }
+ ],
+ "charts": [
+  {
+   "chart": "Student Admission",
+   "width": "Full"
+  }
+ ],
+ "creation": "2023-12-06 12:35:22.195088",
+ "dashboard_name": "BWS SEAT RESERVATION DASHBOARD",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "modified": "2023-12-06 12:35:22.195088",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "BWS SEAT RESERVATION DASHBOARD",
+ "owner": "Administrator"
+}
