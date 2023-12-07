@@ -2950,7 +2950,7 @@
   "home_page": null,
   "is_custom": 0,
   "list_sidebar": 0,
-  "modified": "2023-11-27 17:13:23.175650",
+  "modified": "2023-12-06 12:23:23.175650",
   "name": "ToT Participant",
   "notifications": 0,
   "restrict_to_domain": null,
@@ -2958,6 +2958,6 @@
   "search_bar": 0,
   "timeline": 0,
   "two_factor_auth": 0,
-  "view_switcher": 0
+  "view_switcher": 1
  }
 ]
