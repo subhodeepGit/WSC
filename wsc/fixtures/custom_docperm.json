@@ -115802,7 +115802,7 @@
  {
   "amend": 1,
   "cancel": 1,
-  "create": 1,
+  "create": 0,
   "delete": 0,
   "docstatus": 0,
   "doctype": "Custom DocPerm",
@@ -115810,7 +115810,7 @@
   "export": 1,
   "if_owner": 0,
   "import": 0,
-  "modified": "2023-11-17 15:58:41.056319",
+  "modified": "2023-12-06 15:18:41.056319",
   "name": "2431048441",
   "parent": "Assignment Upload",
   "permlevel": 0,

@@ -9,14 +9,25 @@
  "filters": [],
  "idx": 0,
  "is_standard": "Yes",
- "modified": "2022-08-05 17:56:44.463419",
+ "modified": "2023-12-07 09:47:34.643160",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Final Exam Result Report",
  "owner": "Administrator",
  "prepared_report": 0,
+ "query": "",
  "ref_doctype": "Exam Assessment Result",
  "report_name": "Final Exam Result Report",
  "report_type": "Script Report",
- "roles": []
+ "roles": [
+  {
+   "role": "Exam Coordinator"
+  },
+  {
+   "role": "Department Head"
+  },
+  {
+   "role": "Course Manager"
+  }
+ ]
 }
