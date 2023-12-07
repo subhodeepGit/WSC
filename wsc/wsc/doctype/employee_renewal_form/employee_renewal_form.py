@@ -18,7 +18,7 @@ class EmployeeRenewalForm(Document):
             self.contract_validation()
 
             ####Notification Code#######
-        if self.workflow_state=="HR Approval":
+        if self.workflow_state=="Approved" or self.workflow_state=="Rejected":
             employee_reengagement_hr_mail(self)
 
         if self.workflow_state=="Reporting Authority Approval":
