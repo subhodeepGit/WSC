@@ -1,0 +1,67 @@
+{
+ "cards": [
+  {
+   "card": "MCE Total Seats"
+  },
+  {
+   "card": "MCE Seat Allocated"
+  },
+  {
+   "card": "MCE Seat Balance"
+  },
+  {
+   "card": "MCE General Men Seats"
+  },
+  {
+   "card": "MCE General Women Seats"
+  },
+  {
+   "card": "MCE General PWD Seats"
+  },
+  {
+   "card": "MCE General Skill  Seats"
+  },
+  {
+   "card": "MCE ST Men  Seats"
+  },
+  {
+   "card": "MCE ST Women  Seats"
+  },
+  {
+   "card": "MCE ST PWD  Seats"
+  },
+  {
+   "card": "MCE ST Skill  Seats"
+  },
+  {
+   "card": "MCE SC Men Seats"
+  },
+  {
+   "card": "MCE SC Women Seats"
+  },
+  {
+   "card": "MCE SC PWD  Seats"
+  },
+  {
+   "card": "MCE SC Skill  Seats"
+  }
+ ],
+ "charts": [
+  {
+   "chart": "Student Admission",
+   "width": "Full"
+  }
+ ],
+ "creation": "2023-12-06 09:54:41.827090",
+ "dashboard_name": "MCE SEAT RESERVATION DASHBOARD",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "modified": "2023-12-06 09:54:41.827090",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "MCE SEAT RESERVATION DASHBOARD",
+ "owner": "Administrator"
+}

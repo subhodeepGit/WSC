@@ -73,11 +73,12 @@
   {
    "fieldname": "fees_section",
    "fieldtype": "Section Break",
-   "label": "Fees"
+   "label": "Documents"
   },
   {
    "fieldname": "counselling_fees",
    "fieldtype": "Table",
+   "hidden": 1,
    "label": "Counselling Fees",
    "options": "Fee Structure Item"
   },
@@ -114,10 +115,11 @@
    "link_fieldname": "counselling_structure"
   }
  ],
- "modified": "2021-12-04 14:04:08.677299",
+ "modified": "2023-12-06 17:05:08.670122",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Counselling Structure",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -135,5 +137,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

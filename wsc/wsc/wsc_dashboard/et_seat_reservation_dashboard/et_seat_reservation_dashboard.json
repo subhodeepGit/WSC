@@ -1,0 +1,67 @@
+{
+ "cards": [
+  {
+   "card": "ET Total Seats"
+  },
+  {
+   "card": "ET Seat Allocated"
+  },
+  {
+   "card": "ET Seat Balance"
+  },
+  {
+   "card": "ET General Men Seats"
+  },
+  {
+   "card": "ET General Women Seats"
+  },
+  {
+   "card": "ET General PWD Seats"
+  },
+  {
+   "card": "ET General Skill Seats"
+  },
+  {
+   "card": "ET ST Men Seats"
+  },
+  {
+   "card": "ET ST Women Seats"
+  },
+  {
+   "card": "ET ST PWD Seats"
+  },
+  {
+   "card": "ET ST Skill Seats"
+  },
+  {
+   "card": "ET SC Men Seats"
+  },
+  {
+   "card": "ET SC Women Seats"
+  },
+  {
+   "card": "ET SC PWD Seats"
+  },
+  {
+   "card": "ET SC Skill Seats"
+  }
+ ],
+ "charts": [
+  {
+   "chart": "Student Admission",
+   "width": "Full"
+  }
+ ],
+ "creation": "2023-12-06 09:52:19.811387",
+ "dashboard_name": "ET SEAT RESERVATION DASHBOARD",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "modified": "2023-12-06 09:52:19.811387",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "ET SEAT RESERVATION DASHBOARD",
+ "owner": "Administrator"
+}

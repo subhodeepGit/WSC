@@ -53,7 +53,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Reporting Deskk",
+   "label": "Reporting Desk",
    "link_count": 0,
    "link_to": "Reporting Desk",
    "link_type": "DocType",
@@ -61,7 +61,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-12-01 12:34:23.957086",
+ "modified": "2023-12-06 18:08:23.974079",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Application Form",
