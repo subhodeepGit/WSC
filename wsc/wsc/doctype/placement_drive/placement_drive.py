@@ -185,8 +185,14 @@ def create_placement_drive_block_list(self):
 		result.semester = 'MCE Semester I'
 		result.placement_drive_id = self.name
 		result.append("block_drive_list",{
-			"placement_drive" : self.name
+			"placement_drive" : self.name,
+			"placement_drive_name" : self.title
 		})
+		for d in self.get("for_programs"):
+			result.append("for_courses",{
+				"programs":d.programs,
+				"semester": d.semester
+			})
 		result.save()
 		get_blocklist_name = frappe.db.sql(""" SELECT name FROM `tabPlacement Blocked Student` WHERE placement_drive_id = '%s'"""%(self.name))
 		self.blocklist_id = get_blocklist_name[0][0]

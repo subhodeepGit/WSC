@@ -5,7 +5,13 @@ import frappe
 from frappe.model.document import Document
 
 class SelectionRound(Document):
+	print("\n\n\n")
+	print("of")
+	def validate(self):
+		print("\n\n\n\n og")
 	def on_submit(self):
+		print("\n\n\n\n")
+		print("on_submit")
 		update_profile(self)
 
 	def on_cancel(self):
