@@ -3,12 +3,12 @@ import frappe
 BENCH_PATH = frappe.utils.get_bench_path()
 
 def execute():
-    # disable_cancel_link()
-    # add_line_for_po()
-    # comment_lines_job_applicant()
-    # comment_lines_list_view()
-    # add_line_JobApplicant_js()
-    # update_line_gridrow_js()
+    disable_cancel_link()
+    add_line_for_po()
+    comment_lines_job_applicant()
+    comment_lines_list_view()
+    add_line_JobApplicant_js()
+    update_line_gridrow_js()
     # upload_malicious_pdf()
     cross_site_scripting()
     login_password_encryption()
@@ -18,8 +18,6 @@ def execute():
     improper_error_handling_response()
     process_response_website_js_1()
     process_response_website_js_2()
-    # create_new_field()
-    pass
 
 def disable_cancel_link():
     file_path = "{}/{}".format(BENCH_PATH,
@@ -1535,21 +1533,3 @@ def process_response_website_js_2():
     with open(file_path, "w") as file:
         file.write(updated_content)
         print("Process Response Website JS 2. Successfully Updated.")
-
-# def create_new_field():
-#         confirm_password_data=frappe.get_all("DocField",{"parent":"User","fieldname":"confirm__password"},['name','idx'])
-#         if not confirm_password_data:
-#             confirm_password_data=frappe.get_all("DocField",{"parent":"User","fieldname":"new_password"},['name','idx'])
-#             idx_no=confirm_password_data[0]['idx']
-#             other_idx=frappe.get_all("DocField",filters=[["parent",'=',"User"],["idx",">",idx_no]],fields=['name','idx'],
-#                 order_by="idx asc")
-#             for t in other_idx:
-#                 frappe.db.sql(""" UPDATE `tabDocField` SET idx=%s where name='%s' """%(t['idx']+1,t['name']))
-#             data=frappe.get_doc("DocType","User")
-#             data.append("fields",{
-#                 'label':"Confirm Password",
-#                 "fieldtype":"Password",
-#                 "fieldname":"confirm__password",
-#                 "idx":idx_no+1
-#             })
-#             data.save()
