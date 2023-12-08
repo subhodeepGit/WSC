@@ -12,7 +12,7 @@ frappe.ui.form.on('Selection Round', {
 				doc: frm.doc
 			},
 			callback: function(result){
-				alert(result.message)
+				// alert(result.message)
 			}
 		})
 	},
@@ -24,7 +24,7 @@ frappe.ui.form.on('Selection Round', {
 				doc: frm.doc
 			},
 			callback: function(result){
-				alert(result.message)
+				// alert(result.message)
 			}
 		})
 	}

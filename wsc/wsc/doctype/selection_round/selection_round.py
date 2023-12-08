@@ -5,20 +5,22 @@ import frappe
 from frappe.model.document import Document
 
 class SelectionRound(Document):
-	print("\n\n\n")
-	print("of")
+	# print("\n\n\n")
+	# print("of")
 	def validate(self):
-		print("\n\n\n\n og")
+		# print("\n\n\n\n og")
+		pass
 	def on_submit(self):
-		print("\n\n\n\n")
-		print("on_submit")
+		# print("\n\n\n\n")
+		# print("on_submit")
 		update_profile(self)
 
 	def on_cancel(self):
-		print('\n\n\n')
-		print('on cance')
-		print('\n\n\n')
+		# print('\n\n\n')
+		# print('on cance')
+		# print('\n\n\n')
 		# update_application(self)
+		pass
 
 # @frappe.whitelist()
 # def update_profile(self):
