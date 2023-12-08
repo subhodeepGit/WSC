@@ -18,12 +18,35 @@ class ReportingDesk(Document):
 			'couselling_start':1,
 		})
 
+		email = frappe.get_all('Student Applicant' , {'name':self.applicant_id},['student_email_id'])
+	
+		user_perm = frappe.new_doc("User Permission")
+		user_perm.user = email[0]['student_email_id']
+		user_perm.allow = self.doctype
+		user_perm.for_value = self.name
+
+		user_perm.save()
+
 	def on_cancel(self):
 		applicant_id =self.applicant_id
 		
 		frappe.db.set_value("Student Applicant" ,applicant_id, {
 			'couselling_start':0,
 		})
+	
+	def on_trash(self):
+		# perm_data = frappe.get_all('User Permission' , {'for_value':self.name} , ['name' , 'for_value'])
+		perm_data = frappe.db.sql("""
+			SELECT
+				name , for_value 
+			FROM `tabUser Permission` 
+			WHERE for_value = '{reporting_desk}';
+		""".format(reporting_desk = self.name) , as_dict=1)
+
+		if perm_data:
+			user_perm_data = frappe.get_doc('User Permission' , perm_data[0]['name'])
+
+			user_perm_data.delete()
 		
 @frappe.whitelist()
 def reporting(applicant_id):

@@ -12,6 +12,7 @@ import json
 class ParticipantGroup(Document):
     def validate(self):
         dupicate_student_group_chk(self)
+        student_permission(self)
         self.calculate_total_hours()
         self.trainer_ck()
         # restricted_table_change(self)
@@ -299,6 +300,11 @@ def create_user_permission(doc):
             for emp in frappe.get_all("Employee",{"name":instr.employee},['user_id','department']):
                 if emp.user_id:
                     add_user_permission(doc.doctype,doc.name,emp.user_id,doc)		
+def student_permission(doc):
+    for x in  doc.get("participants"):
+        for stu in frappe.get_all("ToT Participant",{"name":x.participant},['user']):
+            if stu.user:
+                add_user_permission(doc.doctype,doc.name,stu.user,doc)
 
 def remove_permissions(doc):
     delete_ref_doctype_permissions(["Student Group"],doc)					

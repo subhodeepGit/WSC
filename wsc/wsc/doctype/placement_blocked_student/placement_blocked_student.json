@@ -15,6 +15,7 @@
   "semester",
   "section_break_5",
   "block_drive_list",
+  "for_courses",
   "section_break_7",
   "blocked_student",
   "placement_drive_id"
@@ -84,11 +85,17 @@
    "fieldname": "placement_drive_id",
    "fieldtype": "Data",
    "label": "Placement drive id"
+  },
+  {
+   "fieldname": "for_courses",
+   "fieldtype": "Table",
+   "label": "For courses",
+   "options": "Internship Drive Eligible Programs"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-29 18:37:45.422992",
+ "modified": "2023-12-06 12:05:37.606615",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Blocked Student",

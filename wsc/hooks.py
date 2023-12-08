@@ -116,7 +116,7 @@ after_migrate = [
         'wsc.wsc.delete_doc_if_linked.execute',
         'wsc.patches.migrate_patch.set_custom_role_permission_remove_duplicate',
         'wsc.patches.create_all_tax_category.execute',
-        'wsc.wsc.wsc_patches.execute'
+        # 'wsc.wsc.wsc_patches.execute'
 ]
 
 # application home page (will override Website Settings)
@@ -652,11 +652,11 @@ override_doctype_dashboards = {
 # ]
 
 # fixtures = [
-	# {"dt": "Custom DocPerm", "filters": [
-	# 	["parent", "not in", ["DocType"]],
-    #     ["parent", "in", ["Material Request","Item","Warehouse","Address","Contact","Workflow State","Department"]],
-    #     ["role", "in", ["Requisitioner"]]
-	# ]},
+# 	{"dt": "Custom DocPerm", "filters": [
+# 		["parent", "not in", ["DocType"]],
+#         ["parent", "in", ["Entrance Exam Declaration"]],
+#         ["role", "in", ["Applicant"]]
+# 	]},
     # {"dt": "Role","filters": [
     #     ["name", "in", ["Requisitioner"]]
     # ]},

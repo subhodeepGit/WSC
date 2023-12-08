@@ -71,64 +71,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Examination",
-   "link_count": 5,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Exam Delcaration",
-   "link_count": 0,
-   "link_to": "Exam Declaration",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Module Wise Exam Group",
-   "link_count": 0,
-   "link_to": "Module Wise Exam Group",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Exam Evaluation Plan",
-   "link_count": 0,
-   "link_to": "Exam Assessment Plan",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Exam Paper Setting",
-   "link_count": 0,
-   "link_to": "Exam Paper Setting",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Backpaper Tracking",
-   "link_count": 0,
-   "link_to": "Back Paper Tracker",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Reports",
    "link_count": 3,
    "onboard": 0,
@@ -175,7 +117,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Component Wise Evaluation",
+   "label": "Course Assessment",
    "link_count": 0,
    "link_to": "Course Assessment",
    "link_type": "DocType",
@@ -185,7 +127,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Component Wise Re-Evaluation",
+   "label": "Assessment Credits Allocation",
    "link_count": 0,
    "link_to": "Assessment Credits Allocation",
    "link_type": "DocType",
@@ -195,9 +137,67 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Final Semester Result",
+   "label": "Exam Assessment Result",
    "link_count": 0,
    "link_to": "Exam Assessment Result",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Examination",
+   "link_count": 5,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Exam Delcaration",
+   "link_count": 0,
+   "link_to": "Exam Declaration",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Module Wise Exam Group",
+   "link_count": 0,
+   "link_to": "Module Wise Exam Group",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Exam Assessment Plan",
+   "link_count": 0,
+   "link_to": "Exam Assessment Plan",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Exam Paper Setting",
+   "link_count": 0,
+   "link_to": "Exam Paper Setting",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Backpaper Tracking",
+   "link_count": 0,
+   "link_to": "Back Paper Tracker",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -213,7 +213,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Component Wise Evaluation Tool",
+   "label": "Course Assessment Result Tool",
    "link_count": 0,
    "link_to": "Course Assessment Result Tool",
    "link_type": "DocType",
@@ -223,7 +223,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Component Wise Re-Evaluation Tool",
+   "label": "Continuous Evaluation Tool",
    "link_count": 0,
    "link_to": "Continuous Evaluation Tool",
    "link_type": "DocType",
@@ -233,7 +233,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Final Semester Result Tool",
+   "label": "Final Result Declaration",
    "link_count": 0,
    "link_to": "Final Result Declaration",
    "link_type": "DocType",
@@ -251,7 +251,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-11-24 15:08:23.948013",
+ "modified": "2023-12-07 15:26:25.984083",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Examination",

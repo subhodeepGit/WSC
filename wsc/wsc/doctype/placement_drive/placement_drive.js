@@ -97,13 +97,7 @@ frappe.ui.form.on('Placement Drive', {
 		}
 		
 	},
-	setup:function(frm){
-		const date = new Date()
-		let year = date.getFullYear()
-		let month = String(date.getMonth() + 1).padStart(2,'0')
-		let day = String(date.getDate()).padStart(2,'0')
-		frm.set_value('current_date', `${year}-${month}-${day}`)
-		
+	setup:function(frm){		
 		// sector filter
 		frm.set_query("sector_of_work", function() {
 			var sector_list= []
@@ -196,7 +190,7 @@ frappe.ui.form.on('Placement Drive', {
 	application_end_date:function(frm){
 		if(frm.doc.application_start_date && frm.doc.application_end_date){
 			if(frm.doc.application_end_date < frm.doc.application_start_date){
-				frappe.throw("Application End Date should be Greater than Application Start date");
+				frappe.throw("Application End Date should be Greater than or same as the Application Start date");
 			}
 		}
 	},
@@ -228,7 +222,13 @@ frappe.ui.form.on('Placement Drive', {
 			frm.set_df_property('get_students' , 'hidden' , 1)
 			frm.set_df_property('tentative_joining_date' , 'hidden' , 1)
 		}
-		frm.set_df_property("authorized_signature", "cannot_add_rows", true);		
+		frm.set_df_property("authorized_signature", "cannot_add_rows", true);
+
+		const date = new Date()
+		let year = date.getFullYear()
+		let month = String(date.getMonth() + 1).padStart(2,'0')
+		let day = String(date.getDate()).padStart(2,'0')
+		frm.set_value('current_date', `${year}-${month}-${day}`)
 	},
 	before_submit:function(frm){
 		if(frm.doc.eligible_student.length === 0){
