@@ -40,8 +40,10 @@
   "total_marks",
   "passing_marks",
   "assignment_questions",
+  "download_questions",
   "section_break_12",
   "assignment_attach_button",
+  "download_answer",
   "description",
   "amended_from"
  ],
@@ -258,15 +260,26 @@
   {
    "fetch_from": "assignment_id.assignment_attach_button",
    "fieldname": "assignment_questions",
-   "fieldtype": "Data",
+   "fieldtype": "Attach",
    "label": "Assignment Questions",
    "read_only": 1
+  },
+  {
+   "fieldname": "download_questions",
+   "fieldtype": "Button",
+   "label": "Download Questions"
+  },
+  {
+   "depends_on": "eval: doc.docstatus ==1",
+   "fieldname": "download_answer",
+   "fieldtype": "Button",
+   "label": "Download Answers"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-04 10:26:03.411069",
+ "modified": "2023-12-08 17:30:38.955221",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Upload",
