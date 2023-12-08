@@ -18,7 +18,7 @@ class SelectionRound(Document):
 		print('\n\n\n')
 		print('on cance')
 		print('\n\n\n')
-		update_application(self)
+		# update_application(self)
 
 # @frappe.whitelist()
 # def update_profile(self):
