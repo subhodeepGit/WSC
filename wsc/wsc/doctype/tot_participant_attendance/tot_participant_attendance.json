@@ -42,6 +42,7 @@
   {
    "fieldname": "participant_group",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Participant Group",
    "options": "Participant Group",
@@ -132,7 +133,6 @@
   {
    "fieldname": "class_schedule",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Class Schedule",
    "options": "ToT Class Schedule",
@@ -187,7 +187,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-08 10:01:20.881299",
+ "modified": "2023-12-08 16:19:00.886241",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant Attendance",
