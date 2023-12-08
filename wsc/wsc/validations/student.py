@@ -229,6 +229,15 @@ def update_student_records_roll(self):
 			if "roll_no" in [f.fieldname for f in meta.fields]:
 				if d != "Student Applicant" and d != "Student" and d != "Student Group":			
 					frappe.db.sql("""UPDATE `tab{0}` set roll_no = %s where {1} = %s""".format(d, linked_doctypes[d]["fieldname"][0]),(self.roll_no, self.name))
+			if "child_doctype" in linked_doctypes[d].keys() and "roll_no" in [
+				f.fieldname for f in frappe.get_meta(linked_doctypes[d]["child_doctype"]).fields
+			]:
+				frappe.db.sql(
+					"""UPDATE `tab{0}` set roll_no = %s where {1} = %s""".format(
+						linked_doctypes[d]["child_doctype"], linked_doctypes[d]["fieldname"][0]
+					),
+					(self.roll_no, self.name),
+				)
 
 
 def update_student_records_permanent_registration(self):
