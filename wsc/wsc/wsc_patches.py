@@ -3,12 +3,12 @@ import frappe
 BENCH_PATH = frappe.utils.get_bench_path()
 
 def execute():
-    # disable_cancel_link()
-    # add_line_for_po()
-    # comment_lines_job_applicant()
-    # comment_lines_list_view()
-    # add_line_JobApplicant_js()
-    # update_line_gridrow_js()
+    disable_cancel_link()
+    add_line_for_po()
+    comment_lines_job_applicant()
+    comment_lines_list_view()
+    add_line_JobApplicant_js()
+    update_line_gridrow_js()
     # upload_malicious_pdf()
     cross_site_scripting()
     login_password_encryption()
@@ -18,8 +18,8 @@ def execute():
     improper_error_handling_response()
     process_response_website_js_1()
     process_response_website_js_2()
-    # create_new_field()
-    pass
+    change_password_confirmation_1()
+    change_password_confirmation_2()
 
 def disable_cancel_link():
     file_path = "{}/{}".format(BENCH_PATH,
@@ -1346,34 +1346,33 @@ def insecure_transmission_password():
     with open(file_path, "r") as file:
         content = file.read()
     
-    updated_content = content.replace('''
+    updated_content = content.replace('''var me = this;
+		frappe.call({
+			type: "POST",
+			method: "frappe.core.doctype.user.user.test_password_strength",
+			args: {
+				new_password: value || "",''', '''var plain_password = ''
+        for (let i = 0; i < value.length; i++) {
+              plain_password += '*'
+          }
 		var me = this;
 		frappe.call({
 			type: "POST",
 			method: "frappe.core.doctype.user.user.test_password_strength",
 			args: {
-				new_password: value || "",''', '''
-        const CryptoJS = require('crypto-js');
-		const plainPassword = value;
-		const hashedPassword = CryptoJS.SHA256(plainPassword).toString(CryptoJS.enc.Hex);
-		var me = this;
-		frappe.call({
-			type: "POST",
-			method: "frappe.core.doctype.user.user.test_password_strength",
-			args: {
-				new_password: hashedPassword || "",''')
+				new_password: plain_password || "",''')
 
     with open(file_path) as f:
-        if '''
-        const CryptoJS = require('crypto-js');
-		const plainPassword = value;
-		const hashedPassword = CryptoJS.SHA256(plainPassword).toString(CryptoJS.enc.Hex);
+        if '''var plain_password = ''
+        for (let i = 0; i < value.length; i++) {
+              plain_password += '*'
+          }
 		var me = this;
 		frappe.call({
 			type: "POST",
 			method: "frappe.core.doctype.user.user.test_password_strength",
 			args: {
-				new_password: hashedPassword || "",''' in f.read():
+				new_password: plain_password || "",''' in f.read():
             return
         
     with open(file_path, "w") as file:
@@ -1535,21 +1534,57 @@ def process_response_website_js_2():
     with open(file_path, "w") as file:
         file.write(updated_content)
         print("Process Response Website JS 2. Successfully Updated.")
+        
+def change_password_confirmation_1():
+    file_path = "{}/{}".format(BENCH_PATH,"/apps/frappe/frappe/core/doctype/user/user.js")
+    
+    with open(file_path, "r") as file:
+        content = file.read()
+    
+    updated_content = content.replace('''let doc = frm.doc;''', '''frm.set_value("new_password", '');
+        frm.set_value("confirm_new_password", '');
+		let doc = frm.doc;''')
 
-# def create_new_field():
-#         confirm_password_data=frappe.get_all("DocField",{"parent":"User","fieldname":"confirm__password"},['name','idx'])
-#         if not confirm_password_data:
-#             confirm_password_data=frappe.get_all("DocField",{"parent":"User","fieldname":"new_password"},['name','idx'])
-#             idx_no=confirm_password_data[0]['idx']
-#             other_idx=frappe.get_all("DocField",filters=[["parent",'=',"User"],["idx",">",idx_no]],fields=['name','idx'],
-#                 order_by="idx asc")
-#             for t in other_idx:
-#                 frappe.db.sql(""" UPDATE `tabDocField` SET idx=%s where name='%s' """%(t['idx']+1,t['name']))
-#             data=frappe.get_doc("DocType","User")
-#             data.append("fields",{
-#                 'label':"Confirm Password",
-#                 "fieldtype":"Password",
-#                 "fieldname":"confirm__password",
-#                 "idx":idx_no+1
-#             })
-#             data.save()
+    with open(file_path) as f:
+        if '''frm.set_value("new_password", '');
+        frm.set_value("confirm_new_password", '');
+		let doc = frm.doc;''' in f.read():
+            return
+        
+    with open(file_path, "w") as file:
+        file.write(updated_content)
+        print("Change Password Confirmation 1. Successfully Updated.")
+        
+def change_password_confirmation_2():
+    file_path = "{}/{}".format(BENCH_PATH,"/apps/frappe/frappe/core/doctype/user/user.js")
+    
+    with open(file_path, "r") as file:
+        content = file.read()
+    
+    updated_content = content.replace('''validate: function (frm) {
+		if (frm.roles_editor) {
+			frm.roles_editor.set_roles_in_table();
+		}
+	},''', '''validate: function (frm) {
+		if (frm.roles_editor) {
+			frm.roles_editor.set_roles_in_table();
+		}
+		if (frm.doc.new_password != frm.doc.confirm_new_password) {
+            frappe.throw("Please set same value for <b>Set New Password</b> and <b>Confirm New Password</b>");
+        }
+	},''')
+
+    with open(file_path) as f:
+        if '''validate: function (frm) {
+		if (frm.roles_editor) {
+			frm.roles_editor.set_roles_in_table();
+		}
+		if (frm.doc.new_password != frm.doc.confirm_new_password) {
+            frappe.throw("Please set same value for <b>Set New Password</b> and <b>Confirm New Password</b>");
+        }
+	},''' in f.read():
+            return
+        
+    with open(file_path, "w") as file:
+        file.write(updated_content)
+        print("Change Password Confirmation 2. Successfully Updated.")

@@ -30,3 +30,20 @@ def get_placement_drive(doctype, txt, searchfield, start, page_len, filters):
 @frappe.whitelist()
 def get_students(doctype, txt, searchfield, start, page_len, filters):
 	return frappe.get_all("Program Enrollment",{"docstatus":1,"program":filters.get("semester"),"academic_year":filters.get("academic_year"),"student":['like', '%{}%'.format(txt)]},['student','student_name'],group_by="student",as_list=1)
+
+
+@frappe.whitelist()
+def instructor(doctype, txt, searchfield, start, page_len, filters):
+	searchfields = frappe.get_meta(doctype).get_search_fields()
+	searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)
+
+	placement_drive_id = filters.get('placement_drive_id')
+	student_details = frappe.db.sql(""" SELECT student_doctype_name FROM `tabEligible Student` where ({key} like %(txt)s or {scond}) and
+				    parent = '{placement_drive_id}'
+				    """.format(
+						**{
+						"key": searchfield,
+						"scond": searchfields,
+						"placement_drive_id":placement_drive_id
+					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	return student_details

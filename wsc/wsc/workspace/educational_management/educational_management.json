@@ -101,34 +101,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Exam Evaluation",
-   "link_count": 2,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Final Semester Result",
-   "link_count": 0,
-   "link_to": "Exam Assessment Result",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Cumulative Marksheet",
-   "link_count": 0,
-   "link_to": "Cumulative Marksheet",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Courses & Modules",
    "link_count": 4,
    "onboard": 0,
@@ -221,9 +193,37 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Exam Evaluation",
+   "link_count": 2,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Exam Assessment Result",
+   "link_count": 0,
+   "link_to": "Exam Assessment Result",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Cumulative Marksheet",
+   "link_count": 0,
+   "link_to": "Cumulative Marksheet",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-12-05 11:13:52.644121",
+ "modified": "2023-12-07 15:28:52.378402",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Educational Management",
