@@ -12,7 +12,19 @@ frappe.ui.form.on('Selection Round', {
 				doc: frm.doc
 			},
 			callback: function(result){
-				alert(result.message)
+				// alert(result.message)
+			}
+		})
+	},
+	oncancel: function(frm){
+		// alert(1)
+		frappe.call({
+			method: 'wsc.wsc.doctype.selection_round.selection_round.update_application',
+			args:{
+				doc: frm.doc
+			},
+			callback: function(result){
+				// alert(result.message)
 			}
 		})
 	}

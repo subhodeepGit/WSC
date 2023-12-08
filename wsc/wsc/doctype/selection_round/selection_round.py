@@ -5,9 +5,22 @@ import frappe
 from frappe.model.document import Document
 
 class SelectionRound(Document):
+	# print("\n\n\n")
+	# print("of")
+	def validate(self):
+		# print("\n\n\n\n og")
+		pass
 	def on_submit(self):
-		# pass
+		# print("\n\n\n\n")
+		# print("on_submit")
 		update_profile(self)
+
+	def on_cancel(self):
+		# print('\n\n\n')
+		# print('on cance')
+		# print('\n\n\n')
+		# update_application(self)
+		pass
 
 # @frappe.whitelist()
 # def update_profile(self):
@@ -22,6 +35,19 @@ class SelectionRound(Document):
 # 	return 'abc'
 
 # new function
+
+@frappe.whitelist()
+def update_application(self):
+	# get idx of the placement round based on the placement drive name and the round of placement 
+	# subtract 1 from the idx and get the round name from the placement drive child table based on the placement drive name
+	placement_round = self.round_of_placement
+	placement_drive = self.placement_drive_name
+	placement_round_idx = frappe.db.sql(""" SELECT idx FROM `tabRounds of Placement` WHERE parent = '%s' and round_name = '%s'"""%(placement_drive, placement_round))
+	frappe.throw(placement_round_idx[0][0])
+	pass
+
+
+
 @frappe.whitelist()
 def update_profile(self):
 	profile = frappe.get_doc('Student', self.student_no)

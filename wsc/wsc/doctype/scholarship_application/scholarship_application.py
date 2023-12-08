@@ -7,9 +7,10 @@ from frappe.model.document import Document
 
 class ScholarshipApplication(Document):
 	def validate(self):
+		acnumber(self)
 		duplicacy_check(self)
 		validate_elgibility(self)
-		validate_ifsc_code(self)
+		# validate_ifsc_code(self)
 		if self.student_category!=self.student_catagory:
 			frappe.throw("Student don’t belong to the student category given by the company")
 		if len(self.document_list_tab) == 0:     
@@ -70,7 +71,7 @@ def eligibility(scholarship_id_data):
 def valid_scholarship(doctype, txt, searchfield, start, page_len, filters):
 	from frappe import utils
 	today = utils.today()
-	fil_data=frappe.db.sql(""" Select name from tabScholarships where start_date<'%s' and end_date>'%s' and docstatus=%s """%(today,today,filters.get('docstatus')))
+	fil_data=frappe.db.sql(""" Select name from tabScholarships where start_date<'%s' and end_date>'%s' and docstatus=1 """%(today,today))
 	return fil_data
 
 def validate_elgibility(self):
@@ -93,3 +94,8 @@ def validate_elgibility(self):
 		frappe.throw("Semester Eligibility parameters for scholarship don't match as per the eligibility criteria given by the company")
 	if sem_data[0]['semester_2_marks']>semester_2_marks:
 		frappe.throw("Semester Eligibility parameters for scholarship don't match as per the eligibility criteria given by the company")	
+
+def acnumber(self):
+	if self.ac_number:
+		if not (self.ac_number).isdigit():
+			frappe.throw("Field <b>A/c Number</b> Accept Digits Only")

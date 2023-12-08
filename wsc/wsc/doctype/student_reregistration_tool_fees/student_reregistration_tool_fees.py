@@ -27,7 +27,7 @@ class StudentReregistrationToolFees(Document):
             condition1 = 'and school_house=%(school_house)s' if self.school_house else " "
             condition2 = 'and student_batch_name=%(student_batch)s' if self.student_batch else " "
             students = frappe.db.sql('''select student, student_name, student_batch_name, roll_no, permanant_registration_number, student_category,gender from `tabProgram Enrollment`   
-                where program=%(program)s and academic_year=%(academic_year)s {0} {1} {2} and docstatus != 2 '''
+                where program=%(program)s and academic_year=%(academic_year)s {0} {1} {2} and docstatus != 2 and  admission_status="Admitted" '''
                 .format(condition, condition2,condition1), self.as_dict(), as_dict=1)          
 
             student_list = [d.student for d in students]
@@ -71,43 +71,47 @@ def enroll_stud(self):
     for i, stud in enumerate(self.students):
         frappe.publish_realtime("student_reregistration_tool_fees", dict(progress=[i+1, total]), user=frappe.session.user)
         if stud.student and stud.student not in existed_enrollment:
-            prog_enrollment = frappe.new_doc("Program Enrollment")
-            print("\n\n\n\n")
-            print(prog_enrollment.name)
-            prog_enrollment.enrollment_date=self.program_enrollment_date 
-            prog_enrollment.student = stud.student
-            prog_enrollment.student_name = stud.student_name
-            prog_enrollment.roll_no=stud.roll_no
-            prog_enrollment.permanant_registration_number=stud.permanant_registration_number
-            prog_enrollment.student_category=stud.student_category
-            prog_enrollment.programs = self.programs
-            prog_enrollment.program = self.new_semester
-            prog_enrollment.academic_year = self.new_academic_year
-            prog_enrollment.academic_term = self.new_academic_term
-            if self.new_class:
-                prog_enrollment.school_house = self.new_class
-            prog_enrollment.is_provisional_admission="No"
-            prog_enrollment.admission_status="Admitted"
-            # prog_enrollment.student_batch_name = stud.student_batch_name if stud.student_batch_name else self.new_student_batch
-            if self.new_student_batch:
-                prog_enrollment.student_batch_name = self.new_student_batch
-            else:
-                prog_enrollment.student_batch_name = stud.student_batch_name
-            if stud.additional_course_1:
-                course_data  = frappe.db.get_value("Course",{'name':stud.additional_course_1},["course_name", "course_code"], as_dict=1)
-                if course_data:
-                    course_data = course_data
-                    create_course_row(prog_enrollment,stud.additional_course_1,course_data.course_name,course_data.course_code)
-            for c in self.courses:
-                create_course_row(prog_enrollment,c.course,c.course_name,c.course_code)
-            for pe in frappe.get_all("Program Enrollment",filters={"student":stud.student},order_by='`creation` DESC',limit=1):
-                prog_enrollment.reference_doctype="Program Enrollment"
-                prog_enrollment.reference_name=pe.name
-            prog_enrollment.due_date=self.fees_due_date    
-            prog_enrollment.save()
-            prog_enrollment.submit()
-            # create_fees(self,stud,fee_structure_id)
-            enrolled_students.append(stud.student)
+            try:
+                prog_enrollment = frappe.new_doc("Program Enrollment")
+                prog_enrollment.enrollment_date=self.program_enrollment_date
+                prog_enrollment.department=self.department   
+                prog_enrollment.student = stud.student
+                prog_enrollment.student_name = stud.student_name
+                prog_enrollment.roll_no=stud.roll_no
+                prog_enrollment.permanant_registration_number=stud.permanant_registration_number
+                prog_enrollment.student_category=stud.student_category
+                prog_enrollment.programs = self.programs
+                prog_enrollment.program = self.new_semester
+                prog_enrollment.academic_year = self.new_academic_year
+                prog_enrollment.academic_term = self.new_academic_term
+                prog_enrollment.program_grade=self.program_grade
+                if self.new_class:
+                    prog_enrollment.school_house = self.new_class
+                prog_enrollment.is_provisional_admission="No"
+                prog_enrollment.admission_status="Admitted"
+                # prog_enrollment.student_batch_name = stud.student_batch_name if stud.student_batch_name else self.new_student_batch
+                if self.new_student_batch:
+                    prog_enrollment.student_batch_name = self.new_student_batch
+                else:
+                    prog_enrollment.student_batch_name = stud.student_batch_name
+                if stud.additional_course_1:
+                    course_data  = frappe.db.get_value("Course",{'name':stud.additional_course_1},["course_name", "course_code"], as_dict=1)
+                    if course_data:
+                        course_data = course_data
+                        create_course_row(prog_enrollment,stud.additional_course_1,course_data.course_name,course_data.course_code)
+                for c in self.courses:
+                    create_course_row(prog_enrollment,c.course,c.course_name,c.course_code)
+                for pe in frappe.get_all("Program Enrollment",filters={"student":stud.student},order_by='`creation` DESC',limit=1):
+                    prog_enrollment.reference_doctype="Program Enrollment"
+                    prog_enrollment.reference_name=pe.name
+                prog_enrollment.due_date=self.fees_due_date
+                prog_enrollment.flags.ignore_links = True    
+                prog_enrollment.save()
+                prog_enrollment.submit()
+                # create_fees(self,stud,fee_structure_id)
+                enrolled_students.append(stud.student)
+            except:
+                pass    
     frappe.msgprint(_("{0} Students have been enrolled").format(', '.join(map(str, enrolled_students))))
           
 def create_course_row(prog_enrollment,course,course_name,course_code):

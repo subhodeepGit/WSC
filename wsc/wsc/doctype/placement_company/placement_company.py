@@ -22,8 +22,8 @@ def validate_department(doc):
 
 @frappe.whitelist()
 def create_placement_drive(source_name, target_doc=None):
-    print("\n\n\n\n")
-    print(source_name)
+    # print("\n\n\n\n")
+    # print(source_name)
     doclist = get_mapped_doc("Placement Company", source_name,  {
         "Placement Company": {
             "doctype": "Placement Drive",
@@ -43,6 +43,35 @@ def create_placement_drive(source_name, target_doc=None):
         },
         "sector of work": {
             "doctype": "For sector",
+            "field_map": {
+                "sector_name": "sector"
+            }
+        }
+    }, target_doc)
+
+    return doclist
+
+
+@frappe.whitelist()
+def create_internship_drive(source_name, target_doc=None):
+    doclist = get_mapped_doc("Placement Company", source_name,  {
+        "Placement Company": {
+            "doctype": "Internship Drive",
+            "field_map": {
+                "name": "placement_company"
+            },
+            "validation": {
+                "docstatus": ["!=", 2]
+            }
+        },
+        "Placement Department": {
+            "doctype": "Internship For Department",
+            "field_map": {
+                "department": "department"
+            }
+        },
+        "sector of work": {
+            "doctype": "Internship For Sectors",
             "field_map": {
                 "sector_name": "sector"
             }

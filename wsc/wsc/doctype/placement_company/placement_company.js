@@ -3,7 +3,6 @@
 
 frappe.ui.form.on('Placement Company', {
 	refresh: function(frm) {
-		// frm.add_custom_button(__("Placement Drive"), function() {}, __('Create'))
 		frappe.dynamic_link = { doc: frm.doc, fieldname: 'name', doctype: 'Placement Company' }
 
 		frm.toggle_display(['address_html','contact_html'], !frm.doc.__islocal);
@@ -14,22 +13,27 @@ frappe.ui.form.on('Placement Company', {
 		else {
 			frappe.contacts.render_address_and_contact(frm);
 		}
-		// frm.add_custom_button(__("Placement Drive"), function() {
-		// 	frappe.model.open_mapped_doc({
-		// 		method: "wsc.wsc.doctype.placement_company.placement_company.create_placement_drive",
-		// 		frm: frm,
-		// 	});
-		// }, __('Create'))
 	},
 	refresh: function(frm){
 		if (!frm.doc.__islocal)	{
 		if(frm.doc.black_list!=1){
-		frm.add_custom_button(__("Placement Drive"), function() {
-			frappe.model.open_mapped_doc({
-				method: "wsc.wsc.doctype.placement_company.placement_company.create_placement_drive",
-				frm: frm,
-			});
-		}, __('Create'))
+			if(frm.doc.visitor == 'Internship'){
+				frm.add_custom_button(__("Internship Drive"), function() {
+					frappe.model.open_mapped_doc({
+						method: "wsc.wsc.doctype.placement_company.placement_company.create_internship_drive",
+						frm: frm,
+					});
+				}, __('Create'))
+			}
+			else{
+				frm.add_custom_button(__("Placement Drive"), function() {
+					frappe.model.open_mapped_doc({
+						method: "wsc.wsc.doctype.placement_company.placement_company.create_placement_drive",
+						frm: frm,
+					});
+				}, __('Create'))
+			}
+		
 	}
 	}
 	} ,
@@ -65,8 +69,6 @@ frappe.ui.form.on('sector of work', {
 		};
 	}
 });
-
-// Belong to department table
 
 frappe.ui.form.on('Placement Department', {
 	belong_to_department_add: function(frm){
