@@ -17,8 +17,15 @@ class PlacementTool(Document):
             frappe.db.sql(""" UPDATE `tabRounds of Placement` SET round_status = 'Scheduled' WHERE parent = '%s' and round_name = '%s' """%(self.placement_drive_name, self.round_of_placement))
         elif self.round_status == 'Round Result Declaration':
             frappe.db.sql(""" UPDATE `tabRounds of Placement` SET round_status = 'Result Declared' WHERE parent = '%s' and round_name = '%s' """%(self.placement_drive_name, self.round_of_placement))
-            
+        blocklist_id = frappe.db.sql("""SELECT name FROM `tabPlacement Blocked Student` where placement_drive_id = '%s'"""%(self.placement_drive_name))
+        blocklist=frappe.get_doc("Placement Blocked Student",blocklist_id[0][0])
+
         for d in self.get('student_list'):
+            if(d.shortlisting_status == 'Hired'):
+                blocklist.append("blocked_student",{
+                    "student": d.student_no,
+                    "student_name" : d.student_name
+                })        
             result = frappe.new_doc('Selection Round')
             result.student_name = d.student_name
             result.student_no = d.student_no
@@ -35,6 +42,8 @@ class PlacementTool(Document):
             result.save()
             result.submit()
             frappe.db.sql(""" Update `tabStudent child table` set selection_round='%s' where name='%s' """%(result.name,d.name))
+        blocklist.save()
+
     def on_cancel(self):
         if self.round_status == 'Scheduling Of Round':
             frappe.db.sql(""" UPDATE `tabRounds of Placement` SET round_status = 'Not Scheduled' WHERE parent = '%s' and round_name = '%s' """%(self.placement_drive_name, self.round_of_placement))
@@ -53,6 +62,19 @@ def get_drive_names(company_name):
 
 @frappe.whitelist()
 def get_placement_round_names(self, drive_name, round_status):
+    pass
+    # child_tab = frappe.get_all("Placement Drive", {"name": 'PLDRV-00007-1'}, ['eligible_students'])
+    # print('\n\n\n')
+    # print(child_tab)
+    # print('\n\n\n')
+    # child_table = frappe.get_all("Placement Drive",  {"name" : "PLDRV-00007-1"}, "name")[0]["name"]
+    # child_table_ = frappe.get_all("Eligible Student", {"parent" : child_table}, "name")
+    # print('\n\n\n')
+    # print(child_table_)
+    # print('\n\n\n\n')
+    
+
+
     all_round_names = frappe.db.sql(""" SELECT idx, round_name FROM `tabRounds of Placement` WHERE parent = '%s' ORDER BY idx ASC """ %(drive_name))
     rounds_scheduled = frappe.db.sql(""" SELECT idx, round_name FROM `tabRounds of Placement` WHERE parent = '%s' AND round_status = 'Scheduled' ORDER BY idx ASC"""%(drive_name))
     rounds_not_scheduled = frappe.db.sql(""" SELECT idx, round_name FROM `tabRounds of Placement` WHERE parent = '%s' AND round_status = 'Not Scheduled' ORDER BY idx ASC"""%(drive_name))

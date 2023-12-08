@@ -3,6 +3,10 @@
 
 frappe.ui.form.on('Internship Drive', {
 	refresh: function(frm) {
+		frm.set_df_property('for_departments', 'cannot_add_rows', true)
+		frm.set_df_property('for_departments', 'cannot_delete_rows', true)
+		frm.set_df_property('for_sectors', 'cannot_add_rows', true)
+		frm.set_df_property('for_sectors', 'cannot_delete_rows', true)
 		frm.set_query('internship_company', function(){
 			return{
 				filters:{
@@ -27,13 +31,44 @@ frappe.ui.form.on('Internship Drive', {
 		let day = String(date.getDate()).padStart(2,'0')
 		frm.set_value('current_date', `${year}-${month}-${day}`)
 	},
-	application_start_date(frm) {
+	internship_company: function(frm){
+		if(frm.doc.internship_company){
+			// For departments
+			frappe.model.with_doc("Placement Company", frm.doc.internship_company, function() {
+                var tabletransfer= frappe.model.get_doc("Placement Company", frm.doc.internship_company)
+                frm.clear_table("for_department");	
+                $.each(tabletransfer.belong_to_department, function(index, row){
+                    var d = frm.add_child("for_departments");
+                    d.department = row.department;
+                    frm.refresh_field("for_departments");
+
+                });
+            });
+			// For sectors
+			frappe.model.with_doc("Placement Company", frm.doc.internship_company, function() {
+                var tabletransfer= frappe.model.get_doc("Placement Company", frm.doc.internship_company)
+                frm.clear_table("for_sectors");	
+                $.each(tabletransfer.sector_of_work, function(index, row){
+                    var d = frm.add_child("for_sectors");
+                    d.sector = row.sector_name;
+                    frm.refresh_field("for_sectors");
+
+                });
+            });
+        } else{
+			frm.clear_table("for_departments");
+			frm.clear_table("for_sectors");
+			frm.refresh();
+			frm.refresh_field("eligible_student")
+		}
+	},
+	application_start_date: function(frm) {
         frm.fields_dict.application_end_date.datepicker.update({
             minDate: frm.doc.application_start_date ? new Date(frm.doc.application_start_date) : null
         });
     },
 
-    application_end_date(frm) {
+    application_end_date: function(frm) {
         frm.fields_dict.application_start_date.datepicker.update({
             maxDate: frm.doc.application_end_date ? new Date(frm.doc.application_end_date) : null
         });
