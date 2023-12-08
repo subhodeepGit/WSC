@@ -651,12 +651,12 @@ override_doctype_dashboards = {
 #	"wsc.auth.validate"
 # ]
 
-fixtures = [
-	{"dt": "Custom DocPerm", "filters": [
-		["parent", "not in", ["DocType"]],
-        ["parent", "in", ["Entrance Exam Declaration"]],
-        ["role", "in", ["Applicant"]]
-	]},
+# fixtures = [
+# 	{"dt": "Custom DocPerm", "filters": [
+# 		["parent", "not in", ["DocType"]],
+#         ["parent", "in", ["Entrance Exam Declaration"]],
+#         ["role", "in", ["Applicant"]]
+# 	]},
     # {"dt": "Role","filters": [
     #     ["name", "in", ["Requisitioner"]]
     # ]},
@@ -679,7 +679,7 @@ fixtures = [
 #             "source_text", "in", ["Department Email ID"]
 #         ]
     # ]}
- ]
+#  ]
 website_context = {
     "favicon": "/assets/wsc/images/wsc.png",
     "splash_image": "/assets/wsc/images/wsc.png"
