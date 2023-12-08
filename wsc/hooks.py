@@ -109,15 +109,15 @@ doctype_tree_js = {"doctype" : "public/js/tax_category_tree.js"}
 
 # Home Pages
 # ----------
-# after_migrate = [
-#         'wsc.patches.migrate_patch.set_translation',
-#         'wsc.patches.migrate_patch.add_roles',
-#         'wsc.patches.migrate_patch.set_custom_role_permission',
-#         'wsc.wsc.delete_doc_if_linked.execute',
-#         'wsc.patches.migrate_patch.set_custom_role_permission_remove_duplicate',
-#         'wsc.patches.create_all_tax_category.execute',
-#         # 'wsc.wsc.wsc_patches.execute'
-# ]
+after_migrate = [
+        'wsc.patches.migrate_patch.set_translation',
+        'wsc.patches.migrate_patch.add_roles',
+        'wsc.patches.migrate_patch.set_custom_role_permission',
+        'wsc.wsc.delete_doc_if_linked.execute',
+        'wsc.patches.migrate_patch.set_custom_role_permission_remove_duplicate',
+        'wsc.patches.create_all_tax_category.execute',
+        # 'wsc.wsc.wsc_patches.execute'
+]
 
 # application home page (will override Website Settings)
 # home_page = "login"
@@ -651,12 +651,12 @@ override_doctype_dashboards = {
 #	"wsc.auth.validate"
 # ]
 
-fixtures = [
-	{"dt": "Custom DocPerm", "filters": [
-		["parent", "not in", ["DocType"]],
-        ["parent", "in", ["Entrance Exam Declaration"]],
-        ["role", "in", ["Applicant"]]
-	]},
+# fixtures = [
+# 	{"dt": "Custom DocPerm", "filters": [
+# 		["parent", "not in", ["DocType"]],
+#         ["parent", "in", ["Entrance Exam Declaration"]],
+#         ["role", "in", ["Applicant"]]
+# 	]},
     # {"dt": "Role","filters": [
     #     ["name", "in", ["Requisitioner"]]
     # ]},
@@ -679,7 +679,7 @@ fixtures = [
 #             "source_text", "in", ["Department Email ID"]
 #         ]
     # ]}
- ]
+#  ]
 website_context = {
     "favicon": "/assets/wsc/images/wsc.png",
     "splash_image": "/assets/wsc/images/wsc.png"
