@@ -13,10 +13,6 @@ def execute(filters=None):
     get_columns_info=get_columns(course_schedule_data)
     return  get_columns_info,result_list
 
-    # data = get_data(filters)
-
-    # columns = get_columns(filters)
-
 
 def get_data(filters=None):
     to_date=filters.get('to_date')
@@ -49,7 +45,6 @@ def get_data(filters=None):
 
 
         course_schedule_data = frappe.get_all("ToT Class Schedule", filters=filt,fields = ["participant_group_id", "scheduled_date", "name", "module_id", "module_name", "from_time", "to_time", "attendance_taken"])
-        print("\n\n\ncourse_schedule_data",course_schedule_data)
 
         att_filt=[]
         if participant_group:
@@ -98,7 +93,45 @@ def get_data(filters=None):
                 if module_name not in entry:
                     entry[module_name] = 'Attendance not marked'
 
-        print("\n\n\nresult_list",result_list)
+        # Iterate through result_list and update the attendance status
+        for entry in result_list:
+            for key in entry.keys():
+                if key.startswith('TCS-') and entry[key] == 'Attendance not marked':
+                    # Find the corresponding schedule entry
+                    schedule_entry = next((s for s in course_schedule_data if s['name'] == key and s['class_conducted'] == 'Yes'), None)
+                    if schedule_entry:
+                        entry[key] = 'Absent'
+
+        # Attendance Analysis                
+
+        scheduled_classes = {}
+        present_classes = {}
+
+        for record in result_list:
+            student_id = record['participant']
+            for key, value in record.items():
+                if key.startswith('TCS-'):
+                    if value != 'Attendance not marked':
+                        if student_id in scheduled_classes:
+                            scheduled_classes[student_id] += 1
+                        else:
+                            scheduled_classes[student_id] = 1
+                        if value == 'Present':
+                            if student_id in present_classes:
+                                present_classes[student_id] += 1
+                            else:
+                                present_classes[student_id] = 1
+        
+        for record in result_list:
+            student_id = record['participant']
+            num_classes = scheduled_classes.get(student_id, 0)
+            if student_id in present_classes:
+                percentage = round((present_classes[student_id] / num_classes) * 100, 2)
+            else:
+                percentage = 0.0
+            record['percentage'] = f"{percentage}%"
+            record['total_classes_attended'] = present_classes.get(student_id, 0)
+            record['total_classes_conducted'] = scheduled_classes.get(student_id, 0)
 
 
     return result_list, course_schedule_data
@@ -141,7 +174,7 @@ def get_columns(head_name=None):
                 "label": _("%s"%(label)),
                 "fieldname": "%s"%(field_name),
                 "fieldtype": "Data",
-                "width":600
+                "width":400
             }
             columns.append(columns_add)
 
