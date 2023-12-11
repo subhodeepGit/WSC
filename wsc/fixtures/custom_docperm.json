@@ -73853,7 +73853,7 @@
      {
       "amend": 0,
       "cancel": 0,
-      "create": 0,
+      "create": 1,
       "delete": 0,
       "docstatus": 0,
       "doctype": "Custom DocPerm",
@@ -73861,7 +73861,7 @@
       "export": 0,
       "if_owner": 0,
       "import": 0,
-      "modified": "2023-07-28 20:36:14.442767",
+      "modified": "2023-07-28 20:36:15.442767",
       "name": "4d707e4a0d",
       "parent": "Clearance Master",
       "permlevel": 0,
@@ -73873,7 +73873,7 @@
       "set_user_permissions": 0,
       "share": 0,
       "submit": 0,
-      "write": 0
+      "write": 1
      },
      {
       "amend": 0,
