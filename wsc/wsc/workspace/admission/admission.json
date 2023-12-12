@@ -15,24 +15,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Feedback",
-   "link_count": 1,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Feedback Form",
-   "link_count": 0,
-   "link_to": "Student Feedback Form",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Student and Trainer",
    "link_count": 4,
    "onboard": 0,
@@ -619,8 +601,36 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Scholarships",
+   "label": "Feedback",
    "link_count": 2,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Feedback Questions",
+   "link_count": 0,
+   "link_to": "Student Feedback Questions",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Feedback Form",
+   "link_count": 0,
+   "link_to": "Student Feedback Form",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Scholarships",
+   "link_count": 3,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -643,9 +653,19 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Rewards and Achievements",
+   "link_count": 0,
+   "link_to": "Rewards and Achievements",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-12-07 17:06:45.343967",
+ "modified": "2023-12-12 12:11:25.222478",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Admission",
