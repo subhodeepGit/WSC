@@ -55,7 +55,8 @@ frappe.ui.form.on('Rewards and Achievements', {
 				programs:frm.doc.programs,
 				semester:frm.doc.semester,
 				academic_year:frm.doc.academic_year,
-				academic_term:frm.doc.academic_term
+				academic_term:frm.doc.academic_term,
+				no_of_merit_student:frm.doc.no_of_merit_student
 			},
 			callback: function(r) {
 				if(r.message) {
@@ -63,7 +64,7 @@ frappe.ui.form.on('Rewards and Achievements', {
 						var c = frm.add_child("topper_scholarship_table")
 						c.student_id = element.student,
 						c.student_name = element.student_name,
-						c.sgpa= element.sgpa,
+						c.percentage= element.percentage,
 						c.rank= element.rank
 
 					});
@@ -85,8 +86,8 @@ frappe.ui.form.on('Rewards and Achievements', {
 				semester:frm.doc.semester,
 				academic_year:frm.doc.academic_year,
 				academic_term:frm.doc.academic_term,
-				lower_cutoff_sgpa:frm.doc.lower_cutoff_sgpa,
-				upper_cutoff_sgpa:frm.doc.upper_cutoff_sgpa
+				lower_cutoff_percentage:frm.doc.lower_cutoff_percentage,
+				upper_cutoff_percentage:frm.doc.upper_cutoff_percentage
 			},
 			callback: function(r) {
 				if(r.message) {
@@ -94,7 +95,7 @@ frappe.ui.form.on('Rewards and Achievements', {
 						var c = frm.add_child("cutoff_scholarship_table")
 						c.student_id = element.student,
 						c.student_name = element.student_name,
-						c.sgpa= element.sgpa
+						c.percentage= element.percentage
 
 					});
 				}
@@ -108,12 +109,12 @@ frappe.ui.form.on('Rewards and Achievements', {
 frappe.ui.form.on('Rewards and Achievements', {
 	semester: function(frm) {
 		cur_frm.clear_table("topper_scholarship_table");
-		frm.set_value("upper_cutoff_sgpa", "");
-		frm.set_value("lower_cutoff_sgpa", "");
+		frm.set_value("upper_cutoff_percentage", "");
+		frm.set_value("lower_cutoff_percentage", "");
 		cur_frm.clear_table("cutoff_scholarship_table");
 		refresh_field("topper_scholarship_table");
-		refresh_field("upper_cutoff_sgpa");
-		refresh_field("lower_cutoff_sgpa");
+		refresh_field("upper_cutoff_percentage");
+		refresh_field("lower_cutoff_percentage");
 		refresh_field("cutoff_scholarship_table");
 					}
 				}
@@ -137,12 +138,14 @@ frappe.ui.form.on('Rewards and Achievements', {
 frappe.ui.form.on('Rewards and Achievements', {
 	type_of_scholarship: function(frm) {
 		cur_frm.clear_table("topper_scholarship_table");
-		frm.set_value("upper_cutoff_sgpa", "");
-		frm.set_value("lower_cutoff_sgpa", "");
+		frm.set_value("upper_cutoff_percentage", "");
+		frm.set_value("no_of_merit_student", "");
+		frm.set_value("lower_cutoff_percentage", "");
 		cur_frm.clear_table("cutoff_scholarship_table");
 		refresh_field("topper_scholarship_table");
-		refresh_field("upper_cutoff_sgpa");
-		refresh_field("lower_cutoff_sgpa");
+		refresh_field("no_of_merit_student");
+		refresh_field("upper_cutoff_percentage");
+		refresh_field("lower_cutoff_percentage");
 		refresh_field("cutoff_scholarship_table");
 					}
 				}
