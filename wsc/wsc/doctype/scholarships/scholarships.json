@@ -95,7 +95,8 @@
    "fieldname": "student_category",
    "fieldtype": "Link",
    "label": "Student Category",
-   "options": "Student Category"
+   "options": "Student Category",
+   "reqd": 1
   },
   {
    "fieldname": "amended_from",
@@ -128,7 +129,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-01 15:13:17.627702",
+ "modified": "2023-12-08 16:15:59.150906",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Scholarships",

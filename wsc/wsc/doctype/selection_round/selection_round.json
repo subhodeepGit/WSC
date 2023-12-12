@@ -1,6 +1,5 @@
 {
  "actions": [],
- "allow_rename": 1,
  "autoname": "SR.-.#####",
  "creation": "2023-01-13 16:00:08.405217",
  "default_view": "List",
@@ -27,7 +26,8 @@
   "shortlisting_status",
   "round_status",
   "application_status",
-  "application_id"
+  "application_id",
+  "drive_round_status"
  ],
  "fields": [
   {
@@ -135,12 +135,19 @@
    "fieldname": "application_id",
    "fieldtype": "Data",
    "label": "Application ID"
+  },
+  {
+   "fieldname": "drive_round_status",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Drive Round Status",
+   "read_only": 1,
+   "reqd": 1
   }
  ],
- "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-28 13:28:58.982950",
+ "modified": "2023-12-11 11:14:21.403068",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Selection Round",
@@ -157,10 +164,12 @@
    "report": 1,
    "role": "System Manager",
    "share": 1,
+   "submit": 1,
    "write": 1
   }
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1
 }

@@ -610,5 +610,164 @@
     "role": "Employee"
    }
   ]
+ },
+  {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2023-12-11 17:37:09.015041",
+  "name": "Super Admin",
+  "role_profile": "Super Admin",
+  "roles": [
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Education Administrator"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "GM-Procurement & Contract Management"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Material Management Admin"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Purchase Manager-MM"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Stock Manager- MM"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "HR Admin"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Building Administrator"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Floor Supervisor"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Maintenance Department"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Employee- Infrastructure"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Employee- Project Management"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Project Manager"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "CEO"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "COO"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Director"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Department Head"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Grievance Cell Member"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Report Manager"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Leave Approver"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Shift Approver"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Payroll Admin"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Accounts Manager"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Hostel Administrator"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "TOT Director"
+   },
+   {
+    "parent": "Super Admin",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Training and Placement Administrator"
+   }
+  ]
  }
 ]

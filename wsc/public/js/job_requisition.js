@@ -38,7 +38,7 @@ frappe.ui.form.on("Job Requisition",{
     // },
     refresh: function(frm) {
         // if (frappe.session.user != "Administrator"){
-            if (frm.doc.workflow_state=="Pending Approval"){
+            if (frm.doc.workflow_state=="Pending Approval from Director Admin" || frm.doc.workflow_state=="Pending Approval from COO" || frm.doc.workflow_state=="Pending Approval From CEO" || frm.doc.workflow_state=="Approved by COO"||frm.doc.workflow_state=="Approved by CEO" || frm.doc.workflow_state=="Rejected by COO" || frm.doc.workflow_state=="Rejected by CEO"){
             Object.keys(cur_frm.fields_dict).forEach(field=>{
                 frm.set_df_property(field,'read_only',1)
             })

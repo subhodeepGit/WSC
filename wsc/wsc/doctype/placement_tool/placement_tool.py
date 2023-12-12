@@ -39,6 +39,7 @@ class PlacementTool(Document):
             result.scheduled_date_of_round = self.scheduled_date_of_round
             result.application_status = d.shortlisting_status
             result.application_id = d.ref_no
+            result.drive_round_status = self.round_status
             result.save()
             result.submit()
             frappe.db.sql(""" Update `tabStudent child table` set selection_round='%s' where name='%s' """%(result.name,d.name))
