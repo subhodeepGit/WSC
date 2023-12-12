@@ -83,7 +83,8 @@
    "fieldname": "semester",
    "fieldtype": "Link",
    "label": "Semester",
-   "options": "Program"
+   "options": "Program",
+   "reqd": 1
   },
   {
    "fieldname": "academic_year",
@@ -115,7 +116,7 @@
    "link_fieldname": "mentor_allocation"
   }
  ],
- "modified": "2023-12-04 12:06:07.180573",
+ "modified": "2023-12-12 17:02:14.735786",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Mentor Allocation",
