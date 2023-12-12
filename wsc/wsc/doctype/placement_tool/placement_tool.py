@@ -24,7 +24,8 @@ class PlacementTool(Document):
             if(d.shortlisting_status == 'Hired'):
                 blocklist.append("blocked_student",{
                     "student": d.student_no,
-                    "student_name" : d.student_name
+                    "student_name" : d.student_name,
+                    "reason" : 'Hired'
                 })        
             result = frappe.new_doc('Selection Round')
             result.student_name = d.student_name
