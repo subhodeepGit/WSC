@@ -32,12 +32,13 @@ def contains_only_characters(bank_ifsc):
 @frappe.whitelist()
 def calculateAge(student_no):
 	student_data=frappe.get_all("Student",{"name":student_no},["date_of_birth"])
-	birthDate=student_data[0]['date_of_birth']
-	age=''
-	if birthDate:
-		today = date.today()
-		age = today.year - birthDate.year - ((today.month, today.day) < (birthDate.month, birthDate.day))
-	return age
+	if student_data:
+		birthDate=student_data[0]['date_of_birth']
+		age=''
+		if birthDate:
+			today = date.today()
+			age = today.year - birthDate.year - ((today.month, today.day) < (birthDate.month, birthDate.day))
+		return age
 
 @frappe.whitelist()
 def current_education(student_no):
