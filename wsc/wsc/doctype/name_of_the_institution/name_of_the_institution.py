@@ -1,9 +1,8 @@
 # Copyright (c) 2023, SOUL Limited and contributors
 # For license information, please see license.txt
 
-import frappe
+# import frappe
 from frappe.model.document import Document
 
-class SelectionRound(Document):
-    def on_cancel(self):
-        pass
+class NameoftheInstitution(Document):
+	pass
