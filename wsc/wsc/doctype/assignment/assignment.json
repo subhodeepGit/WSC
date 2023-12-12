@@ -51,6 +51,7 @@
   "passing_marks",
   "section_break_9",
   "assignment_attach_button",
+  "download_questions",
   "description",
   "amended_from"
  ],
@@ -328,12 +329,17 @@
   {
    "fieldname": "section_break_btncn",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "download_questions",
+   "fieldtype": "Button",
+   "label": "Download Assignment"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-28 09:29:46.534175",
+ "modified": "2023-12-08 17:44:51.542739",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment",

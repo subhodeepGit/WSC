@@ -6,6 +6,11 @@ frappe.ui.form.on('Assignment Upload', {
 
 	// }
 	refresh: function(frm){
+
+		if (!frm.doc.attach_assignment_button && !frm.is_new() && frm.doc.docstatus != 1) {
+			frm.set_intro('Please Attach your Assignment using the "Attach Assignment" Button.', 'green');
+		}		
+
 		frm.set_query("participant_group", function() {
             return {
                 filters: {
@@ -76,6 +81,24 @@ frappe.ui.form.on('Assignment Upload', {
 				}
 			}
 		})
+	},
+	download_questions(frm){
+		if (frm.doc.assignment_questions){
+			let file_url = frm.doc.assignment_questions;
+			if (frm.doc.file_name) {
+				file_url = file_url.replace(/#/g, "%23");
+			}
+			window.open(file_url);
+		}
+	},
+	download_answer(frm){
+		if (frm.doc.assignment_attach_button){
+			let file_url = frm.doc.assignment_attach_button;
+			if (frm.doc.file_name) {
+				file_url = file_url.replace(/#/g, "%23");
+			}
+			window.open(file_url);
+		}
 	},
 });
 

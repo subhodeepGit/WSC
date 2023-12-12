@@ -172,5 +172,14 @@ frappe.ui.form.on('Assignment', {
 		frm.fields_dict.end_date.datepicker.update({
             maxDate: frm.doc.tot_end_date ? new Date(frm.doc.tot_end_date) : null
         });
-	}
+	},
+	download_questions(frm){
+		if (frm.doc.assignment_attach_button){
+			let file_url = frm.doc.assignment_attach_button;
+			if (frm.doc.file_name) {
+				file_url = file_url.replace(/#/g, "%23");
+			}
+			window.open(file_url);
+		}
+	},
 });

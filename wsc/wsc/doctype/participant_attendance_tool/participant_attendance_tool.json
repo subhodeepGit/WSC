@@ -75,10 +75,12 @@
   {
    "fieldname": "section_break_8",
    "fieldtype": "Section Break",
-   "hide_border": 1
+   "hide_border": 1,
+   "label": "Participants List"
   },
   {
    "depends_on": "eval:doc.participant_group",
+   "description": "--(By Default Marked Present) ",
    "fieldname": "participants",
    "fieldtype": "Table",
    "label": "Participants",
@@ -88,7 +90,7 @@
    "depends_on": "eval:doc.participant_group",
    "fieldname": "instructor_id",
    "fieldtype": "Link",
-   "label": "Instructor ID",
+   "label": "Instructor",
    "options": "Instructor",
    "reqd": 1
   },
@@ -96,7 +98,7 @@
    "fetch_from": "instructor_id.instructor_name",
    "fieldname": "instructor_name",
    "fieldtype": "Data",
-   "label": "Instructor Name",
+   "label": "Trainer Name",
    "read_only": 1
   },
   {
@@ -211,7 +213,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-08 10:43:55.078892",
+ "modified": "2023-12-08 16:15:35.542133",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Attendance Tool",
