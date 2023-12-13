@@ -658,9 +658,9 @@ override_doctype_dashboards = {
 #         ["role", "in", ["Applicant"]]
 # 	]},
     # {"dt": "Role","filters": [
-    #     ["name", "in", ["Requisitioner"]]
+    #     ["name", "in", ["Project Manager"]]
     # ]},
-#     # # {"dt": "Role Profile"},
+    # # {"dt": "Role Profile"},
 #     # # {"dt": "Module Profile"},
     # {"dt" : "Workflow","filters": [
     #     [
