@@ -2,27 +2,41 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Mentor Initiation', {
-		refresh: function(frm){
+	"mentor": function(frm) {
+		cur_frm.clear_table("mentee_information")
 		frappe.call({
 			method: "wsc.wsc.doctype.mentor_initiation.mentor_initiation.get_mentor_mentees",
-			args : {"user":frappe.session.user},
-			callback: function(r){
-				if(r.message){
-					var get_data = r.message;
-					frm.set_value("mentor", get_data["mentor"])
-					frm.set_value("mentor_name", get_data["mentor_name"])
-					var mentee_info = cur_frm.fields_dict['mentee_information'].grid;
-					for (var i= 0; i < get_data["student"].length; i++) {
-						var add_mentee = mentee_info.add_new_row();
-						add_mentee.student = get_data["student"][i];
-						add_mentee.student_name = get_data["student_name"][i];
-						add_mentee.programs = get_data["programs"][i];
-						cur_frm.refresh_field ("mentee_information");
-					frm.set_df_property('mentee_information', 'cannot_add_rows', true);
-					frm.set_df_property('mentee_information', 'cannot_delete_rows', true);
-					}
+			args:{
+				mentor:frm.doc.mentor,
+			},
+			callback: function(r) {
+				if(r.message) {
+					r.message.forEach(element => {
+						var c = frm.add_child("mentee_information")
+						c.student = element.student,
+						c.student_name = element.student_name,
+						c.programs= element.program
+					});
 				}
+				frm.refresh();
+				frm.refresh_field("mentee_information")
 			}
 		});
+	},
+	setup: function (frm) {
+		frm.set_query("mentor", function() {
+			return {
+				query: 'wsc.wsc.doctype.mentor_initiation.mentor_initiation.filter_mentor',
+			};
+		});
+	},
+	refresh: function(frm) {
+		if(!frm.is_new()){
+			frm.set_df_property('mentor', 'read_only', 1)
+			frm.set_df_property('date', 'read_only', 1)
+			frm.set_df_property('description', 'read_only', 1)
+		}
+		frm.set_df_property('mentee_information', 'cannot_add_rows', true);
+		frm.set_df_property('mentee_information', 'cannot_delete_rows', true);
 	}
 });
