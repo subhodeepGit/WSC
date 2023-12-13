@@ -24,6 +24,11 @@ frappe.ui.form.on('Mentor Initiation', {
 		});
 	},
 	setup: function (frm) {
+		frm.set_query("semester", function() {
+			return {
+				filters: [["Program","programs",'=',frm.doc.course]]	
+			}
+		});
 		frm.set_query("mentor", function() {
 			return {
 				query: 'wsc.wsc.doctype.mentor_initiation.mentor_initiation.filter_mentor',
@@ -40,8 +45,31 @@ frappe.ui.form.on('Mentor Initiation', {
 			frm.set_df_property('mentor', 'read_only', 1)
 			frm.set_df_property('date', 'read_only', 1)
 			frm.set_df_property('description', 'read_only', 1)
+			frm.set_df_property('course', 'read_only', 1)
+			frm.set_df_property('semester', 'read_only', 1)
+			frm.set_df_property('academic_year', 'read_only', 1)
+		}
+		if(frm.doc.course==""){
+			frm.set_value("semester","")
 		}
 		frm.set_df_property('mentee_information', 'cannot_add_rows', true);
 		frm.set_df_property('mentee_information', 'cannot_delete_rows', true);
+
+	},
+	course: function(frm) {
+		if(frm.doc.course==""){
+			frm.set_value("semester","")
+			frm.set_value("mentor","")
+		}
+	},
+	semester: function(frm) {
+		if(frm.doc.semester==""){
+			frm.set_value("mentor","")
+		}
+	},
+	academic_year: function(frm) {
+		if(frm.doc.academic_year==""){
+			frm.set_value("mentor","")
+		}
 	}
 });

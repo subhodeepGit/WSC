@@ -22,7 +22,7 @@ frappe.ui.form.on('Mentor Mentee Communication', {
 				} 
 			}); 
 		}else{
-			frm.set_value("mentor"," ")
+			frm.set_value("mentor","")
 			frm.set_value("programs","")
 		}
 	},
