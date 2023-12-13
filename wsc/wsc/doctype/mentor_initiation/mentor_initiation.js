@@ -27,6 +27,11 @@ frappe.ui.form.on('Mentor Initiation', {
 		frm.set_query("mentor", function() {
 			return {
 				query: 'wsc.wsc.doctype.mentor_initiation.mentor_initiation.filter_mentor',
+				filters:{
+					"course":frm.doc.course,
+					"semester": frm.doc.semester,
+					"academic_year": frm.doc.academic_year
+				}
 			};
 		});
 	},

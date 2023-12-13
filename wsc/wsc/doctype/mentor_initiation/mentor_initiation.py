@@ -51,7 +51,21 @@ def create_mentee_communications(self):
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
 def filter_mentor(doctype, txt, searchfield, start, page_len, filters):
-    return frappe.db.sql(""" SELECT `name`,`mentor_name` FROM `tabMentor Allocation` where docstatus=1 """)	
+    searchfields = frappe.get_meta(doctype).get_search_fields()
+    searchfields = " or ".join("MNT."+field + " like %(txt)s" for field in searchfields)
+    course=filters.get('course')
+    semester=filters.get('semester')
+    academic_year=filters.get('academic_year')
+    filt_data = frappe.db.sql(""" SELECT MNT.name,MNT.mentor_name FROM `tabMentor Allocation` as MNT WHERE (MNT.{key} like %(txt)s or {scond}) and MNT.program='{course}' and MNT.semester='{semester}' and MNT.academic_year='{academic_year}' and MNT.docstatus=1;
+                                             """.format(
+                                                **{
+                                                "key": searchfield,
+												"scond": searchfields,
+                                                "course":course,
+                                                "semester":semester,
+                                                "academic_year":academic_year
+                                            }),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+    return filt_data
 
 def user_per(self):
     mentor_allo = frappe.get_all("Mentor Allocation", {'name':self.mentor}, ['mentor'])

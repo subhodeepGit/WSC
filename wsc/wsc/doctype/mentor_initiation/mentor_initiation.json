@@ -8,9 +8,16 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "date",
+  "course",
+  "semester",
+  "column_break_xuuiy",
+  "academic_year",
+  "section_break_lqz3t",
   "mentor",
   "mentor_name",
+  "column_break_jo9es",
+  "date",
+  "section_break_i36nl",
   "mentee_information",
   "description",
   "section_break_8ojuj",
@@ -68,11 +75,48 @@
    "fieldname": "section_break_8ojuj",
    "fieldtype": "Section Break",
    "hidden": 1
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year",
+   "reqd": 1
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "label": "Course",
+   "options": "Programs",
+   "reqd": 1
+  },
+  {
+   "fieldname": "semester",
+   "fieldtype": "Link",
+   "label": "Semester",
+   "options": "Program",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_lqz3t",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_xuuiy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_jo9es",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_i36nl",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-13 10:27:27.479854",
+ "modified": "2023-12-13 17:17:02.729279",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Mentor Initiation",
