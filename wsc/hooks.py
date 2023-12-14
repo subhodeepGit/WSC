@@ -79,7 +79,8 @@ doctype_js = {
                 "Purchase Invoice":"public/js/purchase_invoice.js",
                 "Warehouse":"public/js/warehouse.js",
                 "Asset":"public/js/asset.js",
-                "Job Requisition":"public/js/job_requisition.js"
+                "Job Requisition":"public/js/job_requisition.js",
+                "Project":"public/js/project.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
