@@ -33,6 +33,7 @@ web_include_js = "/assets/wsc/js/wsc_ui.js"
 # include js in doctype views
 doctype_js = {
                 "Account":"public/js/account.js",
+                "Bank Reconciliation Tool":"public/js/bank_reconciliation_tool.js",
                 "Course":"public/js/course.js",
                 "Course Enrollment":"public/js/course_enrollment.js",
                 "Course Schedule": "public/js/course_schedule.js",
