@@ -80,7 +80,8 @@ doctype_js = {
                 "Purchase Invoice":"public/js/purchase_invoice.js",
                 "Warehouse":"public/js/warehouse.js",
                 "Asset":"public/js/asset.js",
-                "Job Requisition":"public/js/job_requisition.js"
+                "Job Requisition":"public/js/job_requisition.js",
+                "Project":"public/js/project.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -261,9 +262,9 @@ doc_events = {
     "Mentor Allocation": {
         "validate": "wsc.wsc.validations.mentor_allocation.validate"
     },
-    "Mentor Initiation": {
-        "validate":"wsc.wsc.doctype.mentor_initiation.mentor_initiation.create_mentee_communications"
-    },
+    # "Mentor Initiation": {
+    #     "validate":"wsc.wsc.doctype.mentor_initiation.mentor_initiation.create_mentee_communications"
+    # },
     "Photocopy Application":{
         "validate":"wsc.wsc.validations.photocopy_application.validate"
     },
@@ -659,9 +660,9 @@ override_doctype_dashboards = {
 #         ["role", "in", ["Applicant"]]
 # 	]},
     # {"dt": "Role","filters": [
-    #     ["name", "in", ["Requisitioner"]]
+    #     ["name", "in", ["Project Manager"]]
     # ]},
-#     # # {"dt": "Role Profile"},
+    # # {"dt": "Role Profile"},
 #     # # {"dt": "Module Profile"},
     # {"dt" : "Workflow","filters": [
     #     [

@@ -8,11 +8,19 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "date",
+  "course",
+  "semester",
+  "column_break_xuuiy",
+  "academic_year",
+  "section_break_lqz3t",
   "mentor",
   "mentor_name",
+  "column_break_jo9es",
+  "date",
+  "section_break_i36nl",
   "mentee_information",
   "description",
+  "section_break_8ojuj",
   "amended_from"
  ],
  "fields": [
@@ -26,10 +34,10 @@
   },
   {
    "fieldname": "mentor",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Mentor Allocation",
-   "read_only": 1,
+   "options": "Mentor Allocation",
    "reqd": 1
   },
   {
@@ -37,11 +45,13 @@
    "fieldname": "mentor_name",
    "fieldtype": "Data",
    "label": "Mentor Name",
+   "read_only": 1,
    "reqd": 1
   },
   {
    "fieldname": "amended_from",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Amended From",
    "no_copy": 1,
    "options": "Mentor Initiation",
@@ -60,11 +70,53 @@
    "fieldtype": "Text Editor",
    "label": "Description",
    "reqd": 1
+  },
+  {
+   "fieldname": "section_break_8ojuj",
+   "fieldtype": "Section Break",
+   "hidden": 1
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year",
+   "reqd": 1
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "label": "Course",
+   "options": "Programs",
+   "reqd": 1
+  },
+  {
+   "fieldname": "semester",
+   "fieldtype": "Link",
+   "label": "Semester",
+   "options": "Program",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_lqz3t",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_xuuiy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_jo9es",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_i36nl",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-19 12:52:24.567108",
+ "modified": "2023-12-13 17:17:02.729279",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Mentor Initiation",
