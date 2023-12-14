@@ -2656,7 +2656,7 @@
   "home_page": null,
   "is_custom": 0,
   "list_sidebar": 0,
-  "modified": "2023-08-14 16:35:17.897988",
+  "modified": "2023-12-14 11:00:17.897988",
   "name": "TOT Director",
   "notifications": 0,
   "restrict_to_domain": null,
@@ -2664,7 +2664,7 @@
   "search_bar": 1,
   "timeline": 0,
   "two_factor_auth": 0,
-  "view_switcher": 0
+  "view_switcher": 1
  },
  {
   "bulk_actions": 1,
@@ -2677,7 +2677,7 @@
   "home_page": null,
   "is_custom": 0,
   "list_sidebar": 0,
-  "modified": "2023-08-14 16:36:07.112779",
+  "modified": "2023-12-14 10:36:07.112779",
   "name": "TOT Administrator",
   "notifications": 0,
   "restrict_to_domain": null,
@@ -2685,7 +2685,7 @@
   "search_bar": 1,
   "timeline": 0,
   "two_factor_auth": 0,
-  "view_switcher": 0
+  "view_switcher": 1
  },
  {
   "bulk_actions": 1,
