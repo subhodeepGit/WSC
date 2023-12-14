@@ -20,6 +20,7 @@
   "exam_coordinator_name",
   "examiner_name",
   "moderator__name",
+  "school_house",
   "schedule_section",
   "schedule_date",
   "from_time",
@@ -203,12 +204,19 @@
    "label": "Department",
    "options": "Department",
    "read_only": 1
+  },
+  {
+   "fetch_from": "assessment_plan.school_house",
+   "fieldname": "school_house",
+   "fieldtype": "Link",
+   "label": "School House",
+   "options": "School House"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-14 11:00:25.552554",
+ "modified": "2023-12-14 18:17:51.909887",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Paper Setting",
