@@ -61,12 +61,9 @@ def permission(doc):
                         # module.save()
 def student_group_permission(doc):
     for j in frappe.get_all("Instructor Log",{"parent":doc.name},['student_group','parent']):
-        print("J=",j)
-        if j.student_group:
+        if j.student_group == None:
             for i in frappe.get_all("Student Group Instructor",{"parent":j.student_group,"instructor":j.parent},['instructor','course','parent']):
-                print("\n\nI=",i)
                 user_id = frappe.db.get_value("Instructor",{"name":i.instructor},'email_id')
-                print("\n\nHELLO",user_id)
                 if user_id:
                     frappe.permissions.add_user_permission("Student Group",i.parent, user_id)
    
@@ -153,13 +150,8 @@ def create_user(trainer, user=None, email=None):
     return user.name
 @frappe.whitelist()
 def remove_create_user(email):
-    print("\n\n\nHEY")
-    print("\n\nEmail",email)
     for x in frappe.get_all("User",{"name":email},['name']):
-        print("\n\nX",x)
-        print("\n\n\nEMAIL:",email)
         if x.name==email:
-            print("\n\n\nTrue")
             return True
 
 def validate_email(self):
