@@ -151,7 +151,6 @@ def get_instructor(doctype, txt, searchfield, start, page_len, filters):
 	for i in frappe.get_all("Instructor Log",fltr,['parent']):
 		if i.parent not in lst :
 			lst.append(i.parent)
-	print("\n\n\nINSU",len(lst))
 	return [(d, ) for d in lst]
 
 
