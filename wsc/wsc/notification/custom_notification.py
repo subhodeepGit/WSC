@@ -1975,3 +1975,31 @@ def jocr_ceo_mail(doc):
 
 		send_mail(recipient_emails, sub, msg)
 		frappe.msgprint("Job Offer Creation Request is sent to CEO.")
+#####################################################################################################################
+@frappe.whitelist()
+def job_offerapplicant(doc):
+	import json
+	doc = json.loads(doc)
+	sub = "Reg:Job Offer"
+
+	msg = """<p>Dear Ma'am/Sir,</p><br>"""
+	msg += """<p>Congratulations!! We are pleased to extend an offer of employment for the position of {0} at {1}. If you accept this offer, kindly sign and return a copy of this letter as a symbol of your acceptance. Kindly find your job offer in the attachment for the same.</p></br>""".format(doc.get('designation'), doc.get('company'))
+
+	attachments = [frappe.attach_print(doc['doctype'], doc['name'], file_name=doc['name'], print_format='WSC Job Offer')]
+	send_mail(frappe.db.get_value("Job Applicant", {"name": doc['job_applicant_id']}, ["email_id"]), sub, msg, attachments)
+	frappe.msgprint("Email Sent to the Applicant")
+
+def job_offer_reengagement(doc):
+    sub = "Reg: Contract Renewal"
+
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p> I am writing to inform you that we are pleased to extend an offer for the renewal of your employment contract with {0} for the position of {1}. Your dedication and contributions to the team have been invaluable, and we are eager to continue our professional relationship with you.</p></br>""".format(doc.company, doc.designation)
+
+    attachments = [frappe.attach_print(doc.doctype, doc.name, file_name=doc.name, print_format='WSC Re-engagement Job Offer')]
+
+    employee_user_id = frappe.db.get_value("Employee", {"name": doc.employee}, ["user_id"])
+
+    send_mail(employee_user_id, sub, msg, attachments)
+    frappe.msgprint("Email Sent to the Employee")
+
+##################################################################################################################################################################
