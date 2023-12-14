@@ -91,3 +91,12 @@ frappe.ui.form.on('Material Request Item', {	//Child table Name
 	
 	
 });
+
+frappe.ui.form.on('Material Request', {
+    refresh:function(frm) {
+		frm.remove_custom_button('Product Bundle','Get Items From');
+		frm.remove_custom_button('Bill of Materials','Get Items From');
+		frm.remove_custom_button('Sales Order','Get Items From');
+		frm.remove_custom_button('Stop');
+	}
+});
