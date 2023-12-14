@@ -10,5 +10,14 @@ frappe.listview_settings['Instructor'] = {
                 
             }
         }
+        if (frappe.user.has_role(["TOT Trainer"])){
+            if(frappe.route_options){
+                frappe.route_options = {
+                    "email_id_for_guest_trainers": ["=", frappe.session.user]
+                };
+                $(".filter-selector").hide();
+                
+            }
+        }
     }      
 };

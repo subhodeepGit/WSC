@@ -12,11 +12,11 @@
   "module_code",
   "module_name",
   "department",
-  "student_group",
   "column_break_3",
   "academic_year",
   "academic_term",
   "school_house",
+  "student_group",
   "room",
   "section_break_6",
   "instructor",
@@ -104,6 +104,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "depends_on": "eval:doc.student_group;",
    "fieldname": "room",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -156,6 +157,7 @@
    "default": "0",
    "fieldname": "reschedule",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Reschedule"
   },
   {
@@ -180,6 +182,7 @@
    "read_only": 1
   },
   {
+   "depends_on": "eval:doc.student_group",
    "fieldname": "additional_trainer",
    "fieldtype": "Table",
    "label": "Trainer List",
@@ -201,7 +204,7 @@
  "hide_toolbar": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-12-04 16:06:38.720090",
+ "modified": "2023-12-14 12:51:52.393742",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Class Scheduling Tool",
