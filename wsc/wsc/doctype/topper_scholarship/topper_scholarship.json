@@ -9,7 +9,7 @@
   "student_id",
   "rank",
   "student_name",
-  "sgpa",
+  "percentage",
   "scholarship_amount"
  ],
  "fields": [
@@ -35,24 +35,24 @@
    "read_only": 1
   },
   {
-   "fieldname": "sgpa",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "SGPA",
-   "read_only": 1
-  },
-  {
    "fieldname": "rank",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Rank",
+   "read_only": 1
+  },
+  {
+   "fieldname": "percentage",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Percentage",
    "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-02-21 09:18:58.717413",
+ "modified": "2023-12-11 15:40:10.576440",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Topper Scholarship",

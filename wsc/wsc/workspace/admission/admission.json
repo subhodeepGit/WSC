@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"I34K0-Span\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h1\\\">Admission</span>\",\"col\":12}},{\"id\":\"Gmqif9FYds\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"ACR SC Men Seat\",\"col\":4}},{\"id\":\"Vpzx3gf95K\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"CWLqDt2BnK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":3}},{\"id\":\"4rnD6h2CmZ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course\",\"col\":3}},{\"id\":\"UK8H2h-3tS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instructor\",\"col\":3}},{\"id\":\"PP-iJn_1gz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student\",\"col\":3}},{\"id\":\"Gb1v3PdGUy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Admission\",\"col\":3}},{\"id\":\"j2gTeWzYvY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Applicant\",\"col\":3}},{\"id\":\"yp_dEg0btu\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"RrzHInDfHG\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Master &amp; Application</span><span class=\\\"h4\\\"><b><br></b></span>\",\"col\":12}},{\"id\":\"VZ4Vh0w5Ai\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"ZfB-R1ZaJN\",\"type\":\"card\",\"data\":{\"card_name\":\"Admission Master\",\"col\":4}},{\"id\":\"k_n6UG5naR\",\"type\":\"card\",\"data\":{\"card_name\":\"Student and Trainer\",\"col\":4}},{\"id\":\"hS7OiYlYTe\",\"type\":\"card\",\"data\":{\"card_name\":\"Counselling\",\"col\":4}},{\"id\":\"YVUIBqB2oj\",\"type\":\"card\",\"data\":{\"card_name\":\"Entrance Exam\",\"col\":4}},{\"id\":\"2riNHbo_Zy\",\"type\":\"card\",\"data\":{\"card_name\":\"Admit Card\",\"col\":4}},{\"id\":\"XjgEcspPRN\",\"type\":\"card\",\"data\":{\"card_name\":\"Rank Card\",\"col\":4}},{\"id\":\"tmUKQynhR3\",\"type\":\"card\",\"data\":{\"card_name\":\"Student Enrollment\",\"col\":4}},{\"id\":\"zt0xuVkL7Q\",\"type\":\"card\",\"data\":{\"card_name\":\"Fees\",\"col\":4}},{\"id\":\"IJQWaM-BCi\",\"type\":\"card\",\"data\":{\"card_name\":\"Tools\",\"col\":4}},{\"id\":\"ZRZh_xsfKN\",\"type\":\"card\",\"data\":{\"card_name\":\"Feedback\",\"col\":4}},{\"id\":\"CPXPxbj4sj\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"f8Z1J7Yvgd\",\"type\":\"card\",\"data\":{\"card_name\":\"Student Identity Card\",\"col\":4}},{\"id\":\"QexmV5-ZSf\",\"type\":\"card\",\"data\":{\"card_name\":\"Scholarships\",\"col\":4}}]",
+ "content": "[{\"id\":\"I34K0-Span\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h1\\\">Admission</span>\",\"col\":12}},{\"id\":\"Gmqif9FYds\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"ACR SC Men Seat\",\"col\":4}},{\"id\":\"Vpzx3gf95K\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"CWLqDt2BnK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":3}},{\"id\":\"4rnD6h2CmZ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course\",\"col\":3}},{\"id\":\"UK8H2h-3tS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instructor\",\"col\":3}},{\"id\":\"PP-iJn_1gz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student\",\"col\":3}},{\"id\":\"Gb1v3PdGUy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Admission\",\"col\":3}},{\"id\":\"j2gTeWzYvY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Applicant\",\"col\":3}},{\"id\":\"yp_dEg0btu\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"RrzHInDfHG\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Master &amp; Application</span><span class=\\\"h4\\\"><b><br></b></span>\",\"col\":12}},{\"id\":\"VZ4Vh0w5Ai\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"ZfB-R1ZaJN\",\"type\":\"card\",\"data\":{\"card_name\":\"Admission Master\",\"col\":4}},{\"id\":\"k_n6UG5naR\",\"type\":\"card\",\"data\":{\"card_name\":\"Student and Trainer\",\"col\":4}},{\"id\":\"hS7OiYlYTe\",\"type\":\"card\",\"data\":{\"card_name\":\"Counselling\",\"col\":4}},{\"id\":\"YVUIBqB2oj\",\"type\":\"card\",\"data\":{\"card_name\":\"Entrance Exam\",\"col\":4}},{\"id\":\"2riNHbo_Zy\",\"type\":\"card\",\"data\":{\"card_name\":\"Admit Card\",\"col\":4}},{\"id\":\"XjgEcspPRN\",\"type\":\"card\",\"data\":{\"card_name\":\"Rank Card\",\"col\":4}},{\"id\":\"tmUKQynhR3\",\"type\":\"card\",\"data\":{\"card_name\":\"Student Enrollment\",\"col\":4}},{\"id\":\"zt0xuVkL7Q\",\"type\":\"card\",\"data\":{\"card_name\":\"Fees\",\"col\":4}},{\"id\":\"IJQWaM-BCi\",\"type\":\"card\",\"data\":{\"card_name\":\"Tools\",\"col\":4}},{\"id\":\"ZRZh_xsfKN\",\"type\":\"card\",\"data\":{\"card_name\":\"Feedback\",\"col\":4}},{\"id\":\"CPXPxbj4sj\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"f8Z1J7Yvgd\",\"type\":\"card\",\"data\":{\"card_name\":\"Student Identity Card\",\"col\":4}},{\"id\":\"QexmV5-ZSf\",\"type\":\"card\",\"data\":{\"card_name\":\"Scholarships\",\"col\":4}},{\"id\":\"sYQc6AoFny\",\"type\":\"card\",\"data\":{\"card_name\":\"Clearance\",\"col\":4}}]",
  "creation": "2023-02-15 12:40:14.406775",
  "custom_blocks": [],
  "docstatus": 0,
@@ -12,24 +12,6 @@
  "is_hidden": 0,
  "label": "Admission",
  "links": [
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Feedback",
-   "link_count": 1,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Feedback Form",
-   "link_count": 0,
-   "link_to": "Student Feedback Form",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
   {
    "hidden": 0,
    "is_query_report": 0,
@@ -381,74 +363,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Fees",
-   "link_count": 6,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Fee Structure",
-   "link_count": 0,
-   "link_to": "Fee Structure",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Fee Schedule",
-   "link_count": 0,
-   "link_to": "Fee Schedule",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Fee Category",
-   "link_count": 0,
-   "link_to": "Fee Category",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Fees",
-   "link_count": 0,
-   "link_to": "Fees",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Auto Reconcilation",
-   "link_count": 0,
-   "link_to": "Auto Reconciliation",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Online Payment",
-   "link_count": 0,
-   "link_to": "OnlinePayment",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Reports",
    "link_count": 2,
    "onboard": 0,
@@ -619,8 +533,36 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Scholarships",
+   "label": "Feedback",
    "link_count": 2,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Feedback Questions",
+   "link_count": 0,
+   "link_to": "Student Feedback Questions",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Feedback Form",
+   "link_count": 0,
+   "link_to": "Student Feedback Form",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Scholarships",
+   "link_count": 3,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -643,9 +585,135 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Rewards and Achievements",
+   "link_count": 0,
+   "link_to": "Rewards and Achievements",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Fees",
+   "link_count": 7,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Fee Structure",
+   "link_count": 0,
+   "link_to": "Fee Structure",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Fee Schedule",
+   "link_count": 0,
+   "link_to": "Fee Schedule",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Fee Category",
+   "link_count": 0,
+   "link_to": "Fee Category",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Fees",
+   "link_count": 0,
+   "link_to": "Fees",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Auto Reconcilation",
+   "link_count": 0,
+   "link_to": "Auto Reconciliation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Online Payment",
+   "link_count": 0,
+   "link_to": "OnlinePayment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Payment Write Off",
+   "link_count": 0,
+   "link_to": "Payment Write Off",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Clearance",
+   "link_count": 3,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Clearance Master",
+   "link_count": 0,
+   "link_to": "Clearance Master",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Clearance Application",
+   "link_count": 0,
+   "link_to": "Student Clearance Application",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Attrition Form",
+   "link_count": 0,
+   "link_to": "Student Attrition Form",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-12-07 17:06:45.343967",
+ "modified": "2023-12-14 12:19:21.522808",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Admission",
