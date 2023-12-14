@@ -5,6 +5,8 @@ from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 from frappe.utils import cint, flt, get_link_to_form
 from frappe.utils import getdate, today
+from wsc.wsc.notification.custom_notification import job_offer_reengagement
+
 
 class JobOffer(Document):
 	def onload(self):
@@ -25,6 +27,23 @@ class JobOffer(Document):
 		# 			frappe.bold(job_offer), frappe.bold(self.job_applicant)
 		# 		)
 		# 	)
+		self.offer_letter_content = """
+
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;With reference to the above-mentioned subject and your participation in the WSC Recruitment process, I am immensely pleased to inform you that you have been selected for the position of {0} at World Skill Center as per the terms and conditions mentioned in the recruitment advertisement, i.e., Detailed Advertisement for _________________________________ Dated - _____________________ and the "WSC Open Market Contractual Appointment Rules".</p><br>
+
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Subsequent upon agreement to the above-mentioned rules and your confirmation of the same via e-mail dated __________________________, I am sending herewith this Offer Letter for the above-mentioned position.
+
+    You are directed to join at World Skill Center within 30 days of the issue of this letter.</p><br> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your joining at World Skill Center will be subject to the submission of the pending documents (if any), which were not submitted during the document verification.</p><br>
+
+    	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	You are requested to send us an acknowledgment of this offer letter indicating your willingness to join along with your expected date of joining at World Skill Center. We look forward to a mutually rewarding professional relationship with you.</p><br>
+    """.format(self.get('designation'))
+
+    	
+	
+
+
+
+
 
 	def validate_vacancies(self):
 		staffing_plan = get_staffing_plan_detail(self.designation, self.company, self.offer_date)
@@ -53,7 +72,9 @@ class JobOffer(Document):
 			},
 			fields=["name"],
 		)
-
+	def on_submit(doc):
+		if doc.is_reengagement==1 and doc.status =="Awaiting Response":
+			job_offer_reengagement(doc)
 
 # def update_job_applicant(status, job_applicant):
 # 	if status in ("Accepted", "Rejected"):
@@ -82,4 +103,5 @@ def get_staffing_plan_detail(designation, company, offer_date):
 	)
 
 	return frappe._dict(detail[0]) if (detail and detail[0].parent) else None
+
 
