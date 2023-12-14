@@ -769,5 +769,35 @@
     "role": "Training and Placement Administrator"
    }
   ]
- }
+ },
+  {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2023-12-13 14:25:16.230571",
+  "name": "Employee- Project Management",
+  "role_profile": "Employee- Project Management",
+  "roles": [
+   {
+    "parent": "Employee- Project Management",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Employee- Project Management"
+   }
+  ]
+ },
+ {
+    "docstatus": 0,
+    "doctype": "Role Profile",
+    "modified": "2023-12-13 14:24:52.213549",
+    "name": "Project Manager",
+    "role_profile": "Project Manager",
+    "roles": [
+     {
+      "parent": "Project Manager",
+      "parentfield": "roles",
+      "parenttype": "Role Profile",
+      "role": "Project Manager"
+     }
+    ]
+}
 ]

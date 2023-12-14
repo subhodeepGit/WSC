@@ -999,6 +999,8 @@ def item_expiry(doc):
 	attachments = None
 	send_mail(recipients,'Item',msg,attachments)
 
+
+
 def changed_impaneled_price(doc):
 	msg="""<b>---------------------Empanelled Price Changed for Item {0}---------------------</b><br>""".format(doc.get('item_name'))
 	recipients = doc.supllier_email

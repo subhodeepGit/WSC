@@ -31,12 +31,25 @@ class MentorAllocation(Document):
 
 @frappe.whitelist()
 def get_students(doctype, txt, searchfield, start, page_len, filters):
+    list_student=filters[0]
+    fil=""
+    if list_student[3]:
+        if len(list_student[3])==1:
+            fil="  st.name <> '%s' and "%(list_student[3][0])
+        else:
+            fil=" st.name Not IN  %s and "%(str(tuple(list_student[3])))      
+    # return frappe.db.sql("""
+    #                             Select 
+    #                                     distinct(st.name) as student, st.student_name as student_name ,st.roll_no as roll_no
+    #                             from `tabCurrent Educational Details` ced 
+    #                             left join `tabStudent` st on st.name=ced.parent 
+    #                             where enabled=1 and (st.name LIKE %(txt)s or st.student_name LIKE %(txt)s) and ced.programs='{0}'""".format(filters.get("programs")),dict(txt="%{}%".format(txt))) 
     return frappe.db.sql("""
-                                Select 
-                                        distinct(st.name) as student, st.student_name as student_name ,st.roll_no as roll_no
-                                from `tabCurrent Educational Details` ced 
-                                left join `tabStudent` st on st.name=ced.parent 
-                                where enabled=1 and (st.name LIKE %(txt)s or st.student_name LIKE %(txt)s) and ced.programs='{0}'""".format(filters.get("programs")),dict(txt="%{}%".format(txt))) 
+                            Select 
+                                    distinct(st.name) as student, st.student_name as student_name ,st.roll_no as roll_no
+                            from `tabCurrent Educational Details` ced 
+                            left join `tabStudent` st on st.name=ced.parent 
+                            where enabled=1 and {1} (st.name LIKE %(txt)s or st.student_name LIKE %(txt)s) and ced.programs='{0}'""".format(filters[1][3],fil),dict(txt="%{}%".format(txt))) 
 
 def validate_allocation_from_to(doc):
     if doc.allocation_from and doc.allocation_to and doc.allocation_from > doc.allocation_to:
