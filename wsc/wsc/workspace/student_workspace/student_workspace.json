@@ -191,15 +191,15 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Student Attrition Form",
+   "label": "Clearance Application",
    "link_count": 0,
-   "link_to": "Student Attrition Form",
+   "link_to": "Student Clearance Application",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
   }
  ],
- "modified": "2023-12-14 12:21:43.451596",
+ "modified": "2023-12-14 16:24:32.098600",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Workspace",
