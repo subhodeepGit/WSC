@@ -40,17 +40,15 @@ class ExamPaperSetting(Document):
             frappe.delete_doc("User Permission",d.name)
 
     def set_instructor_permission(self, instructor):
-        for i in frappe.get_all("Instructor",{"instructor_name":instructor},['employee']):
-            print("\n\nIN FIRST FOR")
-            if i.get('employee'):
-                for emp in frappe.get_all("Employee", {'name':i.get('employee')}, ['user_id']):
-                    if emp.get('user_id'):
-                        print("\n\n\nuser")
-                        add_user_permission("Exam Paper Setting",self.name, emp.get('user_id'), self)
-            else:
-                frappe.msgprint("Trainer {0} is not employee".format(instructor))
+        for i in frappe.get_all("Instructor Log",{"parent":instructor,"programs":self.programs,"school_house":self.school_house},["parent"]):
+            for i in frappe.get_all("Instructor",{"instructor_name":i.parent},['employee']):
+                if i.get('employee'):
+                    for emp in frappe.get_all("Employee", {'name':i.get('employee')}, ['user_id']):
+                        if emp.get('user_id'):
+                            add_user_permission("Exam Paper Setting",self.name, emp.get('user_id'), self)
+                else:
+                    frappe.msgprint("Trainer {0} is not employee".format(instructor))
     
-
 # bench execute wsc.wsc.doctype.exam_paper_setting.exam_paper_setting.make_exam_paper_setting_from_sssessment_plan
 # def make_exam_paper_setting_from_sssessment_plan():
 #     for ap in frappe.get_all("Exam Assessment Plan",{'docstatus':1,"paper_setting_start_date":getdate(today())}):

@@ -109,44 +109,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Exam Evaluation",
-   "link_count": 3,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Component Wise Evaluation",
-   "link_count": 0,
-   "link_to": "Course Assessment",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Component Wise Reevaluation",
-   "link_count": 0,
-   "link_to": "Assessment Credits Allocation",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Final Semester Result",
-   "link_count": 0,
-   "link_to": "Exam Assessment Result",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Students & Trainer",
    "link_count": 3,
    "onboard": 0,
@@ -209,9 +171,47 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Exam Evaluation",
+   "link_count": 3,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Exam Evaluation",
+   "link_count": 0,
+   "link_to": "Course Assessment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Exam Re-evaluation",
+   "link_count": 0,
+   "link_to": "Assessment Credits Allocation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Final Semester Result",
+   "link_count": 0,
+   "link_to": "Exam Assessment Result",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-12-14 15:11:48.849849",
+ "modified": "2023-12-14 17:51:30.789546",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Trainer",

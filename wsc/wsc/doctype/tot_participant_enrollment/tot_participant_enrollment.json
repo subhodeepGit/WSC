@@ -29,12 +29,14 @@
  ],
  "fields": [
   {
+   "columns": 1,
    "fieldname": "tot_participant_selection_id",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "ToT Participant Selection ID",
    "options": "ToT Participant Selection",
-   "reqd": 1
+   "reqd": 1,
+   "width": "1px"
   },
   {
    "fieldname": "naming_series",
@@ -60,12 +62,15 @@
    "options": "Reported Participant"
   },
   {
+   "columns": 1,
    "fetch_from": "tot_participant_selection_id.course",
    "fieldname": "programs",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Programs",
    "options": "Programs",
-   "read_only": 1
+   "read_only": 1,
+   "width": "1"
   },
   {
    "fetch_from": "tot_participant_selection_id.semester",
@@ -76,11 +81,14 @@
    "options": "Program"
   },
   {
+   "columns": 1,
    "fetch_from": "tot_participant_selection_id.tot_participant_batch",
    "fieldname": "tot_participant_batch",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "ToT Participant Batch",
-   "read_only": 1
+   "read_only": 1,
+   "width": "1"
   },
   {
    "fieldname": "column_break_psgj4",
@@ -95,18 +103,24 @@
    "read_only": 1
   },
   {
+   "columns": 1,
    "fetch_from": "tot_participant_selection_id.start_date",
    "fieldname": "start_date",
    "fieldtype": "Date",
+   "in_list_view": 1,
    "label": "TOT Start Date",
-   "read_only": 1
+   "read_only": 1,
+   "width": "1"
   },
   {
+   "columns": 1,
    "fetch_from": "tot_participant_selection_id.end_date",
    "fieldname": "end_date",
    "fieldtype": "Date",
+   "in_list_view": 1,
    "label": "TOT End Date",
-   "read_only": 1
+   "read_only": 1,
+   "width": "1"
   },
   {
    "fieldname": "participant_creation_status",
@@ -159,7 +173,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-05 15:48:03.336615",
+ "modified": "2023-12-14 19:07:52.576676",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Participant Enrollment",

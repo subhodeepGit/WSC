@@ -3,6 +3,7 @@
 
 frappe.ui.form.on('Continuous Evaluation Tool', {
 	exam_declaration_id:function(frm){
+		frm.disable_save();
 		if (frm.doc.exam_cate=="Re-Exam"){
 			let fname=frm.doc.exam_declaration_id;    
         	frm.set_value("exam_declaration",fname);
@@ -20,6 +21,9 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 			}
 		})
 		frm.trigger("get_student_details");
+	},
+	refresh:function(frm){
+		frm.disable_save();
 	},
 	// "enroll_students": function(frm) {
 	// 	if (frm.doc.new_semester && frm.doc.new_academic_year){
