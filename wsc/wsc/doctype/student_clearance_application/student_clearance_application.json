@@ -24,6 +24,7 @@
   "status",
   "column_break_12",
   "total_dues",
+  "section_break_f3tsz",
   "amended_from"
  ],
  "fields": [
@@ -71,7 +72,8 @@
    "default": "Clearance Pending",
    "fieldname": "status",
    "fieldtype": "Data",
-   "label": "Status"
+   "label": "Status",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_gcpf2",
@@ -111,7 +113,8 @@
    "fieldname": "total_dues",
    "fieldtype": "Currency",
    "label": "Total Dues",
-   "non_negative": 1
+   "non_negative": 1,
+   "read_only": 1
   },
   {
    "fetch_from": "student_id.student_email_id",
@@ -132,12 +135,17 @@
    "mandatory_depends_on": "eval:doc.clearance_type == \"Attrition\"",
    "options": "Student Attrition Form",
    "read_only_depends_on": "eval:doc.clearance_type == \"Normal\""
+  },
+  {
+   "fieldname": "section_break_f3tsz",
+   "fieldtype": "Section Break",
+   "hidden": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-01 09:54:10.475366",
+ "modified": "2023-12-14 16:13:42.669768",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Clearance Application",

@@ -44,14 +44,17 @@
  ],
  "fields": [
   {
+   "columns": 1,
    "fieldname": "participant_group_id",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Participant Group ID",
    "options": "Participant Group",
-   "reqd": 1
+   "reqd": 1,
+   "width": "1"
   },
   {
+   "columns": 1,
    "fetch_from": "participant_group_id.academic_year",
    "fieldname": "academic_year",
    "fieldtype": "Link",
@@ -59,7 +62,8 @@
    "label": "Academic Year",
    "options": "Academic Year",
    "read_only": 1,
-   "reqd": 1
+   "reqd": 1,
+   "width": "1"
   },
   {
    "fetch_from": "participant_group_id.academic_term",
@@ -70,6 +74,7 @@
    "options": "Academic Term"
   },
   {
+   "columns": 1,
    "fetch_from": "participant_group_id.program",
    "fieldname": "course_id",
    "fieldtype": "Link",
@@ -77,7 +82,8 @@
    "label": "Programs",
    "options": "Programs",
    "read_only": 1,
-   "reqd": 1
+   "reqd": 1,
+   "width": "1"
   },
   {
    "fetch_from": "course_id.programs_name",
@@ -117,16 +123,22 @@
    "read_only": 1
   },
   {
+   "columns": 1,
    "fieldname": "from_time",
    "fieldtype": "Time",
+   "in_list_view": 1,
    "label": "From Time",
-   "reqd": 1
+   "reqd": 1,
+   "width": "1"
   },
   {
+   "columns": 1,
    "fieldname": "to_time",
    "fieldtype": "Time",
+   "in_list_view": 1,
    "label": "To Time",
-   "reqd": 1
+   "reqd": 1,
+   "width": "1"
   },
   {
    "fieldname": "duration",
@@ -155,10 +167,13 @@
    "label": "Academic Info"
   },
   {
+   "columns": 1,
    "fieldname": "scheduled_date",
    "fieldtype": "Date",
+   "in_list_view": 1,
    "label": "Scheduled Date",
-   "reqd": 1
+   "reqd": 1,
+   "width": "1"
   },
   {
    "fetch_from": "participant_group_id.semester",
@@ -169,11 +184,14 @@
    "options": "Program"
   },
   {
+   "columns": 1,
    "fetch_from": "trainers.instructor_name",
    "fieldname": "trainers_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Trainer's Name",
-   "read_only": 1
+   "read_only": 1,
+   "width": "1"
   },
   {
    "fetch_from": "participant_group_id.participant_group",
@@ -260,7 +278,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-10 12:48:25.583332",
+ "modified": "2023-12-15 11:09:29.969361",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "ToT Class Schedule",
