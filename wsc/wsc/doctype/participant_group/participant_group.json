@@ -55,12 +55,14 @@
    "options": "Course"
   },
   {
+   "columns": 1,
    "fieldname": "participant_group",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Participant Group Name",
    "reqd": 1,
-   "unique": 1
+   "unique": 1,
+   "width": "1"
   },
   {
    "fetch_from": "tot_participant_selection.academic_term",
@@ -71,12 +73,15 @@
    "options": "Academic Term"
   },
   {
+   "columns": 1,
    "fetch_from": "tot_participant_selection.course",
    "fieldname": "program",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Programs",
    "options": "Programs",
-   "read_only": 1
+   "read_only": 1,
+   "width": "1"
   },
   {
    "depends_on": "eval:doc.group_based_on == 'Batch';",
@@ -142,19 +147,24 @@
    "fieldtype": "Column Break"
   },
   {
+   "columns": 1,
    "fetch_from": "course.course_name",
    "fieldname": "module_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Module Name",
    "read_only": 1,
-   "reqd": 1
+   "reqd": 1,
+   "width": "1"
   },
   {
+   "columns": 1,
    "fieldname": "participant_enrollment_id",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Participant Enrollment ID",
-   "options": "ToT Participant Enrollment"
+   "options": "ToT Participant Enrollment",
+   "width": "1"
   },
   {
    "fetch_from": "tot_participant_selection.semester",
@@ -231,7 +241,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-07 12:38:14.689012",
+ "modified": "2023-12-15 11:37:42.533829",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Group",
