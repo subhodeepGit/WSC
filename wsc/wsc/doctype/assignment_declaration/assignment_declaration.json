@@ -50,10 +50,13 @@
  ],
  "fields": [
   {
+   "columns": 1,
    "fieldname": "assignment_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Assignment Declaration Name",
-   "reqd": 1
+   "reqd": 1,
+   "width": "1"
   },
   {
    "fieldname": "assignment_start_date",
@@ -77,7 +80,6 @@
   {
    "fieldname": "participant_group",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Participant Group",
    "options": "Participant Group",
    "reqd": 1
@@ -235,18 +237,24 @@
    "fieldtype": "Column Break"
   },
   {
+   "columns": 1,
    "fetch_from": "participant_group.participant_group",
    "fieldname": "participant_group_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Participant Group Name",
-   "read_only": 1
+   "read_only": 1,
+   "width": "1"
   },
   {
+   "columns": 1,
    "fetch_from": "module.course_name",
    "fieldname": "module_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Module Name",
-   "read_only": 1
+   "read_only": 1,
+   "width": "1"
   },
   {
    "fetch_from": "module.course_code",
@@ -301,7 +309,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-06 11:49:57.423748",
+ "modified": "2023-12-15 12:25:41.240943",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Declaration",
