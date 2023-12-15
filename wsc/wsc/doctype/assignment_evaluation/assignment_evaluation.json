@@ -91,12 +91,15 @@
    "read_only": 1
   },
   {
+   "columns": 1,
    "fetch_from": "participant_group.program",
    "fieldname": "select_course",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Programs",
    "options": "Programs",
-   "read_only": 1
+   "read_only": 1,
+   "width": "1"
   },
   {
    "fetch_from": "participant_group.course",
@@ -163,12 +166,14 @@
    "read_only": 1
   },
   {
+   "columns": 1,
    "fieldname": "assignment_declaration",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Assignment Declaration",
    "options": "Assignment Declaration",
-   "reqd": 1
+   "reqd": 1,
+   "width": "1"
   },
   {
    "fieldname": "section_break_jn5ad",
@@ -185,11 +190,14 @@
    "label": "Evaluator Details"
   },
   {
+   "columns": 1,
    "fetch_from": "participant_group.participant_group",
    "fieldname": "participant_group_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Participant Group Name",
-   "read_only": 1
+   "read_only": 1,
+   "width": "1"
   },
   {
    "fetch_from": "participant_group.tot_start_date",
@@ -206,11 +214,14 @@
    "read_only": 1
   },
   {
+   "columns": 1,
    "fetch_from": "select_module.course_name",
    "fieldname": "module_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Module Name",
-   "read_only": 1
+   "read_only": 1,
+   "width": "1"
   },
   {
    "fetch_from": "select_module.course_code",
@@ -220,11 +231,14 @@
    "read_only": 1
   },
   {
+   "columns": 1,
    "fetch_from": "assignment_declaration.assignment_start_date",
    "fieldname": "assignment_declaration_start_date",
    "fieldtype": "Date",
+   "in_list_view": 1,
    "label": "Assignment Declaration Start Date",
-   "read_only": 1
+   "read_only": 1,
+   "width": "1"
   },
   {
    "fetch_from": "assignment_declaration.assignment_end_date",
@@ -271,7 +285,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-12 12:41:14.378156",
+ "modified": "2023-12-15 12:28:55.215570",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment Evaluation",

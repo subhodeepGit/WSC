@@ -42,19 +42,25 @@
  ],
  "fields": [
   {
+   "columns": 1,
    "fetch_from": "tot_participant_enrollment.academic_year",
    "fieldname": "academic_year",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Academic Year",
    "options": "Academic Year",
-   "read_only": 1
+   "read_only": 1,
+   "width": "1"
   },
   {
+   "columns": 1,
    "fetch_from": "participant_id.participant_name",
    "fieldname": "participant_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Participant Name",
-   "read_only": 1
+   "read_only": 1,
+   "width": "1"
   },
   {
    "fieldname": "grading_scale",
@@ -122,12 +128,14 @@
    "label": "Comment"
   },
   {
+   "columns": 1,
    "fieldname": "tot_participant_enrollment",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "ToT Participant Enrollment",
    "options": "ToT Participant Enrollment",
-   "reqd": 1
+   "reqd": 1,
+   "width": "1"
   },
   {
    "fetch_from": "tot_participant_enrollment.semester",
@@ -139,23 +147,29 @@
    "read_only": 1
   },
   {
+   "columns": 1,
    "fetch_from": "tot_participant_enrollment.programs",
    "fieldname": "programs",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Programs",
    "options": "Programs",
-   "read_only": 1
+   "read_only": 1,
+   "width": "1"
   },
   {
    "fieldname": "column_break_wvaa3",
    "fieldtype": "Column Break"
   },
   {
+   "columns": 1,
    "fetch_from": "tot_participant_enrollment.tot_participant_batch",
    "fieldname": "tot_participant_batch",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "ToT Participant Batch ",
-   "read_only": 1
+   "read_only": 1,
+   "width": "1"
   },
   {
    "fieldname": "participant_group",
@@ -233,7 +247,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-31 17:47:28.371125",
+ "modified": "2023-12-15 12:31:40.554153",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Final Assignment Result",
