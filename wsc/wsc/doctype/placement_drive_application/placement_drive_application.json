@@ -44,6 +44,9 @@
   "drive_details_section",
   "placement_drive",
   "placement_company",
+  "column_break_mr1nm",
+  "placement_drive_name",
+  "section_break_p5wzr",
   "eligibility_details",
   "amended_from"
  ],
@@ -305,12 +308,27 @@
    "hidden": 1,
    "label": "Resume Signature",
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_mr1nm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "placement_drive.title",
+   "fieldname": "placement_drive_name",
+   "fieldtype": "Data",
+   "label": "Placement Drive Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_p5wzr",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-28 15:05:54.353473",
+ "modified": "2023-12-13 17:36:14.581427",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Drive Application",

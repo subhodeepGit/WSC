@@ -1975,3 +1975,98 @@ def jocr_ceo_mail(doc):
 
 		send_mail(recipient_emails, sub, msg)
 		frappe.msgprint("Job Offer Creation Request is sent to CEO.")
+
+
+#  for TnP
+
+# placement_drive_eligibility_mail
+def placement_drive_eligibility_mail(doc):
+	sub = """ Eligible for {0} Placement Drive""".format(doc.get('placement_company'))
+	msg = """Dear Sir/Ma'am,<br>"""
+	msg += """This mail is to inform you that you are eligible to apply for the <b>{0}</b>""".format(doc.get('title'))
+	msg += """of <b>{0}</b>.<br>""".format(doc.get('placement_company'))
+	msg += """You can apply for the drive between {0}""".format(doc.get('application_start_date'))
+	msg += """ and {0}""".format(doc.get('application_end_date'))
+	msg += """Thank you."""
+	for d in doc.get('eligible_student'):
+		get_mail = frappe.db.sql(""" SELECT student_email_id FROM `tabStudent` WHERE name = '%s'"""%(d.student_doctype_name))
+		send_mail(get_mail[0][0], sub, msg)
+
+# placement_drive_block_mail
+def placement_drive_block_mail(doc):
+	placement_drive_details = frappe.db.sql(""" SELECT placement_drive, placement_drive_name FROM `tabBlock Drive List` WHERE parent = 'PLBK-0007'""")
+	placement_drive_id = placement_drive_details[0][0]
+	placement_company = frappe.db.sql(""" SELECT placement_company FROM `tabPlacement Drive` WHERE name = '%s'"""%(placement_drive_id))
+	placement_drive_name = placement_drive_details[0][0]
+	
+	sub = """Blocked from drive {0} """.format(placement_drive_name)
+	sub += """of {0}""".format(placement_company)
+	msg = """Dear Sir/Ma'am,<br>"""
+	msg += """We are sorry to inform you that you have been blocked from the {0} of """.format(placement_drive_name)
+	msg +="""{0}.<br>""".format(placement_company)
+	msg += """For further calirification kindly contact Training and Placement authorities"""
+	msg += """Thank you"""
+	for d in doc.get('eligible_student'):
+		if(d.email_status == 0):
+			get_mail = frappe.db.sql(""" SELECT student_email_id FROM `tabStudent` WHERE name = '%s'"""%(d.student_doctype_name))
+			send_mail(get_mail[0][0], sub, msg)
+
+# placement_drive_application_mail
+def placement_drive_application_mail(doc):
+	sub = """Placement drive application"""
+	msg = """Dear Sir/Ma'am,<br>"""
+	msg += """Your application to the {0} of """.format(doc.get('placement_drive_name'))
+	msg += """{0} """.format(doc.get(''))
+	msg += """has been successfully submitted<br>"""
+	msg += """You will be notified about your applications status through out the drive on your registered mail<br>"""
+	msg += """Thank you"""
+	get_mail = frappe.db.sql(""" SELECT student_email_id FROM `tabStudent` WHERE name = '%s'"""%(doc.student))
+	send_mail(get_mail[0][0], sub, msg)
+
+# placement_round_status_mail
+def placement_round_status_mail(doc):
+	pass
+
+# event_registration_mail
+def event_registered_mail(doc):
+	sub = """Event Registration"""
+	pass
+
+# feedback_submission_mail
+def feedback_submission_mail(doc):
+	pass
+
+# internship_application_mail
+def internship_application_mail(doc):
+	pass
+
+# internship_list_mail
+def internship_list_mail(doc):
+	pass
+
+
+
+
+
+def placement_drive_mail(doc):
+	sub = """Placement Drive For {0}""".format(doc.get('placement_company'))
+	msg = """Deal Sir/Ma'am,<br>"""
+	msg += """This mail is to inform you that you are eligible to apply for the {0}""".format(doc.get('title'))
+	msg += """ of {0}.<br>""".format(doc.get('placement_company'))
+	msg += """You can apply between {0}""".format(doc.get('application_start_date'))
+	msg += """ and {0}. <br>""".format(doc.get('application_end_date'))
+	msg += """Thank you"""
+	for d in doc.get('eligible_student'):
+		get_email = frappe.db.sql(""" SELECT student_email_id FROM `tabStudent` WHERE name = '%s'"""%(d.student_doctype_name))
+		send_mail(get_email[0][0], sub, msg)
+
+def placement_drive_application_mail(doc):
+	sub = "Placement drive application"
+	msg = """ Dear Sir/Ma'am,<br>"""
+	msg += """Thank you for applying to the {0}""".format(doc.get('placement_drive'))
+	msg += """ of {0}<br>""".format(doc.get('placement_drive_name'))
+	msg += """Your application ID is {0}<br>""".format(doc.get('name'))
+	msg += """You will be notified about your applications status on your registered mail<br>"""
+	msg += """Thank you"""
+	get_email = frappe.db.sql(""" SELECT student_email_id FROM `tabStudent` WHERE name = '%s'"""%(doc.student))
+	send_mail(get_email[0][0], sub, msg)

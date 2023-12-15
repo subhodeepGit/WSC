@@ -5,13 +5,15 @@ import frappe
 import json
 from frappe.model.document import Document
 from frappe import msgprint, _
-from wsc.wsc.notification.custom_notification import placement_drive_submit
+from wsc.wsc.notification.custom_notification import placement_drive_mail
 
 class PlacementDrive(Document):
 	def validate(self):
 		create_placement_drive_block_list(self)
 		validate_application_date(self)
 		self.rounds_of_placement_check()
+		if(self.docstatus == 1):
+			placement_drive_mail(self)
 	
 	def before_submit(self):
 		tentative_date_validation(self)
@@ -28,7 +30,7 @@ class PlacementDrive(Document):
 			frappe.throw("Duplicate Round Names in rounds of placement")
 
 	def on_submit(self):
-		placement_drive_submit(self)
+		# placement_drive_submit(self)
 		self.set_permission_to_enroll_student()
 
 
