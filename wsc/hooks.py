@@ -33,6 +33,7 @@ web_include_js = "/assets/wsc/js/wsc_ui.js"
 # include js in doctype views
 doctype_js = {
                 "Account":"public/js/account.js",
+                "Bank Reconciliation Tool":"public/js/bank_reconciliation_tool.js",
                 "Course":"public/js/course.js",
                 "Course Enrollment":"public/js/course_enrollment.js",
                 "Course Schedule": "public/js/course_schedule.js",
@@ -79,7 +80,10 @@ doctype_js = {
                 "Purchase Invoice":"public/js/purchase_invoice.js",
                 "Warehouse":"public/js/warehouse.js",
                 "Asset":"public/js/asset.js",
-                "Job Requisition":"public/js/job_requisition.js"
+                "Job Requisition":"public/js/job_requisition.js",
+                "Project":"public/js/project.js",
+                "Supplier Quotation":"public/js/supplier_quotation.js",
+                "Stock Entry":"public/js/stock_entry.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -260,9 +264,9 @@ doc_events = {
     "Mentor Allocation": {
         "validate": "wsc.wsc.validations.mentor_allocation.validate"
     },
-    "Mentor Initiation": {
-        "validate":"wsc.wsc.doctype.mentor_initiation.mentor_initiation.create_mentee_communications"
-    },
+    # "Mentor Initiation": {
+    #     "validate":"wsc.wsc.doctype.mentor_initiation.mentor_initiation.create_mentee_communications"
+    # },
     "Photocopy Application":{
         "validate":"wsc.wsc.validations.photocopy_application.validate"
     },

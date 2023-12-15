@@ -2043,30 +2043,31 @@ def internship_application_mail(doc):
 # internship_list_mail
 def internship_list_mail(doc):
 	pass
+#####################################################################################################################
+@frappe.whitelist()
+def job_offerapplicant(doc):
+	import json
+	doc = json.loads(doc)
+	sub = "Reg:Job Offer"
 
+	msg = """<p>Dear Ma'am/Sir,</p><br>"""
+	msg += """<p>Congratulations!! We are pleased to extend an offer of employment for the position of {0} at {1}. If you accept this offer, kindly sign and return a copy of this letter as a symbol of your acceptance. Kindly find your job offer in the attachment for the same.</p></br>""".format(doc.get('designation'), doc.get('company'))
 
+	attachments = [frappe.attach_print(doc['doctype'], doc['name'], file_name=doc['name'], print_format='WSC Job Offer')]
+	send_mail(frappe.db.get_value("Job Applicant", {"name": doc['job_applicant_id']}, ["email_id"]), sub, msg, attachments)
+	frappe.msgprint("Email Sent to the Applicant")
 
+def job_offer_reengagement(doc):
+    sub = "Reg: Contract Renewal"
 
+    msg = """<p>Dear Ma'am/Sir,</p><br>"""
+    msg += """<p> I am writing to inform you that we are pleased to extend an offer for the renewal of your employment contract with {0} for the position of {1}. Your dedication and contributions to the team have been invaluable, and we are eager to continue our professional relationship with you.</p></br>""".format(doc.company, doc.designation)
 
-def placement_drive_mail(doc):
-	sub = """Placement Drive For {0}""".format(doc.get('placement_company'))
-	msg = """Deal Sir/Ma'am,<br>"""
-	msg += """This mail is to inform you that you are eligible to apply for the {0}""".format(doc.get('title'))
-	msg += """ of {0}.<br>""".format(doc.get('placement_company'))
-	msg += """You can apply between {0}""".format(doc.get('application_start_date'))
-	msg += """ and {0}. <br>""".format(doc.get('application_end_date'))
-	msg += """Thank you"""
-	for d in doc.get('eligible_student'):
-		get_email = frappe.db.sql(""" SELECT student_email_id FROM `tabStudent` WHERE name = '%s'"""%(d.student_doctype_name))
-		send_mail(get_email[0][0], sub, msg)
+    attachments = [frappe.attach_print(doc.doctype, doc.name, file_name=doc.name, print_format='WSC Re-engagement Job Offer')]
 
-def placement_drive_application_mail(doc):
-	sub = "Placement drive application"
-	msg = """ Dear Sir/Ma'am,<br>"""
-	msg += """Thank you for applying to the {0}""".format(doc.get('placement_drive'))
-	msg += """ of {0}<br>""".format(doc.get('placement_drive_name'))
-	msg += """Your application ID is {0}<br>""".format(doc.get('name'))
-	msg += """You will be notified about your applications status on your registered mail<br>"""
-	msg += """Thank you"""
-	get_email = frappe.db.sql(""" SELECT student_email_id FROM `tabStudent` WHERE name = '%s'"""%(doc.student))
-	send_mail(get_email[0][0], sub, msg)
+    employee_user_id = frappe.db.get_value("Employee", {"name": doc.employee}, ["user_id"])
+
+    send_mail(employee_user_id, sub, msg, attachments)
+    frappe.msgprint("Email Sent to the Employee")
+
+##################################################################################################################################################################

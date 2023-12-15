@@ -23,7 +23,7 @@ frappe.ui.form.on('Exam Declaration', {
 		});
         if(frm.doc.docstatus==1){
             if(frm.doc.docstatus == 1 && frappe.user.has_role(["Education Administrator"]) || frappe.user.has_role(["Exam Coordinator"]) || frappe.user.has_role(["System Manager"])){
-                frm.add_custom_button("Exam Evaluation Plan", () => {
+                frm.add_custom_button("Create Setter & Moderator", () => {
                     let data = {}
                     data.programs = frm.doc.exam_program
                     data.program = frm.doc.program

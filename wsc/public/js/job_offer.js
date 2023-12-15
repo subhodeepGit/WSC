@@ -29,7 +29,27 @@ frappe.ui.form.on('Job Offer', {
 			};
 		});
 	},
-
+    refresh:function(frm) {
+        if (frm.doc.is_new_job_applicant===1 && frm.doc.status === "Awaiting Response" && frm.doc.docstatus === 1) {
+			frm.add_custom_button(__("Send Job Offer"), function() {
+				frm.events.offer(frm)
+			}).addClass("btn-primary");
+        }
+    },
+    offer: function(frm) {
+        frappe.call({
+            method: "wsc.wsc.notification.custom_notification.job_offerapplicant",
+            args: {
+                'doc':frm.doc
+            },
+            callback: function(r) { 
+                if(r.message){
+                    frappe.msgprint("Mail sent")
+                }
+            } 
+        })
+    },
 
 });
+
 
