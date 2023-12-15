@@ -1,11 +1,8 @@
 import frappe
 from frappe import _
-from wsc.wsc.notification.custom_notification import placement_drive_mail
 
 def validate(doc, method):
 	validate_semester(doc)
-	if(doc.docstatus == 1):
-		placement_drive_mail(doc)
 
 def validate_semester(doc):
 	for i in doc.for_programs:

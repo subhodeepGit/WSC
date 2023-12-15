@@ -5,7 +5,7 @@ import frappe
 import json
 from frappe.model.document import Document
 from frappe import msgprint, _
-from wsc.wsc.notification.custom_notification import placement_drive_mail
+from wsc.wsc.notification.custom_notification import placement_drive_eligibility_mail
 
 class PlacementDrive(Document):
 	def validate(self):
@@ -13,7 +13,7 @@ class PlacementDrive(Document):
 		validate_application_date(self)
 		self.rounds_of_placement_check()
 		if(self.docstatus == 1):
-			placement_drive_mail(self)
+			placement_drive_eligibility_mail(self)
 	
 	def before_submit(self):
 		tentative_date_validation(self)
