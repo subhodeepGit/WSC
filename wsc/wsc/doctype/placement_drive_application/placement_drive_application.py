@@ -4,9 +4,14 @@
 import frappe
 from frappe.model.document import Document
 from datetime import date
+from frappe import msgprint, _
+from wsc.wsc.notification.custom_notification import placement_drive_application_mail
+
 
 class PlacementDriveApplication(Document):
     def validate(self):
+        if(self.docstatus == 1):
+            placement_drive_application_mail(self)
         self.validate_block_student()
         self.validate_placement_drive()
         self.update_status()

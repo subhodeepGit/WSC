@@ -2,7 +2,7 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Placement Drive', {
-	refresh: function(frm) {
+	refresh: function(frm){
 		frm.set_query('placement_company', function(){
 			return{
 				filters:[
@@ -11,17 +11,148 @@ frappe.ui.form.on('Placement Drive', {
 				]
 			}
 		})
+		if(!frm.is_new()){
+			frm.set_df_property('get_students' , 'hidden' , 0)
+			frm.set_df_property('tentative_joining_date' , 'hidden' , 0)
+		}
+		else{
+			frm.set_df_property('get_students' , 'hidden' , 1)
+			frm.set_df_property('tentative_joining_date' , 'hidden' , 1)
+		}
+		if(frm.doc.docstatus==1){
+			frm.set_df_property('get_students' , 'hidden' , 1)
+			frm.set_df_property('tentative_joining_date' , 'hidden' , 1)
+		}
+		frm.set_df_property("authorized_signature", "cannot_add_rows", true);
 	},
-	application_start_date(frm) {
-        frm.fields_dict.application_end_date.datepicker.update({
-            minDate: frm.doc.application_start_date ? new Date(frm.doc.application_start_date) : null
+
+	setup: function(frm){
+		const date = new Date()
+		let year = date.getFullYear()
+		let month = String(date.getMonth() + 1).padStart(2,'0')
+		let day = String(date.getDate()).padStart(2,'0')
+		frm.set_value('current_date', `${year}-${month}-${day}`)
+
+		// sector filter
+		frm.set_query("sector_of_work", function() {
+			var sector_list= []
+			$.each(frm.doc.for_sectors, function(index, row){
+                sector_list.push(row.sector);
+	        });
+			return {
+				filters: {
+					"sector_name":  ['in', sector_list]
+				}
+			};
+		});
+		// course
+		frm.set_query("programs","for_programs", function() {
+			var dept_list= []
+			$.each(frm.doc.for_department, function(index, row){
+                dept_list.push(row.department);
+	        });
+			return {
+				filters: {
+					"department":  ['in', dept_list]
+				}
+			};
+		});		
+		frm.set_query("semester","for_programs", function(frm, cdt, cdn) {
+			var d = locals[cdt][cdn];
+			return {
+				filters: {
+					"programs" :d.programs
+				}
+			};
+		});
+		frm.set_query("academic_term", function() {
+            return {
+                filters: {
+                    "academic_year":frm.doc.academic_year
+                }
+            };
         });
-    },
-    application_end_date(frm) {
-        frm.fields_dict.application_start_date.datepicker.update({
-            maxDate: frm.doc.application_end_date ? new Date(frm.doc.application_end_date) : null
-        });
-    },
+		frm.set_query("placement_company" , function(){
+			return{
+				filters:[
+					["black_list", "=", "0"],
+					["visitor", "!=", "Internship"]
+				]
+			}
+		})
+	},
+	before_submit:function(frm){
+		if(frm.doc.eligible_student.length === 0){
+			frm.set_df_property("eligible_student" , 'reqd' , 1)
+			frm.refresh()
+		} else {
+			frm.set_df_property("eligible_student" , 'reqd' , 0)
+			frm.refresh()
+		}
+	},
+	application_start_date: function(frm){
+		if(frm.doc.application_end_date){
+			if(frm.doc.application_start_date > frm.doc.application_end_date){
+				frm.set_value('application_start_date', 0)
+				frappe.throw('Application start date should be before application end date')
+			}
+			else if(frm.doc.application_start_date < frm.doc.current_date){
+				frm.set_value('application_start_date', 0)
+				frappe.throw('Application start date should either be before the end date and either today or a future date')
+			}
+		}
+		else if(frm.doc.application_start_date < frm.doc.current_date){
+			frm.set_value('application_start_date', 0)
+			frappe.throw('Application start date should either be today or a future date')
+		}
+	},
+	application_end_date: function(frm){
+		if(frm.doc.application_start_date){
+			if(frm.doc.application_end_date < frm.doc.application_start_date){
+				frm.set_value('application_end_date', 0)
+				frappe.throw('Application end date should be after application end date')
+			}
+			else if(frm.doc.application_end_date < frm.doc.current_date){
+				frm.set_value('application_end_date', 0)
+				frappe.throw('Application date should be after application start date')
+			}
+		}
+		else if(frm.doc.application_end_date < frm.doc.current_date){
+			frm.set_value('application_end_date', 0)
+			frappe.throw('Application end date should either be today or a future date')
+		}
+	},
+	placement_company:function(frm){
+		if(frm.doc.placement_company){
+			// For departments
+			frappe.model.with_doc("Placement Company", frm.doc.placement_company, function() {
+                var tabletransfer= frappe.model.get_doc("Placement Company", frm.doc.placement_company)
+                frm.clear_table("for_department");	
+                $.each(tabletransfer.belong_to_department, function(index, row){
+                    var d = frm.add_child("for_department");
+                    d.department = row.department;
+                    frm.refresh_field("for_department");
+
+                });
+            });
+			// For sectors
+			frappe.model.with_doc("Placement Company", frm.doc.placement_company, function() {
+                var tabletransfer= frappe.model.get_doc("Placement Company", frm.doc.placement_company)
+                frm.clear_table("for_sectors");	
+                $.each(tabletransfer.sector_of_work, function(index, row){
+                    var d = frm.add_child("for_sectors");
+                    d.sector = row.sector_name;
+                    frm.refresh_field("for_sectors");
+
+                });
+            });
+        } else{
+			frm.clear_table("for_department");
+			frm.clear_table("for_sectors");
+			frm.refresh();
+			frm.refresh_field("eligible_student")
+		}
+	},
 	ctc: function(frm){
 		if(isNaN(frm.doc.ctc)){
 			frm.set_value("ctc", '0')
@@ -32,7 +163,6 @@ frappe.ui.form.on('Placement Drive', {
 			frappe.throw('value needs to be a positive number')
 		}
 	},
-	
 	get_students: function(frm){
 		if(!frm.is_new()){
 			let body = JSON.stringify({
@@ -70,175 +200,11 @@ frappe.ui.form.on('Placement Drive', {
 						frm.refresh();
 						frm.refresh_field("eligible_student")
 					}
-					// const res = Object.values(result)
-					// const values = Object.values(res[0])
-					// if(values[0].length !== 0){
-					// 	let r = values[0]
-					// 	frappe.model.clear_table(frm.doc, 'eligible_student');
-					// 	values.forEach(r => {
-					// 		if(r.length > 0){
-					// 		let c =frm.add_child('eligible_student')
-					// 		c.student_doctype_name= r[0].parent
-					// 		c.student_name = r[0].student_name
-					// 		c.program_enrollment = r[0].programs
-					// 		c.academic_year = r[0].academic_year
-					// 		}
-					// 	})
-					// 	frm.refresh();
-					// 	frm.refresh_field("eligible_student")	
-					// } else {
-					// 	alert("No Eligible Students found")
-					// 	frappe.model.clear_table(frm.doc, 'eligible_student');
-					// 	frm.refresh();
-					// 	frm.refresh_field("eligible_student")
-					// }
 				}
 			})
 		}
 		
-	},
-	setup:function(frm){		
-		// sector filter
-		frm.set_query("sector_of_work", function() {
-			var sector_list= []
-			$.each(frm.doc.for_sectors, function(index, row){
-                sector_list.push(row.sector);
-	        });
-			return {
-				filters: {
-					"sector_name":  ['in', sector_list]
-				}
-			};
-		});
-
-
-		// course
-		frm.set_query("programs","for_programs", function() {
-			var dept_list= []
-			$.each(frm.doc.for_department, function(index, row){
-                dept_list.push(row.department);
-	        });
-			return {
-				filters: {
-					"department":  ['in', dept_list]
-				}
-			};
-		});
-		
-		frm.set_query("semester","for_programs", function(frm, cdt, cdn) {
-			var d = locals[cdt][cdn];
-			return {
-				filters: {
-					"programs" :d.programs
-				}
-			};
-		});
-		
-
-		frm.set_query("academic_term", function() {
-            return {
-                filters: {
-                    "academic_year":frm.doc.academic_year
-                }
-            };
-        });
-		frm.set_query("placement_company" , function(){
-			return{
-				filters:[
-					["black_list", "=", "0"],
-					["visitor", "!=", "Internship"]
-				]
-			}
-		})
-	},
-	placement_company:function(frm){
-		if(frm.doc.placement_company){
-			// For departments
-			frappe.model.with_doc("Placement Company", frm.doc.placement_company, function() {
-                var tabletransfer= frappe.model.get_doc("Placement Company", frm.doc.placement_company)
-                frm.clear_table("for_department");	
-                $.each(tabletransfer.belong_to_department, function(index, row){
-                    var d = frm.add_child("for_department");
-                    d.department = row.department;
-                    frm.refresh_field("for_department");
-
-                });
-            });
-			// For sectors
-			frappe.model.with_doc("Placement Company", frm.doc.placement_company, function() {
-                var tabletransfer= frappe.model.get_doc("Placement Company", frm.doc.placement_company)
-                frm.clear_table("for_sectors");	
-                $.each(tabletransfer.sector_of_work, function(index, row){
-                    var d = frm.add_child("for_sectors");
-                    d.sector = row.sector_name;
-                    frm.refresh_field("for_sectors");
-
-                });
-            });
-        } else{
-			frm.clear_table("for_department");
-			frm.clear_table("for_sectors");
-			frm.refresh();
-			frm.refresh_field("eligible_student")
-		}
-	},
-	application_start_date: function(frm){
-		if(frm.doc.application_start_date < frm.doc.current_date){
-			frappe.throw('Start date cannot be before current date')
-		}
-	},
-	application_end_date:function(frm){
-		if(frm.doc.application_start_date && frm.doc.application_end_date){
-			if(frm.doc.application_end_date < frm.doc.application_start_date){
-				frappe.throw("Application End Date should be Greater than or same as the Application Start date");
-			}
-		}
-	},
-	// tentative_joining_date: function(frm){
-	// 	frappe.call({
-	// 		method: 'wsc.wsc.doctype.placement_drive.placement_drive.tentative_date_validation',
-	// 		callback: function(result) {
-	// 			if(result.message){
-	// 				if(result.message[0] == 1){
-	// 					alert(300)
-	// 				}
-	// 				else if(result.message[0] == 2){
-	// 					alert(400)
-	// 				}
-	// 			}
-	// 		}
-	// 	})
-	// },
-	refresh:function(frm){
-		if(!frm.is_new()){
-			frm.set_df_property('get_students' , 'hidden' , 0)
-			frm.set_df_property('tentative_joining_date' , 'hidden' , 0)
-		}
-		else{
-			frm.set_df_property('get_students' , 'hidden' , 1)
-			frm.set_df_property('tentative_joining_date' , 'hidden' , 1)
-		}
-		if(frm.doc.docstatus==1){
-			frm.set_df_property('get_students' , 'hidden' , 1)
-			frm.set_df_property('tentative_joining_date' , 'hidden' , 1)
-		}
-		frm.set_df_property("authorized_signature", "cannot_add_rows", true);
-
-		const date = new Date()
-		let year = date.getFullYear()
-		let month = String(date.getMonth() + 1).padStart(2,'0')
-		let day = String(date.getDate()).padStart(2,'0')
-		frm.set_value('current_date', `${year}-${month}-${day}`)
-	},
-	before_submit:function(frm){
-		if(frm.doc.eligible_student.length === 0){
-			frm.set_df_property("eligible_student" , 'reqd' , 1)
-			frm.refresh()
-		} else {
-			frm.set_df_property("eligible_student" , 'reqd' , 0)
-			frm.refresh()
-		}
-	}
+	}	
 });
 
 frappe.ui.form.on('Eligibility Criteria', {
@@ -262,4 +228,16 @@ frappe.ui.form.on('Rounds of Placement', {
 		}
 	});
   }
+});
+
+frappe.ui.form.on('Placement Designations', {
+	designations_position_add: function(frm){
+		frm.fields_dict['designations_position'].grid.get_field('designation').get_query = function(doc){
+			var designations = [];
+			$.each(doc.designations_position, function(idx, val){
+				if (val.designation) designations.push(val.designation);
+			});
+			return { filters: [['Designation', 'name', 'not in', designations]] };
+		};
+	}
 });
