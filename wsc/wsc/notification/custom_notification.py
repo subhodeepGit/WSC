@@ -2071,3 +2071,19 @@ def job_offer_reengagement(doc):
     frappe.msgprint("Email Sent to the Employee")
 
 ##################################################################################################################################################################
+
+###############################################		Infrastructre Notification Start	##########################################################################
+def task_delay_reminder(doc):
+	sub = "Reg:Task Delay"
+
+	msg="""<b>Task {0} has  exceeded its expected end date</b><br>""".format(doc.get('subject'))
+	recipients_list = frappe.get_all("Task Assign", {'parent':'doc.name'},['assign_to'])
+	recipient_emails = [recipient.get('assign_to') for recipient in recipients_list]
+	print("\n\n\n")
+	print(recipient_emails)
+	if len(recipient_emails)==0 or recipient_emails==[" "]:
+		frappe.throw("Receipient Email not found")
+
+	attachments = None
+	send_mail(recipient_emails,'Material Request',msg,attachments)
+###############################################		Infrastructre Notification Ends	##########################################################################

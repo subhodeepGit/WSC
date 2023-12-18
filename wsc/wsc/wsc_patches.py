@@ -20,6 +20,8 @@ def execute():
     process_response_website_js_2()
     change_password_confirmation_1()
     change_password_confirmation_2()
+    update_forgot_password()
+    login_senetize_handle()
 
 def disable_cancel_link():
     file_path = "{}/{}".format(BENCH_PATH,
@@ -1588,3 +1590,72 @@ def change_password_confirmation_2():
     with open(file_path, "w") as file:
         file.write(updated_content)
         print("Change Password Confirmation 2. Successfully Updated.")
+        
+
+def update_forgot_password():
+    file_path = "{}/{}".format(BENCH_PATH,"/apps/frappe/frappe/www/update-password.html")
+    
+    with open(file_path, "r") as file:
+        content = file.read()
+    
+    updated_content = content.replace('''if (!args.new_password) {
+			set_strength_indicator('grey', {'warning': "{{ _('Please enter the password') }}" });
+			return;
+		}''', '''if (!args.new_password) {
+			set_strength_indicator('grey', {'warning': "{{ _('Please enter the password') }}" });
+			return;
+		}
+		var plaintext = ''
+		for (var i = 0; i < args.new_password.length; i++){
+			plaintext += "*"
+		}
+		args.old_password = plaintext
+		args.new_password = plaintext''')
+
+    with open(file_path) as f:
+        if '''if (!args.new_password) {
+			set_strength_indicator('grey', {'warning': "{{ _('Please enter the password') }}" });
+			return;
+		}
+		var plaintext = ''
+		for (var i = 0; i < args.new_password.length; i++){
+			plaintext += "*"
+		}
+		args.old_password = plaintext
+		args.new_password = plaintext''' in f.read():
+            return
+        
+    with open(file_path, "w") as file:
+        file.write(updated_content)
+        print("Update Forgot Password. Successfully Updated.")
+
+def login_senetize_handle():
+    file_path = "{}/{}".format(BENCH_PATH,"apps/frappe/frappe/handler.py")
+    with open(file_path, "r") as file:
+        content = file.read()
+    updated_content = content.replace('''try:
+		method = get_attr(cmd)
+	except Exception as e:
+		frappe.throw(_("Failed to get method for command {0} with {1}").format(cmd, e))''', '''import re
+	pattern = re.compile("^[a-zA-Z0-9]+$")
+	if not pattern.match(cmd):
+		frappe.throw("Invalid characters in cmd parameter.")
+	try:
+		method = get_attr(cmd)
+	except Exception as e:
+		frappe.throw(_("Failed to get method for command {0} with {1}").format(cmd, e))''')
+    with open(file_path) as f:
+        if '''import re
+	pattern = re.compile("^[a-zA-Z0-9]+$")
+	if not pattern.match(cmd):
+		frappe.throw("Invalid characters in cmd parameter.")
+	try:
+		method = get_attr(cmd)
+	except Exception as e:
+		frappe.throw(_("Failed to get method for command {0} with {1}").format(cmd, e))''' in f.read():
+            return
+    with open(file_path, "w") as file:
+        file.write(updated_content)
+        print("Login Senetize Handle. Successfully Updated.")
+
+			
