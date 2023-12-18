@@ -21,7 +21,7 @@ def execute():
     change_password_confirmation_1()
     change_password_confirmation_2()
     update_forgot_password()
-    login_senetize_handle()
+    # login_senetize_handle()
 
 def disable_cancel_link():
     file_path = "{}/{}".format(BENCH_PATH,
