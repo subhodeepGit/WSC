@@ -1,8 +1,5 @@
-frappe.listview_settings['Scholarship Application'] = {
+frappe.listview_settings['Student Clearance Application'] = {
 	refresh: function(listview) {
-		if(!frappe.user.has_role(["Administrator","Student"])){
-        	$('.primary-action').hide();
-		}
 		if(frappe.user.has_role(["Student"]) && !frappe.user.has_role(["Administrator"])){
 			$('[data-label="Edit"]').parent().parent().remove();
 			$('[data-label="Apply%20Assignment%20Rule"]').parent().parent().remove();

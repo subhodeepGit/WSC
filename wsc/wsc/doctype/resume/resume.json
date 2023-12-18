@@ -99,6 +99,7 @@
    "fetch_from": "id.student_name",
    "fieldname": "student_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Name",
    "read_only": 1
   },
@@ -200,7 +201,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-24 10:52:48.454152",
+ "modified": "2023-12-15 18:39:50.752448",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Resume",

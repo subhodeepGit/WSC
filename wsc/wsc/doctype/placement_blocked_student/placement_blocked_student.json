@@ -58,8 +58,7 @@
    "fieldname": "block_drive_list",
    "fieldtype": "Table",
    "label": "Block Drive List",
-   "options": "Block Drive List",
-   "reqd": 1
+   "options": "Block Drive List"
   },
   {
    "fieldname": "section_break_7",
@@ -95,7 +94,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-06 12:05:37.606615",
+ "modified": "2023-12-15 18:49:31.142269",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Blocked Student",
