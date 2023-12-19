@@ -102,5 +102,3 @@ def val_cancel(self):
                 elif(current_round_status == 'Round Result Declaration'):
                     current_round_scheduling_status = frappe.db.sql(""" SELECT application_status FROM `tabSelection Round` WHERE docstatus = '1' AND drive_round_status = 'Scheduling Of Round' AND placement_drive_name = '%s' AND round_of_placement = '%s' AND application_id = '%s'"""%(placement_drive_id, current_round_name, application_id))
                     frappe.set_value('Placement Drive Application', application_id, 'status', current_round_scheduling_status[0][0])
-            elif(next_round_status > 0):
-                frappe.throw('Kindly cancel record of the next round before cancelling this record')

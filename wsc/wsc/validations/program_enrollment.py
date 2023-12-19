@@ -848,14 +848,15 @@ def validate_dates_on_academic_events(doc):
             #     frappe.throw("Start Date <b>'{0}'</b> in Academic Events Table Should not be less than today's date".format(i.start_date))
 
 def validate_program_enrollment(doc):
-    filters = {'academic_year':doc.academic_year,'academic_term':doc.academic_term, "student":doc.student,"docstatus":1}
-    if doc.academic_term :
-        filters.update({"academic_term":doc.academic_term})
-    existed_enrollment = [p.name for p in frappe.get_all('Program Enrollment', filters, ["name"])]
-    if len(existed_enrollment) > 0:
-        for e in existed_enrollment:
-            if e:
-                frappe.throw("Student <b>'{0}'</b> had program enrollment <b>'{1}'</b> already".format(e.student, e.name))
+    if doc.is_tot!=1:
+        filters = {'academic_year':doc.academic_year,'academic_term':doc.academic_term, "student":doc.student,"docstatus":1}
+        if doc.academic_term :
+            filters.update({"academic_term":doc.academic_term})
+        existed_enrollment = [p.name for p in frappe.get_all('Program Enrollment', filters, ["name"])]
+        if len(existed_enrollment) > 0:
+            for e in existed_enrollment:
+                if e:
+                    frappe.throw("Student <b>'{0}'</b> had program enrollment <b>'{1}'</b> already".format(e.student, e.name))
  
 # def validate_seat_reservation_type(doc):
 #     if doc.reference_doctype == "Student Applicant" and doc.reference_name:

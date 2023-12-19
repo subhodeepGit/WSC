@@ -16,19 +16,20 @@ import os
 from datetime import datetime
 from frappe.utils import now_datetime, add_days
 from wsc.wsc.notification.custom_notification import email_transaction_status
+from wsc.wsc.notification.custom_notification import task_delay_reminder
 
 #Notification for 30 days to Warranty period
 def warranty_notification():
     item_list = frappe.get_all("Item", filters={}, fields=["item_code","item_name", "creation", "warranty_period"])
     for items in item_list:
         time_data = items['creation']
-        creation_date = time_data.date()                                            #converting date_time to date()
+        creation_date = time_data.date()                                            
         if items['warranty_period'] != None:                                  
             warranty_period = int(items['warranty_period'])
-            warranty_over_date = creation_date + timedelta(days=warranty_period)    #adding date of creation with number of days to get warranty_end_date
+            warranty_over_date = creation_date + timedelta(days=warranty_period)    
             today = date.today()
             date_diff = warranty_over_date - today
-            date_diff_int = date_diff.days                                          #difference between warranty expires and creation in days
+            date_diff_int = date_diff.days                                          
             if date_diff_int == 30 or (date_diff_int <= 30 and date_diff_int > 0):
                 item_expiry(items)
         
@@ -1097,3 +1098,25 @@ def axis_transaction_update_status():             # bench execute wsc.task.axis_
                 #     axis_file_logger.info("t1 Successfully submitted") 
         except Exception as e:	
             axis_file_logger.info(f"Error in awaited_status_transactions_2: {repr(e)}")
+
+#################################################### Project Management Scheduler Start #####################################################################
+
+##########  Email for Task Overdue  ##########
+def overdue_task(self):
+    today_date = datetime.today().date()
+    if self.exp_end_date:
+        exp_end_date = datetime.strptime(self.exp_end_date, "%Y-%m-%d").date()
+        if today_date > exp_end_date:
+            task_delay_reminder(self)
+
+##########  Status Update for Task Overdue  ##########
+def status_update(self):
+    today_date = datetime.today().date()
+    if self.exp_end_date:
+        exp_end_date = datetime.strptime(self.exp_end_date, "%Y-%m-%d").date()
+        if today_date > exp_end_date:
+            self.status = "Overdue"
+        else:
+            self.status = self.status
+
+#################################################### Project Management Scheduler Ends #####################################################################
