@@ -10,7 +10,7 @@ class SelectionRound(Document):
 
 
 @frappe.whitelist()
-def val_cancel(self):
+def validate_cancel(self):
     placement_drive_id = self.placement_drive_name
     application_id = self.application_id
     application_status = self.application_status
@@ -61,7 +61,7 @@ def val_cancel(self):
             prev_schedule_record_status = prev_schedule_record_status[0][0]
             
             if(current_round_status == 'Scheduling Of Round'):
-                prev_application_status = frappe.db.sql(""" SELECT application_status FROM `tabSelection Round` WHERE docstatus = '1' AND placement_drive_name = '%s' AND round_of_placement = '%s' AND application_id = '%s' AND drive_round_status = 'Scheduling Of Round'"""%(placement_drive_id, prev_round_name, application_id))
+                prev_application_status = frappe.db.sql(""" SELECT application_status FROM `tabSelection Round` WHERE docstatus = '1' AND drive_round_status = 'Round Result Declaration' AND placement_drive_name = '%s' AND round_of_placement = '%s' AND application_id = '%s'"""%(placement_drive_id, prev_round_name, application_id))
                 if(current_round_result_status == 0):
                     if(prev_result_record_status > 0):
                         frappe.set_value('Placement Drive Application', application_id, 'status', prev_application_status[0][0])
@@ -70,10 +70,8 @@ def val_cancel(self):
                 elif(current_round_result_status > 0):
                     frappe.throw('Kindly cancel the next document before cancelling this document')
             elif(current_round_status == 'Round Result Declaration'):
-                 if(prev_result_record_status > 0):
-                     frappe.set_value('Placement Drive Application', application_id, 'status', prev_application_status[0][0])
-                 elif(prev_schedule_record_status > 0):
-                     frappe.set_value('Placement Drive Application', application_id, 'status', prev_application_status[0][0])
+                current_round_scheduling_status = frappe.db.sql(""" SELECT application_status FROM `tabSelection Round` WHERE docstatus = '1' AND drive_round_status = 'Scheduling Of Round' AND placement_drive_name = '%s' AND round_of_placement = '%s' AND application_id = '%s' AND drive_round_status = 'Scheduling Of Round'"""%(placement_drive_id, current_round_name, application_id))
+                frappe.set_value('Placement Drive Application', application_id, 'status', current_round_scheduling_status[0][0])
         else:
             next_round_idx = current_round_idx + 1
             next_round_details = frappe.db.sql(""" SELECT round_name FROM `tabRounds of Placement` WHERE parent = '%s' AND idx = '%s'"""%(placement_drive_id, next_round_idx))
@@ -88,9 +86,8 @@ def val_cancel(self):
             prev_result_record_status = prev_result_record_status[0][0]
             prev_schedule_record_status = frappe.db.sql(""" SELECT COUNT(*) FROM `tabSelection Round` WHERE docstatus = '1' AND placement_drive_name = '%s' AND round_of_placement = '%s' AND application_id = '%s' AND drive_round_status = 'Scheduling Of Round'"""%(placement_drive_id, prev_round_name, application_id))
             prev_schedule_record_status = prev_schedule_record_status[0][0]
-            prev_application_status = frappe.db.sql(""" SELECT application_status FROM `tabSelection Round` WHERE docstatus = '1' AND drive_round_status = 'Scheduling Of Round' AND placement_drive_name = '%s' AND round_of_placement = '%s' AND application_id = '%s' AND drive_round_status = 'Scheduling Of Round'"""%(placement_drive_id, prev_round_name, application_id))
-
-            prev_round_scheduling_status = frappe.db.sql(""" SELECT application_status FROM `tabSelection Round` WHERE docstatus = '1' AND drive_round_status = 'Scheduling Of Round' AND placement_drive_name = '%s' AND round_of_placement = '%s' AND application_id = '%s' AND drive_round_status = 'Scheduling Of Round'"""%(placement_drive_id, prev_round_name, application_id))
+            
+            current_round_scheduling_status = frappe.db.sql(""" SELECT application_status FROM `tabSelection Round` WHERE docstatus = '1' AND drive_round_status = 'Scheduling Of Round' AND placement_drive_name = '%s' AND round_of_placement = '%s' AND application_id = '%s' AND drive_round_status = 'Scheduling Of Round'"""%(placement_drive_id, current_round_name, application_id))
             prev_round_result_status = frappe.db.sql(""" SELECT application_status FROM `tabSelection Round` WHERE docstatus = '1' AND drive_round_status = 'Round Result Declaration' AND placement_drive_name = '%s' AND round_of_placement = '%s' AND application_id = '%s' AND drive_round_status = 'Scheduling Of Round'"""%(placement_drive_id, prev_round_name, application_id))
 
             if(next_round_status == 0):
@@ -100,5 +97,6 @@ def val_cancel(self):
                     elif(current_round_result_status > 0):
                         frappe.throw('Kindly cancel the result record of the current round first')
                 elif(current_round_status == 'Round Result Declaration'):
-                    current_round_scheduling_status = frappe.db.sql(""" SELECT application_status FROM `tabSelection Round` WHERE docstatus = '1' AND drive_round_status = 'Scheduling Of Round' AND placement_drive_name = '%s' AND round_of_placement = '%s' AND application_id = '%s'"""%(placement_drive_id, current_round_name, application_id))
-                    frappe.set_value('Placement Drive Application', application_id, 'status', current_round_scheduling_status[0][0])
+                   frappe.set_value('Placement Drive Application', application_id, 'status', current_round_scheduling_status[0][0])
+            elif(next_round_status > 0):
+                frappe.throw('Kindly cancel record of the next round before cancelling this record')
