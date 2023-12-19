@@ -41,9 +41,9 @@ frappe.ui.form.on('Placement Tool', {
 
 	round_of_placement : function(frm){
 		// based on the chosen round of the placement drive, the scheduled date, time and location of the round will be filled in the fields
-		val = frm.doc.round_of_placement.toLowerCase()
-		if(val != 'no rounds have been scheduled' || val != 'all rounds have been scheduled'){
-			alert(frm.doc.round_of_placement.toLowerCase())
+		var val = frm.doc.round_of_placement.toLowerCase()
+		if(val != 'no rounds have been scheduled' && val != 'all rounds have been scheduled'){
+			alert(300)
 			frappe.call({
 				method : 'wsc.wsc.doctype.placement_tool.placement_tool.get_round_details',
 				args : {
@@ -58,6 +58,7 @@ frappe.ui.form.on('Placement Tool', {
 			})
 		}
 		else{
+			alert(500)
 			// frm.set_value('round_of_placement', '')
 			// frm.refresh_field('round_of_placement')
 		}
@@ -65,8 +66,8 @@ frappe.ui.form.on('Placement Tool', {
 
 	get_eligible_students_list : function(frm){
 		// get the students from the placement drive and fill the fields of the student_list child table
-		val = frm.doc.round_of_placement.toLowerCase()
-		if(val != 'no rounds have been scheduled' || val != 'all rounds have been scheduled'){
+		var field_val = frm.doc.round_of_placement.toLowerCase()
+		if(field_val != 'no rounds have been scheduled' || field_val != 'all rounds have been scheduled'){
 			frappe.call({
 				method : 'wsc.wsc.doctype.placement_tool.placement_tool.get_students',
 				args: {

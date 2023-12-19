@@ -64,19 +64,6 @@ def get_drive_names(company_name):
 
 @frappe.whitelist()
 def get_placement_round_names(self, drive_name, round_status):
-    pass
-    # child_tab = frappe.get_all("Placement Drive", {"name": 'PLDRV-00007-1'}, ['eligible_students'])
-    # print('\n\n\n')
-    # print(child_tab)
-    # print('\n\n\n')
-    # child_table = frappe.get_all("Placement Drive",  {"name" : "PLDRV-00007-1"}, "name")[0]["name"]
-    # child_table_ = frappe.get_all("Eligible Student", {"parent" : child_table}, "name")
-    # print('\n\n\n')
-    # print(child_table_)
-    # print('\n\n\n\n')
-    
-
-
     all_round_names = frappe.db.sql(""" SELECT idx, round_name FROM `tabRounds of Placement` WHERE parent = '%s' ORDER BY idx ASC """ %(drive_name))
     rounds_scheduled = frappe.db.sql(""" SELECT idx, round_name FROM `tabRounds of Placement` WHERE parent = '%s' AND round_status = 'Scheduled' ORDER BY idx ASC"""%(drive_name))
     rounds_not_scheduled = frappe.db.sql(""" SELECT idx, round_name FROM `tabRounds of Placement` WHERE parent = '%s' AND round_status = 'Not Scheduled' ORDER BY idx ASC"""%(drive_name))

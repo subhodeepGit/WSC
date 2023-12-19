@@ -81,11 +81,13 @@
   {
    "fieldname": "placement_drive_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Placement drive name"
   },
   {
    "fieldname": "round_of_placement",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Round of placement"
   },
   {
@@ -147,7 +149,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-11 11:14:21.403068",
+ "modified": "2023-12-18 16:17:12.713034",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Selection Round",
