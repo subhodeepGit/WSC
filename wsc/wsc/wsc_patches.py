@@ -21,7 +21,7 @@ def execute():
     change_password_confirmation_1()
     change_password_confirmation_2()
     update_forgot_password()
-    # login_senetize_handle()
+    login_senetize_handle()
 
 def disable_cancel_link():
     file_path = "{}/{}".format(BENCH_PATH,
@@ -1636,21 +1636,21 @@ def login_senetize_handle():
     updated_content = content.replace('''try:
 		method = get_attr(cmd)
 	except Exception as e:
-		frappe.throw(_("Failed to get method for command {0} with {1}").format(cmd, e))''', '''import re
-	pattern = re.compile("^[a-zA-Z0-9]+$")
-	if not pattern.match(cmd):
-		frappe.throw("Invalid characters in cmd parameter.")
-	try:
-		method = get_attr(cmd)
+		frappe.throw(_("Failed to get method for command {0} with {1}").format(cmd, e))''', '''try:
+		special_characters = """@'!$%^&*()<>?/\|}{~:"#"""
+		if any(spc in cmd for spc in special_characters):
+			frappe.throw("Failed to get method for command {0} with {1}").format(cmd, e)
+		else:
+			method = get_attr(cmd)
 	except Exception as e:
 		frappe.throw(_("Failed to get method for command {0} with {1}").format(cmd, e))''')
     with open(file_path) as f:
-        if '''import re
-	pattern = re.compile("^[a-zA-Z0-9]+$")
-	if not pattern.match(cmd):
-		frappe.throw("Invalid characters in cmd parameter.")
-	try:
-		method = get_attr(cmd)
+        if '''try:
+		special_characters = """@'!$%^&*()<>?/\|}{~:"#"""
+		if any(spc in cmd for spc in special_characters):
+			frappe.throw("Failed to get method for command {0} with {1}").format(cmd, e)
+		else:
+			method = get_attr(cmd)
 	except Exception as e:
 		frappe.throw(_("Failed to get method for command {0} with {1}").format(cmd, e))''' in f.read():
             return
