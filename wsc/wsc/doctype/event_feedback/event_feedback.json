@@ -48,6 +48,7 @@
   {
    "fieldname": "participant_id",
    "fieldtype": "Dynamic Link",
+   "in_list_view": 1,
    "label": "Participant ID",
    "options": "participant_type"
   },
@@ -55,6 +56,7 @@
    "fetch_from": "select_program.program_name",
    "fieldname": "program_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Program Name",
    "read_only": 1
   },
@@ -62,12 +64,14 @@
    "fetch_from": "select_event.event_name",
    "fieldname": "event_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Event Name"
   },
   {
    "fetch_from": "participant_id.student_name",
    "fieldname": "participant_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Participant Name"
   },
   {
@@ -90,7 +94,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-03 18:25:35.633818",
+ "modified": "2023-12-19 18:34:21.107368",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Event feedback",
