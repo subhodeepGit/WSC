@@ -163,6 +163,12 @@ frappe.ui.form.on('Fixed Deposit', {
 	},
 	interest_payable:function(frm){
 		frm.set_value('maturity_amount','')
+		frm.set_value('tenure_days','0')
+		frm.set_value('tenurein_months','0')
+		frm.set_value('tenurein_weeks','0')
+		frm.set_value('tenurein_quarter','0')
+		frm.set_value('tenuresemi_annually','0')
+		frm.set_value('tenurein_annually','0')
 		cur_frm.clear_table('interest_calculation')
 		frm.refresh_field('interest_calculation')
 	},

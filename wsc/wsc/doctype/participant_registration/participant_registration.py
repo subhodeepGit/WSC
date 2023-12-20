@@ -7,8 +7,9 @@ from frappe.model.mapper import get_mapped_doc
 
 class ParticipantRegistration(Document):
 	def validate(self):
-		super(ParticipantRegistration, self).validate()
-		self.validate_user_field()
+		# super(ParticipantRegistration, self).validate()
+		# self.validate_user_field()
+		pass
 	def validate_user_field(self):
 		current_user = frappe.session.user
 		self.set_user_field_filter(current_user)
@@ -49,11 +50,6 @@ def get_participant_name(participant_type = None, participant_id = None):
 			employee_name = frappe.db.sql(""" SELECT employee_name FROM `tabEmployee` WHERE name ='%s'"""%(participant_id))
 			return employee_name[0][0]
 
-
-# --------------------------------------
-
-# Experiment
-
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
 def get_participant_id(doctype, txt, searchfield, start, page_len, filters):
@@ -62,6 +58,80 @@ def get_participant_id(doctype, txt, searchfield, start, page_len, filters):
 	data=[]
 	user_roles = frappe.get_roles(frappe.session.user)
 	user_email = (frappe.session.user)
+
+	if("System Administrator" in user_roles):
+		if(doctype=="Student"):
+			data=frappe.db.sql("""select name,student_name from `tabStudent` where ({key} like %(txt)s or {scond}) 
+	 					 and enabled={enabled}
+						 """.format(
+					**{
+						"key": searchfield,
+						"scond": searchfields,
+						"enabled":filters.get("enabled"),
+					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+			return data
+		elif(doctype=="Employee"):
+			data=frappe.db.sql("""select name,employee_name from `tabEmployee` where ({key} like %(txt)s or {scond}) 
+	 					 and status='{status}'
+						 """.format(
+					**{
+						"key": searchfield,
+						"scond": searchfields,
+						"status":filters.get("status")
+					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+			return data
+		pass
+	elif("Training and Placement Administrator" in user_roles and "Employee" in user_roles and "Student" not in user_roles):
+		if(doctype=="Student"):
+			data=frappe.db.sql("""select name,student_name from `tabStudent` where ({key} like %(txt)s or {scond}) 
+	 					 and enabled={enabled}
+						 """.format(
+					**{
+						"key": searchfield,
+						"scond": searchfields,
+						"enabled":filters.get("enabled"),
+					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+			return data
+		elif(doctype=="Employee"):
+			data=frappe.db.sql("""select name,employee_name from `tabEmployee` where ({key} like %(txt)s or {scond}) 
+	 					 and status='{status}'
+						 """.format(
+					**{
+						"key": searchfield,
+						"scond": searchfields,
+						"status":filters.get("status")
+					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+			return data
+	elif("Employee" in user_roles and "Student" not in user_roles and "Training and Placement Administrator" not in user_roles):
+		if(doctype=="Employee"):
+			data=frappe.db.sql("""select name,employee_name from `tabEmployee` where ({key} like %(txt)s or {scond}) 
+						and status='{status}' and prefered_email = '{prefered_email}'
+						""".format(
+				**{
+					"key": searchfield,
+					"scond": searchfields,
+					"status":filters.get("status"),
+					"prefered_email":user_email
+				}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+			return data
+		else:
+			return []
+	elif("Student" in user_roles and "Employee" not in user_roles and "Training and Placement Administrator" not in user_roles):
+		if(doctype=="Student"):
+			data=frappe.db.sql("""select name,student_name from `tabStudent` where ({key} like %(txt)s or {scond}) 
+						and enabled={enabled} and student_email_id='{student_email_id}'
+						""".format(
+				**{
+					"key": searchfield,
+					"scond": searchfields,
+					"enabled":filters.get("enabled"),
+					"student_email_id":user_email
+				}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+			return data
+		else:
+			return []
+
+
 	if("Student" in user_roles and "Employee" not in user_roles and "Training and Placement Administrator" not in user_roles): # for students
 		if(doctype=="Student"):
 				data=frappe.db.sql("""select name,student_name from `tabStudent` where ({key} like %(txt)s or {scond}) 
@@ -113,34 +183,3 @@ def get_participant_id(doctype, txt, searchfield, start, page_len, filters):
 			return data
 	else:
 		return []
-		
-# ---------------------------------------
-
-# @frappe.whitelist()
-# @frappe.validate_and_sanitize_search_inputs
-# def get_participant_id_original(doctype, txt, searchfield, start, page_len, filters):
-# 	searchfields = frappe.get_meta(doctype).get_search_fields()
-# 	searchfields = " or ".join(field + " like %(txt)s" for field in searchfields)
-# 	data=[]
-# 	if doctype=="Student":
-# 		roles = (frappe.session.user)
-# 		data=frappe.db.sql("""select name,student_name from `tabStudent` where ({key} like %(txt)s or {scond}) 
-# 	 					 and enabled={enabled} and student_email_id='{student_email_id}'
-# 						 """.format(
-# 					**{
-# 						"key": searchfield,
-# 						"scond": searchfields,
-# 						"enabled":filters.get("enabled"),
-# 						"student_email_id":roles
-# 					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
-# 	elif doctype=="Employee":
-# 		data=frappe.db.sql("""select name,employee_name from `tabEmployee` where ({key} like %(txt)s or {scond}) 
-# 	 					 and status='{status}' and prefered_email = '{prefered_email}'
-# 						 """.format(
-# 					**{
-# 						"key": searchfield,
-# 						"scond": searchfields,
-# 						"status":filters.get("status"),
-# 						"prefered_email":roles
-# 					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})			
-# 	return data

@@ -1057,9 +1057,13 @@ def has_default_email_acc():
 	return ""
 
 def send_mail(recipients=None,subject=None,message=None,attachments=None):
-	# print(recipients , subject , message)
 	if has_default_email_acc():
-		frappe.sendmail(recipients=recipients or [],expose_recipients="header",subject=subject,message = message,attachments=attachments,with_container=False)        
+		frappe.sendmail(recipients=recipients or [], expose_recipients="header",subject=subject,message = message,attachments=attachments,with_container=False)        
+		
+def send_mail_cc(recipients=None,cc=None,subject=None,message=None,attachments=None):
+	if has_default_email_acc(): 
+		frappe.sendmail(recipients=recipients or [], cc=cc, expose_recipients="header",subject=subject,message = message,attachments=attachments,with_container=False)
+
 
 def send_email_to_course_advisor(self):
 	flag=0
@@ -2075,15 +2079,14 @@ def job_offer_reengagement(doc):
 ###############################################		Infrastructre Notification Start	##########################################################################
 def task_delay_reminder(doc):
 	sub = "Reg:Task Delay"
+	msg="""<b>Task {0} with Subject {1} has exceeded its expected end date</b><br>""".format(doc.get('name'), doc.get('subject'))
+	msg += """Thank You<br>"""
+	
+	recipients_list = frappe.get_all("Task Assign", {'parent':doc.name},['assign_to'])
+	recipient_emails = [recipient['assign_to'] for recipient in recipients_list]
 
-	msg="""<b>Task {0} has  exceeded its expected end date</b><br>""".format(doc.get('subject'))
-	recipients_list = frappe.get_all("Task Assign", {'parent':'doc.name'},['assign_to'])
-	recipient_emails = [recipient.get('assign_to') for recipient in recipients_list]
-	print("\n\n\n")
-	print(recipient_emails)
-	if len(recipient_emails)==0 or recipient_emails==[" "]:
-		frappe.throw("Receipient Email not found")
+	cc_dict = frappe.get_all("Task",{'name':doc.name},["project_manager"])
+	cc_emails = [recipient['project_manager'] for recipient in cc_dict]
 
-	attachments = None
-	send_mail(recipient_emails,'Material Request',msg,attachments)
+	send_mail_cc(recipient_emails,cc_emails,'Material Request',msg)
 ###############################################		Infrastructre Notification Ends	##########################################################################
