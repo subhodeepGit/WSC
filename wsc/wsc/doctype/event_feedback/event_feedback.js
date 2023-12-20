@@ -42,7 +42,6 @@ frappe.ui.form.on('Event feedback', {
 				event_id : frm.doc.select_event
 			},
 			callback : function(result){
-				// alert(JSON.stringify(result))
 				if(result.message[0] == '0'){
 					frm.set_value("event_name", result.message[1])
 				}

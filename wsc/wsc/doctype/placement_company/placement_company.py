@@ -22,13 +22,10 @@ def validate_department(doc):
 
 @frappe.whitelist()
 def create_placement_drive(source_name, target_doc=None):
-    # print("\n\n\n\n")
-    # print(source_name)
     doclist = get_mapped_doc("Placement Company", source_name,  {
         "Placement Company": {
             "doctype": "Placement Drive",
             "field_map": {
-                # "company_name": "placement_company"
                 "name": "placement_company"
             },
             "validation": {
