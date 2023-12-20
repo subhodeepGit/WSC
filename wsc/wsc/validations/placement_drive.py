@@ -1,4 +1,5 @@
 import frappe
+from frappe import _
 
 def validate(doc, method):
 	validate_semester(doc)

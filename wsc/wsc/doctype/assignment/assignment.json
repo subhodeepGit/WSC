@@ -65,7 +65,6 @@
   {
    "fieldname": "participant_group",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Participant Group",
    "options": "Participant Group",
    "reqd": 1
@@ -85,11 +84,14 @@
    "read_only": 1
   },
   {
+   "columns": 1,
    "fieldname": "assignment_name",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Assignment Name",
    "options": "Assignment Name",
-   "reqd": 1
+   "reqd": 1,
+   "width": "1"
   },
   {
    "fieldname": "assignment_attach_button",
@@ -232,11 +234,14 @@
    "read_only": 1
   },
   {
+   "columns": 1,
    "fetch_from": "programs.programs_name",
    "fieldname": "course_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Course Name",
-   "read_only": 1
+   "read_only": 1,
+   "width": "1"
   },
   {
    "fetch_from": "programs.programs_duration",
@@ -262,11 +267,14 @@
    "label": "Trainer Details"
   },
   {
+   "columns": 1,
    "fetch_from": "course.course_name",
    "fieldname": "module_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Module Name",
-   "read_only": 1
+   "read_only": 1,
+   "width": "1"
   },
   {
    "fetch_from": "course.module_type",
@@ -287,11 +295,14 @@
    "fieldtype": "Column Break"
   },
   {
+   "columns": 1,
    "fetch_from": "participant_group.participant_group",
    "fieldname": "participant_group_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Participant Group Name",
-   "read_only": 1
+   "read_only": 1,
+   "width": "1"
   },
   {
    "fetch_from": "participant_group.tot_start_date",
@@ -339,7 +350,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-08 17:44:51.542739",
+ "modified": "2023-12-15 12:16:19.982816",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assignment",

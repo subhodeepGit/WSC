@@ -81,7 +81,9 @@ doctype_js = {
                 "Warehouse":"public/js/warehouse.js",
                 "Asset":"public/js/asset.js",
                 "Job Requisition":"public/js/job_requisition.js",
-                "Project":"public/js/project.js"
+                "Project":"public/js/project.js",
+                "Supplier Quotation":"public/js/supplier_quotation.js",
+                "Stock Entry":"public/js/stock_entry.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -549,7 +551,9 @@ scheduler_events = {
         "wsc.task.safety_stock_reach",
         "wsc.task.student_disable_check",
         "wsc.task.employee_re_engagement_workFlow",
-        "wsc.task.check_and_delete_exit_employee_permissions"
+        "wsc.task.check_and_delete_exit_employee_permissions",
+        "wsc.task.overdue_task",
+        "wsc.task.status_update"
         # "wsc.wsc.validations.exam_assessment_plan.make_exam_paper_setting_by_paper_setting_date"
 	]
 }
@@ -606,6 +610,21 @@ override_doctype_dashboards = {
     "Course": "wsc.wsc.dashboard.course_dashboard.get_data",
     "Program Enrollment": "wsc.wsc.dashboard.program_enrollment_dashboard.get_data",
     "Student": "wsc.wsc.dashboard.student_dashboard.get_data",
+    "Item":"wsc.wsc.dashboard.item_dashboard.get_data",
+    "Supplier":"wsc.wsc.dashboard.supplier_dashboard.get_data",
+    "Payment Term":"wsc.wsc.dashboard.payment_term_dashboard.get_data",
+    "Payment Terms Template":"wsc.wsc.dashboard.payment_term_template_dashboard.get_data",
+    "Purchase Taxes and Charges Template": "wsc.wsc.dashboard.purchase_taxes_and_charges_template.get_data",
+    "Tax Category":"wsc.wsc.dashboard.all_tax_category_dashboard.get_data",
+    "Material Request":"wsc.wsc.dashboard.material_request.get_data",
+    "Supplier Quotation":"wsc.wsc.dashboard.supplier_quotation_dashbord.get_data",
+    "Purchase Order":"wsc.wsc.dashboard.purchase_order_dashboard.get_data",
+    "Purchase Receipt":"wsc.wsc.dashboard.purchase_receipt_dashboard.get_data",
+    "Purchase Invoice":"wsc.wsc.dashboard.purchase_invoice_dashboard.get_data",
+    "Batch":"wsc.wsc.dashboard.batch_dashboard.get_data",
+    "Asset":"wsc.wsc.dashboard.asset_dashboard.get_data",
+    "Project":"wsc.wsc.dashboard.project_dashboard.get_data",
+    "Task":"wsc.wsc.dashboard.task_dashboard.get_data",
 }
 #
 # each overriding function accepts a `data` argument;

@@ -62,27 +62,61 @@ frappe.ui.form.on('Internship Drive', {
 			frm.refresh_field("eligible_student")
 		}
 	},
-	application_start_date: function(frm) {
-        frm.fields_dict.application_end_date.datepicker.update({
-            minDate: frm.doc.application_start_date ? new Date(frm.doc.application_start_date) : null
-        });
-    },
-
-    application_end_date: function(frm) {
-        frm.fields_dict.application_start_date.datepicker.update({
-            maxDate: frm.doc.application_end_date ? new Date(frm.doc.application_end_date) : null
-        });
-    },
+	// -----------------------------------------------
 	application_start_date: function(frm){
-		if(frm.doc.application_start_date < frm.doc.current_date){
-			frappe.throw('Start date cannot be before current date')
-		}
-	},
-	application_end_date:function(frm){
-		if(frm.doc.application_start_date && frm.doc.application_end_date){
-			if(frm.doc.application_end_date < frm.doc.application_start_date){
-				frappe.throw("Application End Date should be Greater than Application Start date");
+		if(frm.doc.application_end_date){
+			if(frm.doc.application_start_date > frm.doc.application_end_date){
+				frm.set_value('application_start_date', 0)
+				frappe.throw('Application start date should be before application end date')
+			}
+			else if(frm.doc.application_start_date < frm.doc.current_date){
+				frm.set_value('application_start_date', 0)
+				frappe.throw('Application start date should either be before the end date and either today or a future date')
 			}
 		}
+		else if(frm.doc.application_start_date < frm.doc.current_date){
+			frm.set_value('application_start_date', 0)
+			frappe.throw('Application start date should either be today or a future date')
+		}
 	},
+	application_end_date: function(frm){
+		if(frm.doc.application_start_date){
+			if(frm.doc.application_end_date < frm.doc.application_start_date){
+				frm.set_value('application_end_date', 0)
+				frappe.throw('Application end date should be after application start date')
+			}
+			else if(frm.doc.application_end_date < frm.doc.current_date){
+				frm.set_value('application_end_date', 0)
+				frappe.throw('Application date should be on or after application start date')
+			}
+		}
+		else if(frm.doc.application_end_date < frm.doc.current_date){
+			frm.set_value('application_end_date', 0)
+			frappe.throw('Application end date should either be today or a future date')
+		}
+	},
+	// ----------------
+	// application_start_date: function(frm) {
+    //     frm.fields_dict.application_end_date.datepicker.update({
+    //         minDate: frm.doc.application_start_date ? new Date(frm.doc.application_start_date) : null
+    //     });
+    // },
+
+    // application_end_date: function(frm) {
+    //     frm.fields_dict.application_start_date.datepicker.update({
+    //         maxDate: frm.doc.application_end_date ? new Date(frm.doc.application_end_date) : null
+    //     });
+    // },
+	// application_start_date: function(frm){
+	// 	if(frm.doc.application_start_date < frm.doc.current_date){
+	// 		frappe.throw('Start date cannot be before current date')
+	// 	}
+	// },
+	// application_end_date:function(frm){
+	// 	if(frm.doc.application_start_date && frm.doc.application_end_date){
+	// 		if(frm.doc.application_end_date < frm.doc.application_start_date){
+	// 			frappe.throw("Application End Date should be Greater than Application Start date");
+	// 		}
+	// 	}
+	// },
 });
