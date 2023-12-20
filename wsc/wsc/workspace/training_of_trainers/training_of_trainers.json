@@ -23,6 +23,16 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Institution",
+   "link_count": 0,
+   "link_to": "Name of the Institution",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Trainer",
    "link_count": 0,
    "link_to": "Instructor",
@@ -233,7 +243,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-12-20 09:51:54.240150",
+ "modified": "2023-12-20 11:15:19.448948",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Training of Trainers",
