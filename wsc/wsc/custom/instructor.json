@@ -767,7 +767,7 @@
    "insert_after": "total_classes_taken",
    "is_system_generated": 0,
    "is_virtual": 0,
-   "label": "Create User",
+   "label": "Update Login Details",
    "length": 0,
    "mandatory_depends_on": "",
    "modified": "2023-07-25 12:42:19.268567",
