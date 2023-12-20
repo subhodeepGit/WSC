@@ -21,6 +21,7 @@ def execute():
     change_password_confirmation_1()
     change_password_confirmation_2()
     update_forgot_password()
+    login_senetize_handle()
 
 def disable_cancel_link():
     file_path = "{}/{}".format(BENCH_PATH,
@@ -1628,5 +1629,33 @@ def update_forgot_password():
         file.write(updated_content)
         print("Update Forgot Password. Successfully Updated.")
 
+def login_senetize_handle():
+    file_path = "{}/{}".format(BENCH_PATH,"apps/frappe/frappe/handler.py")
+    with open(file_path, "r") as file:
+        content = file.read()
+    updated_content = content.replace('''try:
+		method = get_attr(cmd)
+	except Exception as e:
+		frappe.throw(_("Failed to get method for command {0} with {1}").format(cmd, e))''', '''try:
+		special_characters = """@'!$%^&*()<>?/\|}{~:"#"""
+		if any(spc in cmd for spc in special_characters):
+			frappe.throw("Failed to get method for command {0} with {1}").format(cmd, e)
+		else:
+			method = get_attr(cmd)
+	except Exception as e:
+		frappe.throw(_("Failed to get method for command {0} with {1}").format(cmd, e))''')
+    with open(file_path) as f:
+        if '''try:
+		special_characters = """@'!$%^&*()<>?/\|}{~:"#"""
+		if any(spc in cmd for spc in special_characters):
+			frappe.throw("Failed to get method for command {0} with {1}").format(cmd, e)
+		else:
+			method = get_attr(cmd)
+	except Exception as e:
+		frappe.throw(_("Failed to get method for command {0} with {1}").format(cmd, e))''' in f.read():
+            return
+    with open(file_path, "w") as file:
+        file.write(updated_content)
+        print("Login Senetize Handle. Successfully Updated.")
 
 			

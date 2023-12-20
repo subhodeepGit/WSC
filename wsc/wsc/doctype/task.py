@@ -1,29 +1,12 @@
 import frappe
 from datetime import datetime
 from wsc.wsc.notification.custom_notification import task_delay_reminder
+
 def validate(self, doc):
         exp_date(self)
         act_date(self)
         update_onboarding_status(self)
         update_separation_status(self)
-        status_update(self)
-        overdue_task(self)
-
-def overdue_task(self):
-    today_date = datetime.today().date()
-    if self.exp_end_date:
-        exp_end_date = datetime.strptime(self.exp_end_date, "%Y-%m-%d").date()
-        if today_date > exp_end_date:
-            task_delay_reminder(self)
-
-def status_update(self):
-    today_date = datetime.today().date()
-    if self.exp_end_date:
-        exp_end_date = datetime.strptime(self.exp_end_date, "%Y-%m-%d").date()
-        if today_date > exp_end_date:
-            self.status = "Overdue"
-        else:
-            self.status = self.status
 
 
 def exp_date(self):
@@ -123,8 +106,6 @@ def dependency_task(docname):
                     # print(task_doc)
                     # print("\n\n")
                     data.append(task_doc)
-            print("\n\n\n\n\Data")
-            print(data)
             return data
 
    

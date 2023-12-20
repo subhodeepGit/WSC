@@ -114,7 +114,7 @@ frappe.ui.form.on('Placement Drive', {
 			}
 			else if(frm.doc.application_end_date < frm.doc.current_date){
 				frm.set_value('application_end_date', 0)
-				frappe.throw('Application date should be after application start date')
+				frappe.throw('Application end date should be after application start date')
 			}
 		}
 		else if(frm.doc.application_end_date < frm.doc.current_date){
