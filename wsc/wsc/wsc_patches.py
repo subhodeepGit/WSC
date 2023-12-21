@@ -22,6 +22,24 @@ def execute():
     change_password_confirmation_2()
     update_forgot_password()
     login_senetize_handle()
+    edit_line_file_preview()
+    
+def edit_line_file_preview():
+	file_path = "{}/{}".format(BENCH_PATH,"apps/frappe/frappe/public/js/frappe/file_uploader/FilePreview.vue")
+
+	with open(file_path, 'r') as file:
+		content = file.read()
+
+	content = content.replace('''<input type="checkbox" :checked="optimize" @change="$emit('toggle_optimize')">Optimize</label>''', '''<input type="checkbox" :checked="optimize" @change="$emit('toggle_optimize')">Optimize (Compress files to reduce size)</label>''')
+	content = content.replace('''<input type="checkbox" :checked="file.private" @change="$emit('toggle_private')">Private</label>''', '''<input type="checkbox" :checked="file.private" @change="$emit('toggle_private')">Private (Save files in private mode)</label>''')
+
+	with open(file_path) as f:
+		if '''<input type="checkbox" :checked="optimize" @change="$emit('toggle_optimize')">Optimize (Compress files to reduce size)</label>''' in f.read():
+			return
+
+	with open(file_path, 'w') as file:
+		file.write(content)
+		print("frappe/frappe/public/js/frappe/file_uploader/FilePreview.vue updated File Preview checkbox descriptions.")
 
 def disable_cancel_link():
     file_path = "{}/{}".format(BENCH_PATH,
