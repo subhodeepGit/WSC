@@ -10,9 +10,6 @@ class Eventfeedback(Document):
 
 @frappe.whitelist()
 def get_participant_name(participant_id, participant_type):
-	print('\n\n\n')
-	print(1)
-	print('\n\n\n')
 	if(participant_type == 'Student'):
 		participant_name = frappe.db.sql(""" SELECT student_name FROM `tabStudent` WHERE name = '%s'"""%(participant_id))
 	elif(participant_type == 'Employee'):

@@ -96,14 +96,6 @@ def validate(doc,method):
 	lower_range = doc.get("lower_range") 
 	higher_range =doc.get("upper_range") 
 
-	if doc.alternate_number:
-		value = str(doc.alternate_number)
-		if len(value) != 10:
-			frappe.throw(_("Field 'Alternate Number' must be 10 digit."))
-
-		if not value.isdigit():
-			frappe.throw(_("Field 'Alternate Number' must contain only numeric digits."))
-
 
 	if lower_range is not None and higher_range is not None and higher_range < lower_range:
 		frappe.throw("Higher range cannot be less than the lower range.")

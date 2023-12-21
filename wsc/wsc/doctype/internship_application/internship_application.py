@@ -67,11 +67,4 @@ def drive_filter(doctype, txt, searchfield, start, page_len, filters):
 						"course":course,
 						"semester" : semester
 					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
-	
-	# drive_date_details = frappe.db.sql(""" SELECT application_start_date, application_end_date FROM `tabInternship Drive` where name='TID-00001'""")
-	
-	# drive_details = frappe.db.sql(""" SELECT name,application_start_date FROM `tabInternship Drive` where application_start_date >= '02-11-2023'""")
-	# print('\n\n\n')
-	# print(drive_course_details)
-	# print('\n\n\n')
 	return drive_course_details
