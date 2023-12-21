@@ -22,6 +22,13 @@ def validate_cancel(self):
     drive_round_count = drive_round_count[0][0]
     current_round_idx = current_round_idx[0][0]
     current_round_result_status = current_round_result_status[0][0]
+    placement_drive_blocklist = frappe.db.sql("""SELECT blocklist_id FROM `tabPlacement Drive` WHERE name = '%s'"""%(placement_drive_id))
+
+    if(application_status == 'Hired'):
+        parent_doc = frappe.get_doc('Placement Blocked Student', placement_drive_blocklist)
+        for d in parent_doc.blocked_student:
+            if(d.student == self.student_no):
+                d.delete()
 
     if(drive_round_count == 1):
         if(current_round_status == 'Scheduling Of Round'):

@@ -39,8 +39,6 @@ frappe.ui.form.on('TnP Program', {
 	}
 });
 
-// --------------------------------------------------
-
 frappe.ui.form.on('chief coordinators list', {
 	chief_coordinators_list_add: function(frm){
 		frm.fields_dict['chief_coordinators_list'].grid.get_field('coordinator_id').get_query = function(doc){
