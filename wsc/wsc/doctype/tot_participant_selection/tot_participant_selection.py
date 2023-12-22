@@ -14,6 +14,8 @@ class ToTParticipantSelection(Document):
 		else:
 			frappe.throw("Academic Year has not started")
 
+		over_lapping_of_participant(self)	
+
 	def on_submit(self):
 		if not self.get('participants'):
 			frappe.throw("Participant List Can't be Empty")
@@ -33,6 +35,45 @@ class ToTParticipantSelection(Document):
 			# 		pass
 			# 	else:
 		tot_batch.save()
+
+def over_lapping_of_participant(self):
+	data_list=[]
+	for t in self.get("participants"):
+		data_list.append(t.participant_id)
+	if data_list:	
+		if len(data_list)==1:	
+			output=frappe.db.sql(""" select SP.participant_id as 'Participant ID',SP.participant_name as 'Participant Name' ,TOTSP.name as 'ToT Participant Selection' ,TOTSP.tot_participant_batch as 'ToT Participant Batch'
+							from `tabSelected Participant` as SP
+							JOIN `tabToT Participant Selection` as TOTSP on TOTSP.name=SP.parent
+							where SP.participant_id = '%s' and (TOTSP.start_date<='%s' and TOTSP.end_date>='%s')
+					"""%(data_list[0],self.start_date,self.end_date),as_dict=True)
+		else:
+			output=frappe.db.sql(""" select SP.participant_id as 'Participant ID',SP.participant_name as 'Participant Name' ,TOTSP.name as 'ToT Participant Selection' ,TOTSP.tot_participant_batch as 'ToT Participant Batch'
+							from `tabSelected Participant` as SP
+							JOIN `tabToT Participant Selection` as TOTSP on TOTSP.name=SP.parent
+							where SP.participant_id in %s and (TOTSP.start_date<='%s' and TOTSP.end_date>='%s') and TOTSP.docstatus=1 
+					  		"""%(str(tuple(data_list)),self.start_date,self.end_date),as_dict=True)
+		if output:
+			msg="""<table class='table table-hover table-striped table-sm' style = 'text-align: center;'>
+					<tr class="table-info">
+						<th>Participant ID</th>
+						<th>Participant Name</th>
+						<th>ToT Participant Selection</th>
+						<th>ToT Participant Batch</th>
+					</tr>"""
+			for i in output:
+				msg += """<tr>
+						<td>{0}</td>
+						<td>{1}</td>
+						<td>{2}</td>
+						<td>{3}</td>
+					</tr>""".format(i['Participant ID'],i['Participant Name'],i['ToT Participant Selection'],i['ToT Participant Batch'])
+				
+			msg +="""</table>"""
+			# frappe.throw("<b>Participant(s) already Selected for different TOT for the Period i.e. <i> Start Date:-%s and End Date:-%s </i> are as follows:</b> <br> %s "%(self.start_date,self.end_date,output))
+			frappe.throw("<b>Participant(s) already Selected for different TOT for the Period i.e. <i> Start Date:-%s and End Date:-%s </i> are as follows:</b> <br> %s "%(self.start_date,self.end_date,msg))
+
+
 
 def check_program_enrolement(self):
 	participants_list=[]
