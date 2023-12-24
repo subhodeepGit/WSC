@@ -120,8 +120,8 @@ after_migrate = [
         'wsc.wsc.delete_doc_if_linked.execute',
         'wsc.patches.migrate_patch.set_custom_role_permission_remove_duplicate',
         'wsc.patches.create_all_tax_category.execute',
-        'wsc.wsc.wsc_patches.execute',
-        'wsc.wsc.wsc_patches.execute_security_patches'
+        # 'wsc.wsc.wsc_patches.execute',
+        # 'wsc.wsc.wsc_patches.execute_security_patches'
 ]
 
 # application home page (will override Website Settings)
@@ -405,9 +405,9 @@ doc_events = {
         "on_update":"wsc.wsc.doctype.job_applicant.on_update",
         "on_update_after_submit":"wsc.wsc.doctype.job_applicant.on_update_after_submit"
     },
-    "Task": {
-        "validate":"wsc.task.validate"
-    },
+    # "Task": {
+    #     "validate":"wsc.task.validate"
+    # },
     "Employee Onboarding": {
         "validate":"wsc.wsc.doctype.employee_onboarding.validate",
         "on_cancel" : "wsc.wsc.doctype.employee_onboarding.on_cancel",
