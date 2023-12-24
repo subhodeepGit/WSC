@@ -512,6 +512,9 @@ doc_events = {
     },
     "Purchase Invoice":{
         "validate":"wsc.wsc.validations.purchase_invoice.validate"
+    },
+    "Project":{
+        "after_insert":"wsc.wsc.validations.project.after_insert"
     }
     
     
