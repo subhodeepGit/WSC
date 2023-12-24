@@ -8,6 +8,15 @@ def validate(self, doc):
         update_separation_status(self)
         status_update(self)
 
+def after_insert(self):
+    email = frappe.get_all('Task Assign' , {'name':self.name},['assign_to'])
+    for recipient in email:
+        user_perm = frappe.new_doc("User Permission")
+        user_perm.user = recipient['assign_to']
+        user_perm.allow = self.doctype
+        user_perm.for_value = self.name
+        user_perm.save()
+
 def status_update(self):
     today_date = datetime.today().date()
     if self.exp_end_date:
