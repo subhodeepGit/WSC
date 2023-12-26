@@ -11,14 +11,12 @@
   "date",
   "academic_year",
   "column_break_3",
-  "programs",
-  "semester",
+  "placement_drive_id",
   "section_break_5",
   "block_drive_list",
   "for_courses",
   "section_break_7",
-  "blocked_student",
-  "placement_drive_id"
+  "blocked_student"
  ],
  "fields": [
   {
@@ -34,20 +32,6 @@
    "label": "Academic year",
    "options": "Academic Year",
    "reqd": 1
-  },
-  {
-   "fieldname": "programs",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Programs",
-   "options": "Programs"
-  },
-  {
-   "fieldname": "semester",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Semester",
-   "options": "Program"
   },
   {
    "fieldname": "section_break_5",
@@ -94,7 +78,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-15 18:49:31.142269",
+ "modified": "2023-12-21 18:25:37.027434",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Blocked Student",

@@ -9,6 +9,8 @@ def execute():
     comment_lines_list_view()
     add_line_JobApplicant_js()
     update_line_gridrow_js()
+
+def execute_security_patches():
     # upload_malicious_pdf()
     cross_site_scripting()
     login_password_encryption()
@@ -23,7 +25,7 @@ def execute():
     update_forgot_password()
     login_senetize_handle()
     edit_line_file_preview()
-    
+ 
 def edit_line_file_preview():
 	file_path = "{}/{}".format(BENCH_PATH,"apps/frappe/frappe/public/js/frappe/file_uploader/FilePreview.vue")
 
