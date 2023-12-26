@@ -138,9 +138,7 @@ def trainer():
 		pass
 	else:
 		employee_name=frappe.get_all("Employee",fields=[["prefered_email","=",user]])
-		print("employee_name",employee_name)
 		trainer_name=frappe.get_all("Instructor",filters=[["employee","=",employee_name[0]['name']]])
-		print("trainer_name",trainer_name)
 	if user == "Administrator":
 		name=""
 	else:
