@@ -19,8 +19,11 @@ class ToTParticipantSelection(Document):
 	def on_submit(self):
 		if not self.get('participants'):
 			frappe.throw("Participant List Can't be Empty")
-		check_program_enrolement(self)	
-		update_participent(self)	
+		check_program_enrolement(self)
+		update_participent(self)
+		
+		
+
 	def before_submit(self):
 		self.create_tot_batch()
 	def create_tot_batch(self):
@@ -45,7 +48,7 @@ def over_lapping_of_participant(self):
 			output=frappe.db.sql(""" select SP.participant_id as 'Participant ID',SP.participant_name as 'Participant Name' ,TOTSP.name as 'ToT Participant Selection' ,TOTSP.tot_participant_batch as 'ToT Participant Batch'
 							from `tabSelected Participant` as SP
 							JOIN `tabToT Participant Selection` as TOTSP on TOTSP.name=SP.parent
-							where SP.participant_id = '%s' and (TOTSP.start_date<='%s' and TOTSP.end_date>='%s')
+							where SP.participant_id = '%s' and (TOTSP.start_date<='%s' and TOTSP.end_date>='%s') and TOTSP.docstatus=1 
 					"""%(data_list[0],self.start_date,self.end_date),as_dict=True)
 		else:
 			output=frappe.db.sql(""" select SP.participant_id as 'Participant ID',SP.participant_name as 'Participant Name' ,TOTSP.name as 'ToT Participant Selection' ,TOTSP.tot_participant_batch as 'ToT Participant Batch'
