@@ -24,14 +24,14 @@ class ToTParticipant(Document):
             if len(self.pincode)<6:
                 frappe.throw("<b>Pincode</b> must be 6 Digits")
         earned_marks_percentage_cal(self)
-
         participant = frappe.get_all("ToT Participant",{"name":self.name},{"participant_name","hrms_id"})
         if participant:
-            if self.name!=participant[0]['participant_name']:
+            if self.participant_name!=participant[0]['participant_name']:
                 update_participant_in_linked_doctype(self)
-                update_student_name_in_linked_doctype(self)
+                if self.student_no:
+                    update_student_name_in_linked_doctype(self)
             if self.hrms_id!=participant[0]['hrms_id']:
-                update_participant_hrms_id_in_linked_doctype(self)
+                update_participant_hrms_id_in_linked_doctype(self)       
 
 def update_student_name_in_linked_doctype(self):
     doc=frappe.get_doc("Student",self.student_no)
