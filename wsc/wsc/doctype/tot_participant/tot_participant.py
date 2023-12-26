@@ -33,7 +33,6 @@ class ToTParticipant(Document):
             if self.hrms_id!=participant[0]['hrms_id']:
                 update_participant_hrms_id_in_linked_doctype(self)
 
-
 def update_student_name_in_linked_doctype(self):
     doc=frappe.get_doc("Student",self.student_no)
     doc.first_name=self.first_name 
@@ -161,6 +160,7 @@ def validate_date(self):
         frappe.throw(_('Date of Birth cannot be a future date'))
 
 def validate_participant_job_date(self):
+    today=frappe.utils.nowdate()
     for t in self.get('participant_experience_details'):
         if t.job_start_date and t.job_end_date:
             # job_start_date = datetime.strptime(t.job_start_date , '%Y-%m-%d').date()
@@ -169,3 +169,5 @@ def validate_participant_job_date(self):
             job_end_date = t.job_end_date
             if job_start_date > job_end_date:
                 frappe.throw("Job Start Date cannot be greater than Job End Date in Row %s of Participant Experience Details table"%(t.idx))
+            if job_end_date > today:
+                frappe.throw("Job End Date cannot be greater than Present Date in Row %s of Participant Experience Details table"%(t.idx))  
