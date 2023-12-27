@@ -14,6 +14,8 @@ class MentorMenteeCommunication(Document):
         data["programs"]=frappe.db.get_value("Current Educational Details",{"parent":self.student},"programs")
         data["mentor"]=frappe.db.get_value("Mentee List",{"student":self.student},"parent")
         data["mentor_name"]=frappe.db.get_value("Mentor Allocation",{"name":data["mentor"], 'docstatus':1},"mentor_name")
+        print("\n\n\n\n")
+        print(data)
         return data
 
     def validate(doc):
