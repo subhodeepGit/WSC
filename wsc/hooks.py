@@ -83,7 +83,8 @@ doctype_js = {
                 "Job Requisition":"public/js/job_requisition.js",
                 "Project":"public/js/project.js",
                 "Supplier Quotation":"public/js/supplier_quotation.js",
-                "Stock Entry":"public/js/stock_entry.js"
+                "Stock Entry":"public/js/stock_entry.js",
+                "Topic":"public/js/topic.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -583,9 +584,9 @@ override_whitelisted_methods = {
 	"erpnext.accounts.doctype.payment_entry.payment_entry.get_party_and_account_balance":"wsc.wsc.doctype.payment_entry.get_party_and_account_balance",
 	"education.education.api.get_fee_components":"wsc.wsc.validations.api.get_fee_components",
 	"education.education.doctype.fee_structure.fee_structure.make_fee_schedule":"wsc.wsc.doctype.fee_structure.make_fee_schedule",
-    "education.education.doctype.student_attendance_tool.student_attendance_tool.get_student_attendance_records":"wsc.wsc.doctype.student_attendance.get_student_attendance_records"
+    "education.education.doctype.student_attendance_tool.student_attendance_tool.get_student_attendance_records":"wsc.wsc.doctype.student_attendance.get_student_attendance_records",
     # "frappe.core.doctype.data_import.data_import.download_template":"wsc.wsc.doctype.data_import.download_template"
-	# "kp_edtec.kp_edtec.doctype.fees.make_refund_fees":"wsc.wsc.validations.fees.make_refund_fees",
+	"erpnext.accounts.doctype.bank_reconciliation_tool.bank_reconciliation_tool.auto_reconcile_vouchers":"wsc.wsc.validations.bank_reconciliation_tool.auto_reconcile_vouchers"
 }
 override_doctype_class = {
     "Course Schedule":"wsc.wsc.doctype.course_schedule.CourseSchedule",

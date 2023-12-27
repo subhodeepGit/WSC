@@ -24,15 +24,14 @@ class ToTParticipant(Document):
             if len(self.pincode)<6:
                 frappe.throw("<b>Pincode</b> must be 6 Digits")
         earned_marks_percentage_cal(self)
-
         participant = frappe.get_all("ToT Participant",{"name":self.name},{"participant_name","hrms_id"})
         if participant:
-            if self.name!=participant[0]['participant_name']:
+            if self.participant_name!=participant[0]['participant_name']:
                 update_participant_in_linked_doctype(self)
-                update_student_name_in_linked_doctype(self)
+                if self.student_no:
+                    update_student_name_in_linked_doctype(self)
             if self.hrms_id!=participant[0]['hrms_id']:
-                update_participant_hrms_id_in_linked_doctype(self)
-
+                update_participant_hrms_id_in_linked_doctype(self)       
 
 def update_student_name_in_linked_doctype(self):
     doc=frappe.get_doc("Student",self.student_no)
@@ -161,6 +160,7 @@ def validate_date(self):
         frappe.throw(_('Date of Birth cannot be a future date'))
 
 def validate_participant_job_date(self):
+    today=frappe.utils.nowdate()
     for t in self.get('participant_experience_details'):
         if t.job_start_date and t.job_end_date:
             # job_start_date = datetime.strptime(t.job_start_date , '%Y-%m-%d').date()
@@ -169,3 +169,5 @@ def validate_participant_job_date(self):
             job_end_date = t.job_end_date
             if job_start_date > job_end_date:
                 frappe.throw("Job Start Date cannot be greater than Job End Date in Row %s of Participant Experience Details table"%(t.idx))
+            if job_end_date > today:
+                frappe.throw("Job End Date cannot be greater than Present Date in Row %s of Participant Experience Details table"%(t.idx))  

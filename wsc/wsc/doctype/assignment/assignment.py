@@ -6,6 +6,7 @@ from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 import json
 from frappe import _, scrub
+from datetime import datetime
 
 class Assignment(Document):
 	def validate(self):
@@ -145,6 +146,19 @@ def criteria(doctype, txt, searchfield, start, page_len, filters):
 
 @frappe.whitelist()
 def create_assignment(frm):
+	doc= frappe.get_doc("Assignment",frm)
+	start_date = doc.start_date
+	end_date = doc.end_date
+	formatted_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+	if isinstance(formatted_datetime, str):
+			formatted_datetime=datetime.strptime(formatted_datetime, '%Y-%m-%d %H:%M:%S')
+	if isinstance(end_date, str):
+		end_date=datetime.strptime(end_date, '%Y-%m-%d %H:%M:%S')
+		start_date=datetime.strptime(start_date, '%Y-%m-%d %H:%M:%S')
+	if formatted_datetime <= start_date or formatted_datetime >= end_date:
+		frappe.throw('Cannot submit assignment before or after assigned dates')		
+
+
 	frappe.enqueue(assignment_enqueue, frm=frm, queue="long")
 	doc= frappe.get_doc("Assignment",frm)
 	doc.assignment_creation_status="Completed"

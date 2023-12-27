@@ -128,3 +128,21 @@ def get_classes(participant_group=None):
 
 
 	return course_schedule
+
+
+@frappe.whitelist()
+def trainer():
+	user=frappe.session.user
+	name=""
+	if user == "Administrator":
+		pass
+	else:
+		employee_name=frappe.get_all("Employee",fields=[["prefered_email","=",user]])
+		trainer_name=frappe.get_all("Instructor",filters=[["employee","=",employee_name[0]['name']]])
+	if user == "Administrator":
+		name=""
+	else:
+		if trainer_name:
+			name=trainer_name[0]['name']
+	if len(name)>0:
+		return name
