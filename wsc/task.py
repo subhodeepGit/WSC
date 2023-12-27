@@ -66,6 +66,9 @@ def send_mail(recipients=None,subject=None,message=None,attachments=None):
     if has_default_email_acc():
         frappe.sendmail(recipients=recipients or [],expose_recipients="header",subject=subject,message = message,attachments=attachments,with_container=True)        
 
+def send_mail_cc(recipients=None,cc=None,subject=None,message=None,attachments=None):
+    if has_default_email_acc(): 
+        frappe.sendmail(recipients=recipients or [], cc=cc, expose_recipients="header",subject=subject,message = message,attachments=attachments,with_container=False)
 
 # Notification to students and invigilators 7 days prior exam date
 # bench --site erp.soulunileaders.com execute wsc.task.exam_reminder_notification
@@ -1102,21 +1105,30 @@ def axis_transaction_update_status():             # bench execute wsc.task.axis_
 #################################################### Project Management Scheduler Start #####################################################################
 
 ##########  Email for Task Overdue  ##########
-def overdue_task(self):
+def overdue_task():
     today_date = datetime.today().date()
-    if self.exp_end_date:
-        exp_end_date = datetime.strptime(self.exp_end_date, "%Y-%m-%d").date()
-        if today_date > exp_end_date:
-            task_delay_reminder(self)
+    task_data = frappe.get_all("Task",['name','exp_end_date','project_manager'])
+    for t in task_data:
+        if t["exp_end_date"]:
+            end_date = datetime.strptime(t['exp_end_date'], "%Y-%m-%d").date()
+            if today_date > end_date:
+                sub = "Reg:Task Delay"
+                msg="""<b>Task {0} with Subject {1} has exceeded its expected end date</b><br>"""%(t['name'],['subject'])
+                msg += """Thank You<br>"""
+                recipients_list = frappe.get_all("Task Assign", {'parent':t['name']},['assign_to'])
+                recipient_emails = [recipient['assign_to'] for recipient in recipients_list]
+                cc_emails = t['project_manager']
+                send_mail_cc(recipient_emails,cc_emails,sub,msg)
 
 ##########  Status Update for Task Overdue  ##########
-def status_update(self):
+def status_update():
     today_date = datetime.today().date()
-    if self.exp_end_date:
-        exp_end_date = datetime.strptime(self.exp_end_date, "%Y-%m-%d").date()
-        if today_date > exp_end_date:
-            self.status = "Overdue"
-        else:
-            self.status = self.status
-
+    task_data = frappe.get_all("Task",['name','exp_end_date','project_manager'])
+    for t in task_data:
+        if t['exp_end_date']:
+            exp_date = datetime.strptime(t['exp_end_date'], "%Y-%m-%d").date()
+            if today_date > exp_date:
+                frappe.db.set_value('Task', t['name'], t['status'], 'Overdue')
+            else:
+                pass
 #################################################### Project Management Scheduler Ends #####################################################################
