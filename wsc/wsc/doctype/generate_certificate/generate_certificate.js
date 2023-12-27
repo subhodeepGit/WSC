@@ -50,7 +50,6 @@ frappe.ui.form.on('Generate Certificate', {
 	},
 	participant_id: function(frm){
 		if(frm.doc.participant_id){
-			alert(frm.doc.participant_id)
 			frappe.call({
 				method: 'wsc.wsc.doctype.generate_certificate.generate_certificate.get_participant_name',
 				args:{
@@ -64,7 +63,6 @@ frappe.ui.form.on('Generate Certificate', {
 			})
 		}
 		else{
-			alert(500)
 			frm.set_value('participant_name', '')
 			frm.set_value('participant_type', '')
 		}

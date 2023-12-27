@@ -12,7 +12,7 @@ frappe.ui.form.on('Participant Attendance', {
 			}
 		});
 		frm.set_df_property('selected_participants_table', 'cannot_add_rows', true);
-        frm.set_df_property('selected_participants_table', 'cannot_add_rows', true);
+        frm.set_df_property('selected_participants_table', 'cannot_delete_rows', true);
 	},
 	selected_program : function(frm){
 		frappe.call({
