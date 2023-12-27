@@ -3,6 +3,14 @@
 
 frappe.ui.form.on('Participant Attendance Tool', {
 	setup: function(frm){
+		frappe.call({
+            method: "wsc.wsc.doctype.participant_attendance_tool.participant_attendance_tool.trainer",
+            callback: function(r) { 
+                if (r.message){
+                    frm.set_value("instructor_id",r.message)
+                }
+            } 
+        });    	
 		frm.set_query("instructor_id", function() {
 			return {
 				query: 'wsc.wsc.doctype.participant_attendance_tool.participant_attendance_tool.instructor',
