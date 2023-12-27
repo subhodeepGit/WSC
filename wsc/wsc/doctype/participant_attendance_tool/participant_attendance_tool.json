@@ -87,7 +87,6 @@
    "options": "Participant Attendance Table"
   },
   {
-   "depends_on": "eval:doc.participant_group",
    "fieldname": "instructor_id",
    "fieldtype": "Link",
    "label": "Instructor",
@@ -213,7 +212,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-08 16:15:35.542133",
+ "modified": "2023-12-26 15:13:29.461540",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Attendance Tool",
