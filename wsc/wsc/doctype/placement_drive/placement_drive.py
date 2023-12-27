@@ -183,8 +183,6 @@ def create_placement_drive_block_list(self):
 		result = frappe.new_doc('Placement Blocked Student')
 		result.date = self.posting_date
 		result.academic_year = self.academic_year
-		result.programs = 'Mechatronics'
-		result.semester = 'MCE Semester I'
 		result.placement_drive_id = self.name
 		result.append("block_drive_list",{
 			"placement_drive" : self.name,
