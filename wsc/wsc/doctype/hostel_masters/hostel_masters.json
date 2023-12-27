@@ -147,6 +147,7 @@
    "label": "Hostel Phone Number 2"
   },
   {
+   "default": "+91-",
    "fieldname": "hostel_phone_number_1",
    "fieldtype": "Phone",
    "label": "Hostel Phone Number 1",
@@ -161,7 +162,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-27 17:41:33.183117",
+ "modified": "2023-12-27 17:56:15.525073",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Hostel Masters",
