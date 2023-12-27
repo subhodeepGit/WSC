@@ -9,15 +9,18 @@ frappe.ui.form.on('Mentor Mentee Communication', {
 				method: "get_missing_fields",
 				callback: function(r) { 
 					if(r.message){
-						if (r.message['mentor']){
-							frm.set_value("mentor",r.message['mentor'])
-						}
-						else if (r.message['mentor_name']){
-							frm.set_value("mentor_name",r.message['mentor_name'])
-						}
-						else if (r.message['programs']){
-							frm.set_value("programs",r.message['programs'])
-						}
+						// if (r.message['mentor']){
+						// 	frm.set_value("mentor",r.message['mentor'])
+						// }
+						// else if (r.message['mentor_name']){
+						// 	frm.set_value("mentor_name",r.message['mentor_name'])
+						// }
+						// else if (r.message['programs']){
+						// 	frm.set_value("programs",r.message['programs'])
+						// }
+						frm.set_value("mentor",r.message['mentor'])
+						frm.set_value("mentor_name",r.message['mentor_name'])
+						frm.set_value("programs",r.message['programs'])
 					}
 				} 
 			}); 
