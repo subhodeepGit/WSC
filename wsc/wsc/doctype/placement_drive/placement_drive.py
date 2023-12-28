@@ -5,13 +5,15 @@ import frappe
 import json
 from frappe.model.document import Document
 from frappe import msgprint, _
-from wsc.wsc.notification.custom_notification import placement_drive_submit
+from wsc.wsc.notification.custom_notification import placement_drive_eligibility_mail
 
 class PlacementDrive(Document):
 	def validate(self):
 		create_placement_drive_block_list(self)
 		validate_application_date(self)
 		self.rounds_of_placement_check()
+		if(self.docstatus == 1):
+			placement_drive_eligibility_mail(self)
 	
 	def before_submit(self):
 		tentative_date_validation(self)
@@ -28,7 +30,7 @@ class PlacementDrive(Document):
 			frappe.throw("Duplicate Round Names in rounds of placement")
 
 	def on_submit(self):
-		placement_drive_submit(self)
+		# placement_drive_submit(self)
 		self.set_permission_to_enroll_student()
 
 
@@ -181,12 +183,16 @@ def create_placement_drive_block_list(self):
 		result = frappe.new_doc('Placement Blocked Student')
 		result.date = self.posting_date
 		result.academic_year = self.academic_year
-		result.programs = 'Mechatronics'
-		result.semester = 'MCE Semester I'
 		result.placement_drive_id = self.name
 		result.append("block_drive_list",{
-			"placement_drive" : self.name
+			"placement_drive" : self.name,
+			"placement_drive_name" : self.title
 		})
+		for d in self.get("for_programs"):
+			result.append("for_courses",{
+				"programs":d.programs,
+				"semester": d.semester
+			})
 		result.save()
 		get_blocklist_name = frappe.db.sql(""" SELECT name FROM `tabPlacement Blocked Student` WHERE placement_drive_id = '%s'"""%(self.name))
 		self.blocklist_id = get_blocklist_name[0][0]

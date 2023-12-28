@@ -23,6 +23,16 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Institution",
+   "link_count": 0,
+   "link_to": "Name of the Institution",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Trainer",
    "link_count": 0,
    "link_to": "Instructor",
@@ -95,6 +105,16 @@
    "link_count": 0,
    "link_to": "Participant Attendance Tool",
    "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "ToT Participant Attendance Report",
+   "link_count": 0,
+   "link_to": "ToT Participant Attendance Report",
+   "link_type": "Report",
    "onboard": 0,
    "type": "Link"
   },
@@ -223,7 +243,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-11-27 17:15:58.132171",
+ "modified": "2023-12-20 11:15:19.448948",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Training of Trainers",

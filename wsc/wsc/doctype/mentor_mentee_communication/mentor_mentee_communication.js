@@ -9,16 +9,24 @@ frappe.ui.form.on('Mentor Mentee Communication', {
 				method: "get_missing_fields",
 				callback: function(r) { 
 					if(r.message){
-						if (r.message['mentor']){
-							frm.set_value("mentor",r.message['mentor'])
-						}
-						if (r.message['mentor_name']){
-							frm.set_value("mentor_name",r.message['mentor_name'])
-						}
+						// if (r.message['mentor']){
+						// 	frm.set_value("mentor",r.message['mentor'])
+						// }
+						// else if (r.message['mentor_name']){
+						// 	frm.set_value("mentor_name",r.message['mentor_name'])
+						// }
+						// else if (r.message['programs']){
+						// 	frm.set_value("programs",r.message['programs'])
+						// }
+						frm.set_value("mentor",r.message['mentor'])
+						frm.set_value("mentor_name",r.message['mentor_name'])
 						frm.set_value("programs",r.message['programs'])
 					}
 				} 
 			}); 
+		}else{
+			frm.set_value("mentor","")
+			frm.set_value("programs","")
 		}
 	},
 	setup: function(frm){
@@ -33,6 +41,12 @@ frappe.ui.form.on('Mentor Mentee Communication', {
 			});
 		}
 		
+	},
+	onload: function(frm) {
+		if(!frm.is_new()){
+			frm.set_df_property('student', 'read_only', 1)
+			frm.set_df_property('date', 'read_only', 1)
+		}
 	}
 });
 

@@ -32,13 +32,15 @@
    "fetch_from": "student.student_name",
    "fieldname": "student_name",
    "fieldtype": "Data",
-   "label": "Student Name"
+   "label": "Student Name",
+   "read_only": 1
   },
   {
    "fetch_from": "student.roll_no",
    "fieldname": "student_roll_no",
    "fieldtype": "Data",
-   "label": "Roll No"
+   "label": "Roll No",
+   "read_only": 1
   },
   {
    "fieldname": "amended_from",
@@ -70,7 +72,9 @@
   {
    "fieldname": "payment_write_off_amount",
    "fieldtype": "Currency",
-   "label": "Payment Write Off Amount"
+   "label": "Payment Write Off Amount",
+   "non_negative": 1,
+   "reqd": 1
   },
   {
    "default": "0",
@@ -89,7 +93,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-18 17:46:15.925000",
+ "modified": "2023-12-14 16:34:42.963406",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Payment Write Off",

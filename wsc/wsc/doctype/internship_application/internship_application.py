@@ -59,19 +59,15 @@ def drive_filter(doctype, txt, searchfield, start, page_len, filters):
 	formatted_date = datetime.date.today().strftime("%d-%m-%Y") #formatted date "dd-mm-yyyy"
 	participant_id=filters.get('participant_id')
 	enrollment_details = frappe.db.sql(""" SELECT programs, program FROM `tabProgram Enrollment` WHERE student='%s'"""%(participant_id))
-	course = enrollment_details[0][0]
-	semester = enrollment_details[0][1]
-	drive_course_details = frappe.db.sql(""" SELECT parent FROM `tabInternship for Programs` where programs = '{course}' and semester = '{semester}'
+	if(enrollment_details):
+		course = enrollment_details[0][0]
+		semester = enrollment_details[0][1]
+		drive_course_details = frappe.db.sql(""" SELECT parent FROM `tabInternship for Programs` where programs = '{course}' and semester = '{semester}'
 				    """.format(
 						**{
 						"course":course,
 						"semester" : semester
 					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
-	
-	# drive_date_details = frappe.db.sql(""" SELECT application_start_date, application_end_date FROM `tabInternship Drive` where name='TID-00001'""")
-	
-	# drive_details = frappe.db.sql(""" SELECT name,application_start_date FROM `tabInternship Drive` where application_start_date >= '02-11-2023'""")
-	# print('\n\n\n')
-	# print(drive_course_details)
-	# print('\n\n\n')
-	return drive_course_details
+		return drive_course_details
+	else:
+		return []

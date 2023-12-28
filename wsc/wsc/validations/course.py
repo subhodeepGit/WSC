@@ -70,6 +70,12 @@ def calculate_total(doc):
 	doc.passing_marks=passing_marks
 	doc.total_credit=total_credit
 	doc.passing_credit=passing_credit
+	
+	for d in doc.get("topics"):
+		if d.theory or d.practical:
+			d.total_hrs = d.theory + d.practical
+		if not d.theory and not d.practical:
+			d.total_hrs=0
 
 @frappe.whitelist()
 def add_module_to_tot_course(course, programs,is_tot,is_short_term_course):

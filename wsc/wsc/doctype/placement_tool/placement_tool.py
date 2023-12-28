@@ -17,8 +17,16 @@ class PlacementTool(Document):
             frappe.db.sql(""" UPDATE `tabRounds of Placement` SET round_status = 'Scheduled' WHERE parent = '%s' and round_name = '%s' """%(self.placement_drive_name, self.round_of_placement))
         elif self.round_status == 'Round Result Declaration':
             frappe.db.sql(""" UPDATE `tabRounds of Placement` SET round_status = 'Result Declared' WHERE parent = '%s' and round_name = '%s' """%(self.placement_drive_name, self.round_of_placement))
-            
+        blocklist_id = frappe.db.sql("""SELECT name FROM `tabPlacement Blocked Student` where placement_drive_id = '%s'"""%(self.placement_drive_name))
+        blocklist=frappe.get_doc("Placement Blocked Student",blocklist_id[0][0])
+
         for d in self.get('student_list'):
+            if(d.shortlisting_status == 'Hired'):
+                blocklist.append("blocked_student",{
+                    "student": d.student_no,
+                    "student_name" : d.student_name,
+                    "reason" : 'Hired'
+                })        
             result = frappe.new_doc('Selection Round')
             result.student_name = d.student_name
             result.student_no = d.student_no
@@ -32,9 +40,12 @@ class PlacementTool(Document):
             result.scheduled_date_of_round = self.scheduled_date_of_round
             result.application_status = d.shortlisting_status
             result.application_id = d.ref_no
+            result.drive_round_status = self.round_status
             result.save()
             result.submit()
             frappe.db.sql(""" Update `tabStudent child table` set selection_round='%s' where name='%s' """%(result.name,d.name))
+        blocklist.save()
+
     def on_cancel(self):
         if self.round_status == 'Scheduling Of Round':
             frappe.db.sql(""" UPDATE `tabRounds of Placement` SET round_status = 'Not Scheduled' WHERE parent = '%s' and round_name = '%s' """%(self.placement_drive_name, self.round_of_placement))

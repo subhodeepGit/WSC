@@ -10,6 +10,7 @@
   "program",
   "student_batch",
   "column_break_3",
+  "department",
   "academic_year",
   "academic_term",
   "school_house",
@@ -169,12 +170,20 @@
    "fieldtype": "Link",
    "label": "New Class",
    "options": "School House"
+  },
+  {
+   "fetch_from": "programs.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department",
+   "read_only": 1
   }
  ],
  "hide_toolbar": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-12-05 12:29:44.619813",
+ "modified": "2023-12-06 14:15:52.808537",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Reregistration Tool Fees",

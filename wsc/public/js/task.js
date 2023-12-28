@@ -49,3 +49,15 @@ frappe.ui.form.on("Task", {
       }
   }
 });
+
+frappe.ui.form.on('Task', {
+	setup: function(frm) {
+		frm.set_query("assign_to","task_assign", function() {
+			return {
+				filters: {
+					"role_profile_name":frm.doc.role
+				}
+			};
+		});
+	}
+});

@@ -12,17 +12,20 @@ class EntranceExamCentreAllocation(Document):
         time_validation(self)    
         date_format = "%Y-%m-%d"
         for i in self.get('exam_slot_timings'):
-
+            
             slot_date = datetime.strptime(i.slot_date, date_format).date()
 
             if isinstance(self.exam_start_date , str) and isinstance(self.exam_end_date , str):
                 exam_start_date = datetime.strptime(self.exam_start_date, date_format).date()
                 exam_end_date = datetime.strptime(self.exam_end_date, date_format).date()
-                if exam_start_date >= slot_date or exam_end_date <= slot_date:
-                    frappe.throw("Slot Date out of Scope")
+                
+                if exam_start_date > slot_date or exam_end_date < slot_date:
+                    # frappe.throw("Slot Date out of Scope")
+                    frappe.throw("Row <b>{0}</b> Slot Date out of Scope".format(i.idx))
             else:
-                if self.exam_start_date >= slot_date or self.exam_end_date <= slot_date:
-                    frappe.throw("Slot Date out of Scope")
+                if self.exam_start_date > slot_date or self.exam_end_date < slot_date:
+            
+                    frappe.throw("Row <b>{0}</b> Slot Date out of Scope".format(i.idx))
 
 def dupicate_check(self):
     if frappe.get_all("Entrance Exam Centre Allocation",{"docstatus":1,
@@ -32,15 +35,12 @@ def dupicate_check(self):
 
 def time_validation(self):
     for t in self.get("exam_slot_timings"):
-        # print(t.slot_starting_time)
-        # print(t.slot_ending_time)
-        # print(type(t.slot_starting_time)
-        # print(t.slot_ending_time)
+        
         if t.slot_starting_time and t.slot_ending_time:
             from_time= datetime.strptime(t.slot_starting_time, '%H:%M:%S').time()
             to_time= datetime.strptime(t.slot_ending_time, '%H:%M:%S').time()
             if from_time>to_time:
-                frappe.throw("Row <b>{0}</b> Slot Ending Time cannot be greater than Slot Starting Time".format(t.idx))
+                frappe.throw("Row <b>{0}</b> Slot Starting Time cannot be greater than Slot Ending Time".format(t.idx))
         pass
 # @frappe.whitelist()
 # def get_centers(center_selection):

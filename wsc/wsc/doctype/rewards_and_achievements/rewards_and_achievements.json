@@ -17,14 +17,17 @@
   "semester",
   "section_break_7",
   "type_of_scholarship",
+  "column_break_ulop2",
+  "no_of_merit_student",
   "topper_scholarship",
   "get_students",
   "topper_scholarship_table",
   "cutoff_scholarship",
-  "upper_cutoff_sgpa",
-  "lower_cutoff_sgpa",
+  "upper_cutoff_percentage",
+  "lower_cutoff_percentage",
   "get_cutoff_students",
   "cutoff_scholarship_table",
+  "section_break_r2mjo",
   "amended_from"
  ],
  "fields": [
@@ -95,7 +98,7 @@
    "label": "Topper Scholarship"
   },
   {
-   "depends_on": "eval:doc.type_of_scholarship==\"Merit basis\"",
+   "depends_on": "eval:doc.type_of_scholarship==\"Merit basis\" && doc.docstatus==0",
    "fieldname": "get_students",
    "fieldtype": "Button",
    "label": "Get Students"
@@ -114,20 +117,7 @@
    "label": "Cutoff Scholarship"
   },
   {
-   "depends_on": "eval:doc.type_of_scholarship==\"Cutoff basis\"",
-   "fieldname": "upper_cutoff_sgpa",
-   "fieldtype": "Float",
-   "label": "Upper Cutoff SGPA",
-   "mandatory_depends_on": "eval:doc.type_of_scholarship==\"Cutoff basis\""
-  },
-  {
-   "depends_on": "eval:doc.type_of_scholarship==\"Cutoff basis\"",
-   "fieldname": "lower_cutoff_sgpa",
-   "fieldtype": "Float",
-   "label": "Lower Cutoff SGPA"
-  },
-  {
-   "depends_on": "eval:doc.type_of_scholarship==\"Cutoff basis\"",
+   "depends_on": "eval:doc.type_of_scholarship==\"Cutoff basis\" && doc.docstatus==0",
    "fieldname": "get_cutoff_students",
    "fieldtype": "Button",
    "label": "Get cutoff students"
@@ -147,12 +137,42 @@
    "options": "Rewards and Achievements",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.type_of_scholarship==\"Cutoff basis\"",
+   "fieldname": "upper_cutoff_percentage",
+   "fieldtype": "Float",
+   "label": "Upper Cutoff Percentage",
+   "mandatory_depends_on": "eval:doc.type_of_scholarship==\"Cutoff basis\""
+  },
+  {
+   "depends_on": "eval:doc.type_of_scholarship==\"Cutoff basis\"",
+   "fieldname": "lower_cutoff_percentage",
+   "fieldtype": "Float",
+   "label": "Lower Cutoff Percentage",
+   "mandatory_depends_on": "eval:doc.type_of_scholarship==\"Cutoff basis\""
+  },
+  {
+   "fieldname": "section_break_r2mjo",
+   "fieldtype": "Section Break",
+   "hidden": 1
+  },
+  {
+   "depends_on": "eval:doc.type_of_scholarship==\"Merit basis\"",
+   "fieldname": "no_of_merit_student",
+   "fieldtype": "Int",
+   "label": "No. of Merit Student",
+   "mandatory_depends_on": "eval:doc.type_of_scholarship==\"Merit basis\""
+  },
+  {
+   "fieldname": "column_break_ulop2",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-01 09:55:46.827368",
+ "modified": "2023-12-12 11:13:08.766024",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Rewards and Achievements",

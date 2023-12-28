@@ -101,6 +101,54 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Pre Examination",
+   "link_count": 4,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Exam Declaration",
+   "link_count": 0,
+   "link_to": "Exam Declaration",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Exam Group",
+   "link_count": 0,
+   "link_to": "Module Wise Exam Group",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Paper Setter & Moderator",
+   "link_count": 0,
+   "link_to": "Exam Assessment Plan",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Exam Paper Setting",
+   "link_count": 0,
+   "link_to": "Exam Paper Setting",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Exam Evaluation",
    "link_count": 2,
    "onboard": 0,
@@ -109,7 +157,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Final Semester Result",
+   "label": "Exam Assessment Result",
    "link_count": 0,
    "link_to": "Exam Assessment Result",
    "link_type": "DocType",
@@ -157,7 +205,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Course",
+   "label": "Programs",
    "link_count": 0,
    "link_to": "Programs",
    "link_type": "DocType",
@@ -167,63 +215,15 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Program",
+   "label": "Semester",
    "link_count": 0,
    "link_to": "Program",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Pre Examination",
-   "link_count": 4,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Exam Declaration",
-   "link_count": 0,
-   "link_to": "Exam Declaration",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Exam Group",
-   "link_count": 0,
-   "link_to": "Module Wise Exam Group",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Paper Setter & Moderator",
-   "link_count": 0,
-   "link_to": "Exam Assessment Plan",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Exam Paper Setting",
-   "link_count": 0,
-   "link_to": "Exam Paper Setting",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
   }
  ],
- "modified": "2023-12-05 11:13:52.644121",
+ "modified": "2023-12-14 15:20:17.883022",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Educational Management",

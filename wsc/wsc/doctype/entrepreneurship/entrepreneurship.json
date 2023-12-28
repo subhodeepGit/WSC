@@ -13,12 +13,13 @@
   "company_registration_year",
   "state",
   "website_link",
-  "full_address",
   "attache_company_image",
   "column_break_1lhtf",
   "company_registration_number",
   "number_of_employees",
   "city",
+  "section_break_1jhbo",
+  "full_address",
   "student_details_section",
   "student_details_table",
   "revenue_details_section",
@@ -111,11 +112,15 @@
    "fieldtype": "Table",
    "label": "Revenue Details Table",
    "options": "entrepreneurship revenue details"
+  },
+  {
+   "fieldname": "section_break_1jhbo",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-08 15:13:21.836041",
+ "modified": "2023-12-18 13:03:10.601392",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrepreneurship",

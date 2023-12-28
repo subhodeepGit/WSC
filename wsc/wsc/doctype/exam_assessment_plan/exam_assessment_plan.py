@@ -170,6 +170,7 @@ def make_exam_paper_setting(doc):
                 eps.assessment_plan=doc.name
                 eps.programs=doc.programs
                 eps.program=doc.program
+                eps.school_house=doc.school_house
                 eps.exam_coordinator_name=doc.exam_coordinator_name
                 eps.paper_setting_start_date=doc.paper_setting_start_date
                 eps.paper_setting_end_date=doc.paper_setting_end_date

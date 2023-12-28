@@ -26,7 +26,6 @@ def get_student_details(args,self):
 
 @frappe.whitelist()
 def get_outstanding_fees(args):
-	print("Hello World")
 	if isinstance(args, string_types):
 		args = json.loads(args)
 	filter=[]
@@ -89,11 +88,10 @@ def get_outstanding_fees(args):
 					j['exchange_rate']=1
 					fee_component_info.append(j)
 
-	data=fee_component_info	
-	if not data:
-		frappe.msgprint(_("No outstanding invoices found for the {0} {1} which qualify the filters you have specified.")
-			.format(_(args.get("party_type")).lower(), frappe.bold(args.get("party"))))
-
+	data=fee_component_info
+	if not data:	
+			frappe.msgprint(_("No outstanding invoices found for the student {0} which qualify the filters you have specified.")
+				  .format(_(frappe.bold(args.get('student')))))
 	return data
 
 

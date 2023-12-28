@@ -21,7 +21,7 @@ def getvalue():
 	return data
 @frappe.whitelist()
 def get_course(doctype, txt, searchfield, start, page_len, filters):
-    return frappe.get_all("Program Course",{"parent":filters.get("program")},['course'],as_list = 1)
+    return frappe.get_all("Program Course",{"parent":filters.get("program")},['course','course_name'],as_list = 1)
 
 @frappe.whitelist()
 def getdetails(student_id):

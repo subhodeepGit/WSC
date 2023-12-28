@@ -100,8 +100,6 @@ frappe.ui.form.on('TnP Event', {
 	}
 });
 
-// --------------------------------------------------
-
 frappe.ui.form.on('coordinators list', {
 	coordinators_list_add: function(frm){
 		frm.fields_dict['coordinators_list'].grid.get_field('coordinator_id').get_query = function(doc){

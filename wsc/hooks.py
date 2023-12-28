@@ -33,6 +33,7 @@ web_include_js = "/assets/wsc/js/wsc_ui.js"
 # include js in doctype views
 doctype_js = {
                 "Account":"public/js/account.js",
+                "Bank Reconciliation Tool":"public/js/bank_reconciliation_tool.js",
                 "Course":"public/js/course.js",
                 "Course Enrollment":"public/js/course_enrollment.js",
                 "Course Schedule": "public/js/course_schedule.js",
@@ -79,7 +80,11 @@ doctype_js = {
                 "Purchase Invoice":"public/js/purchase_invoice.js",
                 "Warehouse":"public/js/warehouse.js",
                 "Asset":"public/js/asset.js",
-                "Job Requisition":"public/js/job_requisition.js"
+                "Job Requisition":"public/js/job_requisition.js",
+                "Project":"public/js/project.js",
+                "Supplier Quotation":"public/js/supplier_quotation.js",
+                "Stock Entry":"public/js/stock_entry.js",
+                "Topic":"public/js/topic.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -116,7 +121,8 @@ after_migrate = [
         'wsc.wsc.delete_doc_if_linked.execute',
         'wsc.patches.migrate_patch.set_custom_role_permission_remove_duplicate',
         'wsc.patches.create_all_tax_category.execute',
-        'wsc.wsc.wsc_patches.execute'
+        # 'wsc.wsc.wsc_patches.execute',
+        # 'wsc.wsc.wsc_patches.execute_security_patches'
 ]
 
 # application home page (will override Website Settings)
@@ -260,9 +266,9 @@ doc_events = {
     "Mentor Allocation": {
         "validate": "wsc.wsc.validations.mentor_allocation.validate"
     },
-    "Mentor Initiation": {
-        "validate":"wsc.wsc.doctype.mentor_initiation.mentor_initiation.create_mentee_communications"
-    },
+    # "Mentor Initiation": {
+    #     "validate":"wsc.wsc.doctype.mentor_initiation.mentor_initiation.create_mentee_communications"
+    # },
     "Photocopy Application":{
         "validate":"wsc.wsc.validations.photocopy_application.validate"
     },
@@ -400,9 +406,9 @@ doc_events = {
         "on_update":"wsc.wsc.doctype.job_applicant.on_update",
         "on_update_after_submit":"wsc.wsc.doctype.job_applicant.on_update_after_submit"
     },
-    "Task": {
-        "validate":"wsc.task.validate"
-    },
+    # "Task": {
+    #     "validate":"wsc.task.validate"
+    # },
     "Employee Onboarding": {
         "validate":"wsc.wsc.doctype.employee_onboarding.validate",
         "on_cancel" : "wsc.wsc.doctype.employee_onboarding.on_cancel",
@@ -507,6 +513,9 @@ doc_events = {
     },
     "Purchase Invoice":{
         "validate":"wsc.wsc.validations.purchase_invoice.validate"
+    },
+    "Project":{
+        "after_insert":"wsc.wsc.validations.project.after_insert"
     }
     
     
@@ -547,7 +556,9 @@ scheduler_events = {
         "wsc.task.safety_stock_reach",
         "wsc.task.student_disable_check",
         "wsc.task.employee_re_engagement_workFlow",
-        "wsc.task.check_and_delete_exit_employee_permissions"
+        "wsc.task.check_and_delete_exit_employee_permissions",
+        "wsc.task.overdue_task",
+        "wsc.task.status_update"
         # "wsc.wsc.validations.exam_assessment_plan.make_exam_paper_setting_by_paper_setting_date"
 	]
 }
@@ -573,9 +584,9 @@ override_whitelisted_methods = {
 	"erpnext.accounts.doctype.payment_entry.payment_entry.get_party_and_account_balance":"wsc.wsc.doctype.payment_entry.get_party_and_account_balance",
 	"education.education.api.get_fee_components":"wsc.wsc.validations.api.get_fee_components",
 	"education.education.doctype.fee_structure.fee_structure.make_fee_schedule":"wsc.wsc.doctype.fee_structure.make_fee_schedule",
-    "education.education.doctype.student_attendance_tool.student_attendance_tool.get_student_attendance_records":"wsc.wsc.doctype.student_attendance.get_student_attendance_records"
+    "education.education.doctype.student_attendance_tool.student_attendance_tool.get_student_attendance_records":"wsc.wsc.doctype.student_attendance.get_student_attendance_records",
     # "frappe.core.doctype.data_import.data_import.download_template":"wsc.wsc.doctype.data_import.download_template"
-	# "kp_edtec.kp_edtec.doctype.fees.make_refund_fees":"wsc.wsc.validations.fees.make_refund_fees",
+	"erpnext.accounts.doctype.bank_reconciliation_tool.bank_reconciliation_tool.auto_reconcile_vouchers":"wsc.wsc.validations.bank_reconciliation_tool.auto_reconcile_vouchers"
 }
 override_doctype_class = {
     "Course Schedule":"wsc.wsc.doctype.course_schedule.CourseSchedule",
@@ -604,6 +615,21 @@ override_doctype_dashboards = {
     "Course": "wsc.wsc.dashboard.course_dashboard.get_data",
     "Program Enrollment": "wsc.wsc.dashboard.program_enrollment_dashboard.get_data",
     "Student": "wsc.wsc.dashboard.student_dashboard.get_data",
+    "Item":"wsc.wsc.dashboard.item_dashboard.get_data",
+    "Supplier":"wsc.wsc.dashboard.supplier_dashboard.get_data",
+    "Payment Term":"wsc.wsc.dashboard.payment_term_dashboard.get_data",
+    "Payment Terms Template":"wsc.wsc.dashboard.payment_term_template_dashboard.get_data",
+    "Purchase Taxes and Charges Template": "wsc.wsc.dashboard.purchase_taxes_and_charges_template.get_data",
+    "Tax Category":"wsc.wsc.dashboard.all_tax_category_dashboard.get_data",
+    "Material Request":"wsc.wsc.dashboard.material_request.get_data",
+    "Supplier Quotation":"wsc.wsc.dashboard.supplier_quotation_dashbord.get_data",
+    "Purchase Order":"wsc.wsc.dashboard.purchase_order_dashboard.get_data",
+    "Purchase Receipt":"wsc.wsc.dashboard.purchase_receipt_dashboard.get_data",
+    "Purchase Invoice":"wsc.wsc.dashboard.purchase_invoice_dashboard.get_data",
+    "Batch":"wsc.wsc.dashboard.batch_dashboard.get_data",
+    "Asset":"wsc.wsc.dashboard.asset_dashboard.get_data",
+    "Project":"wsc.wsc.dashboard.project_dashboard.get_data",
+    "Task":"wsc.wsc.dashboard.task_dashboard.get_data",
 }
 #
 # each overriding function accepts a `data` argument;
@@ -652,15 +678,15 @@ override_doctype_dashboards = {
 # ]
 
 # fixtures = [
-	# {"dt": "Custom DocPerm", "filters": [
-	# 	["parent", "not in", ["DocType"]],
-    #     ["parent", "in", ["Material Request","Item","Warehouse","Address","Contact","Workflow State","Department"]],
-    #     ["role", "in", ["Requisitioner"]]
-	# ]},
+# 	{"dt": "Custom DocPerm", "filters": [
+# 		["parent", "not in", ["DocType"]],
+#         ["parent", "in", ["Entrance Exam Declaration"]],
+#         ["role", "in", ["Applicant"]]
+# 	]},
     # {"dt": "Role","filters": [
-    #     ["name", "in", ["Requisitioner"]]
+    #     ["name", "in", ["Project Manager"]]
     # ]},
-#     # # {"dt": "Role Profile"},
+    # # {"dt": "Role Profile"},
 #     # # {"dt": "Module Profile"},
     # {"dt" : "Workflow","filters": [
     #     [

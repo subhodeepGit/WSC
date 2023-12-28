@@ -17,7 +17,7 @@ def setup_workflow(doc):
 		doc.update()
 	}
 
-# Attach the update_document function to the "Update" button
+
 	roles = frappe.get_roles(frappe.session.user)
 	if "HR Admin" in roles or "Admin" in roles or "Administrator" in roles:
 		doc_events = {
@@ -30,12 +30,9 @@ def setup_workflow(doc):
 def submit_document(doc):
 	roles = frappe.get_roles(frappe.session.user)
 	if "HR Admin" in roles or "Admin" in roles or "Administrator" in roles:
-	# Your custom logic before submitting (if needed)
-	
-	# Set the document status to "Submitted"
 		doc.docstatus = 1
 		doc.docstatus = 0
-	# Your custom logic after submitting (if needed)
+	
 
 def setup_workflow(doc):
 	
@@ -98,6 +95,7 @@ def validate(doc,method):
 		frappe.throw("AAdhar Field must contain only digits.")
 	lower_range = doc.get("lower_range") 
 	higher_range =doc.get("upper_range") 
+
 
 	if lower_range is not None and higher_range is not None and higher_range < lower_range:
 		frappe.throw("Higher range cannot be less than the lower range.")

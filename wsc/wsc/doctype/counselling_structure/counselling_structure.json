@@ -58,7 +58,7 @@
    "fieldname": "program_grade",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Program Grade",
+   "label": "Course Type",
    "options": "Program Grades",
    "reqd": 1
   },
@@ -73,18 +73,19 @@
   {
    "fieldname": "fees_section",
    "fieldtype": "Section Break",
-   "label": "Fees"
+   "label": "Documents"
   },
   {
    "fieldname": "counselling_fees",
    "fieldtype": "Table",
+   "hidden": 1,
    "label": "Counselling Fees",
    "options": "Fee Structure Item"
   },
   {
    "fieldname": "counselling_programs",
    "fieldtype": "Table",
-   "label": "Counselling Programs",
+   "label": "Counselling Course",
    "options": "Counselling Programs"
   },
   {
@@ -114,10 +115,11 @@
    "link_fieldname": "counselling_structure"
   }
  ],
- "modified": "2021-12-04 14:04:08.677299",
+ "modified": "2023-12-12 12:10:23.803047",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Counselling Structure",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -135,5 +137,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"yJVGRzoQ48\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h3\\\">Shortcut</span>\",\"col\":12}},{\"id\":\"bwpBlbDyl-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Profile\",\"col\":4}},{\"id\":\"3TG3xRe52L\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":4}},{\"id\":\"JVdj8Efoxz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Program Enrollment\",\"col\":4}},{\"id\":\"shFy-WozIe\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Time Table\",\"col\":4}},{\"id\":\"1XpjfsxhOH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Leave Application\",\"col\":4}},{\"id\":\"LYUyGU4Kr8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Attendance\",\"col\":4}},{\"id\":\"YdDeb-stzt\",\"type\":\"paragraph\",\"data\":{\"text\":\"<span class=\\\"h4\\\">My Cards</span><br>\",\"col\":12}},{\"id\":\"d-6SS0m4KP\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"YW8o7Jn18C\",\"type\":\"card\",\"data\":{\"card_name\":\"Students\",\"col\":4}},{\"id\":\"6sjJp3AS3f\",\"type\":\"card\",\"data\":{\"card_name\":\"Enrollment\",\"col\":4}},{\"id\":\"2e7sfPFJ4t\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance & Leave\",\"col\":4}},{\"id\":\"LnyU0brUS-\",\"type\":\"card\",\"data\":{\"card_name\":\"Examination\",\"col\":4}}]",
+ "content": "[{\"id\":\"yJVGRzoQ48\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h3\\\">Shortcut</span>\",\"col\":12}},{\"id\":\"bwpBlbDyl-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Profile\",\"col\":4}},{\"id\":\"3TG3xRe52L\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":4}},{\"id\":\"JVdj8Efoxz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Program Enrollment\",\"col\":4}},{\"id\":\"shFy-WozIe\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Time Table\",\"col\":4}},{\"id\":\"1XpjfsxhOH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Leave Application\",\"col\":4}},{\"id\":\"LYUyGU4Kr8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Attendance\",\"col\":4}},{\"id\":\"YdDeb-stzt\",\"type\":\"paragraph\",\"data\":{\"text\":\"<span class=\\\"h4\\\">My Cards</span><br>\",\"col\":12}},{\"id\":\"d-6SS0m4KP\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"YW8o7Jn18C\",\"type\":\"card\",\"data\":{\"card_name\":\"Students\",\"col\":4}},{\"id\":\"6sjJp3AS3f\",\"type\":\"card\",\"data\":{\"card_name\":\"Enrollment\",\"col\":4}},{\"id\":\"2e7sfPFJ4t\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance & Leave\",\"col\":4}},{\"id\":\"LnyU0brUS-\",\"type\":\"card\",\"data\":{\"card_name\":\"Examination\",\"col\":4}},{\"id\":\"cvErzWsJwO\",\"type\":\"card\",\"data\":{\"card_name\":\"Scholarship\",\"col\":4}},{\"id\":\"CeEiRfaS7W\",\"type\":\"card\",\"data\":{\"card_name\":\"Clearance\",\"col\":4}}]",
  "creation": "2023-07-20 18:20:38.635941",
  "custom_blocks": [],
  "docstatus": 0,
@@ -161,9 +161,45 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Scholarship",
+   "link_count": 1,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Scholarship Application",
+   "link_count": 0,
+   "link_to": "Scholarship Application",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Clearance",
+   "link_count": 1,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Clearance Application",
+   "link_count": 0,
+   "link_to": "Student Clearance Application",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-12-04 17:42:52.856599",
+ "modified": "2023-12-14 16:24:32.098600",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Workspace",

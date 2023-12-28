@@ -112,6 +112,7 @@
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "FD Amount",
+   "non_negative": 1,
    "reqd": 1
   },
   {
@@ -161,12 +162,15 @@
    "fieldname": "interest_calculation",
    "fieldtype": "Table",
    "label": "Interest Calculation",
-   "options": "Fixed Deposit Interest"
+   "options": "Fixed Deposit Interest",
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fieldname": "interest_percentage",
    "fieldtype": "Float",
    "label": "Interest Percentage",
+   "non_negative": 1,
    "reqd": 1
   },
   {
@@ -182,42 +186,42 @@
   {
    "depends_on": "eval:doc.interest_payable==\"Days\"",
    "fieldname": "tenure_days",
-   "fieldtype": "Data",
+   "fieldtype": "Int",
    "label": "Tenure(In Days)",
    "mandatory_depends_on": "eval:doc.interest_payable==\"Days\""
   },
   {
    "depends_on": "eval:doc.interest_payable==\"Months\"",
    "fieldname": "tenurein_months",
-   "fieldtype": "Data",
+   "fieldtype": "Int",
    "label": "Tenure(In Months)",
    "mandatory_depends_on": "eval:doc.interest_payable==\"Months\""
   },
   {
    "depends_on": "eval:doc.interest_payable==\"Weeks\"",
    "fieldname": "tenurein_weeks",
-   "fieldtype": "Data",
+   "fieldtype": "Int",
    "label": "Tenure(In Weeks)",
    "mandatory_depends_on": "eval:doc.interest_payable==\"Weeks\""
   },
   {
    "depends_on": "eval:doc.interest_payable==\"Quarterly\"",
    "fieldname": "tenurein_quarter",
-   "fieldtype": "Data",
+   "fieldtype": "Int",
    "label": "Tenure(In Quater)",
    "mandatory_depends_on": "eval:doc.interest_payable==\"Quarterly\""
   },
   {
    "depends_on": "eval:doc.interest_payable==\"Semi-Annually\"",
    "fieldname": "tenuresemi_annually",
-   "fieldtype": "Data",
+   "fieldtype": "Int",
    "label": "Tenure(Semi_Annually)",
    "mandatory_depends_on": "eval:doc.interest_payable==\"Semi-Annually\""
   },
   {
    "depends_on": "eval:doc.interest_payable==\"Annually\"",
    "fieldname": "tenurein_annually",
-   "fieldtype": "Data",
+   "fieldtype": "Int",
    "label": "Tenure(In Annually)",
    "mandatory_depends_on": "eval:doc.interest_payable==\"Annually\""
   },
@@ -298,7 +302,7 @@
    "link_fieldname": "fixed_deposit"
   }
  ],
- "modified": "2023-07-31 15:43:16.273707",
+ "modified": "2023-12-19 14:51:17.703159",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Fixed Deposit",

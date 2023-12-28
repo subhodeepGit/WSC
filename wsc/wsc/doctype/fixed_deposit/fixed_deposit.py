@@ -162,15 +162,44 @@ def calculate_fd(fd_amount=None, interest_rate=None, interest_payable=None,inter
 
 
 def calculate_simple_interest(principal,rate,time,interest_payable):
-    maturity_amount=[]
-    for t in range(0,int(time)):
-        data={}
-        data['term']="Term-%s"%(t+1)
-        data["principal_amount"]=principal
-        si = (principal * 1 * rate)/100
-        data['interest']=si
-        data['total']=principal+si
-        maturity_amount.append(data)
+    # maturity_amount=[]
+    # for t in range(0,int(time)):
+    #     data={}
+    #     data['term']="Term-%s"%(t+1)
+    #     data["principal_amount"]=principal
+    #     si = (principal * 1 * rate)/100
+    #     # si = 1+(rate*times)
+    #     # print(si)
+    #     data['interest']=si
+    #     data['total']=principal+si
+    #     maturity_amount.append(data)
+    # return maturity_amount
+   
+    maturity_amount = []
+
+    # if interest_payable.lower() == 'days':
+    #     actual_rate = rate/365
+    # elif interest_payable.lower() == 'weeks':
+    #     actual_rate = rate/52
+    # elif interest_payable.lower() == 'months':
+    #     actual_rate = rate/12
+    # elif interest_payable.lower() == 'quarterly':
+    #     actual_rate = rate/4
+    # elif interest_payable.lower() == 'semi-annually':
+    #     actual_rate = rate/2
+    # elif interest_payable.lower() == 'annually':
+    #     actual_rate = rate
+
+
+    for t in range(1, int(time) + 1):
+        interest = principal * rate
+        total = principal + interest*t
+        maturity_amount.append({
+            'term': "Term-%s"%(t),
+            'principal_amount': principal,
+            'interest': interest,
+            'total': total
+        })
     return maturity_amount
 
 

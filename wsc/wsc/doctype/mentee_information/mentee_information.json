@@ -23,6 +23,7 @@
   {
    "fieldname": "student_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Student Name",
    "read_only": 1,
    "reqd": 1
@@ -30,7 +31,8 @@
   {
    "fieldname": "programs",
    "fieldtype": "Data",
-   "label": "programs",
+   "in_list_view": 1,
+   "label": "Module's",
    "read_only": 1,
    "reqd": 1
   },
@@ -38,13 +40,14 @@
    "default": "1",
    "fieldname": "check",
    "fieldtype": "Check",
+   "in_list_view": 1,
    "label": "Check"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-07-05 17:20:03.156702",
+ "modified": "2023-12-15 11:32:20.282098",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Mentee Information",

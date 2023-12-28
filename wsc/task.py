@@ -16,19 +16,20 @@ import os
 from datetime import datetime
 from frappe.utils import now_datetime, add_days
 from wsc.wsc.notification.custom_notification import email_transaction_status
+from wsc.wsc.notification.custom_notification import task_delay_reminder
 
 #Notification for 30 days to Warranty period
 def warranty_notification():
     item_list = frappe.get_all("Item", filters={}, fields=["item_code","item_name", "creation", "warranty_period"])
     for items in item_list:
         time_data = items['creation']
-        creation_date = time_data.date()                                            #converting date_time to date()
+        creation_date = time_data.date()                                            
         if items['warranty_period'] != None:                                  
             warranty_period = int(items['warranty_period'])
-            warranty_over_date = creation_date + timedelta(days=warranty_period)    #adding date of creation with number of days to get warranty_end_date
+            warranty_over_date = creation_date + timedelta(days=warranty_period)    
             today = date.today()
             date_diff = warranty_over_date - today
-            date_diff_int = date_diff.days                                          #difference between warranty expires and creation in days
+            date_diff_int = date_diff.days                                          
             if date_diff_int == 30 or (date_diff_int <= 30 and date_diff_int > 0):
                 item_expiry(items)
         
@@ -65,6 +66,9 @@ def send_mail(recipients=None,subject=None,message=None,attachments=None):
     if has_default_email_acc():
         frappe.sendmail(recipients=recipients or [],expose_recipients="header",subject=subject,message = message,attachments=attachments,with_container=True)        
 
+def send_mail_cc(recipients=None,cc=None,subject=None,message=None,attachments=None):
+    if has_default_email_acc(): 
+        frappe.sendmail(recipients=recipients or [], cc=cc, expose_recipients="header",subject=subject,message = message,attachments=attachments,with_container=False)
 
 # Notification to students and invigilators 7 days prior exam date
 # bench --site erp.soulunileaders.com execute wsc.task.exam_reminder_notification
@@ -1097,3 +1101,34 @@ def axis_transaction_update_status():             # bench execute wsc.task.axis_
                 #     axis_file_logger.info("t1 Successfully submitted") 
         except Exception as e:	
             axis_file_logger.info(f"Error in awaited_status_transactions_2: {repr(e)}")
+
+#################################################### Project Management Scheduler Start #####################################################################
+
+##########  Email for Task Overdue  ##########
+def overdue_task():
+    today_date = datetime.today().date()
+    task_data = frappe.get_all("Task",['name','exp_end_date','project_manager'])
+    for t in task_data:
+        if t["exp_end_date"]:
+            end_date = datetime.strptime(t['exp_end_date'], "%Y-%m-%d").date()
+            if today_date > end_date:
+                sub = "Reg:Task Delay"
+                msg="""<b>Task {0} with Subject {1} has exceeded its expected end date</b><br>"""%(t['name'],['subject'])
+                msg += """Thank You<br>"""
+                recipients_list = frappe.get_all("Task Assign", {'parent':t['name']},['assign_to'])
+                recipient_emails = [recipient['assign_to'] for recipient in recipients_list]
+                cc_emails = t['project_manager']
+                send_mail_cc(recipient_emails,cc_emails,sub,msg)
+
+##########  Status Update for Task Overdue  ##########
+def status_update():
+    today_date = datetime.today().date()
+    task_data = frappe.get_all("Task",['name','exp_end_date','project_manager'])
+    for t in task_data:
+        if t['exp_end_date']:
+            exp_date = datetime.strptime(t['exp_end_date'], "%Y-%m-%d").date()
+            if today_date > exp_date:
+                frappe.db.set_value('Task', t['name'], t['status'], 'Overdue')
+            else:
+                pass
+#################################################### Project Management Scheduler Ends #####################################################################

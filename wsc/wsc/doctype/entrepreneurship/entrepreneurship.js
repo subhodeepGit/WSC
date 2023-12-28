@@ -2,9 +2,6 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Entrepreneurship', {
-	// refresh: function(frm) {
-
-	// }
 	number_of_employees: function(frm){
 		if(isNaN(frm.doc.number_of_employees)){
 			frm.set_value("number_of_employees", '')

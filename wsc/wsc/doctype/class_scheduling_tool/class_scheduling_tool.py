@@ -74,6 +74,9 @@ class ClassSchedulingTool(Document):
 			"course_start_date",
 			"course_end_date",
 		]
+		if not self.student_group:
+			frappe.throw("Student Group is Mandatory") 
+
 		for d in fields:
 			if not self.get(d):
 				frappe.throw(_("{0} is mandatory").format(self.meta.get_label(d)))
@@ -144,14 +147,13 @@ def create_course_row(course_schedule,instructor,instructor_name):
 
 @frappe.whitelist()
 def get_instructor(doctype, txt, searchfield, start, page_len, filters):
-	fltr={"course":filters.get("course")}
+	fltr={"course":filters.get("course"),"school_house":filters.get("school_house")}
 	lst = []
 	if txt:
 		fltr.update({"parent":['like', '%{}%'.format(txt)]})
 	for i in frappe.get_all("Instructor Log",fltr,['parent']):
 		if i.parent not in lst :
 			lst.append(i.parent)
-	print(len(lst))
 	return [(d, ) for d in lst]
 
 

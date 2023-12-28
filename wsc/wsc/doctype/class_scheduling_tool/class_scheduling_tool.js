@@ -50,6 +50,7 @@ frappe.ui.form.on('Class Scheduling Tool', {
 			filters:{
 					"course":frm.doc.course,
 					"student_group":frm.doc.student_group,
+					"school_house": frm.doc.school_house,
 			}
 		};
 	};

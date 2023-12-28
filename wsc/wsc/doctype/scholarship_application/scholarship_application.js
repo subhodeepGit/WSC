@@ -14,6 +14,17 @@ frappe.ui.form.on('Scholarship Application', {
 	refresh: function(frm) {
 		frm.set_df_property('document_list_tab', 'cannot_add_rows', true);
 		frm.set_df_property('scholarship_eligibility_parameter', 'cannot_add_rows', true);
+		if (frappe.session.user != "Administrator"){
+            if (frappe.user.has_role(["Student"]) && frm.doc.workflow_state=="Sent For Approval"){
+            Object.keys(cur_frm.fields_dict).forEach(field=>{
+                frm.set_df_property(field,'read_only',1)
+            })
+        }else if(!frappe.user.has_role(["Student"])){
+			Object.keys(cur_frm.fields_dict).forEach(field=>{
+                frm.set_df_property(field,'read_only',1)
+			})
+		}
+    } 
 	},
 
 

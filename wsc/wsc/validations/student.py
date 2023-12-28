@@ -3,6 +3,7 @@ from frappe import _
 from wsc.wsc.validations.workspace import make_workspace_for_user
 from wsc.wsc.utils import duplicate_row_validation
 from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
+from frappe.desk.form.linked_with import get_linked_doctypes
 
 @frappe.whitelist()
 def get_student_program(student):
@@ -62,7 +63,7 @@ def on_change(self,method):
 	# 	old_user=user_info[0]["user"]
 	# 	frappe.rename_doc("User", old_user, self.student_email_id)
 	# 	frappe.db.commit()
-	# 	user=frappe.get_doc("User",self.student_email_id)
+	# 	user=frappe.get_doc("User",self.student_email_id)l
 	# 	user.email=self.student_email_id
 	# 	user.save()
 	
@@ -74,13 +75,24 @@ def validate(doc,method):
 	duplicate_row_validation(doc, "education_details", ['qualification','percentage'])
 	duplicate_row_validation(doc, "siblings", ['full_name', 'gender'])
 	duplicate_row_validation(doc, "disable_type", ['disability_type', 'percentage_of_disability'])
-	records = frappe.get_all("Program Intermit Form",{"form_status":"Approve"},["student","student_name"])
-	if not doc.is_new():
-		user_update(doc)
-	student = frappe.get_all("Student",{"name":doc.name},{"roll_no"})
+	# records = frappe.get_all("Program Intermit Form",{"form_status":"Approve"},["student","student_name"])
+	student = frappe.get_all("Student",{"name":doc.name},{"roll_no",'permanant_registration_number',"student_name"})
 	if student:
 		if doc.roll_no!=student[0]["roll_no"]:
-			roll(doc)
+			update_student_records_roll(doc)
+		if doc.permanant_registration_number!=student[0]["permanant_registration_number"]:
+			update_student_records_permanent_registration(doc)
+		if 	doc.student_name!=student[0]["student_name"]:
+			update_student_name_in_linked_doctype(doc)
+
+	if not doc.is_new():
+		user_update(doc)
+
+	# student = frappe.get_all("Student",{"name":doc.name},{"roll_no"})
+	# if student:
+	# 	if doc.roll_no!=student[0]["roll_no"]:
+	# 		roll(doc)
+			
 
 
 def user_update(self):
@@ -207,3 +219,63 @@ def roll(doc):
         else:
             id_info=tuple([t["name"] for t in id_card])
             frappe.db.sql(""" update `tabIdentity Card` set roll_no="%s" where name in %s"""%(doc.roll_no,id_info))
+
+
+def update_student_records_roll(self):
+	linked_doctypes = get_linked_doctypes("Student")
+	for d in linked_doctypes:
+		meta = frappe.get_meta(d)
+		if not meta.issingle:
+			if "roll_no" in [f.fieldname for f in meta.fields]:
+				if d != "Student Applicant" and d != "Student" and d != "Student Group":			
+					frappe.db.sql("""UPDATE `tab{0}` set roll_no = %s where {1} = %s""".format(d, linked_doctypes[d]["fieldname"][0]),(self.roll_no, self.name))
+			if "child_doctype" in linked_doctypes[d].keys() and "roll_no" in [
+				f.fieldname for f in frappe.get_meta(linked_doctypes[d]["child_doctype"]).fields
+			]:
+				frappe.db.sql(
+					"""UPDATE `tab{0}` set roll_no = %s where {1} = %s""".format(
+						linked_doctypes[d]["child_doctype"], linked_doctypes[d]["fieldname"][0]
+					),
+					(self.roll_no, self.name),
+				)
+
+
+def update_student_records_permanent_registration(self):
+	linked_doctypes = get_linked_doctypes("Student")
+	for d in linked_doctypes:
+		meta = frappe.get_meta(d)
+		if not meta.issingle:			
+			if "permanent_registration_number" in [f.fieldname for f in meta.fields]:
+				if d != "Student Applicant" and d != "Student":
+					frappe.db.sql("""UPDATE `tab{0}` set permanent_registration_number = %s where {1} = %s""".format(d, linked_doctypes[d]["fieldname"][0]),(self.permanant_registration_number, self.name))
+			if "permanant_registration_number" in [f.fieldname for f in meta.fields]:
+				if d != "Student Applicant" and d != "Student":
+					frappe.db.sql("""UPDATE `tab{0}` set permanant_registration_number = %s where {1} = %s""".format(d, linked_doctypes[d]["fieldname"][0]),(self.permanant_registration_number, self.name))
+			if "registration_number" in [f.fieldname for f in meta.fields]:
+				if d != "Student Applicant" and d != "Student":
+					frappe.db.sql("""UPDATE `tab{0}` set registration_number = %s where {1} = %s""".format(d, linked_doctypes[d]["fieldname"][0]),(self.permanant_registration_number, self.name))				
+
+
+def update_student_name_in_linked_doctype(self):
+	linked_doctypes = get_linked_doctypes("Student")
+	for d in linked_doctypes:
+		meta = frappe.get_meta(d)
+		if not meta.issingle:
+			if "student_name" in [f.fieldname for f in meta.fields]:
+				if d != "Student":
+					frappe.db.sql(
+						"""UPDATE `tab{0}` set student_name = %s where {1} = %s""".format(
+							d, linked_doctypes[d]["fieldname"][0]
+						),
+						(self.student_name, self.name),
+					)
+
+			if "child_doctype" in linked_doctypes[d].keys() and "student_name" in [
+				f.fieldname for f in frappe.get_meta(linked_doctypes[d]["child_doctype"]).fields
+			]:
+				frappe.db.sql(
+					"""UPDATE `tab{0}` set student_name = %s where {1} = %s""".format(
+						linked_doctypes[d]["child_doctype"], linked_doctypes[d]["fieldname"][0]
+					),
+					(self.student_name, self.name),
+				)
