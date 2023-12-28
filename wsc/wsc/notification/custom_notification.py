@@ -1973,3 +1973,99 @@ def jocr_ceo_mail(doc):
 
 		send_mail(recipient_emails, sub, msg)
 		frappe.msgprint("Job Offer Creation Request is sent to CEO.")
+
+############################## Dynamic Workflow ##########################################
+
+# def notify_level1(doc):
+# 	sub = "Reg:Dynamic Workflow"
+	
+# 	msg = """<p>Dear Ma'am/Sir,</p><br>"""
+# 	msg += """<p>Kindly refer to the Dynamic Workflow Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+# 	msg += "<b>---------------------Dynamic Workflow Details---------------------</b><br>"
+# 	msg += "<b>Dynamic Workflow Form ID:</b> {0}<br>".format(doc.get('name'))
+# 	msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
+# 	msg += "<b>Status:</b> {0}<br>".format(doc.get('status'))
+# 	# msg += "<b>Final Working Date:</b> {0}<br>".format(doc.get('final_working_date'))
+
+# 	dynamic_app_url = get_url_to_form('Dynamic Workflow', doc.get('name'))
+# 	msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(dynamic_app_url)
+
+# 	send_mail([doc.get("email")],sub,msg)
+# 	print("\n\n\n\nMail Sent to Approver 1")
+
+# 	frappe.msgprint("Dynamic workflow details is sent to Level 1 Approver {}".format(doc.get("email")))    
+
+
+def notify_level(doc):
+	sub = "Reg:Dynamic Workflow"
+	
+	msg = """<p>Dear Ma'am/Sir,</p><br>"""
+	msg += """<p>Kindly refer to the Dynamic Workflow Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+	msg += "<b>---------------------Dynamic Workflow Details---------------------</b><br>"
+	msg += "<b>Dynamic Workflow Form ID:</b> {0}<br>".format(doc.get('name'))
+	msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
+	msg += "<b>Status:</b> {0}<br>".format(doc.get('status'))
+	# msg += "<b>Final Working Date:</b> {0}<br>".format(doc.get('final_working_date'))
+
+	dynamic_app_url = get_url_to_form('Dynamic Workflow', doc.get('name'))
+	msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(dynamic_app_url)
+
+	send_mail([doc.get("email")],sub,msg)
+	print("\n\n\n\nMail Sent to Approver 2")
+
+	frappe.msgprint("Dynamic workflow details is sent to {}".format(doc.get("email")))  
+
+# def notify_level3(doc):
+# 	sub = "Reg:Dynamic Workflow"
+	
+# 	msg = """<p>Dear Ma'am/Sir,</p><br>"""
+# 	msg += """<p>Kindly refer to the Dynamic Workflow Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+# 	msg += "<b>---------------------Dynamic Workflow Details---------------------</b><br>"
+# 	msg += "<b>Dynamic Workflow Form ID:</b> {0}<br>".format(doc.get('name'))
+# 	msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
+# 	msg += "<b>Status:</b> {0}<br>".format(doc.get('status'))
+# 	# msg += "<b>Final Working Date:</b> {0}<br>".format(doc.get('final_working_date'))
+
+# 	dynamic_app_url = get_url_to_form('Dynamic Workflow', doc.get('name'))
+# 	msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(dynamic_app_url)
+
+# 	send_mail([doc.get("email")],sub,msg)
+# 	print("\n\n\n\nMail Sent to Approver 3")
+
+# 	frappe.msgprint("Dynamic workflow details is sent to Level 3 Approver {}".format(doc.get("email")))  
+
+# def notify_level4(doc):
+# 	sub = "Reg:Dynamic Workflow"
+	
+# 	msg = """<p>Dear Ma'am/Sir,</p><br>"""
+# 	msg += """<p>Kindly refer to the Dynamic Workflow Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+# 	msg += "<b>---------------------Dynamic Workflow Details---------------------</b><br>"
+# 	msg += "<b>Dynamic Workflow Form ID:</b> {0}<br>".format(doc.get('name'))
+# 	msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
+# 	msg += "<b>Status:</b> {0}<br>".format(doc.get('status'))
+# 	# msg += "<b>Final Working Date:</b> {0}<br>".format(doc.get('final_working_date'))
+
+# 	dynamic_app_url = get_url_to_form('Dynamic Workflow', doc.get('name'))
+# 	msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(dynamic_app_url)
+
+# 	send_mail([doc.get("email")],sub,msg)
+# 	print("\n\n\n\nMail Sent to Approver 4")
+# 	frappe.msgprint("Dynamic workflow details is sent to Level 4 Approver {}".format(doc.get("email")))  
+
+def notify_employee_d(doc):
+	sub = "Reg:Dynamic Workflow"
+	
+	msg = """<p>Dear Ma'am/Sir,</p><br>"""
+	msg += """<p>Kindly refer to the Dynamic Workflow Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+	msg += "<b>---------------------Dynamic Workflow Details---------------------</b><br>"
+	msg += "<b>Dynamic Workflow Form ID:</b> {0}<br>".format(doc.get('name'))
+	msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
+	msg += "<b>Status:</b> {0}<br>".format(doc.get('status'))
+	# msg += "<b>Final Working Date:</b> {0}<br>".format(doc.get('final_working_date'))
+
+	dynamic_app_url = get_url_to_form('Dynamic Workflow', doc.get('name'))
+	msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(dynamic_app_url)
+
+	send_mail([doc.get("email")],sub,msg)
+	print("\n\n\n\nMail Sent to Employee")
+	frappe.msgprint("Dynamic workflow details is sent to Employee {}".format(doc.get("email")))  	
