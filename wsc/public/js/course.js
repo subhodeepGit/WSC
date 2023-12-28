@@ -257,3 +257,38 @@ frappe.ui.form.on('Credit distribution List', {
 	refresh_field("passing_marks");
 	}
 });
+frappe.ui.form.on('Course Topic', {
+	theory:function(frm, cdt, cdn){
+	var d = locals[cdt][cdn];
+	var total = 0;
+	let a= parseInt(total)
+	frm.doc.topics.forEach(function(d)  { a = a+ d.theory; });
+	frm.set_value("total_hours_of_theory", a);
+	refresh_field("total_hours_of_theory");
+  },
+
+  theory_remove:function(frm, cdt, cdn){
+	var d = locals[cdt][cdn];
+	var total = 0;
+	let a= parseInt(total)
+	frm.doc.topics.forEach(function(d) { a += d.theory; });
+	frm.set_value("total_hours_of_theory", a);
+	refresh_field("total_hours_of_theory");
+	},
+	practical:function(frm, cdt, cdn){
+		var d = locals[cdt][cdn];
+		var total = 0;
+		let a= parseInt(total)
+		frm.doc.topics.forEach(function(d)  { a = a+ d.practical; });
+		frm.set_value("total_hours_of_practical", a);
+		refresh_field("total_hours_of_practical");
+	},
+	practical_remove:function(frm, cdt, cdn){
+		var d = locals[cdt][cdn];
+		var total = 0;
+		let a= parseInt(total)
+		frm.doc.topics.forEach(function(d) { a += d.practical; });
+		frm.set_value("total_hours_of_practical", a);
+		refresh_field("total_hours_of_practical");
+	}
+});
