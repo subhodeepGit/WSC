@@ -1,4 +1,31 @@
 frappe.ui.form.on('Student Admission', {
+	program: function(frm) {
+		if (frm.doc.academic_year && frm.doc.program) {
+			frm.doc.route = frappe.model.scrub(frm.doc.program) + "-" + frappe.model.scrub(frm.doc.academic_year)
+			frm.refresh_field("route");
+		}
+	},
+
+	academic_year: function(frm) {
+		frm.trigger("program");
+	},
+
+	admission_end_date: function(frm) {
+		if(frm.doc.admission_end_date && frm.doc.admission_end_date <= frm.doc.admission_start_date){
+			frm.set_value("admission_end_date", "");
+			frappe.throw(__("Counselling End Date should be greater than Counselling Start Date."));
+		}
+	},
+    
+    admission_start_date: function(frm) {
+		if(frm.doc.admission_end_date && frm.doc.admission_end_date <= frm.doc.admission_start_date){
+			frm.set_value("admission_end_date", "");
+			frappe.throw(__("Counselling End Date should be greater than Counselling Start Date."));
+		}
+	}
+});
+
+frappe.ui.form.on('Student Admission', {
     before_save(frm){
         if(frm.doc.admission_start_date && frm.doc.admission_end_date && frm.doc.admission_end_date < frm.doc.admission_start_date){
             
