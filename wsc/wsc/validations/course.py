@@ -76,6 +76,17 @@ def calculate_total(doc):
 			d.total_hrs = d.theory + d.practical
 		if not d.theory and not d.practical:
 			d.total_hrs=0
+	
+	theory_data=0
+	for i in doc.get("topics"):
+		if i.theory:
+			theory_data += i.theory
+	doc.total_hours_of_theory = theory_data
+	pract_data=0
+	for i in doc.get("topics"):
+		if i.practical:
+			pract_data += i.practical
+	doc.total_hours_of_practical = pract_data
 
 @frappe.whitelist()
 def add_module_to_tot_course(course, programs,is_tot,is_short_term_course):
