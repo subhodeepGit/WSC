@@ -19,6 +19,10 @@ def get_internship_name(internship_id):
 @frappe.whitelist()
 def get_selected_participants(internship_id):
 	parent_name = frappe.db.sql(""" SELECT name FROM `tabInternship Participant Selection` WHERE select_internship = '%s' and docstatus=1 """%(internship_id))
-	parent_name = parent_name[0][0]
-	participant_data = frappe.get_all('Internship Select Participants Table', filters = [['parent', '=', parent_name], ['select', '=', 1]], fields = ['applicant_id', 'applicant_name'])
-	return participant_data
+	if(parent_name):
+		parent_name = parent_name[0][0]
+		participant_data = frappe.get_all('Internship Select Participants Table', filters = [['parent', '=', parent_name], ['select', '=', 1]], fields = ['applicant_id', 'applicant_name'])
+		return participant_data
+	else:	
+		return []
+	

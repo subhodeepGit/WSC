@@ -7,6 +7,10 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "application_details_section",
+  "application_id",
+  "column_break_hau6u",
+  "application_status",
   "student_details",
   "student_no",
   "academic_year",
@@ -25,8 +29,6 @@
   "amended_from",
   "shortlisting_status",
   "round_status",
-  "application_status",
-  "application_id",
   "drive_round_status"
  ],
  "fields": [
@@ -145,11 +147,20 @@
    "label": "Drive Round Status",
    "read_only": 1,
    "reqd": 1
+  },
+  {
+   "fieldname": "application_details_section",
+   "fieldtype": "Section Break",
+   "label": "Application details"
+  },
+  {
+   "fieldname": "column_break_hau6u",
+   "fieldtype": "Column Break"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-18 16:17:12.713034",
+ "modified": "2023-12-26 12:27:46.707565",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Selection Round",

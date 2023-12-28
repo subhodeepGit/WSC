@@ -74,6 +74,9 @@ class ClassSchedulingTool(Document):
 			"course_start_date",
 			"course_end_date",
 		]
+		if not self.student_group:
+			frappe.throw("Student Group is Mandatory") 
+
 		for d in fields:
 			if not self.get(d):
 				frappe.throw(_("{0} is mandatory").format(self.meta.get_label(d)))
