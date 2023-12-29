@@ -38,7 +38,7 @@ frappe.ui.form.on('Course', {
 	disable:function(frm){
         if(frm.doc.disable == 1){
         	frappe.call({
-				method: "wsc.wsc.doctype.course.check_for_semester",
+				method: "wsc.wsc.validations.course.check_for_semester",
 				args:{
 					"course":frm.doc.name
 				},

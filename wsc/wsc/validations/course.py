@@ -9,7 +9,7 @@ def validate(doc, method):
     validate_semester(doc)
     validate_max_credit(doc)
     calculate_total(doc)
-    # create_permissions(doc)s
+    total_hr_calucation(doc)
     validate_weightage_percentage(doc)
 
 def create_permissions(doc):
@@ -71,6 +71,7 @@ def calculate_total(doc):
 	doc.total_credit=total_credit
 	doc.passing_credit=passing_credit
 	
+def total_hr_calucation(doc):
 	for d in doc.get("topics"):
 		if d.theory or d.practical:
 			d.total_hrs = d.theory + d.practical
