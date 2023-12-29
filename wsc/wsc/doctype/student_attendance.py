@@ -5,9 +5,11 @@ from frappe.model.document import Document
 from erpnext import get_default_company
 from education.education.api import get_student_group_students
 from erpnext.setup.doctype.holiday_list.holiday_list import is_holiday
+from datetime import datetime
 
 class StudentAttendance(Document):
     def validate(self):
+        date_bw(self)
         if self.attendance_for == 'Hosteler':
             for d in frappe.get_all("Student Attendance",{"date":self.date,"student":self.student,"name":("!=",self.name),"docstatus": 1}):
                 frappe.throw("Attendance Already Exist <b>{0}</b>".format(d.name))
@@ -318,3 +320,10 @@ def get_student_attendance_records(
 # def get_leave_student(course_schedule,attendance_date):
 #     res=frappe.get_all("Class Wise Leave",{'class_schedule_id':course_schedule,'schedule_date':attendance_date,'leave_applicability_check':1},['name','schedule_date','parenttype','parent','leave_applicability_check'])
 #     print("\n\nRESULT",res)
+
+def date_bw(self):
+    academic_yr = frappe.get_all("Academic Year",{"name":self.academic_year},["year_start_date","year_end_date"])
+    date_ = datetime.strptime(self.date, "%Y-%m-%d").date()
+    if academic_yr[0]["year_start_date"] and academic_yr[0]["year_end_date"]:
+        if not academic_yr[0]["year_start_date"]<=date_<=academic_yr[0]["year_end_date"]:
+            frappe.throw(_("The <b>Date</b> must fall within the <b>Academic year's</b> Start date ({0}) and End date ({1}).").format(academic_yr[0]["year_start_date"].strftime("%d-%m-%Y"),academic_yr[0]["year_end_date"].strftime("%d-%m-%Y")))

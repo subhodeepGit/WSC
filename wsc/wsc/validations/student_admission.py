@@ -6,6 +6,8 @@ from wsc.wsc.utils import semester_belongs_to_programs,academic_term
 
 
 def validate(doc, method):
+    if not doc.application_start_date <= doc.application_end_date:
+        frappe.throw("The application start date must be before the application end date")
     validate_program_grade(doc)
     # validate_academic_year(doc)
     validate_semester(doc)
