@@ -68,6 +68,7 @@ def on_change(self,method):
 	# 	user.save()
 	
 def validate(doc,method):
+	validate_email(doc)
 	validate_pin_code(doc)
 	validate_job_date(doc)
 	# attachImage(doc)s
@@ -86,7 +87,8 @@ def validate(doc,method):
 			update_student_name_in_linked_doctype(doc)
 
 	if not doc.is_new():
-		user_update(doc)
+		if validate_email(doc):
+			user_update(doc)
 
 	# student = frappe.get_all("Student",{"name":doc.name},{"roll_no"})
 	# if student:
@@ -279,3 +281,12 @@ def update_student_name_in_linked_doctype(self):
 					),
 					(self.student_name, self.name),
 				)
+
+def validate_email(doc):
+    import re
+    if doc.student_email_id:
+        # Updated regular expression to allow only periods in the email address
+        if not re.fullmatch(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b', doc.student_email_id):
+            frappe.throw("<b>{0}</b> is an invalid email address. Please enter a valid email address.".format(doc.student_email_id))
+            return False
+    return True
