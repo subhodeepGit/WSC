@@ -102,7 +102,8 @@ doctype_list_js = {
     "Employee Grievance":"public/js/employee_grievance_list.js",
     "Item Price":"public/js/item_price_list.js",
     "Material Request":"public/js/material_request_list.js",
-    "Price List":"public/js/price_list_list.js"
+    "Price List":"public/js/price_list_list.js",
+    "Course Schedule":"public/js/course_schedule_list.js"
 }
 
 doctype_tree_js = {"doctype" : "public/js/tax_category_tree.js"}
@@ -200,6 +201,9 @@ doc_events = {
     },
     "Branch sliding Declaration": {
         "validate": "wsc.wsc.validations.branch_sliding_declaration.validate"
+    },
+    "Company":{
+        "validate":"wsc.wsc.validations.company.validate"
     },
     "Counselling Structure":{
         "validate":"wsc.wsc.validations.counselling_structure.validate"

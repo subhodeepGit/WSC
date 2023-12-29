@@ -3,4 +3,5 @@ import "./breadcrumbs.js";
 import "./report_view.js";
 import "./leave_application_list.js";
 import "./help_links.js";
-import "./about.js"
+import "./about.js";
+import "./student_admission.js"

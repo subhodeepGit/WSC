@@ -1,0 +1,312 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "DW-.####",
+ "creation": "2023-12-05 09:13:24.851201",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "employee_email",
+  "number_of_approvers",
+  "column_break_es14h",
+  "approval_stage",
+  "approver_details_section",
+  "approvers",
+  "section_break_bsmiq",
+  "approver_1",
+  "approver_2",
+  "approver_3",
+  "approver_4",
+  "column_break_7lqm0",
+  "approver_1_user_id",
+  "approver_2_user_id",
+  "approver_3_user_id",
+  "approver_4_user_id",
+  "column_break_tmrlt",
+  "approver_1_name",
+  "approver_2_name",
+  "approver_3_name",
+  "approver_4_name",
+  "column_break_ivhxw",
+  "approver_1_designation",
+  "approver_2_designation",
+  "approver_3_designation",
+  "approver_4_designation",
+  "column_break_t7avo",
+  "approver_1_email_id",
+  "approver_2_email_id",
+  "approver_3_email_id",
+  "approver_4_email_id",
+  "section_break_uirrn",
+  "document_status",
+  "amended_from",
+  "level_1_approver_comment",
+  "level_2_approver_comment",
+  "level_3_approver_comment",
+  "level_4_approver_comment"
+ ],
+ "fields": [
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Dynamic Workflow",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "approver_details_section",
+   "fieldtype": "Section Break",
+   "label": "Approver Details"
+  },
+  {
+   "fieldname": "approver_1",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Approver 1"
+  },
+  {
+   "fieldname": "approver_2",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Approver 2"
+  },
+  {
+   "fieldname": "approver_3",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Approver 3"
+  },
+  {
+   "fieldname": "approver_4",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Approver 4"
+  },
+  {
+   "fieldname": "column_break_7lqm0",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "approver_1_user_id",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Approver 1 user id"
+  },
+  {
+   "fieldname": "approver_2_user_id",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Approver 2 user id"
+  },
+  {
+   "fieldname": "approver_3_user_id",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Approver 3 user id"
+  },
+  {
+   "fieldname": "approver_4_user_id",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Approver 4 user id"
+  },
+  {
+   "fieldname": "section_break_uirrn",
+   "fieldtype": "Section Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "Pending",
+   "fieldname": "document_status",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Document Status"
+  },
+  {
+   "fieldname": "column_break_tmrlt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "approver_1_name",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Approver 1 Name"
+  },
+  {
+   "fieldname": "approver_2_name",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Approver 2 Name"
+  },
+  {
+   "fieldname": "approver_3_name",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Approver 3 Name"
+  },
+  {
+   "fieldname": "approver_4_name",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Approver 4 Name"
+  },
+  {
+   "fieldname": "column_break_ivhxw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "approver_1_designation",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Approver 1 Designation"
+  },
+  {
+   "fieldname": "approver_2_designation",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Approver 2 Designation"
+  },
+  {
+   "fieldname": "approver_3_designation",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Approver 3 Designation"
+  },
+  {
+   "fieldname": "approver_4_designation",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Approver 4 Designation"
+  },
+  {
+   "fieldname": "column_break_t7avo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "approver_1_email_id",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Approver 1 Email ID"
+  },
+  {
+   "fieldname": "approver_2_email_id",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Approver 2 Email ID"
+  },
+  {
+   "fieldname": "approver_3_email_id",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Approver 3 Email ID"
+  },
+  {
+   "fieldname": "approver_4_email_id",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Approver 4 Email ID"
+  },
+  {
+   "fetch_from": "employee.prefered_email",
+   "fieldname": "employee_email",
+   "fieldtype": "Read Only",
+   "label": "Employee Email"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "approvers",
+   "fieldtype": "Table",
+   "hidden": 1,
+   "label": "Approvers",
+   "options": "Approvers"
+  },
+  {
+   "fieldname": "section_break_bsmiq",
+   "fieldtype": "Section Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "number_of_approvers",
+   "fieldtype": "Read Only",
+   "label": "Number of Approvers"
+  },
+  {
+   "fieldname": "column_break_es14h",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "approval_stage",
+   "fieldtype": "Read Only",
+   "label": "Approval Stage"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "level_1_approver_comment",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Level 1 Approver Comment"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "level_2_approver_comment",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Level 2 Approver Comment"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "level_3_approver_comment",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Level 3 Approver Comment"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "level_4_approver_comment",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Level 4 Approver Comment"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-12-15 11:23:07.846899",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Dynamic Workflow",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
