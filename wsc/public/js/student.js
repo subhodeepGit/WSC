@@ -88,7 +88,7 @@ frappe.ui.form.on('Student', {
             data.earned_marks=""
             refresh_field("score", data.name, data.parentfield);
             refresh_field("earned_marks", data.name, data.parentfield);
-            frappe.msgprint("Earned Marks is greater then the Total Marks.")
+            frappe.msgprint("Earned Marks is greater than the Total Marks.")
         }       
         cur_frm.refresh_field ("education_details");
      });
@@ -106,7 +106,7 @@ frappe.ui.form.on('Student', {
             refresh_field("earned_marks", data.name, data.parentfield);
             data.score=""
             refresh_field("score", data.name, data.parentfield);
-            frappe.throw("Earned Marks is greater then the Total Marks.")
+            frappe.throw("Earned Marks is greater than the Total Marks.")
         }       
         cur_frm.refresh_field ("education_details");
      });	

@@ -190,7 +190,7 @@ def get_family_background(employee):
 #get Address and Contact Details
 @frappe.whitelist()
 def addr_contact(employee):
-    data = frappe.get_all("Employee",{"name":employee},["current_address","permanent_address","cell_number","person_to_be_contacted","emergency_phone_number","relation","personal_email"])
+    data = frappe.get_all("Employee",{"name":employee},["current_address","permanent_address","cell_number","person_to_be_contacted","emergency_phone_number","relation","personal_email","company_email"])
     if data :
         # print("\n\n\n\n\n",data)
         return data[0]
