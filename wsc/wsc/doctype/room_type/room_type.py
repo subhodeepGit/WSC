@@ -23,11 +23,11 @@ class RoomType(Document):
 			if end_date_info!=end_date:
 				stu_info=frappe.db.sql("""SELECT * FROM `tabRoom Allotment` WHERE `room_type`="%s" and (`start_date`<=now() and `end_date`>=now())"""%(room_type))
 				if len(stu_info)==0:
-					room_info=frappe.db.sql("""SELECT * FROM `tabRoom Masters` WHERE `actual_room_type`="" and `validity`="Approved" """)
+					room_info=frappe.db.sql("""SELECT * FROM `tabRoom Masters` WHERE `actual_room_type`="" and `validity`="Functional" """)
 					if len(room_info)==0:
 						pass
 					else:
-						frappe.throw("Can't update: Some of the rooms already assined with the room type and Approved")
+						frappe.throw("Can't update: Some of the rooms already assined with the room type and Functional")
 				else:
 					frappe.throw("Can't update: Student is already allotted for the Particular")
 			else:

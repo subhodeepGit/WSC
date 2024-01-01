@@ -17,7 +17,7 @@ frappe.ui.form.on("Hostel Attendance Tool", {
 			return {
 				filters: [
 					["Room Masters", "hostel_id", "=", frm.doc.department],
-					["Room Masters", "validity", "=", "Approved"],
+					["Room Masters", "validity", "=", "Functional"],
 					["Room Masters", "status", "=", "Allotted"],
 				]
 			}

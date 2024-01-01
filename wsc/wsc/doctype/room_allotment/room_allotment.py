@@ -28,7 +28,7 @@ class RoomAllotment(Document):
 			else:
 				room_id=doc.room_id
 				room_info_vac=vacancy_quety_vali("Genaral",room_id)
-				if room_info_vac["validity"][0]=="Approved":
+				if room_info_vac["validity"][0]=="Functional":
 					if room_info_vac["Room_al_status"][0]=="Allotted":
 						if room_info_vac["Vacancy"][0]>0:
 							ck_data=df1[(df1['allotment_type']=="Debar") | (df1['allotment_type']=="University Debar") | (df1['allotment_type']=="Passout")
@@ -53,7 +53,7 @@ class RoomAllotment(Document):
 	def on_submit(doc):
 		room_id=doc.room_id
 		# room_info_vac=vacancy_quety_vali("Genaral",room_id)
-		# if room_info_vac["validity"][0]=="Approved":
+		# if room_info_vac["validity"][0]=="Functional":
 		# 	if room_info_vac["Room_al_status"][0]=="Allotted":
 		# 		if room_info_vac["Vacancy"][0]>0:
 		# 			room_id=doc.room_id
