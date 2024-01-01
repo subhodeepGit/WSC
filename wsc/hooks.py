@@ -228,6 +228,9 @@ doc_events = {
     "Exam Application":{
         "validate":"wsc.wsc.validations.exam_application.validate"
     },
+    "Grading Scale":{
+        "validate":"wsc.wsc.validations.grading_scale.validate"
+    },
     "Exam Assessment Plan": {
         "validate": "wsc.wsc.validations.exam_assesment_plan.validate"
     },
