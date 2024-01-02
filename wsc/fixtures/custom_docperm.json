@@ -350,7 +350,7 @@
             "write": 1
            },
            
-        {
+           {
             "amend": 0,
             "cancel": 0,
             "create": 1,
@@ -372,9 +372,9 @@
             "select": 1,
             "set_user_permissions": 0,
             "share": 0,
-            "submit": 0,
+            "submit": 1,
             "write": 1
-        },
+           },
         {
             "amend": 0,
             "cancel": 0,
@@ -461,7 +461,7 @@
             "export": 1,
             "if_owner": 0,
             "import": 0,
-            "modified": "2023-07-28 20:35:18.685510",
+            "modified": "2023-07-30 20:35:18.685510",
             "name": "e52a625cc9",
             "parent": "Employee Profile Updation",
             "permlevel": 0,
@@ -469,12 +469,12 @@
             "read": 1,
             "report": 0,
             "role": "Employee",
-            "select": 0,
+            "select": 1,
             "set_user_permissions": 0,
             "share": 0,
-            "submit": 0,
+            "submit": 1,
             "write": 1
-        },
+           },
         {
         "amend": 0,
         "cancel": 0,
@@ -45675,6 +45675,31 @@
       "submit": 0,
       "write": 1
      },
+     {
+        "amend": 0,
+        "cancel": 0,
+        "create": 1,
+        "delete": 0,
+        "docstatus": 0,
+        "doctype": "Custom DocPerm",
+        "email": 0,
+        "export": 1,
+        "if_owner": 0,
+        "import": 0,
+        "modified": "2024-01-02 12:22:19.490836",
+        "name": "f21cb4ff73",
+        "parent": "Employee Profile Updation",
+        "permlevel": 0,
+        "print": 0,
+        "read": 1,
+        "report": 0,
+        "role": "HR Assistant",
+        "select": 1,
+        "set_user_permissions": 0,
+        "share": 0,
+        "submit": 1,
+        "write": 1
+       },
      {
       "amend": 0,
       "cancel": 0,
