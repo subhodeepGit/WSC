@@ -122148,5 +122148,30 @@
     "share": 0,
     "submit": 1,
     "write": 1
+   },
+   {
+    "amend": 0,
+    "cancel": 1,
+    "create": 1,
+    "delete": 1,
+    "docstatus": 0,
+    "doctype": "Custom DocPerm",
+    "email": 0,
+    "export": 1,
+    "if_owner": 0,
+    "import": 0,
+    "modified": "2024-01-02 14:45:42.653141",
+    "name": "e3bcdebbad",
+    "parent": "Leave Policy",
+    "permlevel": 0,
+    "print": 0,
+    "read": 1,
+    "report": 0,
+    "role": "Director",
+    "select": 1,
+    "set_user_permissions": 0,
+    "share": 0,
+    "submit": 1,
+    "write": 1
    }
 ]
