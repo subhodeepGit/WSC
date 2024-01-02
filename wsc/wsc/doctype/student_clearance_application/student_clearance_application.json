@@ -55,7 +55,7 @@
   {
    "fieldname": "departments_clearance_status",
    "fieldtype": "Table",
-   "label": "Department Clearance",
+   "label": "Department Clearance <b style=\"color: red;\">*</b>",
    "no_copy": 1,
    "options": "Departments Clearance Status"
   },
@@ -145,7 +145,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-14 16:13:42.669768",
+ "modified": "2024-01-01 18:09:33.318049",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Clearance Application",
