@@ -1,11 +1,6 @@
 frappe.ui.form.on('Student',{
     refresh: function(frm) {
-        frm.add_custom_button(__('Tnp Round Selection Report'), function() {
-            frappe.route_options = {
-                student_id: frm.doc.name,
-            };
-            frappe.set_route("query-report", "Selection Round Report");
-        })
+
         frm.set_df_property('document_list', 'cannot_delete_rows', true);
         if (!frm.doc.__islocal){
             frm.add_custom_button("Enroll", () => {
@@ -15,7 +10,13 @@ frappe.ui.form.on('Student',{
                 data.roll_no = frm.doc.roll_no
                 data.permanant_registration_number = frm.doc.permanant_registration_number
                 frappe.new_doc("Program Enrollment", data)
-            });    
+            });
+            frm.add_custom_button(__('Tnp Round Selection Report'), function() {
+            frappe.route_options = {
+                student_id: frm.doc.name,
+            };
+            frappe.set_route("query-report", "Selection Round Report");
+        })    
         }  
         if ((frappe.user.has_role("Student")|| frappe.user.has_role("Instructor")) && !frappe.user.has_role("System Manager")){
             frm.remove_custom_button("Accounting Ledger");
