@@ -2,7 +2,7 @@ from queue import Empty
 import frappe
 from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
 from wsc.wsc.utils import semester_belongs_to_programs,academic_term,duplicate_row_validation,get_courses_by_semester
-from frappe.utils import validate_email_address
+# from frappe.utils import validate_email_address
 
 def validate(doc,method):
     validate_email(doc)
@@ -154,6 +154,12 @@ def remove_create_user(email):
         if x.name==email:
             return True
 
-def validate_email(self):
-    if self.email_id_for_guest_trainers:
-        validate_email_address(self.email_id_for_guest_trainers, True)
+# def validate_email(self):
+#     if self.email_id_for_guest_trainers:
+#         validate_email_address(self.email_id_for_guest_trainers, True)
+        
+def validate_email(doc):
+    import re
+    if doc.email_id_for_guest_trainers:
+        if not re.fullmatch(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b', doc.email_id_for_guest_trainers):
+            frappe.throw("<b>{0}</b> is an invalid email address. Please enter a valid email address.".format(doc.email_id_for_guest_trainers))
