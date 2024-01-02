@@ -96,7 +96,7 @@
    "fieldname": "validity",
    "fieldtype": "Select",
    "label": "Validity",
-   "options": "Approved\nDis-Approved",
+   "options": "Functional\nNon-Functional",
    "reqd": 1
   },
   {
@@ -196,7 +196,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-22 15:40:09.755371",
+ "modified": "2024-01-01 11:23:22.161608",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Room Masters",
