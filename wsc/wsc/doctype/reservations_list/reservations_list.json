@@ -48,6 +48,7 @@
    "fieldtype": "Int",
    "in_list_view": 1,
    "label": "Total Seats",
+   "non_negative": 1,
    "permlevel": 3,
    "reqd": 1,
    "width": "10"
@@ -56,7 +57,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-12-06 12:15:46.011631",
+ "modified": "2023-12-29 09:56:07.469530",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Reservations List",

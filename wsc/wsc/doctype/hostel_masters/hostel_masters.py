@@ -33,9 +33,9 @@ class HostelMasters(Document):
 			else:
 				al_info=frappe.db.sql("""SELECT * FROM `tabRoom Allotment` WHERE `hostel_id`="%s" and (`start_date`<=now() and `end_date`>=now())"""%(hostel_name))
 				if len(al_info)==0:
-					frappe.db.sql("""UPDATE `tabRoom Masters` SET `validity`="Dis-Approved" WHERE `hostel_id`="%s" and `validity`="Approved" """%(hostel_name))
+					frappe.db.sql("""UPDATE `tabRoom Masters` SET `validity`="Non-Functional" WHERE `hostel_id`="%s" and `validity`="Functional" """%(hostel_name))
 					frappe.msgprint(
-									msg='Corresponding Room has been Dis-Approved',
+									msg='Corresponding Room has been Non_Functional',
 									title='Update',
 									)
 					pass

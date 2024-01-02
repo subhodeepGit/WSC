@@ -169,7 +169,6 @@
   {
    "fieldname": "reporting_authority",
    "fieldtype": "Link",
-   "ignore_user_permissions": 1,
    "label": "Reporting Authority",
    "options": "Employee"
   },
@@ -244,14 +243,11 @@
    "options": "Branch"
   },
   {
-   "fetch_from": "employee.blood_group",
    "fieldname": "blood_group",
-   "fieldtype": "Select",
-   "label": "Blood Group",
-   "options": "\nA+\nA-\nO+\nO-\nB+\nB-\nAB+\nAB-"
+   "fieldtype": "Data",
+   "label": "Blood Group"
   },
   {
-   "fetch_from": "employee.company_email",
    "fieldname": "company_email",
    "fieldtype": "Data",
    "label": "Company Email"
@@ -260,7 +256,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-05 17:42:02.626840",
+ "modified": "2023-12-28 14:37:32.637418",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Profile Updation",

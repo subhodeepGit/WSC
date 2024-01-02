@@ -140,6 +140,7 @@ frappe.ui.form.on('Employee Profile Updation', {
 					frm.set_value('emergency_contact_name', response.message["person_to_be_contacted"]);
 					frm.set_value('personal_email', response.message["personal_email"]);
 					frm.set_value('relation', response.message["relation"]);
+                    frm.set_value("company_email",response.message["company_email"])
                 }
             }
         });

@@ -2,6 +2,7 @@
  "charts": [],
  "content": "[{\"id\":\"9aZNlk7iEQ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"cUP7NsLZ35\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Room Allotment\",\"col\":3}},{\"id\":\"31ybZn0sSX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Room De-Allotment\",\"col\":3}},{\"id\":\"p62WpaJp6r\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Hostel Info\",\"col\":3}},{\"id\":\"m-5d5k9nH8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Room Info\",\"col\":3}},{\"id\":\"2FhCF2lU7C\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Room change\",\"col\":3}},{\"id\":\"VfeNyS9B2o\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Hostel Clearance\",\"col\":3}},{\"id\":\"CY2Pbk4_Fp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Hostel Leave\",\"col\":3}},{\"id\":\"TEZIW7Otp1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Hostel Attendance\",\"col\":3}},{\"id\":\"ltcwWCSDtz\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"dFiXtTNkuk\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters<br></b></span>\",\"col\":12}},{\"id\":\"ld3YyOKV7g\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"v37X4Hkpco\",\"type\":\"card\",\"data\":{\"card_name\":\"Student Admission &amp; Essentials\",\"col\":4}},{\"id\":\"oTjBi8b6EO\",\"type\":\"card\",\"data\":{\"card_name\":\"Allotment &amp; De-Allotment\",\"col\":4}},{\"id\":\"jPQPO81a3N\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance and Leave\",\"col\":4}},{\"id\":\"POFIQODe2E\",\"type\":\"card\",\"data\":{\"card_name\":\"Hostel Clearance\",\"col\":4}},{\"id\":\"ytU8SUrw8W\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}}]",
  "creation": "2023-02-15 15:05:09.810519",
+ "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
  "for_user": "",
@@ -32,30 +33,38 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Masters",
-   "link_count": 7,
+   "label": "Reports",
+   "link_count": 2,
    "onboard": 0,
    "type": "Card Break"
   },
   {
    "hidden": 0,
-   "is_query_report": 0,
-   "label": "Hostel Masters",
+   "is_query_report": 1,
+   "label": "Hostel Summary Report",
    "link_count": 0,
-   "link_to": "Hostel Masters",
-   "link_type": "DocType",
+   "link_to": "Hostel Summary Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Room Allotment Report",
+   "link_count": 0,
+   "link_to": "Room Allotment Report",
+   "link_type": "Report",
    "onboard": 0,
    "type": "Link"
   },
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Room Masters",
-   "link_count": 0,
-   "link_to": "Room Masters",
-   "link_type": "DocType",
+   "label": "Masters",
+   "link_count": 7,
    "onboard": 0,
-   "type": "Link"
+   "type": "Card Break"
   },
   {
    "hidden": 0,
@@ -90,6 +99,26 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Hostel Masters",
+   "link_count": 0,
+   "link_to": "Hostel Masters",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Room Masters",
+   "link_count": 0,
+   "link_to": "Room Masters",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Employee Hostel Allotment",
    "link_count": 0,
    "link_to": "Employee Hostel Allotment",
@@ -111,7 +140,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Student Admission &amp; Essentials",
-   "link_count": 3,
+   "link_count": 4,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -121,6 +150,16 @@
    "label": "Student Hostel Admission",
    "link_count": 0,
    "link_to": "Student Hostel Admission",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Room Allotment",
+   "link_count": 0,
+   "link_to": "Room Allotment",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -148,58 +187,10 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Attendance and Leave",
-   "link_count": 3,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Leave Process",
-   "link_count": 0,
-   "link_to": "Student Leave Process",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Hostel Attendance",
-   "link_count": 0,
-   "link_to": "Hostel Attendance",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Hostel Attendance Tool",
-   "link_count": 0,
-   "link_to": "Hostel Attendance Tool",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Allotment &amp; De-Allotment",
-   "link_count": 6,
+   "link_count": 4,
    "onboard": 0,
    "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Room Allotment",
-   "link_count": 0,
-   "link_to": "Room Allotment",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
   },
   {
    "hidden": 0,
@@ -244,9 +235,17 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Long Leave",
+   "label": "Attendance and Leave",
+   "link_count": 4,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Leave Process",
    "link_count": 0,
-   "link_to": "Long Leave",
+   "link_to": "Student Leave Process",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -254,33 +253,35 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Reports",
-   "link_count": 2,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 1,
-   "label": "Hostel Summary Report",
+   "label": "Hostel Attendance",
    "link_count": 0,
-   "link_to": "Hostel Summary Report",
-   "link_type": "Report",
+   "link_to": "Hostel Attendance",
+   "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
   },
   {
    "hidden": 0,
-   "is_query_report": 1,
-   "label": "Room Allotment Report",
+   "is_query_report": 0,
+   "label": "Hostel Attendance Tool",
    "link_count": 0,
-   "link_to": "Room Allotment Report",
-   "link_type": "Report",
+   "link_to": "Hostel Attendance Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Long Leave",
+   "link_count": 0,
+   "link_to": "Long Leave",
+   "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
   }
  ],
- "modified": "2023-11-27 14:57:42.183505",
+ "modified": "2023-12-29 15:37:14.989742",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Hostel",
