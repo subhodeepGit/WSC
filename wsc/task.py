@@ -1132,3 +1132,112 @@ def status_update():
             else:
                 pass
 #################################################### Project Management Scheduler Ends #####################################################################
+            
+def send_ceo_reminder_and_list():
+    job_requisitions = frappe.get_all("Job Requisition",
+                                       filters={},
+                                       fields=["name", "department", "designation", "no_of_positions", "workflow_state"])
+
+    for requisition in job_requisitions:
+        workflow_states = requisition.get('workflow_state')
+        print("\n\n\n")
+        print("Workflow States:", workflow_states)
+        print("Condition Check:", "Pending Approval From CEO" in workflow_states)
+
+        if "Pending Approval From CEO" in workflow_states:
+            send_ceo_reminder_email()
+            send_job_requisitions_list_to_ceo()
+		
+        if "Pending Approval from COO" in workflow_states:
+            send_coo_reminder_email()
+            send_job_requisitions_list_to_coo()
+
+def send_coo_reminder_email():
+    sub = "Reminder: Pending Approval for Job Requisition"
+    msg = """<p>Dear COO,</p><br>"""
+    msg += """<p>This is a reminder that the Job Requisition is pending your approval. Please take necessary action.</p><br>"""
+
+    recipients = frappe.get_all("User", filters={'role': 'COO'}, fields=['email'])
+    recipient_emails = [recipient.get('email') for recipient in recipients]
+
+    send_mail(recipient_emails, sub, msg)
+    frappe.msgprint("Reminder email sent to the COO for pending Job Requisition")
+
+def send_ceo_reminder_email():
+    sub = "Reminder: Pending Approval for Job Requisition"
+    msg = """<p>Dear CEO,</p><br>"""
+    msg += """<p>This is a reminder that the Job Requisition is pending your approval. Please take necessary action.</p><br>"""
+
+    recipients = frappe.get_all("User", filters={'role': 'CEO'}, fields=['email'])
+    recipient_emails = [recipient.get('email') for recipient in recipients]
+
+    send_mail(recipient_emails, sub, msg)
+    frappe.msgprint("Reminder email sent to the CEO for pending Job Requisition")
+
+def send_job_requisitions_list_to_ceo():
+    job_requisitions = frappe.get_all("Job Requisition",
+                                       filters={"workflow_state": "Pending Approval From CEO"},
+                                       fields=["name", "department", "designation", "no_of_positions", "workflow_state"])
+    if job_requisitions:
+        sub = "List of Job Requisitions for Approval"
+        msg = """<p>Dear CEO,</p><br>"""
+        msg += """<p>This is a list of Job Requisitions in the workflow state "Pending Approval from CEO" that require your approval:</p><br>"""
+        
+        msg += "<table border='1' cellpadding='5' style='border-collapse: collapse; width: 100%;'>"
+        
+        msg += "<tr>"
+        msg += "<th>Job Requisition ID</th>"
+        msg += "<th>Department</th>"
+        msg += "<th>Designation</th>"
+        msg += "<th>Number of Positions</th>"
+        msg += "</tr>"
+        
+        for requisition in job_requisitions:
+            msg += "<tr>"
+            msg += "<td>{0}</td>".format(requisition.get('name'))
+            msg += "<td>{0}</td>".format(requisition.get('department'))
+            msg += "<td>{0}</td>".format(requisition.get('designation'))
+            msg += "<td>{0}</td>".format(requisition.get('no_of_positions'))
+            msg += "</tr>"
+        
+        msg += "</table>"
+
+        recipients = frappe.get_all("User", filters={'role': 'CEO'}, fields=['email'])
+        recipient_emails = [recipient.get('email') for recipient in recipients]
+
+        send_mail(recipient_emails, sub, msg)
+        frappe.msgprint("List of Job Requisitions sent to the CEO for the specified workflow state.")
+
+def send_job_requisitions_list_to_coo():
+    job_requisitions = frappe.get_all("Job Requisition",
+                                       filters={"workflow_state": "Pending Approval from COO"},
+                                       fields=["name", "department", "designation", "no_of_positions", "workflow_state"])
+    if job_requisitions:
+        sub = "List of Job Requisitions for Approval"
+        msg = """<p>Dear COO,</p><br>"""
+        msg += """<p>This is a list of Job Requisitions in the workflow state "Pending Approval from COO" that require your approval:</p><br>"""
+        
+        msg += "<table border='1' cellpadding='5' style='border-collapse: collapse; width: 100%;'>"
+        
+        msg += "<tr>"
+        msg += "<th>Job Requisition ID</th>"
+        msg += "<th>Department</th>"
+        msg += "<th>Designation</th>"
+        msg += "<th>Number of Positions</th>"
+        msg += "</tr>"
+        
+        for requisition in job_requisitions:
+            msg += "<tr>"
+            msg += "<td>{0}</td>".format(requisition.get('name'))
+            msg += "<td>{0}</td>".format(requisition.get('department'))
+            msg += "<td>{0}</td>".format(requisition.get('designation'))
+            msg += "<td>{0}</td>".format(requisition.get('no_of_positions'))
+            msg += "</tr>"
+        
+        msg += "</table>"
+
+        recipients = frappe.get_all("User", filters={'role': 'COO'}, fields=['email'])
+        recipient_emails = [recipient.get('email') for recipient in recipients]
+
+        send_mail(recipient_emails, sub, msg)
+        frappe.msgprint("List of Job Requisitions sent to the COO for the specified workflow state.")

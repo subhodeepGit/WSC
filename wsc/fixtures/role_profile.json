@@ -36,32 +36,26 @@
   ]
  },
  {
-  "docstatus": 0,
-  "doctype": "Role Profile",
-  "modified": "2023-04-25 15:32:43.463284",
-  "name": "HR Manager/CS Officer",
-  "role_profile": "HR Manager/CS Officer",
-  "roles": [
-   {
-    "parent": "HR Manager/CS Officer",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Leave Approver"
-   },
-   {
-    "parent": "HR Manager/CS Officer",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Expense Approver"
-   },
-   {
-    "parent": "HR Manager/CS Officer",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "HR Manager/CS Officer"
-   }
-  ]
- },
+   "docstatus": 0,
+   "doctype": "Role Profile",
+   "modified": "2024-01-03 11:14:17.903603",
+   "name": "HR Manager/CS Officer",
+   "role_profile": "HR Manager/CS Officer",
+   "roles": [
+    {
+     "parent": "HR Manager/CS Officer",
+     "parentfield": "roles",
+     "parenttype": "Role Profile",
+     "role": "HR Manager/CS Officer"
+    },
+    {
+     "parent": "HR Manager/CS Officer",
+     "parentfield": "roles",
+     "parenttype": "Role Profile",
+     "role": "Employee"
+    }
+   ]
+  },
  {
   "docstatus": 0,
   "doctype": "Role Profile",
@@ -799,5 +793,68 @@
       "role": "Project Manager"
      }
     ]
-}
+},
+{
+   "docstatus": 0,
+   "doctype": "Role Profile",
+   "modified": "2024-01-03 11:14:31.769414",
+   "name": "CEO",
+   "role_profile": "CEO",
+   "roles": [
+    {
+     "parent": "CEO",
+     "parentfield": "roles",
+     "parenttype": "Role Profile",
+     "role": "CEO"
+    },
+    {
+     "parent": "CEO",
+     "parentfield": "roles",
+     "parenttype": "Role Profile",
+     "role": "Employee"
+    }
+   ]
+  },
+  {
+   "docstatus": 0,
+   "doctype": "Role Profile",
+   "modified": "2024-01-03 11:14:54.274236",
+   "name": "COO",
+   "role_profile": "COO",
+   "roles": [
+    {
+     "parent": "COO",
+     "parentfield": "roles",
+     "parenttype": "Role Profile",
+     "role": "COO"
+    },
+    {
+     "parent": "COO",
+     "parentfield": "roles",
+     "parenttype": "Role Profile",
+     "role": "Employee"
+    }
+   ]
+  },
+  {
+   "docstatus": 0,
+   "doctype": "Role Profile",
+   "modified": "2024-01-03 11:15:28.160859",
+   "name": "Report Manager",
+   "role_profile": "Report Manager",
+   "roles": [
+    {
+     "parent": "Report Manager",
+     "parentfield": "roles",
+     "parenttype": "Role Profile",
+     "role": "Employee"
+    },
+    {
+     "parent": "Report Manager",
+     "parentfield": "roles",
+     "parenttype": "Role Profile",
+     "role": "Report Manager"
+    }
+   ]
+  }
 ]

@@ -5,6 +5,19 @@ import frappe
 from frappe.model.document import Document
 
 class GrievanceCell(Document):
+	def validate(self):
+		# validate_date(self)
+		# mobile_number_validation(self)
+		pass
+
+
+	def on_update(self):
+		self.set_value_in_students_grievance()
+	# def validate(self):
+	# 	data = frappe.get_all("Grievance Cell",{"students_grievance":self.students_grievance,"student":self.student})
+	# 	if data:
+	# 		frappe.throw("Your Response for this complain Already Exists...")
+					
 
 	def set_value_in_students_grievance(self):
 		data = frappe.get_all("Grievance status",{"parent":self.name},["emp_no","emp_name","date_of_posting","remarks","decision","file_status"])
@@ -23,30 +36,19 @@ class GrievanceCell(Document):
 
 					break
 				else :
-					if items["decision"]!= None:
+					if items["decision"]!='':
 						frappe.set_value("Students Grievance",self.students_grievance,"status",items["decision"])
 						break
 					else :
 						frappe.set_value("Students Grievance",self.students_grievance,"status","Issue Received By Grievance Cell")
-						break
-
-	def on_update(self):
-		self.set_value_in_students_grievance()
-	# def validate(self):
-	# 	data = frappe.get_all("Grievance Cell",{"students_grievance":self.students_grievance,"student":self.student})
-	# 	if data:
-	# 		frappe.throw("Your Response for this complain Already Exists...")
-					
-	def validate(self):
-		# validate_date(self)
-		mobile_number_validation(self)
-        
+						break    
 
 # def validate_date(self):
 # 	if self.date_of_incident and  self.posting_date and self.date_of_incident > self.posting_date:
 # 		frappe.throw("Date of Incident <b>'{0}'</b> Must Be a valid Date <b>'{1}'</b>".format(self.date_of_incident, self.posting_date))
-def mobile_number_validation(self):
+					
 
+def mobile_number_validation(self):
     if self.emergency_phone_no:
         if not (self.emergency_phone_no).isdigit():
             frappe.throw("Field <b>Emergency Phone Number</b> Accept Digits Only")

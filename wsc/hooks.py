@@ -104,7 +104,10 @@ doctype_list_js = {
     "Material Request":"public/js/material_request_list.js",
     "Price List":"public/js/price_list_list.js",
     "Course Schedule":"public/js/course_schedule_list.js",
-    "Program":"public/js/program_list.js"
+    "Program":"public/js/program_list.js",
+    "Employment Type":"public/js/employment_type_list.js",
+    "Branch":"public/js/branch_list.js",
+    "Employee Grade":"public/js/employee_grade_list.js"
 }
 
 doctype_tree_js = {"doctype" : "public/js/tax_category_tree.js"}
@@ -123,7 +126,7 @@ after_migrate = [
         'wsc.wsc.delete_doc_if_linked.execute',
         'wsc.patches.migrate_patch.set_custom_role_permission_remove_duplicate',
         'wsc.patches.create_all_tax_category.execute',
-        # 'wsc.wsc.wsc_patches.execute',
+        'wsc.wsc.wsc_patches.execute',
         # 'wsc.wsc.wsc_patches.execute_security_patches'
 ]
 

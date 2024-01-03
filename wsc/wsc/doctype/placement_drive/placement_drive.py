@@ -65,7 +65,6 @@ class PlacementDrive(Document):
 @frappe.whitelist()
 def get_eligibility(body):
 	#from placement drive
-	print("\n\n")
 	body = json.loads(body)
 
 	name = body['name']
