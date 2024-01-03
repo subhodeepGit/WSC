@@ -121147,5 +121147,30 @@
     "share": 0,
     "submit": 0,
     "write": 0
+   },
+   {
+    "amend": 0,
+    "cancel": 1,
+    "create": 1,
+    "delete": 0,
+    "docstatus": 0,
+    "doctype": "Custom DocPerm",
+    "email": 0,
+    "export": 1,
+    "if_owner": 0,
+    "import": 0,
+    "modified": "2024-01-03 12:18:17.853253",
+    "name": "21abd6351c",
+    "parent": "Employee Resignation",
+    "permlevel": 0,
+    "print": 0,
+    "read": 1,
+    "report": 0,
+    "role": "Department Head",
+    "select": 1,
+    "set_user_permissions": 0,
+    "share": 0,
+    "submit": 1,
+    "write": 1
    }
 ]
