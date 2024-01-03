@@ -80,7 +80,8 @@ frappe.ui.form.on('Leave Application for Student', {
                     from_date:frm.doc.from_date,
                     to_date:frm.doc.to_date,
                     curr:frm.doc.current_education_details,
-                    leave_criteria:frm.doc.leave_criteria
+                    leave_criteria:frm.doc.leave_criteria,
+                    student_name:frm.doc.student_name
                 },
                 callback: function(r) {
                     if (r.message){
