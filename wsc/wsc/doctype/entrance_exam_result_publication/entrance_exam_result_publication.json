@@ -87,6 +87,7 @@
    "fieldname": "earned_marks",
    "fieldtype": "Float",
    "label": "Earned Marks",
+   "non_negative": 1,
    "reqd": 1
   },
   {
@@ -163,7 +164,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-07 16:21:38.806959",
+ "modified": "2024-01-02 16:24:38.755451",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Entrance Exam Result Publication",

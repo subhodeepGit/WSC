@@ -7,8 +7,8 @@ frappe.ui.form.on('Room Change', {
 			return {
 				filters: [
 					["Room Masters", "hostel_id", "=", frm.doc.preferred_hostel],
-					["Room Masters", "validity", "=", "Approved"],
-					["Room Masters", "status", "=", "Allotted"],
+					["Room Masters", "validity", "=", "Functional"],
+					["Room Masters", "status", "=", "Functional"],
 					["Room Masters", "vacancy", ">", 0],
 					["Room Masters", "room_number", "!=", frm.doc.room_no]
 				]

@@ -28,17 +28,17 @@ def get_data(filters):
 			a['hostel']=t['name']
 			a['hostel_short_name']=t['hostel_short_name']
 			a['hostel_type']=t['hostel_type']
-			output=frappe.db.count("Room Masters",{"hostel_id":t['name'],"validity":"Approved"})
+			output=frappe.db.count("Room Masters",{"hostel_id":t['name'],"validity":"Functional"})
 			a['total_no_of_rooms']=output
 			output=frappe.db.sql(""" select sum(actual_capacity)
 				 			from `tabRoom Masters` 
-				 			where hostel_id = '{hostel}' and validity="Approved" """.format(**{
+				 			where hostel_id = '{hostel}' and validity="Functional" """.format(**{
 								"hostel":t['name']
 							}),as_dict=True)
 			a['total_capacity_of_the_hostel']=output[0]['sum(actual_capacity)']
 			output=frappe.db.sql(""" select sum(vacancy)
 				 			from `tabRoom Masters` 
-				 			where hostel_id = '{hostel}' and validity="Approved" """.format(**{
+				 			where hostel_id = '{hostel}' and validity="Functional" """.format(**{
 								"hostel":t['name']
 							}),as_dict=True)
 			a['total_valency_of_the_hostel']=output[0]['sum(vacancy)']

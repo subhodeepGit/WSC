@@ -9,6 +9,7 @@ def execute():
     comment_lines_list_view()
     add_line_JobApplicant_js()
     update_line_gridrow_js()
+    comment_line_FormSidebar_html()
 
 def execute_security_patches():
     # upload_malicious_pdf()
@@ -25,7 +26,26 @@ def execute_security_patches():
     update_forgot_password()
     login_senetize_handle()
     edit_line_file_preview()
- 
+
+
+def comment_line_FormSidebar_html():        #  wsc.wsc.wsc_patches.comment_line_FormSidebar_html
+    file_path = "{}/{}".format(BENCH_PATH,"apps/frappe/frappe/public/js/frappe/form/templates/form_sidebar.html")
+    
+    with open(file_path, 'r') as file:
+        content = file.read()
+
+    content = content.replace('''<p><a class="small text-muted" href="https://github.com/frappe/{{ frappe.boot.module_app[frappe.scrub(frm.meta.module)] }}/issues/new"''', '''<!-- <p><a class="small text-muted" href="https://github.com/frappe/{{ frappe.boot.module_app[frappe.scrub(frm.meta.module)] }}/issues/new" -->''')
+    content = content.replace('''target="_blank">''', '''<!-- target="_blank"> -->''')
+    content = content.replace('''{{ __("Click here to post bugs and suggestions") }}</a></p>''', '''<!-- {{ __("Click here to post bugs and suggestions") }}</a></p> -->''')
+
+    with open(file_path) as f:
+        if '''<!-- <p><a class="small text-muted" href="https://github.com/frappe/{{ frappe.boot.module_app[frappe.scrub(frm.meta.module)] }}/issues/new" -->''' in f.read():
+            return
+
+    with open(file_path, 'w') as file:
+        file.write(content)
+        print("frappe/frappe/public/js/frappe/form/templates/form_sidebar.html commented Line.")
+
 def edit_line_file_preview():
 	file_path = "{}/{}".format(BENCH_PATH,"apps/frappe/frappe/public/js/frappe/file_uploader/FilePreview.vue")
 

@@ -103,7 +103,8 @@ doctype_list_js = {
     "Item Price":"public/js/item_price_list.js",
     "Material Request":"public/js/material_request_list.js",
     "Price List":"public/js/price_list_list.js",
-    "Course Schedule":"public/js/course_schedule_list.js"
+    "Course Schedule":"public/js/course_schedule_list.js",
+    "Program":"public/js/program_list.js"
 }
 
 doctype_tree_js = {"doctype" : "public/js/tax_category_tree.js"}
@@ -227,6 +228,9 @@ doc_events = {
 	# },
     "Exam Application":{
         "validate":"wsc.wsc.validations.exam_application.validate"
+    },
+    "Grading Scale":{
+        "validate":"wsc.wsc.validations.grading_scale.validate"
     },
     "Exam Assessment Plan": {
         "validate": "wsc.wsc.validations.exam_assesment_plan.validate"
