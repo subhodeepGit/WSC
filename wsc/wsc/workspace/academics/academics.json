@@ -271,16 +271,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Student Attendance Tool",
-   "link_count": 0,
-   "link_to": "Students Attendance Tool",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Reason for Leave",
    "link_count": 0,
    "link_to": "Reason for Leave",
