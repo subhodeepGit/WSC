@@ -15,7 +15,11 @@ frappe.ui.form.on('Student',{
             frappe.route_options = {
                 student_id: frm.doc.name,
             };
-            frappe.set_route("query-report", "Selection Round Report");
+            if(!frm.is_new()){
+                if ((!frappe.user.has_role("Education Academic Head")|| !frappe.user.has_role("Education Admission Dept")) || !frappe.user.has_role("Temporary Admission Group") || !frappe.user.has_role("System Manager")){
+                    frm.set_df_property('document_list', 'cannot_delete_rows', true);
+                }
+            }
         })    
         }  
         if ((frappe.user.has_role("Student")|| frappe.user.has_role("Instructor")) && !frappe.user.has_role("System Manager")){

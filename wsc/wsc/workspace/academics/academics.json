@@ -271,16 +271,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Student Attendance Tool",
-   "link_count": 0,
-   "link_to": "Students Attendance Tool",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Reason for Leave",
    "link_count": 0,
    "link_to": "Reason for Leave",
@@ -357,7 +347,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-12-12 12:16:13.339638",
+ "modified": "2024-01-02 16:04:28.737050",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Academics",

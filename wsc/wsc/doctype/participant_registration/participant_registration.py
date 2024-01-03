@@ -10,19 +10,19 @@ class ParticipantRegistration(Document):
 		# super(ParticipantRegistration, self).validate()
 		# self.validate_user_field()
 		pass
-	def validate_user_field(self):
-		current_user = frappe.session.user
-		self.set_user_field_filter(current_user)
-	def set_user_field_filter(self, current_user):
-		user_field_name = "participant_id"
-		self.set_link_field_query(user_field_name, current_user)
-	def set_link_field_query(self, participant_id, current_user):
-		query = """
-			SELECT `tabUser`.`name`
-			FROM `tabUser`
-			WHERE `tabUser`.`name` = '{0}'
-		""".format(current_user)
-		self.set(participant_id, "options", query)
+	# def validate_user_field(self):
+	# 	current_user = frappe.session.user
+	# 	self.set_user_field_filter(current_user)
+	# def set_user_field_filter(self, current_user):
+	# 	user_field_name = "participant_id"
+	# 	self.set_link_field_query(user_field_name, current_user)
+	# def set_link_field_query(self, participant_id, current_user):
+	# 	query = """
+	# 		SELECT `tabUser`.`name`
+	# 		FROM `tabUser`
+	# 		WHERE `tabUser`.`name` = '{0}'
+	# 	""".format(current_user)
+	# 	self.set(participant_id, "options", query)
 
 @frappe.whitelist()
 def get_program_name(program_id = None):
