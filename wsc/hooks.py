@@ -104,7 +104,9 @@ doctype_list_js = {
     "Material Request":"public/js/material_request_list.js",
     "Price List":"public/js/price_list_list.js",
     "Course Schedule":"public/js/course_schedule_list.js",
-    "Program":"public/js/program_list.js"
+    "Program":"public/js/program_list.js",
+    "Employment Type":"public/js/employment_type_list.js",
+    "Branch":"public/js/branch_list.js"
 }
 
 doctype_tree_js = {"doctype" : "public/js/tax_category_tree.js"}
