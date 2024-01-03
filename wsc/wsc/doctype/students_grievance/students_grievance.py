@@ -7,7 +7,7 @@ from frappe.model.document import Document
 class StudentsGrievance(Document):
 	def validate(self):
 		validate_date(self)
-		mobile_number_validation(self)
+		# mobile_number_validation(self)
         
 
 def validate_date(self):

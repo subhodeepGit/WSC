@@ -27,7 +27,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-   "options": "\nAllotted\nNon-Allotted",
+   "options": "\nTo be Allotted\nNot to be Allotted",
    "reqd": 1
   },
   {
@@ -54,7 +54,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-10-29 16:02:11.878390",
+ "modified": "2024-01-02 09:48:58.814127",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Room Description",
@@ -76,6 +76,7 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "title_field": "room_description",
  "track_changes": 1,
  "track_seen": 1,
