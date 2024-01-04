@@ -10,7 +10,9 @@ class StudentsGrievance(Document):
 		# mobile_number_validation(self)
 
 	def on_cancel(self):
-            pass        
+		data=frappe.get_all("Grievance Cell",{"students_grievance":self.name})
+		if data:
+			frappe.throw("Your Complaint Has Already Been Registered")       
         
 
 def validate_date(self):
