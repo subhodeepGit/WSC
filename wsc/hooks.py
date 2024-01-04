@@ -107,7 +107,10 @@ doctype_list_js = {
     "Program":"public/js/program_list.js",
     "Employment Type":"public/js/employment_type_list.js",
     "Branch":"public/js/branch_list.js",
-    "Employee Grade":"public/js/employee_grade_list.js"
+    "Employee Grade":"public/js/employee_grade_list.js",
+    "Department":"public/js/department_list.js",
+    "Designation":"public/js/designation_list.js",
+    "Employee Group":"public/js/employee_group_list.js"
 }
 
 doctype_tree_js = {"doctype" : "public/js/tax_category_tree.js"}
