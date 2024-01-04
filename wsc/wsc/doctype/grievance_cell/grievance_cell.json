@@ -12,6 +12,7 @@
   "student",
   "student_name",
   "emergency_phone_no",
+  "roll_no",
   "column_break_4",
   "gender",
   "email_id",
@@ -202,11 +203,18 @@
    "fieldname": "students_grievance",
    "fieldtype": "Read Only",
    "label": "Students Grievance"
+  },
+  {
+   "fetch_from": "student.roll_no",
+   "fieldname": "roll_no",
+   "fieldtype": "Data",
+   "label": "Roll No",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-04 11:37:09.147538",
+ "modified": "2024-01-04 12:54:38.090024",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Grievance Cell",
