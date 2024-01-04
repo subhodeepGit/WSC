@@ -347,7 +347,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-01-02 16:04:28.737050",
+ "modified": "2024-01-03 16:20:22.755526",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Academics",
@@ -380,6 +380,12 @@
   },
   {
    "role": "Accounts User"
+  },
+  {
+   "role": "Grievance Manager"
+  },
+  {
+   "role": "Grievance User"
   }
  ],
  "sequence_id": 7.0,

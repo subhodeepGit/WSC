@@ -10,3 +10,8 @@ frappe.listview_settings['Employee'] = {
         }
     }
 };
+frappe.listview_settings['Employee'] = {
+    onload: function(listview) {
+        $('[data-label="Edit"]').parent().parent().remove();
+    }
+}
