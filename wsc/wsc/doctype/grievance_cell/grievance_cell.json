@@ -179,7 +179,7 @@
    "options": "Grievance status"
   },
   {
-   "default": "1",
+   "default": "0",
    "fieldname": "show_grievance_workflow",
    "fieldtype": "Check",
    "label": "Show Grievance Workflow",
@@ -204,7 +204,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-03 15:58:00.523696",
+ "modified": "2024-01-03 17:35:53.454292",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Grievance Cell",
