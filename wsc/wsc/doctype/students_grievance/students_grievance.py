@@ -8,6 +8,9 @@ class StudentsGrievance(Document):
 	def validate(self):
 		validate_date(self)
 		# mobile_number_validation(self)
+
+	def on_cancel(self):
+            pass        
         
 
 def validate_date(self):

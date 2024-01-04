@@ -8,7 +8,10 @@ class GrievanceCell(Document):
 	def validate(self):
 		# validate_date(self)
 		# mobile_number_validation(self)
-		pass
+		self.validate_file_date()
+		for t in self.get("grievance_status"):
+			if t.decision:
+				self.status=t.decision
 
 
 	def on_update(self):
@@ -38,10 +41,20 @@ class GrievanceCell(Document):
 				else :
 					if items["decision"]!='':
 						frappe.set_value("Students Grievance",self.students_grievance,"status",items["decision"])
+						frappe.set_value("Students Grievance",self.students_grievance,"resolution_detail",items["remarks"])
+						frappe.set_value("Students Grievance",self.students_grievance,"resolution_date",items["date_of_posting"])
 						break
 					else :
 						frappe.set_value("Students Grievance",self.students_grievance,"status","Issue Received By Grievance Cell")
-						break    
+						frappe.set_value("Students Grievance",self.students_grievance,"resolution_detail",items["remarks"])
+						frappe.set_value("Students Grievance",self.students_grievance,"resolution_date",items["date_of_posting"])
+						break
+	def validate_file_date(self):
+		today=frappe.utils.today()
+		for t in self.get("grievance_status"):
+			if t.date_of_posting:
+				if t.date_of_posting>today:
+					frappe.throw("Posting Date can't be in Future")			    
 
 # def validate_date(self):
 # 	if self.date_of_incident and  self.posting_date and self.date_of_incident > self.posting_date:

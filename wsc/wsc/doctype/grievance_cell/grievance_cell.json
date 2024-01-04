@@ -52,6 +52,7 @@
    "fetch_from": "student.student_name",
    "fieldname": "student_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Student Name",
    "read_only": 1
   },
@@ -119,6 +120,7 @@
    "fetch_from": "type_of_grievance.description_of_grivence",
    "fieldname": "description_of_grievance",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Description of Grievance",
    "read_only": 1
   },
@@ -168,6 +170,7 @@
   {
    "fieldname": "status",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Status",
    "read_only": 1
   },
@@ -179,7 +182,7 @@
    "options": "Grievance status"
   },
   {
-   "default": "1",
+   "default": "0",
    "fieldname": "show_grievance_workflow",
    "fieldtype": "Check",
    "label": "Show Grievance Workflow",
@@ -198,13 +201,12 @@
   {
    "fieldname": "students_grievance",
    "fieldtype": "Read Only",
-   "in_list_view": 1,
    "label": "Students Grievance"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-03 15:58:00.523696",
+ "modified": "2024-01-04 11:37:09.147538",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Grievance Cell",
