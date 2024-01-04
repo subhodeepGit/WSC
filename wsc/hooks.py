@@ -110,7 +110,14 @@ doctype_list_js = {
     "Employee Grade":"public/js/employee_grade_list.js",
     "Department":"public/js/department_list.js",
     "Designation":"public/js/designation_list.js",
-    "Employee Group":"public/js/employee_group_list.js"
+    "Employee Group":"public/js/employee_group_list.js",
+    "Shift Request":"public/js/shift_request_list.js",
+    "Employee Skill Map":"public/js/employee_skill_map_list.js",
+    "Employee Appraisal Portal":"public/js/employee_appraisal_portal_list.js",
+    "Employee Appraisal Cycle":"public/js/employee_appraisal_cycle_list.js",
+    "Employee Appraisal Evaluation Template":"public/js/employee_appraisal_evalaution_template_list.js",
+    "Dimenssions for Appraisal":"public/js/dimenssions_for_appraisal_list.js",
+    "Appraisal":"public/js/appraisal_list.js"
 }
 
 doctype_tree_js = {"doctype" : "public/js/tax_category_tree.js"}

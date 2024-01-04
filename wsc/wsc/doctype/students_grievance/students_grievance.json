@@ -10,6 +10,7 @@
   "raised_by",
   "student_name",
   "emergency_phone_no",
+  "roll_no",
   "column_break_4",
   "email_id",
   "gender",
@@ -44,6 +45,7 @@
   {
    "fieldname": "raised_by",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Raised By",
    "options": "Student",
    "reqd": 1
@@ -117,6 +119,7 @@
    "fetch_from": "type_of_grievance.description_of_grivence",
    "fieldname": "description_of_grievance",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Description of Grievance",
    "read_only": 1
   },
@@ -134,6 +137,7 @@
    "fetch_from": "raised_by.student_name",
    "fieldname": "student_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Student Name",
    "read_only": 1
   },
@@ -210,12 +214,19 @@
    "in_list_view": 1,
    "label": "Date Of Incident",
    "reqd": 1
+  },
+  {
+   "fetch_from": "raised_by.roll_no",
+   "fieldname": "roll_no",
+   "fieldtype": "Data",
+   "label": "Roll No",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-03 16:20:21.711741",
+ "modified": "2024-01-04 12:50:33.058882",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Students Grievance",
