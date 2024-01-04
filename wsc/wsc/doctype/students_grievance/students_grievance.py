@@ -8,6 +8,11 @@ class StudentsGrievance(Document):
 	def validate(self):
 		validate_date(self)
 		# mobile_number_validation(self)
+
+	def on_cancel(self):
+		data=frappe.get_all("Grievance Cell",{"students_grievance":self.name})
+		if data:
+			frappe.throw("Your Complaint Has Already Been Registered")       
         
 
 def validate_date(self):
@@ -25,9 +30,12 @@ def mobile_number_validation(self):
 
 @frappe.whitelist()
 def get_register_complaint(source_name):
-	all_details = frappe.get_all("Students Grievance",{"name":source_name},["name","raised_by","email_id","student_name","gender","emergency_phone_no","contact_phone_no","posting_date","date_of_incident","type_of_grievance","status","description_of_grievance","areas_of_grivence"])
+	all_details = frappe.get_all("Students Grievance",{"name":source_name},["name","raised_by","email_id","student_name","gender","emergency_phone_no",
+																		 "contact_phone_no","posting_date","date_of_incident","type_of_grievance","status",
+																		 "description_of_grievance","areas_of_grivence",'roll_no'])
 	grievance_cell=frappe.new_doc("Grievance Cell")
 	grievance_cell.student=all_details[0].raised_by
+	grievance_cell.roll_no=all_details[0].roll_no
 	grievance_cell.student_name= all_details[0].student_name
 	grievance_cell.emergency_phone_no=all_details[0].emergency_phone_no
 	grievance_cell.gender=all_details[0].gender
