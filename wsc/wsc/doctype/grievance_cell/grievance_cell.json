@@ -82,7 +82,7 @@
   },
   {
    "fieldname": "emergency_phone_no",
-   "fieldtype": "Data",
+   "fieldtype": "Phone",
    "in_list_view": 1,
    "label": "Emergency Phone No",
    "reqd": 1
@@ -204,7 +204,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-08 09:37:05.880643",
+ "modified": "2024-01-03 17:35:53.454292",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Grievance Cell",
