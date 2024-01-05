@@ -397,7 +397,7 @@ def student_applicant_rejected(doc):
 def program_enrollment_admitted(doc):
 	sub="""Welcome to World Skill Center"""
 
-	msg="""<b>Dear</b>  {0},<br>""".format(doc.get('student_name'))
+	msg="""Dear {0},<br>""".format(doc.get('student_name'))
 	msg+="""<p>We are pleased to inform you that you have been successfully allotted a seat in the course - <b>{0}</b> for the Academic Year <b>{1}</b> in World Skill Center, Bhubaneswar.</p><br>""".format(doc.get('programs'),doc.get('academic_year'))
 
 	send_mail(frappe.db.get_value("Student",doc.get('student'),"student_email_id"),sub,msg)
