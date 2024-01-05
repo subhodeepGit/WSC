@@ -63,7 +63,7 @@
   },
   {
    "fieldname": "student_handbook_rule_discription",
-   "fieldtype": "Text",
+   "fieldtype": "Text Editor",
    "label": "Student HandBook Rule Description"
   },
   {
@@ -76,7 +76,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-07 12:45:13.312221",
+ "modified": "2024-01-04 12:43:32.246648",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Type of Grievance",
