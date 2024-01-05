@@ -15,6 +15,7 @@
   "application_year",
   "column_break_3c6a3",
   "position_name",
+  "today_date",
   "exam_date",
   "exam_center_code_no",
   "selection_round",
@@ -227,11 +228,18 @@
    "fieldtype": "Time",
    "label": "Reporting Time for Interview ",
    "mandatory_depends_on": "eval:doc.selection_round==\"Skill Test & Interview\" || doc.selection_round==\"Interview\";"
+  },
+  {
+   "default": "Today",
+   "fieldname": "today_date",
+   "fieldtype": "Date",
+   "hidden": 1,
+   "label": "Today Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-24 15:24:58.191603",
+ "modified": "2024-01-05 11:17:44.855275",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Recruitment Exam Declaration",
