@@ -2,6 +2,8 @@ import frappe
 from frappe import _
 from frappe.utils import getdate, today
 from wsc.wsc.notification.custom_notification import job_requisition_director,job_requisition_coo,job_requisition_hr,job_requisition_ceo
+from datetime import datetime, timedelta
+from frappe.utils import getdate, today
 
 def approver_mail(self):
 	data={}
@@ -14,6 +16,7 @@ def approver_mail(self):
 
 
 
+
 def validate(self,method):
 	if self.no_of_positions:
 		if self.no_of_positions<0:
@@ -23,11 +26,15 @@ def validate(self,method):
 			frappe.throw("Enter valid value for Expected Compensation")
 	if self.expected_by < self.posting_date:
 		frappe.throw("Expected date cannot be earlier than the posting date.")
-	# if self.completed_on < self.posting_date:
-	# 	frappe.throw("Completed On cannot be earlier than the posting date.")
-	# if self.posting_date:
-	# 	if (self.posting_date) < today():
-	# 		frappe.throw("Posting Date cannot be a past date.")
+	if self.today_date is None:
+		frappe.throw("Today's date is missing. Please provide a valid date.")
+
+	today_date = datetime.strptime(self.today_date, "%Y-%m-%d")
+
+	if self.posting_date is not None:
+		posting_date = datetime.strptime(self.posting_date, "%Y-%m-%d")
+		if today_date > posting_date:
+			frappe.throw("Posting Date date must be a future date or today's date.")
 	if self.workflow_state=="Pending Approval from Director Admin":
 		approver_mail(self)
 	if self.workflow_state=="Pending Approval from COO":
@@ -37,4 +44,7 @@ def validate(self,method):
 	if self.workflow_state=="Approved by COO" or self.workflow_state=="Approved by CEO" or self.workflow_state=="Rejected by CEO" or self.workflow_state=="Rejected by COO" :
 		job_requisition_hr(self)
 	
+
+
+
 	
