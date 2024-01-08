@@ -3,6 +3,15 @@
 
 frappe.ui.form.on('Students Grievance', {
 	refresh: function(frm) {
+		frm.set_query("type_of_grievance", function() {
+            return {
+                filters: {
+                    "enable":1
+                }
+            };
+        })
+
+
 		if(frm.doc.docstatus===1 && frm.doc.status=="Issue Posted By the Student") {
 			// alert("if condition is triggered")
 			frm.add_custom_button(__("Register Complaint"), function() {

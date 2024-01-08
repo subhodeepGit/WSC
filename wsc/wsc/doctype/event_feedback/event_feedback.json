@@ -68,7 +68,6 @@
    "label": "Event Name"
   },
   {
-   "fetch_from": "participant_id.student_name",
    "fieldname": "participant_name",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -94,7 +93,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-19 18:34:21.107368",
+ "modified": "2024-01-05 11:47:30.610999",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Event feedback",

@@ -37,6 +37,7 @@
   {
    "fieldname": "internship_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Internship Name",
    "read_only": 1
   },
@@ -64,7 +65,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-31 17:54:53.847205",
+ "modified": "2024-01-05 16:17:22.488814",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Final List Declaration",
