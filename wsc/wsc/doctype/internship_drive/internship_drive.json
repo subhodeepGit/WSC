@@ -127,6 +127,7 @@
   {
    "fieldname": "eligibility_criteria",
    "fieldtype": "Table",
+   "hidden": 1,
    "label": "Eligibility Criteria",
    "options": "Internship Eligibility Criteria"
   },
@@ -176,7 +177,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-05 15:12:09.945095",
+ "modified": "2024-01-08 15:20:58.626732",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Drive",

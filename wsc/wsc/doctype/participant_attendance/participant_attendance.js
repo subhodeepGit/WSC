@@ -62,7 +62,6 @@ frappe.ui.form.on('Participant Attendance', {
 				}
 				frm.refresh()
 				frm.refresh_field('selected_participants_table')
-				frm.save()
 			}
 		})
 	}
