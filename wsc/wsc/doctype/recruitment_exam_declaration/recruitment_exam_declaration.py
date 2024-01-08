@@ -14,11 +14,41 @@ class RecruitmentExamDeclaration(Document):
 		doc.exam_time_validation()
 		exam_date = doc.get("exam_date") 
 		current_date = today()
+		doc.check_date()
 
 		# if exam_date <= current_date:
 		# 	frappe.throw("Exam date cannot be a past date or the current date.")
 		update_job_opening(doc)
 		send_mail_to_jobapplicants_redn(doc)
+
+
+	def check_date(self):
+
+		if self.today_date is None:
+			frappe.throw("Today's date is missing. Please provide a valid date.")
+
+		today_date = datetime.strptime(self.today_date, "%Y-%m-%d")
+
+		if self.exam_date is not None:
+			exam_date = datetime.strptime(self.exam_date, "%Y-%m-%d")
+			if today_date >= exam_date:
+				frappe.throw("Exam date must be a future date, not past or today's date.")
+
+		if self.date_of_skill_test is not None:
+			skill_test_date = datetime.strptime(self.date_of_skill_test, "%Y-%m-%d")
+			if today_date >= skill_test_date:
+				frappe.throw("Skill Test date must be a future date, not past or today's date.")
+
+		if self.date_of_interview is not None:
+			interview_date = datetime.strptime(self.date_of_interview, "%Y-%m-%d")
+			if today_date >= interview_date:
+				frappe.throw("Interview date must be a future date, not past or today's date.")
+
+
+
+			
+
+
 	def exam_time_validation(doc):
 		if doc.selection_round=="Written":
 
@@ -73,10 +103,10 @@ def update_job_opening(doc):
 # 	return selection_rounds
 @frappe.whitelist()
 def get_selectionround(doctype, txt, searchfield, start, page_len, filters):
-    fltr = {"parent":filters.get("job_opening")}
-    # if txt:
-    #     fltr.update({'semester': ['like', '%{}%'.format(txt)]})
-    return frappe.get_all("Job Selection Round",fltr,['name_of_rounds'], as_list=1)
+	fltr = {"parent":filters.get("job_opening")}
+	# if txt:
+	#     fltr.update({'semester': ['like', '%{}%'.format(txt)]})
+	return frappe.get_all("Job Selection Round",fltr,['name_of_rounds'], as_list=1)
 @frappe.whitelist()
 def get_job_applicants(job_opening):
 	job_applicants = frappe.db.get_all("Job Applicant",{"job_title":job_opening,},['name','applicant_name','email_id','current_status'])

@@ -53,16 +53,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Student Leave Application",
-   "link_count": 0,
-   "link_to": "Leave Application for Student",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Student Attrition Form",
    "link_count": 0,
    "link_to": "Student Attrition Form",
@@ -136,7 +126,7 @@
   },
   {
    "hidden": 0,
-   "is_query_report": 0,
+   "is_query_report": 1,
    "label": "Student Monthly Attendance",
    "link_count": 0,
    "link_to": "Student Monthly Attendance Sheet",
@@ -146,7 +136,7 @@
   },
   {
    "hidden": 0,
-   "is_query_report": 0,
+   "is_query_report": 1,
    "label": "Student Batch Wise Attendance",
    "link_count": 0,
    "link_to": "Student Batch-Wise Attendance",
@@ -281,29 +271,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "CA & CM Assignment",
-   "link_count": 0,
-   "link_to": "Course Advisor and Manager Assignment",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Student Leave Application",
    "link_count": 0,
    "link_to": "Leave Application for Student",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Attrition Form",
-   "link_count": 0,
-   "link_to": "Student Attrition Form",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -347,7 +317,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-01-03 16:20:22.755526",
+ "modified": "2024-01-04 18:10:53.591146",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Academics",
