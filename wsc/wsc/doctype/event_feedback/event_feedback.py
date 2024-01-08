@@ -8,6 +8,14 @@ from frappe.model.mapper import get_mapped_doc
 class Eventfeedback(Document):
 	pass
 
+# @frappe.whitelist()
+# def get_participant_name(participant_id, participant_type):
+# 	print('\n\n\n')
+# 	print('abcd')
+# 	print('\n\n\n')
+# 	pass
+
+
 @frappe.whitelist()
 def get_participant_name(participant_id, participant_type):
 	if(participant_type == 'Student'):
