@@ -10,14 +10,16 @@ frappe.ui.form.on('Assignment', {
                 }
             };
         });
-		if(frm.doc.docstatus===1 && frm.doc.assignment_creation_status=="Pending") {
-			frm.add_custom_button(__("Create Assignment"), function() {
-                frappe.model.open_mapped_doc({
-					method: "wsc.wsc.doctype.assignment.assignment.create_assignment",
-					frm: frm,
+		if(!frappe.user.has_role("ToT Participant")) {
+			if(frm.doc.docstatus===1 && frm.doc.assignment_creation_status=="Pending") {
+				frm.add_custom_button(__("Create Assignment"), function() {
+					frappe.model.open_mapped_doc({
+						method: "wsc.wsc.doctype.assignment.assignment.create_assignment",
+						frm: frm,
+					});
 				});
-			});
-		}
+			}
+		}	
 	},
 	setup: function(frm){
 		frm.set_query("instructor_id", function() {
