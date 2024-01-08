@@ -118,7 +118,7 @@ def assignment(doctype, txt, searchfield, start, page_len, filters):
 	course=filters.get('course')
 	assignment_details=[]
 	if course and participant_group_id:
-		assignment_details = frappe.db.sql(""" SELECT name FROM `tabAssignment` where ({key} like %(txt)s or {scond}) and
+		assignment_details = frappe.db.sql(""" SELECT name,assignment_name,assessment_criteria FROM `tabAssignment` where ({key} like %(txt)s or {scond}) and
 						participant_group = '{participant_group_id}' and course='{course}' and docstatus=1
 						""".format(
 							**{
