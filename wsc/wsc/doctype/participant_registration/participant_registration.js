@@ -9,7 +9,6 @@ frappe.ui.form.on('Participant Registration', {
 				query:"wsc.wsc.doctype.participant_registration.participant_registration.get_participant_id",
 				filters: {
 					"enabled":1,
-					"status":"Active"
 				}
 			}
 		});
