@@ -156,10 +156,10 @@ def get_appraisal_cycle(doctype, txt, searchfield, start, page_len, filters):
     return data
     
 
-@frappe.whitelist()
-def get_kras(appraisal_template):
-    data =frappe.get_all("KRA Rating",{'parent':appraisal_template},["kra"])
-    return data
+# @frappe.whitelist()
+# def get_kras(appraisal_template):
+#     data =frappe.get_all("KRA Rating",{'parent':appraisal_template},["kra"])
+#     return data
 
 @frappe.whitelist()
 def get_goals(employee,appraisal_year):
@@ -169,7 +169,7 @@ def get_goals(employee,appraisal_year):
         if goal_setting[0].name :
             document = goal_setting[0].name
             data =frappe.get_all("Goals",{'parent':document},["goal","category","due_date"])
-    # print(data)
+            print(data)
             return data
 @frappe.whitelist()
 def get_dimenssions():
