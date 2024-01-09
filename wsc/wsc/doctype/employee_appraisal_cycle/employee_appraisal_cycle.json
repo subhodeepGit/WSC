@@ -10,7 +10,6 @@
  "field_order": [
   "appraisal_cycle_name",
   "year",
-  "appraisal_template",
   "appraisal_round",
   "column_break_op82g",
   "from_date",
@@ -24,14 +23,6 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Appraisal Cycle Name",
-   "reqd": 1
-  },
-  {
-   "fieldname": "appraisal_template",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Appraisal Template",
-   "options": "Employee Appraisal Evaluation Template",
    "reqd": 1
   },
   {
@@ -80,7 +71,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-10 11:40:12.460137",
+ "modified": "2024-01-09 09:22:39.847622",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Appraisal Cycle",

@@ -47,6 +47,7 @@
   {
    "fieldname": "title_of_drive",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Title of Drive",
    "reqd": 1,
    "unique": 1
@@ -79,6 +80,7 @@
   {
    "fieldname": "internship_company",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Internship Company",
    "options": "Placement Company",
    "reqd": 1
@@ -125,6 +127,7 @@
   {
    "fieldname": "eligibility_criteria",
    "fieldtype": "Table",
+   "hidden": 1,
    "label": "Eligibility Criteria",
    "options": "Internship Eligibility Criteria"
   },
@@ -174,7 +177,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-05 11:05:57.733645",
+ "modified": "2024-01-08 15:20:58.626732",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Drive",
