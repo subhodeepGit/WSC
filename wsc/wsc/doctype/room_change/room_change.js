@@ -24,6 +24,11 @@ frappe.ui.form.on('Room Change', {
 				query: "wsc.wsc.doctype.room_allotment.room_allotment.test_query"
 			};
 		});
+	},
+	preferred_hostel:function(frm){
+		frm.set_value('preferred_room','')
+		frm.set_value('preferred_room_type','')
+		frm.set_value('preferred_room_number','')
 	}
 })
 
