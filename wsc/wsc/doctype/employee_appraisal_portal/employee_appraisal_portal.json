@@ -189,10 +189,10 @@
   {
    "depends_on": "eval:(doc.status==\"Pending Approval from Director Admin\"||doc.status==\"Approved\"||doc.status==\"Rejected\")",
    "fieldname": "final_grade",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Final Grade",
    "mandatory_depends_on": "eval:(doc.status==\"Pending Approval from Director Admin\")",
-   "options": "\nA (Exceeds)\nB ( Meeting)\nC (Developing)\nD (Unsatisfactory)",
+   "options": "Grade",
    "permlevel": 5
   },
   {
@@ -342,7 +342,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-10 11:43:55.444310",
+ "modified": "2024-01-10 12:30:32.036999",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Appraisal Portal",
