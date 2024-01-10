@@ -19,7 +19,7 @@ frappe.ui.form.on('Employee Appraisal Portal', {
         });
         
     },
-	employee: function(frm) {
+	appraisal_year: function(frm) {
         frappe.model.clear_table(frm.doc, 'key_work_goals');
 
         frappe.call({
@@ -68,7 +68,7 @@ frappe.ui.form.on('Employee Appraisal Portal', {
 			
 	},
     
-	appraisal_cycle : function(frm){
+	onload : function(frm){
 		// Get the value of the "Appraisal Round" field
         var appraisalRound = frm.doc.appraisal_round;
 
