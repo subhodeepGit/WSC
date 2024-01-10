@@ -8,7 +8,7 @@ def validate(doc,method):
             if len(str(i.amount))>12 :
                 frappe.thorw("Amount is too High")
     if doc.house_rent_payment_amount:
-        if doc.house_rent_apyment_amount<0:
+        if doc.house_rent_payment_amount<0:
             frappe.throw("House Rent Payment Amount should not be less than 0")
         if len(str(doc.house_rent_payment_amount))>12:
             frappe.throw("House Rent Payment Amount is too high")

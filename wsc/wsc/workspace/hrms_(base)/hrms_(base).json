@@ -590,16 +590,16 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Appraisal",
-   "link_count": 5,
+   "link_count": 4,
    "onboard": 0,
    "type": "Card Break"
   },
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "KRA",
+   "label": "Rating",
    "link_count": 0,
-   "link_to": "KRA",
+   "link_to": "Rating",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -610,16 +610,6 @@
    "label": "Dimensions for Appraisal",
    "link_count": 0,
    "link_to": "Dimenssions for Appraisal",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Employee Appraisal Evaluation Template",
-   "link_count": 0,
-   "link_to": "Employee Appraisal Evaluation Template",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -645,7 +635,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-12-27 11:27:43.575072",
+ "modified": "2024-01-09 14:30:16.014435",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "HRMS (Base)",

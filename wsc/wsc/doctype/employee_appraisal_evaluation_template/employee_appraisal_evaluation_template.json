@@ -11,7 +11,7 @@
   "template_name",
   "description",
   "section_break_0jlml",
-  "kra_ratings"
+  "competency_rating"
  ],
  "fields": [
   {
@@ -32,15 +32,15 @@
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "kra_ratings",
+   "fieldname": "competency_rating",
    "fieldtype": "Table",
-   "label": "KRA Ratings",
-   "options": "KRA Rating"
+   "label": "Competency Rating",
+   "options": "Competency Ratings"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-13 09:54:30.116305",
+ "modified": "2024-01-09 09:13:28.332928",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Appraisal Evaluation Template",

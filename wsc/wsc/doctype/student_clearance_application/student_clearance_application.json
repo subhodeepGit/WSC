@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "STU-CLL.-.#####",
+ "autoname": "STU-CLL.-.YYYY.-.#####",
  "creation": "2023-04-04 12:08:04.750184",
  "default_view": "List",
  "doctype": "DocType",
@@ -15,6 +15,7 @@
   "column_break_9ecln",
   "user_disable_date",
   "student_name",
+  "roll_no",
   "student_email_address",
   "current_educational_details_section",
   "current_education",
@@ -32,7 +33,6 @@
    "default": "Today",
    "fieldname": "posting_date",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "Posting Date",
    "read_only": 1,
    "reqd": 1
@@ -40,6 +40,7 @@
   {
    "fieldname": "student_id",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Student ID",
    "mandatory_depends_on": "eval:doc.clearance_type==\"Normal\"",
    "options": "Student",
@@ -49,6 +50,7 @@
    "fetch_from": "student_id.student_name",
    "fieldname": "student_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Student Name",
    "read_only": 1
   },
@@ -56,7 +58,6 @@
    "fieldname": "departments_clearance_status",
    "fieldtype": "Table",
    "label": "Department Clearance <b style=\"color: red;\">*</b>",
-   "no_copy": 1,
    "options": "Departments Clearance Status"
   },
   {
@@ -72,6 +73,7 @@
    "default": "Clearance Pending",
    "fieldname": "status",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Status",
    "read_only": 1
   },
@@ -112,6 +114,7 @@
    "default": "0",
    "fieldname": "total_dues",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Total Dues",
    "non_negative": 1,
    "read_only": 1
@@ -140,12 +143,20 @@
    "fieldname": "section_break_f3tsz",
    "fieldtype": "Section Break",
    "hidden": 1
+  },
+  {
+   "fetch_from": "student_id.roll_no",
+   "fieldname": "roll_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Roll No",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-01 18:09:33.318049",
+ "modified": "2024-01-10 12:56:39.305529",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Clearance Application",
