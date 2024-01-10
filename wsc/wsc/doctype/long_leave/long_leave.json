@@ -152,7 +152,8 @@
    "depends_on": "eval:doc.medium_of_communicatinon == \"Telephone\";",
    "fieldname": "phone_no",
    "fieldtype": "Phone",
-   "label": "Phone No"
+   "label": "Phone No",
+   "mandatory_depends_on": "eval:doc.medium_of_communicatinon == \"Telephone\";"
   },
   {
    "fieldname": "student_reply_section",
@@ -169,13 +170,15 @@
    "depends_on": "eval:doc.medium_of_communicatinon_from_student == \"Telephone\";",
    "fieldname": "communication_phone_no",
    "fieldtype": "Phone",
-   "label": "Communication Phone no"
+   "label": "Communication Phone no",
+   "mandatory_depends_on": "eval:doc.medium_of_communicatinon_from_student == \"Telephone\";"
   },
   {
    "depends_on": "eval:doc.medium_of_communicatinon == \"Email\";",
    "fieldname": "email_id",
    "fieldtype": "Data",
    "label": "Email Id",
+   "mandatory_depends_on": "eval:doc.medium_of_communicatinon == \"Email\";",
    "options": "Email"
   },
   {
@@ -200,6 +203,7 @@
    "fieldtype": "Data",
    "label": "Pincode",
    "length": 6,
+   "mandatory_depends_on": "eval:doc.medium_of_communicatinon == \"Postal\";",
    "non_negative": 1
   },
   {
@@ -243,13 +247,15 @@
    "depends_on": "eval:doc.medium_of_communicatinon_from_student == \"Postal\";",
    "fieldname": "letter_attacmnent_student",
    "fieldtype": "Attach",
-   "label": "Letter Attacmnent"
+   "label": "Letter Attacmnent",
+   "mandatory_depends_on": "eval:doc.medium_of_communicatinon_from_student == \"Postal\";"
   },
   {
    "depends_on": "eval:doc.medium_of_communicatinon_from_student == \"Email\";",
    "fieldname": "email",
    "fieldtype": "Data",
    "label": "Email",
+   "mandatory_depends_on": "eval:doc.medium_of_communicatinon_from_student == \"Email\";",
    "options": "Email"
   },
   {
@@ -273,7 +279,8 @@
    "fieldname": "pincode_student",
    "fieldtype": "Data",
    "label": "Pincode",
-   "length": 6
+   "length": 6,
+   "mandatory_depends_on": "eval:doc.medium_of_communicatinon_from_student == \"Postal\";"
   },
   {
    "depends_on": "eval:doc.medium_of_communicatinon_from_student == \"Postal\";",
@@ -290,7 +297,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-06 14:39:10.329194",
+ "modified": "2024-01-09 17:01:11.757065",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Long Leave",

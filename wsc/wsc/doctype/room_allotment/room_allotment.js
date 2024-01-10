@@ -8,7 +8,7 @@ frappe.ui.form.on('Room Allotment', {
 				filters: [
 					["Room Masters", "hostel_id", "=", frm.doc.hostel_id],
 					["Room Masters", "validity", "=", "Functional"],
-					["Room Masters", "status", "=", "Allotted"],
+					["Room Masters", "status", "=", "Functional"],
 					["Room Masters", "vacancy", ">", 0],
 					["Room Masters", "actual_room_type", "=", frm.doc.room_type_reference]
 				]

@@ -4,17 +4,45 @@
 import frappe
 from frappe.model.document import Document
 from wsc.wsc.notification.custom_notification import send_clearance_notification_to_department,send_pendingDues_notification_to_student
+
+
 class StudentClearanceApplication(Document):
+    def validate(self):
+        self.validateApprovedorPending()
+        self.validateAmount()
+        if self.is_new():
+            if frappe.get_all("Student Clearance Application",{"student_id":self.student_id,"docstatus":["!=",2]}):
+                frappe.throw("Student Record Already Present")
+        self.enrollment()
+
     def on_submit(self):
         if not self.get("departments_clearance_status"):
             frappe.throw("Department Clearance is not present")
 
         for t in self.get("departments_clearance_status"):
-            if(t.clearance_status == 'Select'):
+            if t.clearance_status == '':
                 frappe.throw(("Provide action in clearance status"))
 
         if self.status != "Clearance Approved":
             frappe.throw(("Document cannot be submitted. Status must be 'Clearance Approved'."))
+
+        if self.clearance_type=="Attrition":
+            frappe.db.set_value('Student Attrition Form',self.attrition_id, {
+                'student_clearance_application':self.name,
+                'clearance_date':self.posting_date,
+                'user_disable_date':self.user_disable_date ,
+                'status': self.status,
+                'total_dues':self.total_dues ,
+            })
+    def on_cancel(self):
+        if self.clearance_type=="Attrition":
+            frappe.db.set_value('Student Attrition Form',self.attrition_id, {
+                'student_clearance_application':"",
+                'clearance_date':None,
+                'user_disable_date':None,
+                'status':"",
+                'total_dues':0,
+            })                    
     
     def before_save(self):
         if self.is_new():
@@ -22,9 +50,8 @@ class StudentClearanceApplication(Document):
         if self.total_dues>0:
             self.sendDuesEmailToStudent()
 
-    def validate(self):
-        self.validateApprovedorPending()
-        self.validateAmount()
+
+
 
     def sendDuesEmailToStudent(self):
         send_pendingDues_notification_to_student(self)
@@ -47,6 +74,9 @@ class StudentClearanceApplication(Document):
             self.status = "Clearance Approved"
         else:
             self.status = "Clearance Pending"
+    def enrollment(self):
+        if not self.get("current_education"):
+            frappe.throw("Course Enrollment Not Found")        
 
 @frappe.whitelist()
 def current_student_detail(student_id):
