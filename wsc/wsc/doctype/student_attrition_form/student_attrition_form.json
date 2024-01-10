@@ -11,6 +11,7 @@
   "student_infromation_section",
   "student_no",
   "student_name",
+  "roll_no",
   "joining_date",
   "student_applicant",
   "column_break_5",
@@ -61,7 +62,14 @@
   "deceased",
   "amended_from",
   "section_break_51",
-  "additional_details_by_ca"
+  "additional_details_by_ca",
+  "clearance_details_section",
+  "student_clearance_application",
+  "clearance_date",
+  "section_break_6za1h",
+  "user_disable_date",
+  "status",
+  "total_dues"
  ],
  "fields": [
   {
@@ -97,7 +105,8 @@
    "fetch_from": "student_no.student_mobile_number",
    "fieldname": "student_mobile_number",
    "fieldtype": "Data",
-   "label": "Student Mobile Number"
+   "label": "Student Mobile Number",
+   "read_only": 1
   },
   {
    "fetch_from": "student_no.student_category",
@@ -398,12 +407,59 @@
    "fieldtype": "Date",
    "label": "Posting Date",
    "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "clearance_details_section",
+   "fieldtype": "Section Break",
+   "label": "Clearance Details"
+  },
+  {
+   "fieldname": "student_clearance_application",
+   "fieldtype": "Data",
+   "label": "Student Clearance Application",
+   "read_only": 1
+  },
+  {
+   "fieldname": "clearance_date",
+   "fieldtype": "Date",
+   "label": "Clearance Date ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "user_disable_date",
+   "fieldtype": "Data",
+   "label": "User Disable Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_dues",
+   "fieldtype": "Currency",
+   "label": "Total Dues",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_6za1h",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "student_no.roll_no",
+   "fieldname": "roll_no",
+   "fieldtype": "Data",
+   "label": "Roll No",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-05 18:46:54.416756",
+ "modified": "2024-01-10 11:32:23.428730",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Attrition Form",
@@ -423,6 +479,7 @@
    "write": 1
   }
  ],
+ "search_fields": "student_no,student_name,roll_no",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],

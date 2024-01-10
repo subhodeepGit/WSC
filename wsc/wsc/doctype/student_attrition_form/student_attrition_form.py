@@ -5,7 +5,15 @@ import frappe
 from frappe.model.document import Document
 
 class StudentAttritionForm(Document):
-	pass
+	def validate(self):
+		self.enrollment_validation()
+		if self.is_new():
+			if frappe.get_all("Student Attrition Form",{"student_no":self.student_no,"docstatus":["!=",2]}):
+				frappe.throw("Student Record Already Present")
+
+	def enrollment_validation(self):
+		if not self.get("current_education"):
+			frappe.throw("Student is Not Enrolled in Any Course")
 
 
 @frappe.whitelist()
