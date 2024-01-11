@@ -9,8 +9,8 @@
  "field_order": [
   "item_code",
   "item_name",
-  "location",
   "asset_name",
+  "location",
   "custodian",
   "department"
  ],
@@ -35,11 +35,11 @@
   },
   {
    "columns": 1,
-   "fetch_from": "item_code.location",
    "fieldname": "location",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Location"
+   "label": "Location",
+   "options": "Location"
   },
   {
    "columns": 2,
@@ -51,25 +51,25 @@
   },
   {
    "columns": 2,
-   "fetch_from": "item_code.custodian",
    "fieldname": "custodian",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Custodian"
+   "label": "Custodian",
+   "options": "Employee"
   },
   {
    "columns": 2,
-   "fetch_from": "item_code.department",
    "fieldname": "department",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Department"
+   "label": "Department",
+   "options": "Department"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-05 18:58:51.426261",
+ "modified": "2024-01-11 12:52:19.909230",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Room Assets",
