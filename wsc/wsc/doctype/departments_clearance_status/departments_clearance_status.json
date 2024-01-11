@@ -3,6 +3,7 @@
  "allow_rename": 1,
  "creation": "2023-04-04 12:07:34.751308",
  "doctype": "DocType",
+ "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "department",
@@ -25,7 +26,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Clearance Status",
-   "options": "Select\nNo-Dues\nDues"
+   "options": "\nNo-Dues\nDues"
   },
   {
    "default": "0",
@@ -54,13 +55,14 @@
   {
    "fieldname": "department_email_id",
    "fieldtype": "Data",
-   "label": "Department Email_Id"
+   "label": "Department Email_Id",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-07-05 11:05:11.288544",
+ "modified": "2024-01-10 10:22:59.758830",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Departments Clearance Status",

@@ -12,6 +12,11 @@ frappe.ui.form.on("Student Clearance Application", {
         });
 	},
     refresh: function(frm) {
+        if(frappe.user.has_role(["Student"]) && !frappe.user.has_role(["Administrator"])){
+            frm.set_df_property('departments_clearance_status', 'read_only', 1);
+            frm.set_df_property('clearance_type', 'read_only', 1)
+            frm.set_df_property('user_disable_date', 'read_only', 1) 
+        }
         frm.fields_dict.user_disable_date.datepicker.update({
             minDate: new Date(frappe.datetime.get_today()),
         });
@@ -29,8 +34,8 @@ frappe.ui.form.on("Student Clearance Application", {
             },
             callback: function(response) {
                 if (response.message && response.message.is_student) {
-                    frm.set_df_property('clearance_type', 'hidden', 1);
-                    frm.set_df_property('departments_clearance_status', 'read_only', 1);
+                    // frm.set_df_property('clearance_type', 'hidden', 1);
+                    // frm.set_df_property('departments_clearance_status', 'read_only', 1);
                     frm.refresh_field('departments_clearance_status');
                 }
             }
