@@ -26,15 +26,30 @@ def validate(self,method):
 			frappe.throw("Enter valid value for Expected Compensation")
 	if self.expected_by < self.posting_date:
 		frappe.throw("Expected date cannot be earlier than the posting date.")
+	
 	if self.today_date is None:
 		frappe.throw("Today's date is missing. Please provide a valid date.")
 
-	today_date = datetime.strptime(self.today_date, "%Y-%m-%d")
+	if isinstance(self.today_date, str):
+		try:
+			today_date = datetime.strptime(self.today_date, "%Y-%m-%d")
+		except ValueError as ve:
+			frappe.throw(f"Error parsing Today's date: {ve}")
+	else:
+		today_date = self.today_date
 
 	if self.posting_date is not None:
-		posting_date = datetime.strptime(self.posting_date, "%Y-%m-%d")
+		if isinstance(self.posting_date, str):
+			try:
+				posting_date = datetime.strptime(self.posting_date, "%Y-%m-%d")
+			except ValueError as ve:
+				frappe.throw(f"Error parsing Posting Date: {ve}")
+		else:
+			posting_date = self.posting_date
+
 		if today_date > posting_date:
-			frappe.throw("Posting Date date must be a future date or today's date.")
+			frappe.throw("Posting Date must be a future date or today's date.")
+
 	if self.workflow_state=="Pending Approval from Director Admin":
 		approver_mail(self)
 	if self.workflow_state=="Pending Approval from COO":

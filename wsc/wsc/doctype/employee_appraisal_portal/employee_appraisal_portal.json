@@ -8,12 +8,6 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "section_break_8afkq",
-  "appraisal_year",
-  "column_break_yukro",
-  "appraisal_cycle",
-  "appraisal_round",
-  "section_break_eie9z",
   "employee_details",
   "employee",
   "employee_name",
@@ -25,11 +19,17 @@
   "designation",
   "status",
   "employment_type",
+  "section_break_8afkq",
+  "appraisal_year",
+  "appraisal_cycle",
+  "column_break_yukro",
+  "appraisal_round",
   "self_review",
   "key_work_goals",
   "additional_contributions_section",
   "additonal_contribution",
   "individual_development_and_learnings_section",
+  "section_break_eie9z",
   "current_year",
   "upload_certifications",
   "column_break_rqu29",
@@ -177,7 +177,8 @@
    "fieldname": "self_rating",
    "fieldtype": "Table",
    "label": "Competencies",
-   "options": "Competency Ratings"
+   "options": "Competency Ratings",
+   "permlevel": 5
   },
   {
    "depends_on": "eval:(doc.status==\"Pending Approval from Director Admin\"||doc.status==\"Approved\"||doc.status==\"Rejected\")",
@@ -188,11 +189,11 @@
   {
    "depends_on": "eval:(doc.status==\"Pending Approval from Director Admin\"||doc.status==\"Approved\"||doc.status==\"Rejected\")",
    "fieldname": "final_grade",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Final Grade",
    "mandatory_depends_on": "eval:(doc.status==\"Pending Approval from Director Admin\")",
-   "options": "\nA (Exceeds)\nB ( Meeting)\nC (Developing)\nD (Unsatisfactory)",
-   "permlevel": 3
+   "options": "Grade",
+   "permlevel": 5
   },
   {
    "fieldname": "upload_certifications",
@@ -200,6 +201,7 @@
    "label": "Upload Certifications"
   },
   {
+   "depends_on": "eval:doc.employee",
    "fieldname": "appraisal_year",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -209,6 +211,7 @@
    "reqd": 1
   },
   {
+   "depends_on": "eval:doc.appraisal_year",
    "fieldname": "appraisal_cycle",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -238,7 +241,8 @@
   {
    "fieldname": "mid_year_grade",
    "fieldtype": "Read Only",
-   "label": "Mid Year Grade"
+   "label": "Mid Year Grade",
+   "permlevel": 5
   },
   {
    "fetch_from": "employee.reporting_authority_email",
@@ -338,7 +342,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-09 12:42:17.432135",
+ "modified": "2024-01-10 12:30:32.036999",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Appraisal Portal",
