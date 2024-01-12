@@ -72,6 +72,9 @@ class Employee(NestedSet):
         self.validate_mobile_number() 
         if not self.present_contract_start_date :
             self.present_contract_start_date = self.date_of_joining
+        # if not self.is_new():
+        #     dynamic_workflow_goal_setting(self)    
+
         
 
     def create_profile(self):
@@ -128,6 +131,7 @@ class Employee(NestedSet):
 
             if not re.match(pattern, self.cell_number):
                 frappe.throw("Invalid mobile number format")
+    
     
 
     def on_change(self):
@@ -599,3 +603,13 @@ def check_duplicate_permission(doc):
             'applicable_for': "Mentor Allocation",
             'name': ['!=', doc.name]
         }, limit=1)
+
+def dynamic_workflow_goal_setting(self):
+    doc_before_save = self.get_doc_before_save()
+    for t in doc_before_save.get("goal_settings_workflow"):
+        pass
+    for t in self.get("goal_settings_workflow"):
+        data=frappe.get_all("Employee",{"name":t.employee},["user_id"])
+        if data:
+            user = frappe.get_doc("User",data[0]["user_id"])
+            user.add_roles(t.level_of_approval)
