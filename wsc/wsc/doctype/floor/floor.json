@@ -19,9 +19,10 @@
   "section_break_l7zv2",
   "number_of_rooms",
   "floor_size",
-  "floor_plan",
   "floor_incharge",
   "floor_incharge_name",
+  "other_details_section",
+  "floor_plan",
   "floor_assets",
   "floor_documents"
  ],
@@ -119,11 +120,16 @@
    "fieldtype": "Data",
    "label": "Floor Incharge Name",
    "read_only": 1
+  },
+  {
+   "fieldname": "other_details_section",
+   "fieldtype": "Section Break",
+   "label": "Other details"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-05 15:57:53.178166",
+ "modified": "2024-01-15 12:22:03.625028",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Floor",

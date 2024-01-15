@@ -224,7 +224,7 @@
   },
   {
    "fieldname": "building_valuation_in_rs",
-   "fieldtype": "Currency",
+   "fieldtype": "Int",
    "label": "Building Valuation (In Rs.)"
   },
   {
@@ -236,7 +236,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-05 15:56:29.807633",
+ "modified": "2024-01-15 12:09:17.805499",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Buildings",
