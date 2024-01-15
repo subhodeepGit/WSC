@@ -705,7 +705,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Course Enrollment",
+   "label": "Program Enrollment",
    "link_count": 0,
    "link_to": "Program Enrollment",
    "link_type": "DocType",
@@ -723,7 +723,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-01-15 13:00:46.260267",
+ "modified": "2024-01-15 17:30:20.849097",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Admission",
