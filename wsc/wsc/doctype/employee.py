@@ -72,8 +72,8 @@ class Employee(NestedSet):
         self.validate_mobile_number() 
         if not self.present_contract_start_date :
             self.present_contract_start_date = self.date_of_joining
-        # if not self.is_new():
-        #     dynamic_workflow_goal_setting(self)    
+        if not self.is_new():
+            dynamic_workflow_goal_setting(self)    
 
         
 
@@ -142,12 +142,14 @@ class Employee(NestedSet):
     def permissions(doc):
         for result in frappe.get_all("User",{"name":doc.user_id},['name']):
             for get_role in frappe.get_all("Has Role",{"parent":result.name},['role']):
-                print("\n\n\n\nROLE USER",get_role.role) 
-            print("\n\nFirst",doc.user_id)
+                pass
+                # print("\n\n\n\nROLE USER",get_role.role) 
+            # print("\n\nFirst",doc.user_id)
             if doc.user_id ==result.name and get_role.role not in ["HR Admin","Director"]:
+                pass
                
-                print("\n\nSecond",result.name)
-                print("\n\nThrird",get_role.role)
+                # print("\n\nSecond",result.name)
+                # print("\n\nThrird",get_role.role)
 
             # user_role and "Director" not in user_role:
                 add_user_permission(doc.doctype,doc.name,doc.user_id,doc)
@@ -605,11 +607,92 @@ def check_duplicate_permission(doc):
         }, limit=1)
 
 def dynamic_workflow_goal_setting(self):
+
+    if self.get("goal_settings_workflow"):
+        flag="No"
+        level_list=[]
+        for t in self.get("goal_settings_workflow"):
+            level_list.append(t.level_of_approval)
+            if t.employee==self.name and t.level_of_approval=="Level 1":
+                flag="Yes"
+                break
+
+        if flag=="No":
+            frappe.throw("Applying Employee Should be at level 1")
+
+        if len(level_list)!=len(set(list(level_list))):
+            frappe.throw("Duplicate Level Found In Goal Setting Process")
+
+    old_list=[]
+    new_list=[]
+
     doc_before_save = self.get_doc_before_save()
     for t in doc_before_save.get("goal_settings_workflow"):
-        pass
+        a={}
+        a['employee']=t.employee
+        a['level_of_approval']=t.level_of_approval
+        old_list.append(a)
     for t in self.get("goal_settings_workflow"):
-        data=frappe.get_all("Employee",{"name":t.employee},["user_id"])
-        if data:
-            user = frappe.get_doc("User",data[0]["user_id"])
-            user.add_roles(t.level_of_approval)
+        a={}
+        a['employee']=t.employee
+        a['level_of_approval']=t.level_of_approval 
+        new_list.append(a)
+
+    if old_list or new_list:
+        added_dicts, deleted_dicts,changes = find_changes(old_list, new_list, 'employee', 'level_of_approval')
+        print("\n\n\n\n")
+        print(added_dicts)
+        print(deleted_dicts)
+        print(changes)
+                
+
+
+
+
+
+
+
+
+
+
+
+        # for t in self.get("goal_settings_workflow"):
+        #     data=frappe.get_all("Employee",{"name":t.employee},["user_id"])
+        #     if data:
+        #         user = frappe.get_doc("User",data[0]["user_id"])
+        #         user.add_roles(t.level_of_approval)
+
+
+def find_changes(old_list, new_list, param1, param2):
+    added = [new_dict for new_dict in new_list if (new_dict[param1], new_dict[param2]) not in [(old_dict[param1], old_dict[param2]) for old_dict in old_list]]
+    deleted = [old_dict for old_dict in old_list if (old_dict[param1], old_dict[param2]) not in [(new_dict[param1], new_dict[param2]) for new_dict in new_list]]
+    
+    # common = [new_dict for new_dict in new_list if (new_dict[param1], new_dict[param2]) in [(old_dict[param1], old_dict[param2]) for old_dict in old_list]]
+    
+    changes = [{'old': old_dict, 'new': new_dict} for old_dict, new_dict in zip(old_list, new_list) if (old_dict[param1], old_dict[param2]) != (new_dict[param1], new_dict[param2])]
+
+    added_list=[]
+    deleted_list=[]
+    changes_list=[]
+    for t in added:
+        flag="No"
+        for j in changes:
+            if t['employee']==j['new']['employee']:
+                flag="Yes"
+                break
+        if flag=="No":
+            added_list.append(t)
+               
+    for t in deleted:
+        flag="No"
+        for j in changes:
+            if t['employee']==j['new']['employee']:
+                flag="Yes"
+                break
+        if flag=="No":
+            deleted_list.append(t)
+    for t in changes:
+        changes_list.append(t['new'])      
+    
+    # return added, deleted, changes, common              
+    return added_list, deleted_list, changes_list

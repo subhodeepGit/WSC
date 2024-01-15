@@ -57,7 +57,7 @@ frappe.ui.form.on('Dynamnic Workflow for Goal Setting', {
 	goal_settings_workflow_add: function(frm){
 		frm.fields_dict['goal_settings_workflow'].grid.get_field('employee').get_query = function(doc){
 			var employee_list = [];
-			if(!doc.__islocal) employee_list.push(doc.name);
+			if(!doc.__islocal) ;
 			$.each(doc.goal_settings_workflow, function(idx, val){
 				if (val.employee) employee_list.push(val.employee);
 			});
