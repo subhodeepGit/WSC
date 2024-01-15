@@ -117,7 +117,7 @@
   },
   {
    "fieldname": "pin_code",
-   "fieldtype": "Data",
+   "fieldtype": "Int",
    "label": "Pin code"
   },
   {

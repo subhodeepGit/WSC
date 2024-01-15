@@ -1,7 +1,7 @@
 # Copyright (c) 2022, SOUL Limited and contributors
 # For license information, please see license.txt
 
-import frappe
+import frappe, json,re
 from frappe.model.document import Document
 
 
@@ -10,6 +10,10 @@ class Land(Document):
 		dateValidate(self)
 		pincode(self)
 		self.enabled_land()
+
+		if self.land_size < 0:
+			frappe.throw("<B>Land size</b> cannot be negative value")
+
 		# phone(self)
 
 	def enabled_land(self):
@@ -25,9 +29,6 @@ class Land(Document):
 				if j.name==t['name']:
 					j.enabled=self.enabled
 			doc.save()
-
-			
-
 
 # To validate if the start date is not after the end date
 def dateValidate(self):
