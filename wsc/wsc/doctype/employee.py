@@ -607,7 +607,6 @@ def check_duplicate_permission(doc):
         }, limit=1)
 
 def dynamic_workflow_goal_setting(self):
-
     if self.get("goal_settings_workflow"):
         flag="No"
         level_list=[]
@@ -640,27 +639,40 @@ def dynamic_workflow_goal_setting(self):
 
     if old_list or new_list:
         added_dicts, deleted_dicts,changes = find_changes(old_list, new_list, 'employee', 'level_of_approval')
-        print("\n\n\n\n")
-        print(added_dicts)
-        print(deleted_dicts)
-        print(changes)
-                
+        if added_dicts:
+            for t in added_dicts:
+                data=frappe.get_all("Employee",{"name":t['employee']},["user_id"])
+                if data:
+                    user = frappe.get_doc("User",data[0]["user_id"])
+                    user.add_roles(t['level_of_approval'])
 
+        if  deleted_dicts:
+            for t in deleted_dicts:
+                level_of_approval=frappe.get_all("Dynamnic Workflow for Goal Setting",{"employee":t['employee'],"level_of_approval":t["level_of_approval"]})
+                if len(level_of_approval)==1:
+                    data=frappe.get_all("Employee",{"name":t['employee']},["user_id"])
+                    if data:
+                        employee = frappe.get_doc("User",data[0]["user_id"])
+                        employee.remove_roles(t['level_of_approval'])
+                        employee.flags.ignore_permissions = True
+                        employee.save()
+        if changes:
+            for t in changes:
+                # old Role Removal
+                old_removal=t['old']
+                level_of_approval_old=frappe.get_all("Dynamnic Workflow for Goal Setting",{"employee":old_removal['employee'],"level_of_approval":old_removal["level_of_approval"]})
+                data=frappe.get_all("Employee",{"name":old_removal['employee']},["user_id"])
+                if len(level_of_approval_old)==1:
+                    if data:
+                        employee = frappe.get_doc("User",data[0]["user_id"])
+                        employee.remove_roles(old_removal["level_of_approval"])
+                        employee.flags.ignore_permissions = True
+                        employee.save()
+                # New Role Addition
+                new_addition=t['new']
+                user = frappe.get_doc("User",data[0]["user_id"])
+                user.add_roles(new_addition['level_of_approval'])                   
 
-
-
-
-
-
-
-
-
-
-        # for t in self.get("goal_settings_workflow"):
-        #     data=frappe.get_all("Employee",{"name":t.employee},["user_id"])
-        #     if data:
-        #         user = frappe.get_doc("User",data[0]["user_id"])
-        #         user.add_roles(t.level_of_approval)
 
 
 def find_changes(old_list, new_list, param1, param2):
@@ -691,8 +703,10 @@ def find_changes(old_list, new_list, param1, param2):
                 break
         if flag=="No":
             deleted_list.append(t)
-    for t in changes:
-        changes_list.append(t['new'])      
+
+    # for t in changes:
+    #     changes_list.append(t['new'])   
+    changes_list=changes           
     
     # return added, deleted, changes, common              
     return added_list, deleted_list, changes_list
