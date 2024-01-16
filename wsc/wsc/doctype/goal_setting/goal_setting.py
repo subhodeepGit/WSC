@@ -13,16 +13,16 @@ class GoalSetting(Document):
         if duplicate_records:
             frappe.throw("Duplicate records found for the same details. Please review.")
 
-        if self.workflow_state == "Pending Approval from Reporting Authority":
-            self.send_mail_ra()
-        if self.workflow_state == "Pending Approval from Department Head":
-            #code needs to be added 
-            self.send_mail_dh()
-        if self.workflow_state == "Pending Approval from Director Admin" :
-            self.send_mail_director()
-        if self.workflow_state == "Approved" or self.workflow_state=="Rejected" or self.workflow_state == "Cancelled":
-            self.send_mail_hr()
-            sendEmployee_goal(self)
+        # if self.workflow_state == "Pending Approval from Reporting Authority":
+        #     self.send_mail_ra()
+        # if self.workflow_state == "Pending Approval from Department Head":
+        #     #code needs to be added 
+        #     self.send_mail_dh()
+        # if self.workflow_state == "Pending Approval from Director Admin" :
+        #     self.send_mail_director()
+        # if self.workflow_state == "Approved" or self.workflow_state=="Rejected" or self.workflow_state == "Cancelled":
+        #     self.send_mail_hr()
+        #     sendEmployee_goal(self)
         
 
     def check_duplicate_records(self):
@@ -53,11 +53,6 @@ class GoalSetting(Document):
         #take the department of the employee , find the user id of that particular department head
         department = self.department
         department_head = frappe.get_all("Department",filters = {"name":department},pluck="department_head")
-        print("\n\n\n\nDepartment Head")
-        print(department_head)
-        print(type(department_head[0]))
-        # if department_head == [None]:
-        # 	print("Hello")
         if department_head==[None]:
             frappe.throw("Department Head Mail Not found")
             
@@ -75,12 +70,8 @@ class GoalSetting(Document):
     #Send Mail to Director
     def send_mail_director(self):
         director_mail = frappe.get_all("User",filters={"role":"Director"},pluck='name')
-        # print("\n\n\n")
-        # print(director_mail)
         if director_mail==[None]:
             frappe.throw("Director Mail not found")
-            
-
         else :
             director_mail_id = director_mail[0]
             data={}

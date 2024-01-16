@@ -2,17 +2,24 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
+  "modified": "2024-01-16 09:59:16.122675",
+  "name": "Draft",
+  "workflow_action_name": "Draft"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
   "modified": "2023-07-20 12:48:07.007849",
   "name": "Sent to Moderator",
   "workflow_action_name": "Sent to Moderator"
  },
  {
-    "docstatus": 0,
-    "doctype": "Workflow Action Master",
-    "modified": "2023-08-29 14:20:55.351419",
-    "name": "Forward to Grievance Cell",
-    "workflow_action_name": "Forward to Grievance Cell"
-   },
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-08-29 14:20:55.351419",
+  "name": "Forward to Grievance Cell",
+  "workflow_action_name": "Forward to Grievance Cell"
+ },
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
