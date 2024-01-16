@@ -613,13 +613,15 @@ def dynamic_workflow_goal_setting(self):
         flag="No"
         level_list=[]
         for t in self.get("goal_settings_workflow"):
-            level_list.append(t.level_of_approval)
             if t.employee==self.name and t.level_of_approval=="Level 1":
                 flag="Yes"
                 break
 
         if flag=="No":
             frappe.throw("Applying Employee Should be at level 1")
+
+        for t in self.get("goal_settings_workflow"):
+            level_list.append(t.level_of_approval)
 
         if len(level_list)!=len(set(list(level_list))):
             frappe.throw("Duplicate Level Found In Goal Setting Process")
