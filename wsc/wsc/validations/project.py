@@ -1,6 +1,6 @@
 import frappe
 
-def after_insert(self):
+def after_insert(self, doc):
     email = frappe.get_all('Project' , {'name':self.name},['project_manager'])
     user_perm = frappe.new_doc("User Permission")
     user_perm.user = email[0]['project_manager']
