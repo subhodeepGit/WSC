@@ -1,0 +1,36 @@
+{
+ "based_on": "modified",
+ "chart_name": "student test",
+ "chart_type": "Count",
+ "creation": "2023-12-28 15:54:07.082164",
+ "docstatus": 0,
+ "doctype": "Dashboard Chart",
+ "document_type": "Student",
+ "dynamic_filters_json": "[]",
+ "filters_json": "[]",
+ "group_by_type": "Count",
+ "idx": 0,
+ "is_public": 0,
+ "is_standard": 1,
+ "last_synced_on": "2023-12-29 11:10:07.143457",
+ "modified": "2023-12-29 12:25:19.846130",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "student test",
+ "number_of_groups": 0,
+ "owner": "Administrator",
+ "parent_document_type": "",
+ "roles": [
+  {
+   "role": "Instructor"
+  }
+ ],
+ "source": "",
+ "time_interval": "Daily",
+ "timeseries": 1,
+ "timespan": "Last Year",
+ "type": "Bar",
+ "use_report_chart": 0,
+ "value_based_on": "",
+ "y_axis": []
+}
