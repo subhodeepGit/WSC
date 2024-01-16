@@ -73,7 +73,9 @@ class Employee(NestedSet):
         if not self.present_contract_start_date :
             self.present_contract_start_date = self.date_of_joining
         if not self.is_new():
-            dynamic_workflow_goal_setting(self)    
+            dynamic_workflow_goal_setting(self)  
+            dynamic_workflow_appraisal(self)
+
 
         
 
@@ -611,13 +613,15 @@ def dynamic_workflow_goal_setting(self):
         flag="No"
         level_list=[]
         for t in self.get("goal_settings_workflow"):
-            level_list.append(t.level_of_approval)
             if t.employee==self.name and t.level_of_approval=="Level 1":
                 flag="Yes"
                 break
 
         if flag=="No":
             frappe.throw("Applying Employee Should be at level 1")
+
+        for t in self.get("goal_settings_workflow"):
+            level_list.append(t.level_of_approval)
 
         if len(level_list)!=len(set(list(level_list))):
             frappe.throw("Duplicate Level Found In Goal Setting Process")
@@ -673,7 +677,72 @@ def dynamic_workflow_goal_setting(self):
                 user = frappe.get_doc("User",data[0]["user_id"])
                 user.add_roles(new_addition['level_of_approval'])                   
 
+def dynamic_workflow_appraisal(self):
+    if self.get("approver_list_for_appraisal"):
+        flag="No"
+        level_list=[]
+        for t in self.get("approver_list_for_appraisal"):
+            level_list.append(t.level_of_approval)
+            if t.employee==self.name and t.level_of_approval=="Level 1":
+                flag="Yes"
+                break
 
+        if flag=="No":
+            frappe.throw("Applying Employee Should be at level 1")
+
+        if len(level_list)!=len(set(list(level_list))):
+            frappe.throw("Duplicate Level Found In Goal Setting Process")
+
+    old_list=[]
+    new_list=[]
+
+    doc_before_save = self.get_doc_before_save()
+    for t in doc_before_save.get("approver_list_for_appraisal"):
+        a={}
+        a['employee']=t.employee
+        a['level_of_approval']=t.level_of_approval
+        old_list.append(a)
+    for t in self.get("approver_list_for_appraisal"):
+        a={}
+        a['employee']=t.employee
+        a['level_of_approval']=t.level_of_approval 
+        new_list.append(a)
+
+    if old_list or new_list:
+        added_dicts, deleted_dicts,changes = find_changes(old_list, new_list, 'employee', 'level_of_approval')
+        if added_dicts:
+            for t in added_dicts:
+                data=frappe.get_all("Employee",{"name":t['employee']},["user_id"])
+                if data:
+                    user = frappe.get_doc("User",data[0]["user_id"])
+                    user.add_roles(t['level_of_approval'])
+
+        if  deleted_dicts:
+            for t in deleted_dicts:
+                level_of_approval=frappe.get_all("Approver Details for Appraisal",{"employee":t['employee'],"level_of_approval":t["level_of_approval"]})
+                if len(level_of_approval)==1:
+                    data=frappe.get_all("Employee",{"name":t['employee']},["user_id"])
+                    if data:
+                        employee = frappe.get_doc("User",data[0]["user_id"])
+                        employee.remove_roles(t['level_of_approval'])
+                        employee.flags.ignore_permissions = True
+                        employee.save()
+        if changes:
+            for t in changes:
+                # old Role Removal
+                old_removal=t['old']
+                level_of_approval_old=frappe.get_all("Approver Details for Appraisal",{"employee":old_removal['employee'],"level_of_approval":old_removal["level_of_approval"]})
+                data=frappe.get_all("Employee",{"name":old_removal['employee']},["user_id"])
+                if len(level_of_approval_old)==1:
+                    if data:
+                        employee = frappe.get_doc("User",data[0]["user_id"])
+                        employee.remove_roles(old_removal["level_of_approval"])
+                        employee.flags.ignore_permissions = True
+                        employee.save()
+                # New Role Addition
+                new_addition=t['new']
+                user = frappe.get_doc("User",data[0]["user_id"])
+                user.add_roles(new_addition['level_of_approval'])    
 
 def find_changes(old_list, new_list, param1, param2):
     added = [new_dict for new_dict in new_list if (new_dict[param1], new_dict[param2]) not in [(old_dict[param1], old_dict[param2]) for old_dict in old_list]]
