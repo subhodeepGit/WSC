@@ -187,34 +187,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Faculty Workload",
-   "link_count": 2,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Faculty Work Assignment",
-   "link_count": 0,
-   "link_to": "Faculty Work Assignment",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 1,
-   "label": "Instructor Workload Report",
-   "link_count": 0,
-   "link_to": "Instructor Workload",
-   "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Attendance &amp; Leave Application",
    "link_count": 6,
    "onboard": 0,
@@ -287,9 +259,37 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Faculty Workload",
+   "link_count": 2,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Faculty Work Assignment",
+   "link_count": 0,
+   "link_to": "Faculty Work Assignment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Faculty Workload Report",
+   "link_count": 0,
+   "link_to": "Instructor Workload",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2024-01-11 11:15:47.664284",
+ "modified": "2024-01-16 11:45:50.543461",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Academics",
