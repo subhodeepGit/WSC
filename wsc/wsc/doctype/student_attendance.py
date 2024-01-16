@@ -322,8 +322,16 @@ def get_student_attendance_records(
 #     print("\n\nRESULT",res)
 
 def date_bw(self):
+    print("\n\n\n")
+
     academic_yr = frappe.get_all("Academic Year",{"name":self.academic_year},["year_start_date","year_end_date"])
-    date_ = datetime.strptime(self.date, "%Y-%m-%d").date()
+    if isinstance(self.date , str) :
+        date_ = datetime.strptime(self.date, "%Y-%m-%d").date()
+    
+    else:
+        date_ = self.date
+
     if academic_yr[0]["year_start_date"] and academic_yr[0]["year_end_date"]:
+        # if not academic_yr[0]["year_start_date"]<=date_<=academic_yr[0]["year_end_date"]:
         if not academic_yr[0]["year_start_date"]<=date_<=academic_yr[0]["year_end_date"]:
             frappe.throw(_("The <b>Date</b> must fall within the <b>Academic year's</b> Start date ({0}) and End date ({1}).").format(academic_yr[0]["year_start_date"].strftime("%d-%m-%Y"),academic_yr[0]["year_end_date"].strftime("%d-%m-%Y")))

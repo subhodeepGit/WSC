@@ -178,4 +178,11 @@ frappe.ui.form.on("Deallotment Fee Waiver Components", "percentage", function(fr
     cur_frm.refresh_field ("components");
 });
 
-
+frappe.ui.form.on('Deallotment Process', {
+    end_date: function(frm) {       
+        // set maximum date equal to today's date
+        frm.fields_dict.end_date.datepicker.update({
+            maxDate: new Date()
+        }); 
+    }
+});

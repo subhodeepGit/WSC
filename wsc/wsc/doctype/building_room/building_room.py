@@ -2,10 +2,12 @@
 # For license information, please see license.txt
 
 import frappe
+import re
 from frappe.model.document import Document
 
 class BuildingRoom(Document):
 	def validate(self):
+		isValidroom_no(self.room_no)
 		duplicate(self)
 		dateValidate(self)
 		if self.is_scheduled:
@@ -23,6 +25,20 @@ class BuildingRoom(Document):
 				floor_number_of_rooms=frappe.get_all("Floor",{"name":self.floor},['number_of_rooms'])
 				if floor_number_of_rooms[0]['number_of_rooms'] < room_count:
 					frappe.throw("Maximum rooms for selected Floor has been reached")
+
+
+def isValidroom_no(room_no):
+    if room_no:
+        regex = "^[a-zA-Z0-9-]+$"
+        p = re.compile(regex)
+        if (room_no == ''):
+            return False
+            
+        m = re.match(p, room_no)
+        if m is None:
+            frappe.throw("Please enter valid <B>room no</B>")
+        else:
+            return True
 
 # To filter buildings which are currently between start and end date
 @frappe.whitelist()
