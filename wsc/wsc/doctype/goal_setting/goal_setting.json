@@ -18,7 +18,8 @@
   "status",
   "goals_section",
   "goals",
-  "amended_from"
+  "amended_from",
+  "approval_status"
  ],
  "fields": [
   {
@@ -71,6 +72,7 @@
    "default": "Draft",
    "fieldname": "status",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Status",
    "read_only": 1
   },
@@ -93,12 +95,19 @@
    "fieldname": "email",
    "fieldtype": "Read Only",
    "label": "Email"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "approval_status",
+   "fieldtype": "Data",
+   "label": "Approval Status",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-16 10:43:50.067193",
+ "modified": "2024-01-16 17:59:30.484334",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Goal Setting",
