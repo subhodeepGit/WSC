@@ -10,6 +10,7 @@ def execute():
     add_line_JobApplicant_js()
     update_line_gridrow_js()
     comment_line_FormSidebar_html()
+    addi_sal_ret_bon()
 
 def execute_security_patches():
     # upload_malicious_pdf()
@@ -218,6 +219,29 @@ def update_line_gridrow_js():    #  bench execute wsc.wsc.wsc_patches.update_lin
         file.writelines(lines)
 
     print('frappe/frappe/public/js/frappe/form/grid_row.js modified')
+    
+
+def addi_sal_ret_bon():
+    file_path = "{}/{}".format(BENCH_PATH,"/apps/hrms/hrms/payroll/doctype/retention_bonus/retention_bonus.py")
+    
+    with open(file_path, "r") as file:
+        content = file.read()
+    
+    updated_content = content.replace('''additional_salary = self.get_additional_salary()
+		if self.additional_salary:''', '''additional_salary = self.get_additional_salary()
+		if additional_salary:''')
+
+    with open(file_path) as f:
+        if '''additional_salary = self.get_additional_salary()
+		if additional_salary:''' in f.read():
+            return
+        
+    with open(file_path, "w") as file:
+        file.write(updated_content)
+        print("Additional Salary bug fixing in Retention Bonus. Successfully Updated.")
+    
+
+
 
 def upload_malicious_pdf():
     file_path = "{}/{}".format(BENCH_PATH,"apps/frappe/frappe/handler.py")
