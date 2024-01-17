@@ -538,6 +538,9 @@ doc_events = {
     },
     "Project":{
         "after_insert":"wsc.wsc.validations.project.after_insert"
+    },
+    "Salary Component": {
+        "validate": "wsc.wsc.doctype.salary_component.validate"
     }
     
     
