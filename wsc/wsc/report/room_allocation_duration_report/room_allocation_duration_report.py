@@ -149,7 +149,7 @@ def get_data(filters):
     total_no_of_hr = ((datetime.strptime(filters['to_date'] , '%Y-%m-%d') - datetime.strptime(filters['from_date'] , '%Y-%m-%d')).days)*daily_hrs
     
     total_time=total_no_of_hr
-    print(total_time)
+    
     total_duration = 0
     total_duration_actual = 0
     duration_percent = 0
@@ -179,7 +179,7 @@ def get_data(filters):
 
         total_class_count = 0
         actual_class_duration = 0
-        class_duration  = 0
+        class_duration = 0
         class_duration_percent = 0
         class_duration_percent_actual = 0
         class_count = 0
@@ -202,7 +202,6 @@ def get_data(filters):
                 class_atten.date BETWEEN '{from_date}' AND '{to_date}' GROUP BY class_atten.date
         """.format(from_date = filters['from_date']  , to_date = filters['to_date']), as_dict=1)
 
-        # print(attendance_data_class , "\n")
         ## Attendance Data fetch tot
         attendance_data_tot = frappe.db.sql("""
             SELECT 
@@ -221,7 +220,6 @@ def get_data(filters):
             WHERE tot_atten.date BETWEEN '{from_date}' AND '{to_date}' GROUP BY tot_atten.date;
         """.format(from_date = filters['from_date']  , to_date = filters['to_date']), as_dict=1)
 
-        print(attendance_data_tot , "\n")
         ## data fetch tot
         data_tot = frappe.db.sql("""
             SELECT 
@@ -359,7 +357,6 @@ def get_data(filters):
         info['duration_percent'] = duration_percent
         info['duration_percent_actual'] = duration_percent_actual
 
-        # print(info, "\n  info")
         data.append(info)
     
     return data

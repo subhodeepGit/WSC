@@ -1,0 +1,25 @@
+{
+ "content": null,
+ "creation": "2023-12-26 16:27:27.490546",
+ "docstatus": 0,
+ "doctype": "Page",
+ "idx": 0,
+ "modified": "2024-01-16 11:49:09.432244",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "dashboard-test",
+ "owner": "Administrator",
+ "page_name": "dashboard-test",
+ "roles": [
+  {
+   "role": "Administrator"
+  },
+  {
+   "role": "Instructor"
+  }
+ ],
+ "script": null,
+ "standard": "Yes",
+ "style": null,
+ "system_page": 0
+}

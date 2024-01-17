@@ -6,7 +6,6 @@ def validate(self, doc):
         act_date(self)
         update_onboarding_status(self)
         update_separation_status(self)
-        status_update(self)
 
 def after_insert(self):
     email = frappe.get_all('Task Assign' , {'name':self.name},['assign_to'])
@@ -16,15 +15,6 @@ def after_insert(self):
         user_perm.allow = self.doctype
         user_perm.for_value = self.name
         user_perm.save()
-
-def status_update(self):
-    today_date = datetime.today().date()
-    if self.exp_end_date:
-        exp_end_date = datetime.strptime(self.exp_end_date, "%Y-%m-%d").date()
-        if today_date > exp_end_date:
-            self.status = "Overdue"
-        else:
-            self.status = self.status
 
 def exp_date(self):
     if self.exp_start_date and self.exp_end_date:

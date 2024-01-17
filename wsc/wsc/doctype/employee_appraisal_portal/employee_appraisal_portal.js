@@ -68,7 +68,7 @@ frappe.ui.form.on('Employee Appraisal Portal', {
 			
 	},
     
-	onload : function(frm){
+	appraisal_round : function(frm){
 		// Get the value of the "Appraisal Round" field
         var appraisalRound = frm.doc.appraisal_round;
 
@@ -76,43 +76,45 @@ frappe.ui.form.on('Employee Appraisal Portal', {
         var competencyRatingField = frm.doc.self_rating; // Replace "fieldname" with the actual fieldname
 
         // Check the value of "Appraisal Round" and show/hide the "Competency Rating" field accordingly
-
-        if (appraisalRound === 'End Year') {
-            // frm.toggle_display("self_rating", true);
-			frm.toggle_display("mid_year_grade",true);
-            // frm.toggle_display("self_review",true);
-			frappe.call({
-				method: 'wsc.wsc.doctype.employee_appraisal_portal.employee_appraisal_portal.get_dimenssions',
-				// args :{
-				// 	"appraisal_template":frm.doc.appraisal_template
-				// },
-	
-	
-			   callback: function(r) {
-					if(r.message){
-						frappe.model.clear_table(frm.doc, 'self_rating');
-						(r.message).forEach(element => {
-							var c = frm.add_child("self_rating")
-							c.dimenssion=element.name
-							c.description=element.description
-							// c.due_date=element.due_date
-							// c.status=element.status
-						});
-					}
-					frm.refresh();
-					frm.refresh_field("self_rating")
-				},
-			
-			});
-
-			
-
-        } else {
-			// alert(typeof appraisalRound)
-            // frm.toggle_display("self_rating", false);
-			frm.toggle_display("mid_year_grade",false);
-            // frm.toggle_display("self_review",false)
+        if (frm.doc.status != "Approved" && frm.doc.status != "Rejected"){
+            if (appraisalRound === 'End Year') {
+                // frm.toggle_display("self_rating", true);
+                frm.toggle_display("mid_year_grade",true);
+                // frm.toggle_display("self_review",true);
+                frappe.call({
+                    method: 'wsc.wsc.doctype.employee_appraisal_portal.employee_appraisal_portal.get_dimenssions',
+                    // args :{
+                    // 	"appraisal_template":frm.doc.appraisal_template
+                    // },
+        
+        
+                   callback: function(r) {
+                        if(r.message){
+                            frappe.model.clear_table(frm.doc, 'self_rating');
+                            (r.message).forEach(element => {
+                                var c = frm.add_child("self_rating")
+                                c.dimenssion=element.name
+                                c.description=element.description
+                                // c.due_date=element.due_date
+                                // c.status=element.status
+                            });
+                        }
+                        frm.refresh();
+                        frm.refresh_field("self_rating")
+                    },
+                
+                });
+    
+                
+    
+            } else {
+                // alert(typeof appraisalRound)
+                // frm.toggle_display("self_rating", false);
+                frm.toggle_display("mid_year_grade",false);
+                // frm.toggle_display("self_review",false)
+            }
         }
+        
 
         
 

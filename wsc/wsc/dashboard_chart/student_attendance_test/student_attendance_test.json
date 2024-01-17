@@ -1,0 +1,37 @@
+{
+ "based_on": "",
+ "chart_name": "Student Attendance test",
+ "chart_type": "Group By",
+ "creation": "2023-12-28 15:43:32.475936",
+ "docstatus": 0,
+ "doctype": "Dashboard Chart",
+ "document_type": "Student Attendance",
+ "dynamic_filters_json": "[]",
+ "filters_json": "[]",
+ "group_by_based_on": "instructor",
+ "group_by_type": "Count",
+ "idx": 0,
+ "is_public": 0,
+ "is_standard": 1,
+ "last_synced_on": "2023-12-29 12:59:57.412959",
+ "modified": "2023-12-29 13:01:58.020565",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Student Attendance test",
+ "number_of_groups": 0,
+ "owner": "Administrator",
+ "parent_document_type": "",
+ "roles": [
+  {
+   "role": "Instructor"
+  }
+ ],
+ "source": "",
+ "time_interval": "Yearly",
+ "timeseries": 0,
+ "timespan": "Last Year",
+ "type": "Bar",
+ "use_report_chart": 0,
+ "value_based_on": "",
+ "y_axis": []
+}

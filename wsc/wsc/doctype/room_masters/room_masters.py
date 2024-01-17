@@ -17,11 +17,11 @@ class RoomMasters(Document):
 
         info=''' RM WHERE RM.hostel_id="%s" and RM.room_number="%s" and RM.validity="Functional" '''%(hostel_id,room_number) 
         Type="General"
-        Ck_df=Room_master_sql(info,Type) # cheacking for same room no and hostel is present 
+        Ck_df=Room_master_sql(info,Type, doc) # cheacking for same room no and hostel is present 
 
         info=''' WHERE `name`="%s" '''%(Room_id)
         Type="General"
-        hostel_df=Room_master_sql(info,Type) # checking room id is present or not
+        hostel_df=Room_master_sql(info,Type, doc) # checking room id is present or not
 
         if len(hostel_df)==0 and len(Ck_df)==0:
             previous_room_capacity=doc.previous_room_capacity
@@ -65,7 +65,7 @@ class RoomMasters(Document):
                 elif hostel_id!=hostel_df['hostel_id'][0] or hostel_df['room_number'][0]!=room_number:
                     info=''' RM WHERE RM.hostel_id="%s" and RM.room_number="%s" and RM.validity="Functional" '''%(hostel_id,room_number) 
                     Type="General"
-                    Ck_df=Room_master_sql(info,Type) # checking for same room no and hostel is present 
+                    Ck_df=Room_master_sql(info,Type, doc) # checking for same room no and hostel is present 
                     if len(Ck_df)==0:
                         if hostel_df['validity'][0]==validity:
                             if hostel_df['actual_room_type'][0]==actual_room_type:
@@ -124,22 +124,30 @@ class RoomMasters(Document):
 #   else:
 #       frappe.throw("Issue in updating")           
 
-def Room_master_sql(info,Type):
+def Room_master_sql(info,Type, doc):
         if Type=="General":
-            Hostel=frappe.db.sql(""" SELECT `name`,`hostel_id`,`room_type_id`,`room_number`,`room_capacity`,`floor_number`,`room_description`,
-                                            `validity`,`actual_room_type`,`actual_capacity`,`block`  from `tabRoom Masters` """ + info)                         
+            # Hostel=frappe.db.sql(""" SELECT `name`,`hostel_id`,`room_type_id`,`room_number`,`room_capacity`,`floor_number`,`room_description`,
+            #                                 `validity`,`actual_room_type`,`actual_capacity`,`block`  from `tabRoom Masters` """ + info)  
+
+            # SELECT `name`,`hostel_id`,`room_type_id`,`room_number`,`room_capacity`,`floor_number`,`room_description`,`validity`,`actual_room_type`,`actual_capacity`,`block`  from `tabRoom Masters` RM WHERE RM.hostel_id="Kings Palace I" and RM.room_number="1B-02" and RM.validity="Functional"              
+            
             hostel_df=pd.DataFrame({
                 'Room_doc_id':[],'hostel_id':[],'Acc_room_type':[],'room_number':[],
                 'Acc_room_capacity':[],'floor_number':[],'room_description':[],'validity':[],
                 'actual_room_type':[],'actual_capacity':[],'block':[]
             })
-            for t in range(len(Hostel)):
-                s=pd.Series([Hostel[t][0],Hostel[t][1],Hostel[t][2],Hostel[t][3],Hostel[t][4],Hostel[t][5],
-                            Hostel[t][6],Hostel[t][7],Hostel[t][8],Hostel[t][9],Hostel[t][10]],
-                                    index=['Room_doc_id','hostel_id','Acc_room_type','room_number',
-                                            'Acc_room_capacity','floor_number','room_description','validity',
-                                            'actual_room_type','actual_capacity','block'])
-                hostel_df=hostel_df.append(s,ignore_index=True) 
+            s = pd.Series({'Room_doc_id':doc.name,'hostel_id':doc.hostel_id,'Acc_room_type':doc.room_type_id,'room_number':doc.room_number,
+                'Acc_room_capacity':doc.room_capacity,'floor_number':doc.floor_number,'room_description':doc.room_description,'validity':doc.validity,
+                'actual_room_type':doc.actual_room_type,'actual_capacity':doc.actual_capacity,'block':doc.block})
+            for i in s.index:
+                hostel_df[i] = s[i]
+            # for t in range(len(Hostel)):
+            #     s=pd.Series([Hostel[t][0],Hostel[t][1],Hostel[t][2],Hostel[t][3],Hostel[t][4],Hostel[t][5],
+            #                 Hostel[t][6],Hostel[t][7],Hostel[t][8],Hostel[t][9],Hostel[t][10]],
+            #                         index=['Room_doc_id','hostel_id','Acc_room_type','room_number',
+            #                                 'Acc_room_capacity','floor_number','room_description','validity',
+            #                                 'actual_room_type','actual_capacity','block'])
+            #     hostel_df=hostel_df.append(s,ignore_index=True) 
             return hostel_df
 
 

@@ -25,3 +25,13 @@ frappe.ui.form.on("Death Deallotment", "student", function(frm){
 		});
 	});
 });
+
+
+frappe.ui.form.on('Death Deallotment', {
+    date_of_demise: function(frm) {       
+        // set maximum date equal to today's date
+        frm.fields_dict.date_of_demise.datepicker.update({
+            maxDate: new Date()
+        }); 
+    }
+});

@@ -1,0 +1,30 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Approval Level",
+  "modified": "2024-01-11 15:23:30.263557",
+  "name": "Level 1",
+  "name_of_the_level": "Level 1"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Approval Level",
+  "modified": "2024-01-11 15:24:29.020818",
+  "name": "Level 2",
+  "name_of_the_level": "Level 2"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Approval Level",
+  "modified": "2024-01-11 15:24:44.658694",
+  "name": "Level 3",
+  "name_of_the_level": "Level 3"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Approval Level",
+  "modified": "2024-01-15 12:23:34.473443",
+  "name": "Level 4",
+  "name_of_the_level": "Level 4"
+ }
+]
