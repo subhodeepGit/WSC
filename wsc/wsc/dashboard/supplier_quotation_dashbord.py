@@ -6,9 +6,9 @@ def get_data(data):
 	return {
 		"fieldname": "item",
 		"transactions": [
-			{
-				"label": _("References"),
-				"items": ["Request for Quotation","Purchase Order"]
-	        }
+			# {
+			# 	"label": _("References"),
+			# 	"items": ["Request for Quotation","Purchase Order"]
+	        # }
         ]
 	}

@@ -60,7 +60,7 @@
   },
   {
    "fieldname": "land_valuation",
-   "fieldtype": "Currency",
+   "fieldtype": "Data",
    "label": "Land Valuation (In Rs.)"
   },
   {
@@ -118,7 +118,9 @@
   {
    "fieldname": "pin_code",
    "fieldtype": "Data",
-   "label": "Pin code"
+   "label": "Pin code",
+   "non_negative": 1,
+   "search_index": 1
   },
   {
    "fieldname": "land_owner_details_section",
@@ -141,7 +143,7 @@
   },
   {
    "fieldname": "phone",
-   "fieldtype": "Phone",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Phone",
    "reqd": 1
@@ -183,7 +185,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-05 15:54:46.846270",
+ "modified": "2024-01-15 11:48:35.267007",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Land",

@@ -8,6 +8,10 @@ class Floor(Document):
 
 	def validate(self):
 		floor_check(self)
+
+		if self.floor_size < 0:
+			frappe.throw("<B>Floor Size</B> cannot be negative")
+
 		if self.is_new():
 			validate_floor_duplicate(self)
 			validate_floor_no(self)
@@ -72,7 +76,7 @@ def floor_check(self):
 		frappe.throw("Field <b>Floor number</b> must not be zero or negative")
 	
 	if self.number_of_rooms<=0:
-		frappe.throw("Field <b>Number of room</b> must not be zero or negative")
+		frappe.throw("Field <b>Number of rooms</b> must not be zero or negative")
 
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs

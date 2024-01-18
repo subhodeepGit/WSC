@@ -29,25 +29,13 @@
   "additional_contributions_section",
   "additonal_contribution",
   "individual_development_and_learnings_section",
-  "section_break_eie9z",
   "current_year",
   "upload_certifications",
   "column_break_rqu29",
   "for_following_year",
   "competency_rating_section",
   "self_rating",
-  "column_break_ahi1z",
-  "ros_comment",
-  "column_break_ftopg",
-  "ros_review_meeting_date",
-  "department_head_review_section",
-  "department_head_comment",
-  "column_break_imsjj",
-  "department_head_review_meeting_date",
-  "director_review_section",
-  "director_comment",
-  "column_break_a39ai",
-  "director_review_meeting_date",
+  "abc",
   "result_section",
   "mid_year_grade",
   "final_grade",
@@ -155,17 +143,6 @@
    "read_only_depends_on": "eval:doc.status!=\"Draft\""
   },
   {
-   "fieldname": "column_break_ahi1z",
-   "fieldtype": "Section Break",
-   "label": "ROs Review"
-  },
-  {
-   "fieldname": "ros_comment",
-   "fieldtype": "Small Text",
-   "label": "ROs comment",
-   "permlevel": 1
-  },
-  {
    "collapsible": 1,
    "depends_on": "eval:doc.appraisal_round==\"End Year\"",
    "fieldname": "competency_rating_section",
@@ -173,27 +150,27 @@
    "label": "Competency Rating (To be Completed by RO)"
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "eval:doc.appraisal_round==\"End Year\"",
    "fieldname": "self_rating",
    "fieldtype": "Table",
    "label": "Competencies",
    "options": "Competency Ratings",
-   "permlevel": 5
+   "permlevel": 1
   },
   {
-   "depends_on": "eval:(doc.status==\"Pending Approval from Director Admin\"||doc.status==\"Approved\"||doc.status==\"Rejected\")",
    "fieldname": "result_section",
    "fieldtype": "Section Break",
    "label": "Result"
   },
   {
-   "depends_on": "eval:(doc.status==\"Pending Approval from Director Admin\"||doc.status==\"Approved\"||doc.status==\"Rejected\")",
+   "allow_on_submit": 1,
    "fieldname": "final_grade",
    "fieldtype": "Link",
    "label": "Final Grade",
    "mandatory_depends_on": "eval:(doc.status==\"Pending Approval from Director Admin\")",
    "options": "Grade",
-   "permlevel": 5
+   "permlevel": 1
   },
   {
    "fieldname": "upload_certifications",
@@ -242,7 +219,7 @@
    "fieldname": "mid_year_grade",
    "fieldtype": "Read Only",
    "label": "Mid Year Grade",
-   "permlevel": 5
+   "permlevel": 1
   },
   {
    "fetch_from": "employee.reporting_authority_email",
@@ -252,74 +229,14 @@
    "label": "Reporting Authority"
   },
   {
-   "depends_on": "eval:(doc.status==\"Pending Approval from Department Head\"||doc.status==\"Pending Approval from Director Admin\"||doc.status==\"Approved\"||doc.status==\"Rejected\")",
-   "fieldname": "department_head_review_section",
-   "fieldtype": "Section Break",
-   "label": "Department Head Review"
-  },
-  {
-   "depends_on": "eval:(doc.status==\"Pending Approval from Department Head\"||doc.status==\"Pending Approval from Director Admin\"||doc.status==\"Approved\"||doc.status==\"Rejected\")",
-   "fieldname": "department_head_comment",
-   "fieldtype": "Small Text",
-   "label": "Department Head Comment",
-   "mandatory_depends_on": "eval:(doc.status==\"Pending Approval from Department Head\")",
-   "permlevel": 2
-  },
-  {
-   "depends_on": "eval:(doc.status==\"Pending Approval from Department Head\"||doc.status==\"Pending Approval from Director Admin\"||doc.status==\"Approved\"||doc.status==\"Rejected\")",
-   "fieldname": "department_head_review_meeting_date",
-   "fieldtype": "Date",
-   "label": "Department Head Review Meeting Date ",
-   "mandatory_depends_on": "eval:(doc.status==\"Pending Approval from Department Head\")",
-   "permlevel": 2
-  },
-  {
-   "fieldname": "column_break_imsjj",
-   "fieldtype": "Column Break"
-  },
-  {
-   "depends_on": "eval:(doc.status==\"Pending Approval from Director Admin\"||doc.status==\"Approved\"||doc.status==\"Rejected\")",
-   "fieldname": "director_review_section",
-   "fieldtype": "Section Break",
-   "label": "Director Review"
-  },
-  {
-   "depends_on": "eval:(doc.status==\"Pending Approval from Director Admin\"||doc.status==\"Approved\"||doc.status==\"Rejected\")",
-   "fieldname": "director_comment",
-   "fieldtype": "Small Text",
-   "label": "Director Comment",
-   "mandatory_depends_on": "eval:(doc.status==\"Pending Approval from Director Admin\")",
-   "permlevel": 3
-  },
-  {
-   "fieldname": "column_break_a39ai",
-   "fieldtype": "Column Break"
-  },
-  {
-   "depends_on": "eval:(doc.status==\"Pending Approval from Director Admin\"||doc.status==\"Approved\"||doc.status==\"Rejected\")",
-   "fieldname": "director_review_meeting_date",
-   "fieldtype": "Date",
-   "label": "Director Review Meeting Date",
-   "mandatory_depends_on": "eval:(doc.status==\"Pending Approval from Director Admin\")",
-   "permlevel": 3
-  },
-  {
+   "allow_on_submit": 1,
    "default": "Draft",
    "fieldname": "status",
-   "fieldtype": "Select",
+   "fieldtype": "Data",
+   "hidden": 1,
    "label": "Status",
-   "options": "\nDraft\nPending Approval from Reporting Authority\nPending Approval from Department Head\nPending Approval from Director Admin\nApproved\nRejected",
+   "options": "\n",
    "read_only": 1
-  },
-  {
-   "fieldname": "column_break_ftopg",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "ros_review_meeting_date",
-   "fieldtype": "Date",
-   "label": "ROs review meeting date",
-   "permlevel": 1
   },
   {
    "fieldname": "key_work_goals",
@@ -335,14 +252,17 @@
    "read_only": 1
   },
   {
-   "fieldname": "section_break_eie9z",
-   "fieldtype": "Section Break"
+   "allow_on_submit": 1,
+   "fieldname": "abc",
+   "fieldtype": "Data",
+   "label": "ABC",
+   "permlevel": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-10 12:30:32.036999",
+ "modified": "2024-01-17 17:17:53.502580",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Appraisal Portal",

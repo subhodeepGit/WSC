@@ -11,6 +11,12 @@ class Buildings(Document):
 		room_validation(self)
 		self.enabled_building()
 		self.enabled_land()
+
+		if self.building_valuation_in_rs < 0:
+			frappe.throw("<B> Building valuation</b> cannot be negative")
+
+		if self.land_size_in_sq_ft < 0:
+			frappe.throw("<B> Building Size</b> cannot be negative")
 		
 	def enabled_building(self):
 		if  self.enabled==0:
@@ -55,7 +61,7 @@ def pincode(self):
 
 def room_validation(self):
 	if self.total_rooms<=0:
-		frappe.throw("Field <b>Total room</b> must not be zero or negative")
+		frappe.throw("Field <b>Total rooms</b> must not be zero or negative")
 	
 	if self.total_floors<=0:
 		frappe.throw("Field <b>Total floors</b> must not be zero or negative")
