@@ -12,6 +12,9 @@ class GoalSetting(Document):
 
         if duplicate_records:
             frappe.throw("Duplicate records found for the same details. Please review.")
+        
+        if self.is_new():
+            self.approval_status="Draft"    
 
         # if self.workflow_state == "Pending Approval from Reporting Authority":
         #     self.send_mail_ra()
@@ -23,7 +26,36 @@ class GoalSetting(Document):
         # if self.workflow_state == "Approved" or self.workflow_state=="Rejected" or self.workflow_state == "Cancelled":
         #     self.send_mail_hr()
         #     sendEmployee_goal(self)
-        
+    def on_update(self):
+        if self.workflow_state=="Submit":
+            frappe.db.set_value("Goal Setting",self.name, "approval_status","Submit")
+
+    def on_update_after_submit(self):     
+        if  self.workflow_state!="Submit" and self.workflow_state!="Draft" and self.workflow_state!="Rejected":
+            workflow_list=frappe.get_all("Workflow Document State",{"parent":"Workflow for Goal Setting","state":self.workflow_state},['state','allow_edit'])
+            leval_approval=workflow_list[0]['allow_edit']
+            emp_workflow_list=frappe.get_all("Dynamnic Workflow for Goal Setting",{"parent":self.employee},
+                                             ["level_of_approval","employee"],order_by="level_of_approval asc")
+            flag="Yes"
+            emp_no=''
+            for t in emp_workflow_list:
+                if t['level_of_approval']==leval_approval:
+                    flag="No"
+                    emp_no=t['employee']
+                else:
+                    flag="Yes"
+            if flag=="No":
+                frappe.db.set_value("Goal Setting",self.name, "approval_status","Approved")
+            else:
+                data=frappe.get_all("Employee",{"name":emp_no},["employee_name","designation"])
+                designation=""
+                if data[0]['designation']!="":
+                    designation="(%s)"%(data[0]['designation'])
+                text="Approved By %s %s"%(data[0]['employee_name'],designation)
+                frappe.db.set_value("Goal Setting",self.name, "approval_status",text)
+        if self.workflow_state=="Rejected":
+            frappe.db.set_value("Goal Setting",self.name, "approval_status","Rejected")       
+
 
     def check_duplicate_records(self):
         # Fetch existing records excluding the current one
