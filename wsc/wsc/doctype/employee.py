@@ -745,6 +745,8 @@ def dynamic_workflow_appraisal(self):
                 user.add_roles(new_addition['level_of_approval'])    
 
 def find_changes(old_list, new_list, param1, param2):
+    old_list = sorted(old_list, key=lambda x: x['employee'], reverse=False)
+    new_list = sorted(new_list, key=lambda x: x['employee'], reverse=False)
     added = [new_dict for new_dict in new_list if (new_dict[param1], new_dict[param2]) not in [(old_dict[param1], old_dict[param2]) for old_dict in old_list]]
     deleted = [old_dict for old_dict in old_list if (old_dict[param1], old_dict[param2]) not in [(new_dict[param1], new_dict[param2]) for new_dict in new_list]]
     
