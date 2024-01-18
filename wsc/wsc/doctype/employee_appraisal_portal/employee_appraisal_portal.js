@@ -76,6 +76,7 @@ frappe.ui.form.on('Employee Appraisal Portal', {
         var competencyRatingField = frm.doc.self_rating; // Replace "fieldname" with the actual fieldname
 
         // Check the value of "Appraisal Round" and show/hide the "Competency Rating" field accordingly
+        alert(frm.doc.status)
         if (frm.doc.status != "Approved" && frm.doc.status != "Rejected"){
             if (appraisalRound === 'End Year') {
                 // frm.toggle_display("self_rating", true);
