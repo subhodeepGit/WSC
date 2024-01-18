@@ -6,13 +6,13 @@ def get_data(data):
 	return {
 		"fieldname": "supplier",
 		"transactions": [
-			{
-				"label": _("Payment"),
-				"items": ["Payment Entry","Journal Entry"]
-	        },
-			{
-			    "label": _("References"),
-				"items": ["Purchase Order","Purchase Receipt"]
-	        },
+			# {
+			# 	"label": _("Payment"),
+			# 	"items": ["Payment Entry","Journal Entry"]
+	        # },
+			# {
+			#     "label": _("References"),
+			# 	"items": ["Purchase Order","Purchase Receipt"]
+	        # },
         ]
 	}

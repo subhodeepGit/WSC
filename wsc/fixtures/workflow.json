@@ -6180,7 +6180,7 @@
   "doctype": "Workflow",
   "document_type": "Goal Setting",
   "is_active": 1,
-  "modified": "2024-01-16 10:53:02.667564",
+  "modified": "2024-01-16 19:04:25.443819",
   "name": "Workflow for Goal Setting",
   "override_status": 0,
   "send_email_alert": 0,
@@ -6305,7 +6305,7 @@
   ],
   "transitions": [
    {
-    "action": "Draft",
+    "action": "Submit",
     "allow_self_approval": 1,
     "allowed": "Level 1",
     "condition": "\"Level 1\"==frappe.db.get_value(\"Dynamnic Workflow for Goal Setting\",{\"parent\":doc.employee,\"employee\":frappe.db.get_value(\"Employee\",{\"user_id\":frappe.session.user},['name'])},['level_of_approval'])",
@@ -6316,11 +6316,22 @@
     "state": "Draft"
    },
    {
-    "action": "Submit",
+    "action": "Approve",
     "allow_self_approval": 1,
-    "allowed": "Level 1",
-    "condition": "\"Level 1\"==frappe.db.get_value(\"Dynamnic Workflow for Goal Setting\",{\"parent\":doc.employee,\"employee\":frappe.db.get_value(\"Employee\",{\"user_id\":frappe.session.user},['name'])},['level_of_approval'])",
+    "allowed": "Level 2",
+    "condition": "\"Level 2\"==frappe.db.get_value(\"Dynamnic Workflow for Goal Setting\",{\"parent\":doc.employee,\"employee\":frappe.db.get_value(\"Employee\",{\"user_id\":frappe.session.user},['name'])},['level_of_approval'])",
     "next_state": "Approved by Level 2",
+    "parent": "Workflow for Goal Setting",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Submit"
+   },
+   {
+    "action": "Reject",
+    "allow_self_approval": 1,
+    "allowed": "Level 2",
+    "condition": "\"Level 2\"==frappe.db.get_value(\"Dynamnic Workflow for Goal Setting\",{\"parent\":doc.employee,\"employee\":frappe.db.get_value(\"Employee\",{\"user_id\":frappe.session.user},['name'])},['level_of_approval'])",
+    "next_state": "Rejected",
     "parent": "Workflow for Goal Setting",
     "parentfield": "transitions",
     "parenttype": "Workflow",
@@ -6329,8 +6340,8 @@
    {
     "action": "Approve",
     "allow_self_approval": 1,
-    "allowed": "Level 2",
-    "condition": "\"Level 2\"==frappe.db.get_value(\"Dynamnic Workflow for Goal Setting\",{\"parent\":doc.employee,\"employee\":frappe.db.get_value(\"Employee\",{\"user_id\":frappe.session.user},['name'])},['level_of_approval'])",
+    "allowed": "Level 3",
+    "condition": "\"Level 3\"==frappe.db.get_value(\"Dynamnic Workflow for Goal Setting\",{\"parent\":doc.employee,\"employee\":frappe.db.get_value(\"Employee\",{\"user_id\":frappe.session.user},['name'])},['level_of_approval'])",
     "next_state": "Approved by Level 3",
     "parent": "Workflow for Goal Setting",
     "parentfield": "transitions",
@@ -6340,35 +6351,13 @@
    {
     "action": "Reject",
     "allow_self_approval": 1,
-    "allowed": "Level 2",
-    "condition": "\"Level 2\"==frappe.db.get_value(\"Dynamnic Workflow for Goal Setting\",{\"parent\":doc.employee,\"employee\":frappe.db.get_value(\"Employee\",{\"user_id\":frappe.session.user},['name'])},['level_of_approval'])",
+    "allowed": "Level 3",
+    "condition": "\"Level 3\"==frappe.db.get_value(\"Dynamnic Workflow for Goal Setting\",{\"parent\":doc.employee,\"employee\":frappe.db.get_value(\"Employee\",{\"user_id\":frappe.session.user},['name'])},['level_of_approval'])",
     "next_state": "Rejected",
     "parent": "Workflow for Goal Setting",
     "parentfield": "transitions",
     "parenttype": "Workflow",
     "state": "Approved by Level 2"
-   },
-   {
-    "action": "Approve",
-    "allow_self_approval": 1,
-    "allowed": "Level 3",
-    "condition": "\"Level 3\"==frappe.db.get_value(\"Dynamnic Workflow for Goal Setting\",{\"parent\":doc.employee,\"employee\":frappe.db.get_value(\"Employee\",{\"user_id\":frappe.session.user},['name'])},['level_of_approval'])",
-    "next_state": "Approved by Level 4",
-    "parent": "Workflow for Goal Setting",
-    "parentfield": "transitions",
-    "parenttype": "Workflow",
-    "state": "Approved by Level 3"
-   },
-   {
-    "action": "Reject",
-    "allow_self_approval": 1,
-    "allowed": "Level 3",
-    "condition": null,
-    "next_state": "Rejected",
-    "parent": "Workflow for Goal Setting",
-    "parentfield": "transitions",
-    "parenttype": "Workflow",
-    "state": "Approved by Level 3"
    },
    {
     "action": "Approve",
@@ -6379,7 +6368,7 @@
     "parent": "Workflow for Goal Setting",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Approved by Level 4"
+    "state": "Approved by Level 3"
    },
    {
     "action": "Reject",
@@ -6390,7 +6379,7 @@
     "parent": "Workflow for Goal Setting",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Approved by Level 4"
+    "state": "Approved by Level 3"
    }
   ],
   "workflow_name": "Workflow for Goal Setting",
