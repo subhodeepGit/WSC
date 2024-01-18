@@ -67,7 +67,8 @@
   {
    "fieldname": "placement_drive_id",
    "fieldtype": "Data",
-   "label": "Placement drive id"
+   "label": "Placement drive id",
+   "reqd": 1
   },
   {
    "fieldname": "for_courses",
@@ -78,7 +79,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-21 18:25:37.027434",
+ "modified": "2024-01-15 16:28:08.320475",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Blocked Student",
