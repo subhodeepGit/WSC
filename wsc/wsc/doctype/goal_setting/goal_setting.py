@@ -9,28 +9,22 @@ class GoalSetting(Document):
     def validate(self):
 
         duplicate_records = self.check_duplicate_records()
-
+        # print("\n\n\n\n\n\n")
+        # # print(self.status)
+        # print("\n\n\n\n")
         if duplicate_records:
             frappe.throw("Duplicate records found for the same details. Please review.")
         
         if self.is_new():
             self.approval_status="Draft"    
-
-        if self.workflow_state == "Approved by Level 2":
-            self.send_notification("Level 3")
-        if self.workflow_state == "Approved by Level 3":
-            self.send_notification("Level 4")
-
         if self.workflow_state == "Submit" :
             self.send_notification("Level 2")
 
-        if self.workflow_state == "Approved" or self.workflow_state=="Rejected" :
-            self.send_mail_hr()
-            self.send_employee()
-            
+
     def on_update(self):
         if self.workflow_state=="Submit":
             frappe.db.set_value("Goal Setting",self.name, "approval_status","Submit")
+        
 
     def on_update_after_submit(self):     
         if  self.workflow_state!="Submit" and self.workflow_state!="Draft" and self.workflow_state!="Rejected":
@@ -48,6 +42,8 @@ class GoalSetting(Document):
                     flag="Yes"
             if flag=="No":
                 frappe.db.set_value("Goal Setting",self.name, "approval_status","Approved")
+                self.send_mail_hr()
+                self.send_employee()
             else:
                 data=frappe.get_all("Employee",{"name":emp_no},["employee_name","designation"])
                 designation=""
@@ -55,13 +51,23 @@ class GoalSetting(Document):
                     designation="(%s)"%(data[0]['designation'])
                 text="Approved By %s %s"%(data[0]['employee_name'],designation)
                 frappe.db.set_value("Goal Setting",self.name, "approval_status",text)
+
+        #################Notification Code ###########################
+                
         if self.workflow_state=="Rejected":
-            frappe.db.set_value("Goal Setting",self.name, "approval_status","Rejected")       
+            frappe.db.set_value("Goal Setting",self.name, "approval_status","Rejected")
+        if self.workflow_state == "Approved by Level 2":
+            self.send_notification("Level 3")
+        if self.workflow_state == "Approved by Level 3":
+            self.send_notification("Level 4")
+        if self.workflow_state=="Rejected":
+            self.send_employee()
+            self.send_mail_hr()
 
 
     def check_duplicate_records(self):
         # Fetch existing records excluding the current one
-        existing_records = frappe.get_all('Goal Setting',filters={"employee":self.employee,"year":self.year,"department":self.department,"docstatus":1,"status":"Approved"},fields=['name'])
+        existing_records = frappe.get_all('Goal Setting',filters={"employee":self.employee,"year":self.year,"department":self.department,"docstatus":1,"approval_status":"Approved"},fields=['name'])
 
         return existing_records
 
@@ -108,7 +114,7 @@ class GoalSetting(Document):
 
 
     def send_employee(self):
-        if self.employee_email:
+        if self.email:
             data = {}
             data["name"]=self.name
             data["status"]=self.approval_status
