@@ -6,12 +6,12 @@ def get_data(data):
 	return {
 		"fieldname": "item",
 		"transactions": [
-			{
-				"label": _("Purchase"),
-				"items": ["Purchase Order","Purchase Invoice"]
-	        },
-			{
-				"items": ["Payment Terms Template"]
-	        },
+			# {
+			# 	"label": _("Purchase"),
+			# 	"items": ["Purchase Order","Purchase Invoice"]
+	        # },
+			# {
+			# 	"items": ["Payment Terms Template"]
+	        # },
 		]
 	}

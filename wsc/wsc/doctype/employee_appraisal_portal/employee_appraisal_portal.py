@@ -18,9 +18,9 @@ class EmployeeAppraisalPortal(Document):
             self.send_mail_director()
         if self.workflow_state == "Approved" or self.workflow_state=="Rejected":
             self.send_mail_hr()
-        self.validate_date(self.ros_review_meeting_date, "ROS Review Meeting")
-        self.validate_date(self.department_head_review_meeting_date, "Department Head Review Meeting")
-        self.validate_date(self.director_review_meeting_date, "Director Review Meeting")
+        # self.validate_date(self.ros_review_meeting_date, "ROS Review Meeting")
+        # self.validate_date(self.department_head_review_meeting_date, "Department Head Review Meeting")
+        # self.validate_date(self.director_review_meeting_date, "Director Review Meeting")
 
         #cHECKING Duplicate records
         duplicate_records = self.check_duplicate_records()
@@ -43,7 +43,7 @@ class EmployeeAppraisalPortal(Document):
 
     def check_duplicate_records(self):
         # Fetch existing records excluding the current one
-        existing_records = frappe.get_all('Employee Appraisal Portal',filters={"employee":self.employee,"appraisal_year":self.appraisal_year,"appraisal_cycle":self.appraisal_cycle,"docstatus":1},fields=['name'])
+        existing_records = frappe.get_all('Employee Appraisal Portal',filters={"employee":self.employee,"appraisal_year":self.appraisal_year,"appraisal_cycle":self.appraisal_cycle,"docstatus":1,"status":"Approved"},fields=['name'])
 
         return existing_records
 
