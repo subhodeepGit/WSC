@@ -2089,3 +2089,39 @@ def task_delay_reminder(doc):
 
 	send_mail_cc(recipient_emails,cc_emails,'Material Request',msg)
 ###############################################		Infrastructre Notification Ends	##########################################################################
+	
+################################Dynamic Workflow for Goal Setting ############################################
+	
+def notify_level(doc):
+	sub = "Reg:Goal Setting"
+	
+	msg = """<p>Dear Ma'am/Sir,</p><br>"""
+	msg += """<p>Kindly refer to the Goal Setting Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+	msg += "<b>---------------------Goal Setting Details---------------------</b><br>"
+	msg += "<b>Goal Setting ID:</b> {0}<br>".format(doc.get('name'))
+	msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
+	msg += "<b>Status:</b> {0}<br>".format(doc.get('status'))
+	# msg += "<b>Final Working Date:</b> {0}<br>".format(doc.get('final_working_date'))
+
+	goal_app_url = get_url_to_form('Goal Setting', doc.get('name'))
+	msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(goal_app_url)
+
+	send_mail([doc.get("email")],sub,msg)
+	frappe.msgprint("Mail Sent to {}".format(doc.get("email")))  
+
+def notify_employee_goal(doc):
+	sub = "Reg:Goal Setting"
+	
+	msg = """<p>Dear Ma'am/Sir,</p><br>"""
+	msg += """<p>Kindly refer to the Goal Setting Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+	msg += "<b>---------------------Goal Setting Details---------------------</b><br>"
+	msg += "<b>Goal Setting ID:</b> {0}<br>".format(doc.get('name'))
+	msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
+	msg += "<b>Status:</b> {0}<br>".format(doc.get('status'))
+	# msg += "<b>Final Working Date:</b> {0}<br>".format(doc.get('final_working_date'))
+
+	goal_app_url = get_url_to_form('Goal Setting', doc.get('name'))
+	msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(goal_app_url)
+
+	send_mail([doc.get("email")],sub,msg)
+	frappe.msgprint("Mail Sent to {}".format(doc.get("email")))

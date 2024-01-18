@@ -3,7 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
-from wsc.wsc.notification.custom_notification import sendHR_goal,sendRa_goal,sendDh_goal,sendDirector_goal,sendEmployee_goal
+from wsc.wsc.notification.custom_notification import notify_level,sendHR_goal,notify_employee_goal
 
 class GoalSetting(Document):
     def validate(self):
@@ -16,16 +16,18 @@ class GoalSetting(Document):
         if self.is_new():
             self.approval_status="Draft"    
 
-        # if self.workflow_state == "Pending Approval from Reporting Authority":
-        #     self.send_mail_ra()
-        # if self.workflow_state == "Pending Approval from Department Head":
-        #     #code needs to be added 
-        #     self.send_mail_dh()
-        # if self.workflow_state == "Pending Approval from Director Admin" :
-        #     self.send_mail_director()
-        # if self.workflow_state == "Approved" or self.workflow_state=="Rejected" or self.workflow_state == "Cancelled":
-        #     self.send_mail_hr()
-        #     sendEmployee_goal(self)
+        if self.workflow_state == "Approved by Level 2":
+            self.send_notification("Level 3")
+        if self.workflow_state == "Approved by Level 3":
+            self.send_notification("Level 4")
+
+        if self.workflow_state == "Submit" :
+            self.send_notification("Level 2")
+
+        if self.workflow_state == "Approved" or self.workflow_state=="Rejected" :
+            self.send_mail_hr()
+            self.send_employee()
+            
     def on_update(self):
         if self.workflow_state=="Submit":
             frappe.db.set_value("Goal Setting",self.name, "approval_status","Submit")
@@ -76,54 +78,44 @@ class GoalSetting(Document):
             data={}
             data["hr_mail"]=hr_mail_id
             data["employee_name"]=self.employee_name
-            data["current_status"]=self.workflow_state
+            data["current_status"]=self.approval_status
             data["name"]=self.name
             sendHR_goal(data)
 
-    #Send mail to Department Head
-    def send_mail_dh(self):
-        #take the department of the employee , find the user id of that particular department head
-        department = self.department
-        department_head = frappe.get_all("Department",filters = {"name":department},pluck="department_head")
-        if department_head==[None]:
-            frappe.throw("Department Head Mail Not found")
-            
+    def get_approver_list(self):
+        if self.docstatus==1 :
+            emp_approver_list = frappe.get_all("Dynamnic Workflow for Goal Setting",{"parent":self.employee},["employee","email_id","level_of_approval","employee_name","designation"])
 
+            return emp_approver_list
         else :
-            dh_id = department_head[0]
+            pass
+
+    def send_notification(self,approval_level):
+        data = self.get_approver_list()
+        if data is None:
+            pass
+        else:
+            emp_data = {}
+            for item in data:
+                if item.level_of_approval == approval_level:
+                    emp_data["name"] = self.name
+                    emp_data["status"] = self.approval_status
+                    emp_data["employee"] = self.employee
+                    emp_data["email"] = item.email_id
+                    break
+            if emp_data:
+                notify_level(emp_data)
+
+
+    def send_employee(self):
+        if self.employee_email:
             data = {}
-            data["dh_mail"]=dh_id
-            data["employee_name"]=self.employee_name
-            data["current_status"]=self.workflow_state
             data["name"]=self.name
-            # sendDh(data)
-            sendDh_goal(data)
-    
-    #Send Mail to Director
-    def send_mail_director(self):
-        director_mail = frappe.get_all("User",filters={"role":"Director"},pluck='name')
-        if director_mail==[None]:
-            frappe.throw("Director Mail not found")
+            data["status"]=self.approval_status
+            data["employee"]=self.employee
+            data["email"]=self.email
+            notify_employee_goal(data)
+            #call the function of custome_notification file and pass the data agrument
+        
         else :
-            director_mail_id = director_mail[0]
-            data={}
-            data["director_mail"]=director_mail_id
-            data["employee_name"]=self.employee_name
-            data["current_status"]=self.workflow_state
-            data["name"]=self.name
-            # sendDirector(data)
-            sendDirector_goal(data)
-
-    #send mail to reporting authority
-    def send_mail_ra(self):
-        ra_mail = self.reporting_authority
-        if ra_mail:
-            data={}
-            data["ra_mail"]=ra_mail
-            data["employee_name"]=self.employee_name
-            data["current_status"]=self.workflow_state
-            data["name"]=self.name
-            # sendRa(data)
-            sendRa_goal(data)
-        else :
-            frappe.throw("Reporting Authority mail not found")
+            pass
