@@ -34,7 +34,8 @@
    "fieldname": "select_event",
    "fieldtype": "Link",
    "label": "Select Event",
-   "options": "TnP Event"
+   "options": "TnP Event",
+   "reqd": 1
   },
   {
    "fieldname": "section_break_kouut",
@@ -111,7 +112,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-21 16:31:38.735431",
+ "modified": "2024-01-15 16:29:55.687536",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Participant Attendance",

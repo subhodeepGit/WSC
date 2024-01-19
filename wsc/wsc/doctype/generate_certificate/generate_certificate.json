@@ -32,13 +32,17 @@
   {
    "fieldname": "select_event",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Select Event",
-   "options": "TnP Event"
+   "options": "TnP Event",
+   "reqd": 1
   },
   {
    "fieldname": "participant_id",
    "fieldtype": "Select",
-   "label": "Participant ID"
+   "in_list_view": 1,
+   "label": "Participant ID",
+   "reqd": 1
   },
   {
    "fetch_from": "program_id.program_name",
@@ -148,7 +152,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-21 16:38:22.755346",
+ "modified": "2024-01-15 16:31:28.334195",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Generate Certificate",
