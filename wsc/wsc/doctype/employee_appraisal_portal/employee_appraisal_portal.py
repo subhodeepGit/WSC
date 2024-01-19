@@ -163,7 +163,7 @@ def get_appraisal_cycle(doctype, txt, searchfield, start, page_len, filters):
 
 @frappe.whitelist()
 def get_goals(employee,appraisal_year):
-    goal_setting = frappe.get_all("Goal Setting",{"employee":employee,"year":appraisal_year,"status":"Approved"},["name"])
+    goal_setting = frappe.get_all("Goal Setting",{"employee":employee,"year":appraisal_year,"approval_status":"Approved"},["name"])
 
     if len(goal_setting)>0:
         if goal_setting[0].name :
