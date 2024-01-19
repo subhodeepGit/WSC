@@ -35,7 +35,7 @@
    "fieldname": "capacity",
    "fieldtype": "Select",
    "label": "Capacity",
-   "options": "\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10",
+   "options": "\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20",
    "reqd": 1
   },
   {
@@ -73,7 +73,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-22 15:38:36.443490",
+ "modified": "2024-01-19 12:52:32.956586",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Room Type",

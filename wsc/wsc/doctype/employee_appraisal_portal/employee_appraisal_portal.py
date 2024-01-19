@@ -9,6 +9,7 @@ from datetime import datetime
 
 class EmployeeAppraisalPortal(Document):
     def validate(self):
+        get_dimenssions(self)
         if self.workflow_state == "Pending Approval from Reporting Authority":
             self.send_mail_ra()
         if self.workflow_state == "Pending Approval from Department Head":
@@ -28,7 +29,9 @@ class EmployeeAppraisalPortal(Document):
 
         if duplicate_records:
             frappe.throw("Employee has already applied for the same . Please review.")
-        
+        print("\n\n\n\n")
+        print(self.workflow_state)
+        print("\n\n\n")
     def validate_date(self,date_field, field_name):
         if date_field:
             current_date = datetime.now().date()
@@ -163,7 +166,7 @@ def get_appraisal_cycle(doctype, txt, searchfield, start, page_len, filters):
 
 @frappe.whitelist()
 def get_goals(employee,appraisal_year):
-    goal_setting = frappe.get_all("Goal Setting",{"employee":employee,"year":appraisal_year,"status":"Approved"},["name"])
+    goal_setting = frappe.get_all("Goal Setting",{"employee":employee,"year":appraisal_year,"approval_status":"Approved"},["name"])
 
     if len(goal_setting)>0:
         if goal_setting[0].name :
@@ -171,18 +174,20 @@ def get_goals(employee,appraisal_year):
             data =frappe.get_all("Goals",{'parent':document},["goal","category","due_date"])
             print(data)
             return data
-@frappe.whitelist()
-def get_dimenssions():
-    data = frappe.get_all("Dimenssions for Appraisal",{"is_active":1},["name","description"])
-    if data :
-        return data
-    else :
-        pass
+
+def get_dimenssions(self):
+    if len(self.self_rating) == 0:
+        for data in frappe.get_all("Dimenssions for Appraisal",{"is_active":1},["name","description"]):
+            self.append("self_rating",{
+                "dimenssion":data.name,
+                "description":data.description
+            })
+    
 @frappe.whitelist()
 def get_mid_year_grade(employee,appraisal_year):
-    data = frappe.get_all("Employee Appraisal Portal",{"employee":employee,"appraisal_year":appraisal_year,"appraisal_round":'Mid Year'},["final_grade"])
-    print(data)
-    if data :
-        return data[0]
-    else :
-        pass
+    for data in frappe.get_all("Employee Appraisal Portal",{"employee":employee,"appraisal_year":appraisal_year,"appraisal_round":'Mid Year'},["final_grade"]):
+        print(data)
+        if data :
+            return data[0]
+        else :
+            pass
