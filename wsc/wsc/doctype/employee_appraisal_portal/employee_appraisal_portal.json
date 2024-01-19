@@ -18,6 +18,7 @@
   "department",
   "designation",
   "status",
+  "approval_status",
   "employment_type",
   "section_break_8afkq",
   "appraisal_year",
@@ -228,16 +229,6 @@
    "label": "Reporting Authority"
   },
   {
-   "allow_on_submit": 1,
-   "default": "Draft",
-   "fieldname": "status",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Status",
-   "options": "\n",
-   "read_only": 1
-  },
-  {
    "fieldname": "key_work_goals",
    "fieldtype": "Table",
    "label": "Key Work Goals",
@@ -249,12 +240,28 @@
    "fieldtype": "Date",
    "label": "Date",
    "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status",
+   "options": "\n",
+   "read_only": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "approval_status",
+   "fieldtype": "Data",
+   "label": "Approval Status",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-19 11:44:16.787016",
+ "modified": "2024-01-19 12:36:56.596719",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Appraisal Portal",
