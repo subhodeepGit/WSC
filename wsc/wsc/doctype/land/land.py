@@ -14,11 +14,13 @@ class Land(Document):
         # land_valuation(self)
         self.enabled_land()
 
-        if self.land_size < 0:
-            frappe.throw("<B>Land size</b> cannot be negative value")
+        if self.land_size:
+            if self.land_size < 0:
+                frappe.throw("<B>Land size</b> cannot be negative value")
 
-        if self.land_valuation < 0:
-            frappe.throw("<B> Land valuation</b> cannot be negative")
+        if self.land_valuation:
+            if self.land_valuation < 0:
+                frappe.throw("<B> Land valuation</b> cannot be negative")
 
         # phone(self)
 

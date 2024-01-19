@@ -9,8 +9,9 @@ class Floor(Document):
 	def validate(self):
 		floor_check(self)
 
-		if self.floor_size < 0:
-			frappe.throw("<B>Floor Size</B> cannot be negative")
+		if self.floor_size:
+			if self.floor_size < 0:
+				frappe.throw("<B>Floor Size</B> cannot be negative")
 
 		if self.is_new():
 			validate_floor_duplicate(self)
