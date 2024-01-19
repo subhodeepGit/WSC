@@ -60,7 +60,7 @@
   },
   {
    "fieldname": "land_valuation",
-   "fieldtype": "Data",
+   "fieldtype": "Float",
    "label": "Land Valuation (In Rs.)"
   },
   {
@@ -185,7 +185,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-15 11:48:35.267007",
+ "modified": "2024-01-19 09:19:07.167880",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Land",

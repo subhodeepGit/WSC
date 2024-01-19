@@ -39,7 +39,8 @@
    "fieldname": "select_event",
    "fieldtype": "Link",
    "label": "Select Event",
-   "options": "TnP Event"
+   "options": "TnP Event",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_syaza",
@@ -50,7 +51,8 @@
    "fieldtype": "Dynamic Link",
    "in_list_view": 1,
    "label": "Participant ID",
-   "options": "participant_type"
+   "options": "participant_type",
+   "reqd": 1
   },
   {
    "fetch_from": "select_program.program_name",
@@ -80,7 +82,8 @@
   {
    "fieldname": "feedback",
    "fieldtype": "Text Editor",
-   "label": "Feedback"
+   "label": "Feedback",
+   "reqd": 1
   },
   {
    "fieldname": "section_break_s5fwn",
@@ -93,7 +96,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-05 11:47:30.610999",
+ "modified": "2024-01-15 16:25:41.752377",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Event feedback",
