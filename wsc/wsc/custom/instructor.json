@@ -725,7 +725,7 @@
    "read_only": 0,
    "read_only_depends_on": "",
    "report_hide": 0,
-   "reqd": 1,
+   "reqd": 0,
    "search_index": 0,
    "sort_options": 0,
    "translatable": 0,
