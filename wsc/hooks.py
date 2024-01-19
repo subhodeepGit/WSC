@@ -654,8 +654,13 @@ override_doctype_dashboards = {
     "Purchase Invoice":"wsc.wsc.dashboard.purchase_invoice_dashboard.get_data",
     "Batch":"wsc.wsc.dashboard.batch_dashboard.get_data",
     # "Asset":"wsc.wsc.dashboard.asset_dashboard.get_data",
-    "Project":"wsc.wsc.dashboard.project_dashboard.get_data",
-    "Task":"wsc.wsc.dashboard.task_dashboard.get_data",
+    # "Project":"wsc.wsc.dashboard.project_dashboard.get_data",
+    # "Task":"wsc.wsc.dashboard.task_dashboard.get_data",
+    # "Employee": "wsc.wsc.dashboard.employee_dashboard.get_data",
+    # "Shift Type": "wsc.wsc.dashboard.shift_type_dashboard.get_data",
+    # "Leave Type": "wsc.wsc.dashboard.leave_type_dashboard.get_data",
+    # "Leave Period":"wsc.wsc.dashboard.leave_period_dashboard.get_data",
+    # "Holiday List":"wsc.wsc.dashboard.holidaay_list_dashboard.get_data"
 }
 #
 # each overriding function accepts a `data` argument;
