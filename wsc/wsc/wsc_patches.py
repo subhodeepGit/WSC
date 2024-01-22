@@ -326,7 +326,7 @@ def login_password_encryption():
 			site_url = 'http://localhost:8000/api/method/wsc.templates.rsa_algo.rsa_gen_key';
 		}
 		else{
-			site_url = 'https://' + site_name + '.worldskillcenter.org/api/method/wsc.templates.rsa_algo.rsa_gen_key'
+			site_url = 'https://' + site_name + '.eduleadonline.com/api/method/wsc.templates.rsa_algo.rsa_gen_key'
 		}
 		event.preventDefault();
 		$.ajax({url: site_url, success: function(result){
@@ -364,7 +364,7 @@ def login_password_encryption():
 			site_url = 'http://localhost:8000/api/method/wsc.templates.rsa_algo.rsa_gen_key';
 		}
 		else{
-			site_url = 'https://' + site_name + '.worldskillcenter.org/api/method/wsc.templates.rsa_algo.rsa_gen_key'
+			site_url = 'https://' + site_name + '.eduleadonline.com/api/method/wsc.templates.rsa_algo.rsa_gen_key'
 		}
 		event.preventDefault();
 		$.ajax({url: site_url, success: function(result){
