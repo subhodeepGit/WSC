@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "MDM.-.#####",
  "creation": "2023-07-10 14:15:24.391527",
@@ -35,7 +36,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-10 18:15:37.644609",
+ "modified": "2024-01-22 11:35:05.045709",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Material Distribution Master",
@@ -58,5 +59,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1
 }

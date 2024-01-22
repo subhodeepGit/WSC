@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "naming_series:",
  "creation": "2021-09-15 13:12:29.437272",
@@ -196,7 +197,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-04 11:48:07.508540",
+ "modified": "2024-01-22 11:33:29.912117",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Room Masters",
@@ -221,7 +222,5 @@
  "sort_order": "DESC",
  "states": [],
  "title_field": "room_number",
- "track_changes": 1,
- "track_seen": 1,
- "track_views": 1
+ "track_changes": 1
 }

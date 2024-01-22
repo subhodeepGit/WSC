@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "naming_series:",
  "creation": "2021-09-20 11:43:36.142564",
@@ -175,7 +176,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-21 16:36:59.728805",
+ "modified": "2024-01-22 11:40:10.559341",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Room Change",

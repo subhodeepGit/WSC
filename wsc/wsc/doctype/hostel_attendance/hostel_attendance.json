@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "autoname": "naming_series:",
  "creation": "2021-11-11 10:48:11.072318",
  "doctype": "DocType",
@@ -138,7 +139,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-22 17:16:46.145916",
+ "modified": "2024-01-22 11:43:22.740868",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Hostel Attendance",
