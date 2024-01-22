@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:hostel_type",
  "creation": "2021-09-15 12:52:48.522048",
@@ -21,7 +22,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-10-29 16:01:35.382490",
+ "modified": "2024-01-22 11:30:22.508072",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Hostel Type",
@@ -44,7 +45,7 @@
  "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1,
- "track_seen": 1,
- "track_views": 1
+ "track_seen": 1
 }

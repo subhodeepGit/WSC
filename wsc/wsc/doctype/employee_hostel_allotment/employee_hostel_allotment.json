@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "naming_series:",
  "creation": "2021-10-07 09:54:48.855396",
@@ -101,7 +102,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-22 15:43:05.850097",
+ "modified": "2024-01-22 11:34:13.197020",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Hostel Allotment",

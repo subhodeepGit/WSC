@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:room_description",
  "creation": "2021-09-16 17:46:35.761583",
@@ -54,7 +55,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-02 09:48:58.814127",
+ "modified": "2024-01-22 11:31:49.374999",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Room Description",
@@ -79,6 +80,5 @@
  "states": [],
  "title_field": "room_description",
  "track_changes": 1,
- "track_seen": 1,
- "track_views": 1
+ "track_seen": 1
 }

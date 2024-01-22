@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:room_type",
  "creation": "2021-09-15 13:09:50.337341",
@@ -73,7 +74,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-19 12:52:32.956586",
+ "modified": "2024-01-22 11:31:04.381279",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Room Type",
@@ -98,6 +99,5 @@
  "states": [],
  "title_field": "room_type",
  "track_changes": 1,
- "track_seen": 1,
- "track_views": 1
+ "track_seen": 1
 }

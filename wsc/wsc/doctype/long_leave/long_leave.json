@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "naming_series:",
  "creation": "2021-10-25 15:10:32.190126",
@@ -297,7 +298,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-09 17:01:11.757065",
+ "modified": "2024-01-22 11:44:12.563725",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Long Leave",
@@ -320,7 +321,5 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "track_changes": 1,
- "track_seen": 1,
- "track_views": 1
+ "track_changes": 1
 }
