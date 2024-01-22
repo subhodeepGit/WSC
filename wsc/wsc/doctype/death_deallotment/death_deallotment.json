@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "naming_series:",
  "creation": "2021-11-02 16:27:10.527000",
@@ -271,7 +272,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-13 10:03:41.044697",
+ "modified": "2024-01-22 11:42:07.651444",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Death Deallotment",
@@ -295,7 +296,5 @@
  "sort_order": "DESC",
  "states": [],
  "title_field": "student",
- "track_changes": 1,
- "track_seen": 1,
- "track_views": 1
+ "track_changes": 1
 }

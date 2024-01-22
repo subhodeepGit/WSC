@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "naming_series:",
  "creation": "2021-10-28 17:44:17.054611",
@@ -133,7 +134,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-12 16:48:19.677401",
+ "modified": "2024-01-22 11:39:24.783994",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Material Distribution",
@@ -156,7 +157,5 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "track_changes": 1,
- "track_seen": 1,
- "track_views": 1
+ "track_changes": 1
 }
