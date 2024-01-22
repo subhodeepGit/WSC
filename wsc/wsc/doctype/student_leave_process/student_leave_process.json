@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "naming_series:",
  "creation": "2021-10-21 10:37:07.198782",
@@ -143,10 +144,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-16 17:01:44.551674",
+ "modified": "2024-01-22 11:42:47.733837",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Leave Process",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -164,7 +166,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "track_changes": 1,
- "track_seen": 1,
- "track_views": 1
+ "states": [],
+ "track_changes": 1
 }
