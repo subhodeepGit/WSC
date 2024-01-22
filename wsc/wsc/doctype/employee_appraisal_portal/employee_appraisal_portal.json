@@ -18,6 +18,7 @@
   "department",
   "designation",
   "status",
+  "approval_status",
   "employment_type",
   "section_break_8afkq",
   "appraisal_year",
@@ -35,7 +36,6 @@
   "for_following_year",
   "competency_rating_section",
   "self_rating",
-  "abc",
   "result_section",
   "mid_year_grade",
   "final_grade",
@@ -156,7 +156,7 @@
    "fieldtype": "Table",
    "label": "Competencies",
    "options": "Competency Ratings",
-   "permlevel": 1
+   "permlevel": 2
   },
   {
    "fieldname": "result_section",
@@ -170,7 +170,7 @@
    "label": "Final Grade",
    "mandatory_depends_on": "eval:(doc.status==\"Pending Approval from Director Admin\")",
    "options": "Grade",
-   "permlevel": 1
+   "permlevel": 2
   },
   {
    "fieldname": "upload_certifications",
@@ -229,16 +229,6 @@
    "label": "Reporting Authority"
   },
   {
-   "allow_on_submit": 1,
-   "default": "Draft",
-   "fieldname": "status",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Status",
-   "options": "\n",
-   "read_only": 1
-  },
-  {
    "fieldname": "key_work_goals",
    "fieldtype": "Table",
    "label": "Key Work Goals",
@@ -253,16 +243,25 @@
   },
   {
    "allow_on_submit": 1,
-   "fieldname": "abc",
+   "default": "Draft",
+   "fieldname": "status",
    "fieldtype": "Data",
-   "label": "ABC",
-   "permlevel": 1
+   "label": "Status",
+   "options": "\n",
+   "read_only": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "approval_status",
+   "fieldtype": "Data",
+   "label": "Approval Status",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-17 17:17:53.502580",
+ "modified": "2024-01-19 12:36:56.596719",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Appraisal Portal",

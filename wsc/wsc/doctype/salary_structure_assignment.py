@@ -1,11 +1,16 @@
 import frappe
 
 def validate(doc, method):
-    if doc.base and doc.variable:
-        if doc.base < 0 or doc.variable < 0:
-            frappe.throw("Base / Variable Amount can not be less than 0.")
-        if len(str(doc.base)) > 12 or len(str(doc.variable)) > 12:
-            frappe.throw("Base / Variable Amount is too high.")
+    if doc.base:
+        if doc.base < 0:
+            frappe.throw("Base Amount can not be less than 0.")
+        if len(str(doc.base)) > 12:
+            frappe.throw("Base Amount is too high.")
+    if doc.variable:
+        if doc.variable < 0:
+            frappe.throw("Variable Amount can not be less than 0.")
+        if len(str(doc.variable)) > 12:
+            frappe.throw("Variable Amount is too high.")
     if doc.payroll_cost_centers:
         cc = []
         for i in doc.payroll_cost_centers:

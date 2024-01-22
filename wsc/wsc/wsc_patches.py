@@ -695,7 +695,7 @@ class LoginAttemptTracker:
 		host="localhost",
 		user="erpnext",
 		password="erp@123",
-		database="erpdb"
+		database="soulwscdb"
 		)
 
 		c=conn.cursor()
@@ -1028,7 +1028,7 @@ class LoginAttemptTracker:
 		host="localhost",
 		user="erpnext",
 		password="erp@123",
-		database="erpdb"
+		database="soulwscdb"
 		)
 
 		c=conn.cursor()
