@@ -47,21 +47,21 @@ frappe.ui.form.on('Exam Assessment Plan', {
 				}
 			};
 		});
-		frm.set_query('paper_setter','examiners_list', function(frm, cdt, cdn) {
-		    var d = locals[cdt][cdn];
-		    return {
-		    	query: 'wsc.wsc.doctype.exam_assessment_plan.exam_assessment_plan.filter_paper_setter',
-				// filters: {
-				// 	"course":d.course
-				// }
-			};
-		});
-		frm.set_query('moderator','moderator_list', function() {
-		    return {
-		    	query: 'wsc.wsc.doctype.exam_assessment_plan.exam_assessment_plan.filter_paper_setter'
-			};
-		});
-			frm.set_query("course","course_assessment_plan_item",function() {
+		// frm.set_query('paper_setter','examiners_list', function(frm, cdt, cdn) {
+		//     var d = locals[cdt][cdn];
+		//     return {
+		//     	query: 'wsc.wsc.doctype.exam_assessment_plan.exam_assessment_plan.filter_paper_setter',
+		// 		// filters: {
+		// 		// 	"course":d.course
+		// 		// }
+		// 	};
+		// });
+		// frm.set_query('moderator','moderator_list', function() {
+		//     return {
+		//     	query: 'wsc.wsc.doctype.exam_assessment_plan.exam_assessment_plan.filter_paper_setter'
+		// 	};
+		// });
+		frm.set_query("course","course_assessment_plan_item",function() {
 				return {
 					query: 'wsc.wsc.doctype.exam_assessment_plan.exam_assessment_plan.get_courses',
 					filters: {
