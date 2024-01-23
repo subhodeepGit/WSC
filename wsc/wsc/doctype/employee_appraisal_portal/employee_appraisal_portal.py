@@ -44,6 +44,39 @@ class EmployeeAppraisalPortal(Document):
             if selected_date > current_date:
                 frappe.throw(f"{field_name} date cannot be greater than the current date.")
 
+    def on_cancel(self):
+        if self.workflow_state=="Rejected":
+            frappe.db.set_value("Employee Appraisal Portal",self.name, "approval_status","Rejected")
+
+    def on_update_after_submit(self):     
+        if  self.workflow_state!="Submit" and self.workflow_state!="Draft" and self.workflow_state!="Rejected":
+            workflow_list=frappe.get_all("Workflow Document State",{"parent":"Appraisal Workflow","state":self.workflow_state},['state','allow_edit'])
+            leval_approval=workflow_list[0]['allow_edit']
+            emp_workflow_list=frappe.get_all("Approver Details for Appraisal",{"parent":self.employee},
+                                             ["level_of_approval","employee"],order_by="level_of_approval asc")
+            flag="Yes"
+            emp_no=''
+            for t in emp_workflow_list:
+                if t['level_of_approval']==leval_approval:
+                    flag="No"
+                    emp_no=t['employee']
+                else:
+                    flag="Yes"
+            if flag=="No":
+                frappe.db.set_value("Employee Appraisal Portal",self.name, "approval_status","Approved")
+                # field = frappe.get_meta(doc.doctype).get_field('approval_status')
+                # doc.set_onload('read_only', 1, fieldname=field.fieldname)
+
+                # self.send_mail_hr()
+                # self.send_employee()
+            else:
+                data=frappe.get_all("Employee",{"name":emp_no},["employee_name","designation"])
+                designation=""
+                if data[0]['designation']!="":
+                    designation="(%s)"%(data[0]['designation'])
+                text="Approved By %s %s"%(data[0]['employee_name'],designation)
+                frappe.db.set_value("Employee Appraisal Portal",self.name, "approval_status",text)
+
     def check_duplicate_records(self):
         # Fetch existing records excluding the current one
         existing_records = frappe.get_all('Employee Appraisal Portal',filters={"employee":self.employee,"appraisal_year":self.appraisal_year,"appraisal_cycle":self.appraisal_cycle,"docstatus":1,"status":"Approved"},fields=['name'])
