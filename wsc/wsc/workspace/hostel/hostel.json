@@ -281,7 +281,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-12-29 15:37:14.989742",
+ "modified": "2024-01-23 19:29:19.218016",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Hostel",
@@ -299,9 +299,6 @@
   },
   {
    "role": "Hostel Warden"
-  },
-  {
-   "role": "Student"
   }
  ],
  "sequence_id": 14.0,
