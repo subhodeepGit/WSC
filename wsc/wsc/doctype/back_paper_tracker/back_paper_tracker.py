@@ -14,17 +14,19 @@ def get_course(doctype,txt,searchfield,start,page_len,filters):
 
 
 @frappe.whitelist()
-def get_student(course,academic_year,academic_term,program):
-	data=frappe.db.get_all("Evaluation Result Item",{'result':"F",'course':course},["course","result","parent"])
+def get_student(course=None,academic_year=None,academic_term=None,program=None):
+	data_list=[]
+	if course and academic_year and academic_term and program:
+		data=frappe.db.get_all("Evaluation Result Item",{'result':"F",'course':course},["course","result","parent"])
 
-	data_list = []
-	for value in data:
-		for record in frappe.db.get_all("Exam Assessment Result",{"name":value["parent"],"academic_year":academic_year,"academic_term":academic_term,"program":program},["student","student_name"]):
-			a = {"result":"F"}
-			record.update(a)
+		data_list = []
+		for value in data:
+			for record in frappe.db.get_all("Exam Assessment Result",{"name":value["parent"],"academic_year":academic_year,"academic_term":academic_term,"program":program},["student","student_name"]):
+				a = {"result":"F"}
+				record.update(a)
 
 
-			data_list.append(record)
+				data_list.append(record)
 	return data_list
 
 
