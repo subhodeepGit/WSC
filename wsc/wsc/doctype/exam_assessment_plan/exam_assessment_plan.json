@@ -8,6 +8,7 @@
  "engine": "InnoDB",
  "field_order": [
   "exam_declaration",
+  "exam_name",
   "exam_type",
   "assessment_criteria",
   "grading_scale",
@@ -198,11 +199,18 @@
    "fieldtype": "Link",
    "label": "School House",
    "options": "School House"
+  },
+  {
+   "fetch_from": "exam_declaration.exam_name",
+   "fieldname": "exam_name",
+   "fieldtype": "Data",
+   "label": "Exam Name",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-14 18:12:54.656586",
+ "modified": "2024-01-23 18:40:39.542533",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Assessment Plan",
