@@ -8,10 +8,12 @@ import json
 class StudentHostelAdmission(Document):
 	def validate(doc):
 		doc.allotment_status = "Not Reported"
-		data=frappe.db.sql("""SELECT name from `tabStudent Hostel Admission` where student = "%s" and 
-		    					(allotment_status != 'Allotted' or allotment_status != 'De-Allotted') and docstatus=1 """%(doc.student))		
+		data=frappe.db.sql("""SELECT name,allotment_status from `tabStudent Hostel Admission` where student = "%s" and 
+		    					(allotment_status = 'Allotted' or allotment_status = 'Death-Deallotted' or allotment_status = 'Not Reported') and docstatus=1 """%(doc.student))
+
+
 		if len(data)!=0:
-			frappe.throw("Student record already present")
+			frappe.throw("Student record already %s"%(data[0][1]))
 
 
 	def on_submit(doc):

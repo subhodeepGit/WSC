@@ -29,7 +29,7 @@ class RoomAllotment(Document):
 				room_id=doc.room_id
 				room_info_vac=vacancy_quety_vali("Genaral",room_id)
 				if room_info_vac["validity"][0]=="Functional":
-					if room_info_vac["Room_al_status"][0]=="Allotted":
+					if room_info_vac["Room_al_status"][0]=="To be Allotted":
 						if room_info_vac["Vacancy"][0]>0:
 							ck_data=df1[(df1['allotment_type']=="Debar") | (df1['allotment_type']=="University Debar") | (df1['allotment_type']=="Passout")
 										| (df1['allotment_type']=="Cancellation of Admission") | (df1['allotment_type']=="Death") ].reset_index()
@@ -205,7 +205,7 @@ def hostel_req_query(doctype, txt, searchfield, start, page_len, filters):
 # @frappe.validate_and_sanitize_search_inputs
 def allotment(student):
 	data=frappe.get_all("Student Hostel Admission",[["student","=",student],["allotment_status","!=","Allotted"],
-					["allotment_status","!=","De-Allotted"],["docstatus","=",1]],['name','hostel'])
+					["allotment_status","!=","De-allotted"],["docstatus","=",1]],['name','hostel'])
 	if len(data)>0:
 		return data[0]
 			
