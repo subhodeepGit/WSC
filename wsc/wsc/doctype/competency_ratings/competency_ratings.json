@@ -20,11 +20,13 @@
    "permlevel": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "self_rating",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Rating",
-   "options": "Rating"
+   "options": "Rating",
+   "read_only_depends_on": "eval:parent.approval_status==\"Approved\"||parent.approval_status==\"Rejected\""
   },
   {
    "fieldname": "description",
@@ -37,7 +39,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-01-17 15:43:02.500682",
+ "modified": "2024-01-23 15:15:54.111619",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Competency Ratings",

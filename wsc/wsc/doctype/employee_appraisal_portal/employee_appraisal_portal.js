@@ -2,9 +2,13 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Employee Appraisal Portal', {
-	refresh: function(frm) {
-
-	},
+	// onload: function(frm) {
+    //     // alert(frm.doc.approval_status)
+    //     if (frm.doc.approval_status === 'Approved') {
+    //         // Make the field with the fieldname 'your_fieldname' read-only
+    //         frm.toggle_enable('final_grade', false);
+    //     }
+	// },
 	setup:function(frm){
 
         frm.set_query("appraisal_cycle", function() {
