@@ -74,7 +74,7 @@ def create_student_group(self):
 
     sg_doc.save()
     sg_doc.reload()
-    msgprint(_("Student Group created successfully."))
+    msgprint(_("Mentor Allocation and Student Group created successfully."))
  
 def update_student_group(self, existed_stud_grp):
     for s in existed_stud_grp:
