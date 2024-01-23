@@ -11,7 +11,7 @@ frappe.listview_settings['Goal Setting'] = {
             return [__(doc.approval_status), "grey","approval_status,=,Rejected"];
 		}
         else if (doc.approval_status=="Approved") {
-            return [__(doc.approval_status), "green","approval_status,=,${doc.approval_status}"];
+            return [__(doc.approval_status), "green","approval_status,=,Approved"];
 		}
         else{
             return [__(doc.approval_status), "purple", "approval_status,=," + doc.approval_status];
