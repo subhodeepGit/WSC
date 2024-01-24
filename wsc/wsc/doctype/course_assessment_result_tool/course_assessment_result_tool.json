@@ -113,7 +113,8 @@
    "fieldname": "exam_declaration",
    "fieldtype": "Link",
    "label": "Exam Declaration",
-   "options": "Exam Declaration"
+   "options": "Exam Declaration",
+   "reqd": 1
   },
   {
    "fieldname": "exam_assessment_plan",
@@ -212,7 +213,7 @@
  "hide_toolbar": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-09-04 15:55:57.682386",
+ "modified": "2024-01-24 11:38:27.814144",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Course Assessment Result Tool",
