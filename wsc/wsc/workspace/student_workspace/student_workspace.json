@@ -227,7 +227,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Room Change / Room Type Change",
+   "label": "Room Change",
    "link_count": 0,
    "link_to": "Room Change",
    "link_type": "DocType",
@@ -245,7 +245,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-01-23 19:28:07.883630",
+ "modified": "2024-01-24 12:12:50.277548",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Workspace",
