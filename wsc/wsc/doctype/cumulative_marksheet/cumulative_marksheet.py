@@ -138,7 +138,10 @@ class CumulativeMarksheet(Document):
 					y=x[0]
 					z=y.values()
 					for values in z:
-						data=(self.secured_marks/self.total_marks)*100
+						try:
+							data=(self.secured_marks/self.total_marks)*100
+						except:
+							data=0	
 						self.grade = get_grade(values,data)
 					return values
 					# self.percentage = round((marks_earned/total_marks)*100, 2)
