@@ -28,6 +28,16 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Payroll Period",
+   "link_count": 0,
+   "link_to": "Payroll Period",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Salary Component",
    "link_count": 0,
    "link_to": "Salary Component",
@@ -51,16 +61,6 @@
    "label": "Income Tax Slab",
    "link_count": 0,
    "link_to": "Income Tax Slab",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Payroll Period",
-   "link_count": 0,
-   "link_to": "Payroll Period",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -256,7 +256,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-11-24 15:08:26.673851",
+ "modified": "2024-01-24 09:34:17.050367",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Payroll",
