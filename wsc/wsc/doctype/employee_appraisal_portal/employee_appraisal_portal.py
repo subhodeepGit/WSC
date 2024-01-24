@@ -3,7 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
-from wsc.wsc.notification.custom_notification import sendHR_appraisal,sendRa_appraisal,sendDh_appraisal,sendDirector_appraisal
+from wsc.wsc.notification.custom_notification import notify_level_app,notify_employee_app,sendHR_app
 from wsc.wsc.doctype.user_permission import add_user_permission,delete_ref_doctype_permissions
 from datetime import datetime
 
@@ -29,9 +29,10 @@ class EmployeeAppraisalPortal(Document):
 
         if duplicate_records:
             frappe.throw("Employee has already applied for the same . Please review.")
-        print("\n\n\n\n")
-        print(self.workflow_state)
-        print("\n\n\n")
+
+        if self.workflow_state == "Submit" :
+            self.send_notification("Level 2")
+
     def validate_date(self,date_field, field_name):
         if date_field:
             current_date = datetime.now().date()
@@ -47,6 +48,9 @@ class EmployeeAppraisalPortal(Document):
     def on_cancel(self):
         if self.workflow_state=="Rejected":
             frappe.db.set_value("Employee Appraisal Portal",self.name, "approval_status","Rejected")
+        if self.workflow_state=="Rejected":
+            self.send_employee()
+            self.send_mail_hr()
 
     def on_update_after_submit(self):     
         if  self.workflow_state!="Submit" and self.workflow_state!="Draft" and self.workflow_state!="Rejected":
@@ -64,11 +68,8 @@ class EmployeeAppraisalPortal(Document):
                     flag="Yes"
             if flag=="No":
                 frappe.db.set_value("Employee Appraisal Portal",self.name, "approval_status","Approved")
-                # field = frappe.get_meta(doc.doctype).get_field('approval_status')
-                # doc.set_onload('read_only', 1, fieldname=field.fieldname)
-
-                # self.send_mail_hr()
-                # self.send_employee()
+                self.send_mail_hr()
+                self.send_employee()
             else:
                 data=frappe.get_all("Employee",{"name":emp_no},["employee_name","designation"])
                 designation=""
@@ -77,14 +78,45 @@ class EmployeeAppraisalPortal(Document):
                 text="Approved By %s %s"%(data[0]['employee_name'],designation)
                 frappe.db.set_value("Employee Appraisal Portal",self.name, "approval_status",text)
 
+                ####Notification function called###########
+
+        # if self.workflow_state=="Rejected":
+        #     frappe.db.set_value("Goal Setting",self.name, "approval_status","Rejected")
+        if self.workflow_state == "Approved by Level 2":
+            self.send_notification("Level 3")
+        if self.workflow_state == "Approved by Level 3":
+            self.send_notification("Level 4")
+        if self.workflow_state=="Rejected":
+            self.send_employee()
+            self.send_mail_hr()
+
     def check_duplicate_records(self):
         # Fetch existing records excluding the current one
         existing_records = frappe.get_all('Employee Appraisal Portal',filters={"employee":self.employee,"appraisal_year":self.appraisal_year,"appraisal_cycle":self.appraisal_cycle,"docstatus":1,"status":"Approved"},fields=['name'])
 
         return existing_records
 
+    def get_approver_list(self):
+        if self.docstatus==1 :
+            emp_approver_list = frappe.get_all("Approver Details for Appraisal",{"parent":self.employee},["employee","email_id","level_of_approval","employee_name","designation"])
 
-    #send mail to HR
+            return emp_approver_list
+        else :
+            pass
+
+
+
+    def set_user_permission(doc):
+        if doc.reporting_authority:
+                for emp in frappe.get_all("Employee", {'reporting_authority_email':doc.reporting_authority}, ['reporting_authority_email']):
+                    if emp.get('reporting_authority_email'):
+                        print(emp.get('reporting_authority_email'))
+                        add_user_permission("Employee Appraisal Portal",doc.name, emp.get('reporting_authority_email'), doc)
+                    else:
+                        frappe.msgprint("Reporting Authority Not Found")
+
+    ############Notification coding #################
+#Send mail to  HR
     def send_mail_hr(self):
         hr_mail = frappe.get_all("User",filters={'role':"HR Admin"},pluck='name')
         if hr_mail==[None]:
@@ -97,93 +129,39 @@ class EmployeeAppraisalPortal(Document):
             data={}
             data["hr_mail"]=hr_mail_id
             data["employee_name"]=self.employee_name
-            data["current_status"]=self.workflow_state
+            data["current_status"]=self.approval_status
             data["name"]=self.name
-            data["appraisal_cycle"]=self.appraisal_cycle
-            sendHR_appraisal(data)
-        
-    # #send mail to employee
-    # def send_employee(self):
-    # 	employee_user_id = frappe.get_all("Employee",filters={"name":self.employee},pluck="user_id")
-    # 	if len(employee_user_id)>0:
-    # 		user_id = employee_user_id[0]
-    # 		data = {}
-    # 		data["employee_mail"]=user_id
-    # 		data["employee_name"]=self.employee_name
-    # 		data["current_status"]=self.workflow_state
-    # 		data["name"]=self.name
-    # 		# sendEmployee(data)
-        
-    #Send mail to Department Head
-    def send_mail_dh(self):
-        #take the department of the employee , find the user id of that particular department head
-        department = self.department
-        department_head = frappe.get_all("Department",filters = {"name":department},pluck="department_head")
-        print("\n\n\n\nDepartment Head")
-        print(department_head)
-        print(type(department_head[0]))
-        # if department_head == [None]:
-        # 	print("Hello")
-        if department_head==[None]:
-            frappe.throw("Department Head Mail Not found")
+            sendHR_app(data)
             
 
-        else :
-            dh_id = department_head[0]
+#Send to level of approver
+    def send_notification(self,approval_level):
+        data = self.get_approver_list()
+        if data is None:
+            pass
+        else:
+            emp_data = {}
+            for item in data:
+                if item.level_of_approval == approval_level:
+                    emp_data["name"] = self.name
+                    emp_data["status"] = self.approval_status
+                    emp_data["employee"] = self.employee
+                    emp_data["email"] = item.email_id
+                    break
+            if emp_data:
+                notify_level_app(emp_data)
+
+    def send_employee(self):
+        if self.email:
             data = {}
-            data["dh_mail"]=dh_id
-            data["employee_name"]=self.employee_name
-            data["current_status"]=self.workflow_state
             data["name"]=self.name
-            data["appraisal_cycle"]=self.appraisal_cycle
-            # sendDh(data)
-            sendDh_appraisal(data)
-
+            data["status"]=self.approval_status
+            data["employee"]=self.employee
+            data["email"]=self.email
+            notify_employee_app(data)
         
-
-    #Send Mail to Director
-    def send_mail_director(self):
-        director_mail = frappe.get_all("User",filters={"role":"Director"},pluck='name')
-        # print("\n\n\n")
-        # print(director_mail)
-        if director_mail==[None]:
-            frappe.throw("Director Mail not found")
-            
-
         else :
-            director_mail_id = director_mail[0]
-            data={}
-            data["director_mail"]=director_mail_id
-            data["employee_name"]=self.employee_name
-            data["current_status"]=self.workflow_state
-            data["name"]=self.name
-            data["appraisal_cycle"]=self.appraisal_cycle
-            # sendDirector(data)
-            sendDirector_appraisal(data)
-
-    #send mail to reporting authority
-    def send_mail_ra(self):
-        ra_mail = self.reporting_authority
-        if ra_mail:
-            data={}
-            data["ra_mail"]=ra_mail
-            data["employee_name"]=self.employee_name
-            data["current_status"]=self.workflow_state
-            data["name"]=self.name
-            data["appraisal_cycle"]=self.appraisal_cycle
-            # sendRa(data)
-            sendRa_appraisal(data)
-        else :
-            frappe.throw("Reporting Authority mail not found")
-
-    def set_user_permission(doc):
-        if doc.reporting_authority:
-                for emp in frappe.get_all("Employee", {'reporting_authority_email':doc.reporting_authority}, ['reporting_authority_email']):
-                    if emp.get('reporting_authority_email'):
-                        print(emp.get('reporting_authority_email'))
-                        add_user_permission("Employee Appraisal Portal",doc.name, emp.get('reporting_authority_email'), doc)
-                    else:
-                        frappe.msgprint("Reporting Authority Not Found")
+            pass
 
 
 @frappe.whitelist()
