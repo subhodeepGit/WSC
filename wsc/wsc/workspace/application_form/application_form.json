@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"qKCh0JUC0_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Admission Application Form</span>\",\"col\":12}},{\"id\":\"P562xykj5h\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instruction For Admission Form\",\"col\":4}},{\"id\":\"jPp3_n3YyF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Admission Application Form\",\"col\":4}},{\"id\":\"Mp6myvUmgK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Online Payment\",\"col\":4}},{\"id\":\"zIonym-Zwc\",\"type\":\"card\",\"data\":{\"card_name\":\"Admission Forms\",\"col\":4}}]",
+ "content": "[{\"id\":\"qKCh0JUC0_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Admission Application Form</span>\",\"col\":12}},{\"id\":\"P562xykj5h\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instruction For Admission Form\",\"col\":4}},{\"id\":\"ZSMxKEBvul\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Application Form\",\"col\":4}},{\"id\":\"Mp6myvUmgK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Online Payment\",\"col\":4}},{\"id\":\"zIonym-Zwc\",\"type\":\"card\",\"data\":{\"card_name\":\"Admission Forms\",\"col\":4}},{\"id\":\"jPp3_n3YyF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Admission Application Form\",\"col\":4}}]",
  "creation": "2023-08-24 04:57:26.265019",
  "custom_blocks": [],
  "docstatus": 0,
@@ -61,7 +61,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-12-06 18:08:23.974079",
+ "modified": "2024-01-18 16:19:04.023492",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Application Form",
@@ -83,6 +83,13 @@
    "doc_view": "New",
    "label": "Instruction For Admission Form",
    "link_to": "Application Form Instruction",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "My Application Form",
+   "link_to": "Online Application Form",
    "type": "DocType"
   },
   {

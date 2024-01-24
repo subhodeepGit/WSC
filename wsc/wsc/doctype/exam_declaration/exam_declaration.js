@@ -23,50 +23,14 @@ frappe.ui.form.on('Exam Declaration', {
 		});
         if(frm.doc.docstatus==1){
             if(frm.doc.docstatus == 1 && frappe.user.has_role(["Education Administrator"]) || frappe.user.has_role(["Exam Coordinator"]) || frappe.user.has_role(["System Manager"])){
-                frm.add_custom_button("Create Setter & Moderator", () => {
-                    let data = {}
-                    data.programs = frm.doc.exam_program
-                    data.program = frm.doc.program
-                    data.academic_year = frm.doc.academic_year
-                    data.academic_term = frm.doc.academic_term
-                    data.exam_declaration = frm.doc.name
-                    frappe.new_doc("Exam Assessment Plan", data)
-                },__('Create'));
-            if(frm.doc.docstatus == 1 && frappe.user.has_role(["Education Administrator"]) || frappe.user.has_role(["Exam Coordinator"]) || frappe.user.has_role(["System Manager"])){
                 frm.add_custom_button("Module Wise Exam Group", () => {
                     let data = {}
                     data.exam_declaration_id = frm.doc.name
                     frappe.new_doc("Module Wise Exam Group", data)
                 },__('Create'));
             }
-        }
-        
-            // frm.add_custom_button("Student Group", () => {
-            //     let data = {}
-            //     data.group_based_on = frm.doc.doctype
-            //     data.programs = frm.doc.exam_program
-            //     data.program = frm.doc.program
-            //     data.academic_year = frm.doc.academic_year
-            //     data.academic_term = frm.doc.academic_term
-            //     data.exam_declaration = frm.doc.name
-            //     frappe.new_doc("Student Group", data)
-            // },__('Create'));
-
-            // if(frm.doc.is_application_required==0){
-            //     frm.add_custom_button("Student Admit Card", () => {
-            //         frappe.call({
-            //             // method: 'wsc.wsc.doctype.exam_declaration.exam_declaration.create_student_admit_card',
-            //             method: 'create_student_admit_card',
-            //             doc:frm.doc,
-            //             callback: function(r) {
-            //                 if (r.message) {
-            //                     frappe.msgprint("Student Admit Card Created")
-            //                 }
-            //             }
-            //         });
-            //     },__('Create')); 
-            // }
-        }
+        // }
+    }
         frm.set_df_property('semesters', 'cannot_add_rows', true);
         frm.set_df_property('courses_offered', 'cannot_add_rows', true);
  

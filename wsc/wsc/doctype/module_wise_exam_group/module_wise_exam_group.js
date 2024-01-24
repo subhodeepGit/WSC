@@ -7,6 +7,17 @@ frappe.ui.form.on('Module Wise Exam Group', {
 		frm.set_df_property('student_list', 'cannot_delete_rows', true);
 		frm.set_df_property('scheduling_group_exam', 'cannot_add_rows', true);
 		// frm.set_df_property('scheduling_group_exam', 'cannot_delete_rows', true);
+		if(frm.doc.docstatus == 1 && frappe.user.has_role(["Education Administrator"]) || frappe.user.has_role(["Exam Coordinator"]) || frappe.user.has_role(["System Manager"])){
+			frm.add_custom_button("Create Setter & Moderator", () => {
+				let data = {}
+				data.programs = frm.doc.exam_course
+				data.program = frm.doc.semester
+				data.academic_year = frm.doc.academic_year
+				data.academic_term = frm.doc.academic_term
+				data.exam_declaration = frm.doc.exam_declaration_id
+				frappe.new_doc("Exam Assessment Plan", data)
+			},__('Create'));
+		}
 	},
 	setup: function(frm) {
         frm.set_query("exam_declaration_id", function() {
