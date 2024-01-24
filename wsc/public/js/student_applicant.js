@@ -564,7 +564,6 @@ frappe.ui.form.on("Education Qualifications Details", "earned_marks", function(f
         frappe.throw("Please enter your valid CGPA")
     }
     else{
-        alert("hey 4")
         frappe.throw("Wrong Entry")
     }
     cur_frm.refresh_field ("education_qualifications_details");
