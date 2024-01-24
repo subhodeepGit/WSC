@@ -20,11 +20,16 @@ class GoalSetting(Document):
         if self.workflow_state == "Submit" :
             self.send_notification("Level 2")
 
+    def on_cancel(self):
+        if self.workflow_state=="Rejected":
+            frappe.db.set_value("Goal Setting",self.name, "approval_status","Rejected")
 
     def on_update(self):
         if self.workflow_state=="Submit":
             frappe.db.set_value("Goal Setting",self.name, "approval_status","Submit")
-        
+        if self.workflow_state=="Rejected":
+            self.send_employee()
+            self.send_mail_hr()
 
     def on_update_after_submit(self):     
         if  self.workflow_state!="Submit" and self.workflow_state!="Draft" and self.workflow_state!="Rejected":

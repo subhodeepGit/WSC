@@ -14,23 +14,26 @@
   {
    "fieldname": "student",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Student"
   },
   {
    "fieldname": "student_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Student Name"
   },
   {
    "fieldname": "result",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Result"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-01-18 10:33:41.053798",
+ "modified": "2024-01-23 16:40:16.147527",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Backlog Details",

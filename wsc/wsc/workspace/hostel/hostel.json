@@ -187,54 +187,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Allotment &amp; De-Allotment",
-   "link_count": 4,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Room Change / Room Type Change",
-   "link_count": 0,
-   "link_to": "Room Change",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Inter or Intra Hostel Change",
-   "link_count": 0,
-   "link_to": "Inter or Intra Hostel Change",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Room De-Allotment",
-   "link_count": 0,
-   "link_to": "Deallotment Process",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Mortality Record",
-   "link_count": 0,
-   "link_to": "Death Deallotment",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Attendance and Leave",
    "link_count": 4,
    "onboard": 0,
@@ -279,9 +231,57 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Allotment &amp; De-Allotment",
+   "link_count": 4,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Room Change",
+   "link_count": 0,
+   "link_to": "Room Change",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Inter or Intra Hostel Change",
+   "link_count": 0,
+   "link_to": "Inter or Intra Hostel Change",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Deallotment Process",
+   "link_count": 0,
+   "link_to": "Deallotment Process",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Mortality Record",
+   "link_count": 0,
+   "link_to": "Death Deallotment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-12-29 15:37:14.989742",
+ "modified": "2024-01-24 12:12:28.523069",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Hostel",
@@ -299,9 +299,6 @@
   },
   {
    "role": "Hostel Warden"
-  },
-  {
-   "role": "Student"
   }
  ],
  "sequence_id": 14.0,

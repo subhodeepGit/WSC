@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "naming_series:",
  "creation": "2021-09-15 13:12:29.437272",
@@ -88,6 +89,7 @@
   {
    "fieldname": "room_description",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Room Description",
    "options": "Room Description",
    "reqd": 1
@@ -189,14 +191,13 @@
    "fieldname": "status",
    "fieldtype": "Data",
    "hidden": 1,
-   "in_list_view": 1,
    "label": "Status",
    "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-19 14:56:23.690689",
+ "modified": "2024-01-22 18:19:38.821766",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Room Masters",
@@ -221,7 +222,5 @@
  "sort_order": "DESC",
  "states": [],
  "title_field": "room_number",
- "track_changes": 1,
- "track_seen": 1,
- "track_views": 1
+ "track_changes": 1
 }

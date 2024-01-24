@@ -80,14 +80,14 @@ def get_classes(from_date=None,to_date=None,curr=None,leave_criteria=None,studen
 	course_schedule=[]
 	if from_date != None and to_date != None and curr != None and leave_criteria == "Class-Wise Leave":
 		curr1=json.loads(curr)
-		if curr=="":
+		if curr:
 			semester=curr1[0]["semesters"]
 			course_schedule=frappe.get_all("Course Schedule",filters=[["program","=",semester],['schedule_date',"between", [from_date,to_date]]],fields=['name','course_name','room_name','schedule_date','from_time','to_time'],group_by="name")
 		else:
 			frappe.msgprint(_("Leave Criteria data is not present for {0}").format(student_name))
 	elif from_date != None and to_date != None and curr != None and leave_criteria == "Full Day":
 		curr1=json.loads(curr)
-		if curr=="":
+		if curr:
 			semester=curr1[0]["semesters"]
 			course_schedule=frappe.get_all("Course Schedule",filters=[["program","=",semester],['schedule_date',"between", [from_date,to_date]]],fields=['name','course_name','room_name','schedule_date','from_time','to_time'],group_by="name")
 		else:
