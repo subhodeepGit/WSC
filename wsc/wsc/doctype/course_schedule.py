@@ -71,32 +71,32 @@ class CourseSchedule(Document):
 
 
 def validate_course(doc):
-    if not doc.is_exam_schedule and doc.course not in [d.course for d in frappe.get_all("Student Group Instructor",{"parent":doc.get("student_group"),"instructor":doc.get("instructor")},['course'])]:
-        frappe.throw("Course <b>'{0}'</b> not belongs to student group <b>'{1}'</b> and instructor <b>'{2}'</b>".format(doc.get('course'), doc.get('student_group'), doc.get('instructor')))
+	if not doc.is_exam_schedule and doc.course not in [d.course for d in frappe.get_all("Student Group Instructor",{"parent":doc.get("student_group"),"instructor":doc.get("instructor")},['course'])]:
+		frappe.throw("Course <b>'{0}'</b> not belongs to student group <b>'{1}'</b> and instructor <b>'{2}'</b>".format(doc.get('course'), doc.get('student_group'), doc.get('instructor')))
 
 def validate_instructor(doc):
-    if not doc.is_exam_schedule and doc.instructor not in [d.instructor for d in frappe.get_all("Student Group Instructor",{"parent":doc.get("student_group")},['instructor'])]:
-        frappe.throw("Trainer <b>'{0}'</b> not belongs to student group <b>'{1}'</b> ".format(doc.get('instructor'), doc.get('student_group')))
+	if not doc.is_exam_schedule and doc.instructor not in [d.instructor for d in frappe.get_all("Student Group Instructor",{"parent":doc.get("student_group")},['instructor'])]:
+		frappe.throw("Trainer <b>'{0}'</b> not belongs to student group <b>'{1}'</b> ".format(doc.get('instructor'), doc.get('student_group')))
 
 def validate_exam_declaration(doc):
-    ed_list = frappe.db.sql("""SELECT distinct(ed.name) as name from `tabExam Declaration` ed 
-    left join `tabExam Courses` c on c.parent=ed.name where c.courses='{0}' and ed.docstatus=1""".format(doc.get("course")), as_dict=1)
-    if doc.exam_declaration:
-        if doc.exam_declaration not in [d.name for d in ed_list if ed_list]:
-            frappe.throw("Exam declaration <b>'{0}'</b> not belongs to course <b>'{1}'</b> ".format(doc.get('exam_declaration'), doc.get('course')))
+	ed_list = frappe.db.sql("""SELECT distinct(ed.name) as name from `tabExam Declaration` ed 
+	left join `tabExam Courses` c on c.parent=ed.name where c.courses='{0}' and ed.docstatus=1""".format(doc.get("course")), as_dict=1)
+	if doc.exam_declaration:
+		if doc.exam_declaration not in [d.name for d in ed_list if ed_list]:
+			frappe.throw("Exam declaration <b>'{0}'</b> not belongs to course <b>'{1}'</b> ".format(doc.get('exam_declaration'), doc.get('course')))
 
 def validate_student_for_student_group(doc):
-    student_list =frappe.db.sql("""SELECT stg.student as student from `tabStudent Group Student` stg 
-    left join `tabStudent Group` sg on stg.parent=sg.name where sg.name='{0}' """.format(doc.get("student_group")), as_dict=1)
-    for stud in doc.student_paper_code:
-        if stud.student not in [s.student for s in student_list]:
-            frappe.throw("Student <b>'{0}'</b> not belongs to student group <b>'{1}'</b> ".format(stud.student, doc.get('student_group')))
+	student_list =frappe.db.sql("""SELECT stg.student as student from `tabStudent Group Student` stg 
+	left join `tabStudent Group` sg on stg.parent=sg.name where sg.name='{0}' """.format(doc.get("student_group")), as_dict=1)
+	for stud in doc.student_paper_code:
+		if stud.student not in [s.student for s in student_list]:
+			frappe.throw("Student <b>'{0}'</b> not belongs to student group <b>'{1}'</b> ".format(stud.student, doc.get('student_group')))
 
 def validate_instructor_for_course(doc):
-    if not doc.is_exam_schedule:
-        for i in doc.additional_instructor:
-            if i.instructor not in [d.parent for d in frappe.get_all("Instructor Log",{"course":doc.get("course")},['parent'])]:
-                frappe.throw("Instructor <b>'{0}'</b> not belongs to course <b>'{1}'</b> ".format(i.instructor, doc.get('course')))
+	if not doc.is_exam_schedule:
+		for i in doc.additional_instructor:
+			if i.instructor not in [d.parent for d in frappe.get_all("Instructor Log",{"course":doc.get("course")},['parent'])]:
+				frappe.throw("Instructor <b>'{0}'</b> not belongs to course <b>'{1}'</b> ".format(i.instructor, doc.get('course')))
 
 @frappe.whitelist()
 def get_exam_declaration_by_course(doctype, txt, searchfield, start, page_len, filters):
@@ -139,7 +139,7 @@ def get_course_schedule_events(start, end, filters=None):
 					custom_conditions=" and `tabStudent Group Instructor`.instructor='{0}'".format(inst.name)
 
 	data = frappe.db.sql(
-			"""select name, course, course_name, course_code,color,program,instructor,instructor_name,
+			"""select name, course, course_name, course_code,color,program,instructor,instructor_name,additional_trainer_1_name,
 				timestamp(schedule_date, from_time) as from_time,
 				timestamp(schedule_date, to_time) as to_time,
 				room,room_name,school_house, student_group, 0 as 'allDay'
@@ -157,10 +157,22 @@ def get_course_schedule_events(start, end, filters=None):
 	for d in data:
 		from_time=d["from_time"].strftime("%H:%M:%S")
 		to_time=d["to_time"].strftime("%H:%M:%S")
-		d.update({"course":d.course_name+"\n"+d.school_house+"\n"+d.instructor_name+"\n"+d.room_name})
-		# +"\n"+to_time+"\n"+from_time
-		# +d.school_house+"\n"
-		result.append(d)
+		if d.additional_trainer_1_name:
+			d.update({"course":d.course_name+"\n"+d.school_house+"\n"+d.instructor_name+"\n"+d.additional_trainer_1_name +"\n"+d.room_name})
+			# +"\n"+to_time+"\n"+from_time
+			# +d.school_house+"\n"
+			result.append(d)
+		elif d.additional_trainer_2_name:
+			d.update({"course":d.course_name+"\n"+d.school_house+"\n"+d.instructor_name+"\n"+d.additional_trainer_1_name +"\n"+d.additional_trainer_2_name +"\n"+d.room_name})
+			# +"\n"+to_time+"\n"+from_time
+			# +d.school_house+"\n"
+			result.append(d)
+		elif d.additional_trainer_2_name==None and d.additional_trainer_1_name==None:
+			d.update({"course":d.course_name+"\n"+d.school_house+"\n"+d.instructor_name+"\n"+d.room_name})
+			result.append(d)
+		else:
+			pass
+
 	return result
 
 @frappe.whitelist()
@@ -186,6 +198,10 @@ def get_instructor_by_student_group(doctype, txt, searchfield, start, page_len, 
 
 @ frappe.whitelist()
 def get_trainer_list(instructor):
-    for d in frappe.get_all("Instructor",{"name":instructor},['name','instructor_name']):
-        return d
-    return {"no_record_found":1}
+	for d in frappe.get_all("Instructor",{"name":instructor},['name','instructor_name']):
+		print("\n\nD",d)
+		return d
+	return {"no_record_found":1}
+
+# def child_to_parent_field(self):
+# 	frappe.get_all("Additional Instructor",{"parent":self.name},)

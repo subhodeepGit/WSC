@@ -87,6 +87,13 @@
   },
   {
    "color": "Grey",
+   "doc_view": "New",
+   "label": "My Application Form",
+   "link_to": "Online Application Form",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
    "doc_view": "List",
    "label": "Online Payment",
    "link_to": "OnlinePayment",

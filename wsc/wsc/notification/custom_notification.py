@@ -2125,3 +2125,52 @@ def notify_employee_goal(doc):
 
 	send_mail([doc.get("email")],sub,msg)
 	frappe.msgprint("Mail Sent to {}".format(doc.get("email")))
+
+################################## Dynamic Workflow Appraisal ###################################
+	
+def notify_level_app(doc):
+	sub = "Reg:Appraisal"
+	
+	msg = """<p>Dear Ma'am/Sir,</p><br>"""
+	msg += """<p>Kindly refer to the Appraisal Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+	msg += "<b>---------------------Appraisal Details---------------------</b><br>"
+	msg += "<b>Appraisal ID:</b> {0}<br>".format(doc.get('name'))
+	msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
+	msg += "<b>Status:</b> {0}<br>".format(doc.get('status'))
+	# msg += "<b>Final Working Date:</b> {0}<br>".format(doc.get('final_working_date'))
+
+	app_url = get_url_to_form('Employee Appraisal Portal', doc.get('name'))
+	msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(app_url)
+
+	send_mail([doc.get("email")],sub,msg)
+	frappe.msgprint("Mail Sent to {}".format(doc.get("email")))  
+
+def notify_employee_app(doc):
+	sub = "Reg:Appraisal"
+	
+	msg = """<p>Dear Ma'am/Sir,</p><br>"""
+	msg += """<p>Kindly refer to the Appraisal Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+	msg += "<b>---------------------Appraisal Details---------------------</b><br>"
+	msg += "<b>Appraisal ID:</b> {0}<br>".format(doc.get('name'))
+	msg += "<b>Employee ID:</b> {0}<br>".format(doc.get('employee'))
+	msg += "<b>Status:</b> {0}<br>".format(doc.get('status'))
+	# msg += "<b>Final Working Date:</b> {0}<br>".format(doc.get('final_working_date'))
+
+	app_url = get_url_to_form('Employee Appraisal Portal', doc.get('name'))
+	msg += "<b>Open Now:</b> <a href='{0}'>Click here</a><br>".format(app_url)
+
+	send_mail([doc.get("email")],sub,msg)
+	frappe.msgprint("Mail Sent to {}".format(doc.get("email")))
+
+def sendHR_app(doc):
+	sub="""<p><b>Reg : Appraisal</b></p><br>"""
+	msg = """<p>Dear Ma'am/Sir,</p><br>"""
+	msg += """<p>Kindly refer to the Appraisal Details below and navigate to the form by clicking on "Open Now".</p></br>"""
+	msg="""<b>---------------------Appraisal Details---------------------</b><br>"""
+	msg+="""<b>Appraisal ID:</b>  {0}<br>""".format(doc['name'])
+	msg+="""<b>Status:</b>  {0}<br>""".format(doc['current_status'])
+	app_url = get_url_to_form('Employee Appraisal Portal', doc['name'])
+	msg += """<b>Open Now:</b>  <a href="{0}">Click here</a><br>""".format(app_url)
+	msg+="""<p><b>Final Status of Appraisal</b></p><br>"""
+	send_mail([doc['hr_mail']],sub,msg)
+	frappe.msgprint("Confirmation mail sent to HR",[doc['hr_mail']])
