@@ -10,7 +10,7 @@
  "idx": 0,
  "is_standard": "Yes",
  "json": "{}",
- "modified": "2023-03-06 11:22:42.838298",
+ "modified": "2024-01-23 16:53:40.598248",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Instructor Workload",
@@ -19,5 +19,18 @@
  "ref_doctype": "Instructor",
  "report_name": "Instructor Workload",
  "report_type": "Script Report",
- "roles": []
+ "roles": [
+  {
+   "role": "Education Administrator"
+  },
+  {
+   "role": "Education Academic Head"
+  },
+  {
+   "role": "Education Admission Dept"
+  },
+  {
+   "role": "Education Admission Head"
+  }
+ ]
 }

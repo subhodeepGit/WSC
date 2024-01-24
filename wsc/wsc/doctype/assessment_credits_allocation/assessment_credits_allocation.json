@@ -256,7 +256,8 @@
    "fieldname": "exam_declaration",
    "fieldtype": "Link",
    "label": "Exam Declaration",
-   "options": "Exam Declaration"
+   "options": "Exam Declaration",
+   "reqd": 1
   },
   {
    "fieldname": "module_exam_group",
@@ -315,7 +316,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-04 13:05:26.715761",
+ "modified": "2024-01-24 10:55:06.082892",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assessment Credits Allocation",

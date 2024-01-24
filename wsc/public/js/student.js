@@ -16,7 +16,7 @@ frappe.ui.form.on('Student',{
                 student_id: frm.doc.name,
             };
             if(!frm.is_new()){
-                if ((!frappe.user.has_role("Education Academic Head")|| !frappe.user.has_role("Education Admission Dept")) || !frappe.user.has_role("Temporary Admission Group") || !frappe.user.has_role("System Manager")){
+                if ((!frappe.user.has_role("Education Academic Head")|| !frappe.user.has_role("Education Admission Dept")) || !frappe.user.has_role("Temporary Admission Group") || !frappe.user.has_role("System Manager") || !frappe.user.has_role("Education Administrator")){
                     frm.set_df_property('document_list', 'cannot_delete_rows', true);
                 }
             }
@@ -93,7 +93,7 @@ frappe.ui.form.on('Student', {
             data.earned_marks=""
             refresh_field("score", data.name, data.parentfield);
             refresh_field("earned_marks", data.name, data.parentfield);
-            frappe.msgprint("Earned Marks is greater than the Total Marks.")
+            // frappe.msgprint("Earned Marks is greater than the Total Marks.")
         }       
         cur_frm.refresh_field ("education_details");
      });
