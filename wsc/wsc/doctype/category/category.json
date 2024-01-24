@@ -11,7 +11,8 @@
   "category",
   "gender",
   "caste_category",
-  "is_physically_disabled"
+  "is_physically_disabled",
+  "award_winner"
  ],
  "fields": [
   {
@@ -39,11 +40,17 @@
    "fieldname": "is_physically_disabled",
    "fieldtype": "Check",
    "label": "Is Physically Disabled ?"
+  },
+  {
+   "default": "0",
+   "fieldname": "award_winner",
+   "fieldtype": "Check",
+   "label": "Award Winner"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-09 12:12:32.891330",
+ "modified": "2024-01-15 15:00:35.796156",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Category",
