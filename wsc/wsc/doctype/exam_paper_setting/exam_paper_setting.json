@@ -7,6 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "assessment_plan",
+  "exam_name",
   "department",
   "programs",
   "program",
@@ -211,12 +212,20 @@
    "fieldtype": "Link",
    "label": "School House",
    "options": "School House"
+  },
+  {
+   "fetch_from": "assessment_plan.exam_name",
+   "fieldname": "exam_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Exam Name",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-14 18:17:51.909887",
+ "modified": "2024-01-24 09:59:47.311117",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Exam Paper Setting",

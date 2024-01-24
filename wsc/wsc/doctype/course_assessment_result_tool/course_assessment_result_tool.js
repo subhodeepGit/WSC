@@ -46,6 +46,12 @@ frappe.ui.form.on('Course Assessment Result Tool', {
 		// }
 		
 	},
+    refresh(frm) {
+        if(!window.location.hash) {
+            window.location = window.location + '#';
+            window.location.reload();
+        }
+    },
 	setup:function(frm){
 		// frm.set_query("programs", function () {
 		// 	return {
