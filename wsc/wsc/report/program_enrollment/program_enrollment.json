@@ -9,7 +9,7 @@
  "filters": [],
  "idx": 0,
  "is_standard": "Yes",
- "modified": "2023-10-16 16:33:48.456170",
+ "modified": "2024-01-24 15:14:43.843156",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Program Enrollment",
@@ -18,5 +18,18 @@
  "ref_doctype": "Program Enrollment",
  "report_name": "Program Enrollment",
  "report_type": "Script Report",
- "roles": []
+ "roles": [
+  {
+   "role": "Education Administrator"
+  },
+  {
+   "role": "Education Admission Head"
+  },
+  {
+   "role": "Education Academic Head"
+  },
+  {
+   "role": "Education Examination Head"
+  }
+ ]
 }
