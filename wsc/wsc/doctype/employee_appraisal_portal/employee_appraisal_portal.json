@@ -11,6 +11,7 @@
   "employee_details",
   "employee",
   "employee_name",
+  "email",
   "user_id",
   "reporting_authority",
   "column_break_zwty9",
@@ -262,12 +263,18 @@
    "in_list_view": 1,
    "label": "Approval Status",
    "read_only": 1
+  },
+  {
+   "fetch_from": "employee.prefered_email",
+   "fieldname": "email",
+   "fieldtype": "Read Only",
+   "label": "Email"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-23 14:39:47.962323",
+ "modified": "2024-01-24 08:54:31.142190",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Employee Appraisal Portal",
