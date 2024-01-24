@@ -86,9 +86,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Salary Slip",
+   "label": "Payroll Entry",
    "link_count": 0,
-   "link_to": "Salary Slip",
+   "link_to": "Payroll Entry",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -96,9 +96,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Payroll Entry",
+   "label": "Salary Slip",
    "link_count": 0,
-   "link_to": "Payroll Entry",
+   "link_to": "Salary Slip",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -256,7 +256,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-01-24 09:34:17.050367",
+ "modified": "2024-01-24 09:34:58.572368",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Payroll",
