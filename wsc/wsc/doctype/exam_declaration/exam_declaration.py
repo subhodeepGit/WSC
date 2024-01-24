@@ -39,9 +39,9 @@ class ExamDeclaration(Document):
         #         frappe.throw("<b>Examination Date</b> Should be Greater than <b>Exam Start Date</b> and Less than <b>Exam End Date</b>")
         for d in self.get("courses_offered"):
             if d.examination_date  < self.exam_start_date or d.examination_date  >  self.exam_end_date:
-                frappe.throw("<b>Examination Start Date</b> Should be Greater than <b>Exam Start Date</b> and Less than <b>Exam End Date</b>")   
+                frappe.throw("<b>Module Examination Start Date</b> Should be Greater than <b>Exam Start Date</b> and Less than <b>Exam End Date</b>")   
             if d.examination_end_date  < self.exam_start_date or d.examination_end_date  >  self.exam_end_date:
-                frappe.throw("<b>Examination End Date</b> Should be Greater than <b>Exam Start Date</b> and Less than <b>Exam End Date</b>")   
+                frappe.throw("<b>Module Examination End Date</b> Should be Greater than <b>Exam Start Date</b> and Less than <b>Exam End Date</b>")   
        
     def calculate_total_hours(self):
         for d in self.get("courses_offered"):
