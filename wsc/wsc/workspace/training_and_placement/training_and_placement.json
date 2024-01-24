@@ -502,7 +502,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-01-22 11:41:09.789767",
+ "modified": "2024-01-24 15:12:49.012073",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Training and Placement",
@@ -520,6 +520,9 @@
   },
   {
    "role": "Employee"
+  },
+  {
+   "role": "Training Events Coordinator"
   }
  ],
  "sequence_id": 51.0,
