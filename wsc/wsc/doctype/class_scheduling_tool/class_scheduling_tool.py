@@ -86,14 +86,14 @@ class ClassSchedulingTool(Document):
 		"""Validates if Course Start Date is greater than Course End Date"""
 		if self.course_start_date > self.course_end_date:
 			frappe.throw(_("Course Start Date cannot be greater than Course End Date."))
-		if self.course_start_date == self.course_end_date:
-			frappe.throw(_("If you are scheduling the class for only one day then please do it through Class Schedule Screen"))
+		# if self.course_start_date == self.course_end_date:
+		# 	frappe.throw(_("If you are scheduling the class for only one day then please do it through Class Schedule Screen"))
 			"""Validates if from_time is greater than to_time"""
 		if	parser.parse(str(self.from_time)) >= parser.parse(str(self.to_time)):
 					frappe.throw(_("From Time cannot be greater than or equal to To Time."))
 
 	def delete_course_schedule(self, rescheduled, reschedule_errors, days):
-		"""Delete all course schedule within the Date range and specified filters"""
+		"""Delete all class schedule within the Date range and specified filters"""
 		schedules = frappe.get_list(
 			"Course Schedule",
 			fields=["name", "schedule_date"],

@@ -1,0 +1,416 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2024-01-15 12:10:04.467084",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "amended_from",
+  "first_name",
+  "middle_name",
+  "last_name",
+  "column_break_qh4b7",
+  "application_date",
+  "academic_year",
+  "academic_term",
+  "category",
+  "personal_details_section",
+  "date_of_birth",
+  "student_category",
+  "gender",
+  "religion",
+  "physically_disabled",
+  "column_break_xtbz9",
+  "student_email_id",
+  "student_mobile_number",
+  "aadhaar_no",
+  "nationality",
+  "award_winner",
+  "image",
+  "physically_disabled_type_section",
+  "disable_type",
+  "award_list_section",
+  "awards_list",
+  "home_address_section",
+  "states",
+  "districts",
+  "column_break_l0yf6",
+  "blocks",
+  "pin_code",
+  "course_preference_details_section",
+  "department",
+  "column_break_fqwc1",
+  "program_grade",
+  "section_break_ioigb",
+  "program_priority",
+  "education_qualifications_details_section",
+  "education_qualifications_details",
+  "documents_required_section",
+  "document_list",
+  "section_break_xq4rt",
+  "declaration_section_section",
+  "declaration",
+  "title",
+  "go_to_top",
+  "programs",
+  "program",
+  "student_admission"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Naming Series",
+   "options": "WSC.YYYY."
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Online Application Form",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "label": "First Name"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "middle_name",
+   "fieldtype": "Data",
+   "label": "Middle Name"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "label": "Last Name"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "2024-25",
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "2024-25 (SEMESTER 1)",
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "category",
+   "fieldtype": "Link",
+   "label": "Student Category",
+   "options": "Category",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "student_category",
+   "fieldtype": "Link",
+   "label": "Caste Category",
+   "options": "Student Category"
+  },
+  {
+   "fieldname": "column_break_qh4b7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "personal_details_section",
+   "fieldtype": "Section Break",
+   "label": "Personal Details"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "Date of Birth"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "gender",
+   "fieldtype": "Link",
+   "label": "Gender",
+   "options": "Gender"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "religion",
+   "fieldtype": "Link",
+   "label": "Religion",
+   "options": "Religion"
+  },
+  {
+   "fieldname": "student_email_id",
+   "fieldtype": "Data",
+   "label": "Student Email Id",
+   "options": "Email"
+  },
+  {
+   "default": "Indian",
+   "fieldname": "nationality",
+   "fieldtype": "Data",
+   "label": "Nationality",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "physically_disabled",
+   "fieldtype": "Check",
+   "label": "Physically Disabled"
+  },
+  {
+   "fieldname": "column_break_xtbz9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Student Name",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "hidden": 1,
+   "label": "Photo"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "award_winner",
+   "fieldtype": "Check",
+   "label": "Award Winner"
+  },
+  {
+   "fieldname": "home_address_section",
+   "fieldtype": "Section Break",
+   "label": "Home Address"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "Odisha",
+   "fieldname": "states",
+   "fieldtype": "Link",
+   "label": "State",
+   "options": "State",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "districts",
+   "fieldtype": "Link",
+   "label": "District",
+   "options": "Districts"
+  },
+  {
+   "fieldname": "column_break_l0yf6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.districts",
+   "fieldname": "blocks",
+   "fieldtype": "Link",
+   "label": "Block",
+   "options": "Blocks"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "pin_code",
+   "fieldtype": "Data",
+   "label": "Pincode",
+   "length": 6
+  },
+  {
+   "fieldname": "physically_disabled_type_section",
+   "fieldtype": "Section Break",
+   "label": "Physically Disabled Type"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.physically_disabled==\"1\"",
+   "fieldname": "disable_type",
+   "fieldtype": "Table",
+   "label": "Disable Type",
+   "mandatory_depends_on": "eval:doc.physically_disabled==\"1\"",
+   "options": "Physically Disabled"
+  },
+  {
+   "fieldname": "award_list_section",
+   "fieldtype": "Section Break",
+   "label": "Award List Section"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.award_winner==\"1\"",
+   "fieldname": "awards_list",
+   "fieldtype": "Table",
+   "label": "Awards Winner List",
+   "mandatory_depends_on": "eval:doc.award_winner==\"1\"",
+   "options": "Awards List"
+  },
+  {
+   "fieldname": "course_preference_details_section",
+   "fieldtype": "Section Break",
+   "label": "Course Preference Details"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.department;",
+   "fieldname": "program_grade",
+   "fieldtype": "Link",
+   "label": "Course Type",
+   "options": "Program Grades"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.department && doc.program_grade;",
+   "fieldname": "program_priority",
+   "fieldtype": "Table",
+   "label": "Course Preferences",
+   "options": "Program Priority"
+  },
+  {
+   "fieldname": "column_break_fqwc1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_ioigb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.program_priority;",
+   "fieldname": "education_qualifications_details_section",
+   "fieldtype": "Section Break",
+   "label": "Education Qualifications Details"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:!(doc.__islocal) ",
+   "fieldname": "education_qualifications_details",
+   "fieldtype": "Table",
+   "label": "Education Qualifications Details",
+   "options": "Education Qualifications Details"
+  },
+  {
+   "fieldname": "documents_required_section",
+   "fieldtype": "Section Break",
+   "label": "Documents Required"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:!(doc.__islocal) ",
+   "fieldname": "document_list",
+   "fieldtype": "Table",
+   "label": "Document List",
+   "options": "Document List"
+  },
+  {
+   "fieldname": "student_mobile_number",
+   "fieldtype": "Data",
+   "label": "Student Mobile Number",
+   "length": 10
+  },
+  {
+   "fieldname": "section_break_xq4rt",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "declaration_section_section",
+   "fieldtype": "Section Break",
+   "label": "Declaration Section"
+  },
+  {
+   "fieldname": "declaration",
+   "fieldtype": "Small Text",
+   "label": "Declaration",
+   "read_only": 1
+  },
+  {
+   "fieldname": "go_to_top",
+   "fieldtype": "Button",
+   "label": "Go To Top"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Hidden Course",
+   "options": "Programs",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "program",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Hidden Semester",
+   "options": "Program",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "student_admission",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Hidden Student Admission",
+   "options": "Student Admission",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "aadhaar_no",
+   "fieldtype": "Data",
+   "label": "Aadhaar No",
+   "length": 12
+  },
+  {
+   "default": "Today",
+   "fieldname": "application_date",
+   "fieldtype": "Date",
+   "label": "Application Date"
+  }
+ ],
+ "image_field": "image",
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-01-18 18:11:49.986928",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Online Application Form",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "title",
+ "track_changes": 1
+}

@@ -81,7 +81,7 @@ def get_participant_id(doctype, txt, searchfield, start, page_len, filters):
 					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
 			return data
 		pass
-	elif("Training and Placement Administrator" in user_roles and "Employee" in user_roles and "Student" not in user_roles):
+	elif("Training and Placement Administrator" in user_roles or "Training Events Coordinator" in user_roles):
 		if(doctype=="Student"):
 			data=frappe.db.sql("""select name,student_name from `tabStudent` where ({key} like %(txt)s or {scond}) 
 	 					 and enabled={enabled}

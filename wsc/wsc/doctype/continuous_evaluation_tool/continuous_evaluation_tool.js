@@ -24,6 +24,10 @@ frappe.ui.form.on('Continuous Evaluation Tool', {
 	},
 	refresh:function(frm){
 		frm.disable_save();
+		if(!window.location.hash) {
+            window.location = window.location + '#';
+            window.location.reload();
+        }
 	},
 	// "enroll_students": function(frm) {
 	// 	if (frm.doc.new_semester && frm.doc.new_academic_year){

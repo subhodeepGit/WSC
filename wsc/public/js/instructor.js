@@ -1,5 +1,7 @@
 frappe.ui.form.on('Instructor',{
     refresh: function(frm) {
+        frm.set_df_property('other_activities', 'cannot_add_rows', true);
+        frm.set_df_property('other_activities', 'cannot_delete_rows', true);
         frm.remove_custom_button("As Examiner","Assessment Plan");
         frm.remove_custom_button("As Supervisor","Assessment Plan");
         if (!(frm.doc.__islocal) && frm.doc.email_id_for_guest_trainers){
