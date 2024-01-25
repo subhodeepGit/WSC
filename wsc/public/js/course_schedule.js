@@ -121,7 +121,6 @@ frappe.ui.form.on("Additional Instructor", "instructor", function(frm, cdt, cdn)
     }
 
     if (d.idx==1){
-        alert(d.idx)
         frappe.call({
             method: "wsc.wsc.doctype.course_schedule.get_trainer_list",
             args: {
@@ -145,8 +144,6 @@ frappe.ui.form.on("Additional Instructor", "instructor", function(frm, cdt, cdn)
         }); 
     }
     if (d.idx==2){
-        alert(d.idx)
-        // frm.set_value("additional_trainer_1","")
         frappe.call({
             method: "wsc.wsc.doctype.course_schedule.get_trainer_list",
             args: {
@@ -169,7 +166,6 @@ frappe.ui.form.on("Additional Instructor", "instructor", function(frm, cdt, cdn)
         }); 
     }
     if (d.idx==3){
-        alert(d.idx)
         frappe.call({
             method: "wsc.wsc.doctype.course_schedule.get_trainer_list",
             args: {
