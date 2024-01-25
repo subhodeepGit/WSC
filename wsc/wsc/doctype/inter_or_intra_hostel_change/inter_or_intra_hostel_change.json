@@ -48,28 +48,24 @@
    "reqd": 1
   },
   {
-   "fetch_from": "allotment_no.hostel_id",
    "fieldname": "hostel_name",
    "fieldtype": "Data",
    "label": "1st Hostel Name",
    "read_only": 1
   },
   {
-   "fetch_from": "allotment_no.room_number",
    "fieldname": "room_no",
    "fieldtype": "Data",
    "label": "1st Room No",
    "read_only": 1
   },
   {
-   "fetch_from": "allotment_no.room_type",
    "fieldname": "room_type",
    "fieldtype": "Data",
    "label": "1st Room Type",
    "read_only": 1
   },
   {
-   "fetch_from": "allotment_no.allotment_type",
    "fieldname": "allotment_type",
    "fieldtype": "Data",
    "label": "1st Allotment Type",
@@ -94,7 +90,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fetch_from": "allotment_no.student_name",
    "fieldname": "1st_student_name",
    "fieldtype": "Data",
    "label": "1st Student Name",
@@ -115,35 +110,30 @@
    "reqd": 1
   },
   {
-   "fetch_from": "second_allotment_no.student_name",
    "fieldname": "second_studnet_name",
    "fieldtype": "Data",
    "label": "2nd Student Name",
    "read_only": 1
   },
   {
-   "fetch_from": "second_allotment_no.hostel_id",
    "fieldname": "second_hostel_name",
    "fieldtype": "Data",
    "label": "2nd Hostel Name",
    "read_only": 1
   },
   {
-   "fetch_from": "second_allotment_no.room_number",
    "fieldname": "second_room_no",
    "fieldtype": "Data",
    "label": "2nd Room No",
    "read_only": 1
   },
   {
-   "fetch_from": "second_allotment_no.room_type",
    "fieldname": "second_room_type",
    "fieldtype": "Data",
    "label": "2nd Room Type",
    "read_only": 1
   },
   {
-   "fetch_from": "second_allotment_no.allotment_type",
    "fieldname": "second_allotment_type",
    "fieldtype": "Data",
    "label": "2nd Allotment Type",
@@ -156,14 +146,12 @@
    "label": "2nd Student Application"
   },
   {
-   "fetch_from": "allotment_no.room_id",
    "fieldname": "first_rid",
    "fieldtype": "Data",
    "hidden": 1,
    "label": "1st stud room id"
   },
   {
-   "fetch_from": "second_allotment_no.room_id",
    "fieldname": "second_rid",
    "fieldtype": "Data",
    "hidden": 1,
@@ -182,7 +170,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-22 11:40:48.393754",
+ "modified": "2024-01-24 18:23:03.632710",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Inter or Intra Hostel Change",

@@ -12,16 +12,20 @@
   "module_code",
   "module_name",
   "department",
+  "student_group",
   "column_break_3",
   "academic_year",
   "academic_term",
   "school_house",
-  "student_group",
   "room",
   "section_break_6",
   "instructor",
+  "additional_trainer_1",
+  "additional_trainer_2",
   "column_break_9",
   "instructor_name",
+  "additional_trainer_1_name",
+  "additional_trainer_2_name",
   "section_break_ffsyx",
   "additional_trainer",
   "section_break_7",
@@ -199,12 +203,38 @@
    "label": "Department",
    "options": "Department",
    "read_only": 1
+  },
+  {
+   "fieldname": "additional_trainer_1",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Additional Trainer 1",
+   "options": "Instructor"
+  },
+  {
+   "fieldname": "additional_trainer_2",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Additional Trainer 2",
+   "options": "Instructor"
+  },
+  {
+   "fieldname": "additional_trainer_1_name",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Additional Trainer 1 Name"
+  },
+  {
+   "fieldname": "additional_trainer_2_name",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Additional Trainer 2 Name"
   }
  ],
  "hide_toolbar": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-12-14 12:51:52.393742",
+ "modified": "2024-01-24 18:34:29.924630",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Class Scheduling Tool",
