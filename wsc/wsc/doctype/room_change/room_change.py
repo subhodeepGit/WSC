@@ -35,8 +35,7 @@ class RoomChange(Document):
 			chk_df=chk_df[(chk_df['application_status'].isnull())|(chk_df['application_status']=="Open")].reset_index()
 			if len(chk_df)!=0:
 				frappe.throw("Document already present Doc no %s"%(chk_df['Room_doc_no'][0]))
-			else:
-				pass
+
 		elif workflow_state=="Reported":
 			if preferred_hostel == None or  preferred_room == None:
 				frappe.throw("Please provide Hostel and Room number")
@@ -51,8 +50,6 @@ class RoomChange(Document):
 					room_id=doc.room_number
 					frappe.db.sql("""UPDATE `tabRoom Masters` SET `vacancy`=`vacancy`+1 WHERE `name`="%s" """%(room_id))
 
-
-					pass
 				else:
 					frappe.throw("Preferred room number and Present room number are same")
 
@@ -98,3 +95,10 @@ def ra_query(doctype, txt, searchfield, start, page_len, filters):
 			"info":info
 		}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
 	return data	
+
+@frappe.whitelist()
+def get_allotment_data(allotment_number):
+	if allotment_number:
+		for d in frappe.get_all("Room Allotment",{'name':allotment_number},['student','student_name','roll_no','registration_number','hostel_id','room_id','room_type','room_number']):
+			return d
+

@@ -47,7 +47,6 @@
    "reqd": 1
   },
   {
-   "fetch_from": "allotment_number.student",
    "fieldname": "student",
    "fieldtype": "Data",
    "in_standard_filter": 1,
@@ -55,7 +54,6 @@
    "read_only": 1
   },
   {
-   "fetch_from": "allotment_number.student_name",
    "fieldname": "student_name",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -64,7 +62,6 @@
    "read_only": 1
   },
   {
-   "fetch_from": "allotment_number.hostel_id",
    "fieldname": "hostel",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -73,7 +70,6 @@
    "read_only": 1
   },
   {
-   "fetch_from": "allotment_number.room_id",
    "fieldname": "room_number",
    "fieldtype": "Data",
    "hidden": 1,
@@ -87,7 +83,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fetch_from": "allotment_number.room_type",
    "fieldname": "room_type",
    "fieldtype": "Data",
    "label": "Room Type",
@@ -137,7 +132,6 @@
    "read_only": 1
   },
   {
-   "fetch_from": "allotment_number.room_number",
    "fieldname": "room_no",
    "fieldtype": "Data",
    "label": "Room No.",
@@ -151,14 +145,12 @@
    "read_only": 1
   },
   {
-   "fetch_from": "allotment_number.roll_no",
    "fieldname": "roll_no",
    "fieldtype": "Data",
    "label": "Roll No",
    "read_only": 1
   },
   {
-   "fetch_from": "allotment_number.registration_number",
    "fieldname": "registration_number",
    "fieldtype": "Data",
    "label": "Registration Number",
@@ -176,7 +168,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-22 11:40:10.559341",
+ "modified": "2024-01-24 17:52:04.475556",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Room Change",
