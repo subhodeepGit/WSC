@@ -613,8 +613,7 @@ override_whitelisted_methods = {
 	"education.education.doctype.fee_structure.fee_structure.make_fee_schedule":"wsc.wsc.doctype.fee_structure.make_fee_schedule",
     "education.education.doctype.student_attendance_tool.student_attendance_tool.get_student_attendance_records":"wsc.wsc.doctype.student_attendance.get_student_attendance_records",
     # "frappe.core.doctype.data_import.data_import.download_template":"wsc.wsc.doctype.data_import.download_template"
-	"erpnext.accounts.doctype.bank_reconciliation_tool.bank_reconciliation_tool.auto_reconcile_vouchers":"wsc.wsc.validations.bank_reconciliation_tool.auto_reconcile_vouchers",
-    "education.education.doctype.program_enrollment.program_enrollment.get_program_courses":"wsc.wsc.doctype.program_enrollment.get_program_courses"
+	"erpnext.accounts.doctype.bank_reconciliation_tool.bank_reconciliation_tool.auto_reconcile_vouchers":"wsc.wsc.validations.bank_reconciliation_tool.auto_reconcile_vouchers"
 }
 override_doctype_class = {
     "Course Schedule":"wsc.wsc.doctype.course_schedule.CourseSchedule",
