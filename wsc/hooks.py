@@ -84,7 +84,8 @@ doctype_js = {
                 "Project":"public/js/project.js",
                 "Supplier Quotation":"public/js/supplier_quotation.js",
                 "Stock Entry":"public/js/stock_entry.js",
-                "Topic":"public/js/topic.js"
+                "Topic":"public/js/topic.js",
+                "Contract":"public/js/contract.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -118,7 +119,8 @@ doctype_list_js = {
     "Employee Appraisal Evaluation Template":"public/js/employee_appraisal_evalaution_template_list.js",
     "Dimenssions for Appraisal":"public/js/dimenssions_for_appraisal_list.js",
     "Appraisal":"public/js/appraisal_list.js",
-    "Staffing Plan":"public/js/staffing_plan.js"
+    "Staffing Plan":"public/js/staffing_plan.js",
+    "Bank":"public/js/bank_list.js"
 }
 
 doctype_tree_js = {"doctype" : "public/js/tax_category_tree.js"}

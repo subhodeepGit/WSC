@@ -1,0 +1,25 @@
+{
+ "content": null,
+ "creation": "2024-01-22 16:31:48.006467",
+ "docstatus": 0,
+ "doctype": "Page",
+ "idx": 0,
+ "modified": "2024-01-25 16:09:13.984003",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "dashboard-director",
+ "owner": "Administrator",
+ "page_name": "dashboard-director",
+ "roles": [
+  {
+   "role": "Administrator"
+  },
+  {
+   "role": "Director"
+  }
+ ],
+ "script": null,
+ "standard": "Yes",
+ "style": null,
+ "system_page": 1
+}

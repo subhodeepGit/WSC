@@ -90,44 +90,6 @@
   },
   {
    "hidden": 0,
-   "is_query_report": 0,
-   "label": "Reports",
-   "link_count": 3,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 1,
-   "label": "Student Monthly Attendance",
-   "link_count": 0,
-   "link_to": "Student Monthly Attendance Sheet",
-   "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 1,
-   "label": "Student Batch Wise Attendance",
-   "link_count": 0,
-   "link_to": "Student Batch-Wise Attendance",
-   "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 1,
-   "label": "Student Attendance Report",
-   "link_count": 0,
-   "link_to": "Student Attendance Report",
-   "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
    "is_query_report": 1,
    "label": "Student Attendance Report for Billing",
    "link_count": 0,
@@ -287,9 +249,37 @@
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reports",
+   "link_count": 2,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Student Attendance Report",
+   "link_count": 0,
+   "link_to": "Student Attendance Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Student Attendance Report for Billing",
+   "link_count": 0,
+   "link_to": "Student Attendance Report for Billing",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2024-01-23 16:27:55.034580",
+ "modified": "2024-01-24 16:00:24.229061",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Academics",
