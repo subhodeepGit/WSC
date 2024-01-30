@@ -5,10 +5,13 @@
 import frappe 
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
+from frappe import msgprint, _
+from wsc.wsc.notification.custom_notification import placement_tool_mail
 
 class PlacementTool(Document):
     def validate(self):
-        pass
+        if(self.docstatus == 1):
+            placement_tool_mail(self)
     def on_submit(self):
         for d in self.get('student_list'):
             frappe.set_value('Placement Drive Application', d.ref_no, 'status', d.shortlisting_status)
