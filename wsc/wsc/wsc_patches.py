@@ -13,6 +13,7 @@ def execute():
     addi_sal_ret_bon()
     progarm_enrollment_sql_update()
     changing_msg_for_tax_withholding_category()
+    change_error_msg_stock_entry()
 
 def execute_security_patches():
     # upload_malicious_pdf()
@@ -46,7 +47,7 @@ def progarm_enrollment_sql_update():	#  wsc.wsc.wsc_patches.progarm_enrollment_s
         file.write(content)
         print("education/education/education/doctype/program_enrollment/program_enrollment.py remove line.")
         
-def changing_msg_for_tax_withholding_category():	#  wsc.wsc.wsc_patches.progarm_enrollment_sql_update
+def changing_msg_for_tax_withholding_category():
     file_path = "{}/{}".format(BENCH_PATH,"/apps/erpnext/erpnext/accounts/doctype/tax_withholding_category/tax_withholding_category.py")
     
     with open(file_path, 'r') as file:
@@ -61,6 +62,25 @@ def changing_msg_for_tax_withholding_category():	#  wsc.wsc.wsc_patches.progarm_
     with open(file_path, 'w') as file:
         file.write(content)
         print("Tax withholding category msg changed")
+        
+def change_error_msg_stock_entry():
+    file_path = "{}/{}".format(BENCH_PATH,"apps/erpnext/erpnext/stock/doctype/stock_entry/stock_entry.py")
+    
+    with open(file_path, 'r') as file:
+        content = file.read()
+
+    content = content.replace('''frappe.throw(_("Target warehouse is mandatory for row {0}").format(d.idx))''', '''frappe.throw(_("Target Store is mandatory for row {0}").format(d.idx))''')
+    content = content.replace('''frappe.throw(_("Source warehouse is mandatory for row {0}").format(d.idx))''','''frappe.throw(_("Source Store is mandatory for row {0}").format(d.idx))''')
+    content = content.replace('''frappe.throw(_("Source and target warehouse cannot be same for row {0}").format(d.idx))''', '''frappe.throw(_("Source and target Store cannot be same for row {0}").format(d.idx))''')
+    content = content.replace('''frappe.throw(_("Atleast one warehouse is mandatory"))''', '''frappe.throw(_("Atleast one Store is mandatory"))''')
+
+    with open(file_path) as f:
+        if '''frappe.throw(_("Target Store is mandatory for row {0}").format(d.idx))''' in f.read():
+            return
+
+    with open(file_path, 'w') as file:
+        file.write(content)
+        print("Stock entry line changed.")
 
 
 def comment_line_FormSidebar_html():        #  wsc.wsc.wsc_patches.comment_line_FormSidebar_html
