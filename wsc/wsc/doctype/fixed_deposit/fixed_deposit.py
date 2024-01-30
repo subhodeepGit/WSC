@@ -92,8 +92,10 @@ def je_pay(self):
 @frappe.whitelist()
 def calculate_fd(fd_amount=None, interest_rate=None, interest_payable=None,interest_type=None,days=None,
                     weeks=None,months=None,quarterly=None,semi_annually=None,annually=None):
-    fd_amount=float(fd_amount)
-    interest_rate=float(interest_rate)
+    if fd_amount:
+        fd_amount=float(fd_amount)
+    if interest_rate:
+        interest_rate=float(interest_rate)
     if days:
         days=int(days)
     if weeks:  
@@ -106,7 +108,6 @@ def calculate_fd(fd_amount=None, interest_rate=None, interest_payable=None,inter
         semi_annually=int(semi_annually)
     if annually:    
         annually=int(annually)
-
     maturity_amount=[]
     if interest_type=="Simple":
         interest_rate = interest_rate / 100  # Convert percentage to decimal
@@ -155,7 +156,7 @@ def calculate_fd(fd_amount=None, interest_rate=None, interest_payable=None,inter
             maturity_amount = calculate_compound_interest(fd_amount,interest_rate,time,interest_payable)                           
         fd_amount=0
         for t in maturity_amount:
-            fd_amount=t['total']    
+            fd_amount=t['total']     
         return {"maturity_amount":maturity_amount,"grand_maturity_amount":fd_amount}    
 
 
