@@ -86,8 +86,8 @@ class ClassSchedulingTool(Document):
 		"""Validates if Course Start Date is greater than Course End Date"""
 		if self.course_start_date > self.course_end_date:
 			frappe.throw(_("Course Start Date cannot be greater than Course End Date."))
-		# if self.course_start_date == self.course_end_date:
-		# 	frappe.throw(_("If you are scheduling the class for only one day then please do it through Class Schedule Screen"))
+		if self.course_start_date == self.course_end_date:
+			frappe.throw(_("If you are scheduling the class for only one day then please do it through Class Schedule Screen"))
 			"""Validates if from_time is greater than to_time"""
 		if	parser.parse(str(self.from_time)) >= parser.parse(str(self.to_time)):
 					frappe.throw(_("From Time cannot be greater than or equal to To Time."))
@@ -122,6 +122,10 @@ class ClassSchedulingTool(Document):
 		course_schedule.course = self.course
 		course_schedule.instructor = self.instructor
 		course_schedule.instructor_name = self.instructor_name
+		course_schedule.additional_trainer_1 = self.additional_trainer_1
+		course_schedule.additional_trainer_1_name = self.additional_trainer_1_name
+		course_schedule.additional_trainer_2 = self.additional_trainer_2
+		course_schedule.additional_trainer_2_name = self.additional_trainer_2_name
 		course_schedule.room = self.room
 		course_schedule.academic_year=self.academic_year
 		course_schedule.academic_term=self.academic_term

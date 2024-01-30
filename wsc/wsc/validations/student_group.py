@@ -279,9 +279,6 @@ def get_student_based_on_exam_declaration(**args):
     return student_list
 
 def get_program_enrollment(academic_year, academic_term=None, program=None, batch=None, student_category=None, course=None, class_name = None):
-    print('\n\n\n\n')
-    print(class_name)
-    print('\n\n\n\n')
     condition1 = " "
     condition2 = " "
     if academic_term:

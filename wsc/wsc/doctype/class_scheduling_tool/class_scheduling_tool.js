@@ -247,7 +247,7 @@ frappe.ui.form.on("Additional Instructor", "instructor", function(frm, cdt, cdn)
         d.instructor=''
     }
 
-    if (d.instructor){
+    if ((d.idx==1)){
         frappe.call({
             method: "wsc.wsc.doctype.class_scheduling_tool.class_scheduling_tool.get_trainer_list",
             args: {
@@ -262,6 +262,50 @@ frappe.ui.form.on("Additional Instructor", "instructor", function(frm, cdt, cdn)
                     frappe.model.set_value(cdt, cdn, "instructor_name", r.message['instructor_name']);
                 }
                 if (r.message && frm.doc.instructor){
+                    console.log(r.message);
+                    frappe.model.set_value(cdt, cdn, "instructor", r.message['name']);
+                    frappe.model.set_value(cdt, cdn, "instructor_name", r.message['instructor_name']);
+                }
+            } 
+        }); 
+    }
+	if (d.idx==2){
+        frappe.call({
+            method: "wsc.wsc.doctype.class_scheduling_tool.class_scheduling_tool.get_trainer_list",
+            args: {
+                instructor:d.instructor,
+            },
+            callback: function(r) { 
+                if (r.message && frm.doc.additional_trainer_1==undefined){
+                    console.log(r.message);
+                        frm.set_value("additional_trainer_1",r.message['name'])
+                        frm.set_value("additional_trainer_1_name",r.message['instructor_name'])
+                    frappe.model.set_value(cdt, cdn, "instructor", r.message['name']);
+                    frappe.model.set_value(cdt, cdn, "instructor_name", r.message['instructor_name']);
+                }
+                if (r.message && frm.doc.additional_trainer_1){
+                    console.log(r.message);
+                    frappe.model.set_value(cdt, cdn, "instructor", r.message['name']);
+                    frappe.model.set_value(cdt, cdn, "instructor_name", r.message['instructor_name']);
+                }
+            } 
+        }); 
+    }
+    if (d.idx==3){
+        frappe.call({
+            method: "wsc.wsc.doctype.class_scheduling_tool.class_scheduling_tool.get_trainer_list",
+            args: {
+                instructor:d.instructor,
+            },
+            callback: function(r) { 
+                if (r.message && frm.doc.additional_trainer_2==undefined){
+                    console.log(r.message);
+                        frm.set_value("additional_trainer_2",r.message['name'])
+                        frm.set_value("additional_trainer_2_name",r.message['instructor_name'])
+                    frappe.model.set_value(cdt, cdn, "instructor", r.message['name']);
+                    frappe.model.set_value(cdt, cdn, "instructor_name", r.message['instructor_name']);
+                }
+                if (r.message && frm.doc.additional_trainer_2){
                     console.log(r.message);
                     frappe.model.set_value(cdt, cdn, "instructor", r.message['name']);
                     frappe.model.set_value(cdt, cdn, "instructor_name", r.message['instructor_name']);
