@@ -88,8 +88,11 @@ frappe.ui.form.on('Fixed Deposit', {
 	},
 	fd_number:function(frm){
 		var accountNumberPattern = /^\d+$/;
-		if (!accountNumberPattern.test(frm.doc.fd_number)) {
+		if (!accountNumberPattern.test(frm.doc.fd_number) && frm.doc.fd_number!="") {
+			frm.set_value('fd_number',"");
+			// frm.refresh_field("fd_number")
 			frappe.throw(__("FD Number should contain only digits."));
+
 			return;
 		}
 	},
