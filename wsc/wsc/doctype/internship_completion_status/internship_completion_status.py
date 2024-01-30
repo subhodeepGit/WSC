@@ -4,9 +4,13 @@
 import frappe 
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
+from frappe import msgprint, _
+from wsc.wsc.notification.custom_notification import internship_completion_status_mail
 
 class InternshipCompletionstatus(Document):
-	pass
+	def validate(self):
+		if(self.docstatus == 1):
+			internship_completion_status_mail(self)
 
 @frappe.whitelist()
 def get_internship_name(internship_id):

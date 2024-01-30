@@ -4,25 +4,14 @@
 import frappe 
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
+from frappe import msgprint, _
+from wsc.wsc.notification.custom_notification import participant_registration_mail
 
 class ParticipantRegistration(Document):
+
 	def validate(self):
-		# super(ParticipantRegistration, self).validate()
-		# self.validate_user_field()
-		pass
-	# def validate_user_field(self):
-	# 	current_user = frappe.session.user
-	# 	self.set_user_field_filter(current_user)
-	# def set_user_field_filter(self, current_user):
-	# 	user_field_name = "participant_id"
-	# 	self.set_link_field_query(user_field_name, current_user)
-	# def set_link_field_query(self, participant_id, current_user):
-	# 	query = """
-	# 		SELECT `tabUser`.`name`
-	# 		FROM `tabUser`
-	# 		WHERE `tabUser`.`name` = '{0}'
-	# 	""".format(current_user)
-	# 	self.set(participant_id, "options", query)
+		if(self.docstatus == 1):
+			participant_registration_mail(self)
 
 @frappe.whitelist()
 def get_program_name(program_id = None):
