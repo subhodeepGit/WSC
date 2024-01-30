@@ -7,6 +7,7 @@ from frappe.model.document import Document
 
 class Land(Document):
     def validate(self):
+        validate_email(self)
         dateValidate(self)
         phone(self)
         pincode(self)
@@ -77,3 +78,8 @@ def phone(self):
 #     if self.land_valuation:
 #         if  not (self.land_valuation).isdigit():
 #             frappe.throw("Field <b>Land Valuation</b> Accept Digits Only") 
+
+def validate_email(self):
+    if self.email:
+        if not re.match(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', self.email):
+            frappe.throw("<b>{0}</b> is invalid email address. Please enter a valid email address.".format(self.email))
