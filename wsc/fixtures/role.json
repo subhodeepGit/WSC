@@ -1885,7 +1885,7 @@
   "restrict_to_domain": null,
   "role_name": "Director",
   "search_bar": 1,
-  "timeline": 1,
+  "timeline": 0,
   "two_factor_auth": 0,
   "view_switcher": 1
  },
@@ -2263,7 +2263,7 @@
   "restrict_to_domain": null,
   "role_name": "HR Manager/CS Officer",
   "search_bar": 1,
-  "timeline": 1,
+  "timeline": 0,
   "two_factor_auth": 0,
   "view_switcher": 1
  },
