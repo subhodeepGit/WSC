@@ -78,8 +78,8 @@ class StudentApplicant(Document):
         if len(student)>1:
             frappe.throw(_("Cannot change status as student {0} is linked with student application {1}").format(student[0].name, doc.name))
     def validate(doc):
-        current_date = today()
-        if doc.date_of_birth >= current_date:
+        # current_date = today()
+        if doc.date_of_birth >= doc.application_date:
             frappe.throw("Date of birth should not be today's date or future date")
         validate_edu_details(doc)
         # doc.title = " ".join(

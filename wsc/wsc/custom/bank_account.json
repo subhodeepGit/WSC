@@ -1,0 +1,32 @@
+{
+ "custom_fields": [],
+ "custom_perms": [],
+ "doctype": "Bank Account",
+ "links": [],
+ "property_setters": [
+  {
+   "_assign": null,
+   "_comments": null,
+   "_liked_by": null,
+   "_user_tags": null,
+   "creation": "2024-01-29 16:41:35.329537",
+   "default_value": null,
+   "doc_type": "Bank Account",
+   "docstatus": 0,
+   "doctype_or_field": "DocField",
+   "field_name": "is_default",
+   "idx": 0,
+   "is_system_generated": 0,
+   "modified": "2024-01-29 16:41:35.329537",
+   "modified_by": "Administrator",
+   "module": null,
+   "name": "Bank Account-is_default-hidden",
+   "owner": "Administrator",
+   "property": "hidden",
+   "property_type": "Check",
+   "row_name": null,
+   "value": "1"
+  }
+ ],
+ "sync_on_migrate": 1
+}
