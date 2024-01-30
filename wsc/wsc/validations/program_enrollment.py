@@ -58,7 +58,7 @@ def on_cancel(doc,method):
 
 def on_change(doc,method):
     # delete_course_enrollment(doc)
-    create_course_enrollments(doc)
+    # create_course_enrollments(doc)
     applicant_enroll_status(doc)
     onlinepayrole(doc)
     # update_reserved_seats(doc)
