@@ -117,9 +117,6 @@ class StudentApplicant(Document):
         duplicate_row_validation(doc, "siblings", ['full_name', 'gender'])
         validate_pincode(doc)
 
-    def after_insert(doc):
-        user_per(doc) 
-
     def on_submit(self):
         from datetime import datetime
 
@@ -329,6 +326,7 @@ def validate_pin_code(doc):
 #                     frappe.throw("Please correct option for Percentage/CGPA for row no .<b>{0}</b> in Education Qualifications Details.".format(eqd.idx))
 
 def on_update(doc,method):
+    user_per(doc)
     delete_user_permission(doc)
     if doc.docstatus==1:
         count = 0
@@ -907,18 +905,19 @@ def check_int(pin_code):
     return re.match(r"[-+]?\d+(\.0*)?$", pin_code) is not None
 
 def user_per(doc):
-    data = [{"Doctype":"Entrance Exam Admit Card"},{"Doctype":"Rank Card"},{"Doctype":"Reporting Desk"}]
-    for t in data:
-        frappe.get_doc(
-            {
-                "doctype": "User Permission",
-                "user": doc.student_email_id,
-                "allow": "Student Applicant",
-                "for_value": doc.name,
-                "apply_to_all_doctypes":0,
-                "applicable_for":t["Doctype"],
-            }
-        ).save(ignore_permissions=True)
+    if doc.application_status == "Approved":
+        data = [{"Doctype":"Entrance Exam Admit Card"},{"Doctype":"Rank Card"},{"Doctype":"Reporting Desk"}]
+        for t in data:
+            frappe.get_doc(
+                {
+                    "doctype": "User Permission",
+                    "user": doc.student_email_id,
+                    "allow": "Student Applicant",
+                    "for_value": doc.name,
+                    "apply_to_all_doctypes":0,
+                    "applicable_for":t["Doctype"],
+                }
+            ).save(ignore_permissions=True)
 
 # def validate_counselling_structure(doc):
 #     if doc.counselling_structure:
