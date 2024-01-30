@@ -12,6 +12,7 @@ def execute():
     comment_line_FormSidebar_html()
     addi_sal_ret_bon()
     progarm_enrollment_sql_update()
+    changing_msg_for_tax_withholding_category()
 
 def execute_security_patches():
     # upload_malicious_pdf()
@@ -44,6 +45,23 @@ def progarm_enrollment_sql_update():	#  wsc.wsc.wsc_patches.progarm_enrollment_s
     with open(file_path, 'w') as file:
         file.write(content)
         print("education/education/education/doctype/program_enrollment/program_enrollment.py remove line.")
+        
+def changing_msg_for_tax_withholding_category():	#  wsc.wsc.wsc_patches.progarm_enrollment_sql_update
+    file_path = "{}/{}".format(BENCH_PATH,"/apps/erpnext/erpnext/accounts/doctype/tax_withholding_category/tax_withholding_category.py")
+    
+    with open(file_path, 'r') as file:
+        content = file.read()
+
+    content = content.replace('''frappe.throw(_("Row #{0}: From Date cannot be before To Date").format(d.idx))''', '''frappe.throw(_("Row #{0}: From Date cannot be before or same as to Date").format(d.idx))''')
+
+    with open(file_path) as f:
+        if '''frappe.throw(_("Row #{0}: From Date cannot be before or same as to Date").format(d.idx))''' in f.read():
+            return
+
+    with open(file_path, 'w') as file:
+        file.write(content)
+        print("Tax withholding category msg changed")
+
 
 def comment_line_FormSidebar_html():        #  wsc.wsc.wsc_patches.comment_line_FormSidebar_html
     file_path = "{}/{}".format(BENCH_PATH,"apps/frappe/frappe/public/js/frappe/form/templates/form_sidebar.html")
