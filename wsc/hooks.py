@@ -84,7 +84,8 @@ doctype_js = {
                 "Project":"public/js/project.js",
                 "Supplier Quotation":"public/js/supplier_quotation.js",
                 "Stock Entry":"public/js/stock_entry.js",
-                "Topic":"public/js/topic.js"
+                "Topic":"public/js/topic.js",
+                "Contract":"public/js/contract.js"
             }
 # calendars = ["Placement Drive Calendar",]
 doctype_list_js = {
@@ -118,7 +119,8 @@ doctype_list_js = {
     "Employee Appraisal Evaluation Template":"public/js/employee_appraisal_evalaution_template_list.js",
     "Dimenssions for Appraisal":"public/js/dimenssions_for_appraisal_list.js",
     "Appraisal":"public/js/appraisal_list.js",
-    "Staffing Plan":"public/js/staffing_plan.js"
+    "Staffing Plan":"public/js/staffing_plan.js",
+    "Bank":"public/js/bank_list.js"
 }
 
 doctype_tree_js = {"doctype" : "public/js/tax_category_tree.js"}
@@ -611,8 +613,7 @@ override_whitelisted_methods = {
 	"education.education.doctype.fee_structure.fee_structure.make_fee_schedule":"wsc.wsc.doctype.fee_structure.make_fee_schedule",
     "education.education.doctype.student_attendance_tool.student_attendance_tool.get_student_attendance_records":"wsc.wsc.doctype.student_attendance.get_student_attendance_records",
     # "frappe.core.doctype.data_import.data_import.download_template":"wsc.wsc.doctype.data_import.download_template"
-	"erpnext.accounts.doctype.bank_reconciliation_tool.bank_reconciliation_tool.auto_reconcile_vouchers":"wsc.wsc.validations.bank_reconciliation_tool.auto_reconcile_vouchers",
-    "education.education.doctype.program_enrollment.program_enrollment.get_program_courses":"wsc.wsc.doctype.program_enrollment.get_program_courses"
+	"erpnext.accounts.doctype.bank_reconciliation_tool.bank_reconciliation_tool.auto_reconcile_vouchers":"wsc.wsc.validations.bank_reconciliation_tool.auto_reconcile_vouchers"
 }
 override_doctype_class = {
     "Course Schedule":"wsc.wsc.doctype.course_schedule.CourseSchedule",
