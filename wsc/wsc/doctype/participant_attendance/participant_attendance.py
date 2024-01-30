@@ -4,9 +4,13 @@
 import frappe 
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
+from frappe import msgprint, _
+from wsc.wsc.notification.custom_notification import participant_attendance_mail
 
 class ParticipantAttendance(Document):
 	def validate(self):
+		if(self.docstatus == 1):
+			participant_attendance_mail(self)
 		if self.is_new():
 			data=frappe.get_all("Participant Attendance",{"select_event":self.select_event, "docstatus":1})
 			if data:
