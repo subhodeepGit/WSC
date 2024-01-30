@@ -52,10 +52,10 @@ def changing_msg_for_tax_withholding_category():	#  wsc.wsc.wsc_patches.progarm_
     with open(file_path, 'r') as file:
         content = file.read()
 
-    content = content.replace('''frappe.throw(_("Row #{0}: From Date cannot be before To Date").format(d.idx))''', '''frappe.throw(_("Row #{0}: From Date cannot be before or same as to Date").format(d.idx))''')
+    content = content.replace('''frappe.throw(_("Row #{0}: From Date cannot be before To Date").format(d.idx))''', '''frappe.throw(_("Row #{0}: From Date cannot be after or same as to Date").format(d.idx))''')
 
     with open(file_path) as f:
-        if '''frappe.throw(_("Row #{0}: From Date cannot be before or same as to Date").format(d.idx))''' in f.read():
+        if '''frappe.throw(_("Row #{0}: From Date cannot be after or same as to Date").format(d.idx))''' in f.read():
             return
 
     with open(file_path, 'w') as file:

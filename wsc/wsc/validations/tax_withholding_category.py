@@ -15,7 +15,3 @@ def validate(doc, method):
         if cd.cumulative_threshold:
            if cd.cumulative_threshold <= 0:
                frappe.throw("<b>Cummulative Threshold</b> cannot be zero or negative number")
-
-    for cd in doc.rates:
-           if cd.from_date <= cd.to_date:
-               frappe.throw("<b>From date</b> cannot be equal or before <b>To date</b>")
