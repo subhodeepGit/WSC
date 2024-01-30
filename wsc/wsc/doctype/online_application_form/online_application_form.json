@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "autoname": "naming_series:",
  "creation": "2024-01-15 12:10:04.467084",
  "default_view": "List",
@@ -96,7 +97,7 @@
   },
   {
    "allow_on_submit": 1,
-   "default": "2024-25",
+   "default": "2023-24",
    "fieldname": "academic_year",
    "fieldtype": "Link",
    "label": "Academic Year",
@@ -104,7 +105,7 @@
   },
   {
    "allow_on_submit": 1,
-   "default": "2024-25 (SEMESTER 1)",
+   "default": "2023-24 (SEMESTER 1)",
    "fieldname": "academic_term",
    "fieldtype": "Link",
    "label": "Academic Term",
@@ -115,8 +116,7 @@
    "fieldname": "category",
    "fieldtype": "Link",
    "label": "Student Category",
-   "options": "Category",
-   "read_only": 1
+   "options": "Category"
   },
   {
    "allow_on_submit": 1,
@@ -401,13 +401,32 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-18 18:11:49.986928",
+ "modified": "2024-01-30 09:10:50.129445",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Online Application Form",
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
- "permissions": [],
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "set_user_permissions": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],

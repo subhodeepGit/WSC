@@ -4,6 +4,7 @@
 from pydoc import doc
 import frappe
 from frappe.model.document import Document
+from frappe.model.mapper import get_mapped_doc
 from frappe.utils.data import today
 
 class OnlineApplicationForm(Document):
@@ -11,7 +12,7 @@ class OnlineApplicationForm(Document):
 		concat_name(doc)
 		validate_edu_details(doc)
 		validate_duplicate_record(doc)
-		validate_dob(doc)
+		# validate_dob(doc)
 		validate_pin_code(doc)
 		validate_mobile_no(doc)
 		validate_adharcard(doc)
@@ -22,7 +23,7 @@ class OnlineApplicationForm(Document):
 		get_cateogry_detail(doc)
 	def validate(doc):
 		validate_duplicate_record(doc)
-		validate_dob(doc)
+		# validate_dob(doc)
 		validate_pin_code(doc)
 		validate_mobile_no(doc)
 		validate_adharcard(doc)
@@ -32,6 +33,7 @@ class OnlineApplicationForm(Document):
 		validate_edu_details(doc)
 		get_cateogry_detail(doc)
 	def on_submit(doc):
+		real_applicant(doc)
 		concat_name(doc)
 		frappe.db.set_value(
 				"Online Application Form", doc.name,"declaration", 
@@ -69,9 +71,9 @@ def validate_duplicate_record(doc):
 		if duplicateForm:
 			frappe.throw(("Student Applicant is already Filled the form for this Academic Term."))
 def validate_dob(doc):
-	current_date = today()
+	# current_date = today()
 	if doc.date_of_birth:
-		if doc.date_of_birth >= current_date:
+		if doc.date_of_birth >= doc.application_date:
 			frappe.throw("Date of birth should not be today's date or future date")
 
 def validate_pin_code(doc):
@@ -217,3 +219,33 @@ def get_admission_and_semester_by_program(programs,program_grade,academic_year):
 def get_validate_course(doctype, txt, searchfield, start, page_len, filters):
 	x = frappe.db.sql(""" Select admission_program from `tabStudent Admission` where department='{0}' and program_grade='{1}' and academic_term='{2}'and applicable_for_all_gender=1 OR gender = '{3}' """.format(filters.get("department"),filters.get("program_grade"),filters.get("academic_term"),filters.get("gender")),dict(txt="%{}%".format(txt)))
 	return x
+
+def real_applicant(doc):	
+	if doc.docstatus==1:
+		student_app = frappe.get_list("Student Applicant",  filters= {"student_application_id": doc.name})
+		if len(student_app)==0 and doc.docstatus==1:
+			student_app = get_mapped_doc("Online Application Form", doc.name,
+				{
+				"Online Application Form": {
+					"doctype": "Student Applicant",
+					"field_map": {
+						"name": "student_application_id"
+					}
+				},
+				"Education Qualifications Details": {
+					"doctype": "Education Qualifications Details"
+				},
+				# "Education Qualifications Details": {
+				#     "doctype": "Education Qualifications Details"
+				# },
+				# Education Qualifications Details
+				# "Document List": {
+				# 	"doctype": "Document List"
+				# }
+			}, ignore_permissions=True)
+			student_app.save()
+			# student=frappe.get_doc("Student",student)
+			# student_app.student_category_1=doc.category
+			# student_app.block=doc.blocks
+			# student_app.district=doc.districts
+			# student_app.save()
