@@ -96,7 +96,7 @@ frappe.ui.form.on('Student Applicant', {
 	        return{
 	            filters:{
 	                "is_group":0,
-	                // "is_stream": 0
+	                "is_stream": 1
 	            }
 	        }
 	    });
@@ -173,6 +173,7 @@ frappe.ui.form.on('Student Applicant', {
     },
     after_save:function(frm){
         frm.set_df_property('image', 'reqd', 1);
+        // frm.set_df_property('blood_group', 'reqd', 1);
     },
     review_student: function(frm) {
 		frappe.model.open_mapped_doc({
@@ -722,7 +723,7 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
     frm.set_value("counselling_structure",'')
     // frm.set_value("program",'')
     if (!frm.doc.program_grade){
-        frappe.msgprint("Please Fill Program Grade First")
+        frappe.msgprint("Please Fill Course Type First")
         d.programs=''
     }
     if (!frm.doc.academic_year){
@@ -730,7 +731,7 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
         d.programs=''
     }
     if (!frm.doc.student_category){
-        frappe.msgprint("Please Fill Student First")
+        frappe.msgprint("Please Fill Caste Category")
         d.programs=''
     }
 

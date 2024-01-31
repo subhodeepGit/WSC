@@ -38,7 +38,6 @@
    "options": "RC-.YYYY.-"
   },
   {
-   "fetch_from": "student.naming_series",
    "fieldname": "allotment_number",
    "fieldtype": "Link",
    "in_standard_filter": 1,
@@ -168,7 +167,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-24 17:52:04.475556",
+ "modified": "2024-01-30 14:33:06.129888",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Room Change",
