@@ -163,7 +163,6 @@
    "fieldtype": "Table",
    "label": "Interest Calculation",
    "options": "Fixed Deposit Interest",
-   "read_only": 1,
    "reqd": 1
   },
   {
@@ -302,7 +301,7 @@
    "link_fieldname": "fixed_deposit"
   }
  ],
- "modified": "2023-12-19 14:51:17.703159",
+ "modified": "2024-01-30 16:12:06.605170",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Fixed Deposit",
