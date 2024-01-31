@@ -137,7 +137,7 @@ after_migrate = [
         'wsc.patches.migrate_patch.add_roles',
         'wsc.patches.migrate_patch.set_custom_role_permission',
         'wsc.wsc.delete_doc_if_linked.execute',
-        'wsc.patches.migrate_patch.set_custom_role_permission_remove_duplicate',
+        # 'wsc.patches.migrate_patch.set_custom_role_permission_remove_duplicate',
         'wsc.patches.create_all_tax_category.execute',
         'wsc.wsc.wsc_patches.execute',
         # 'wsc.wsc.wsc_patches.execute_security_patches'
@@ -737,6 +737,11 @@ override_doctype_dashboards = {
 #             "source_text", "in", ["Department Email ID"]
 #         ]
     # ]}
+#     {"dt":"Property Setter","filters": [
+#         [
+#             "name","in",["Supplier Quotation-conversion_rate-conversion_rate","Supplier Quotation-plc_conversion_rate-hidden"]
+#         ]
+#     ]}
 #  ]
 website_context = {
     "favicon": "/assets/wsc/images/wsc.png",
