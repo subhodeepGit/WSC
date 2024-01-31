@@ -2,12 +2,9 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Online Application Form', {
-	
+
 	districts:function(frm){
         frm.set_value("blocks","")
-    },
-	gender:function(frm){
-        frm.set_value("program_priority","")
     },
 	setup: function(frm) {
         console.log(frm.doc);
@@ -29,9 +26,9 @@ frappe.ui.form.on('Online Application Form', {
             };
         });
 	},
-	// after_save:function(frm){
-    //     frm.set_df_property('image', 'reqd', 1);
-    // },
+	after_save:function(frm){
+        frm.set_df_property('image', 'reqd', 1);
+    },
     go_to_top:function(frm){
         window.scrollTo(0, 0);
     },
@@ -56,9 +53,7 @@ frappe.ui.form.on('Online Application Form', {
 				}
 			})
 		},
-	student_category(frm){
-		frm.trigger("get_education_and_document_list");
-	},
+
 	//Previously Used
 	// category: function(frm) {
     //     // frappe.call({
@@ -89,11 +84,40 @@ frappe.ui.form.on('Online Application Form', {
 		var field_value = frm.doc[fieldname];
 		frm.set_value(fieldname, field_value.toUpperCase());
 	},
+	program_grade(frm){
+        frm.set_value("program_priority",[]);    
+    },
+	department(frm){
+        frm.set_value("program_priority",[]);    
+		frm.set_value("program_grade","")
+    },
+	academic_term(frm){
+        frm.set_value("program_priority",[]);    
+    },
+	student_category(frm){
+        frm.set_value("program_priority",[]);  
+		frm.trigger("get_education_and_document_list");  
+    },
+	gender(frm){
+        frm.set_value("program_priority",[]);  
+		frm.set_value("program_priority","")
+		frm.trigger("get_education_and_document_list");  
+    },
 	refresh:function(frm){
-		
+		if (frm.doc.application_status==="Applied" && frm.doc.docstatus===1 ) {
+			frm.add_custom_button(__("Approve"), function() {
+				frm.set_value("application_status", "Approved");
+				frm.save_or_update();
+
+			}, 'Actions');
+
+			frm.add_custom_button(__("Not Approve"), function() {
+				frm.set_value("application_status", "Not Approved");
+				frm.save_or_update();
+			}, 'Actions');           
+		}
 		frm.set_df_property('education_qualifications_details', 'cannot_add_rows', true);
-        // frm.set_df_property('education_qualifications_details', 'cannot_delete_rows', true);
-		frm.set_df_property('document_list', 'cannot_delete_rows', true);
+        frm.set_df_property('education_qualifications_details', 'cannot_delete_rows', true);
 		frm.add_custom_button("Instruction", () => {
 			frappe.new_doc("Application Form Instruction")
 		});
@@ -121,6 +145,14 @@ frappe.ui.form.on('Online Application Form', {
 				}
 			}
 		}
+		frm.set_query("department", function(){
+	        return{
+	            filters:{
+	                "is_group":0,
+	                "is_stream": 1
+	            }
+	        }
+	    });
 	},
 	get_education_and_document_list(frm){
 		frm.set_value("education_qualifications_details",[]);
@@ -207,9 +239,12 @@ frappe.ui.form.on("Program Priority" , {
 
 frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
     var d = locals[cdt][cdn];
-
     if(d.programs.length === 0){
         console.log(d);
+    }
+	if (!frm.doc.department){
+        frappe.msgprint("Please Fill Department First")
+        d.programs=''
     }
     if (!frm.doc.program_grade){
         frappe.msgprint("Please Fill Course Type First")
@@ -220,7 +255,7 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
         d.programs=''
     }
     if (!frm.doc.student_category){
-        frappe.msgprint("Please Fill Student First")
+        frappe.msgprint("Please Fill Caste Category First")
         d.programs=''
     }
 	if (!frm.doc.gender){
