@@ -4,9 +4,12 @@
 import frappe 
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
+from frappe import msgprint, _
+from wsc.wsc.notification.custom_notification import event_feedback_mail
 
 class Eventfeedback(Document):
-	pass
+	def validate(self):
+		event_feedback_mail(self)
 
 # @frappe.whitelist()
 # def get_participant_name(participant_id, participant_type):

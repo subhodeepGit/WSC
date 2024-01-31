@@ -4,9 +4,13 @@
 import frappe 
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
+from frappe import msgprint, _
+from wsc.wsc.notification.custom_notification import internship_final_list_declaration_mail
 
 class InternshipFinalListDeclaration(Document):
 	def validate(self):
+		if(self.docstatus == 1):
+			internship_final_list_declaration_mail(self)
 		if self.is_new():
 			if frappe.get_all("Internship Final List Declaration",{"select_internship":self.select_internship,"docstatus":1}):
 				frappe.throw("Internship Final List Declaration Already Exist For This Internship Drive")
