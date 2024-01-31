@@ -543,9 +543,10 @@ doc_events = {
     },
     "Salary Component": {
         "validate": "wsc.wsc.doctype.salary_component.validate"
+    },
+    "Budget": {
+        "validate": "wsc.wsc.validations.budget.validate"
     }
-    
-    
 
     # "User":{
     #     "validate":"wsc.wsc.validations.user.validate",
