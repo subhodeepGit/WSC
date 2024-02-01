@@ -42,7 +42,7 @@ def get_columns():
 			"width":200
 		},
 		{
-			"label": _("Total No of Student"),
+			"label": _("Total No of Student Alloted"),
 			"fieldname": "total_no_of_student",
 			"fieldtype": "Data",
 			"width":200
