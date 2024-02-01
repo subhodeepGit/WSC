@@ -543,9 +543,13 @@ doc_events = {
     },
     "Salary Component": {
         "validate": "wsc.wsc.doctype.salary_component.validate"
+    },
+    "Budget": {
+        "validate": "wsc.wsc.validations.budget.validate"
+    },
+    "Monthly Distribution": {
+        "validate": "wsc.wsc.validations.monthly_distribution.validate"
     }
-    
-    
 
     # "User":{
     #     "validate":"wsc.wsc.validations.user.validate",
@@ -654,7 +658,7 @@ override_doctype_dashboards = {
     "Purchase Receipt":"wsc.wsc.dashboard.purchase_receipt_dashboard.get_data",
     "Purchase Invoice":"wsc.wsc.dashboard.purchase_invoice_dashboard.get_data",
     "Batch":"wsc.wsc.dashboard.batch_dashboard.get_data",
-    # "Asset":"wsc.wsc.dashboard.asset_dashboard.get_data",
+    "Asset":"wsc.wsc.dashboard.asset_dashboard.get_data",
     # "Project":"wsc.wsc.dashboard.project_dashboard.get_data",
     # "Task":"wsc.wsc.dashboard.task_dashboard.get_data",
     # "Employee": "wsc.wsc.dashboard.employee_dashboard.get_data",
@@ -737,6 +741,11 @@ override_doctype_dashboards = {
 #             "source_text", "in", ["Department Email ID"]
 #         ]
     # ]}
+#     {"dt":"Property Setter","filters": [
+#         [
+#             "name","in",["Supplier Quotation-conversion_rate-conversion_rate","Supplier Quotation-plc_conversion_rate-hidden"]
+#         ]
+#     ]}
 #  ]
 website_context = {
     "favicon": "/assets/wsc/images/wsc.png",

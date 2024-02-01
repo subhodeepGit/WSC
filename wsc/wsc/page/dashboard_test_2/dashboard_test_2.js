@@ -92,9 +92,6 @@ MyPage = Class.extend({
 		
 		$(frappe.render_template(frappe.dashboard_test_page.body , this)).appendTo(this.page.main)
 
-		data()
-		// chart()
-		// $(frappe.render_template(body , this)).appendTo(this.page.main)
 	}
 })
 
