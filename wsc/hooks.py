@@ -546,6 +546,9 @@ doc_events = {
     },
     "Budget": {
         "validate": "wsc.wsc.validations.budget.validate"
+    },
+    "Monthly Distribution": {
+        "validate": "wsc.wsc.validations.monthly_distribution.validate"
     }
 
     # "User":{
