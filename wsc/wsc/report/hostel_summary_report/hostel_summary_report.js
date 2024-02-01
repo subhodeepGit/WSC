@@ -10,7 +10,7 @@ frappe.query_reports["Hostel Summary Report"] = {
 			"fieldtype": "Link",
 			"options": "Hostel Masters",
 			"width": 150,
-			// "reqd": 1,
+			"reqd": 1,
 		},
 		// {
 		// 	"fieldname": "as_on_date",
