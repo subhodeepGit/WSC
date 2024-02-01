@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"ehbLnidrEQ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">HRMS (Base)</span>\",\"col\":12}},{\"id\":\"6kbSMS0x-o\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"7oA4tURN2k\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"lvSNzCWTUj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee\",\"col\":3}},{\"id\":\"NOTLb5D5FM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Application\",\"col\":3}},{\"id\":\"D42XsvfVST\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Attendance\",\"col\":3}},{\"id\":\"3YQ5IqWAmj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Resignation\",\"col\":3}},{\"id\":\"_dEDHnFXdv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Profile\",\"col\":3}},{\"id\":\"n7wS9dF_rw\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"iyn7sE_XHL\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Screen Lists<br></b></span>\",\"col\":12}},{\"id\":\"erFDnP6f_D\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"8sv42Z6Q3t\",\"type\":\"card\",\"data\":{\"card_name\":\"Recruitment\",\"col\":4}},{\"id\":\"2i_BoxdRuG\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee Lifecycle\",\"col\":4}},{\"id\":\"qeGIt4tc6b\",\"type\":\"card\",\"data\":{\"card_name\":\"Leave Management\",\"col\":4}},{\"id\":\"EfNHl7nzje\",\"type\":\"card\",\"data\":{\"card_name\":\"Shift Management\",\"col\":4}},{\"id\":\"mDTZ0jsznS\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance Management\",\"col\":4}},{\"id\":\"QYBlGRBbXr\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"id\":\"saVLYRb1hH\",\"type\":\"card\",\"data\":{\"card_name\":\"Appraisal\",\"col\":4}},{\"id\":\"9IVYLHvINn\",\"type\":\"card\",\"data\":{\"card_name\":\"Grievance\",\"col\":4}}]",
+ "content": "[{\"id\":\"ehbLnidrEQ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">HRMS (Base)</span>\",\"col\":12}},{\"id\":\"6kbSMS0x-o\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"7oA4tURN2k\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"lvSNzCWTUj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee\",\"col\":3}},{\"id\":\"NOTLb5D5FM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Application\",\"col\":3}},{\"id\":\"D42XsvfVST\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Attendance\",\"col\":3}},{\"id\":\"3YQ5IqWAmj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Resignation\",\"col\":3}},{\"id\":\"_dEDHnFXdv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Profile\",\"col\":3}},{\"id\":\"Bxs3FNgHLv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Attendance Dashboard\",\"col\":3}},{\"id\":\"TAvhLYI6I0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Human Resource Dashboard\",\"col\":3}},{\"id\":\"n7wS9dF_rw\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"iyn7sE_XHL\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Screen Lists<br></b></span>\",\"col\":12}},{\"id\":\"erFDnP6f_D\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"8sv42Z6Q3t\",\"type\":\"card\",\"data\":{\"card_name\":\"Recruitment\",\"col\":4}},{\"id\":\"2i_BoxdRuG\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee Lifecycle\",\"col\":4}},{\"id\":\"qeGIt4tc6b\",\"type\":\"card\",\"data\":{\"card_name\":\"Leave Management\",\"col\":4}},{\"id\":\"EfNHl7nzje\",\"type\":\"card\",\"data\":{\"card_name\":\"Shift Management\",\"col\":4}},{\"id\":\"mDTZ0jsznS\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance Management\",\"col\":4}},{\"id\":\"QYBlGRBbXr\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"id\":\"saVLYRb1hH\",\"type\":\"card\",\"data\":{\"card_name\":\"Appraisal\",\"col\":4}},{\"id\":\"9IVYLHvINn\",\"type\":\"card\",\"data\":{\"card_name\":\"Grievance\",\"col\":4}}]",
  "creation": "2023-07-20 12:18:37.327573",
  "custom_blocks": [],
  "docstatus": 0,
@@ -635,7 +635,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-01-09 14:30:16.014435",
+ "modified": "2024-02-01 15:57:11.934567",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "HRMS (Base)",
@@ -672,6 +672,20 @@
    "label": "My Profile",
    "link_to": "My Profile",
    "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Human Resource Dashboard",
+   "link_to": "Human Resource",
+   "type": "Dashboard"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Attendance Dashboard",
+   "link_to": "Attendance",
+   "type": "Dashboard"
   },
   {
    "color": "Grey",
