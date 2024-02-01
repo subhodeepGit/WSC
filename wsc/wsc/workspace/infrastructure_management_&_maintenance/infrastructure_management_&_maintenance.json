@@ -170,7 +170,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Report",
-   "link_count": 1,
+   "link_count": 2,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -183,9 +183,19 @@
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Asset Tracking report",
+   "link_count": 0,
+   "link_to": "Asset Tracking report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2024-02-01 16:13:37.337678",
+ "modified": "2024-02-01 18:29:26.353561",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Infrastructure Management & Maintenance",
