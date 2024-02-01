@@ -307,7 +307,7 @@ def get_student(academic_term=None, programs=None,class_data=None,minimum_attend
                 semester=None,exam_category=None,exam_schedule_id=None,course_type=None,assessment_component=None):
     student_list=[]
     if exam_category=="Regular":
-        enrolled_students = get_program_enrollment(academic_term,programs,class_data)
+        enrolled_students = get_program_enrollment(academic_term,programs,class_data,semester)
         
         if enrolled_students:
             student_list=enrolled_students
@@ -372,7 +372,7 @@ def get_student(academic_term=None, programs=None,class_data=None,minimum_attend
 
 
 
-def get_program_enrollment(academic_term,programs=None,class_data=None):
+def get_program_enrollment(academic_term,programs=None,class_data=None,semester=None):
     condition1 = " "
     condition2 = " "
 
@@ -380,6 +380,8 @@ def get_program_enrollment(academic_term,programs=None,class_data=None):
         condition1 += " and pe.programs = %(programs)s"
     if class_data:
         condition1 +=" and pe.school_house = '%s' "%(class_data)
+    if semester:
+        condition1 +=" and pe.program = '%s' "%(semester)
     condition1 +=" and s.enabled =1 "     
     return frappe.db.sql('''
         select
