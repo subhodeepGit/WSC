@@ -16,7 +16,7 @@ class StudentApplicant(Document):
             frappe.throw("Profile Photo is Mandatory")
         roles = frappe.get_roles(frappe.session.user)
     	# if "HR Manager/CS Officer" in roles or "HR Admin" in roles or "Director" in roles or "Admin" in roles or "Administrator" in roles:
-        if doc.docstatus==1 and doc.application_status=="Approved" and "Administrator" not in roles:
+        if doc.docstatus==1 and doc.application_status=="Approved" and "Applicant" in roles:
               # or "Education Admission Head" not in roles)
                   if doc.doc_approved==1:
                       frappe.throw("Unable to Edit the form once the application is Approved")
@@ -79,8 +79,8 @@ class StudentApplicant(Document):
             frappe.throw(_("Cannot change status as student {0} is linked with student application {1}").format(student[0].name, doc.name))
     def validate(doc):
         # current_date = today()
-        if doc.date_of_birth >= doc.application_date:
-            frappe.throw("Date of birth should not be today's date or future date")
+        # if doc.date_of_birth >= doc.application_date:
+        #     frappe.throw("Date of birth should not be today's date or future date")
         validate_edu_details(doc)
         # doc.title = " ".join(
 			# filter(None, [doc.first_name, doc.middle_name, doc.last_name])

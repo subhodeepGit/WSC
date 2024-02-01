@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"I34K0-Span\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h1\\\">Admission</span>\",\"col\":12}},{\"id\":\"Gmqif9FYds\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"ACR SC Men Seat\",\"col\":4}},{\"id\":\"Vpzx3gf95K\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"CWLqDt2BnK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":3}},{\"id\":\"4rnD6h2CmZ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course\",\"col\":3}},{\"id\":\"UK8H2h-3tS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instructor\",\"col\":3}},{\"id\":\"PP-iJn_1gz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student\",\"col\":3}},{\"id\":\"Gb1v3PdGUy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Admission\",\"col\":3}},{\"id\":\"j2gTeWzYvY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Applicant\",\"col\":3}},{\"id\":\"yp_dEg0btu\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"RrzHInDfHG\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Master &amp; Application</span><span class=\\\"h4\\\"><b><br></b></span>\",\"col\":12}},{\"id\":\"VZ4Vh0w5Ai\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"ZfB-R1ZaJN\",\"type\":\"card\",\"data\":{\"card_name\":\"Admission Master\",\"col\":4}},{\"id\":\"k_n6UG5naR\",\"type\":\"card\",\"data\":{\"card_name\":\"Student and Trainer\",\"col\":4}},{\"id\":\"hS7OiYlYTe\",\"type\":\"card\",\"data\":{\"card_name\":\"Counselling\",\"col\":4}},{\"id\":\"YVUIBqB2oj\",\"type\":\"card\",\"data\":{\"card_name\":\"Entrance Exam\",\"col\":4}},{\"id\":\"2riNHbo_Zy\",\"type\":\"card\",\"data\":{\"card_name\":\"Admit Card\",\"col\":4}},{\"id\":\"XjgEcspPRN\",\"type\":\"card\",\"data\":{\"card_name\":\"Rank Card\",\"col\":4}},{\"id\":\"tmUKQynhR3\",\"type\":\"card\",\"data\":{\"card_name\":\"Student Enrollment\",\"col\":4}},{\"id\":\"zt0xuVkL7Q\",\"type\":\"card\",\"data\":{\"card_name\":\"Fees\",\"col\":4}},{\"id\":\"IJQWaM-BCi\",\"type\":\"card\",\"data\":{\"card_name\":\"Tools\",\"col\":4}},{\"id\":\"ZRZh_xsfKN\",\"type\":\"card\",\"data\":{\"card_name\":\"Feedback\",\"col\":4}},{\"id\":\"CPXPxbj4sj\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"f8Z1J7Yvgd\",\"type\":\"card\",\"data\":{\"card_name\":\"Student Identity Card\",\"col\":4}},{\"id\":\"QexmV5-ZSf\",\"type\":\"card\",\"data\":{\"card_name\":\"Scholarships\",\"col\":4}},{\"id\":\"sYQc6AoFny\",\"type\":\"card\",\"data\":{\"card_name\":\"Clearance\",\"col\":4}}]",
+ "content": "[{\"id\":\"I34K0-Span\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h1\\\">Admission</span>\",\"col\":12}},{\"id\":\"Gmqif9FYds\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"ACR SC Men Seat\",\"col\":4}},{\"id\":\"Vpzx3gf95K\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"CWLqDt2BnK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":3}},{\"id\":\"4rnD6h2CmZ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course\",\"col\":3}},{\"id\":\"UK8H2h-3tS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instructor\",\"col\":3}},{\"id\":\"PP-iJn_1gz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student\",\"col\":3}},{\"id\":\"Gb1v3PdGUy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Admission\",\"col\":3}},{\"id\":\"IURsZAKxG6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Online Application Form\",\"col\":3}},{\"id\":\"j2gTeWzYvY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Applicant\",\"col\":3}},{\"id\":\"yp_dEg0btu\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"RrzHInDfHG\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Master &amp; Application</span><span class=\\\"h4\\\"><b><br></b></span>\",\"col\":12}},{\"id\":\"VZ4Vh0w5Ai\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"ZfB-R1ZaJN\",\"type\":\"card\",\"data\":{\"card_name\":\"Admission Master\",\"col\":4}},{\"id\":\"k_n6UG5naR\",\"type\":\"card\",\"data\":{\"card_name\":\"Student and Trainer\",\"col\":4}},{\"id\":\"hS7OiYlYTe\",\"type\":\"card\",\"data\":{\"card_name\":\"Counselling\",\"col\":4}},{\"id\":\"YVUIBqB2oj\",\"type\":\"card\",\"data\":{\"card_name\":\"Entrance Exam\",\"col\":4}},{\"id\":\"2riNHbo_Zy\",\"type\":\"card\",\"data\":{\"card_name\":\"Admit Card\",\"col\":4}},{\"id\":\"XjgEcspPRN\",\"type\":\"card\",\"data\":{\"card_name\":\"Rank Card\",\"col\":4}},{\"id\":\"tmUKQynhR3\",\"type\":\"card\",\"data\":{\"card_name\":\"Student Enrollment\",\"col\":4}},{\"id\":\"zt0xuVkL7Q\",\"type\":\"card\",\"data\":{\"card_name\":\"Fees\",\"col\":4}},{\"id\":\"IJQWaM-BCi\",\"type\":\"card\",\"data\":{\"card_name\":\"Tools\",\"col\":4}},{\"id\":\"ZRZh_xsfKN\",\"type\":\"card\",\"data\":{\"card_name\":\"Feedback\",\"col\":4}},{\"id\":\"CPXPxbj4sj\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"f8Z1J7Yvgd\",\"type\":\"card\",\"data\":{\"card_name\":\"Student Identity Card\",\"col\":4}},{\"id\":\"QexmV5-ZSf\",\"type\":\"card\",\"data\":{\"card_name\":\"Scholarships\",\"col\":4}},{\"id\":\"sYQc6AoFny\",\"type\":\"card\",\"data\":{\"card_name\":\"Clearance\",\"col\":4}}]",
  "creation": "2023-02-15 12:40:14.406775",
  "custom_blocks": [],
  "docstatus": 0,
@@ -12,6 +12,286 @@
  "is_hidden": 0,
  "label": "Admission",
  "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Masters",
+   "link_count": 7,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Department",
+   "link_count": 0,
+   "link_to": "Department",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Course Type",
+   "link_count": 0,
+   "link_to": "Program Grades",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Courses",
+   "link_count": 0,
+   "link_to": "Programs",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Semester",
+   "link_count": 0,
+   "link_to": "Program",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Modules",
+   "link_count": 0,
+   "link_to": "Course",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Topic",
+   "link_count": 0,
+   "link_to": "Topic",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Class Rooms",
+   "link_count": 0,
+   "link_to": "Room",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Admission Master",
+   "link_count": 8,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Academic Year",
+   "link_count": 0,
+   "link_to": "Academic Year",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Academic Term",
+   "link_count": 0,
+   "link_to": "Academic Term",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Academic Events",
+   "link_count": 0,
+   "link_to": "Academic Events",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Academic Calendar Template",
+   "link_count": 0,
+   "link_to": "Academic Calendar Template",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Academic Calender",
+   "link_count": 0,
+   "link_to": "Academic Calender",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Documents",
+   "link_count": 0,
+   "link_to": "Documents",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Document Template",
+   "link_count": 0,
+   "link_to": "Documents Template",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Eligibility Parameters",
+   "link_count": 0,
+   "link_to": "Eligibility Parameters",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Counselling",
+   "link_count": 2,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Counselling Structure",
+   "link_count": 0,
+   "link_to": "Counselling Structure",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reporting Desk",
+   "link_count": 0,
+   "link_to": "Reporting Desk",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Rank Card",
+   "link_count": 3,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Rank Card Master",
+   "link_count": 0,
+   "link_to": "Rank Card Master",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Rank Card Publication Tool",
+   "link_count": 0,
+   "link_to": "Rank Card Publication Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Rank Cards",
+   "link_count": 0,
+   "link_to": "Rank Card",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Enrollment",
+   "link_count": 4,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Admission",
+   "link_count": 0,
+   "link_to": "Student Admission",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Applicant",
+   "link_count": 0,
+   "link_to": "Student Applicant",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Program Enrollment",
+   "link_count": 0,
+   "link_to": "Program Enrollment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Module Enrollment",
+   "link_count": 0,
+   "link_to": "Course Enrollment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
   {
    "hidden": 0,
    "is_query_report": 0,
@@ -387,250 +667,8 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Rank Card",
-   "link_count": 4,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Rank Card Master",
-   "link_count": 0,
-   "link_to": "Rank Card Master",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Rank Card Publication Tool",
-   "link_count": 0,
-   "link_to": "Rank Card Publication Tool",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Rank Cards",
-   "link_count": 0,
-   "link_to": "Rank Card",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Roll No Auto Generation",
-   "link_count": 0,
-   "link_to": "Auto Roll No Generator",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Admission Master",
-   "link_count": 8,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Academic Year",
-   "link_count": 0,
-   "link_to": "Academic Year",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Academic Term",
-   "link_count": 0,
-   "link_to": "Academic Term",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Academic Events",
-   "link_count": 0,
-   "link_to": "Academic Events",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Academic Calendar Template",
-   "link_count": 0,
-   "link_to": "Academic Calendar Template",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Academic Calender",
-   "link_count": 0,
-   "link_to": "Academic Calender",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Documents",
-   "link_count": 0,
-   "link_to": "Documents",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Document Template",
-   "link_count": 0,
-   "link_to": "Documents Template",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Eligibility Parameters",
-   "link_count": 0,
-   "link_to": "Eligibility Parameters",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Counselling",
-   "link_count": 2,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Counselling Structure",
-   "link_count": 0,
-   "link_to": "Counselling Structure",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Reporting Desk",
-   "link_count": 0,
-   "link_to": "Reporting Desk",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Masters",
-   "link_count": 7,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Department",
-   "link_count": 0,
-   "link_to": "Department",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Course Type",
-   "link_count": 0,
-   "link_to": "Program Grades",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Courses",
-   "link_count": 0,
-   "link_to": "Programs",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Semester",
-   "link_count": 0,
-   "link_to": "Program",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Modules",
-   "link_count": 0,
-   "link_to": "Course",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Topic",
-   "link_count": 0,
-   "link_to": "Topic",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Class Rooms",
-   "link_count": 0,
-   "link_to": "Room",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Student and Trainer",
-   "link_count": 4,
+   "link_count": 5,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -677,53 +715,15 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Student Enrollment",
-   "link_count": 4,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Admission",
+   "label": "School House",
    "link_count": 0,
-   "link_to": "Student Admission",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Applicant",
-   "link_count": 0,
-   "link_to": "Student Applicant",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Program Enrollment",
-   "link_count": 0,
-   "link_to": "Program Enrollment",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Module Enrollment",
-   "link_count": 0,
-   "link_to": "Course Enrollment",
+   "link_to": "School House",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
   }
  ],
- "modified": "2024-01-15 17:30:20.849097",
+ "modified": "2024-01-31 14:54:10.054636",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Admission",
@@ -767,6 +767,13 @@
    "doc_view": "List",
    "label": "Programs",
    "link_to": "Programs",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Online Application Form",
+   "link_to": "Online Application Form",
    "type": "DocType"
   },
   {
