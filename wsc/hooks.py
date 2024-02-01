@@ -658,7 +658,7 @@ override_doctype_dashboards = {
     "Purchase Receipt":"wsc.wsc.dashboard.purchase_receipt_dashboard.get_data",
     "Purchase Invoice":"wsc.wsc.dashboard.purchase_invoice_dashboard.get_data",
     "Batch":"wsc.wsc.dashboard.batch_dashboard.get_data",
-    # "Asset":"wsc.wsc.dashboard.asset_dashboard.get_data",
+    "Asset":"wsc.wsc.dashboard.asset_dashboard.get_data",
     # "Project":"wsc.wsc.dashboard.project_dashboard.get_data",
     # "Task":"wsc.wsc.dashboard.task_dashboard.get_data",
     # "Employee": "wsc.wsc.dashboard.employee_dashboard.get_data",
