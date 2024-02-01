@@ -26,8 +26,8 @@ class StudentLeaveProcess(Document):
 								index=['Leave_doc_no','allotment_number','student','student_name','hostel','room_number','room_type','start_date',
 										'end_date','status','workflow_state'])
 			St_leave_df=St_leave_df.append(s,ignore_index=True)	
-		St_leave_df=St_leave_df[(St_leave_df['workflow_state']!="Approved")|(St_leave_df['workflow_state']!="Withdrawl of Application")|
-								(St_leave_df['workflow_state']!="Rejected")|(St_leave_df['workflow_state']!="Approve By Hostel Warden")].reset_index()							
+		St_leave_df=St_leave_df[(St_leave_df['workflow_state']!="Approved")|(St_leave_df['workflow_state']!="Application Withdraw")|
+								(St_leave_df['workflow_state']!="Rejected")|(St_leave_df['workflow_state']!="Pending approval from Hostel Warden/Administrator")].reset_index()							
 		if workflow_state=="Submit":
 			# St_leave_df=St_leave_df[(St_leave_df['status']=="Open")|(St_leave_df['status'].isnull())]
 			# if len(St_leave_df)!=0:
