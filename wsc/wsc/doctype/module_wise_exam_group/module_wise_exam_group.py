@@ -307,7 +307,7 @@ def get_student(academic_term=None, programs=None,class_data=None,minimum_attend
                 semester=None,exam_category=None,exam_schedule_id=None,course_type=None,assessment_component=None):
     student_list=[]
     if exam_category=="Regular":
-        enrolled_students = get_program_enrollment(academic_term,programs,class_data)
+        enrolled_students = get_program_enrollment(academic_term,programs,class_data,semester)
         
         if enrolled_students:
             student_list=enrolled_students

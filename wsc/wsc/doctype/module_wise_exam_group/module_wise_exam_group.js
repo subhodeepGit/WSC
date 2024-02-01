@@ -104,6 +104,7 @@ frappe.ui.form.on('Module Wise Exam Group', {
 			args:{
 				programs: frm.doc.exam_course,
 				academic_term: frm.doc.academic_term,
+				semester:frm.doc.semester,
                 class_data: frm.doc.class,
                 minimum_attendance_criteria:frm.doc.percentage,
 				attendance_criteria:frm.doc.attendance_criteria,
