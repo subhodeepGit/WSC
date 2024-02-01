@@ -71,3 +71,8 @@ def validate(self,method):
 		if cd.base_payment_amount:
 			if cd.base_payment_amount < 0:
 				frappe.throw("Payment Amount cannot be negative")
+
+	for cd in self.payment_schedule:
+		if cd.paid_amount:
+			if cd.paid_amount < 0:
+				frappe.throw("Paid Amount cannot be negative")
