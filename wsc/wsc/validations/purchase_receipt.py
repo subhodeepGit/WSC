@@ -40,3 +40,5 @@ def validate(self, method):
 		if cd.discount_percentage:
 			if cd.discount_percentage < 0:
 				frappe.throw("Discount Percentage cannot be negative")
+			if cd.discount_percentage > 100:
+				frappe.throw("Discount Percentage cannot be greater than 100")
