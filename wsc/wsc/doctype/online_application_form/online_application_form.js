@@ -28,6 +28,7 @@ frappe.ui.form.on('Online Application Form', {
 	},
 	after_save:function(frm){
         frm.set_df_property('image', 'reqd', 1);
+		frm.trigger("hide_n_show_child_table_fields");
     },
     go_to_top:function(frm){
         window.scrollTo(0, 0);
@@ -104,7 +105,7 @@ frappe.ui.form.on('Online Application Form', {
 		frm.trigger("get_education_and_document_list");  
     },
 	refresh:function(frm){
-		if (frm.doc.application_status==="Applied" && frm.doc.docstatus===1 ) {
+		if (frm.doc.application_status==="Applied" && frm.doc.docstatus===1 && !frappe.user.has_role(["Applicant"])) {
 			frm.add_custom_button(__("Approve"), function() {
 				frm.set_value("application_status", "Approved");
 				frm.save_or_update();
@@ -116,6 +117,15 @@ frappe.ui.form.on('Online Application Form', {
 				frm.save_or_update();
 			}, 'Actions');           
 		}
+		if (frm.doc.application_status==="Approved" && frm.doc.docstatus===1 && !frappe.user.has_role(["Applicant"])) {
+			frm.add_custom_button(__("Permission to Upload Documents"), function() {
+				frm.set_value("is_applicant_reported", 1);
+				frm.save_or_update();
+			});
+		}
+		if (frm.doc.is_applicant_reported==1){
+			frm.remove_custom_button("Permission to Upload Documents")
+		}
 		frm.set_df_property('education_qualifications_details', 'cannot_add_rows', true);
         frm.set_df_property('education_qualifications_details', 'cannot_delete_rows', true);
 		frm.add_custom_button("Instruction", () => {
@@ -125,6 +135,13 @@ frappe.ui.form.on('Online Application Form', {
 			frm.set_value("student_email_id", frappe.session.user)
 			frm.set_df_property('student_email_id', 'read_only', 1);
 		}
+	},
+	before_load: function(frm) {
+        frm.trigger("hide_n_show_child_table_fields");
+    },
+	hide_n_show_child_table_fields(frm){
+        var df = frappe.meta.get_docfield("Program Priority","approve", frm.doc.name);
+        df.hidden = 1
 	},
 	onload:function(frm){
 		frm.set_query("academic_term", function() {
@@ -229,13 +246,13 @@ frappe.ui.form.on("Education Qualifications Details", "cgpa", function(frm, cdt,
 	cur_frm.refresh_field ("education_qualifications_details");
 });    
 
-frappe.ui.form.on("Program Priority" , {
-    program_priority_remove: function(frm , cdt , cdn) {
-        frappe.model.clear_table(frm.doc, 'education_qualifications_details');  
-        frm.refresh();
-        frm.refresh_field("education_qualifications_details")
-    }
-});
+// frappe.ui.form.on("Program Priority" , {
+//     program_priority_remove: function(frm , cdt , cdn) {
+//         frappe.model.clear_table(frm.doc, 'education_qualifications_details');  
+//         frm.refresh();
+//         frm.refresh_field("education_qualifications_details")
+//     }
+// });
 
 frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
     var d = locals[cdt][cdn];

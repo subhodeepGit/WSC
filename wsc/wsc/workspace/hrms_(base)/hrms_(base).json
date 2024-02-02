@@ -53,94 +53,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Leave Management",
-   "link_count": 8,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Leave Type",
-   "link_count": 0,
-   "link_to": "Leave Type",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Leave Period",
-   "link_count": 0,
-   "link_to": "Leave Period",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Leave Policy",
-   "link_count": 0,
-   "link_to": "Leave Policy",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Leave Policy Assignment",
-   "link_count": 0,
-   "link_to": "Leave Policy Assignment",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Leave Allocation",
-   "link_count": 0,
-   "link_to": "Leave Allocation",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Leave Block List",
-   "link_count": 0,
-   "link_to": "Leave Block List",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Leave Application",
-   "link_count": 0,
-   "link_to": "Leave Application",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Compensatory Leave Request",
-   "link_count": 0,
-   "link_to": "Compensatory Leave Request",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Attendance Management",
    "link_count": 4,
    "onboard": 0,
@@ -633,6 +545,84 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Leave Management",
+   "link_count": 7,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Leave Type",
+   "link_count": 0,
+   "link_to": "Leave Type",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Leave Period",
+   "link_count": 0,
+   "link_to": "Leave Period",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Leave Policy",
+   "link_count": 0,
+   "link_to": "Leave Policy",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Leave Policy Assignment",
+   "link_count": 0,
+   "link_to": "Leave Policy Assignment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Leave Allocation",
+   "link_count": 0,
+   "link_to": "Leave Allocation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Leave Application",
+   "link_count": 0,
+   "link_to": "Leave Application",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Compensatory Leave Request",
+   "link_count": 0,
+   "link_to": "Compensatory Leave Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
  "modified": "2024-01-09 14:30:16.014435",
@@ -672,6 +662,20 @@
    "label": "My Profile",
    "link_to": "My Profile",
    "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Human Resource Dashboard",
+   "link_to": "Human Resource",
+   "type": "Dashboard"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Attendance Dashboard",
+   "link_to": "Attendance",
+   "type": "Dashboard"
   },
   {
    "color": "Grey",
