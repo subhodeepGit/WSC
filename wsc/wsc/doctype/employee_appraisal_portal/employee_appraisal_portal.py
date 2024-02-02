@@ -203,4 +203,4 @@ def get_mid_year_grade(employee,appraisal_year):
         if len(data)>0 :
             return data[0]
         else :
-            return " "
+            pass
