@@ -87,10 +87,11 @@ def validate_duplicate_record(doc):
 		if duplicateForm:
 			frappe.throw(("Student Applicant is already Filled the form for this Academic Term."))
 def validate_dob(self):
-	# current_date = today()
-	if self.date_of_birth:
-		if self.date_of_birth >= self.application_date:
-			frappe.throw("Date of birth should not be today's date or future date")
+	roles = frappe.get_roles(frappe.session.user)
+	if "Applicant"  in roles:
+		if self.date_of_birth:
+			if self.date_of_birth >= self.application_date:
+				frappe.throw("Date of birth should not be today's date or future date")
 
 def validate_pin_code(doc):
 	if not (doc.pin_code).isdigit():
