@@ -132,8 +132,12 @@ class StudentApplicant(Document):
                 docmnt.is_available = 1
             else:
                 docmnt.is_available = 0
-        
+
+    def on_trash(doc):
+        delete_user_per(doc)
+
 def on_change(doc,method):
+    user_per(doc)
     delete_user_permission(doc)
     if doc.docstatus==1:
         if doc.application_status=="Approved":
@@ -326,7 +330,6 @@ def validate_pin_code(doc):
 #                     frappe.throw("Please correct option for Percentage/CGPA for row no .<b>{0}</b> in Education Qualifications Details.".format(eqd.idx))
 
 def on_update(doc,method):
-    user_per(doc)
     delete_user_permission(doc)
     if doc.docstatus==1:
         count = 0
@@ -905,19 +908,28 @@ def check_int(pin_code):
     return re.match(r"[-+]?\d+(\.0*)?$", pin_code) is not None
 
 def user_per(doc):
-    if doc.application_status == "Approved":
-        data = [{"Doctype":"Entrance Exam Admit Card"},{"Doctype":"Rank Card"},{"Doctype":"Reporting Desk"}]
-        for t in data:
-            frappe.get_doc(
-                {
-                    "doctype": "User Permission",
-                    "user": doc.student_email_id,
-                    "allow": "Student Applicant",
-                    "for_value": doc.name,
-                    "apply_to_all_doctypes":0,
-                    "applicable_for":t["Doctype"],
-                }
-            ).save(ignore_permissions=True)
+    doc_before_save = doc.get_doc_before_save()
+    app_status=doc_before_save.application_status
+    if app_status!=doc.application_status:
+        if doc.application_status == "Approved":
+            data = [{"Doctype":"Entrance Exam Admit Card"},{"Doctype":"Rank Card"},{"Doctype":"Reporting Desk"}]
+            for t in data:
+                frappe.get_doc(
+                    {
+                        "doctype": "User Permission",
+                        "user": doc.student_email_id,
+                        "allow": "Student Applicant",
+                        "for_value": doc.name,
+                        "apply_to_all_doctypes":0,
+                        "applicable_for":t["Doctype"],
+                    }
+                ).save(ignore_permissions=True)
+
+def delete_user_per(doc):
+    data = [{"Doctype":"Entrance Exam Admit Card"},{"Doctype":"Rank Card"},{"Doctype":"Reporting Desk"}]
+    for y in data:
+        for t in frappe.get_all("User Permission",{"allow":doc.doctype,"for_value":doc.name,"applicable_for":y["Doctype"]}):
+            frappe.delete_doc("User Permission",t.name)
 
 # def validate_counselling_structure(doc):
 #     if doc.counselling_structure:
