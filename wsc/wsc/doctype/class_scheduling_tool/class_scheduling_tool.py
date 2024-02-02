@@ -42,7 +42,7 @@ class ClassSchedulingTool(Document):
 			)
 
 		date = self.course_start_date
-		while date < self.course_end_date:
+		while date <= self.course_end_date:
 			if calendar.day_name[getdate(date).weekday()] in days:
 				course_schedule = self.make_course_schedule(date)
 				try:

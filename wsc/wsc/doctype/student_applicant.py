@@ -16,7 +16,7 @@ class StudentApplicant(Document):
             frappe.throw("Profile Photo is Mandatory")
         roles = frappe.get_roles(frappe.session.user)
     	# if "HR Manager/CS Officer" in roles or "HR Admin" in roles or "Director" in roles or "Admin" in roles or "Administrator" in roles:
-        if doc.docstatus==1 and doc.application_status=="Approved" and "Administrator" not in roles:
+        if doc.docstatus==1 and doc.application_status=="Approved" and "Applicant" in roles:
               # or "Education Admission Head" not in roles)
                   if doc.doc_approved==1:
                       frappe.throw("Unable to Edit the form once the application is Approved")
@@ -79,8 +79,8 @@ class StudentApplicant(Document):
             frappe.throw(_("Cannot change status as student {0} is linked with student application {1}").format(student[0].name, doc.name))
     def validate(doc):
         # current_date = today()
-        if doc.date_of_birth >= doc.application_date:
-            frappe.throw("Date of birth should not be today's date or future date")
+        # if doc.date_of_birth >= doc.application_date:
+        #     frappe.throw("Date of birth should not be today's date or future date")
         validate_edu_details(doc)
         # doc.title = " ".join(
 			# filter(None, [doc.first_name, doc.middle_name, doc.last_name])
@@ -132,8 +132,12 @@ class StudentApplicant(Document):
                 docmnt.is_available = 1
             else:
                 docmnt.is_available = 0
-        
+
+    def on_trash(doc):
+        delete_user_per(doc)
+
 def on_change(doc,method):
+    user_per(doc)
     delete_user_permission(doc)
     if doc.docstatus==1:
         if doc.application_status=="Approved":
@@ -326,7 +330,6 @@ def validate_pin_code(doc):
 #                     frappe.throw("Please correct option for Percentage/CGPA for row no .<b>{0}</b> in Education Qualifications Details.".format(eqd.idx))
 
 def on_update(doc,method):
-    user_per(doc)
     delete_user_permission(doc)
     if doc.docstatus==1:
         count = 0
@@ -905,19 +908,28 @@ def check_int(pin_code):
     return re.match(r"[-+]?\d+(\.0*)?$", pin_code) is not None
 
 def user_per(doc):
-    if doc.application_status == "Approved":
-        data = [{"Doctype":"Entrance Exam Admit Card"},{"Doctype":"Rank Card"},{"Doctype":"Reporting Desk"}]
-        for t in data:
-            frappe.get_doc(
-                {
-                    "doctype": "User Permission",
-                    "user": doc.student_email_id,
-                    "allow": "Student Applicant",
-                    "for_value": doc.name,
-                    "apply_to_all_doctypes":0,
-                    "applicable_for":t["Doctype"],
-                }
-            ).save(ignore_permissions=True)
+    doc_before_save = doc.get_doc_before_save()
+    app_status=doc_before_save.application_status
+    if app_status!=doc.application_status:
+        if doc.application_status == "Approved":
+            data = [{"Doctype":"Entrance Exam Admit Card"},{"Doctype":"Rank Card"},{"Doctype":"Reporting Desk"}]
+            for t in data:
+                frappe.get_doc(
+                    {
+                        "doctype": "User Permission",
+                        "user": doc.student_email_id,
+                        "allow": "Student Applicant",
+                        "for_value": doc.name,
+                        "apply_to_all_doctypes":0,
+                        "applicable_for":t["Doctype"],
+                    }
+                ).save(ignore_permissions=True)
+
+def delete_user_per(doc):
+    data = [{"Doctype":"Entrance Exam Admit Card"},{"Doctype":"Rank Card"},{"Doctype":"Reporting Desk"}]
+    for y in data:
+        for t in frappe.get_all("User Permission",{"allow":doc.doctype,"for_value":doc.name,"applicable_for":y["Doctype"]}):
+            frappe.delete_doc("User Permission",t.name)
 
 # def validate_counselling_structure(doc):
 #     if doc.counselling_structure:

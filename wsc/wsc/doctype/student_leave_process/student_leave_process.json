@@ -15,11 +15,12 @@
   "roll_no",
   "registration_number",
   "start_date",
+  "end_date",
   "column_break_6",
   "hostel",
   "room_number",
+  "room_no",
   "room_type",
-  "end_date",
   "section_break_11",
   "leave_approval_process_section",
   "comment",
@@ -35,7 +36,6 @@
    "options": "HL-.YYYY.-"
   },
   {
-   "fetch_from": "student.naming_series",
    "fieldname": "allotment_number",
    "fieldtype": "Link",
    "in_standard_filter": 1,
@@ -43,7 +43,6 @@
    "options": "Room Allotment"
   },
   {
-   "fetch_from": "allotment_number.student",
    "fieldname": "student",
    "fieldtype": "Data",
    "in_standard_filter": 1,
@@ -51,7 +50,6 @@
    "read_only": 1
   },
   {
-   "fetch_from": "allotment_number.student_name",
    "fieldname": "student_name",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -60,7 +58,6 @@
    "read_only": 1
   },
   {
-   "fetch_from": "allotment_number.hostel_id",
    "fieldname": "hostel",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -69,7 +66,6 @@
    "read_only": 1
   },
   {
-   "fetch_from": "allotment_number.room_id",
    "fieldname": "room_number",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -82,7 +78,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fetch_from": "allotment_number.room_type",
    "fieldname": "room_type",
    "fieldtype": "Data",
    "label": "Room Type",
@@ -95,7 +90,7 @@
   {
    "description": "<p><i>--Application Writing Area</i></p>",
    "fieldname": "comment",
-   "fieldtype": "Long Text",
+   "fieldtype": "Text Editor",
    "label": "<h4>Application</h4>",
    "mandatory_depends_on": "if (frm.doc.application_form === 0);"
   },
@@ -128,23 +123,27 @@
    "label": "status"
   },
   {
-   "fetch_from": "allotment_number.roll_no",
    "fieldname": "roll_no",
    "fieldtype": "Data",
    "label": "Roll No",
    "read_only": 1
   },
   {
-   "fetch_from": "allotment_number.registration_number",
    "fieldname": "registration_number",
    "fieldtype": "Data",
    "label": "Registration Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "room_no",
+   "fieldtype": "Data",
+   "label": "Room No",
    "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-22 11:42:47.733837",
+ "modified": "2024-02-01 10:40:30.615311",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Student Leave Process",
