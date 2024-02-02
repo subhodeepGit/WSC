@@ -39,5 +39,12 @@ frappe.ui.form.on('Student Leave Process', {
             frm.set_value('room_type', "");
             frm.set_value('room_no', "");
         }
+    },
+    refresh: function(frm) {
+        if (frm.doc.workflow_state != "Submit"){
+            Object.keys(cur_frm.fields_dict).forEach(field=>{
+                frm.set_df_property(field,'read_only',1)
+            })
+        }
     }
 })
