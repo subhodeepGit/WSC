@@ -54,6 +54,8 @@ class RoomChange(Document):
                 else:
                     frappe.throw("Preferred room number and Present room number are same")
 
+    def on_trash(self):
+        frappe.throw('You cannot Delete the document')  
 
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs

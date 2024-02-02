@@ -19,7 +19,8 @@ frappe.ui.form.on('Purchase Receipt', {
         frm.page.remove_inner_button('Retention Stock Entry', 'Create')
         frm.page.remove_inner_button('Make Stock Entry', 'Create')
         frm.page.remove_inner_button('Purchase Invoice','Get Items From')
-        frm.page.remove_inner_button('Purchase Order','Get Items From');
+        frm.page.remove_inner_button('Purchase Order','Get Items From')
+        frm.page.remove_inner_button('Accounting Ledger','View')
         }
     }
 );
