@@ -25,52 +25,42 @@ frappe.ui.form.on('Employee Appraisal Portal', {
     },
 	appraisal_year: function(frm) {
         frappe.model.clear_table(frm.doc, 'key_work_goals');
-
+    
         frappe.call({
             method: 'wsc.wsc.doctype.employee_appraisal_portal.employee_appraisal_portal.get_goals',
-            args :{
-                "employee":frm.doc.employee,
-                "appraisal_year":frm.doc.appraisal_year
-
+            args: {
+                "employee": frm.doc.employee,
+                "appraisal_year": frm.doc.appraisal_year
             },
-
-            
-           callback: function(r) {
-
-                if(r.message){
-                    // alert("Goal settings")
+            callback: function(r) {
+                if (r.message) {
                     frappe.model.clear_table(frm.doc, 'key_work_goals');
-                    (r.message).forEach(element => {
-                        var c = frm.add_child("key_work_goals")
-                        c.goal=element.goal
-                        c.category=element.category
-                        c.due_date=element.due_date
-                        
+                    r.message.forEach(element => {
+                        var c = frm.add_child("key_work_goals");
+                        c.goal = element.goal;
+                        c.category = element.category;
+                        c.due_date = element.due_date;
                     });
-                    
                 }
-                
-              
                 frm.refresh();
                 frm.refresh_field("key_work_goals");
             }
-        }),
+        });
+    
         frappe.call({
             method: 'wsc.wsc.doctype.employee_appraisal_portal.employee_appraisal_portal.get_mid_year_grade',
             args: {
                 employee: frm.doc.employee,
-                appraisal_year:frm.doc.appraisal_year // Pass necessary arguments as needed
+                appraisal_year: frm.doc.appraisal_year
             },
             callback: function(response) {
                 if (response.message) {
-                    // alert(response.message["final_grade"])
-                    frm.set_value("mid_year_grade",response.message["final_grade"])
+                    frm.set_value("mid_year_grade", response.message["final_grade"]);
                 }
             }
-        })
-
-			
-	},
+        });
+    },
+    
     
 	appraisal_round : function(frm){
 		// Get the value of the "Appraisal Round" field

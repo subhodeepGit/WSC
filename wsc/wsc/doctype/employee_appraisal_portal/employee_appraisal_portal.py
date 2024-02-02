@@ -196,9 +196,11 @@ def get_dimenssions(self):
     
 @frappe.whitelist()
 def get_mid_year_grade(employee,appraisal_year):
+    frappe.msgprint("Triggered")
     for data in frappe.get_all("Employee Appraisal Portal",{"employee":employee,"appraisal_year":appraisal_year,"appraisal_round":'Mid Year'},["final_grade"]):
         print(data)
-        if data :
+        print("\n\n\n")
+        if len(data)>0 :
             return data[0]
         else :
             pass
