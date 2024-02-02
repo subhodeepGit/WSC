@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "autoname": "naming_series:",
  "creation": "2024-01-15 12:10:04.467084",
  "default_view": "List",
@@ -13,6 +14,7 @@
   "middle_name",
   "last_name",
   "column_break_qh4b7",
+  "application_status",
   "application_date",
   "academic_year",
   "academic_term",
@@ -48,16 +50,18 @@
   "program_priority",
   "education_qualifications_details_section",
   "education_qualifications_details",
-  "documents_required_section",
-  "document_list",
-  "section_break_xq4rt",
   "declaration_section_section",
   "declaration",
+  "section_break_ybnrp",
   "title",
+  "column_break_d69tc",
+  "is_applicant_reported",
+  "section_break_w4v7h",
   "go_to_top",
   "programs",
   "program",
-  "student_admission"
+  "student_admission",
+  "doc_approved"
  ],
  "fields": [
   {
@@ -80,40 +84,54 @@
    "allow_on_submit": 1,
    "fieldname": "first_name",
    "fieldtype": "Data",
-   "label": "First Name"
+   "in_list_view": 1,
+   "label": "First Name",
+   "permlevel": 1,
+   "reqd": 1
   },
   {
    "allow_on_submit": 1,
    "fieldname": "middle_name",
    "fieldtype": "Data",
-   "label": "Middle Name"
+   "label": "Middle Name",
+   "permlevel": 1
   },
   {
    "allow_on_submit": 1,
    "fieldname": "last_name",
    "fieldtype": "Data",
-   "label": "Last Name"
+   "in_list_view": 1,
+   "label": "Last Name",
+   "permlevel": 1,
+   "reqd": 1
   },
   {
    "allow_on_submit": 1,
-   "default": "2024-25",
+   "default": "2023-24",
    "fieldname": "academic_year",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Academic Year",
-   "options": "Academic Year"
+   "options": "Academic Year",
+   "permlevel": 3,
+   "reqd": 1
   },
   {
    "allow_on_submit": 1,
-   "default": "2024-25 (SEMESTER 1)",
+   "default": "2023-24 (SEMESTER 1)",
    "fieldname": "academic_term",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Academic Term",
-   "options": "Academic Term"
+   "options": "Academic Term",
+   "permlevel": 3,
+   "reqd": 1
   },
   {
    "allow_on_submit": 1,
    "fieldname": "category",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Student Category",
    "options": "Category",
    "read_only": 1
@@ -122,8 +140,10 @@
    "allow_on_submit": 1,
    "fieldname": "student_category",
    "fieldtype": "Link",
-   "label": "Caste Category",
-   "options": "Student Category"
+   "label": "Caste Category \u25bc",
+   "options": "Student Category",
+   "permlevel": 1,
+   "reqd": 1
   },
   {
    "fieldname": "column_break_qh4b7",
@@ -138,41 +158,50 @@
    "allow_on_submit": 1,
    "fieldname": "date_of_birth",
    "fieldtype": "Date",
-   "label": "Date of Birth"
+   "label": "Date of Birth",
+   "permlevel": 1,
+   "reqd": 1
   },
   {
    "allow_on_submit": 1,
    "fieldname": "gender",
    "fieldtype": "Link",
-   "label": "Gender",
-   "options": "Gender"
+   "label": "Gender \u25bc",
+   "options": "Gender",
+   "permlevel": 1,
+   "reqd": 1
   },
   {
    "allow_on_submit": 1,
    "fieldname": "religion",
    "fieldtype": "Link",
-   "label": "Religion",
-   "options": "Religion"
+   "label": "Religion \u25bc",
+   "options": "Religion",
+   "permlevel": 1,
+   "reqd": 1
   },
   {
    "fieldname": "student_email_id",
    "fieldtype": "Data",
    "label": "Student Email Id",
-   "options": "Email"
+   "options": "Email",
+   "reqd": 1
   },
   {
    "default": "Indian",
    "fieldname": "nationality",
    "fieldtype": "Data",
    "label": "Nationality",
-   "read_only": 1
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "allow_on_submit": 1,
    "default": "0",
    "fieldname": "physically_disabled",
    "fieldtype": "Check",
-   "label": "Physically Disabled"
+   "label": "Physically Disabled",
+   "permlevel": 1
   },
   {
    "fieldname": "column_break_xtbz9",
@@ -182,7 +211,7 @@
    "allow_on_submit": 1,
    "fieldname": "title",
    "fieldtype": "Data",
-   "label": "Student Name",
+   "label": "Applicant Name",
    "read_only": 1
   },
   {
@@ -190,14 +219,16 @@
    "fieldname": "image",
    "fieldtype": "Attach Image",
    "hidden": 1,
-   "label": "Photo"
+   "label": "Photo",
+   "permlevel": 1
   },
   {
    "allow_on_submit": 1,
    "default": "0",
    "fieldname": "award_winner",
    "fieldtype": "Check",
-   "label": "Award Winner"
+   "label": "Award Winner",
+   "permlevel": 1
   },
   {
    "fieldname": "home_address_section",
@@ -209,16 +240,20 @@
    "default": "Odisha",
    "fieldname": "states",
    "fieldtype": "Link",
-   "label": "State",
+   "label": "State \u25bc",
    "options": "State",
-   "read_only": 1
+   "permlevel": 1,
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "allow_on_submit": 1,
    "fieldname": "districts",
    "fieldtype": "Link",
-   "label": "District",
-   "options": "Districts"
+   "label": "District \u25bc",
+   "options": "Districts",
+   "permlevel": 1,
+   "reqd": 1
   },
   {
    "fieldname": "column_break_l0yf6",
@@ -229,15 +264,19 @@
    "depends_on": "eval:doc.districts",
    "fieldname": "blocks",
    "fieldtype": "Link",
-   "label": "Block",
-   "options": "Blocks"
+   "label": "Block \u25bc",
+   "options": "Blocks",
+   "permlevel": 1,
+   "reqd": 1
   },
   {
    "allow_on_submit": 1,
    "fieldname": "pin_code",
    "fieldtype": "Data",
    "label": "Pincode",
-   "length": 6
+   "length": 6,
+   "permlevel": 1,
+   "reqd": 1
   },
   {
    "fieldname": "physically_disabled_type_section",
@@ -251,7 +290,8 @@
    "fieldtype": "Table",
    "label": "Disable Type",
    "mandatory_depends_on": "eval:doc.physically_disabled==\"1\"",
-   "options": "Physically Disabled"
+   "options": "Physically Disabled",
+   "permlevel": 1
   },
   {
    "fieldname": "award_list_section",
@@ -265,7 +305,8 @@
    "fieldtype": "Table",
    "label": "Awards Winner List",
    "mandatory_depends_on": "eval:doc.award_winner==\"1\"",
-   "options": "Awards List"
+   "options": "Awards List",
+   "permlevel": 1
   },
   {
    "fieldname": "course_preference_details_section",
@@ -276,16 +317,20 @@
    "allow_on_submit": 1,
    "fieldname": "department",
    "fieldtype": "Link",
-   "label": "Department",
-   "options": "Department"
+   "label": "Department \u25bc",
+   "options": "Department",
+   "permlevel": 1,
+   "reqd": 1
   },
   {
    "allow_on_submit": 1,
    "depends_on": "eval:doc.department;",
    "fieldname": "program_grade",
    "fieldtype": "Link",
-   "label": "Course Type",
-   "options": "Program Grades"
+   "label": "Course Type \u25bc",
+   "options": "Program Grades",
+   "permlevel": 1,
+   "reqd": 1
   },
   {
    "allow_on_submit": 1,
@@ -293,7 +338,9 @@
    "fieldname": "program_priority",
    "fieldtype": "Table",
    "label": "Course Preferences",
-   "options": "Program Priority"
+   "options": "Program Priority",
+   "permlevel": 1,
+   "reqd": 1
   },
   {
    "fieldname": "column_break_fqwc1",
@@ -304,46 +351,29 @@
    "fieldtype": "Section Break"
   },
   {
-   "depends_on": "eval:doc.program_priority;",
+   "depends_on": "eval:!(doc.__islocal) ",
    "fieldname": "education_qualifications_details_section",
    "fieldtype": "Section Break",
    "label": "Education Qualifications Details"
   },
   {
    "allow_on_submit": 1,
-   "depends_on": "eval:!(doc.__islocal) ",
    "fieldname": "education_qualifications_details",
    "fieldtype": "Table",
    "label": "Education Qualifications Details",
-   "options": "Education Qualifications Details"
-  },
-  {
-   "fieldname": "documents_required_section",
-   "fieldtype": "Section Break",
-   "label": "Documents Required"
-  },
-  {
-   "allow_on_submit": 1,
-   "depends_on": "eval:!(doc.__islocal) ",
-   "fieldname": "document_list",
-   "fieldtype": "Table",
-   "label": "Document List",
-   "options": "Document List"
+   "options": "Education Qualifications Details",
+   "permlevel": 1
   },
   {
    "fieldname": "student_mobile_number",
    "fieldtype": "Data",
    "label": "Student Mobile Number",
-   "length": 10
-  },
-  {
-   "fieldname": "section_break_xq4rt",
-   "fieldtype": "Section Break"
+   "length": 10,
+   "reqd": 1
   },
   {
    "fieldname": "declaration_section_section",
-   "fieldtype": "Section Break",
-   "label": "Declaration Section"
+   "fieldtype": "Section Break"
   },
   {
    "fieldname": "declaration",
@@ -388,26 +418,89 @@
    "fieldname": "aadhaar_no",
    "fieldtype": "Data",
    "label": "Aadhaar No",
-   "length": 12
+   "length": 12,
+   "permlevel": 1,
+   "reqd": 1
   },
   {
+   "allow_on_submit": 1,
    "default": "Today",
    "fieldname": "application_date",
    "fieldtype": "Date",
-   "label": "Application Date"
+   "hidden": 1,
+   "label": "Application Date",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.docstatus != 0",
+   "fieldname": "application_status",
+   "fieldtype": "Select",
+   "label": "Application Status",
+   "options": "Applied\nHold\nApproved\nRejected\nAdmitted\nNot Approved",
+   "permlevel": 2,
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "doc_approved",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Doc Approved"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "depends_on": "eval:doc.application_status==\"Approved\"",
+   "fieldname": "is_applicant_reported",
+   "fieldtype": "Check",
+   "label": "Permission Given to Upload Documents",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_ybnrp",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_d69tc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_w4v7h",
+   "fieldtype": "Section Break"
   }
  ],
  "image_field": "image",
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-18 18:11:49.986928",
+ "modified": "2024-02-01 12:06:08.520529",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Online Application Form",
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
- "permissions": [],
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "set_user_permissions": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],

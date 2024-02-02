@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:sector_name",
  "creation": "2023-01-04 15:15:07.386250",
@@ -29,7 +30,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-19 16:01:04.761603",
+ "modified": "2024-01-29 12:22:19.568125",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Sector",

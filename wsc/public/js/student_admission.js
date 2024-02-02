@@ -39,7 +39,7 @@ frappe.ui.form.on('Student Admission', {
         }
     },
     applicable_for_all_gender:function(frm){
-        frm.set_value("gender","")
+        frm.set_value("gender_type","")
     },
     setup(frm) {
         frm.set_df_property('program_grade', 'reqd', 1);

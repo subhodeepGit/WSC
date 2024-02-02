@@ -372,15 +372,6 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2023-02-17 17:00:47.002679",
-  "name": "Approve By Hostel Warden",
-  "style": "",
-  "workflow_state_name": "Approve By Hostel Warden"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
-  "icon": "",
   "modified": "2023-02-17 17:00:47.015087",
   "name": "Approve By Dean",
   "style": "",
@@ -862,5 +853,23 @@
   "name": "Pending Approval from COO",
   "style": "",
   "workflow_state_name": "Pending Approval from COO"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-02-01 12:15:53.095202",
+  "name": "Pending approval from Hostel Warden/Administrator",
+  "style": "",
+  "workflow_state_name": "Pending approval from Hostel Warden"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-02-01 12:32:08.801707",
+  "name": "Application Withdraw",
+  "style": "",
+  "workflow_state_name": "Application Withdraw"
  }
 ]

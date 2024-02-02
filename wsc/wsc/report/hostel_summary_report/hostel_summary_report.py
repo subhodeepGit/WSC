@@ -42,10 +42,7 @@ def get_data(filters):
 								"hostel":t['name']
 							}),as_dict=True)
 			a['total_valency_of_the_hostel']=output[0]['sum(vacancy)']
-			if a['total_capacity_of_the_hostel']!=0:
-				a["hostel_utilization_report"]=(a['total_valency_of_the_hostel']/a['total_capacity_of_the_hostel'])*100
-			else:
-				a["hostel_utilization_report"]=0
+
 
 			for j in room_type_data:
 				output=frappe.db.count("Room Masters",{"hostel_id":t['name'],"actual_room_type":j['name']})
@@ -63,6 +60,13 @@ def get_data(filters):
 
 			output=frappe.db.count("Room Allotment",{"hostel_id":t['name'],"allotment_type":"Allotted"})	
 			a['total_no_of_students_allotted']=output
+			if a['total_capacity_of_the_hostel']!=0:
+				try:
+					a["hostel_utilization_report"]=(a['total_no_of_students_allotted']/a['total_capacity_of_the_hostel'])*100
+				except:
+					a["hostel_utilization_report"]=0	
+			else:
+				a["hostel_utilization_report"]=0
 
 			final_list.append(a)
 

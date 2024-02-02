@@ -282,6 +282,7 @@
    "reqd": 1
   },
   {
+   "depends_on": "eval:doc.docstatus == 0;",
    "fieldname": "get_student",
    "fieldtype": "Button",
    "label": "Get Student"
@@ -383,7 +384,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-08 16:42:51.007158",
+ "modified": "2024-02-01 15:08:19.287782",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Module Wise Exam Group",

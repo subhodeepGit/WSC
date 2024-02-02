@@ -20,5 +20,5 @@ def is_valid_field(self):
 
 def validate_email(self):
     if self.supplier_email_id:
-        if not re.match(r"[^@]+@[^@]+\.[^@]+", self.supplier_email_id):
+        if not re.match(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', self.supplier_email_id):
             frappe.throw("<b>{0}</b> is invalid email address. Please enter a valid email address.".format(self.supplier_email_id))

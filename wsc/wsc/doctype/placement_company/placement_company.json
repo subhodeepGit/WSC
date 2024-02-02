@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "format:{company_name}",
  "creation": "2021-11-15 01:39:28.361525",
@@ -101,7 +102,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-26 12:37:31.659615",
+ "modified": "2024-01-29 11:52:19.899339",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Placement Company",

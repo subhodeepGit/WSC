@@ -89,7 +89,7 @@ class PaymentEntry(AccountsController):
 			self.roll_no=student_info[0]["roll_no"]
        
 
-		self.letter_head=""
+		# self.letter_head=""
 
 	def on_submit(self):
 		if self.difference_amount:
