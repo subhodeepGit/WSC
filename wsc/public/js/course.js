@@ -229,6 +229,7 @@ frappe.ui.form.on("Credit distribution List", "weightage", function(frm, cdt, cd
 
 frappe.ui.form.on('Credit distribution List', {
 	credit_distribution_add: function(frm){
+		alert("hey")
 		frm.fields_dict['credit_distribution'].grid.get_field('assessment_criteria').get_query = function(doc){
 			var assessment_criteria_list = [];
 			$.each(doc.credit_distribution, function(idx, val){
