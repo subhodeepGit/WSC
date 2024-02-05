@@ -3118,7 +3118,7 @@
   "doctype": "Workflow",
   "document_type": "Item Price",
   "is_active": 1,
-  "modified": "2024-01-11 12:32:43.538063",
+  "modified": "2024-02-05 14:51:32.226152",
   "name": "Item Price Impanelement Workflow",
   "override_status": 0,
   "send_email_alert": 0,
@@ -3151,7 +3151,7 @@
    },
    {
     "allow_edit": "Purchase Manager-MM",
-    "doc_status": "1",
+    "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
     "next_action_email_template": null,
@@ -3164,7 +3164,7 @@
    },
    {
     "allow_edit": "Dy. Principal",
-    "doc_status": "1",
+    "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
     "next_action_email_template": null,
@@ -3177,7 +3177,7 @@
    },
    {
     "allow_edit": "Dy. Principal",
-    "doc_status": "2",
+    "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
     "next_action_email_template": null,
@@ -3190,7 +3190,7 @@
    },
    {
     "allow_edit": "CFO",
-    "doc_status": "1",
+    "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
     "next_action_email_template": null,
@@ -3203,7 +3203,7 @@
    },
    {
     "allow_edit": "CFO",
-    "doc_status": "2",
+    "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
     "next_action_email_template": null,
@@ -3216,7 +3216,7 @@
    },
    {
     "allow_edit": "Principal",
-    "doc_status": "1",
+    "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
     "next_action_email_template": null,
@@ -3229,7 +3229,7 @@
    },
    {
     "allow_edit": "Principal",
-    "doc_status": "2",
+    "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
     "next_action_email_template": null,
