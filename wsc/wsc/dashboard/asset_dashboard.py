@@ -14,9 +14,9 @@ def get_data(data):
 			    "label": _("Journal Entry"),
 				"items": ["Journal Entry"]
 	        },
-						{
+			{
 				"label": _("Repair"),
 				"items": ["Asset Repair"]
-	        }
+	        },
         ]
 	}

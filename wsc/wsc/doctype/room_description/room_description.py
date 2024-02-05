@@ -18,13 +18,14 @@ class RoomDescription(Document):
 			end_date=datetime.datetime.strptime(str(doc.end_date),'%Y-%m-%d %H:%M:%S').date()
 		
 		if start_date<=end_date:
-			Room_des_info=frappe.db.sql("""select * from `tabRoom Description` RD where 
-			RD.room_description="%s" and (RD.start_date<= now() and RD.end_date>=now())"""%(room_description))
-			if len(Room_des_info)==0:
-				pass
-			elif len(Room_des_info)!=0 and (Room_des_info[0][12]==start_date and Room_des_info[0][13]==end_date):
-				pass
-			else:
-				frappe.throw("Room Description already present and valid")
+			pass
+			# Room_des_info=frappe.db.sql("""select * from `tabRoom Description` RD where 
+			# RD.room_description="%s" and (RD.start_date<= now() and RD.end_date>=now())"""%(room_description))
+			# if len(Room_des_info)==0:
+			# 	pass
+			# elif len(Room_des_info)!=0 and (Room_des_info[0][12]==start_date and Room_des_info[0][13]==end_date):
+			# 	pass
+			# else:
+			# 	frappe.throw("Room Description already present and valid")
 		else:
 			frappe.throw("Kindly check the start date and End Date")

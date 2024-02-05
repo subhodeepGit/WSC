@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"aSuwmybp0e\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"e2017XMbNz\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"nFIZMuKQD5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Chart of Accounts\",\"col\":3}},{\"id\":\"wdelB1x8v8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Invoice\",\"col\":3}},{\"id\":\"BNDTKYsKx5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Journal Entry\",\"col\":3}},{\"id\":\"YJl306rg_F\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":3}},{\"id\":\"E4JYcKB3-0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Accounts Receivable\",\"col\":3}},{\"id\":\"Gb73bnYiYF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"General Ledger\",\"col\":3}},{\"id\":\"67M6nBL0uZ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Trial Balance\",\"col\":3}},{\"id\":\"rg8JM1jEyW\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"pDCpW45f6a\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"gaeyjkODZy\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounting Masters\",\"col\":4}},{\"id\":\"7GMLSy01ik\",\"type\":\"card\",\"data\":{\"card_name\":\"General Ledger\",\"col\":4}},{\"id\":\"ZIOEDI-2wO\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounts Receivable\",\"col\":4}},{\"id\":\"wmOKECIGj7\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounts Payable\",\"col\":4}},{\"id\":\"nQhCrMDqAc\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"YtlVut6doK\",\"type\":\"card\",\"data\":{\"card_name\":\"Financial Statements\",\"col\":4}},{\"id\":\"BuY_I3i1-e\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"id\":\"gpCtUcejXI\",\"type\":\"card\",\"data\":{\"card_name\":\"Bank Statement\",\"col\":4}},{\"id\":\"i30MXVL79v\",\"type\":\"card\",\"data\":{\"card_name\":\"Budgeting\",\"col\":4}},{\"id\":\"04blJivzWG\",\"type\":\"card\",\"data\":{\"card_name\":\"Fixed Deposit and Bank Guarantee\",\"col\":4}}]",
+ "content": "[{\"id\":\"aSuwmybp0e\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"e2017XMbNz\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"nFIZMuKQD5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Chart of Accounts\",\"col\":3}},{\"id\":\"wdelB1x8v8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Invoice\",\"col\":3}},{\"id\":\"BNDTKYsKx5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Journal Entry\",\"col\":3}},{\"id\":\"YJl306rg_F\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":3}},{\"id\":\"E4JYcKB3-0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Accounts Receivable\",\"col\":3}},{\"id\":\"Gb73bnYiYF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"General Ledger\",\"col\":3}},{\"id\":\"67M6nBL0uZ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Trial Balance\",\"col\":3}},{\"id\":\"tZ4xFXlcjX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Accounts Dashboard\",\"col\":3}},{\"id\":\"rg8JM1jEyW\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"pDCpW45f6a\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"gaeyjkODZy\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounting Masters\",\"col\":4}},{\"id\":\"7GMLSy01ik\",\"type\":\"card\",\"data\":{\"card_name\":\"General Ledger\",\"col\":4}},{\"id\":\"ZIOEDI-2wO\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounts Receivable\",\"col\":4}},{\"id\":\"wmOKECIGj7\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounts Payable\",\"col\":4}},{\"id\":\"nQhCrMDqAc\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"YtlVut6doK\",\"type\":\"card\",\"data\":{\"card_name\":\"Financial Statements\",\"col\":4}},{\"id\":\"BuY_I3i1-e\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"id\":\"gpCtUcejXI\",\"type\":\"card\",\"data\":{\"card_name\":\"Bank Statement\",\"col\":4}},{\"id\":\"i30MXVL79v\",\"type\":\"card\",\"data\":{\"card_name\":\"Budgeting\",\"col\":4}},{\"id\":\"04blJivzWG\",\"type\":\"card\",\"data\":{\"card_name\":\"Fixed Deposit and Bank Guarantee\",\"col\":4}},{\"id\":\"qtKg4v1scb\",\"type\":\"paragraph\",\"data\":{\"text\":\"Budgeting<a href=\\\"http://localhost:8000/app/budget\\\">\\n\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\tBudget\\n\\t\\t\\t</a><a href=\\\"http://localhost:8000/app/monthly-distribution\\\">\\n\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\tMonthly Distribution\\n\\t\\t\\t</a><a href=\\\"http://localhost:8000/app//report/Budget Variance Report\\\">\\n\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\tBudget Variance Report\\n\\t\\t\\t</a>Fixed Deposit and Bank Guarantee<a href=\\\"http://localhost:8000/app/fixed-deposit\\\">\\n\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\tFixed Deposit\\n\\t\\t\\t</a><a href=\\\"http://localhost:8000/app/bank-guarantee\\\">\\n\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\tBank Guarantee\\n\\t\\t\\t</a>Accounts Dashboard\",\"col\":12}}]",
  "creation": "2023-04-28 12:35:34.641800",
  "custom_blocks": [],
  "docstatus": 0,
@@ -513,7 +513,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-11-24 15:08:25.694218",
+ "modified": "2024-02-01 15:48:18.559595",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Accounts",
@@ -538,6 +538,13 @@
    "label": "Chart of Accounts",
    "link_to": "Account",
    "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Accounts Dashboard",
+   "link_to": "Accounts",
+   "type": "Dashboard"
   },
   {
    "doc_view": "",

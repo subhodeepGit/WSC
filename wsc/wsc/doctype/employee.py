@@ -648,11 +648,15 @@ def dynamic_workflow_goal_setting(self):
                 data=frappe.get_all("Employee",{"name":t['employee']},["user_id"])
                 if data:
                     user = frappe.get_doc("User",data[0]["user_id"])
+                    user.role_profile_name=""
                     user.add_roles(t['level_of_approval'])
+                    user.save()
 
         if  deleted_dicts:
             for t in deleted_dicts:
-                level_of_approval=frappe.get_all("Dynamnic Workflow for Goal Setting",{"employee":t['employee'],"level_of_approval":t["level_of_approval"]})
+                # level_of_approval=frappe.get_all("Dynamnic Workflow for Goal Setting",{"employee":t['employee'],"level_of_approval":t["level_of_approval"]})
+                level_of_approval=data_for_dynamic_workflow_removal(t['employee'],t["level_of_approval"])
+                ##############
                 if len(level_of_approval)==1:
                     data=frappe.get_all("Employee",{"name":t['employee']},["user_id"])
                     if data:
@@ -664,7 +668,9 @@ def dynamic_workflow_goal_setting(self):
             for t in changes:
                 # old Role Removal
                 old_removal=t['old']
-                level_of_approval_old=frappe.get_all("Dynamnic Workflow for Goal Setting",{"employee":old_removal['employee'],"level_of_approval":old_removal["level_of_approval"]})
+                # level_of_approval_old=frappe.get_all("Dynamnic Workflow for Goal Setting",{"employee":old_removal['employee'],"level_of_approval":old_removal["level_of_approval"]})
+                level_of_approval_old=data_for_dynamic_workflow_removal(old_removal['employee'],old_removal["level_of_approval"])
+                #############
                 data=frappe.get_all("Employee",{"name":old_removal['employee']},["user_id"])
                 if len(level_of_approval_old)==1:
                     if data:
@@ -675,7 +681,9 @@ def dynamic_workflow_goal_setting(self):
                 # New Role Addition
                 new_addition=t['new']
                 user = frappe.get_doc("User",data[0]["user_id"])
-                user.add_roles(new_addition['level_of_approval'])                   
+                user.role_profile_name=""
+                user.add_roles(new_addition['level_of_approval'])
+                user.save()                   
 
 def dynamic_workflow_appraisal(self):
     if self.get("approver_list_for_appraisal"):
@@ -715,11 +723,15 @@ def dynamic_workflow_appraisal(self):
                 data=frappe.get_all("Employee",{"name":t['employee']},["user_id"])
                 if data:
                     user = frappe.get_doc("User",data[0]["user_id"])
+                    user.role_profile_name=""
                     user.add_roles(t['level_of_approval'])
+                    user.save()
 
         if  deleted_dicts:
             for t in deleted_dicts:
-                level_of_approval=frappe.get_all("Approver Details for Appraisal",{"employee":t['employee'],"level_of_approval":t["level_of_approval"]})
+                # level_of_approval=frappe.get_all("Approver Details for Appraisal",{"employee":t['employee'],"level_of_approval":t["level_of_approval"]})
+                level_of_approval=data_for_dynamic_workflow_removal(t['employee'],t["level_of_approval"])
+                #################
                 if len(level_of_approval)==1:
                     data=frappe.get_all("Employee",{"name":t['employee']},["user_id"])
                     if data:
@@ -731,7 +743,9 @@ def dynamic_workflow_appraisal(self):
             for t in changes:
                 # old Role Removal
                 old_removal=t['old']
-                level_of_approval_old=frappe.get_all("Approver Details for Appraisal",{"employee":old_removal['employee'],"level_of_approval":old_removal["level_of_approval"]})
+                # level_of_approval_old=frappe.get_all("Approver Details for Appraisal",{"employee":old_removal['employee'],"level_of_approval":old_removal["level_of_approval"]})
+                level_of_approval_old=data_for_dynamic_workflow_removal(old_removal['employee'],old_removal["level_of_approval"])
+                #################
                 data=frappe.get_all("Employee",{"name":old_removal['employee']},["user_id"])
                 if len(level_of_approval_old)==1:
                     if data:
@@ -742,7 +756,9 @@ def dynamic_workflow_appraisal(self):
                 # New Role Addition
                 new_addition=t['new']
                 user = frappe.get_doc("User",data[0]["user_id"])
-                user.add_roles(new_addition['level_of_approval'])    
+                user.role_profile_name=""
+                user.add_roles(new_addition['level_of_approval'])
+                user.save()    
 
 def find_changes(old_list, new_list, param1, param2):
     old_list = sorted(old_list, key=lambda x: x['employee'], reverse=False)
@@ -781,3 +797,9 @@ def find_changes(old_list, new_list, param1, param2):
     
     # return added, deleted, changes, common              
     return added_list, deleted_list, changes_list
+
+def data_for_dynamic_workflow_removal(employee,level_of_approval):
+    level_of_approval_goal_setting=frappe.get_all("Dynamnic Workflow for Goal Setting",{"employee":employee,"level_of_approval":level_of_approval})
+    level_of_approval_appraisal=frappe.get_all("Approver Details for Appraisal",{"employee":employee,"level_of_approval":level_of_approval})
+    output=level_of_approval_goal_setting+level_of_approval_appraisal
+    return output

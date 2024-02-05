@@ -16,13 +16,13 @@
     <!-- <title>Testings</title> -->
 </head>
 <body>
-    <div class="mycontainer">
 
-        <header class="header">
+    <div class="mycontainer">
+        <!-- <header class="header">
             <div class="logo">
                 <img src="/files/wsc-letter-monogram-logo-design-260nw-2188523251-removebg-preview.png" alt="">
             </div>
-            <nav class="navbar">
+            <nav class="mynavbar">
                 <ul>
                     <li>Dashboard</li>
                     <li>Workspace</li>
@@ -32,47 +32,40 @@
                 <i class="fa-solid fa-bell"></i>
                 <div class="profile">
                     <div class="profile-pic">
-                        <img src="./profile.png" alt="">
+                        <img src="/files/profile.png" alt="">
                     </div>
                     <div class="profile-name">
                         <span>Director</span>
-                        <i class='bx bx-chevron-down'></i>
+                        <i class="fa-solid fa-angle-down"></i>
                     </div>
                 </div>
             </div>
-        </header>
+        </header> -->
 
         <section class="main-body">
 
             <section class="sub-section-1">
-                <h2>Payroll</h2>
-                <h4>Payroll Summary</h4>
+                <h2>Employee Data</h2>
+                <h4>Employee Activity Summary</h4>
                 
-                <div class="select">
-                    <select>
-                    <option value="1">Yearly</option>
-                    <option value="2">Semi-Anually</option>
-                    <option value="3">Quaterly</option>
-                    </select>
-                </div>
-                <div class="graph">
-                    <img src="/private/files/original-60d4b7f841a199e9ab4afff00447e6ae.png" alt="" class="graph-img">
+                <div class="graph" id="frappe-graph">
                 </div>
             </section>
 
             <section class="sub-section-2">
-                <h3>Payment Status</h3>
-                <h4>2455</h4>
+                <h3>Current Head Count</h3>
+                <h4 id="head-count">2455</h4>
                 <span>Employees</span>
+                <!-- <p>Inactive /Suspended/Resigned Employees</p> -->
                 
-                <!-- Progress Container -->
                 <div class="progress-container" id="progress-container">
                     <div class="progress-bar" id="bar1"></div>
                     <div class="progress-bar" id="bar2"></div>
                     <div class="progress-bar" id="bar3"></div>
+                    <!-- <div class="progress-bar" id="bar4"></div> -->
                 </div>
 
-                <!-- Progress Marker Container -->
+                
                 <div class="progress-marker">
                     <div class="progress-mark">
                         <div class="color-mark"></div>
@@ -86,12 +79,17 @@
                     </div>
                     <div class="progress-mark">
                         <div class="color-mark"></div>
-                        <span class="percent">50%</span>
+                        <span class="percent">10%</span>
                         <span class="description">Unpaid</span>
                     </div>
+                    <!-- <div class="progress-mark">
+                        <div class="color-mark"></div>
+                        <span class="percent">40%</span>
+                        <span class="description">Unpaid2</span>
+                    </div> -->
                 </div>
 
-                <!-- Employee on Leave -->
+                
                 <h3>Employee Time Off</h3>
                 <div class="inactive-emp scroller">
                     
@@ -131,58 +129,56 @@
             </section>
             
             <section class="sub-section-3">
-                <h2>Employee Summary</h2>
+                <h2>Recent Job Applicants</h2>
 
                 <div class="table-header">
-                    <div class="col col-1">Employee Name</div>
-                    <div class="col col-2">Email Address</div>
-                    <div class="col col-3">Gross($)</div>
-                    <div class="col col-4">Taxes($)</div>
-                    <div class="col col-5">Net Salary($)</div>
-                    <div class="col col-6">Performance</div>
-                    <div class="col col-7">Status</div>
+                    <div >Applicant Name</div>
+                    <div >Email Address</div>
+                    <div >Designation</div>
+                    <div >Status</div>
+                    <div >Application Year</div>
                 </div>
 
                 <ul class="responsive-table scroller" id="table">
 
                     <li class="table-row">
-                        <div class="col col-1" data-label="Employee Name">John Doe</div>
-                        <div class="col col-2" data-label="Email Address">johndoe@gmail.com</div>
-                        <div class="col col-3" data-label="Gross">74,456.40</div>
-                        <div class="col col-4" data-label="Taxes">-4,645</div>
-                        <div class="col col-5" data-label="Net Salary">69811.40</div>
-                        <div class="col col-6" data-label="Performance">Good</div>
-                        <div class="col col-7" data-label="Status">Paid</div>
+            
+                        <div  data-label="Applicant Name">John Doe</div>
+                        <div  data-label="Email Address">johndoe@gmail.com</div>
+                        <div  data-label="Designation">74,456.40</div>
+                        <div  data-label="Status">-4,645</div>
+                        <div  data-label="Application Year">69811.40</div>
+            
                     </li>
 
                     <li class="table-row">
-                        <div class="col col-1" data-label="Employee Name">Jennifer Smith</div>
-                        <div class="col col-2" data-label="Email Address">jennifersmith@gmail.com</div>
-                        <div class="col col-3" data-label="Gross">87,460</div>
-                        <div class="col col-4" data-label="Taxes">-7,896</div>
-                        <div class="col col-5" data-label="Net Salary">79,564</div>
-                        <div class="col col-6" data-label="Performance">Moderate</div>
-                        <div class="col col-7" data-label="Status">Paid</div>
+            
+                        <div  data-label="Applicant Name">Jennifer Smith</div>
+                        <div  data-label="Email Address">jennifersmith@gmail.com</div>
+                        <div  data-label="Designation">87,460</div>
+                        <div  data-label="Status">-7,896</div>
+                        <div  data-label="Application Year">79,564</div>
+            
                     </li>
 
                     <li class="table-row">
-                        <div class="col col-1" data-label="Employee Name">Jennifer Smith</div>
-                        <div class="col col-2" data-label="Email Address">jennifersmith@gmail.com</div>
-                        <div class="col col-3" data-label="Gross">87,460</div>
-                        <div class="col col-4" data-label="Taxes">-7,896</div>
-                        <div class="col col-5" data-label="Net Salary">79,564</div>
-                        <div class="col col-6" data-label="Performance">Moderate</div>
-                        <div class="col col-7" data-label="Status">Paid</div>
+            
+                        <div  data-label="Applicant Name">Jennifer Smith</div>
+                        <div  data-label="Email Address">jennifersmith@gmail.com</div>
+                        <div  data-label="Designation">87,460</div>
+                        <div  data-label="Status">-7,896</div>
+                        <div  data-label="Application Year">79,564</div>
+            
                     </li>
 
                     <li class="table-row">
-                        <div class="col col-1" data-label="Employee Name">Jennifer Smith</div>
-                        <div class="col col-2" data-label="Email Address">jennifersmith@gmail.com</div>
-                        <div class="col col-3" data-label="Gross">87,460</div>
-                        <div class="col col-4" data-label="Taxes">-7,896</div>
-                        <div class="col col-5" data-label="Net Salary">79,564</div>
-                        <div class="col col-6" data-label="Performance">Moderate</div>
-                        <div class="col col-7" data-label="Status">Paid</div>
+            
+                        <div  data-label="Applicant Name">Jennifer Smith</div>
+                        <div  data-label="Email Address">jennifersmith@gmail.com</div>
+                        <div  data-label="Designation">87,460</div>
+                        <div  data-label="Status">-7,896</div>
+                        <div  data-label="Application Year">79,564</div>
+            
                     </li>
                 </ul>
         

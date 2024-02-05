@@ -96,7 +96,7 @@ frappe.ui.form.on('Student Applicant', {
 	        return{
 	            filters:{
 	                "is_group":0,
-	                // "is_stream": 0
+	                "is_stream": 1
 	            }
 	        }
 	    });
@@ -150,6 +150,14 @@ frappe.ui.form.on('Student Applicant', {
         })      
     },
     hide_n_show_child_table_fields(frm){
+        if(frappe.user.has_role(["Applicant"])){
+            var dfx = frappe.meta.get_docfield("Program Priority","approve", frm.doc.name);
+            dfx.hidden = 1
+            var dfy = frappe.meta.get_docfield("Program Priority","programs", frm.doc.name);
+            dfy.read_only = 1
+        }
+        var df = frappe.meta.get_docfield("Education Qualifications Details","qualification_", frm.doc.name);
+        df.hidden = 1
         var df = frappe.meta.get_docfield("Education Qualifications Details","qualification_", frm.doc.name);
         df.hidden = 1
         var df0 = frappe.meta.get_docfield("Education Qualifications Details","qualification", frm.doc.name);
@@ -173,6 +181,7 @@ frappe.ui.form.on('Student Applicant', {
     },
     after_save:function(frm){
         frm.set_df_property('image', 'reqd', 1);
+        // frm.set_df_property('blood_group', 'reqd', 1);
     },
     review_student: function(frm) {
 		frappe.model.open_mapped_doc({
@@ -267,7 +276,29 @@ frappe.ui.form.on('Student Applicant', {
 			frm.set_value("student_email_id", frappe.session.user)
 			frm.set_df_property('student_email_id', 'read_only', 1);
 		}
-
+        if(frappe.user.has_role(["Education Admission Head"]) && !frappe.user.has_role(["System Manager"])){
+            frm.set_df_property('student_email_id', 'read_only', 1);
+            frm.set_df_property('student_mobile_number', 'read_only', 1);
+        }
+        if(frappe.user.has_role(["Temporary Admission Group"]) && !frappe.user.has_role(["System Manager"])){
+			frm.set_df_property('student_email_id', 'read_only', 1);
+            frm.set_df_property('student_application_id', 'read_only', 1);
+            frm.set_df_property('category', 'read_only', 1);
+            frm.set_df_property('department', 'read_only', 1);
+            frm.set_df_property('program_grade', 'read_only', 1);
+            frm.set_df_property('program_priority', 'read_only', 1);
+            frm.set_df_property('student_mobile_number', 'read_only', 1);
+            frm.set_df_property('education_qualifications_details', 'read_only', 1);
+            frm.set_df_property('document_list', 'read_only', 1);
+            frm.set_df_property('student_category', 'read_only', 1);
+            frm.set_df_property('first_name', 'read_only', 1);
+            frm.set_df_property('middle_name', 'read_only', 1);
+            frm.set_df_property('last_name', 'read_only', 1);
+            frm.set_df_property('date_of_birth', 'read_only', 1);
+            frm.set_df_property('gender', 'read_only', 1);
+            frm.set_df_property('blood_group', 'read_only', 1);
+            frm.set_df_property('student_mobile_number', 'read_only', 1);
+		}
         frm.set_df_property('student_rank', 'cannot_add_rows', true)
 		// frm.set_df_property('student_rank', 'cannot_delete_rows', true) 
         frm.set_df_property('education_qualifications_details', 'cannot_add_rows', true);
@@ -438,8 +469,8 @@ frappe.ui.form.on('Student Applicant', {
     //     }
         
     // },
-    get_education_and_document_list(frm){
-        frm.set_value("education_qualifications_details",[]);
+    // get_education_and_document_list(frm){
+    //     frm.set_value("education_qualifications_details",[]);
         
         // if (frm.doc.counselling_structure && frm.doc.student_category){
             
@@ -466,7 +497,7 @@ frappe.ui.form.on('Student Applicant', {
         //     });
         // }
        
-    },
+    // },
     // get_qualification_detail_for_admission(frm){
     //     if (!frm.doc.counselling_structure && frm.doc.student_category && (frm.doc.program_priority).length!=0){
     //         frm.set_value("education_qualifications_details",[]);
@@ -607,13 +638,13 @@ frappe.ui.form.on("Education Qualifications Details", "earned_marks", function(f
     },
  })
 
-frappe.ui.form.on("Program Priority" , {
-    program_priority_remove: function(frm , cdt , cdn) {
-        frappe.model.clear_table(frm.doc, 'education_qualifications_details');  
-        frm.refresh();
-        frm.refresh_field("education_qualifications_details")
-    }
-})
+// frappe.ui.form.on("Program Priority" , {
+//     program_priority_remove: function(frm , cdt , cdn) {
+//         frappe.model.clear_table(frm.doc, 'education_qualifications_details');  
+//         frm.refresh();
+//         frm.refresh_field("education_qualifications_details")
+//     }
+// })
 
 // frappe.ui.form.on("Exam Centre Preference" , "center_name" , function(frm , cdt , cdn){
 // // frappe.ui.form.on("Exam Centre Preference" , function(frm , cdt , cdn){
@@ -722,7 +753,7 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
     frm.set_value("counselling_structure",'')
     // frm.set_value("program",'')
     if (!frm.doc.program_grade){
-        frappe.msgprint("Please Fill Program Grade First")
+        frappe.msgprint("Please Fill Course Type First")
         d.programs=''
     }
     if (!frm.doc.academic_year){
@@ -730,7 +761,7 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
         d.programs=''
     }
     if (!frm.doc.student_category){
-        frappe.msgprint("Please Fill Student First")
+        frappe.msgprint("Please Fill Caste Category")
         d.programs=''
     }
 

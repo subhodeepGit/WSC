@@ -1,0 +1,39 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2024-02-01 17:55:29.591404",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "modified": "2024-02-01 17:55:29.591404",
+ "modified_by": "Administrator",
+ "module": "WSC",
+ "name": "Asset Tracking report",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "SELECT d.`item_code` as \"Asset Code\",\nd.`item_name` as \"Asset Name\",\na.`custodian` as \"Custodian\",\na.`custodian_name` as \"Custodian Name\",\na.`location` as \"Location of Asset\",\nd.`building_name` as \"Building Name\",\nd.`floor_no` as \"Floor No.\",\nd.`room_no` as \"Room No.\"\n     FROM `tabAsset` AS a\n     INNER JOIN (\n     SELECT b.`building_name`, b.`floor_no`, b.`room_no`, c.`item_code`, c.`item_name`\n     FROM `tabBuilding Room` AS b\n     INNER JOIN `tabRoom Assets` AS c ON b.`name` = c.`parent`)\n     AS d ON a.`name` = d.`item_code`;",
+ "ref_doctype": "Asset",
+ "report_name": "Asset Tracking report",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "Admin"
+  },
+  {
+   "role": "Building Administrator"
+  },
+  {
+   "role": "Maintenance Department"
+  },
+  {
+   "role": "Floor Supervisor"
+  },
+  {
+   "role": "Employee- Infrastructure"
+  }
+ ]
+}

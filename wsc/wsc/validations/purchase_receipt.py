@@ -35,3 +35,10 @@ def validate(self, method):
 		if cd.rate:
 			if cd.rate < 0:
 				frappe.throw("Tax Rate cannot be negative")
+
+	for cd in self.items:
+		if cd.discount_percentage:
+			if cd.discount_percentage < 0:
+				frappe.throw("Discount Percentage cannot be negative")
+			if cd.discount_percentage > 100:
+				frappe.throw("Discount Percentage cannot be greater than 100")
