@@ -152,9 +152,9 @@ frappe.ui.form.on('Online Application Form', {
 			frm.remove_custom_button("Permission to Upload Documents")
 		}
 		frm.set_df_property('education_qualifications_details', 'cannot_add_rows', true);
-        // frm.set_df_property('education_qualifications_details', 'cannot_delete_rows', true);
+        frm.set_df_property('education_qualifications_details', 'cannot_delete_rows', true);
 		frm.set_df_property('program_priority', 'cannot_add_rows', true);
-        // frm.set_df_property('program_priority', 'cannot_delete_rows', true);
+        frm.set_df_property('program_priority', 'cannot_delete_rows', true);
 		frm.add_custom_button("Instruction", () => {
 			frappe.new_doc("Application Form Instruction")
 		});
