@@ -6,7 +6,10 @@ import calendar
 def get_data():
     print("\n\n\n")
     
-    user_data = frappe.get_all("User",{'email':frappe.session.user} , ['email' , 'role_profile_name'])
+    print(frappe.session.user)
+    user_data = frappe.get_all("User",{'email':frappe.session.user} , ['email' , 'role_profile_name' ])
+
+    print(user_data , "\n")
     if user_data[0]['role_profile_name'] == 'Director' or user_data[0]['role_profile_name'] == 'Administrater':
         print("User Correct")
         

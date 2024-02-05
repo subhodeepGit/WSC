@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"I94ohjhFyv\",\"type\":\"paragraph\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Your Shortcuts</span><br>\",\"col\":12}},{\"id\":\"uuWOTpBaAB\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"z_IGlpcpmq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Requisition\",\"col\":3}},{\"id\":\"7tiNz-k7L1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Order\",\"col\":3}},{\"id\":\"Z2DRTnIF9P\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Receipt\",\"col\":3}},{\"id\":\"UrMkTeD9HM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Entry\",\"col\":3}},{\"id\":\"DKcH_B5bpd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Summary\",\"col\":3}},{\"id\":\"dSL1P4vn-S\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Material Management Dashboard\",\"col\":3}},{\"id\":\"efNAecHBBv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Dashboard\",\"col\":3}},{\"id\":\"OKP6cWlbo2\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"_XaiFfIDzm\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Masters &amp; Reports</span>\",\"col\":12}},{\"id\":\"s_BPdGl1xr\",\"type\":\"card\",\"data\":{\"card_name\":\"Items & Pricing\",\"col\":3}},{\"id\":\"ZBBW9_DXB2\",\"type\":\"card\",\"data\":{\"card_name\":\"Supplier\",\"col\":3}},{\"id\":\"RU0yDcoVOU\",\"type\":\"card\",\"data\":{\"card_name\":\"Quality Inspection\",\"col\":3}},{\"id\":\"O5VEgFikqd\",\"type\":\"card\",\"data\":{\"card_name\":\"Payment Term\",\"col\":3}},{\"id\":\"ViKhqWeQj1\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":3}},{\"id\":\"y7OzlykFRl\",\"type\":\"card\",\"data\":{\"card_name\":\"Buying\",\"col\":3}},{\"id\":\"8SX6aekWn_\",\"type\":\"card\",\"data\":{\"card_name\":\"Stock Transactions\",\"col\":3}},{\"id\":\"R9mu4m0WfX\",\"type\":\"card\",\"data\":{\"card_name\":\"Serial No and Batch\",\"col\":3}},{\"id\":\"E7hnKY9j4S\",\"type\":\"card\",\"data\":{\"card_name\":\"Assets\",\"col\":3}},{\"id\":\"tAezQMBgBA\",\"type\":\"card\",\"data\":{\"card_name\":\"Maintenance\",\"col\":3}},{\"id\":\"BKOwWdUENB\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":3}},{\"id\":\"HB106MQIz2\",\"type\":\"card\",\"data\":{\"card_name\":\"Contract\",\"col\":3}},{\"id\":\"K-AlOfpaMT\",\"type\":\"card\",\"data\":{\"card_name\":\"Report\",\"col\":3}}]",
+ "content": "[{\"id\":\"I94ohjhFyv\",\"type\":\"paragraph\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Your Shortcuts</span><br>\",\"col\":12}},{\"id\":\"uuWOTpBaAB\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"z_IGlpcpmq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Requisition\",\"col\":3}},{\"id\":\"7tiNz-k7L1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Order\",\"col\":3}},{\"id\":\"Z2DRTnIF9P\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Receipt\",\"col\":3}},{\"id\":\"UrMkTeD9HM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Entry\",\"col\":3}},{\"id\":\"DKcH_B5bpd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Summary\",\"col\":3}},{\"id\":\"dSL1P4vn-S\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Material Management Dashboard\",\"col\":3}},{\"id\":\"efNAecHBBv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Dashboard\",\"col\":3}},{\"id\":\"7H2OGSIaLv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Asset Dashbord\",\"col\":3}},{\"id\":\"OKP6cWlbo2\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"_XaiFfIDzm\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Masters &amp; Reports</span>\",\"col\":12}},{\"id\":\"s_BPdGl1xr\",\"type\":\"card\",\"data\":{\"card_name\":\"Items & Pricing\",\"col\":3}},{\"id\":\"ZBBW9_DXB2\",\"type\":\"card\",\"data\":{\"card_name\":\"Supplier\",\"col\":3}},{\"id\":\"RU0yDcoVOU\",\"type\":\"card\",\"data\":{\"card_name\":\"Quality Inspection\",\"col\":3}},{\"id\":\"O5VEgFikqd\",\"type\":\"card\",\"data\":{\"card_name\":\"Payment Term\",\"col\":3}},{\"id\":\"ViKhqWeQj1\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":3}},{\"id\":\"y7OzlykFRl\",\"type\":\"card\",\"data\":{\"card_name\":\"Buying\",\"col\":3}},{\"id\":\"8SX6aekWn_\",\"type\":\"card\",\"data\":{\"card_name\":\"Stock Transactions\",\"col\":3}},{\"id\":\"R9mu4m0WfX\",\"type\":\"card\",\"data\":{\"card_name\":\"Serial No and Batch\",\"col\":3}},{\"id\":\"E7hnKY9j4S\",\"type\":\"card\",\"data\":{\"card_name\":\"Assets\",\"col\":3}},{\"id\":\"tAezQMBgBA\",\"type\":\"card\",\"data\":{\"card_name\":\"Maintenance\",\"col\":3}},{\"id\":\"BKOwWdUENB\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":3}},{\"id\":\"HB106MQIz2\",\"type\":\"card\",\"data\":{\"card_name\":\"Contract\",\"col\":3}},{\"id\":\"K-AlOfpaMT\",\"type\":\"card\",\"data\":{\"card_name\":\"Report\",\"col\":3}}]",
  "creation": "2023-03-02 12:27:36.612927",
  "custom_blocks": [],
  "docstatus": 0,
@@ -567,7 +567,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-02-01 15:59:16.838923",
+ "modified": "2024-02-02 11:18:32.527500",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Material Management",
@@ -624,6 +624,13 @@
    "doc_view": "List",
    "label": "Stock Dashboard",
    "link_to": "Stock",
+   "type": "Dashboard"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Asset Dashbord",
+   "link_to": "Asset",
    "type": "Dashboard"
   },
   {
