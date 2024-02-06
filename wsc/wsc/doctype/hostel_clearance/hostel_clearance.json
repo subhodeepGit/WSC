@@ -110,13 +110,15 @@
    "fieldname": "due_amount",
    "fieldtype": "Currency",
    "label": "Due Amount",
+   "mandatory_depends_on": "eval:doc.due_status=='Dues';",
    "non_negative": 1
   },
   {
    "depends_on": "eval:doc.due_status=='Dues';",
    "fieldname": "reason_of_due",
    "fieldtype": "Data",
-   "label": "Reason of Due"
+   "label": "Reason of Due",
+   "mandatory_depends_on": "eval:doc.due_status=='Dues';"
   },
   {
    "fieldname": "amended_from",
@@ -159,7 +161,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-22 11:44:48.121547",
+ "modified": "2024-02-05 11:24:59.793039",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Hostel Clearance",

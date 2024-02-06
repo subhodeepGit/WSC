@@ -8,5 +8,11 @@ frappe.ui.form.on('Hostel Clearance', {
 				query: "wsc.wsc.doctype.room_change.room_change.ra_query"
 			};
 		});
+	},
+	due_status: function (frm) {
+		if(frm.doc.due_status!="Dues"){
+			frm.set_value("due_amount", "");
+			frm.set_value("reason_of_due", "");
+		}
 	}
 });
