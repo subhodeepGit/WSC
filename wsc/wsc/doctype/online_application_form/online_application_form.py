@@ -37,6 +37,7 @@ class OnlineApplicationForm(Document):
 		validate_edu_details(doc)
 		print("\n\nChenck Educ in validate")
 		get_cateogry_detail(doc)
+		prority_chk(doc)
 		# education_details_validation(doc)
 
 	def on_submit(doc):
@@ -46,6 +47,25 @@ class OnlineApplicationForm(Document):
 				"Online Application Form", doc.name,"declaration", 
 				"I hereby confirm that, all the data furnished in the form are correct and if any information is found incorrect then my candidature for admission will be cancelled. In case of any wrong information leading to legal, reputational hazard for WSC, it will have the right to take legal action. The final decision of application and admission process is solely lies with WSC. WSC can change the process of admission including data at its own discretion"
 			)
+		
+def prority_chk(doc):
+	lis=[]
+	for t in doc.program_priority:
+		print(t.select_your_preference)
+		lis.append(t.select_your_preference)
+
+	uniqueList = []
+	duplicateList = []
+	
+	for i in lis:
+		if i not in uniqueList:
+			uniqueList.append(i)
+		elif i not in duplicateList:
+			duplicateList.append(i)
+	if duplicateList:
+		frappe.throw("You Have Selected Same Preference For Multiple Courses! Kindly Select Different Preferences.")
+
+
 
 def restrict_applicant(doc):
 	roles = frappe.get_roles(frappe.session.user)
