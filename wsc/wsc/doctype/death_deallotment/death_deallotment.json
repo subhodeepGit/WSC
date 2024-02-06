@@ -167,7 +167,7 @@
   {
    "fieldname": "date_of_demise",
    "fieldtype": "Date",
-   "label": "Reason of Demise",
+   "label": "Date of Demise",
    "reqd": 1
   },
   {
@@ -256,13 +256,15 @@
    "fetch_from": "student_id.fathers_contact_number",
    "fieldname": "fathers_contact_number",
    "fieldtype": "Data",
-   "label": "Father's Contact Number"
+   "label": "Father's Contact Number",
+   "read_only": 1
   },
   {
    "fetch_from": "student_id.mothers_contact_number",
    "fieldname": "mothers_contact_number",
    "fieldtype": "Data",
-   "label": "Mother's Contact Number"
+   "label": "Mother's Contact Number",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_u0m7l",
@@ -272,7 +274,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-02-01 18:50:22.727706",
+ "modified": "2024-02-05 15:25:14.914885",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Death Deallotment",

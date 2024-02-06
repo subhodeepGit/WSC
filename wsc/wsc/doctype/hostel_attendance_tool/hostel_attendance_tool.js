@@ -4,8 +4,12 @@
 frappe.ui.form.on("Hostel Attendance Tool", {
 	refresh: function(frm) {
 		frm.disable_save();
+		if(frm.doc.department==null || frm.doc.department==undefined || frm.doc.department==""){
+            frm.set_df_property('branch', 'read_only', 1);
+        }else{
+            frm.set_df_property('branch', 'read_only', 0);
+        }
 	},
-
 	onload: function(frm) {
 		frm.set_value("date", frappe.datetime.get_today());
 		frm.set_query("department", function() {
@@ -18,7 +22,7 @@ frappe.ui.form.on("Hostel Attendance Tool", {
 				filters: [
 					["Room Masters", "hostel_id", "=", frm.doc.department],
 					["Room Masters", "validity", "=", "Functional"],
-					["Room Masters", "status", "=", "Functional"],
+					["Room Masters", "status", "=", "To be Allotted"],
 				]
 			}
 		});
@@ -31,6 +35,12 @@ frappe.ui.form.on("Hostel Attendance Tool", {
 
 	department: function(frm) {
 		erpnext.employee_attendance_tool.load_employees(frm);
+		if(frm.doc.department==null || frm.doc.department==undefined || frm.doc.department==""){
+            frm.set_df_property('branch', 'read_only', 1);
+			frm.set_value("branch", "");
+        }else{
+            frm.set_df_property('branch', 'read_only', 0);
+        }
 	},
 
 	branch: function(frm) {

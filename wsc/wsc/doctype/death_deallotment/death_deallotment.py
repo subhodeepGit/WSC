@@ -3,8 +3,13 @@
 
 import frappe
 from frappe.model.document import Document
+from frappe.utils import getdate, today
 
 class DeathDeallotment(Document):
+	def validate(doc):
+		if getdate(doc.date_of_demise)>getdate(today()):
+			frappe.throw("The <b>Date of Demise</b> must be earlier than today's date")
+
 	# @frappe.whitelist()	
 	def on_submit(doc):
 		end_date=doc.date_of_demise
