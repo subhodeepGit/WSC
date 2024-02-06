@@ -123,14 +123,14 @@ def mobile_number_validation(doc):
         if len(doc.phone_number)<10:
             frappe.throw("Field <b>Mobile Number</b> must be 10 Digits")
         
-    if doc.alternate_number:
+    # if doc.alternate_number:
        
-        if not (doc.alternate_number).isdigit():
-            frappe.throw("Field <b>Alternate Contact Number</b> Accept Digits Only")
-        if len(doc.alternate_number)<10:
-            frappe.throw("Field <b>Alternate Contact Number</b> must be 10 Digits")
-        if len(doc.alternate_number)>10:
-            frappe.throw("Field <b>Alternate Contact Number</b> must be 10 Digits")
+    #     if not (doc.alternate_number).isdigit():
+    #         frappe.throw("Field <b>Alternate Contact Number</b> Accept Digits Only")
+    #     if len(doc.alternate_number)<10:
+    #         frappe.throw("Field <b>Alternate Contact Number</b> must be 10 Digits")
+    #     if len(doc.alternate_number)>10:
+    #         frappe.throw("Field <b>Alternate Contact Number</b> must be 10 Digits")
 
 
 	
