@@ -413,7 +413,7 @@
    "is_query_report": 0,
    "label": "Recruitment Admit Card Generation",
    "link_count": 0,
-   "link_to": "Recruitment Admit Card Generation",
+   "link_to": "Recruitment  Admit Card Generation",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -635,7 +635,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-02-02 12:55:29.655837",
+ "modified": "2024-02-06 12:00:32.305236",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "HRMS (Base)",
