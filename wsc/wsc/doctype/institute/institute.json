@@ -1,36 +1,32 @@
 {
  "actions": [],
- "autoname": "field:parameter_name",
- "creation": "2021-05-15 15:14:26.829291",
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:institute_name",
+ "creation": "2024-02-05 09:07:37.334584",
+ "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "parameter_name",
-  "department"
+  "institute_name"
  ],
  "fields": [
   {
-   "fieldname": "parameter_name",
+   "fieldname": "institute_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Parameter Name",
+   "label": "Institute Name",
    "reqd": 1,
    "unique": 1
-  },
-  {
-   "fieldname": "department",
-   "fieldtype": "Link",
-   "label": "Department",
-   "options": "Department"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-05 13:07:22.693097",
+ "modified": "2024-02-05 09:13:39.432096",
  "modified_by": "Administrator",
  "module": "WSC",
- "name": "Eligibility Parameters",
+ "name": "Institute",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
@@ -49,6 +45,5 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": [],
- "track_changes": 1
+ "states": []
 }

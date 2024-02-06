@@ -57,8 +57,8 @@ def on_cancel(doc,method):
         update_student(doc) 
 
 def on_change(doc,method):
-    # delete_course_enrollment(doc)
-    # create_course_enrollments(doc)
+    delete_course_enrollment(doc)
+    create_course_enrollments(doc)
     applicant_enroll_status(doc)
     onlinepayrole(doc)
     # update_reserved_seats(doc)
@@ -409,6 +409,7 @@ def get_program_courses(semester,year_end_date):
         course_details[0].update({'semesterss': semester})
         row.update(course_details[0])
         result.append(row)
+        print("\n\nRESULT",result)
     return result      
     return get_courses_by_semester_academic_year(semester)
 @frappe.whitelist()

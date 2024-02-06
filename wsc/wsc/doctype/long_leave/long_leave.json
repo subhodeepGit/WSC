@@ -56,7 +56,6 @@
    "options": "LL-.YYYY.-"
   },
   {
-   "fetch_from": "student.naming_series",
    "fieldname": "allotment_number",
    "fieldtype": "Link",
    "in_standard_filter": 1,
@@ -152,8 +151,9 @@
   {
    "depends_on": "eval:doc.medium_of_communicatinon == \"Telephone\";",
    "fieldname": "phone_no",
-   "fieldtype": "Phone",
+   "fieldtype": "Data",
    "label": "Phone No",
+   "length": 10,
    "mandatory_depends_on": "eval:doc.medium_of_communicatinon == \"Telephone\";"
   },
   {
@@ -170,8 +170,9 @@
   {
    "depends_on": "eval:doc.medium_of_communicatinon_from_student == \"Telephone\";",
    "fieldname": "communication_phone_no",
-   "fieldtype": "Phone",
+   "fieldtype": "Data",
    "label": "Communication Phone no",
+   "length": 10,
    "mandatory_depends_on": "eval:doc.medium_of_communicatinon_from_student == \"Telephone\";"
   },
   {
@@ -298,7 +299,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-22 11:44:12.563725",
+ "modified": "2024-02-05 16:34:21.032559",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Long Leave",
