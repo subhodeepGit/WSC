@@ -7,12 +7,11 @@ from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 from frappe.utils.data import today
 from frappe.utils.data import getdate
-# from wsc.wsc.utils import duplicate_row_validation
+from wsc.wsc.utils import duplicate_row_validation
 
 class OnlineApplicationForm(Document):
 
 	def on_update_after_submit(doc):
-		# duplicate_row_validation(doc,"program_priority",["select_your_preference"])
 		# check_profilePhoto(doc)
 		real_applicant(doc)
 		concat_name(doc)
@@ -28,7 +27,6 @@ class OnlineApplicationForm(Document):
 		restrict_applicant(doc)
 
 	def validate(doc):
-		# duplicate_row_validation(doc,"program_priority",["select_your_preferences"])
 		admission(doc)
 		validate_duplicate_record(doc)
 		validate_dob(doc)
@@ -40,10 +38,8 @@ class OnlineApplicationForm(Document):
 		print("\n\nChenck Educ in validate")
 		get_cateogry_detail(doc)
 		# education_details_validation(doc)
-		# duplicate_row_validation(doc,"program_priority",["select_your_preference"])
 
 	def on_submit(doc):
-		# duplicate_row_validation(doc,"program_priority",["select_your_preference"])
 		# real_applicant(doc)
 		concat_name(doc)
 		frappe.db.set_value(
