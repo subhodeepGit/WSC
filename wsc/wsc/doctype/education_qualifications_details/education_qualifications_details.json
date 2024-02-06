@@ -8,6 +8,8 @@
   "qualification",
   "qualification_",
   "institute",
+  "institute_name",
+  "type_your_institute_name",
   "board",
   "percentage_cgpa",
   "score",
@@ -88,7 +90,6 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Mandatory",
-   "options": "Yes",
    "read_only": 1,
    "width": "10"
   },
@@ -97,11 +98,28 @@
    "fieldtype": "Percent",
    "hidden": 1,
    "label": "Admission Percentage"
+  },
+  {
+   "columns": 2,
+   "depends_on": "eval:doc.mandatory==\"Yes\";",
+   "fieldname": "institute_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Institute Name",
+   "options": "Institute",
+   "width": "10px"
+  },
+  {
+   "depends_on": "eval:doc.institute_name==\"Others\";",
+   "fieldname": "type_your_institute_name",
+   "fieldtype": "Data",
+   "label": "Type Your Institute Name",
+   "mandatory_depends_on": "eval:doc.institute_name==\"Others\";"
   }
  ],
  "istable": 1,
  "links": [],
- "modified": "2024-01-30 16:21:12.245529",
+ "modified": "2024-02-05 17:40:00.048487",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Education Qualifications Details",

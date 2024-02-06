@@ -1,0 +1,327 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.myContainer{
+    width: 1808px;
+    height: 650px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #EAF0FB;
+    padding: 30px 20px 20px;
+}
+.cardSection{
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: space-between;
+}
+.cardCollection{
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cardTile{
+    width: 14%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FCFDFE;
+    border-radius: 10px;
+    padding-left: 5px;
+    /* background-color: green; */
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+}
+.cardInfo{
+    width: 90%;
+    height: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cardLogo{
+    width: 30%;
+    height: 100%;
+    position: relative;
+    /* background-color: gray; */
+}
+.logoCircle{
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.logo{
+    font-size: 22px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: whitesmoke;
+}
+.cardBody{
+    /* background-color: purple; */
+    padding: 0px 5px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.cardTitle{
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 10px 0px;
+    font-weight: bold;
+}
+.cardValue{
+    letter-spacing: 1px;
+    font-size: 22px;
+}
+.decoration{
+    height: 70%;
+    width: 7px;
+    border-radius: 10px 0px 0px 10px;
+}
+.card1.decoration, .card1.logoCircle{
+    background-color: #194DD4;
+}
+.card2.decoration, .card2.logoCircle{
+    background-color: #F79155;
+}
+.card3.decoration, .card3.logoCircle{
+    background-color: #FFC327;
+}
+.card4.decoration, .card4.logoCircle{
+    background-color: #EB5757;
+}
+.card5.decoration, .card5.logoCircle{
+    background-color: #9475DD;
+}
+.card6.decoration, .card6.logoCircle{
+    background-color: #51D35E;
+}
+.homeBtn{
+    border: none;
+    outline: none;
+    height: 40%;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #44A2EB;
+    border-radius: 10px;
+}
+.homeBtnLogo{
+    padding-right: 10px;
+    font-size: 14px;
+    color: whitesmoke;
+}
+.homeBtnText{
+    font-size: 18px;
+    color: whitesmoke;
+}
+.detailSection{
+    width : 100%;
+    height: 82%;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.leftPanel, .rightPanel{
+    width: 49%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: #FCFDFE;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+}
+.chartSection{
+    width: 100%;
+    height: 30%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid #D9D9D9;
+}
+.chartContainer{
+    width: 49%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.doughnutChartContainer{
+    height: 100%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.leftchartHeading, .rightchartHeading{
+    font-size: 14px;
+    font-weight: bold;
+    color: #4F4E4E;
+}
+.leftchartHeading{
+    text-align: start;
+}
+.rightchartHeading{
+    text-align: end;
+}
+.chartHolder{
+    width: 100%;
+    height: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: green; */
+}
+.horizontalBarChart{
+    height: 100%;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    /* background-color: red; */
+}
+.chartDivBar{
+    height: 80%;
+    width: 3px;
+    border-radius: 5px;
+    background-color: #d9d9d9;
+}
+.doughnutChart{
+    height: 100%;
+    width: auto;
+}
+.horizontalChart{
+    height: 60%;
+    width: auto;
+    /* background-color: pink; */
+}
+.tableSection{
+    width: 100%;
+    height: 67%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: orange; */
+}
+.tableOpts{
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: green; */
+}
+.tableTitleSection{
+    height: 100%;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    /* background-color: purple; */
+}
+.tableLogoContainer{
+    height: 100%;
+    width: 30%;
+    position: relative;
+}
+.tablelogoCircle{
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #F79155;
+}
+.tableTitle{
+    color: #4F4E4E;
+    font-size: 19px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.optBtnSection{
+    width: 25%;
+    height: 60%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: purple; */
+}
+.tableSelectBtn{
+    width: 48%;
+    height: 100%;
+    border: none;
+    outline: none;
+    color: whitesmoke;
+    border-radius: 7px;
+    background-color: #F79155;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    font-size: 13px;
+    letter-spacing: 1px;
+    padding: 5px;
+}
+.tableLogo{
+    font-size: 22px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: whitesmoke;
+}
+.tableContainer{
+    width: 100%;
+    height: 82%;
+    border-radius: 10px;
+    overflow-y: scroll;
+    border: 1px solid #D9D9D9;
+    padding: 0px 15px;
+    
+}
+table{
+    width: 100%;
+    position: relative;
+}
+thead{
+    position: sticky;
+    top: 0px;
+    background-color: white;
+    border-bottom: 1px solid grey;
+}
+td, th{
+    color: #565555;
+    font-size: 14px;
+    text-align: center;
+    padding : 10px 0px;
+    border-bottom: 1px solid #D5CDCD
+}
+

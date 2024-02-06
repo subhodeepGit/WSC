@@ -7,16 +7,17 @@ from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 from frappe.utils.data import today
 from frappe.utils.data import getdate
-from wsc.wsc.utils import duplicate_row_validation
+# from wsc.wsc.utils import duplicate_row_validation
 
 class OnlineApplicationForm(Document):
 
 	def on_update_after_submit(doc):
-		duplicate_row_validation(doc,"program_priority",["programs"])
-		check_profilePhoto(doc)
+		# duplicate_row_validation(doc,"program_priority",["select_your_preference"])
+		# check_profilePhoto(doc)
 		real_applicant(doc)
 		concat_name(doc)
 		validate_edu_details(doc)
+		print("\n\nChenck Educ in update")
 		validate_duplicate_record(doc)
 		validate_dob(doc)
 		validate_pin_code(doc)
@@ -27,7 +28,8 @@ class OnlineApplicationForm(Document):
 		restrict_applicant(doc)
 
 	def validate(doc):
-		duplicate_row_validation(doc,"program_priority",["programs"])
+		# duplicate_row_validation(doc,"program_priority",["select_your_preferences"])
+		admission(doc)
 		validate_duplicate_record(doc)
 		validate_dob(doc)
 		validate_pin_code(doc)
@@ -35,17 +37,20 @@ class OnlineApplicationForm(Document):
 		validate_adharcard(doc)
 		validate_applicant_name(doc)
 		validate_edu_details(doc)
+		print("\n\nChenck Educ in validate")
 		get_cateogry_detail(doc)
-		duplicate_row_validation(doc,"program_priority",["programs"])
+		# education_details_validation(doc)
+		# duplicate_row_validation(doc,"program_priority",["select_your_preference"])
 
 	def on_submit(doc):
-		duplicate_row_validation(doc,"program_priority",["programs"])
+		# duplicate_row_validation(doc,"program_priority",["select_your_preference"])
 		# real_applicant(doc)
 		concat_name(doc)
 		frappe.db.set_value(
 				"Online Application Form", doc.name,"declaration", 
 				"I hereby confirm that, all the data furnished in the form are correct and if any information is found incorrect then my candidature for admission will be cancelled. In case of any wrong information leading to legal, reputational hazard for WSC, it will have the right to take legal action. The final decision of application and admission process is solely lies with WSC. WSC can change the process of admission including data at its own discretion"
 			)
+
 def restrict_applicant(doc):
 	roles = frappe.get_roles(frappe.session.user)
 	if doc.docstatus==1 and doc.application_status=="Approved" and "Applicant"  in roles:
@@ -57,9 +62,10 @@ def restrict_applicant(doc):
 		for t in doc.get("program_priority"):
 			if t.approve!=1:
 				t.approve=1
-def check_profilePhoto(doc):
-	if not doc.image:
-		frappe.throw("Please attach your photo on Top Left Corner of the Screen")
+
+# def check_profilePhoto(doc):
+# 	if not doc.image:
+# 		frappe.throw("Please attach your photo on Top Left Corner of the Screen")
 def concat_name(doc):
 	if doc.first_name and doc.last_name and doc.middle_name:
 		fname=doc.first_name
@@ -116,11 +122,11 @@ def validate_applicant_name(doc):
 def contains_only_characters(first_name):
 	return all(char.isalpha() or char.isspace() or char == '.' for char in first_name)
 
-# def education_details_validation(doc):
-# 	if doc.student_category and doc.student_admission:
-# 		for d in get_eligibility_parameter_list_for_category(doc.student_admission,doc.student_category):
-# 			if d.parameter not in [ed.qualification for ed in doc.get("education_qualifications_details")]:
-# 				frappe.throw("Please Add <b>{0}</b> in Education Details Table".format(d.parameter))
+def education_details_validation(doc):
+	if doc.student_category and doc.student_admission:
+		for d in get_eligibility_parameter_list_for_category(doc.student_admission,doc.student_category):
+			if d.parameter not in [ed.qualification for ed in doc.get("education_qualifications_details")]:
+				frappe.throw("Please Add <b>{0}</b> in Education Details Table".format(d.parameter))
 
 def get_document_list_by_category(doc):
 	filters={"student_category":doc.student_category}
@@ -132,10 +138,10 @@ def get_document_list_by_category(doc):
 	inner join `tabDocuments Template` as D on DL.parent= D.name where D.student_category='{0}' and D.academic_year = '{1}' and D.department = '{2}' ORDER BY document_name ASC""".format(doc.student_category,doc.academic_year,doc.department) ,as_dict=1)
 	return doc_list if doc_list else []
 
-# @frappe.whitelist()
-# def get_eligibility_parameter_list_for_category(admission,category):
-# 	parameter_list = frappe.get_all("Eligibility Parameter List",{"parent":admission,"student_category":category},['parameter'],order_by="parameter_name asc")
-# 	return parameter_list
+@frappe.whitelist()
+def get_eligibility_parameter_list_for_category(admission,category):
+	parameter_list = frappe.get_all("Eligibility Parameter List",{"parent":admission,"student_category":category},['parameter'],order_by="parameter_name asc")
+	return parameter_list
 
 def validate_attachment(doc):
 	for d in doc.get("education_qualifications_details"):
@@ -152,14 +158,17 @@ def validate_student_admission(doc):
 
 def validate_edu_details(doc):
 	if len(doc.education_qualifications_details) == 0:
-		for result in frappe.get_all("Eligibility Parameter List",{"parent":doc.student_admission,"parenttype":"Student Admission"},["parameter","percentagecgpa","is_mandatory","eligible_score"] , order_by="parameter",group_by="parameter"):
+		for result in frappe.get_all("Eligibility Parameter List",{"parent":doc.student_admission,"parenttype":"Student Admission"},["parameter","percentagecgpa","is_mandatory","eligible_score","department"] , order_by="parameter",group_by="parameter"):
+			print("\n\n\nThird")
+			print(result.department)
 			doc.append("education_qualifications_details",{
 				"qualification":result.parameter,
 				"percentage_cgpa":result.percentagecgpa,
 				"mandatory":result.is_mandatory,
 				"admission_percentage":result.eligible_score
 		})
-			
+
+
 def validate_adharcard(doc):
 	if doc.aadhaar_no:
 		if not (doc.aadhaar_no).isdigit():
@@ -206,6 +215,7 @@ def get_cateogry_detail(doc):
 def get_admission_and_semester_by_program(programs,program_grade,academic_year):
 	for d in frappe.get_all("Student Admission",{"admission_program":programs,"program_grade":program_grade,"academic_year":academic_year},['name','admission_program','semester']):
 		return d
+		
 	return {"no_record_found":1}
 
 # @frappe.whitelist()
@@ -217,6 +227,31 @@ def get_admission_and_semester_by_program(programs,program_grade,academic_year):
 def get_validate_course(doctype, txt, searchfield, start, page_len, filters):
 	x = frappe.db.sql(""" Select admission_program from `tabStudent Admission` where department='{0}' and program_grade='{1}' and academic_term='{2}'and (applicable_for_all_gender=1 OR gender_type = '{3}') """.format(filters.get("department"),filters.get("program_grade"),filters.get("academic_term"),filters.get("gender")),dict(txt="%{}%".format(txt)))
 	return x
+
+@frappe.whitelist()
+def get_courses(department,program_grade,academic_term,gender):
+	x = frappe.db.sql(""" Select admission_program,name,department,semester from `tabStudent Admission` where
+					department= %s and program_grade=%s and
+					academic_term= %s and 
+				(applicable_for_all_gender=1 OR gender_type = %s) """,
+		(department,program_grade,academic_term,gender),as_dict=1,)
+	return x 
+
+def admission(doc):
+	y = frappe.db.sql(""" Select name,semester,admission_program,department from `tabStudent Admission` where
+					department= %s and program_grade=%s and
+					academic_term= %s and 
+				(applicable_for_all_gender=1 OR gender_type = %s ) LIMIT 1""",
+		(doc.department,doc.program_grade,doc.academic_term,doc.gender),as_dict=0,)
+	result1 = y[0][0]
+	result2 = y[0][1]
+	result3 = y[0][2]
+	result4 = y[0][3]
+	doc.student_admission=result1
+	doc.program=result2
+	doc.programs=result3
+
+
 
 def real_applicant(doc):	
 	if doc.docstatus==1 and doc.application_status=="Approved" and doc.is_applicant_reported==1:

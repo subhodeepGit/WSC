@@ -15,9 +15,8 @@ def validate_rates(doc):
             frappe.throw("<B>Shelf Life</B> cannot be negative")
 
     if doc.warranty_period:
-        int_warranty_period = int(doc.warranty_period)
-        if int_warranty_period <= 0:
-            frappe.throw("<B>Warranty Period</B> cannot be negative or Zero")
+        if  not (doc.warranty_period).isdigit():
+            frappe.throw("Field <b>Warranty Period</b> Accept Digits Only")
     if doc.weight_per_unit: 
         if doc.weight_per_unit < 0:
             frappe.throw("<B>Weight Per Unit</B> cannot be negative")
@@ -27,3 +26,11 @@ def validate_rates(doc):
     if doc.safety_stock: 
         if doc.safety_stock < 0:
             frappe.throw("<B>Safety Stock</B> cannot be negative")
+    for cd in doc.taxes:
+         if cd.minimum_net_rate:
+              if cd.minimum_net_rate < 0:
+                  frappe.throw("Minimum rate cannot be negative")
+    for cd in doc.taxes:
+         if cd.maximum_net_rate:
+              if cd.maximum_net_rate < 0:
+                  frappe.throw("Maximum rate cannot be negative")

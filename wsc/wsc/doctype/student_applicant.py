@@ -62,6 +62,7 @@ class StudentApplicant(Document):
             student.block=doc.blocks
             student.district=doc.districts
             student.save()
+            user_per(doc)
 
         if doc.account_name and doc.bank and doc.account_type and doc.branch_code and doc.bank_account_no:
             acc_doc = frappe.new_doc('Bank Account')
@@ -137,7 +138,6 @@ class StudentApplicant(Document):
         delete_user_per(doc)
 
 def on_change(doc,method):
-    user_per(doc)
     delete_user_permission(doc)
     if doc.docstatus==1:
         if doc.application_status=="Approved":
@@ -908,22 +908,18 @@ def check_int(pin_code):
     return re.match(r"[-+]?\d+(\.0*)?$", pin_code) is not None
 
 def user_per(doc):
-    doc_before_save = doc.get_doc_before_save()
-    app_status=doc_before_save.application_status
-    if app_status!=doc.application_status:
-        if doc.application_status == "Approved":
-            data = [{"Doctype":"Entrance Exam Admit Card"},{"Doctype":"Rank Card"},{"Doctype":"Reporting Desk"}]
-            for t in data:
-                frappe.get_doc(
-                    {
-                        "doctype": "User Permission",
-                        "user": doc.student_email_id,
-                        "allow": "Student Applicant",
-                        "for_value": doc.name,
-                        "apply_to_all_doctypes":0,
-                        "applicable_for":t["Doctype"],
-                    }
-                ).save(ignore_permissions=True)
+    data = [{"Doctype":"Entrance Exam Admit Card"},{"Doctype":"Rank Card"},{"Doctype":"Reporting Desk"}]
+    for t in data:
+        frappe.get_doc(
+            {
+                "doctype": "User Permission",
+                "user": doc.student_email_id,
+                "allow": "Student Applicant",
+                "for_value": doc.name,
+                "apply_to_all_doctypes":0,
+                "applicable_for":t["Doctype"],
+            }
+        ).save(ignore_permissions=True)
 
 def delete_user_per(doc):
     data = [{"Doctype":"Entrance Exam Admit Card"},{"Doctype":"Rank Card"},{"Doctype":"Reporting Desk"}]

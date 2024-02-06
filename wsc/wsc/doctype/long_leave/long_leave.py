@@ -111,6 +111,20 @@ def pincode_validation(doc):
 			frappe.throw("Field Pincode must be 6 Digits")
 		if len(doc.pincode_student)<6:
 			frappe.throw("Field Pincode must be 6 Digits")
+	if doc.phone_no:
+		if not (doc.phone_no).isdigit():
+			frappe.throw("Field Phone No Accept Digits Only")
+		if len(doc.phone_no)>10:
+			frappe.throw("Field Phone No must be 10 Digits")
+		if len(doc.phone_no)<10:
+			frappe.throw("Field Phone No must be 10 Digits")
+	if doc.communication_phone_no:
+		if not (doc.communication_phone_no).isdigit():
+			frappe.throw("Field Communication Phone no Accept Digits Only")
+		if len(doc.communication_phone_no)>10:
+			frappe.throw("Field Communication Phone no must be 10 Digits")
+		if len(doc.communication_phone_no)<10:
+			frappe.throw("Field Communication Phone no must be 10 Digits")
 
 def alpha(doc):
 	if doc.state:

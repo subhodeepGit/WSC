@@ -8,7 +8,7 @@ MyPage = Class.extend({
 	init: function(wrapper){
 		this.page = frappe.ui.make_app_page({
 			parent: wrapper,
-			title: 'test',
+			title: 'Director Dashboard',
 			single_column: true
 		});
 		
@@ -28,6 +28,12 @@ MyPage = Class.extend({
 
 		const container_list = document.querySelectorAll('.container')
 		container_list[1].remove()
+
+		const col_md_12 = document.querySelectorAll(".col-md-12")
+		col_md_12.forEach(i => {
+			i.style.padding = 0;
+		})
+
 	}
 	
 })
@@ -236,7 +242,6 @@ function progress_bar(...data){
         percent_value[index].innerText = `${value}%`
 
 		percent_value[index].nextElementSibling.innerText = data[index][0].status
-		console.log(percent_value[index].nextElementSibling);
         
     });
 }
@@ -284,7 +289,7 @@ const chart = function(labels , ...values){ //add spread operator to values
 		title: "Employee Attendance",
 		data: chart_data,
 		type: 'bar', // or 'bar', 'line', 'scatter', 'pie', 'percentage' , axis-mixed
-		height: 250,
+		height: 350,
 		colors: ['#7cd6fd', '#743ee2']
 	})
 	// chart.removeDataPoint(0,2)
