@@ -18,7 +18,18 @@ frappe.ui.form.on('Room Masters', {
 				query: "wsc.wsc.doctype.room_masters.room_masters.room_description_query"
 			};
 		});
-	}
+	},
+    hostel_id : function(frm){
+		frappe.call({
+			method : 'wsc.wsc.doctype.room_masters.room_masters.dynamic_floor',
+			args : {
+				hostel_id : frm.doc.hostel_id,
+			},
+			callback : function(result){
+				frm.set_df_property('floor_number', 'options', result.message)
+			}
+		})
+    }
 })
 
 
