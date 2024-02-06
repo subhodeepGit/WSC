@@ -1984,7 +1984,7 @@ def jocr_ceo_mail(doc):
 
 def participant_registration_mail(doc):
 	sub = """Registration successful for{0}""".format(doc.get('event_name'))
-	msg += """Dear Sir/Ma'am,<br>"""
+	msg = """Dear Sir/Ma'am,<br>"""
 	msg += """Your registration for{0}""".format(doc.get('event_name'))
 	msg += """with event ID: {0}""".format(doc.get('select_event'))
 	msg += """has been successfully submitted"""
@@ -1994,7 +1994,7 @@ def participant_registration_mail(doc):
 
 def participant_attendance_mail(doc):
 	sub = """Attendance record for{0}""".format(doc.get('event_name'))
-	msg += """Dear Sir/Ma'am,<br>"""
+	msg = """Dear Sir/Ma'am,<br>"""
 	msg += """Your attendance for{0}""".format(doc.get('event_name'))
 	msg += """with event ID: {0}""".format(doc.get('select_event'))
 	msg += """has been successfully recorded"""
@@ -2005,7 +2005,7 @@ def participant_attendance_mail(doc):
 
 def event_feedback_mail(doc):
 	sub = """Thank you for your feedback regarding {0}""".format(doc.get('event_name'))
-	msg += """Dear Sir/Ma'am,<br>"""
+	msg = """Dear Sir/Ma'am,<br>"""
 	msg += """Your feedback for{0}""".format(doc.get('event_name'))
 	msg += """with event ID: {0}""".format(doc.get('select_event'))
 	msg += """has been successfully submitted"""
@@ -2015,7 +2015,7 @@ def event_feedback_mail(doc):
 
 def internship_application_mail(doc):
 	sub = """Registration successful for{0}""".format(doc.get('internship_drive_name'))
-	msg += """Dear Sir/Ma'am,<br>"""
+	msg = """Dear Sir/Ma'am,<br>"""
 	msg += """Your registration for{0}""".format(doc.get('internship_drive_name'))
 	msg += """with internship ID: {0}""".format(doc.get('select_internship'))
 	msg += """has been successfully submitted"""
@@ -2025,7 +2025,7 @@ def internship_application_mail(doc):
 
 def internship_final_list_declaration_mail(doc):
 	sub = """Attendance record for{0}""".format(doc.get('event_name'))
-	msg += """Dear Sir/Ma'am,<br>"""
+	msg = """Dear Sir/Ma'am,<br>"""
 	msg += """Your application has been selected for the {0}""".format(doc.get('internship_name'))
 	msg += """with internship ID: {0}.""".format(doc.get('select_internship'))
 	msg += """Kindly contact the Training and Placement department for further details."""
@@ -2036,7 +2036,7 @@ def internship_final_list_declaration_mail(doc):
 
 def internship_completion_status_mail(doc):
 	sub = """Completed {0}""".format(doc.get('internship_name'))
-	msg += """Dear Sir/Ma'am,<br>"""
+	msg = """Dear Sir/Ma'am,<br>"""
 	msg += """Congratulations on your successful completion of the {0}""".format(doc.get('internship_name'))
 	msg += """with internship ID: {0}""".format(doc.get('select_internship'))
 	msg += """Thank you"""
@@ -2058,7 +2058,7 @@ def placement_drive_mail(doc):
 
 def placement_drive_application_mail(doc):
 	sub = """Submission of placement drive application"""
-	msg += """Dear Sir/Ma'am,<br>"""
+	msg = """Dear Sir/Ma'am,<br>"""
 	msg += """Your application for {0} placement drive""".format(doc.get(''))
 	msg += """with drive ID: {0}""".format(doc.get(''))
 	msg += """has been successfully submitted"""
