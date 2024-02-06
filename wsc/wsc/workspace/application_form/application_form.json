@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"qKCh0JUC0_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Admission Application Form</span>\",\"col\":12}},{\"id\":\"P562xykj5h\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instruction For Admission Form\",\"col\":4}},{\"id\":\"OYX4VunHGI\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Application Form\",\"col\":4}},{\"id\":\"jPp3_n3YyF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Admission Application Form\",\"col\":4}},{\"id\":\"Mp6myvUmgK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Online Payment\",\"col\":4}},{\"id\":\"Z6_Uogy-dK\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"zIonym-Zwc\",\"type\":\"card\",\"data\":{\"card_name\":\"Admission Forms\",\"col\":4}}]",
+ "content": "[{\"id\":\"qKCh0JUC0_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Admission Application Form</span>\",\"col\":12}},{\"id\":\"P562xykj5h\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instruction For Admission Form\",\"col\":4}},{\"id\":\"OYX4VunHGI\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Apply Here\",\"col\":4}},{\"id\":\"Ifte9Y99n4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Application Form\",\"col\":4}},{\"id\":\"jPp3_n3YyF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Admission Application Form\",\"col\":4}},{\"id\":\"Mp6myvUmgK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Online Payment\",\"col\":4}},{\"id\":\"Z6_Uogy-dK\",\"type\":\"spacer\",\"data\":{\"col\":12}}]",
  "creation": "2023-08-24 04:57:26.265019",
  "custom_blocks": [],
  "docstatus": 0,
@@ -11,57 +11,8 @@
  "idx": 0,
  "is_hidden": 0,
  "label": "Application Form",
- "links": [
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Admission Forms",
-   "link_count": 4,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Student Applicant",
-   "link_count": 0,
-   "link_to": "Student Applicant",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Entrance Exam Admit Card",
-   "link_count": 0,
-   "link_to": "Entrance Exam Admit Card",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Entrance Exam Rank Card",
-   "link_count": 0,
-   "link_to": "Rank Card",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Reporting Desk",
-   "link_count": 0,
-   "link_to": "Reporting Desk",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  }
- ],
- "modified": "2024-02-02 11:46:38.647243",
+ "links": [],
+ "modified": "2024-02-06 10:30:04.370250",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Application Form",
@@ -88,7 +39,7 @@
   {
    "color": "Grey",
    "doc_view": "New",
-   "label": "My Application Form",
+   "label": "Apply Here",
    "link_to": "Online Application Form",
    "type": "DocType"
   },
@@ -97,6 +48,13 @@
    "doc_view": "List",
    "label": "Online Payment",
    "link_to": "OnlinePayment",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "My Application Form",
+   "link_to": "Online Application Form",
    "type": "DocType"
   },
   {

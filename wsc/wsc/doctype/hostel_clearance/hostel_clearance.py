@@ -8,21 +8,28 @@ import pandas as pd
 from datetime import datetime
 
 class HostelClearance(Document):
+	def validate(doc):
+		if doc.due_status=="Dues" and doc.due_amount==0:
+			frappe.throw("Value cannot be zero for Hostel Clearance: <b>Due Amount</b>")
+		if len(str(doc.due_amount)) > 12:
+			frappe.throw("<b>Due Amount</b> should not exceed 12 digits.")
+
 	# @frappe.whitelist()
 	def before_save(doc):
 		#doc status-0
 		allotment_number=doc.allotment_number
-		due_status=doc.due_status
-		due_amount=doc.due_amount
-		reason_of_due=doc.reason_of_due
+		# due_status=doc.due_status
+		# due_amount=doc.due_amount
+		# reason_of_due=doc.reason_of_due
 		info=""" WHERE `allotment_number`="%s" and (`docstatus`=1 and `docstatus`=2) """%(allotment_number)
 		HC_info=hostel_cle_df("Genaral",info)
 		if len(HC_info)==0:
-			if due_status=="Dues":
-				if due_amount!=None and reason_of_due!=None:
-					pass
-				else:
-					frappe.throw("Due amount or Reason of Due")
+			# if due_status=="Dues":
+			# 	if due_amount!=None and reason_of_due!=None:
+			# 		pass
+			# 	else:
+			# 		frappe.throw("Due amount or Reason of Due")
+			pass
 		else:
 			frappe.throw("Document is already present in Doc no %s"%(HC_info["HC_doc_no"][0]))	
 

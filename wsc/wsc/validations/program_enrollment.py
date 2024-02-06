@@ -409,6 +409,7 @@ def get_program_courses(semester,year_end_date):
         course_details[0].update({'semesterss': semester})
         row.update(course_details[0])
         result.append(row)
+        print("\n\nRESULT",result)
     return result      
     return get_courses_by_semester_academic_year(semester)
 @frappe.whitelist()
