@@ -6,10 +6,8 @@ import calendar
 def get_data():
     print("\n\n\n")
     
-    print(frappe.session.user)
     user_data = frappe.get_all("User",{'email':frappe.session.user} , ['email' , 'role_profile_name' ])
 
-    print(user_data , "\n")
     if user_data[0]['role_profile_name'] == 'Director' or user_data[0]['role_profile_name'] == 'Administrater':
         print("User Correct")
         
@@ -75,16 +73,16 @@ def get_data():
 
         attendance_wfh = frappe.get_list("Attendance", filters_wfh , wfh_fields , group_by="MONTH(attendance_date), YEAR(attendance_date)")
 
-        leave_records = frappe.get_list('Leave Application' , {} , ['employee_name' , 'leave_type' , 'from_date' , 'to_date'] , limit_start=0 , limit_page_length=10)
+        leave_records = frappe.get_list('Leave Application' , {} , ['name' , 'employee_name' , 'leave_type' , 'from_date' , 'to_date'] , limit_start=0 , limit_page_length=10)
 
         job_applicant_records = frappe.get_list("Job Applicant" , {
             'current_status': ['in', ['Applied', 'Qualified']] 
             }, 
-            ['applicant_name', 'email_id', 'designation', 'current_status', 'application_year']
+            ['name' , 'applicant_name', 'email_id', 'designation', 'current_status', 'application_year']
         )
 
         employee_count = frappe.get_list("Employee" , {'status':'Active'} , 
-                                    ["COUNT(name) as employee_count"]     
+                                    ["COUNT(name) as employee_count" , 'status']     
                                 )
 
         inactive_emp_count = frappe.get_list("Employee" , {'status':'Inactive'} , ["COUNT(name) as count" , 'status'])
@@ -95,8 +93,28 @@ def get_data():
 
         total_emp_count = frappe.get_list("Employee" , {'status': ['!=', 'Active']} , ["COUNT(name) as total_count"])
 
-        return [attendance_present , attendance_absent , attendance_on_leave , attendance_half_day , attendance_wfh , leave_records , job_applicant_records , employee_count , inactive_emp_count , suspended_emp_count , left_emp_count , total_emp_count]
-        
+        holiday_list = frappe.db.sql("""
+            SELECT 
+                list.name ,
+                holiday.holiday_date ,
+                holiday.weekly_off ,
+                holiday.description 
+            FROM 
+                `tabHoliday List` list
+            INNER JOIN
+                `tabHoliday`holiday
+            ON holiday.parent = list.name
+            WHERE 
+                holiday.holiday_date >= CURRENT_DATE()
+            ORDER BY holiday.holiday_date 
+            LIMIT 10    
+        """,as_dict=1)
+    
+
+        return [attendance_present , attendance_absent , attendance_on_leave , attendance_half_day , attendance_wfh , leave_records , job_applicant_records , employee_count , inactive_emp_count , suspended_emp_count , left_emp_count , total_emp_count , holiday_list]
+    
+    else: 
+        frappe.throw("Page Only Visible to Director")
             
     # return attendance_data[0]
 def days_in_month(year, month):
