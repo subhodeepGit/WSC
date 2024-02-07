@@ -26,6 +26,11 @@ frappe.ui.form.on('Room Change', {
 		});
 	},
 	preferred_hostel:function(frm){
+        if(frm.doc.preferred_hostel==null || frm.doc.preferred_hostel==undefined || frm.doc.preferred_hostel==""){
+            frm.set_df_property('preferred_room', 'read_only', 1);
+        }else{
+            frm.set_df_property('preferred_room', 'read_only', 0);
+        }
 		frm.set_value('preferred_room','')
 		frm.set_value('preferred_room_type','')
 		frm.set_value('preferred_room_number','')
@@ -66,6 +71,11 @@ frappe.ui.form.on('Room Change', {
             Object.keys(cur_frm.fields_dict).forEach(field=>{
                 frm.set_df_property(field,'read_only',1)
             })
+        }
+        if(frm.doc.preferred_hostel==null || frm.doc.preferred_hostel==undefined || frm.doc.preferred_hostel==""){
+            frm.set_df_property('preferred_room', 'read_only', 1);
+        }else{
+            frm.set_df_property('preferred_room', 'read_only', 0);
         }
     }
 })

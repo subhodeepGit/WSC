@@ -27,8 +27,8 @@
   "address_line_2",
   "pincode",
   "column_break_20",
-  "city",
-  "state"
+  "state",
+  "city"
  ],
  "fields": [
   {
@@ -139,8 +139,9 @@
   },
   {
    "fieldname": "state",
-   "fieldtype": "Data",
-   "label": "State"
+   "fieldtype": "Link",
+   "label": "State",
+   "options": "State"
   },
   {
    "fieldname": "hostel_phone_number_2",
@@ -163,7 +164,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-22 11:32:44.811224",
+ "modified": "2024-02-06 12:46:05.232643",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Hostel Masters",

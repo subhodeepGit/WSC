@@ -27,7 +27,7 @@ frappe.ui.form.on('Online Application Form', {
         });
 	},
 	after_save:function(frm){
-        frm.set_df_property('image', 'reqd', 1);
+        // frm.set_df_property('image', 'reqd', 1);
 		frm.trigger("hide_n_show_child_table_fields");
     },
     go_to_top:function(frm){
@@ -89,8 +89,33 @@ frappe.ui.form.on('Online Application Form', {
         frm.set_value("program_priority",[]);    
     },
 	department(frm){
-        frm.set_value("program_priority",[]);    
-		frm.set_value("program_grade","")
+		frm.set_value("program","")
+		frm.set_value("student_admission","")
+		frm.set_value("programs","")
+        frm.set_value("education_qualifications_details",[]);    
+		frm.set_value("education_qualifications_details","")
+		frappe.call({
+            method: "wsc.wsc.doctype.online_application_form.online_application_form.get_courses",
+            args: {
+				department:frm.doc.department,
+				program_grade:frm.doc.program_grade,
+				academic_term:frm.doc.academic_term,
+				gender:frm.doc.gender,
+            },
+			callback: function(r) { 
+				if(r.message){
+					frappe.model.clear_table(frm.doc, 'program_priority');
+					(r.message).forEach(element => {
+						var c = frm.add_child("program_priority")
+						c.programs=element.admission_program
+						c.semester=element.semester
+						c.department=element.department
+						c.student_admission=element.name
+					});
+				}
+				frm.refresh_field("program_priority")
+			}  
+        });
     },
 	academic_term(frm){
         frm.set_value("program_priority",[]);    
@@ -128,6 +153,8 @@ frappe.ui.form.on('Online Application Form', {
 		}
 		frm.set_df_property('education_qualifications_details', 'cannot_add_rows', true);
         frm.set_df_property('education_qualifications_details', 'cannot_delete_rows', true);
+		frm.set_df_property('program_priority', 'cannot_add_rows', true);
+        frm.set_df_property('program_priority', 'cannot_delete_rows', true);
 		frm.add_custom_button("Instruction", () => {
 			frappe.new_doc("Application Form Instruction")
 		});
@@ -151,17 +178,29 @@ frappe.ui.form.on('Online Application Form', {
 				}
 			};
 		});
-		frm.fields_dict['program_priority'].grid.get_field('programs').get_query = function(doc, cdt, cdn) {
-			return {   
-				query: 'wsc.wsc.doctype.online_application_form.online_application_form.get_validate_course', 
-				filters:{
-					"department":frm.doc.department,
-					"program_grade":frm.doc.program_grade,
-					"academic_term":frm.doc.academic_term,
-					"gender":frm.doc.gender
-				}
-			}
-		}
+		// frm.fields_dict['program_priority'].grid.get_field('').get_query = function(doc, cdt, cdn) 
+		frm.fields_dict['program_priority'].grid.get_field('select_your_preferences').get_query = function(doc){
+			var num = [];
+			$.each(doc.program_priority, function(idx, val){
+				if (val.select_your_preferences) num.push(val.select_your_preferences);
+				val.select_your_preferences.preventDefault();
+			});
+			val.select_your_preferences.preventDefault();
+			return { filters: [['Numbers', 'name', 'not in', num]] };
+		};
+		// frm.fields_dict['program_priority'].grid.get_field('programs').get_query = function(doc, cdt, cdn) {
+		// 	return {   
+		// 		query: 'wsc.wsc.doctype.online_application_form.online_application_form.get_validate_course', 
+		// 		filters:{
+		// 			"department":frm.doc.department,
+		// 			"program_grade":frm.doc.program_grade,
+		// 			"academic_term":frm.doc.academic_term,
+		// 			"gender":frm.doc.gender
+		// 		}
+		// 	}
+		// }
+
+		 
 		frm.set_query("department", function(){
 	        return{
 	            filters:{

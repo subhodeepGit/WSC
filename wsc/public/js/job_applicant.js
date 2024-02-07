@@ -103,3 +103,17 @@ frappe.ui.form.on('Job Applicant', {
 	}
 		
 })
+
+frappe.ui.form.on('Job Applicant', {
+refresh: function(frm) {
+	if (frappe.session.user != "Administrator" || frappe.session.user!="HR Admin"){
+		if (frm.doc.current_status=="Applied"){
+		Object.keys(cur_frm.fields_dict).forEach(field=>{
+			frm.set_df_property(field,'read_only',1)
+		})
+
+	}
+}  
+}
+
+})
