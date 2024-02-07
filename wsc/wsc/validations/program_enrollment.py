@@ -57,8 +57,8 @@ def on_cancel(doc,method):
         update_student(doc) 
 
 def on_change(doc,method):
-    delete_course_enrollment(doc)
-    create_course_enrollments(doc)
+    # delete_course_enrollment(doc)
+    # create_course_enrollments(doc)
     applicant_enroll_status(doc)
     onlinepayrole(doc)
     # update_reserved_seats(doc)
@@ -137,15 +137,16 @@ def on_submit(doc,method):
 #             applicant_status=frappe.get_doc("Student Applicant",self.reference_name)
 #             applicant_status.enrollment_status="Enrolled"
 #             applicant_status.submit()
-def create_course_enrollments(self):
-    student = frappe.get_doc("Student", self.student)
-    course_list = [course.course for course in self.courses]
-    for course_name in course_list:
-        student.enroll_in_course(
-            course_name=course_name,
-            program_enrollment=self.name,
-            enrollment_date=self.enrollment_date,
-        )           
+############ Written to change the shift wise semester when the record is already submitted... ##########
+# def create_course_enrollments(self):
+#     student = frappe.get_doc("Student", self.student)
+#     course_list = [course.course for course in self.courses]
+#     for course_name in course_list:
+#         student.enroll_in_course(
+#             course_name=course_name,
+#             program_enrollment=self.name,
+#             enrollment_date=self.enrollment_date,
+        # )           
 def applicant_enroll_status(self):
     if self.docstatus==1 and self.reference_name:
         frappe.db.sql("""
