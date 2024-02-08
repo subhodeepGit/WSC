@@ -197,7 +197,7 @@ def get_fee_structures(doctype, txt, searchfield, start, page_len, filters):
         student_category=" or student_category ='%s' "%(filters.get("student_category"))
 
     data=frappe.db.sql("""select name,program,student_category,academic_year from `tabFee Structure` where ({key} like %(txt)s or {scond}) 
-                          and docstatus=1 and (program = '{program}' or academic_year = '{academic_year}' or  academic_term='{academic_term}' {student_category})
+                          and docstatus=1 and disable=0 and (program = '{program}' or academic_year = '{academic_year}' or  academic_term='{academic_term}' {student_category})
                          """.format(
                     **{
                         "key": searchfield,

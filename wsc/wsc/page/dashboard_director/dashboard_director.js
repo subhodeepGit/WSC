@@ -1,5 +1,4 @@
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']	
-
 frappe.pages['dashboard-director'].on_page_load = function(wrapper) {
 	new MyPage(wrapper)
 }
@@ -8,7 +7,7 @@ MyPage = Class.extend({
 	init: function(wrapper){
 		this.page = frappe.ui.make_app_page({
 			parent: wrapper,
-			title: 'Director Dashboard',
+			// title: 'Director Dashboard',
 			single_column: true
 		});
 		
@@ -34,6 +33,11 @@ MyPage = Class.extend({
 			i.style.padding = 0;
 		})
 
+		// const redirectButton = document.querySelector('#redirect-btn-test')
+		// redirectButton.addEventListener('click' , (e) => {
+		// 	// frappe.set_route("List" , "Job Applicant");
+		// 	frappe.set_route("Form" , "Job Applicant" , "HR-APP-2023-00004")
+		// })
 	}
 	
 })
@@ -43,8 +47,8 @@ const data = () => {
 	let labels = []
 	
 	// DOM Element vairable
-	const inactive_emp_details = document.querySelectorAll(".emp-detail")
-	const jon_applicant_table = document.querySelectorAll(".table-row")
+	const empOnLeave = document.querySelector("#emp-on-leave")
+	const job_applicants_table = document.querySelector("#table")
 	const head_count = document.querySelector('#head-count')
 
 	frappe.call({
@@ -63,6 +67,8 @@ const data = () => {
 			const left_emp_count = res.message[10]
 
 			const total_emp_count = res.message[11]
+			
+			const holiday_list = res.message[12]
 
 			// Chart Section
 			month_name_addition(present_data)
@@ -92,13 +98,14 @@ const data = () => {
 			chart(labels , present_data , absent_data , on_leave_data , half_day_data , wfh_data)
 			
 			// Inactive Emp Section
-			inactive_emp(leave_records , inactive_emp_details)
+			emp_on_leave(leave_records , empOnLeave)
 
-			applicantSummaryDetails(job_applicant_records , jon_applicant_table)
+			applicantSummaryDetails(job_applicant_records , job_applicants_table)
 
 			employeeCount(employee_count , head_count)
 
 			progress_bar(inactive_emp_count , suspended_emp_count , left_emp_count , total_emp_count)
+
 		}	
 	})
 }
@@ -154,83 +161,131 @@ function swapArrayPositions(labels, data) {
 }
 
 // Data and DOM works
-const inactive_emp = (data , element) => {
+const emp_on_leave = (data , element) => {
 	
-	data.forEach((i , index) => {
-		
-		const employee_name = document.createElement('h4')
+	younglingSlayer(element)
+
+	data.forEach((i) => {
+		const emp_details = document.createElement('div')
+		const emp_id = document.createElement('p') 
+		const employee_name = document.createElement('p')
 		const reasons = document.createElement('p')
-		const emp_dates = document.createElement('p')
+		const from_date = document.createElement('p')
+		const to_date = document.createElement('p')
 
+		emp_details.classList.add('emp-detail')
+
+		emp_id.classList.add('employee-id')
+		employee_name.classList.add('employee-name')
 		reasons.classList.add('reasons')
-		emp_dates.classList.add('emp-dates')
+		from_date.classList.add('emp-dates')
+		to_date.classList.add('emp-dates')
 
+		emp_id.innerText = i.name
 		employee_name.innerText = i.employee_name
 		reasons.innerText = i.leave_type
-		emp_dates.innerText = i.to_date
+		from_date.innerText = i.from_date
+		to_date.innerText = i.to_date
 		
-		younglingSlayer(element[index])
+		emp_details.appendChild(emp_id)
+		emp_details.appendChild(employee_name)
+		emp_details.appendChild(from_date)
+		emp_details.appendChild(to_date)
+		emp_details.appendChild(reasons)
 		
-		element[index].appendChild(employee_name)
-		element[index].appendChild(reasons)
-		element[index].appendChild(emp_dates)
+		element.appendChild(emp_details)
 
 	})
 
+	// Routing Emp on leaves
+	element.addEventListener('click' , (e) => {
+			
+		e.preventDefault();
+		
+		if(e.target.classList.contains('employee-id') || e.target.classList.contains('employee-name') || e.target.classList.contains('reasons') || e.target.classList.contains('emp-dates')) frappe.set_route("Form" , "Leave Application" , e.target.closest('.emp-detail').children[0].innerText)	
+	})
+	
 }
 
 const applicantSummaryDetails = (data , element) => {
 	
-	data.forEach((i, index) => {
-		
-		const applicant_name = document.createElement('div')
-		const email_id = document.createElement('div')
-		const designation = document.createElement('div')
-		const status = document.createElement('div')
-		const application_year = document.createElement('div')
+	younglingSlayer(element)
 
-		applicant_name.setAttribute('data-label' , "Applicant Name")
-		email_id.setAttribute('data-label' , "Email Address")
-		designation.setAttribute('data-label' , "Designation")
-		status.setAttribute('data-label' , "Status")
-		application_year.setAttribute('data-label' , "Applicantion Year")
+	data.forEach((i) => {
+		const table_row = document.createElement('li')
 
+		const applicant_id = document.createElement('p')
+		const applicant_name = document.createElement('p')
+		const email_id = document.createElement('p')
+		const designation = document.createElement('p')
+		const status = document.createElement('p')
+		const application_year = document.createElement('p')
+
+		table_row.classList.add('table-row')
+
+		applicant_id.classList.add("Applicant-ID")
+		applicant_name.classList.add("Applicant-Name")
+		email_id.classList.add("Email-Address")
+		designation.classList.add("Designation")
+		status.classList.add("Status")
+		application_year.classList.add("Applicantion-Year")
+
+		applicant_id.innerText = i.name
 		applicant_name.innerText = i.applicant_name
 		email_id.innerText = i.email_id
 		designation.innerText = i.designation
-		status.innerText = i.designation
+		status.innerText = i.current_status
 		application_year.innerText = i.application_year
 
-		younglingSlayer(element[index])
+		table_row.appendChild(applicant_id)
+		table_row.appendChild(applicant_name)
+		table_row.appendChild(email_id)
+		table_row.appendChild(designation)
+		table_row.appendChild(status)
+		table_row.appendChild(application_year)
 
-		element[index].appendChild(applicant_name)
-		element[index].appendChild(email_id)
-		element[index].appendChild(designation)
-		element[index].appendChild(status)
-		element[index].appendChild(application_year)
+		element.appendChild(table_row)
+	})
+
+	//Routing Job Applicants
+	element.addEventListener('click' , (e) => {
+				
+		e.preventDefault()
+		
+		if(e.target.classList.contains('Applicant-ID') || e.target.classList.contains('Applicant-Name') || e.target.classList.contains('Email-Address') || e.target.classList.contains('Designation') || e.target.classList.contains('Status') || e.target.classList.contains('Application-Year')) frappe.set_route("Form" , "Job Applicant" , e.target.closest('.table-row').children[0].innerText)
 	})
 }
 
 const employeeCount = (data, element) => {
-	element.innerText = data[0].employee_count
+
+	const total_emp_button = document.querySelector('#total-emp')
+
+	element.innerHTML = `${data[0].employee_count} <span>Employees</span>`  // One exception of all
+	console.log(element.innerText);
+	total_emp_button.addEventListener('click' , (e) => {
+		e.preventDefault()
+		frappe.set_route("List", "Employee" , {
+			status: data[0].status
+		});
+	})
 }
 
 
 function progress_bar(...data){
-	
+
+	const bars = document.querySelectorAll('.progress-bar');
+    const color_mark = document.querySelectorAll('.color-mark')
+    const percent_value = document.querySelectorAll('.percent')
+
 	const total_emp_count = data[3][0].total_count
 
 	const inactive_emp_percent = Math.round((data[0][0].count/total_emp_count) * 100 , 2)
 	const suspended_emp_percent = Math.round((data[1][0].count/total_emp_count) * 100 , 2)
 	const left_emp_percent = Math.round((data[2][0].count/total_emp_count) * 100 , 2)
 
-	const bars = document.querySelectorAll('.progress-bar');
-    const color_mark = document.querySelectorAll('.color-mark')
-    const percent_value = document.querySelectorAll('.percent')
-
     let values = [inactive_emp_percent , suspended_emp_percent , left_emp_percent]; // Set your progress values here
     const colors = ['#43c3e0' , '#f7dc6f'  , '#f5b7b1' ] 
-	// , ' #f5b7b1 ' '#8382de'
+	// , '#f5b7b1' '#8382de'
 	
     values.forEach((value, index) => {
 		
@@ -244,10 +299,28 @@ function progress_bar(...data){
 		percent_value[index].nextElementSibling.innerText = data[index][0].status
         
     });
+
+	// Progress Bar Routing
+	bars.forEach((i , index) => {
+		i.addEventListener('click' , (e) => {
+			e.preventDefault()
+			frappe.set_route("List", "Employee" , {
+                status: data[index][0].status
+            });
+		})
+	})
+
 }
 
+//Charts
 const chart = function(labels , ...values){ //add spread operator to values
 	
+	const attendance_button = document.querySelector('#attendance')
+	attendance_button.addEventListener('click' , (e) => {
+		e.preventDefault()
+		frappe.set_route("List", "Attendance");
+	})
+
 	const chart_data = {
 		labels, //x-axis
 		datasets:[
@@ -281,7 +354,11 @@ const chart = function(labels , ...values){ //add spread operator to values
 		yRegions: [{
 			label:"Employee Attendance", start: 0 , end:10 , 
 			options:{ labelPos:'left'}
-		}]
+		}],
+		// style: {
+		// 	// Set the background color
+		// 	"background-color": "#fff"
+		// }  Doesnt Work 
 	}
 	
 	const chart = new frappe.Chart("#frappe-graph", {  // or a DOM element,
@@ -289,10 +366,14 @@ const chart = function(labels , ...values){ //add spread operator to values
 		title: "Employee Attendance",
 		data: chart_data,
 		type: 'bar', // or 'bar', 'line', 'scatter', 'pie', 'percentage' , axis-mixed
-		height: 350,
-		colors: ['#7cd6fd', '#743ee2']
+		height: 400,
+		colors: ['#43c3e0', '#f7dc6f' , '#f5b7b1' , '#8382de']
 	})
-	// chart.removeDataPoint(0,2)
+
+	chart.parent.addEventListener('data-select', (e) => {
+		update_moon_data(e.index); // e contains index and value of current datapoint
+		console.log(chart);
+	});
 }
 
 

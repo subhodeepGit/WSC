@@ -79,7 +79,6 @@
    "fieldname": "floor_number",
    "fieldtype": "Select",
    "label": "Floor Number",
-   "options": "\nBasement\nGround Floor\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15",
    "reqd": 1
   },
   {
@@ -197,7 +196,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-22 18:19:38.821766",
+ "modified": "2024-02-06 18:10:36.632677",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Room Masters",

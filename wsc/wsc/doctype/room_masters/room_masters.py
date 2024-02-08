@@ -163,4 +163,20 @@ def room_type_query(doctype, txt, searchfield, start, page_len, filters):
 @frappe.validate_and_sanitize_search_inputs
 def room_description_query(doctype, txt, searchfield, start, page_len, filters):
     return frappe.db.sql("""SELECT `name` from `tabRoom Description` WHERE `start_date`<=now() and `end_date`>=now()""")
-	
+
+@frappe.whitelist()
+def dynamic_floor(hostel_id=None):
+    hostel_master = frappe.get_all("Hostel Masters", {"hostel_name": hostel_id}, {"total_floors"})
+    floors = []
+    for t in hostel_master:
+        if t:
+            for ran in range(1, t.total_floors + 3):
+                if ran == 1:
+                    floors.append("Basement")
+                elif ran == 2:
+                    floors.append("Ground Floor")
+                else:
+                    floors.append(str(ran - 2))
+    return floors
+
+

@@ -57,8 +57,8 @@ def on_cancel(doc,method):
         update_student(doc) 
 
 def on_change(doc,method):
-    delete_course_enrollment(doc)
-    create_course_enrollments(doc)
+    # delete_course_enrollment(doc)
+    # create_course_enrollments(doc)
     applicant_enroll_status(doc)
     onlinepayrole(doc)
     # update_reserved_seats(doc)
@@ -137,15 +137,16 @@ def on_submit(doc,method):
 #             applicant_status=frappe.get_doc("Student Applicant",self.reference_name)
 #             applicant_status.enrollment_status="Enrolled"
 #             applicant_status.submit()
-def create_course_enrollments(self):
-    student = frappe.get_doc("Student", self.student)
-    course_list = [course.course for course in self.courses]
-    for course_name in course_list:
-        student.enroll_in_course(
-            course_name=course_name,
-            program_enrollment=self.name,
-            enrollment_date=self.enrollment_date,
-        )           
+############ Written to change the shift wise semester when the record is already submitted... ##########
+# def create_course_enrollments(self):
+#     student = frappe.get_doc("Student", self.student)
+#     course_list = [course.course for course in self.courses]
+#     for course_name in course_list:
+#         student.enroll_in_course(
+#             course_name=course_name,
+#             program_enrollment=self.name,
+#             enrollment_date=self.enrollment_date,
+        # )           
 def applicant_enroll_status(self):
     if self.docstatus==1 and self.reference_name:
         frappe.db.sql("""
@@ -162,7 +163,7 @@ def applicant_enroll_status(self):
 def get_fee_structure(doc,flag):
     existed_fs = frappe.db.get_list("Fee Structure", {'programs':doc.programs, 'program':doc.program, 
                  'fee_type':'Semester Fees', 'academic_year':doc.academic_year,
-                  'academic_term':doc.academic_term, 'docstatus':1, 'student_category':doc.student_category},["name"])
+                  'academic_term':doc.academic_term, 'docstatus':1, 'student_category':doc.student_category,"disable":0},["name"])
     
     if len(existed_fs) != 0:                            
         fee_structure_id = existed_fs[0]['name']        
@@ -179,7 +180,7 @@ def fee_structure_validation(doc):
    
     existed_fs = frappe.db.get_list("Fee Structure", {'programs':doc.programs, 'program':doc.program, 
                  'fee_type':'Semester Fees', 'academic_year':doc.academic_year,
-                  'academic_term':doc.academic_term, 'docstatus':1},["name"])
+                  'academic_term':doc.academic_term, 'docstatus':1, 'student_category':doc.student_category,"disable":0},["name"])
     
     if len(existed_fs) != 0:                            
         fee_structure_id = existed_fs[0]['name']        

@@ -15,15 +15,15 @@ def validate(self, method):
 
 def is_valid_field(self):
     field_pattern = r'^[a-zA-Z0-9]{15}$'
-    
-    if re.match(field_pattern, self.gstin):
-        return True
-    else:
-        return False
+    if self.gstin:
+        if re.match(field_pattern, self.gstin):
+            return True
+        else:
+            return False
     
 def is_valid_pan(self):
-        pan_pattern = r'^[A-Z]{5}\d{4}[A-Z]$'
-
+    pan_pattern = r'^[A-Z]{5}\d{4}[A-Z]$'
+    if self.pan:
         if re.match(pan_pattern, self.pan):
             return True
         else:
@@ -33,7 +33,6 @@ def is_valid_pan(self):
 def compare_pan_and_gst(self):
     if self.gstin:
         gstin = self.gstin[2:12]
-
         if self.pan == gstin:
             return True
         else:
