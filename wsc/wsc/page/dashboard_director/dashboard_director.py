@@ -9,7 +9,6 @@ def get_data():
     user_data = frappe.get_all("User",{'email':frappe.session.user} , ['email' , 'role_profile_name' ])
 
     if user_data[0]['role_profile_name'] == 'Director' or user_data[0]['role_profile_name'] == 'Administrater':
-        print("User Correct")
         
         last_six_months = []
 
@@ -110,6 +109,8 @@ def get_data():
             LIMIT 10    
         """,as_dict=1)
     
+        print(attendance_on_leave)
+        print(filters_on_leave)
 
         return [attendance_present , attendance_absent , attendance_on_leave , attendance_half_day , attendance_wfh , leave_records , job_applicant_records , employee_count , inactive_emp_count , suspended_emp_count , left_emp_count , total_emp_count , holiday_list]
     
