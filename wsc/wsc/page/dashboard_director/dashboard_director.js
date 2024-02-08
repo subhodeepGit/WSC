@@ -370,10 +370,9 @@ const chart = function(labels , ...values){ //add spread operator to values
 		colors: ['#43c3e0', '#f7dc6f' , '#f5b7b1' , '#8382de']
 	})
 
-	chart.parent.addEventListener('data-select', (e) => {
-		update_moon_data(e.index); // e contains index and value of current datapoint
-		console.log(chart);
-	});
+	// chart.parent.addEventListener('data-select', (e) => {
+	// 	update_moon_data(e.index); // e contains index and value of current datapoint
+	// });
 }
 
 
