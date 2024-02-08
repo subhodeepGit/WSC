@@ -2020,8 +2020,12 @@ def internship_application_mail(doc):
 	msg += """with internship ID: {0}""".format(doc.get('select_internship'))
 	msg += """has been successfully submitted"""
 	msg += """Thank you"""
-	get_mail = frappe.db.sql(""" SELECT student_email_id FROM `tabStudent` WHERE name = '%s'"""%(doc.participant_id))
-	send_mail(get_mail[0][0], sub, msg)
+	if(doc.participant_type == 'Student'):
+		get_mail = frappe.db.sql(""" SELECT student_email_id FROM `tabStudent` WHERE name = '%s'"""%(doc.participant_id))
+		send_mail(get_mail[0][0], sub, msg)
+	elif(doc.participant_type == 'Employee'):
+		get_mail = frappe.db.sql(""" SELECT company_email FROM `tabEmployee` WHERE name = '%s'"""%(doc.participant_id))
+		send_mail(get_mail[0][0], sub, msg)
 
 def internship_final_list_declaration_mail(doc):
 	sub = """Attendance record for{0}""".format(doc.get('event_name'))
@@ -2031,8 +2035,12 @@ def internship_final_list_declaration_mail(doc):
 	msg += """Kindly contact the Training and Placement department for further details."""
 	msg += """Thank you"""
 	for d in doc.get('selected_participants_list'):
-		get_mail = frappe.db.sql(""" SELECT student_email_id FROM `tabStudent` WHERE name = '%s'"""%(d.participant_id))
-		send_mail(get_mail[0][0], sub, msg)
+		if(d.participant_type == 'Student'):
+			get_mail = frappe.db.sql(""" SELECT student_email_id FROM `tabStudent` WHERE name = '%s'"""%(d.participant_id))
+			send_mail(get_mail[0][0], sub, msg)
+		elif(d.participant_type == 'Employee'):
+			get_mail = frappe.db.sql(""" SELECT company_email FROM `tabEmployee` WHERE name = '%s'"""%(d.participant_id))
+			send_mail(get_mail[0][0], sub, msg)
 
 def internship_completion_status_mail(doc):
 	sub = """Completed {0}""".format(doc.get('internship_name'))
@@ -2040,9 +2048,13 @@ def internship_completion_status_mail(doc):
 	msg += """Congratulations on your successful completion of the {0}""".format(doc.get('internship_name'))
 	msg += """with internship ID: {0}""".format(doc.get('select_internship'))
 	msg += """Thank you"""
-	get_mail = frappe.db.sql(""" SELECT student_email_id FROM `tabStudent` WHERE name = '%s'"""%(doc.select_participant))
-	send_mail(get_mail[0][0], sub, msg)
-	pass
+	if(doc.participant_type == 'Student'):
+		get_mail = frappe.db.sql(""" SELECT student_email_id FROM `tabStudent` WHERE name = '%s'"""%(doc.select_participant))
+		send_mail(get_mail[0][0], sub, msg)
+	elif(doc.participant_type == 'Employee'):
+		get_mail = frappe.db.sql(""" SELECT company_email FROM `tabEmployee` WHERE name = '%s'"""%(d.participant_id))
+		send_mail(get_mail[0][0], sub, msg)
+	
 
 def placement_drive_mail(doc):
 	sub = """ Eligible for {0} Placement Drive""".format(doc.get('placement_company'))

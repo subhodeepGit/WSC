@@ -45,6 +45,7 @@ frappe.ui.form.on('Internship Final List Declaration', {
 						var childTable = frm.add_child('selected_participants_list')
 						childTable.participant_id = element.applicant_id
 						childTable.participant_name = element.applicant_name
+						childTable.participant_type = element.applicant_type
 					})
 				}
 				frm.refresh()
