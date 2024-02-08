@@ -4,17 +4,21 @@
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
-body{
-    width: 100vw;
-    height: 100vh;
+.outerContainer{
+    width: auto;
+    height: 110vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
 }
 
 .myContainer{
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 1808px;
-    height: 650px;
+    height: 700px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -202,6 +206,30 @@ body{
     align-items: center;
     /* background-color: green; */
 }
+.chart-container{
+    height: 100%;
+}
+.frappe-chart.chart{
+    height: 100%;
+    transform: translate(10%, 10%);
+}
+.horizontalBarChart .frappe-chart.chart{
+    height: 100%;
+    transform: translate(0%, 0%);
+}
+.chart-legend{
+    display: none;
+}
+.chartHolder .title{
+    display: none;
+}
+g.donut-chart.chart-draw-area{
+    transform: translate(0, -20%);
+}
+/* g.bar-chart.chart-draw-area{
+    height: 100%;
+    transform: translate(0, 0%);
+} */
 .horizontalBarChart{
     height: 100%;
     width: 60%;
