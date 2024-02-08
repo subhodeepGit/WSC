@@ -73,7 +73,7 @@ def get_data():
 
         attendance_wfh = frappe.get_list("Attendance", filters_wfh , wfh_fields , group_by="MONTH(attendance_date), YEAR(attendance_date)")
 
-        leave_records = frappe.get_list('Leave Application' , {} , ['name' , 'employee_name' , 'leave_type' , 'from_date' , 'to_date'] , limit_start=0 , limit_page_length=10)
+        leave_records = frappe.get_list('Leave Application' , {'current_status':'Approved'} , ['name' , 'employee_name' , 'leave_type' , 'from_date' , 'to_date'] , limit_start=0 , limit_page_length=10)
 
         job_applicant_records = frappe.get_list("Job Applicant" , {
             'current_status': ['in', ['Applied', 'Qualified']] 
