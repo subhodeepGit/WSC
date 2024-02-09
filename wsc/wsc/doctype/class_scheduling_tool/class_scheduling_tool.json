@@ -7,15 +7,16 @@
  "document_type": "Setup",
  "engine": "InnoDB",
  "field_order": [
+  "programs",
   "program",
   "course",
   "module_code",
   "module_name",
   "department",
-  "student_group",
   "column_break_3",
   "academic_year",
   "academic_term",
+  "student_group",
   "school_house",
   "room",
   "section_break_6",
@@ -58,6 +59,7 @@
    "reqd": 1
   },
   {
+   "depends_on": "eval:doc.programs",
    "fieldname": "program",
    "fieldtype": "Link",
    "label": "Program",
@@ -229,12 +231,19 @@
    "fieldtype": "Data",
    "hidden": 1,
    "label": "Additional Trainer 2 Name"
+  },
+  {
+   "fieldname": "programs",
+   "fieldtype": "Link",
+   "label": "Programs",
+   "options": "Programs",
+   "reqd": 1
   }
  ],
  "hide_toolbar": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-01-24 18:34:29.924630",
+ "modified": "2024-02-08 14:54:26.724877",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Class Scheduling Tool",

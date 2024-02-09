@@ -130,6 +130,7 @@ frappe.ui.form.on('Course Assessment', {
 				callback: function(r) {
 					if (r.message){
 						frm.set_value("total_marks",r.message['total_marks']);
+						frm.set_value("passing_marks",r.message['passing_marks']);
 					}
 				}
 			});
