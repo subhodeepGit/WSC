@@ -51,7 +51,6 @@
    "read_only": 1
   },
   {
-   "fetch_from": "select_participant.student_name",
    "fieldname": "participant_name",
    "fieldtype": "Data",
    "label": "Participant Name",
@@ -72,7 +71,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-31 18:06:23.178656",
+ "modified": "2024-02-08 15:38:24.414848",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Internship Completion status",

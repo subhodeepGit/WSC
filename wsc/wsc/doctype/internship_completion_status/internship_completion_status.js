@@ -8,6 +8,7 @@ frappe.ui.form.on('Internship Completion status', {
 				query: 'wsc.wsc.doctype.internship_completion_status.internship_completion_status.participants',
 				filters:{
 					"internship_id":frm.doc.select_internship,
+					"participant_type":frm.doc.participant_type
 				}
 				
 			};
@@ -15,7 +16,7 @@ frappe.ui.form.on('Internship Completion status', {
 	},
 	select_internship : function(frm){
 		frappe.call({
-			method : 'wsc.wsc.doctype.internship_application.internship_application.get_internship_name',
+			method : 'wsc.wsc.doctype.internship_completion_status.internship_completion_status.get_internship_name',
 			args: {
 				internship_id : frm.doc.select_internship
 			},
@@ -24,5 +25,16 @@ frappe.ui.form.on('Internship Completion status', {
 			}
 		})
 	},
-	
+	select_participant: function(frm){
+		frappe.call({
+			method : 'wsc.wsc.doctype.internship_completion_status.internship_completion_status.get_participant_name',
+			args: {
+				participant_type : frm.doc.participant_type,
+				participant_id : frm.doc.select_participant
+			},
+			callback : function(result){
+				frm.set_value('participant_name', result.message)
+			}
+		})
+	}
 });
