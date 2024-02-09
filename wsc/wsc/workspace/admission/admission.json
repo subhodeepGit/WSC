@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"I34K0-Span\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h1\\\">Admission</span>\",\"col\":12}},{\"id\":\"Gmqif9FYds\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"ACR SC Men Seat\",\"col\":4}},{\"id\":\"Vpzx3gf95K\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"CWLqDt2BnK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":3}},{\"id\":\"4rnD6h2CmZ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course\",\"col\":3}},{\"id\":\"UK8H2h-3tS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instructor\",\"col\":3}},{\"id\":\"PP-iJn_1gz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student\",\"col\":3}},{\"id\":\"Gb1v3PdGUy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Admission\",\"col\":3}},{\"id\":\"IURsZAKxG6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Online Application Form\",\"col\":3}},{\"id\":\"j2gTeWzYvY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Applicant\",\"col\":3}},{\"id\":\"yp_dEg0btu\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"RrzHInDfHG\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Master &amp; Application</span><span class=\\\"h4\\\"><b><br></b></span>\",\"col\":12}},{\"id\":\"VZ4Vh0w5Ai\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"ZfB-R1ZaJN\",\"type\":\"card\",\"data\":{\"card_name\":\"Admission Master\",\"col\":4}},{\"id\":\"k_n6UG5naR\",\"type\":\"card\",\"data\":{\"card_name\":\"Student and Trainer\",\"col\":4}},{\"id\":\"hS7OiYlYTe\",\"type\":\"card\",\"data\":{\"card_name\":\"Counselling\",\"col\":4}},{\"id\":\"YVUIBqB2oj\",\"type\":\"card\",\"data\":{\"card_name\":\"Entrance Exam\",\"col\":4}},{\"id\":\"2riNHbo_Zy\",\"type\":\"card\",\"data\":{\"card_name\":\"Admit Card\",\"col\":4}},{\"id\":\"XjgEcspPRN\",\"type\":\"card\",\"data\":{\"card_name\":\"Rank Card\",\"col\":4}},{\"id\":\"tmUKQynhR3\",\"type\":\"card\",\"data\":{\"card_name\":\"Student Enrollment\",\"col\":4}},{\"id\":\"zt0xuVkL7Q\",\"type\":\"card\",\"data\":{\"card_name\":\"Fees\",\"col\":4}},{\"id\":\"IJQWaM-BCi\",\"type\":\"card\",\"data\":{\"card_name\":\"Tools\",\"col\":4}},{\"id\":\"ZRZh_xsfKN\",\"type\":\"card\",\"data\":{\"card_name\":\"Feedback\",\"col\":4}},{\"id\":\"CPXPxbj4sj\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"f8Z1J7Yvgd\",\"type\":\"card\",\"data\":{\"card_name\":\"Student Identity Card\",\"col\":4}},{\"id\":\"QexmV5-ZSf\",\"type\":\"card\",\"data\":{\"card_name\":\"Scholarships\",\"col\":4}},{\"id\":\"sYQc6AoFny\",\"type\":\"card\",\"data\":{\"card_name\":\"Clearance\",\"col\":4}}]",
+ "content": "[{\"id\":\"I34K0-Span\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h1\\\">Admission</span>\",\"col\":12}},{\"id\":\"ete8uOdMZb\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"ACR SEAT RESERVATION DASHBOARD\",\"col\":3}},{\"id\":\"I29p8IYOvC\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"ET SEAT RESERVATION DASHBOARD\",\"col\":3}},{\"id\":\"cd8A5AZ2Cu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"MCE SEAT RESERVATION DASHBOARD\",\"col\":3}},{\"id\":\"AoTFqYwA6s\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"MES SEAT RESERVATION DASHBOARD\",\"col\":3}},{\"id\":\"22_0De_r2g\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"VT SEAT RESERVATION DASHBOARD\",\"col\":3}},{\"id\":\"GwkCqAavGz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"BWS SEAT RESERVATION DASHBOARD\",\"col\":3}},{\"id\":\"adWFbd43V7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"HFD SEAT RESERVATION DASHBOARD\",\"col\":3}},{\"id\":\"Vpzx3gf95K\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"PP-iJn_1gz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student\",\"col\":3}},{\"id\":\"UK8H2h-3tS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instructor\",\"col\":3}},{\"id\":\"Gb1v3PdGUy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Admission\",\"col\":3}},{\"id\":\"4rnD6h2CmZ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course\",\"col\":3}},{\"id\":\"IURsZAKxG6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Online Application Form\",\"col\":3}},{\"id\":\"CWLqDt2BnK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Programs\",\"col\":3}},{\"id\":\"j2gTeWzYvY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student Applicant\",\"col\":3}},{\"id\":\"yp_dEg0btu\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"RrzHInDfHG\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\">Master &amp; Application</span><span class=\\\"h4\\\"><b><br></b></span>\",\"col\":12}},{\"id\":\"VZ4Vh0w5Ai\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"ZfB-R1ZaJN\",\"type\":\"card\",\"data\":{\"card_name\":\"Admission Master\",\"col\":4}},{\"id\":\"XjgEcspPRN\",\"type\":\"card\",\"data\":{\"card_name\":\"Rank Card\",\"col\":4}},{\"id\":\"k_n6UG5naR\",\"type\":\"card\",\"data\":{\"card_name\":\"Student and Trainer\",\"col\":4}},{\"id\":\"hS7OiYlYTe\",\"type\":\"card\",\"data\":{\"card_name\":\"Counselling\",\"col\":4}},{\"id\":\"YVUIBqB2oj\",\"type\":\"card\",\"data\":{\"card_name\":\"Entrance Exam\",\"col\":4}},{\"id\":\"2riNHbo_Zy\",\"type\":\"card\",\"data\":{\"card_name\":\"Admit Card\",\"col\":4}},{\"id\":\"IJQWaM-BCi\",\"type\":\"card\",\"data\":{\"card_name\":\"Tools\",\"col\":4}},{\"id\":\"tmUKQynhR3\",\"type\":\"card\",\"data\":{\"card_name\":\"Student Enrollment\",\"col\":4}},{\"id\":\"zt0xuVkL7Q\",\"type\":\"card\",\"data\":{\"card_name\":\"Fees\",\"col\":4}},{\"id\":\"ZRZh_xsfKN\",\"type\":\"card\",\"data\":{\"card_name\":\"Feedback\",\"col\":4}},{\"id\":\"CPXPxbj4sj\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"f8Z1J7Yvgd\",\"type\":\"card\",\"data\":{\"card_name\":\"Student Identity Card\",\"col\":4}},{\"id\":\"QexmV5-ZSf\",\"type\":\"card\",\"data\":{\"card_name\":\"Scholarships\",\"col\":4}},{\"id\":\"sYQc6AoFny\",\"type\":\"card\",\"data\":{\"card_name\":\"Clearance\",\"col\":4}}]",
  "creation": "2023-02-15 12:40:14.406775",
  "custom_blocks": [],
  "docstatus": 0,
@@ -723,16 +723,11 @@
    "type": "Link"
   }
  ],
- "modified": "2024-01-31 14:54:10.054636",
+ "modified": "2024-02-08 16:21:01.431127",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Admission",
- "number_cards": [
-  {
-   "label": "ACR SC Men Seat",
-   "number_card_name": "ACR SC Men Seat"
-  }
- ],
+ "number_cards": [],
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,
@@ -765,9 +760,37 @@
   {
    "color": "Grey",
    "doc_view": "List",
+   "label": "BWS SEAT RESERVATION DASHBOARD",
+   "link_to": "BWS SEAT RESERVATION DASHBOARD",
+   "type": "Dashboard"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
    "label": "Programs",
    "link_to": "Programs",
    "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "ET SEAT RESERVATION DASHBOARD",
+   "link_to": "ET SEAT RESERVATION DASHBOARD",
+   "type": "Dashboard"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "ACR SEAT RESERVATION DASHBOARD",
+   "link_to": "ACR SEAT RESERVATION DASHBOARD",
+   "type": "Dashboard"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "MCE SEAT RESERVATION DASHBOARD",
+   "link_to": "MCE SEAT RESERVATION DASHBOARD",
+   "type": "Dashboard"
   },
   {
    "color": "Grey",
@@ -779,9 +802,23 @@
   {
    "color": "Grey",
    "doc_view": "List",
+   "label": "MES SEAT RESERVATION DASHBOARD",
+   "link_to": "MES SEAT RESERVATION DASHBOARD",
+   "type": "Dashboard"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
    "label": "Student Admission",
    "link_to": "Student Admission",
    "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "VT SEAT RESERVATION DASHBOARD",
+   "link_to": "VT SEAT RESERVATION DASHBOARD",
+   "type": "Dashboard"
   },
   {
    "color": "Grey",
@@ -796,6 +833,13 @@
    "label": "Course",
    "link_to": "Course",
    "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "HFD SEAT RESERVATION DASHBOARD",
+   "link_to": "HFD SEAT RESERVATION DASHBOARD",
+   "type": "Dashboard"
   },
   {
    "color": "Green",

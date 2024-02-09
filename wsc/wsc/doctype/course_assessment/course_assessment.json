@@ -112,6 +112,7 @@
    "read_only": 1
   },
   {
+   "depends_on": "eval:doc.exam_declaration",
    "fieldname": "course",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -151,7 +152,8 @@
   {
    "fieldname": "earned_marks",
    "fieldtype": "Float",
-   "label": "Earned Marks"
+   "label": "Earned Marks",
+   "reqd": 1
   },
   {
    "fetch_from": "course.course_name",
@@ -210,7 +212,6 @@
    "read_only": 1
   },
   {
-   "fetch_from": "course.passing_marks",
    "fieldname": "passing_marks",
    "fieldtype": "Float",
    "label": "Passing Marks",
@@ -260,7 +261,8 @@
    "fieldtype": "Link",
    "label": "Checker Id",
    "options": "Instructor",
-   "read_only": 1
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fetch_from": "checker_id.instructor_name",
@@ -288,7 +290,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-31 18:24:20.306627",
+ "modified": "2024-02-08 16:22:54.120435",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Course Assessment",

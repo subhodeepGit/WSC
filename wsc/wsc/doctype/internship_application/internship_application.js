@@ -8,7 +8,8 @@ frappe.ui.form.on('Internship Application', {
 				query: 'wsc.wsc.doctype.internship_application.internship_application.get_select_internship',
 				filters: {
 					"today_date":frappe.datetime.get_today(),
-					"enable":1
+					"enable":1,
+					"participant_type" : frm.doc.participant_type
 				}
 			};
 		});
@@ -17,6 +18,7 @@ frappe.ui.form.on('Internship Application', {
 				query: 'wsc.wsc.doctype.internship_application.internship_application.drive_filter',
 				filters:{
 					"participant_id":frm.doc.participant_id,
+					"participant_type" : frm.doc.participant_type
 				}
 				
 			};

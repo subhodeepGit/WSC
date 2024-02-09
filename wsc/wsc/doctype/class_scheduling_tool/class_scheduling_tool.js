@@ -3,7 +3,17 @@
 
 
 frappe.ui.form.on('Class Scheduling Tool', {
+	programs(frm){
+		frm.set_value("program","")
+	},
 	setup(frm) {
+		frm.set_query("program", function() {
+            return {
+                filters: {
+                    "programs":frm.doc.programs
+                }
+            };
+        });
 		frm.add_fetch('student_group', 'program', 'program');
 		frm.set_df_property('instructor', 'hidden', 1);
 		frm.add_fetch('student_group', 'course', 'course');

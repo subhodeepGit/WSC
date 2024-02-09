@@ -185,6 +185,7 @@
    "allow_on_submit": 1,
    "fieldname": "grace_marks",
    "fieldtype": "Float",
+   "hidden": 1,
    "label": "Grace Marks",
    "read_only": 1
   },
@@ -241,6 +242,7 @@
    "allow_on_submit": 1,
    "fieldname": "qualifying_status",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Qualifying Status",
    "read_only": 1
   },
@@ -316,7 +318,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-24 10:55:06.082892",
+ "modified": "2024-02-08 16:35:27.746758",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Assessment Credits Allocation",

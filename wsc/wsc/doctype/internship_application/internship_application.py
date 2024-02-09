@@ -62,16 +62,22 @@ def get_participant_name(participant_type = None, participant_id = None):
 def drive_filter(doctype, txt, searchfield, start, page_len, filters):
 	formatted_date = datetime.date.today().strftime("%d-%m-%Y") #formatted date "dd-mm-yyyy"
 	participant_id=filters.get('participant_id')
-	enrollment_details = frappe.db.sql(""" SELECT programs, program FROM `tabProgram Enrollment` WHERE student='%s'"""%(participant_id))
-	if(enrollment_details):
-		course = enrollment_details[0][0]
-		semester = enrollment_details[0][1]
-		drive_course_details = frappe.db.sql(""" SELECT parent FROM `tabInternship for Programs` where programs = '{course}' and semester = '{semester}'
-				    """.format(
-						**{
-						"course":course,
-						"semester" : semester
-					}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+	participant_type = filters.get('participant_type')
+	if(participant_type == 'Student'):
+		enrollment_details = frappe.db.sql(""" SELECT programs, program FROM `tabProgram Enrollment` WHERE student='%s'"""%(participant_id))
+		if(enrollment_details):
+			course = enrollment_details[0][0]
+			semester = enrollment_details[0][1]
+			drive_course_details = frappe.db.sql(""" SELECT parent FROM `tabInternship for Programs` where programs = '{course}' and semester = '{semester}'
+						""".format(
+							**{
+							"course":course,
+							"semester" : semester
+						}),{"txt": "%%%s%%" % txt, "start": start, "page_len": page_len})
+			return drive_course_details
+		else:
+			return []
+	elif(participant_type == 'Employee'):
+		drive_course_details = frappe.db.sql(""" SELECT parent FROM `tabInternship for Programs`""")
 		return drive_course_details
-	else:
-		return []
+	
