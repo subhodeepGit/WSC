@@ -41,28 +41,33 @@
                 </div>
             </div>
         </header> -->
-
+        <!-- <button class="btn" id="redirect-btn-test">Redirect</button> -->
+        
         <section class="main-body">
 
             <section class="sub-section-1">
                 <h2>Employee Data</h2>
-                <h4>Employee Activity Summary</h4>
-                
+                <button class="redirect-button " id="attendance">...</button>
+                <h4>Employee Activity Summary(Last 6 months)</h4>
                 <div class="graph" id="frappe-graph">
                 </div>
             </section>
 
             <section class="sub-section-2">
-                <h3>Current Head Count</h3>
-                <h4 id="head-count">2455</h4>
-                <span>Employees</span>
-                <!-- <p>Inactive /Suspended/Resigned Employees</p> -->
+                <div class="head-count-container">
+                    <h3>Current Head Count</h3>
+                    <button class="redirect-button " id="total-emp">...</button>
+                    <h4 id="head-count">2455 <span>Employees</span></h4>
+                    
+                </div>
+                
                 
                 <div class="progress-container" id="progress-container">
+                    
                     <div class="progress-bar" id="bar1"></div>
                     <div class="progress-bar" id="bar2"></div>
                     <div class="progress-bar" id="bar3"></div>
-                    <!-- <div class="progress-bar" id="bar4"></div> -->
+                    
                 </div>
 
                 
@@ -91,93 +96,102 @@
 
                 
                 <h3>Employee Time Off</h3>
-                <div class="inactive-emp scroller">
-                    
-                    <div class="emp-profile">
-                        <div class="emp-pic">
-                            <img src="/files/profile.png" alt="">
-                        </div>
-                        <div class="emp-detail">
-                            <h4>Guy Hawkins</h4>
-                            <p class="reasons"> Issues</p>
-                            <p class="emp-dates">6-10 Aug 2023</p>
-                        </div>
-                    </div>
+                
+                <div class="emp-data-labels">
 
-                    <div class="emp-profile">
-                        <div class="emp-pic">
-                            <img src="/files/profile.png" alt="">
-                        </div>
-                        <div class="emp-detail">
-                            <h4>Wade Warrens</h4>
-                            <p class="reasons">Family Trip</p>
-                            <p class="emp-dates">1-5 Aug 2023</p>
-                        </div>
+                    <p>Employee Id</p>
+                    <p>Employee Name</p>
+                    <p>From Date</p>
+                    <p>To Date</p>
+                    <p> Leave Type</p>
+
+                </div>
+                
+                <div class="inactive-emp scroller" id="emp-on-leave">
+    
+                    <div class="emp-detail">
+                        <p class="employee-id">Guy Hawkins</p>
+                        <p class="employee-name">Guy Hawkins</p>
+                        <p class="reasons"> Issues</p>
+                        <p class="emp-dates from-date">2024-2-15</p>
+                        <p class="emp-dates to-date">2024-2-21</p>
+                    </div>
+                        
+                    <div class="emp-detail">
+                        <p class="employee-id">Guy Hawkins</p>
+                        <p class="employee-name">Wade Warrens</p>
+                        <p class="reasons">Family Trip</p>
+                        <p class="emp-dates from-date">1-5 Aug 2023</p>
+                        <p class="emp-dates to-date">2024-2-21</p>
                     </div>
                     
-                    <div class="emp-profile">
-                        <div class="emp-pic">
-                            <img src="/files/profile.png" alt="">
-                        </div>
-                        <div class="emp-detail">
-                            <h4>Jane Cooper</h4>
-                            <p class="reasons">Sick Leave</p>
-                            <p class="emp-dates">26-28 July 2023</p>
-                        </div>
+                    <div class="emp-detail">
+                        <p class="employee-id">Guy Hawkins</p>
+                        <p class="employee-name">Jane Cooper</p>
+                        <p class="reasons">Sick Leave</p>
+                        <p class="emp-dates from-date">26-28 July 2023</p>
+                        <p class="emp-dates to-date">2024-2-21</p>
                     </div>
+                    
                 </div>
+
             </section>
             
             <section class="sub-section-3">
                 <h2>Recent Job Applicants</h2>
 
                 <div class="table-header">
-                    <div >Applicant Name</div>
-                    <div >Email Address</div>
-                    <div >Designation</div>
-                    <div >Status</div>
-                    <div >Application Year</div>
+                    <div>Applicant ID</div>
+                    <div>Applicant Name</div>
+                    <div>Email Address</div>
+                    <div>Designation</div>
+                    <div>Status</div>
+                    <div>Application Year</div>
                 </div>
 
                 <ul class="responsive-table scroller" id="table">
 
                     <li class="table-row">
-            
-                        <div  data-label="Applicant Name">John Doe</div>
-                        <div  data-label="Email Address">johndoe@gmail.com</div>
-                        <div  data-label="Designation">74,456.40</div>
-                        <div  data-label="Status">-4,645</div>
-                        <div  data-label="Application Year">69811.40</div>
-            
-                    </li>
-
-                    <li class="table-row">
-            
-                        <div  data-label="Applicant Name">Jennifer Smith</div>
-                        <div  data-label="Email Address">jennifersmith@gmail.com</div>
-                        <div  data-label="Designation">87,460</div>
-                        <div  data-label="Status">-7,896</div>
-                        <div  data-label="Application Year">79,564</div>
+                        
+                        <p class="Applicant-ID">John Doe</p>
+                        <p class="Applicant-Name">John Doe</p>
+                        <p class="Email-Address">johndoe@gmail.com</p>
+                        <p class="Designation">74,456.40</p>
+                        <p class="Status">-4,645</p>
+                        <p class="Application-Year">69811.40</p>
             
                     </li>
 
                     <li class="table-row">
-            
-                        <div  data-label="Applicant Name">Jennifer Smith</div>
-                        <div  data-label="Email Address">jennifersmith@gmail.com</div>
-                        <div  data-label="Designation">87,460</div>
-                        <div  data-label="Status">-7,896</div>
-                        <div  data-label="Application Year">79,564</div>
+                        
+                        <p class="Applicant-ID">John Doe</p>
+                        <p class="Applicant-Name">John Doe</p>
+                        <p class="Email-Address">johndoe@gmail.com</p>
+                        <p class="Designation">74,456.40</p>
+                        <p class="Status">-4,645</p>
+                        <p class="Application-Year">69811.40</p>
             
                     </li>
 
                     <li class="table-row">
+                        
+                        <p class="Applicant-ID">John Doe</p>
+                        <p class="Applicant-Name">John Doe</p>
+                        <p class="Email-Address">johndoe@gmail.com</p>
+                        <p class="Designation">74,456.40</p>
+                        <p class="Status">-4,645</p>
+                        <p class="Application-Year">69811.40</p>
             
-                        <div  data-label="Applicant Name">Jennifer Smith</div>
-                        <div  data-label="Email Address">jennifersmith@gmail.com</div>
-                        <div  data-label="Designation">87,460</div>
-                        <div  data-label="Status">-7,896</div>
-                        <div  data-label="Application Year">79,564</div>
+                    </li>
+
+                    <li class="table-row">
+                        
+                        <p class="Applicant-ID">John Doe</p>
+                        <p class="Applicant-Name">John Doe</p>
+                        <p class="Email-Address">johndoe@gmail.com</p>
+                        <p class="Designation">74,456.40</p>
+                        <p class="Status">-4,645</p>
+                        <p class="Application-Year">69811.40</p>
             
                     </li>
                 </ul>

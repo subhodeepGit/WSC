@@ -7,12 +7,11 @@ from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 from frappe.utils.data import today
 from frappe.utils.data import getdate
-# from wsc.wsc.utils import duplicate_row_validation
+from wsc.wsc.utils import duplicate_row_validation
 
 class OnlineApplicationForm(Document):
 
 	def on_update_after_submit(doc):
-		# duplicate_row_validation(doc,"program_priority",["select_your_preference"])
 		# check_profilePhoto(doc)
 		real_applicant(doc)
 		concat_name(doc)
@@ -28,7 +27,6 @@ class OnlineApplicationForm(Document):
 		restrict_applicant(doc)
 
 	def validate(doc):
-		# duplicate_row_validation(doc,"program_priority",["select_your_preferences"])
 		admission(doc)
 		validate_duplicate_record(doc)
 		validate_dob(doc)
@@ -39,17 +37,35 @@ class OnlineApplicationForm(Document):
 		validate_edu_details(doc)
 		print("\n\nChenck Educ in validate")
 		get_cateogry_detail(doc)
+		prority_chk(doc)
 		# education_details_validation(doc)
-		# duplicate_row_validation(doc,"program_priority",["select_your_preference"])
 
 	def on_submit(doc):
-		# duplicate_row_validation(doc,"program_priority",["select_your_preference"])
 		# real_applicant(doc)
 		concat_name(doc)
 		frappe.db.set_value(
 				"Online Application Form", doc.name,"declaration", 
 				"I hereby confirm that, all the data furnished in the form are correct and if any information is found incorrect then my candidature for admission will be cancelled. In case of any wrong information leading to legal, reputational hazard for WSC, it will have the right to take legal action. The final decision of application and admission process is solely lies with WSC. WSC can change the process of admission including data at its own discretion"
 			)
+		
+def prority_chk(doc):
+	lis=[]
+	for t in doc.program_priority:
+		print(t.select_your_preference)
+		lis.append(t.select_your_preference)
+
+	uniqueList = []
+	duplicateList = []
+	
+	for i in lis:
+		if i not in uniqueList:
+			uniqueList.append(i)
+		elif i not in duplicateList:
+			duplicateList.append(i)
+	if duplicateList:
+		frappe.throw("You Have Selected Same Preference For Multiple Courses! Kindly Select Different Preferences.")
+
+
 
 def restrict_applicant(doc):
 	roles = frappe.get_roles(frappe.session.user)

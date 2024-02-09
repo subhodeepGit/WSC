@@ -12,6 +12,7 @@ def validate(doc,method):
     academic_term(doc)
     validate_float(doc)
     student_group_permission(doc)
+    get_name(doc)
 
     count = 0
     sum = 0
@@ -163,3 +164,8 @@ def validate_email(doc):
     if doc.email_id_for_guest_trainers:
         if not re.fullmatch(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b', doc.email_id_for_guest_trainers):
             frappe.throw("<b>{0}</b> is an invalid email address. Please enter a valid email address.".format(doc.email_id_for_guest_trainers))
+
+def get_name(doc):
+    name = doc.instructor_name
+    if not name.replace(' ', '').isalpha():
+        frappe.throw("Enter the trainer's name correctly.")

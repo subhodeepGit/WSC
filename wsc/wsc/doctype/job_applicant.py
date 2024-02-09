@@ -104,6 +104,33 @@ def validate(doc,method):
 	if doc.current_status=="Applied" and "HR Admin" in roles or "Admin" in roles or "Administrator" in roles:
 		submit_document(doc)
 		setup_workflow(doc)
+	validate_job_applicant_name(doc)
+	mobile_number_validation(doc)
+
+def validate_job_applicant_name(doc):
+    if doc.applicant_name:
+            if not contains_only_characters(doc.applicant_name):
+                frappe.throw("Applicant Name should be only characters")
+def contains_only_characters(applicant_name):
+    return all(char.isalpha() or char.isspace() for char in applicant_name)
+def mobile_number_validation(doc):
+
+    if doc.phone_number:
+        if not (doc.phone_number).isdigit():
+            frappe.throw("Field <b>Mobile Number</b> Accept Digits Only")
+        if len(doc.phone_number)>10:
+            frappe.throw("Field <b>Mobile Number</b> must be 10 Digits")
+        if len(doc.phone_number)<10:
+            frappe.throw("Field <b>Mobile Number</b> must be 10 Digits")
+        
+    # if doc.alternate_number:
+       
+    #     if not (doc.alternate_number).isdigit():
+    #         frappe.throw("Field <b>Alternate Contact Number</b> Accept Digits Only")
+    #     if len(doc.alternate_number)<10:
+    #         frappe.throw("Field <b>Alternate Contact Number</b> must be 10 Digits")
+    #     if len(doc.alternate_number)>10:
+    #         frappe.throw("Field <b>Alternate Contact Number</b> must be 10 Digits")
 
 
 	
