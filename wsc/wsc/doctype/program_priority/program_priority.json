@@ -15,7 +15,8 @@
   "parent_program_priority",
   "department",
   "approve",
-  "select_your_preference"
+  "select_your_preference",
+  "age_limit"
  ],
  "fields": [
   {
@@ -112,12 +113,19 @@
    "options": "\n1\n2\n3\n4\n5",
    "reqd": 1,
    "width": "10px"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "age_limit",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Age Limit"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-02-05 17:27:11.401041",
+ "modified": "2024-02-12 13:20:50.305091",
  "modified_by": "Administrator",
  "module": "WSC",
  "name": "Program Priority",
