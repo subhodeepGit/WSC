@@ -23,15 +23,15 @@ def workflow_notification(self,method):
         workflow_wating_approval(self, receipient_name)
 
     elif (self. material_request_type == "Material Transfer" or self. material_request_type == "Material Issue") and self.workflow_state == "Approved by Director":
-        receipient_name = frappe.db.get_list('User',{'name':('in', user_ids),'role_profile_name':'Purchase Manager-MM'},['name']) 
+        receipient_name = frappe.db.get_list('User',{'name':('in', user_ids),'role_profile_name':'GM-Procurement & Contract Management'},['name']) 
         workflow_wating_approval(self, receipient_name)
 
-    elif (self. material_request_type == "Material Transfer" or self. material_request_type == "Material Issue" )and self.workflow_state == "Approved by Purchase Manager":
-        receipient_name = frappe.db.get_list('User',{'name':('in', user_ids),'role_profile_name':'GM-Procurement & Contract Management'},['name'])  
-        workflow_wating_approval(self, receipient_name)
+    # elif (self. material_request_type == "Material Transfer" or self. material_request_type == "Material Issue" )and self.workflow_state == "Approved by Purchase Manager":
+    #     receipient_name = frappe.db.get_list('User',{'name':('in', user_ids),'role_profile_name':'GM-Procurement & Contract Management'},['name'])  
+    #     workflow_wating_approval(self, receipient_name)
 
     elif (self. material_request_type == "Material Transfer" or self. material_request_type == "Material Issue") and self.workflow_state == "Approved by GM-Procurement & Contract Management":
-        receipient_name = frappe.db.get_list('User',{'name':('in', user_ids),'role_profile_name':'Stock Manager- MM'},['name'])
+        receipient_name = frappe.db.get_list('User',{'name':('in', user_ids),'role_profile_name':'Purchase Manager-MM'},['name'])
         workflow_wating_approval(self, receipient_name)
 
     elif self.material_request_type == "Purchase" and frappe.db.get_value('Authorization Hierarchy',{'parent':frappe.db.get_value('Material Request Item', {'parent': self.name},['item_group']), 'authority':'Board of Directors' },['authority']) == 'Board of Directors' and frappe.db.get_value('Authorization Hierarchy',{'parent':frappe.db.get_value('Material Request Item', {'parent': self.name},['item_group']), 'authority':'Board of Directors' },['full_power']) == 1 and self.workflow_state == "Submit": 

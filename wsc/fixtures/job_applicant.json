@@ -5,10 +5,13 @@
   "applicant_name": "Shaik Tousiff",
   "applicant_rating": null,
   "application_year": "2023",
+  "application_deadline": null,
   "country": "India",
   "cover_letter": null,
   "currency": "INR",
   "current_status": "Applied",
+  "correspondence_current_address_with_pin_code": "Bhubaneshwar",
+  "current_place": "Bhubaneshwar",
   "designation": "Analyst",
   "docstatus": 1,
   "doctype": "Job Applicant",
@@ -18,11 +21,14 @@
   "job_title": "accounts-job-opening",
   "lower_range": 0.0,
   "modified": "2023-09-01 10:33:04.260827",
+  "maximum_eligible_age": null,
   "name": "toshiff@gmail.com",
   "naming_series": "HR-APP-.YYYY.-.#####",
   "notes": null,
+  "notice_period": "20",
   "phone_number": "9087654321",
   "previous_application_details": [],
+  "permanent_address_with_pin_code": "Bhubaneshwar",
   "result_status": [
    {
     "name_of_the_round": "Written",
@@ -32,7 +38,7 @@
     "status": ""
    }
   ],
-  "resume_attachment": null,
+  "resume_attachment": "http://localhost:8000/app/job-applicant/new-job-applicant-1",
   "resume_link": null,
   "source": null,
   "source_name": null,
