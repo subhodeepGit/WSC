@@ -1,6 +1,7 @@
 # Copyright (c) 2024, SOUL Limited and contributors
 # For license information, please see license.txt
 
+import math
 from pydoc import doc
 import frappe
 from frappe.model.document import Document
@@ -8,6 +9,7 @@ from frappe.model.mapper import get_mapped_doc
 from frappe.utils.data import today
 from frappe.utils.data import getdate
 from wsc.wsc.utils import duplicate_row_validation
+from datetime import datetime, timedelta
 
 class OnlineApplicationForm(Document):
 
@@ -16,7 +18,6 @@ class OnlineApplicationForm(Document):
 		real_applicant(doc)
 		concat_name(doc)
 		validate_edu_details(doc)
-		print("\n\nChenck Educ in update")
 		validate_duplicate_record(doc)
 		validate_dob(doc)
 		validate_pin_code(doc)
@@ -35,9 +36,9 @@ class OnlineApplicationForm(Document):
 		validate_adharcard(doc)
 		validate_applicant_name(doc)
 		validate_edu_details(doc)
-		print("\n\nChenck Educ in validate")
 		get_cateogry_detail(doc)
 		prority_chk(doc)
+		check_age(doc)
 		# education_details_validation(doc)
 
 	def on_submit(doc):
@@ -184,7 +185,27 @@ def validate_edu_details(doc):
 				"admission_percentage":result.eligible_score
 		})
 
-
+def check_age(doc):
+	if doc.date_of_birth:
+		applicantation_date = frappe.get_all("Student Admission" ,
+											{
+												'academic_year':doc.academic_year,
+												'academic_term':doc.academic_term,
+												'department':doc.department
+											},
+											['application_start_date' , 'maximum_age_limit']
+										)
+		
+		date_of_birth = datetime.strptime(doc.date_of_birth , '%Y-%m-%d')
+		dob = date_of_birth.date()
+		if len(applicantation_date) != 0:
+			age_diff = math.floor(((applicantation_date[0]['application_start_date'] - dob).days)/365)
+			# overage = age_diff - applicantation_date[0]['maximum_age_limit']
+			for t in doc.program_priority:
+				ooverage = age_diff - t.age_limit
+				if age_diff > t.age_limit and t.select_your_preference!=0:
+					frappe.throw("You are not eligible to Apply as you are over age by " + str(ooverage) + " years!")
+			
 def validate_adharcard(doc):
 	if doc.aadhaar_no:
 		if not (doc.aadhaar_no).isdigit():
@@ -246,7 +267,7 @@ def get_validate_course(doctype, txt, searchfield, start, page_len, filters):
 
 @frappe.whitelist()
 def get_courses(department,program_grade,academic_term,gender):
-	x = frappe.db.sql(""" Select admission_program,name,department,semester from `tabStudent Admission` where
+	x = frappe.db.sql(""" Select admission_program,name,department,semester,maximum_age_limit from `tabStudent Admission` where
 					department= %s and program_grade=%s and
 					academic_term= %s and 
 				(applicable_for_all_gender=1 OR gender_type = %s) """,
