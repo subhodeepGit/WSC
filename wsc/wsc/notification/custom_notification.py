@@ -2248,3 +2248,22 @@ def sendHR_app(doc):
 	msg+="""<p><b>Final Status of Appraisal</b></p><br>"""
 	send_mail([doc['hr_mail']],sub,msg)
 	frappe.msgprint("Confirmation mail sent to HR",[doc['hr_mail']])
+
+	#######################Notification code to job applicants on updation of Application Deadline ###############################
+
+def send_mail_to_jobapplicants(doc):
+	job_applicants = frappe.get_all("Job Applicant",{"job_title":"software-developer",'workflow_state':['in', ['Draft', 'Submitted']]},['name','applicant_name','email_id'])
+
+	applicants = []
+	for job_applicant in job_applicants:
+		applicants.append(job_applicant)
+	if not applicants:
+		frappe.msgprint("No Applicant Found")    
+	else :
+		for t in applicants:
+			applicant_name=t.applicant_name
+			msg="""<p>Dear Applicant, <br>"""
+			msg+="""<p>This is to inform you that the for Job Opnening <b>{0}</b> the deadline to submit the form has been updated. The Deadline to submit the form is  <b>{1}</b> """.format(doc.name,doc.application_deadline)
+			recipients = t.email_id
+			send_mail(recipients,'WSC Job Opening Notification',msg)
+		frappe.msgprint("Email sent to Job Applicants")
