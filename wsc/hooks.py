@@ -549,7 +549,13 @@ doc_events = {
     },
     "Monthly Distribution": {
         "validate": "wsc.wsc.validations.monthly_distribution.validate"
-    }
+    },
+    "Job Opening": {
+        "validate": "wsc.wsc.validations.job_opening.validate",
+        "on_update": "wsc.wsc.validations.job_opening.on_update",
+        "before_save": "wsc.wsc.validations.job_opening.before_save"
+    },
+
 
     # "User":{
     #     "validate":"wsc.wsc.validations.user.validate",
