@@ -111,6 +111,7 @@ frappe.ui.form.on('Online Application Form', {
 						c.semester=element.semester
 						c.department=element.department
 						c.student_admission=element.name
+						c.age_limit=element.maximum_age_limit
 					});
 				}
 				frm.refresh_field("program_priority")
@@ -121,12 +122,14 @@ frappe.ui.form.on('Online Application Form', {
         frm.set_value("program_priority",[]);    
     },
 	student_category(frm){
-        frm.set_value("program_priority",[]);  
+        frm.set_value("program_priority",[]);
+		frm.set_value("department",'');  
 		frm.trigger("get_education_and_document_list");  
     },
 	gender(frm){
         frm.set_value("program_priority",[]);  
 		frm.set_value("program_priority","")
+		frm.set_value("department",'');  
 		frm.trigger("get_education_and_document_list");  
     },
 	refresh:function(frm){
@@ -337,6 +340,7 @@ frappe.ui.form.on("Program Priority", "programs", function(frm, cdt, cdn) {
                         frm.set_value("student_admission",r.message['name'])
                     frappe.model.set_value(cdt, cdn, "student_admission", r.message['name']);
                     frappe.model.set_value(cdt, cdn, "semester", r.message['semester']);
+					// frappe.model.set_value(cdt, cdn, "age_limit", r.message['maximum_age_limit']);
                 }
             } 
         }); 
