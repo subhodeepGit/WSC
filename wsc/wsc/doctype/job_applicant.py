@@ -1,7 +1,6 @@
 import frappe
 from frappe import _
 from wsc.wsc.notification.custom_notification import send_mail_to_jobapplicants_final_notification,send_mail_to_jobapplicants_notification
-from datetime import datetime
 
 def update_document(doc, method):
 	roles = frappe.get_roles(frappe.session.user)
@@ -107,15 +106,6 @@ def validate(doc,method):
 		setup_workflow(doc)
 	validate_job_applicant_name(doc)
 	mobile_number_validation(doc)
-
-	#Code to throw error after submitting the form after the deadline.
-
-	if doc.application_deadline:
-		current_datetime = datetime.now()
-		if current_datetime>doc.application_deadline:
-			frappe.throw("Sorry, the submission deadline has expired.")
-	
-	
 
 def validate_job_applicant_name(doc):
     if doc.applicant_name:
