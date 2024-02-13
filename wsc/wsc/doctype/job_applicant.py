@@ -1,6 +1,7 @@
 import frappe
 from frappe import _
 from wsc.wsc.notification.custom_notification import send_mail_to_jobapplicants_final_notification,send_mail_to_jobapplicants_notification
+from datetime import datetime
 
 def update_document(doc, method):
 	roles = frappe.get_roles(frappe.session.user)
@@ -106,6 +107,10 @@ def validate(doc,method):
 		setup_workflow(doc)
 	validate_job_applicant_name(doc)
 	mobile_number_validation(doc)
+	if doc.application_deadline:
+		current_datetime = datetime.now()
+		if current_datetime>doc.application_deadline:
+			frappe.throw("Sorry, the submission deadline has expired.")
 
 def validate_job_applicant_name(doc):
     if doc.applicant_name:
@@ -149,6 +154,15 @@ def mobile_number_validation(doc):
 def previous_applied(aadhar_number):
 	job_applicant = frappe.get_all('Job Applicant',{'aadhar_card_number':aadhar_number},['name','applicant_name','aadhar_card_number','job_title'])
 	return job_applicant
+
+@frappe.whitelist()
+def get_job_opening_details(job_opening):
+    if job_opening:
+        job_opening_doc = frappe.get_doc('Job Opening', job_opening)
+        if job_opening_doc:
+            new_label = f"Do you have {job_opening_doc.years_of_experience_for_the_position} years of experience in {job_opening_doc.designation}?"
+            return new_label
+    return None
 
 # def delete_user_permission(doc):
 # 	if doc.current_status=="Disqualified":
