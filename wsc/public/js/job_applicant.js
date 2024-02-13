@@ -117,3 +117,36 @@ refresh: function(frm) {
 }
 
 })
+frappe.ui.form.on('Job Applicant', {
+    same_as_current_address: function(frm) {
+        frm.fields_dict.same_as_current_address.$input.on('change', function() {
+            var sameAsCurrentAddressChecked = frm.fields_dict.same_as_current_address.$input.prop('checked');
+            if (sameAsCurrentAddressChecked) {
+                frm.set_value('permanent_address_with_pin_code', frm.doc.correspondence_current_address_with_pin_code);
+            } else {
+                frm.set_value('permanent_address_with_pin_code', '');
+            }
+        });
+    }
+});
+
+frappe.ui.form.on('Job Applicant', {
+    job_title: function(frm) {
+        var jobOpening = frm.doc.job_title;
+
+        frappe.call({
+            method:'wsc.wsc.doctype.job_applicant.get_job_opening_details',
+
+            args: {
+                job_opening: jobOpening
+            },
+            callback: function(response) {
+                var newLabel = response.message;
+                if (newLabel) {
+                    frm.set_df_property('do_you_have_minimum_3_years_of_experience', 'label', newLabel);
+                    frm.refresh_field('do_you_have_minimum_3_years_of_experience');
+                }
+            }
+        });
+    }
+});
