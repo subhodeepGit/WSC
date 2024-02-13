@@ -32,12 +32,6 @@ MyPage = Class.extend({
 		col_md_12.forEach(i => {
 			i.style.padding = 0;
 		})
-
-		// const redirectButton = document.querySelector('#redirect-btn-test')
-		// redirectButton.addEventListener('click' , (e) => {
-		// 	// frappe.set_route("List" , "Job Applicant");
-		// 	frappe.set_route("Form" , "Job Applicant" , "HR-APP-2023-00004")
-		// })
 	}
 	
 })
@@ -48,8 +42,9 @@ const data = () => {
 	
 	// DOM Element vairable
 	const empOnLeave = document.querySelector("#emp-on-leave")
-	const job_applicants_table = document.querySelector("#table")
+	const employee_renewal_table = document.querySelector("#table")
 	const head_count = document.querySelector('#head-count')
+	const holidays = document.querySelector('#holiday-table')
 
 	frappe.call({
 		method:'wsc.wsc.page.dashboard_director.dashboard_director.get_data',
@@ -59,7 +54,7 @@ const data = () => {
 			
 			const leave_records  = res.message[5]
 
-			const job_applicant_records = res.message[6]
+			const employee_renewals = res.message[6]
 
 			const employee_count = res.message[7]
 			const inactive_emp_count = res.message[8]
@@ -97,10 +92,12 @@ const data = () => {
 
 			chart(labels , present_data , absent_data , on_leave_data , half_day_data , wfh_data)
 			
-			// Inactive Emp Section
+			
 			emp_on_leave(leave_records , empOnLeave)
+			
+			holidayDetails(holiday_list , holidays)
 
-			applicantSummaryDetails(job_applicant_records , job_applicants_table)
+			employeeRenewalDetails(employee_renewals , employee_renewal_table)
 
 			employeeCount(employee_count , head_count)
 
@@ -166,7 +163,9 @@ const emp_on_leave = (data , element) => {
 	younglingSlayer(element)
 
 	data.forEach((i) => {
+		
 		const emp_details = document.createElement('div')
+
 		const emp_id = document.createElement('p') 
 		const employee_name = document.createElement('p')
 		const reasons = document.createElement('p')
@@ -207,67 +206,115 @@ const emp_on_leave = (data , element) => {
 	
 }
 
-const applicantSummaryDetails = (data , element) => {
+const holidayDetails = (data , element) => {
 	
+	younglingSlayer(element)
+
+	data.forEach(i => {
+		const holiday_row = document.createElement('div')
+
+		const holiday_name = document.createElement('p')
+		const date = document.createElement('p')
+		const weekly_off = document.createElement('p')
+
+		holiday_row.classList.add('holiday-detail')
+
+		holiday_name.classList.add("holiday")
+		date.classList.add('date')
+		weekly_off.classList.add('weekly-off')
+
+		holiday_name.innerText = i.name
+		date.innerText = i.holiday_date
+		
+		if(i.weekly_off === 1) {
+			weekly_off.innerText = 'Yes'
+		} else{
+			i.weekly_off = 'No'
+		}
+
+		holiday_row.appendChild(holiday_name)
+		holiday_row.appendChild(date)
+		holiday_row.appendChild(weekly_off)
+
+		element.appendChild(holiday_row)
+	})
+
+	// element.addEventListener('click' , (e) => {
+			
+	// 	e.preventDefault();
+	// 	console.log(e.target);
+	// 	console.log(e.target.closest('.emp-detail').children[0].innerText);
+	// 	frappe.set_route("Form", "Holiday List", "Saturday 2024"); //Exceptions
+	// 	// if(e.target.classList.contains('holiday') || e.target.classList.contains('date') || e.target.classList.contains('weekly-off')) frappe.set_route("Form" , "Holiday List" , e.target.closest('.emp-detail').children[0].innerText)	
+	// })
+}
+
+const employeeRenewalDetails = (data , element) => {
+
 	younglingSlayer(element)
 
 	data.forEach((i) => {
 		const table_row = document.createElement('li')
 
-		const applicant_id = document.createElement('p')
-		const applicant_name = document.createElement('p')
-		const email_id = document.createElement('p')
+		const id = document.createElement('p')
+		const employee_id = document.createElement('p')
+		const employee_name = document.createElement('p')
+		const employement_type = document.createElement('p')
 		const designation = document.createElement('p')
-		const status = document.createElement('p')
-		const application_year = document.createElement('p')
+		const date_of_joining = document.createElement('p')
+		const ctc = document.createElement('p')
 
 		table_row.classList.add('table-row')
 
-		applicant_id.classList.add("Applicant-ID")
-		applicant_name.classList.add("Applicant-Name")
-		email_id.classList.add("Email-Address")
+		id.classList.add('ID')
+		employee_id.classList.add("Employee-ID")
+		employee_name.classList.add("Employee-Name")
+		employement_type.classList.add("Employement-Type")
 		designation.classList.add("Designation")
-		status.classList.add("Status")
-		application_year.classList.add("Applicantion-Year")
+		date_of_joining.classList.add("Date-of-joining")
+		ctc.classList.add("CTC")
 
-		applicant_id.innerText = i.name
-		applicant_name.innerText = i.applicant_name
-		email_id.innerText = i.email_id
+		id.innerText = i.name
+		employee_id.innerText = i.employee
+		employee_name.innerText = i.employee_name
+		employement_type.innerText = i.employment_type
 		designation.innerText = i.designation
-		status.innerText = i.current_status
-		application_year.innerText = i.application_year
+		date_of_joining.innerText = i.date_of_joining
+		ctc.innerText = i.cost_to_company_ctc
 
-		table_row.appendChild(applicant_id)
-		table_row.appendChild(applicant_name)
-		table_row.appendChild(email_id)
+		table_row.appendChild(id)
+		table_row.appendChild(employee_id)
+		table_row.appendChild(employee_name)
+		table_row.appendChild(employement_type)
 		table_row.appendChild(designation)
-		table_row.appendChild(status)
-		table_row.appendChild(application_year)
+		table_row.appendChild(date_of_joining)
+		table_row.appendChild(ctc)
 
 		element.appendChild(table_row)
 	})
-
-	//Routing Job Applicants
+	
+	//Routing Employee Renewal Applicants
 	element.addEventListener('click' , (e) => {
 				
 		e.preventDefault()
 		
-		if(e.target.classList.contains('Applicant-ID') || e.target.classList.contains('Applicant-Name') || e.target.classList.contains('Email-Address') || e.target.classList.contains('Designation') || e.target.classList.contains('Status') || e.target.classList.contains('Application-Year')) frappe.set_route("Form" , "Job Applicant" , e.target.closest('.table-row').children[0].innerText)
+		if(e.target.classList.contains('ID') || e.target.classList.contains('Employee-ID') || e.target.classList.contains('Employee-Name') || e.target.classList.contains('Employement-Type') || e.target.classList.contains('Designation') || e.target.classList.contains('Date-of-joining') || e.target.classList.contains('CTC')) frappe.set_route("Form" , "Employee Renewal Form" , e.target.closest('.table-row').children[0].innerText)
+		
 	})
 }
 
 const employeeCount = (data, element) => {
 
 	const total_emp_button = document.querySelector('#total-emp')
-
+	console.log(data);
 	element.innerHTML = `${data[0].employee_count} <span>Employees</span>`  // One exception of all
-	console.log(element.innerText);
-	total_emp_button.addEventListener('click' , (e) => {
-		e.preventDefault()
-		frappe.set_route("List", "Employee" , {
-			status: data[0].status
-		});
-	})
+
+	// total_emp_button.addEventListener('click' , (e) => {
+	// 	e.preventDefault()
+	// 	frappe.set_route("List", "Employee" , {
+	// 		status: data[0].status
+	// 	});
+	// })
 }
 
 
@@ -278,6 +325,8 @@ function progress_bar(...data){
     const percent_value = document.querySelectorAll('.percent')
 
 	const total_emp_count = data[3][0].total_count
+
+	console.log(bars);
 
 	const inactive_emp_percent = Math.round((data[0][0].count/total_emp_count) * 100 , 2)
 	const suspended_emp_percent = Math.round((data[1][0].count/total_emp_count) * 100 , 2)
@@ -366,7 +415,7 @@ const chart = function(labels , ...values){ //add spread operator to values
 		title: "Employee Attendance",
 		data: chart_data,
 		type: 'bar', // or 'bar', 'line', 'scatter', 'pie', 'percentage' , axis-mixed
-		height: 400,
+		height: 550,
 		colors: ['#43c3e0', '#f7dc6f' , '#f5b7b1' , '#8382de']
 	})
 
