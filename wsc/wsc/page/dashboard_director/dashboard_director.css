@@ -116,6 +116,7 @@ p{
     margin: 0.5rem;
     padding: 1rem;
     display: grid;
+    /* grid-template-columns: 0.8fr 1.1fr; */
     grid-template-columns: repeat(2 , 1fr);
     gap: 1rem;
     background-color: var(--white);
@@ -124,7 +125,12 @@ p{
     color: var(--a-gray);
 }
 /* Sub section 1 */
-.sub-section-1{
+/* .sub-section-1{
+    display: grid;
+    grid-template-columns: repeat(2 , 1fr);
+} */
+
+.titles{
     display: grid;
     grid-template-columns: repeat(2 , 1fr);
 }
@@ -136,11 +142,10 @@ p{
     line-height: 0.5;
 
 }
-.sub-section-1 > .redirect-button {
-    grid-column: 2/3;
-    grid-row: 2/3;
+.titles > .redirect-button {
+    /* float: right; */
     margin-left: auto;
-    margin-right: 1.5rem;
+    margin-right: 2rem;
 }
 .sub-section-1 > h4{
     margin-bottom: 0.4rem;
@@ -156,6 +161,7 @@ p{
     height: 100%;
     
 }
+
 /* .sub-section-1{
     display: flex;
     flex-direction: column;
@@ -223,11 +229,19 @@ select::-ms-expand {
 .select:hover::after {
     color: var(--bluish-gray);
 } 
+
 /* Sub section 2 */
-.head-count-container{
+.sub-section-2{
+    display: grid;
+    /* grid-template-columns: repeat(2 , 1fr); */
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    gap: 12px;
+}
+/* .head-count-container{
     display: grid;
     grid-template-columns: repeat(2 , 1fr);
-}
+} */
 .head-count-container > h3 , .head-count-container > h4{
     margin: 0.6rem 0; 
 }
@@ -259,20 +273,18 @@ select::-ms-expand {
     background-color: transparent;
 }
 
-.head-count-container .redirect-button{
+/* .head-count-container .redirect-button{
     grid-column: 2/2;
     grid-row: 2/2;
-}
+} */
 /* Progrss Bar */
 .progress-container {
-    /* width:auto; */
     height: 20px;
-    /* background-color: var(--some-other-sshade-of-gray); */
     border-radius: 5px;
     overflow: hidden;
     display: flex;
     margin-top: 1rem;
-    /* position: relative; */
+    grid-column: 1/2;
 }
 .progress-bar {
     height: 100%;
@@ -335,6 +347,7 @@ select::-ms-expand {
     display: flex;
     justify-content: flex-start;
     margin: 1rem 0;
+    grid-column: 1/2;
 }
 .progress-mark{
     display: flex;
@@ -357,7 +370,12 @@ select::-ms-expand {
     color: var(--gray);
 }
 
-.emp-data-labels{
+.holiday-list{
+    grid-column: 2/3;
+    grid-row: 1/3;
+}
+
+.emp-data-labels , .holiday-date-labels{
     display: grid;
     grid-template-columns: repeat(5 , 1fr);
     /* padding-top: 0.6rem; */
@@ -369,9 +387,15 @@ select::-ms-expand {
     letter-spacing: 0.03em;
     text-align: center;
 }
-
-/* Absent employee details */
-.inactive-emp{
+.holiday-date-labels{
+    display: grid;
+    grid-template-columns: repeat(3 , 1fr);
+}
+/* employee applied for leave details */
+.pending-leave-applications{
+    grid-column: 1/3;
+}
+.inactive-emp , .holidays{
     height: 220px;
     overflow-y: auto;
     overflow-x: hidden;
@@ -387,6 +411,7 @@ select::-ms-expand {
     -webkit-mask-position: left bottom;
     transition: mask-position 0.3s, -webkit-mask-position 0.3s;
 }
+
 .inactive-emp::-webkit-scrollbar {
     width: 6px;
     scrollbar-color: var(--light-gray) var(--white); 
@@ -406,7 +431,7 @@ select::-ms-expand {
     -webkit-mask-position: left top;
 }
 
-.emp-detail{
+.emp-detail , .holiday-detail{
     width: 100%;
     display: grid;
     grid-template-columns: repeat(5 , 1fr);
@@ -418,8 +443,12 @@ select::-ms-expand {
     font-size: 1rem;
     border-radius: 10px;
 }
-
-.emp-detail p{
+.holiday-detail{
+    display: grid;
+    grid-template-columns: repeat(3 , 1fr);
+    text-align: center;
+}
+.emp-detail p , .holiday-detail p{
     font-size: 0.82rem;
     padding-top: 0.2rem;
     margin-bottom: 0.2rem;
@@ -503,7 +532,7 @@ select::-ms-expand {
 .table-row , .table-header{
     display: grid;
     /* grid-template-columns: 15% 20% 15% 10% 15% 15% 10%; */
-    grid-template-columns: repeat(6 , 1fr);
+    grid-template-columns: repeat(7 , 1fr);
     text-align: center;
     text-wrap: wrap;
 }

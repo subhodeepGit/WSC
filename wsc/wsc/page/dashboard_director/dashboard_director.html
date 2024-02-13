@@ -46,9 +46,11 @@
         <section class="main-body">
 
             <section class="sub-section-1">
-                <h2>Employee Data</h2>
-                <button class="redirect-button " id="attendance">...</button>
-                <h4>Employee Activity Summary(Last 6 months)</h4>
+                <div class="titles">
+                    <h2>Employee Data</h2>
+                    <button class="redirect-button " id="attendance">...</button>
+                    <h4>Employee Activity Summary(Last 6 months)</h4>
+                </div>
                 <div class="graph" id="frappe-graph">
                 </div>
             </section>
@@ -56,142 +58,190 @@
             <section class="sub-section-2">
                 <div class="head-count-container">
                     <h3>Current Head Count</h3>
-                    <button class="redirect-button " id="total-emp">...</button>
+                    <!-- <button class="redirect-button " id="total-emp">...</button> -->
                     <h4 id="head-count">2455 <span>Employees</span></h4>
                     
                 </div>
                 
                 
-                <div class="progress-container" id="progress-container">
+                <div class="bars" id="progress-container">
                     
-                    <div class="progress-bar" id="bar1"></div>
-                    <div class="progress-bar" id="bar2"></div>
-                    <div class="progress-bar" id="bar3"></div>
-                    
+                    <div class="progress-container">
+                        <div class="progress-bar" id="bar1"></div>
+                        <div class="progress-bar" id="bar2"></div>
+                        <div class="progress-bar" id="bar3"></div>
+                    </div>
+                    <div class="progress-marker">
+                        <div class="progress-mark">
+                            <div class="color-mark"></div>
+                            <span class="percent">10%</span>
+                            <span class="description">Succesfully Paid</span>
+                        </div>
+                        <div class="progress-mark">
+                            <div class="color-mark"></div>
+                            <span class="percent">40%</span>
+                            <span class="description">Pending</span>
+                        </div>
+                        <div class="progress-mark">
+                            <div class="color-mark"></div>
+                            <span class="percent">10%</span>
+                            <span class="description">Unpaid</span>
+                        </div>
+                        <!-- <div class="progress-mark">
+                            <div class="color-mark"></div>
+                            <span class="percent">40%</span>
+                            <span class="description">Unpaid2</span>
+                        </div> -->
+                    </div>
                 </div>
 
                 
-                <div class="progress-marker">
-                    <div class="progress-mark">
-                        <div class="color-mark"></div>
-                        <span class="percent">10%</span>
-                        <span class="description">Succesfully Paid</span>
-                    </div>
-                    <div class="progress-mark">
-                        <div class="color-mark"></div>
-                        <span class="percent">40%</span>
-                        <span class="description">Pending</span>
-                    </div>
-                    <div class="progress-mark">
-                        <div class="color-mark"></div>
-                        <span class="percent">10%</span>
-                        <span class="description">Unpaid</span>
-                    </div>
-                    <!-- <div class="progress-mark">
-                        <div class="color-mark"></div>
-                        <span class="percent">40%</span>
-                        <span class="description">Unpaid2</span>
-                    </div> -->
-                </div>
 
-                
-                <h3>Employee Time Off</h3>
-                
-                <div class="emp-data-labels">
 
-                    <p>Employee Id</p>
-                    <p>Employee Name</p>
-                    <p>From Date</p>
-                    <p>To Date</p>
-                    <p> Leave Type</p>
+                <div class="holiday-list">
+                    <h3>Holiday List</h3>
+                    <div class="holiday-date-labels">
 
-                </div>
-                
-                <div class="inactive-emp scroller" id="emp-on-leave">
+                        <p>Holdiday</p>
+                        <p>Date</p>
+                        <p>Weekly Off</p>
     
-                    <div class="emp-detail">
-                        <p class="employee-id">Guy Hawkins</p>
-                        <p class="employee-name">Guy Hawkins</p>
-                        <p class="reasons"> Issues</p>
-                        <p class="emp-dates from-date">2024-2-15</p>
-                        <p class="emp-dates to-date">2024-2-21</p>
                     </div>
+
+                    <div class="holidays scroller" id="holiday-table">
+    
+                        <div class="holiday-detail">
+                
+                            <p class="holiday">Guy Hawkins</p>
+                            <p class="date">Guy Hawkins</p>
+                            <p class="weekly-off"> Issues</p>
+                
+                            
+                        </div>
+                            
+                        <div class="holiday-detail">
+
+                            <p class="holiday">Guy Hawkins</p>
+                            <p class="date">Guy Hawkins</p>
+                            <p class="weekly-off"> Issues</p>
+                            
+                        </div>
+
+                        <div class="holiday-detail">
+                            
+                            <p class="holiday">Guy Hawkins</p>
+                            <p class="date">Guy Hawkins</p>
+                            <p class="weekly-off"> Issues</p>
+                            
+                        </div>
                         
-                    <div class="emp-detail">
-                        <p class="employee-id">Guy Hawkins</p>
-                        <p class="employee-name">Wade Warrens</p>
-                        <p class="reasons">Family Trip</p>
-                        <p class="emp-dates from-date">1-5 Aug 2023</p>
-                        <p class="emp-dates to-date">2024-2-21</p>
                     </div>
-                    
-                    <div class="emp-detail">
-                        <p class="employee-id">Guy Hawkins</p>
-                        <p class="employee-name">Jane Cooper</p>
-                        <p class="reasons">Sick Leave</p>
-                        <p class="emp-dates from-date">26-28 July 2023</p>
-                        <p class="emp-dates to-date">2024-2-21</p>
-                    </div>
-                    
+
                 </div>
 
+                <div class="pending-leave-applications">
+                    <h3>Open Leave Applications</h3>
+                
+                    <div class="emp-data-labels">
+
+                        <p>Employee Id</p>
+                        <p>Employee Name</p>
+                        <p>From Date</p>
+                        <p>To Date</p>
+                        <p> Leave Type</p>
+
+                    </div>
+                
+                    <div class="inactive-emp scroller" id="emp-on-leave">
+        
+                        <div class="emp-detail">
+                            <p class="employee-id">Guy Hawkins</p>
+                            <p class="employee-name">Guy Hawkins</p>
+                            <p class="reasons"> Issues</p>
+                            <p class="emp-dates from-date">2024-2-15</p>
+                            <p class="emp-dates to-date">2024-2-21</p>
+                        </div>
+                            
+                        <div class="emp-detail">
+                            <p class="employee-id">Guy Hawkins</p>
+                            <p class="employee-name">Wade Warrens</p>
+                            <p class="reasons">Family Trip</p>
+                            <p class="emp-dates from-date">1-5 Aug 2023</p>
+                            <p class="emp-dates to-date">2024-2-21</p>
+                        </div>
+                        
+                        <div class="emp-detail">
+                            <p class="employee-id">Guy Hawkins</p>
+                            <p class="employee-name">Jane Cooper</p>
+                            <p class="reasons">Sick Leave</p>
+                            <p class="emp-dates from-date">26-28 July 2023</p>
+                            <p class="emp-dates to-date">2024-2-21</p>
+                        </div>
+                    </div>
+                </div>
+                
             </section>
             
             <section class="sub-section-3">
-                <h2>Recent Job Applicants</h2>
+                <h2>Pending Employee Renewals</h2>
 
                 <div class="table-header">
-                    <div>Applicant ID</div>
-                    <div>Applicant Name</div>
-                    <div>Email Address</div>
+                    <div>ID</div>
+                    <div>Employee ID</div>
+                    <div>Employee Name</div>
+                    <div>Employement Type</div>
                     <div>Designation</div>
-                    <div>Status</div>
-                    <div>Application Year</div>
+                    <div>Date Of Joining</div>
+                    <div>CTC</div>
                 </div>
 
                 <ul class="responsive-table scroller" id="table">
 
                     <li class="table-row">
                         
-                        <p class="Applicant-ID">John Doe</p>
-                        <p class="Applicant-Name">John Doe</p>
-                        <p class="Email-Address">johndoe@gmail.com</p>
+                        <p class="ID">HR-456-741</p>
+                        <p class="Employee-ID">John Doe</p>
+                        <p class="Employee-Name">John Doe</p>
+                        <p class="Employement-Type">johndoe@gmail.com</p>
                         <p class="Designation">74,456.40</p>
-                        <p class="Status">-4,645</p>
-                        <p class="Application-Year">69811.40</p>
+                        <p class="Date-of-joining">-4,645</p>
+                        <p class="CTC">69811.40</p>
             
                     </li>
 
                     <li class="table-row">
                         
-                        <p class="Applicant-ID">John Doe</p>
-                        <p class="Applicant-Name">John Doe</p>
-                        <p class="Email-Address">johndoe@gmail.com</p>
+                        <p class="ID">HR-456-741</p>
+                        <p class="Employee-ID">John Doe</p>
+                        <p class="Employee-Name">John Doe</p>
+                        <p class="Employement-Type">johndoe@gmail.com</p>
                         <p class="Designation">74,456.40</p>
-                        <p class="Status">-4,645</p>
-                        <p class="Application-Year">69811.40</p>
+                        <p class="Date-of-joining">-4,645</p>
+                        <p class="CTC">69811.40</p>
             
                     </li>
 
                     <li class="table-row">
                         
-                        <p class="Applicant-ID">John Doe</p>
-                        <p class="Applicant-Name">John Doe</p>
-                        <p class="Email-Address">johndoe@gmail.com</p>
+                        <p class="ID">HR-456-741</p>
+                        <p class="Employee-ID">John Doe</p>
+                        <p class="Employee-Name">John Doe</p>
+                        <p class="Employement-Type">johndoe@gmail.com</p>
                         <p class="Designation">74,456.40</p>
-                        <p class="Status">-4,645</p>
-                        <p class="Application-Year">69811.40</p>
+                        <p class="Date-of-joining">-4,645</p>
+                        <p class="CTC">69811.40</p>
             
                     </li>
 
                     <li class="table-row">
                         
+                        <p class="ID">HR-456-741</p>
                         <p class="Applicant-ID">John Doe</p>
-                        <p class="Applicant-Name">John Doe</p>
-                        <p class="Email-Address">johndoe@gmail.com</p>
+                        <p class="Employee-Name">John Doe</p>
+                        <p class="Employement-Type">johndoe@gmail.com</p>
                         <p class="Designation">74,456.40</p>
-                        <p class="Status">-4,645</p>
-                        <p class="Application-Year">69811.40</p>
+                        <p class="Date-of-joining">-4,645</p>
+                        <p class="CTC">69811.40</p>
             
                     </li>
                 </ul>
