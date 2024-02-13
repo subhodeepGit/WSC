@@ -572,7 +572,7 @@ scheduler_events = {
 
     "cron":{
         "* * * * *" : [
-            # "wsc.task.warranty_notification",
+            # wsc.task.warranty_notification,
             # "wsc.task.safety_stock_reach",
             # "wsc.task.appraisal_reminder"
         ],
@@ -595,7 +595,7 @@ scheduler_events = {
         "wsc.task.employee_re_engagement_workFlow",
         "wsc.task.check_and_delete_exit_employee_permissions",
         "wsc.task.overdue_task",
-        "wsc.task.status_update"
+        "wsc.task.status_update",
         # "wsc.wsc.validations.exam_assessment_plan.make_exam_paper_setting_by_paper_setting_date"
 	]
 }

@@ -1241,3 +1241,19 @@ def send_job_requisitions_list_to_coo():
 
         send_mail(recipient_emails, sub, msg)
         frappe.msgprint("List of Job Requisitions sent to the COO for the specified workflow state.")
+
+def overdue_task():
+    today_date = date.today()
+    task_data = frappe.get_all("Task", ['name', 'exp_end_date', 'project_manager'])
+    for t in task_data:
+        if t["exp_end_date"]:
+            end_date = t['exp_end_date']
+            if today_date > end_date:
+                sub = "Reg:Task Delay"
+                msg = """<b>Task {0} has exceeded its expected end date</b><br>""".format(t['name'])
+                msg += """Thank You<br>"""
+                recipients_list = frappe.get_all("Task Assign", {'parent': t['name']}, ['assign_to'])
+                recipient_emails = [recipient['assign_to'] for recipient in recipients_list]
+                cc_emails = t['project_manager']
+                send_mail_cc(recipient_emails, cc_emails, sub, msg)
+
