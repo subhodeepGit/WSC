@@ -132,7 +132,6 @@ frappe.ui.form.on('Job Applicant', {
 
 frappe.ui.form.on('Job Applicant', {
     job_title: function(frm) {
-		alert("Hello12")
         var jobOpening = frm.doc.job_title;
 
         frappe.call({
