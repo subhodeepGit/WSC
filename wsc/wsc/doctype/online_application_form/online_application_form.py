@@ -52,7 +52,6 @@ class OnlineApplicationForm(Document):
 def prority_chk(doc):
 	lis=[]
 	for t in doc.program_priority:
-		print(t.select_your_preference)
 		lis.append(t.select_your_preference)
 
 	uniqueList = []
@@ -176,8 +175,6 @@ def validate_student_admission(doc):
 def validate_edu_details(doc):
 	if len(doc.education_qualifications_details) == 0:
 		for result in frappe.get_all("Eligibility Parameter List",{"parent":doc.student_admission,"parenttype":"Student Admission"},["parameter","percentagecgpa","is_mandatory","eligible_score","department"] , order_by="parameter",group_by="parameter"):
-			print("\n\n\nThird")
-			print(result.department)
 			doc.append("education_qualifications_details",{
 				"qualification":result.parameter,
 				"percentage_cgpa":result.percentagecgpa,

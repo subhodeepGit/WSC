@@ -72,7 +72,7 @@ def get_data():
 
         attendance_wfh = frappe.get_list("Attendance", filters_wfh , wfh_fields , group_by="MONTH(attendance_date), YEAR(attendance_date)")
 
-        leave_records = frappe.get_list('Leave Application' , {'current_status':'Approved'} , ['name' , 'employee_name' , 'leave_type' , 'from_date' , 'to_date'] , limit_start=0 , limit_page_length=10)
+        leave_records = frappe.get_list('Leave Application' , {'current_status':'Open'} , ['name' , 'employee_name' , 'leave_type' , 'from_date' , 'to_date'] , limit_start=0 , limit_page_length=10)
 
         job_applicant_records = frappe.get_list("Job Applicant" , {
             'current_status': ['in', ['Applied', 'Qualified']] 
@@ -106,10 +106,16 @@ def get_data():
             WHERE 
                 holiday.holiday_date >= CURRENT_DATE()
             ORDER BY holiday.holiday_date 
-            LIMIT 10    
+            LIMIT 4
         """,as_dict=1)
 
-        return [attendance_present , attendance_absent , attendance_on_leave , attendance_half_day , attendance_wfh , leave_records , job_applicant_records , employee_count , inactive_emp_count , suspended_emp_count , left_emp_count , total_emp_count , holiday_list]
+        employee_renewal = frappe.get_list("Employee Renewal Form" , 
+                                                {'status':'Pending Approval From Reporting Authority'} ,
+                                                ['name' , 'employee' , 'employee_name' , 'designation' ,
+                                                 'date_of_joining' , 'cost_to_company_ctc' , 'employment_type' ,
+                                                ] , limit_start=0 , limit_page_length=10)
+        
+        return [attendance_present , attendance_absent , attendance_on_leave , attendance_half_day , attendance_wfh , leave_records , employee_renewal , employee_count , inactive_emp_count , suspended_emp_count , left_emp_count , total_emp_count , holiday_list]
     
     else: 
         frappe.throw("Page Only Visible to Director")
